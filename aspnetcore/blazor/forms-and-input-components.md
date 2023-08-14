@@ -19,36 +19,44 @@ The Blazor framework supports forms and provides built-in input components:
 
 The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides:
 
- * Classes for managing form elements, state, and validation.
- * Access to built-in :::no-loc text="Input*"::: components, which can be used in Blazor apps.
- 
-A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available in all of the Razor component files (`.razor`) of the app without explicit [`@using`](xref:mvc/views/razor#using) directives:
+* Classes for managing form elements, state, and validation.
+* Access to built-in :::no-loc text="Input*"::: components, which can be used in Blazor apps.
 
-```razor
-@using Microsoft.AspNetCore.Components.Forms
-```
+A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available in all of the Razor components of the app.
+
 ## Examples in this article
 
-Component example forms use more vertical line spacing than is normally found in production apps. The extra spacing is merely present to make the examples clearer.
+Example forms use more vertical line spacing than is normally found in production apps. The extra spacing is merely present to make the examples clearer.
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components are configured for server-side rendering (SSR) and server interactivity. For a client-side experience, change the render mode in the `@attribute` directive at the top of the component to either:
+Components are configured for server-side rendering (SSR) and server interactivity. For a client-side experience in a Blazor Web App, change the render mode in the `@attribute` directive at the top of the component to either:
 
-* `RenderModeWebAssembly` for client-side rendering (CSR) in Blazor Web App projects or for Blazor WebAssembly projects.
-* `RenderModeAuto` for CSR and interactivity. For CSR, keep in mind that all of the component code is compiled and set to the client, where users can decompile and inspect it. Never provide private code, app secrets, or other sensitive information in client-side code.
+* `RenderModeWebAssembly` for client-side rendering (CSR) only.
+* `RenderModeAuto` for CSR/client-side interactivity after SSR/server interactivity and the WebAssembly-based runtime starts. For CSR, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Never place private code, app secrets, or other sensitive information in automatic render mode or CSR components.
+
+If working with a Blazor WebAssembly app, take either of the following approaches:
+
+* Change the render mode to CSR (`RenderModeWebAssembly`):
+
+  ```diff
+  - @attribute [RenderModeServer]
+  + @attribute [RenderModeWebAssembly]
+  ```
+  
+* Remove the `@attribute` from the component.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-Examples use [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced at .NET 5 with C# 9.0. In the following example, the type isn't explicitly stated with the `new` operator:
+Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9.0 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new();
 ```
 
-In .NET 3.1, modify the example code to explicitly name the type:
+If using C# 8.0 or earlier (.NET 3.1), modify the example code to explicitly name the type:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new ShipDescription();
@@ -56,13 +64,19 @@ public ShipDescription ShipDescription { get; set; } = new ShipDescription();
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-6.0"
+
 Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see <xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis>.
 
-The .NET SDK applies implicit global `using` directives to Blazor projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
+If using C# 9.0 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
 
-To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to add the namespace, make the namespace available throughout the app's components with the imports file.
+The .NET SDK applies implicit global `using` directives to projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
 
-Add the following line to the project's `_Imports.razor` file:
+If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. API namespaces are often found through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
+
+:::moniker-end
+
+To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to add the namespace, make the namespace available throughout the app's components with the imports file. Add the following line to the project's `_Imports.razor` file:
 
 ```razor
 @using System.ComponentModel.DataAnnotations
@@ -103,7 +117,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @attribute [RenderModeServer]
 @inject ILogger<Starship1> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship">
+<EditForm method="post" Model="@Model" OnSubmit="@Submit">
 
     <InputText @bind-Value="Model!.Id" />
 
@@ -131,7 +145,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 In the preceding `Starship1` component:
 
-* The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears. The `FormName` parameter sets the form handler name, which is required for posting to a server-side endpoint. The parameter isn't used during interactive rendering.
+* The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a public property (`Model`). The property is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
@@ -200,7 +214,7 @@ In the next example, the preceding component is modified to create the form in t
 @attribute [RenderModeServer]
 @inject ILogger<Starship2> Logger
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
 
     <DataAnnotationsValidator />
 
@@ -273,7 +287,7 @@ In the next example, the preceding component is modified to create the form in t
 
 :::moniker-end
 
-## Binding a form
+## Binding
 
 An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned object as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which form fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
 
@@ -282,7 +296,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-<EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship">
+<EditForm method="post" Model="@Model" OnSubmit="@Submit">
     ...
 </EditForm>
 
@@ -318,8 +332,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit"
-     FormName="Starship">
+<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit">
      ...
 </EditForm>
 
@@ -362,7 +375,50 @@ Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditCo
 
 :::moniker range=">= aspnetcore-8.0"
 
-To bind multiple forms, provide each form a unique form name in the `FormName` parameter and pass the form name to the appropriate binding model property in the `[SupplyParameterFromForm]` attribute.
+The following is a nested form example:
+
+<!-- UPDATE 8.0 At RTM or upon API browser updates, cross-link 
+     Microsoft.AspNetCore.Components.Forms.Editor<T>. -->
+
+* A ship details class (`ShipDetails`) holds a description and length for a subform. The `Ship` class names an identifier (`Id`) and includes the ship details. The main form is based on the `Ship` class.
+* The subform (`ShipSubform` component) is a component used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component, in this case `Editor<ShipDetails>`.
+* The `StarshipSubform` component is used in the `Starship3` component and bound to `ShipDetails` in the form's model, as `Model!.Details`.
+
+`ShipDetails.cs`:
+
+```csharp
+public class ShipDetails
+{
+    public string? Description { get; set; }
+    public int? Length { get; set; }
+}
+```
+
+`Ship.cs`:
+
+```csharp
+public class Ship
+{
+    public string? Id { get; set; }
+    public ShipDetails Details { get; set; } = new();
+}
+```
+
+`StarshipSubform.razor`:
+
+```razor
+@inherits Editor<ShipDetails>
+
+<label>
+    Description:
+    <InputText @bind-Value="Value!.Description" />
+</label>
+
+<label>
+    Length:
+    <InputNumber @bind-Value="Value!.Length" />
+</label>
+```
 
 `Starship3.razor`:
 
@@ -370,6 +426,42 @@ To bind multiple forms, provide each form a unique form name in the `FormName` p
 @page "/starship-3"
 @attribute [RenderModeServer]
 @inject ILogger<Starship3> Logger
+
+<EditForm method="post" Model="@Model" OnSubmit="@Submit">
+
+    <label>
+        Id:
+        <InputText @bind-Value="Model!.Id" />
+    </label>
+    
+    <StarshipSubform @bind-Value="Model!.Details" />
+
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    public Ship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        Logger.LogInformation("Id = {Id} Desc = {Description} Length = {Length}", 
+            Model?.Id, Model?.Details?.Description, Model?.Details?.Length);
+    }
+}
+```
+
+To bind multiple forms, provide each form a unique form handler name in the `FormName` parameter and pass the form name to the appropriate binding model property in the `[SupplyParameterFromForm]` attribute.
+
+`Starship4.razor`:
+
+```razor
+@page "/starship-4"
+@attribute [RenderModeServer]
+@inject ILogger<Starship4> Logger
 
 <EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Starship1">
 
@@ -389,10 +481,10 @@ To bind multiple forms, provide each form a unique form name in the `FormName` p
 
 @code {
     [SupplyParameterFromForm(Handler = "Starship1")]
-    public Customer? Model1 { get; set; }
+    public Starship? Model1 { get; set; }
 
     [SupplyParameterFromForm(Handler = "Starship2")]
-    public Customer? Model2 { get; set; }
+    public Starship? Model2 { get; set; }
 
     protected override void OnInitialized()
     {
@@ -581,20 +673,20 @@ The following form accepts and validates user input using:
 * The properties and validation defined in the preceding `Starship` model.
 * Several of Blazor's [built-in input components](#built-in-input-components).
 
-`Starship4.razor`:
+`Starship5.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-4"
+@page "/starship-5"
 @attribute [RenderModeServer]
-@inject ILogger<Starship4> Logger
+@inject ILogger<Starship5> Logger
 
 <h1>Starfleet Starship Database</h1>
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship">
+<EditForm Model="@Model" OnValidSubmit="@Submit">
 
     <DataAnnotationsValidator />
 
@@ -660,13 +752,19 @@ The following form accepts and validates user input using:
 
     private void Submit()
     {
-        // ...
+        Logger.LogInformation("Id = {Id} Description = {Description} " +
+            "Classification = {Classification} MaximumAccommodation = " +
+            "{MaximumAccommodation} IsValidatedDesign = " +
+            "{IsValidatedDesign} ProductionDate = {ProductionDate}", 
+            Model?.Id, Model?.Description, Model?.Classification, 
+            Model?.MaximumAccommodation, Model?.IsValidatedDesign, 
+            Model?.ProductionDate);
     }
 }
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship4.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship5.razor":::
 -->
 
 :::moniker-end
@@ -674,8 +772,8 @@ The following form accepts and validates user input using:
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-4"
-@inject ILogger<Starship4> Logger
+@page "/starship-5"
+@inject ILogger<Starship5> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -752,7 +850,7 @@ The following form accepts and validates user input using:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship4.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship5.razor":::
 -->
 
 :::moniker-end
@@ -761,7 +859,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding examp
 
 In the following example:
 
-* A shortened version of the preceding `Starfleet Starship Database` form (`Starship4` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* A shortened version of the preceding `Starfleet Starship Database` form (`Starship5` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * The `Submit` method executes when the **`Submit`** button is selected.
 * The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `Submit` method.
 * Logging is executed depending on the validation result.
@@ -771,20 +869,18 @@ In the following example:
 >
 > > This async method lacks 'await' operators and will run synchronously. ...
 
-`Starship5.razor`:
+`Starship6.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-5"
+@page "/starship-6"
 @attribute [RenderModeServer]
-@inject ILogger<Starship5> Logger
+@inject ILogger<Starship6> Logger
 
-<EditForm EditContext="@editContext" OnSubmit="@Submit" FormName="Starship">
+<EditForm EditContext="@editContext" OnSubmit="@Submit">
 
     <DataAnnotationsValidator />
-
-    <ValidationSummary />
 
     <p>
         <label>
@@ -836,7 +932,7 @@ In the following example:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship5.razor" highlight="5,38,43":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship6.razor":::
 -->
 
 :::moniker-end
@@ -850,8 +946,6 @@ In the following example:
 <EditForm EditContext="@editContext" OnSubmit="@Submit">
 
     <DataAnnotationsValidator />
-
-    <ValidationSummary />
 
     <p>
         <label>
@@ -902,7 +996,7 @@ In the following example:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship5.razor" highlight="4,38,43":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship6.razor":::
 -->
 
 :::moniker-end
@@ -918,20 +1012,20 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
 
 In the following example, the user must select at least two starship classifications but no more than three classifications.
 
-`Pages/Starship6.razor`:
+`Starship7.razor`:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-6"
+@page "/starship-7"
 @attribute [RenderModeServer]
-@inject ILogger<Starship6> Logger
+@inject ILogger<Starship7> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship">
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
 
     <DataAnnotationsValidator />
 
@@ -989,7 +1083,7 @@ In the following example, the user must select at least two starship classificat
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship6.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship7.razor":::
 -->
 
 :::moniker-end
@@ -997,8 +1091,8 @@ In the following example, the user must select at least two starship classificat
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-6"
-@inject ILogger<Starship6> Logger
+@page "/starship-7"
+@inject ILogger<Starship7> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
@@ -1059,7 +1153,7 @@ In the following example, the user must select at least two starship classificat
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship6.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship7.razor":::
 -->
 
 :::moniker-end
@@ -1080,7 +1174,7 @@ For information on how empty strings and `null` values are handled in data bindi
 
 Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter.
 
-In the `Starfleet Starship Database` form (`Starship4` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
+In the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
 
 ```razor
 <label>
@@ -1118,7 +1212,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 :::moniker range=">= aspnetcore-5.0"
 
-In the `Starfleet Starship Database` form (`FormExample2` component) of the [Example form](#example-form) section with a [friendly display name](#display-name-support) assigned, the `Production Date` field produces an error message using the following default error message template:
+In the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section with a [friendly display name](#display-name-support) assigned, the `Production Date` field produces an error message using the following default error message template:
 
 ```css
 The {0} field must be a date.
@@ -1153,7 +1247,7 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 :::moniker range="< aspnetcore-5.0"
 
-In the `Starfleet Starship Database` form (`Starship4` component) of the [Example form](#example-form) section uses a default error message template:
+In the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section uses a default error message template:
 
 ```css
 The {0} field must be a date.
@@ -1190,19 +1284,19 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
 Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
 
-In the following `Starship7` component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
+In the following component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
 
-`Starship7.razor`:
+`Starship8.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-7"
+@page "/starship-8"
 @attribute [RenderModeServer]
 @implements IDisposable
-@inject ILogger<Starship7> Logger
+@inject ILogger<Starship8> Logger
 
-<h2>Ship Holodecks</h2>
+<h2>Holodeck Configuration</h2>
 
 <EditForm EditContext="editContext" OnValidSubmit="@Submit">
 
@@ -1275,7 +1369,7 @@ In the following `Starship7` component, the `HandleValidationRequested` handler 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship7.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship8.razor":::
 -->
 
 :::moniker-end
@@ -1283,11 +1377,11 @@ In the following `Starship7` component, the `HandleValidationRequested` handler 
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-7"
+@page "/starship-8"
 @implements IDisposable
-@inject ILogger<Starship7> Logger
+@inject ILogger<Starship8> Logger
 
-<h2>Ship Holodecks</h2>
+<h2>Holodeck Configuration</h2>
 
 <EditForm EditContext="editContext" OnValidSubmit="@Submit">
 
@@ -1359,7 +1453,7 @@ In the following `Starship7` component, the `HandleValidationRequested` handler 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship7.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship8.razor":::
 -->
 
 :::moniker-end
@@ -1479,20 +1573,20 @@ For general business logic validation, use a [validator component](#validator-co
 
 In the following example:
 
-* A shortened version of the `Starfleet Starship Database` form (`Starship4` component) from the [Example form](#example-form) section is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
+* A shortened version of the `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
 * The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
 * The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
 
 When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s validation summary.
 
-`Starship8.razor`:
+`Starship9.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-8"
+@page "/starship-9"
 @attribute [RenderModeServer]
-@inject ILogger<Starship8> Logger
+@inject ILogger<Starship9> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -1563,7 +1657,7 @@ When validation messages are set in the component, they're added to the validato
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship8.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship9.razor":::
 -->
 
 :::moniker-end
@@ -1571,8 +1665,8 @@ When validation messages are set in the component, they're added to the validato
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-8"
-@inject ILogger<Starship8> Logger
+@page "/starship-9"
+@inject ILogger<Starship9> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -1642,7 +1736,7 @@ When validation messages are set in the component, they're added to the validato
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship8.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship9.razor":::
 -->
 
 :::moniker-end
@@ -1811,14 +1905,14 @@ In the **:::no-loc text="Client":::** project, add the `CustomValidation` compon
 
 In the **:::no-loc text="Client":::** project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
-In the following `Starship9` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
+In the following component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
-`Starship9.razor`:
+`Starship10.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-9"
+@page "/starship-10"
 @attribute [RenderModeWebAssembly]
 @using System.Net
 @using System.Net.Http.Json
@@ -1827,7 +1921,7 @@ In the following `Starship9` component, update the namespace of the **`Shared`**
 @using BlazorSample.Shared
 @attribute [Authorize]
 @inject HttpClient Http
-@inject ILogger<Starship9> Logger
+@inject ILogger<Starship10> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -1957,7 +2051,7 @@ In the following `Starship9` component, update the namespace of the **`Shared`**
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship9.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship10.razor":::
 -->
 
 :::moniker-end
@@ -1965,7 +2059,7 @@ In the following `Starship9` component, update the namespace of the **`Shared`**
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-9"
+@page "/starship-10"
 @using System.Net
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Authorization
@@ -1973,7 +2067,7 @@ In the following `Starship9` component, update the namespace of the **`Shared`**
 @using BlazorSample.Shared
 @attribute [Authorize]
 @inject HttpClient Http
-@inject ILogger<Starship9> Logger
+@inject ILogger<Starship10> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -2102,7 +2196,7 @@ In the following `Starship9` component, update the namespace of the **`Shared`**
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship9.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship10.razor":::
 -->
 
 :::moniker-end
@@ -2136,14 +2230,14 @@ The following `CustomInputText` component inherits the framework's `InputText` c
 
 The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following  component uses the shared `CustomInputText` component.
 
-`Starship10.razor`:
+`Starship11.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-10"
+@page "/starship-11"
 @attribute [RenderModeServer]
-@inject ILogger<Starship10> Logger
+@inject ILogger<Starship11> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
 
@@ -2182,7 +2276,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship10.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship11.razor":::
 -->
 
 :::moniker-end
@@ -2190,8 +2284,8 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-10"
-@inject ILogger<Starship10> Logger
+@page "/starship-11"
+@inject ILogger<Starship11> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
 
@@ -2229,7 +2323,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship10.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship11.razor" highlight="9":::
 -->
 
 :::moniker-end
@@ -2238,7 +2332,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 :::moniker range=">= aspnetcore-5.0"
 
-The example in this section is based on the `Starfleet Starship Database` form of the [Example form](#example-form) section of this article.
+The example in this section is based on the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section of this article.
 
 Add the following [`enum` types](/dotnet/csharp/language-reference/language-specification/enums) to the app. Create a new file to hold them or add them to the `Starship.cs` file.
 
@@ -2296,7 +2390,7 @@ public Engine Engine { get; set; } = null;
 
 :::moniker range=">= aspnetcore-5.0"
 
-Update the `Starfleet Starship Database` form (`Starship4` component) from the [Example form](#example-form) section. Add the components to produce:
+Update the `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
 * A nested radio button group for engine and ship color.
@@ -2460,7 +2554,7 @@ For more information on generic type parameters (`@typeparam`), see the followin
 
 The following `RadioButtonExample` component uses the preceding `InputRadio` component to obtain and validate a rating from the user:
 
-`Pages/RadioButtonExample.razor`:
+`RadioButtonExample.razor`:
 
 ```razor
 @page "/radio-button-example"
@@ -2611,12 +2705,12 @@ public class SaladChefValidatorAttribute : ValidationAttribute
 
 The following component validates user input by applying the `SaladChefValidatorAttribute` (`[SaladChefValidator]`) to the salad ingredient string (`SaladIngredient`).
 
-`Starship11.razor`:
+`Starship12.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-11"
+@page "/starship-12"
 @attribute [RenderModeServer]
 
 <EditForm Model="@this" autocomplete="off">
@@ -2650,7 +2744,7 @@ The following component validates user input by applying the `SaladChefValidator
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-11"
+@page "/starship-12"
 
 <EditForm Model="@this" autocomplete="off">
 
@@ -2725,16 +2819,16 @@ public class CustomFieldClassProvider : FieldCssClassProvider
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
-`Starship12.razor`:
+`Starship13.razor`:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-12"
+@page "/starship-13"
 @attribute [RenderModeServer]
-@inject ILogger<Starship12> Logger
+@inject ILogger<Starship13> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
 
@@ -2776,7 +2870,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship12.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship13.razor":::
 -->
 
 :::moniker-end
@@ -2784,8 +2878,8 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-12"
-@inject ILogger<Starship12> Logger
+@page "/starship-13"
+@inject ILogger<Starship13> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
 
@@ -2826,7 +2920,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship12.razor" highlight="21":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship13.razor" highlight="21":::
 -->
 
 :::moniker-end
@@ -3047,7 +3141,7 @@ public class ShipDescription
 
 To enable and disable the submit button based on form validation, the following example:
 
-* Uses a shortened version of the preceding `Starfleet Starship Database` form (`Starship4` component) from the [Example form](#example-form) section that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* Uses a shortened version of the preceding `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * Uses the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
 * Validates the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
 * Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
@@ -3055,15 +3149,15 @@ To enable and disable the submit button based on form validation, the following 
 > [!NOTE]
 > When assigning to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>, don't also assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
-`Starship13.razor`:
+`Starship14.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-13"
+@page "/starship-14"
 @attribute [RenderModeServer]
 @implements IDisposable
-@inject ILogger<Starship13> Logger
+@inject ILogger<Starship14> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
 
@@ -3129,7 +3223,7 @@ To enable and disable the submit button based on form validation, the following 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship13.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship14.razor":::
 -->
 
 :::moniker-end
@@ -3137,9 +3231,9 @@ To enable and disable the submit button based on form validation, the following 
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-13"
+@page "/starship-14"
 @implements IDisposable
-@inject ILogger<Starship13> Logger
+@inject ILogger<Starship14> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
 
@@ -3204,7 +3298,7 @@ To enable and disable the submit button based on form validation, the following 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship13.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship14.razor":::
 -->
 
 :::moniker-end
@@ -3279,7 +3373,7 @@ For information on where to place JS in a Blazor app, see <xref:blazor/js-intero
 
 Due to security considerations, zero-length streams aren't permitted for streaming JS Interop. Therefore, the following `StreamFormData` component traps a <xref:Microsoft.JSInterop.JSException> and returns an empty string if the text area is blank when the form is submitted.
 
-`Pages/StreamFormData.razor`:
+`StreamFormData.razor`:
 
 :::moniker-end
 
