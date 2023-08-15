@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/10/2023
+ms.date: 08/14/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -158,6 +158,20 @@ For more information on the progress of the seamless reconnect feature for ASP.N
 ## Minimal APIs
 
 This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
+
+<!--
+
+## User override culture
+
+Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+
+```csharp
+    app.UseRequestLocalization(options =>
+    {
+        options.CultureInfoUseUserOverride = false;
+    });
+```
+-->
 
 ### Binding to forms
 
@@ -633,6 +647,14 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
 For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+
+### New APIs in ProblemDetails to support more resilient integrations
+
+In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> is not able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
+
+For more information, see [IProblemDetailsService fallback](xref:fundamentals/minimal-apis/handle-errors#iproblemdetailsservice-fallback)
 
 <!--
 ## API controllers
