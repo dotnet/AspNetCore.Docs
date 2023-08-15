@@ -142,6 +142,25 @@ In the preceding example, the order of `QueryStringRequestCultureProvider` and `
 
 As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## User override culture
+
+Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+
+```csharp
+    app.UseRequestLocalization(options =>
+    {
+        options.CultureInfoUseUserOverride = false;
+    });
+```
+
+:::moniker-end
+
+:::moniker range="> aspnetcore-5.0"
+
 ## Set the culture programmatically
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
