@@ -1746,6 +1746,17 @@ When validation messages are set in the component, they're added to the validato
 
 ## Server validation with a validator component
 
+*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. -->
+
+> [!NOTE]
+> This section hasn't been updated to include [new .NET 8 antiforgery support features](#antiforgery-support) or guidance for Blazor Web Apps. Article updates are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055).
+
+:::moniker-end
+
 Server validation is supported in addition to client-side validation:
 
 * Process client-side validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
@@ -1909,7 +1920,9 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 `Starship10.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+<!-- UPDATE 8.0 HOLD ...
+
+moniker range=">= aspnetcore-8.0"
 
 ```razor
 @page "/starship-10"
@@ -2050,13 +2063,13 @@ In the following component, update the namespace of the **`Shared`** project (`@
 }
 ```
 
-<!--
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship10.razor":::
+
+moniker-end
+
+moniker range="< aspnetcore-8.0"
+
 -->
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/starship-10"
@@ -2197,9 +2210,10 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 <!--
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship10.razor":::
--->
 
-:::moniker-end
+moniker-end
+
+-->
 
 > [!NOTE]
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -2345,16 +2359,12 @@ public class ComponentEnums
 }
 ```
 
-Make the `enums` accessible to the:
+Make the `enums` class accessible to the:
 
-* `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;` if the `enums` class is named `ComponentEnums`).
-* `Starfleet Starship Database` form (for example, `@using static ComponentEnums` if the enums class is named `ComponentEnums`).
+* `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;`).
+* `Starfleet Starship Database` form (`Starship5.razor`) (for example, `@using static ComponentEnums`).
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](#example-form) section:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 [Required]
@@ -2369,27 +2379,6 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-```csharp
-[Required]
-[Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
-    nameof(Manufacturer.VirginGalactic), ErrorMessage = "Pick a manufacturer.")]
-public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
-
-[Required, EnumDataType(typeof(Color))]
-public Color Color { get; set; } = null;
-
-[Required, EnumDataType(typeof(Engine))]
-public Engine Engine { get; set; } = null;
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
-
 Update the `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
@@ -2398,9 +2387,12 @@ Update the `Starfleet Starship Database` form (`Starship5` component) from the [
 > [!NOTE]
 > Nested radio button groups aren't often used in forms because they can result in a disorganized layout of form controls that may confuse users. However, there are cases when they make sense in UI design, such as in the following example that pairs recommendations for two user inputs, ship engine and ship color. One engine and one color are required by the form's validation. The form's layout uses nested <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601>s to pair engine and color recommendations. However, the user can combine any engine with any color to submit the form.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
+> [!NOTE]
+> Be sure to make the `ComponentEnums` class available to the component for the following example:
+>
+> ```razor
+> @using static ComponentEnums
+> ```
 
 ```razor
 <fieldset>
@@ -2412,88 +2404,73 @@ Update the `Starfleet Starship Database` form (`Starship5` component) from the [
             <label>
                 <InputRadio Value="@manufacturer" />
                 <text>&nbsp;</text>@manufacturer
-            </label>
+            </label><br>
         }
     </InputRadioGroup>
-<fieldset>
+</fieldset>
 
-<p>
-    Select one engine and one color. Recommendations are paired but any 
-    combination of engine and color is allowed:<br>
+<fieldset>
+    <legend>Engine and Color</legend>
+    <p>
+        Engine and color pairs are recommended, but any
+        combination of engine and color is allowed.
+    </p>
     <InputRadioGroup Name="engine" @bind-Value="Model!.Engine">
         <InputRadioGroup Name="color" @bind-Value="Model!.Color">
-            <InputRadio Name="engine" Value="@Engine.Ion" />
-            Engine: Ion<br>
-            <InputRadio Name="color" Value="@Color.ImperialRed" />
-            Color: Imperial Red<br><br>
-            <InputRadio Name="engine" Value="@Engine.Plasma" />
-            Engine: Plasma<br>
-            <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
-            Color: Spacecruiser Green<br><br>
-            <InputRadio Name="engine" Value="@Engine.Fusion" />
-            Engine: Fusion<br>
-            <InputRadio Name="color" Value="@Color.StarshipBlue" />
-            Color: Starship Blue<br><br>
-            <InputRadio Name="engine" Value="@Engine.Warp" />
-            Engine: Warp<br>
-            <InputRadio Name="color" Value="@Color.VoyagerOrange" />
-            Color: Voyager Orange
-        </InputRadioGroup>
-    </InputRadioGroup>
-</p>
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
-
-```razor
-<fieldset>
-    <legend>Manufacturer</legend>
-    <InputRadioGroup @bind-Value="Model.Manufacturer">
-        @foreach (var manufacturer in (Manufacturer[])Enum
-            .GetValues(typeof(Manufacturer)))
-        {
             <label>
-                <InputRadio Value="@manufacturer" />
-                <text>&nbsp;</text>@manufacturer
+                <InputRadio Name="engine" Value="@Engine.Ion" />
+                Ion
+            </label><br>
+            <label>
+                <InputRadio Name="color" Value="@Color.ImperialRed" />
+                Imperial Red
+            </label><br><br>
+            <label>
+                <InputRadio Name="engine" Value="@Engine.Plasma" />
+                Plasma
+            </label><br>
+            <label>
+                <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
+                Spacecruiser Green
+            </label><br><br>
+            <label>
+                <InputRadio Name="engine" Value="@Engine.Fusion" />
+                Fusion
+            </label><br>
+            <label>
+                <InputRadio Name="color" Value="@Color.StarshipBlue" />
+                Starship Blue
+            </label><br><br>
+            <label>
+                <InputRadio Name="engine" Value="@Engine.Warp" />
+                Warp
+            </label><br>
+            <label>
+                <InputRadio Name="color" Value="@Color.VoyagerOrange" />
+                Voyager Orange
             </label>
-        }
-    </InputRadioGroup>
-<fieldset>
-
-<p>
-    Select one engine and one color. Recommendations are paired but any 
-    combination of engine and color is allowed:<br>
-    <InputRadioGroup Name="engine" @bind-Value="Model.Engine">
-        <InputRadioGroup Name="color" @bind-Value="Model.Color">
-            <InputRadio Name="engine" Value="@Engine.Ion" />
-            Engine: Ion<br>
-            <InputRadio Name="color" Value="@Color.ImperialRed" />
-            Color: Imperial Red<br><br>
-            <InputRadio Name="engine" Value="@Engine.Plasma" />
-            Engine: Plasma<br>
-            <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
-            Color: Spacecruiser Green<br><br>
-            <InputRadio Name="engine" Value="@Engine.Fusion" />
-            Engine: Fusion<br>
-            <InputRadio Name="color" Value="@Color.StarshipBlue" />
-            Color: Starship Blue<br><br>
-            <InputRadio Name="engine" Value="@Engine.Warp" />
-            Engine: Warp<br>
-            <InputRadio Name="color" Value="@Color.VoyagerOrange" />
-            Color: Voyager Orange
         </InputRadioGroup>
     </InputRadioGroup>
-</p>
+</fieldset>
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
 > If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components are grouped by their most recent ancestor.
+
+If you implemented the preceding Razor markup in the `Starship5` component from the [Example form](#example-form) section, update the logging for the `Submit` method:
+
+```csharp
+Logger.LogInformation("Id = {Id} Description = {Description} " +
+    "Classification = {Classification} MaximumAccommodation = " +
+    "{MaximumAccommodation} IsValidatedDesign = " +
+    "{IsValidatedDesign} ProductionDate = {ProductionDate} " +
+    "Manufacturer = {Manufacturer}, Engine = {Engine}, " +
+    "Color = {Color}",
+    Model?.Id, Model?.Description, Model?.Classification,
+    Model?.MaximumAccommodation, Model?.IsValidatedDesign,
+    Model?.ProductionDate, Model?.Manufacturer, Model?.Engine, 
+    Model?.Color);
+```
 
 :::moniker-end
 
@@ -2573,7 +2550,7 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
     @for (int i = 1; i <= 5; i++)
     {
         <label>
-            <InputRadio name="rate" SelectedValue="@i" @bind-Value="Model!.Rating" />
+            <InputRadio name="rate" SelectedValue="@i" @bind-Value="Model.Rating" />
             @i
         </label>
     }
@@ -2582,10 +2559,10 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
 
 </EditForm>
 
-<p>@Model?.Rating</p>
+<p>@Model.Rating</p>
 
 @code {
-    public Starship? Model { get; set; }
+    public Starship Model { get; set; }
 
     protected override void OnInitialized() => Model ??= new();
 
@@ -2718,8 +2695,10 @@ The following component validates user input by applying the `SaladChefValidator
     <DataAnnotationsValidator />
 
     <p>
+        <label>
         Name something you can put in a salad:
         <input @bind="SaladIngredient" />
+        </label>
     </p>
 
     <button type="submit">Submit</button>
@@ -3081,8 +3060,6 @@ Annotate model properties with `[ValidateComplexType]`. In the following model c
 
 `Starship.cs`:
 
-:::moniker range=">= aspnetcore-5.0"
-
 ```csharp
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -3097,27 +3074,6 @@ public class Starship
     ...
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-```csharp
-using System;
-using System.ComponentModel.DataAnnotations;
-
-public class Starship
-{
-    ...
-
-    [ValidateComplexType]
-    public ShipDescription ShipDescription { get; set; } = new ShipDescription();
-
-    ...
-}
-```
-
-:::moniker-end
 
 `ShipDescription.cs`:
 

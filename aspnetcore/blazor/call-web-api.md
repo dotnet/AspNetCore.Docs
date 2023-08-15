@@ -844,8 +844,7 @@ For more information, see <xref:security/cors>.
 
 ## Antiforgery support
 
-
-
+To add antiforgery support to an HTTP request, inject the `AntiforgeryStateProvider` and add a `RequestToken` to the headers collection as a `RequestVerificationToken`:
 
 ```razor
 @inject AntiforgeryStateProvider Antiforgery
@@ -861,7 +860,6 @@ private async Task OnSubmit()
     ...
 }
 ```
-
 
 For more information, see <xref:blazor/security/index#antiforgery-support>.
 

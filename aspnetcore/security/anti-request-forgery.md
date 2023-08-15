@@ -289,17 +289,6 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 :::moniker-end
 
-
-
-
-
-
-
-
-
-
-
-
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted apps whereby a malicious web app can influence the interaction between a client browser and a web app that trusts that browser. These attacks are possible because web browsers send some types of authentication tokens automatically with every request to a website. This form of exploit is also known as a *one-click attack* or *session riding* because the attack takes advantage of the user's previously authenticated session.
