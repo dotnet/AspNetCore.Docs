@@ -246,6 +246,10 @@ A parameter on the delegate that isn't bound to the body and does ***not*** need
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Todo.cs" id="snippet_1":::
 
+### C# 12 Interceptors
+
+The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) action methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
+
 ## Known issues
 
 See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or review issues with native AOT support in ASP.NET Core.

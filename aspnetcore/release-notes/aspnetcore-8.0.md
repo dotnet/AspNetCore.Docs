@@ -237,6 +237,7 @@ We've further reduced native AOT binary size for apps that don't need HTTPS or H
 
 ### Increased performance using Interceptors
 
+The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) action methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
 
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
