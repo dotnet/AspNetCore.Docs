@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/10/2023
+ms.date: 08/14/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -633,6 +633,14 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
 For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+
+## New APIs in ProblemDetails to support more resilient integrations
+
+In .NET 7, we introduced the [ProblemDetails service](fundamentals/error-handling#problem-details) to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, we’ve introduced a new API to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> is not able to generate a ProblemDetail. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
+
+For more information, see [IProblemDetailsService fallback](xref:fundamentals/minimal-apis/handle-errrors#iproblemdetailsservice-fallback)
 
 <!--
 ## API controllers
