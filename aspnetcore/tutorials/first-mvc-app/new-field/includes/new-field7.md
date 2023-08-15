@@ -46,7 +46,7 @@ Update the view templates in order to display, create, and edit the new `Rating`
 
 Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
 
 Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 

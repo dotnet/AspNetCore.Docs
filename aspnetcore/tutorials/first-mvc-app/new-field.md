@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 04/25/2023
+ms.date: 08/14/2023
 ms.custom: engagement-fy23
 uid: tutorials/first-mvc-app/new-field
 ---
@@ -62,7 +62,7 @@ Update the view templates in order to display, create, and edit the new `Rating`
 
 Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
 
 Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
