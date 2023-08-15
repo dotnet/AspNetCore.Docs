@@ -235,6 +235,9 @@ The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method 
 
 We've further reduced native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
 
+### Increased performance using Interceptors
+
+
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
 New features were added to <xref:System.Text.Json> to better support native AOT. These new features add capabilities for the source generation mode of `System.Text.Json`, because reflection isn't supported by AOT.
