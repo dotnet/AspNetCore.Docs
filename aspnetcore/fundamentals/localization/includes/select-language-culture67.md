@@ -170,5 +170,3 @@ Localizing an app also involves the following tasks:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end
-
-[!INCLUDE [select-language-culture5](~/fundamentals/localization/includes/select-language-culture5.md)]
