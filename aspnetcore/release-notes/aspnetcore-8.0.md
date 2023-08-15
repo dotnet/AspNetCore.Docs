@@ -634,7 +634,7 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 
 For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
 
-## New APIs in ProblemDetails to support more resilient integrations
+### New APIs in ProblemDetails to support more resilient integrations
 
 In .NET 7, we introduced the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, we’ve introduced a new API to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> is not able to generate a ProblemDetail. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
 
