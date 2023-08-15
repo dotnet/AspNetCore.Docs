@@ -143,7 +143,7 @@ As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Bu
 
 ## User override culture
 
-Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+The [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the app to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has ***no*** impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
 
 ```csharp
     app.UseRequestLocalization(options =>
