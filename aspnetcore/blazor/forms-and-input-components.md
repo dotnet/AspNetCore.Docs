@@ -84,7 +84,9 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
 
-<!--
+<!-- UPDATE 8.0 Saving cross-link formats for 
+     snippet sample app work later.
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/FormExampleXXXX.razor":::
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppSample/XXXX.cs" highlight="XXXX":::
 
@@ -93,7 +95,11 @@ Form examples reference aspects of the [Star Trek](http://www.startrek.com/) uni
 
 ## Additional form examples
 
-The following additional form examples are available for inspection in the [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms):
+The following additional form examples are available for inspection in the [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms).
+
+<!-- UPDATE 8.0 Saving the following in case there are
+     specific examples in the test assets that we want to
+     highlight for readers.
 
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> examples
   * xxx
@@ -101,6 +107,8 @@ The following additional form examples are available for inspection in the [ASP.
 * HTML forms (`<form>`) examples
   * xxx
   * xxx
+
+-->
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -146,9 +154,15 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 In the preceding `Starship1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
-* The model is created in the component's `@code` block and held in a public property (`Model`). The property is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form.
+* The model is created in the component's `@code` block and held in a public property (`Model`). The property is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
+
+Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server.
+
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported with forms. For an example, see the [`StreamingRenderingForm` test asset (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms/StreamingRenderingForm.razor).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
@@ -375,13 +389,172 @@ Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditCo
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following is a nested form example:
+Binding supports:
+
+* Primitive types
+* Complex types
+* Collections, such as dictionaries and lists
+* Recursive types
+* Types with constructors
+* Enums
+
+You can also use the `[DataMember]` and `[IgnoreDataMember]` attributes to customize model binding. Use these attributes to rename properties, ignore properties, and mark properties as required.
+
+Additional model binding options are available from `RazorComponentOptions` when calling `AddRazorComponents`.
+
+Form names must be unique to bind model data, but you can define a scope for form names using the `FormMappingScope` component. This is useful for preventing form name collisions when a library supplies a form to a component in the app. In the following example, the `FormMappingScope` scope name is `ParentContext`. The `Hello`-named form doesn't collide with a form in the app using the same form name.
+
+`HelloFormFromLibrary.razor`:
+
+```razor
+<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+
+    <InputText @bind-Value="Name" />
+
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+@if (submitted)
+{
+    <p>Hello @Name from the library form!</p>
+}
+
+@code {
+    bool submitted = false;
+
+    [SupplyParameterFromForm(Handler = "Hello")]
+    public string? Name { get; set; }
+
+    private void Submit() => submitted = true;
+}
+```
+
+`NamedFormsWithScope.razor`:
+
+```razor
+@page "/named-forms-with-scope"
+
+<h1>Hello form from a library</h1>
+
+<FormMappingScope Name="ParentContext">
+    <HelloFormFromLibrary />
+</FormMappingScope>
+
+<h1>Hello form using the same form name</h1>
+
+<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+
+    <InputText @bind-Value="Name" />
+
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+@if (submitted)
+{
+    <p>Hello @Name from the app form!</p>
+}
+
+@code {
+    bool submitted = false;
+
+    [SupplyParameterFromForm(Handler = "Hello")]
+    public string? Name { get; set; }
+
+    private void Submit() => submitted = true;
+}
+```
+
+Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding. You can specify the name Blazor should use to bind form data to the model using the `Name` or the `Handler` property on `[SupplyParameterFromForm]`.
+
+The following example independently binds two forms to their models by form name.
+
+`Starship3.razor`:
+
+```razor
+@page "/starship-3"
+@attribute [RenderModeServer]
+@inject ILogger<Starship3> Logger
+
+<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Starship1">
+
+    <InputText @bind-Value="Model1!.Id" />
+
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" FormName="Starship2">
+
+    <InputText @bind-Value="Model2!.Id" />
+
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm(Name = "Starship1")]
+    public Starship? Model1 { get; set; }
+
+    [SupplyParameterFromForm(Name = "Starship2")]
+    public Starship? Model2 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model1 ??= new();
+        Model2 ??= new();
+    }
+
+    private void Submit1()
+    {
+        Logger.LogInformation("Submit1: Id = {Id}", Model1?.Id);
+    }
+
+    private void Submit2()
+    {
+        Logger.LogInformation("Submit2: Id = {Id}", Model2?.Id);
+    }
+
+    public class Starship
+    {
+        public string? Id { get; set; }
+    }
+}
+```
+
+
+
+Supplying a form name parameter and value with `FormName` isn't required if there's only one <xref:Microsoft.AspNetCore.Components.Forms.EditForm> form in a component. Form names also aren't required when using multiple child form components, as long as each child only has a single form:
+
+`MultipleForms.razor`:
+
+```razor
+@page "/multiple-forms"
+
+<h1>Combine Forms</h1>
+
+<p>
+    Form names <b>NOT</b> required for Starship1
+    and Starship2 form components.
+</p>
+
+<h2>Starship 1</h2>
+
+<Starship1 />
+
+<h2>Starship 2</h2>
+
+<Starship2 />
+```
+
+The following demonstrates how to nest and bind child forms:
 
 <!-- UPDATE 8.0 At RTM or upon API browser updates, cross-link 
      Microsoft.AspNetCore.Components.Forms.Editor<T>. -->
 
 * A ship details class (`ShipDetails`) holds a description and length for a subform. The `Ship` class names an identifier (`Id`) and includes the ship details. The main form is based on the `Ship` class.
-* The subform (`ShipSubform` component) is a component used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component, in this case `Editor<ShipDetails>`.
+* The subform (`ShipSubform` component) is a component used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component, in this case `Editor<ShipDetails>`. `Editor<T>` ensures that the child component generates the correct form field names based on the model (`T`).
 * The `StarshipSubform` component is used in the `Starship3` component and bound to `ShipDetails` in the form's model, as `Model!.Details`.
 
 `ShipDetails.cs`:
@@ -420,12 +593,12 @@ public class Ship
 </label>
 ```
 
-`Starship3.razor`:
+`Starship4.razor`:
 
 ```razor
-@page "/starship-3"
+@page "/starship-4"
 @attribute [RenderModeServer]
-@inject ILogger<Starship3> Logger
+@inject ILogger<Starship4> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit">
 
@@ -450,61 +623,6 @@ public class Ship
     {
         Logger.LogInformation("Id = {Id} Desc = {Description} Length = {Length}", 
             Model?.Id, Model?.Details?.Description, Model?.Details?.Length);
-    }
-}
-```
-
-To bind multiple forms, provide each form a unique form handler name in the `FormName` parameter and pass the form name to the appropriate binding model property in the `[SupplyParameterFromForm]` attribute.
-
-`Starship4.razor`:
-
-```razor
-@page "/starship-4"
-@attribute [RenderModeServer]
-@inject ILogger<Starship4> Logger
-
-<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Starship1">
-
-    <InputText @bind-Value="Model1!.Id" />
-
-    <button type="submit">Submit</button>
-
-</EditForm>
-
-<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" FormName="Starship2">
-
-    <InputText @bind-Value="Model2!.Id" />
-
-    <button type="submit">Submit</button>
-
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm(Handler = "Starship1")]
-    public Starship? Model1 { get; set; }
-
-    [SupplyParameterFromForm(Handler = "Starship2")]
-    public Starship? Model2 { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model1 ??= new();
-        Model2 ??= new();
-    }
-
-    private void Submit1()
-    {
-        Logger.LogInformation("Submit1: Id = {Id}", Model1?.Id);
-    }
-
-    private void Submit2()
-    {
-        Logger.LogInformation("Submit2: Id = {Id}", Model2?.Id);
-    }
-
-    public class Starship
-    {
-        public string? Id { get; set; }
     }
 }
 ```
@@ -3293,7 +3411,7 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 
 ## Large form payloads and the SignalR message size limit
 
-*This section only applies to Blazor Server apps and hosted Blazor WebAssembly solutions that implement SignalR.*
+*This section only applies to Blazor Web Apps, Blazor Server apps, and hosted Blazor WebAssembly solutions that implement SignalR.*
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -3483,6 +3601,72 @@ Due to security considerations, zero-length streams aren't permitted for streami
 :::moniker range="< aspnetcore-6.0"
 
 If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the message size limit can be increased. For more information on the size limit and the error thrown, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## HTML forms
+
+<!-- UPDATE 8.0 Cross-link SSR -->
+
+Standard HTML forms with server-side rendering (SSR) are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+
+Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
+
+> [!IMPORTANT]
+> Unlike <xref:Microsoft.AspNetCore.Components.Forms.EditForm>-based forms, HTML forms require a form name assignment. For an HTML form, use the `@formname` attribute directive to assign the form's name.
+
+`HTMLForm.razor`:
+
+```razor
+@page "/html-form"
+@inject ILogger<HTMLForm> Logger
+
+<form method="post" @formname="contact" @onsubmit="AddContact">
+
+    <AntiforgeryToken />
+
+    <label>
+        Name
+        <InputText @bind-Value="Model!.Name" />
+    </label>
+
+    <label>
+        Email
+        <InputText @bind-Value="Model!.Email" />
+    </label>
+
+    <label>
+        <InputCheckbox @bind-Value="Model!.SendMeDeals" />
+        Send me deals
+    </label>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+@code {
+    [SupplyParameterFromForm]
+    public Contact? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    public class Contact
+    {
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public bool SendMeDeals { get; set; } = true;
+    }
+
+    private void AddContact()
+    {
+        Logger.LogInformation(
+            "Name = {Name} Email = {Email} SendMeDeals = {SendMeDeals}", 
+            Model?.Name, Model?.Email, Model?.SendMeDeals);
+    }
+}
+```
 
 :::moniker-end
 
