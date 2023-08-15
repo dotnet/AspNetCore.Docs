@@ -652,7 +652,7 @@ For more information, see [Short-circuit middleware after routing](xref:fundamen
 
 In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> is not able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
 For more information, see [IProblemDetailsService fallback](xref:fundamentals/minimal-apis/handle-errors#iproblemdetailsservice-fallback)
 

@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/handle-errrors.md",
+            "redirect_url": "/aspnet/core/fundamentals/minimal-apis/handle-errors",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/web-api/route-to-code.md",
             "redirect_url": "/aspnet/core/fundamentals/minimal-apis/overview",
             "redirect_document_id": false
