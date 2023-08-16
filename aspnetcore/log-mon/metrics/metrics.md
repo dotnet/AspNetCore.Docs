@@ -216,7 +216,7 @@ public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
 
 The proceeding test:
 
-* Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factories generic argument specifies the web app.
+* Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector<T>>.
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
   * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the test can isolate collected values to this test.
