@@ -14,28 +14,39 @@ uid: blazor/forms-and-input-components
 
 The Blazor framework supports forms and provides built-in input components:
 
-* <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
+:::moniker range=">= aspnetcore-8.0"
+
+* Bound to an object or model that can use [data annotations](xref:mvc/models/validation)
+  * An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component
+  * HTML forms with the `<form>` element
 * [Built-in input components](#built-in-input-components)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](xref:mvc/models/validation)
+* [Built-in input components](#built-in-input-components)
+
+:::moniker-end
 
 The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides:
 
 * Classes for managing form elements, state, and validation.
-* Access to built-in :::no-loc text="Input*"::: components, which can be used in Blazor apps.
+* Access to built-in :::no-loc text="Input*"::: components.
 
-A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available in all of the Razor components of the app.
+A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
 
 ## Examples in this article
-
-Example forms use more vertical line spacing than is normally found in production apps. The extra spacing is merely present to make the examples clearer.
 
 :::moniker range=">= aspnetcore-8.0"
 
 Components are configured for server-side rendering (SSR) and server interactivity. For a client-side experience in a Blazor Web App, change the render mode in the `@attribute` directive at the top of the component to either:
 
 * `RenderModeWebAssembly` for client-side rendering (CSR) only.
-* `RenderModeAuto` for CSR/client-side interactivity after SSR/server interactivity and the WebAssembly-based runtime starts. For CSR, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Never place private code, app secrets, or other sensitive information in automatic render mode or CSR components.
+* `RenderModeAuto` for CSR/client-side interactivity after SSR/server interactivity and the WebAssembly-based runtime starts.
 
-If working with a Blazor WebAssembly app, take either of the following approaches:
+If working with a Blazor WebAssembly app, take ***either*** of the following approaches:
 
 * Change the render mode to CSR (`RenderModeWebAssembly`):
 
@@ -45,6 +56,8 @@ If working with a Blazor WebAssembly app, take either of the following approache
   ```
   
 * Remove the `@attribute` from the component.
+
+When using CSR, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in CSR components.
 
 :::moniker-end
 
@@ -56,7 +69,7 @@ Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference
 public ShipDescription ShipDescription { get; set; } = new();
 ```
 
-If using C# 8.0 or earlier (.NET 3.1), modify the example code to explicitly name the type:
+If using C# 8.0 or earlier (.NET 3.1), modify the example code to state the type to the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new ShipDescription();
@@ -72,11 +85,11 @@ If using C# 9.0 or earlier (.NET 5 or earlier), remove the NRTs from the example
 
 The .NET SDK applies implicit global `using` directives to projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
 
-If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. API namespaces are often found through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
+If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
 
 :::moniker-end
 
-To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to add the namespace, make the namespace available throughout the app's components with the imports file. Add the following line to the project's `_Imports.razor` file:
+To demonstrate how forms work with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to use the namespace, make the namespace available throughout the app's components with the imports file. Add the following line to the project's `_Imports.razor` file:
 
 ```razor
 @using System.ComponentModel.DataAnnotations
@@ -116,6 +129,13 @@ The following additional form examples are available for inspection in the [ASP.
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> Most of this article's examples use Blazor's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component to create a form. Alternatively, forms can be bound with an HTML `<form>` element. For more information, see the [HTML forms](#html-forms) section.
+
+:::moniker-end
+
 `Starship1.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
@@ -126,11 +146,8 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @inject ILogger<Starship1> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit">
-
     <InputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -173,11 +190,8 @@ Blazor enhances page navigation and form handling by intercepting the request in
 @inject ILogger<Starship1> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit">
-
     <InputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -214,7 +228,7 @@ In the next example, the preceding component is modified to create the form in t
 * A <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is added to display validation messages when the form is invalid on form submission.
 * The data annotations validator (<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component&dagger;) attaches validation support using data annotations:
   * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) ("`The Id field is required.`") and `Submit` is **not** called.
-  * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Id is too long.`") and `Submit` is **not** called.
+  * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Id is too long.`"). `Submit` is **not** called.
   * If the `<input>` form field contains a valid value when the **`Submit`** button is selected, `Submit` is called.
 
 &dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](#validator-components) section. &Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](#validation-summary-and-validation-message-components) section.
@@ -229,15 +243,10 @@ In the next example, the preceding component is modified to create the form in t
 @inject ILogger<Starship2> Logger
 
 <EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <InputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -269,15 +278,10 @@ In the next example, the preceding component is modified to create the form in t
 @inject ILogger<Starship2> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <InputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -305,12 +309,14 @@ In the next example, the preceding component is modified to create the form in t
 
 An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned object as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which form fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
 
+### Model binding
+
 Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-<EditForm method="post" Model="@Model" OnSubmit="@Submit">
+<EditForm ... Model="@Model" ...>
     ...
 </EditForm>
 
@@ -341,13 +347,15 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 
 :::moniker-end
 
+### Context binding
+
 Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit">
-     ...
+<EditForm ... EditContext="@editContext" ...>
+    ...
 </EditForm>
 
 @code {
@@ -369,8 +377,8 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="@Submit">
-     ...
+<EditForm EditContext="@editContext" ...>
+    ...
 </EditForm>
 
 @code {
@@ -383,36 +391,64 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 
 :::moniker-end
 
-Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
-
-> Unhandled exception rendering component: EditForm requires a Model parameter, or an EditContext parameter, but not both.
+Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. If both are assigned, a runtime error is thrown.
 
 :::moniker range=">= aspnetcore-8.0"
+
+### Supported types
 
 Binding supports:
 
 * Primitive types
+* Collections
 * Complex types
-* Collections, such as dictionaries and lists
 * Recursive types
 * Types with constructors
 * Enums
 
-You can also use the `[DataMember]` and `[IgnoreDataMember]` attributes to customize model binding. Use these attributes to rename properties, ignore properties, and mark properties as required.
+You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemberAttribute) and [`[IgnoreDataMember]`](xref:System.Runtime.Serialization.IgnoreDataMemberAttribute) attributes to customize model binding. Use these attributes to rename properties, ignore properties, and mark properties as required.
 
-Additional model binding options are available from `RazorComponentOptions` when calling `AddRazorComponents`.
+### Additional binding options
 
-Form names must be unique to bind model data, but you can define a scope for form names using the `FormMappingScope` component. This is useful for preventing form name collisions when a library supplies a form to a component in the app. In the following example, the `FormMappingScope` scope name is `ParentContext`. The `Hello`-named form doesn't collide with a form in the app using the same form name.
+Additional model binding options are available from `RazorComponentOptions` when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>.
+
+### Form names
+
+Form names must be unique to bind model data. When a form name is provided, use the `FormName` parameter. The following form is named `RomulanAle`:
+
+```razor
+<EditForm ... FormName="RomulanAle">
+    ...
+</EditForm>
+```
+
+Supplying a form name isn't required if only one <xref:Microsoft.AspNetCore.Components.Forms.EditForm> form is present in a component. Form names also aren't required when using multiple child components with forms, as long as each child only has a single form. If a child component has multiple forms, the forms are named in the child component.
+
+`MultipleForms.razor`:
+
+```razor
+@page "/multiple-forms"
+
+<h1>Combine Forms</h1>
+
+<div>
+    Form names <b>NOT</b> required for Starship1
+    and Starship2 form components.
+</div>
+
+<Starship1 />
+
+<Starship2 />
+```
+
+Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. In the following example, the `FormMappingScope` scope name is `ParentContext`. The `Hello`-named form doesn't collide with a form in the app using the same form name.
 
 `HelloFormFromLibrary.razor`:
 
 ```razor
 <EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
-
     <InputText @bind-Value="Name" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @if (submitted)
@@ -435,20 +471,17 @@ Form names must be unique to bind model data, but you can define a scope for for
 ```razor
 @page "/named-forms-with-scope"
 
-<h1>Hello form from a library</h1>
+<div>Hello form from a library</div>
 
 <FormMappingScope Name="ParentContext">
     <HelloFormFromLibrary />
 </FormMappingScope>
 
-<h1>Hello form using the same form name</h1>
+<div>Hello form using the same form name</div>
 
 <EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
-
     <InputText @bind-Value="Name" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @if (submitted)
@@ -466,7 +499,11 @@ Form names must be unique to bind model data, but you can define a scope for for
 }
 ```
 
-Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding. You can specify the name Blazor should use to bind form data to the model using the `Name` or the `Handler` property on `[SupplyParameterFromForm]`.
+### Supply a parameter from the form (`[SupplyParameterFromForm]`)
+
+The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding.
+
+You can specify the name Blazor should use to bind form data to the model using the `Name` or the `Handler` property on `[SupplyParameterFromForm]`.
 
 The following example independently binds two forms to their models by form name.
 
@@ -478,19 +515,13 @@ The following example independently binds two forms to their models by form name
 @inject ILogger<Starship3> Logger
 
 <EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Starship1">
-
     <InputText @bind-Value="Model1!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 <EditForm method="post" Model="@Model2" OnSubmit="@Submit2" FormName="Starship2">
-
     <InputText @bind-Value="Model2!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -523,39 +554,14 @@ The following example independently binds two forms to their models by form name
 }
 ```
 
+### Nest and bind forms
 
-
-Supplying a form name parameter and value with `FormName` isn't required if there's only one <xref:Microsoft.AspNetCore.Components.Forms.EditForm> form in a component. Form names also aren't required when using multiple child form components, as long as each child only has a single form:
-
-`MultipleForms.razor`:
-
-```razor
-@page "/multiple-forms"
-
-<h1>Combine Forms</h1>
-
-<p>
-    Form names <b>NOT</b> required for Starship1
-    and Starship2 form components.
-</p>
-
-<h2>Starship 1</h2>
-
-<Starship1 />
-
-<h2>Starship 2</h2>
-
-<Starship2 />
-```
-
-The following demonstrates how to nest and bind child forms:
+The following guidance demonstrates how to nest and bind child forms.
 
 <!-- UPDATE 8.0 At RTM or upon API browser updates, cross-link 
      Microsoft.AspNetCore.Components.Forms.Editor<T>. -->
 
-* A ship details class (`ShipDetails`) holds a description and length for a subform. The `Ship` class names an identifier (`Id`) and includes the ship details. The main form is based on the `Ship` class.
-* The subform (`ShipSubform` component) is a component used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component, in this case `Editor<ShipDetails>`. `Editor<T>` ensures that the child component generates the correct form field names based on the model (`T`).
-* The `StarshipSubform` component is used in the `Starship3` component and bound to `ShipDetails` in the form's model, as `Model!.Details`.
+The following ship details class (`ShipDetails`) holds a description and length for a subform.
 
 `ShipDetails.cs`:
 
@@ -567,6 +573,8 @@ public class ShipDetails
 }
 ```
 
+The following `Ship` class names an identifier (`Id`) and includes the ship details.
+
 `Ship.cs`:
 
 ```csharp
@@ -577,21 +585,28 @@ public class Ship
 }
 ```
 
+The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component. `Editor<T>` ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
+
 `StarshipSubform.razor`:
 
 ```razor
 @inherits Editor<ShipDetails>
 
-<label>
-    Description:
-    <InputText @bind-Value="Value!.Description" />
-</label>
-
-<label>
-    Length:
-    <InputNumber @bind-Value="Value!.Length" />
-</label>
+<div>
+    <label>
+        Description:
+        <InputText @bind-Value="Value!.Description" />
+    </label>
+</div>
+<div>
+    <label>
+        Length:
+        <InputNumber @bind-Value="Value!.Length" />
+    </label>
+</div>
 ```
+
+The main form is bound to the `Ship` class. The `StarshipSubform` component is used to edit ship details, bound as `Model!.Details`.
 
 `Starship4.razor`:
 
@@ -601,16 +616,16 @@ public class Ship
 @inject ILogger<Starship4> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit">
-
-    <label>
-        Id:
-        <InputText @bind-Value="Model!.Id" />
-    </label>
-    
+    <div>
+        <label>
+            Id:
+            <InputText @bind-Value="Model!.Id" />
+        </label>
+    </div>
     <StarshipSubform @bind-Value="Model!.Details" />
-
-    <button type="submit">Submit</button>
-
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -645,17 +660,14 @@ The `AntiforgeryToken` component renders an antiforgery token as a hidden field,
 
 For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `AntiforgeryToken` component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
 
-For forms based on the HTML `<form>` element, manually add the `AntiforgeryToken` component to the form:
+For [forms based on the HTML `<form>` element](#html-forms), manually add the `AntiforgeryToken` component to the form:
 
 ```razor
 @attribute [RenderModeServer]
 
 <form method="post" @onsubmit="Submit" @formname="starship">
-
     <AntiforgeryToken />
-
     <input id="send" type="submit" value="Send" />
-
 </form>
 
 @if (submitted)
@@ -805,26 +817,21 @@ The following form accepts and validates user input using:
 <h2>New Ship Entry Form</h2>
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Description (optional):
             <InputTextArea @bind-Value="Model!.Description" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Primary Classification:
             <InputSelect @bind-Value="Model!.Classification">
@@ -834,31 +841,28 @@ The following form accepts and validates user input using:
                 <option value="Defense">Defense</option>
             </InputSelect>
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Maximum Accommodation:
             <InputNumber @bind-Value="Model!.MaximumAccommodation" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Engineering Approval:
             <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Production Date:
             <InputDate @bind-Value="Model!.ProductionDate" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -898,26 +902,21 @@ The following form accepts and validates user input using:
 <h2>New Ship Entry Form</h2>
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Description (optional):
             <InputTextArea @bind-Value="Model!.Description" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Primary Classification:
             <InputSelect @bind-Value="Model!.Classification">
@@ -927,31 +926,28 @@ The following form accepts and validates user input using:
                 <option value="Defense">Defense</option>
             </InputSelect>
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Maximum Accommodation:
             <InputNumber @bind-Value="Model!.MaximumAccommodation" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Engineering Approval:
             <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Production Date:
             <InputDate @bind-Value="Model!.ProductionDate" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -962,7 +958,13 @@ The following form accepts and validates user input using:
 
     private void Submit()
     {
-        // ...
+        Logger.LogInformation("Id = {Id} Description = {Description} " +
+            "Classification = {Classification} MaximumAccommodation = " +
+            "{MaximumAccommodation} IsValidatedDesign = " +
+            "{IsValidatedDesign} ProductionDate = {ProductionDate}", 
+            Model?.Id, Model?.Description, Model?.Classification, 
+            Model?.MaximumAccommodation, Model?.IsValidatedDesign, 
+            Model?.ProductionDate);
     }
 }
 ```
@@ -977,7 +979,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding examp
 
 In the following example:
 
-* A shortened version of the preceding `Starfleet Starship Database` form (`Starship5` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* A shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * The `Submit` method executes when the **`Submit`** button is selected.
 * The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `Submit` method.
 * Logging is executed depending on the validation result.
@@ -997,18 +999,16 @@ In the following example:
 @inject ILogger<Starship6> Logger
 
 <EditForm EditContext="@editContext" OnSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -1062,18 +1062,16 @@ In the following example:
 @inject ILogger<Starship5> Logger
 
 <EditForm EditContext="@editContext" OnSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -1144,12 +1142,9 @@ In the following example, the user must select at least two starship classificat
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Select classifications (Minimum: 2, Maximum: 3):
             <InputSelect @bind-Value="Model!.SelectedClassification">
@@ -1159,15 +1154,15 @@ In the following example, the user must select at least two starship classificat
                 <option value="@Classification.Research">Research</option>
             </InputSelect>
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @if (Model?.SelectedClassification?.Length > 0)
 {
-    <p>@string.Join(", ", Model.SelectedClassification)</p>
+    <div>@string.Join(", ", Model.SelectedClassification)</div>
 }
 
 @code {
@@ -1215,12 +1210,9 @@ In the following example, the user must select at least two starship classificat
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Select classifications (Minimum: 2, Maximum: 3):
             <InputSelect @bind-Value="Model!.SelectedClassification">
@@ -1230,15 +1222,15 @@ In the following example, the user must select at least two starship classificat
                 <option value="@Classification.Research">Research</option>
             </InputSelect>
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @if (Model?.SelectedClassification?.Length > 0)
 {
-    <p>@string.Join(", ", Model.SelectedClassification)</p>
+    <div>@string.Join(", ", Model.SelectedClassification)</div>
 }
 
 @code {
@@ -1342,7 +1334,7 @@ The position of the `{0}` placeholder is where the value of the <xref:Microsoft.
 <label>
     Production Date:
     <InputDate @bind-Value="Model!.ProductionDate" 
-               DisplayName="Production Date" />
+        DisplayName="Production Date" />
 </label>
 ```
 
@@ -1354,8 +1346,8 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 <label>
     Production Date:
     <InputDate @bind-Value="Model!.ProductionDate" 
-               DisplayName="Production Date" 
-               ParsingErrorMessage="The {0} field has an incorrect date value." />
+        DisplayName="Production Date" 
+        ParsingErrorMessage="The {0} field has an incorrect date value." />
 </label>
 ```
 
@@ -1388,7 +1380,7 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 <label>
     Production Date:
     <InputDate @bind-Value="Model!.ProductionDate" 
-               ParsingErrorMessage="The {0} field has an incorrect date value." />
+        ParsingErrorMessage="The {0} field has an incorrect date value." />
 </label>
 ```
 
@@ -1417,23 +1409,18 @@ In the following component, the `HandleValidationRequested` handler method clear
 <h2>Holodeck Configuration</h2>
 
 <EditForm EditContext="editContext" OnValidSubmit="@Submit">
-
     <label>
         Type 1:
         <InputCheckbox @bind-Value="Model!.Type1" />
     </label>
-
     <label>
         Type 2:
         <InputCheckbox @bind-Value="Model!.Type2" />
     </label>
-
     <button type="submit">Update</button>
-
-    <p>
+    <div>
         <ValidationMessage For="() => Model!.Options" />
-    </p>
-
+    </div>
 </EditForm>
 
 @code {
@@ -1502,22 +1489,18 @@ In the following component, the `HandleValidationRequested` handler method clear
 <h2>Holodeck Configuration</h2>
 
 <EditForm EditContext="editContext" OnValidSubmit="@Submit">
-
     <label>
         Type 1:
         <InputCheckbox @bind-Value="Model!.Type1" />
     </label>
-
     <label>
         Type 2:
         <InputCheckbox @bind-Value="Model!.Type2" />
     </label>
-
     <button type="submit">Update</button>
-
-    <p>
+    <div>
         <ValidationMessage For="() => Model!.Options" />
-    </p>
+    </div>
 
 </EditForm>
 
@@ -1691,7 +1674,7 @@ For general business logic validation, use a [validator component](#validator-co
 
 In the following example:
 
-* A shortened version of the `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
+* A shortened version of the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
 * The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
 * The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
 
@@ -1711,12 +1694,9 @@ When validation messages are set in the component, they're added to the validato
 <h2>New Ship Entry Form</h2>
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <CustomValidation @ref="customValidation" />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Primary Classification:
             <InputSelect @bind-Value="Model!.Classification">
@@ -1726,17 +1706,16 @@ When validation messages are set in the component, they're added to the validato
                 <option value="Defense">Defense</option>
             </InputSelect>
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Description (optional):
             <InputTextArea @bind-Value="Model!.Description" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -1791,12 +1770,9 @@ When validation messages are set in the component, they're added to the validato
 <h2>New Ship Entry Form</h2>
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <CustomValidation @ref="customValidation" />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Primary Classification:
             <InputSelect @bind-Value="Model!.Classification">
@@ -1806,17 +1782,16 @@ When validation messages are set in the component, they're added to the validato
                 <option value="Defense">Defense</option>
             </InputSelect>
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Description (optional):
             <InputTextArea @bind-Value="Model!.Description" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -1888,7 +1863,7 @@ Server validation is supported in addition to client-side validation:
 The following example is based on:
 
 * A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
-* The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
+* The `Starship` model  (`Starship.cs`) of the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
 Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
@@ -2059,29 +2034,23 @@ moniker range=">= aspnetcore-8.0"
 <h2>New Ship Entry Form</h2>
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <CustomValidation @ref="customValidation" />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Description (optional):
             <InputTextArea @bind-Value="Model!.Description" 
                 disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Primary Classification:
             <InputSelect @bind-Value="Model!.Classification" disabled="@disabled">
@@ -2091,37 +2060,33 @@ moniker range=">= aspnetcore-8.0"
                 <option value="Defense">Defense</option>
             </InputSelect>
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Maximum Accommodation:
             <InputNumber @bind-Value="Model!.MaximumAccommodation" 
                 disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Engineering Approval:
             <InputCheckbox @bind-Value="Model!.IsValidatedDesign" 
                 disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Production Date:
             <InputDate @bind-Value="Model!.ProductionDate" disabled="@disabled" />
         </label>
-    </p>
-
-    <button type="submit" disabled="@disabled">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit" disabled="@disabled">Submit</button>
+    </div>
     <p style="@messageStyles">
         @message
-    </p>
-
+    </div>
 </EditForm>
 
 @code {
@@ -2205,29 +2170,23 @@ moniker range="< aspnetcore-8.0"
 <h2>New Ship Entry Form</h2>
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <CustomValidation @ref="customValidation" />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Description (optional):
             <InputTextArea @bind-Value="Model!.Description" 
                 disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Primary Classification:
             <InputSelect @bind-Value="Model!.Classification" disabled="@disabled">
@@ -2237,37 +2196,33 @@ moniker range="< aspnetcore-8.0"
                 <option value="Defense">Defense</option>
             </InputSelect>
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Maximum Accommodation:
             <InputNumber @bind-Value="Model!.MaximumAccommodation" 
                 disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Engineering Approval:
             <InputCheckbox @bind-Value="Model!.IsValidatedDesign" 
                 disabled="@disabled" />
         </label>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <label>
             Production Date:
             <InputDate @bind-Value="Model!.ProductionDate" disabled="@disabled" />
         </label>
-    </p>
-
-    <button type="submit" disabled="@disabled">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit" disabled="@disabled">Submit</button>
+    </div>
     <p style="@messageStyles">
         @message
-    </p>
-
+    </div>
 </EditForm>
 
 @code {
@@ -2372,20 +2327,15 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @inject ILogger<Starship11> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <CustomInputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
-<p>
+<div>
     CurrentValue: @Model?.Id
-</p>
+</div>
 
 @code {
     [SupplyParameterFromForm]
@@ -2420,20 +2370,15 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @inject ILogger<Starship11> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <CustomInputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
-<p>
+<div>
     CurrentValue: @Model?.Id
-</p>
+</div>
 
 @code {
     public Starship? Model { get; set; }
@@ -2497,7 +2442,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Update the `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section. Add the components to produce:
+Update the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
 * A nested radio button group for engine and ship color.
@@ -2519,10 +2464,12 @@ Update the `Starfleet Starship Database` form (`Starship5` component) from the [
         @foreach (var manufacturer in (Manufacturer[])Enum
             .GetValues(typeof(Manufacturer)))
         {
-            <label>
-                <InputRadio Value="@manufacturer" />
-                <text>&nbsp;</text>@manufacturer
-            </label><br>
+            <div>
+                <label>
+                    <InputRadio Value="@manufacturer" />
+                    @manufacturer
+                </label>
+            </div>
         }
     </InputRadioGroup>
 </fieldset>
@@ -2535,38 +2482,62 @@ Update the `Starfleet Starship Database` form (`Starship5` component) from the [
     </p>
     <InputRadioGroup Name="engine" @bind-Value="Model!.Engine">
         <InputRadioGroup Name="color" @bind-Value="Model!.Color">
-            <label>
-                <InputRadio Name="engine" Value="@Engine.Ion" />
-                Ion
-            </label><br>
-            <label>
-                <InputRadio Name="color" Value="@Color.ImperialRed" />
-                Imperial Red
-            </label><br><br>
-            <label>
-                <InputRadio Name="engine" Value="@Engine.Plasma" />
-                Plasma
-            </label><br>
-            <label>
-                <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
-                Spacecruiser Green
-            </label><br><br>
-            <label>
-                <InputRadio Name="engine" Value="@Engine.Fusion" />
-                Fusion
-            </label><br>
-            <label>
-                <InputRadio Name="color" Value="@Color.StarshipBlue" />
-                Starship Blue
-            </label><br><br>
-            <label>
-                <InputRadio Name="engine" Value="@Engine.Warp" />
-                Warp
-            </label><br>
-            <label>
-                <InputRadio Name="color" Value="@Color.VoyagerOrange" />
-                Voyager Orange
-            </label>
+            <div style="margin-bottom:5px">
+                <div>
+                    <label>
+                        <InputRadio Name="engine" Value="@Engine.Ion" />
+                        Ion
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <InputRadio Name="color" Value="@Color.ImperialRed" />
+                        Imperial Red
+                    </label>
+                </div>
+            </div>
+            <div style="margin-bottom:5px">
+                <div>
+                    <label>
+                        <InputRadio Name="engine" Value="@Engine.Plasma" />
+                        Plasma
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
+                        Spacecruiser Green
+                    </label>
+                </div>
+            </div>
+            <div style="margin-bottom:5px">
+                <div>
+                    <label>
+                        <InputRadio Name="engine" Value="@Engine.Fusion" />
+                        Fusion
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <InputRadio Name="color" Value="@Color.StarshipBlue" />
+                        Starship Blue
+                    </label>
+                </div>
+            </div>
+            <div style="margin-bottom:5px">
+                <div>
+                    <label>
+                        <InputRadio Name="engine" Value="@Engine.Warp" />
+                        Warp
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <InputRadio Name="color" Value="@Color.VoyagerOrange" />
+                        Voyager Orange
+                    </label>
+                </div>
+            </div>
         </InputRadioGroup>
     </InputRadioGroup>
 </fieldset>
@@ -2575,7 +2546,7 @@ Update the `Starfleet Starship Database` form (`Starship5` component) from the [
 > [!NOTE]
 > If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components are grouped by their most recent ancestor.
 
-If you implemented the preceding Razor markup in the `Starship5` component from the [Example form](#example-form) section, update the logging for the `Submit` method:
+If you implemented the preceding Razor markup in the `Starship5` component of the [Example form](#example-form) section, update the logging for the `Submit` method:
 
 ```csharp
 Logger.LogInformation("Id = {Id} Description = {Description} " +
@@ -2660,24 +2631,26 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
 <h1>Radio Button Example</h1>
 
 <EditForm Model="@Model" OnValidSubmit="@HandleValidSubmit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
 
     @for (int i = 1; i <= 5; i++)
     {
-        <label>
-            <InputRadio name="rate" SelectedValue="@i" @bind-Value="Model.Rating" />
-            @i
-        </label>
+        <div>
+            <label>
+                <InputRadio name="rate" SelectedValue="@i" 
+                    @bind-Value="Model.Rating" />
+                @i
+            </label>
+        </div>
     }
 
-    <button type="submit">Submit</button>
-
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
-<p>@Model.Rating</p>
+<div>@Model.Rating</div>
 
 @code {
     public Starship Model { get; set; }
@@ -2809,25 +2782,22 @@ The following component validates user input by applying the `SaladChefValidator
 @attribute [RenderModeServer]
 
 <EditForm Model="@this" autocomplete="off">
-
     <DataAnnotationsValidator />
-
-    <p>
+    <div>
         <label>
-        Name something you can put in a salad:
-        <input @bind="SaladIngredient" />
+            Name something you can put in a salad:
+            <input @bind="SaladIngredient" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
     <ul>
         @foreach (var message in context.GetValidationMessages())
         {
             <li class="validation-message">@message</li>
         }
     </ul>
-
 </EditForm>
 
 @code {
@@ -2844,23 +2814,20 @@ The following component validates user input by applying the `SaladChefValidator
 @page "/starship-12"
 
 <EditForm Model="@this" autocomplete="off">
-
     <DataAnnotationsValidator />
-
-    <p>
+    <div>
         Name something you can put in a salad:
         <input @bind="SaladIngredient" />
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
     <ul>
         @foreach (var message in context.GetValidationMessages())
         {
             <li class="validation-message">@message</li>
         }
     </ul>
-
 </EditForm>
 
 @code {
@@ -2928,15 +2895,10 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @inject ILogger<Starship13> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <InputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -2979,15 +2941,10 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @inject ILogger<Starship13> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <InputText @bind-Value="Model!.Id" />
-
     <button type="submit">Submit</button>
-
 </EditForm>
 
 @code {
@@ -3215,7 +3172,7 @@ public class ShipDescription
 
 To enable and disable the submit button based on form validation, the following example:
 
-* Uses a shortened version of the preceding `Starfleet Starship Database` form (`Starship5` component) from the [Example form](#example-form) section that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* Uses a shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * Uses the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
 * Validates the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
 * Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
@@ -3234,20 +3191,17 @@ To enable and disable the submit button based on form validation, the following 
 @inject ILogger<Starship14> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" />
         </label>
-    </p>
-
-    <button type="submit" disabled="@formInvalid">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit" disabled="@formInvalid">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -3310,20 +3264,17 @@ To enable and disable the submit button based on form validation, the following 
 @inject ILogger<Starship14> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
-    <p>
+    <div>
         <label>
             Id:
             <InputText @bind-Value="Model!.Id" />
         </label>
-    </p>
-
-    <button type="submit" disabled="@formInvalid">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit" disabled="@formInvalid">Submit</button>
+    </div>
 </EditForm>
 
 @code {
@@ -3386,15 +3337,12 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 
 ```razor
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
-
     <DataAnnotationsValidator />
-
     <ValidationSummary style="@displaySummary" />
 
     ...
 
     <button type="submit" disabled="@formInvalid">Submit</button>
-
 </EditForm>
 
 @code {
@@ -3462,22 +3410,21 @@ Due to security considerations, zero-length streams aren't permitted for streami
 <h1>Stream form data with JS interop</h1>
 
 <EditForm Model="@this" OnSubmit="@Submit">
-
-    <p>
+    <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to
             <code>TextAreaValue (&lt;= 50,000 characters)</code>:
             <textarea @ref="largeTextArea" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
-<p>
+<div>
     Length: @TextAreaValue?.Length
-</p>
+</div>
 
 @code {
     private ElementReference largeTextArea;
@@ -3535,22 +3482,21 @@ Due to security considerations, zero-length streams aren't permitted for streami
 <h1>Stream form data with JS interop</h1>
 
 <EditForm Model="@this" OnSubmit="@Submit">
-
-    <p>
+    <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to
             <code>TextAreaValue (&lt;= 50,000 characters)</code>:
             <textarea @ref="largeTextArea" />
         </label>
-    </p>
-
-    <button type="submit">Submit</button>
-
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
 </EditForm>
 
-<p>
+<div>
     Length: @TextAreaValue?.Length
-</p>
+</div>
 
 @code {
     private ElementReference largeTextArea;
@@ -3624,26 +3570,20 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
 @inject ILogger<HTMLForm> Logger
 
 <form method="post" @formname="contact" @onsubmit="AddContact">
-
     <AntiforgeryToken />
-
     <label>
         Name
         <InputText @bind-Value="Model!.Name" />
     </label>
-
     <label>
         Email
         <InputText @bind-Value="Model!.Email" />
     </label>
-
     <label>
         <InputCheckbox @bind-Value="Model!.SendMeDeals" />
         Send me deals
     </label>
-
     <button type="submit">Submit</button>
-
 </form>
 
 @code {
