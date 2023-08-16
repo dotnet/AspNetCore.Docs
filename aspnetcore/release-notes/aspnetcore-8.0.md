@@ -159,8 +159,6 @@ For more information on the progress of the seamless reconnect feature for ASP.N
 
 This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
 
-<!--
-
 ## User override culture
 
 Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
@@ -171,7 +169,6 @@ Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUser
         options.CultureInfoUseUserOverride = false;
     });
 ```
--->
 
 ### Binding to forms
 
