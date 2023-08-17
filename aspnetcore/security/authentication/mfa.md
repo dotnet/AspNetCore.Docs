@@ -49,7 +49,7 @@ To disable support for MFA TOTP, configure authentication using <xref:Microsoft.
 passkeys/FIDO2 is currently:
 
 * The most secure way of achieving MFA.
-* A MFA that protects against phishing attacks. (As well as certificiate authentication and Windows for business)
+* MFA that protects against phishing attacks. (As well as certificiate authentication and Windows for business)
 
 At present, ASP.NET Core doesn't support passkeys/FIDO2 directly. Passkeys/FIDO2 can be used for MFA or passwordless flows.
 
@@ -579,7 +579,7 @@ See the following link for implementation details:
 passkeys/FIDO2 is currently:
 
 * The most secure way of achieving MFA.
-* A MFA that protects against phishing attacks. (As well as certificiate authentication and Windows for business)
+* MFA that protects against phishing attacks. (As well as certificiate authentication and Windows for business)
 
 At present, ASP.NET Core doesn't support passkeys/FIDO2 directly. Passkeys/FIDO2 can be used for MFA or passwordless flows.
 
