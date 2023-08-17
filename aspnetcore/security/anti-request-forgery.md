@@ -263,6 +263,9 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 <a name="antimin7"></a>
 
+> [!NOTE]
+> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header will be validated.
+
 ### Antiforgery with Minimal APIs
 
 `Minimal APIs` do not support the usage of the included filters (`ValidateAntiForgeryToken`, `AutoValidateAntiforgeryToken`, `IgnoreAntiforgeryToken`), however, <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the required APIs to validate a request.
@@ -535,6 +538,9 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 :::code language="javascript" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
 
 <a name="antimin7"></a>
+
+> [!NOTE]
+> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header will be validated.
 
 ### Antiforgery with Minimal APIs
 
@@ -1212,6 +1218,9 @@ public void ConfigureServices(IServiceCollection services)
     services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 }
 ```
+
+> [!NOTE]
+> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header will be validated.
 
 ## Windows authentication and antiforgery cookies
 
