@@ -177,9 +177,7 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 ## Test metrics in ASP.NET Core apps
 
-It's possible to test metrics in ASP.NET Core apps.
-
-ASP.NET Core uses the `IMeterFactory` API to create and obtain meters. The meter factory integrates metrics with dependency injection, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for unit testing, where multiple tests can run side-by-side and you want to only gather data for your test.
+It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
 
 ```cs
 public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
@@ -223,6 +221,8 @@ The proceeding test:
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes a HTTP request to the app web.
 * Asserts the test using results from the metrics collector.
+
+ASP.NET Core uses the `IMeterFactory` API to create and obtain meters. The meter factory integrates metrics with dependency injection, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
 
 ## ASP.NET Core meters and counters
 
