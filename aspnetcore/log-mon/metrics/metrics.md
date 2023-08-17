@@ -217,12 +217,10 @@ The proceeding test:
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
-  * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the test can isolate collected values to this test.
+  * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes a HTTP request to the app web.
 * Asserts the test using results from the metrics collector.
-
-ASP.NET Core uses the `IMeterFactory` API to create and obtain meters. The meter factory integrates metrics with dependency injection, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
 
 ## ASP.NET Core meters and counters
 
