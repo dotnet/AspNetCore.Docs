@@ -189,7 +189,7 @@ Blazor enhances page navigation and form handling by intercepting the request in
 @page "/starship-1"
 @inject ILogger<Starship1> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit">
+<EditForm Model="@Model" OnSubmit="@Submit">
     <InputText @bind-Value="Model!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -338,7 +338,9 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 </EditForm>
 
 @code {
-    public Starship? Model { get; set; } = new();
+    public Starship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
 }
 ```
 
@@ -359,10 +361,10 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 </EditForm>
 
 @code {
+    private EditContext? editContext;
+
     [SupplyParameterFromForm]
     public Starship? Model { get; set; }
-
-    private EditContext? editContext;
 
     protected override void OnInitialized()
     {
@@ -382,10 +384,15 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 </EditForm>
 
 @code {
-    private Starship model = new();
     private EditContext? editContext;
 
-    protected override void OnInitialized() => editContext = new(model);
+    public Starship? Model { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+        editContext = new(Model);
+    }
 }
 ```
 
@@ -410,7 +417,38 @@ You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemb
 
 ### Additional binding options
 
-Additional model binding options are available from `RazorComponentOptions` when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>.
+<!-- UPDATE 8.0 
+    There's a remark in the API for MaxCollectionSize that says,
+    "Not configurable for now ..." at ...
+
+    https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/FormMapping/FormDataMapperOptions.cs#L28
+
+    ... but it seems that it can be configured via
+    MaxFormMappingCollectionSize. Is that a stale API remark?
+
+    Also, FormMappingUseCurrentCulture is available at Pre7, but it
+    looks like it might have been removed for RC1.
+ -->
+
+Additional model binding options are available from `RazorComponentOptions` when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+
+* `MaxFormMappingCollectionSize`: Maximum number of elements allowed in a form collection.
+* `MaxFormMappingRecursionDepth`: Maximum depth allowed when recursively mapping form data.
+* `MaxFormMappingErrorCount`: Maximum number of errors allowed when mapping form data.
+* `MaxFormMappingKeySize`: Maximum size of the buffer used to read form data keys.
+
+The following demonstrates the default values assigned by the framework:
+
+```csharp
+builder.Services.AddRazorComponents(options =>
+{
+    options.FormMappingUseCurrentCulture = true;
+    options.MaxFormMappingCollectionSize = 1024;
+    options.MaxFormMappingErrorCount = 200;
+    options.MaxFormMappingKeySize = 1024 * 2;
+    options.MaxFormMappingRecursionDepth = 64;
+}).AddServerComponents();
+```
 
 ### Form names
 
@@ -441,7 +479,9 @@ Supplying a form name isn't required if only one <xref:Microsoft.AspNetCore.Comp
 <Starship2 />
 ```
 
-Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. In the following example, the `FormMappingScope` scope name is `ParentContext`. The `Hello`-named form doesn't collide with a form in the app using the same form name.
+Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
+
+In the following example, the `FormMappingScope` scope name is `ParentContext` for the library-supplied form. POST events are routed to the correct form.
 
 `HelloFormFromLibrary.razor`:
 
@@ -459,7 +499,7 @@ Define a scope for form names using the `FormMappingScope` component, which is u
 @code {
     bool submitted = false;
 
-    [SupplyParameterFromForm(Handler = "Hello")]
+    [SupplyParameterFromForm]
     public string? Name { get; set; }
 
     private void Submit() => submitted = true;
@@ -492,7 +532,7 @@ Define a scope for form names using the `FormMappingScope` component, which is u
 @code {
     bool submitted = false;
 
-    [SupplyParameterFromForm(Handler = "Hello")]
+    [SupplyParameterFromForm]
     public string? Name { get; set; }
 
     private void Submit() => submitted = true;
@@ -503,7 +543,10 @@ Define a scope for form names using the `FormMappingScope` component, which is u
 
 The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding.
 
-You can specify the name Blazor should use to bind form data to the model using the `Name` or the `Handler` property on `[SupplyParameterFromForm]`.
+You can specify the following form binding parameters to the `[SupplyParameterFromForm]` attribute:
+
+* `Name`: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
+* `FormName`: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
 
 The following example independently binds two forms to their models by form name.
 
@@ -514,22 +557,22 @@ The following example independently binds two forms to their models by form name
 @attribute [RenderModeServer]
 @inject ILogger<Starship3> Logger
 
-<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Starship1">
+<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
     <InputText @bind-Value="Model1!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
 
-<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" FormName="Starship2">
+<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" FormName="Holodeck2">
     <InputText @bind-Value="Model2!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
 
 @code {
-    [SupplyParameterFromForm(Name = "Starship1")]
-    public Starship? Model1 { get; set; }
+    [SupplyParameterFromForm(FormName = "Holodeck1")]
+    public Holodeck? Model1 { get; set; }
 
-    [SupplyParameterFromForm(Name = "Starship2")]
-    public Starship? Model2 { get; set; }
+    [SupplyParameterFromForm(FormName = "Holodeck2")]
+    public Holodeck? Model2 { get; set; }
 
     protected override void OnInitialized()
     {
@@ -547,7 +590,7 @@ The following example independently binds two forms to their models by form name
         Logger.LogInformation("Submit2: Id = {Id}", Model2?.Id);
     }
 
-    public class Starship
+    public class Holodeck
     {
         public string? Id { get; set; }
     }
@@ -642,6 +685,12 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 }
 ```
 
+### Advanced form mapping error scenarios
+
+The framework instantiates and populates the `FormMappingContext` for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a `FormMappingScope` component) instantiates `FormMappingContext`. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the `FormMappingContext` with the attempted value and any mapping errors.
+
+Developers aren't expected to interact with `FormMappingContext` directly, as it's mainly a source of data for `InputBase`, `EditContext`, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access `FormMappingContext` directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
+
 :::moniker-end
 
 ## Handle form submission
@@ -651,48 +700,6 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> to assign an event handler to run when a form with valid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Antiforgery support
-
-The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
-
-For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `AntiforgeryToken` component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
-
-For [forms based on the HTML `<form>` element](#html-forms), manually add the `AntiforgeryToken` component to the form:
-
-```razor
-@attribute [RenderModeServer]
-
-<form method="post" @onsubmit="Submit" @formname="starship">
-    <AntiforgeryToken />
-    <input id="send" type="submit" value="Send" />
-</form>
-
-@if (submitted)
-{
-    <p>Form submitted!</p>
-}
-
-@code{
-    private bool submitted = false;
-
-    private void Submit() => submitted = true;
-}
-```
-
-> [!WARNING]
-> For forms based on either <xref:Microsoft.AspNetCore.Components.Forms.EditForm> or the HTML `<form>` element, antiforgery protection can be disabled by passing `required: false` to the `[RequireAntiforgeryToken]` attribute. The following example disables antiforgery and is ***not recommended*** for public apps:
->
-> ```razor
-> @using Microsoft.AspNetCore.Antiforgery
-> @attribute [RequireAntiforgeryToken(required: false)]
-> ```
-
-For more information, see <xref:blazor/security/index#antiforgery-support>.
-
-:::moniker-end
 
 ## Built-in input components
 
@@ -816,7 +823,7 @@ The following form accepts and validates user input using:
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -979,7 +986,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding examp
 
 In the following example:
 
-* A shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* A shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * The `Submit` method executes when the **`Submit`** button is selected.
 * The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `Submit` method.
 * Logging is executed depending on the validation result.
@@ -998,7 +1005,7 @@ In the following example:
 @attribute [RenderModeServer]
 @inject ILogger<Starship6> Logger
 
-<EditForm EditContext="@editContext" OnSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit">
     <DataAnnotationsValidator />
     <div>
         <label>
@@ -1058,8 +1065,8 @@ In the following example:
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-5"
-@inject ILogger<Starship5> Logger
+@page "/starship-6"
+@inject ILogger<Starship6> Logger
 
 <EditForm EditContext="@editContext" OnSubmit="@Submit">
     <DataAnnotationsValidator />
@@ -1075,9 +1082,9 @@ In the following example:
 </EditForm>
 
 @code {
-    private Starship Model { get; set; }
-        
     private EditContext? editContext;
+
+    private Starship Model { get; set; }
 
     protected override void OnInitialized()
     {
@@ -1141,7 +1148,7 @@ In the following example, the user must select at least two starship classificat
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -1303,13 +1310,35 @@ Set the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A
 <label>
     Production Date:
     <InputDate @bind-Value="Model!.ProductionDate" 
-               DisplayName="Production Date" />
+        DisplayName="Production Date" />
 </label>
 ```
 
 The validation summary displays the friendly name when the field's value is invalid:
 
 > The Production Date field must be a date.
+
+<!-- UPDATE 8.0 This isn't currently supported.
+     https://github.com/dotnet/aspnetcore/issues/49147
+
+> [!NOTE]
+> Alternatively, the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
+>
+> ```csharp
+> [Required, Display(Name = "Production Date")]
+> public DateTime ProductionDate { get; set; }
+> ```
+>
+> [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
+>
+> ```csharp
+> [Required, DisplayName("Production Date")]
+> public DateTime ProductionDate { get; set; }
+> ```
+>
+> Between the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization.
+
+-->
 
 :::moniker-end
 
@@ -1408,18 +1437,24 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 <h2>Holodeck Configuration</h2>
 
-<EditForm EditContext="editContext" OnValidSubmit="@Submit">
-    <label>
-        Type 1:
-        <InputCheckbox @bind-Value="Model!.Type1" />
-    </label>
-    <label>
-        Type 2:
-        <InputCheckbox @bind-Value="Model!.Type2" />
-    </label>
-    <button type="submit">Update</button>
+<EditForm method="post" EditContext="editContext" OnValidSubmit="@Submit">
+    <div>
+        <label>
+            <InputCheckbox @bind-Value="Model!.Subsystem1" />
+            Safety Subsystem
+        </label>
+    </div>
+    <div>
+        <label>
+            <InputCheckbox @bind-Value="Model!.Subsystem2" />
+            Emergency Shutdown Subsystem
+        </label>
+    </div>
     <div>
         <ValidationMessage For="() => Model!.Options" />
+    </div>
+    <div>
+        <button type="submit">Update</button>
     </div>
 </EditForm>
 
@@ -1458,9 +1493,9 @@ In the following component, the `HandleValidationRequested` handler method clear
 
     public class Holodeck
     {
-        public bool Type1 { get; set; }
-        public bool Type2 { get; set; }
-        public bool Options => Type1 || Type2;
+        public bool Subsystem1 { get; set; }
+        public bool Subsystem2 { get; set; }
+        public bool Options => Subsystem1 || Subsystem2;
     }
 
     public void Dispose()
@@ -1489,19 +1524,24 @@ In the following component, the `HandleValidationRequested` handler method clear
 <h2>Holodeck Configuration</h2>
 
 <EditForm EditContext="editContext" OnValidSubmit="@Submit">
-    <label>
-        Type 1:
-        <InputCheckbox @bind-Value="Model!.Type1" />
-    </label>
-    <label>
-        Type 2:
-        <InputCheckbox @bind-Value="Model!.Type2" />
-    </label>
-    <button type="submit">Update</button>
+    <div>
+        <label>
+            <InputCheckbox @bind-Value="Model!.Subsystem1" />
+            Safety Subsystem
+        </label>
+    </div>
+    <div>
+        <label>
+            <InputCheckbox @bind-Value="Model!.Subsystem2" />
+            Emergency Shutdown Subsystem
+        </label>
+    </div>
     <div>
         <ValidationMessage For="() => Model!.Options" />
     </div>
-
+    <div>
+        <button type="submit">Update</button>
+    </div>
 </EditForm>
 
 @code {
@@ -1538,9 +1578,9 @@ In the following component, the `HandleValidationRequested` handler method clear
 
     public class Holodeck
     {
-        public bool Type1 { get; set; }
-        public bool Type2 { get; set; }
-        public bool Options => Type1 || Type2;
+        public bool Subsystem1 { get; set; }
+        public bool Subsystem2 { get; set; }
+        public bool Options => Subsystem1 || Subsystem2;
     }
 
     public void Dispose()
@@ -1693,7 +1733,7 @@ When validation messages are set in the component, they're added to the validato
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
     <div>
@@ -2033,7 +2073,7 @@ moniker range=">= aspnetcore-8.0"
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
@@ -2090,11 +2130,11 @@ moniker range=">= aspnetcore-8.0"
 </EditForm>
 
 @code {
+    private CustomValidation? customValidation;
     private bool disabled;
     private string? message;
-    private string? messageStyles = "visibility:hidden";
-    private CustomValidation? customValidation;
-    
+    private string messageStyles = "visibility:hidden";
+
     [SupplyParameterFromForm]
     public Starship? Model { get; set; }
 
@@ -2226,10 +2266,10 @@ moniker range="< aspnetcore-8.0"
 </EditForm>
 
 @code {
+    private CustomValidation? customValidation;
     private bool disabled;
     private string? message;
-    private string? messageStyles = "visibility:hidden";
-    private CustomValidation? customValidation;
+    private string messageStyles = "visibility:hidden";
     
     public Starship? Model { get; set; }
 
@@ -2326,7 +2366,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @attribute [RenderModeServer]
 @inject ILogger<Starship11> Logger
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <CustomInputText @bind-Value="Model!.Id" />
@@ -2734,7 +2774,7 @@ The `SaladChef` class indicates the approved starship ingredient list for a Ten 
 ```csharp
 public class SaladChef
 {
-    public string[] ThingsYouCanPutInASalad = { "Horva", "Kanda Root",
+    public string[] SaladToppers = { "Horva", "Kanda Root",
         "Krintar", "Plomeek", "Syto Bean" };
 }
 ```
@@ -2759,14 +2799,14 @@ public class SaladChefValidatorAttribute : ValidationAttribute
     {
         var saladChef = validationContext.GetRequiredService<SaladChef>();
 
-        if (saladChef.ThingsYouCanPutInASalad.Contains(value?.ToString()))
+        if (saladChef.SaladToppers.Contains(value?.ToString()))
         {
             return ValidationResult.Success;
         }
 
-        return new ValidationResult("You should not put that in a salad! " +
-            "Only use an ingredient from this list: " +
-            string.Join(", ", saladChef.ThingsYouCanPutInASalad));
+        return new ValidationResult("Is that a Vulcan salad topper?! " +
+            "The following toppers are available for a Ten Forward salad: " +
+            string.Join(", ", saladChef.SaladToppers));
     }
 }
 ```
@@ -2780,29 +2820,38 @@ The following component validates user input by applying the `SaladChefValidator
 ```razor
 @page "/starship-12"
 @attribute [RenderModeServer]
+@inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off">
+
     <DataAnnotationsValidator />
-    <div>
+
+    <p>
         <label>
-            Name something you can put in a salad:
+            Salad topper (@saladToppers):
             <input @bind="SaladIngredient" />
         </label>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
+    </p>
+
+    <button type="submit">Submit</button>
+
     <ul>
         @foreach (var message in context.GetValidationMessages())
         {
             <li class="validation-message">@message</li>
         }
     </ul>
+
 </EditForm>
 
 @code {
+    private string? saladToppers;
+
     [SaladChefValidator]
     public string? SaladIngredient { get; set; }
+
+    protected override void OnInitialized() => 
+        saladToppers ??= string.Join(", ", SaladChef.SaladToppers);
 }
 ```
 
@@ -2812,27 +2861,38 @@ The following component validates user input by applying the `SaladChefValidator
 
 ```razor
 @page "/starship-12"
+@inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off">
+
     <DataAnnotationsValidator />
-    <div>
-        Name something you can put in a salad:
-        <input @bind="SaladIngredient" />
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
+
+    <p>
+        <label>
+            Salad topper (@saladToppers):
+            <input @bind="SaladIngredient" />
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+
     <ul>
         @foreach (var message in context.GetValidationMessages())
         {
             <li class="validation-message">@message</li>
         }
     </ul>
+
 </EditForm>
 
 @code {
+    private string? saladToppers;
+
     [SaladChefValidator]
     public string? SaladIngredient { get; set; }
+
+    protected override void OnInitialized() => 
+        saladToppers ??= string.Join(", ", SaladChef.SaladToppers);
 }
 ```
 
@@ -2894,7 +2954,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @attribute [RenderModeServer]
 @inject ILogger<Starship13> Logger
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />
@@ -3190,7 +3250,7 @@ To enable and disable the submit button based on form validation, the following 
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -3607,6 +3667,48 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Antiforgery support
+
+The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
+
+For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `AntiforgeryToken` component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
+
+For [forms based on the HTML `<form>` element](#html-forms), manually add the `AntiforgeryToken` component to the form:
+
+```razor
+@attribute [RenderModeServer]
+
+<form method="post" @onsubmit="Submit" @formname="starship">
+    <AntiforgeryToken />
+    <input id="send" type="submit" value="Send" />
+</form>
+
+@if (submitted)
+{
+    <p>Form submitted!</p>
+}
+
+@code{
+    private bool submitted = false;
+
+    private void Submit() => submitted = true;
+}
+```
+
+> [!WARNING]
+> For forms based on either <xref:Microsoft.AspNetCore.Components.Forms.EditForm> or the HTML `<form>` element, antiforgery protection can be disabled by passing `required: false` to the `[RequireAntiforgeryToken]` attribute. The following example disables antiforgery and is ***not recommended*** for public apps:
+>
+> ```razor
+> @using Microsoft.AspNetCore.Antiforgery
+> @attribute [RequireAntiforgeryToken(required: false)]
+> ```
+
+For more information, see <xref:blazor/security/index#antiforgery-support>.
 
 :::moniker-end
 
