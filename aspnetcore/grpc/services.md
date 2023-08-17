@@ -66,7 +66,7 @@ A unary method has the request message as a parameter, and returns the response.
 
 :::code language="csharp" source="~/grpc/services/ExampleService.cs" id="snippet_UnaryCall" :::
 
-Unary calls are the most similar to [actions on web API controllers](xref:web-api/index). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by making them fields on the request message:
+Unary calls are the most similar to [actions on web API controllers](xref:web-api/index). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by adding fields to the request message:
 
 :::code language="protobuf" source="~/grpc/services/Protos/example.proto" range="19-23" :::
 
