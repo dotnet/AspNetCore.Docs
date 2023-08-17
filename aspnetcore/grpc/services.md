@@ -56,7 +56,7 @@ A gRPC service can have different types of methods. How messages are sent and re
 
 Streaming calls are specified with the `stream` keyword in the `.proto` file. `stream` can be placed on a call's request message, response message, or both.
 
-:::code language="protobuf" source="~/grpc/services/Protos/example.proto" id="snippet_ExampleService" :::
+:::code language="protobuf" source="~/grpc/services/Protos/example.proto" range="1-15" :::
 
 Each call type has a different method signature. Overriding generated methods from the abstract base service type in a concrete implementation ensures the correct arguments and return type are used.
 
@@ -68,7 +68,7 @@ A unary method has the request message as a parameter, and returns the response.
 
 Unary calls are the most similar to [actions on web API controllers](xref:web-api/index). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by making them fields on the request message:
 
-:::code language="protobuf" source="~/grpc/services/Protos/example.proto" id="snippet_ExampleRequest" :::
+:::code language="protobuf" source="~/grpc/services/Protos/example.proto" range="19-23" :::
 
 ### Server streaming method
 
