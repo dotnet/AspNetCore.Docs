@@ -44,16 +44,18 @@ For implementation details, see [Enable QR Code generation for TOTP authenticato
 
 To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> for each required provider. For more information about available token providers, see the [AddDefaultTokenProviders source on GitHub](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Identity/Core/src/IdentityBuilderExtensions.cs#L21-L32).
 
-### MFA FIDO2 or passwordless
+### MFA passkeys/FIDO2 or passwordless
 
-FIDO2 is currently:
+passkeys/FIDO2 is currently:
 
 * The most secure way of achieving MFA.
-* The only MFA flow that protects against phishing attacks.
+* A MFA that protects against phishing attacks. (As well as certificiate authentication and Windows for business)
 
-At present, ASP.NET Core doesn't support FIDO2 directly. FIDO2 can be used for MFA or passwordless flows.
+At present, ASP.NET Core doesn't support passkeys/FIDO2 directly. Passkeys/FIDO2 can be used for MFA or passwordless flows.
 
-Azure Active Directory provides support for FIDO2 and passwordless flows. For more information, see [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless).
+Azure Active Directory provides support for passkeys/FIDO2 and passwordless flows. For more information, see [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless).
+
+Other forms of passwordless MFA do not or may not protect against phishing.
 
 ### MFA SMS
 
@@ -572,16 +574,18 @@ See the following link for implementation details:
 
 [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
 
-### MFA FIDO2 or passwordless
+### MFA passkeys/FIDO2 or passwordless
 
-FIDO2 is currently:
+passkeys/FIDO2 is currently:
 
 * The most secure way of achieving MFA.
-* The only MFA flow that protects against phishing attacks.
+* A MFA that protects against phishing attacks. (As well as certificiate authentication and Windows for business)
 
-At present, ASP.NET Core doesn't support FIDO2 directly. FIDO2 can be used for MFA or passwordless flows.
+At present, ASP.NET Core doesn't support passkeys/FIDO2 directly. Passkeys/FIDO2 can be used for MFA or passwordless flows.
 
-Azure Active Directory provides support for FIDO2 and passwordless flows. For more information, see [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless).
+Azure Active Directory provides support for passkeys/FIDO2 and passwordless flows. For more information, see [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless).
+
+Other forms of passwordless MFA do not or may not protect against phishing.
 
 ### MFA SMS
 
