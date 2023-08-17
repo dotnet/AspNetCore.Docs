@@ -26,7 +26,7 @@ See [ASP.NET Core metrics](https://github.com/dotnet/aspnetcore/issues/47536) fo
 
 There are two parts to using metrics in a .NET app:
 
-* **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name.
+* **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name. .NET and ASP.NET Core include many built-in metrics.
 * **Collection:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
 
 Instrumented code can record numeric measurements, but the measurements need to be aggregated, transmitted, and stored to create useful metrics for monitoring. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting metrics:
@@ -174,6 +174,53 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
 
 ![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
+
+## Test metrics in ASP.NET Core apps
+
+It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
+
+```cs
+public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
+{
+    private readonly WebApplicationFactory<Program> _factory;
+    public BasicTests(WebApplicationFactory<Program> factory) => _factory = factory;
+
+    [Fact]
+    public async Task Get_RequestCounterIncreased()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+        var meterFactory = _factory.Services.GetRequiredService<IMeterFactory>();
+        var collector = new MetricCollector<double>(meterFactory,
+            "Microsoft.AspNetCore.Hosting", "http.server.request.duration");
+
+        // Act
+        var response = await client.GetAsync("/");
+
+        // Assert
+        Assert.Equal("Hello World!", await response.Content.ReadAsStringAsync());
+
+        await collector.WaitForMeasurementsAsync(minCount: 1);
+        Assert.Collection(collector.GetMeasurementSnapshot(),
+            measurement =>
+            {
+                Assert.Equal("http", measurement.Tags["url.scheme"]);
+                Assert.Equal("GET", measurement.Tags["http.request.method"]);
+                Assert.Equal("/", measurement.Tags["http.route"]);
+            });
+    }
+}
+```
+
+The proceeding test:
+
+* Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
+* Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
+  * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
+  * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the collector to only report metrics values recorded by test.
+  * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
+* Makes a HTTP request to the app web.
+* Asserts the test using results from the metrics collector.
 
 ## ASP.NET Core meters and counters
 
