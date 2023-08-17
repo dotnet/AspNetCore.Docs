@@ -16,6 +16,11 @@ This article explains how to configure Blazor Server for additional security sce
 
 ## Pass tokens to a Blazor Server app
 
+<!-- UPDATE 8.0 I don't think it will be necessary to showcase
+     passing antiforgery tokens for BWAs, so we'll probably
+     version that piece out. However, other types of tokens might
+     still require an approach similar to what this guidance shows. -->
+
 Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access, refresh, and [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) tokens to the Blazor app, but the approach is valid for other HTTP context state.
 
 > [!NOTE]

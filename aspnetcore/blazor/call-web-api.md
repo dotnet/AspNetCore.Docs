@@ -840,6 +840,31 @@ For more information, see <xref:security/cors>.
 
 :::zone-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Antiforgery support
+
+To add antiforgery support to an HTTP request, inject the `AntiforgeryStateProvider` and add a `RequestToken` to the headers collection as a `RequestVerificationToken`:
+
+```razor
+@inject AntiforgeryStateProvider Antiforgery
+```
+
+```csharp
+private async Task OnSubmit()
+{
+    var antiforgery = Antiforgery.GetAntiforgeryToken();
+    var request = new HttpRequestMessage(HttpMethod.Post, "action");
+    request.Headers.Add("RequestVerificationToken", antiforgery.RequestToken);
+    var response = await client.SendAsync(request);
+    ...
+}
+```
+
+For more information, see <xref:blazor/security/index#antiforgery-support>.
+
+:::moniker-end
+
 ## Blazor framework component examples for testing web API access
 
 Various network tools are publicly available for testing web API backend apps directly, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) and [Postman](https://www.postman.com). Blazor framework's reference source includes <xref:System.Net.Http.HttpClient> test assets that are useful for testing:
