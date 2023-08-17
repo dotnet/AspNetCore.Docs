@@ -145,7 +145,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @attribute [RenderModeServer]
 @inject ILogger<Starship1> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship1">
     <InputText @bind-Value="Model!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -242,7 +242,7 @@ In the next example, the preceding component is modified to create the form in t
 @attribute [RenderModeServer]
 @inject ILogger<Starship2> Logger
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />
@@ -452,7 +452,7 @@ builder.Services.AddRazorComponents(options =>
 
 ### Form names
 
-Form names must be unique to bind model data. When a form name is provided, use the `FormName` parameter. The following form is named `RomulanAle`:
+Use the `FormName` parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
 
 ```razor
 <EditForm ... FormName="RomulanAle">
@@ -460,24 +460,17 @@ Form names must be unique to bind model data. When a form name is provided, use 
 </EditForm>
 ```
 
-Supplying a form name isn't required if only one <xref:Microsoft.AspNetCore.Components.Forms.EditForm> form is present in a component. Form names also aren't required when using multiple child components with forms, as long as each child only has a single form. If a child component has multiple forms, the forms are named in the child component.
+Supplying a form name:
 
-`MultipleForms.razor`:
+<!-- UPDATE 8.0 Cross-link server-side rendering (SSR) -->
 
-```razor
-@page "/multiple-forms"
+* Is required on all forms that are submitted via server-side rendering (SSR).
+* Not required for interactive rendering, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
 
-<h1>Combine Forms</h1>
+The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request (an SSR form post). The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
 
-<div>
-    Form names <b>NOT</b> required for Starship1
-    and Starship2 form components.
-</div>
-
-<Starship1 />
-
-<Starship2 />
-```
+> [!WARNING]
+> We recommend supplying a unique form name for every form to prevent runtime form posting errors.
 
 Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
 
@@ -658,7 +651,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 @attribute [RenderModeServer]
 @inject ILogger<Starship4> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship4">
     <div>
         <label>
             Id:
@@ -823,7 +816,7 @@ The following form accepts and validates user input using:
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship5">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -1005,7 +998,8 @@ In the following example:
 @attribute [RenderModeServer]
 @inject ILogger<Starship6> Logger
 
-<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit" 
+    FormName="Starship6">
     <DataAnnotationsValidator />
     <div>
         <label>
@@ -1148,7 +1142,8 @@ In the following example, the user must select at least two starship classificat
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+    FormName="Starship7">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -1437,7 +1432,8 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 <h2>Holodeck Configuration</h2>
 
-<EditForm method="post" EditContext="editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="editContext" OnValidSubmit="@Submit" 
+    FormName="Starship8">
     <div>
         <label>
             <InputCheckbox @bind-Value="Model!.Subsystem1" />
@@ -1733,7 +1729,7 @@ When validation messages are set in the component, they're added to the validato
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship9">
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
     <div>
@@ -2073,7 +2069,8 @@ moniker range=">= aspnetcore-8.0"
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" 
+    FormName="Starship10">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
@@ -2366,7 +2363,8 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @attribute [RenderModeServer]
 @inject ILogger<Starship11> Logger
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" 
+    FormName="Starship11">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <CustomInputText @bind-Value="Model!.Id" />
@@ -2822,7 +2820,7 @@ The following component validates user input by applying the `SaladChefValidator
 @attribute [RenderModeServer]
 @inject SaladChef SaladChef
 
-<EditForm Model="@this" autocomplete="off">
+<EditForm Model="@this" autocomplete="off" FormName="Starship12">
 
     <DataAnnotationsValidator />
 
@@ -2954,7 +2952,8 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @attribute [RenderModeServer]
 @inject ILogger<Starship13> Logger
 
-<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+    FormName="Starship13">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />
@@ -3185,7 +3184,7 @@ Blazor provides support for validating form input using data annotations with th
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package:
 
 ```razor
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm Model="@Model" OnValidSubmit="@Submit" ...>
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -3250,7 +3249,8 @@ To enable and disable the submit button based on form validation, the following 
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 
-<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+    FormName="Starship14">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -3396,7 +3396,7 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 * Make the <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component visible when the submit button is selected (for example, in a `Submit` method).
 
 ```razor
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit" ...>
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 
@@ -3469,7 +3469,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 <h1>Stream form data with JS interop</h1>
 
-<EditForm Model="@this" OnSubmit="@Submit">
+<EditForm Model="@this" OnSubmit="@Submit" FormName="StreamFormData">
     <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to
@@ -3629,7 +3629,7 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
 @page "/html-form"
 @inject ILogger<HTMLForm> Logger
 
-<form method="post" @formname="contact" @onsubmit="AddContact">
+<form method="post" @onsubmit="AddContact" @formname="contact">
     <AntiforgeryToken />
     <label>
         Name
@@ -3683,7 +3683,7 @@ For [forms based on the HTML `<form>` element](#html-forms), manually add the `A
 ```razor
 @attribute [RenderModeServer]
 
-<form method="post" @onsubmit="Submit" @formname="starship">
+<form method="post" @onsubmit="Submit" @formname="starshipForm">
     <AntiforgeryToken />
     <input id="send" type="submit" value="Send" />
 </form>
