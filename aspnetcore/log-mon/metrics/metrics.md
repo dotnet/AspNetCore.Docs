@@ -104,11 +104,11 @@ Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespac
 
 ### Creating metrics in ASP.NET Core apps with `IMeterFactory`
 
-It's recommended to create `Meter` instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
+We recommended creating `Meter` instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
 
 ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in dependency injection (DI) by default. The meter factory integrates metrics with DI, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
 
-To use `IMeterFactory` in an app, first create a type that uses `IMeterFactory` to create the app's custom metrics:
+To use `IMeterFactory` in an app, create a type that uses `IMeterFactory` to create the app's custom metrics:
 
 ```cs
 public class ContosoMetrics
@@ -136,7 +136,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ContosoMetrics>();
 ```
 
-Finally, inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
+Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
 
 ```cs
 app.MapPost("/complete-sale", ([FromBody] SaleModel model, ContosoMetrics metrics) =>
