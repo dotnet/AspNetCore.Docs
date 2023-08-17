@@ -100,7 +100,52 @@ For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-coun
 
 ## Create custom metrics
 
-See [Create custom metrics](/dotnet/core/diagnostics/metrics#create-custom-metrics) for information on creating custom metrics.
+Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-custom-metrics) for information on creating custom metrics.
+
+### Creating metrics in ASP.NET Core apps with `IMeterFactory`
+
+It's recommended to create `Meter` instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
+
+ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in dependency injection (DI) by default. The meter factory integrates metrics with DI, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
+
+To use `IMeterFactory` in an app, first create a type that uses `IMeterFactory` to create the app's custom metrics:
+
+```cs
+public class ContosoMetrics
+{
+    private readonly Counter<int> _productSoldCounter;
+
+    public ContosoMetrics(IMeterFactory meterFactory)
+    {
+        var meter = meterFactory.CreateMeter("Contoso.Web");
+        _productSoldCounter = meter.CreateCounter<int>("contoso.product.sold");
+    }
+
+    public void ProductSold(string productName, int quantity)
+    {
+        _productSoldCounter.Add(quantity,
+            new KeyValuePair<string, object?>("contoso.product.name", productName));
+    }
+}
+```
+
+Register the metrics type with DI in `Program.cs`:
+
+```cs
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<ContosoMetrics>();
+```
+
+Finally, inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
+
+```cs
+app.MapPost("/complete-sale", ([FromBody] SaleModel model, ContosoMetrics metrics) =>
+{
+    // ... business logic such as saving the sale to a database ...
+
+    metrics.ProductSold(model.QuantitySold, model.ProductName);
+});
+```
 
 ## View metrics in Grafana with OpenTelemetry and Prometheus
 
@@ -217,7 +262,7 @@ The proceeding test:
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
-  * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the collector to only report metrics values recorded by test.
+  * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
 * Makes a HTTP request to the app web.
 * Asserts the test using results from the metrics collector.
