@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/24/2023
+ms.date: 08/16/2023
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/page
 ---
@@ -16,8 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
 
 :::moniker range="= aspnetcore-8.0"
-
-<!-- Moniker prep and make a copy of the current project at tutorials/razor-pages/razor-pages-start/snapshot_sample7 -->
 
 ## The Create, Delete, Details, and Edit pages
 

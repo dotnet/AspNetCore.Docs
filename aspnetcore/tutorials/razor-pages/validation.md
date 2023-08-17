@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
 ms.custom: engagement-fy23
-ms.date: 05/24/2023
+ms.date: 08/16/2023
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
