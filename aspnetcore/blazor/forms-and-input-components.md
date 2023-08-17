@@ -479,7 +479,9 @@ Supplying a form name isn't required if only one <xref:Microsoft.AspNetCore.Comp
 <Starship2 />
 ```
 
-Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. In the following example, the `FormMappingScope` scope name is `ParentContext`. The `Hello`-named form doesn't collide with a form in the app using the same form name.
+Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
+
+In the following example, the `FormMappingScope` scope name is `ParentContext` for the library-supplied form. POST events are routed to the correct form.
 
 `HelloFormFromLibrary.razor`:
 
@@ -497,7 +499,7 @@ Define a scope for form names using the `FormMappingScope` component, which is u
 @code {
     bool submitted = false;
 
-    [SupplyParameterFromForm(Handler = "Hello")]
+    [SupplyParameterFromForm]
     public string? Name { get; set; }
 
     private void Submit() => submitted = true;
@@ -530,7 +532,7 @@ Define a scope for form names using the `FormMappingScope` component, which is u
 @code {
     bool submitted = false;
 
-    [SupplyParameterFromForm(Handler = "Hello")]
+    [SupplyParameterFromForm]
     public string? Name { get; set; }
 
     private void Submit() => submitted = true;
@@ -541,7 +543,10 @@ Define a scope for form names using the `FormMappingScope` component, which is u
 
 The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding.
 
-You can specify the name Blazor should use to bind form data to the model using the `Name` or the `Handler` property on `[SupplyParameterFromForm]`.
+You can specify the following form binding parameters to the `[SupplyParameterFromForm]` attribute:
+
+* `Name`: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
+* `FormName`: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
 
 The following example independently binds two forms to their models by form name.
 
@@ -563,10 +568,10 @@ The following example independently binds two forms to their models by form name
 </EditForm>
 
 @code {
-    [SupplyParameterFromForm(Name = "Holodeck1")]
+    [SupplyParameterFromForm(FormName = "Holodeck1")]
     public Holodeck? Model1 { get; set; }
 
-    [SupplyParameterFromForm(Name = "Holodeck2")]
+    [SupplyParameterFromForm(FormName = "Holodeck2")]
     public Holodeck? Model2 { get; set; }
 
     protected override void OnInitialized()
@@ -679,6 +684,12 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
     }
 }
 ```
+
+### Advanced form mapping error scenarios
+
+The framework instantiates and populates the `FormMappingContext` for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a `FormMappingScope` component) instantiates `FormMappingContext`. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the `FormMappingContext` with the attempted value and any mapping errors.
+
+Developers aren't expected to interact with `FormMappingContext` directly, as it's mainly a source of data for `InputBase`, `EditContext`, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access `FormMappingContext` directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
 
 :::moniker-end
 
