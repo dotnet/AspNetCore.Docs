@@ -62,8 +62,8 @@ The following `Daleks` component displays the cascaded values.
 <h1>Root-level cascading value registration example</h1>
 
 <ul>
-    <li>@Daleks?.Units</li>
-    <li>@NamedDaleks?.Units</li>
+    <li>Dalek Units: @Daleks?.Units</li>
+    <li>Alpha Group Dalek Units: @NamedDaleks?.Units</li>
 </ul>
 
 <p>
