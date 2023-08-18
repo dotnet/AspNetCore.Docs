@@ -25,7 +25,7 @@ This article explains how to flow data from an ancestor Razor component to desce
 
 Root-level cascading values can be registered for the entire component hierarchy. Named cascading values and subscriptions for update notifications are supported.
 
-The following classes are used in this section's examples.
+The following class is used in this section's examples.
 
 `Daleks.cs`:
 
@@ -41,21 +41,17 @@ public class Daleks
 }
 ```
 
-The following registrations are made in the app's `Program` file.
+The following registrations are made in the app's `Program` file:
 
-In the following example, `Daleks` is registered with a property value as a fixed cascading value:
+* `Daleks` with a property value for `Units` is registered as a fixed cascading value.
+* A second `Daleks` registration with a different property value for `Units` is named "`AlphaGroup`".
 
 ```csharp
 builder.Services.AddCascadingValue(sp => new Daleks { Units = 123 });
-```
-
-In the following example, `Daleks` is registered with the name "`AlphaGroup`" as a fixed cascading value by name:
-
-```csharp
 builder.Services.AddCascadingValue("AlphaGroup", sp => new Daleks { Units = 456 });
 ```
 
-The following `Daleks` component displays the cascaded values. The value of `Daleks2.Units` is updated for this component and all subscribers when `UpdateUnits` is called.
+The following `Daleks` component displays the cascaded values.
 
 `Daleks.razor`:
 
