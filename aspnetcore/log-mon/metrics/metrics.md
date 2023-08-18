@@ -200,7 +200,7 @@ public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
         // Assert
         Assert.Equal("Hello World!", await response.Content.ReadAsStringAsync());
 
-        await collector.WaitForMeasurementsAsync(minCount: 1);
+        await collector.WaitForMeasurementsAsync(minCount: 1).WaitAsync(TimeSpan.FromSeconds(5));
         Assert.Collection(collector.GetMeasurementSnapshot(),
             measurement =>
             {
