@@ -100,7 +100,7 @@ For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-coun
 
 ## Create custom metrics
 
-Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-custom-metrics) for information on creating custom metrics.
+Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric) for information on creating custom metrics.
 
 ### Creating metrics in ASP.NET Core apps with `IMeterFactory`
 
