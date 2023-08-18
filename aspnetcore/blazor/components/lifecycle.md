@@ -251,7 +251,7 @@ For more information on route parameters and constraints, see <xref:blazor/funda
 
 These methods aren't invoked during prerendering or server-side rendering because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
 
-For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` because that would cause an infinite render loop.
+For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
 
 :::moniker-end
 
@@ -261,7 +261,7 @@ For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, 
 
 These methods aren't invoked during prerendering because prerendering isn't attached to a live browser DOM and is already complete before the DOM is updated.
 
-For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` because that would cause an infinite render loop.
+For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
 
 :::moniker-end
 
