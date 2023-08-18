@@ -219,7 +219,7 @@ The proceeding test:
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
   * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
-* Makes a HTTP request to the app web.
+* Makes an HTTP request to the web app.
 * Asserts the test using results from the metrics collector.
 
 ## ASP.NET Core meters and counters
