@@ -19,6 +19,68 @@ This article explains how to flow data from an ancestor Razor component to desce
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the `CascadingType?`, `@ActiveTab?`, `RenderFragment?`, `ITab?`, `TabSet?`, and `string?` types in the article's examples.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Root-level cascading values
+
+Root-level cascading values can be registered for the entire component hierarchy. Named cascading values and subscriptions for update notifications are supported.
+
+The following classes are used in this section's examples.
+
+`Daleks.cs`:
+
+```csharp
+/*
+    "Dalek" ©Terry Nation https://www.imdb.com/name/nm0622334/
+    "Doctor Who" ©BBC https://www.bbc.co.uk/programmes/b006q2x0
+*/
+
+public class Daleks1
+{
+    public int Units { get; set; }
+}
+
+public class Daleks2
+{
+    public int Units { get; set; }
+}
+```
+
+The following registrations are made in the app's `Program` file.
+
+In the following example, `Daleks1` is registered with a property value as a fixed cascading value:
+
+```csharp
+builder.Services.AddCascadingValue(sp => new Daleks1 { Units = 123 });
+```
+
+In the following example, `Daleks1` is registered with the name "`AlphaGroup`" as a fixed cascading value by name:
+
+```csharp
+builder.Services.AddCascadingValue("AlphaGroup", sp => new Daleks1 { Units = 456 });
+```
+
+In the following example, `Daleks2` is registered as a cascading value using `CascadingValueSource<T>`, where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all receipients are subscribed for update notifications, which are issued by calling `NotifyChangedAsync`. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+
+```csharp
+builder.Services.AddCascadingValue(sp =>
+{
+    var daleks = new Daleks2 { Units = 789 };
+    var source = new CascadingValueSource<Daleks2>(daleks, isFixed: false);
+    return source;
+});
+```
+
+The following `Daleks` component displays the cascaded values. The value of `Daleks2.Units` is updated for this component and all subscribers when `UpdateUnits` is called.
+
+`Daleks.razor`:
+
+```razor
+
+```
+
+:::moniker-end
+
 ## `CascadingValue` component
 
 An ancestor component provides a cascading value using the Blazor framework's [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component, which wraps a subtree of a component hierarchy and supplies a single value to all of the components within its subtree.
