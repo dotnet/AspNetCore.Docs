@@ -35,12 +35,7 @@ The following classes are used in this section's examples.
     "Doctor Who" ©BBC https://www.bbc.co.uk/programmes/b006q2x0
 */
 
-public class Daleks1
-{
-    public int Units { get; set; }
-}
-
-public class Daleks2
+public class Daleks
 {
     public int Units { get; set; }
 }
@@ -48,27 +43,16 @@ public class Daleks2
 
 The following registrations are made in the app's `Program` file.
 
-In the following example, `Daleks1` is registered with a property value as a fixed cascading value:
+In the following example, `Daleks` is registered with a property value as a fixed cascading value:
 
 ```csharp
-builder.Services.AddCascadingValue(sp => new Daleks1 { Units = 123 });
+builder.Services.AddCascadingValue(sp => new Daleks { Units = 123 });
 ```
 
-In the following example, `Daleks1` is registered with the name "`AlphaGroup`" as a fixed cascading value by name:
+In the following example, `Daleks` is registered with the name "`AlphaGroup`" as a fixed cascading value by name:
 
 ```csharp
-builder.Services.AddCascadingValue("AlphaGroup", sp => new Daleks1 { Units = 456 });
-```
-
-In the following example, `Daleks2` is registered as a cascading value using `CascadingValueSource<T>`, where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all receipients are subscribed for update notifications, which are issued by calling `NotifyChangedAsync`. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
-
-```csharp
-builder.Services.AddCascadingValue(sp =>
-{
-    var daleks = new Daleks2 { Units = 789 };
-    var source = new CascadingValueSource<Daleks2>(daleks, isFixed: false);
-    return source;
-});
+builder.Services.AddCascadingValue("AlphaGroup", sp => new Daleks { Units = 456 });
 ```
 
 The following `Daleks` component displays the cascaded values. The value of `Daleks2.Units` is updated for this component and all subscribers when `UpdateUnits` is called.
@@ -76,7 +60,39 @@ The following `Daleks` component displays the cascaded values. The value of `Dal
 `Daleks.razor`:
 
 ```razor
+@page "/daleks"
+@attribute [RenderModeServer]
 
+<h1>Root-level cascading value registration example</h1>
+
+<ul>
+    <li>@Daleks?.Units</li>
+    <li>@NamedDaleks?.Units</li>
+</ul>
+
+<p>
+    Dalek ©<a href="https://www.imdb.com/name/nm0622334/">Terry Nation</a><br>
+    Doctor Who ©<a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>
+</p>
+
+@code {
+    [CascadingParameter]
+    public Daleks? Daleks { get; set; }
+
+    [CascadingParameter(Name = "AlphaGroup")]
+    public Daleks? NamedDaleks { get; set; }
+}
+```
+
+In the following example, `Daleks` is registered as a cascading value using `CascadingValueSource<T>`, where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all receipients are subscribed for update notifications, which are issued by calling `NotifyChangedAsync`. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+
+```csharp
+builder.Services.AddCascadingValue(sp =>
+{
+    var daleks = new Daleks { Units = 789 };
+    var source = new CascadingValueSource<Daleks>(daleks, isFixed: false);
+    return source;
+});
 ```
 
 :::moniker-end
