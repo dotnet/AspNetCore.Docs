@@ -4,7 +4,7 @@ author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/24/2023
+ms.date: 08/16/2023
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -84,9 +84,6 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
@@ -94,7 +91,7 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
   * Select **Continue**.
 
 * In the **Configure your new Web Application** dialog:
-  * Verify: **Target framework** is set to **.NET 7.0** (or later).
+  * Verify: **Target framework** is set to **.NET 8.0** (or later).
   * Verify: **Authentication** is set to **No Authentication**.
   * Verify: **Do not use top-level statements** is unchecked.
   * Select **Continue**.
@@ -102,7 +99,6 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 * In the **Configure your new Web Application** dialog:
   * Enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
   * Select **Create**.
--->
 
 ---
 
@@ -143,13 +139,10 @@ The default browser launched with the following URL: `https://localhost:<port>` 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 Select **Debug** > **Start Debugging** to launch the app.
 
 Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
--->
+
 ---
 
 <!-- 
@@ -207,7 +200,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Next steps
 

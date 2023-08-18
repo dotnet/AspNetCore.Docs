@@ -5,6 +5,7 @@
 namespace RazorPagesMovie.Migrations
 {
     /// <inheritdoc />
+    // <snippet_1>
     public partial class New_DataAnnotations : Migration
     {
         /// <inheritdoc />
@@ -37,6 +38,7 @@ namespace RazorPagesMovie.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
         }
+         // </snippet_1>
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -63,8 +63,7 @@ If the [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) tool isn't in
 dotnet tool update -g dotnet-counters
 ```
 
-While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
-The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft.AspNetCore.Hosting` meter.
+While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft.AspNetCore.Hosting` meter.
 
 ```dotnetcli
 dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting
@@ -88,15 +87,7 @@ Press p to pause, r to resume, q to quit.
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0                                            12
 ```
 
-Run `WebMetric>dotnet-counters list` to show all available metrics.
-
-The following command shows the `Microsoft-AspNetCore-Server-Kestrel` meter with the `requests-per-second` and `total-requests` counters.
-
-```dotnetcli
-dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting[requests-per-second,total-requests]
-```
-
-For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). To learn more about metrics in .NET, see [built-in metrics](/dotnet/core/diagnostics/available-counters).
+For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
 
 ## Create custom metrics
 
@@ -200,7 +191,7 @@ public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
         // Assert
         Assert.Equal("Hello World!", await response.Content.ReadAsStringAsync());
 
-        await collector.WaitForMeasurementsAsync(minCount: 1);
+        await collector.WaitForMeasurementsAsync(minCount: 1).WaitAsync(TimeSpan.FromSeconds(5));
         Assert.Collection(collector.GetMeasurementSnapshot(),
             measurement =>
             {
@@ -219,7 +210,7 @@ The proceeding test:
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
   * The `MetricCollector` is created using the web app's `IMeterFactory`. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
-* Makes a HTTP request to the app web.
+* Makes an HTTP request to the web app.
 * Asserts the test using results from the metrics collector.
 
 ## ASP.NET Core meters and counters

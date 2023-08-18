@@ -185,6 +185,49 @@ Because requesting items from a remote data source might take some time, you hav
 </Virtualize>
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Empty content
+
+Use the `EmptyContent` parameter to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
+
+EmptyContent.razor:
+
+```razor
+@page "/empty-content"
+@attribute [RenderModeServer]
+
+<h1>Empty Content Example</h1>
+
+<Virtualize Items="@stringList">
+    <ItemContent>
+        <p>
+            @context
+        </p>
+    </ItemContent>
+    <EmptyContent>
+        <p>
+            There are no strings to display.
+        </p>
+    </EmptyContent>
+</Virtualize>
+
+@code {
+    private List<string>? stringList;
+
+    protected override void OnInitialized() => stringList ??= new();
+}
+```
+
+Change the `OnInitialized` method lambda to see the component display strings:
+
+```csharp
+protected override void OnInitialized() =>
+    stringList ??= new() { "Here's a string!", "Here's another string!" };
+```
+
+:::moniker-end
+
 ## Item size
 
 The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:

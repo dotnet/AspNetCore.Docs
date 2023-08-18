@@ -183,11 +183,6 @@ To suppress warnings only for specific members, enclose the code in [#pragma war
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Models/TodoContext.cs" id="snippet_PragmaWarningDisable" highlight="3,10":::
 
-Configure Swagger to use the XML file that's generated with the preceding instructions.
-
-> [!TIP]
-> For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not CentOS.
-
 ### Data annotations
 
 Mark the model with attributes, found in the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace, to help drive the Swagger UI components.

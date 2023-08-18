@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 05/24/2023
+ms.date: 08/16/2023
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/model
@@ -61,9 +61,6 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
 1. Control-click the `Models` folder, and then select **Add** > **New Class...**.
 1. In the **New File** dialog:
@@ -82,7 +79,6 @@ The `Movie` class contains:
 
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
--->
 
 ---
 
@@ -150,11 +146,9 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 <!--
-Author note 5-30-23: As of VS 2022 and the 7.05 packages, EF scaffolding on the Mac loads all packages needed including SQLite 7.0.5, but then can't find SQLite and will not scaffold the files. Workaround is add Microsoft.EntityFrameworkCore.Sqlite as a step before scaffolding.  Remove once this issue is fixed.
+Author note 8-16-23: VS for Mac 2022 17.6.3 and the 7.05 packages and .NET 7 or the 8.0 packages and .NEt 8.0 Preview 7: EF scaffolding on the Mac loads all packages needed including SQLite 7.0.5, but then can't find SQLite and will not scaffold the files. Workaround is add Microsoft.EntityFrameworkCore.Sqlite as a step before scaffolding.  Remove once this issue is fixed.
 -->
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
-<!--
 1. Add the NuGet package `Microsoft.EntityFrameworkCore.Sqlite`, which is required for the scaffolding tool.
    1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
 
@@ -190,27 +184,8 @@ The scaffolding process may take some time to complete as required packages are 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
--->
 
 ---
-
-<!--
-### Fix nullable warnings
-
-Build the app. The `Create.cshtml.cs`, `Delete.cshtml.cs`, `Details.cshtml.cs`, `Index.cshtml.cs`, and `Edit.cshtml.cs` files all report a nullable warning when the app is compiled similar to the following:
-
-`warning CS8618: Non-nullable property 'Movie' must contain a non-null` value when exiting constructor. Consider declaring the property as nullable.
-
-In each of the files, append `= default!;` to the `Movie` declaration. For example:
-
-```diff
-- public IList<Movie> Movie { get;set; }
-+ public IList<Movie> Movie { get;set; }  = default!;
-- public Movie Movie { get; set; }
-+ public Movie Movie { get; set; } = default!;
-```
-Fixed in GA per https://github.com/dotnet/Scaffolding/issues/1594#issuecomment-1292422389
--->
 
 ### Files created and updated
 
@@ -285,9 +260,6 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 * Control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
 
   The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
@@ -311,7 +283,6 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
--->
 
 ---
 
@@ -374,7 +345,7 @@ The scaffolding tool automatically created a database context and registered it 
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Next steps
 

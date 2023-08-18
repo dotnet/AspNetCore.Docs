@@ -65,7 +65,7 @@ By default, the `IFileMonitor` is provided by a <xref:Microsoft.Extensions.FileP
 
 The sample app demonstrates two implementations for monitoring configuration changes. If any of the `appsettings` files change, both of the file monitoring implementations execute custom code&mdash;the sample app writes a message to the console.
 
-A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off. The retry is present because file locking may occur that temporarily prevents computing a new hash on a file.
+A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off.
 
 `Utilities/Utilities.cs`:
 
@@ -150,7 +150,7 @@ Using change tokens in a file caching scenario prevents the presence of stale fi
 The sample uses `GetFileContent` to:
 
 * Return file content.
-* Implement a retry algorithm with exponential back-off to cover cases where a file lock temporarily prevents reading a file.
+* Implement a retry algorithm with exponential back-off to cover cases where a file access problem temporarily delays reading the file's content.
 
 `Utilities/Utilities.cs`:
 
@@ -263,7 +263,7 @@ By default, the `IFileMonitor` is provided by a <xref:Microsoft.Extensions.FileP
 
 The sample app demonstrates two implementations for monitoring configuration changes. If any of the `appsettings` files change, both of the file monitoring implementations execute custom code&mdash;the sample app writes a message to the console.
 
-A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off. The retry is present because file locking may occur that temporarily prevents computing a new hash on a file.
+A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off.
 
 `Utilities/Utilities.cs`:
 
@@ -348,7 +348,7 @@ Using change tokens in a file caching scenario prevents the presence of stale fi
 The sample uses `GetFileContent` to:
 
 * Return file content.
-* Implement a retry algorithm with exponential back-off to cover cases where a file lock temporarily prevents reading a file.
+* Implement a retry algorithm with exponential back-off to cover cases where a file access problem temporarily delays reading the file's content.
 
 `Utilities/Utilities.cs`:
 
