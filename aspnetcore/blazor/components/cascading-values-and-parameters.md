@@ -63,7 +63,7 @@ The following `Daleks` component displays the cascaded values.
 
 <ul>
     <li>Dalek Units: @Daleks?.Units</li>
-    <li>Alpha Group Dalek Units: @NamedDaleks?.Units</li>
+    <li>Alpha Group Dalek Units: @AlphaGroupDaleks?.Units</li>
 </ul>
 
 <p>
@@ -76,7 +76,7 @@ The following `Daleks` component displays the cascaded values.
     public Daleks? Daleks { get; set; }
 
     [CascadingParameter(Name = "AlphaGroup")]
-    public Daleks? NamedDaleks { get; set; }
+    public Daleks? AlphaGroupDaleks { get; set; }
 }
 ```
 
