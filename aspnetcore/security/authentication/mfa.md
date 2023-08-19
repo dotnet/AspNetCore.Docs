@@ -290,9 +290,9 @@ build.Services.AddAuthentication(options =>
 });
 ```
 
-### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
+### Example OpenID Connect Duende IdentityServer server with ASP.NET Core Identity
 
-On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view named `ErrorEnable2FA.cshtml` is created. The view:
+On the OpenID Connect server, which is implemented using ASP.NET Core Identity with Razor Pages, a new page named `ErrorEnable2FA.cshtml` is created. The view:
 
 * Displays if the Identity comes from an app that requires MFA but the user hasn't activated this in Identity.
 * Informs the user and adds a link to activate this.
@@ -310,88 +310,59 @@ You can enable MFA to login here:
 
 <br />
 
-<a asp-controller="Manage" asp-action="TwoFactorAuthentication">Enable MFA</a>
+<a href="~/Identity/Account/Manage/TwoFactorAuthentication">Enable MFA</a>
 ```
 
 In the `Login` method, the `IIdentityServerInteractionService` interface implementation `_interaction` is used to access the OpenID Connect request parameters. The `acr_values` parameter is accessed using the `AcrValues` property. As the client sent this with `mfa` set, this can then be checked.
 
 If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. When the user has no MFA enabled, the user is redirected to the custom view `ErrorEnable2FA.cshtml`. Then ASP.NET Core Identity signs the user in.
 
-```csharp
-//
-// POST: /Account/Login
-[HttpPost]
-[AllowAnonymous]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Login(LoginInputModel model)
-{
-    var returnUrl = model.ReturnUrl;
-    var context = 
-        await _interaction.GetAuthorizationContextAsync(returnUrl);
-    var requires2Fa = 
-        context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
-
-    var user = await _userManager.FindByNameAsync(model.Email);
-    if (user != null && !user.TwoFactorEnabled && requires2Fa)
-    {
-        return RedirectToAction(nameof(ErrorEnable2FA));
-    }
-
-    // code omitted for brevity
-```
-
-The `ExternalLoginCallback` method works like the local Identity login. The `AcrValues` property is checked for the `mfa` value. If the `mfa` value is present, MFA is forced before the login completes (for example, redirected to the `ErrorEnable2FA` view).
+The Fido2Store is used to check if the user has activated MFA using a custom FIDO2 Token Provider.
 
 ```csharp
-//
-// GET: /Account/ExternalLoginCallback
-[HttpGet]
-[AllowAnonymous]
-public async Task<IActionResult> ExternalLoginCallback(
-    string returnUrl = null,
-    string remoteError = null)
+public async Task<IActionResult> OnPost()
 {
-    var context =
-        await _interaction.GetAuthorizationContextAsync(returnUrl);
-    var requires2Fa =
-        context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
+	// check if we are in the context of an authorization request
+	var context = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl);
 
-    if (remoteError != null)
-    {
-        ModelState.AddModelError(
-            string.Empty,
-            _sharedLocalizer["EXTERNAL_PROVIDER_ERROR", 
-            remoteError]);
-        return View(nameof(Login));
-    }
-    var info = await _signInManager.GetExternalLoginInfoAsync();
+	var requires2Fa = context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
 
-    if (info == null)
-    {
-        return RedirectToAction(nameof(Login));
-    }
+	var user = await _userManager.FindByNameAsync(Input.Username);
+	if (user != null && !user.TwoFactorEnabled && requires2Fa)
+	{
+		return RedirectToPage("/Home/ErrorEnable2FA/Index");
+	}
 
-    var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+	// code omitted for brevity
 
-    if (!string.IsNullOrEmpty(email))
-    {
-        var user = await _userManager.FindByNameAsync(email);
-        if (user != null && !user.TwoFactorEnabled && requires2Fa)
-        {
-            return RedirectToAction(nameof(ErrorEnable2FA));
-        }
-    }
+	if (ModelState.IsValid)
+	{
+		var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberLogin, lockoutOnFailure: true);
+		if (result.Succeeded)
+		{
+			// code omitted for brevity
+		}
+		if (result.RequiresTwoFactor)
+		{
+			var fido2ItemExistsForUser = await _fido2Store.GetCredentialsByUserNameAsync(user.UserName);
+			if (fido2ItemExistsForUser.Count > 0)
+			{
+				return RedirectToPage("/Account/LoginFido2Mfa", new { area = "Identity", Input.ReturnUrl, Input.RememberLogin });
+			}
 
-    // Sign in the user with this external login provider if the user already has a login.
-    var result = await _signInManager
-        .ExternalLoginSignInAsync(
-            info.LoginProvider, 
-            info.ProviderKey, 
-            isPersistent: 
-            false);
+			return RedirectToPage("/Account/LoginWith2fa", new { area = "Identity", Input.ReturnUrl, RememberMe = Input.RememberLogin });
+		}
+		
+		await _events.RaiseAsync(new UserLoginFailureEvent(Input.Username, "invalid credentials", clientId: context?.Client.ClientId));
+		ModelState.AddModelError(string.Empty, LoginOptions.InvalidCredentialsErrorMessage);
+	}
 
-    // code omitted for brevity
+	// something went wrong, show form with error
+	await BuildModelAsync(Input.ReturnUrl);
+	return Page();
+}
 ```
+
 
 If the user is already logged in, the client app:
 
