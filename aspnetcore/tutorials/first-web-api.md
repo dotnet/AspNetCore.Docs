@@ -167,9 +167,8 @@ After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<k
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
-
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set at the project creation.
+
 ---
 
 The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it out** > **Execute**. The page displays:
