@@ -103,7 +103,7 @@ A NuGet package must be added to support the database used in this tutorial.
   * Select **Continue**.
 
 * In the **Configure your new API** dialog, make the following selections:
-  * Confirm the **Target framework** is **.NET 8.0** (or later).
+  * Confirm the **Target framework** is **.NET 8.0**.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Confirm the checkbox for **Use controllers** is checked.
   * Select **Create**.
