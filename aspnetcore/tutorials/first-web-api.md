@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 07/28/2023
+ms.date: 08/17/2023
 uid: tutorials/first-web-api
 ---
 
@@ -46,9 +46,7 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
-
-<!-- [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)] -->
+[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
 
 ---
 
@@ -98,19 +96,17 @@ A NuGet package must be added to support the database used in this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
-
-<!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
+ * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **API**.
   * Select **Continue**.
 
 * In the **Configure your new API** dialog, make the following selections:
-  * Confirm the **Target framework** is **.NET 7.0** (or later).
-  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+  * Confirm the **Target framework** is **.NET 8.0**.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
-  * Select **Continue**.
+  * Confirm the checkbox for **Use controllers** is checked.
+  * Select **Create**.
 
 * Enter the following:
   * **Project name:** TodoApi
@@ -119,12 +115,12 @@ For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
 
 ## Add a NuGet package
 
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
-* In the **Select Projects** window, select **Ok**
-* In the **License Agreement** window, select **Agree** -->
+* In the **Select Projects** window, select **Ok**.
+* In the **License Agreement** window, select **Agree**.
 
 ---
 
@@ -140,7 +136,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-Visual Studio launches the default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number.
+Visual Studio launches the default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set at the project creation.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -165,15 +161,13 @@ Run the app:
 
 * <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser.
 
-* The default browser is launched to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+* The default browser is launched to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut it down.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
-
-<!-- Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`. -->
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set at the project creation.
 
 ---
 
@@ -244,13 +238,11 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
-
-<!-- * Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
+* Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
 * Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
 * Name the class *TodoItem*, and then select **Create**.
 
-* Replace the template code with the following: -->
+* Replace the template code with the following:
 
 ---
 
