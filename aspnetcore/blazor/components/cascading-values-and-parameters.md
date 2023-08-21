@@ -30,10 +30,8 @@ The following class is used in this section's examples.
 `Daleks.cs`:
 
 ```csharp
-/*
-    "Dalek" ©Terry Nation https://www.imdb.com/name/nm0622334/
-    "Doctor Who" ©BBC https://www.bbc.co.uk/programmes/b006q2x0
-*/
+// "Dalek" ©Terry Nation https://www.imdb.com/name/nm0622334/
+// "Doctor Who" ©BBC https://www.bbc.co.uk/programmes/b006q2x0
 
 public class Daleks
 {
