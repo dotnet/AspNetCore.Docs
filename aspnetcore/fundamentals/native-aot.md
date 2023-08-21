@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc, engagement-fy23
-ms.date: 08/10/2023
+ms.date: 08/21/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -200,6 +200,8 @@ The `CreateSlimBuilder` method does include the following features needed for an
 * User secrets configuration.
 * Console logging.
 * Logging configuration.
+
+For a builder that omits even these features, see [The `CreateEmptyBuilder` method](xref:release-notes/aspnetcore-8.0#new-createemptybuilder-method).
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
