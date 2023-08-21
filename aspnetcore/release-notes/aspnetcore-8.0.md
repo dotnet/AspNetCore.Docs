@@ -241,7 +241,7 @@ There is another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> f
 
 Here’s an example of using this API to create a small web application:
 
-:::code language="csharp" source="~/release-=notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
+:::code language="csharp" source="~/release-notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
 
 Publishing this code with native AOT using .NET 8 Preview 7 on a linux-x64 machine results in a self-contained native executable of about 8.5 MB.
 

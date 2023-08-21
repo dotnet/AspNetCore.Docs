@@ -201,7 +201,7 @@ The `CreateSlimBuilder` method does include the following features needed for an
 * Console logging.
 * Logging configuration.
 
-For a builder that omits even these features, see [The `CreateEmptyBuilder` method](xref:aspnetcore-8.0#new-createemptybuilder-method).
+For a builder that omits even these features, see [The `CreateEmptyBuilder` method](xref:aspnetcore-8#new-createemptybuilder-method).
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
