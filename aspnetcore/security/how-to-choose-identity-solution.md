@@ -22,7 +22,9 @@ ASP.NET Core ships with a built-in authentication provider: [ASP.NET Core Identi
 * Account lockout and reactivation
 * Authenticator apps
 
-For most scenarios, this may be the only provider needed. To learn more:
+For most scenarios, this may be the only provider needed. Using the built-in identity solution does come with trade-offs. For example, if you decide to switch to a different service later, you will need to migrate your existing data to the new system and update your code to use the new system's provider. Choosing a token service can provide a standards-based approach (with OAuth 2.0 and OIDC) that may minimize the overhead of migration if you ever need to change to a different service that is also OIDC compliant.
+
+To learn more:
 
 * Read the [Introduction to Identity on ASP.NET Core](xref:security/authentication/identity)
 * Follow a tutorial to build your own secure .NET web app: [Secure a .NET web app with the ASP.NET Core Identity framework](/training/modules/secure-aspnet-core-identity/). 
@@ -31,7 +33,7 @@ In other scenarios, a server or service that manages authentication and identity
 
 ## Determine if a token server is needed
 
-Web apps require a way to *remember* past actions because the web, by default, is stateless. Otherwise, users would be forced to enter their credentials every time they navigated to a new page. The common solution for remembering state is *cookies*, a browser-based mechanism for storing data. The web server sends the initial cookie, then the browser stores it and sends it back with each request. This is done automatically without the need for the developer to write any code. Cookies are easy to use and built into the browser but are designed for use within a single website or web domain. The default solution that is built into ASP.NET Core uses cookie-based authentication.
+Web apps require a way to *remember* past actions because the web, by default, is stateless. Otherwise, users would be forced to enter their credentials every time they navigated to a new page. The common solution for remembering state is *cookies*, a browser-based mechanism for storing data. The web server sends the initial cookie, then the browser stores it and sends it back with each request. This is done automatically without the need for the developer to write any code. Cookies are easy to use and built into the browser but are designed for use within a single website or web domain. The default solution that is built into ASP.NET Core uses cookie-based authentication. 
 
 Tokens are containers with metadata that are explicitly passed through the headers or body of HTTP requests. The main advantage of tokens over cookies is that they are not tied to a specific app or domain. Instead, tokens are usually *signed* with asymmetric cryptography. Asymmetric cryptography uses a combination of a private key known only to the signer, and a public key which everyone can know.
 
@@ -42,7 +44,7 @@ The token can't be tampered with due to the private key. The public key:
 
 The main disadvantage to using tokens is that they require a token server to both issue and provide validation for tokens. The token server must be installed, configured, and maintained.
 
-A common reason a token server is required is for applications that exposes web-based APIs that are consumed by other apps. For exposed web-based APIs, client UIs such as Single Page Applications (SPA), mobile clients, and desktop clients are considered to be part of the same app. SPA examples include Angular, React, and Blazor WebAssembly. If apps other than your web app or any client UIs must make a secure API call to your app, you'll likely want to use tokens.  If you only have client UIs, ASP.NET Core Identity provides the option to acquire a token during authentication. The authentication token:
+A common reason a token server is required is for applications that exposes web-based APIs that are consumed by other apps. For exposed web-based APIs, client UIs such as Single Page Applications (SPA), mobile clients, and desktop clients are considered to be part of the same app. SPA examples include Angular, React, and Blazor WebAssembly. If apps other than your web app or any client UIs must make a secure API call to your app, you'll likely want to use tokens. If you only have client UIs, ASP.NET Core Identity provides the option to acquire a token during authentication. The authentication token:
 
 * Can be used by mobile and desktop clients.
 * Isn't suitable for managing access from external apps.
@@ -52,15 +54,15 @@ Another reason a token server is required is for sharing sign-ins with other app
 * Sign in once with a web app's form.
 * Use the resulting credentials to authenticate with other apps without having to sign-in again or choose a different password.
 
-A token server is typically preferred to provide a secure and scalable solution for single sign on.
+A token server is typically preferred to provide a secure and scalable solution for single sign on. 
 
-For apps that don't exposes web-based APIs that are consumed by other apps and don't share logins with other apps, the simplest way to quickly secure an app is to use the built-in ASP.NET Core Identity provider. Otherwise, a token server provided by a third-party identity management solution is needed. Token servers are available as:
+For apps that don't expose web-based APIs that are consumed by other apps and don't share logins with other apps, the simplest way to quickly secure an app is to use the built-in ASP.NET Core Identity provider. Otherwise, a token server provided by a third-party identity management solution is needed. Token servers are available as:
 
 * Products you install on your server, called *self-host*.
 * Containers run in a host like Docker.
 * Web-based services you integrate with to manage identity.
 
-Some solutions are free and open source, while others are commercially licensed. See [identity management solutions](xref:security/identity-management-solutions) for a list of available options.
+Some solutions are free and open source, while others are commercially licensed. See [identity management solutions](xref:security/identity-management-solutions) for a list of available options. It is possible that your organization already uses an existing identity provider. In that case, it may make sense to use the existing provider instead of going with a different solution. All of the major solutions provide documentation for configuring ASP.NET Core to use their product or service.
 
 ## Disconnected scenarios
 
