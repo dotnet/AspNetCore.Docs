@@ -248,7 +248,7 @@ A parameter on the delegate that isn't bound to the body and does ***not*** need
 
 ### C# 12 Interceptors
 
-The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) action methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
+[C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). Map method calls are replaced with code generated calls at compile time. The compiler generated implementations are compatible with native AOT and results in increased startup performance for apps published with the `PublishAot` property enabled.
 
 ## Known issues
 
