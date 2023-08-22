@@ -17,7 +17,6 @@ public class Movie
     // </snippet11>
 
     // <snippet2>
-    [Display(Name = "Release Date")]
     [DataType(DataType.Date)]
     public DateTime ReleaseDate { get; set; }
 
