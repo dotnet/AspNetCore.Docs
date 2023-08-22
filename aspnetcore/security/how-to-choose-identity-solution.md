@@ -52,7 +52,7 @@ The main disadvantage to using tokens is that they require a token server to bot
 A common reason a token server is required is for applications that exposes web-based APIs that are consumed by other apps. For exposed web-based APIs, client UIs such as Single Page Applications (SPA), mobile clients, and desktop clients are considered to be part of the same app. SPA examples include Angular, React, and Blazor WebAssembly. If apps other than your web app or any client UIs must make a secure API call to your app, you'll likely want to use tokens. If you only have client UIs, ASP.NET Core Identity provides the option to acquire a token during authentication. The authentication token:
 
 * Can be used by mobile and desktop clients.
-* Isn't suitable for managing access from external apps.
+* Isn't suitable for managing access from third-party apps.
 
 Another reason a token server is required is for sharing sign-ins with other apps. Commonly referred to as *single sign on*, this feature enables users to:
 
