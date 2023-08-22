@@ -48,6 +48,7 @@ This tutorial creates the following API:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+
 ---
 
 ## Create an API project
@@ -106,6 +107,7 @@ This tutorial creates the following API:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
   * Select **Create**.
+
 ---
 
 ### Examine the code
@@ -140,6 +142,7 @@ Press Ctrl+F5 to run the app. A browser window is opened.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+
 ---
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
@@ -176,6 +179,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * In the **Select Projects** window, select **Ok**.
 * In the **License Agreement** window, select **Agree**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+
 ---
 
 ## The model and database context classes
@@ -224,6 +228,7 @@ This tutorial uses Postman to test the API.
     > Re-enable SSL certificate verification after testing the sample app.
 
 <a name="post"></a>
+
 ---
 
 ## Test posting data
@@ -314,6 +319,7 @@ Use the POST endpoint to add data to the app.
 * Select **Send**.
 
   ![Postman with Post request details](~/tutorials/min-web-api/_static/post2.png)
+
 ---
 
 ## Examine the GET endpoints
@@ -417,6 +423,7 @@ The call to `GET /todoitems` produces a response similar to the following:
     "isComplete": false
   }
   ```
+
 ---
 
 This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
@@ -493,6 +500,7 @@ Use Postman to send a PUT request:
   ```
 
 * Select **Send**.
+
 ---
 
 ## Examine and test the DELETE endpoint
@@ -526,6 +534,7 @@ Use Postman to delete a to-do item:
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
+
 ---
 
 ## Use the MapGroup API
