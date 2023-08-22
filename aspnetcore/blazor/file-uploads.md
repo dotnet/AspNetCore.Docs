@@ -145,7 +145,7 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 `FileUpload1.razor`:
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 ```razor
 @page "/file-upload-1"
