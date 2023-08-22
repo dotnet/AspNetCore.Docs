@@ -88,7 +88,7 @@ Others prefer to store data on their own servers due to regulations, compliance,
 
 If the data is stored on your servers, you'll most likely need to choose an installable or container-based solution.
 
-## Identity vs token server
+## Identity vs OIDC server
 
 Use the following diagram to help you decide whether to use the ASP.NET Core Identity system or a token server for authentication and authorization:
 
