@@ -1057,8 +1057,6 @@ Render fragments are used to render child content throughout Blazor apps and are
 You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
 
 ```razor
-<h1>Hello, world!</h1>
-
 @RenderWelcomeInfo
 
 <p>Render the welcome info a second time:</p>
@@ -1066,10 +1064,7 @@ You can factor out child components purely as a way of reusing rendering logic. 
 @RenderWelcomeInfo
 
 @code {
-    private RenderFragment RenderWelcomeInfo = __builder =>
-    {
-        <p>Welcome to your new app!</p>
-    };
+    private RenderFragment RenderWelcomeInfo =  @<p>Welcome to your new app!</p>;
 }
 ```
 
