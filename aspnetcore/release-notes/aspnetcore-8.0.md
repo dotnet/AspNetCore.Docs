@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2023
+ms.date: 08/21/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -224,9 +224,26 @@ Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/
 
 The new **ASP.NET Core Web API (native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (native AOT) template](xref:fundamentals/native-aot#the-web-api-native-aot-template).
 
-### New CreateSlimBuilder method
+### New `CreateSlimBuilder` method
 
-The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the API template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. It's used by the API template whether or not the AOT option is used. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the Web API (native AOT) template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. The `CreateSlimBuilder` method includes the following features that are typically needed for an efficient development experience:
+
+* JSON file configuration for `appsettings.json` and `appsettings.{EnvironmentName}.json`.
+* User secrets configuration.
+* Console logging.
+* Logging configuration.
+
+For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+
+### New `CreateEmptyBuilder` method
+
+There is another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> factory method for building small apps that only contain necessary features: `WebApplication.CreateEmptyBuilder(WebApplicationOptions options)`. This `WebApplicationBuilder` is created with no built-in behavior. The app it builds contains only the services and middleware that are explicitly configured.
+
+Here’s an example of using this API to create a small web application:
+
+:::code language="csharp" source="~/release-notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
+
+Publishing this code with native AOT using .NET 8 Preview 7 on a linux-x64 machine results in a self-contained native executable of about 8.5 MB.
 
 ### Reduced app size with configurable HTTPS support
 
