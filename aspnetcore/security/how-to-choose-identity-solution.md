@@ -27,13 +27,18 @@ For most scenarios, this may be the only provider needed. Using the built-in ide
 To learn more:
 
 * Read the [Introduction to Identity on ASP.NET Core](xref:security/authentication/identity)
-* Follow a tutorial to build your own secure .NET web app: [Secure a .NET web app with the ASP.NET Core Identity framework](/training/modules/secure-aspnet-core-identity/). 
+* Follow a tutorial to build your own secure .NET web app: [Secure a .NET web app with the ASP.NET Core Identity framework](/training/modules/secure-aspnet-core-identity/).
 
 In other scenarios, a server or service that manages authentication and identity may be beneficial.
 
 ## Determine if a token server is needed
 
-Web apps require a way to *remember* past actions because the web, by default, is stateless. Otherwise, users would be forced to enter their credentials every time they navigated to a new page. The common solution for remembering state is *cookies*, a browser-based mechanism for storing data. The web server sends the initial cookie, then the browser stores it and sends it back with each request. This is done automatically without the need for the developer to write any code. Cookies are easy to use and built into the browser but are designed for use within a single website or web domain. The default solution that is built into ASP.NET Core uses cookie-based authentication. 
+Web apps require a way to *remember* past actions because the web, by default, is stateless. Otherwise, users would be forced to enter their credentials every time they navigated to a new page. The common solution for remembering state is *cookies*, a browser-based mechanism for storing data. The web server sends the initial cookie, then the browser stores it and sends it back with each request. This is done automatically without the need for the developer to write any code. Cookies are easy to use and built into the browser but are designed for use within a single website or web domain. The default solution that is built into ASP.NET Core uses cookie-based authentication.
+
+For the authentication, the OAuth 2.0 specifification defines two types of clients.
+
+* **Confidential clients**, like server-rendered web apps, are able to keep secrets. The secret is stored on the server and therefore is never shared with the user.
+* Most other clients, including mobile and desktop, are **public clients** that are not suitable for storing secrets because they can be accessed on the user. Simply encrypting the data is not considered strong enough protection. These clients require a different authentication flow that uses tokens.
 
 Tokens are containers with metadata that are explicitly passed through the headers or body of HTTP requests. The main advantage of tokens over cookies is that they are not tied to a specific app or domain. Instead, tokens are usually *signed* with asymmetric cryptography. Asymmetric cryptography uses a combination of a private key known only to the signer, and a public key which everyone can know.
 
