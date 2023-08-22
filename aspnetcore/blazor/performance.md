@@ -182,8 +182,6 @@ The preceding example performs well if thousands of messages aren't shown at onc
 
 ##### Define reusable `RenderFragments` in code
 
-:::moniker range=">= aspnetcore-6.0"
-
 You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
 
 ```razor
@@ -235,81 +233,6 @@ protected RenderFragment DisplayTitle =>
         @TitleTemplate
     </div>;
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
-
-```razor
-<h1>Hello, world!</h1>
-
-@RenderWelcomeInfo
-
-<p>Render the welcome info a second time:</p>
-
-@RenderWelcomeInfo
-
-@code {
-    private RenderFragment RenderWelcomeInfo = __builder =>
-    {
-        <p>Welcome to your new app!</p>
-    };
-}
-```
-
-As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
-
-> [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
-
-To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as [`public`](/dotnet/csharp/language-reference/keywords/public) and [`static`](/dotnet/csharp/language-reference/keywords/static):
-
-```razor
-public static RenderFragment SayHello = __builder =>
-{
-    <h1>Hello!</h1>
-};
-```
-
-`SayHello` in the preceding example can be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without per-component overhead.
-
-<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. The following component passes the message (`message`) to the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate:
-
-```razor
-<div class="chat">
-    @foreach (var message in messages)
-    {
-        @ChatMessageDisplay(message)
-    }
-</div>
-
-@code {
-    private RenderFragment<ChatMessage> ChatMessageDisplay = message => __builder =>
-    {
-        <div class="chat-message">
-            <span class="author">@message.Author</span>
-            <span class="text">@message.Text</span>
-        </div>
-    };
-}
-```
-
-The preceding approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders because there's no component boundary.
-
-For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field in the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate:
-
-```csharp
-protected RenderFragment DisplayTitle => __builder =>
-{
-    <div>
-        @TitleTemplate
-    </div>
-};
-```
-
-:::moniker-end
 
 #### Don't receive too many parameters
 
