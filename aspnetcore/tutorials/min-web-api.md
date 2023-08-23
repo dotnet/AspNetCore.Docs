@@ -103,6 +103,8 @@ This tutorial creates the following API:
   * **Do not use top-level statements**: Uncheck
   * Select **Continue**.
 
+  ![Additional information](~/tutorials/min-web-api/_static/add-info8-vsmac-2022.png)
+
 * Enter the following:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
