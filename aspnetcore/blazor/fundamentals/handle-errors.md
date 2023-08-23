@@ -459,7 +459,6 @@ The following `Error` component example merely logs errors, but methods of the c
 `Error.razor`:
 
 ```razor
-@using Microsoft.Extensions.Logging
 @inject ILogger<Error> Logger
 
 <CascadingValue Value="this">
