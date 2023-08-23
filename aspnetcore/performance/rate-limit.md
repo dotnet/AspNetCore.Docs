@@ -85,7 +85,7 @@ Consider the following table that shows a sliding window limiter with a 30-secon
 
 -->
 
-The following table shows the data in the previous graph in a different format. The **Remaining** column shows the requests available from the previous segment (The **Carry over** from the previous row). The first row shows 100 available because there's no previous segment:
+The following table shows the data in the previous graph in a different format. The **Available** column shows the requests available from the previous segment (The **Carry over** from the previous row). The first row shows 100 available because there's no previous segment.
 
 | Time | Available | Taken | Recycled from expired | Carry over |
 | :--: | :-------: | :---: | :-------------------: | :--------: |
@@ -105,7 +105,7 @@ The following code uses the sliding window rate limiter:
 
 ### Token bucket limiter
 
-The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment can't increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10-second replenishment period:
+The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment can't increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10-second replenishment period.
 
 | Time | Available | Taken | Added | Carry over |
 | ---- | ----      | ------| ------| ---- |
