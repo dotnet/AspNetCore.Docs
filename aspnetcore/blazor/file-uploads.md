@@ -271,7 +271,7 @@ else
 
 ### Client-side file upload example
 
-The following example processes file bytes and doesn't send (upload) files to a destination outside of the app. For an example of a Razor component that sends a file to a server or service, see the following sections:
+The following example processes file bytes and doesn't send files to a destination outside of the app. For an example of a Razor component that sends a file to a server or service, see the following sections:
 
 * [Upload files to a server with client-side rendering](#upload-files-to-a-server-with-client-side-rendering)
 * [Upload files to an external service](#upload-files-to-an-external-service)
@@ -380,13 +380,12 @@ else
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. Use this metadata for preliminary validation.
 
-> [!WARNING]
-> Never trust the values of the following properties, especially the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name> property for display in the UI. Treat all user-supplied data as a significant security risk to the app, server, and network. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
-
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name>
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Size>
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.LastModified>
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.ContentType>
+
+***Never trust the values of the preceding properties, especially the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name> property for display in the UI.*** Treat all user-supplied data as a significant security risk to the app, server, and network. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 ## Upload files to a server with server-side rendering
 
@@ -406,7 +405,7 @@ The following example demonstrates uploading files from a server-side app to a b
 
 In the server-side app, add <xref:System.Net.Http.IHttpClientFactory> and related services that allow the app to create <xref:System.Net.Http.HttpClient> instances.
 
-In the `Program` file:
+In the `Program` file, add the following line where services are added:
 
 ```csharp
 builder.Services.AddHttpClient();
@@ -810,7 +809,20 @@ A security best practice for production apps is to avoid sending error messages 
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-`FileUpload2.razor` in the client project:
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> Add the client-side rendering (CSR) attribute to the top of the following component in a Blazor Web App:
+>
+> ```razor
+> @attribute [RenderModeClient]
+> ```
+
+:::moniker-end
+
+
+`FileUpload2.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -878,6 +890,7 @@ A security best practice for production apps is to avoid sending error messages 
         shouldRender = false;
         long maxFileSize = 1024 * 15;
         var upload = false;
+        message = string.Empty;
 
         using var content = new MultipartFormDataContent();
 
@@ -925,8 +938,6 @@ A security best practice for production apps is to avoid sending error messages 
                     }
                 }
             }
-
-            message = string.Empty;
         }
 
         if (upload)
@@ -1246,7 +1257,9 @@ For more information, see the following API resources:
 
 ## File streams
 
-Server-side, file data is streamed over the SignalR connection into .NET code on the server as the file is read.
+<!-- UPDATE 8.0 Cross-link server interactivity -->
+
+With server interactivity, file data is streamed over the SignalR connection into .NET code on the server as the file is read.
 
 :::moniker range="= aspnetcore-5.0"
 
@@ -1254,7 +1267,9 @@ Server-side, file data is streamed over the SignalR connection into .NET code on
 
 :::moniker-end
 
-Client-side, file data is streamed directly into the .NET code within the browser.
+<!-- UPDATE 8.0 Cross-link CSR -->
+
+For client-side rendering (CSR) and interactivity, file data is streamed directly into the .NET code within the browser.
 
 :::moniker range=">= aspnetcore-6.0"
 
