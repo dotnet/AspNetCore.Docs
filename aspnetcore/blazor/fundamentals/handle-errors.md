@@ -353,6 +353,8 @@ In `MainLayout.razor`:
 </article>
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE 8.0 Cross-link SSR -->
@@ -366,6 +368,8 @@ At the top of the `Routes` component (`Components/Routes.razor`), enable server-
 If you prefer not to enable SSR and server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable SSR, not in the app's main layout.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The app continues to function normally, but the error boundary handles unhandled exceptions.
 
@@ -441,23 +445,9 @@ To avoid the infinite loop where recovering merely rerenders a component that th
 
 An alternative to using [Error boundaries](#error-boundaries) (<xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary>) is to pass a custom error component as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-The following `Error` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-`Components/Error.razor`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+The following `Error` component logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
 
 `Error.razor`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @using Microsoft.Extensions.Logging
