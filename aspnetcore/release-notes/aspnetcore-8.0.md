@@ -422,7 +422,10 @@ ASP.NET Core 8 adds new features to authentication and authorization.
 
 ### Authentication updates in ASP.NET Core SPA templates
 
-The ASP.NET Core React and Angular project templates no longer have a dependency on the Duende IdentityServer. Instead, these templates now handle authentication for individual user accounts using the default [ASP.NET Core Identity](xref:security/authentication/identity) UI and cookie authentication. This makes it possible to create secure single page app (SPA) projects without the complexity of configuring and managing a full-featured OpenID Connect (OIDC) server. For projects that still require full OIDC support, use the [Duende project templates for setting up Duende IdentityServer with ASP.NET Core Identity](https://docs.duendesoftware.com/identityserver/v5/quickstarts/5_aspnetid/).
+The ASP.NET Core React and Angular project templates no longer have a dependency on the Duende IdentityServer. Instead, these templates now handle authentication for individual user accounts using the default [ASP.NET Core Identity](xref:security/authentication/identity) UI and cookie authentication. This makes it possible to create secure single page app (SPA) projects without the complexity of configuring and managing a full-featured OpenID Connect (OIDC) server. For projects that still require full OIDC support use one of the following options:
+
+* The [Duende project templates for setting up Duende IdentityServer with ASP.NET Core Identity](https://docs.duendesoftware.com/identityserver/v5/quickstarts/5_aspnetid/)
+* [Community OSS authentication options](xref:security/authentication/community)
 
 ### Identity API endpoints
 
