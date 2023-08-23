@@ -62,7 +62,7 @@ A sliding window algorithm:
 * Each time window is divided in `n` segments per window.
 * Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the most expired time segment one window back as the expired segment.
 
-Consider the following table which shows a sliding window limiter with a 30-second window, 3 segments per window and a limit of 100 requests:
+Consider the following table that shows a sliding window limiter with a 30-second window, three segments per window, and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
 * The second row shows the remaining requests available. The remaining requests are available-requests+recycled.
@@ -88,14 +88,14 @@ Consider the following table which shows a sliding window limiter with a 30-seco
 The following table shows the data in the previous graph in a different format. The **Remaining** column shows the requests available from the previous segment (The **Carry over** from the previous row). The first row shows 100 available because there's no previous segment:
 
 | Time | Available | Taken | Recycled from expired | Carry over |
-| ---- | ----      | ------| ------                | ---- |
-| 0    | 100       | 20    | 0                     | 80 |
-| 10   | 80        | 30    | 0                     | 50 |
-| 20   | 50        | 40    | 0                     | 10 |
-| 30   | 10        | 30    | 20                    | 0  |
-| 40   | 0         | 10    | 30                    | 20 |
-| 50   | 20        | 10    | 40                    | 50 |
-| 60   | 50        | 35    | 30                    | 45 |
+| :--: | :-------: | :---: | :-------------------: | :--------: |
+| 0    | 100       | 20    | 0                     | 80         |
+| 10   | 80        | 30    | 0                     | 50         |
+| 20   | 50        | 40    | 0                     | 10         |
+| 30   | 10        | 30    | 20                    | 0          |
+| 40   | 0         | 10    | 30                    | 20         |
+| 50   | 20        | 10    | 40                    | 50         |
+| 60   | 50        | 35    | 30                    | 45         |
 
 The following code uses the sliding window rate limiter:
 
