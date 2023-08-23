@@ -353,6 +353,20 @@ In `MainLayout.razor`:
 </article>
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Cross-link SSR -->
+
+At the top of the `Routes` component (`Components/Routes.razor`), enable server-side rendering (SSR) for server interactivity:
+
+```razor
+@attribute [RenderModeServer]
+```
+
+If you prefer not to enable SSR and server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable SSR, not in the app's main layout.
+
+:::moniker-end
+
 The app continues to function normally, but the error boundary handles unhandled exceptions.
 
 Consider the following example, where the `Counter` component throws an exception if the count increments past five.
