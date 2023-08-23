@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 08/11/2023
+ms.date: 08/22/2023
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -47,8 +47,7 @@ This tutorial creates the following API:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-<!-- [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)] -->
-For macOS, select the .NET 7 version of this tutorial.
+[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
 
 ---
 
@@ -90,8 +89,7 @@ For macOS, select the .NET 7 version of this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, select the .NET 7 version of this tutorial.
-<!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **Empty**.
@@ -100,18 +98,18 @@ For macOS, select the .NET 7 version of this tutorial.
   ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
 
 * Make the following selections:
-  * **Target framework:** .NET 7.0 (or later)
+  * **Target framework:** .NET 8.0
   * **Configure for HTTPS**: Check
   * **Do not use top-level statements**: Uncheck
   * Select **Continue**.
 
-  ![Additional information](~/tutorials/min-web-api/_static/add-info7-vsmac-2022.png)
+  ![Additional information](~/tutorials/min-web-api/_static/add-info8-vsmac-2022.png)
 
 * Enter the following:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
   * Select **Create**.
- -->
+
 ---
 
 ### Examine the code
@@ -145,9 +143,8 @@ Press Ctrl+F5 to run the app. A browser window is opened.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, select the .NET 7 version of this tutorial.
-<!-- Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
- -->
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+
 ---
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
@@ -176,14 +173,14 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, select the .NET 7 version of this tutorial.
-<!-- * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* Select **Include prerelease**.  <!--todo: remove this when .NET 8 is released. -->
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**.
 * In the **Select Projects** window, select **Ok**.
 * In the **License Agreement** window, select **Agree**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package. -->
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 ---
 
@@ -217,7 +214,7 @@ The DI container provides access to the database context and other services.
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 This tutorial uses Postman to test the API.
 
@@ -233,10 +230,6 @@ This tutorial uses Postman to test the API.
     > Re-enable SSL certificate verification after testing the sample app.
 
 <a name="post"></a>
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
@@ -308,7 +301,7 @@ Use the POST endpoint to add data to the app.
 
   ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/http-file-window-with-response.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * In Postman, create a new HTTP request by selecting **New** > **HTTP**.
 * Set the HTTP method to `POST`.
@@ -328,10 +321,6 @@ Use the POST endpoint to add data to the app.
 * Select **Send**.
 
   ![Postman with Post request details](~/tutorials/min-web-api/_static/post2.png)
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
@@ -404,7 +393,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   }
   ```
   
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
@@ -436,10 +425,6 @@ The call to `GET /todoitems` produces a response similar to the following:
     "isComplete": false
   }
   ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
@@ -500,7 +485,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use Postman to send a PUT request:
 
@@ -517,10 +502,6 @@ Use Postman to send a PUT request:
   ```
 
 * Select **Send**.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
@@ -548,17 +529,13 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
