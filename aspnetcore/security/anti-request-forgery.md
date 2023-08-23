@@ -540,7 +540,7 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 <a name="antimin7"></a>
 
 > [!NOTE]
-> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header will be validated.
+> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header is validated.
 
 ### Antiforgery with Minimal APIs
 
