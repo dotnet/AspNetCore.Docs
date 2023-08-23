@@ -1220,7 +1220,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!NOTE]
-> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header will be validated.
+> When the antiforgery token is provided in both the request header and in the form payload, only the token in the header is validated.
 
 ## Windows authentication and antiforgery cookies
 
