@@ -454,7 +454,7 @@ To avoid the infinite loop where recovering merely rerenders a component that th
 
 An alternative to using [Error boundaries](#error-boundaries) (<xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary>) is to pass a custom error component as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-The following `Error` component logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
+The following `Error` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
 
 `Error.razor`:
 
