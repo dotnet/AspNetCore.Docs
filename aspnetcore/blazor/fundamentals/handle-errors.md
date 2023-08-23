@@ -341,7 +341,15 @@ For global exception handling, see the following sections:
 * Renders its child content when an error hasn't occurred.
 * Renders error UI when an unhandled exception is thrown.
 
-To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component to wrap existing content. For example, an error boundary can be added around the body content of the app's main layout.
+To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component to wrap existing content. The app continues to function normally, but the error boundary handles unhandled exceptions.
+
+```razor
+<ErrorBoundary>
+    ...
+</ErrorBoundary>
+```
+
+To implement an error boundary in a global fashion, add the boundary around the body content of the app's main layout.
 
 In `MainLayout.razor`:
 
@@ -353,7 +361,26 @@ In `MainLayout.razor`:
 </article>
 ```
 
-The app continues to function normally, but the error boundary handles unhandled exceptions.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Cross-link SSR -->
+
+In Blazor Web Apps with the error boundary only applied to a noninteractive `MainLayout` component, the boundary is only active during the server-side static rendering phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable server-side rendering (SSR) at the top of the `Routes` component (`Components/Routes.razor`):
+
+```razor
+@attribute [RenderModeServer]
+```
+
+If you prefer not to enable server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable interactivity, not in the app's main layout. The important concepts to keep in mind are that wherever the error boundary is placed:
+
+* If the error boundary isn't interactive, it's only capable of activating on the server during static rendering. For example, the boundary can activate when an error is thrown in a component lifecycle method.
+* If the error boundary is interactive, it's capable of activating for both server-side rendering and for interactive components that it wraps.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 Consider the following example, where the `Counter` component throws an exception if the count increments past five.
 
@@ -429,24 +456,9 @@ An alternative to using [Error boundaries](#error-boundaries) (<xref:Microsoft.A
 
 The following `Error` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-`Components/Error.razor`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
 `Error.razor`:
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
-@using Microsoft.Extensions.Logging
 @inject ILogger<Error> Logger
 
 <CascadingValue Value="this">

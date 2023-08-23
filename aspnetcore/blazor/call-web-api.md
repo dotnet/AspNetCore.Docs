@@ -818,7 +818,7 @@ else
 }
 ```
 
-For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server> article.
+For an additional working example, see the server-side file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server-with-server-side-rendering> article.
 
 :::zone-end
 
