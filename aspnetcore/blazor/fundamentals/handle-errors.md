@@ -376,7 +376,7 @@ In Blazor Web Apps with the error boundary only applied to a noninteractive `Mai
 If you prefer not to enable server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable interactivity, not in the app's main layout. The important concepts to keep in mind are that wherever the error boundary is placed:
 
 * If the error boundary isn't interactive, it's only capable of activating on the server during static rendering. For example, the boundary can activate when an error is thrown in a component lifecycle method.
-* If the error boundary is interative, it's capable of activating for both server-side rendering and for interative components that it wraps.
+* If the error boundary is interactive, it's capable of activating for both server-side rendering and for interactive components that it wraps.
 
 :::moniker-end
 
