@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 08/11/2023
+ms.date: 08/22/2023
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -47,8 +47,7 @@ This tutorial creates the following API:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-<!-- [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)] -->
-For macOS, select the .NET 7 version of this tutorial.
+[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
 
 ---
 
@@ -90,8 +89,7 @@ For macOS, select the .NET 7 version of this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, select the .NET 7 version of this tutorial.
-<!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **Empty**.
@@ -100,25 +98,25 @@ For macOS, select the .NET 7 version of this tutorial.
   ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
 
 * Make the following selections:
-  * **Target framework:** .NET 7.0 (or later)
+  * **Target framework:** .NET 8.0
   * **Configure for HTTPS**: Check
   * **Do not use top-level statements**: Uncheck
   * Select **Continue**.
 
-  ![Additional information](~/tutorials/min-web-api/_static/add-info7-vsmac-2022.png)
+  ![Additional information](~/tutorials/min-web-api/_static/add-info8-vsmac-2022.png)
 
 * Enter the following:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
   * Select **Create**.
- -->
+
 ---
 
 ### Examine the code
 
 The `Program.cs` file contains the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_min":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todo/Program.cs" id="snippet_min":::
 
 The preceding code:
 
@@ -145,9 +143,8 @@ Press Ctrl+F5 to run the app. A browser window is opened.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, select the .NET 7 version of this tutorial.
-<!-- Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
- -->
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+
 ---
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
@@ -176,14 +173,14 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, select the .NET 7 version of this tutorial.
-<!-- * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* Select **Include prerelease**.  <!--todo: remove this when .NET 8 is released. -->
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**.
 * In the **Select Projects** window, select **Ok**.
 * In the **License Agreement** window, select **Agree**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package. -->
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 ---
 
@@ -191,13 +188,13 @@ For macOS, select the .NET 7 version of this tutorial.
 
 In the project folder, create a file named `Todo.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoGroup/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Todo.cs":::
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
 Create a file named `TodoDb.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoGroup/TodoDb.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/TodoDb.cs":::
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
@@ -205,11 +202,11 @@ The preceding code defines the *database context*, which is the main class that 
 
 Replace the contents of the `Program.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_all)]
 
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
+[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
 The DI container provides access to the database context and other services.
 
@@ -217,7 +214,7 @@ The DI container provides access to the database context and other services.
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 This tutorial uses Postman to test the API.
 
@@ -234,17 +231,13 @@ This tutorial uses Postman to test the API.
 
 <a name="post"></a>
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
-
 ---
 
 ## Test posting data
 
 The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
+[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_post)]
 
 Run the app. The browser displays a 404 error because there is no longer a `/` endpoint.
 
@@ -308,7 +301,7 @@ Use the POST endpoint to add data to the app.
 
   ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/http-file-window-with-response.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * In Postman, create a new HTTP request by selecting **New** > **HTTP**.
 * Set the HTTP method to `POST`.
@@ -329,10 +322,6 @@ Use the POST endpoint to add data to the app.
 
   ![Postman with Post request details](~/tutorials/min-web-api/_static/post2.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
-
 ---
 
 ## Examine the GET endpoints
@@ -345,7 +334,7 @@ The sample app implements several GET endpoints by calling `MapGet`:
 |`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 
-[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_get)]
+[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_get)]
 
 ## Test the GET endpoints
 
@@ -404,7 +393,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   }
   ```
   
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
@@ -437,10 +426,6 @@ The call to `GET /todoitems` produces a response similar to the following:
   }
   ```
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
-
 ---
 
 This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
@@ -458,7 +443,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 
 The sample app implements a single PUT endpoint using `MapPut`:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_put)]
+[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_put)]
 
 This method is similar to the `MapPost` method, except it uses HTTP PUT. A successful response returns [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -500,7 +485,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use Postman to send a PUT request:
 
@@ -518,17 +503,13 @@ Use Postman to send a PUT request:
 
 * Select **Send**.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
-
 ---
 
 ## Examine and test the DELETE endpoint
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_delete)]
+[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_delete)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -548,17 +529,13 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
@@ -568,7 +545,7 @@ The sample app code repeats the `todoitems` URL prefix each time it sets up an e
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoGroup/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Program.cs" id="snippet_all":::
 
 The preceding code has the following changes:
 
@@ -584,19 +561,19 @@ Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Micros
 
 The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_all":::
 
 The `Map<HttpVerb>` code now calls methods instead of lambdas:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_group":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_group":::
 
 These methods return objects that implement <xref:Microsoft.AspNetCore.Http.IResult> and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_handlers":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_handlers":::
 
 Unit tests can call these methods and test that they return the correct type. For example, if the method is `GetAllTodos`:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
 
 Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601.Value) is returned from the handler method. For example:
 
@@ -629,7 +606,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoDTO/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/Todo.cs":::
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -637,11 +614,11 @@ Verify you can post and get the secret field.
 
 Create a file named `TodoItemDTO.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoDTO/TodoItemDTO.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/TodoItemDTO.cs":::
 
 Update the code in `Program.cs` to use this DTO model:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/Program.cs" id="snippet_all":::
 
 Verify you can post and get all fields except the secret field.
 
