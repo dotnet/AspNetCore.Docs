@@ -65,7 +65,7 @@ A sliding window algorithm:
 Consider the following table that shows a sliding window limiter with a 30-second window, three segments per window, and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
-* The second row shows the remaining requests available. The remaining requests are calculated as the available requests less the processed requests plus the recycled requests.
+* The second row shows the remaining requests available. The remaining requests are calculated as the available requests minus the processed requests plus the recycled requests.
 * Requests at each time moves along the diagonal blue line.
 * From time 30 on, the request taken from the expired time segment are added back to the request limit, as shown in the red lines.
 
