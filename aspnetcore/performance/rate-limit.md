@@ -108,14 +108,14 @@ The following code uses the sliding window rate limiter:
 The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment can't increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10-second replenishment period.
 
 | Time | Available | Taken | Added | Carry over |
-| ---- | ----      | ------| ------| ---- |
-| 0    | 100       | 20    | 0     | 80 |
-| 10   | 80        | 10    | 20    | 90 |
-| 20   | 90        |  5    | 15    | 100 |
-| 30   | 100       | 30    | 20    | 90  |
-| 40   | 90        |  6    | 16    | 100 |
-| 50   | 100       | 40    | 20    | 80 |
-| 60   | 80        | 50    | 20    | 50 |
+| :--: | :-------: | :---: | :---: | :--------: |
+| 0    | 100       | 20    | 0     | 80         |
+| 10   | 80        | 10    | 20    | 90         |
+| 20   | 90        | 5     | 15    | 100        |
+| 30   | 100       | 30    | 20    | 90         |
+| 40   | 90        | 6     | 16    | 100        |
+| 50   | 100       | 40    | 20    | 80         |
+| 60   | 80        | 50    | 20    | 50         |
 
 The following code uses the token bucket limiter:
 
