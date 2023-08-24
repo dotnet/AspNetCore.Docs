@@ -19,7 +19,7 @@ uid: blazor/fundamentals/logging
 
 This article explains Blazor app logging, including configuration and how to write log messages from Razor components.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
 ## Configuration
 

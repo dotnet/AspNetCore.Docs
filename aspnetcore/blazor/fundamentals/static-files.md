@@ -14,7 +14,7 @@ uid: blazor/fundamentals/static-files
 
 This article describes Blazor app configuration for serving static files.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
 ## Static File Middleware
 
