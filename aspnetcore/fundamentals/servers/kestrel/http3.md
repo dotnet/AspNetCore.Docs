@@ -5,7 +5,7 @@ description: Learn about using HTTP/3 with Kestrel, the cross-platform web serve
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
 ms.custom: mvc
-ms.date: 04/04/2023
+ms.date: 08/24/2023
 uid: fundamentals/servers/kestrel/http3
 ---
 
@@ -46,9 +46,18 @@ HTTP/3 isn't currently supported on macOS and may be available in a future relea
 
 ## Getting started
 
-HTTP/3 is enabled by default. Because not all routers, firewalls, and proxies properly support HTTP/3, by default HTTP/3 is configured together with HTTP/1.1 and HTTP/2.
+HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
 
-For more information, see <xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols>.
+:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
+
+The preceding code configures port 5001 to:
+
+* Use HTTP/3 alongside HTTP/1.1 and HTTP/2 by specifying `HttpProtocols.Http1AndHttp2AndHttp3`.
+* Enable HTTPS with `UseHttps`. HTTP/3 requires HTTPS.
+
+Because not all routers, firewalls, and proxies properly support HTTP/3, HTTP/3 should be configured together with HTTP/1.1 and HTTP/2. This can be done by specifying [`HttpProtocols.Http1AndHttp2AndHttp3`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2AndHttp3) as an endpoint's supported protocols.
+
+For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 ## Alt-svc
 
