@@ -777,8 +777,6 @@ To modify the connection events, register callbacks for the following connection
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-:::moniker-end
-
 :::moniker range=">= aspnetcore-7.0"
 
 ### Automatically refresh the page when server-side reconnection fails
