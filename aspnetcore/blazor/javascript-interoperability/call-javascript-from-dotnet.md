@@ -864,7 +864,7 @@ export function setMapCenter(map, latitude, longitude) {
 
 To produce correct styling, add the following stylesheet tag to the host HTML page.
 
-Add the following `<link>` element to the `<head>` element markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)):
+Add the following `<link>` element to the `<head>` element markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
 ```html
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" 

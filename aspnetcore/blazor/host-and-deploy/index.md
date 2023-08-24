@@ -174,7 +174,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 * Blazor WebAssembly (standalone or hosted): `/` configured as `<base href="/" />`.
 * Blazor Server: `~/` configured as `<base href="~/" />`.
 
-For the location of `<head>` content in Blazor apps, see <xref:blazor/project-structure#location-of-head-content>.
+For the location of `<head>` content in Blazor apps, see <xref:blazor/project-structure#location-of-head-and-body-content>.
 
 > [!NOTE]
 > In some hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
@@ -203,7 +203,7 @@ For the location of `<head>` content in Blazor apps, see <xref:blazor/project-st
 
 * In a Blazor Server app, use ***either*** of the following approaches:
 
-  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)):
+  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
     ```html
     <base href="/CoolApp/">

@@ -287,7 +287,7 @@ Add a page to the app that uses the `ExtraStyles` component from the RCL.
 <ExtraStyles />
 ```
 
-Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)).
+Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
 
 ```html
 <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
@@ -343,7 +343,7 @@ The following background image and stylesheet are used by the RCL's `Component1`
 }
 ```
 
-To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)):
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
 ```html
 <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
