@@ -9,6 +9,6 @@ graph LR
     D --> |No| G{Does your app have a mobile or desktop client?}
     E --> |Yes| F
     E --> |No| H(Cloud or managed OIDC server)
-    G --> |Yes| I(Cookie-based identity (preferred) or token-based identity, mobile or desktop, using ASP.NET Core Identity)
+    G --> |Yes| I(Cookie-based identity is preferred over token-based identity, mobile or desktop, using ASP.NET Core Identity)
     G --> |No| J(Cookie-based identity, web, using ASP.NET Core Identity)
 ```
