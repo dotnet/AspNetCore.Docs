@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor file downloads
 author: guardrex
-description: Learn how to download files using Blazor Server and Blazor WebAssembly.
+description: Learn how to download files in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
@@ -12,11 +12,13 @@ uid: blazor/file-downloads
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to download files in Blazor Server and Blazor WebAssembly apps.
+This article explains how to download files in Blazor apps.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
 Files can be downloaded from the app's own static assets or from any other location:
 
-* ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of Blazor Server and hosted Blazor WebAssembly apps.
+* ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of server-side apps.
 * The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
 
 This article covers approaches for the following scenarios:
@@ -45,7 +47,7 @@ The recommended approach for downloading relatively small files (\< 250 MB) is t
 > [!WARNING]
 > The approach in this section reads the file's content into a [JS `ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). This approach loads the entire file into the client's memory, which can impair performance. To download relatively large files (\>= 250 MB), we recommend following the guidance in the [Download from a URL](#download-from-a-url) section.
 
-The following `downloadFileFromStream` JS function performs the following steps:
+The following `downloadFileFromStream` JS function takes the following steps to download a file:
 
 * Read the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 * Create a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
@@ -75,7 +77,7 @@ The following `downloadFileFromStream` JS function performs the following steps:
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
 
-The following example component:
+The following component:
 
 * Uses native byte-streaming interop to ensure efficient transfer of the file to the client.
 * Has a method named `GetFileStream` to retrieve a <xref:System.IO.Stream> for the file that's downloaded to clients. Alternative approaches include retrieving a file from storage or generating a file dynamically in C# code. For this demonstration, the app creates a 50 KB file of random data from a new byte array (`new byte[]`). The bytes are wrapped with a <xref:System.IO.MemoryStream> to serve as the example's dynamically-generated binary file.
@@ -85,7 +87,46 @@ The following example component:
   * Wrap the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
   * Invoke the `downloadFileFromStream` JS function to accept the data on the client.
 
-:::moniker range=">= aspnetcore-7.0"
+`FileDownload1.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/file-download-1"
+@attribute [RenderModeServer]
+@using System.IO
+@inject IJSRuntime JS
+
+<h1>File Download Example</h1>
+
+<button @onclick="DownloadFileFromStream">
+    Download File From Stream
+</button>
+
+@code {
+    private Stream GetFileStream()
+    {
+        var randomBinaryData = new byte[50 * 1024];
+        var fileStream = new MemoryStream(randomBinaryData);
+
+        return fileStream;
+    }
+
+    private async Task DownloadFileFromStream()
+    {
+        var fileStream = GetFileStream();
+        var fileName = "log.bin";
+
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+
+        await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload1.razor":::
 
@@ -97,7 +138,7 @@ The following example component:
 
 :::moniker-end
 
-For a component in a Blazor Server app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead%2A?displayProperty=nameWithType>, as the following example demonstrates:
+For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead%2A?displayProperty=nameWithType>, as the following example demonstrates:
 
 ```csharp
 private Stream GetFileStream()
@@ -155,7 +196,37 @@ The following `triggerFileDownload` JS function performs the following steps:
 
 The following example component downloads the file from the same origin that the app uses. If the file download is attempted from a different origin, configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
-:::moniker range=">= aspnetcore-7.0"
+Change the port in the following example to match the localhost development port of your environment.
+
+`FileDownload2.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/file-download-2"
+@attribute [RenderModeServer]
+@inject IJSRuntime JS
+
+<h1>File Download Example 2</h1>
+
+<button @onclick="DownloadFileFromURL">
+    Download File From URL
+</button>
+
+@code {
+    private async Task DownloadFileFromURL()
+    {
+        var fileName = "quote.txt";
+        var fileURL = Path.Combine("https://localhost:7029", "files", fileName);
+
+        await JS.InvokeVoidAsync("triggerFileDownload", fileName, fileURL);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
