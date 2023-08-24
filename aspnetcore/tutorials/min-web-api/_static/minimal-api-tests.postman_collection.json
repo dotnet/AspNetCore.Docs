@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "53db5cae-db62-43a6-974f-94865fc34e3d",
+		"name": "Minimal API ASP.NET Core Tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new to-do item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    // Verify shape of returned data",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"id\": { \"type\": \"integer\" },",
+							"            \"name\": { \"type\": \"string\" },",
+							"            \"isComplete\": { \"type\": \"boolean\" }",
+							"        },",
+							"        \"required\": [\"id\", \"name\", \"isComplete\"]",
+							"    };",
+							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+							"",
+							"    // Save ID of created to-do item",
+							"    pm.collectionVariables.set(\"itemId\", jsonData.id);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"walk dog\",\n    \"isComplete\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}/todoitems",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all to-do items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    // Verify shape of returned data",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    const schema = {",
+							"        \"type\": \"array\",",
+							"        \"items\": {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"id\": { \"type\": \"integer\" },",
+							"                \"name\": { \"type\": \"string\" },",
+							"                \"isComplete\": { \"type\": \"boolean\" }",
+							"            },",
+							"            \"required\": [\"id\", \"name\", \"isComplete\"]",
+							"        }",
+							"    };",
+							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/todoitems",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all completed to-do items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    // Verify shape of returned data",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    const schema = {",
+							"        \"type\": \"array\",",
+							"        \"items\": {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"id\": { \"type\": \"integer\" },",
+							"                \"name\": { \"type\": \"string\" },",
+							"                \"isComplete\": { \"type\": \"boolean\" }",
+							"            },",
+							"            \"required\": [\"id\", \"name\", \"isComplete\"]",
+							"        }",
+							"    };",
+							"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Items are marked complete\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    jsonData.forEach(item => pm.expect(item.isComplete).to.be.true);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/todoitems/complete",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an item by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/todoitems/{{itemId}}",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"{{itemId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get unknown item (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/todoitems/{{$randomInt}}",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"{{$randomInt}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify to-do item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"feed fish\",\n    \"isComplete\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}/todoitems/{{itemId}}",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"{{itemId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get modified item Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Item was updated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"feed fish\");",
+							"    pm.expect(jsonData.isComplete).to.be.false;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/todoitems/{{itemId}}",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"{{itemId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete to-do item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"feed fish\",\n    \"isComplete\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}/todoitems/{{itemId}}",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"{{itemId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get deleted item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/todoitems/{{itemId}}",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"todoitems",
+						"{{itemId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APIURL",
+			"value": "http://localhost:5207",
+			"type": "default"
+		},
+		{
+			"key": "itemId",
+			"value": ""
+		}
+	]
+}
