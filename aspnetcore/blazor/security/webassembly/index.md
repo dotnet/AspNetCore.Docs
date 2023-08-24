@@ -268,7 +268,7 @@ Further configuration guidance is found in the following articles:
 
 ## Use the Authorization Code flow with PKCE
 
-Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/azure/active-directory/develop/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [cross-origin resource sharing (CORS)](xref:security/cors) for single-page applications, including Blazor. 
+Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/azure/active-directory/develop/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [Cross-Origin Resource Sharing (CORS)](xref:security/cors) for single-page applications, including Blazor. 
 
 **Microsoft doesn't recommend using Implicit grant.**
 

@@ -47,16 +47,16 @@ The recommended approach for downloading relatively small files (\< 250 MB) is t
 > [!WARNING]
 > The approach in this section reads the file's content into a [JS `ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). This approach loads the entire file into the client's memory, which can impair performance. To download relatively large files (\>= 250 MB), we recommend following the guidance in the [Download from a URL](#download-from-a-url) section.
 
-The following `downloadFileFromStream` JS function takes the following steps to download a file:
+The following `downloadFileFromStream` JS function:
 
-* Read the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-* Create a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
-* Create an object URL to serve as the file's download address.
-* Create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element).
-* Assign the file's name (`fileName`) and URL (`url`) for the download.
-* Trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element.
-* Remove the anchor element.
-* Revoke the object URL (`url`) by calling [`URL.revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL). **This is an important step to ensure memory isn't leaked on the client.**
+* Reads the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
+* Creates an object URL to serve as the file's download address.
+* Creates an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element).
+* Assigns the file's name (`fileName`) and URL (`url`) for the download.
+* Triggers the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element.
+* Removes the anchor element.
+* Revokes the object URL (`url`) by calling [`URL.revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL). **This is an important step to ensure memory isn't leaked on the client.**
 
 ```html
 <script>
@@ -116,7 +116,6 @@ The following component:
     {
         var fileStream = GetFileStream();
         var fileName = "log.bin";
-
         using var streamRef = new DotNetStreamReference(stream: fileStream);
 
         await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
@@ -172,12 +171,12 @@ The example in this section uses a download file named `quote.txt`, which is pla
 
 :::moniker-end
 
-The following `triggerFileDownload` JS function performs the following steps:
+The following `triggerFileDownload` JS function:
 
-* Create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element).
-* Assign the file's name (`fileName`) and URL (`url`) for the download.
-* Trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element.
-* Remove the anchor element.
+* Creates an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element).
+* Assigns the file's name (`fileName`) and URL (`url`) for the download.
+* Triggers the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element.
+* Removes the anchor element.
 
 ```html
 <script>
