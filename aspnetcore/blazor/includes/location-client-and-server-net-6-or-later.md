@@ -25,7 +25,7 @@ Routable components with an `@page` directive are placed in the `Components/Page
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+:::moniker range="< aspnetcore-7.0"
 
 * **Client**/**client-side**
   * The **`Client`** project of a hosted Blazor WebAssembly app.
@@ -35,20 +35,6 @@ Routable components with an `@page` directive are placed in the `Components/Page
 * **Server**/**server-side**
   * The **`Server`** project of a hosted Blazor WebAssembly app.
   * A Blazor Server app. Blazor script start configuration is found in `Pages/_Layout.cshtml`.
-  * The `Program` file is `Program.cs`.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-* **Client**/**client-side**
-  * The **`Client`** project of a hosted Blazor WebAssembly app.
-  * A Blazor WebAssembly app.
-  * Blazor script start configuration is found in the `wwwroot/index.html` file.
-  * The `Program` file is `Program.cs`.
-* **Server**/**server-side**
-  * The **`Server`** project of a hosted Blazor WebAssembly app.
-  * A Blazor Server app. Blazor script start configuration is found in `Pages/_Host.cshtml`.
   * The `Program` file is `Program.cs`.
 
 :::moniker-end
