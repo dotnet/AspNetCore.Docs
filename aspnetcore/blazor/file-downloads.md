@@ -81,11 +81,11 @@ The following component:
 
 * Uses native byte-streaming interop to ensure efficient transfer of the file to the client.
 * Has a method named `GetFileStream` to retrieve a <xref:System.IO.Stream> for the file that's downloaded to clients. Alternative approaches include retrieving a file from storage or generating a file dynamically in C# code. For this demonstration, the app creates a 50 KB file of random data from a new byte array (`new byte[]`). The bytes are wrapped with a <xref:System.IO.MemoryStream> to serve as the example's dynamically-generated binary file.
-* The `DownloadFileFromStream` method performs the following steps:
-  * Retrieve the <xref:System.IO.Stream> from `GetFileStream`.
-  * Specify a file name when file is saved on the user's machine. The following example names the file `quote.txt`.
-  * Wrap the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
-  * Invoke the `downloadFileFromStream` JS function to accept the data on the client.
+* The `DownloadFileFromStream` method:
+  * Retrieves the <xref:System.IO.Stream> from `GetFileStream`.
+  * Specifies a file name when file is saved on the user's machine. The following example names the file `quote.txt`.
+  * Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
+  * Invokes the `downloadFileFromStream` JS function to accept the data on the client.
 
 `FileDownload1.razor`:
 
@@ -97,7 +97,7 @@ The following component:
 @using System.IO
 @inject IJSRuntime JS
 
-<h1>File Download Example</h1>
+<h1>File Download Example 1</h1>
 
 <button @onclick="DownloadFileFromStream">
     Download File From Stream
