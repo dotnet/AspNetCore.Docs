@@ -223,8 +223,8 @@ This tutorial uses Postman to test the API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Select **Workspaces** > **Create Workspace** and then select **Next**.
-* Name the workspace *TodoApi* and select **Create**.
+* Select **File** > **Import**.
+* Select **Link**, enter `https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api/_static/minimal-api-tests.postman_collection.json` and click **Continue**.
 * Select the settings gear icon > **Settings** (**General** tab) and disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the sample app.
