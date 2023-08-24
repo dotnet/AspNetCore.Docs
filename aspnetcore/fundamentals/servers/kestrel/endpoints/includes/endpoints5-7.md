@@ -108,7 +108,7 @@ Configure Kestrel to use HTTPS.
 
 In production, HTTPS must be explicitly configured. At a minimum, a default certificate must be provided.
 
-If certificates are being read from disk, as opposed to a [Windows Certificate Store](https://learn.microsoft.com/windows-hardware/drivers/install/certificate-stores), the containing directory must have appropriate permissions to prevent unauthorized access.
+If certificates are being read from disk, as opposed to a [Windows Certificate Store](/windows-hardware/drivers/install/certificate-stores), the containing directory must have appropriate permissions to prevent unauthorized access.
 
 Supported configurations described next:
 
