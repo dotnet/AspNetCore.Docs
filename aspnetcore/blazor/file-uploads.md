@@ -621,7 +621,7 @@ The following `FileUpload2` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor":::
 
@@ -820,7 +820,6 @@ A security best practice for production apps is to avoid sending error messages 
 > ```
 
 :::moniker-end
-
 
 `FileUpload2.razor`:
 
