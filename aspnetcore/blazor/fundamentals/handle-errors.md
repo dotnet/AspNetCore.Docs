@@ -14,7 +14,7 @@ uid: blazor/fundamentals/handle-errors
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 
 ## Detailed errors during development
 

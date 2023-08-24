@@ -14,7 +14,7 @@ uid: blazor/fundamentals/signalr
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 
 <!--
      UPDATE 8.0 It's not clear if we'll host guidance on adding SignalR 

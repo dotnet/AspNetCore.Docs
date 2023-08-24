@@ -24,7 +24,7 @@ This article explains how Blazor apps can inject services into components.
 > [!NOTE]
 > We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 
 ## Default services
 

@@ -21,7 +21,7 @@ This article describes additional security scenarios for Blazor WebAssembly apps
 For convenience, the framework provides the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> preconfigured with the app's base address as an authorized URL. **Access tokens are only added when the request URI is within the app's base URI.** When outgoing request URIs aren't within the app's base URI, use a [custom `AuthorizationMessageHandler` class (*recommended*)](#custom-authorizationmessagehandler-class) or [configure the `AuthorizationMessageHandler`](#configure-authorizationmessagehandler).
 
 > [!NOTE]
-> In addition to the client app configuration for server API access, the server API must also allow cross-origin requests (CORS) when the client and the server don't reside at the same base address. For more information on server-side CORS configuration, see the [Cross-origin resource sharing (CORS)](#cross-origin-resource-sharing-cors) section later in this article.
+> In addition to the client app configuration for server API access, the server API must also allow cross-origin requests (CORS) when the client and the server don't reside at the same base address. For more information on server-side CORS configuration, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section later in this article.
 
 In the following example:
 
@@ -579,7 +579,7 @@ The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding exam
 * `true` with the `token` for use.
 * `false` if the token isn't retrieved.
 
-## Cross-origin resource sharing (CORS)
+## Cross-Origin Resource Sharing (CORS)
 
 When sending credentials (authorization cookies/headers) on CORS requests, the `Authorization` header must be allowed by the CORS policy.
 
