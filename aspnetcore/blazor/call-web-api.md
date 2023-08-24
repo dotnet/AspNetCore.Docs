@@ -24,7 +24,7 @@ This article describes how to call a web API from a Blazor app.
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
 > * Use of the `HttpClient` factory infrastructure to provide an `HttpClient` to the app.
-> * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
+> * Cross-Origin Resource Sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
 
@@ -49,7 +49,7 @@ public class TodoItem
 }
 ```
 
-For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
+For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-Origin Resource Sharing (CORS), see the *Cross-Origin Resource Sharing (CORS)* section later in this article.
 
 The Blazor WebAssembly examples that demonstrate obtaining weather data from a server API are based on a hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
 
@@ -75,7 +75,7 @@ builder.Services.AddScoped(sp =>
 
 <xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server.
 
-<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-origin resource sharing (CORS)* section.
+<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-Origin Resource Sharing (CORS)* section.
 
 The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
 
@@ -635,7 +635,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Program.cs` file:
+The following example makes a [Cross-Origin Resource Sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Program.cs` file:
 
 ```csharp
 app.UseCors(policy => 
@@ -737,7 +737,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 > * `IHttpClientFactory` services and the configuration of a named `HttpClient`.
 > * Typed `HttpClient`.
 > * `HttpClient` and `HttpRequestMessage` to customize requests.
-> * Call web API example with cross-origin resource sharing (CORS) and how CORS pertains to Blazor WebAssembly apps.
+> * Call web API example with Cross-Origin Resource Sharing (CORS) and how CORS pertains to Blazor WebAssembly apps.
 > * How to handle web API response errors in developer code.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor WebAssembly apps that call a web API.
@@ -822,9 +822,9 @@ For an additional working example, see the server-side file upload example that 
 
 :::zone-end
 
-## Cross-origin resource sharing (CORS)
+## Cross-Origin Resource Sharing (CORS)
 
-Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
+Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
 
 :::zone pivot="webassembly"
 
@@ -879,7 +879,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
-* [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::zone-end
@@ -891,6 +891,6 @@ Various network tools are publicly available for testing web API backend apps di
 * <xref:security/enforcing-ssl>
 * <xref:security/cors>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
-* [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
 :::zone-end
