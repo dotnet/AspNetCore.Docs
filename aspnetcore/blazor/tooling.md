@@ -768,12 +768,7 @@ To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's p
 </PropertyGroup>
 ```
 
-<!-- UPDATE 8.0 Remove note when https://github.com/dotnet/runtime/issues/89302 is fixed -->
-
-> [!IMPORTANT]
-> During 8.0 preview releases, disabling SIMD isn't supported. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
-
-For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data). Note that the guidance in this document isn't versioned and applies to the latest public release.
 
 :::moniker-end
 
