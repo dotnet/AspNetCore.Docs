@@ -123,4 +123,9 @@ A POST to:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_post":::
 
+When a form is submitted without a valid antiforgery token:
+
+* In the development environment, an exception is thrown.
+* In the production environment, an error is logged.
+
 :::moniker-end
