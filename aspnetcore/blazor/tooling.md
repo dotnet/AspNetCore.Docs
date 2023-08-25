@@ -703,10 +703,6 @@ For more information, see the following resources:
 
 ### Ahead-of-time (AOT) compilation
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
 To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation), set `<RunAOTCompilation>` to `true` in the app's project file (`.csproj`):
 
 ```xml
@@ -714,22 +710,6 @@ To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassem
   <RunAOTCompilation>true</RunAOTCompilation>
 </PropertyGroup>
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation), set `<RunAOTCompilation>` to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <RunAOTCompilation>true</RunAOTCompilation>
-</PropertyGroup>
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
 
 ### Single Instruction, Multiple Data (SIMD)
 
