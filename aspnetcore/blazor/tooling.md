@@ -683,7 +683,7 @@ The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.or
 > [!NOTE]
 > .NET WebAssembly build tools for .NET 6 projects
 >
-> The `wasm-tools` workload installs the build tools for .NET 7 projects. However, the .NET 7 version of the build tools are incompatible with existing projects built with .NET 6. Projects using the build tools that must support both .NET 6 and .NET 7 must use multi-targeting.
+> The `wasm-tools` workload installs the build tools for the latest release. However, the current version of the build tools are incompatible with existing projects built with .NET 6. Projects using the build tools that must support both .NET 6 and a later release must use multi-targeting.
 >
 > Use the `wasm-tools-net6` workload for .NET 6 projects when developing apps with the .NET 7 SDK. To install the `wasm-tools-net6` workload, execute the following command from an administrative command shell:
 >
