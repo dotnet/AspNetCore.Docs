@@ -3,7 +3,7 @@ title: Middleware with Minimal API applications
 author: BrennanConroy
 description: Use middleware in Minimal API applications
 ms.author: brecon
-ms.date: 10/10/2022
+ms.date: 8/25/2023
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/middleware
 ---
