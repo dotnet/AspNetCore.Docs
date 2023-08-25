@@ -698,7 +698,7 @@ To enable AOT, set `<RunAOTCompilation>` to `true` in the app's project file (`.
 </PropertyGroup>
 ```
 
-To disable SIMD, for example when targeting old or mobile devices, add the `<RunAOTCompilation>` property set to `false`:
+To disable SIMD, for example when targeting old browsers (on mobile devices), add the `<WasmEnableSIMD>` property set to false:
 
 ```xml
 <PropertyGroup>
