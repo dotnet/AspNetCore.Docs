@@ -79,7 +79,6 @@ Terminal middleware is middleware that runs if no endpoint handles the request.
 
 ## Antiforgery middleware
 
-zz
 Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) <!-- <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery(IServiceCollection)> --> to add middleware for validating antiforgery tokens. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3":::
@@ -91,7 +90,7 @@ The antiforgery middleware:
 
 The antiforgery token is only validated if:
 
-* The endpoint contains metadata implementing [IAntiforgeryMetadata](https://source.dot.net/#Microsoft.AspNetCore.Http.Abstractions/Metadata/IAntiforgeryMetadata.cs,5f49d4d07fc58320) where `RequiresValidation=true``.
+* The endpoint contains metadata implementing [IAntiforgeryMetadata](https://source.dot.net/#Microsoft.AspNetCore.Http.Abstractions/Metadata/IAntiforgeryMetadata.cs,5f49d4d07fc58320) where `RequiresValidation=true`.
 * The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
 * The request is associated with a valid endpoint.
 
@@ -103,16 +102,16 @@ Consider the following `GenerateForm` method:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_html":::
 
-The preceding code has three arguments, action, the anti-forgery token, and a bool indicating whether the token should be used.
+The preceding code has three arguments, the action, the anti-forgery token, and a `bool` indicating whether the token should be used.
 
 Consider the following sample:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_all" highlight="3":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_all" highlight="6":::
 
 In the preceding code, posts to:
 
 * `/todo` require a valid antiforgery token.
-* `/todo2` do ***not*** require a valid antiforgery token because `DisableAntiforgery` is called.
+* `/todo2` do ***not*** require a valid antiforgery token because [`DisableAntiforgery`](https://source.dot.net/#Microsoft.AspNetCore.Routing/Builder/RoutingEndpointConventionBuilderExtensions.cs,022b9134f828d984) is called.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_post":::
 
