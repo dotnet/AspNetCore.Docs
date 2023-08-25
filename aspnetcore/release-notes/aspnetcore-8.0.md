@@ -345,17 +345,6 @@ Time to create 100,000 connections:
 * Before : 5.916 seconds
 * After &nbsp; : 2.374 seconds
 
-
-### HTTP/3 enabled by default in Kestrel
-
-HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 offers several advantages over older HTTP protocols, including:
-
-* Faster connection setup.
-* No head-of-line blocking.
-* Better transitions between networks.
-
-.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8, HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <xref:fundamentals/servers/kestrel/http3>.
-
 ### HTTP/2 over TLS (HTTPS) support on macOS in Kestrel
 
 .NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2. For more information, see <xref:fundamentals/servers/kestrel/http2>.
