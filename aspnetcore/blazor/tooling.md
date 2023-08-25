@@ -675,56 +675,15 @@ For more information on template options, see the following resources:
 
 ## .NET WebAssembly build tools
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
 The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the build tools, use ***either*** of the following approaches:
 
 * For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
 * Execute `dotnet workload install wasm-tools` in an administrative command shell.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is enabled by default for all major browsers. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
-
-```xml
-<PropertyGroup>
-  <RunAOTCompilation>true</RunAOTCompilation>
-</PropertyGroup>
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is supported for all major browsers. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. Use the `<WasmEnableSIMD>` property in the app's project file (`.csproj`) with a value of `true`:
-
-```xml
-<PropertyGroup>
-  <WasmEnableSIMD>true</WasmEnableSIMD>
-  <RunAOTCompilation>true</RunAOTCompilation>
-</PropertyGroup>
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-To enable WebAssembly exception handling, use the `<WasmEnableExceptionHandling>` property in the app's project file (`.csproj`) with a value of `true`:
-
-```xml
-<PropertyGroup>
-  <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
-</PropertyGroup>
-```
-
 > [!NOTE]
 > .NET WebAssembly build tools for .NET 6 projects
 >
-> The `wasm-tools` workload installs the build tools for .NET 7 projects. However, the .NET 7 version of the build tools are incompatible with existing projects built with .NET 6. Projects using the build tools that must support both .NET 6 and .NET 7 must use multi-targeting.
+> The `wasm-tools` workload installs the build tools for the latest release. However, the current version of the build tools are incompatible with existing projects built with .NET 6. Projects using the build tools that must support both .NET 6 and a later release must use multi-targeting.
 >
 > Use the `wasm-tools-net6` workload for .NET 6 projects when developing apps with the .NET 7 SDK. To install the `wasm-tools-net6` workload, execute the following command from an administrative command shell:
 >
@@ -740,18 +699,86 @@ For more information, see the following resources:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+:::moniker range=">= aspnetcore-6.0"
 
-The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the build tools, use ***either*** of the following approaches:
+### Ahead-of-time (AOT) compilation
 
-* For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
-* Run `dotnet workload install wasm-tools` in a command shell.
+To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation), set `<RunAOTCompilation>` to `true` in the app's project file (`.csproj`):
 
-For more information, see the following resources:
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+</PropertyGroup>
+```
 
-* [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation)
-* [Runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking)
-* <xref:blazor/webassembly-native-dependencies>
+### Single Instruction, Multiple Data (SIMD)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers. 
+
+To disable SIMD, for example when targeting old browsers (on mobile devices), add the `<WasmEnableSIMD>` property set to `false` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <WasmEnableSIMD>false</WasmEnableSIMD>
+</PropertyGroup>
+```
+
+<!-- UPDATE 8.0 Remove note when https://github.com/dotnet/runtime/issues/89302 is fixed -->
+
+> [!IMPORTANT]
+> During 8.0 preview releases, disabling SIMD isn't supported. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
+
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. 
+
+To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <WasmEnableSIMD>true</WasmEnableSIMD>
+</PropertyGroup>
+```
+
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data). Note that the guidance in this document isn't versioned and applies to the latest public release.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+### Exception handling
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Exception handling is enabled by default. To disable exception handling, add the `<WasmEnableExceptionHandling>` property with a value of `false` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
+</PropertyGroup>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+To enable WebAssembly exception handling, add the `<WasmEnableExceptionHandling>` property with a value of `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+</PropertyGroup>
+```
 
 :::moniker-end
 
