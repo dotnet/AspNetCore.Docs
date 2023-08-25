@@ -690,9 +690,36 @@ The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.or
 
 When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is enabled by default for all major browsers. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
 
+To enable AOT, set `<RunAOTCompilation>` to `true` in the app's project file (`.csproj`):
+
 ```xml
 <PropertyGroup>
   <RunAOTCompilation>true</RunAOTCompilation>
+</PropertyGroup>
+```
+
+To disable SIMD, for example when targeting old or mobile devices, add the `<RunAOTCompilation>` property set to `false`:
+
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+  <WasmEnableSIMD>false</WasmEnableSIMD>
+</PropertyGroup>
+```
+
+<!-- UPDATE 8.0 Remove note when https://github.com/dotnet/runtime/issues/89302 is fixed -->
+
+> [!IMPORTANT]
+> During 8.0 preview releases, disabling SIMD isn't supported. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
+
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
+
+Exception handling is also enabled by default. To disable exception handling, add the `<WasmEnableExceptionHandling>` property with a value of `false`:
+
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+  <WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
 </PropertyGroup>
 ```
 
@@ -700,26 +727,30 @@ When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#a
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is supported for all major browsers. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. Use the `<WasmEnableSIMD>` property in the app's project file (`.csproj`) with a value of `true`:
+When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is supported for all major browsers. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction.
+
+To enable AOT, set `<RunAOTCompilation>` to `true` in the app's project file (`.csproj`). To enable SIMD, use the `<WasmEnableSIMD>` property with a value of `true`:
 
 ```xml
 <PropertyGroup>
-  <WasmEnableSIMD>true</WasmEnableSIMD>
   <RunAOTCompilation>true</RunAOTCompilation>
+  <WasmEnableSIMD>true</WasmEnableSIMD>
+</PropertyGroup>
+```
+
+To enable WebAssembly exception handling, add the `<WasmEnableExceptionHandling>` property with a value of `true`:
+
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+  <WasmEnableSIMD>true</WasmEnableSIMD>
+  <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
 </PropertyGroup>
 ```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
-
-To enable WebAssembly exception handling, use the `<WasmEnableExceptionHandling>` property in the app's project file (`.csproj`) with a value of `true`:
-
-```xml
-<PropertyGroup>
-  <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
-</PropertyGroup>
-```
 
 > [!NOTE]
 > .NET WebAssembly build tools for .NET 6 projects
