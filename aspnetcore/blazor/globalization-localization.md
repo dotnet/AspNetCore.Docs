@@ -482,7 +482,7 @@ The following `CultureSelector` component shows how to perform the following act
 ```
 
 > [!NOTE]
-> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>.
 
 Inside the closing tag of the `</main>` element in the `MainLayout` component (`MainLayout.razor`), add the `CultureSelector` component:
 

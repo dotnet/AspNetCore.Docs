@@ -30,6 +30,8 @@ Further JS interop guidance is provided in the following articles:
 
 :::moniker-end
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 ## JavaScript interop abstractions and features package
 
 The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
@@ -56,20 +58,20 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ca
 
 <!-- UPDATE 8.0 Cross-link SSR and CSR -->
 
-JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across server and client hosting models. When adopting server-side rendering (SSR), JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt client-side rendering (CSR), synchronous JS interop calls are supported.
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across server-side and client-side rendering models. When adopting server-side rendering (SSR), JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt client-side rendering (CSR), synchronous JS interop calls are supported.
 
 :::moniker range=">= aspnetcore-5.0"
 
 For more information, see the following articles:
 
-* <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>
-* <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-blazor-webassembly-apps>
+* <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>
+* <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-client-side-components>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>.
 
 :::moniker-end
 
@@ -486,17 +488,7 @@ For more information, see:
 
 ## Size limits on JavaScript interop calls
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section only applies to interactive components with server-side rendering (SSR). In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section only applies to Blazor Server apps. In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
-
-:::moniker-end
+*This section only applies to interactive components with server-side rendering (SSR). For client-side components, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
 
 <!-- UPDATE 8.0 Cross-link SSR -->
 
