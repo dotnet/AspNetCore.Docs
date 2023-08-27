@@ -108,14 +108,13 @@ The following demonstrates the structure of a bUnit test on the `Counter` compon
 The following bUnit test verifies that the CUT's counter is incremented correctly when the button is clicked:
 
 ```razor
-@inherits TestContext
-
 @code {
     [Fact]
     public void CounterShouldIncrementWhenClicked()
     {
         // Arrange
-        var cut = Render(@<Counter />);
+        using var ctx = new TestContext();
+        var cut = ctx.Render(@<Counter />);
         var paraElm = cut.Find("p");
 
         // Act
@@ -131,13 +130,14 @@ The following bUnit test verifies that the CUT's counter is incremented correctl
 Of course, tests can also be written in classic `.cs` files:
 
 ```csharp
-public class CounterTests : TestContext
+public class CounterTests
 {
     [Fact]
     public void CounterShouldIncrementWhenClicked()
     {
         // Arrange
-        var cut = RenderComponent<Counter>();
+        using var ctx = new TestContext();
+        var cut = ctx.RenderComponent<Counter>();
         var paraElm = cut.Find("p");
 
         // Act
