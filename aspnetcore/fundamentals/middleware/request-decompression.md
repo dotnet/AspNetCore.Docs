@@ -27,10 +27,10 @@ Requests that don't include a `Content-Encoding` header are ignored by the reque
 Decompression:
 
 * Occurs when the body of the request is being read. That is, decompression occurs at the endpoint on model binding. The request body is not decompressed eagerly.
-* When attempting to read the decompressed request body, if the compressed data is invalid for the specified `Content-Encoding`, an exception is thrown.
+* When attempting to read the decompressed request body, if the compressed data is invalid for the specified `Content-Encoding`, an exception is thrown. For example, Brotli can throw `System.InvalidOperationException`: Decoder ran into invalid data, Deflate and GZip can throw `System.IO.InvalidDataException`: The archive entry was compressed using an unsupported compression method.
 
-If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, is passed to the next delegate in the pipeline. For example, Brotli can throw `System.InvalidOperationException`: Decoder ran into invalid data, Deflate and GZip can throw `System.IO.InvalidDataException`: The archive entry was compressed using an unsupported compression method.
 
+If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, is passed to the next delegate in the pipeline.
 ## Configuration
 
 The following code shows how to enable request decompression for the [default](#default) `Content-Encoding` types:
