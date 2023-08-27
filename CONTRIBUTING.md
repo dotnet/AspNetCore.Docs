@@ -24,7 +24,7 @@ If you use Visual Studio Code to contribute to the ASP.NET documentation, you ca
 
 ## Markdown syntax
 
-Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown template](https://learn.microsoft.com/en-us/contribute/content/dotnet/dotnet-style-guide). 
+Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html), which is a superset of [GitHub-flavored Markdown (GFM)](https://guides.github.com/features/mastering-markdown/). For examples of DFM syntax for UI features commonly used in the ASP.NET documentation, see [Metadata and Markdown template](/contribute/content/dotnet/dotnet-style-guide). 
 
 ## Folder structure conventions
 
