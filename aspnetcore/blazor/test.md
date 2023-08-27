@@ -105,31 +105,56 @@ The following demonstrates the structure of a bUnit test on the `Counter` compon
 }
 ```
 
-The following bUnit test verifies that the CUT's counter is incremented correctly when the button is selected:
+The following bUnit test verifies that the CUT's counter is incremented correctly when the button is clicked:
+
+```razor
+@inherits TestContext
+
+@code {
+    [Fact]
+    public void CounterShouldIncrementWhenClicked()
+    {
+        // Arrange
+        var cut = Render(@<Counter />);
+        var paraElm = cut.Find("p");
+
+        // Act
+        cut.Find("button").Click();
+
+        // Assert
+        var paraElmText = paraElm.TextContent;
+        paraElm.MarkupMatches("Current count: 1");
+    }
+}
+```
+
+Of course, tests can also be written in classic `.cs` files:
 
 ```csharp
-[Fact]
-public void CounterShouldIncrementWhenSelected()
+public class CounterTests : TestContext
 {
-    // Arrange
-    using var ctx = new TestContext();
-    var cut = ctx.RenderComponent<Counter>();
-    var paraElm = cut.Find("p");
+    [Fact]
+    public void CounterShouldIncrementWhenClicked()
+    {
+        // Arrange
+        var cut = RenderComponent<Counter>();
+        var paraElm = cut.Find("p");
 
-    // Act
-    cut.Find("button").Click();
-    var paraElmText = paraElm.TextContent;
+        // Act
+        cut.Find("button").Click();
 
-    // Assert
-    paraElmText.MarkupMatches("Current count: 1");
+        // Assert
+        var paraElmText = paraElm.TextContent;
+        paraElmText.MarkupMatches("Current count: 1");
+    }
 }
 ```
 
 The following actions take place at each step of the test:
 
-* *Arrange*: The `Counter` component is rendered using bUnit's `TestContext`. The CUT's paragraph element (`<p>`) is found and assigned to `paraElm`.
+* *Arrange*: The `Counter` component is rendered using bUnit's `TestContext`. The CUT's paragraph element (`<p>`) is found and assigned to `paraElm`. In Razor syntax the can be passed as `RenderFragment` to bUnit.
 
-* *Act*: The button's element (`<button>`) is located and then selected by calling `Click`, which should increment the counter and update the content of the paragraph tag (`<p>`). The paragraph element text content is obtained by calling `TextContent`.
+* *Act*: The button's element (`<button>`) is located and then clicked by calling `Click`, which should increment the counter and update the content of the paragraph tag (`<p>`). The paragraph element text content is obtained by calling `TextContent`.
 
 * *Assert*: `MarkupMatches` is called on the text content to verify that it matches the expected string, which is `Current count: 1`.
 
