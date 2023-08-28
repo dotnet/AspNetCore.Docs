@@ -584,6 +584,8 @@ For information on isolating scripts in [JS modules](https://developer.mozilla.o
 
 :::moniker-end
 
+<!-- UPDATE 8.0 Confirm for >=8.0 now that the warning is being removed. -->
+
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
 
@@ -1808,5 +1810,5 @@ For more information, see <xref:blazor/js-interop/index#javascript-interop-calls
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-* <xref:blazor/fundamentals/handle-errors> (*JavaScript interop* section) <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* <xref:blazor/fundamentals/handle-errors#javascript-interop> (*JavaScript interop* section)
 * [Blazor Server threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/threat-mitigation#javascript-functions-invoked-from-net)
