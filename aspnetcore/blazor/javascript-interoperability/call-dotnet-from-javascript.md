@@ -1699,6 +1699,8 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
 
 `CallDotNetExample8.razor`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
@@ -1730,7 +1732,7 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @page "/call-dotnet-example-8"
@@ -1759,6 +1761,8 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 For information on using a byte array when calling JavaScript from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
