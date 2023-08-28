@@ -56,9 +56,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ca
 
 ## Asynchronous JavaScript calls
 
-<!-- UPDATE 8.0 Cross-link SSR and CSR -->
-
-JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across server-side and client-side rendering models. When adopting server-side rendering (SSR), JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt client-side rendering (CSR), synchronous JS interop calls are supported.
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across server-side and client-side rendering models. When adopting server-side rendering, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt client-side rendering, synchronous JS interop calls are supported.
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -108,10 +106,8 @@ Blazor supports unmarshalled JS interop when a high volume of .NET objects are r
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript (JS) on the client for the following reasons:
 
-<!-- UPDATE 8.0 Cross-link SSR -->
-
 * The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
-* When adopting server-side rendering (SSR), the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+* During server-side rendering, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
 
 The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
@@ -233,17 +229,7 @@ window.DOMCleanup = DOMCleanup;
 
 ## JavaScript interop calls without a circuit
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section only applies to interactive components with server-side rendering (SSR) in Blazor Web Apps.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section only applies to Blazor Server apps.*
-
-:::moniker-end
+*This section only applies to server-side apps.*
 
 JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconnected. Without a circuit during component disposal or at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected as a <xref:Microsoft.JSInterop.JSDisconnectedException>:
 
@@ -282,7 +268,7 @@ If you must clean up your own JS objects or execute other JS code on the client 
 
 For more information, see the following articles:
 
-* <xref:blazor/fundamentals/handle-errors>: The *JavaScript interop* section discusses error handling in JS interop scenarios. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* <xref:blazor/fundamentals/handle-errors#javascript-interop>: The *JavaScript interop* section discusses error handling in JS interop scenarios.
 * <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>: The *Component disposal with `IDisposable` and `IAsyncDisposable`* section describes how to implement disposal patterns in Razor components.
 
 ## JavaScript location
@@ -488,8 +474,6 @@ For more information, see:
 
 ## Size limits on JavaScript interop calls
 
-*This section only applies to interactive components with server-side rendering (SSR). For client-side components, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
+*This section only applies to server-side components. For client-side components, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
 
-<!-- UPDATE 8.0 Cross-link SSR -->
-
-For interactive components with server-side rendering (SSR), JS interop calls passing data from the client to the server are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information on the size limit, error messages, and guidance on dealing with message size limits, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+For interactive components in server-side apps, JS interop calls passing data from the client to the server are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information on the size limit, error messages, and guidance on dealing with message size limits, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.

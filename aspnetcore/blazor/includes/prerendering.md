@@ -1,4 +1,4 @@
-*This section applies to Blazor Server and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerendering-and-integration>.*
+*This section applies to server-side apps and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerendering-and-integration>.*
 
 While an app is prerendering, certain actions, such as calling into JavaScript (JS), aren't possible.
 

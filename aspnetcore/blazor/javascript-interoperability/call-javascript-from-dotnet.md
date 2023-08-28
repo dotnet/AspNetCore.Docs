@@ -33,7 +33,7 @@ For the preceding .NET methods that invoke JS functions:
 * The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
 * A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-For Blazor apps with prerendering enabled, calling into JS isn't possible during prerendering. For more information, see the [Prerendering](#prerendering) section.
+For Blazor apps with prerendering enabled, which is the default for server-side apps, calling into JS isn't possible during prerendering. For more information, see the [Prerendering](#prerendering) section.
 
 The following example is based on [`TextDecoder`](https://developer.mozilla.org/docs/Web/API/TextDecoder), a JS-based decoder. The example demonstrates how to invoke a JS function from a C# method that offloads a requirement from developer code to an existing JS API. The JS function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
@@ -129,17 +129,7 @@ The following `CallJsExample1` component:
 
 ## JavaScript API restricted to user gestures
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section only applies to interactive components with server-side rendering (SSR) in Blazor Web Apps.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section only applies to Blazor Server apps.*
-
-:::moniker-end
+*This section only applies to server-side apps.*
 
 Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in server-side apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use `onclick` instead of Blazor's `@onclick` directive attribute.
 
@@ -1811,4 +1801,4 @@ For more information, see <xref:blazor/js-interop/index#javascript-interop-calls
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors#javascript-interop> (*JavaScript interop* section)
-* [Blazor Server threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/threat-mitigation#javascript-functions-invoked-from-net)
+* [Threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/threat-mitigation#javascript-functions-invoked-from-net)
