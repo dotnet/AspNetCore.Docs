@@ -12,16 +12,20 @@ namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
     {
+        private readonly ILogger<MoviesController> _logger;
         private readonly MvcMovieContext _context;
 
-        public MoviesController(MvcMovieContext context)
-            {
-                _context = context;
-            }
+        public MoviesController(ILogger<MoviesController> logger, MvcMovieContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
 
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
+            _logger.Log(LogLevel.Information, "Index");
+
             if (_context.Movie == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
@@ -56,6 +60,8 @@ namespace MvcMovie.Controllers
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            _logger.Log(LogLevel.Information, "Details");
+
             if (id == null || _context.Movie == null)
             {
                 return NotFound();
