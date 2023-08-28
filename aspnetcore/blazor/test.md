@@ -105,7 +105,7 @@ The following demonstrates the structure of a bUnit test on the `Counter` compon
 }
 ```
 
-The following bUnit test verifies that the CUT's counter is incremented correctly when the button is clicked:
+The following bUnit test verifies that the CUT's counter is incremented correctly when the button is selected:
 
 ```razor
 @code {
@@ -127,7 +127,7 @@ The following bUnit test verifies that the CUT's counter is incremented correctl
 }
 ```
 
-Of course, tests can also be written in classic `.cs` files:
+Tests can also be written in a C# class file:
 
 ```csharp
 public class CounterTests
@@ -152,14 +152,14 @@ public class CounterTests
 
 The following actions take place at each step of the test:
 
-* *Arrange*: The `Counter` component is rendered using bUnit's `TestContext`. The CUT's paragraph element (`<p>`) is found and assigned to `paraElm`. In Razor syntax the can be passed as `RenderFragment` to bUnit.
+* *Arrange*: The `Counter` component is rendered using bUnit's `TestContext`. The CUT's paragraph element (`<p>`) is found and assigned to `paraElm`. In Razor syntax, a component can be passed as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to bUnit.
 
-* *Act*: The button's element (`<button>`) is located and then clicked by calling `Click`, which should increment the counter and update the content of the paragraph tag (`<p>`). The paragraph element text content is obtained by calling `TextContent`.
+* *Act*: The button's element (`<button>`) is located and selected by calling `Click`, which should increment the counter and update the content of the paragraph tag (`<p>`). The paragraph element text content is obtained by calling `TextContent`.
 
 * *Assert*: `MarkupMatches` is called on the text content to verify that it matches the expected string, which is `Current count: 1`.
 
 > [!NOTE]
-> The `MarkupMatches` assert method differs from a regular string comparison assertion (for example, `Assert.Equal("Current count: 1", paraElmText);`) `MarkupMatches` performs a semantic comparison of the input and expected HTML markup. A semantic comparison is aware of HTML semantics, meaning things like insignificant whitespace is ignored. This results in more stable tests. For more information, see [Customizing the Semantic HTML Comparison](https://bunit.egilhansen.com/docs/verification/semantic-html-comparison).
+> The `MarkupMatches` assert method differs from a regular string comparison assertion (for example, `Assert.Equal("Current count: 1", paraElmText);`). `MarkupMatches` performs a semantic comparison of the input and expected HTML markup. A semantic comparison is aware of HTML semantics, meaning things like insignificant whitespace is ignored. This results in more stable tests. For more information, see [Customizing the Semantic HTML Comparison](https://bunit.egilhansen.com/docs/verification/semantic-html-comparison).
 
 ## Additional resources
 
