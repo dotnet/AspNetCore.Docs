@@ -867,6 +867,8 @@ In the following `GenericsExample` component:
 
 `GenericsExample.razor`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
@@ -916,7 +918,7 @@ In the following `GenericsExample` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @page "/generics-example"
@@ -963,6 +965,8 @@ In the following `GenericsExample` component:
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 
