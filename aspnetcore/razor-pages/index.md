@@ -4,13 +4,16 @@ author: tdykstra
 description: Explains how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 3/14/2023
+ms.date: 08/28/2023
 uid: razor-pages/index
 ---
 
 # Introduction to Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Brock](https://twitter.com/daveabrock), and [Kirk Larkin](https://twitter.com/serpent5)
+
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Razor Pages can make coding page-focused scenarios easier and more productive than using controllers and views.
 
@@ -19,8 +22,6 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
 
 ## Prerequisites
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -76,11 +77,11 @@ The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc
 
 A similar page, using a `PageModel` class, is shown in the following two files. The `Pages/Index2.cshtml` file:
 
-[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml)]
+[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
 The `Pages/Index2.cshtml.cs` page model:
 
-[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
+[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with `.cs` appended. For example, the previous Razor Page is `Pages/Index2.cshtml`. The file containing the `PageModel` class is named `Pages/Index2.cshtml.cs`.
 
@@ -102,7 +103,7 @@ Notes:
 
 Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers work with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
-For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.
+For the samples in this document, the `DbContext` is initialized in the [Program.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs#L11-L12) file.
 
 The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
@@ -160,7 +161,7 @@ The `Pages/Customers/Create.cshtml` view file:
 
 The rendered HTML from `Pages/Customers/Create.cshtml`:
 
-[!code-html[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
+[!code-html[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
 In the previous code, posting the form:
 
@@ -274,7 +275,7 @@ Consider the `Customer` model:
 
 Using the following `Create.cshtml` view file:
 
-[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=3,8-9,15-99)]
+[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=3,8-9,15-99)]
 
 The preceding code:
 
@@ -286,7 +287,7 @@ The preceding code:
 
 * Generates the following HTML:
 
-  [!code-html[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
+  [!code-html[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
 
 Posting the Create form without a name value displays the error message "The Name field is required." on the form. If JavaScript is enabled on the client, the browser displays the error without posting to the server.
 
@@ -336,7 +337,7 @@ For more information, see:
 
 Ordinarily, an `OnHead` handler is created and called for `HEAD` requests:
 
-[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Privacy.cshtml.cs?name=snippet)]
+[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Privacy.cshtml.cs?name=snippet)]
 
 Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.
 
@@ -356,7 +357,7 @@ Let's declutter this page by taking advantage of some of those capabilities.
 
 Add a [layout page](xref:mvc/views/layout) to `Pages/Shared/_Layout.cshtml`:
 
-[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?highlight=12)]
+[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?highlight=12)]
 
 The [Layout](xref:mvc/views/layout):
 
@@ -408,11 +409,11 @@ The generated namespace for the `Pages/Customers/Edit.cshtml` Razor Page is the 
 
 Consider the `Pages/Customers/Create.cshtml` view file:
 
-[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
+[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
 The updated `Pages/Customers/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
 
-[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
+[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
 
 In the preceding code, the `_ViewImports.cshtml` imported the namespace and Tag Helpers. The layout file imported the JavaScript files.
 
@@ -426,7 +427,7 @@ For more information on partial views, see <xref:mvc/views/partial>.
 
 The `Create` page, shown previously, uses `RedirectToPage`:
 
-[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=28)]
+[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=28)]
 
 The app has the following file/folder structure:
 
@@ -463,7 +464,7 @@ URL generation for pages supports relative names. The following table shows whic
 | RedirectToPage("../Index") | *Pages/Index* |
 | RedirectToPage("Index")  | *Pages/Customers/Index* |
 
-<!-- Test via ~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Details.cshtml.cs -->
+<!-- Test via ~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Details.cshtml.cs -->
 
 `RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")` are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.
 
@@ -606,7 +607,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 
 * See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
 * [Authorize attribute and Razor Pages](xref:security/authorization/simple#aarp)
-* [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/3.0sample)
+* [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/6.0sample)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
