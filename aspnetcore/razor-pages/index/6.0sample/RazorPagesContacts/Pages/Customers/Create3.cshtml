@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model RazorPagesContacts.Pages.Customers.CreateModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -6,9 +6,9 @@
 
 <form method="post">
     <div asp-validation-summary="ModelOnly"></div>
-    <span asp-validation-for="Customer.Name"></span>
+    <span asp-validation-for="Customer!.Name"></span>
     Name:
-    <input asp-for="Customer.Name" />
+    <input asp-for="Customer!.Name" />
     <input type="submit" />
 </form>
 
