@@ -12,6 +12,9 @@ uid: razor-pages/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Brock](https://twitter.com/daveabrock), and [Kirk Larkin](https://twitter.com/serpent5)
 
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Razor Pages can make coding page-focused scenarios easier and more productive than using controllers and views.
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
@@ -19,8 +22,6 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
 
 ## Prerequisites
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
