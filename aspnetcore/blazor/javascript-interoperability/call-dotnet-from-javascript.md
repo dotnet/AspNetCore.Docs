@@ -439,102 +439,102 @@ For the following `CallDotNetExample2` component:
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
-To pass arguments to an instance method:
+Use the following guidance to pass arguments to an instance method:
 
-1. Add parameters to the .NET method invocation. In the following example, a name is passed to the method. Add additional parameters to the list as needed.
+Add parameters to the .NET method invocation. In the following example, a name is passed to the method. Add additional parameters to the list as needed.
 
-   ```html
-   <script>
-     window.sayHello2 = (dotNetHelper, name) => {
-       return dotNetHelper.invokeMethodAsync('GetHelloMessage', name);
-     };
-   </script>
-   ```
+```html
+<script>
+  window.sayHello2 = (dotNetHelper, name) => {
+    return dotNetHelper.invokeMethodAsync('GetHelloMessage', name);
+  };
+</script>
+```
 
-   In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
-1. Provide the parameter list to the .NET method.
+Provide the parameter list to the .NET method.
 
-   `CallDotNetExample3.razor`:
+`CallDotNetExample3.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-   ```razor
-   @page "/call-dotnet-example-3"
-   @attribute [RenderModeServer]
-   @implements IDisposable
-   @inject IJSRuntime JS
+```razor
+@page "/call-dotnet-example-3"
+@attribute [RenderModeServer]
+@implements IDisposable
+@inject IJSRuntime JS
 
-   <h1>Call .NET Example 3</h1>
+<h1>Call .NET Example 3</h1>
 
-   <p>
-       <label>
-           Name: <input @bind="name" />
-       </label>
-   </p>
+<p>
+    <label>
+        Name: <input @bind="name" />
+    </label>
+</p>
 
-   <p>
-       <button @onclick="TriggerDotNetInstanceMethod">
-           Trigger .NET instance method
-       </button>
-   </p>
+<p>
+    <button @onclick="TriggerDotNetInstanceMethod">
+        Trigger .NET instance method
+    </button>
+</p>
 
-   <p>
-       @result
-   </p>
+<p>
+    @result
+</p>
 
-   @code {
-       private string? name;
-       private string? result;
-       private DotNetObjectReference<CallDotNetExample3>? objRef;
+@code {
+    private string? name;
+    private string? result;
+    private DotNetObjectReference<CallDotNetExample3>? objRef;
 
-       protected override void OnInitialized()
-       {
-           objRef = DotNetObjectReference.Create(this);
-       }
+    protected override void OnInitialized()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
 
-       public async Task TriggerDotNetInstanceMethod()
-       {
-           result = await JS.InvokeAsync<string>("sayHello2", objRef, name);
-       }
+    public async Task TriggerDotNetInstanceMethod()
+    {
+        result = await JS.InvokeAsync<string>("sayHello2", objRef, name);
+    }
 
-       [JSInvokable]
-       public string GetHelloMessage(string passedName) => $"Hello, {passedName}!";
+    [JSInvokable]
+    public string GetHelloMessage(string passedName) => $"Hello, {passedName}!";
 
-       public void Dispose()
-       {
-           objRef?.Dispose();
-       }
-   }
-   ```
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
+}
+```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-   :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-   :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-   :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-   :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
 :::moniker-end
 
-   In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
 ## Pass a `DotNetObjectReference` to a class with multiple JavaScript functions
 
