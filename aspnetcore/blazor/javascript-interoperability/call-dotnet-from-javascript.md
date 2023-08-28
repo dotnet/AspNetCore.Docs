@@ -457,7 +457,7 @@ To pass arguments to an instance method:
 
    `CallDotNetExample3.razor`:
 
-   :::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
    ```razor
    @page "/call-dotnet-example-3"
@@ -508,9 +508,9 @@ To pass arguments to an instance method:
    }
    ```
 
-   :::moniker-end
+:::moniker-end
 
-   :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
