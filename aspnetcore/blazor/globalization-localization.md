@@ -255,7 +255,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 
 :::moniker range="< aspnetcore-5.0"
 
-By default, the Intermediate Language (IL) Linker configuration for client-side rendering (CSR) strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+By default, the Intermediate Language (IL) Linker configuration for client-side rendering strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
 
 :::moniker-end
 
@@ -369,7 +369,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the pr
 
 :::moniker-end
 
-The app's culture for client-side rendering (CSR) is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
+The app's culture for client-side rendering is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
 Provide JS functions to get and set the user's culture selection with browser local storage:
 

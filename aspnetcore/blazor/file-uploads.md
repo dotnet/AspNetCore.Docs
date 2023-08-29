@@ -49,7 +49,7 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> can be used to specify a larger size if required.
 
-If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in performance and security problems, especially for server-side apps. Instead, consider adopting either of the following approaches for server-side apps:
+If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in performance and security problems, especially for server-side components. Instead, consider adopting either of the following approaches:
 
 * Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
@@ -788,7 +788,7 @@ public class UploadResult
 ```
 
 > [!NOTE]
-> The preceding `UploadResult` class can be shared between client- and server-based projects, for example, in a **:::no-loc text="Shared":::** project of the hosted Blazor WebAssembly [solution] or a shared project added to a Blazor Web App. When client- and server-side projects share the class, add an import to the app project's `_Imports.razor` files for the shared project. For example:
+> The preceding `UploadResult` class can be shared between client- and server-based projects. When client- and server-side projects share the class, add an import to each project's `_Imports.razor` file for the shared project. For example:
 >
 > ```razor
 > @using BlazorSample.Shared
@@ -816,7 +816,7 @@ A security best practice for production apps is to avoid sending error messages 
 > Add the client-side rendering (CSR) attribute to the top of the following component in a Blazor Web App:
 >
 > ```razor
-> @attribute [RenderModeClient]
+> @attribute [RenderModeWebAssembly]
 > ```
 
 :::moniker-end
@@ -1268,7 +1268,7 @@ With server interactivity, file data is streamed over the SignalR connection int
 
 <!-- UPDATE 8.0 Cross-link CSR -->
 
-For client-side rendering (CSR) and interactivity, file data is streamed directly into the .NET code within the browser.
+For a client-side component, file data is streamed directly into the .NET code within the browser.
 
 :::moniker range=">= aspnetcore-6.0"
 
