@@ -243,7 +243,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)), apply the directives described in the *Policy directives* section:
+In the `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)), apply the directives described in the *Policy directives* section:
 
 :::moniker range=">= aspnetcore-6.0"
 

@@ -59,7 +59,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 * For a Blazor Web App in the **Additional information** dialog:
   * To enable interactivity with server-side rendering (SSR), select the **Use interactive server components** checkbox.
-  * To enable interactivity with client-side rendering (CSR) WebAssembly components, select the **Use interactive client components** checkbox.
+  * To enable interactivity with client-side rendering (CSR), select the **Use interactive client components** checkbox.
 
 :::moniker-end
 
