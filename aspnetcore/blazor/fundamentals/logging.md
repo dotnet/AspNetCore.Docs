@@ -118,7 +118,7 @@ For general ASP.NET Core logging guidance, see <xref:fundamentals/logging/index>
 
 ## Client-side logging
 
-Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported client-side. For example, client-side apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the client-side app are ***insecure*** and can be easily discovered by malicious users.
+Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported client-side. For example, client-side components don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored client-side are ***insecure*** and can be easily discovered by malicious users.
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -501,7 +501,7 @@ In the following `CustomLoggerExample` component:
 
 ```razor
 @page "/custom-logger-example"
-@attribute [RenderModeClient]
+@attribute [RenderModeWebAssembly]
 @using Microsoft.Extensions.Logging
 @inject ILogger<CustomLoggerExample> Logger
 
@@ -808,7 +808,7 @@ Use ***either*** of the following approaches:
   }
   ```
 
-  For more information on how to enable a client-side app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
+  For more information on how to configure a client-side app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
 
 * Using a log filter, the following example:
 
