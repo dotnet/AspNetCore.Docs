@@ -12,14 +12,14 @@ uid: blazor/js-interop/import-export-interop
 
 This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later.
 
-Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, which is uniformly supported across Blazor hosting models and described in the following articles:
+Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, which is uniformly supported across Blazor render modes and described in the following articles:
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
 <xref:Microsoft.JSInterop.IJSRuntime> enables library authors to build JS interop libraries that can be shared across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor.
 
-This article describes an alternative JS interop approach specific to WebAssembly-based apps available for the first time with the release of .NET 7. These approaches are appropriate when you only expect to run on client-side WebAssembly and not in the other Blazor hosting models. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
+This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
 
 > [!NOTE]
 > This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop>.
@@ -119,7 +119,7 @@ In the following `CallJavaScript1` component:
 :::moniker-end
 
 > [!NOTE]
-> Include a conditional check in code with <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called by a component rendered on the client. This is important for libraries/NuGet packages that target Blazor hosting models that aren't based on WebAssembly, which can't execute the code provided by this JS interop API.
+> Include a conditional check in code with <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called by a component rendered on the client. This is important for libraries/NuGet packages that target server-side components, which can't execute the code provided by this JS interop API.
 
 To import a JS function to call it from C#, use the [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute) on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
 
