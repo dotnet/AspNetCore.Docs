@@ -105,7 +105,7 @@ To use `IMeterFactory` in an app, create a type that uses `IMeterFactory` to cre
 
 Register the metrics type with DI in `Program.cs`:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetric":::
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
 
 Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
 
