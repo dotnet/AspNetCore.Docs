@@ -28,7 +28,7 @@ For information on how to call JS functions from .NET, see <xref:blazor/js-inter
 
 To invoke a static .NET method from JavaScript (JS), use the JS functions:
 
-* `DotNet.invokeMethodAsync` (*Recommended*): Asynchronous for both server-side and client-side apps.
+* `DotNet.invokeMethodAsync` (*recommended*): Asynchronous for both server-side and client-side components.
 * `DotNet.invokeMethod`: Synchronous for client-side components only.
 
 Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments.
@@ -46,7 +46,7 @@ DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (client-side components) returns the result of the operation.
 
 > [!IMPORTANT]
-> We recommend the asynchronous function (`invokeMethodAsync`) over the synchronous version (`invokeMethod`) in server-side scenarios.
+> For server-side components, we recommend the asynchronous function (`invokeMethodAsync`) over the synchronous version (`invokeMethod`).
 
 The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute).
 
@@ -255,7 +255,7 @@ Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream 
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethodAsync` (*Recommended*) or `invokeMethod` (client-side components only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. Pass the identifier of the instance .NET method and any arguments. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` (*recommended*) or `invokeMethod` (client-side components only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. Pass the identifier of the instance .NET method and any arguments. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 
   In the following example:
 
@@ -273,7 +273,7 @@ To invoke an instance .NET method from JavaScript (JS):
   `invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `invokeMethod` (client-side components only) returns the result of the operation.
 
   > [!IMPORTANT]
-  > We recommend using the asynchronous function (`invokeMethodAsync`) over the synchronous version (`invokeMethod`) in server-side scenarios.
+  > For server-side components, we recommend the asynchronous function (`invokeMethodAsync`) over the synchronous version (`invokeMethod`).
 
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
@@ -818,7 +818,7 @@ public class GenericType<TValue>
 In the following `invokeMethodsAsync` function:
 
 * The generic type class's `Update` and `UpdateAsync` methods are called with arguments representing strings and numbers.
-* Client-side apps support calling .NET methods synchronously with `invokeMethod`. `syncInterop` receives a boolean value indicating if the JS interop is occurring in a client-side app. When `syncInterop` is `true`, `invokeMethod` is safely called. If the value of `syncInterop` is `false`, only the asynchronous function `invokeMethodAsync` is called because the JS interop is executing in a server-side app.
+* Client-side components support calling .NET methods synchronously with `invokeMethod`. `syncInterop` receives a boolean value indicating if the JS interop is occurring on the client. When `syncInterop` is `true`, `invokeMethod` is safely called. If the value of `syncInterop` is `false`, only the asynchronous function `invokeMethodAsync` is called because the JS interop is executing in a server-side component.
 * For demonstration purposes, the <xref:Microsoft.JSInterop.DotNetObjectReference> function call (`invokeMethod` or `invokeMethodAsync`), the .NET method called (`Update` or `UpdateAsync`), and the argument are written to the console. The arguments use a random number to permit matching the JS function call to the .NET method invocation (also written to the console on the .NET side). Production code usually doesn't write to the console, either on the client or the server. Production apps usually rely upon app *logging*. For more information, see <xref:blazor/fundamentals/logging> and <xref:fundamentals/logging/index>.
 
 ```html
@@ -970,7 +970,7 @@ In the following `GenericsExample` component:
 
 In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 
-The following demonstrates typical output of the preceding example when the **`Invoke Interop`** button is selected in a client-side app:
+The following demonstrates typical output of the preceding example when the **`Invoke Interop`** button is selected in a client-side component:
 
 > JS: invokeMethodAsync:Update('string 37802')  
 > .NET: Update: GenericType<System.String>: string 37802  
@@ -985,9 +985,9 @@ The following demonstrates typical output of the preceding example when the **`I
 > .NET: UpdateAsync: GenericType<System.String>: string 53051  
 > .NET: UpdateAsync: GenericType<System.Int32>: 48995
 
-If the preceding example is implemented in a server-side app, the synchronous calls with `invokeMethod` are avoided. We recommend the asynchronous function (`invokeMethodAsync`) over the synchronous version (`invokeMethod`) in server-side scenarios.
+If the preceding example is implemented in a server-side component, the synchronous calls with `invokeMethod` are avoided. For server-side components, we recommend the asynchronous function (`invokeMethodAsync`) over the synchronous version (`invokeMethod`).
 
-Typical output of a server-side app:
+Typical output of a server-side component:
 
 > JS: invokeMethodAsync:Update('string 34809')  
 > .NET: Update: GenericType<System.String>: string 34809  
@@ -1807,7 +1807,7 @@ In the preceding example:
 
 <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
-<xref:blazor/file-uploads> covers how to upload a file in Blazor. For a forms example that streams `<textarea>` data in a server-side app, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
+<xref:blazor/file-uploads> covers how to upload a file in Blazor. For a forms example that streams `<textarea>` data in a server-side component, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
 
 :::moniker-end
 
@@ -1815,9 +1815,9 @@ In the preceding example:
 
 ## JavaScript `[JSImport]`/`[JSExport]` interop
 
-*This section applies to client-side apps.*
+*This section applies to client-side components.*
 
-As an alternative to interacting with JavaScript (JS) in client-side apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
+As an alternative to interacting with JavaScript (JS) in client-side components using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>.
 

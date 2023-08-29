@@ -129,9 +129,9 @@ The following `CallJsExample1` component:
 
 ## JavaScript API restricted to user gestures
 
-*This section only applies to server-side apps.*
+*This section applies to server-side components.*
 
-Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in server-side apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use `onclick` instead of Blazor's `@onclick` directive attribute.
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in server-side components because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use `onclick` instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -1123,7 +1123,7 @@ In the preceding example:
 * The `{TIMEOUT}` placeholder is a <xref:System.TimeSpan> (for example, `TimeSpan.FromSeconds(80)`).
 * The `{ID}` placeholder is the identifier for the function to invoke. For example, the value `someScope.someFunction` invokes the function `window.someScope.someFunction`.
 
-Although a common cause of JS interop failures are network failures in server-side apps, per-invocation timeouts can be set for JS interop calls in client-side apps. Although no SignalR circuit exists in a client-side app, JS interop calls might fail for other reasons that apply in client-side apps.
+Although a common cause of JS interop failures are network failures with server-side components, per-invocation timeouts can be set for JS interop calls for client-side components. Although no SignalR circuit exists for a client-side component, JS interop calls might fail for other reasons that apply.
 
 For more information on resource exhaustion, see <xref:blazor/security/server/threat-mitigation>.
 
@@ -1663,9 +1663,9 @@ longRunningFn aborted!
 
 ## JavaScript `[JSImport]`/`[JSExport]` interop
 
-*This section applies to client-side apps.*
+*This section applies to client-side components.*
 
-As an alternative to interacting with JavaScript (JS) in client-side apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
+As an alternative to interacting with JavaScript (JS) in client-side components using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
@@ -1675,7 +1675,7 @@ For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 ## Unmarshalled JavaScript interop
 
-*This section applies to client-side apps.*
+*This section applies to client-side components.*
 
 Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> interface is obsolete and should be replaced with JavaScript `[JSImport]`/`[JSExport]` interop.
 

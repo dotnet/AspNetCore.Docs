@@ -474,6 +474,6 @@ For more information, see:
 
 ## Size limits on JavaScript interop calls
 
-*This section only applies to server-side components. For client-side components, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
+*This section only applies to interactive components in server-side apps. For client-side components, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
 
 For interactive components in server-side apps, JS interop calls passing data from the client to the server are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information on the size limit, error messages, and guidance on dealing with message size limits, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
