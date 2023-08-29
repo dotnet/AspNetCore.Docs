@@ -474,33 +474,33 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker-end
 
-## Location of `<head>` content
+## Location of `<head>` and `<body>` content
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, `<head>` content is located in the `Components/App.razor` file.
+In a Blazor Web App, `<head>` and `<body>` content is located in the `Components/App.razor` file.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-In a Blazor Server app, `<head>` content is located in the `Pages/_Host.cshtml` file.
+In a Blazor Server app, `<head>` and `<body>` content is located in the `Pages/_Host.cshtml` file.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-In a Blazor Server app, `<head>` content is located in the `Pages/_Layout.cshtml` file.
+In a Blazor Server app, `<head>` and `<body>` content is located in the `Pages/_Layout.cshtml` file.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In a Blazor Server app, `<head>` content is located in the `Pages/_Host.cshtml` file.
+In a Blazor Server app, `<head>` and `<body>` content is located in the `Pages/_Host.cshtml` file.
 
 :::moniker-end
 
-In a Blazor WebAssembly app, `<head>` content is located in the `wwwroot/index.html` file.
+In a Blazor WebAssembly app, `<head>` and `<body>` content is located in the `wwwroot/index.html` file.
 
 :::moniker range="< aspnetcore-8.0"
 
