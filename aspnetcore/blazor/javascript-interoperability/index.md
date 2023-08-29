@@ -138,7 +138,7 @@ In the following example, the `DOMCleanup` component:
         if (firstRender)
         {
             jsModule = await JS.InvokeAsync<IJSObjectReference>(
-                "import", "./Pages/DOMCleanup.razor.js");
+                "import", "./Components/Pages/DOMCleanup.razor.js");
 
             await jsModule.InvokeVoidAsync("DOMCleanup.createObserver");
         }
