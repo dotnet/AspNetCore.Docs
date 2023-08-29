@@ -14,7 +14,7 @@ The following code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> 
 
 [`WebApplication.Create`](xref:Microsoft.AspNetCore.Builder.WebApplication.Create%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
 
-[!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/middleware.md)]
+[!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/middleware7.md)]
 
 ### Working with ports
 
