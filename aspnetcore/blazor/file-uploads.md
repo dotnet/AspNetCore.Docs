@@ -809,7 +809,6 @@ A security best practice for production apps is to avoid sending error messages 
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]

@@ -66,3 +66,11 @@ groups:
       title: Port/domain hosting
     - id: route-subpath
       title: Route subpath hosting
+- id: blazor-render-modes
+  title: Blazor Render Mode
+  prompt: Choose a Blazor render mode
+  pivots:
+    - id: server
+      title: Server
+    - id: webassembly
+      title: WebAssembly
