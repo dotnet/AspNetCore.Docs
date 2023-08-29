@@ -77,4 +77,6 @@ app.Run(context =>
 
 Terminal middleware is middleware that runs if no endpoint handles the request.
 
+For information on antiforgery middleware in Minimal APIs, see <xref:security/anti-request-forgery#afwma>
+
 :::moniker-end
