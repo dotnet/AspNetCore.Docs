@@ -599,6 +599,8 @@ items:
                 uid: spa/react
               - name: JavaScript Services
                 uid: client-side/spa-services
+              - name: Vue with Visual Studio >>
+                href: /visualstudio/javascript/tutorial-asp-net-core-with-vue
           - name: LibMan
             items:
               - name: Overview
