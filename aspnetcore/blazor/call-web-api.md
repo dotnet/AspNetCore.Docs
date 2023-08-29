@@ -59,7 +59,7 @@ The Blazor examples that demonstrate obtaining weather data from a server API ar
 
 <!-- UPDATE 8.0 Cross-link SSR and CSR -->
 
-For server-side components in Blazor Web Apps that require server interactivity, add the server-side rendering (CSR) attribute to the top of the component:
+For server-side components in Blazor Web Apps that require server interactivity, add the server-side rendering (SSR) attribute to the top of the component:
 
 ```razor
 @attribute [RenderModeServer]
