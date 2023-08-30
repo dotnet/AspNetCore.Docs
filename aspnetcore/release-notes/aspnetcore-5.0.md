@@ -342,9 +342,9 @@ Prior to .NET 5.0, building and publishing a *Dockerfile* for an ASP.NET Core ap
 
 ## Authentication and authorization
 
-### Azure Active Directory authentication with Microsoft.Identity.Web
+### Microsoft Entra ID. authentication with Microsoft.Identity.Web
 
-The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Azure Active Directory](/azure/active-directory/fundamentals/active-directory-whatis) (Azure AD). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
+The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Microsoft Entra ID.](/azure/active-directory/fundamentals/active-directory-whatis) (Azure AD). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
 
 * A better experience for authentication through Azure AD.
 * An easier way to access Azure resources on behalf of your users, including [Microsoft Graph](/graph/overview). See the [Microsoft.Identity.Web sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2), which starts with a basic login and advances through multi-tenancy, using Azure APIs, using Microsoft Graph, and protecting your own APIs. `Microsoft.Identity.Web` is available alongside .NET 5.
