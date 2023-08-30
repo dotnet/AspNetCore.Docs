@@ -64,7 +64,7 @@ In the **New File** dialog:
 
 Replace the contents of the `Views/HelloWorld/Index.cshtml` Razor view file with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/HelloWorld/Index.cshtml?highlight=7)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/HelloWorld/Index.cshtml?highlight=7)]
 
 Navigate to `https://localhost:{PORT}/HelloWorld`:
 
@@ -124,7 +124,7 @@ Open the `Views/HelloWorld/Index.cshtml` view file.
 
 Change the title and `<h2>` element as highlighted in the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 The title and `<h2>` element are slightly different so it's clear which part of the code changes the display.
 
@@ -183,7 +183,7 @@ Create a Welcome view template named `Views/HelloWorld/Welcome.cshtml`.
 
 You'll create a loop in the `Welcome.cshtml` view template that displays "Hello" `NumTimes`. Replace the contents of `Views/HelloWorld/Welcome.cshtml` with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/HelloWorld/Welcome.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/HelloWorld/Welcome.cshtml)]
 
 Save your changes and browse to the following URL:
 
