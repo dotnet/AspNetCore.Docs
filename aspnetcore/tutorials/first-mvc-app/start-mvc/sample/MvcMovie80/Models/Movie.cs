@@ -1,6 +1,6 @@
 ﻿#define Final
 #if First
-#region First
+// <snippet_First>
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcMovie.Models;
@@ -15,11 +15,11 @@ public class Movie
     public decimal Price { get; set; }
 }
 
-#endregion
+ // </snippet_First>
 #endif
 
 #if Second
-#region Second
+// <snippet_Second>
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -38,11 +38,11 @@ public class Movie
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
 }
-#endregion
+// </snippet_Second>
 #endif
 
 #if AddRating
-#region AddRating
+// <snippet_AddRating>
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -63,10 +63,10 @@ public class Movie
     public decimal Price { get; set; }
     public string? Rating {  get; set; }
 }
-#endregion
+// </snippet_AddRating>
 #endif
 #if Final
-#region FinalSnippet
+// <snippet_FinalSnippet>
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -81,7 +81,7 @@ public class Movie
     [Required]
     public string? Title { get; set; }
 
-    #region DataType
+    // <snippet_DataType>
     [Display(Name = "Release Date")]
     [DataType(DataType.Date)]
     public DateTime ReleaseDate { get; set; }
@@ -90,7 +90,7 @@ public class Movie
     [DataType(DataType.Currency)]
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }    
-    #endregion
+    // </snippet_DataType>
 
     [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
     [Required]
@@ -102,11 +102,11 @@ public class Movie
     [Required]
     public string? Rating { get; set; }
 }
-#endregion
+// </snippet_FinalSnippet>
 #endif
 
 #if AttrOneLine
-#region AttrOneLine
+// <snippet_AttrOneLine>
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -128,5 +128,5 @@ public class Movie
     [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$"), StringLength(5)]
     public string Rating { get; set; }
 }
-#endregion
+// </snippet_AttrOneLine>
 #endif

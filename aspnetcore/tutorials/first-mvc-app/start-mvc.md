@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 04/25/2023
+ms.date: 08/21/2023
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3, engagement-fy23
 ---
@@ -40,11 +40,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 [!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
--->
 
 ---
 
@@ -95,12 +91,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
-* Start Visual Studio for Mac and select **Visual Studio** > **Preferences**.
-* Select **Other** > **Preview Features** from the sidebar, enable **Use previews of the .NET SDK**, and select **OK**.
-* Restart Visual Studio.
 * Select **File** > **New Project...**.
 * Select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
 * In the **Configure your new Web Application (Model-View-Controller)** dialog:
@@ -109,7 +99,6 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 * Select **Continue**.
 * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Create**.
--->
 
 ---
 
@@ -167,9 +156,6 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 * Select Option+Command+Return to run the app without the debugger.
 
   Visual Studio for Mac:
@@ -187,7 +173,6 @@ You can launch the app in debug or non-debug mode from the **Debug** menu.
 The following image shows the app:
 
 ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos_VS22.png)
--->
 
 ---
 

@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 04/23/2023
+ms.date: 08/21/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
 ms.custom: contperf-fy21q3, engagement-fy23
@@ -64,9 +64,6 @@ Add an `Index` view for the `HelloWorldController`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 Control-click the *Views* folder and select **Add > New Folder** and name the folder *HelloWorld*.
 
 Control-click the *Views/HelloWorld* folder and select **Add > New File**.
@@ -79,7 +76,6 @@ In the **New File** dialog:
 * Select **Create**.
 
 ![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_view_macVS22.png)
--->
 
 ---
 

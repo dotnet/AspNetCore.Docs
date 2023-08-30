@@ -10,7 +10,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    #region Constructor
+    // <snippet_Constructor>
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -19,21 +19,19 @@ namespace MvcMovie.Controllers
         {
             _context = context;
         }
-        #endregion
+    // </snippet_Constructor>
 #if FirstIndex
-        #region FirstIndex
+        // <snippet_FirstIndex>
         // GET: Movies
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index()
         {
-            return _context.Movie != null ? 
-                        View(await _context.Movie.ToListAsync()) :
-                        Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            return View(await _context.Movie.ToListAsync());
         }
-        #endregion
+        // </snippet_FirstIndex>
 #endif
 
 #if IndexSearch1
-        #region IndexSearch1
+        // <snippet_IndexSearch1>
         public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Movie == null)
@@ -44,20 +42,20 @@ namespace MvcMovie.Controllers
             var movies = from m in _context.Movie
                         select m;
 
-            #region IndexSearchCheckForNull
+            // <snippet_IndexSearchCheckForNull>
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title!.Contains(searchString));
             }
-            #endregion
+            // </snippet_IndexSearchCheckForNull>
 
             return View(await movies.ToListAsync());
         }
-        #endregion
+        // </snippet_IndexSearch1>
 #endif
 
 #if IndexSearchID
-        #region IndexSearchID
+// <snippet_IndexSearchID>
 public async Task<IActionResult> Index(string id)
 {
     if (_context.Movie == null)
@@ -75,19 +73,19 @@ public async Task<IActionResult> Index(string id)
 
     return View(await movies.ToListAsync());
 }
-        #endregion
+// </snippet_IndexSearchID>
 #endif
 #if IndexPost
-        #region IndexPost
+        // <snippet_IndexPost>
         [HttpPost]
         public string Index(string searchString, bool notUsed)
         {
             return "From [HttpPost]Index: filter on " + searchString;
         }
-        #endregion
+        // </snippet_IndexPost>
 #endif
 
-        #region IndexGenre
+        // <snippet_IndexGenre>
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
@@ -96,12 +94,12 @@ public async Task<IActionResult> Index(string id)
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
             }
 
-            #region IndexGenreLINQ
+            // <snippet_IndexGenreLINQ>
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
-            #endregion
+            // </snippet_IndexGenreLINQ>
             var movies = from m in _context.Movie
                          select m;
 
@@ -123,10 +121,10 @@ public async Task<IActionResult> Index(string id)
 
             return View(movieGenreVM);
         }
-        #endregion
+        // </snippet_IndexGenre>
 
 
-        #region Details
+        // <snippet_Details>
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -144,8 +142,8 @@ public async Task<IActionResult> Index(string id)
 
             return View(movie);
         }
-        #endregion
-        #region Create
+        // </snippet_Details>
+        // <snippet_Create>
         // GET: Movies/Create
         public IActionResult Create()
         {
@@ -167,9 +165,9 @@ public async Task<IActionResult> Index(string id)
             }
             return View(movie);
         }
-        #endregion
+        // </snippet_Create>
 
-        #region EditGet
+        // <snippet_EditGet>
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -185,9 +183,9 @@ public async Task<IActionResult> Index(string id)
             }
             return View(movie);
         }
-        #endregion
+        // </snippet_EditGet>
 
-        #region EditPost
+        // <snippet_EditPost>
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -222,14 +220,14 @@ public async Task<IActionResult> Index(string id)
             }
             return View(movie);
         }
-        #endregion
+        // </snippet_EditPost>
 
-        #region Delete
-        #region DeleteSignature
+        // <snippet_Delete>
+        // <snippet_DeleteSignature>
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            #endregion
+            // </snippet_DeleteSignature>
 
             if (id == null)
             {
@@ -246,13 +244,13 @@ public async Task<IActionResult> Index(string id)
             return View(movie);
         }
 
-        #region DeleteConfirmedSignature
+        // <snippet_DeleteConfirmedSignature>
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            #endregion
+ 			// </snippet_DeleteConfirmedSignature>
             if (_context.Movie == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
@@ -263,7 +261,7 @@ public async Task<IActionResult> Index(string id)
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        #endregion
+        // </snippet_Delete>
 
         private bool MovieExists(int id)
         {
