@@ -14,12 +14,14 @@ By [Damien Bod](https://twitter.com/damien_bod)
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant generally represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Microsoft Entra ID (previously known as Azure AD) and Azure AD B2C are separate product offerings. An Entra ID tenant generally represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+
+> [!TIP]
+> [Microsoft Entra External ID for customers](/azure/active-directory/external-identities/customers/overview-customers-ciam) is Microsoft’s new customer identity and access management (CIAM) solution
 
 In this tutorial, you'll learn how to configure an ASP.NET Core app for authentication with Azure AD B2C.
 
 ## Prerequisites
-
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/dotnet).
 - .NET 5.0 SDK or later. [Install the latest .NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) for your platform.
