@@ -147,7 +147,7 @@ Some of the articles under this *Overview* pertain to either of the following Bl
 * A hosted Blazor WebAssembly solution, which is composed of two apps: a client-side Blazor WebAssembly app and a server-side ASP.NET Core host app. Authenticated users to the client app access server resources and data provided by the server app.
 * A standalone Blazor WebAssembly app that uses web API with authenticated users to access server resources and data provided by a server app. This scenario is similar to using a hosted Blazor WebAssembly solution; but in this case, the client app isn't hosted by the server app.
 
-When these scenarios are implemented in documentation examples, ***two*** identity provider registrations are used, one for the client app and one for the server app. Using separate registrations, for example in Azure Active Directory, isn't strictly required. However, using two registrations is a security best practice because it isolates the registrations by app. Using separate registrations also allows independent configuration of the client and server registrations.
+When these scenarios are implemented in documentation examples, ***two*** identity provider registrations are used, one for the client app and one for the server app. Using separate registrations, for example in Microsoft Entra ID, isn't strictly required. However, using two registrations is a security best practice because it isolates the registrations by app. Using separate registrations also allows independent configuration of the client and server registrations.
 
 ## Refresh tokens
 
@@ -174,7 +174,7 @@ Apps often require claims for users based on a web API call to a server. For exa
 For examples, see the following resources:
 
 * [Additional scenarios: Customize the user](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
-* <xref:blazor/security/webassembly/aad-groups-roles>
+* <xref:blazor/security/webassembly/meid-groups-roles>
 
 ## Prerendering support
 
@@ -252,12 +252,12 @@ Standalone Blazor WebAssembly apps:
 
 * [General guidance for OIDC providers and the WebAssembly Authentication Library](xref:blazor/security/webassembly/standalone-with-authentication-library)
 * [Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Azure Active Directory (AAD)](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
+* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c)
 
 Hosted Blazor WebAssembly apps:
 
-* [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
 

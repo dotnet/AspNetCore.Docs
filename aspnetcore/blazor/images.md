@@ -14,6 +14,8 @@ uid: blazor/images
 
 This article describes common scenarios for working with images in Blazor apps. 
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net6-or-later.md)]
+
 ## Dynamically set an image source
 
 The following example demonstrates how to dynamically set an image's source with a C# field.
@@ -32,9 +34,44 @@ In the following `ShowImage1` component:
 * The `ShowImage` method updates the `imageSource` field based on an image `id` argument passed to the method.
 * Rendered buttons call the `ShowImage` method with an image argument for each of the three available images in the `images` folder. The file name is composed using the argument passed to the method and matches one of the three images in the `images` folder.
 
-`Pages/ShowImage1.razor`:
+`ShowImage1.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/show-image-1"
+@attribute [RenderModeServer]
+
+<h1>Dynamic Image Source Example</h1>
+
+@if (imageSource is not null)
+{
+    <p>
+        <img src="@imageSource" />
+    </p>
+}
+
+@for (var i = 1; i <= 3; i++)
+{
+    var imageId = i;
+    <button @onclick="() => ShowImage(imageId)">
+        Image @imageId
+    </button>
+}
+
+@code {
+    private string? imageSource;
+
+    private void ShowImage(int id)
+    {
+        imageSource = $"images/image{id}.png";
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/images/ShowImage1.razor":::
 
@@ -108,11 +145,47 @@ The following `ShowImage2` component:
   * Invokes the `setImage` JavaScript function, which accepts the data on the client.
 
 > [!NOTE]
-> Blazor Server apps use a dedicated <xref:System.Net.Http.HttpClient> service to make requests, so no action is required by the developer in Blazor Server apps to register an <xref:System.Net.Http.HttpClient> service. Blazor WebAssembly apps have a default <xref:System.Net.Http.HttpClient> service registration when the app is created from a Blazor WebAssembly project template. If an <xref:System.Net.Http.HttpClient> service registration isn't present in `Program.cs` of a Blazor WebAssembly app, provide one by adding `builder.Services.AddHttpClient();`. For more information, see <xref:fundamentals/http-requests>.
+> Server-side apps use a dedicated <xref:System.Net.Http.HttpClient> service to make requests, so no action is required by the developer of a server-side Blazor app to register an <xref:System.Net.Http.HttpClient> service. Client-side apps have a default <xref:System.Net.Http.HttpClient> service registration when the app is created from a Blazor project template. If an <xref:System.Net.Http.HttpClient> service registration isn't present in the `Program` file of a client-side app, provide one by adding `builder.Services.AddHttpClient();`. For more information, see <xref:fundamentals/http-requests>.
 
-`Pages/ShowImage2.razor`:
+`ShowImage2.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/show-image-2"
+@attribute [RenderModeServer]
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+<h1>Stream Image Data Example</h1>
+
+<p>
+    <img id="image" />
+</p>
+
+<button @onclick="SetImageAsync">
+    Set Image
+</button>
+
+@code {
+    private async Task<Stream> GetImageStreamAsync()
+    {
+        return await Http.GetStreamAsync(
+            "https://avatars.githubusercontent.com/u/9141961");
+    }
+
+    private async Task SetImageAsync()
+    {
+        var imageStream = await GetImageStreamAsync();
+        var dotnetImageStream = new DotNetStreamReference(imageStream);
+        await JS.InvokeVoidAsync("setImage", "image", dotnetImageStream);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/images/ShowImage2.razor":::
 
@@ -126,13 +199,8 @@ The following `ShowImage2` component:
 
 ## Additional resources
 
-<!--
-
-* <xref:blazor/forms-and-input-components#preview-an-image-provided-by-the-inputfile-component>
-
--->
-
 * <xref:blazor/file-uploads>
+* [File uploads: Upload image preview](xref:blazor/file-uploads#upload-image-preview)
 * <xref:blazor/file-downloads>
 * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
 * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>

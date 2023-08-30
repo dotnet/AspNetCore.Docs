@@ -306,6 +306,8 @@ additionalContent:
         links:
           - url: security/index.md
             text: "Overview"
+          - url: security/how-to-choose-identity-solution.md
+            text: "Choose an identity solution"
           - url: security/authentication/index.md
             text: "Authentication"
           - url: security/authorization/introduction.md

@@ -17,7 +17,7 @@ Welcome to what's new in the ASP.NET Core docs for February 2023. This article l
 
 ### Updated articles
 
-- <xref:blazor/security/webassembly/hosted-with-azure-active-directory> - Hosted Blazor WASM AAD updates
+- <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id> - Hosted Blazor WASM AAD updates
 - <xref:blazor/security/content-security-policy> - CSP article versioning and updates
 - <xref:blazor/performance> - Peformance article versioning
 - <xref:blazor/forms-and-input-components>
