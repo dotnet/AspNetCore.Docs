@@ -252,12 +252,12 @@ Standalone Blazor WebAssembly apps:
 
 * [General guidance for OIDC providers and the WebAssembly Authentication Library](xref:blazor/security/webassembly/standalone-with-authentication-library)
 * [Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Microsoft Entra (ME-ID)](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
+* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c)
 
 Hosted Blazor WebAssembly apps:
 
-* [Microsoft Entra (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
+* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
 

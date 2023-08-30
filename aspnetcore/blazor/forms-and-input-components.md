@@ -2331,7 +2331,7 @@ moniker-end
 > [!NOTE]
 > The server-side validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
 >
-> * [Microsoft Entra (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
+> * [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 > * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
 
