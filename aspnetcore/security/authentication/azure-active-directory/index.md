@@ -1,15 +1,15 @@
 ---
-title: Microsoft identity platform and Azure Active Directory with ASP.NET Core
+title: Microsoft identity platform and Microsoft Entra ID with ASP.NET Core
 author: rick-anderson
-description: Discover topics related to authentication with Microsoft identity platform Azure Active Directory for web apps and APIs in ASP.NET Core.
+description: Discover topics related to authentication with Microsoft identity platform Microsoft Entra ID for web apps and APIs in ASP.NET Core.
 ms.author: riande
 ms.date: 01/21/2020
 ms.custom: "mvc, seodec18"
 uid: security/authentication/azure-active-directory/index
 ---
-# Azure Active Directory with ASP.NET Core
+# Microsoft Entra ID with ASP.NET Core
 
-These tutorials and samples demonstrate authentication in ASP.NET Core using Microsoft identity platform and Azure Active Directory. For additional tutorials and samples using ASP.NET Core with Azure AD, see [Microsoft identity platform](/azure/active-directory/develop/).
+These tutorials and samples demonstrate authentication in ASP.NET Core using Microsoft identity platform and Microsoft Entra ID. For additional tutorials and samples using ASP.NET Core with Azure AD, see [Microsoft identity platform](/azure/active-directory/develop/).
 
 ## Application Scenarios
 
