@@ -10,7 +10,7 @@ uid: security/how-to-choose-identity
 
 # Choose an identity management solution
 
-Most web apps support authentication to ensure that users are who they claim to be. A *user* might be a person or another app. Management of access ensures users are only able to see and modify the information they are authorized to see and modify. For example, an end user shouldn't have access to the administrative section of a website. Identity management solutions are built to handle the requirements of authentication and authorization-related tasks. To learn more about identity management, see [What is identity and access management?](/azure/active-directory/fundamentals/introduction-identity-access-management)). There are many [identity management solutions for .NET web apps](xref:security/identity-management-solutions) available, each with different capabilities and requirements to use or install. This article provides guidance on how to choose the right solution.
+Most web apps support authentication to ensure that users are who they claim to be. A *user* might be a person or another app. Management of access ensures users are only able to see and modify the information they're authorized to see and modify. For example, an end user shouldn't have access to the administrative section of a website. Identity management solutions are built to handle the requirements of authentication and authorization-related tasks. To learn more about identity management, see [What is identity and access management?](/azure/active-directory/fundamentals/introduction-identity-access-management). Many [identity management solutions for .NET web apps](xref:security/identity-management-solutions) are available, each with different capabilities and requirements to use or install. This article provides guidance on how to choose the right solution.
 
 ## Basic identity management with ASP.NET Core Identity
 
@@ -46,7 +46,7 @@ The main disadvantage to using tokens is that they require a service (typically 
 
 A common reason an OIDC server is required is for applications that expose web-based APIs that are consumed by other apps. For exposed web-based APIs, client UIs such as Single Page Applications (SPA), mobile clients, and desktop clients are considered to be part of the same app. SPA examples include Angular, React, and Blazor WebAssembly. If apps other than your web app or any client UIs must make a secure API call to your app, you'll likely want to use tokens. If you only have client UIs, ASP.NET Core Identity provides the option to acquire a token during authentication. The authentication token issued by ASP.NET Core Identity:
 
-* Can be used by mobile and desktop clients (cookies are preferred over tokens for both security and simplicity).
+* Can be used by mobile and desktop clients. Cookies are preferred over tokens for both security and simplicity.
 * Isn't suitable for managing access from third-party apps.
 
 Another reason an OIDC server is required is for sharing sign-ins with other apps. Commonly referred to as *single sign on*, this feature enables users to:
@@ -62,13 +62,18 @@ For apps that don't share logins with other apps, the simplest way to quickly se
 * Containers run in a host like Docker.
 * Web-based services you integrate with to manage identity.
 
-Some solutions are free and open source, while others are commercially licensed. See [identity management solutions](xref:security/identity-management-solutions) for a list of available options. It is possible that your organization already uses an existing identity provider. In that case, it may make sense to use the existing provider instead of going with a different solution. All of the major solutions provide documentation for configuring ASP.NET Core to use their product or service.
+Some solutions are free and open source, while others are commercially licensed. See [identity management solutions](xref:security/identity-management-solutions) for a list of available options. It's possible that your organization already uses an identity provider. In that case, it may make sense to use the existing provider instead of going with a different solution. All of the major solutions provide documentation for configuring ASP.NET Core to use their product or service.
 
 ## Disconnected scenarios
 
 Many solutions, such as [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. 
 
-ASP.NET Core Identity works perfectly well in disconnected scenarios. If you require a full OIDC server and support scenarios where either your app cannot access the Internet or must still function on the local network even if the Internet is disconnected, choose one of the following options:
+ASP.NET Core Identity works perfectly well in disconnected scenarios, such as:
+
+* The app can't access the Internet.
+* The app must still function on the local network even if the Internet is disconnected.
+
+If you require a full OIDC server for a disconnected scenario, choose one of the following options:
 
 * A solution that allows you to install and run the service on your own machines.
 * Run the authentication service locally as a container.
@@ -97,15 +102,15 @@ The following table lists some of the things to consider when choosing your iden
 |--------------|--------------------------------|------------|
 |**App integration**|Local solutions that are implemented as libraries or frameworks can often be integrated directly in your own app. Container-based solutions require a hand-off to occur between your web app and the container-based service.|Cloud-based solutions typically integrate at specific points in your sign-in flow and provide configuration to update the UI to match your theme, but the level of customization available is limited.|
 |**Configuration**|Self host solutions require configuring the software for the environment in addition to setting up how you want to manage identities. Container-based solutions typically provide a web-based UI for configuration.|Cloud-based solutions typically provide a web-based UI for configuration.|
-|**Customization**|Self-host solutions are usually highly customizable, including code-based changes. Although containerized solutions provide extensibility options, they are often more limited.|Cloud-based services allow customization but it is typically limited to configuration-based changes.|
+|**Customization**|Self-host solutions are usually highly customizable, including code-based changes. Although containerized solutions provide extensibility options, they are often more limited.|Cloud-based services allow customization, but it's typically limited to configuration-based changes.|
 |**Maintenance**|Installed products require a dedicated resource to ensure all security patches are applied in a timely fashion and to manage upgrades. The upgrade and patch process for containers is usually lower-friction and involves simply installing the provided container image.|The service provider maintains their cloud-based solution, including applying needed patches and handling upgrades.|
-|**User credentials storage**|You are responsible for data governance and handling breaches.|The risks and regulations associated with handling user credentials are delegated to the service provider.|
+|**User credentials storage**|You are responsible for data governance and handling breaches.|Managing the risks associated with handling user credentials, and complying with regulations. is delegated to the service provider.|
 
-With these caveats in mind, you can read more about available options and find links to their resources for ASP. NET Core developers in our list of [identity management solutions for ASP.NET Core](xref:security/identity-management-solutions).
+For more information about available options, see [Identity management solutions for ASP.NET Core](xref:security/identity-management-solutions).
 
 ## Next steps
 
 * Learn about [JSON Web Tokens](https://auth0.com/docs/secure/tokens/json-web-tokens)
 * Browse [sample apps with authentication/authorization and identity for ASP.NET Core](/aspnet/core/security/authentication/samples).
-* Follow a tutorial to [secure your .NET web using built-in ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity).
+* Follow a tutorial to [secure a .NET web app using built-in ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity).
 * Learn more about how to [protect web APIs](/azure/active-directory/develop/index-web-api).
