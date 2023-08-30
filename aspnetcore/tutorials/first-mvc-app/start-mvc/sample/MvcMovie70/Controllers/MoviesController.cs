@@ -250,14 +250,13 @@ public async Task<IActionResult> Index(string id)
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
- 			// </snippet_DeleteConfirmedSignature>
-            if (_context.Movie == null)
+            // </snippet_DeleteConfirmedSignature>
+			var movie = await _context.Movie.FindAsync(id);
+            if (movie != null)
             {
-                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+                _context.Movie.Remove(movie);
             }
 
-            var movie = await _context.Movie.FindAsync(id);
-            _context.Movie.Remove(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

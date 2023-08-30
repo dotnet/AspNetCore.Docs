@@ -1,6 +1,6 @@
 ﻿#define Second
 #if First
-#region First
+// <snippet_First>
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace MvcMovie.Data
         public DbSet<MvcMovie.Models.Movie> Movie { get; set; }
     }
 }
-#endregion
+// </snippet_First>
 #endif
 #if Second
 using System;
@@ -39,9 +39,9 @@ namespace MvcMovie.Data
         {
         }
 
-        #region NRTChange
+        // <snippet_NRTChange>
         public DbSet<MvcMovie.Models.Movie> Movie { get; set; } = null!;
-        #endregion
+        // </snippet_NRTChange>
     }
 }
 #endif
