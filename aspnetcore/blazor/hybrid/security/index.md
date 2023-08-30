@@ -47,7 +47,7 @@ For additional guidance, see the following resources:
 
 :::zone pivot="wpf"
 
-WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Azure Active Directory (AAD) and AAD B2C. For guidance and examples, see the following resources:
+WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For guidance and examples, see the following resources:
 
 * [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview)
 * [Sign-in a user with the Microsoft Identity Platform in a WPF Desktop application and call an ASP.NET Core Web API](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
@@ -61,7 +61,7 @@ WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/)
 
 :::zone pivot="winforms"
 
-Windows Forms apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Azure Active Directory (AAD) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview).
+Windows Forms apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview).
 
 :::zone-end
 
@@ -579,7 +579,7 @@ For additional guidance, see the following resources:
 
 :::zone pivot="wpf"
 
-WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Azure Active Directory (AAD) and AAD B2C. For guidance and examples, see the following resources:
+WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For guidance and examples, see the following resources:
 
 * [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview)
 * [Sign-in a user with the Microsoft Identity Platform in a WPF Desktop application and call an ASP.NET Core Web API](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
@@ -593,7 +593,7 @@ WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/)
 
 :::zone pivot="winforms"
 
-Windows Forms apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Azure Active Directory (AAD) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview).
+Windows Forms apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview).
 
 :::zone-end
 
