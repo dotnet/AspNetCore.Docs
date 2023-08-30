@@ -101,7 +101,7 @@ MVC invokes controller classes, and the action methods within them, depending on
 
 The routing format is set in the `Program.cs` file.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=MapControllerRoute&highlight=3)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_MapControllerRoute&highlight=3)]
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.  In the preceding URL segments:
 
@@ -152,7 +152,7 @@ In the preceding URL:
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` starts the [query string](https://wikipedia.org/wiki/Query_string).
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=MapControllerRoute&highlight=3)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_MapControllerRoute&highlight=3)]
 
 In the preceding example:
 
