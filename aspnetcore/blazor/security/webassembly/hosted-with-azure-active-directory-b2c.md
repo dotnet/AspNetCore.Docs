@@ -48,7 +48,7 @@ Record the following information:
 
 * *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash). The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
-* AAD Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+* Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 Select **Expose an API** from the sidebar and follow these steps:
 
@@ -337,7 +337,7 @@ The default access token scopes represent the list of access token scopes that a
 * Included by default in the sign in request.
 * Used to provision an access token immediately after authentication.
 
-All scopes must belong to the same app per Azure Active Directory rules. Additional scopes can be added for additional API apps as needed:
+All scopes must belong to the same app per Microsoft Entra ID rules. Additional scopes can be added for additional API apps as needed:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -420,7 +420,7 @@ For more information, see the following sections of the *Additional scenarios* a
 ## Additional resources
 
 * [Configure an app's publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain)
-* [Azure Active Directory app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
+* [Microsoft Entra ID app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

@@ -1,47 +1,47 @@
 ---
-title: ASP.NET Core Blazor WebAssembly with Azure Active Directory groups and roles
+title: ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles
 author: guardrex
-description: Learn how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
+description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID groups and roles.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 12/16/2022
-uid: blazor/security/webassembly/aad-groups-roles
+uid: blazor/security/webassembly/meid-groups-roles
 ---
-# Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
+# Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
+This article explains how to configure Blazor WebAssembly to use Microsoft Entra ID groups and roles.
 
-Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
+Microsoft Entra (ME-ID) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 
 * Groups
   * Security
   * Microsoft 365
   * Distribution
 * Roles
-  * AAD Administrator Roles
+  * ME-ID Administrator Roles
   * App Roles
 
-The guidance in this article applies to the Blazor WebAssembly AAD deployment scenarios described in the following topics:
+The guidance in this article applies to the Blazor WebAssembly ME-ID deployment scenarios described in the following topics:
 
 * [Standalone with Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Standalone with AAD](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
-* [Hosted with AAD](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+* [Standalone with ME-ID](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
+* [Hosted with ME-ID](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 
 The article's guidance provides instructions for client and server apps:
 
 * **CLIENT**: Standalone Blazor WebAssembly apps or the **:::no-loc text="Client":::** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * **SERVER**: ASP.NET Core server API/web API apps or the **:::no-loc text="Server":::** app of a hosted Blazor solution. You can ignore the **SERVER** guidance throughout the article for a standalone Blazor WebAssembly app.
 
-The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0, minor modifications are required. However, the text and code examples that pertain to interacting with AAD and Microsoft Graph are the same for all versions of ASP.NET Core.
+The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
 ## Prerequisite
 
 The guidance in this article implements the Microsoft Graph API per the *Graph SDK* guidance in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>. Follow the *Graph SDK* implementation guidance to configure the app and test it to confirm that the app can obtain Graph API data for a test user account. Additionally, see the [Graph API article's security article cross-links](xref:blazor/security/webassembly/graph-api#security-guidance) to review Microsoft Graph security concepts.
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Scopes
 
@@ -50,7 +50,7 @@ To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role
 * A **CLIENT** app is configured with the `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal.
 * A **SERVER** app is configured with the `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal.
 
-The preceding scopes are required in addition to the scopes required in AAD deployment scenarios described by the topics listed earlier (*Standalone with Microsoft Accounts*, *Standalone with AAD*, and *Hosted with AAD*).
+The preceding scopes are required in addition to the scopes required in ME-ID deployment scenarios described by the topics listed earlier (*Standalone with Microsoft Accounts*, *Standalone with ME-ID*, and *Hosted with ME-ID*).
 
 For more information, see the [Microsoft Graph permissions reference](/graph/permissions-reference).
 
@@ -59,7 +59,7 @@ For more information, see the [Microsoft Graph permissions reference](/graph/per
 
 ## Group Membership Claims attribute
 
-In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in AAD sending all of the security groups, distribution groups, and roles of the signed-in user in the [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims):
+In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security groups, distribution groups, and roles of the signed-in user in the [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims):
 
 1. Open the app's Azure portal registration.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -69,17 +69,17 @@ In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, se
 
 ## Custom user account
 
-Assign users to AAD security groups and AAD Administrator Roles in the Azure portal.
+Assign users to ME-ID security groups and ME-ID Administrator Roles in the Azure portal.
 
 The examples in this article:
 
-* Assume that a user is assigned to the AAD *Billing Administrator* role in the Azure portal AAD tenant for authorization to access server API data.
+* Assume that a user is assigned to the ME-ID *Billing Administrator* role in the Azure portal ME-ID tenant for authorization to access server API data.
 * Use [authorization policies](xref:security/authorization/policies) to control access within the **CLIENT** and **SERVER** apps.
 
 In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
-* `Roles`: AAD App Roles array (covered in the [App Roles](#app-roles) section)
-* `Wids`: AAD Administrator Roles in [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims)
+* `Roles`: ME-ID App Roles array (covered in the [App Roles](#app-roles) section)
+* `Wids`: ME-ID Administrator Roles in [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims)
 * `Oid`: Immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
 
 `CustomUserAccount.cs`:
@@ -110,9 +110,9 @@ Add the Graph SDK utility classes and configuration in the *Graph SDK* guidance 
 Add the following custom user account factory to the **CLIENT** app. The custom user factory is used to establish:
 
 * App Role claims (`appRole`) (covered in the [App Roles](#app-roles) section).
-* AAD Administrator Role claims (`directoryRole`).
+* ME-ID Administrator Role claims (`directoryRole`).
 * Example user profile data claims for the user's mobile phone number (`mobilePhone`) and office location (`officeLocation`).
-* AAD Group claims (`directoryGroup`).
+* ME-ID Group claims (`directoryGroup`).
 * An <xref:Microsoft.Extensions.Logging.ILogger> (`logger`) for convenience in case you wish to log information or errors.
 
 `CustomAccountFactory.cs`:
@@ -205,7 +205,7 @@ public class CustomAccountFactory
 
 The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
 
-The preceding code ignores group membership claims (`groups`) that are AAD Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are AAD Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for AAD Administrator Roles **provided by `wids` claims**.
+The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are ME-ID Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for ME-ID Administrator Roles **provided by `wids` claims**.
 
 In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
@@ -254,7 +254,7 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), AAD Administrator Role, or security group in `Program.cs`. The following example creates a policy for the AAD *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), ME-ID Administrator Role, or security group in `Program.cs`. The following example creates a policy for the ME-ID *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -265,7 +265,7 @@ builder.Services.AddAuthorizationCore(options =>
 });
 ```
 
-For the complete list of IDs for AAD Administrator Roles, see [Role template IDs](/azure/active-directory/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/azure/active-directory/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
 
 In the following examples, the **CLIENT** app uses the preceding policy to authorize the user.
 
@@ -275,7 +275,7 @@ The [`AuthorizeView` component](xref:blazor/security/index#authorizeview-compone
 <AuthorizeView Policy="BillingAdministrator">
     <Authorized>
         <p>
-            The user is in the 'Billing Administrator' AAD Administrator Role
+            The user is in the 'Billing Administrator' ME-ID Administrator Role
             and can see this content.
         </p>
     </Authorized>
@@ -296,7 +296,7 @@ Access to an entire component can be based on the policy using an [`[Authorize]`
 @attribute [Authorize(Policy = "BillingAdministrator")]
 ```
 
-If the user isn't authorized, they're redirected to the AAD sign-in page.
+If the user isn't authorized, they're redirected to the ME-ID sign-in page.
 
 A policy check can also be [performed in code with procedural logic](xref:blazor/security/index#procedural-logic).
 
@@ -340,7 +340,7 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 
 ## Authorize server API/web API access
 
-A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, AAD Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `role` claims. The following example creates a policy for the AAD *Billing Administrator* role in `Program.cs` using the `wids` (well-known IDs/Role Template IDs) claims:
+A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, ME-ID Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `role` claims. The following example creates a policy for the ME-ID *Billing Administrator* role in `Program.cs` using the `wids` (well-known IDs/Role Template IDs) claims:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -350,7 +350,7 @@ builder.Services.AddAuthorization(options =>
 });
 ```
 
-For the complete list of IDs for AAD Administrator Roles, see [Role template IDs](/azure/active-directory/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/azure/active-directory/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
 
 Access to a controller in the **SERVER** app can be based on using an [`[Authorize]` attribute](xref:security/authorization/simple) with the name of the policy (API documentation: <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>).
 
@@ -383,11 +383,11 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the `role` claims.
 
-Although you can't assign roles to groups without an Azure AD Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an AAD Premium account.
+Although you can't assign roles to groups without an Microsoft Entra ID Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
 If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) to configure the app's roles.
 
-If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Roles using Azure AD App Roles: Implementation](/azure/architecture/multitenant-identity/app-roles#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
+If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Implementation](/azure/architecture/multitenant-identity/app-roles#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
 
 The following is an example `appRoles` entry that creates `Admin` and `Developer` roles. These example roles are used later in this section's example at the component level to implement access restrictions:
 
@@ -425,7 +425,7 @@ The following is an example `appRoles` entry that creates `Admin` and `Developer
 
 To assign a role to a user (or group if you have a Premium tier Azure account):
 
-1. Navigate to **Enterprise applications** in the AAD area of the Azure portal.
+1. Navigate to **Enterprise applications** in the ME-ID area of the Azure portal.
 1. Select the app. Select **Manage** > **Users and groups** from the sidebar.
 1. Select the checkbox for one or more user accounts.
 1. From the menu above the list of users, select **Edit assignment**.
@@ -469,7 +469,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
 
-After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>, you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claim(s) are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>, you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claim(s) are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 

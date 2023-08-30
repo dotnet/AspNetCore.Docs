@@ -24,7 +24,7 @@ Two approaches are available for directly interacting with Microsoft Graph in Bl
 The guidance in this article isn't meant to replace the primary [Microsoft Graph documentation](/graph/) and additional Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow all of Microsoft's best practices to limit the attack surface area of your apps.
 
 > [!IMPORTANT]
-> The scenarios described in this article apply to using Azure Active Directory (AAD) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time.
+> The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time.
 
 Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="Server":::** app uses the Graph SDK/API to provide Graph data to the **:::no-loc text="Client":::** app via web API. For more information, see the [Hosted Blazor WebAssembly solutions](#hosted-blazor-webassembly-solutions) section of this article.
 
@@ -43,7 +43,7 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -147,7 +147,7 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Call Graph API from a component using the Graph SDK
 
-The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number. For any test user that you create in AAD, make sure that you give the user's AAD profile a mobile phone number in the Azure portal.
+The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's ME-ID profile data and display their mobile phone number. For any test user that you create in ME-ID, make sure that you give the user's ME-ID profile a mobile phone number in the Azure portal.
 
 `Pages/GraphExample.razor`:
 
@@ -175,11 +175,11 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using the Graph SDK
 
-In the following example, the app creates mobile phone number and office location claims for a user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD. Any test users for this scenario must have a mobile phone number and office location in their AAD profile, which can be added via the Azure portal.
+In the following example, the app creates mobile phone number and office location claims for a user from their ME-ID user profile's data. The app must have the `User.Read` Graph API scope configured in ME-ID. Any test users for this scenario must have a mobile phone number and office location in their ME-ID profile, which can be added via the Azure portal.
 
 In the following custom user account factory:
 
@@ -291,7 +291,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
         CustomAccountFactory>();
 ```
 
-You can use the following `UserClaims` component to study the user's claims after the user authenticates with AAD:
+You can use the following `UserClaims` component to study the user's claims after the user authenticates with ME-ID:
 
 `Pages/UserClaims.razor`:
 
@@ -332,7 +332,7 @@ else
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 :::zone-end
 
@@ -349,7 +349,7 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -481,7 +481,7 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Call Graph API from a component using the Graph SDK
 
-The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number. For any test user that you create in AAD, make sure that you give the user's AAD profile a mobile phone number in the Azure portal.
+The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's ME-ID profile data and display their mobile phone number. For any test user that you create in ME-ID, make sure that you give the user's ME-ID profile a mobile phone number in the Azure portal.
 
 `Pages/GraphExample.razor`:
 
@@ -510,11 +510,11 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using the Graph SDK
 
-In the following example, the app creates mobile phone number and office location claims for a user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD. Any test users for this scenario must have a mobile phone number and office location in their AAD profile, which can be added via the Azure portal.
+In the following example, the app creates mobile phone number and office location claims for a user from their ME-ID user profile's data. The app must have the `User.Read` Graph API scope configured in ME-ID. Any test users for this scenario must have a mobile phone number and office location in their ME-ID profile, which can be added via the Azure portal.
 
 In the following custom user account factory:
 
@@ -619,7 +619,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
         CustomAccountFactory>();
 ```
 
-You can use the following `UserClaims` component to study the user's claims after the user authenticates with AAD:
+You can use the following `UserClaims` component to study the user's claims after the user authenticates with ME-ID:
 
 `Pages/UserClaims.razor`:
 
@@ -660,7 +660,7 @@ else
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 :::zone-end
 
@@ -672,7 +672,7 @@ The examples require a package reference for [`Microsoft.Extensions.Http`](https
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -722,7 +722,7 @@ In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Ne
 
 ## Call Graph API from a component using a named `HttpClient`
 
-The `UserInfo.cs` class designates the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD. The following example sets up properties for the user's mobile phone number and office location.
+The `UserInfo.cs` class designates the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by ME-ID. The following example sets up properties for the user's mobile phone number and office location.
 
 `UserInfo.cs`:
 
@@ -739,7 +739,7 @@ public class UserInfo
 }
 ```
 
-In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> is created for Graph API to issue a request for the user's profile data. The `me` resource (`/me`) are added to the base URL with version for the Graph API request. JSON data returned by Graph is deserialized into the `UserInfo` class properties. In the following example, the mobile phone number is obtained. You can add similar code to include the user's AAD profile office location if you wish (`userInfo.OfficeLocation`). If the access token request fails, the user is redirected to sign into the app for a new access token.
+In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> is created for Graph API to issue a request for the user's profile data. The `me` resource (`/me`) are added to the base URL with version for the Graph API request. JSON data returned by Graph is deserialized into the `UserInfo` class properties. In the following example, the mobile phone number is obtained. You can add similar code to include the user's ME-ID profile office location if you wish (`userInfo.OfficeLocation`). If the access token request fails, the user is redirected to sign into the app for a new access token.
 
 `Pages/GraphExample.razor`:
 
@@ -777,13 +777,13 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
 }
 ```
 
-When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using a named `HttpClient`
 
-In the following example, the app creates mobile phone number and office location claims for the user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD. Test user accounts in AAD require an entry for the mobile phone number and office location, which can be added via the Azure portal to their user profiles.
+In the following example, the app creates mobile phone number and office location claims for the user from their ME-ID user profile's data. The app must have the `User.Read` Graph API scope configured in ME-ID. Test user accounts in ME-ID require an entry for the mobile phone number and office location, which can be added via the Azure portal to their user profiles.
 
-If you haven't already added the `UserInfo` class to the app by following the guidance earlier in this article, add the following class and designate the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD. The following example sets up properties for the user's mobile phone number and office location.
+If you haven't already added the `UserInfo` class to the app by following the guidance earlier in this article, add the following class and designate the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by ME-ID. The following example sets up properties for the user's mobile phone number and office location.
 
 `UserInfo.cs`:
 
@@ -889,9 +889,9 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
         CustomAccountFactory>();
 ```
 
-The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section of the <xref:blazor/security/webassembly/additional-scenarios> article.
+The preceding example is for an app that uses ME-ID authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section of the <xref:blazor/security/webassembly/additional-scenarios> article.
 
-You can use the following `UserClaims` component to study the user's claims after the user authenticates with AAD:
+You can use the following `UserClaims` component to study the user's claims after the user authenticates with ME-ID:
 
 `Pages/UserClaims.razor`:
 
@@ -932,7 +932,7 @@ else
 }
 ```
 
-When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 :::zone-end
 
@@ -949,7 +949,7 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
 
 * [Microsoft Graph documentation](/graph/)
 * [Microsoft Graph sample Blazor WebAssembly app](https://github.com/microsoftgraph/msgraph-sample-blazor-clientside): This sample demonstrates how to use the Microsoft Graph .NET SDK to access data in Office 365 from Blazor WebAssembly apps.
-* [Build .NET apps with Microsoft Graph tutorial](/graph/tutorials/dotnet?tabs=aad) and [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): These resources are most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. Although these resources don't directly apply to calling Graph from *client-side* Blazor WebAssembly apps, the AAD app configuration and Microsoft Graph coding practices in the linked resources are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
+* [Build .NET apps with Microsoft Graph tutorial](/graph/tutorials/dotnet?tabs=aad) and [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): These resources are most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. Although these resources don't directly apply to calling Graph from *client-side* Blazor WebAssembly apps, the ME-ID app configuration and Microsoft Graph coding practices in the linked resources are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
 
 ### Security guidance
 

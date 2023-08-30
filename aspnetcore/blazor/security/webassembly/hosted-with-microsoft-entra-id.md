@@ -1,22 +1,22 @@
 ---
-title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
+title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID
 author: guardrex
-description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory.
+description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 04/25/2023
-uid: blazor/security/webassembly/hosted-with-azure-active-directory
+uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
 ---
-# Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
+# Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
+This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Entra (ME-ID)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
-This article doesn't cover a *multi-tenant AAD registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
+This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
-This article focuses on the use of an **Azure Active Directory** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
+This article focuses on the use of an **Microsoft Entra ID** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -34,24 +34,24 @@ The subsections of the walkthrough explain how to:
 
 ### Create a tenant in Azure
 
-Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant) to create a tenant in AAD.
+Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant) to create a tenant in ME-ID.
 
 ### Register a server API app in Azure
 
-Register an AAD app for the *Server API app*:
+Register an ME-ID app for the *Server API app*:
 
-1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
-1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
+1. Navigate to **Microsoft Entra ID** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
+1. Provide a **Name** for the app (for example, **Blazor Server ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
-1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
+1. This article assumes the app is registered in an **Microsoft Entra ID** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 Record the following information:
 
 * *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
-* AAD Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+* ME-ID Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the server API app doesn't require additional API access for merely signing in users and calling server API endpoints.
 
@@ -76,17 +76,17 @@ Record the following information:
 
 ### Register a client app in Azure
 
-Register an AAD app for the *Client app*:
+Register an ME-ID app for the *Client app*:
 
-1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
-1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
+1. Navigate to **Microsoft Entra ID** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
+1. Provide a **Name** for the app (for example, **Blazor Client ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
-1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
+1. This article assumes the app is registered in an **Microsoft Entra ID** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 > [!NOTE]
-> Supplying the port number for a `localhost` AAD redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/azure/active-directory/develop/reply-url#localhost-exceptions).
+> Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/azure/active-directory/develop/reply-url#localhost-exceptions).
 
 Record the **:::no-loc text="Client":::** app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
@@ -101,7 +101,7 @@ In **API permissions**:
 
 1. Confirm that the app has **Microsoft Graph** > **User.Read** permission.
 1. Select **Add a permission** followed by **My APIs**.
-1. Select the *Server API app* from the **Name** column (for example, **Blazor Server AAD**).
+1. Select the *Server API app* from the **Name** column (for example, **Blazor Server ME-ID**).
 1. Open the **API** list.
 1. Enable access to the API (for example, `API.Access`).
 1. Select **Add permissions**.
@@ -202,7 +202,7 @@ Example:
 ```
 
 > [!IMPORTANT]
-> If the **:::no-loc text="Server":::** app is registered to use a custom App ID URI in AAD (not in the default format `api://{SERVER API APP CLIENT ID}`), see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section. Changes are required in both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps.
+> If the **:::no-loc text="Server":::** app is registered to use a custom App ID URI in ME-ID (not in the default format `api://{SERVER API APP CLIENT ID}`), see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section. Changes are required in both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps.
 
 ### Authentication package
 
@@ -332,7 +332,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal ME-ID configuration when you register the app.
 
 ### Access token scopes
 
@@ -421,9 +421,9 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Use of an Azure Active Directory B2C tenant
 
-If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD.
+If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID.
 
-You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the AAD organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an **Azure Active Directory B2C** tenant.
+You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the ME-ID organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an **Azure Active Directory B2C** tenant.
 
 Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}`, the App ID URI has the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`. This difference affects **:::no-loc text="Client":::** and **:::no-loc text="Server":::** app configurations:
 
@@ -459,7 +459,7 @@ Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID O
 
 ## Use of a custom App ID URI
 
-If the App ID URI is a custom value, you must manually update the default access token scope URI in the **:::no-loc text="Client":::** app and add the audience to the **:::no-loc text="Server":::** app's AAD configuration.
+If the App ID URI is a custom value, you must manually update the default access token scope URI in the **:::no-loc text="Client":::** app and add the audience to the **:::no-loc text="Server":::** app's ME-ID configuration.
 
 > [!IMPORTANT]
 > The following configuration is ***not*** required when using the default App ID URI of `api://{SERVER API APP CLIENT ID}`.
@@ -486,12 +486,12 @@ Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`
 ## Additional resources
 
 * [Configure an app's publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain)
-* [Azure Active Directory app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
+* [Microsoft Entra ID app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:blazor/security/webassembly/aad-groups-roles>
+* <xref:blazor/security/webassembly/meid-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
-* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+* [Security best practices for application properties in Microsoft Entra ID](/azure/active-directory/develop/security-best-practices-for-app-registration)

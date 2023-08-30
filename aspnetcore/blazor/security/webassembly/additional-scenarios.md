@@ -973,7 +973,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 
 :::moniker-end
 
-This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
+This example uses Microsoft Entra (ME-ID) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Authentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
@@ -1299,9 +1299,9 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
           CustomUserAccount, CustomAccountFactory>();
   ```
 
-### AAD security groups and roles with a custom user account class
+### ME-ID security groups and roles with a custom user account class
 
-For an additional example that works with AAD security groups and AAD Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/aad-groups-roles>.
+For an additional example that works with ME-ID security groups and ME-ID Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/meid-groups-roles>.
 
 ## Prerendering with authentication
 
@@ -1448,7 +1448,7 @@ Make an API call from the client to the server API. From the server, retrieve th
 
 ## Use OpenID Connect (OIDC) v2.0 endpoints
 
-The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, AAD is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
+The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, ME-ID is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -1474,7 +1474,7 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 }
 ```
 
-If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly. Either set the property in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> or in the app settings file (`appsettings.json`) with the `Authority` key.
+If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-ME-ID providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly. Either set the property in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> or in the app settings file (`appsettings.json`) with the `Authority` key.
 
 The list of claims in the ID token changes for v2.0 endpoints. For more information, see [Why update to Microsoft identity platform (v2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).
 

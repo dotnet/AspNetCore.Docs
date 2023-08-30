@@ -535,20 +535,20 @@ items:
                     uid: blazor/security/webassembly/standalone-with-authentication-library
                   - name: Standalone with Microsoft Accounts
                     uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-                  - name: Standalone with AAD
-                    uid: blazor/security/webassembly/standalone-with-azure-active-directory
+                  - name: Standalone with ME-ID
+                    uid: blazor/security/webassembly/standalone-with-microsoft-entra-id
                   - name: Standalone with AAD B2C
                     uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
-                  - name: Hosted with AAD
-                    uid: blazor/security/webassembly/hosted-with-azure-active-directory
+                  - name: Hosted with ME-ID
+                    uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
                   - name: Hosted with AAD B2C
                     uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
                   - name: Hosted with Identity Server
                     uid: blazor/security/webassembly/hosted-with-identity-server
                   - name: Additional scenarios
                     uid: blazor/security/webassembly/additional-scenarios
-                  - name: AAD groups and roles
-                    uid: blazor/security/webassembly/aad-groups-roles
+                  - name: ME-ID groups and roles
+                    uid: blazor/security/webassembly/meid-groups-roles
                   - name: Graph API
                     uid: blazor/security/webassembly/graph-api
               - name: Content Security Policy
