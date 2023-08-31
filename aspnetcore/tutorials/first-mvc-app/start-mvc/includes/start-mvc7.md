@@ -120,7 +120,7 @@ The following image shows the app:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Select Ctrl+F5 to run without the debugger.
+* Select F5 to run the app.
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
