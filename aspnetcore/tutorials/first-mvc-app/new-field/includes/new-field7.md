@@ -29,11 +29,9 @@ dotnet build
 ```
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
-<!--
 Command ⌘ + B
--->
+
 ---
 
 Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
