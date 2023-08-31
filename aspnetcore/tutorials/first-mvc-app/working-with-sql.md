@@ -19,7 +19,7 @@ The `MvcMovieContext` object handles the task of connecting to the database and 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=FirstSQLServer&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLServer&highlight=3-4)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
@@ -27,7 +27,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=FirstSQLite&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
 
@@ -98,7 +98,7 @@ if (context.Movie.Any())
 
 Replace the contents of `Program.cs` with the following code. The new code is highlighted.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=SQLServerSeedData&highlight=4,16-21)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLServerSeedData&highlight=4,16-21)]
 
 Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
 
@@ -108,7 +108,7 @@ Test the app. Force the app to initialize, calling the code in the `Program.cs` 
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=SQLiteSeedData&highlight=4,16-21)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteSeedData&highlight=4,16-21)]
 
 Delete all the records in the database.
 
