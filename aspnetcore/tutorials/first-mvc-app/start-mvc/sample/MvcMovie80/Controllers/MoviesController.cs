@@ -21,13 +21,13 @@ namespace MvcMovie.Controllers
         }
     // </snippet_Constructor>
 #if FirstIndex
-        // <snippet_FirstIndex>
+        // <snippet_FirstIndexNoSearch>
         // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
-        // </snippet_FirstIndex>
+        // </snippet_FirstIndexNoSearch>
 #endif
 
 #if IndexSearch1
