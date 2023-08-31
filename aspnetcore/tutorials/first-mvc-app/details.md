@@ -17,11 +17,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Open the Movie controller and examine the `Details` method:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Controllers/MoviesController.cs?name=Details)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Controllers/MoviesController.cs?name=snippet_Details)]
 
 The MVC scaffolding engine that created this action method adds a comment showing an HTTP request that invokes the method. In this case it's a GET request with three URL segments, the `Movies` controller, the `Details` method, and an `id` value. Recall these segments are defined in `Program.cs`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?highlight=3&name=MapControllerRoute)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?highlight=3&name=snippet_MapControllerRoute)]
 
 EF makes it easy to search for data using the `FirstOrDefaultAsync` method. An important security feature built into the method is that the code verifies that the search method has found a movie before it tries to do anything with it. For example, a hacker could introduce errors into the site by changing the URL created by the links from `http://localhost:{PORT}/Movies/Details/1` to something like  `http://localhost:{PORT}/Movies/Details/12345` (or some other value that doesn't represent an actual movie). If you didn't check for a null movie, the app would throw an exception.
 
