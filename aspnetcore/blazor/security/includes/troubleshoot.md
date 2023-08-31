@@ -38,13 +38,13 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see <xre
   
   For non-security, non-sensitive, and non-confidential reproducible framework bug reports, [open an issue with the ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). Don't open an issue with the product unit until you've thoroughly investigated the cause of a problem and can't resolve it on your own and with the help of the community on a public support forum. The product unit isn't able to troubleshoot individual apps that are broken due to simple misconfiguration or use cases involving third-party services. If a report is sensitive or confidential in nature or describes a potential security flaw in the product that attackers may exploit, see [Reporting security issues and bugs (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md#reporting-security-issues-and-bugs).
 
-* Unauthorized client for AAD
+* Unauthorized client for ME-ID
 
   > info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[2]
   > Authorization failed. These requirements were not met:
   > DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
 
-  Login callback error from AAD:
+  Login callback error from ME-ID:
 
   * Error: `unauthorized_client`
   * Description: `AADB2C90058: The provided application is not configured to allow public clients.`

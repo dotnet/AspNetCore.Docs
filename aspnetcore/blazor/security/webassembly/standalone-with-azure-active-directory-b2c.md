@@ -84,11 +84,11 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
-[!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-nonAAD.md)]
+[!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-nonMEID.md)]
 
 After creating the app, you should be able to:
 
-* Log into the app using an AAD user account.
+* Log into the app using an Microsoft Entra ID user account.
 * Request access tokens for Microsoft APIs. For more information, see:
   * [Access token scopes](#access-token-scopes)
   * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
@@ -130,7 +130,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the AAD configuration when you register the app.
+The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the configuration when you register the app.
 
 Configuration is supplied by the `wwwroot/appsettings.json` file:
 

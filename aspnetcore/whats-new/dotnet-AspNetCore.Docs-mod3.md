@@ -28,7 +28,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2023. This article list
   - Protect class instance invokable methods
   - Fix an example and add an example
 - <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c> - Blazor Hosted WASM AAD B2C updates
-- <xref:blazor/security/webassembly/hosted-with-azure-active-directory> - Blazor Hosted WASM AAD B2C updates
+- <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id> - Blazor Hosted WASM AAD B2C updates
 - <xref:blazor/components/event-handling> - Additional JS initializer scenarios
 - <xref:blazor/fundamentals/startup> - Additional JS initializer scenarios
 
