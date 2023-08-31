@@ -66,7 +66,7 @@ public class Movie
 // </snippet_AddRating>
 #endif
 #if Final
-// <snippet_FinalSnippet>
+// <snippet_Final>
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -102,7 +102,7 @@ public class Movie
     [Required]
     public string? Rating { get; set; }
 }
-// </snippet_FinalSnippet>
+// </snippet_Final>
 #endif
 
 #if AttrOneLine
