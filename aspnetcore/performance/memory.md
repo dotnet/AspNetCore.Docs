@@ -215,7 +215,7 @@ The same leak could happen in user code, by one of the following:
 * Not releasing the class correctly.
 * Forgetting to invoke the `Dispose` method of the dependent objects that should be disposed.
 
-### Large objects heap
+### Large object heap
 
 Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it tries to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for *large* objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Objects that are greater than 85,000 bytes (approximately 83 KB) are:
 
