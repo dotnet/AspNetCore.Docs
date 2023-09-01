@@ -164,18 +164,18 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
     For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
-To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
+To disable compression, add the `CompressionEnabled` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml
 <PropertyGroup>
-  <BlazorEnableCompression>false</BlazorEnableCompression>
+  <CompressionEnabled>false</CompressionEnabled>
 </PropertyGroup>
 ```
 
-The `BlazorEnableCompression` property can be passed to the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the following syntax in a command shell:
+The `CompressionEnabled` property can be passed to the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the following syntax in a command shell:
 
 ```dotnetcli
-dotnet publish -p:BlazorEnableCompression=false
+dotnet publish -p:CompressionEnabled=false
 ```
 
 ## Rewrite URLs for correct routing
