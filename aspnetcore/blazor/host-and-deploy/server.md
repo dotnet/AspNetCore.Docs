@@ -354,7 +354,6 @@ In the following example:
 * The app listens for traffic on port 5000.
 
 ```
-ProxyRequests       On
 ProxyPreserveHost   On
 ProxyPassMatch      ^/_blazor/(.*) http://localhost:5000/_blazor/$1
 ProxyPass           /_blazor ws://localhost:5000/_blazor
