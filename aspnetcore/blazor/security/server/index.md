@@ -14,6 +14,8 @@ uid: blazor/security/server/index
 
 This article explains how to secure Blazor Server apps as ASP.NET Core applications.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server.
 
 In Blazor Server apps, the authentication context is only established when the app starts, which is when the app first connects to the WebSocket. The authentication context is maintained for the lifetime of the circuit. Blazor Server apps periodically revalidate the user's authentication state, currently every 30 minutes by default.
@@ -115,16 +117,16 @@ For more information:
 
 :::moniker range=">= aspnetcore-6.0"
 
-For more information on scaffolding Identity into a Blazor Server project, see <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project>.
+For more information on scaffolding Identity into a server-side Blazor app, see <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Scaffold Identity into a Blazor Server project:
+Scaffold Identity into a server-side Blazor app:
 
-* [Without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
-* [With authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).
+* [Without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app-without-existing-authorization).
+* [With authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app-with-authorization).
 
 :::moniker-end
 

@@ -91,7 +91,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=49-53,73)]
 
 > [!NOTE]
-> For information on passing tokens to the Razor components of a Blazor Server app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+> For information on passing tokens to the Razor components of a server-side Blazor app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
 
 ## How to add additional custom tokens
 
@@ -259,7 +259,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
 
 > [!NOTE]
-> For information on passing tokens to the Razor components of a Blazor Server app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+> For information on passing tokens to the Razor components of a server-side Blazor app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
 
 ## How to add additional custom tokens
 

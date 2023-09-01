@@ -14,6 +14,8 @@ uid: blazor/security/server/additional-scenarios
 
 This article explains how to configure Blazor Server for additional security scenarios, including how to pass tokens to a Blazor Server app.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 ## Pass tokens to a Blazor Server app
 
 <!-- UPDATE 8.0 I don't think it will be necessary to showcase
@@ -351,7 +353,7 @@ public class WeatherForecastService
 
 :::moniker-end
 
-For an XSRF token passed to a component, inject the `TokenProvider` and add the XSRF token to the POST request. The following example adds the token to a logout endpoint POST. The scenario for the following example is that the logout endpoint (`Areas/Identity/Pages/Account/Logout.cshtml`, [scaffolded into the app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)) doesn't specify an <xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute> (`@attribute [IgnoreAntiforgeryToken]`) because it performs some action in addition to a normal logout operation that must be protected. The endpoint requires a valid XSRF token to successfully process the request.
+For an XSRF token passed to a component, inject the `TokenProvider` and add the XSRF token to the POST request. The following example adds the token to a logout endpoint POST. The scenario for the following example is that the logout endpoint (`Areas/Identity/Pages/Account/Logout.cshtml`, [scaffolded into the app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app)) doesn't specify an <xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute> (`@attribute [IgnoreAntiforgeryToken]`) because it performs some action in addition to a normal logout operation that must be protected. The endpoint requires a valid XSRF token to successfully process the request.
 
 In a component that presents a **Logout** button to authorized users:
 
