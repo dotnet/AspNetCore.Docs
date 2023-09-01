@@ -759,7 +759,6 @@ The following example hosts the app at a root URL (no sub-app path):
 </VirtualHost>
 
 <VirtualHost *:80>
-    ProxyRequests     On
     ProxyPreserveHost On
     ProxyPass         / http://localhost:5000/
     ProxyPassReverse  / http://localhost:5000/
@@ -780,7 +779,6 @@ To configure the server to host the app at a sub-app path, the `{PATH}` placehol
 </VirtualHost>
 
 <VirtualHost *:80>
-    ProxyRequests     On
     ProxyPreserveHost On
     ProxyPass         / http://localhost:5000/{PATH}
     ProxyPassReverse  / http://localhost:5000/{PATH}
@@ -801,7 +799,6 @@ For an app that responds to requests at `/blazor`:
 </VirtualHost>
 
 <VirtualHost *:80>
-    ProxyRequests     On
     ProxyPreserveHost On
     ProxyPass         / http://localhost:5000/blazor
     ProxyPassReverse  / http://localhost:5000/blazor
