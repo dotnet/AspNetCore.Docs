@@ -1558,6 +1558,8 @@ The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `Blaz
 
 A component in the client app can make gRPC calls using the gRPC client (`Grpc.razor`):
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
