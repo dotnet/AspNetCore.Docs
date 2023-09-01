@@ -32,8 +32,19 @@ The guidance in this article applies to the Blazor WebAssembly ME-ID deployment 
 
 The article's guidance provides instructions for client and server apps:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* **CLIENT**: Standalone Blazor WebAssembly apps.
+* **SERVER**: ASP.NET Core server API/web API apps. You can ignore the **SERVER** guidance throughout the article for a standalone Blazor WebAssembly app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * **CLIENT**: Standalone Blazor WebAssembly apps or the **:::no-loc text="Client":::** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * **SERVER**: ASP.NET Core server API/web API apps or the **:::no-loc text="Server":::** app of a hosted Blazor solution. You can ignore the **SERVER** guidance throughout the article for a standalone Blazor WebAssembly app.
+
+:::moniker-end
 
 The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
@@ -209,7 +220,7 @@ The preceding code ignores group membership claims (`groups`) that are ME-ID Adm
 
 In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
-Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Confirm that the the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -254,7 +265,7 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), ME-ID Administrator Role, or security group in `Program.cs`. The following example creates a policy for the ME-ID *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), ME-ID Administrator Role, or security group in the `Program` file. The following example creates a policy for the ME-ID *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -300,7 +311,7 @@ If the user isn't authorized, they're redirected to the ME-ID sign-in page.
 
 A policy check can also be [performed in code with procedural logic](xref:blazor/security/index#procedural-logic).
 
-`Pages/CheckPolicy.razor`:
+`CheckPolicy.razor`:
 
 ```razor
 @page "/checkpolicy"
@@ -340,7 +351,7 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 
 ## Authorize server API/web API access
 
-A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, ME-ID Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `role` claims. The following example creates a policy for the ME-ID *Billing Administrator* role in `Program.cs` using the `wids` (well-known IDs/Role Template IDs) claims:
+A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, ME-ID Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `role` claims. The following example creates a policy for the ME-ID *Billing Administrator* role in the `Program` file using the `wids` (well-known IDs/Role Template IDs) claims:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -380,8 +391,19 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 * `Admin`
 * `Developer`
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> When developing a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the `role` claims.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the `role` claims.
+
+:::moniker-end
 
 Although you can't assign roles to groups without an Microsoft Entra ID Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
@@ -437,7 +459,7 @@ Multiple roles are assigned in the Azure portal by ***re-adding a user*** for ea
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `role` claim with a JSON array value. Add and register the `CustomAccountFactory` in the **CLIENT** app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `role` claim because it's automatically removed by the framework.
 
-In `Program.cs` of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In the `Program` file of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -451,7 +473,7 @@ builder.Services.AddMsalAuthentication(options =>
 > [!NOTE]
 > If you prefer to use the `directoryRoles` claim (ADD Administrator Roles), assign "`directoryRoles`" to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions.RoleClaim?displayProperty=nameWithType>.
 
-In `Program.cs` of a **SERVER** app, specify the claim named "`http://schemas.microsoft.com/ws/2008/06/identity/claims/role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In the `Program` file of a **SERVER** app, specify the claim named "`http://schemas.microsoft.com/ws/2008/06/identity/claims/role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

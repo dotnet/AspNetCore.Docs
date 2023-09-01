@@ -33,7 +33,7 @@ Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/dev
 
 Register an ME-ID app:
 
-1. Navigate to **Microsoft Entra ID** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
+1. Navigate to [**Microsoft Entra ID** in the Azure portal](https://entra.microsoft.com/#home). Select **Applications** > **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Standalone ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
@@ -101,7 +101,7 @@ The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

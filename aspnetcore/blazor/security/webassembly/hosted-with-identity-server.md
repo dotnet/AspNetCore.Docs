@@ -2,7 +2,7 @@
 title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/23/2023
@@ -101,7 +101,7 @@ The following services are registered.
 
 :::moniker range=">= aspnetcore-6.0"
 
-* In `Program.cs`:
+* In the `Program` file:
 
   * Entity Framework Core and ASP.NET Core Identity:
 
@@ -171,7 +171,7 @@ The following services are registered.
 
 :::moniker range=">= aspnetcore-6.0"
 
-* In `Program.cs`:
+* In the `Program` file:
 
 :::moniker-end
 
@@ -270,7 +270,7 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-In `Program.cs`, a named <xref:System.Net.Http.HttpClient> is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API. By default at solution creation, the named <xref:System.Net.Http.HttpClient> is `{PROJECT NAME}.ServerAPI`, where the `{PROJECT NAME}` placeholder is the project's name.
+In the `Program` file, a named <xref:System.Net.Http.HttpClient> is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API. By default at solution creation, the named <xref:System.Net.Http.HttpClient> is `{PROJECT NAME}.ServerAPI`, where the `{PROJECT NAME}` placeholder is the project's name.
 
 ```csharp
 builder.Services.AddHttpClient("{PROJECT NAME}.ServerAPI", 
@@ -488,7 +488,7 @@ public class CustomUserFactory
 
 :::moniker-end
 
-In the **:::no-loc text="Client":::** app, register the factory in `Program.cs`:
+In the **:::no-loc text="Client":::** app, register the factory in the `Program` file:
 
 ```csharp
 builder.Services.AddApiAuthorization()
@@ -499,7 +499,7 @@ In the **:::no-loc text="Server":::** app, call <xref:Microsoft.AspNetCore.Ident
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -547,7 +547,7 @@ In the **:::no-loc text="Server":::** app:
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 using System.IdentityModel.Tokens.Jwt;
@@ -665,7 +665,7 @@ public class ProfileService : IProfileService
 
 :::moniker range=">= aspnetcore-6.0"
 
-In the **:::no-loc text="Server":::** app, register the Profile Service in `Program.cs`:
+In the **:::no-loc text="Server":::** app, register the Profile Service in the `Program` file:
 
 ```csharp
 using Duende.IdentityServer.Services;

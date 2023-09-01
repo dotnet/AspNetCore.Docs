@@ -2,7 +2,7 @@
 title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/25/2023
@@ -143,13 +143,13 @@ By default, the **:::no-loc text="Server":::** app API populates `User.Identity.
 
 To configure the app to receive the value from the `name` claim type:
 
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to the `Program` file:
 
   ```csharp
   using Microsoft.AspNetCore.Authentication.JwtBearer;
   ```
 
-* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in the `Program` file:
 
   ```csharp
   builder.Services.Configure<JwtBearerOptions>(
@@ -299,7 +299,7 @@ The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages
 
 Support for <xref:System.Net.Http.HttpClient> instances is added that include access tokens when making requests to the server project.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient("{PROJECT NAME}.ServerAPI", client => 
@@ -314,7 +314,7 @@ The placeholder `{PROJECT NAME}` is the project name at solution creation. For e
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

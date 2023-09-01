@@ -97,7 +97,7 @@ The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
