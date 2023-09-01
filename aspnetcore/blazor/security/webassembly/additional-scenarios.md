@@ -1362,6 +1362,8 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 In the **:::no-loc text="Server":::** project's the `Program` file file, register the following additional services and call `ConfigureCommonServices`:
