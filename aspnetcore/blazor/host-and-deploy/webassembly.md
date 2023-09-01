@@ -164,6 +164,9 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
     For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
+
+:::moniker range=">= aspnetcore-8.0"
+
 To disable compression, add the `CompressionEnabled` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml
@@ -177,6 +180,26 @@ The `CompressionEnabled` property can be passed to the [`dotnet publish`](/dotne
 ```dotnetcli
 dotnet publish -p:CompressionEnabled=false
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <BlazorEnableCompression>false</BlazorEnableCompression>
+</PropertyGroup>
+```
+
+The `BlazorEnableCompression` property can be passed to the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the following syntax in a command shell:
+
+```dotnetcli
+dotnet publish -p:BlazorEnableCompression=false
+```
+
+:::moniker-end
 
 ## Rewrite URLs for correct routing
 
