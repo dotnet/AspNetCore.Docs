@@ -496,6 +496,8 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Dynamically set the server-side culture by user preference
 
+<!-- UPDATE 8.0 Requires a new approach for BWA apps -->
+
 :::moniker range=">= aspnetcore-8.0"
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side rendering), in a localization cookie or database (common for server-side rendering), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api).

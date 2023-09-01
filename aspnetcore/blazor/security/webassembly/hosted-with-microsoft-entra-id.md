@@ -2,7 +2,7 @@
 title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 04/25/2023
@@ -10,13 +10,14 @@ uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Entra ID (ME-ID)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
 This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
-This article focuses on the use of an **Microsoft Entra ID** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
+<!--UPDATE 8.0 Is the tenant name going to change to 
+    match the rest of the MS Entra ID branding? -->
+
+This article focuses on the use of an **Azure Active Directory** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -40,11 +41,14 @@ Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/dev
 
 Register an ME-ID app for the *Server API app*:
 
-1. Navigate to **Microsoft Entra ID** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
+<!--UPDATE 8.0 Is the tenant name going to change to 
+    match the rest of the MS Entra ID branding? -->
+
+1. Navigate to [**Microsoft Entra ID** in the Azure portal](https://entra.microsoft.com/#home). Select **Applications** > **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
-1. This article assumes the app is registered in an **Microsoft Entra ID** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
+1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 Record the following information:
@@ -78,11 +82,14 @@ Record the following information:
 
 Register an ME-ID app for the *Client app*:
 
+<!--UPDATE 8.0 Is the tenant name going to change to 
+    match the rest of the MS Entra ID branding? -->
+
 1. Navigate to **Microsoft Entra ID** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Client ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
-1. This article assumes the app is registered in an **Microsoft Entra ID** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
+1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 > [!NOTE]
@@ -147,7 +154,7 @@ By default, the **:::no-loc text="Server":::** app API populates `User.Identity.
 
 To configure the app to receive the value from the `name` claim type:
 
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to the `Program` file:
 
   ```csharp
   using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -307,7 +314,7 @@ The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages
 
 Support for <xref:System.Net.Http.HttpClient> instances is added that include access tokens when making requests to the **:::no-loc text="Server":::** app.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient("{PROJECT NAME}.ServerAPI", client => 
@@ -322,7 +329,7 @@ The placeholder `{PROJECT NAME}` is the project name at solution creation. For e
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -343,7 +350,7 @@ The default access token scopes represent the list of access token scopes that a
 * Included by default in the sign in request.
 * Used to provision an access token immediately after authentication.
 
-Additional scopes can be added as needed in `Program.cs`:
+Additional scopes can be added as needed in the `Program` file:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -439,7 +446,7 @@ Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID O
   "Audience": "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd"
   ```
 
-* In `Program.cs` of the **`Client`** app, set the audience of the scope (App ID URI) to match the server API app's audience:
+* In the `Program` file of the **`Client`** app, set the audience of the scope (App ID URI) to match the server API app's audience:
 
   ```csharp
   options.ProviderOptions.DefaultAccessTokenScopes
@@ -466,7 +473,7 @@ If the App ID URI is a custom value, you must manually update the default access
 
 Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`:
 
-* In `Program.cs` of the **:::no-loc text="Client":::** app:
+* In the `Program` file of the **:::no-loc text="Client":::** app:
 
   ```csharp
   options.ProviderOptions.DefaultAccessTokenScopes.Add(

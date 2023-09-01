@@ -139,7 +139,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServ
 
 For a new app, provide values for the `{AUTHORITY}` and `{CLIENT ID}` placeholders in the following configuration. Provide other configuration values that are required for use with the app's IP. The example is for Google, which requires `PostLogoutRedirectUri`, `RedirectUri`, and `ResponseType`. If adding authentication to an app, manually add the following code and configuration to the app with values for the placeholders and other configuration values.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -167,7 +167,7 @@ The Blazor WebAssembly template automatically configures default scopes for `ope
 
 The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions>. If adding authentication to an app, manually add the following code and configure the scope URI.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
