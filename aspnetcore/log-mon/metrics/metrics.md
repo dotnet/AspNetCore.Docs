@@ -89,6 +89,37 @@ Press p to pause, r to resume, q to quit.
 
 For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
 
+## Enrich the ASP.NET Core request metric
+
+ASP.NET Core has many built-in metrics. One of these - `http.server.request.duration` - records the duration of HTTP requests on the server and captures request information in tags, such as the matched route and response status code.
+
+The `http.server.request.duration` metric supports tag enrichment using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
+
+```cs
+var builder = WebApplication.CreateBuilder();
+var app = builder.Build();
+
+app.MapGet("/", (HttpContext context) =>
+{
+    var tagsFeature = context.Features.Get<IHttpMetricsTagsFeature>();
+    if (tagsFeature != null)
+    {
+        tagsFeature.Add(new KeyValuePair<string, object?>("machine_name", Environment.MachineName));
+    }
+
+    return "Hello World!";
+});
+
+app.Run();
+```
+
+The proceeding example:
+
+1. Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric so check if `IHttpMetricsTagsFeature` is null before using it.
+1. Adds a custom tag containing the server's machine name to the `http.server.request.duration` metric. The tag has the name `machine_name` and the value of <xref:System.Environment.MachineName?displayProperty=nameWithType>.
+
+It's important to follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range will cause a large combination of tags. Collection tools have a limit on how many combinations they support and may start filtering results out to avoid excessive memory usage.
+
 ## Create custom metrics
 
 Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric) for information on creating custom metrics.
