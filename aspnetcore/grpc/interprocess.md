@@ -69,6 +69,71 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 ```
 
+## Security considerations
+
+IPC apps send and receive RPC calls. External communication is a potential attack vector for IPC apps and must be properly secured.
+
+### Secure IPC server app against unexpected callers
+
+The IPC server app hosts RPC services for other apps to call. Incoming callers should be authenticated to prevent untrusted clients from making RPC calls to the server.
+
+Transport security is one option for securing a server. IPC transports such as Unix domain sockets and named pipes support limiting access based on operating system permissions:
+
+* Named pipes supports securing a pipe with the [Windows access control model](/windows/win32/ipc/named-pipe-security-and-access-rights). Access rights can be configured in .NET when a server is started using the <xref:System.IO.Pipes.PipeSecurity> class.
+* Unix domain sockets support securing a socket with file permissions.
+
+Another option for securing a IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](xref:security/authentication/certauth). RPC calls made by client apps without the required certificate fail with an unauthorized response.
+
+### Validate the server in the IPC client app
+
+It's important for the client app to validate the identity of the server it is calling. Validation is necessary to protect against a malicious actor from stopping the trusted server, running their own, and accepting incoming data from clients.
+
+Named pipes provides support for getting the account that a server is running under. A client can validate the server was launched by the expected account:
+
+```cs
+internal static bool CheckPipeConnectionOwnership(
+    NamedPipeClientStream pipeStream, SecurityIdentifier expectedOwner)
+{
+    var remotePipeSecurity = pipeStream.GetAccessControl();
+    var remoteOwner = remotePipeSecurity.GetOwner(typeof(SecurityIdentifier));
+    return expectedOwner.Equals(remoteOwner);
+}
+```
+
+Another option for validating the server is to [secure its endpoints with HTTPS](/aspnet/core/fundamentals/servers/kestrel/endpoints#configure-https) inside ASP.NET Core. The client can configure `SocketsHttpHandler` to validate the server is using the expected certificate when the connection is established.
+
+```cs
+var socketsHttpHandler = new SocketsHttpHandler()
+{
+    SslOptions = new SslOptions()
+    {
+        RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) =>
+        {
+            if (sslPolicyErrors != SslPolicyErrors.None)
+            {
+                return false;
+            }
+
+            // Validate server cert thumbprint matches the expected thumbprint.
+        }
+    }
+};
+```
+
+### Protect against named pipe privilege escalation
+
+Named pipes supports a feature called [impersonation](/windows/win32/ipc/impersonating-a-named-pipe-client). Using impersonation, the named pipes server can execute code with the privileges of the client user. This is a powerful feature but can allow a low-privilege server to impersonate a high-privilege caller and then run malicious code.
+
+Client's can protect against this attack by not allowing impersonation when connecting to a server. Unless required by a server, a <xref:System.Security.Principal.TokenImpersonationLevel> value of `None` or `Anonymous` should be used when creating a client connection:
+
+```cs
+using var pipeClient = new NamedPipeClientStream(
+    serverName: ".", pipeName: "testpipe", PipeDirection.In, PipeOptions.None, TokenImpersonationLevel.None);
+await pipeClient.ConnectAsync();
+```
+
+`TokenImpersonationLevel.None` is the default value in `NamedPipeClientStream` constructors that don't have an `impersonationLevel` parameter.
+
 ## Configure client and server
 
 The client and server must be configured to use an inter-process communication (IPC) transport. For more information about configuring Kestrel and <xref:System.Net.Http.SocketsHttpHandler> to use IPC:
