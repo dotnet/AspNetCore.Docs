@@ -47,7 +47,7 @@ Use the **Razor Class Library** project template.
 > [!NOTE]
 > Do ***not*** select the **Support pages and views** checkbox. Selecting the checkbox results in a class library that only supports server-side apps.
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command in the integrated terminal (VS Code) or a command shell (.NET CLI):
 
