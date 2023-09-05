@@ -30,9 +30,9 @@ Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%
 
 `KestrelServerOptions` configuration:
 
-## ConfigureEndpointDefaults(Action\<ListenOptions>)
+## ConfigureEndpointDefaults
 
-Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified:
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions})> specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
 
@@ -68,9 +68,9 @@ If reloading configuration is enabled and a change is signaled then the followin
 
 Clients connecting to a modified endpoint may be disconnected or refused while the endpoint is restarted.
 
-## ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
+## ConfigureHttpsDefaults
 
-Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions})> specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaults":::
 
@@ -587,9 +587,9 @@ Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%
 
 `KestrelServerOptions` configuration:
 
-## ConfigureEndpointDefaults(Action\<ListenOptions>)
+## ConfigureEndpointDefaults
 
-Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified:
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions})> specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
 
@@ -625,9 +625,9 @@ If reloading configuration is enabled and a change is signaled then the followin
 
 Clients connecting to a modified endpoint may be disconnected or refused while the endpoint is restarted.
 
-## ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
+## ConfigureHttpsDefaults
 
-Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions})> specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaults":::
 
