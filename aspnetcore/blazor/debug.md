@@ -19,7 +19,6 @@ This article describes how to debug Blazor WebAssembly with browser developer to
 Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome) and Firefox. You can also debug your app using the following IDEs:
 
 * Visual Studio
-* Visual Studio for Mac
 * Visual Studio Code
 
 Available scenarios include:
@@ -47,7 +46,6 @@ For now, you *can't*:
 Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
-* Visual Studio for Mac
 * Visual Studio Code
 
 Available scenarios include:
@@ -108,8 +106,6 @@ Visual Studio Code users require the following extensions:
 After opening a project in VS Code, you may receive a notification that additional setup is required to enable debugging. If requested, install the required extensions from the Visual Studio Marketplace. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
 
 :::moniker-end
-
-Visual Studio for Mac requires version 8.8 (build 1532) or later. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
@@ -357,37 +353,6 @@ The following launch configuration options are supported for the `blazorwasm` de
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
 | `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-To debug a Blazor WebAssembly app in Visual Studio for Mac:
-
-1. Create a new hosted Blazor WebAssembly app.
-1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
-
-   > [!NOTE]
-   > **Start Without Debugging** (<kbd>&#8997;</kbd>+<kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
-
-   > [!IMPORTANT]
-   > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
-
-1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
-1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
-1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
-1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
-
-While debugging a Blazor WebAssembly app, you can also debug server code:
-
-1. Set a breakpoint in the `Pages/FetchData.razor` page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
-1. Set a breakpoint in the `WeatherForecastController` in the `Get` action method.
-1. Browse to the `Fetch Data` page to hit the first breakpoint in the `FetchData` component just before it issues an HTTP request to the server.
-1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution and then hit the breakpoint on the server in the `WeatherForecastController`.
-1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> again to let execution continue and see the weather forecast table rendered in the browser.
-
-> [!NOTE]
-> Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
-
-For more information, see [Debugging with Visual Studio for Mac](/visualstudio/mac/debugging).
 
 ---
 

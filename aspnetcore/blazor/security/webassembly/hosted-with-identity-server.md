@@ -69,18 +69,6 @@ Avoid using dashes (`-`) in the project name that break the formation of the OID
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-To create a new hosted Blazor WebAssembly solution with an authentication mechanism:
-
-1. Provide a **Project name** without using dashes. Confirm that the **Location** is correct.
-
-   Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
-
-1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown to store users in the app with ASP.NET Core [Identity](xref:security/authentication/identity). Select the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
-
-1. Select the **Create** button to create the app.
-
 ---
 
 ### Run the app

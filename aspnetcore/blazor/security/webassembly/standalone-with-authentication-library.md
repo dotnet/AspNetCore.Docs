@@ -67,14 +67,6 @@ The output location specified with the `-o|--output` option creates a project fo
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-To create a new Blazor WebAssembly project.
-
-Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app. Confirm that the **ASP.NET Core Hosted** checkbox is ***not*** selected. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
-
-The app is created to use ASP.NET Core [Identity](xref:security/authentication/identity) and doesn't result in storing users in a database. The following sections of this article provide further details.
-
 ---
 
 ### Configure the app
