@@ -13,7 +13,6 @@ Welcome to what's new in the ASP.NET Core docs for August 2023. This article lis
 
 ### Updated articles
 
-- <xref:blazor/images> - Images article updates 8.0
 - <xref:blazor/js-interop/call-dotnet-from-javascript> - Blazor JS interop node updates 8.0
 - <xref:blazor/js-interop/call-javascript-from-dotnet> - Blazor JS interop node updates 8.0
 - <xref:blazor/js-interop/import-export-interop> - Blazor JS interop node updates 8.0
@@ -57,7 +56,6 @@ Welcome to what's new in the ASP.NET Core docs for August 2023. This article lis
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![27 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-27-green)
 - [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![5 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
 - [damienbod](https://github.com/damienbod) - damienbod ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [hishamco](https://github.com/hishamco) - Hisham Bin Ateya ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
