@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/08/2022
 uid: blazor/state-management
-zone_pivot_groups: blazor-hosting-models
+zone_pivot_groups: blazor-app-models
 ---
 # ASP.NET Core Blazor state management
 
@@ -15,9 +15,14 @@ zone_pivot_groups: blazor-hosting-models
 
 This article describes common approaches for maintaining a user's data (state) while they use an app and across browser sessions.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+> [!NOTE]
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from types in the article's examples.
+
 :::zone pivot="server"
 
-Blazor Server is a stateful app framework. Most of the time, the app maintains a connection to the server. The user's state is held in the server's memory in a *circuit*. 
+Server-side Blazor is a stateful app framework. Most of the time, the app maintains a connection to the server. The user's state is held in the server's memory in a *circuit*.
 
 Examples of user state held in a circuit include:
 
@@ -55,7 +60,7 @@ Common locations exist for persisting state:
 * [Server-side storage](#server-side-storage-server)
 * [URL](#url-server)
 * [Browser storage](#browser-storage-server)
-* [In-memory state container service](#in-memory-state-container-service-server)
+* [In-memory state container service](#in-memory-state-container-service)
 
 <h2 id="server-side-storage-server">Server-side storage</h2>
 
@@ -105,7 +110,7 @@ Caveats for using browser storage:
 
 * Similar to the use of a server-side database, loading and saving data are asynchronous.
 * Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.
-* Storage of a few kilobytes of data is reasonable to persist for Blazor Server apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
+* Storage of a few kilobytes of data is reasonable to persist for server-side Blazor apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
 * Users may view or tamper with the data. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) can mitigate the risk. For example, [ASP.NET Core Protected Browser Storage](#aspnet-core-protected-browser-storage) uses ASP.NET Core Data Protection.
 
 Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`. It's worth considering choosing a package that transparently uses [ASP.NET Core Data Protection](xref:security/data-protection/introduction). Data Protection encrypts stored data and reduces the potential risk of tampering with stored data. If JSON-serialized data is stored in plain text, users can see the data using browser developer tools and also modify the stored data. Securing data isn't always a problem because the data might be trivial in nature. For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization. Avoid allowing users to inspect or tamper with *sensitive data*.
@@ -117,7 +122,7 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 :::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Protected Browser Storage relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.
+> Protected Browser Storage relies on ASP.NET Core Data Protection and is only supported for server-side Blazor apps.
 
 :::moniker-end
 
@@ -126,7 +131,7 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 > [!WARNING]
 > `Microsoft.AspNetCore.ProtectedBrowserStorage` is an unsupported, experimental package that isn't intended for production use.
 >
-> The package is only available for use in ASP.NET Core 3.1 Blazor Server apps.
+> The package is only available for use in ASP.NET Core 3.1 apps.
 
 ### Configuration
 
@@ -134,7 +139,7 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 
    [!INCLUDE[](~/includes/package-reference.md)]
 
-1. In the `Pages/_Host.cshtml` file, add the following script inside the closing `</body>` tag:
+1. In the `_Host.cshtml` file, add the following script inside the closing `</body>` tag:
 
    ```cshtml
    <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
@@ -177,7 +182,7 @@ The choice depends on which browser storage location you wish to use. In the fol
 
 The `@using` directive can be placed in the app's `_Imports.razor` file instead of in the component. Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor Server project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
@@ -262,11 +267,25 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+:::moniker range=">= aspnetcore-8.0"
+
+To disable prerendering, ...
+
+
+
+
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+To disable prerendering, open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
 
 ```cshtml
 <component type="typeof(App)" render-mode="Server" />
 ```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -463,7 +482,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="@typeof(App).Assembly">
+    <Router ...>
         ...
     </Router>
 </CounterStateProvider>
@@ -476,8 +495,6 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 :::moniker-end
 
 Wrapped components receive and can modify the persisted counter state. The following `Counter` component implements the pattern:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/counter"
@@ -500,30 +517,6 @@ Wrapped components receive and can modify the persisted counter state. The follo
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/counter"
-
-<p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>
-<button @onclick="IncrementCount">Increment</button>
-
-@code {
-    [CascadingParameter]
-    private CounterStateProvider CounterStateProvider { get; set; }
-
-    private async Task IncrementCount()
-    {
-        CounterStateProvider.CurrentCount++;
-        await CounterStateProvider.SaveChangesAsync();
-    }
-}
-```
-
-:::moniker-end
-
 The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.
 
 To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering. For more information, see the [Handle prerendering](#handle-prerendering) section.
@@ -534,10 +527,6 @@ In general, the *state provider parent component* pattern is recommended:
 * If there's just one top-level state object to persist.
 
 To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.
-
-<h2 id="in-memory-state-container-service-server">In-memory state container service</h2>
-
-[!INCLUDE[](~/blazor/includes/state-container.md)]
 
 :::zone-end
 
@@ -555,7 +544,7 @@ Examples of user state held in browser memory include:
 When a user closes and reopens their browser or reloads the page, user state held in the browser's memory is lost.
 
 > [!NOTE]
-> [Protected Browser Storage](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.
+> [Protected Browser Storage](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for server-side Blazor apps.
 
 ## Persist state across browser sessions
 
@@ -577,7 +566,7 @@ Common locations exist for persisting state:
 * [Server-side storage](#server-side-storage-wasm)
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
-* [In-memory state container service](#in-memory-state-container-service-wasm) 
+* [In-memory state container service](#in-memory-state-container-service) 
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -634,9 +623,142 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
 
-<h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
+:::zone-end
 
-[!INCLUDE[](~/blazor/includes/state-container.md)]
+## In-memory state container service
+
+Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and unnested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
+
+* A pair of components uses a state container to track a property.
+* One component in the following example is nested in the other component, but nesting isn't required for this approach to work.
+
+> [!IMPORTANT]
+> The example in this section demonstrates how to create an in-memory state container service, register the service, and use the service in components. The example doesn't persist data without further development. For persistent storage of data, the state container must adopt an underlying storage mechanism that survives when browser memory is cleared. This can be accomplished with `localStorage`/`sessionStorage` or some other technology.
+
+`StateContainer.cs`:
+
+```csharp
+public class StateContainer
+{
+    private string? savedString;
+
+    public string Property
+    {
+        get => savedString ?? string.Empty;
+        set
+        {
+            savedString = value;
+            NotifyStateChanged();
+        }
+    }
+
+    public event Action? OnChange;
+
+    private void NotifyStateChanged() => OnChange?.Invoke();
+}
+```
+
+Client-side apps (`Program` file):
+
+```csharp
+builder.Services.AddSingleton<StateContainer>();
+```
+
+Server-side apps (`Program` file, ASP.NET Core 6.0 or later):
+
+```csharp
+builder.Services.AddScoped<StateContainer>();
+```
+
+Server-side apps (`Startup.ConfigureServices` of `Startup.cs`, ASP.NET Core earlier than 6.0):
+
+```csharp
+services.AddScoped<StateContainer>();
+```
+
+`Shared/Nested.razor`:
+
+```razor
+@implements IDisposable
+@inject StateContainer StateContainer
+
+<h2>Nested component</h2>
+
+<p>Nested component Property: <b>@StateContainer.Property</b></p>
+
+<p>
+    <button @onclick="ChangePropertyValue">
+        Change the Property from the Nested component
+    </button>
+</p>
+
+@code {
+    protected override void OnInitialized()
+    {
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.Property = 
+            $"New value set in the Nested component: {DateTime.Now}";
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+}
+```
+
+`StateContainerExample.razor`:
+
+```razor
+@page "/state-container-example"
+@implements IDisposable
+@inject StateContainer StateContainer
+
+<h1>State Container Example component</h1>
+
+<p>State Container component Property: <b>@StateContainer.Property</b></p>
+
+<p>
+    <button @onclick="ChangePropertyValue">
+        Change the Property from the State Container Example component
+    </button>
+</p>
+
+<Nested />
+
+@code {
+    protected override void OnInitialized()
+    {
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.Property = "New value set in the State " +
+            $"Container Example component: {DateTime.Now}";
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+}
+```
+
+The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+## Additional approaches
+
+When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 ## Troubleshoot
 
@@ -650,17 +772,7 @@ For more information and an example of how to address this error, see <xref:blaz
 
 ## Additional resources
 
-* [Save app state before an authentication operation](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
-* <xref:blazor/call-web-api>
-* <xref:blazor/security/webassembly/index>
-
-:::zone-end
-
-## Additional approaches
-
-When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
-
-* To consume state across many components.
-* If there's just one top-level state object to persist.
-
-For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
+* [Save app state before an authentication operation (Blazor WebAssembly)](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
+* Managing state via an external server API
+  * <xref:blazor/call-web-api>
+  * <xref:blazor/security/webassembly/index>

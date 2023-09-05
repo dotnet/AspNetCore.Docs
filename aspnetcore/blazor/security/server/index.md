@@ -609,8 +609,6 @@ For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.
 
 <!-- UPDATE 8.0 This content will be discussed with the PU after .NET 8 releases. This is tracked by https://github.com/dotnet/AspNetCore.Docs/issues/28001. -->
 
-:::moniker range="< aspnetcore-8.0"
-
 ## Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
 
 To avoid showing unauthorized content while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
@@ -619,15 +617,27 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-* Disable prerendering: Open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+:::moniker range=">= aspnetcore-8.0"
+
+* Disable prerendering: 
+
+
+
+
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Disable prerendering: Open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
 
   ```cshtml
   <component type="typeof(App)" render-mode="Server" />
   ```
 
-* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
-
 :::moniker-end
+
+* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
 
 ## User state management
 
