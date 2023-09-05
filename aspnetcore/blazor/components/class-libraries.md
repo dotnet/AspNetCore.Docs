@@ -69,53 +69,6 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 
 :::moniker-end
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Create a new project.
-1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates. Select **Continue**.
-1. Select the target framework for the library with the **Target framework** dropdown list. Select **Continue**.
-1. Provide a project name in the **Project name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
-1. Add the RCL to a solution:
-   1. Open the solution.
-   1. Right-click the solution in the **Solution** sidebar and select **Add** > **Existing Project**. Alternatively, use the **Add** > **Existing Project** menu command from the **File** menu.
-   1. Navigate to the RCL's project file.
-   1. Select the RCL's project file (`.csproj`) and select **Open**.
-1. Add a reference to the RCL from the app:
-   1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
-   1. Select the RCL project's checkbox and reference the project with the **Select** button.
-
-:::moniker range=">= aspnetcore-5.0"
-
-If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
-
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
-
-  ```razor
-  @using Microsoft.AspNetCore.Components.Web
-  ```
-
-* Add the following `SupportedPlatform` item to the project file (`.csproj`):
-
-  ```xml
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
-  ```
-
-  For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
-
-```razor
-@using Microsoft.AspNetCore.Components.Web
-```
-
-:::moniker-end
-
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
 1. Use the **Razor Class Library** project template (`razorclasslib`) with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created and named `ComponentLibrary` using the `-o|--output` option. The folder that holds `ComponentLibrary` is created automatically when the command is executed:
