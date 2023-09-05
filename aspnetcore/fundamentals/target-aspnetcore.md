@@ -82,7 +82,7 @@ In the preceding example, the `{TARGET FRAMEWORKS}` placeholder represents the s
 
 ### Only support server-side consumption
 
-Class libraries rarely only support server-side apps. If the class library only requires server-side-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, MVC controllers, or Razor Pages, use **one** of the following approaches:
+Class libraries are rarely built to only support server-side apps. If the class library only requires server-side-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, MVC controllers, or Razor Pages, use **one** of the following approaches:
 
 * Specify that the library supports pages and views when the library is created with the **Support pages and views** checkbox (Visual Studio) or the `-s|--support-pages-and-views` option with the `dotnet new` command:
 
