@@ -269,11 +269,11 @@ One way to resolve the error is to disable prerendering. This is usually the bes
 
 :::moniker range=">= aspnetcore-8.0"
 
-To disable prerendering, ...
+To disable prerendering, pass `false` to a server render mode attribute placed in the `Routes` component (`Routes.razor`):
 
-
-
-
+```
+@attribute [RenderModeServer(false)]
+```
 
 :::moniker-end
 

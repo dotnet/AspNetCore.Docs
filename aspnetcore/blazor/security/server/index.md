@@ -619,11 +619,11 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Disable prerendering: 
+* Disable prerendering: Pass `false` to a server render mode attribute placed in the `Routes` component (`Routes.razor`):
 
-
-
-
+  ```
+  @attribute [RenderModeServer(false)]
+  ```
 
 :::moniker-end
 
