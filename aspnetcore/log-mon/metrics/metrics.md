@@ -116,9 +116,10 @@ app.Run();
 The proceeding example:
 
 1. Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric so check if `IHttpMetricsTagsFeature` is null before using it.
-1. Adds a custom tag containing the server's machine name to the `http.server.request.duration` metric. The tag has the name `machine_name` and the value of <xref:System.Environment.MachineName?displayProperty=nameWithType>.
+1. Adds a custom tag containing the server's machine name to the `http.server.request.duration` metric. The tag has the name `machine_name` and the value of <xref:System.Environment.MachineName?displayProperty=nameWithType>. The example `machine_name` tag allows requests to be categorized by server, which could be useful if an app is running across multiple servers.
 
-It's important to follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range will cause a large combination of tags. Collection tools have a limit on how many combinations they support and may start filtering results out to avoid excessive memory usage.
+> [!NOTE]
+> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range will cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter, and may start filtering results out to avoid excessive memory usage.
 
 ## Create custom metrics
 
