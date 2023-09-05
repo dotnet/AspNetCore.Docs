@@ -49,7 +49,7 @@ dotnet add package OpenTelemetry.Extensions.Hosting
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/Program.cs":::
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/web-metrics/Program.cs":::
 
 <!-- Review TODO: Add link to available meters -->
 
@@ -84,7 +84,7 @@ Press p to pause, r to resume, q to quit.
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0.001
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
-        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0                                            12
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
 ```
 
 For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
@@ -101,42 +101,15 @@ ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in depend
 
 To use `IMeterFactory` in an app, create a type that uses `IMeterFactory` to create the app's custom metrics:
 
-```cs
-public class ContosoMetrics
-{
-    private readonly Counter<int> _productSoldCounter;
-
-    public ContosoMetrics(IMeterFactory meterFactory)
-    {
-        var meter = meterFactory.CreateMeter("Contoso.Web");
-        _productSoldCounter = meter.CreateCounter<int>("contoso.product.sold");
-    }
-
-    public void ProductSold(string productName, int quantity)
-    {
-        _productSoldCounter.Add(quantity,
-            new KeyValuePair<string, object?>("contoso.product.name", productName));
-    }
-}
-```
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/ContosoMetrics.cs" id="snippet_ContosoMetrics":::
 
 Register the metrics type with DI in `Program.cs`:
 
-```cs
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<ContosoMetrics>();
-```
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
 
 Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
 
-```cs
-app.MapPost("/complete-sale", ([FromBody] SaleModel model, ContosoMetrics metrics) =>
-{
-    // ... business logic such as saving the sale to a database ...
-
-    metrics.ProductSold(model.QuantitySold, model.ProductName);
-});
-```
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
 
 ## View metrics in Grafana with OpenTelemetry and Prometheus
 
@@ -180,7 +153,7 @@ Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/firs
 
 Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app is exposing. Add the following highlighted text in the `scrape_configs` section:
 
-:::code language="yaml" source="~/log-mon/metrics/metrics/samples/prometheus.yml" highlight="31-99":::
+:::code language="yaml" source="~/log-mon/metrics/metrics/samples/web-metrics/prometheus.yml" highlight="31-99":::
 
 In the preceding highlighted YAML, replace `5045` with the port number that the example app is running on.
 
@@ -195,11 +168,11 @@ Select the **Open metric explorer** icon to see available metrics:
 
 ![Prometheus open_metric_exp](~/log-mon/metrics/metrics/static/open_metric_exp.png)
 
-Enter counter category such as `http_` in the **Expression** input box to see the available  metrics:
+Enter counter category such as `http_` in the **Expression** input box to see the available metrics:
 
 ![available metrics](~/log-mon/metrics/metrics/static/metrics2.png)
 
-Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available  metrics:
+Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available metrics:
 
 ![Prometheus kestrel](~/log-mon/metrics/metrics/static/kestrel.png)
 
@@ -215,38 +188,7 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
 
-```cs
-public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
-{
-    private readonly WebApplicationFactory<Program> _factory;
-    public BasicTests(WebApplicationFactory<Program> factory) => _factory = factory;
-
-    [Fact]
-    public async Task Get_RequestCounterIncreased()
-    {
-        // Arrange
-        var client = _factory.CreateClient();
-        var meterFactory = _factory.Services.GetRequiredService<IMeterFactory>();
-        var collector = new MetricCollector<double>(meterFactory,
-            "Microsoft.AspNetCore.Hosting", "http.server.request.duration");
-
-        // Act
-        var response = await client.GetAsync("/");
-
-        // Assert
-        Assert.Equal("Hello World!", await response.Content.ReadAsStringAsync());
-
-        await collector.WaitForMeasurementsAsync(minCount: 1).WaitAsync(TimeSpan.FromSeconds(5));
-        Assert.Collection(collector.GetMeasurementSnapshot(),
-            measurement =>
-            {
-                Assert.Equal("http", measurement.Tags["url.scheme"]);
-                Assert.Equal("GET", measurement.Tags["http.request.method"]);
-                Assert.Equal("/", measurement.Tags["http.route"]);
-            });
-    }
-}
-```
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 
 The proceeding test:
 
