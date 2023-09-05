@@ -197,6 +197,23 @@ Confirm that the app pool's 32-bit setting is correct:
 
 Confirm that there isn't a conflict between a `<Platform>` MSBuild property in the project file and the published bitness of the app.
 
+### Failed to start application (ErrorCode '0x800701b1')
+
+```
+EventID: 1010
+Source: IIS AspNetCore Module V2
+Failed to start application '/LM/W3SVC/3/ROOT', ErrorCode '0x800701b1'.
+```
+
+The app failed to start because a windows service failed to load.
+
+One common service that needs to be enabled is the "null" service.
+You can run
+```cmd
+sc.exe start null
+```
+to enable it if it is not enabled.
+
 ### Connection reset
 
 If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
