@@ -133,10 +133,6 @@ Run the following command in the integrated terminal:
 dotnet new razorclasslib -s
 ```
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-No project template support at this time.
-
 ---
 
 For example:
