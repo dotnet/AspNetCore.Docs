@@ -184,13 +184,6 @@ Binding from forms is now supported for:
 * Collections, for example [List](/dotnet/api/system.collections.generic.list-1) and [Dictionary](/dotnet/api/system.collections.generic.dictionary-2)
 * Complex types, for example, `Todo` or `Project`
 
-<!-- The following code shows:
-
-* A minimal endpoint that binds a multi-part form input to a complex object.
-* How to use the anti-forgery services to support the generation and validation of anti-forgery tokens.
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/ComplexBinding/Program.cs"::: -->
-
 For more information, see [Bind to collections and complex types from forms](xref:fundamentals/minimal-apis/parameter-binding#bindcc).
 
 ### Antiforgery with Minimal APIs
