@@ -67,14 +67,6 @@ The output location specified with the `-o|--output` option creates a project fo
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-To create a new Blazor WebAssembly project.
-
-Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app. Confirm that the **ASP.NET Core Hosted** checkbox is ***not*** selected. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
-
-The app is created to use ASP.NET Core [Identity](xref:security/authentication/identity) and doesn't result in storing users in a database. The following sections of this article provide further details.
-
 ---
 
 ### Configure the app
@@ -139,7 +131,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServ
 
 For a new app, provide values for the `{AUTHORITY}` and `{CLIENT ID}` placeholders in the following configuration. Provide other configuration values that are required for use with the app's IP. The example is for Google, which requires `PostLogoutRedirectUri`, `RedirectUri`, and `ResponseType`. If adding authentication to an app, manually add the following code and configuration to the app with values for the placeholders and other configuration values.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -167,7 +159,7 @@ The Blazor WebAssembly template automatically configures default scopes for `ope
 
 The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions>. If adding authentication to an app, manually add the following code and configure the scope URI.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>

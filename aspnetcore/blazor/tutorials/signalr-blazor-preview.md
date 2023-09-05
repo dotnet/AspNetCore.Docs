@@ -48,10 +48,6 @@ At the end of this tutorial, you'll have a working chat app.
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/) with the **.NET** workload
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
@@ -73,10 +69,6 @@ The Visual Studio Code instructions use the .NET CLI for ASP.NET Core developmen
 * [.NET 8.0 Preview](https://dotnet.microsoft.com/download/dotnet/8.0) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[Visual Studio for Mac 2022 Preview](https://visualstudio.microsoft.com/vs/mac/preview/) with the **.NET** workload
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -125,39 +117,6 @@ In Visual Studio Code, open the app's project folder.
 
 When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
-
-```dotnetcli
-dotnet new blazor -o BlazorApp --use-server
-```
-
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
-
-After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
-
-> [!NOTE]
-> Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
-
-<!-- UPDATE 8.0
-
-Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
-
-In the sidebar, select **Web and Console** > **App**.
-
-Choose the **Blazor Web App** template. Select **Continue**.
-
-Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
-
-In the **Project name** field, name the app `BlazorSignalRApp`. Select **Create**.
-
-If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
-
-Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
-
--->
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell, execute the following command:
@@ -199,18 +158,6 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
 -->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In the **Solution** sidebar, right-click the `BlazorSignalRApp` project and select **Manage NuGet Packages**.
-
-In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
-
-With **Browse**  and **Include prerelease** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
-
-In the search results, select the checkbox next to the latest **preview** [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. <!-- Set the version to match the shared framework of the app. --> Select **Add Package**.
-
-If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -386,13 +333,6 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
-
-> [!IMPORTANT]
-> Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 

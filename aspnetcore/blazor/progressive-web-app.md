@@ -33,10 +33,6 @@ The word *progressive* is used to describe these apps because:
 
 When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
-
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
 Use the following command to create a PWA project in a command shell with the `--pwa` switch:

@@ -141,7 +141,7 @@ For a potential bug in the framework or product feedback, open an issue for the 
 
 For a potential problem with a Blazor article, open a documentation issue. To open a documentation issue, use the **This page** feedback button and form at the bottom of the article and leave the metadata in place when creating the opening comment. The metadata provides tracking data and automatically pings the author of the article. If the subject was discussed with the product unit, place a cross-link to the engineering issue in the documentation issue's opening comment.
 
-For problems or feedback on Visual Studio or Visual Studio for Mac, use the [**Report a Problem**](/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](/visualstudio/ide/suggest-a-feature) gestures from within Visual Studio, which open internal issues for Visual Studio teams. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home) or [How to report a problem in Visual Studio for Mac](/visualstudio/mac/report-a-problem).
+For problems or feedback on Visual Studio, use the [**Report a Problem**](/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](/visualstudio/ide/suggest-a-feature) gestures from within Visual Studio, which open internal issues for Visual Studio. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home).
 
 For problems with Visual Studio Code, ask for support on community support forums. For bug reports and product feedback, open an issue on the [`microsoft/vscode` GitHub repo](https://github.com/microsoft/vscode/issues).
 

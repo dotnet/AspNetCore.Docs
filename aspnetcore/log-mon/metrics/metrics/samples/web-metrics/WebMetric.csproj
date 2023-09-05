@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.5.0-rc.1" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.5.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.6.0-rc.1" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.6.0-rc.1" />
   </ItemGroup>
 
 </Project>

@@ -14,6 +14,8 @@ uid: blazor/security/content-security-policy
 
 This article explains how to use a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) with ASP.NET Core Blazor apps to help protect against [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) attacks.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places one or more malicious client-side scripts into an app's rendered content. A CSP helps protect against XSS attacks by informing the browser of valid:
 
 * Sources for loaded content, including scripts, stylesheets, images, and plugins.
@@ -27,7 +29,7 @@ CSP is supported in most modern desktop and mobile browsers, including Chrome, E
 
 ## Policy directives
 
-Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
+Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor apps are provided:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -39,10 +41,10 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 * [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * In a Blazor WebAssembly app:
-    * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the Blazor WebAssembly Mono runtime to function.
+  * In a client-side Blazor app:
+    * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the client-side Blazor Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
-  * In a Blazor Server app, specify hashes to permit required scripts to load.
+  * In a server-side Blazor app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
@@ -60,10 +62,10 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 * [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * In a Blazor WebAssembly app:
-    * Specify `unsafe-eval` to permit the Blazor WebAssembly Mono runtime to function.
+  * In a client-side Blazor app:
+    * Specify `unsafe-eval` to permit the client-side Blazor Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
-  * In a Blazor Server app, specify hashes to permit required scripts to load.
+  * In a server-side Blazor app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
@@ -82,10 +84,10 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * In a Blazor WebAssembly app:
-    * Specify `unsafe-eval` to permit the Blazor WebAssembly Mono runtime to function.
+  * In a client-side Blazor app:
+    * Specify `unsafe-eval` to permit the client-side Blazor Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
-  * In a Blazor Server app, specify hashes to permit required scripts to load.
+  * In a server-side Blazor app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
@@ -105,14 +107,14 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * In a Blazor WebAssembly app:
+  * In a client-side Blazor app:
     * Specify hashes to permit required scripts to load.
     * Specify `unsafe-eval` to use `eval()` and methods for creating code from strings.
-  * In a Blazor Server app, specify hashes to permit required scripts to load.
+  * In a server-side Blazor app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * Specify `unsafe-inline` to allow the use of inline styles. The inline declaration is required for the UI in Blazor Server apps for reconnecting the client and server after the initial request. In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.
+  * Specify `unsafe-inline` to allow the use of inline styles. The inline declaration is required for the UI for reconnecting the client and server after the initial request. In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.
 * [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 :::moniker-end
@@ -133,13 +135,13 @@ Use a `<meta>` tag to apply the policy:
 
 * Set the value of the `http-equiv` attribute to `Content-Security-Policy`.
 * Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`).
-* Always place the `meta` tag in the `<head>` content.
+* Always place the `meta` tag in the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content).
 
-The following sections show example policies for Blazor WebAssembly and Blazor Server. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
+The following sections show example policies. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
-### Blazor WebAssembly
+### Client-side Blazor apps
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the *Policy directives* section:
+In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -189,7 +191,7 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
 ```
 
 > [!NOTE]
-> The `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=` hash represents the [inline](https://github.com/dotnet/aspnetcore/blob/57501251222b199597b9ac16888f362a69eb13c1/src/Components/Web.JS/src/Platform/Mono/MonoPlatform.ts#L212) script that's used for Blazor WebAssembly. This may be removed in the future.
+> The `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=` hash represents the [inline](https://github.com/dotnet/aspnetcore/blob/57501251222b199597b9ac16888f362a69eb13c1/src/Components/Web.JS/src/Platform/Mono/MonoPlatform.ts#L212) script that's used for client-side Blazor apps. This may be removed in the future.
 
 :::moniker-end
 
@@ -241,9 +243,9 @@ Add additional `script-src` and `style-src` hashes as required by the app. Durin
 
 The particular script associated with the error is displayed in the console next to the error.
 
-### Blazor Server
+### Server-side Blazor apps
 
-In the `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)), apply the directives described in the *Policy directives* section:
+In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
 
 :::moniker range=">= aspnetcore-6.0"
 

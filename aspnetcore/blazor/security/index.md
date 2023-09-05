@@ -14,18 +14,20 @@ uid: blazor/security/index
 
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
-Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+Security scenarios differ between server-side and client-side Blazor apps. Because a server-side app runs on the server, authorization checks are able to determine:
 
 * The UI options presented to a user (for example, which menu entries are available to a user).
 * Access rules for areas of the app and components.
 
-Blazor WebAssembly apps run on the client. Authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a Blazor WebAssembly app can't enforce authorization access rules.
+For a client-side app, authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a client-side app can't enforce authorization access rules.
 
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which generally isn't the Blazor app client-server communication model. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks. Building Razor components that directly handle Identity tasks is possible for several scenarios but isn't recommended or supported by Microsoft.
 
-ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
+ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a server-side Blazor app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app).
 
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from examples in this article.
@@ -46,13 +48,13 @@ Blazor stores request tokens in component state, which guarantees that antiforge
 
 ## Authentication
 
-Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity. The exact mechanism depends on how the Blazor app is hosted, Blazor Server or Blazor WebAssembly.
+Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity. The exact mechanism depends on how the Blazor app is hosted, server-side or client-side.
 
-### Blazor Server authentication
+### Server-side Blazor authentication
 
-Blazor Server operates over a SignalR connection with the client. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server).
+Server-side Blazor operates over a SignalR connection with the client. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server).
 
-The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
 #### Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
 
@@ -62,9 +64,9 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
 
-### Blazor WebAssembly authentication
+### Client-side Blazor authentication
 
-In Blazor WebAssembly, authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks and native apps for any operating system.
+In client-side Blazor apps, authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks and native apps for any operating system.
 
 Add the following:
 
@@ -89,7 +91,62 @@ You don't typically use <xref:Microsoft.AspNetCore.Components.Authorization.Auth
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service can provide the current user's <xref:System.Security.Claims.ClaimsPrincipal> data, as shown in the following example.
 
-`Pages/ClaimsPrincipalData.razor`:
+`ClaimsPrincipalData.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/claims-principle-data"
+@attribute [RenderModeServer]
+@using System.Security.Claims
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h1>ClaimsPrincipal Data</h1>
+
+<button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
+
+<p>@authMessage</p>
+
+@if (claims.Count() > 0)
+{
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li>@claim.Type: @claim.Value</li>
+        }
+    </ul>
+}
+
+<p>@surname</p>
+
+@code {
+    private string? authMessage;
+    private string? surname;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+
+    private async Task GetClaimsPrincipalData()
+    {
+        var authState = await AuthenticationStateProvider
+            .GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surname = user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value;
+        }
+        else
+        {
+            authMessage = "The user is NOT authenticated.";
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/claims-principle-data"
@@ -139,15 +196,53 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 }
 ```
 
+:::moniker-end
+
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in Blazor Server apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in server-side Blazor apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a [cascading parameter](xref:blazor/components/cascading-values-and-parameters) of type `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>`, as the following example demonstrates.
 
-`Pages/CascadeAuthState.razor`:
+`CascadeAuthState.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/cascade-auth-state"
+@attribute [RenderModeServer]
+
+<h1>Cascade Auth State</h1>
+
+<p>@authMessage</p>
+
+@code {
+    private string authMessage = "The user is NOT authenticated.";
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user?.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                authMessage = $"{user.Identity.Name} is authenticated.";
+            }
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/cascade-auth-state"
@@ -178,14 +273,16 @@ If authentication state data is required for procedural logic, such as when perf
 }
 ```
 
+:::moniker-end
+
 If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.
 
-Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components in the `App` component.
+Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components.
 
-> [!NOTE]
-> When you create a Blazor app from one of the Blazor project templates with authentication enabled, the `App` component includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the following example. A Blazor WebAssembly app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
+<!-- UPDATE 8.0 Need to confirm this next bit in the BWA world
+     e.g., did Found survive the NotFound removal?  -->
 
-`App.razor`:
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
 
 ```razor
 <CascadingAuthenticationState>
@@ -195,9 +292,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
                 DefaultLayout="@typeof(MainLayout)" />
             ...
         </Found>
-        <NotFound>
-            ...
-        </NotFound>
+        ...
     </Router>
 </CascadingAuthenticationState>
 ```
@@ -208,14 +303,14 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 
 :::moniker-end
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
+In a client-side Blazor app, add services for options and authorization to the `Program` file:
 
 ```csharp
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 ```
 
-In a Blazor Server app, services for options and authorization are already present, so no further steps are required.
+In a server-side Blazor app, services for options and authorization are already present, so no further steps are required.
 
 ## Authorization
 
@@ -263,7 +358,7 @@ You can also supply different content for display if the user isn't authorized:
 A default event handler for an authorized element, such as the `SecureMethod` method for the `<button>` element in the preceding example, can only be invoked by an authorized user.
 
 > [!WARNING]
-> Client-side markup and methods associated with an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> are only protected from view and execution in the ***rendered UI*** in Blazor WebAssembly apps. In order to protect authorized content and secure methods for Blazor WebAssembly apps, the content is usually supplied by a secure, authorized web API call to a server API and never stored in the app. For more information, see <xref:blazor/call-web-api> and <xref:blazor/security/webassembly/additional-scenarios>.
+> Client-side markup and methods associated with an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> are only protected from view and execution in the ***rendered UI*** in client-side Blazor apps. In order to protect authorized content and secure methods in client-side Blazor, the content is usually supplied by a secure, authorized web API call to a server API and never stored in the app. For more information, see <xref:blazor/call-web-api> and <xref:blazor/security/webassembly/additional-scenarios>.
 
 The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components.
 
@@ -341,7 +436,7 @@ Pascal case is typically used for role and policy names (for example, `BillingAd
 
 ### Content displayed during asynchronous authentication
 
-Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in Blazor WebAssembly apps that make a request to an external endpoint for authentication.
+Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in client-side Blazor apps that make a request to an external endpoint for authentication.
 
 While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> displays no content by default. To display content while authentication occurs, use the `<Authorizing>` tag:
 
@@ -356,7 +451,7 @@ While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Autho
 </AuthorizeView>
 ```
 
-This approach isn't normally applicable to Blazor Server apps. Blazor Server apps know the authentication state as soon as the state is established. <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> content can be provided in a Blazor Server app's <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, but the content is never displayed.
+This approach isn't normally applicable to server-side Blazor apps. Server-side Blazor apps know the authentication state as soon as the state is established. <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> content can be provided in an app's <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, but the content is never displayed.
 
 ## `[Authorize]` attribute
 
@@ -407,7 +502,10 @@ Not authorized.
 
 To authorize users for resources, pass the request's route data to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Resource> parameter of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>.
 
-In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route in the `App` component (`App.razor`):
+<!-- UPDATE 8.0 Confirm the following remark in the BWA world
+     i.e., did Found content survive the NotFound drop? -->
+
+In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route:
 
 ```razor
 <AuthorizeRouteView Resource="@routeData" RouteData="@routeData" 
@@ -424,7 +522,7 @@ In the following example, an `EditUser` policy is created in <xref:Microsoft.Asp
 * In a variable named `id`, store `value` as a string or set an empty string value (`string.Empty`).
 * If `id` isn't an empty string, assert that the policy is satisfied (return `true`) if the string's value starts with `EMP`. Otherwise, assert that the policy fails (return `false`).
 
-In either `Program.cs` or `Startup.cs` (depending on the hosting model and framework version):
+In the `Program` file:
 
 * Add namespaces for <xref:Microsoft.AspNetCore.Components?displayProperty=fullName> and <xref:System.Linq?displayProperty=fullName>:
 
@@ -460,7 +558,31 @@ The preceding example is an oversimplified authorization policy, merely used to 
 
 In the following `EditUser` component, the resource at `/users/{id}/edit` has a route parameter for the user's identifier (`{id}`). The component uses the preceding `EditUser` authorization policy to determine if the route value for `id` starts with `EMP`. If `id` starts with `EMP`, the policy succeeds and access to the component is authorized. If `id` starts with a value other than `EMP` or if `id` is an empty string, the policy fails, and the component doesn't load.
 
-`Pages/EditUser.razor`:
+`EditUser.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/users/{id}/edit"
+@attribute [RenderModeServer]
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "EditUser")]
+
+<h1>Edit User</h1>
+
+<p>The "EditUser" policy is satisfied! <code>Id</code> starts with 'EMP'.</p>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 ```razor
 @page "/users/{id}/edit"
@@ -483,11 +605,11 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunction with the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component, allows the app to specify custom content if:
 
+<!-- UPDATE 8.0 React to NotFound changes in the BWA world
+     the following removed NotFound content and tags -->
+
 * The user fails an [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) condition applied to the component. The markup of the [`<NotAuthorized>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized?displayProperty=nameWithType) element is displayed. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.
 * Asynchronous authorization is in progress, which usually means that the process of authenticating the user is in progress. The markup of the [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) element is displayed.
-* Content isn't found. The markup of the [`<NotFound>`](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound?displayProperty=nameWithType) element is displayed.
-
-In the `App` component (`App.razor`):
 
 ```razor
 <CascadingAuthenticationState>
@@ -502,11 +624,7 @@ In the `App` component (`App.razor`):
                 </Authorizing>
             </AuthorizeRouteView>
         </Found>
-        <NotFound>
-            <LayoutView ...>
-                ...
-            </LayoutView>
-        </NotFound>
+        ...
     </Router>
 </CascadingAuthenticationState>
 ```
@@ -519,9 +637,9 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 Not authorized.
 ```
 
-An app created from the Blazor WebAssembly project template with authentication enabled includes a [`RedirectToLogin` component (`Shared/RedirectToLogin.razor` reference source)](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/RedirectToLogin.razor), which is positioned in the `<NotAuthorized>` content of the Blazor Router in the template's [`App` component (reference source)](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/App.razor). When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
+<!-- UPDATE 8.0 Confirm this is still true for a WASM app at RC2 -->
 
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+An app created from the client-side Blazor project template with authentication enabled includes a `RedirectToLogin` component, which is positioned in the `<NotAuthorized>` content of the Blazor's router. When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
 
 ## Procedural logic
 
@@ -533,14 +651,63 @@ In the following example:
 * The `user.IsInRole("admin")` executes code for users in the 'Admin' role.
 * The `(await AuthorizationService.AuthorizeAsync(user, "content-editor")).Succeeded` executes code for users satisfying the 'content-editor' policy.
 
-A Blazor Server app includes the appropriate namespaces by default when created from the Blazor Server project template. In a Blazor WebAssembly app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
+A server-side Blazor app includes the appropriate namespaces by default when created from the project template. In a client-side Blazor app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
 
 ```razor
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 ```
 
-`Pages/ProceduralLogic.razor`:
+`ProceduralLogic.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/procedural-logic"
+@attribute [RenderModeServer]
+@inject IAuthorizationService AuthorizationService
+
+<h1>Procedural Logic Example</h1>
+
+<button @onclick="@DoSomething">Do something important</button>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private async Task DoSomething()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user is not null)
+            {
+                if (user.Identity is not null && user.Identity.IsAuthenticated)
+                {
+                    // ...
+                }
+
+                if (user.IsInRole("Admin"))
+                {
+                    // ...
+                }
+
+                if ((await AuthorizationService.AuthorizeAsync(user, "content-editor"))
+                    .Succeeded)
+                {
+                    // ...
+                }
+            }
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/procedural-logic"
@@ -584,6 +751,8 @@ A Blazor Server app includes the appropriate namespaces by default when created 
 }
 ```
 
+:::moniker-end
+
 ## Troubleshoot errors
 
 Common errors:
@@ -592,7 +761,7 @@ Common errors:
 
 * **`null` value is received for `authenticationStateTask`**
 
-It's likely that the project wasn't created using a Blazor Server template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in the `App` component (`App.razor`) as follows:
+It's likely that the project wasn't created using a server-side Blazor template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example around the Blazor router:
 
 ```razor
 <CascadingAuthenticationState>
