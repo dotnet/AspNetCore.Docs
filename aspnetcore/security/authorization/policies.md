@@ -265,7 +265,7 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
 
 ### Configure the sample
 
-1. Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Azure Active Directory (Azure AD) tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
+1. Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Microsoft Entra ID (Azure AD) tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
 
  * Assign it an AppRole.
  * Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this app registration represents both the API and the client invoking the API. If you like, you can create two app registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the client. Only the client app registration requires a client secret to be generated.

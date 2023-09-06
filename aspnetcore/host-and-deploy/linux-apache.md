@@ -572,7 +572,7 @@ The example file limits bandwidth as 600 KB/sec under the root location:
 
 ### Long request header fields
 
-Proxy server default settings typically limit request header fields to 8,190 bytes. An app may require fields longer than the default (for example, apps that use [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). If longer fields are required, the proxy server's [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) directive requires adjustment. The value to apply depends on the scenario. For more information, see your server's documentation.
+Proxy server default settings typically limit request header fields to 8,190 bytes. An app may require fields longer than the default (for example, apps that use [Microsoft Entra ID](https://azure.microsoft.com/services/active-directory/)). If longer fields are required, the proxy server's [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) directive requires adjustment. The value to apply depends on the scenario. For more information, see your server's documentation.
 
 > [!WARNING]
 > Don't increase the default value of `LimitRequestFieldSize` unless necessary. Increasing the value increases the risk of buffer overrun (overflow) and Denial of Service (DoS) attacks by malicious users.
