@@ -211,7 +211,7 @@ Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 
 ## Avoid reading large request bodies or response bodies into memory
 
-In .NET, every object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
+In .NET, every object allocation greater than or equal to 85,000 bytes ends up in the [large object heap (LOH)](/dotnet/standard/garbage-collection/large-object-heap). Large objects are expensive in two ways:
 
 * The allocation cost is high because the memory for a newly allocated large object has to be cleared. The CLR guarantees that memory for all newly allocated objects is cleared.
 * LOH is collected with the rest of the heap. LOH requires a full [garbage collection](/dotnet/standard/garbage-collection/fundamentals) or [Gen2 collection](/dotnet/standard/garbage-collection/fundamentals#generations).
