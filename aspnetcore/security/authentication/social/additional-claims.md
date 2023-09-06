@@ -29,7 +29,7 @@ The OAuth authentication provider establishes a trust relationship with an app u
 * [Other authentication providers](xref:security/authentication/otherlogins)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
-Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID (AAD) permits assigning optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
+Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits assigning optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
 
