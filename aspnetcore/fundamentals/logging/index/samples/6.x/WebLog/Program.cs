@@ -1,4 +1,4 @@
-#define APP4 // FIRST SECOND APP3
+#define FIRST // FIRST SECOND APP3
 #if NEVER
 #elif FIRST
 // <snippet1>
@@ -11,9 +11,10 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
+
 app.MapGet("/Test", async context =>
 {
-    var logger = app.Logger; // Access the configured logger directly
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
     logger.LogInformation("Testing logging in Program.cs");
     await context.Response.WriteAsync("Testing");
 });
