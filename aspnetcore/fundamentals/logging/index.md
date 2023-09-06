@@ -879,22 +879,7 @@ The following example shows how to register filter rules in code:
 
 The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, `ParentId`,`Baggage`, and `Tags`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
 
-```csharp
-  var loggerFactory = LoggerFactory.Create(logging =>
-  {
-      logging.Configure(options =>
-      {
-          options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
-                                              | ActivityTrackingOptions.TraceId
-                                              | ActivityTrackingOptions.ParentId
-                                              | ActivityTrackingOptions.Baggage
-                                              | ActivityTrackingOptions.Tags;
-      }).AddSimpleConsole(options =>
-      {
-          options.IncludeScopes = true;
-      });
-  });
-```
+[!code-csharp[](~/fundamentals/logging/index/samples/6.x/WebApp/Program.cs?name=snippet4)]
 
 If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
 

@@ -54,36 +54,27 @@ app.Run();
 // </snippet3>
 #elif APP4
 // <snippet4>
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure logging with AddSimpleConsole
-builder.ConfigureLogging(logging =>
+var loggerFactory = LoggerFactory.Create(logging =>
 {
-    logging.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
-                                   | ActivityTrackingOptions.TraceId
-                                   | ActivityTrackingOptions.ParentId
-                                   | ActivityTrackingOptions.Baggage
-                                   | ActivityTrackingOptions.Tags;
-    logging.AddSimpleConsole(options =>
+    logging.Configure(options =>
+    {
+        options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                            | ActivityTrackingOptions.TraceId
+                                            | ActivityTrackingOptions.ParentId
+                                            | ActivityTrackingOptions.Baggage
+                                            | ActivityTrackingOptions.Tags;
+    }).AddSimpleConsole(options =>
     {
         options.IncludeScopes = true;
     });
 });
-
+// </snippet4>
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/Test", async context =>
-{
-    var logger = app.Logger; // Access the configured logger directly
-    logger.LogInformation("Testing logging in Program.cs");
-    await context.Response.WriteAsync("Testing");
-});
-
 app.Run();
-
-
 // </snippet4>
 #endif
