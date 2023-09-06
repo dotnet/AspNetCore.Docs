@@ -3,6 +3,8 @@ items:
   href: index.yml
   expanded: true
   items:
+  - name: August 2023
+    href: dotnet-AspNetCore.Docs-mod2.md
   - name: July 2023
     href: dotnet-AspNetCore.Docs-mod1.md
   - name: June 2023
@@ -13,5 +15,3 @@ items:
     href: dotnet-AspNetCore.Docs-mod4.md
   - name: March 2023
     href: dotnet-AspNetCore.Docs-mod3.md
-  - name: February 2023
-    href: dotnet-AspNetCore.Docs-mod2.md
