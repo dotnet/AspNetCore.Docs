@@ -554,7 +554,7 @@ passkeys/FIDO2 is currently:
 
 At present, ASP.NET Core doesn't support passkeys/FIDO2 directly. Passkeys/FIDO2 can be used for MFA or passwordless flows.
 
-Microsoft Entra IDprovides support for passkeys/FIDO2 and passwordless flows. For more information, see [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless).
+Microsoft Entra ID provides support for passkeys/FIDO2 and passwordless flows. For more information, see [Passwordless authentication options](/azure/active-directory/authentication/concept-authentication-passwordless).
 
 Other forms of passwordless MFA do not or may not protect against phishing.
 
