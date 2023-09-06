@@ -205,7 +205,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/3/ROOT', ErrorCode '0x800701b1'.
 ```
 
-The app failed to start because a windows service failed to load.
+The app failed to start because a Windows service failed to load.
 
 One common service that needs to be enabled is the "null" service.
 You can run
