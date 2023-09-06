@@ -64,3 +64,11 @@ groups:
       title: Server
     - id: webassembly
       title: WebAssembly
+- id: blazor-app-models
+  title: Blazor App Model
+  prompt: Choose a Blazor app model
+  pivots:
+    - id: server
+      title: Server
+    - id: webassembly
+      title: Blazor WebAssembly
