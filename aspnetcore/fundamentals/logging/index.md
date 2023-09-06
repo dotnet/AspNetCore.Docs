@@ -233,7 +233,7 @@ Calling `CreateLogger` with a fixed name can be useful when used in multiple met
 
 `ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
-***NOTE:*** [LoggerFactory.Create](xref:Microsoft.Extensions.Logging.LoggerFactory.Create(Action<ILoggingBuilder>)) Creates a new instance of <xref:Microsoft.Extensions.Logging.ILoggerFactory> that's configured using the provided `configure` delegate. The new instance of `ILoggerFactory` creates a new logging pipeline, different from the default logging pipeline. The new logging pipeline is not configured by the `Logging` section of `appsettings.json` or `appsettings.{ENVIRONMENT}.json`. For more information, see [Logging configuration](#lc).
+***NOTE:*** [LoggerFactory.Create](/dotnet/api/microsoft.extensions.logging.loggerfactory.create) Creates a new instance of <xref:Microsoft.Extensions.Logging.ILoggerFactory> that's configured using the provided `configure` delegate. The new instance of `ILoggerFactory` creates a new logging pipeline, different from the default logging pipeline. The new logging pipeline is not configured by the `Logging` section of `appsettings.json` or `appsettings.{ENVIRONMENT}.json`. For more information, see [Logging configuration](xref:fundamentals/logging/#configure-logging).
 
 <a name="llvl"></a>
 
