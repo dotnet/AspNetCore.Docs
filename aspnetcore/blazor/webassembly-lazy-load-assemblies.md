@@ -34,12 +34,17 @@ Include one `BlazorWebAssemblyLazyLoad` item for each assembly. If an assembly h
 
 ## `Router` component configuration
 
-The Blazor framework automatically registers a singleton service for lazy loading assemblies in client-side Blazor WebAssembly apps&dagger;, <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader.LoadAssembliesAsync%2A?displayProperty=nameWithType> method:
+The Blazor framework automatically registers a singleton service for lazy loading assemblies in client-side Blazor WebAssembly apps, <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader.LoadAssembliesAsync%2A?displayProperty=nameWithType> method:
 
 * Uses [JS interop](xref:blazor/js-interop/call-dotnet-from-javascript) to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-&dagger;Guidance for *hosted* Blazor WebAssembly [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
+:::moniker range="< aspnetcore-8.0"
+
+> [!NOTE]
+> Guidance for *hosted* Blazor WebAssembly [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
+
+:::moniker-end
 
 Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components and is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component's [`OnNavigateAsync` method](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync) is used in conjunction with lazy loading to load the correct assemblies for endpoints that a user requests.
 
@@ -260,11 +265,13 @@ To rectify this:
 * Check to see if the app is running in the `Production` environment when determining which assembly names to use.
 * Store the renamed assembly names in a separate file and read from that file to determine what assembly name to use with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service and <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback.
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Lazy load assemblies in a hosted Blazor WebAssembly solution
 
 The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **:::no-loc text="Server":::** project.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 At the top of the `Program.cs` file of the **:::no-loc text="Server":::** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
 

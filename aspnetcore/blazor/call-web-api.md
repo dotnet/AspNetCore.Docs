@@ -53,7 +53,11 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-Origin Resource Sharing (CORS), see the *Cross-Origin Resource Sharing (CORS)* section later in this article.
 
+:::moniker range="< aspnetcore-8.0"
+
 The Blazor examples that demonstrate obtaining weather data from a server API are based on a hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 

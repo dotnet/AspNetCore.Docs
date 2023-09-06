@@ -1875,16 +1875,18 @@ When validation messages are set in the component, they're added to the validato
 
 ## Server validation with a validator component
 
-*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
-
 :::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. -->
 
 > [!NOTE]
-> This section hasn't been updated to include [new .NET 8 antiforgery support features](#antiforgery-support) or guidance for Blazor Web Apps. Article updates are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055).
+> In prior releases of .NET, this section is based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance with its hosted Blazor WebAssembly solution example by selecting an earlier version of this article.
 
 :::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
 
 Server validation is supported in addition to client-side validation:
 
@@ -2334,6 +2336,8 @@ moniker-end
 > * [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 > * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
+
+:::moniker-end
 
 ## `InputText` based on the input event
 
@@ -3735,9 +3739,21 @@ For more information and guidance, see the following resources:
 
 ## Additional resources
 
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/file-uploads>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * <xref:blazor/file-uploads>
 * <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
+
+:::moniker-end

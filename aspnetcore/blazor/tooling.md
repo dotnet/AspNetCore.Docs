@@ -63,20 +63,32 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 * For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
+
+:::moniker-end
 
 * Select **Create**.
 
 * Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
+:::moniker range="< aspnetcore-8.0"
+
 When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
+:::moniker-end
+
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
+
+:::moniker range="< aspnetcore-8.0"
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 >
 > When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
+
+:::moniker-end
 
 :::zone-end
 
@@ -148,26 +160,31 @@ Create a new project:
   ```dotnetcli
   dotnet new blazorserver -o BlazorApp
   ```
+
 * Alternatively, create a Blazor Server app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
 
   ```dotnetcli
   dotnet new blazorserver-empty -o BlazorApp
   ```
+
 * For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
+
 * Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
   ```dotnetcli
   dotnet new blazorwasm-empty -o BlazorApp
   ```
+
 * For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp -ho
   ```
+
 * Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
 
   ```dotnetcli
@@ -185,11 +202,13 @@ Create a new project:
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
+
 * For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp -ho
   ```
+
 * For a Blazor Server experience, execute the following command:
 
   ```dotnetcli
@@ -311,6 +330,8 @@ The project's `Properties/launchSettings.json` file includes the `inspectUri` pr
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 **Hosted Blazor WebAssembly launch and task configuration**
 
 For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
@@ -320,7 +341,9 @@ For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add
 >
 > When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. Depending on the framework version, the URL protocol is either secure (HTTPS) `https://localhost:{PORT}` or insecure (HTTP) `http://localhost:{PORT}`, where the `{PORT}` placeholder is an assigned port. Note the URL for use in the `launch.json` file.
 
@@ -484,7 +507,11 @@ Tooling outside of Visual Studio can interact with solution files:
 * The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
 * [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
 
+:::moniker range="< aspnetcore-8.0"
+
 Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the **ASP.NET Core Hosted** option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+
+:::moniker-end
 
 For more information, see the following resources in the Visual Studio documentation:
 

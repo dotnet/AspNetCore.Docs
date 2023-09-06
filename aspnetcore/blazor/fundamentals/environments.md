@@ -38,7 +38,17 @@ The environment is set using any of the following approaches:
 
 <!-- UPDATE 8.0 Confirm that this is still correct -->
 
+:::moniker range=">= aspnetcore-8.0"
+
+On the client for a Blazor Web App, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 On the client for a Blazor Web App or the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
+
+:::moniker-end
 
 For a standalone client app running locally, the development server adds the `Blazor-Environment` header.
 
@@ -98,7 +108,19 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
 For a standalone client app, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
 
+<!-- UPDATE 8.0 Need to confirm this works for BWA with client-side only -->
+
+:::moniker range=">= aspnetcore-8.0"
+
+For the client project of a Blazor Web App, use the following guidance:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 For the client project of a Blazor Web App or hosted Blazor WebAssembly app, use the following guidance:
+
+:::moniker-end
 
 1. Confirm that the casing of environment segments in app settings file names matches their environment name casing ***exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 

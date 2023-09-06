@@ -108,10 +108,26 @@ The preceding `beforeStart` example only guarantees that the custom script loads
 
 For an examples of JS initializers, see the following resources:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
+* <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
+* [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
 * <xref:blazor/host-and-deploy/webassembly-deployment-layout>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

@@ -19,11 +19,21 @@ With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-we
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
 * The app is executed directly on the browser UI thread.
 
+:::moniker range=">= aspnetcore-8.0"
+
+This article pertains to the deployment scenario where the Blazor app is placed on a static hosting web server or service, .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 * An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -117,7 +127,17 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor relies on the host to serve the appropriate compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Blazor relies on the host to serve the appropriate compressed files. When using an **ASP.NET Core Hosted** Blazor WebAssembly project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+
+:::moniker-end
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
@@ -203,7 +223,7 @@ dotnet publish -p:BlazorEnableCompression=false
 
 ## Rewrite URLs for correct routing
 
-Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
+Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server app. Consider a Blazor WebAssembly app with two components:
 
 * `Main.razor`: Loads at the root of the app and contains a link to the `About` component (`href="About"`).
 * `About.razor`: `About` component.
@@ -222,6 +242,8 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the `index.html` page. When `index.html` is returned, the app's Blazor router takes over and responds with the correct resource.
 
 When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see the [IIS](#iis) section.
+
+:::moniker range="< aspnetcore-8.0"
 
 ## Hosted deployment with ASP.NET Core
 
@@ -302,9 +324,15 @@ For more information, see the following articles:
 * [.NET application publishing overview](/dotnet/core/deploying/)
 * <xref:host-and-deploy/index>
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 ## Standalone deployment
 
@@ -367,8 +395,19 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
+:::moniker range=">= aspnetcore-8.0"
+
+1. Place the custom `web.config` file in the project's root folder.
+1. Publish the project. For more information, see <xref:blazor/host-and-deploy/index>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see <xref:blazor/host-and-deploy/index>.
+
+:::moniker-end
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
@@ -447,7 +486,17 @@ Removing the handler or disabling inheritance is performed in addition to [confi
 
 #### Brotli and Gzip compression
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section only applies to standalone Blazor WebAssembly apps.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 *This section only applies to standalone Blazor WebAssembly apps. Hosted Blazor apps use a default ASP.NET Core app `web.config` file, not the file linked in this section.*
+
+:::moniker-end
 
 IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets for standalone Blazor WebAssembly apps. For an example configuration file, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
 
@@ -718,6 +767,8 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
   --urls=http://127.0.0.1:0
   ```
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Hosted deployment on Linux (Nginx)
 
 Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in <xref:host-and-deploy/proxy-load-balancer>.
@@ -845,6 +896,8 @@ For more information and configuration guidance, consult the following resources
 
 -->
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-5.0"
 
 ## Configure the Trimmer
@@ -869,6 +922,21 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
+>
+> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core 8.0 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+>
+> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
+
 > [!NOTE]
 > Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
 >
@@ -878,6 +946,10 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 > * In ASP.NET Core 6.0 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
@@ -1182,7 +1254,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> is increased to 60 seconds, and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> is increased to 30 seconds.
 
-  For a hosted Blazor WebAssembly app in `Program.cs` of the **:::no-loc text="Server":::** project:
+  In the `Program` file of the server app:
 
    ```csharp
    builder.Services.AddSignalR(options =>
@@ -1205,6 +1277,9 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
 
   When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds).
   
+  <!-- UPDATE 8.0 This needs to be cross-checked against the latest
+       tutorial guidance. -->
+
   The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds:
 
 :::moniker-end
