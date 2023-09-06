@@ -9,7 +9,7 @@ uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
-This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/) (AAD). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
+This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/) (Entra). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
 
 For ASP.NET Core apps, WS-Federation support is provided by [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). This component is ported from [Microsoft.Owin.Security.WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) and shares many of that component's mechanics. However, the components differ in a couple of important ways.
 
@@ -57,7 +57,7 @@ By default, the new middleware:
 
 ### Microsoft Entra ID
 
-* Navigate to the AAD tenant's app registrations blade. Click **New application registration**:
+* Navigate to the Entra tenant's app registrations blade. Click **New application registration**:
 
 ![Microsoft Entra ID: App registrations](ws-federation/_static/AadNewAppRegistration.png)
 
@@ -108,8 +108,8 @@ Browse to the app and click the **Log in** link in the nav header. There's an op
 With ADFS as the provider, the button redirects to an ADFS sign-in page:
 ![ADFS sign-in page](ws-federation/_static/AdfsLoginPage.png)
 
-With Microsoft Entra ID as the provider, the button redirects to an AAD sign-in page:
-![AAD sign-in page](ws-federation/_static/AadSignIn.png)
+With Microsoft Entra ID as the provider, the button redirects to an Entra sign-in page:
+![Entra sign-in page](ws-federation/_static/AadSignIn.png)
 
 A successful sign-in for a new user redirects to the app's user registration page:
 ![Register page](ws-federation/_static/Register.png)
