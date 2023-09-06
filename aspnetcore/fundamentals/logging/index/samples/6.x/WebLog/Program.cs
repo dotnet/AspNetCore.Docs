@@ -1,13 +1,11 @@
-#define APP3 // FIRST SECOND APP3
+#define APP4 // FIRST SECOND APP3
 #if NEVER
 #elif FIRST
-#region snippet1
+// <snippet1>
 var builder = WebApplication.CreateBuilder(args);
 
-var logger = LoggerFactory.Create(config =>
-{
-    config.AddConsole();
-}).CreateLogger("Program");
+// Configure logging with AddConsole()
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
@@ -15,24 +13,21 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/Test", async context =>
 {
+    var logger = app.Logger; // Access the configured logger directly
     logger.LogInformation("Testing logging in Program.cs");
     await context.Response.WriteAsync("Testing");
 });
 
 app.Run();
-#endregion
+// </snippet1>
 #elif SECOND
-#region snippet2
+// <snippet2>
 using Microsoft.Extensions.Logging.Console;
 
 var builder = WebApplication.CreateBuilder(args);
 
-using var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);
-});
-
-var logger = loggerFactory.CreateLogger<Program>();
+// Configure logging with AddSimpleConsole
+builder.Logging.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);
 
 var app = builder.Build();
 
@@ -40,19 +35,55 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/Test", async context =>
 {
+    var logger = app.Logger; // Access the configured logger directly
     logger.LogInformation("Testing logging in Program.cs");
     await context.Response.WriteAsync("Testing");
 });
 
 app.Run();
-#endregion
+
+// </snippet2>
 #elif APP3
-#region snippet3
+// <snippet3>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 app.Logger.LogInformation("Adding Routes");
 app.MapGet("/", () => "Hello World!");
 app.Logger.LogInformation("Starting the app");
 app.Run();
-#endregion
+// </snippet3>
+#elif APP4
+// <snippet4>
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure logging with AddSimpleConsole
+builder.ConfigureLogging(logging =>
+{
+    logging.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                   | ActivityTrackingOptions.TraceId
+                                   | ActivityTrackingOptions.ParentId
+                                   | ActivityTrackingOptions.Baggage
+                                   | ActivityTrackingOptions.Tags;
+    logging.AddSimpleConsole(options =>
+    {
+        options.IncludeScopes = true;
+    });
+});
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.MapGet("/Test", async context =>
+{
+    var logger = app.Logger; // Access the configured logger directly
+    logger.LogInformation("Testing logging in Program.cs");
+    await context.Response.WriteAsync("Testing");
+});
+
+app.Run();
+
+
+// </snippet4>
 #endif

@@ -233,6 +233,8 @@ Calling `CreateLogger` with a fixed name can be useful when used in multiple met
 
 `ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
+***NOTE:*** [LoggerFactory.Create](xref:Microsoft.Extensions.Logging.LoggerFactory.Create(Action<ILoggingBuilder>)) Creates a new instance of <xref:Microsoft.Extensions.Logging.ILoggerFactory> that's configured using the provided `configure` delegate. The new instance of `ILoggerFactory` creates a new logging pipeline, different from the default logging pipeline. The new logging pipeline is not configured by the `Logging` section of `appsettings.json` or `appsettings.{ENVIRONMENT}.json`. For more information, see [Logging configuration](#lc).
+
 <a name="llvl"></a>
 
 ## Log level
@@ -895,6 +897,8 @@ The logging libraries implicitly create a scope object with `SpanId`, `TraceId`,
 ```
 
 If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
+
+<!-- Add warning here once warning is approved -->
 
 ## Create a custom logger
 
