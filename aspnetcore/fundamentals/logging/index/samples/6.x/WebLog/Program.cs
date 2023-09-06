@@ -56,7 +56,8 @@ app.Run();
 // <snippet4>
 var builder = WebApplication.CreateBuilder(args);
 
-var loggerFactory = LoggerFactory.Create(logging =>
+builder.Logging.Configure(...)
+builder.Logging.AddSimpleConsole(...)
 {
     logging.Configure(options =>
     {
