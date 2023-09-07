@@ -91,7 +91,9 @@ For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-coun
 
 ## Enrich the ASP.NET Core request metric
 
-ASP.NET Core has many built-in metrics. One of these - `http.server.request.duration` - records the duration of HTTP requests on the server and captures request information in tags, such as the matched route and response status code.
+ASP.NET Core has many built-in metrics. The `http.server.request.duration` metric:
+* Records the duration of HTTP requests on the server.
+* Captures request information in tags, such as the matched route and response status code.
 
 The `http.server.request.duration` metric supports tag enrichment using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
 
@@ -115,11 +117,11 @@ app.Run();
 
 The proceeding example:
 
-1. Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric so check if `IHttpMetricsTagsFeature` is null before using it.
-1. Adds a custom tag containing the server's machine name to the `http.server.request.duration` metric. The tag has the name `machine_name` and the value of <xref:System.Environment.MachineName?displayProperty=nameWithType>. The example `machine_name` tag allows requests to be categorized by server, which could be useful if an app is running across multiple servers.
+* Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` is not `null` before using it.
+* Adds a custom tag containing the server's machine name to the `http.server.request.duration` metric. The tag has the name `machine_name` and the value of <xref:System.Environment.MachineName?displayProperty=nameWithType>. The example `machine_name` tag allows requests to be categorized by server, which is useful when an app is running across multiple servers.
 
 > [!NOTE]
-> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range will cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter, and may start filtering results out to avoid excessive memory usage.
+> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter and may start filtering results out to avoid excessive memory usage.
 
 ## Create custom metrics
 
