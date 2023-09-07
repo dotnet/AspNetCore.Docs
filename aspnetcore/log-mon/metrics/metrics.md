@@ -101,24 +101,37 @@ The `http.server.request.duration` metric supports tag enrichment using <xref:Mi
 var builder = WebApplication.CreateBuilder();
 var app = builder.Build();
 
-app.MapGet("/", (HttpContext context) =>
+app.Use(async (context, next) =>
 {
     var tagsFeature = context.Features.Get<IHttpMetricsTagsFeature>();
     if (tagsFeature != null)
     {
-        tagsFeature.Add(new KeyValuePair<string, object?>("machine_name", Environment.MachineName));
+        var source = context.Request.Query["utm_medium"].ToString() switch
+        {
+            "" => "none"
+            "social" => "social",
+            "email" => "email",
+            "organic" => "organic",
+            _ => "other"
+        }
+        tagsFeature.Add(new KeyValuePair<string, object?>("mkt_medium", source));
     }
-
-    return "Hello World!";
+    
+    await next.Invoke();
 });
+
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 ```
 
 The proceeding example:
 
+* Adds middleware to enrich the ASP.NET Core request metric.
 * Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` is not `null` before using it.
-* Adds a custom tag containing the server's machine name to the `http.server.request.duration` metric. The tag has the name `machine_name` and the value of <xref:System.Environment.MachineName?displayProperty=nameWithType>. The example `machine_name` tag allows requests to be categorized by server, which is useful when an app is running across multiple servers.
+* Adds a custom tag containing the request's marketing source to the `http.server.request.duration` metric.
+  * The tag has the name `mkt_medium` and a value based on the [utm_medium](https://wikipedia.org/wiki/UTM_parameters) query string value. The `utm_medium` value is resolved to a known range of values.
+  * The tag allows requests to be categorized by marketing medium type, which could be useful when analyzing web app traffic.
 
 > [!NOTE]
 > Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter and may start filtering results out to avoid excessive memory usage.
