@@ -138,3 +138,5 @@ The ASP.NET Core SPA templates can be updated in a patch release to a new SPA fr
 * [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies)
 
 ::: moniker-end
+
+[!INCLUDE[](~/client-side/spa/includes/intro6-7.md)]

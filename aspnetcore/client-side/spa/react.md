@@ -95,4 +95,4 @@ When you start your ASP.NET Core app, it won't launch a CRA server. The instance
 
 :::moniker-end
 
-[!INCLUDE[](includes/react3-7.md)]
+[!INCLUDE[](~/client-side/spa/includes/react3-7.md)]
