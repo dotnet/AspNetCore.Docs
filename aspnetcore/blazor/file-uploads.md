@@ -761,7 +761,7 @@ In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to g
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to client-side rendered Razor components in Blazor Web Apps and hosted Blazor WebAssembly apps.*
+*This section applies to client-side rendered Razor components in Blazor Web Apps.*
 
 :::moniker-end
 

@@ -47,7 +47,17 @@ To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazo
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
 
+:::moniker range=">= aspnetcore-8.0"
+
+After choosing the **Blazor WebAssembly App** template, set the **Authentication type** to **Individual Accounts**.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 After choosing the **Blazor WebAssembly App** template, set the **Authentication type** to **Individual Accounts**. Confirm that the **ASP.NET Core Hosted** checkbox is ***not*** selected.
+
+:::moniker-end
 
 The **Individual Accounts** selection uses ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 

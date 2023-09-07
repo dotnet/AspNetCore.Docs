@@ -371,7 +371,7 @@ app.MapFallbackToPage("/example/{param?}", "/");
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in the `Program` file:
 

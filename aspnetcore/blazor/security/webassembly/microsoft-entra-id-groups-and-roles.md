@@ -26,9 +26,20 @@ Microsoft Entra (ME-ID) provides several authorization approaches that can be co
 
 The guidance in this article applies to the Blazor WebAssembly ME-ID deployment scenarios described in the following topics:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* [Standalone with Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
+* [Standalone with ME-ID](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * [Standalone with Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
 * [Standalone with ME-ID](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
 * [Hosted with ME-ID](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
+
+:::moniker-end
 
 The article's guidance provides instructions for client and server apps:
 
@@ -61,7 +72,17 @@ To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role
 * A **CLIENT** app is configured with the `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal.
 * A **SERVER** app is configured with the `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal.
 
+:::moniker range=">= aspnetcore-8.0"
+
+The preceding scopes are required in addition to the scopes required in ME-ID deployment scenarios described by the topics listed earlier (*Standalone with Microsoft Accounts* or *Standalone with ME-ID*).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The preceding scopes are required in addition to the scopes required in ME-ID deployment scenarios described by the topics listed earlier (*Standalone with Microsoft Accounts*, *Standalone with ME-ID*, and *Hosted with ME-ID*).
+
+:::moniker-end
 
 For more information, see the [Microsoft Graph permissions reference](/graph/permissions-reference).
 

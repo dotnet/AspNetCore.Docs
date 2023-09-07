@@ -1,4 +1,17 @@
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 The cross-link will change depending on how the
+     prerendering and integration guidance is updated. -->
+
+*This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerendering-and-integration>.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 *This section applies to server-side apps and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerendering-and-integration>.*
+
+:::moniker-end
 
 While an app is prerendering, certain actions, such as calling into JavaScript (JS), aren't possible.
 

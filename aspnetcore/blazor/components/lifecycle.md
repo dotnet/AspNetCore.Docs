@@ -157,7 +157,7 @@ Blazor apps that prerender their content on the server call <xref:Microsoft.AspN
      the API for 'WebAssemblyPrerendered' might be different,
      and cross-link 'client-side rendered (CSR)'. -->
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components or client-side components in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -409,7 +409,7 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 :::moniker range=">= aspnetcore-8.0"
 
-Although the content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components or client-side components in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
 :::moniker-end
 
