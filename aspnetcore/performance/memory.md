@@ -30,7 +30,7 @@ When an ASP.NET Core app starts, the GC:
 
 The preceding memory allocations are done for performance reasons. The performance benefit comes from heap segments in contiguous memory.
 
-### Note about calling GC.Collect
+### GC.Collect caveats 
 
 In general, ASP.NET Core apps in production should **not** use [GC.Collect](xref:System.GC.Collect%2A) explicitly. Inducing garbage collections at sub-optimal times can decrease performance significantly.
 
