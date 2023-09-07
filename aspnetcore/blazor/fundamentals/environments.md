@@ -10,6 +10,17 @@ uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
+<!-- UPDATE 8.0 This entire article should be checked
+                at about RC2 after the final round of
+                WASM template updates and final stability
+                of BWAs. The article was originally tied
+                exclusively to WASM scenarios. It should
+                cover client- and server-side scenarios 
+                with BWAs. Especially, the scenarios for
+                the Blazor-Environment header must be 
+                validated in the BWA world. Clear Azure
+                coverage should be provided. -->
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
@@ -38,7 +49,17 @@ The environment is set using any of the following approaches:
 
 <!-- UPDATE 8.0 Confirm that this is still correct -->
 
+:::moniker range=">= aspnetcore-8.0"
+
+On the client for a Blazor Web App, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 On the client for a Blazor Web App or the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
+
+:::moniker-end
 
 For a standalone client app running locally, the development server adds the `Blazor-Environment` header.
 
@@ -96,15 +117,15 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
 ## Set the environment for Azure App Service
 
-For a standalone client app, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
+For a standalone client app, you can set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header). To set the environment via an `ASPNETCORE_ENVIRONMENT` app setting in Azure:
 
-For the client project of a Blazor Web App or hosted Blazor WebAssembly app, use the following guidance:
+<!-- UPDATE 8.0 Need to confirm this works for BWA with client-side only -->
 
-1. Confirm that the casing of environment segments in app settings file names matches their environment name casing ***exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
-
-1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. For an app named `BlazorAzureAppSample`, the staging App Service Slot is named `BlazorAzureAppSample/Staging`. For the `Staging` slot's configuration, create an app setting for `ASPNETCORE_ENVIRONMENT` with a value of `Staging`. **Deployment slot setting** is enabled for the setting.
+1. Confirm that the casing of environment segments in app settings file names match their environment name casing ***exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 
 1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. For an app named `BlazorAzureAppSample`, the app is deployed to the `Staging` deployment slot.
+
+1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. For an app named `BlazorAzureAppSample`, the staging App Service Slot is named `BlazorAzureAppSample/Staging`. For the `Staging` slot's configuration, create an app setting for `ASPNETCORE_ENVIRONMENT` with a value of `Staging`. **Deployment slot setting** is enabled for the setting.
 
 When requested in a browser, the `BlazorAzureAppSample/Staging` app loads in the `Staging` environment at `https://blazorazureappsample-staging.azurewebsites.net`.
 

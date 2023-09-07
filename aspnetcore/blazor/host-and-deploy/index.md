@@ -18,8 +18,12 @@ This article explains how to host and deploy Blazor apps.
 
 Apps are published for deployment in Release configuration.
 
+:::moniker range="< aspnetcore-8.0"
+
 > [!NOTE]
 > Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **:::no-loc text="Server":::** project.
+
+:::moniker-end
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -41,10 +45,21 @@ Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of th
 
 Publish locations:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Blazor WebAssembly: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * Blazor WebAssembly
   * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
   * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the client app. Deploy the contents of the `publish` folder to the host.
 * Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
+
+:::moniker-end
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
@@ -63,9 +78,13 @@ To host a Blazor app in IIS, see the following resources:
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
+:::moniker range="< aspnetcore-8.0"
+
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
 
 For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
+
+:::moniker-end
 
 ## App base path
 
@@ -140,6 +159,8 @@ app.Map("/base/path/", subapp => {
 
 Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
+:::moniker range="< aspnetcore-8.0"
+
 ### Hosted Blazor WebAssembly
 
 If the app is a hosted Blazor WebAssembly app:
@@ -154,6 +175,8 @@ If the app is a hosted Blazor WebAssembly app:
 
 For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
 
+:::moniker-end
+
 ### Standalone Blazor WebAssembly
 
 In a standalone Blazor WebAssembly app, only the `<base>` tag is configured, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
@@ -166,7 +189,7 @@ By configuring the app base path, a component that isn't in the root directory c
 
 In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following:
 
-* Blazor WebAssembly (standalone or hosted): `/` configured as `<base href="/" />`.
+* Blazor WebAssembly: `/` configured as `<base href="/" />`.
 * Blazor Server: `~/` configured as `<base href="~/" />`.
 
 For the location of `<head>` content in Blazor apps, see <xref:blazor/project-structure#location-of-head-and-body-content>.
@@ -182,6 +205,8 @@ For the location of `<head>` content in Blazor apps, see <xref:blazor/project-st
 
   **The trailing slash is required.**
 
+:::moniker range="< aspnetcore-8.0"
+
 * Hosted Blazor WebAssembly (**:::no-loc text="Client":::** project, `wwwroot/index.html`):
 
   ```html
@@ -195,6 +220,8 @@ For the location of `<head>` content in Blazor apps, see <xref:blazor/project-st
   ```csharp
   app.UsePathBase("/CoolApp");
   ```
+
+:::moniker-end
 
 * In a Blazor Server app, use ***either*** of the following approaches:
 
@@ -315,9 +342,13 @@ In scenarios where an app requires a separate area with custom resources and Raz
   app.Run();
   ```
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Host multiple Blazor WebAssembly apps
 
 For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 ## Deployment
 

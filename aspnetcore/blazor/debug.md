@@ -36,7 +36,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
-* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+
 * Debug in Firefox from Visual Studio.
 
 :::moniker-end
@@ -62,7 +62,6 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
-* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 * Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
 
 :::moniker-end
@@ -114,12 +113,18 @@ After opening a project in VS Code, you may receive a notification that addition
 
 Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 
+<!-- UPDATE 8.0 Although this isn't going to be true
+     for hosted WASM, it might still be true for debugging
+     client-side of BWAs. Will need to sort this out later. 
+
 Hosted Blazor WebAssembly:
 
 * **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 * **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 [!INCLUDE[](~/includes/package-reference.md)]
+
+-->
 
 ## Debug a standalone Blazor WebAssembly app
 
@@ -142,7 +147,9 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 
 # [Visual Studio](#tab/visual-studio)
 
-To debug a Blazor WebAssembly app in Visual Studio:
+<!-- UPDATE 8.0 Need to update this for BWA. There's an issue
+     to track updates for this article at 
+     https://github.com/dotnet/AspNetCore.Docs/issues/30170
 
 1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 1. With the **:::no-loc text="Server":::** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
@@ -174,7 +181,11 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 
 <h2 id="vscode">Debug standalone Blazor WebAssembly</h2>
 
+-->
+
 For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+
+To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Open the standalone Blazor WebAssembly app in VS Code.
 
@@ -224,6 +235,10 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 > [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+
+<!-- UPDATE 8.0 Need to update this for BWA. There's an issue
+     to track updates for this article at 
+     https://github.com/dotnet/AspNetCore.Docs/issues/30170
 
 ## Debug hosted Blazor WebAssembly
 
@@ -321,6 +336,8 @@ By default, publishing an app disables the preceding properties by setting them 
 
 :::moniker-end
 
+-->
+
 ## Attach to an existing debugging session
 
 To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:
@@ -343,16 +360,21 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 | Option    | Description |
 | --------- | ----------- |
-| `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
-| `url`     | The URL to open in the browser when debugging. |
 | `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `edge`. |
-| `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
-| `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
-| `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
+| `cwd`     | The working directory to launch the app under. |
+| `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
 | `timeout` | The number of milliseconds to wait for the debugging session to attach. Defaults to 30,000 milliseconds (30 seconds). |
+| `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
+| `url`     | The URL to open in the browser when debugging. |
+| `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
+
+<!-- UPDATE 8.0 Holding for BWA/8.0 updates 
+
+| `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
-| `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
+
+-->
 
 ---
 
@@ -407,7 +429,7 @@ To debug a Blazor WebAssembly app in Firefox during development:
 1. Close all Firefox instances and reopen Firefox with remote debugging enabled by running the following command in a command shell: `firefox --start-debugger-server 6000 -new-tab about:debugging`.
 1. In the new Firefox instance, leave the `about:debugging` tab open and open the Blazor WebAssembly app in a new browser tab.
 1. Type <kbd>SHIFT</kbd>+<kbd>ALT</kbd> to open the Firefox Web Developer tools and connect to the Firefox browser instance.
-1. In the `Debugger` tab, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint in the `IncrementCount` method of the `Counter` component (`Pages/Counter.razor`).
+1. In the `Debugger` tab, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint in the `IncrementCount` method of the `Counter` component (`Counter.razor`).
 1. Navigate to the `Counter` component page (`/counter`) and select the counter button to hit the breakpoint.
 
 :::moniker-end

@@ -86,20 +86,19 @@ The preceding example configures the hub connection URL to the absolute URI addr
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
-<!-- UPDATE 8.0 I suspect that we'll have a new Prerender topic; but 
-     for now, I'll cross-link to the Prerender and Integration topic, 
-     which hasn't (the Blazor Server pivot) been updated for 8.0 yet. -->
+<!-- UPDATE 8.0 We'll have a new Prerender topic, and I'd like to split
+     'prerendering' content from 'integration' content by using two
+     articles. For now, I'll comment this out for work later. 
      
 :::moniker range=">= aspnetcore-8.0"
 
 ## Client-side render mode
 
-If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
-
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> (hosted Blazor WebAssembly)
-* <xref:blazor/components/prerendering-and-integration>
+If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/components/prerendering-and-integration>.
 
 :::moniker-end
+
+-->
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 

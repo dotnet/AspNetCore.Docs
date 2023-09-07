@@ -14,6 +14,9 @@ uid: blazor/performance
 
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
+> [!NOTE]
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later.
+
 ## Optimize rendering speed
 
 Optimize rendering speed to minimize rendering workload and improve UI responsiveness, which can yield a *ten-fold or higher improvement* in UI rendering speed.
@@ -112,8 +115,6 @@ For more information on memory management, see <xref:blazor/host-and-deploy/serv
 
 Consider the following portion of a parent component that renders child components in a loop:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 <div class="chat">
     @foreach (var message in messages)
@@ -123,7 +124,7 @@ Consider the following portion of a parent component that renders child componen
 </div>
 ```
 
-`Shared/ChatMessageDisplay.razor`: 
+`ChatMessageDisplay.razor`: 
 
 ```razor
 <div class="chat-message">
@@ -136,35 +137,6 @@ Consider the following portion of a parent component that renders child componen
     public ChatMessage? Message { get; set; }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-<div class="chat">
-    @foreach (var message in messages)
-    {
-        <ChatMessageDisplay Message="@message" />
-    }
-</div>
-```
-
-`Shared/ChatMessageDisplay.razor`: 
-
-```razor
-<div class="chat-message">
-    <span class="author">@Message.Author</span>
-    <span class="text">@Message.Text</span>
-</div>
-
-@code {
-    [Parameter]
-    public ChatMessage Message { get; set; }
-}
-```
-
-:::moniker-end
 
 The preceding example performs well if thousands of messages aren't shown at once. To show thousands of messages at once, consider *not* factoring out the separate `ChatMessageDisplay` component. Instead, inline the child component into the parent. The following approach avoids the per-component overhead of rendering so many child components at the cost of losing the ability to rerender each child component's markup independently:
 
@@ -242,8 +214,6 @@ It's rare that too many parameters severely restricts performance, but it can be
 
 To reduce parameter load, bundle multiple parameters in a custom class. For example, a table cell component might accept a common object. In the following example, `Data` is different for every cell, but `Options` is common across all cell instances:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 @typeparam TItem
 
@@ -257,26 +227,6 @@ To reduce parameter load, bundle multiple parameters in a custom class. For exam
     public GridOptions? Options { get; set; }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@typeparam TItem
-
-...
-
-@code {
-    [Parameter]
-    public TItem Data { get; set; }
-    
-    [Parameter]
-    public GridOptions Options { get; set; }
-}
-```
-
-:::moniker-end
 
 However, consider that it might be an improvement not to have a table cell component, as shown in the preceding example, and instead [inline its logic into the parent component](#inline-child-components-into-their-parents).
 
@@ -312,8 +262,6 @@ For more information, see <xref:blazor/components/cascading-values-and-parameter
 
 Components can elect to receive "unmatched" parameter values using the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> flag:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 <div @attributes="OtherAttributes">...</div>
 
@@ -322,21 +270,6 @@ Components can elect to receive "unmatched" parameter values using the <xref:Mic
     public IDictionary<string, object>? OtherAttributes { get; set; }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-<div @attributes="OtherAttributes">...</div>
-
-@code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public IDictionary<string, object> OtherAttributes { get; set; }
-}
-```
-
-:::moniker-end
 
 This approach allows passing arbitrary additional attributes to the element. However, this approach is expensive because the renderer must:
 
@@ -358,8 +291,6 @@ In some extreme cases, you may wish to avoid the reflection and implement your o
 * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
 In extreme cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids dictionary lookups:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @code {
@@ -403,54 +334,6 @@ In extreme cases, you can override the component's virtual <xref:Microsoft.AspNe
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@code {
-    [Parameter]
-    public int MessageId { get; set; }
-
-    [Parameter]
-    public string Text { get; set; }
-
-    [Parameter]
-    public EventCallback<string> TextChanged { get; set; }
-
-    [Parameter]
-    public Theme CurrentTheme { get; set; }
-
-    public override Task SetParametersAsync(ParameterView parameters)
-    {
-        foreach (var parameter in parameters)
-        {
-            switch (parameter.Name)
-            {
-                case nameof(MessageId):
-                    MessageId = (int)parameter.Value;
-                    break;
-                case nameof(Text):
-                    Text = (string)parameter.Value;
-                    break;
-                case nameof(TextChanged):
-                    TextChanged = (EventCallback<string>)parameter.Value;
-                    break;
-                case nameof(CurrentTheme):
-                    CurrentTheme = (Theme)parameter.Value;
-                    break;
-                default:
-                    throw new ArgumentException($"Unknown parameter: {parameter.Name}");
-            }
-        }
-
-        return base.SetParametersAsync(ParameterView.Empty);
-    }
-}
-```
-
-:::moniker-end
-
 In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> runs the normal lifecycle methods without assigning parameters again.
 
 As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, it can improve rendering performance by 20-25%, but you should only consider this approach in the extreme scenarios listed earlier in this section.
@@ -460,8 +343,6 @@ As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Comp
 Some browser events fire extremely frequently. For example, `onmousemove` and `onscroll` can fire tens or hundreds of times per second. In most cases, you don't need to perform UI updates this frequently. If events are triggered too rapidly, you may harm UI responsiveness or consume excessive CPU time.
 
 Rather than use native events that rapidly fire, consider the use of JS interop to register a callback that fires less frequently. For example, the following component displays the position of the mouse but only updates at most once every 500 ms:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @inject IJSRuntime JS
@@ -501,50 +382,6 @@ Rather than use native events that rapidly fire, consider the use of JS interop 
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@inject IJSRuntime JS
-@implements IDisposable
-
-<h1>@message</h1>
-
-<div @ref="mouseMoveElement" style="border:1px dashed red;height:200px;">
-    Move mouse here
-</div>
-
-@code {
-    private ElementReference mouseMoveElement;
-    private DotNetObjectReference<MyComponent> selfReference;
-    private string message = "Move the mouse in the box";
-
-    [JSInvokable]
-    public void HandleMouseMove(int x, int y)
-    {
-        message = $"Mouse move at {x}, {y}";
-        StateHasChanged();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            selfReference = DotNetObjectReference.Create(this);
-            var minInterval = 500;
-
-            await JS.InvokeVoidAsync("onThrottledMouseMove", 
-                mouseMoveElement, selfReference, minInterval);
-        }
-    }
-
-    public void Dispose() => selfReference?.Dispose();
-}
-```
-
-:::moniker-end
-
 The corresponding JavaScript code registers the DOM event listener for mouse movement. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
 
 ```html
@@ -566,7 +403,43 @@ To prevent rerenders for all of a component's event handlers, implement <xref:Mi
 
 In the following example, no event handler added to the component triggers a rerender, so `HandleSelect` doesn't result in a rerender when invoked.
 
-`Pages/HandleSelect1.razor`:
+`HandleSelect1.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/handle-select-1"
+@attribute [RenderModeServer]
+@using Microsoft.Extensions.Logging
+@implements IHandleEvent
+@inject ILogger<HandleSelect1> Logger
+
+<p>
+    Last render DateTime: @dt
+</p>
+
+<button @onclick="HandleSelect">
+    Select me (Avoids Rerender)
+</button>
+
+@code {
+    private DateTime dt = DateTime.Now;
+
+    private void HandleSelect()
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+
+    Task IHandleEvent.HandleEventAsync(
+        EventCallbackWorkItem callback, object? arg) => callback.InvokeAsync(arg);
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/handle-select-1"
@@ -596,6 +469,8 @@ In the following example, no event handler added to the component triggers a rer
         EventCallbackWorkItem callback, object? arg) => callback.InvokeAsync(arg);
 }
 ```
+
+:::moniker-end
 
 In addition to preventing rerenders after event handlers fire in a component in a global fashion, it's possible to prevent rerenders after a single event handler by employing the following utility method.
 
@@ -646,7 +521,64 @@ In the following example:
 * Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
 * Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
-`Pages/HandleSelect2.razor`:
+`HandleSelect2.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/handle-select-2"
+@attribute [RenderModeServer]
+@using Microsoft.Extensions.Logging
+@inject ILogger<HandleSelect2> Logger
+
+<p>
+    Last render DateTime: @dt
+</p>
+
+<button @onclick="HandleClick1">
+    Select me (Rerenders)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
+    Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
+</button>
+
+@code {
+    private DateTime dt = DateTime.Now;
+
+    private void HandleClick1()
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation("This event handler triggers a rerender.");
+    }
+
+    private void HandleClick2()
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/handle-select-2"
@@ -698,19 +630,114 @@ In the following example:
 }
 ```
 
+:::moniker-end
+
 In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
 
 ### Avoid recreating delegates for many repeated elements or components
 
 Blazor's recreation of [lambda expression delegates](xref:blazor/components/event-handling#lambda-expressions) for elements or components in a loop can lead to poor performance.
 
-The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its `@onclick` event, which is fine if there aren't many buttons to render:
+The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its `@onclick` event, which is fine if there aren't many buttons to render.
+
+`EventHandlerExample5.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/event-handler-example-5"
+@attribute [RenderModeServer]
+
+<h1>@heading</h1>
+
+@for (var i = 1; i < 4; i++)
+{
+    var buttonNumber = i;
+
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@i
+        </button>
+    </p>
+}
+
+@code {
+    private string heading = "Select a button to learn its position";
+
+    private void UpdateHeading(MouseEventArgs e, int buttonNumber)
+    {
+        heading = $"Selected #{buttonNumber} at {e.ClientX}:{e.ClientY}";
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor":::
 
+:::moniker-end
+
 If a large number of buttons are rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's `@onclick` delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
 
-`Pages/LambdaEventPerformance.razor`:
+`LambdaEventPerformance.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/lambda-event-performance"
+@attribute [RenderModeServer]
+
+<h1>@heading</h1>
+
+@foreach (var button in Buttons)
+{
+    <p>
+        <button @key="button.Id" @onclick="button.Action">
+            Button #@button.Id
+        </button>
+    </p>
+}
+
+@code {
+    private string heading = "Select a button to learn its position";
+
+    private List<Button> Buttons { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            var button = new Button();
+
+            button.Id = Guid.NewGuid().ToString();
+
+            button.Action = (e) =>
+            {
+                UpdateHeading(button, e);
+            };
+
+            Buttons.Add(button);
+        }
+    }
+
+    private void UpdateHeading(Button button, MouseEventArgs e)
+    {
+        heading = $"Selected #{button.Id} at {e.ClientX}:{e.ClientY}";
+    }
+
+    private class Button
+    {
+        public string? Id { get; set; }
+        public Action<MouseEventArgs> Action { get; set; } = e => { };
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/lambda-event-performance"
@@ -761,6 +788,8 @@ If a large number of buttons are rendered using the preceding approach, renderin
 }
 ```
 
+:::moniker-end
+
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript require additional overhead because:
@@ -768,7 +797,7 @@ Calls between .NET and JavaScript require additional overhead because:
 * By default, calls are asynchronous.
 * By default, parameters and return values are JSON-serialized to provide an easy-to-understand conversion mechanism between .NET and JavaScript types.
 
-Additionally on Blazor Server, these calls are passed across the network.
+Additionally for server-side Blazor apps, these calls are passed across the network.
 
 ### Avoid excessively fine-grained calls
 

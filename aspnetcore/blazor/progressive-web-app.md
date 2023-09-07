@@ -45,7 +45,11 @@ In the preceding command, the `-o|--output` option creates a new folder for the 
 
 ---
 
+:::moniker range="< aspnetcore-8.0"
+
 Optionally, PWA can be configured for an app created from the **ASP.NET Core Hosted** Blazor WebAssembly project template. The PWA scenario is independent of the hosting model.
+
+:::moniker-end
 
 ## Convert an existing Blazor WebAssembly app into a PWA
 

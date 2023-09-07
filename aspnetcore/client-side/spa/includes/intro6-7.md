@@ -1,15 +1,5 @@
----
-title: Overview of Single Page Applications (SPA) in ASP.NET Core
-author: rick-anderson
-ms.author: jacalvar
-monikerRange: '>= aspnetcore-6.0'
-description: Overview of Single Page Applications (SPA) in ASP.NET Core
-ms.date: 2/11/2023
-uid: spa/intro
----
-# Overview of Single Page Applications (SPA) in ASP.NET Core
-
-::: moniker range=">= aspnetcore-8.0"
+::: moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+<!-- Content from https://github.com/dotnet/AspNetCore.Docs/issues/26373 -->
 
 ## Architecture of Single Page Application templates
 
@@ -138,5 +128,3 @@ The ASP.NET Core SPA templates can be updated in a patch release to a new SPA fr
 * [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies)
 
 ::: moniker-end
-
-[!INCLUDE[](~/client-side/spa/includes/intro6-7.md)]

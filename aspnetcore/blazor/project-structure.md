@@ -311,6 +311,10 @@ Project structure:
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
 
 * ":::no-loc text="Client":::": The Blazor WebAssembly app.

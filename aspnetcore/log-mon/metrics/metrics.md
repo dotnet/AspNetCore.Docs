@@ -89,6 +89,55 @@ Press p to pause, r to resume, q to quit.
 
 For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
 
+## Enrich the ASP.NET Core request metric
+
+ASP.NET Core has many built-in metrics. The `http.server.request.duration` metric:
+* Records the duration of HTTP requests on the server.
+* Captures request information in tags, such as the matched route and response status code.
+
+The `http.server.request.duration` metric supports tag enrichment using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
+
+```cs
+using Microsoft.AspNetCore.Http.Features;
+
+var builder = WebApplication.CreateBuilder();
+var app = builder.Build();
+
+app.Use(async (context, next) =>
+{
+    var tagsFeature = context.Features.Get<IHttpMetricsTagsFeature>();
+    if (tagsFeature != null)
+    {
+        var source = context.Request.Query["utm_medium"].ToString() switch
+        {
+            "" => "none",
+            "social" => "social",
+            "email" => "email",
+            "organic" => "organic",
+            _ => "other"
+        };
+        tagsFeature.Tags.Add(new KeyValuePair<string, object?>("mkt_medium", source));
+    }
+
+    await next.Invoke();
+});
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+```
+
+The proceeding example:
+
+* Adds middleware to enrich the ASP.NET Core request metric.
+* Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` is not `null` before using it.
+* Adds a custom tag containing the request's marketing source to the `http.server.request.duration` metric.
+  * The tag has the name `mkt_medium` and a value based on the [utm_medium](https://wikipedia.org/wiki/UTM_parameters) query string value. The `utm_medium` value is resolved to a known range of values.
+  * The tag allows requests to be categorized by marketing medium type, which could be useful when analyzing web app traffic.
+
+> [!NOTE]
+> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter and may start filtering results out to avoid excessive memory usage.
+
 ## Create custom metrics
 
 Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric) for information on creating custom metrics.
