@@ -1880,7 +1880,7 @@ When validation messages are set in the component, they're added to the validato
 <!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. -->
 
 > [!NOTE]
-> In prior releases of .NET, this section is based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance with its hosted Blazor WebAssembly solution example by selecting an earlier version of this article.
+> For prior releases of .NET, this section was based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance by selecting an earlier version of this article.
 
 :::moniker-end
 

@@ -360,20 +360,18 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 | Option    | Description |
 | --------- | ----------- |
+| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `edge`. |
 | `cwd`     | The working directory to launch the app under. |
 | `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
-| `url`     | The URL to open in the browser when debugging. |
-| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `edge`. |
-| `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
-| `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
 | `timeout` | The number of milliseconds to wait for the debugging session to attach. Defaults to 30,000 milliseconds (30 seconds). |
-
+| `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
+| `url`     | The URL to open in the browser when debugging. |
+| `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
 
 <!-- UPDATE 8.0 Holding for BWA/8.0 updates 
 
 | `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
-| `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
 
 -->

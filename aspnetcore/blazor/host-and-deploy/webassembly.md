@@ -1278,7 +1278,8 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds).
   
   <!-- UPDATE 8.0 This needs to be cross-checked against the latest
-       tutorial guidance. -->
+       tutorial guidance after the tutorial receives its final
+       round of updates. -->
 
   The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds:
 
