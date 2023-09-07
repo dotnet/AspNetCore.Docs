@@ -426,4 +426,4 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 :::moniker-end
 
-[!INCLUDE[](~/security/authentication/identity-api-authorization/includes/identity-api-authorization.md)]
+[!INCLUDE[](~/security/authentication/identity-api-authorization/includes/identity-api-authorization3-7.md)]
