@@ -591,6 +591,14 @@ items:
         items:
           - name: Single Page Apps
             items:
+              - name: Angular with Visual Studio >>
+                href: /visualstudio/javascript/tutorial-asp-net-core-with-angular
+              - name: React with Visual Studio >>
+                href: /visualstudio/javascript/tutorial-asp-net-core-with-react
+              - name: Vue with Visual Studio >>
+                href: /visualstudio/javascript/tutorial-asp-net-core-with-vue
+              - name: JavaScript and TypeScript in Visual Studio >>
+                href: /visualstudio/javascript/javascript-in-visual-studio
               - name: Overview of SPAs
                 uid: spa/intro
               - name: Angular
@@ -599,8 +607,6 @@ items:
                 uid: spa/react
               - name: JavaScript Services
                 uid: client-side/spa-services
-              - name: Vue with Visual Studio >>
-                href: /visualstudio/javascript/tutorial-asp-net-core-with-vue
           - name: LibMan
             items:
               - name: Overview

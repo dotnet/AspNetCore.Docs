@@ -420,8 +420,10 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 ## Additional resources
 
-* <xref:spa/angular>
-* <xref:spa/react>
+* [Angular with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-angular)
+* [React with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-react)
+* [Vue with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-vue)
+* [JavaScript and TypeScript in Visual Studio](/visualstudio/javascript/javascript-in-visual-studio)
 * <xref:security/authentication/scaffold-identity>
 
 :::moniker-end

@@ -42,7 +42,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
 
 <a name="target-framework"></a>
 
@@ -121,7 +121,7 @@ ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-
 
 ## Client-side development
 
-ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](xref:spa/angular), [React](xref:spa/react), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
+ASP.NET Core integrates seamlessly with popular client-side frameworks and libraries, including [Blazor](xref:blazor/index), [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/). For more information, see <xref:blazor/index> and related topics under *Client-side development*.
 
 <a name="target-framework"></a>
 

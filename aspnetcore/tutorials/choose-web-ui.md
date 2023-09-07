@@ -159,8 +159,10 @@ Downsides:
 
 To get started, see:
 
-* <xref:spa/angular>
-* <xref:spa/react>
+* [Angular with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-angular)
+* [React with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-react)
+* [Vue with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-vue)
+* [JavaScript and TypeScript in Visual Studio](/visualstudio/javascript/javascript-in-visual-studio)
 
 ## Choose a hybrid solution: ASP.NET Core MVC or Razor Pages plus Blazor
 
