@@ -98,6 +98,8 @@ ASP.NET Core has many built-in metrics. The `http.server.request.duration` metri
 The `http.server.request.duration` metric supports tag enrichment using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
 
 ```cs
+using Microsoft.AspNetCore.Http.Features;
+
 var builder = WebApplication.CreateBuilder();
 var app = builder.Build();
 
@@ -108,15 +110,15 @@ app.Use(async (context, next) =>
     {
         var source = context.Request.Query["utm_medium"].ToString() switch
         {
-            "" => "none"
+            "" => "none",
             "social" => "social",
             "email" => "email",
             "organic" => "organic",
             _ => "other"
-        }
-        tagsFeature.Add(new KeyValuePair<string, object?>("mkt_medium", source));
+        };
+        tagsFeature.Tags.Add(new KeyValuePair<string, object?>("mkt_medium", source));
     }
-    
+
     await next.Invoke();
 });
 
