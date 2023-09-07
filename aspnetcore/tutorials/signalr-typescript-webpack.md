@@ -147,12 +147,22 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 1. Install the required npm packages. Run the following command from the project root:
 
     ```console
-    npm i -D -E clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli
+    npm i -D -E clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli @types/node
     ```
 
     The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to `package.json`. For example, `"webpack": "5.76.1"` is used instead of `"webpack": "^5.76.1"`. This option prevents unintended upgrades to newer package versions.
 
     For more information, see the [npm-install](https://docs.npmjs.com/cli/install) documentation.
+
+1. Run the following command at the project root:
+
+   ```console
+   npm i @microsoft/signalr
+   ```
+
+   The preceding command installs:
+
+   * The [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
 
 1. Replace the `scripts` property of `package.json` file with the following code:
 
@@ -201,17 +211,6 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
       SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. Any number of message names can be listened to. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
 
       Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
-
-1. Run the following command at the project root:
-
-   ```console
-   npm i @microsoft/signalr @types/node
-   ```
-
-   The preceding command installs:
-
-   * The [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
-   * The TypeScript type definitions for Node.js, which enables compile-time checking of Node.js types.
 
 ## Test the app
 
