@@ -1,4 +1,4 @@
-#define APP4 // FIRST SECOND APP3
+#define FIRST // FIRST SECOND APP3 APP4
 #if NEVER
 #elif FIRST
 // <snippet1>
@@ -11,12 +11,10 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-
-app.MapGet("/Test", async context =>
+app.MapGet("/Test", async (ILogger logger, HttpResponse response) =>
 {
-    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
     logger.LogInformation("Testing logging in Program.cs");
-    await context.Response.WriteAsync("Testing");
+    await response.WriteAsync("Testing");
 });
 
 app.Run();
@@ -76,4 +74,7 @@ app.MapGet("/", () => "Hello World!");
 
 app.Run();
 // </snippet4>
+#elif APP5
+// <snippet5>
+// </snippet5>
 #endif
