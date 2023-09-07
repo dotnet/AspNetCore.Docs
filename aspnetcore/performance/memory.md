@@ -34,7 +34,7 @@ The preceding memory allocations are done for performance reasons. The performan
 
 In general, ASP.NET Core apps in production should **not** use [GC.Collect](xref:System.GC.Collect%2A) explicitly. Inducing garbage collections at sub-optimal times can decrease performance significantly.
 
-GC.Collect can be useful when investigating memory leaks. Calling `GC.Collect()` will trigger a blocking garbage collection cycle that will try to reclaim all objects inaccessible from managed code. It is therefore a useful way to understand the size of the reachable/live objects in the heap, and track growth of that size over time.
+GC.Collect is useful when investigating memory leaks. Calling `GC.Collect()` triggers a blocking garbage collection cycle that tries to reclaim all objects inaccessible from managed code. It's a useful way to understand the size of the reachable live objects in the heap, and track growth of memory size over time.
 
 ## Analyzing the memory usage of an app
 
