@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND APP3 APP4
+#define SECOND // FIRST SECOND APP3 APP4
 #if NEVER
 #elif FIRST
 // <snippet1>
@@ -36,15 +36,9 @@ app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 {
     logger.LogInformation("Testing logging in Program.cs");
     await response.WriteAsync("Testing");
-}
-{
-    var logger = app.Logger; // Access the configured logger directly
-    logger.LogInformation("Testing logging in Program.cs");
-    await context.Response.WriteAsync("Testing");
 });
 
 app.Run();
-
 // </snippet2>
 #elif APP3
 // <snippet3>
