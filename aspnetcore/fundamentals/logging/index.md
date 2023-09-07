@@ -883,8 +883,6 @@ The logging libraries implicitly create a scope object with `SpanId`, `TraceId`,
 
 If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
 
-<!-- Add warning here once warning is approved -->
-
 ## Create a custom logger
 
 To create a custom logger, see [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider).
