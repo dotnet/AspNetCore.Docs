@@ -124,7 +124,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * In Visual Studio 2022 for Mac select **File** > **Add** > **Project...**.
 * In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **Console Application**, and select **Continue**.
-* Select **.NET 8.0** for the target framework and select **Continue**.
+* Select **.NET 8.0** for the target framework, and select **Continue**.
 * Name the project **GrpcGreeterClient**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Continue**.
 
