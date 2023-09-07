@@ -1,6 +1,5 @@
 ::: moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 <!-- Content from https://github.com/dotnet/AspNetCore.Docs/issues/26373 -->
-# Overview of Single Page Applications (SPA) in ASP.NET Core
 
 ## Architecture of Single Page Application templates
 
