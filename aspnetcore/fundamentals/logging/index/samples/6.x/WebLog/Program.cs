@@ -4,7 +4,6 @@
 // <snippet1>
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure logging with AddConsole()
 builder.Logging.AddConsole();
 
 var app = builder.Build();
@@ -25,7 +24,6 @@ using Microsoft.Extensions.Logging.Console;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure logging with AddSimpleConsole
 builder.Logging.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);
 
 var app = builder.Build();
