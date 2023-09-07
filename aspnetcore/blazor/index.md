@@ -14,7 +14,17 @@ uid: blazor/index
 
 *Welcome to Blazor!*
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor is a [.NET](/dotnet/standard/tour) full-stack architecture that supports both server-side rendering and client interactivity in a single programming model:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -58,7 +68,7 @@ Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/ass
 * Can be nested and reused.
 * Can be shared and distributed as [Razor class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).
 
-The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio. Razor Pages and MVC also use Razor. Unlike Razor Pages and MVC, which are built around a request/response model, components are used specifically for client-side UI logic and composition.
+The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
 
 Blazor uses natural HTML tags for UI composition. The following Razor markup demonstrates a component (`Dialog.razor`) that displays a dialog and processes an event when the user selects a button:
 
@@ -109,6 +119,41 @@ The dialog is rendered when the `Index` component is accessed in a browser. When
 
 Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Blazor Web Apps
+
+Blazor Web Apps provide a component-based architecture with server-side rendering and full client-side interactivity in a single project, where you can switch between server-side and client-side rendering modes and even mix them in the same page. 
+
+When a Blazor Web App uses server-side rendering (SSR), the server generates HTML in response to a request and sends it to the browser. The page loads fast because UI rendering is performed quickly on the server without the need to download a large JavaScript bundle or wait for the establishment of a [SignalR](xref:signalr/introduction) connection to the client.
+
+*Streaming rendering* can improve the user experience with SSR when long-running asynchronous tasks are required to fully render a page. Initially, Blazor renders the entire page for the browser with placeholder content. The asynchronous operations execute on the server. After the operations are complete, the updated content is sent to the browser on the same response connection and patched into page. The benefit of this approach is that the main layout of the app renders as quickly as possible.
+
+Blazor Web Apps also support client-side rendering (CSR) that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). For more information on WebAssembly, see the [Blazor WebAssembly](#blazor-webassembly) section.
+
+After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
+
+* UI updates and JavaScript interop calls handled over a SignalR connection. The runtime stays on the server and handles:
+  * Executing the app's C# code.
+  * UI events from the browser that are sent to the server.
+  * Applying UI updates to a rendered component that are sent back by the server.
+* Rich interactivity and UI updates handled by a .NET runtime running in the browser on WebAssembly.
+  * C# code files and Razor files are compiled into .NET assemblies.
+  * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
+  * Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
+
+<!--
+
+IMAGE for Blazor Web Apps
+
+![XXXXXXXXX](~/blazor/index/_static/blazor-web-app.png)
+
+-->
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ## Blazor Server
 
 Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
@@ -127,11 +172,13 @@ Blazor Server apps render content differently than traditional models for render
 
 When a Razor Page or view is rendered, every line of Razor code emits HTML in text form. After rendering, the server disposes of the page or view instance, including any state that was produced. When another request for the page occurs, the entire page is rerendered to HTML again and sent to the client.
 
-Blazor Server produces a graph of components to display similar to an HTML or XML [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction). The component graph includes state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup, which is sent to the client for rendering. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering the content on the server makes the app feel more responsive on the client.
+Blazor Server produces a graph of components to display similar to an HTML or XML DOM. The component graph includes state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup, which is sent to the client for rendering. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering the content on the server makes the app feel more responsive on the client.
 
 After the components are interactive on the client, UI updates are triggered by user interaction and app events. When an update occurs, the component graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
 A component is disposed after the user navigates away from the component.
+
+:::moniker-end
 
 ## Blazor WebAssembly
 
@@ -147,7 +194,7 @@ When a Blazor WebAssembly app is built and run:
 
 * C# code files and Razor files are compiled into .NET assemblies.
 * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
-* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) manipulation and browser API calls.
+* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
