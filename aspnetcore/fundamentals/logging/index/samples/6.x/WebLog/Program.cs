@@ -11,7 +11,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/Test", async (ILogger logger, HttpResponse response) =>
+app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 {
     logger.LogInformation("Testing logging in Program.cs");
     await response.WriteAsync("Testing");
@@ -32,7 +32,11 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/Test", async context =>
+app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
+{
+    logger.LogInformation("Testing logging in Program.cs");
+    await response.WriteAsync("Testing");
+}
 {
     var logger = app.Logger; // Access the configured logger directly
     logger.LogInformation("Testing logging in Program.cs");
