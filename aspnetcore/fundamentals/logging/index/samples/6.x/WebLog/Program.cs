@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND APP3
+#define APP4 // FIRST SECOND APP3
 #if NEVER
 #elif FIRST
 // <snippet1>
@@ -57,25 +57,23 @@ app.Run();
 // <snippet4>
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.Configure(...)
-builder.Logging.AddSimpleConsole(...)
+builder.Logging.AddSimpleConsole(options =>
 {
-    logging.Configure(options =>
-    {
-        options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
-                                            | ActivityTrackingOptions.TraceId
-                                            | ActivityTrackingOptions.ParentId
-                                            | ActivityTrackingOptions.Baggage
-                                            | ActivityTrackingOptions.Tags;
-    }).AddSimpleConsole(options =>
-    {
-        options.IncludeScopes = true;
-    });
+    options.IncludeScopes = true;
 });
-// </snippet4>
+
+builder.Logging.Configure(options =>
+{
+    options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                       | ActivityTrackingOptions.TraceId
+                                       | ActivityTrackingOptions.ParentId
+                                       | ActivityTrackingOptions.Baggage
+                                       | ActivityTrackingOptions.Tags;
+});
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+// </snippet4>
 #endif
