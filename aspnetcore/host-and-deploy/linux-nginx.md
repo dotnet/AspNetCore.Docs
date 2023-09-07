@@ -150,7 +150,13 @@ Verify a browser displays the default landing page for Nginx. The landing page i
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to the ASP.NET Core app, modify `/etc/nginx/sites-available/default` and  recreate the symlink. After creating the `/etc/nginx/sites-available/default` file,  use the following command to create the symlink:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+```
+
+Open `/etc/nginx/sites-available/default` in a text editor, and replace the contents with the following snippet:
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
@@ -342,7 +348,7 @@ To configure data protection to persist and encrypt the key ring, see:
 
 ## Long request header fields
 
-Proxy server default settings typically limit request header fields to 4 K or 8 K depending on the platform. An app may require fields longer than the default (for example, apps that use [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). If longer fields are required, the proxy server's default settings require adjustment. The values to apply depend on the scenario. For more information, see your server's documentation.
+Proxy server default settings typically limit request header fields to 4 K or 8 K depending on the platform. An app may require fields longer than the default (for example, apps that use [Microsoft Entra ID](https://azure.microsoft.com/services/active-directory/)). If longer fields are required, the proxy server's default settings require adjustment. The values to apply depend on the scenario. For more information, see your server's documentation.
 
 * [proxy_buffer_size](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 * [proxy_buffers](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffers)
