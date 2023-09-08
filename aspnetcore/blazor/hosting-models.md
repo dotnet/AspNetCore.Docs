@@ -38,9 +38,6 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 * Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
 * Blazor Hybrid to build native client apps.
 
-> [!NOTE]
-> For web-based Blazor apps, a component's hosting model is set by its *render mode*, which is described with examples in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it, as it relies on an understanding of broader Blazor concepts.
-
 You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 :::moniker-end
@@ -92,7 +89,7 @@ The Blazor WebAssembly hosting model runs components client-side in the browser 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor web apps can use the Blazor WebAssembly hosting model to enable client-side interactivity. When an app is created that exclusively runs on the Blazor WebAssembly hosting model without server-side rendering and interactivity, the app is called a *standalone* Blazor WebAssembly app. Guidance on setting the *render mode* to determine a component's hosting model is provided in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it.
+Blazor web apps can use the Blazor WebAssembly hosting model to enable client-side interactivity. When an app is created that exclusively runs on the Blazor WebAssembly hosting model without server-side rendering and interactivity, the app is called a *standalone* Blazor WebAssembly app.
 
 :::moniker-end
 
@@ -188,7 +185,7 @@ For more information on Microsoft native client frameworks, see the following re
 
 :::moniker range=">= aspnetcore-8.0"
 
-A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
+A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/fundamentals/render-modes>. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
 
 :::moniker-end
 
@@ -347,7 +344,7 @@ Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slo
 
 :::moniker range=">= aspnetcore-8.0"
 
-Maintaining app code securely and privately on the server is a built-in feature of components rendered for the Blazor Server hosting model. Components rendered for the Blazor WebAssembly hosting model, static Blazor WebAssembly apps, and Blazor Hybrid apps can use server-based APIs to access functionality that must be kept private and secure. The considerations for developing and maintaining server-based APIs described in the [Direct access to server and network resources](#direct-access-to-server-and-network-resources) section apply. If the development and maintenance of server-based APIs isn't desirable for maintaining secure and private app code, render components for the Blazor Server hosting model.
+Maintaining app code securely and privately on the server is a built-in feature of components rendered for the Blazor Server hosting model. Components rendered using the Blazor WebAssembly or Blazor Hybrid hosting models can use server-based APIs to access functionality that must be kept private and secure. The considerations for developing and maintaining server-based APIs described in the [Direct access to server and network resources](#direct-access-to-server-and-network-resources) section apply. If the development and maintenance of server-based APIs isn't desirable for maintaining secure and private app code, render components for the Blazor Server hosting model.
 
 :::moniker-end
 
