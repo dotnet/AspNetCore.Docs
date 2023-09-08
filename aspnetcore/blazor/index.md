@@ -97,7 +97,7 @@ Blazor uses natural HTML tags for UI composition. The following Razor markup dem
 
 In the preceding example, `OnYes` is a C# method triggered by the button's `onclick` event. The dialog's text (`ChildContent`) and title (`Title`) are provided by the following component that uses this component in its UI.
 
-The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Pages/Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
+The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
 
 :::moniker range=">= aspnetcore-8.0"
 
