@@ -3,7 +3,7 @@ title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Learn when to use which ASP.NET Core web UI technologies. Understand the server, client and hybrid options.
 ms.author: wpickett
-ms.date: 12/29/2022
+ms.date: 09/08/2023
 uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
@@ -144,13 +144,13 @@ For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. 
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
-Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/). ASP.NET Core provides project templates for Angular and React, and can be used with other JavaScript frameworks as well.
+Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). ASP.NET Core provides project templates for Angular, React, and Vue, and it can be used with other JavaScript frameworks as well.
 
 Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
 
 * The JavaScript runtime environment is already provided with the browser.
 * Large community and mature ecosystem.
-* Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular and React.
+* Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular, React, and Vue.
 
 Downsides:
 
