@@ -38,9 +38,33 @@ The following is an example counter component and part of an app created from a 
 
 `Counter.razor`:
 
-<!-- UPDATE 8.0 Probably switch over to the BWA example when the BWA snippet sample goes up -->
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+```razor
+@page "/counter"
+@attribute [RenderModeServer]
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
@@ -66,10 +90,24 @@ The following is an example counter component and part of an app created from a 
 
 The preceding `Counter` component:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Sets its route with the `@page` directive in the first line.
+* Sets the component's render mode to the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server) with `@attribute [RenderModeServer]`. Render modes are fully explained and demonstrated in the next article, <xref:blazor/fundamentals/render-modes>.
+* Sets its page title and heading.
+* Renders the current count with `@currentCount`. `currentCount` is an integer variable defined in the C# code of the `@code` block.
+* Displays a button to trigger the `IncrementCount` method, which is also found in the `@code` block and increases the value of the `currentCount` variable.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * Sets its route with the `@page` directive in the first line.
 * Sets its page title and heading.
 * Renders the current count with `@currentCount`. `currentCount` is an integer variable defined in the C# code of the `@code` block.
 * Displays a button to trigger the `IncrementCount` method, which is also found in the `@code` block and increases the value of the `currentCount` variable.
+
+:::moniker-end
 
 ## Document Object Model (DOM)
 
