@@ -157,7 +157,7 @@ Render modes propagate down the component hierarchy. Consider the following `Sha
 }
 ```
 
-If the `SharedMessage` component is placed in a statically-rendered parent component, the `SharedMessage` component is also rendered statically and isn't interactive. The button doesn't call `Update Message`, and the message isn't updated.
+If the `SharedMessage` component is placed in a statically-rendered parent component, the `SharedMessage` component is also rendered statically and isn't interactive. The button doesn't call `UpdateMessage`, and the message isn't updated.
 
 `PassedRenderMode1.razor`:
 
@@ -167,7 +167,7 @@ If the `SharedMessage` component is placed in a statically-rendered parent compo
 <SharedMessage />
 ```
 
-If the `SharedMessage` component is placed in a server-side rendered (SSR) component, it adopts SSR. The `SharedMessage` component is interactive over a SignalR connection to the client. The button calls `Update Message`, and the message is updated.
+If the `SharedMessage` component is placed in a server-side rendered (SSR) component, it adopts SSR. The `SharedMessage` component is interactive over a SignalR connection to the client. The button calls `UpdateMessage`, and the message is updated.
 
 `PassedRenderMode2.razor`:
 
@@ -178,7 +178,7 @@ If the `SharedMessage` component is placed in a server-side rendered (SSR) compo
 <SharedMessage />
 ```
 
-If the `SharedMessage` component is placed in a client-side rendered (CSR) component, it adopts CSR. The `SharedMessage` component is interactive on the client with the .NET WebAssembly-based runtime. The button calls `Update Message`, and the message is updated.
+If the `SharedMessage` component is placed in a client-side rendered (CSR) component, it adopts CSR. The `SharedMessage` component is interactive on the client with the .NET WebAssembly-based runtime. The button calls `UpdateMessage`, and the message is updated.
 
 `PassedRenderMode3.razor`:
 
@@ -189,7 +189,7 @@ If the `SharedMessage` component is placed in a client-side rendered (CSR) compo
 <SharedMessage />
 ```
 
-If the `SharedMessage` component is placed in a dynamically-rendered component, where the render mode is determined at runtime, it adopts SSR initially, then CSR after the component and Blazor bundle are downloaded and the .NET runtime activates on the client. The component is interactive. The button calls `Update Message`, and the message is updated.
+If the `SharedMessage` component is placed in a dynamically-rendered component, where the render mode is determined at runtime, it adopts SSR initially, then CSR after the component and Blazor bundle are downloaded and the .NET runtime activates on the client. The component is interactive. The button calls `UpdateMessage`, and the message is updated.
 
 `PassedRenderMode4.razor`:
 
@@ -284,7 +284,6 @@ Example 3: The following `Program` file API adds services and render modes for R
 builder.Services.AddRazorComponents()
     .AddServerComponents()
     .AddWebAssemblyComponents();
-#endif
 
 ...
 
