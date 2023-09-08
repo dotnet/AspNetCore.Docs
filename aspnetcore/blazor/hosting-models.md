@@ -34,8 +34,8 @@ This article explains Blazor hosting models and how to choose which one to use.
 
 Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways:
 
-* Server-side in ASP.NET Core (*Blazor Server*).
-* Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*).
+* Server-side in ASP.NET Core (*Blazor Server* or statically rendered).
+* Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
 * Determined at runtime, starting with server-side (*Blazor Server*) and switching over to client-side (*Blazor WebAssembly*) after the components, their dependencies, and the .NET runtime are downloaded to the browser.
 
 > [!NOTE]
@@ -86,7 +86,7 @@ We recommend using the [Azure SignalR Service](/azure/azure-signalr) for apps th
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly (WASM) runs client-side in the browser on a WebAssembly-based .NET runtime. Razor components, their dependencies, and the .NET runtime are downloaded to the browser. Components are executed directly on the browser UI thread. UI updates and event handling occur within the same process. Assets are deployed as static files to a web server or service capable of serving static content to clients.
+The Blazor WebAssembly hosting model runs components client-side in the browser on a WebAssembly-based .NET runtime. Razor components, their dependencies, and the .NET runtime are downloaded to the browser. Components are executed directly on the browser UI thread. UI updates and event handling occur within the same process. Assets are deployed as static files to a web server or service capable of serving static content to clients.
 
 ![Blazor WebAssembly: Blazor runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
