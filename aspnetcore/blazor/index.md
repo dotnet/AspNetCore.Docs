@@ -16,7 +16,7 @@ uid: blazor/index
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor is a [.NET](/dotnet/standard/tour) full-stack architecture that supports both server-side rendering and client interactivity in a single programming model:
+Blazor is a [.NET](/dotnet/standard/tour) frontend web framework that supports both server-side rendering and client interactivity in a single programming model:
 
 :::moniker-end
 
