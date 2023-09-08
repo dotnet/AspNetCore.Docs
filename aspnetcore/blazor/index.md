@@ -16,7 +16,7 @@ uid: blazor/index
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor is a [.NET](/dotnet/standard/tour) full-stack architecture that supports both server-side rendering and client interactivity in a single programming model:
+Blazor is a [.NET](/dotnet/standard/tour) frontend web framework that supports both server-side rendering and client interactivity in a single programming model:
 
 :::moniker-end
 
@@ -97,7 +97,28 @@ Blazor uses natural HTML tags for UI composition. The following Razor markup dem
 
 In the preceding example, `OnYes` is a C# method triggered by the button's `onclick` event. The dialog's text (`ChildContent`) and title (`Title`) are provided by the following component that uses this component in its UI.
 
-The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Pages/Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
+The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/"
+@attribute [RenderModeServer]
+
+<h1>Hello, world!</h1>
+
+<p>
+    Welcome to your new app.
+</p>
+
+<Dialog Title="Learn More">
+    Do you want to <i>learn more</i> about Blazor?
+</Dialog>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/"
@@ -112,6 +133,8 @@ The `Dialog` component is nested within another component using an HTML tag. In 
     Do you want to <i>learn more</i> about Blazor?
 </Dialog>
 ```
+
+:::moniker-end
 
 The dialog is rendered when the `Index` component is accessed in a browser. When the button is selected by the user, the browser's developer tools console shows the message written by the `OnYes` method:
 
