@@ -226,14 +226,22 @@ Services for Razor components are added by calling <xref:Microsoft.Extensions.De
 Component builder extensions:
 
 * <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
-* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddWebAssemblyComponents%2A> adds services to support rendering interactive WebAssembly components.
+* `AddWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
+
+<!-- UPDATE 8.0 HOLD
+     <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddWebAssemblyComponents%2A>
+-->
 
 <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
 
 Endpoint convention builder extensions:
 
 * <xref:Microsoft.AspNetCore.Builder.RazorComponentEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
-* <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddWebAssemblyRenderMode%2A> configures the WebAssembly render mode for the app.
+* `AddWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
+
+<!-- UPDATE 8.0 HOLD
+    <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddWebAssemblyRenderMode%2A>
+-->
 
 Example 1: The following `Program` file API adds services and a render mode for Razor components with only server-side rendering (SSR) support:
 

@@ -39,7 +39,7 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 * Determined at runtime, starting with server-side (*Blazor Server*) and switching over to client-side (*Blazor WebAssembly*) after the components, their dependencies, and the .NET runtime are downloaded to the browser.
 
 > [!NOTE]
-> For web-based Blazor apps, a component's hosting model is set by its *render mode*, which is described with examples in the next article, <xref:blazor-render-modes>.
+> For web-based Blazor apps, a component's hosting model is set by its *render mode*, which is described with examples in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it, as it relies on an understanding of broader Blazor concepts.
 
 You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
@@ -94,7 +94,7 @@ Blazor WebAssembly (WASM) runs client-side in the browser on a WebAssembly-based
 
 When an app is created that exclusively runs on the Blazor WebAssembly hosting model without server-side rendering and interactivity, the app is called a *standalone* or *static* Blazor WebAssembly app.
 
-An app created with WebAssembly-hosted components in addition to server-hosted components is a *Blazor Web App* with client-side interactivity. More information on setting *render modes* to determine which hosting model is selected by Blazor is provided in the next article, <xref:blazor-render-modes>.
+An app created with WebAssembly-hosted components in addition to server-hosted components is a *Blazor Web App* with client-side interactivity. Guidance on setting the *render mode* to determine a component's hosting model is provided in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it, as it relies on an understanding of broader Blazor concepts.
 
 :::moniker-end
 
@@ -190,7 +190,7 @@ For more information on Microsoft native client frameworks, see the following re
 
 :::moniker range=">= aspnetcore-8.0"
 
-A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in the next article, <xref:blazor-render-modes>. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For static Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
+A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it, as it relies on an understanding of broader Blazor concepts. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For static Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
 
 :::moniker-end
 
@@ -451,6 +451,8 @@ To set a component's hosting model to Blazor Server or Blazor WebAssembly at com
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/signalr>
 * <xref:blazor/tutorials/signalr-blazor>
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
