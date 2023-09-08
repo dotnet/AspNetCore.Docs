@@ -36,7 +36,7 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 
 * Server-side in ASP.NET Core (*Blazor Server* or statically rendered).
 * Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
-* Determined at runtime, starting with server-side (*Blazor Server*) and switching over to client-side (*Blazor WebAssembly*) after the components, their dependencies, and the .NET runtime are downloaded to the browser.
+* Blazor Hybrid to build native client apps.
 
 > [!NOTE]
 > For web-based Blazor apps, a component's hosting model is set by its *render mode*, which is described with examples in <xref:blazor/fundamentals/render-modes>. We recommend waiting to read the *Render modes* article until after you've read the articles leading up to it, as it relies on an understanding of broader Blazor concepts.
