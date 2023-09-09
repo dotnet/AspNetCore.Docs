@@ -128,11 +128,11 @@ The OpenAPI specification is a document that describes the capabilities of your 
 
 [Swagger UI](https://swagger.io/swagger-ui/) offers a web-based UI that provides information about the service, using the generated OpenAPI specification. Both Swashbuckle and NSwag include an embedded version of Swagger UI, so that it can be hosted in your ASP.NET Core app using a middleware registration call. The web UI looks like this:
 
-![Swagger UI](web-api-help-pages-using-swagger/_static/swagger-ui.png)
+![Swagger UI](~/tutorials/web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
 Each public action method in your controllers can be tested from the UI. Select a method name to expand the section. Add any necessary parameters, and select **Try it out!**.
 
-![Example Swagger GET test](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
+![Example Swagger GET test](~/tutorials/web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 
 > [!NOTE]
 > The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](https://petstore.swagger.io/).
