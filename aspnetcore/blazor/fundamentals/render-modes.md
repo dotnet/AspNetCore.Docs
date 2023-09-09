@@ -62,9 +62,9 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ### Server render mode
 
-Server render mode results in rendering a component on the server with user interactivity.
+Server render mode results in rendering a component on the server with interactivity over a SignalR connection.
 
-In the following example, the render mode is set to use the Blazor Server hosting model with `@attribute [RenderModeServer]`. Therefore, the component is rendered server-side with interactivity over a SignalR connection. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
+In the following example, the render mode is set to use the Blazor Server hosting model with `@attribute [RenderModeServer]`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
 
 `RenderMode2.razor`:
 
@@ -88,9 +88,9 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ### Client render mode
 
-Client render mode results in rendering a component on the client with user interactivity.
+Client render mode results in rendering a component on the client with interactivity.
 
-In the following example, the render mode is set to use the Blazor WebAssembly hosting model with `@attribute [RenderModeWebAssembly]`. Therefore, the component is rendered client-side with interactivity. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
+In the following example, the render mode is set to use the Blazor WebAssembly hosting model with `@attribute [RenderModeWebAssembly]`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
 
 `RenderMode3.razor`:
 
