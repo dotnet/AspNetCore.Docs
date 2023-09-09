@@ -38,8 +38,6 @@ To test the render mode behaviors locally, you can place the following component
 
 In the following example, there's no designation for the component's render mode. Therefore, the component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't re-rendered.
 
-If using the following component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
-
 `RenderMode1.razor`:
 
 ```razor
@@ -57,6 +55,8 @@ If using the following component locally in a Blazor Web App, place the componen
 }
 ```
 
+If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
+
 > [!NOTE]
 > The anatomy of a basic Razor component is fully explained in the <xref:blazor/fundamentals/index> article. Project structure for apps created by a Blazor template are described in the <xref:blazor/project-structure> article. Detailed components coverage is found in the *Components* articles later in the documentation.
 
@@ -64,9 +64,7 @@ If using the following component locally in a Blazor Web App, place the componen
 
 Server render mode results in rendering a component on the server with user interactivity.
 
-In the following example, the render mode is set to use the Blazor Server hosting model with `@attribute [RenderModeServer]`. Therefore, the component is rendered server-side with server-side interactivity over a SignalR connection. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
-
-If using the following component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
+In the following example, the render mode is set to use the Blazor Server hosting model with `@attribute [RenderModeServer]`. Therefore, the component is rendered server-side with interactivity over a SignalR connection. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
 
 `RenderMode2.razor`:
 
@@ -86,13 +84,13 @@ If using the following component locally in a Blazor Web App, place the componen
 }
 ```
 
+If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
+
 ### Client render mode
 
 Client render mode results in rendering a component on the client with user interactivity.
 
 In the following example, the render mode is set to use the Blazor WebAssembly hosting model with `@attribute [RenderModeWebAssembly]`. Therefore, the component is rendered client-side with interactivity. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
-
-If using the following component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
 
 `RenderMode3.razor`:
 
@@ -112,13 +110,13 @@ If using the following component locally in a Blazor Web App, place the componen
 }
 ```
 
+If using the preceding component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
+
 ### Render mode determined at runtime
 
 The render mode can be determined at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. After the Blazor bundle is downloaded to the client and the .NET client-side runtime activates, the component adopts the Blazor WebAssembly hosting model for client-side rendering and interactivity.
 
 In the following example, the component is interactive throughout the process. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered, either server-side or client-side, to update the message in the UI.
-
-If using the following component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-4` in the browser's address bar.
 
 `RenderMode4.razor`:
 
@@ -137,6 +135,8 @@ If using the following component locally in a Blazor Web App, place the componen
     }
 }
 ```
+
+If using the preceding component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-4` in the browser's address bar.
 
 ## Render mode propagation
 
