@@ -199,9 +199,6 @@ In the following example, there's no designation for the component's render mode
 
 If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
 
-> [!NOTE]
-> The anatomy of a basic Razor component is fully explained in the <xref:blazor/fundamentals/index> article. Project structure for apps created by a Blazor template are described in the <xref:blazor/project-structure> article. Detailed components coverage is found in the *Components* articles later in the documentation.
-
 ## Server render mode
 
 The Server render mode renders the component interactively from the server using Blazor Server. User interactions are handled over a SignalR connection.
