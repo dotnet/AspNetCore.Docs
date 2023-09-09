@@ -738,9 +738,11 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 
 Sets the render mode of a Razor component:
 
-* `Server`: Interactive server rendering using Blazor Server.
-* `WebAssembly`: Interactive client rendering using Blazor WebAssembly.
-* `Auto`: Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded.
+* `Server`: Applies interactive server rendering using Blazor Server.
+* `WebAssembly`: Applies interactive client rendering using Blazor WebAssembly.
+* `Auto`: Initially applies interactive client rendering using Blazor Server, and then applies interactive client rendering using WebAssembly on subsequent visits after the Blazor bundle is downloaded.
+
+The following example sets the Server render mode to a `Dialog` component:
 
 ```razor
 <Dialog @rendermode="new ServerRenderMode()" />

@@ -286,7 +286,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## Render mode propagation
 
-Render modes propagate down the component hierarchy. Consider the following `SharedMessage` component for use in other components that doesn't indicate a render mode.
+Render modes propagate down the component hierarchy. Consider the following non-routable, non-page `SharedMessage` component for use in other components that doesn't indicate a render mode.
 
 `SharedMessage.razor`:
 
@@ -305,10 +305,10 @@ Render modes propagate down the component hierarchy. Consider the following `Sha
 
 If the `SharedMessage` component is placed in a statically-rendered parent component, the `SharedMessage` component is also rendered statically and isn't interactive. The button doesn't call `UpdateMessage`, and the message isn't updated.
 
-`PassedRenderMode.razor`:
+`PassedRenderMode1.razor`:
 
 ```razor
-@page "/passed-render-mode"
+@page "/passed-render-mode-1"
 
 <SharedMessage />
 ```
@@ -346,7 +346,7 @@ To set the render mode for the entire app, indicate the render mode at the highe
 
 The Blazor router propagates its render mode to the pages it routes. The pages aren't technically child components of the router, but when the routes are discovered at runtime for the router, they inherit the router's render mode.
 
-You also typically need to set the same interactive render mode on the `HeadOutlet` component, also in the `App` component:
+You also typically must set the same interactive render mode on the `HeadOutlet` component, which is also found in the `App` component of a Blazor Web App generated from the project template:
 
 ```
 <HeadOutlet @rendermode="new ServerRenderMode()" />
