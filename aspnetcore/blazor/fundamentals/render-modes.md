@@ -178,7 +178,7 @@ For a non-routable, non-page component:
 
 By default components use the Static render mode. The component renders to the response stream and interactivity isn't enabled.
 
-In the following example, there's no designation for the component's render mode. Therefore, the component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
+In the following example, there's no designation for the component's render mode, and the component inherits the default render mode from its parent. Therefore, the component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
 
 `RenderMode1.razor`:
 
