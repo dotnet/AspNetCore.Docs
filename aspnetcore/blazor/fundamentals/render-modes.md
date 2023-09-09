@@ -10,11 +10,11 @@ uid: blazor/fundamentals/render-modes
 ---
 # ASP.NET Core Blazor render modes
 
-This article explains how to establish hosting models for rendered Razor components in Blazor Web Apps, either at compile time or runtime.
+This article explains control of Razor component rendering in Blazor Web Apps, either at compile time or runtime.
 
 ## Render modes
 
-Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's interactive with C# code.
+Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's interactive.
 
 The following table shows the four potential render mode scenarios for rendering Razor components in a Blazor Web App. The render mode attributes in the *Render mode attribute* column are applied to components with the [`@attribute` Razor directive](xref:mvc/views/razor#attribute). Later in this article, examples are shown for each render mode scenario.
 
