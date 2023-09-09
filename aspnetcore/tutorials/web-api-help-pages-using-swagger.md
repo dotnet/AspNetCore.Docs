@@ -151,7 +151,7 @@ The following Curl passes a JWT token to test the Swagger UI endpoint:
 curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/swagger/v1/swagger.json
 ```
 
-For more information on testing with JWT tokens, <xref:security/authentication/jwt>.
+For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
 
 ## Next steps
 
