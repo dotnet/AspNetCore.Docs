@@ -139,9 +139,17 @@ Each public action method in your controllers can be tested from the UI. Select 
 
 ## Securing Swagger UI endpoints
 
-Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization<TBuilder>(TBuilder)) to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
+Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A)to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/webApiSwagger/secureSwagger/Program.cs"  highlight="26":::
+
+The following Curl passes a JWT token to test the Swagger UI endpoint:
+
+```bash
+curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/swagger/v1/swagger.json
+```
+
+For more information on testing with JWT tokens, <xref:security/authentication/jwt>.
 
 ## Next steps
 
