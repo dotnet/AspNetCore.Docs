@@ -33,7 +33,7 @@ To test the render mode behaviors locally, you can place the following component
 
 ## Enable support for interactive render modes
 
-A Blazor Web App must be configured to support interactive render modes. The following extensions are automatically applied to apps created from the [*Blazor Web App* project template](xref:blazor/tooling) when either or both of server-side component interactivity and client-side component interactivity are enabled during app creation. Individual components are still required to declare their render mode per the [*Render modes*](#render-modes) section after the component services and endpoints are configured in the app's `Program` file.
+A Blazor Web App must be configured to support interactive render modes. The following extensions are automatically applied to apps created from the *Blazor Web App* project template during app creation. Individual components are still required to declare their render mode per the [*Render modes*](#render-modes) section after the component services and endpoints are configured in the app's `Program` file.
 
 Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>.
 
@@ -57,55 +57,45 @@ Endpoint convention builder extensions:
     <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddWebAssemblyRenderMode%2A>
 -->
 
+> [!NOTE]
+> For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
+
 Example 1: The following `Program` file API adds services and a render mode for Razor components with only server-side rendering support:
 
 ```csharp
-...
-
 builder.Services.AddRazorComponents()
     .AddServerComponents();
-    
+```
 
-...
-
+```csharp
 app.MapRazorComponents<App>()
     .AddServerRenderMode();
-
-...
 ```
 
 Example 2: The following `Program` file API adds services and a render mode for Razor components with only client-side rendering support:
 
 ```csharp
-...
-
 builder.Services.AddRazorComponents()
     .AddWebAssemblyComponents();
+```
 
-...
-
+```csharp
 app.MapRazorComponents<App>()
     .AddWebAssemblyRenderMode();
-
-...
 ```
 
 Example 3: The following `Program` file API adds services and render modes for Razor components with both server-side and client-side rendering support:
 
 ```csharp
-...
-
 builder.Services.AddRazorComponents()
     .AddServerComponents()
     .AddWebAssemblyComponents();
+```
 
-...
-
+```csharp
 app.MapRazorComponents<App>()
     .AddServerRenderMode()
     .AddWebAssemblyRenderMode();
-
-...
 ```
 
 ## Apply a render mode
