@@ -137,6 +137,12 @@ Each public action method in your controllers can be tested from the UI. Select 
 > [!NOTE]
 > The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](https://petstore.swagger.io/).
 
+## Securing Swagger UI endpoints
+
+Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization<TBuilder>(TBuilder)) to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/webApiSwagger/secureSwagger/Program.cs"  highlight="26":::
+
 ## Next steps
 
 * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
