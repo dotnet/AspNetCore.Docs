@@ -23,7 +23,9 @@ Name | Description | Render location | Interactive
 Static | Static server rendering |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
 Server | Interactive server rendering using Blazor Server | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 WebAssembly | Interactive client rendering using Blazor WebAssembly | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
-Auto | Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits once download | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Auto | Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+
+Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article. 
 
 The following examples demonstrate setting the component's render mode with a few basic Razor component features.
 
@@ -110,7 +112,7 @@ app.MapRazorComponents<App>()
 
 ### Routable page components
 
-To specify the render mode for an entire page you need to use the @attribute directive and the corresponding render mode attribute. But since pages are typically defined by app developers, not library authors, it's still the app developer that is in control of the render mode.
+To specify the render mode for an entire page, use the [`@attribute` Razor directive](xref:mvc/views/razor#attribute) and the corresponding render mode attribute. But since pages are typically defined by app developers, not library authors, it's still the app developer that is in control of the render mode.
 
 ```razor
 @page "{ROUTE}"
@@ -121,17 +123,59 @@ In the preceding example, the `{ROUTE}` placeholder is the route template.
 
 ### Non-routable, non-page components
 
-Typically, non-routable, non-page components are created render mode agnostic. The developer usually applies a render mode to a given component using the `@rendermode` directive on the component instance.
+Typically, non-routable, non-page components are created render mode agnostic. The developer usually applies a render mode to a given component using the [`@rendermode` Razor directive](xref:mvc/views/razor#attribute) on the component instance.
 
 In the following example, the `Dialog` component doesn't specify a render mode. The render mode is applied where the `Dialog` component is used:
 
-<!-- UPDATE 8.0 RC2: Remove preview remark update code -->
+<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
 ```razor
 <Dialog @rendermode="new ServerRenderMode()" />
 ```
 
 > [!NOTE]
+> During .NET 8 *Release Candidate 1*, use the following values:
+>
+> Render mode | Value
+> ----------- | -----
+> Server      | `new ServerRenderMode()`
+> WebAssembly | `new WebAssemblyRenderMode()`
+> Auto        | `new AutoRenderMode()`
+>
+> The preceding syntax will be simplified in an upcoming preview release.
+
+### Prerendering
+
+<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
+
+Prerendering is enabled by default for interactive components.
+
+To disable prerendering, pass the `prerender` flag with a value of `false`.
+
+For a routable page:
+
+```razor
+@page "{ROUTE}"
+@attribute [RenderModeServer(prerender: false)]
+```
+
+In the preceding example, the `{ROUTE}` placeholder is the route template.
+
+For a non-routable, non-page component:
+
+```razor
+<Dialog @rendermode="new ServerRenderMode(prerender: false)" />
+```
+
+> [!NOTE]
+> During .NET 8 *Release Candidate 1*, use the following values:
+>
+> Render mode | Value
+> ----------- | -----
+> Server      | `new ServerRenderMode(prerender: false)`
+> WebAssembly | `new WebAssemblyRenderMode(prerender: false)`
+> Auto        | `new AutoRenderMode(prerender: false)`
+>
 > The preceding syntax will be simplified in an upcoming preview release.
 
 ### Static render mode
@@ -289,7 +333,7 @@ Additional rules for applying render modes:
 
 ## Set the render mode for the entire app
 
-<!-- UPDATE 8.0 RC2: Remove preview remark update code -->
+<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
 To set the render mode for the entire app, indicate the render mode at the highest level component in the app's component hierarchy, typically the `Routes` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
