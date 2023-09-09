@@ -36,9 +36,9 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 
 * Server-side in ASP.NET Core (*Blazor Server* or statically rendered).
 * Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
-* Blazor Hybrid to build native client apps.
+* Client-side in a native mobile or desktop app that renders components to an embedded Web View control (*Blazor Hybrid*).
 
-You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 :::moniker-end
 
@@ -134,9 +134,9 @@ The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter 
 
 :::moniker range=">= aspnetcore-6.0"
 
-Static Blazor WebAssembly apps support ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
+Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
 
-The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. Static Blazor also trims unused code from .NET Core framework libraries. The .NET compiler further precompresses a static Blazor WebAssembly app for a smaller app payload.
+The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a static Blazor WebAssembly app for a smaller app payload.
 
 WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
 
@@ -245,7 +245,7 @@ To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutori
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for the Blazor WebAssembly hosting model and static Blazor WebAssembly apps are limited to a subset of .NET APIs. When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
+Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for Blazor WebAssembly are limited to a subset of .NET APIs. When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
 
 :::moniker-end
 
@@ -300,7 +300,7 @@ To avoid server-based APIs for Blazor WebAssembly apps, adopt Blazor Server, whi
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components rendered for the Blazor Server hosting model have relatively small payload sizes with faster initial load times. When a fast initial load time is desired, use the Blazor Server hosting model.
+Rendering components from the server reduces the app payload size and improves initial load times. When a fast initial load time is desired, use the Blazor Server hosting model or consider static server rendering.
 
 :::moniker-end
 
@@ -316,7 +316,7 @@ Blazor Server apps have relatively small payload sizes with faster initial load 
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for standalone apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
+Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform. Consider using [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) to improve runtime performance when using Blazor WebAssembly.
 
 :::moniker-end
 

@@ -201,7 +201,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## Server render mode
 
-The Server render mode renders the component interactively from the server using Blazor Server. User interactions are handled over a SignalR connection.
+The Server render mode renders the component interactively from the server using Blazor Server. User interactions are handled over a real-time connection with the browser. The circuit connection is established when the Server component is rendered.
 
 In the following example, the render mode is set to Server by adding `@attribute [RenderModeServer]` to the component definition. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
 
@@ -227,7 +227,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## Client render mode
 
-The Client render mode renders the component interactively on the client using Blazor WebAssembly.
+The Client render mode renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded when the WebAssembly component is initially rendered and is cached for future use.
 
 In the following example, the render mode is set to use the Blazor WebAssembly hosting model with `@attribute [RenderModeWebAssembly]`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
 
@@ -279,7 +279,16 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## Render mode propagation
 
-Render modes propagate down the component hierarchy. Consider the following non-routable, non-page `SharedMessage` component for use in other components. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute).
+Render modes propagate down the component hierarchy.
+
+Rules for applying render modes:
+
+* The default render mode is Static. 
+* The interactive Server, WebAssembly, and Auto render modes can be used from a Static component, including using different render modes for sibling components. 
+* You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
+* Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
+
+Consider the following non-routable, non-page `SharedMessage` component for use in other components. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute).
 
 `SharedMessage.razor`:
 
@@ -319,10 +328,6 @@ In the following example, the `SharedMessage` component is interactive over a Si
 <SharedMessage />
 ```
 
-Additional rules for applying render modes:
-
-* You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
-* Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
 ## Set the render mode for the entire app
 
