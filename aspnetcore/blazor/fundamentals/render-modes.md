@@ -113,7 +113,7 @@ In the preceding example, the `{ROUTE}` placeholder is the route template.
 
 ### Non-routable, non-page components
 
-Typically, non-routable, non-page components are created render mode agnostic. The developer usually applies a render mode to a given component using the [`@rendermode` Razor directive](xref:mvc/views/razor#attribute) on the component instance.
+Typically, non-routable, non-page components don't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute), which means that they're created render mode agnostic. The developer usually applies the render mode using the [`@rendermode` Razor directive](xref:mvc/views/razor#attribute) where the component is used.
 
 In the following example, the `Dialog` component doesn't specify a render mode. The render mode is applied where the `Dialog` component is used:
 
@@ -276,7 +276,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## Render mode propagation
 
-Render modes propagate down the component hierarchy. Consider the following non-routable, non-page `SharedMessage` component for use in other components that doesn't indicate a render mode.
+Render modes propagate down the component hierarchy. Consider the following non-routable, non-page `SharedMessage` component for use in other components. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute).
 
 `SharedMessage.razor`:
 
