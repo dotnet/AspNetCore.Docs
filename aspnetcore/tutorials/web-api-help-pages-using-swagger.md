@@ -143,6 +143,8 @@ Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.Aut
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/webApiSwagger/secureSwagger/Program.cs"  highlight="26":::
 
+In the preceding code, the `/weatherforecast` endpoint doesn't need authorization, but the Swagger endpoints do.
+
 The following Curl passes a JWT token to test the Swagger UI endpoint:
 
 ```bash
