@@ -314,17 +314,13 @@ Blazor Server apps have relatively small payload sizes with faster initial load 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components rendered for the Blazor Server hosting model generally execute on the server quickly. However, the components are usually slower than other types of apps that execute code natively on the client.
-
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and static Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for static apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
+Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for standalone apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-Blazor Server apps generally execute on the server quickly. However, Blazor Server apps are usually slower than other types of apps that execute natively on the client.
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
@@ -334,7 +330,7 @@ Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .N
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor Server apps generally execute on the server quickly. However, Blazor Server apps are usually slower than other types of apps that execute natively on the client.
+Blazor Server apps generally execute on the server quickly.
 
 Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform.
 

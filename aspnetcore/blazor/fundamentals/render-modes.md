@@ -18,12 +18,12 @@ Every component in a Blazor Web App adopts a *render mode* to determine the host
 
 The following table shows the four potential render mode scenarios for rendering Razor components in a Blazor Web App. The render mode attributes in the *Render mode attribute* column are applied to components with the [`@attribute` Razor directive](xref:mvc/views/razor#attribute). Later in this article, examples are shown for each render mode scenario.
 
-Scenario                      | Render mode attribute     | Hosting model                             | Render location     | Interactive
------------------------------ | :-----------------------: | :---------------------------------------: | :-----------------: | :---------:
-Statically-rendered           | None                      | None                                      | Server              | ❌
-*Server-side rendering (SSR)* | `[RenderModeServer]`      | Blazor Server                             | Server              | ✔️
-*Client-side rendering (CSR)* | `[RenderModeWebAssembly]` | Blazor WebAssembly                        | Client              | ✔️
-Determined at runtime         | `[RenderModeAuto]`        | Blazor Server,<br>then Blazor WebAssembly | Server, then client | ✔️
+Scenario              | Render mode attribute     | Hosting model                             | Render location     | Interactive
+--------------------- | :-----------------------: | :---------------------------------------: | :-----------------: | :---------:
+Statically-rendered   | None                      | None                                      | Server              | ❌
+Server render mode    | `[RenderModeServer]`      | Blazor Server                             | Server              | ✔️
+Client render mode    | `[RenderModeWebAssembly]` | Blazor WebAssembly                        | Client              | ✔️
+Determined at runtime | `[RenderModeAuto]`        | Blazor Server,<br>then Blazor WebAssembly | Server, then client | ✔️
 
 <!-- HOLD for final commit - We'll use accessible markup for the ❌ and ✔️:
 <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
@@ -60,9 +60,9 @@ If using the following component locally in a Blazor Web App, place the componen
 > [!NOTE]
 > The anatomy of a basic Razor component is fully explained in the <xref:blazor/fundamentals/index> article. Project structure for apps created by a Blazor template are described in the <xref:blazor/project-structure> article. Detailed components coverage is found in the *Components* articles later in the documentation.
 
-### Server-side rendering (SSR)
+### Server render mode
 
-Server-side rendering (SSR) results in rendering a component on the server with user interactivity.
+Server render mode results in rendering a component on the server with user interactivity.
 
 In the following example, the render mode is set to use the Blazor Server hosting model with `@attribute [RenderModeServer]`. Therefore, the component is rendered server-side with server-side interactivity over a SignalR connection. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
 
@@ -86,9 +86,9 @@ If using the following component locally in a Blazor Web App, place the componen
 }
 ```
 
-### Client-side rendering (CSR)
+### Client render mode
 
-Client-side rendering (CSR) results in rendering a component on the client with user interactivity.
+Client render mode results in rendering a component on the client with user interactivity.
 
 In the following example, the render mode is set to use the Blazor WebAssembly hosting model with `@attribute [RenderModeWebAssembly]`. Therefore, the component is rendered client-side with interactivity. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered to update the message in the UI.
 
@@ -114,7 +114,7 @@ If using the following component locally in a Blazor Web App, place the componen
 
 ### Render mode determined at runtime
 
-The render mode can be determined at runtime. The component is initially rendered server-side with interactivity (SSR) using the Blazor Server hosting model. After the Blazor bundle is downloaded to the client and the .NET client-side runtime activates, the component adopts the Blazor WebAssembly hosting model for client-side rendering and interactivity (CSR).
+The render mode can be determined at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. After the Blazor bundle is downloaded to the client and the .NET client-side runtime activates, the component adopts the Blazor WebAssembly hosting model for client-side rendering and interactivity.
 
 In the following example, the component is interactive throughout the process. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is re-rendered, either server-side or client-side, to update the message in the UI.
 
@@ -167,7 +167,7 @@ If the `SharedMessage` component is placed in a statically-rendered parent compo
 <SharedMessage />
 ```
 
-If the `SharedMessage` component is placed in a server-side rendered (SSR) component, it adopts SSR. The `SharedMessage` component is interactive over a SignalR connection to the client. The button calls `UpdateMessage`, and the message is updated.
+If the `SharedMessage` component is placed in a server-rendered component, it adopts server-side rendering. The `SharedMessage` component is interactive over a SignalR connection to the client. The button calls `UpdateMessage`, and the message is updated.
 
 `PassedRenderMode2.razor`:
 
@@ -178,7 +178,7 @@ If the `SharedMessage` component is placed in a server-side rendered (SSR) compo
 <SharedMessage />
 ```
 
-If the `SharedMessage` component is placed in a client-side rendered (CSR) component, it adopts CSR. The `SharedMessage` component is interactive on the client with the .NET WebAssembly-based runtime. The button calls `UpdateMessage`, and the message is updated.
+If the `SharedMessage` component is placed in a client-rendered component, it adopts client-side rendering. The `SharedMessage` component is interactive on the client with the .NET WebAssembly-based runtime. The button calls `UpdateMessage`, and the message is updated.
 
 `PassedRenderMode3.razor`:
 
@@ -189,7 +189,7 @@ If the `SharedMessage` component is placed in a client-side rendered (CSR) compo
 <SharedMessage />
 ```
 
-If the `SharedMessage` component is placed in a dynamically-rendered component, where the render mode is determined at runtime, it adopts SSR initially, then CSR after the component and Blazor bundle are downloaded and the .NET runtime activates on the client. The component is interactive. The button calls `UpdateMessage`, and the message is updated.
+If the `SharedMessage` component is placed in a dynamically-rendered component, where the render mode is determined at runtime, it adopts server-side rendering initially, then client-side rendering after the component and Blazor bundle are downloaded and the .NET runtime activates on the client. The component is interactive. The button calls `UpdateMessage`, and the message is updated.
 
 `PassedRenderMode4.razor`:
 
@@ -243,7 +243,7 @@ Endpoint convention builder extensions:
     <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddWebAssemblyRenderMode%2A>
 -->
 
-Example 1: The following `Program` file API adds services and a render mode for Razor components with only server-side rendering (SSR) support:
+Example 1: The following `Program` file API adds services and a render mode for Razor components with only server-side rendering support:
 
 ```csharp
 ...
@@ -260,7 +260,7 @@ app.MapRazorComponents<App>()
 ...
 ```
 
-Example 2: The following `Program` file API adds services and a render mode for Razor components with only client-side rendering (CSR) support:
+Example 2: The following `Program` file API adds services and a render mode for Razor components with only client-side rendering support:
 
 ```csharp
 ...
@@ -276,7 +276,7 @@ app.MapRazorComponents<App>()
 ...
 ```
 
-Example 3: The following `Program` file API adds services and render modes for Razor components with both SSR and CSR support:
+Example 3: The following `Program` file API adds services and render modes for Razor components with both server-side and client-side rendering support:
 
 ```csharp
 ...
