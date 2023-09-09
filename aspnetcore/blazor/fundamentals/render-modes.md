@@ -98,25 +98,7 @@ app.MapRazorComponents<App>()
     .AddWebAssemblyRenderMode();
 ```
 
-## Apply a render mode
-
-### Apply a render mode to a component definition
-
-To specify the render mode for a component as part of its definition, use the [`@attribute` Razor directive](xref:mvc/views/razor#attribute) and the corresponding render mode attribute.
-
-```razor
-@page "{ROUTE}"
-@attribute [RenderModeServer]
-```
-
-Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
-
-> [!NOTE]
-> Component authors should typically design components to support any render mode or hosting model. Components should avoid assumptions on where they are running (server or client) and should degrade gracefully when rendered statically.
-
-In the preceding example, the `{ROUTE}` placeholder is the route template.
-
-### Apply a render mode to a component instance
+## Apply a render mode to a component instance
 
 To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#attribute) where the component is used.
 
@@ -142,7 +124,23 @@ In the following example, the Server render mode is applied to the `Dialog` comp
 >
 > The preceding syntax will be simplified in an upcoming preview release.
 
-### Prerendering
+## Apply a render mode to a component definition
+
+To specify the render mode for a component as part of its definition, use the [`@attribute` Razor directive](xref:mvc/views/razor#attribute) and the corresponding render mode attribute.
+
+```razor
+@page "{ROUTE}"
+@attribute [RenderModeServer]
+```
+
+Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
+
+> [!NOTE]
+> Component authors should typically design components to support any render mode or hosting model. Components should avoid assumptions on where they are running (server or client) and should degrade gracefully when rendered statically.
+
+In the preceding example, the `{ROUTE}` placeholder is the route template.
+
+## Prerendering
 
 <!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
@@ -176,7 +174,7 @@ For a non-routable, non-page component:
 >
 > The preceding syntax will be simplified in an upcoming preview release.
 
-### Static render mode
+## Static render mode
 
 By default components use the Static render mode. The component renders to the response stream and interactivity isn't enabled.
 
@@ -204,7 +202,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 > [!NOTE]
 > The anatomy of a basic Razor component is fully explained in the <xref:blazor/fundamentals/index> article. Project structure for apps created by a Blazor template are described in the <xref:blazor/project-structure> article. Detailed components coverage is found in the *Components* articles later in the documentation.
 
-### Server render mode
+## Server render mode
 
 The Server render mode renders the component interactively from the server using Blazor Server. User interactions are handled over a SignalR connection.
 
@@ -230,7 +228,7 @@ In the following example, the render mode is set to Server by adding `@attribute
 
 If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
 
-### Client render mode
+## Client render mode
 
 The Client render mode renders the component interactively on the client using Blazor WebAssembly.
 
@@ -256,7 +254,7 @@ In the following example, the render mode is set to use the Blazor WebAssembly h
 
 If using the preceding component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
 
-### Auto render mode
+## Auto render mode
 
 The Auto render mode determines how to render the component at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. The Blazor WebAssembly runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits.
 
