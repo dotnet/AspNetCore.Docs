@@ -100,22 +100,30 @@ app.MapRazorComponents<App>()
 
 ## Apply a render mode
 
-### Routable page components
+### Apply a render mode to a component definition
 
-To specify the render mode for an entire page, use the [`@attribute` Razor directive](xref:mvc/views/razor#attribute) and the corresponding render mode attribute. But since pages are typically defined by app developers, not library authors, it's still the app developer that is in control of the render mode.
+To specify the render mode for a component as part of its definition, use the [`@attribute` Razor directive](xref:mvc/views/razor#attribute) and the corresponding render mode attribute.
 
 ```razor
 @page "{ROUTE}"
 @attribute [RenderModeServer]
 ```
 
+Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
+
+> [!NOTE]
+> Component authors should typically design components to support any render mode or hosting model. Components should avoid assumptions on where they are running (server or client) and should degrade gracefully when rendered statically.
+
 In the preceding example, the `{ROUTE}` placeholder is the route template.
 
-### Non-routable, non-page components
+### Apply a render mode to a component instance
 
-Typically, non-routable, non-page components don't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute), which means that they're created render mode agnostic. The developer usually applies the render mode using the [`@rendermode` Razor directive](xref:mvc/views/razor#attribute) where the component is used.
+To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#attribute) where the component is used.
 
-In the following example, the `Dialog` component doesn't specify a render mode. The render mode is applied where the `Dialog` component is used:
+> [!NOTE]
+> Component authors should typically design components to support any render mode or hosting model. Components should avoid assumptions on where they are running (server or client) and should degrade gracefully when rendered statically.
+
+In the following example, the Server render mode is applied to the `Dialog` component instance:
 
 <!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
