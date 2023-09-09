@@ -185,7 +185,7 @@ For more information on Microsoft native client frameworks, see the following re
 
 :::moniker range=">= aspnetcore-8.0"
 
-A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/fundamentals/render-modes>. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
+A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/components/render-modes>. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
 
 :::moniker-end
 
@@ -428,7 +428,7 @@ Blazor Hybrid apps are native client apps that typically require an installer an
 
 ## Setting a component's hosting model
 
-To set a component's hosting model to Blazor Server or Blazor WebAssembly at compile-time or dynamically at runtime, you set its *render mode*. Render modes are fully explained and demonstrated in the <xref:blazor/fundamentals/render-modes> article. We don't recommend that you jump from this article directly to the *Render modes* article without reading the content in the articles between these two articles. For example, render modes are more easily understood by looking at Razor component examples, but basic Razor component structure and function isn't covered until the <xref:blazor/fundamentals/index> article is reached. It's also helpful to learn about Blazor's project templates and tooling before working with the component examples in the *Render modes* article.
+To set a component's hosting model to Blazor Server or Blazor WebAssembly at compile-time or dynamically at runtime, you set its *render mode*. Render modes are fully explained and demonstrated in the <xref:blazor/components/render-modes> article. We don't recommend that you jump from this article directly to the *Render modes* article without reading the content in the articles between these two articles. For example, render modes are more easily understood by looking at Razor component examples, but basic Razor component structure and function isn't covered until the <xref:blazor/fundamentals/index> article is reached. It's also helpful to learn about Blazor's project templates and tooling before working with the component examples in the *Render modes* article.
 
 :::moniker-end
 

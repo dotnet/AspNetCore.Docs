@@ -765,7 +765,7 @@ To disable prerendering, pass the `prerender` flag with a value of `false`:
 >
 > The preceding syntax will be simplified in an upcoming preview release.
 
-For more information, see <xref:blazor/fundamentals/render-modes>.
+For more information, see <xref:blazor/components/render-modes>.
 
 :::moniker-end
 

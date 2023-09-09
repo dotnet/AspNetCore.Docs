@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/08/2023
-uid: blazor/fundamentals/render-modes
+uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
 
@@ -288,6 +288,8 @@ Rules for applying render modes:
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
+### Render mode inheritance
+
 Consider the following non-routable, non-page `SharedMessage` component for use in other components. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute).
 
 `SharedMessage.razor`:
@@ -327,6 +329,23 @@ In the following example, the `SharedMessage` component is interactive over a Si
 
 <SharedMessage />
 ```
+
+### A parent component with two child sibling component that use different render modes
+
+
+
+### A negative case of a child component that tries to use a different interactive render mode than its parent, which results in an error
+
+
+
+### A parent component with an interactive child component that takes a parameter that is serializable (works)
+
+
+
+### A negative case of an interactive child component that has a non-serializable component parameter, like child content or a render fragment, which results in an error.
+
+-----> Show that you can sometimes work around this by wrapping the child component in another component that doesn't have the parameter. This is what we do in the Blazor Web App template with the Routes component to wrap the Blazor Router.
+
 
 
 ## Set the render mode for the entire app

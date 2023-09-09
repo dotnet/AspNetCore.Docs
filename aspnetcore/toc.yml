@@ -425,8 +425,6 @@ items:
             items:
               - name: Overview
                 uid: blazor/fundamentals/index
-              - name: Render modes
-                uid: blazor/fundamentals/render-modes
               - name: Routing and navigation
                 uid: blazor/fundamentals/routing
               - name: Configuration
@@ -449,6 +447,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/components/index
+              - name: Render modes
+                uid: blazor/components/render-modes
               - name: Generic type support
                 uid: blazor/components/generic-type-support
               - name: Synchronization context
