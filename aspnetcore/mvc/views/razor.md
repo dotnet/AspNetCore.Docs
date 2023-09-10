@@ -745,13 +745,13 @@ Sets the render mode of a Razor component:
 The following example sets the Server render mode to a `Dialog` component:
 
 ```razor
-<Dialog @rendermode="new ServerRenderMode()" />
+<Dialog @rendermode="@RenderMode.Server" />
 ```
 
 To disable prerendering, pass the `prerender` flag with a value of `false`:
 
 ```razor
-<Dialog @rendermode="new ServerRenderMode(prerender: false)" />
+<Dialog @rendermode="@(new ServerRenderMode(prerender: false))" />
 ```
 
 > [!NOTE]
@@ -759,9 +759,9 @@ To disable prerendering, pass the `prerender` flag with a value of `false`:
 >
 > Render mode | Value
 > ----------- | -----
-> Server      | `new ServerRenderMode()` or `new ServerRenderMode(prerender: false)`
-> WebAssembly | `new WebAssemblyRenderMode()` or `new WebAssemblyRenderMode(prerender: false)`
-> Auto        | `new AutoRenderMode()` or `new AutoRenderMode(prerender: false)`
+> Server      | `@RenderMode.Server` or `@(new ServerRenderMode(prerender: false))`
+> WebAssembly | `@RenderMode.WebAssembly` or `@(new WebAssemblyRenderMode(prerender: false))`
+> Auto        | `@RenderMode.Auto` or `@(new AutoRenderMode(prerender: false))`
 >
 > The preceding syntax will be simplified in an upcoming preview release.
 

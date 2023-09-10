@@ -144,7 +144,7 @@ Applying a render mode to a component definition is commonly used when applying 
 >
 > Render mode | Value
 > ----------- | -----
-> Server      | `[RenderModeServer`
+> Server      | `[RenderModeServer]`
 > WebAssembly | `[RenderModeWebAssembly]`
 > Auto        | `[RenderModeAuto]`
 >
@@ -298,17 +298,25 @@ Rules for applying render modes:
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
-### Render mode inheritance
-
-Consider the following non-routable, non-page `SharedMessage` component for use in other components. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute).
+The following examples use a non-routable, non-page `SharedMessage` component. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute). If you're testing these scenarios with a Blazor Web App, place the following component in the app's `Components` folder.
 
 `SharedMessage.razor`:
 
 ```razor
+<p>@Greeting</p>
+
 <button @onclick="UpdateMessage">Click me</button> @message
+
+<p>@ChildContent</p>
 
 @code {
     private string message = "Not clicked yet.";
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Greeting { get; set; } = "Hello!";
 
     private void UpdateMessage()
     {
@@ -317,12 +325,14 @@ Consider the following non-routable, non-page `SharedMessage` component for use 
 }
 ```
 
+### Render mode inheritance
+
 If the `SharedMessage` component is placed in a statically-rendered parent component, the `SharedMessage` component is also rendered statically and isn't interactive. The button doesn't call `UpdateMessage`, and the message isn't updated.
 
-`PassedRenderMode1.razor`:
+`RenderMode5.razor`:
 
 ```razor
-@page "/passed-render-mode-1"
+@page "/render-mode-5"
 
 <SharedMessage />
 ```
@@ -331,32 +341,100 @@ If the `SharedMessage` component is placed in a component that defines the rende
 
 In the following example, the `SharedMessage` component is interactive over a SignalR connection to the client. The button calls `UpdateMessage`, and the message is updated.
 
-`PassedRenderMode2.razor`:
+`RenderMode6.razor`:
 
 ```razor
-@page "/passed-render-mode-2"
+@page "/render-mode-6"
 @attribute [RenderModeServer]
 
 <SharedMessage />
 ```
 
-### A parent component with two child sibling component that use different render modes
+### Child components with different render modes
 
+In the following example:
 
+* The first `SharedMessage` child component is interactive with Server rendering. The component immediately appears and is interactive when the page is displayed in the browser.
+* The second `SharedMessage` child component is interactive with WebAssembly rendering. The component is rendered and interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
 
-### A negative case of a child component that tries to use a different interactive render mode than its parent, which results in an error
+`RenderMode7.razor`:
 
+```razor
+@page "/render-mode-7"
 
+<SharedMessage @rendermode="@RenderMode.Server" />
+<SharedMessage @rendermode="@RenderMode.WebAssembly" />
+```
 
-### A parent component with an interactive child component that takes a parameter that is serializable (works)
+### Child component with a serializable parameter
 
+The following example demonstrates an interactive child component that takes a parameter. Parameters must be serializable.
 
+`RenderMode8.razor`:
 
-### A negative case of an interactive child component that has a non-serializable component parameter, like child content or a render fragment, which results in an error.
+```razor
+@page "/render-mode-8"
 
------> Show that you can sometimes work around this by wrapping the child component in another component that doesn't have the parameter. This is what we do in the Blazor Web App template with the Routes component to wrap the Blazor Router.
+<SharedMessage @rendermode="@RenderMode.Server" Greeting="Welcome!" />
+```
 
+Non-serializable component parameters, such as child content or a render fragment, are ***not*** supported. In the following example, passing child content to the `SharedMessage` component results in a runtime error.
 
+`RenderMode9.razor`:
+
+```razor
+@page "/render-mode-9"
+
+<SharedMessage @rendermode="@RenderMode.Server">
+    Child content
+</SharedMessage>
+```
+
+<span aria-hidden="true">❌</span> **Error**:
+
+:::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'ServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
+
+To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the Blazor router.
+
+`WrapperComponent.razor`:
+
+```razor
+<SharedMessage>
+    Child content
+</SharedMessage>
+```
+
+`RenderMode10.razor`:
+
+```razor
+@page "/render-mode-10"
+
+<WrapperComponent @rendermode="@RenderMode.Server" />
+```
+
+In the preceding example:
+
+* The child content is passed to the `SharedMessage` component without generating a runtime error.
+* The `SharedMessage` component renders interactively on the server.
+
+### Child component with a different render mode than its parent
+
+Don't try to apply a different interactive render mode to a child component than its parent's render mode.
+
+The following component results in a runtime error when the `RenderMode9` component is rendered:
+
+`RenderMode11.razor`:
+
+```razor
+@page "/render-mode-11"
+@attribute [RenderModeServer]
+
+<SharedMessage @rendermode="@RenderMode.WebAssembly" />
+```
+
+<span aria-hidden="true">❌</span> **Error**:
+
+> :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.WebAssemblyRenderMode' is not supported by interactive server-side rendering.":::
 
 ## Set the render mode for the entire app
 
