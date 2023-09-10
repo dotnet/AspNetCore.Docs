@@ -91,13 +91,13 @@ For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-8.0&
 
 Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard id attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
 
-For more information, see <xref:https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
+For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
 
 ### Monitor Blazor Server circuit activity
 
 You can now monitor inbound circuit activity in Blazor Server apps using the new `CreateInboundActivityHandler` method on `CircuitHandler`. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
 
-For more information, see <xref:https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#monitor-server-side-circuit-activity>.
+For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#monitor-server-side-circuit-activity>.
 
 ### Faster runtime performance with the Jiterpreter
 
