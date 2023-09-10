@@ -388,7 +388,7 @@ Non-serializable component parameters, such as child content or a render fragmen
 
 <span aria-hidden="true">❌</span> **Error**:
 
-:::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'ServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
+> :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'ServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
 
 To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the Blazor router.
 
@@ -417,7 +417,7 @@ In the preceding example:
 
 Don't try to apply a different interactive render mode to a child component than its parent's render mode.
 
-The following component results in a runtime error when the `RenderMode9` component is rendered:
+The following component results in a runtime error when the component is rendered:
 
 `RenderMode11.razor`:
 
