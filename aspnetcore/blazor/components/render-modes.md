@@ -348,10 +348,10 @@ In the following example, the `SharedMessage` component is interactive over a Si
 
 ### Child components with different render modes
 
-In the following example:
+In the following example, both `SharedMessage` components are prerendered (by default) and appear when the page is displayed in the browser.
 
-* The first `SharedMessage` child component is interactive with Server rendering. The component immediately appears and is interactive when the page is displayed in the browser.
-* The second `SharedMessage` child component is interactive with WebAssembly rendering. The component is rendered and interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
+* The first `SharedMessage` component with Server rendering is interactive after the SignalR circuit is established.
+* The second `SharedMessage` component with WebAssembly rendering is interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
 
 `RenderMode7.razor`:
 
