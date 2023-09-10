@@ -135,7 +135,7 @@ In the preceding example, the `{ROUTE}` placeholder is the route template.
 Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
 
 > [!NOTE]
-> Component authors should avoid coupling a component's implementation to a specific render mode. Instead, component authors should typically design components to support any render mode or hosting model. A component's implementation should avoid assumptions on where it's running (server or client) and should degrade gracefully when rendered statically. Specifying the render mode in the component definition might be needed if the component isn't instantiated directly (such as with a routable page component) or to specify a render mode for all component instances.
+> Component authors should avoid coupling a component's implementation to a specific render mode. Instead, component authors should typically design components to support any render mode or hosting model. A component's implementation should avoid assumptions on where it's running (server or client) and should degrade gracefully when rendered statically. Specifying the render mode in the component definition may be needed if the component isn't instantiated directly (such as with a routable page component) or to specify a render mode for all component instances.
 
 > [!NOTE]
 > During .NET 8 *Release Candidate 1*, use the following attributes:
@@ -378,7 +378,7 @@ You also typically must set the same interactive render mode on the `HeadOutlet`
 ```
 
 > [!NOTE]
-> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script might be evaluated multiple times.
+> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times.
 
 > [!NOTE]
 > In an upcoming preview release, a template option for the Blazor Web App template to create the app with root-level interactivity.
