@@ -106,8 +106,6 @@ To apply a render mode to a component instance use the [`@rendermode` Razor dire
 
 In the following example, the Server render mode is applied to the `Dialog` component instance:
 
-<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
-
 ```razor
 <Dialog @rendermode="@RenderMode.Server" />
 ```
@@ -151,8 +149,6 @@ Applying a render mode to a component definition is commonly used when applying 
 > The preceding syntax will be simplified in an upcoming preview release.
 
 ## Prerendering
-
-<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
 Prerendering is enabled by default for interactive components.
 
@@ -437,8 +433,6 @@ The following component results in a runtime error when the `RenderMode9` compon
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.WebAssemblyRenderMode' is not supported by interactive server-side rendering.":::
 
 ## Set the render mode for the entire app
-
-<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
 To set the render mode for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
