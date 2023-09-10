@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/8/2023
+ms.date: 9/10/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -20,15 +20,119 @@ This article is under development and not complete. More information may be foun
 * [What's new in .NET 8 Preview 4](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/)
 * [What's new in .NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/)
 * [What's new in .NET 8 Preview 6](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-6/)
-<!--
 * [What's new in .NET 8 Preview 7](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-7/)
+<!--
+* [What's new in .NET 8 Release Candidate 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-1/)
 -->
 
 [!INCLUDE [](~/includes/preview-notice.md)]
 
-<!--
 ## Blazor
--->
+
+### Full-stack web UI
+
+<!-- TODO ... I'll write this up on Monday morning -->
+
+* Server-side rendering (SSR) and client-side rendering (CSR) with interactivity per component or page
+* Auto-switch between Server and WebAssembly execution for fast startup
+* Generate static HTML with components
+
+For more information, see <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>.
+
+### New Blazor Web App template
+
+We've introduced a new Blazor project template: the *Blazor Web App* template. This new template provides a single starting point for using Blazor components to build any style of web UI, both server-side rendered and client-side rendered. It combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with the new Blazor capabilities added in .NET 8: server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
+
+As part of unifying the various Blazor hosting models into a single model in .NET 8, we're also consolidating the number of Blazor project templates. We've removed the Blazor Server template, and the ASP.NET Core Hosted option has been removed from the Blazor WebAssembly template. Both of these scenarios are represented by options when using the new Blazor Web App template.
+
+> [!NOTE]
+> Hosted Blazor WebAssembly is still supported in .NET 8 or later, and existing hosted Blazor WebAssembly apps can be upgraded to use .NET 8 or later API, features, and runtimes.
+
+For more information on the new Blazor Web App template, see the following articles:
+
+* <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
+* <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
+
+### Enhanced navigation and form handling
+
+With new form handling features for multiple forms on a page, a request is handled by the form with the matching form handler name with per-form model binding and form validation.
+
+For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-8.0&preserve-view=true>.
+
+### Streaming rendering
+
+You can now stream content updates on the response stream when using server-side rendering (SSR) with Blazor in .NET 8. Streaming rendering can improve the user experience for server-side rendered pages that need to perform long-running async tasks in order to render fully.
+
+For example, to render a page you might need to make a long running database query or an API call. Normally all async tasks executed as part of rendering a page must complete before the rendered response can be sent, which can delay loading the page. Streaming rendering initially renders the entire page with placeholder content while async operations execute. Once the async operations completes, the updated content is sent to the client on the same response connection and then patched by Blazor into the DOM. The benefit of this approach is that the main layout of the app renders as quickly as possible and the page is updated as soon as the content is ready.
+
+For more information, see <xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering>.
+
+### Render Razor components outside of ASP.NET Core
+
+A convenient side-effect of the work to enable server-side rendering with Razor components is that you can now render Razor components outside the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for a generated email, or even for generating static site content.
+
+For more information, see <xref:blazor/components/render-outside-of-aspnetcore?view=aspnetcore-8.0&preserve-view=true>.
+
+### Sections support
+
+The new `SectionOutlet` and `SectionContent` components in Blazor add support for specifying outlets for content that can be filled in later. Sections are often used to define placeholders in layouts that are then filled in by specific pages. Sections are referenced either by a unique name or using a unique object ID.
+
+For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&preserve-view=true>.
+
+### QuickGrid
+
+The Blazor QuickGrid component is no longer experimental and is now part of the Blazor framework in .NET 8.
+
+QuickGrid is a high performance grid component for displaying data in tabular form. QuickGrid is built to be a simple and convenient way to display your data, while still providing powerful features, such as sorting, filtering, paging, and virtualization.
+
+For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-8.0&preserve-view=true>.
+
+### Route to named elements
+
+Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard id attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
+
+For more information, see <xref:https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
+
+### Monitor Blazor Server circuit activity
+
+You can now monitor inbound circuit activity in Blazor Server apps using the new `CreateInboundActivityHandler` method on `CircuitHandler`. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
+
+For more information, see <xref:https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#monitor-server-side-circuit-activity>.
+
+### Faster runtime performance with the Jiterpreter
+
+The Jiterpreter is a new runtime feature in .NET 8 that enables partial JIT support in the .NET IL interpreter to achieve improved runtime performance.
+
+For more information, see [Improved Blazor WebAssembly performance with the jiterpreter (.NET Blog)](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-2/#improved-blazor-webassembly-performance-with-the-jiterpreter).
+
+### Ahead-of-time (AOT) SIMD and exception handling
+
+WebAssembly Single Instruction, Multiple Data (SIMD) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers. AOT exception handling is also enabled by default.
+
+For more information, see the following:
+
+[AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
+[AOT: Exception handling](<xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
+
+### Web-friendly Webcil packaging
+
+Webcil is web-friendly packaging of .NET assemblies that removes any content specific to native Windows execution to avoid issues when deploying to environments that block the download or use of `.dll` files. Webcil is enabled by default for Blazor WebAssembly apps.
+
+For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
+
+### Blazor WebAssembly debugging
+
+When debugging .NET on WebAssembly, the debugger will now download symbol data from symbol locations that are configured in Visual Studio preferences. This improves the debugging experience for apps that use NuGet packages.
+
+You can now debug Blazor WebAssembly apps using Firefox. Debugging Blazor WebAssembly apps requires configuring the browser for remote debugging and then connecting to the browser using the browser developer tools through the .NET WebAssembly debugging proxy. Debugging Firefox from Visual Studio isn't supported at this time.
+
+For more information, see <xref:blazor/debug?view=aspnetcore-8.0&preserve-view=true#debug-with-firefox>.
+
+### Content Security Policy (CSP) compatibility
+
+Blazor WebAssembly no longer requires enabling the `unsafe-eval` script source when specifying a Content Security Policy (CSP).
+
+For more information, see <xref:blazor/security/content-security-policy?view=aspnetcore-8.0&preserve-view=true>.
 
 ## SignalR
 
