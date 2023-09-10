@@ -60,7 +60,7 @@ Endpoint convention builder extensions:
 > [!NOTE]
 > For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
 
-Example 1: The following `Program` file API adds services and a render mode for Razor components with only server-side rendering support:
+Example 1: The following `Program` file API adds services and configuration for enabling the Server render mode:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -72,7 +72,7 @@ app.MapRazorComponents<App>()
     .AddServerRenderMode();
 ```
 
-Example 2: The following `Program` file API adds services and a render mode for Razor components with only client-side rendering support:
+Example 2: The following `Program` file API adds services and configuration for enabling the WebAssembly render mode:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -84,7 +84,7 @@ app.MapRazorComponents<App>()
     .AddWebAssemblyRenderMode();
 ```
 
-Example 3: The following `Program` file API adds services and render modes for Razor components with both server-side and client-side rendering support:
+Example 3: The following `Program` file API adds services and configuration for enabling the Server, WebAssembly, and Auto render modes:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -101,9 +101,6 @@ app.MapRazorComponents<App>()
 ## Apply a render mode to a component instance
 
 To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#attribute) where the component is used.
-
-> [!NOTE]
-> Component authors should typically design components to support any render mode or hosting model. Components should avoid assumptions on where they are running (server or client) and should degrade gracefully when rendered statically.
 
 In the following example, the Server render mode is applied to the `Dialog` component instance:
 
@@ -133,12 +130,23 @@ To specify the render mode for a component as part of its definition, use the [`
 @attribute [RenderModeServer]
 ```
 
+In the preceding example, the `{ROUTE}` placeholder is the route template.
+
 Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
 
 > [!NOTE]
-> Component authors should typically design components to support any render mode or hosting model. Components should avoid assumptions on where they are running (server or client) and should degrade gracefully when rendered statically.
+> Component authors should avoid coupling a component's implementation to a specific render mode. Instead, component authors should typically design components to support any render mode or hosting model. A component's implementation should avoid assumptions on where it's running (server or client) and should degrade gracefully when rendered statically. Specifying the render mode in the component definition might be needed if the component isn't instantiated directly (such as with a routable page component) or to specify a render mode for all component instances.
 
-In the preceding example, the `{ROUTE}` placeholder is the route template.
+> [!NOTE]
+> During .NET 8 *Release Candidate 1*, use the following attributes:
+>
+> Render mode | Value
+> ----------- | -----
+> Server      | `[RenderModeServer`
+> WebAssembly | `[RenderModeWebAssembly]`
+> Auto        | `[RenderModeAuto]`
+>
+> The preceding syntax will be simplified in an upcoming preview release.
 
 ## Prerendering
 
@@ -148,7 +156,13 @@ Prerendering is enabled by default for interactive components.
 
 To disable prerendering, pass the `prerender` flag with a value of `false`.
 
-For a routable page:
+For a component instance:
+
+```razor
+<Dialog @rendermode="new ServerRenderMode(prerender: false)" />
+```
+
+From the component definition:
 
 ```razor
 @page "{ROUTE}"
@@ -156,12 +170,6 @@ For a routable page:
 ```
 
 In the preceding example, the `{ROUTE}` placeholder is the route template.
-
-For a non-routable, non-page component:
-
-```razor
-<Dialog @rendermode="new ServerRenderMode(prerender: false)" />
-```
 
 > [!NOTE]
 > During .NET 8 *Release Candidate 1*, use the following values:
@@ -176,7 +184,7 @@ For a non-routable, non-page component:
 
 ## Static render mode
 
-By default components use the Static render mode. The component renders to the response stream and interactivity isn't enabled.
+By default, components use the Static render mode. The component renders to the response stream and interactivity isn't enabled.
 
 In the following example, there's no designation for the component's render mode, and the component inherits the default render mode from its parent. Therefore, the component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
 
@@ -225,11 +233,11 @@ In the following example, the render mode is set to Server by adding `@attribute
 
 If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
 
-## Client render mode
+## WebAssembly render mode
 
-The Client render mode renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded when the WebAssembly component is initially rendered and is cached for future use.
+The WebAssembly render mode renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded and cached when the WebAssembly component is initially rendered.
 
-In the following example, the render mode is set to use the Blazor WebAssembly hosting model with `@attribute [RenderModeWebAssembly]`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
+In the following example, the render mode is set to WebAssembly with `@attribute [RenderModeWebAssembly]`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
 
 `RenderMode3.razor`:
 
