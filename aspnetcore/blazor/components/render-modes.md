@@ -98,6 +98,8 @@ app.MapRazorComponents<App>()
     .AddWebAssemblyRenderMode();
 ```
 
+Blazor uses the Blazor WebAssembly hosting model to download and execute components that use the WebAssembly render mode. A separate client project is required to set up Blazor WebAssembly hosting for these components. The client project contains the startup code for the Blazor WebAssembly host and sets up the .NET runtime for running in a browser. The Blazor Web App template adds this client project for you when you select the option to enable WebAssembly interactivity. Any components using the WebAssembly render mode should be built from the client project, so they get included in the downloaded app bundle.
+
 ## Apply a render mode to a component instance
 
 To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#attribute) where the component is used.
@@ -107,7 +109,7 @@ In the following example, the Server render mode is applied to the `Dialog` comp
 <!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
 ```razor
-<Dialog @rendermode="new ServerRenderMode()" />
+<Dialog @rendermode="@RenderMode.Server" />
 ```
 
 > [!NOTE]
@@ -115,9 +117,9 @@ In the following example, the Server render mode is applied to the `Dialog` comp
 >
 > Render mode | Value
 > ----------- | -----
-> Server      | `new ServerRenderMode()`
-> WebAssembly | `new WebAssemblyRenderMode()`
-> Auto        | `new AutoRenderMode()`
+> Server      | `@RenderMode.Server`
+> WebAssembly | `@RenderMode.WebAssembly`
+> Auto        | `@RenderMode.Auto`
 >
 > The preceding syntax will be simplified in an upcoming preview release.
 
@@ -159,7 +161,7 @@ To disable prerendering, pass the `prerender` flag with a value of `false`.
 For a component instance:
 
 ```razor
-<Dialog @rendermode="new ServerRenderMode(prerender: false)" />
+<Dialog @rendermode="@(new ServerRenderMode(prerender: false))" />
 ```
 
 From the component definition:
@@ -176,9 +178,9 @@ In the preceding example, the `{ROUTE}` placeholder is the route template.
 >
 > Render mode | Value
 > ----------- | -----
-> Server      | `new ServerRenderMode(prerender: false)`
-> WebAssembly | `new WebAssemblyRenderMode(prerender: false)`
-> Auto        | `new AutoRenderMode(prerender: false)`
+> Server      | `@(new ServerRenderMode(prerender: false))`
+> WebAssembly | `@(new WebAssemblyRenderMode(prerender: false))`
+> Auto        | `@(new AutoRenderMode(prerender: false))`
 >
 > The preceding syntax will be simplified in an upcoming preview release.
 
@@ -235,7 +237,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## WebAssembly render mode
 
-The WebAssembly render mode renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded and cached when the WebAssembly component is initially rendered.
+The WebAssembly render mode renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded and cached when the WebAssembly component is initially rendered. Components using the WebAssembly render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
 
 In the following example, the render mode is set to WebAssembly with `@attribute [RenderModeWebAssembly]`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
 
@@ -261,7 +263,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 ## Auto render mode
 
-The Auto render mode determines how to render the component at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits.
+The Auto render mode determines how to render the component at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the Auto render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
 
 In the following example, the component is interactive throughout the process. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI. Initially, the component is rendered interactively from the server, but on subsequent visits it's rendered from the client after the .NET runtime and app bundle are downloaded and cached.
 
@@ -360,10 +362,10 @@ In the following example, the `SharedMessage` component is interactive over a Si
 
 <!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
 
-To set the render mode for the entire app, indicate the render mode at the highest level component in the app's component hierarchy, typically the `Routes` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
+To set the render mode for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
 ```razor
-<Routes @rendermode="new ServerRenderMode()" />
+<Routes @rendermode="@RenderMode.Server" />
 ```
 
 > [!NOTE]
@@ -374,7 +376,7 @@ The Blazor router propagates its render mode to the pages it routes. The pages a
 You also typically must set the same interactive render mode on the `HeadOutlet` component, which is also found in the `App` component of a Blazor Web App generated from the project template:
 
 ```
-<HeadOutlet @rendermode="new ServerRenderMode()" />
+<HeadOutlet @rendermode="@RenderMode.Server" />
 ```
 
 > [!NOTE]
