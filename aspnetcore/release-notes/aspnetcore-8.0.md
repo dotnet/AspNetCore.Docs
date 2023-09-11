@@ -35,7 +35,7 @@ This article is under development and not complete. More information may be foun
 
 With the release of .NET 8, Blazor is a full-stack web UI framework for developing apps that render content at either the component or page level with:
 
-* Static server-side rendering to generate static HTML.
+* Static server rendering to generate static HTML.
 * Interactive server rendering using the Blazor Server hosting model.
 * Interactive client rendering using the Blazor WebAssembly hosting model.
 * Automatic interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates. Automatic rendering usually provides the fastest app startup experience.
@@ -46,12 +46,12 @@ For more information, see <xref:blazor/components/render-modes?view=aspnetcore-8
 
 ### New Blazor Web App template
 
-We've introduced a new Blazor project template: the *Blazor Web App* template. The new template provides a single starting point for using Blazor components to build any style of web UI. The template combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with the new Blazor capabilities added in .NET 8: server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
+We've introduced a new Blazor project template: the *Blazor Web App* template. The new template provides a single starting point for using Blazor components to build any style of web UI. The template combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with the new Blazor capabilities added in .NET 8: static server rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
 
 As part of unifying the various Blazor hosting models into a single model in .NET 8, we're also consolidating the number of Blazor project templates. We removed the Blazor Server template, and the ASP.NET Core Hosted option has been removed from the Blazor WebAssembly template. Both of these scenarios are represented by options when using the Blazor Web App template.
 
 > [!NOTE]
-> Hosted Blazor WebAssembly remains supported in .NET 8 or later, and existing hosted Blazor WebAssembly apps can be upgraded to use .NET 8 or later API and features.
+> Existing Blazor Server and Blazor WebAssembly apps remain supported in .NET 8. Optionally, these apps can be  updated to use the new full-stack web UI Blazor features.
 
 For more information on the new Blazor Web App template, see the following articles:
 
@@ -60,11 +60,7 @@ For more information on the new Blazor Web App template, see the following artic
 
 ### Enhanced navigation and form handling
 
-With new form handling features for multiple forms on a page, a request is handled by the form with the matching form handler name with per-form model binding and form validation. Also in this release, standard HTML forms based on a plain HTML `<form>` element with server-side rendering is supported without using an `EditForm`.
-
-New antiforgery support is included in .NET 8. A new `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the new `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a 400 (Bad Request) response is returned without form processing. The new antiforgery features are enabled by default for forms based on `Editform` and can be applied manually to standard HTML forms.
-
-For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-8.0&preserve-view=true>.
+Static server rendering typically performs a full page refresh whenever the user navigates to a new page or submits a form. In .NET 8, Blazor can enhance page navigations and form handling by intercepting the request and performing a fetch request instead. Blazor then handles the rendered response content by patching it into the browser DOM. Enhanced navigation and form handling avoids the need for a full page refresh and preserves more of the page state, so pages load faster and more smoothly. Enhanced navigation and form handling are enabled by default for static server rendered pages when the Blazor script (`blazor.web.js`) is loaded.
 
 ### Streaming rendering
 
