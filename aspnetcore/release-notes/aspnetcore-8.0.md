@@ -58,10 +58,6 @@ For more information on the new Blazor Web App template, see the following artic
 * <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
 * <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
 
-### Enhanced navigation and form handling
-
-Static server rendering typically performs a full page refresh whenever the user navigates to a new page or submits a form. In .NET 8, Blazor can enhance page navigation and form handling by intercepting the request and performing a fetch request instead. Blazor then handles the rendered response content by patching it into the browser DOM. Enhanced navigation and form handling avoids the need for a full page refresh and preserves more of the page state, so pages load faster and more smoothly. Enhanced navigation is enabled by default when the Blazor script (`blazor.web.js`) is loaded. Enhanced form handling can be optionally enabled for specific forms.
-
 ### Form handling and model binding
 
 Blazor components can now handle submitted form requests, including model binding and validating the request data. Components can implement forms with separate form handlers using the standard HTML `<form>` tag or using the existing `EditForm` component.
@@ -69,6 +65,10 @@ Blazor components can now handle submitted form requests, including model bindin
 New antiforgery support is included in .NET 8. A new `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the new `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a 400 (Bad Request) response is returned without form processing. The new antiforgery features are enabled by default for forms based on `Editform` and can be applied manually to standard HTML forms.
 
 For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-8.0&preserve-view=true>.
+
+### Enhanced navigation and form handling
+
+Static server rendering typically performs a full page refresh whenever the user navigates to a new page or submits a form. In .NET 8, Blazor can enhance page navigation and form handling by intercepting the request and performing a fetch request instead. Blazor then handles the rendered response content by patching it into the browser DOM. Enhanced navigation and form handling avoids the need for a full page refresh and preserves more of the page state, so pages load faster and more smoothly. Enhanced navigation is enabled by default when the Blazor script (`blazor.web.js`) is loaded. Enhanced form handling can be optionally enabled for specific forms.
 
 ### Streaming rendering
 
