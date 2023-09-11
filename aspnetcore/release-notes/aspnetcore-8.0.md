@@ -688,6 +688,10 @@ The complete updated sample can be found [here](https://github.com/dotnet/AspNet
 
 See <xref:security/authorization/iard> for a detailed examination of the new sample.
 
+### Securing Swagger UI endpoints
+
+Swagger UI endpoints can now be secured in production environments by calling [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A). For more information, see [Securing Swagger UI endpoints](/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0&preserve-view=true#securing-swagger-ui-endpoints)
+
 ## Miscellaneous
 
 The following sections describe miscellaneous new features in ASP.NET Core 8.
