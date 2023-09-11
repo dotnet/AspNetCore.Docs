@@ -136,7 +136,7 @@ The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-i
 For more information, see the following:
 
 * [Improved Blazor WebAssembly performance with the Jiterpreter (.NET Blog)](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-2/#improved-blazor-webassembly-performance-with-the-jiterpreter)
-* <xref:/blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>
+* <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>
 
 ### Ahead-of-time (AOT) SIMD and exception handling
 
