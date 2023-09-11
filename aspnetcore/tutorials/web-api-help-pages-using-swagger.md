@@ -137,6 +137,22 @@ Each public action method in your controllers can be tested from the UI. Select 
 > [!NOTE]
 > The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](https://petstore.swagger.io/).
 
+## Securing Swagger UI endpoints
+
+Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A)to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/webApiSwagger/secureSwagger/Program.cs"  highlight="26":::
+
+In the preceding code, the `/weatherforecast` endpoint doesn't need authorization, but the Swagger endpoints do.
+
+The following Curl passes a JWT token to test the Swagger UI endpoint:
+
+```bash
+curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/swagger/v1/swagger.json
+```
+
+For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
+
 ## Next steps
 
 * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
