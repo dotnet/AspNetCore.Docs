@@ -204,5 +204,6 @@ Send the request as described [earlier in this article](#send-an-http-request).
 
 ## See also
 
+* [Endpoints Explorer window only recognizes literal strings for routes](https://github.com/dotnet/AspNetCore.Docs/issues/30293)
 * [Web API development in Visual Studio 2022](https://devblogs.microsoft.com/visualstudio/web-api-development-in-visual-studio-2022/)
 * [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
