@@ -25,6 +25,9 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
+<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
+     template survives in 8.0+ -->
+
 * Create a new project:
   * For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Next**.
   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
@@ -58,8 +61,11 @@ To create a Blazor app on Windows, use the following guidance:
 <!-- UPDATE 8.0 Cross-link SSR -->
 
 * For a Blazor Web App in the **Additional information** dialog:
-  * To enable interactivity with server-side rendering (SSR), select the **Use interactive server components** checkbox.
+  * Interactivity with server-side rendering (SSR) is enabled by default with the **Use interactive server components** checkbox. To disable SSR, deselect the checkbox.
   * To enable interactivity with client-side rendering (CSR), select the **Use interactive client components** checkbox.
+
+<!-- UPDATE 8.0 I think the interactive root component checkbox
+     will appear at RC2. -->
 
 :::moniker-end
 
@@ -130,12 +136,18 @@ Create a new project:
   dotnet new blazor -o BlazorApp
   ```
 
-  <!-- UPDATE 8.0 Cross-link SSR -->
+  <!-- UPDATE 8.0 Cross-links -->
 
-  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
+  Interactivity with server-side rendering (SSR) is enabled by default. If you want to disable SSR, pass `--use-server false`:
 
   ```dotnetcli
-  dotnet new blazor -o BlazorApp --use-server
+  dotnet new blazor -o Blazor App --use-server false
+  ```
+
+  To enable interactivity with client-side rendering (CSR), add the `--use-wasm` option to the command:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp --use-wasm
   ```
 
 * For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
@@ -538,6 +550,9 @@ The Blazor framework provides templates for creating new apps. The templates are
 
 :::moniker range=">= aspnetcore-8.0"
 
+<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
+     template survives in 8.0+ -->
+
 * Blazor Web App project template (*recommended*): `blazor`
 * Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
 
@@ -568,6 +583,9 @@ For more information on template options, see the following resources:
 * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
 
 -->
+
+<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
+     template survives in 8.0+ -->
 
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
