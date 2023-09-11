@@ -91,7 +91,7 @@ PR: https://github.com/dotnet/aspnetcore/pull/50253
 
 ### Render Razor components outside of ASP.NET Core
 
-A convenient side-effect of the work to enable server-side rendering is that you can now render Razor components outside the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for a generating email or static site content.
+You can now render Razor components outside the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for a generating email or static site content.
 
 For more information, see <xref:blazor/components/render-outside-of-aspnetcore?view=aspnetcore-8.0&preserve-view=true>.
 
@@ -123,7 +123,7 @@ For more information, see <xref:blazor/components/cascading-values-and-parameter
 
 ### Virtualize empty content
 
-Use the new `EmptyContent` parameter to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
+Use the new `EmptyContent` parameter on the `Virtualize` component to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
 
 For more information, see <xref:blazor/components/virtualization?view=aspnetcore-8.0&preserve-view=true#empty-content>.
 
@@ -135,23 +135,17 @@ For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&
 
 ### Faster runtime performance with the Jiterpreter
 
-The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-in-Time (JIT) support in the .NET Intermediate Language (IL) interpreter to achieve improved runtime performance.
+The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-in-Time (JIT) compilation support when running on WebAssembly to achieve improved runtime performance.
 
-For more information, see the following:
-
-* [Improved Blazor WebAssembly performance with the Jiterpreter (.NET Blog)](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-2/#improved-blazor-webassembly-performance-with-the-jiterpreter)
-* <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>
-
+For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>.
 ### Ahead-of-time (AOT) SIMD and exception handling
 
-WebAssembly Single Instruction, Multiple Data (SIMD) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers.
-
-New AOT exception handling is also enabled by default.
+Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
 
 For more information, see the following:
 
 [AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
-[AOT: Exception handling](<xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
+[AOT: Exception handling](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
 
 ### Web-friendly Webcil packaging
 
@@ -159,7 +153,7 @@ Webcil is web-friendly packaging of .NET assemblies that removes content specifi
 
 For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
 
-### Blazor WebAssembly debugging
+### Blazor WebAssembly debugging improvements
 
 When debugging .NET on WebAssembly, the debugger now downloads symbol data from symbol locations that are configured in Visual Studio preferences. This improves the debugging experience for apps that use NuGet packages.
 
