@@ -72,7 +72,7 @@ Static server rendering typically performs a full page refresh whenever the user
 
 ### Streaming rendering
 
-You can now stream content updates on the response stream when using server-side rendering with Blazor. Streaming rendering can improve the user experience for pages that perform long-running asynchronous tasks in order to fully render.
+You can now stream content updates on the response stream when using static server rendering with Blazor. Streaming rendering can improve the user experience for pages that perform long-running asynchronous tasks in order to fully render by rendering content as soon as it's available.
 
 For example, to render a page you might need to make a long running database query or an API call. Normally, asynchronous tasks executed as part of rendering a page must complete before the rendered response is sent, which can delay loading the page. Streaming rendering initially renders the entire page with placeholder content while asynchronous operations execute. After the asynchronous operations are complete, the updated content is sent to the client on the same response connection and patched by into the DOM. The benefit of this approach is that the main layout of the app renders as quickly as possible and the page is updated as soon as the content is ready.
 
