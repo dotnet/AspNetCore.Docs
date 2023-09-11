@@ -447,6 +447,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/components/index
+              - name: Render modes
+                uid: blazor/components/render-modes
               - name: Generic type support
                 uid: blazor/components/generic-type-support
               - name: Synchronization context
