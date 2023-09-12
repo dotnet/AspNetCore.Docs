@@ -38,15 +38,19 @@ The preceding project file:
 
 ## Inter-process communication (IPC) transports
 
-gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a great choice for communicating across a network or the Internet. However, IPC transports can offer performance advantages and better integration with OS features when the client and server are on the same machine.
+gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a great choice for communicating across a network or the Internet. However, IPC transports offer advantages when communicating between processes on the same machine:
+
+* Less overhead and faster transfer speeds.
+* Integration with OS security features.
+* Doesn't use TCP ports, which are a limited resource.
 
 .NET supports multiple IPC transports:
 
 * [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology. UDS is the best choice for building cross-platform apps, and it's usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
-* [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights), which can be used to control client access to the pipe.
-* Other IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and registering the implementation at app startup.
+* [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights), which can control client access to the pipe.
+* Support other IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and registering the implementation at app startup.
 
-Cross-platform apps may want to use different IPC transports, depending on the current OS. An app can check the current operating system on startup and chose the desired transport for that platform:
+Depending on the current OS, cross-platform apps may want to use different IPC transports. An app can check the current operating system on startup and choose the desired transport for that platform:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -77,12 +81,12 @@ IPC apps send and receive RPC calls. External communication is a potential attac
 
 The IPC server app hosts RPC services for other apps to call. Incoming callers should be authenticated to prevent untrusted clients from making RPC calls to the server.
 
-Transport security is one option for securing a server. IPC transports such as Unix domain sockets and named pipes support limiting access based on operating system permissions:
+Transport security is one option for securing a server. IPC transports, such as Unix domain sockets and named pipes, support limiting access based on operating system permissions:
 
 * Named pipes supports securing a pipe with the [Windows access control model](/windows/win32/ipc/named-pipe-security-and-access-rights). Access rights can be configured in .NET when a server is started using the <xref:System.IO.Pipes.PipeSecurity> class.
 * Unix domain sockets support securing a socket with file permissions.
 
-Another option for securing a IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](xref:security/authentication/certauth). RPC calls made by client apps without the required certificate fail with an unauthorized response.
+Another option for securing an IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](xref:security/authentication/certauth). RPC calls made by client apps without the required certificate fail with an unauthorized response.
 
 ### Validate the server in the IPC client app
 
