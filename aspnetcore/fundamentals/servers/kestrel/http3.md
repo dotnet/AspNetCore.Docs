@@ -15,14 +15,14 @@ uid: fundamentals/servers/kestrel/http3
 
 :::moniker range=">= aspnetcore-8.0"
 
-[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is a proposed standard and the third major version of HTTP. This article discusses requirements for HTTP/3. HTTP/3 is fully supported in ASP.NET Core 7.0 and later.
+[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is an approved standard and the third major version of HTTP. This article discusses the requirements for HTTP/3. HTTP/3 is fully supported in ASP.NET Core 7.0 and later.
 
 > [!IMPORTANT]
 > Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2.
 
 ## HTTP/3 requirements
 
-HTTP/3 has different requirements depending on the operating system. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it's disabled, and Kestrel will fall back to other HTTP protocols.
+HTTP/3 has different requirements depending on the operating system. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3, then it's disabled, and Kestrel will fall back to other HTTP protocols.
 
 ### Windows
 
@@ -65,7 +65,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the [`alt-svc`](h
 
 ## Localhost testing
 
-* Browsers don't allow self-signed certificates on HTTP/3 such as the Kestrel development certificate.
+* Browsers don't allow self-signed certificates on HTTP/3, such as the Kestrel development certificate.
 * `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configuration is required when using `HttpClient` to make an HTTP/3 request:
 
   * Set [`HttpRequestMessage.Version`](xref:System.Net.Http.HttpRequestMessage.Version) to 3.0, or
@@ -79,7 +79,7 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 
 * Faster response time of the first request. QUIC and HTTP/3 negotiates the connection in fewer round-trips between the client and the server. The first request reaches the server faster.
 * Improved experience when there is connection packet loss. HTTP/2 multiplexes multiple requests via one TCP connection. Packet loss on the connection affects all requests. This problem is called "head-of-line blocking". Because QUIC provides native multiplexing, lost packets only impact the requests where data has been lost.
-* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 8. It may be available in a future release.
+* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently, HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 8. It may be available in a future release.
 
 :::moniker-end
 
