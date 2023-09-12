@@ -245,6 +245,13 @@ Specifying the layout as a default layout in the `Router` component is a useful 
 
 To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Razor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> The following example is specifically for a Blazor WebAssembly app because Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`). However, the template is supported for backward compatibility to avoid a breaking change in the framework. Blazor Web Apps typically process bad URL requests by either displaying the browser's built-in 404 UI or returning a custom 404 page from the ASP.NET Core server via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
+
+:::moniker-end
+
 `App.razor`:
 
 ```razor

@@ -16,7 +16,7 @@ uid: blazor/index
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor is a [.NET](/dotnet/standard/tour) full-stack architecture that supports both server-side rendering and client interactivity in a single programming model:
+Blazor is a [.NET](/dotnet/standard/tour) frontend web framework that supports both server-side rendering and client interactivity in a single programming model:
 
 :::moniker-end
 
@@ -97,7 +97,28 @@ Blazor uses natural HTML tags for UI composition. The following Razor markup dem
 
 In the preceding example, `OnYes` is a C# method triggered by the button's `onclick` event. The dialog's text (`ChildContent`) and title (`Title`) are provided by the following component that uses this component in its UI.
 
-The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Pages/Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
+The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/"
+@attribute [RenderModeServer]
+
+<h1>Hello, world!</h1>
+
+<p>
+    Welcome to your new app.
+</p>
+
+<Dialog Title="Learn More">
+    Do you want to <i>learn more</i> about Blazor?
+</Dialog>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/"
@@ -113,6 +134,8 @@ The `Dialog` component is nested within another component using an HTML tag. In 
 </Dialog>
 ```
 
+:::moniker-end
+
 The dialog is rendered when the `Index` component is accessed in a browser. When the button is selected by the user, the browser's developer tools console shows the message written by the `OnYes` method:
 
 ![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/blazor/index/_static/dialog.png)
@@ -125,11 +148,11 @@ Components render into an in-memory representation of the browser's [Document Ob
 
 Blazor Web Apps provide a component-based architecture with server-side rendering and full client-side interactivity in a single project, where you can switch between server-side and client-side rendering modes and even mix them in the same page. 
 
-When a Blazor Web App uses server-side rendering (SSR), the server generates HTML in response to a request and sends it to the browser. The page loads fast because UI rendering is performed quickly on the server without the need to download a large JavaScript bundle or wait for the establishment of a [SignalR](xref:signalr/introduction) connection to the client.
+When a Blazor Web App uses interactivity with server rendering, the server generates HTML in response to a request and sends it to the browser. The page loads fast because UI rendering is performed quickly on the server without the need to download a large JavaScript bundle or wait for the establishment of a [SignalR](xref:signalr/introduction) connection to the client.
 
 *Streaming rendering* can improve the user experience with SSR when long-running asynchronous tasks are required to fully render a page. Initially, Blazor renders the entire page for the browser with placeholder content. The asynchronous operations execute on the server. After the operations are complete, the updated content is sent to the browser on the same response connection and patched into page. The benefit of this approach is that the main layout of the app renders as quickly as possible.
 
-Blazor Web Apps also support client-side rendering (CSR) that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). For more information on WebAssembly, see the [Blazor WebAssembly](#blazor-webassembly) section.
+Blazor Web Apps also support interactivity with client rendering that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). For more information on WebAssembly, see the [Blazor WebAssembly](#blazor-webassembly) section.
 
 After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
 

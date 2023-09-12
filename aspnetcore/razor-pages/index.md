@@ -123,7 +123,7 @@ The `Pages/Customers/Create.cshtml` view file:
 
 The `Pages/Customers/Create.cshtml.cs` page model:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet)]
+[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 

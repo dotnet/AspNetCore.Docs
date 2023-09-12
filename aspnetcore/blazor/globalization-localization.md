@@ -351,7 +351,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Dynamically set the client-side culture by user preference
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side rendering), in a localization cookie or database (common for server-side rendering), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
@@ -500,7 +500,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker range=">= aspnetcore-8.0"
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side rendering), in a localization cookie or database (common for server-side rendering), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api).
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api).
 
 *This article doesn't carry guidance for this scenario at this time.*
 
@@ -510,7 +510,7 @@ Guidance for ASP.NET Core 8.0 or later is scheduled for this article and tracked
 
 :::moniker range="< aspnetcore-8.0"
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side rendering), in a localization cookie or database (common for server-side rendering), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 

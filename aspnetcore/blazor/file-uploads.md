@@ -391,7 +391,7 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to server-side rendered Razor components in Blazor Web Apps.*
+*This section applies to interactive server-side Razor components in Blazor Web Apps.*
 
 :::moniker-end
 
@@ -788,7 +788,7 @@ public class UploadResult
 ```
 
 > [!NOTE]
-> The preceding `UploadResult` class can be shared between client- and server-based projects. When client- and server-side projects share the class, add an import to each project's `_Imports.razor` file for the shared project. For example:
+> The preceding `UploadResult` class can be shared between client- and server-based projects. When client and server projects share the class, add an import to each project's `_Imports.razor` file for the shared project. For example:
 >
 > ```razor
 > @using BlazorSample.Shared
@@ -811,8 +811,10 @@ A security best practice for production apps is to avoid sending error messages 
 
 :::moniker range=">= aspnetcore-8.0"
 
+<!-- UPDATE 8.0 Cross-link render mode -->
+
 > [!NOTE]
-> Add the client-side rendering (CSR) attribute to the top of the following component in a Blazor Web App:
+> Add the WebAssembly component rendering attribute to the top of the following component in a Blazor Web App:
 >
 > ```razor
 > @attribute [RenderModeWebAssembly]
@@ -1265,9 +1267,7 @@ With server interactivity, file data is streamed over the SignalR connection int
 
 :::moniker-end
 
-<!-- UPDATE 8.0 Cross-link CSR -->
-
-For a client-side component, file data is streamed directly into the .NET code within the browser.
+For a WebAssembly-rendered component, file data is streamed directly into the .NET code within the browser.
 
 :::moniker range=">= aspnetcore-6.0"
 

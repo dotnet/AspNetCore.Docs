@@ -1,17 +1,4 @@
----
-title: ASP.NET Core web API documentation with Swagger / OpenAPI
-author: RicoSuter
-description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
-ms.author: scaddie
-ms.custom: mvc
-ms.date: 10/29/2020
-uid: tutorials/web-api-help-pages-using-swagger
----
-# ASP.NET Core web API documentation with Swagger / OpenAPI
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://blog.rsuter.com/)
 
@@ -137,27 +124,9 @@ Each public action method in your controllers can be tested from the UI. Select 
 > [!NOTE]
 > The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](https://petstore.swagger.io/).
 
-## Securing Swagger UI endpoints
-
-Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A)to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/webApiSwagger/secureSwagger/Program.cs"  highlight="26":::
-
-In the preceding code, the `/weatherforecast` endpoint doesn't need authorization, but the Swagger endpoints do.
-
-The following Curl passes a JWT token to test the Swagger UI endpoint:
-
-```bash
-curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/swagger/v1/swagger.json
-```
-
-For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
-
 ## Next steps
 
 * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Get started with NSwag](xref:tutorials/get-started-with-nswag)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/web-api-help-pages-using-swagger/includes/web-api-help-pages-using-swagger7.md)]

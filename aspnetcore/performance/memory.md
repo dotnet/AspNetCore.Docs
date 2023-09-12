@@ -30,13 +30,11 @@ When an ASP.NET Core app starts, the GC:
 
 The preceding memory allocations are done for performance reasons. The performance benefit comes from heap segments in contiguous memory.
 
-### Call GC.Collect
+### GC.Collect caveats 
 
-Calling [GC.Collect](xref:System.GC.Collect%2A) explicitly:
+In general, ASP.NET Core apps in production should **not** use [GC.Collect](xref:System.GC.Collect%2A) explicitly. Inducing garbage collections at sub-optimal times can decrease performance significantly.
 
-* Should **not** be done by production ASP.NET Core apps.
-* Is useful when investigating memory leaks.
-* When investigating, verifies the GC has removed all dangling objects from memory so memory can be measured.
+GC.Collect is useful when investigating memory leaks. Calling `GC.Collect()` triggers a blocking garbage collection cycle that tries to reclaim all objects inaccessible from managed code. It's a useful way to understand the size of the reachable live objects in the heap, and track growth of memory size over time.
 
 ## Analyzing the memory usage of an app
 
@@ -217,7 +215,7 @@ The same leak could happen in user code, by one of the following:
 * Not releasing the class correctly.
 * Forgetting to invoke the `Dispose` method of the dependent objects that should be disposed.
 
-### Large objects heap
+### Large object heap
 
 Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it tries to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for *large* objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Objects that are greater than 85,000 bytes (approximately 83 KB) are:
 

@@ -112,8 +112,11 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 ## Provide custom content when content isn't found
 
-<!-- UPDATE 8.0 NotFound isn't part of the BWA template ...
-     confirm if it's a no-op with SSR/BWA -->
+:::moniker range=">= aspnetcore-8.0"
+
+*This section only applies to Blazor WebAssembly apps.* Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`), but the template is supported for backward compatibility to avoid a breaking change in the framework. Blazor Web Apps typically process bad URL requests by either displaying the browser's built-in 404 UI or returning a custom 404 page from the ASP.NET Core server via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
+
+:::moniker-end
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
 

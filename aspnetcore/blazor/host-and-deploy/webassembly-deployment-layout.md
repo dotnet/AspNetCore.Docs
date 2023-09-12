@@ -2,7 +2,7 @@
 title: Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps
 author: guardrex
 description: Learn how to enable hosted Blazor WebAssembly deployments in environments that block the download and execution of dynamic-link library (DLL) files.
-monikerRange: '>= aspnetcore-6.0 < aspnetcore-8.0'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/08/2022
@@ -11,6 +11,15 @@ uid: blazor/host-and-deploy/webassembly-deployment-layout
 # Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps
 
 This article explains how to enable Blazor WebAssembly deployments in environments that block the download and execution of dynamic-link library (DLL) files.
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> This guidance addresses environments that block clients from downloading and executing DLLs. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
+>
+> Currently, this article focuses on the use of a hosted Blazor WebAssembly app, which remain supported in .NET 8 or later. The article will be updated to include Blazor Web App coverage, which is tracked by [Expand deployment layout guidance for BWA 8.0 (dotnet/AspNetCore.Docs #30312)](https://github.com/dotnet/AspNetCore.Docs/issues/30312).
+
+:::moniker-end
 
 Blazor WebAssembly apps require [dynamic-link libraries (DLLs)](/windows/win32/dlls/dynamic-link-libraries) to function, but some environments block clients from downloading and executing DLLs. In a subset of these environments, [changing the file name extension of DLL files (`.dll`)](xref:blazor/host-and-deploy/webassembly#change-the-file-name-extension-of-dll-files) is sufficient to bypass security restrictions, but security products are often able to scan the content of files traversing the network and block or quarantine DLL files. This article describes one approach for enabling Blazor WebAssembly apps in these environments, where a multipart bundle file is created from the app's DLLs so that the DLLs can be downloaded together bypassing security restrictions.
 

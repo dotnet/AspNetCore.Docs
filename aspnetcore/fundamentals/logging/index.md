@@ -184,6 +184,9 @@ The following command sets the preceding configuration in the environment:
 setx Logging__Console__LogLevel__Microsoft.Hosting.Lifetime Trace /M
 ```
 
+> [!NOTE]
+> When configuring environment variables with names that contain `.` (periods) in macOS and Linux, consider the "Exporting a variable with a dot (.) in it" question on **Stack Exchange** and its corresponding [accepted answer](https://unix.stackexchange.com/a/93533).
+
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
 * Encrypted at rest and transmitted over an encrypted channel.
@@ -877,28 +880,18 @@ The following example shows how to register filter rules in code:
 
 The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, `ParentId`,`Baggage`, and `Tags`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
 
-```csharp
-  var loggerFactory = LoggerFactory.Create(logging =>
-  {
-      logging.Configure(options =>
-      {
-          options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
-                                              | ActivityTrackingOptions.TraceId
-                                              | ActivityTrackingOptions.ParentId
-                                              | ActivityTrackingOptions.Baggage
-                                              | ActivityTrackingOptions.Tags;
-      }).AddSimpleConsole(options =>
-      {
-          options.IncludeScopes = true;
-      });
-  });
-```
+[!code-csharp[](~/fundamentals/logging/index/samples/6.x/WebLog/Program.cs?name=snippet4)]
 
 If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
 
 ## Create a custom logger
 
 To create a custom logger, see [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider).
+
+<!-- See https://github.com/dotnet/AspNetCore.Docs/pull/30282#issuecomment-1712135965
+## LoggerFactory.Create
+***NOTE:*** [LoggerFactory.Create](/dotnet/api/microsoft.extensions.logging.loggerfactory.create) Creates a new instance of <xref:Microsoft.Extensions.Logging.ILoggerFactory> that's configured using the provided `configure` delegate. The new instance of `ILoggerFactory` creates a new logging pipeline, different from the default logging pipeline. The new logging pipeline is not configured by the `Logging` section of `appsettings.json` or `appsettings.{ENVIRONMENT}.json`. For more information, see [Logging configuration](xref:fundamentals/logging/index#configure-logging).
+-->
 
 ## Additional resources
 

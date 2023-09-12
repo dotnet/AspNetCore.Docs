@@ -25,7 +25,7 @@ Project structure:
 <!-- UPDATE 8.0 Check on Error page setup per
      https://github.com/dotnet/aspnetcore/issues/49853 -->
 
-* Server project: `BlazorWeb-CSharp`
+* Server project:
 
   * `Components` folder: 
 
@@ -45,19 +45,19 @@ Project structure:
 
     * `Routes` component (`Routes.razor`): Sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-    * `_Imports.razor`: Includes common Razor directives to include in the server-side rendered (SSR) app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+    * `_Imports.razor`: Includes common Razor directives to include in the server-rendered app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
   * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
-  * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the server-side project containing the app's public static assets.
+  * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the server project containing the app's public static assets.
 
-  * `Program.cs` file: The server-side project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
+  * `Program.cs` file: The server project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
     * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
     * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.RazorComponentEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
 
-  * App settings files (`appsettings.Development.json`, `appsettings.json`): Provide [configuration settings](xref:blazor/fundamentals/configuration) for the server-side project.
+  * App settings files (`appsettings.Development.json`, `appsettings.json`): Provide [configuration settings](xref:blazor/fundamentals/configuration) for the server project.
 
-* Client project: `BlazorWeb-CSharp.Client`
+* Client project: `.Client`
 
   * `Pages` folder: Contains the app's routable client-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes `Counter` component (`Counter.razor`) that implements the *Counter* page.
   
@@ -65,7 +65,7 @@ Project structure:
 
   * `Program.cs` file: The client-side project's entry point that sets up the WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
 
-  * `_Imports.razor`: Includes common Razor directives to include in the client-side rendered (CSR) app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+  * `_Imports.razor`: Includes common Razor directives to include in the WebAssembly-rendered app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 

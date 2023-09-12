@@ -197,9 +197,6 @@ services.AddScoped<AuthenticationStateProvider,
 
 Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> for the Blazor router:
 
-<!-- UPDATE 8.0 Check for dropping NotFound
-     Did Found survive? -->
-
 ```razor
 <CascadingAuthenticationState>
     <Router ...>
@@ -208,7 +205,6 @@ Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeR
                 DefaultLayout="@typeof(MainLayout)" />
             ...
         </Found>
-        ...
     </Router>
 </CascadingAuthenticationState>
 ```
