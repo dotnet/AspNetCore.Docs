@@ -115,7 +115,7 @@ In a command shell, execute the following command:
 dotnet new blazor -o BlazorSignalRApp
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server-side rendering (SSR). -->
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server rendering. -->
 
 In Visual Studio Code, open the app's project folder.
 
@@ -129,7 +129,7 @@ In a command shell, execute the following command:
 dotnet new blazor -o BlazorSignalRApp --use-server
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server rendering.
 
 ---
 

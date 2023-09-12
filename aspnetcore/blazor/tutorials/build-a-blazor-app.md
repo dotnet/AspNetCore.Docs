@@ -52,7 +52,7 @@ Create a new Blazor app named `TodoList` in a command shell:
 dotnet new blazor -o TodoList
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server-side rendering (SSR). -->
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server rendering. -->
 
 :::moniker-end
 
@@ -116,7 +116,7 @@ Open the `Todo` component in any file editor and make the following changes at t
 <!-- UPDATE 8.0 For render mode guidance -->
 
 * Add an `@page` Razor directive with a relative URL of `/todo`.
-* Add the `[RenderModeServer]` attribute. The attribute indicates that for this component the render mode should be server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering.
+* Add the `[RenderModeServer]` attribute. The attribute indicates that this component should be rendered on the server with client interactivity.
 * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
 
 :::moniker-end

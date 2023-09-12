@@ -61,8 +61,8 @@ To create a Blazor app on Windows, use the following guidance:
 <!-- UPDATE 8.0 Cross-link SSR -->
 
 * For a Blazor Web App in the **Additional information** dialog:
-  * Interactivity with server-side rendering (SSR) is enabled by default with the **Use interactive server components** checkbox. To disable SSR, deselect the checkbox.
-  * To enable interactivity with client-side rendering (CSR), select the **Use interactive client components** checkbox.
+  * Interactivity with server rendering is enabled by default with the **Use interactive server components** checkbox.
+  * To enable interactivity with client rendering, select the **Use interactive client components** checkbox.
 
 <!-- UPDATE 8.0 I think the interactive root component checkbox
      will appear at RC2. -->
@@ -138,13 +138,9 @@ Create a new project:
 
   <!-- UPDATE 8.0 Cross-links -->
 
-  Interactivity with server-side rendering (SSR) is enabled by default. If you want to disable SSR, pass `--use-server false`:
+  Interactivity with server rendering is enabled by default.
 
-  ```dotnetcli
-  dotnet new blazor -o Blazor App --use-server false
-  ```
-
-  To enable interactivity with client-side rendering (CSR), add the `--use-wasm` option to the command:
+  To enable interactivity with client rendering, add the `--use-wasm` option to the command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp --use-wasm
@@ -155,6 +151,7 @@ Create a new project:
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
+
 * Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
   ```dotnetcli
