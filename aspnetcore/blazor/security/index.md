@@ -279,9 +279,6 @@ If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membe
 
 Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components.
 
-<!-- UPDATE 8.0 Need to confirm this next bit in the BWA world
-     e.g., did Found survive the NotFound removal?  -->
-
 When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
 
 ```razor
@@ -292,7 +289,6 @@ When you create a Blazor app from one of the Blazor project templates with authe
                 DefaultLayout="@typeof(MainLayout)" />
             ...
         </Found>
-        ...
     </Router>
 </CascadingAuthenticationState>
 ```
@@ -502,9 +498,6 @@ Not authorized.
 
 To authorize users for resources, pass the request's route data to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Resource> parameter of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>.
 
-<!-- UPDATE 8.0 Confirm the following remark in the BWA world
-     i.e., did Found content survive the NotFound drop? -->
-
 In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route:
 
 ```razor
@@ -605,9 +598,6 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunction with the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component, allows the app to specify custom content if:
 
-<!-- UPDATE 8.0 React to NotFound changes in the BWA world
-     the following removed NotFound content and tags -->
-
 * The user fails an [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) condition applied to the component. The markup of the [`<NotAuthorized>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized?displayProperty=nameWithType) element is displayed. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.
 * Asynchronous authorization is in progress, which usually means that the process of authenticating the user is in progress. The markup of the [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) element is displayed.
 
@@ -624,12 +614,21 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
                 </Authorizing>
             </AuthorizeRouteView>
         </Found>
-        ...
     </Router>
 </CascadingAuthenticationState>
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+The content of `<NotAuthorized>` and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
+
+:::moniker-end
 
 If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> uses the following fallback message:
 
