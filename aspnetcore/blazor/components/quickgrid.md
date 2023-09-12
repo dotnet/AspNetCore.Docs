@@ -78,7 +78,7 @@ For example, add the following component to render a grid.
 }
 ```
 
-The preceding example specifies the Server render mode (`@attribute [RenderModeServer]`) to enable server-side rendering (SSR), which enables the `QuickGrid`'s interactive features. In this case, the only interactive feature is sortable columns.
+The preceding example specifies server rendering (`@attribute [RenderModeServer]`), which enables the `QuickGrid`'s interactive features. In this case, the only interactive feature is sortable columns.
 
 For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework Core as the queryable data source, see the [`SampleQuickGridComponent` component in the ASP.NET Core Basic Test App (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/QuickGridTest/SampleQuickGridComponent.razor).
 

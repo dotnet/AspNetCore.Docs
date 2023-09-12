@@ -45,9 +45,9 @@ For more information on the performance implications of the framework's conventi
 
 ## Streaming rendering
 
-<!-- UPDATE 8.0 Cross-link server-side rendering (SSR) -->
+<!-- UPDATE 8.0 Cross-link render modes article -->
 
-Use *streaming rendering* with server-side rendering (SSR) to stream content updates on the response stream and improve the user experience for components that perform long-running asynchronous tasks to fully render.
+Use *streaming rendering* with server rendering to stream content updates on the response stream and improve the user experience for components that perform long-running asynchronous tasks to fully render.
 
 For example, consider a component that makes a long-running database query or web API call to render data when the page loads. Normally, asynchronous tasks executed as part of rendering a server-side component must complete before the rendered response is sent, which can delay loading the page. Any significant delay in rendering the page harms the user experience. To improve the user experience, streaming rendering initially renders the entire page quickly with placeholder content while asynchronous operations execute. After the operations are complete, the updated content is sent to the client on the same response connection and patched into the DOM.
 
