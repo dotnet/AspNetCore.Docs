@@ -185,7 +185,7 @@ setx Logging__Console__LogLevel__Microsoft.Hosting.Lifetime Trace /M
 ```
 
 > [!NOTE]
-> When configuring environment variables with names that contain `.` (periods), consider the "Exporting a variable with a dot (.) in it" question on **Stack Exchange** and its corresponding [accepted answer](https://unix.stackexchange.com/a/93533).
+> When configuring environment variables with names that contain `.` (periods) in macOS and Linux, consider the "Exporting a variable with a dot (.) in it" question on **Stack Exchange** and its corresponding [accepted answer](https://unix.stackexchange.com/a/93533).
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
