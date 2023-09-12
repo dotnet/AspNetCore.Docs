@@ -138,6 +138,8 @@ Create a new project:
 
   <!-- UPDATE 8.0 Cross-links -->
 
+  <!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
+
   Interactivity with server rendering is enabled by default.
 
   To enable interactivity with client rendering, add the `--use-wasm` option to the command:

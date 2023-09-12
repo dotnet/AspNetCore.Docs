@@ -46,7 +46,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 Create a new Blazor app named `TodoList` in a command shell:
 
-<!-- UPDATE 8.0 Confirm default SSR without --use-server -->
+<!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
 
 ```dotnetcli
 dotnet new blazor -o TodoList

@@ -107,7 +107,7 @@ Confirm the **Framework** is .NET 8.0 or later. Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<!-- UPDATE 8.0 Confirm SSR by default without --use-server -->
+<!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
 
 In a command shell, execute the following command:
 
@@ -125,11 +125,13 @@ When the dialog appears to add assets to build and debug the app, select **Yes**
 
 In a command shell, execute the following command:
 
+<!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
+
 ```dotnetcli
-dotnet new blazor -o BlazorSignalRApp --use-server
+dotnet new blazor -o BlazorSignalRApp
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server rendering.
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server rendering. -->
 
 ---
 
