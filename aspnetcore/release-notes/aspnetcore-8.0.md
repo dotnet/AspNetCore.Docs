@@ -70,6 +70,21 @@ For more information, see <xref:blazor/forms-and-input-components?view=aspnetcor
 
 Static server rendering typically performs a full page refresh whenever the user navigates to a new page or submits a form. In .NET 8, Blazor can enhance page navigation and form handling by intercepting the request and performing a fetch request instead. Blazor then handles the rendered response content by patching it into the browser DOM. Enhanced navigation and form handling avoids the need for a full page refresh and preserves more of the page state, so pages load faster and more smoothly. Enhanced navigation is enabled by default when the Blazor script (`blazor.web.js`) is loaded. Enhanced form handling can be optionally enabled for specific forms.
 
+<!-- UPDATE 8.0
+
+RC1
+
+Do we want to add a mention for enhanced page refresh API?
+Conversely, I might only cover it in the *Routing* doc and link
+this section to that coverage.
+
+* Issue: https://github.com/dotnet/aspnetcore/issues/49414
+* PR: https://github.com/dotnet/aspnetcore/issues/50014
+
+For more information, see <xref:>.
+
+-->
+
 ### Streaming rendering
 
 You can now stream content updates on the response stream when using static server rendering with Blazor. Streaming rendering can improve the user experience for pages that perform long-running asynchronous tasks in order to fully render by rendering content as soon as it's available.
@@ -172,21 +187,6 @@ For more information, see <xref:blazor/security/content-security-policy?view=asp
 Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as error boundaries, can process exceptions.
 
 For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-8.0&preserve-view=true#handle-caught-exceptions-outside-of-a-razor-components-lifecycle>.
-
-<!-- UPDATE 8.0
-
-RC1
-
-### API for enhanced page refresh
-
-Coverage TBD
-
-* Issue: https://github.com/dotnet/aspnetcore/issues/49414
-* PR: https://github.com/dotnet/aspnetcore/issues/50014
-
-For more information, see <xref:>.
-
--->
 
 ### Configure the .NET WebAssembly runtime
 
