@@ -93,7 +93,7 @@ Register the services:
   builder.Services.AddSingleton<TimerService>();
   ```
 
-* For server-side development, register the services as scoped in the server-side `Program` file:
+* For server-side development, register the services as scoped in the server `Program` file:
 
   ```csharp
   builder.Services.AddScoped<NotifierService>();
