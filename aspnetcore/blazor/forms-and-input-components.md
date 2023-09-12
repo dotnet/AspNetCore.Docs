@@ -3435,15 +3435,6 @@ Add a JavaScript (JS) `getText` function to the app:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Remove at RC1 or RTM -->
-
-> [!NOTE]
-> During the .NET 8 preview, add `suppress-error="BL9992"` to `<script>` tags when the script is placed in the `App` component (`App.razor`). This requirement will be dropped in a future preview release.
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-6.0"
 
 ```javascript
