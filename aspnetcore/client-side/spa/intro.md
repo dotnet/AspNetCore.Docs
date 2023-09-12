@@ -15,7 +15,7 @@ uid: spa/intro
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 
-## Visual Studio documentation
+## Visual Studio tutorials
 
 To get started, follow one of the tutorials in the Visual Studio documentation:
 

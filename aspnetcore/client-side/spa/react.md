@@ -16,7 +16,7 @@ uid: spa/react
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 
-## Visual Studio documentation
+## Visual Studio tutorial
 
 To get started, follow the [Create an ASP.NET Core app with React](/visualstudio/javascript/tutorial-asp-net-core-with-react) tutorial in the Visual Studio documentation.
 

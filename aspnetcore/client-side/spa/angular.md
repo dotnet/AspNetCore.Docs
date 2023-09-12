@@ -16,7 +16,7 @@ uid: spa/angular
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 
-## Visual Studio documentation
+## Visual Studio tutorial
 
 To get started with an Angular project, follow the [Create an ASP.NET Core app with Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular) tutorial in the Visual Studio documentation.
 
