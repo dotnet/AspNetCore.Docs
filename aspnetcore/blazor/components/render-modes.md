@@ -203,7 +203,7 @@ In the following example, there's no designation for the component's render mode
 }
 ```
 
-If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
+If using the preceding component locally in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
 
 ## Server render mode
 
@@ -229,7 +229,7 @@ In the following example, the render mode is set to Server by adding `@attribute
 }
 ```
 
-If using the preceding component locally in a Blazor Web App, place the component in the server-side project's `Components/Pages` folder. The server-side project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
+If using the preceding component locally in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
 
 ## WebAssembly render mode
 
@@ -255,7 +255,7 @@ In the following example, the render mode is set to WebAssembly with `@attribute
 }
 ```
 
-If using the preceding component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
+If using the preceding component locally in a Blazor Web App, place the component in the client project's `Pages` folder. The client project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
 
 ## Auto render mode
 
@@ -281,7 +281,7 @@ In the following example, the component is interactive throughout the process. T
 }
 ```
 
-If using the preceding component locally in a Blazor Web App, place the component in the client-side project's `Pages` folder. The client-side project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-4` in the browser's address bar.
+If using the preceding component locally in a Blazor Web App, place the component in the client project's `Pages` folder. The client project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-4` in the browser's address bar.
 
 ## Render mode propagation
 
