@@ -113,7 +113,19 @@ When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/
 
 ## Not found page title
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section only applies to Blazor WebAssembly apps.*
+
+In Blazor apps created from Blazor WebAssembly project template, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 In Blazor apps created from Blazor project templates, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
+
+:::moniker-end
 
 `App.razor`:
 
