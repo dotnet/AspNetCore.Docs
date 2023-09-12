@@ -3,7 +3,7 @@ title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Learn when to use which ASP.NET Core web UI technologies. Understand the server, client and hybrid options.
 ms.author: wpickett
-ms.date: 09/08/2023
+ms.date: 09/12/2023
 uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
@@ -159,9 +159,9 @@ Downsides:
 
 To get started, see:
 
-* [Angular with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-angular)
-* [React with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-react)
-* [Vue with Visual Studio](/visualstudio/javascript/tutorial-asp-net-core-with-vue)
+* [Create an ASP.NET Core app with Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular)
+* [Create an ASP.NET Core app with React](/visualstudio/javascript/tutorial-asp-net-core-with-react)
+* [Create an ASP.NET Core app with Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue)
 * [JavaScript and TypeScript in Visual Studio](/visualstudio/javascript/javascript-in-visual-studio)
 
 ## Choose a hybrid solution: ASP.NET Core MVC or Razor Pages plus Blazor
