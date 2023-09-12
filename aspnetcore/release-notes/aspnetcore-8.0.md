@@ -188,20 +188,11 @@ For more information, see <xref:>.
 
 -->
 
-<!-- UPDATE 8.0
+### Configure the .NET WebAssembly runtime
 
-RC1
+The .NET WebAssembly runtime can now be configured for Blazor startup.
 
-### Configure .NET WebAssembly runtime
-
-Coverage TBD
-
-* Issue: https://github.com/dotnet/aspnetcore/issues/49264
-* PR: https://github.com/dotnet/aspnetcore/pull/49420
-
-For more information, see <xref:>.
-
--->
+For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true#configure-the-net-webAssembly-runtime>.
 
 ### Configuration of connection timeouts in `HubConnectionBuilder`
 
