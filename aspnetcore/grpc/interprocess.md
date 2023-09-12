@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
-ms.date: 08/08/2022
+ms.date: 09/12/2023
 uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC
@@ -25,7 +25,7 @@ An ASP.NET Core gRPC server is usually created from the gRPC template. The proje
 
 The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
 
-It is also possible to add a server to existing non-ASP.NET Core projects. Add the `Microsoft.AspNetCore.App` framework to the project file:
+It's also possible to add a server to existing non-ASP.NET Core projects. Add the `Microsoft.AspNetCore.App` framework to the project file:
 
 [!code-xml[](~/grpc/interprocess/Server.csproj?highlight=4)]
 
