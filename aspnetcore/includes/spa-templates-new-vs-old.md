@@ -6,7 +6,7 @@ ms.topic: include
 ---
 ## Newer vs. older SPA templates
 
-The SPA templates that use the special project type for JavaScript and TypeScript are available in Visual Studio 2022 version 17.7 or later with the **ASP.NET and web development** workload installed. They are available only in Visual Studio, not by using the `dotnet new` command of the .NET CLI.
+The SPA templates that use the special project type for JavaScript and TypeScript are available in Visual Studio 2022 version 17.7 or later with the **ASP.NET and web development** workload installed. They're available only in Visual Studio, not by using the `dotnet new` command of the .NET CLI.
 
 There are older SPA templates that don't use the special project type for JavaScript and TypeScript. The newer Visual Studio templates offer the following benefits compared to the older templates:
 
