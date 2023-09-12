@@ -38,7 +38,7 @@ The preceding project file:
 
 ## Inter-process communication (IPC) transports
 
-gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a great choice for communicating across a network or the Internet. However, IPC transports offer advantages when communicating between processes on the same machine:
+gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a good choice for communicating across a network or the Internet. However, IPC transports offer advantages when communicating between processes on the same machine:
 
 * Less overhead and faster transfer speeds.
 * Integration with OS security features.
@@ -48,9 +48,9 @@ gRPC calls between a client and server on different machines are usually sent ov
 
 * [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology. UDS is the best choice for building cross-platform apps, and it's usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
 * [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights), which can control client access to the pipe.
-* Support other IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and registering the implementation at app startup.
+* Additional IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and registering the implementation at app startup.
 
-Depending on the current OS, cross-platform apps may want to use different IPC transports. An app can check the current operating system on startup and choose the desired transport for that platform:
+Depending on the OS, cross-platform apps may choose different IPC transports. An app can check the OS on startup and choose the desired transport for that platform:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
