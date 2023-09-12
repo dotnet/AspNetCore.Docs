@@ -215,7 +215,7 @@ For more information, see the following:
 
 ### Project templates shed Open Iconic
 
-[Open Iconic](https://github.com/iconic/open-iconic) on GitHub has been abandoned by its maintainers, so project templates for .NET 8 or later adopt Bootstrap for app icons.
+The Blazor project templates no longer depend on [Open Iconic](https://github.com/iconic/open-iconic) for icons.
 
 ## SignalR
 
