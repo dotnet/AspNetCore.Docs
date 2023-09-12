@@ -18,8 +18,10 @@ uid: blazor/tutorials/signalr-blazor-preview
 
 This tutorial provides a basic working experience for building a real-time app using SignalR with Blazor. For detailed Blazor guidance, see the [Blazor reference documentation](xref:blazor/index).
 
+<!-- UPDATE 8.0 Remove preview NOTE -->
+
 > [!IMPORTANT]
-> This is the .NET 8 preview version of this article, which is currently undergoing updates for .NET 8. Some of the features described might not be available or fully working at this time. The work on this article will be completed when .NET 8 reaches the *Release Candidate* stage, which is currently scheduled for September. For the current release, see the [.NET 7 version of this article](xref:blazor/tutorials/signalr-blazor?view=aspnetcore-7.0&preserve-view=true).
+> This is the .NET 8 preview version of this article. For the current release, see the [.NET 7 version of this article](xref:blazor/tutorials/signalr-blazor?view=aspnetcore-7.0&preserve-view=true).
 
 Learn how to:
 
@@ -32,7 +34,7 @@ Learn how to:
 
 At the end of this tutorial, you'll have a working chat app.
 
-<!-- UPDATE 8.0
+<!-- UPDATE 8.0 Update prereqs and tooling guidance
 
 ## Prerequisites
 
@@ -105,13 +107,15 @@ Confirm the **Framework** is .NET 8.0 or later. Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+<!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
+
 In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new blazor -o BlazorSignalRApp --use-server
+dotnet new blazor -o BlazorSignalRApp
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server rendering. -->
 
 In Visual Studio Code, open the app's project folder.
 
@@ -121,11 +125,13 @@ When the dialog appears to add assets to build and debug the app, select **Yes**
 
 In a command shell, execute the following command:
 
+<!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
+
 ```dotnetcli
-dotnet new blazor -o BlazorSignalRApp --use-server
+dotnet new blazor -o BlazorSignalRApp
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server rendering. -->
 
 ---
 
@@ -177,7 +183,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ## Add a SignalR hub
 
-Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
+Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`) to the root of the app:
 
 ```csharp
 using Microsoft.AspNetCore.SignalR;
@@ -201,7 +207,7 @@ public class ChatHub : Hub
 
 ## Add Razor component support, services, and an endpoint for the SignalR hub
 
-Open the `Program.cs` file.
+Open the `Program` file.
 
 Add the namespaces for <xref:Microsoft.AspNetCore.ResponseCompression?displayProperty=fullName> and the `ChatHub` class to the top of the file:
 
@@ -233,16 +239,24 @@ app.MapHub<ChatHub>("/chathub");
 ```
 
 ## Add Razor component code for chat
+<!--
+:::moniker range=">= aspnetcore-8.0"
+-->
+
+Open the `Components/Pages/Index.razor` file.
+
+<!--
+:::moniker-end
+
+
+:::moniker range="< aspnetcore-8.0"
 
 Open the `Pages/Index.razor` file.
 
-Replace the markup with the following code:
-
-<!-- UPDATE 8.0
-
-@rendermode Auto
-
+:::moniker-end
 -->
+
+Replace the markup with the following code:
 
 ```razor
 @page "/"
