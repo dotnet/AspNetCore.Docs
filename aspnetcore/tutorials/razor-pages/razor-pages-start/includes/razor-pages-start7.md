@@ -49,23 +49,28 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
-1. Change to the directory (`cd`) that will contain the project.
-1. Run the following commands:
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change to the directory (`cd`) that will contain the project.
+* Run the following commands:
 
-   ```dotnetcli
-   dotnet new webapp -o RazorPagesMovie
-   code -r RazorPagesMovie
-   ```
+  ```dotnetcli
+  dotnet new webapp -o RazorPagesMovie
+  code -r RazorPagesMovie
+  ```
 
-   Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
-    * The checkbox **trust the authors of all files in the parent folder**
-    * **Yes, I trust the authors** (because dotnet generated the files).
+  The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
 
-   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+  The `code` command opens the *RazorPagesMovie* project folder in the current instance of Visual Studio Code.
 
-   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+* Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+  * The checkbox **trust the authors of all files in the parent folder**.
+  * **Yes, I trust the authors** (because dotnet generated the files).
+
+* A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**, select **Yes**.
+
+  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

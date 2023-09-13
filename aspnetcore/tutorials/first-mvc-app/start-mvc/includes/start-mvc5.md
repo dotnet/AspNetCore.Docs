@@ -45,30 +45,28 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 ![Create a new ASP.NET Core web application](~/tutorials/first-mvc-app/start-mvc/_static/mvcVS19v16.9.png)
 
-For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
-
-Visual Studio used the default project template for the created MVC project. The created project:
-
-* Is a working app.
-* Is a basic starter project.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
 The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
-* Run the following command:
+* Run the following commands:
 
    ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```
 
-  * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
+* Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+  * The checkbox **trust the authors of all files in the parent folder**.
+  * **Yes, I trust the authors** (because dotnet generated the files).
 
-  * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
+  The `dotnet new` command creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+
+  The `code` command opens the *MvcMovie* project folder in the current instance of Visual Studio Code.
+
+* A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**.
+
+  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

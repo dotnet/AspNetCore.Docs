@@ -43,9 +43,9 @@ In this tutorial, you:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs)
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
 * Run the following commands:
 
@@ -54,8 +54,17 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   code -r GrpcGreeter
   ```
 
-  * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
-  * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
+  The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
+
+  The `code` command opens the *GrpcGreeter* project folder in the current instance of Visual Studio Code.
+
+* Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+  * The checkbox **trust the authors of all files in the parent folder**.
+  * **Yes, I trust the authors** (because dotnet generated the files).
+
+* A dialog box appears with **Required assets to build and debug are missing from 'GrpcGreeter'. Add them?**, select **Yes**.
+
+  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

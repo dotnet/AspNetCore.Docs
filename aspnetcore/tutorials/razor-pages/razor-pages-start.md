@@ -4,7 +4,7 @@ author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 08/16/2023
+ms.date: 09/12/2023
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -64,23 +64,26 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change to the directory (`cd`) that will contain the project.
+* Run the following commands:
 
-1. Change to the directory (`cd`) that will contain the project.
-1. Run the following commands:
+  ```dotnetcli
+  dotnet new webapp -o RazorPagesMovie
+  code -r RazorPagesMovie
+  ```
 
-   ```dotnetcli
-   dotnet new webapp -o RazorPagesMovie
-   code -r RazorPagesMovie
-   ```
+  Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+  * The checkbox **trust the authors of all files in the parent folder**.
+  * **Yes, I trust the authors** (because dotnet generated the files).
 
-   Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
-    * The checkbox **trust the authors of all files in the parent folder**
-    * **Yes, I trust the authors** (because dotnet generated the files).
+  The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
 
-   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+  The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
-   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+* A dialog displays to add assets to build and debug the app, select **Yes**.
+
+  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -108,7 +111,7 @@ For alternative approaches to create the project, see [Create a new project in V
 
 <!-- replace all of this with updated includes  -->
 
-Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to run without the debugger.
+Select **RazorPagesMovie** in **Solution Explorer**, and then press F5 to run the app.
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 

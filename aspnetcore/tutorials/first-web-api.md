@@ -92,7 +92,22 @@ A NuGet package must be added to support the database used in this tutorial.
   * Create a new web API project and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
 
+  Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+  * The checkbox **trust the authors of all files in the parent folder**
+  * **Yes, I trust the authors** (because dotnet generated the files).
+
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
+
+
+
+
+  The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+
+  The `code` command opens the *RazorPagesMovie* project folder in the current instance of Visual Studio Code.
+
+* A dialog box appears with **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?**, select **Yes**.
+
+  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
