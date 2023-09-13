@@ -458,3 +458,14 @@ You also typically must set the same interactive render mode on the `HeadOutlet`
 > In an upcoming preview release, a template option for the Blazor Web App template to create the app with root-level interactivity.
 
 <!-- UPDATE 8.0 The preceding is tracked by https://github.com/dotnet/aspnetcore/issues/50433 -->
+
+## Discover components from additional assemblies for static server rendering
+
+Configure additional assemblies to use for discovering routable Razor components for static server rendering using the `AddAdditionalAssemblies` method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+
+The following example includes the assembly of the `DifferentAssemblyCounter` component:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddAdditionalAssemblies(typeof(DifferentAssemblyCounter).Assembly);
+```
