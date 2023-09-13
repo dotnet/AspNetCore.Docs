@@ -61,8 +61,16 @@ To create a Blazor app on Windows, use the following guidance:
 <!-- UPDATE 8.0 Cross-link SSR -->
 
 * For a Blazor Web App in the **Additional information** dialog:
+
   * Interactivity with server rendering is enabled by default with the **Use interactive server components** checkbox.
-  * To enable interactivity with client rendering, select the **Use interactive client components** checkbox.
+  * To enable interactivity with client rendering, select the **Use interactive WebAssembly components** checkbox.
+  * To include sample pages and a layout based on Bootstrap styling, select the **Include sample pages** checkbox. Disable this option for an empty project without Bootstrap styling.
+
+  If both the WebAssembly and Server render modes are selected, the template uses the Auto render mode. The Auto render mode initially uses the Server mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, Auto switches to the WebAssembly render mode.
+
+  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+
+  For more information, see <xref:blazor/components/render-modes>.
 
 <!-- UPDATE 8.0 I think the interactive root component checkbox
      will appear at RC2. -->

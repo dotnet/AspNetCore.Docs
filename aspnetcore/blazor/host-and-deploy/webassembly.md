@@ -103,6 +103,33 @@ The size of an AOT-compiled Blazor WebAssembly app is generally larger than the 
 > [!NOTE]
 > For [Mono](https://github.com/mono/mono)/WebAssembly MSBuild properties and targets, see [`WasmApp.targets` (dotnet/runtime GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.targets). Official documentation for common MSBuild properties is planned per [Document blazor msbuild configuration options (dotnet/docs #27395)](https://github.com/dotnet/docs/issues/27395).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Trim .NET IL after ahead-of-time (AOT) compilation
+
+The `WasmStripILAfterAOT` MSBuild option enables removing the .NET Intermediate Language (IL) for compiled methods after performing AOT compilation to WebAssembly, which reduces the size of the `_framework` folder.
+
+In the app's project file:
+
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+  <WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+</PropertyGroup>
+```
+
+This setting trims away the IL code for most compiled methods, including methods from libraries and methods in the app. Not all compiled methods can be trimmed, as some are still required by the .NET interpreter at runtime.
+
+<!-- UPDATE 8.0 Remove the next line after some time has passed -->
+
+If you hit any issues using this trimming option, [open an issue on the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/issues).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ## Runtime relinking
 
 One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
