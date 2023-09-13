@@ -462,7 +462,7 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 ## Configure the .NET WebAssembly runtime
 
-To configure the .NET WebAssembly runtime, use the `configureRuntime` property with the `dotnet` runtime host builder.
+To configure the .NET WebAssembly runtime, use the `configureRuntime` function with the `dotnet` runtime host builder.
 
 The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `true`:
 
@@ -478,6 +478,8 @@ The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `tru
 ```
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
+The .NET runtime instance can be accessed from `Blazor.runtime`.
 
 :::moniker-end
 

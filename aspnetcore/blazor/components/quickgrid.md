@@ -96,6 +96,12 @@ To use Entity Framework (EF) Core as the data source:
   builder.Services.AddQuickGridEntityFrameworkAdapter();
   ```
 
+QuickGrid supports passing custom attributes to the the rendered table element:
+
+```razor
+<QuickGrid Items="..." custom-attribute="somevalue" class="custom-class">
+```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"

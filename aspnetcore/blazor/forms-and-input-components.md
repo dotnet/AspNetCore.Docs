@@ -2744,6 +2744,31 @@ Control the style of validation messages in the app's stylesheet (`wwwroot/css/a
 }
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Determine if a form field is valid
+
+<!-- UPDATE 8.0 API cross-link -->
+
+Use `EditContext.IsValid(fieldIdentifier)` to determine if a field is valid without obtaining validation messages.
+
+<span aria-hidden="true">❌</span> Supported, but not recommended:
+
+```csharp
+var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+```
+
+<span aria-hidden="true">✔️</span> Recommended:
+
+```csharp
+var isValid = editContext.IsValid(fieldIdentifier);
+```
+
+> [!NOTE]
+> Custom validation examples in this article call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages%2A> on the edit context to determine if a field is valid. An issue has been opened at [Update Blazor form custom validation examples 8.0 (dotnet/AspNetCore.Docs #30338)](https://github.com/dotnet/AspNetCore.Docs/issues/30338) to update the examples to use the new API. We recommend using the new `EditContext.IsValid` API in your own code, but the approach with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages%2A> is still supported and doesn't result in a runtime error if testing the article's examples.
+
+:::moniker-end
+
 ## Custom validation attributes
 
 To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>.
