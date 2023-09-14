@@ -6,8 +6,8 @@ groups:
   pivots:
     - id: windows
       title: Windows
-    - id: linux
-      title: Linux
+    - id: linux-macos
+      title: Linux / macOS
 - id: blazor-hosting-models
   title: Blazor Hosting Model
   prompt: Choose a Blazor hosting model
