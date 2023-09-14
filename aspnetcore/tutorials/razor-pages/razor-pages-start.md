@@ -83,9 +83,9 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
-* A dialog displays to add assets to build and debug the app, select **Yes**.
+* Visual Studio Code requests that you add assets to build and debug the project, select **Yes**. If Visual Studio Code doesn't offer to add build and debug assets, select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
 
-  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
+  Visual Studio Code adds a `.vscode` folder with generated `launch.json` and `tasks.json` files.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

@@ -66,9 +66,9 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * The checkbox **trust the authors of all files in the parent folder**
   * **Yes, I trust the authors** (because dotnet generated the files).
 
-* A dialog box appears with **Required assets to build and debug are missing from 'GrpcGreeter'. Add them?**, select **Yes**.
+* Visual Studio Code requests that you add assets to build and debug the project, select **Yes**. If Visual Studio Code doesn't offer to add build and debug assets, select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
 
-  Visual Studio Code automatically adds a `.vscode` folder with generated `launch.json` and `tasks.json` files. If this step was missed or unavailable, select **View** > **Command Palette** and enter `.NET: Generate Assets for Build and Debug`.
+  Visual Studio Code adds a `.vscode` folder with generated `launch.json` and `tasks.json` files.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -133,7 +133,9 @@ info: Microsoft.Hosting.Lifetime[0]
   * The checkbox **trust the authors of all files in the parent folder**.
   * **Yes, I trust the authors** (because dotnet generated the files).
 
-* A dialog box appears with **Required assets to build and debug are missing from 'GrpcGreeterClient'. Add them?**, select **Yes**.
+* Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
+
+  Visual Studio Code adds a `.vscode` folder with generated `launch.json` and `tasks.json` files.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
