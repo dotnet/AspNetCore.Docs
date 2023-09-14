@@ -112,6 +112,12 @@ The Blazor script handles:
 * Downloading the .NET runtime, Razor components, and the component's dependencies.
 * Initialization of the runtime.
 
+The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
+
+* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](xref:blazor/host-and-deploy/configure-trimmer).
+* HTTP responses are compressed.
+* The .NET runtime and assemblies are cached in the browser.
+
 The Blazor WebAssembly hosting model offers several benefits:
 
 * For standalone Blazor WebAssembly apps, there's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the server goes offline.
@@ -434,23 +440,8 @@ To set a component's hosting model to Blazor Server or Blazor WebAssembly at com
 
 ## Additional resources
 
-:::moniker range=">= aspnetcore-6.0"
-
-* <xref:blazor/hybrid/index>
-* <xref:blazor/tooling>
-* <xref:blazor/project-structure>
-* <xref:signalr/introduction>
-* <xref:blazor/fundamentals/signalr>
-* <xref:blazor/tutorials/signalr-blazor>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-* <xref:blazor/tooling>
-* <xref:blazor/project-structure>
-* <xref:signalr/introduction>
-* <xref:blazor/fundamentals/signalr>
-* <xref:blazor/tutorials/signalr-blazor>
-
-:::moniker-end
+* [HTML](https://www.w3.org/html/)
+* [WebAssembly](https://webassembly.org)
+* [mono/mono GitHub repository](https://github.com/mono/mono)
+* [C# Guide](/dotnet/csharp/)
+* <xref:mvc/views/razor>

@@ -57,94 +57,11 @@ Using .NET for client-side web development offers the following advantages:
 > [!NOTE]
 > For a Blazor quick start tutorial, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
 
-## Components
-
-Blazor apps are based on *components*. A component in Blazor is an element of UI, such as a page, dialog, or data entry form.
-
-Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/) that:
-
-* Define flexible UI rendering logic.
-* Handle user events.
-* Can be nested and reused.
-* Can be shared and distributed as [Razor class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).
-
-The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
-
-Blazor uses natural HTML tags for UI composition. The following Razor markup demonstrates a component (`Dialog.razor`) that displays a dialog and processes an event when the user selects a button:
-
-```razor
-<div class="card" style="width:22rem">
-    <div class="card-body">
-        <h3 class="card-title">@Title</h3>
-        <p class="card-text">@ChildContent</p>
-        <button @onclick="OnYes">Yes!</button>
-    </div>
-</div>
-
-@code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-
-    [Parameter]
-    public string? Title { get; set; }
-
-    private void OnYes()
-    {
-        Console.WriteLine("Write to the console in C#! 'Yes' button selected.");
-    }
-}
-```
-
-In the preceding example, `OnYes` is a C# method triggered by the button's `onclick` event. The dialog's text (`ChildContent`) and title (`Title`) are provided by the following component that uses this component in its UI.
-
-The `Dialog` component is nested within another component using an HTML tag. In the following example, the `Index` component (`Index.razor`) uses the preceding `Dialog` component. The tag's `Title` attribute passes a value for the title to the `Dialog` component's `Title` property.  The `Dialog` component's text (`ChildContent`) are set by the content of the `<Dialog>` element. When the `Dialog` component is added to the `Index` component, [IntelliSense in Visual Studio](/visualstudio/ide/using-intellisense) speeds development with syntax and parameter completion.
+<!-- Start >=8.0 coverage -->
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/"
-@attribute [RenderModeServer]
-
-<h1>Hello, world!</h1>
-
-<p>
-    Welcome to your new app.
-</p>
-
-<Dialog Title="Learn More">
-    Do you want to <i>learn more</i> about Blazor?
-</Dialog>
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-@page "/"
-
-<h1>Hello, world!</h1>
-
-<p>
-    Welcome to your new app.
-</p>
-
-<Dialog Title="Learn More">
-    Do you want to <i>learn more</i> about Blazor?
-</Dialog>
-```
-
-:::moniker-end
-
-The dialog is rendered when the `Index` component is accessed in a browser. When the button is selected by the user, the browser's developer tools console shows the message written by the `OnYes` method:
-
-![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/blazor/index/_static/dialog.png)
-
-Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Blazor Web Apps
+## Build a full-stack web app with Blazor
 
 Blazor Web Apps provide a component-based architecture with server-side rendering and full client-side interactivity in a single project, where you can switch between server-side and client-side rendering modes and even mix them in the same page. 
 
@@ -152,7 +69,9 @@ When a Blazor Web App uses interactivity with server rendering, the server gener
 
 *Streaming rendering* can improve the user experience with SSR when long-running asynchronous tasks are required to fully render a page. Initially, Blazor renders the entire page for the browser with placeholder content. The asynchronous operations execute on the server. After the operations are complete, the updated content is sent to the browser on the same response connection and patched into page. The benefit of this approach is that the main layout of the app renders as quickly as possible.
 
-Blazor Web Apps also support interactivity with client rendering that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). For more information on WebAssembly, see the [Blazor WebAssembly](#blazor-webassembly) section.
+Blazor Web Apps also support interactivity with client rendering that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins. WebAssembly works in all modern web browsers, including mobile browsers.
+
+When running Blazor on WebAssembly, code can access the full functionality of the browser via JavaScript. .NET code runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
 After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
 
@@ -165,15 +84,21 @@ After rendering is complete, interactivity on the client can adopt either or bot
   * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
   * Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
-<!--
+Blazor apps can entirely target running on WebAssembly in the browser without the involvement of a server. For a *standalone Blazor WebAssembly app*, assets are deployed as static files to a web server or service capable of serving static content to clients.
 
-IMAGE for Blazor Web Apps
+## Build a native client app with Blazor Hybrid
 
-![XXXXXXXXX](~/blazor/index/_static/blazor-web-app.png)
+*Blazor Hybrid* uses Blazor in a native client app with a blend of native and web technologies. Code runs natively in the .NET process and renders web UI to an embedded Web View control using a local interop channel. WebAssembly isn't used in Hybrid apps. Hybrid apps encompass the following technologies:
 
--->
+* [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui): A cross-platform framework for creating native mobile and desktop apps with C# and XAML.
+* [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/): A UI framework that is resolution-independent and uses a vector-based rendering engine, built to take advantage of modern graphics hardware. 
+* [Windows Forms](/dotnet/desktop/winforms/overview/): A UI framework that creates rich desktop client apps for Windows. The Windows Forms development platform supports a broad set of app development features, including controls, graphics, data binding, and user input.
 
 :::moniker-end
+
+<!-- End >=8.0 coverage -->
+
+<!-- Start <8.0 coverage -->
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -201,8 +126,6 @@ After the components are interactive on the client, UI updates are triggered by 
 
 A component is disposed after the user navigates away from the component.
 
-:::moniker-end
-
 ## Blazor WebAssembly
 
 Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with .NET.
@@ -225,7 +148,9 @@ The size of the published app, its *payload size*, is a critical performance fac
 * HTTP responses are compressed.
 * The .NET runtime and assemblies are cached in the browser.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ## Blazor Hybrid
 
@@ -235,12 +160,9 @@ Hybrid apps use a blend of native and web technologies. A *Blazor Hybrid* app us
 * [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/): A UI framework that is resolution-independent and uses a vector-based rendering engine, built to take advantage of modern graphics hardware. 
 * [Windows Forms](/dotnet/desktop/winforms/overview/): A UI framework that creates rich desktop client apps for Windows. The Windows Forms development platform supports a broad set of app development features, including controls, graphics, data binding, and user input.
 
-For more information on creating Blazor Hybrid apps with the preceding frameworks, see the following articles:
-
-* <xref:blazor/hosting-models>
-* <xref:blazor/hybrid/index>
-
 :::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ## JavaScript interop
 
@@ -252,16 +174,12 @@ Blazor implements the [.NET Standard](/dotnet/standard/net-standard), which enab
 
 APIs that aren't applicable inside of a web browser (for example, accessing the file system, opening a socket, and threading) throw a <xref:System.PlatformNotSupportedException>.
 
-## Additional resources
+:::moniker-end
 
-* [WebAssembly](https://webassembly.org)
-* <xref:blazor/hosting-models>
-* <xref:blazor/tutorials/signalr-blazor>
-* <xref:blazor/js-interop/call-javascript-from-dotnet>
-* <xref:blazor/js-interop/call-dotnet-from-javascript>
-* [mono/mono GitHub repository](https://github.com/mono/mono)
-* [C# Guide](/dotnet/csharp/)
-* <xref:mvc/views/razor>
-* [HTML](https://www.w3.org/html/)
-* [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) (Links to community-maintained Blazor resources)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+<!-- End <8.0 coverage -->
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Blazor Tutorial - Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+> <xref:blazor/supported-platforms>
