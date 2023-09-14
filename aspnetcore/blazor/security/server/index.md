@@ -170,8 +170,8 @@ builder.Services.AddServerSideBlazor();
 
 ...
 
-builder.Services.AddScoped<AuthenticationStateProvider, 
-    CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 ```
 
 :::moniker-end
