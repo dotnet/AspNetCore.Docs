@@ -64,6 +64,8 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
+
 * Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
 * Run the following commands:

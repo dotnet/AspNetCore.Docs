@@ -36,7 +36,8 @@ In this tutorial, you:
 * In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
+
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
 * Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
