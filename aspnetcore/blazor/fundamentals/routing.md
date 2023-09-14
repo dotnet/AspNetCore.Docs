@@ -532,7 +532,7 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 * The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling).
 * The destination URL is within the internal base URI space (the app's base path).
 
-If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router. This logic is only relevant in an uncommon scearnio where an interactive `<Router>` is nested inside a server-side rendered `<Router>`. In such a case, the interactive router takes priority when handling navigations, so enhanced navigation isn't used for navigation, since that's a server-side routing feature.
+If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router. This logic is only relevant in an uncommon scenario where an interactive `<Router>` is nested inside a server-side rendered `<Router>`. In such a case, the interactive router takes priority when handling navigation, so enhanced navigation isn't used for navigation, since that's a server-side routing feature.
 
 When calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>:
 
