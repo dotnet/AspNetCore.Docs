@@ -40,7 +40,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Create a new project:
   * For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
-  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
+  * For a standalone Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
 
 :::moniker-end
 
@@ -106,11 +106,11 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 :::zone-end
 
-:::zone pivot="linux"
+:::zone pivot="linux-macos"
 
-To create a Blazor app on Linux, use the following guidance:
+To create a Blazor app on Linux or macOS, use the following guidance:
 
-Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
+Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a command shell.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -130,7 +130,7 @@ Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/d
 dotnet --version
 ```
 
-Install the latest version of [Visual Studio Code](https://code.visualstudio.com).
+Install the latest version of [Visual Studio Code](https://code.visualstudio.com) for your platform.
 
 Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
@@ -138,7 +138,7 @@ Install the latest [C# for Visual Studio Code extension](https://marketplace.vis
 
 Create a new project:
 
-* For a Blazor Web App experience with demonstration code and Bootstrap (*recommended*), execute the following command:
+* For a Blazor Web App experience with demonstration code and Bootstrap (*recommended*), execute the following command in a command shell:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
@@ -156,13 +156,13 @@ Create a new project:
   dotnet new blazor -o BlazorApp --use-wasm
   ```
 
-* For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+* For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
 
-* Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
   ```dotnetcli
   dotnet new blazorwasm-empty -o BlazorApp
@@ -186,13 +186,13 @@ Create a new project:
   dotnet new blazorserver-empty -o BlazorApp
   ```
 
-* For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+* For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
 
-* Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
   ```dotnetcli
   dotnet new blazorwasm-empty -o BlazorApp
@@ -240,104 +240,8 @@ Open the `BlazorApp` folder in Visual Studio Code.
 
 The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-If Visual Studio Code doesn't offer to create the assets automatically, use the following files:
-
-`.vscode/launch.json` (configured for launch and debug of a Blazor WebAssembly app):
-
-:::moniker range=">= aspnetcore-6.0"
-
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "blazorwasm",
-      "name": "Launch and Debug Blazor WebAssembly Application",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "browser": "edge"
-    }
-  ]
-}
-```
-
-`.vscode/tasks.json`:
-
-```json
-{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "build",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary",
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile"
-    }
-  ]
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```json
-{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "blazorwasm",
-      "name": "Launch and Debug Blazor WebAssembly Application",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "browser": "edge"
-    }
-  ]
-}
-```
-
-`.vscode/tasks.json`:
-
-```json
-{
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "build",
-        // Ask dotnet build to generate full paths for file names.
-        "/property:GenerateFullPaths=true",
-        // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-        "/consoleloggerparameters:NoSummary",
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile"
-    }
-  ]
-}
-```
-
-:::moniker-end
+> [!NOTE]
+> For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -513,7 +417,7 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (m
 
 ## Trust a development certificate
 
-For more information, see <xref:security/enforcing-ssl#trust-https-certificate-on-linux-using-edge-or-chrome>.
+For more information, see <xref:security/enforcing-ssl>.
 
 :::zone-end
 
@@ -539,17 +443,9 @@ For more information, see the following resources in the Visual Studio documenta
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
-:::zone pivot="windows"
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux/macOS version of this article](?pivots=linux-macos).
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
-
-:::zone-end
-
-:::zone pivot="linux"
-
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
-
-:::zone-end
+For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
 
 ## Blazor template options
 
