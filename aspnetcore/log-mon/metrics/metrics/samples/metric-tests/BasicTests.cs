@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.Metrics;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Microsoft.Extensions.Telemetry.Testing.Metering;
+using System.Diagnostics.Metrics;
 
 // <snippet_TestClass>
 public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
@@ -17,7 +16,7 @@ public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
         var client = _factory.CreateClient();
         var meterFactory = _factory.Services.GetRequiredService<IMeterFactory>();
         var collector = new MetricCollector<double>(meterFactory,
-            "Microsoft.AspNetCore.Hosting", "http-server-request-duration");
+            "Microsoft.AspNetCore.Hosting", "http.server.request.duration");
 
         // Act
         var response = await client.GetAsync("/");
@@ -29,9 +28,9 @@ public class BasicTests : IClassFixture<WebApplicationFactory<Program>>
         Assert.Collection(collector.GetMeasurementSnapshot(),
             measurement =>
             {
-                Assert.Equal("http", measurement.Tags["scheme"]);
-                Assert.Equal("GET", measurement.Tags["method"]);
-                Assert.Equal("/", measurement.Tags["route"]);
+                Assert.Equal("http", measurement.Tags["url.scheme"]);
+                Assert.Equal("GET", measurement.Tags["http.request.method"]);
+                Assert.Equal("/", measurement.Tags["http.route"]);
             });
     }
 }
