@@ -238,7 +238,9 @@ Create a new project:
 
 Open the `BlazorApp` folder in Visual Studio Code.
 
-The IDE requests that you add assets to build and debug the project. Select **Yes**.
+When Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
+
+If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
 
 > [!NOTE]
 > For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
