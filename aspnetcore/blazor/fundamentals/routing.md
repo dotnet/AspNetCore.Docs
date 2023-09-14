@@ -464,7 +464,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)). |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side interactive router.</li></ul><p>For more information, see the [Enhanced navigation and form handling](#enhanced-navigation-and-form-handling) section.</p><p>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.</p> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section. |
@@ -519,16 +519,24 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 
 ## Enhanced navigation and form handling
 
-*This section applies to static and interactive server rendering in Blazor Web Apps.*
+*This section applies to Blazor Web Apps.*
 
 Blazor Web Apps are capable of two types of routing for page navigation and form handling requests:
 
-* Normal navigation: A full-page reload is triggered for the request URL.
-* Enhanced navigation: Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster and more smoothly.
+* Normal navigation: For all cross-document/cross-origin navigation, a full-page reload is triggered for the request URL.
+* Enhanced navigation: For some same-document/same-origin navigation&dagger;, Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
+
+&dagger;Enhanced navigation is available when:
+
+* The Blazor Web App script (`blazor.web.js`) is used, not the Blazor Server script (`blazor.server.js`) or Blazor WebAssembly script (`blazor.webassembly.js`).
+* The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling).
+* The destination URL is within the internal base URI space (the app's base path).
+
+If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router.
 
 When calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>:
 
-* If `forceLoad` is `false`:
+* If `forceLoad` is `false`, which is the default:
   * And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.
   * Otherwise, Blazor performs a full-page reload for the requested URL.
 * If `forceLoad` is `true`: Blazor performs a full-page reload for the requested URL, whether enhanced navigation is available or not.
@@ -539,11 +547,13 @@ You can refresh the current page by calling `NavigationManager.Refresh(bool forc
 Navigation.Refresh();
 ```
 
-Pass `true` to the `forceLoad` parameter to ensure a full-page reload is always performed, even when enhanced navigation is available:
+Pass `true` to the `forceLoad` parameter to ensure a full-page reload is always performed, even if enhanced navigation is available:
 
 ```csharp
 Navigation.Refresh(true);
 ```
+
+To disable enhanced navigation and form handling, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 

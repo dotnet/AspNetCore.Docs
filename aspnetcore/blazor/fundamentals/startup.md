@@ -462,7 +462,7 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 ## Configure the .NET WebAssembly runtime
 
-To configure the .NET WebAssembly runtime, use the `configureRuntime` property with the `dotnet` runtime host builder.
+To configure the .NET WebAssembly runtime, use the `configureRuntime` function with the `dotnet` runtime host builder.
 
 The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `true`:
 
@@ -473,6 +473,27 @@ The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `tru
     configureRuntime: dotnet => {
       dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
     }
+  });
+</script>
+```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Disable enhanced navigation and form handling
+
+*This section applies to Blazor Web Apps.*
+
+To disable enhanced navigation and form handling, set `disableDomPreservation` to `true` for `Blazor.start`:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    ssr: { disableDomPreservation: true }
   });
 </script>
 ```
