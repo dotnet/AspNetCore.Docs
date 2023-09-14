@@ -523,8 +523,8 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 
 Blazor Web Apps are capable of two types of routing for page navigation and form handling requests:
 
-* Normal navigation: For all cross-document/cross-origin navigation, a full-page reload is triggered for the request URL.
-* Enhanced navigation: For some same-document/same-origin navigation&dagger;, Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
+* Normal navigation: Cross-document navigation; a full-page reload is triggered for the request URL.
+* Enhanced navigation: Same-document navigation;&dagger;, Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
 
 &dagger;Enhanced navigation is available when:
 
