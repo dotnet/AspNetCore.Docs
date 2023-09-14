@@ -523,8 +523,8 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 
 Blazor Web Apps are capable of two types of routing for page navigation and form handling requests:
 
-* Normal navigation: Cross-document navigation; a full-page reload is triggered for the request URL.
-* Enhanced navigation: Same-document navigation;&dagger;, Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
+* Normal navigation (cross-document navigation): a full-page reload is triggered for the request URL.
+* Enhanced navigation (ame-document navigation)&dagger;: Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
 
 &dagger;Enhanced navigation is available when:
 
@@ -532,7 +532,7 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 * The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling).
 * The destination URL is within the internal base URI space (the app's base path).
 
-If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router.
+If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router. This logic is only relevant in an uncommon scearnio where an interactive `<Router>` is nested inside a server-side rendered `<Router>`. In such a case, the interactive router takes priority when handling navigations, so enhanced navigation isn't used for navigation, since that's a server-side routing feature.
 
 When calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>:
 
