@@ -47,7 +47,8 @@ The following diagram shows the design of the app.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-[!INCLUDE [](~/includes/vs-mac-eol.md)]
+
+[!INCLUDE[](~/includes/vs-mac-eol.md)]
 
 ---
 
