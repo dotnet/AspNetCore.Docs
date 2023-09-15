@@ -216,7 +216,7 @@ The following code shows:
 In the preceding code:
 
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
-* Binding from complex or collection types is _not_ support for minimal APIs that are compiled with the Request Delegate Generator.
+* Binding from complex or collection types is ***not*** supported for minimal APIs that are compiled with the Request Delegate Generator.
 
 <a name="bindar"></a>
 
