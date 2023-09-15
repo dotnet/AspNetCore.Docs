@@ -483,6 +483,27 @@ The .NET runtime instance can be accessed from `Blazor.runtime`.
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Disable enhanced navigation and form handling
+
+*This section applies to Blazor Web Apps.*
+
+To disable enhanced navigation and form handling, set `disableDomPreservation` to `true` for `Blazor.start`:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    ssr: { disableDomPreservation: true }
+  });
+</script>
+```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
+:::moniker-end
+
 ## Additional resources
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
