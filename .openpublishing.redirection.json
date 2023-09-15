@@ -1247,6 +1247,11 @@
             "source_path": "aspnetcore/blazor/security/webassembly/standalone-with-azure-active-directory.md",
             "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-microsoft-entra-id",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/tutorials/signalr-blazor-preview.md",
+            "redirect_url": "/aspnet/core/blazor/tutorials/signalr-blazor",
+            "redirect_document_id": false
         }
     ]
 }

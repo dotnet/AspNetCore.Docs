@@ -381,8 +381,6 @@ items:
                 uid: blazor/tutorials/build-a-blazor-app
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
-              - name: SignalR with Blazor (.NET 8 Preview)
-                uid: blazor/tutorials/signalr-blazor-preview
               - name: Learn modules
                 href: /training/paths/build-web-apps-with-blazor/
           - name: Blazor Hybrid

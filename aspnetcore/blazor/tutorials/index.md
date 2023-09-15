@@ -20,11 +20,9 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
 
-* <xref:blazor/tutorials/build-a-blazor-app>
+* <xref:blazor/tutorials/build-a-blazor-app> (Blazor Web App)
 
-<!-- UPDATE 8.0 For cross-link to SignalR-Blazor tutorial -->
-
-* <xref:blazor/tutorials/signalr-blazor-preview>
+* <xref:blazor/tutorials/signalr-blazor> (Blazor Web App)
 
 * <xref:blazor/hybrid/tutorials/index>
 
