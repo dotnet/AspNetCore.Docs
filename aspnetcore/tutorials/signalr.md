@@ -69,11 +69,11 @@ In the **Additional information** dialog, select **.NET 7.0 (Standard Term Suppo
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
-Change to the directory (`cd`) that will contain the project.
-
-Run the following commands:
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change to the directory (`cd`) that will contain the project.
+* Run the following commands:
 
 ```dotnetcli
 dotnet new webapp -o SignalRChat
