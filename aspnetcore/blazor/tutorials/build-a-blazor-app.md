@@ -44,7 +44,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 :::moniker range=">= aspnetcore-8.0"
 
-Create a new Blazor app named `TodoList` in a command shell:
+Create a new Blazor Web App named `TodoList` in a command shell:
 
 <!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
 
@@ -140,7 +140,7 @@ Open the `Todo` component in any file editor and add an `@page` Razor directive 
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 At RC2, we'll enable SSR from the root component (I think) -->
+<!-- UPDATE 8.0 At RC2, we'll enable SSR from the root component -->
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1-4":::
 
