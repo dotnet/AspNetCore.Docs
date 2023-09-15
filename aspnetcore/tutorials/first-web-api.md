@@ -93,9 +93,7 @@ A NuGet package must be added to support the database used in this tutorial.
   * Add a NuGet package that is needed for the next section.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
-[!INCLUDE[](~/includes/vscode-trust-authors.md)]
-
-[!INCLUDE[](~/includes/vscode-add-assets-prompt.md)]
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

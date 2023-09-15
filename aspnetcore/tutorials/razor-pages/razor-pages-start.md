@@ -75,13 +75,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   code -r RazorPagesMovie
   ```
 
-[!INCLUDE[](~/includes/vscode-trust-authors.md)]
-
   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
 
   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
-[!INCLUDE[](~/includes/vscode-add-assets-prompt.md)]
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

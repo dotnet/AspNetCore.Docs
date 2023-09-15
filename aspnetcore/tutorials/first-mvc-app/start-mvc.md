@@ -84,13 +84,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
    code -r MvcMovie
    ```
 
-[!INCLUDE[](~/includes/vscode-trust-authors.md)]
-
   The `dotnet new` command creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
 
   The `code` command opens the *MvcMovie* project folder in the current instance of Visual Studio Code.
 
-[!INCLUDE[](~/includes/vscode-add-assets-prompt.md)]
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
