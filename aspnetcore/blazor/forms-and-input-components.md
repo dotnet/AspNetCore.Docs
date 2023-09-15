@@ -2922,9 +2922,9 @@ The following component validates user input by applying the `SaladChefValidator
 
 :::moniker-end
 
-## Custom validation CSS class attributes
-
 :::moniker range=">= aspnetcore-7.0"
+
+## Custom validation CSS class attributes
 
 Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
 
@@ -2946,6 +2946,8 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```csharp
@@ -2965,7 +2967,7 @@ public class CustomFieldClassProvider : FieldCssClassProvider
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
@@ -2983,6 +2985,8 @@ public class CustomFieldClassProvider : FieldCssClassProvider
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs":::
@@ -3042,7 +3046,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```razor
 @page "/starship-13"
@@ -3093,6 +3097,8 @@ The preceding example checks the validity of all form fields and applies a style
 
 `CustomFieldClassProvider2.cs`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```csharp
@@ -3117,7 +3123,7 @@ public class CustomFieldClassProvider2 : FieldCssClassProvider
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
@@ -3140,6 +3146,8 @@ public class CustomFieldClassProvider2 : FieldCssClassProvider
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
@@ -3193,6 +3201,8 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```csharp
@@ -3226,7 +3236,7 @@ public class CustomFieldClassProvider3 : FieldCssClassProvider
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
@@ -3258,6 +3268,8 @@ public class CustomFieldClassProvider3 : FieldCssClassProvider
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
