@@ -136,7 +136,7 @@ The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter 
 
 Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
 
-The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a static Blazor WebAssembly app for a smaller app payload.
+The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
 
 WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
 
@@ -360,7 +360,7 @@ Maintaining app code securely and privately on the server is a built-in feature 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Standalone Blazor WebAssembly apps built as Progressive Web Apps (PWAs) and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Components rendered for the Blazor Server hosting model fail to run when the connection to the server is lost. If an app must run offline, static Blazor WebAssembly and Blazor Hybrid are the best choices.
+Standalone Blazor WebAssembly apps built as Progressive Web Apps (PWAs) and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Components rendered for the Blazor Server hosting model fail to run when the connection to the server is lost. If an app must run offline, standalone Blazor WebAssembly and Blazor Hybrid are the best choices.
 
 :::moniker-end
 
