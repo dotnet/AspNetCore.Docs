@@ -212,7 +212,7 @@ Replace the markup with the following code:
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Home</PageTitle>
 
 <div class="form-group">
     <label>
@@ -447,7 +447,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore.8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs":::
 
