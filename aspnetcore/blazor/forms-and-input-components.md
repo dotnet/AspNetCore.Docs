@@ -2764,9 +2764,6 @@ var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
 var isValid = editContext.IsValid(fieldIdentifier);
 ```
 
-> [!NOTE]
-> Custom validation examples in this article call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages%2A> on the edit context to determine if a field is valid. An issue has been opened at [Update Blazor form custom validation examples 8.0 (dotnet/AspNetCore.Docs #30338)](https://github.com/dotnet/AspNetCore.Docs/issues/30338) to update the examples to use the new API. We recommend using the new `EditContext.IsValid` API in your own code, but the approach with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.GetValidationMessages%2A> is still supported and doesn't result in a runtime error if testing the article's examples.
-
 :::moniker-end
 
 ## Custom validation attributes
@@ -2925,9 +2922,9 @@ The following component validates user input by applying the `SaladChefValidator
 
 :::moniker-end
 
-## Custom validation CSS class attributes
-
 :::moniker range=">= aspnetcore-7.0"
+
+## Custom validation CSS class attributes
 
 Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
 
@@ -2949,6 +2946,29 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Components.Forms;
+
+public class CustomFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext, 
+        in FieldIdentifier fieldIdentifier)
+    {
+        var isValid = editContext.isValid(fieldIdentifier);
+
+        return isValid ? "validField" : "invalidField";
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -2963,6 +2983,10 @@ public class CustomFieldClassProvider : FieldCssClassProvider
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs":::
@@ -3022,7 +3046,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```razor
 @page "/starship-13"
@@ -3073,6 +3097,34 @@ The preceding example checks the validity of all form fields and applies a style
 
 `CustomFieldClassProvider2.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Components.Forms;
+
+public class CustomFieldClassProvider2 : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Name")
+        {
+            var isValid = editContext.isValid(fieldIdentifier);
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -3092,6 +3144,10 @@ public class CustomFieldClassProvider2 : FieldCssClassProvider
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
@@ -3145,6 +3201,43 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Components.Forms;
+
+public class CustomFieldClassProvider3 : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        var isValid = editContext.isValid(fieldIdentifier);
+
+        if (fieldIdentifier.FieldName == "Name")
+        {
+            return isValid ? "validField" : "invalidField";
+        }
+        else
+        {
+            if (editContext.IsModified(fieldIdentifier))
+            {
+                return isValid ? "modified valid" : "modified invalid";
+            }
+            else
+            {
+                return isValid ? "valid" : "invalid";
+            }
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -3173,6 +3266,10 @@ public class CustomFieldClassProvider3 : FieldCssClassProvider
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
