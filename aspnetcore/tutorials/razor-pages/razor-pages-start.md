@@ -107,7 +107,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 <!-- replace all of this with updated includes  -->
 
-Select **RazorPagesMovie** in **Solution Explorer**, and then press F5 to run the app.
+Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to run without the debugger.
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 

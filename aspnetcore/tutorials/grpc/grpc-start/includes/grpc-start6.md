@@ -114,9 +114,7 @@ info: Microsoft.Hosting.Lifetime[0]
   code -r GrpcGreeterClient
   ```
 
-* Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
-
-  Visual Studio Code adds a `.vscode` folder with generated `launch.json` and `tasks.json` files.
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

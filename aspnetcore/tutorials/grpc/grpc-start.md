@@ -123,13 +123,7 @@ info: Microsoft.Hosting.Lifetime[0]
   code -r GrpcGreeterClient
   ```
 
-* Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
-  * The checkbox **trust the authors of all files in the parent folder**.
-  * **Yes, I trust the authors** (because dotnet generated the files).
-
-* Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
-
-  Visual Studio Code adds a `.vscode` folder with generated `launch.json` and `tasks.json` files.
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

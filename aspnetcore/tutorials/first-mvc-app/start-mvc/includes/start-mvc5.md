@@ -45,9 +45,9 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 ![Create a new ASP.NET Core web application](~/tutorials/first-mvc-app/start-mvc/_static/mvcVS19v16.9.png)
 
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
+For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
-Visual Studio uses the default project template for the created MVC project. The created project:
+Visual Studio used the default project template for the created MVC project. The created project:
 
 * Is a working app.
 * Is a basic starter project.
