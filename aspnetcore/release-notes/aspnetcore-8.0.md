@@ -70,20 +70,9 @@ For more information, see <xref:blazor/forms-and-input-components?view=aspnetcor
 
 Static server rendering typically performs a full page refresh whenever the user navigates to a new page or submits a form. In .NET 8, Blazor can enhance page navigation and form handling by intercepting the request and performing a fetch request instead. Blazor then handles the rendered response content by patching it into the browser DOM. Enhanced navigation and form handling avoids the need for a full page refresh and preserves more of the page state, so pages load faster and more smoothly. Enhanced navigation is enabled by default when the Blazor script (`blazor.web.js`) is loaded. Enhanced form handling can be optionally enabled for specific forms.
 
-<!-- UPDATE 8.0
+New enhanced navigation API allows you to refresh the current page by calling `NavigationManager.Refresh(bool forceLoad = false)`.
 
-RC1
-
-Do we want to add a mention for enhanced page refresh API?
-Conversely, I might only cover it in the *Routing* doc and link
-this section to that coverage.
-
-* Issue: https://github.com/dotnet/aspnetcore/issues/49414
-* PR: https://github.com/dotnet/aspnetcore/issues/50014
-
-For more information, see <xref:>.
-
--->
+For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling>.
 
 ### Streaming rendering
 
