@@ -34,7 +34,7 @@ The sample project is composed of two apps:
 | Message app | *src/RazorPagesTestSample*         | Allows a user to add a message, delete one message, delete all messages, and analyze messages (find the average number of words per message). |
 | Test app    | *tests/RazorPagesTestSample.Tests* | Used to unit test the DAL and Index page model of the message app. |
 
-The tests can be run using the built-in test features of an IDE, such as [Visual Studio](/visualstudio/test/unit-test-your-code) or [Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
+The tests can be run using the built-in test features of an IDE, such as [Visual Studio](/visualstudio/test/unit-test-your-code). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
 
 ```dotnetcli
 dotnet test
@@ -187,7 +187,6 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
 * <xref:test/integration-tests>
 * [xUnit.net](https://github.com/xunit/xunit)
-* [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution)
 * [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
@@ -218,7 +217,7 @@ The sample project is composed of two apps:
 | Message app | *src/RazorPagesTestSample*         | Allows a user to add a message, delete one message, delete all messages, and analyze messages (find the average number of words per message). |
 | Test app    | *tests/RazorPagesTestSample.Tests* | Used to unit test the DAL and Index page model of the message app. |
 
-The tests can be run using the built-in test features of an IDE, such as [Visual Studio](/visualstudio/test/unit-test-your-code) or [Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
+The tests can be run using the built-in test features of an IDE such as [Visual Studio](/visualstudio/test/unit-test-your-code). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesTestSample.Tests* folder:
 
 ```dotnetcli
 dotnet test
@@ -371,7 +370,6 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
 * <xref:test/integration-tests>
 * [xUnit.net](https://github.com/xunit/xunit)
-* [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution)
 * [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
