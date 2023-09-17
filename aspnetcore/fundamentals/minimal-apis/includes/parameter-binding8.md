@@ -216,8 +216,7 @@ The following code shows:
 In the preceding code:
 
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
-* Binding to record types is not currently supported, so complex types must be implemented as a class.
-* Recursive binding is not supported, so the `Todo` type does not contain any recursive references.
+* Binding from complex or collection types is ***not*** supported for minimal APIs that are compiled with the Request Delegate Generator.
 
 <a name="bindar"></a>
 

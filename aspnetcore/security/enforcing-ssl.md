@@ -595,7 +595,7 @@ The preceding commands solve most browser trust issues. If the browser is still 
 
 * Delete the *C:\Users\{USER}\AppData\Roaming\ASP.NET\Https* folder.
 * Clean the solution. Delete the *bin* and *obj* folders.
-* Restart the development tool. For example, Visual Studio, Visual Studio Code, or Visual Studio for Mac.
+* Restart the development tool. For example, Visual Studio or Visual Studio Code.
 
 ### Windows - certificate not trusted
 

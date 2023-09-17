@@ -380,7 +380,7 @@ services.AddScoped<AuthenticationService>();
 
 :::moniker-end
 
-The following `CustomAuthenticationStateProvider` subscribes to the `AuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the authentication state of the service's current user (`AuthenticationService.CurrentUser`).
+The following `CustomAuthenticationStateProvider` subscribes to the `AuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `AuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
 
 ```csharp
 using System.Security.Claims;
@@ -397,6 +397,8 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 
         service.UserChanged += (newUser) =>
         {
+            authenticationState = new AuthenticationState(newUser);
+
             NotifyAuthenticationStateChanged(
                 Task.FromResult(new AuthenticationState(newUser)));
         };
