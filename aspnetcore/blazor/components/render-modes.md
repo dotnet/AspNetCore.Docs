@@ -169,6 +169,21 @@ From the component definition:
 
 In the preceding example, the `{ROUTE}` placeholder is the route template.
 
+To disable prerendering for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
+
+```razor
+<Routes @rendermode="@(new ServerRenderMode(prerender: false))" />
+```
+
+Also, disable prerendering for the `HeadOutlet` component:
+
+```razor
+<HeadOutlet @rendermode="@(new ServerRenderMode(prerender: false))" />
+```
+
+> [!NOTE]
+> The preceding syntax will be simplified in an upcoming preview release.
+
 > [!NOTE]
 > During .NET 8 *Release Candidate 1*, use the following values:
 >
