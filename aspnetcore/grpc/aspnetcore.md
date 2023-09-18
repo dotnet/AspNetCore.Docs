@@ -248,15 +248,15 @@ For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpo
 
 ## Host gRPC in non-ASP.NET Core projects
 
-An ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
+An ASP.NET Core gRPC server is typically created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
 
 [!code-xml[](~/grpc/aspnetcore/Server-web.csproj?highlight=1)]
 
 The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
 
-It's also possible to add a server to existing non-ASP.NET Core projects. Add the `Microsoft.AspNetCore.App` framework to the project file:
+You can add a gRPC server to non-ASP.NET Core projects with the following project file settings:
 
-[!code-xml[](~/grpc/aspnetcore/Server.csproj?highlight=7)]
+[!code-xml[](~/grpc/aspnetcore/Server.csproj?highlight=1,7)]
 
 The preceding project file:
 
