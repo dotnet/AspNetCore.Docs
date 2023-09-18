@@ -246,6 +246,25 @@ For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpo
 
 :::moniker-end
 
+## Host gRPC in non-ASP.NET Core projects
+
+An ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
+
+[!code-xml[](~/grpc/aspnetcore/Server-web.csproj?highlight=1)]
+
+The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
+
+It's also possible to add a server to existing non-ASP.NET Core projects. Add the `Microsoft.AspNetCore.App` framework to the project file:
+
+[!code-xml[](~/grpc/aspnetcore/Server.csproj?highlight=4)]
+
+The preceding project file:
+
+* Adds a framework reference to `Microsoft.AspNetCore.App`. The framework reference allows non-ASP.NET Core apps, such as Windows Services, WPF apps, or WinForms apps to use ASP.NET Core APIs. The app can now use ASP.NET Core APIs to start an ASP.NET Core server.
+* Adds gRPC requirements:
+  * NuGet package reference to [`Grpc.AspNetCore`](https://www.nuget.org/packages/Grpc.AspNetCore).
+  * `.proto` file.
+
 ## Integration with ASP.NET Core APIs
 
 gRPC services have full access to the ASP.NET Core features such as [Dependency Injection](xref:fundamentals/dependency-injection) (DI) and [Logging](xref:fundamentals/logging/index). For example, the service implementation can resolve a logger service from the DI container via the constructor:
@@ -270,25 +289,6 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 `ServerCallContext` doesn't provide full access to `HttpContext` in all ASP.NET APIs. The `GetHttpContext` extension method provides full access to the `HttpContext` representing the underlying HTTP/2 message in ASP.NET APIs:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
-
-## Host gRPC in non-ASP.NET Core projects
-
-An ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
-
-[!code-xml[](~/grpc/aspnetcore/Server-web.csproj?highlight=1)]
-
-The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
-
-It's also possible to add a server to existing non-ASP.NET Core projects. Add the `Microsoft.AspNetCore.App` framework to the project file:
-
-[!code-xml[](~/grpc/aspnetcore/Server.csproj?highlight=4)]
-
-The preceding project file:
-
-* Adds a framework reference to `Microsoft.AspNetCore.App`. The framework reference allows non-ASP.NET Core apps, such as Windows Services, WPF apps, or WinForms apps to use ASP.NET Core APIs. The app can now use ASP.NET Core APIs to start an ASP.NET Core server.
-* Adds gRPC requirements:
-  * NuGet package reference to [`Grpc.AspNetCore`](https://www.nuget.org/packages/Grpc.AspNetCore).
-  * `.proto` file.
 
 ## Additional resources
 
