@@ -175,7 +175,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Create a new directory named `src` in the project root, `SignalRWebpack/`, for the client code.
    
-1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/src/) into the `src`. The `src` directory contains the following files:
+1. Copy the `src` directory and its contents from the [sample project](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/) into the project root. The `src` directory contains the following files:
 
    * `index.html`, which defines the homepage's boilerplate markup:
 
