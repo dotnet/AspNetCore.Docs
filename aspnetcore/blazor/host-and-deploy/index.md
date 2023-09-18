@@ -47,21 +47,21 @@ Publish locations:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Blazor WebAssembly: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
-* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
+* Blazor Web App: By default, the app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
+* Blazor WebAssembly: By default, the app is published into the `bin\Release\net8.0\browser-wasm\publish\` folder. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
+* Blazor Server: By default, the app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
 * Blazor WebAssembly
-  * Standalone: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
+  * Standalone: By default, the app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on the version of the SDK used to publish the app. To deploy the app as a static site, copy the contents of the `wwwroot` folder to the static site host.
   * Hosted: The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the client app. Deploy the contents of the `publish` folder to the host.
-* Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
 
 :::moniker-end
 
-The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
+The `{TARGET FRAMEWORK}` in the preceding paths is the target framework (for example, `net8.0`).
 
 ## IIS
 
@@ -70,7 +70,7 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* <xref:blazor/host-and-deploy/server>: Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
 * <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
@@ -117,9 +117,20 @@ The presence of a trailing slash (`/`) in a configured app base path is signific
 
 There are three sources of links that pertain to Blazor in ASP.NET Core apps:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* URLs in Razor components (`.razor`) are typically relative.
+* URLs in scripts, such as the Blazor scripts (`blazor.*.js`), are relative to the document.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * URLs manually written in the `_Host.cshtml` file (Blazor Server), which if you are rendering inside different documents should always be absolute.
-* URLs in Razor components (`.razor`) are typically relative, but are essentially also manually written.
-* URLs in scripts, such as the Blazor scripts (`blazor.webassembly.js` and `blazor.server.js`), which are relative to the document.
+* URLs in Razor components (`.razor`) are typically relative.
+* URLs in scripts, such as the Blazor scripts (`blazor.*.js`), are relative to the document.
+
+:::moniker-end
 
 If you're rendering a Blazor app from different documents (for example, `/Admin/B/C/` and `/Admin/D/E/`), you must take the app base path into account, or the base path is different when the app renders in each document and the resources are fetched from the wrong URLs.
 
@@ -137,12 +148,12 @@ Under the first approach, routing offers <xref:Microsoft.AspNetCore.Routing.IDyn
 
 For the second option, which is the usual approach taken, the app sets the base path in the document and maps the server endpoints to paths under the base. The following guidance adopts this approach.
 
-### Blazor Server
+### Server-side Blazor
 
-Map the SignalR hub of a Blazor Server app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, which is the most typical approach:
+Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
 
 ```csharp
-endpoints.MapBlazorHub("base/path");
+app.MapBlazorHub("base/path");
 ```
 
 The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
@@ -187,43 +198,25 @@ To provide configuration for the Blazor app's base path of `https://www.contoso.
 
 By configuring the app base path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following:
+:::moniker range=">= aspnetcore-8.0"
 
-* Blazor WebAssembly: `/` configured as `<base href="/" />`.
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is `/` configured as `<base href="/" />` in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+
 * Blazor Server: `~/` configured as `<base href="~/" />`.
+* Blazor WebAssembly: `/` configured as `<base href="/" />`.
 
-For the location of `<head>` content in Blazor apps, see <xref:blazor/project-structure#location-of-head-and-body-content>.
+:::moniker-end
 
 > [!NOTE]
 > In some hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
 
-* Standalone Blazor WebAssembly (`wwwroot/index.html`):
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-:::moniker range="< aspnetcore-8.0"
-
-* Hosted Blazor WebAssembly (**:::no-loc text="Client":::** project, `wwwroot/index.html`):
-
-  ```html
-  <base href="/CoolApp/">
-  ```
-
-  **The trailing slash is required.**
-
-  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
-
-  ```csharp
-  app.UsePathBase("/CoolApp");
-  ```
-
-:::moniker-end
-
-* In a Blazor Server app, use ***either*** of the following approaches:
+* In a server-side Blazor app, use ***either*** of the following approaches:
 
   * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
@@ -261,6 +254,32 @@ For the location of `<head>` content in Blazor apps, see <xref:blazor/project-st
     
     For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
+* Standalone Blazor WebAssembly (`wwwroot/index.html`):
+
+  ```html
+  <base href="/CoolApp/">
+  ```
+
+  **The trailing slash is required.**
+
+:::moniker range="< aspnetcore-8.0"
+
+* Hosted Blazor WebAssembly (**:::no-loc text="Client":::** project, `wwwroot/index.html`):
+
+  ```html
+  <base href="/CoolApp/">
+  ```
+
+  **The trailing slash is required.**
+
+  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
+
+  ```csharp
+  app.UsePathBase("/CoolApp");
+  ```
+
+:::moniker-end
+
 > [!NOTE]
 > When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
 
@@ -284,7 +303,9 @@ Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-an
 In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required:
 
 * To serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`).
-* To serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
+* To serve the Blazor script (`_framework/blazor.*.js`). For more information, see <xref:blazor/fundamentals/static-files>.
+
+<!-- UPDATE 8.0 This will need to be validated/updated for BWAs -->
 
 For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
@@ -316,7 +337,11 @@ Using either `dotnet run` with the `--pathbase` option or a launch profile confi
 
 For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Blazor Server `MapFallbackToPage` configuration
+
+<!-- UPDATE 8.0 Update for BWAs -->
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
@@ -341,6 +366,8 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
   app.Run();
   ```
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
