@@ -256,7 +256,7 @@ The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.
 
 It's also possible to add a server to existing non-ASP.NET Core projects. Add the `Microsoft.AspNetCore.App` framework to the project file:
 
-[!code-xml[](~/grpc/aspnetcore/Server.csproj?highlight=4)]
+[!code-xml[](~/grpc/aspnetcore/Server.csproj?highlight=7)]
 
 The preceding project file:
 
