@@ -558,7 +558,7 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/27611).
 
 ## Additional resources
 
-* See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
+* See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/30378) and [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
