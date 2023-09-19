@@ -32,6 +32,7 @@ app.Run();
 #elif AFTER
 // <snippet_after>
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddCors();
 builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddAuthorization();

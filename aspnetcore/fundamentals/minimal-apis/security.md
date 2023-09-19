@@ -42,7 +42,7 @@ By default, the [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.weba
 
 In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run. For more information on middlewares and this automatic behavior, see [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="8-10":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
 
 ### Configuring authentication strategy
 
