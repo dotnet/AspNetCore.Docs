@@ -29,7 +29,7 @@ Welcome to what's new in the ASP.NET Core docs for May 2023. This article lists 
   - Components overview versioning
 - <xref:blazor/host-and-deploy/index> - Expand lead-in coverage on app base path
 - <xref:blazor/fundamentals/signalr> - Blazor SignalR fundamentals article versioning
-- <xref:blazor/blazor-server-ef-core> - Blazor Server EF Core article versioning
+- <xref:blazor/blazor-ef-core> - Blazor Server EF Core article versioning
 - <xref:blazor/components/templated-components> - Blazor article versioning
 - <xref:blazor/tutorials/build-a-blazor-app> - Blazor article versioning
 - <xref:blazor/host-and-deploy/multiple-hosted-webassembly> - Subpath scenario for multiple hosted WASM apps
