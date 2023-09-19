@@ -485,7 +485,7 @@ Regular expressions provide much more control over their matching behavior.
 
 <a name="greedy"></a>
 
-Greedy matching, also known as [lazy matching](https://wikipedia.org/wiki/Regular_expression#Lazy_matching), matches the largest possible string. Non-greedy matches the smallest possible string.
+Greedy matching matches the largest possible string. Non-greedy matching, also known as [lazy matching](https://wikipedia.org/wiki/Regular_expression#Lazy_matching), matches the smallest possible string.
 
 [!INCLUDE[](~/includes/routeSlash.md)]
 
