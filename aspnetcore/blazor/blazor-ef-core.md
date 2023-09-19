@@ -203,14 +203,14 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Home` component (`Components/Pages/Home.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAppEFCore/Components/Pages/Home.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Home` component (`Components/Pages/Home.razor`) in the sample app.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the sample app.
 
 :::moniker-end
 
