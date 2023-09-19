@@ -66,19 +66,22 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
-1. Change to the directory (`cd`) which will contain the project.
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change to the directory (`cd`) that will contain the project.
+* Run the following commands:
 
-1. Run the following commands:
+  ```dotnetcli
+  dotnet new webapp -o RazorPagesMovie
+  code -r RazorPagesMovie
+  ```
 
-   ```dotnetcli
-   dotnet new webapp -o RazorPagesMovie
-   code -r RazorPagesMovie
-   ```
+  The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
 
-   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
-   * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+  The `code` command opens the *RazorPagesMovie* project folder in the current instance of Visual Studio Code.
+
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

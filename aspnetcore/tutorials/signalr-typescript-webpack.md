@@ -81,6 +81,8 @@ code -r SignalRWebpack
 * The `dotnet new` command creates an empty ASP.NET Core web app in a `SignalRWebpack` directory.
 * The `code` command opens the `SignalRWebpack` directory in the current instance of Visual Studio Code.
 
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
+
 Run the following .NET CLI command in the **Integrated Terminal**:
 
 ```dotnetcli
