@@ -1252,6 +1252,11 @@
             "source_path": "aspnetcore/blazor/tutorials/signalr-blazor-preview.md",
             "redirect_url": "/aspnet/core/blazor/tutorials/signalr-blazor",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/blazor-server-ef-core.md",
+            "redirect_url": "/aspnet/core/blazor/blazor-ef-core",
+            "redirect_document_id": false
         }
     ]
 }

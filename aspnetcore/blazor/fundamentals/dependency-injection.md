@@ -405,9 +405,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
-<!-- UPDATE 8.0 The UID will change -->
-
-For more information, see <xref:blazor/blazor-server-ef-core>.
+For more information, see <xref:blazor/blazor-ef-core>.
 
 ## Detect client-side transient disposables
 
