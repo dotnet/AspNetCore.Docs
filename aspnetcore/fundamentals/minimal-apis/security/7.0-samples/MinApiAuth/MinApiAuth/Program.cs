@@ -1,4 +1,4 @@
-#define GREET // FIRST JWT1 JWT2 AFTER LOCAL GREET 
+#define AFTER // FIRST JWT1 JWT2 AFTER LOCAL GREET 
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -32,7 +32,7 @@ app.Run();
 #elif AFTER
 // <snippet_after>
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors();
 builder.Services.AddAuthentication().AddJwtBearer();
 builder.Services.AddAuthorization();
 
