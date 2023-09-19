@@ -486,7 +486,7 @@ Regular expressions provide much more control over their matching behavior.
 
 <a name="greedy"></a>
 
-Greedy matching, also known as *maximal matching* attempts to find the longest possible match in the input text that satisfies the [regex](/dotnet/standard/base-types/regular-expressions) pattern. Non-greedy matching, also known as lazy matching seeks the shortest possible match in the input text that satisfies the regex pattern.
+Greedy matching, also known as *maximal matching* attempts to find the longest possible match in the input text that satisfies the [regex](/dotnet/standard/base-types/regular-expressions) pattern. Non-greedy matching, also known as *lazy matching*, seeks the shortest possible match in the input text that satisfies the regex pattern.
 
 [!INCLUDE[](~/includes/routeSlash.md)]
 
