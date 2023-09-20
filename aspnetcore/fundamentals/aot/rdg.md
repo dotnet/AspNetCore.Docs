@@ -53,4 +53,4 @@ Manually enabling RDG can be useful for:
 
 Minimal APIs are optimized for using <xref:System.Text.Json?displayProperty=fullName>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
 
-:::code language="csharp" source="~/fundamentals/aot/samples/rgd/Program.cs":::
+:::code language="csharp" source="~/fundamentals/aot/samples/rgd/Program.cs" highlight="5-9,32-99":::
