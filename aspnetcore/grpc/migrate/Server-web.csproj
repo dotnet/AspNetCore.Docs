@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
-
-</Project>
