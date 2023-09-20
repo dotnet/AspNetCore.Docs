@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc, engagement-fy23
-ms.date: 08/21/2023
+ms.date: 9/21/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -248,9 +248,9 @@ A parameter on the delegate that isn't bound to the body and does ***not*** need
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Todo.cs" id="snippet_1":::
 
-### C# 12 Interceptors
+<!-- ### C# 12 Interceptors
 
-[C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). Map method calls are replaced with code generated calls at compile time. The compiler generated implementations are compatible with native AOT and results in increased startup performance for apps published with the `PublishAot` property enabled.
+[C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) supports intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). `Map` method calls are replaced with code generated calls at compile time. The compiler generated implementations are compatible with native AOT and results in increased startup performance for apps published with the `PublishAot` property enabled. -->
 
 ## Known issues
 
