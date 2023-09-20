@@ -260,7 +260,7 @@ You can add a gRPC server to non-ASP.NET Core projects with the following projec
 
 The preceding project file:
 
-* Uses a non-ASP.NET Core SDK.
+* Doesn't use `Microsoft.NET.SDK.Web` as the SDK.
 * Adds a framework reference to `Microsoft.AspNetCore.App`.
   * The framework reference allows non-ASP.NET Core apps, such as Windows Services, WPF apps, or WinForms apps to use ASP.NET Core APIs.
   * The app can now use ASP.NET Core APIs to start an ASP.NET Core server.
