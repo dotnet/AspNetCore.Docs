@@ -24,7 +24,7 @@ The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates reque
 The RDG:
 
 * Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview).
-* Turns `Map` methods into [request delegates](/dotnet/api/microsoft.aspnetcore.http.requestdelegate?view=aspnetcore-7.0) associated with specific routes. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions> such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>,  <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
+* Turns `Map` methods into [request delegates](/dotnet/api/microsoft.aspnetcore.http.requestdelegate) associated with specific routes. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions> such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>,  <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
 
 When publishing with native AOT is ***not*** enabled:
 
@@ -41,6 +41,6 @@ When publishing with native AOT is enabled:
 
 The RDG:
 
-* is enabled automatically in your project when you enable publishing with native AOT. You can also manually enable RDG even when not using native AOT by setting <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator> in your project file:
+* is enabled automatically in your project when you enable publishing with native AOT. You can also manually enable RDG even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in your project file:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/rgd/RDG.csproj" highlight="8":::
