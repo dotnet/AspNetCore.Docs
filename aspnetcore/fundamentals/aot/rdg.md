@@ -41,4 +41,6 @@ When publishing with native AOT is enabled:
 
 The RDG:
 
-* is enabled automatically in your project when you enable publishing with native AOT. You can also manually enable RDG even when not using native AOT by setting <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator> in your project file. 
+* is enabled automatically in your project when you enable publishing with native AOT. You can also manually enable RDG even when not using native AOT by setting <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator> in your project file:
+
+:::code language="csharp" source="~/fundamentals/aot/samples/rgd/RDG.csproj" highlight="8":::
