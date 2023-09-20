@@ -181,7 +181,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Mic
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
 
-There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+<a name="bind8"></a>
 
 #### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 

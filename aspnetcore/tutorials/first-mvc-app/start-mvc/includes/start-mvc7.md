@@ -59,21 +59,22 @@ Visual Studio uses the default project template for the created MVC project. The
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
-* Run the following command:
+* Run the following commands:
 
    ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```
 
-  * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
+  The `dotnet new` command creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
 
-  * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
+  The `code` command opens the *MvcMovie* project folder in the current instance of Visual Studio Code.
+
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

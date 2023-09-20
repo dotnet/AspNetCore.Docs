@@ -47,9 +47,9 @@ In this tutorial, you:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs)
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
 * Run the following commands:
 
@@ -58,8 +58,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   code -r GrpcGreeter
   ```
 
-  * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
-  * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
+  The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
+
+  The `code` command opens the *GrpcGreeter* project folder in the current instance of Visual Studio Code.
+
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -119,6 +122,8 @@ info: Microsoft.Hosting.Lifetime[0]
   dotnet new console -o GrpcGreeterClient
   code -r GrpcGreeterClient
   ```
+
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
