@@ -115,7 +115,7 @@ For more information on how these features compare to each other, see [gRPC Inte
 
 ## Host gRPC in non-ASP.NET Core projects
 
-C-core-based server can be added to any project type. Meanwhile, an ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
+A C-core-based server can be added to any project type. Meanwhile, an ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
 
 [!code-xml[](~/grpc/aspnetcore/Server-web.csproj?highlight=1)]
 
