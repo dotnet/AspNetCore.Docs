@@ -113,6 +113,16 @@ ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar fun
 
 For more information on how these features compare to each other, see [gRPC Interceptors versus Middleware](xref:grpc/interceptors#grpc-interceptors-versus-middleware).
 
+## Host gRPC in non-ASP.NET Core projects
+
+C-core-based server can be added to any project type. Meanwhile, an ASP.NET Core gRPC server is usually created from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
+
+[!code-xml[](~/grpc/aspnetcore/Server-web.csproj?highlight=1)]
+
+The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
+
+It's also possible to add an ASP.NET Core gRPC server to existing non-ASP.NET Core projects, such as Windows Services, WPF apps, or WinForms apps. See [Host gRPC in non-ASP.NET Core projects](xref:grpc/aspnetcore#host-grpc-in-non-aspnet-core-projects) for more information.
+
 ## Additional resources
 
 * <xref:grpc/index>
