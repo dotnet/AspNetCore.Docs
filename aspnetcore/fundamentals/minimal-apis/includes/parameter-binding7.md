@@ -168,7 +168,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Mic
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
 
-There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7) in ASP.NET Core 7.0. [Antiforgery is available in ASP.NET Core 8.0](#bind8?view=aspnetcore-8.0&preserve-view=true) and later. However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7) in ASP.NET Core 7.0. [Antiforgery is available in ASP.NET Core 8.0](/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-8.0&preserve-view=true#bind8) and later. However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
 
 <a name="bindar"></a>
 
