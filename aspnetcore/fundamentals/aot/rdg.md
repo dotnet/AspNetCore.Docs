@@ -13,8 +13,6 @@ uid: fundamentals/aot/rdg
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
 
-?view=aspnetcore-7.0
-
 The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates request delegates for ASP.NET Core apps. The RDG is used by the native ahead-of-time (AOT) compiler to generate request delegates for the app's `Map` methods.
 
 > [!NOTE]
@@ -23,21 +21,21 @@ The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates reque
 
 The RDG:
 
-* Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview).
-* Turns `Map` methods into [request delegates](/dotnet/api/microsoft.aspnetcore.http.requestdelegate) associated with specific routes. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions> such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>,  <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
+* Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview)
+* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions> such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
 
-When publishing with native AOT is ***not*** enabled:
+When publishing and native AOT is ***not*** enabled:
 
 * `Map` methods associated with a specific route are compiled in memory into a request delegate when the app starts, not when the app is built.
-* The request delegate is generated at runtime.
+* The request delegates are generated at runtime.
 
-When publishing with native AOT is enabled:
+When publishing with native AOT enabled:
 
-* `Map` methods associated with a specific route are compiled when the app is built. The RDG generates the request delegate for the route and the request delegate is compiled into the app's native image.
+* `Map` methods associated with a specific route are compiled when the app is built. The RDG creates the request delegate for the route and the request delegate is compiled into the app's native image.
 * Eliminates the need to generate the request delegate at runtime.
 * Ensures:
   * The types used in the app's APIs are rooted in the app code in a way that is statically analyzable by the native AOT tool-chain.
-  * The required code is not trimmed away.
+  * The required code isn't trimmed away.
 
 The RDG:
 
@@ -49,7 +47,7 @@ The RDG:
 Manually enabling RDG can be useful for:
 
 * Evaluating a project's compatibility with native AOT.
-* To reduce the app's startup time by pre-generating the request delegates.
+* To reduce the app's startup time by pregenerating the request delegates.
 
 Minimal APIs are optimized for using <xref:System.Text.Json?displayProperty=fullName>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
 
