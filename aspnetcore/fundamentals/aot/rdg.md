@@ -41,6 +41,16 @@ When publishing with native AOT is enabled:
 
 The RDG:
 
-* is enabled automatically in your project when you enable publishing with native AOT. You can also manually enable RDG even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in your project file:
+* Is enabled automatically in projects when publishing with native AOT is enabled.
+* Can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file:
 
-:::code language="csharp" source="~/fundamentals/aot/samples/rgd/RDG.csproj" highlight="8":::
+:::code language="xml" source="~/fundamentals/aot/samples/rgd/RDG.csproj" highlight="7":::
+
+Manually enabling RDG can be useful for:
+
+* Evaluating a project's compatibility with native AOT.
+* To reduce the app's startup time by pre-generating the request delegates.
+
+Minimal APIs are optimized for using <xref:System.Text.Json?displayProperty=fullName>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
+
+:::code language="csharp" source="~/fundamentals/aot/samples/rgd/Program.cs":::
