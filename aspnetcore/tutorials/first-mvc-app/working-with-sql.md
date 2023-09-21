@@ -90,8 +90,6 @@ if (context.Movie.Any())
 }
 ```
 
-<a name="si"></a>
-
 ### Add the seed initializer
 
 # [Visual Studio](#tab/visual-studio)
