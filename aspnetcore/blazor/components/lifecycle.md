@@ -153,11 +153,7 @@ Blazor apps that prerender their content on the server call <xref:Microsoft.AspN
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 The Prerendering article cross-link might be updated,
-     the API for 'WebAssemblyPrerendered' might be different,
-     and cross-link 'client-side rendered (CSR)'. -->
-
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components or client-side components in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -173,9 +169,9 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ::: moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link 'server-side rendering (SSR)' -->
+<!-- UPDATE 8.0 Cross-link render modes article -->
 
-Use *streaming rendering* with server-side rendering (SSR) to improve the user experience for server-side components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
+Use *streaming rendering* with interactive server components to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
 
 :::moniker-end
 
@@ -247,11 +243,11 @@ For more information on route parameters and constraints, see <xref:blazor/funda
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link server-side rendering (SSR) -->
+<!-- UPDATE 8.0 Cross-link render modes article -->
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements.
 
-These methods aren't invoked during prerendering or server-side rendering (SSR) because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
+These methods aren't invoked during prerendering or rendering on the server because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
 
 For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
 
@@ -403,13 +399,9 @@ The following code demonstrates a `WeatherForecastService` that avoids the chang
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#server-side-render-mode>.
 
-<!-- UPDATE 8.0 The Prerendering article cross-link might be updated,
-     the API for 'WebAssemblyPrerendered' might be changing,
-     and cross-link 'client-side rendered (CSR)'. -->
-
 :::moniker range=">= aspnetcore-8.0"
 
-Although the content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components or client-side components in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
 :::moniker-end
 

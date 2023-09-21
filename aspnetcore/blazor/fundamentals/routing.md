@@ -112,8 +112,11 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 ## Provide custom content when content isn't found
 
-<!-- UPDATE 8.0 NotFound isn't part of the BWA template ...
-     confirm if it's a no-op with SSR/BWA -->
+:::moniker range=">= aspnetcore-8.0"
+
+*This section only applies to Blazor WebAssembly apps.* Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`), but the template is supported for backward compatibility to avoid a breaking change in the framework. Blazor Web Apps typically process bad URL requests by either displaying the browser's built-in 404 UI or returning a custom 404 page from the ASP.NET Core server via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
+
+:::moniker-end
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
 
@@ -371,7 +374,7 @@ app.MapFallbackToPage("/example/{param?}", "/");
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in the `Program` file:
 
@@ -455,7 +458,22 @@ Slashes and segments of the captured path are decoded. For a route template of `
 
 Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+| Member | Description |
+| ------ | ----------- |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)). |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side interactive router.</li></ul><p>For more information, see the [Enhanced navigation and form handling](#enhanced-navigation-and-form-handling) section.</p><p>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.</p> |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section. |
+| [`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 | Member | Description |
 | ------ | ----------- |
@@ -494,6 +512,48 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section. |
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Enhanced navigation and form handling
+
+*This section applies to Blazor Web Apps.*
+
+Blazor Web Apps are capable of two types of routing for page navigation and form handling requests:
+
+* Normal navigation (cross-document navigation): a full-page reload is triggered for the request URL.
+* Enhanced navigation (same-document navigation)&dagger;: Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
+
+&dagger;Enhanced navigation is available when:
+
+* The Blazor Web App script (`blazor.web.js`) is used, not the Blazor Server script (`blazor.server.js`) or Blazor WebAssembly script (`blazor.webassembly.js`).
+* The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling).
+* The destination URL is within the internal base URI space (the app's base path).
+
+If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router. This point is only relevant in an uncommon scenario where an interactive `<Router>` is nested inside a server-side rendered `<Router>`. In that case, the interactive router takes priority when handling navigation, so enhanced navigation isn't used for navigation because it's a server-side routing feature.
+
+When calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>:
+
+* If `forceLoad` is `false`, which is the default:
+  * And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.
+  * Otherwise, Blazor performs a full-page reload for the requested URL.
+* If `forceLoad` is `true`: Blazor performs a full-page reload for the requested URL, whether enhanced navigation is available or not.
+
+You can refresh the current page by calling `NavigationManager.Refresh(bool forceLoad = false)`, which always performs an enhanced navigation, if available. If enhanced navigation isn't available, Blazor performs a full-page reload.
+
+```csharp
+Navigation.Refresh();
+```
+
+Pass `true` to the `forceLoad` parameter to ensure a full-page reload is always performed, even if enhanced navigation is available:
+
+```csharp
+Navigation.Refresh(true);
+```
+
+To disable enhanced navigation and form handling, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 

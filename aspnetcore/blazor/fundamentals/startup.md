@@ -108,10 +108,26 @@ The preceding `beforeStart` example only guarantees that the custom script loads
 
 For an examples of JS initializers, see the following resources:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
+* <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
+* [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
 * <xref:blazor/host-and-deploy/webassembly-deployment-layout>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -439,6 +455,52 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 ```html
 <div class="linear-progress"></div>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Configure the .NET WebAssembly runtime
+
+To configure the .NET WebAssembly runtime, use the `configureRuntime` function with the `dotnet` runtime host builder.
+
+The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `true`:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureRuntime: dotnet => {
+      dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
+    }
+  });
+</script>
+```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
+The .NET runtime instance can be accessed from `Blazor.runtime`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Disable enhanced navigation and form handling
+
+*This section applies to Blazor Web Apps.*
+
+To disable enhanced navigation and form handling, set `disableDomPreservation` to `true` for `Blazor.start`:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    ssr: { disableDomPreservation: true }
+  });
+</script>
+```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 :::moniker-end
 

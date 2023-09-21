@@ -2,7 +2,7 @@
 title: Multiple hosted ASP.NET Core Blazor WebAssembly apps
 author: guardrex
 description: Learn how to configure a hosted Blazor WebAssembly app to host multiple Blazor WebAssembly apps.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/12/2023
@@ -68,7 +68,7 @@ The preceding configurations are beyond the scope of this article. For more info
 * <xref:security/enforcing-ssl>
 * <xref:blazor/components/prerendering-and-integration?pivots=webassembly>
 
-Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio or Visual Studio for Mac when the project is created in the IDE.
+Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.
 
 Use a folder for the solution named `MultipleBlazorApps` and name the project `MultipleBlazorApps`.
 

@@ -41,14 +41,14 @@ A project created from the Blazor project template includes the namespace by def
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components are configured for server-side rendering (SSR) and server interactivity. For a client-side experience in a Blazor Web App, change the render mode in the `@attribute` directive at the top of the component to either:
+Components are configured for interactivity with server rendering. For a client-side experience in a Blazor Web App, change the render mode in the `@attribute` directive at the top of the component to either:
 
-* `RenderModeWebAssembly` for client-side rendering (CSR) only.
-* `RenderModeAuto` for CSR/client-side interactivity after SSR/server interactivity and the WebAssembly-based runtime starts.
+* `RenderModeWebAssembly` for interactive client rendering only.
+* `RenderModeAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a Blazor WebAssembly app, take ***either*** of the following approaches:
 
-* Change the render mode to CSR (`RenderModeWebAssembly`):
+* Change the render mode to `RenderModeWebAssembly`:
 
   ```diff
   - @attribute [RenderModeServer]
@@ -57,7 +57,7 @@ If working with a Blazor WebAssembly app, take ***either*** of the following app
   
 * Remove the `@attribute` from the component.
 
-When using CSR, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in CSR components.
+When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
 
 :::moniker-end
 
@@ -175,7 +175,7 @@ In the preceding `Starship1` component:
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
-Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server.
+Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
 [Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported with forms. For an example, see the [`StreamingRenderingForm` test asset (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms/StreamingRenderingForm.razor).
 
@@ -462,9 +462,9 @@ Use the `FormName` parameter to assign a form name. Form names must be unique to
 
 Supplying a form name:
 
-<!-- UPDATE 8.0 Cross-link server-side rendering (SSR) -->
+<!-- UPDATE 8.0 Cross-link render modes article -->
 
-* Is required on all forms that are submitted via server-side rendering (SSR).
+* Is required on all forms that are submitted via interactivity with server rendering.
 * Not required for interactive rendering, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
 
 The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request (an SSR form post). The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
@@ -1613,13 +1613,13 @@ Blazor performs two types of validation:
 
 Validator components support form validation by managing a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 
-The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client-side validation followed by server-side validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
+The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
 
 * [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
 * [Server validation with a validator component](#server-validation-with-a-validator-component)
 
 > [!NOTE]
-> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
 
@@ -1871,25 +1871,27 @@ When validation messages are set in the component, they're added to the validato
 :::moniker-end
 
 > [!NOTE]
-> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 ## Server validation with a validator component
-
-*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
 
 :::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. -->
 
 > [!NOTE]
-> This section hasn't been updated to include [new .NET 8 antiforgery support features](#antiforgery-support) or guidance for Blazor Web Apps. Article updates are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055).
+> For prior releases of .NET, this section was based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance by selecting an earlier version of this article.
 
 :::moniker-end
 
-Server validation is supported in addition to client-side validation:
+:::moniker range="< aspnetcore-8.0"
 
-* Process client-side validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
-* When the form passes client-side validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
+*This section is focused on hosted Blazor WebAssembly scenarios, but the approach for any type of app that uses server validation with web API adopts the same general approach.*
+
+Server validation is supported in addition to client validation:
+
+* Process client validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
+* When the form passes client validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
 * Process model validation on the server.
 * The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
 * Either disable the form on success or display the errors.
@@ -1906,9 +1908,9 @@ Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** proj
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-In the **:::no-loc text="Server":::** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
+In the **:::no-loc text="Server":::** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to client and server data annotations validation, the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
-The validation for the `Defense` ship classification only occurs server-side in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server-side validation without client-side validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client-side validation.
+The validation for the `Defense` ship classification only occurs on the server in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. server validation without client validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client validation.
 
 > [!NOTE]
 > The `StarshipValidation` controller in this section uses Microsoft Identity 2.0. The Web API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`. For a version of the controller that works with Microsoft Identity 1.0 and ASP.NET Core prior to version 5.0, see an earlier version of this article.
@@ -1997,7 +1999,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -2326,14 +2328,16 @@ moniker-end
 -->
 
 > [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
-> The server-side validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
+> The server validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
 >
-> * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+> * [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 > * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
+
+:::moniker-end
 
 ## `InputText` based on the input event
 
@@ -2740,6 +2744,28 @@ Control the style of validation messages in the app's stylesheet (`wwwroot/css/a
 }
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Determine if a form field is valid
+
+<!-- UPDATE 8.0 API cross-link -->
+
+Use `EditContext.IsValid(fieldIdentifier)` to determine if a field is valid without obtaining validation messages.
+
+<span aria-hidden="true">❌</span> Supported, but not recommended:
+
+```csharp
+var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+```
+
+<span aria-hidden="true">✔️</span> Recommended:
+
+```csharp
+var isValid = editContext.IsValid(fieldIdentifier);
+```
+
+:::moniker-end
+
 ## Custom validation attributes
 
 To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>.
@@ -2896,9 +2922,9 @@ The following component validates user input by applying the `SaladChefValidator
 
 :::moniker-end
 
-## Custom validation CSS class attributes
-
 :::moniker range=">= aspnetcore-7.0"
+
+## Custom validation CSS class attributes
 
 Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
 
@@ -2920,6 +2946,29 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Components.Forms;
+
+public class CustomFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext, 
+        in FieldIdentifier fieldIdentifier)
+    {
+        var isValid = editContext.isValid(fieldIdentifier);
+
+        return isValid ? "validField" : "invalidField";
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -2934,6 +2983,10 @@ public class CustomFieldClassProvider : FieldCssClassProvider
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs":::
@@ -2993,7 +3046,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```razor
 @page "/starship-13"
@@ -3044,6 +3097,34 @@ The preceding example checks the validity of all form fields and applies a style
 
 `CustomFieldClassProvider2.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Components.Forms;
+
+public class CustomFieldClassProvider2 : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Name")
+        {
+            var isValid = editContext.isValid(fieldIdentifier);
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -3063,6 +3144,10 @@ public class CustomFieldClassProvider2 : FieldCssClassProvider
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
@@ -3116,6 +3201,43 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Components.Forms;
+
+public class CustomFieldClassProvider3 : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        var isValid = editContext.isValid(fieldIdentifier);
+
+        if (fieldIdentifier.FieldName == "Name")
+        {
+            return isValid ? "validField" : "invalidField";
+        }
+        else
+        {
+            if (editContext.IsModified(fieldIdentifier))
+            {
+                return isValid ? "modified valid" : "modified invalid";
+            }
+            else
+            {
+                return isValid ? "valid" : "invalid";
+            }
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 ```csharp
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -3144,6 +3266,10 @@ public class CustomFieldClassProvider3 : FieldCssClassProvider
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 <!--
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
@@ -3431,15 +3557,6 @@ Add a JavaScript (JS) `getText` function to the app:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Remove at RC1 or RTM -->
-
-> [!NOTE]
-> During the .NET 8 preview, add `suppress-error="BL9992"` to `<script>` tags when the script is placed in the `App` component (`App.razor`). This requirement will be dropped in a future preview release.
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-6.0"
 
 ```javascript
@@ -3616,7 +3733,7 @@ If form processing fails because the component's form payload has exceeded the m
 
 <!-- UPDATE 8.0 Cross-link SSR -->
 
-Standard HTML forms with server-side rendering (SSR) are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+Standard interactive HTML forms with server rendering are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
@@ -3735,9 +3852,21 @@ For more information and guidance, see the following resources:
 
 ## Additional resources
 
+:::moniker range=">= aspnetcore-8.0"
+
 * <xref:blazor/file-uploads>
-* <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* <xref:blazor/file-uploads>
+* <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
+
+:::moniker-end

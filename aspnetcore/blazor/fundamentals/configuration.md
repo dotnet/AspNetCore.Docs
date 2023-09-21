@@ -16,7 +16,7 @@ This article explains how to configure Blazor apps, including app settings, auth
 
 [!INCLUDE[](~/blazor/includes/location-client.md)]
 
-For ASP.NET Core app server-side configuration, see <xref:fundamentals/configuration/index>.
+For server-side ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
 
 On the client, configuration is loaded from the following app settings files by default:
 

@@ -1,8 +1,8 @@
 :::moniker range=">= aspnetcore-8.0"
 
-This guidance applies to server-side rendering (SSR) and interactivity of a Blazor Web App. The `Program` file is `Program.cs` of the server project (`BlazorWeb-CSharp`). Blazor script start configuration is found in the `App` component (`Components/App.razor`).
+This guidance applies to interactive components with server rendering of a Blazor Web App. The `Program` file is `Program.cs` of the server project. Blazor script start configuration is found in the `App` component (`Components/App.razor`).
 
-Routable components with an `@page` directive are placed in the `Components/Pages` folder. Non-routable shared components are placed in the `Components` folder.
+Only routable Server render mode components with an `@page` directive are placed in the `Components/Pages` folder. Non-routable shared components are placed in the server project's `Components` folder. Create custom folders based on component functionality as needed.
 
 :::moniker-end
 

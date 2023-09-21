@@ -71,6 +71,8 @@ The `dotnet new` command creates a new Razor Pages project in the `SignalRChat` 
 
 The `code` command opens the `SignalRChat1 folder in the current instance of Visual Studio Code.
 
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **File** > **New Solution**.

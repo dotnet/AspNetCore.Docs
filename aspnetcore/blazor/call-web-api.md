@@ -53,19 +53,23 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-Origin Resource Sharing (CORS), see the *Cross-Origin Resource Sharing (CORS)* section later in this article.
 
+:::moniker range="< aspnetcore-8.0"
+
 The Blazor examples that demonstrate obtaining weather data from a server API are based on a hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link SSR and CSR -->
+<!-- UPDATE 8.0 Cross-link render modes -->
 
-For server-side components in Blazor Web Apps that require server interactivity, add the server-side rendering (SSR) attribute to the top of the component:
+For server-side components in Blazor Web Apps that require interactivity, add the `[RenderModeServer]` attribute to the top of the component:
 
 ```razor
 @attribute [RenderModeServer]
 ```
 
-For client-side components in Blazor Web Apps that require client interactivity, add the client-side rendering (CSR) attribute to the top of the component:
+For client-side components in Blazor Web Apps that require interactivity, add the `[RenderModeWebAssembly]` attribute to the top of the component:
 
 ```razor
 @attribute [RenderModeWebAssembly]

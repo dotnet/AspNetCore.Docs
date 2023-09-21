@@ -3,6 +3,7 @@ title: Routing in ASP.NET Core
 author: rick-anderson
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
 monikerRange: '>= aspnetcore-3.1'
+content_well_notification: AI-contribution
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/14/2023
@@ -485,7 +486,7 @@ Regular expressions provide much more control over their matching behavior.
 
 <a name="greedy"></a>
 
-Greedy matching, also known as [lazy matching](https://wikipedia.org/wiki/Regular_expression#Lazy_matching), matches the largest possible string. Non-greedy matches the smallest possible string.
+Greedy matching, also known as *maximal matching* attempts to find the longest possible match in the input text that satisfies the [regex](/dotnet/standard/base-types/regular-expressions) pattern. Non-greedy matching, also known as *lazy matching*, seeks the shortest possible match in the input text that satisfies the regex pattern.
 
 [!INCLUDE[](~/includes/routeSlash.md)]
 

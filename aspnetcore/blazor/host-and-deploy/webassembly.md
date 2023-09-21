@@ -19,11 +19,21 @@ With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-we
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
 * The app is executed directly on the browser UI thread.
 
+:::moniker range=">= aspnetcore-8.0"
+
+This article pertains to the deployment scenario where the Blazor app is placed on a static hosting web server or service, .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 * An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -51,7 +61,7 @@ Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compi
 
 :::moniker range=">= aspnetcore-8.0"
 
-Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter implemented in WebAssembly with partial [just-in-time (JIT)](/dotnet/standard/glossary#jit) runtime support. Because the .NET IL code is interpreted, apps typically run slower than they would on a server-side .NET JIT runtime without any IL interpretation. AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU-intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
+Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter implemented in WebAssembly with partial [just-in-time (JIT)](/dotnet/standard/glossary#jit) runtime support, informally referred to as the *Jiterpreter*. Because the .NET IL code is interpreted, apps typically run slower than they would on a server-side .NET JIT runtime without any IL interpretation. AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU-intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
 
 :::moniker-end
 
@@ -93,6 +103,33 @@ The size of an AOT-compiled Blazor WebAssembly app is generally larger than the 
 > [!NOTE]
 > For [Mono](https://github.com/mono/mono)/WebAssembly MSBuild properties and targets, see [`WasmApp.targets` (dotnet/runtime GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.targets). Official documentation for common MSBuild properties is planned per [Document blazor msbuild configuration options (dotnet/docs #27395)](https://github.com/dotnet/docs/issues/27395).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Trim .NET IL after ahead-of-time (AOT) compilation
+
+The `WasmStripILAfterAOT` MSBuild option enables removing the .NET Intermediate Language (IL) for compiled methods after performing AOT compilation to WebAssembly, which reduces the size of the `_framework` folder.
+
+In the app's project file:
+
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+  <WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+</PropertyGroup>
+```
+
+This setting trims away the IL code for most compiled methods, including methods from libraries and methods in the app. Not all compiled methods can be trimmed, as some are still required by the .NET interpreter at runtime.
+
+<!-- UPDATE 8.0 Remove the next line after some time has passed -->
+
+If you hit any issues using this trimming option, [open an issue on the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/issues).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ## Runtime relinking
 
 One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
@@ -117,7 +154,17 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor relies on the host to serve the appropriate compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Blazor relies on the host to serve the appropriate compressed files. When using an **ASP.NET Core Hosted** Blazor WebAssembly project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+
+:::moniker-end
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
@@ -164,6 +211,27 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
     For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
+
+:::moniker range=">= aspnetcore-8.0"
+
+To disable compression, add the `CompressionEnabled` MSBuild property to the app's project file and set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <CompressionEnabled>false</CompressionEnabled>
+</PropertyGroup>
+```
+
+The `CompressionEnabled` property can be passed to the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the following syntax in a command shell:
+
+```dotnetcli
+dotnet publish -p:CompressionEnabled=false
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml
@@ -178,9 +246,11 @@ The `BlazorEnableCompression` property can be passed to the [`dotnet publish`](/
 dotnet publish -p:BlazorEnableCompression=false
 ```
 
+:::moniker-end
+
 ## Rewrite URLs for correct routing
 
-Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
+Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server app. Consider a Blazor WebAssembly app with two components:
 
 * `Main.razor`: Loads at the root of the app and contains a link to the `About` component (`href="About"`).
 * `About.razor`: `About` component.
@@ -199,6 +269,8 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the `index.html` page. When `index.html` is returned, the app's Blazor router takes over and responds with the correct resource.
 
 When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see the [IIS](#iis) section.
+
+:::moniker range="< aspnetcore-8.0"
 
 ## Hosted deployment with ASP.NET Core
 
@@ -279,9 +351,15 @@ For more information, see the following articles:
 * [.NET application publishing overview](/dotnet/core/deploying/)
 * <xref:host-and-deploy/index>
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 ## Standalone deployment
 
@@ -344,8 +422,19 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
+:::moniker range=">= aspnetcore-8.0"
+
+1. Place the custom `web.config` file in the project's root folder.
+1. Publish the project. For more information, see <xref:blazor/host-and-deploy/index>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see <xref:blazor/host-and-deploy/index>.
+
+:::moniker-end
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
@@ -424,7 +513,17 @@ Removing the handler or disabling inheritance is performed in addition to [confi
 
 #### Brotli and Gzip compression
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section only applies to standalone Blazor WebAssembly apps.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 *This section only applies to standalone Blazor WebAssembly apps. Hosted Blazor apps use a default ASP.NET Core app `web.config` file, not the file linked in this section.*
+
+:::moniker-end
 
 IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets for standalone Blazor WebAssembly apps. For an example configuration file, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
 
@@ -695,6 +794,8 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
   --urls=http://127.0.0.1:0
   ```
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Hosted deployment on Linux (Nginx)
 
 Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in <xref:host-and-deploy/proxy-load-balancer>.
@@ -759,7 +860,6 @@ The following example hosts the app at a root URL (no sub-app path):
 </VirtualHost>
 
 <VirtualHost *:80>
-    ProxyRequests     On
     ProxyPreserveHost On
     ProxyPass         / http://localhost:5000/
     ProxyPassReverse  / http://localhost:5000/
@@ -780,7 +880,6 @@ To configure the server to host the app at a sub-app path, the `{PATH}` placehol
 </VirtualHost>
 
 <VirtualHost *:80>
-    ProxyRequests     On
     ProxyPreserveHost On
     ProxyPass         / http://localhost:5000/{PATH}
     ProxyPassReverse  / http://localhost:5000/{PATH}
@@ -801,7 +900,6 @@ For an app that responds to requests at `/blazor`:
 </VirtualHost>
 
 <VirtualHost *:80>
-    ProxyRequests     On
     ProxyPreserveHost On
     ProxyPass         / http://localhost:5000/blazor
     ProxyPassReverse  / http://localhost:5000/blazor
@@ -824,6 +922,8 @@ For more information and configuration guidance, consult the following resources
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 -->
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -849,6 +949,21 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
+>
+> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core 8.0 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+>
+> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
+
 > [!NOTE]
 > Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
 >
@@ -858,6 +973,10 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 > * In ASP.NET Core 6.0 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
@@ -1162,7 +1281,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> is increased to 60 seconds, and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> is increased to 30 seconds.
 
-  For a hosted Blazor WebAssembly app in `Program.cs` of the **:::no-loc text="Server":::** project:
+  In the `Program` file of the server app:
 
    ```csharp
    builder.Services.AddSignalR(options =>
@@ -1185,6 +1304,10 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
 
   When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds).
   
+  <!-- UPDATE 8.0 This needs to be cross-checked against the latest
+       tutorial guidance after the tutorial receives its final
+       round of updates. -->
+
   The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds:
 
 :::moniker-end

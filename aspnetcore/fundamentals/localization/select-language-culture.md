@@ -49,7 +49,7 @@ http://localhost:5000/?culture=es-MX
 
 Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue%2A> method to create a cookie.
 
-The xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider> <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName> returns the default cookie name used to track the user's preferred culture information. The default cookie name is `.AspNetCore.Culture`.
+The <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider> <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName> returns the default cookie name used to track the user's preferred culture information. The default cookie name is `.AspNetCore.Culture`.
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 

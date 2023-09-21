@@ -1,36 +1,39 @@
 ---
-title: ASP.NET Core Blazor Server additional security scenarios
+title: Server-side ASP.NET Core Blazor additional security scenarios
 author: guardrex
-description: Learn how to configure Blazor Server for additional security scenarios.
+description: Learn how to configure server-side Blazor for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/16/2023
 uid: blazor/security/server/additional-scenarios
 ---
-# ASP.NET Core Blazor Server additional security scenarios
+# Server-side ASP.NET Core Blazor additional security scenarios
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to configure Blazor Server for additional security scenarios, including how to pass tokens to a Blazor Server app.
+This article explains how to configure server-side Blazor for additional security scenarios, including how to pass tokens to a Blazor app.
 
-## Pass tokens to a Blazor Server app
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## Pass tokens to a server-side Blazor app
 
 <!-- UPDATE 8.0 I don't think it will be necessary to showcase
-     passing antiforgery tokens for BWAs, so we'll probably
-     version that piece out. However, other types of tokens might
-     still require an approach similar to what this guidance shows. -->
+     passing antiforgery tokens for BWAs (and this guidance is 
+     probably changing for the other tokens as well), so we'll 
+     probably version the section out in favor of a new section 
+     on BWA token handling. -->
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access, refresh, and [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) tokens to the Blazor app, but the approach is valid for other HTTP context state.
+Tokens available outside of the Razor components in a server-side Blazor app can be passed to components with the approach described in this section. The example in this section focuses on passing access, refresh, and [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) tokens to the Blazor app, but the approach is valid for other HTTP context state.
 
 > [!NOTE]
 > Passing the XSRF token to Razor components is useful in scenarios where components POST to Identity or other endpoints that require validation. If your app only requires access and refresh tokens, you can remove the XSRF token code from the following example.
 
-Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
+Authenticate the app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -127,7 +130,7 @@ public class TokenProvider
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`, add services for:
+In the `Program` file, add services for:
 
 * <xref:System.Net.Http.IHttpClientFactory>: Used in a `WeatherForecastService` class that obtains weather data from a server API with an access token.
 * `TokenProvider`: Holds the access and refresh tokens.
@@ -351,9 +354,13 @@ public class WeatherForecastService
 
 :::moniker-end
 
-For an XSRF token passed to a component, inject the `TokenProvider` and add the XSRF token to the POST request. The following example adds the token to a logout endpoint POST. The scenario for the following example is that the logout endpoint (`Areas/Identity/Pages/Account/Logout.cshtml`, [scaffolded into the app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)) doesn't specify an <xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute> (`@attribute [IgnoreAntiforgeryToken]`) because it performs some action in addition to a normal logout operation that must be protected. The endpoint requires a valid XSRF token to successfully process the request.
+For an XSRF token passed to a component, inject the `TokenProvider` and add the XSRF token to the POST request. The following example adds the token to a logout endpoint POST. The scenario for the following example is that the logout endpoint (`Areas/Identity/Pages/Account/Logout.cshtml`, [scaffolded into the app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app)) doesn't specify an <xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute> (`@attribute [IgnoreAntiforgeryToken]`) because it performs some action in addition to a normal logout operation that must be protected. The endpoint requires a valid XSRF token to successfully process the request.
 
 In a component that presents a **Logout** button to authorized users:
+
+<!-- UPDATE 8.0 If the form survives, we'll update it to
+     use the new 8.0 plain HTML forms features and the 
+     new antiforgery token API. -->
 
 ```razor
 @inject TokenProvider TokenProvider
@@ -378,7 +385,7 @@ In a component that presents a **Logout** button to authorized users:
 
 :::moniker range=">= aspnetcore-6.0"
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Program.cs`. The following example sets the OpenID Connect (OIDC) scheme:
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of the `Program` file. The following example sets the OpenID Connect (OIDC) scheme:
 
 :::moniker-end
 
@@ -406,7 +413,7 @@ app.MapBlazorHub().RequireAuthorization(
 
 :::moniker range="< aspnetcore-5.0"
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Azure Active Directory scheme:
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Microsoft Entra ID scheme:
 
 ```csharp
 endpoints.MapBlazorHub().RequireAuthorization(
@@ -443,7 +450,7 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 }
 ```
 
-If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly. Either set the property in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> or in the app settings file with the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> key.
+If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-ME-ID providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly. Either set the property in <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> or in the app settings file with the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> key.
 
 ### Code changes
 
@@ -659,7 +666,7 @@ internal sealed class UserCircuitHandler : CircuitHandler, IDisposable
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Server.Circuits;
@@ -723,7 +730,7 @@ public class UserServiceMiddleware
 
 :::moniker range=">= aspnetcore-6.0"
 
-Immediately before the call to `app.MapBlazorHub()` in `Program.cs`, call the middleware:
+Immediately before the call to `app.MapBlazorHub()` in the `Program` file, call the middleware:
 
 :::moniker-end
 
@@ -788,7 +795,7 @@ public class AuthenticationStateHandler : DelegatingHandler
 }
 ```
 
-In `Program.cs`, register the `AuthenticationStateHandler` and add the handler to the <xref:System.Net.Http.IHttpClientFactory> that creates <xref:System.Net.Http.HttpClient> instances:
+In the `Program` file, register the `AuthenticationStateHandler` and add the handler to the <xref:System.Net.Http.IHttpClientFactory> that creates <xref:System.Net.Http.HttpClient> instances:
 
 ```csharp
 builder.Services.AddTransient<AuthenticationStateHandler>();

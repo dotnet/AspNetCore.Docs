@@ -30,6 +30,20 @@ The authentication support in Blazor WebAssembly is built on top of the OIDC Cli
 
 Other options for authenticating SPAs exist, such as the use of SameSite cookies. However, the engineering design of Blazor WebAssembly uses OAuth and OIDC as the best option for authentication in Blazor WebAssembly apps. [Token-based authentication](xref:security/anti-request-forgery#token-based-authentication) based on [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519) was chosen over [cookie-based authentication](xref:security/anti-request-forgery#cookie-based-authentication) for functional and security reasons:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Using a token-based protocol offers a smaller attack surface area, as the tokens aren't sent in all requests.
+* Server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery) because the tokens are sent explicitly. This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
+* Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
+* Tokens have a short lifetime, one hour by default, which limits the attack window. Tokens can also be revoked at any time.
+* Self-contained JWTs offer guarantees to the client and server about the authentication process. For example, a client has the means to detect and validate that the tokens it receives are legitimate and were emitted as part of a given authentication process. If a third party attempts to switch a token in the middle of the authentication process, the client can detect the switched token and avoid using it.
+* Tokens with OAuth and OIDC don't rely on the user agent behaving correctly to ensure that the app is secure.
+* Token-based protocols, such as OAuth and OIDC, allow for authenticating and authorizing users in standalone Blazor Webassembly apps with the same set of security characteristics.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * Using a token-based protocol offers a smaller attack surface area, as the tokens aren't sent in all requests.
 * Server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery) because the tokens are sent explicitly. This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
@@ -37,6 +51,8 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 * Self-contained JWTs offer guarantees to the client and server about the authentication process. For example, a client has the means to detect and validate that the tokens it receives are legitimate and were emitted as part of a given authentication process. If a third party attempts to switch a token in the middle of the authentication process, the client can detect the switched token and avoid using it.
 * Tokens with OAuth and OIDC don't rely on the user agent behaving correctly to ensure that the app is secure.
 * Token-based protocols, such as OAuth and OIDC, allow for authenticating and authorizing users of hosted Blazor WebAssembly solution clients and standalone Blazor Webassembly apps with the same set of security characteristics.
+
+:::moniker-end
 
 > [!IMPORTANT]
 > For versions of ASP.NET Core that adopt Duende Identity Server in Blazor project templates, [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
@@ -55,7 +71,7 @@ The [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.n
 
 ## `Authentication` component
 
-The `Authentication` component (`Pages/Authentication.razor`) handles remote authentication operations and permits the app to:
+The `Authentication` component (`Authentication.razor`) handles remote authentication operations and permits the app to:
 
 * Configure app routes for authentication states.
 * Set UI content for authentication states.
@@ -123,14 +139,14 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
   
   Allow anonymous access to the `Authentication` component to permit redirection to the identity provider. Add the following Razor code to the `Authentication` component under its [`@page`](xref:mvc/views/razor#page) directive.
   
-  `Pages/Authentication.razor`:
+  `Authentication.razor`:
   
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
   @attribute [AllowAnonymous]
   ```
 
-* Add the attribute to each Razor component in the `Pages` folder under their [`@page`](xref:mvc/views/razor#page) directives:
+* Add the attribute to each Razor component under the [`@page`](xref:mvc/views/razor#page) directive:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization
@@ -142,12 +158,24 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
 
 ## Use one identity provider app registration per app
 
+:::moniker range=">= aspnetcore-8.0"
+
+Some of the articles under this *Overview* pertain to Blazor hosting scenarios that involve two or more apps. A standalone Blazor WebAssembly app uses web API with authenticated users to access server resources and data provided by a server app.
+
+When this scenario is implemented in documentation examples, ***two*** identity provider registrations are used, one for the client app and one for the server app. Using separate registrations, for example in Microsoft Entra ID, isn't strictly required. However, using two registrations is a security best practice because it isolates the registrations by app. Using separate registrations also allows independent configuration of the client and server registrations.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Some of the articles under this *Overview* pertain to either of the following Blazor hosting scenarios that involve two or more apps:
 
 * A hosted Blazor WebAssembly solution, which is composed of two apps: a client-side Blazor WebAssembly app and a server-side ASP.NET Core host app. Authenticated users to the client app access server resources and data provided by the server app.
 * A standalone Blazor WebAssembly app that uses web API with authenticated users to access server resources and data provided by a server app. This scenario is similar to using a hosted Blazor WebAssembly solution; but in this case, the client app isn't hosted by the server app.
 
-When these scenarios are implemented in documentation examples, ***two*** identity provider registrations are used, one for the client app and one for the server app. Using separate registrations, for example in Azure Active Directory, isn't strictly required. However, using two registrations is a security best practice because it isolates the registrations by app. Using separate registrations also allows independent configuration of the client and server registrations.
+When these scenarios are implemented in documentation examples, ***two*** identity provider registrations are used, one for the client app and one for the server app. Using separate registrations, for example in Microsoft Entra ID, isn't strictly required. However, using two registrations is a security best practice because it isolates the registrations by app. Using separate registrations also allows independent configuration of the client and server registrations.
+
+:::moniker-end
 
 ## Refresh tokens
 
@@ -160,7 +188,11 @@ For standalone Blazor WebAssembly apps in ASP.NET Core 6.0 or later, we recommen
 * A [rotated](https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation) refresh token.
 * A refresh token with an expiration after which a new interactive authorization flow is required to refresh the user's credentials. 
 
+:::moniker range="< aspnetcore-8.0"
+
 For hosted Blazor WebAssembly solutions, refresh tokens can be maintained and used by the server-side app in order to access third-party APIs. For more information, see <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+
+:::moniker-end
 
 For more information, see the following resources:
 
@@ -174,7 +206,7 @@ Apps often require claims for users based on a web API call to a server. For exa
 For examples, see the following resources:
 
 * [Additional scenarios: Customize the user](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
-* <xref:blazor/security/webassembly/aad-groups-roles>
+* <xref:blazor/security/webassembly/meid-groups-roles>
 
 ## Prerendering support
 
@@ -195,6 +227,13 @@ We don't recommend using Windows Authentication with Blazor Webassembly or with 
 If Windows Authentication is used with Blazor Webassembly or with any other SPA framework, additional measures are required to protect the app from cross-site request forgery (CSRF) tokens. The same concerns that apply to cookies apply to Windows Authentication with the addition that Windows Authentication doesn't offer a mechanism to prevent sharing of the authentication context across origins. Apps using Windows Authentication without additional protection from CSRF should at least be restricted to an organization's intranet and not be used on the open Internet.
 
 For more information, see <xref:security/anti-request-forgery>.
+
+:::moniker range="< aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Versioning out because this applies
+     directly to hosted WASM. Check with the PU
+     to confirm no replacement guidance in the 
+     BWA/WebAssembly world -->
 
 ## Secure a SignalR hub
 
@@ -226,6 +265,8 @@ To secure a SignalR hub:
 
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
+:::moniker-end
+
 ## Logging
 
 *This section applies to Blazor WebAssembly apps in ASP.NET Core 7.0 or later.*
@@ -252,14 +293,18 @@ Standalone Blazor WebAssembly apps:
 
 * [General guidance for OIDC providers and the WebAssembly Authentication Library](xref:blazor/security/webassembly/standalone-with-authentication-library)
 * [Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Azure Active Directory (AAD)](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
+* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c)
+
+:::moniker range="< aspnetcore-8.0"
 
 Hosted Blazor WebAssembly apps:
 
-* [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
+
+:::moniker-end
 
 Further configuration guidance is found in the following articles:
 

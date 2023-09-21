@@ -6,10 +6,8 @@ groups:
   pivots:
     - id: windows
       title: Windows
-    - id: linux
-      title: Linux
-    - id: macos
-      title: macOS
+    - id: linux-macos
+      title: Linux / macOS
 - id: blazor-hosting-models
   title: Blazor Hosting Model
   prompt: Choose a Blazor hosting model
@@ -40,14 +38,6 @@ groups:
       title: WPF
     - id: winforms
       title: Windows Forms
-- id: blazor-hybrid-tutorial-vs-operating-systems
-  title: Operating System
-  prompt: Choose a Visual Studio operating system
-  pivots:
-    - id: windows
-      title: Windows
-    - id: macos
-      title: macOS
 - id: blazor-graph-api
   title: Approach
   prompt: Choose an approach for interacting with Microsoft Graph
@@ -74,3 +64,11 @@ groups:
       title: Server
     - id: webassembly
       title: WebAssembly
+- id: blazor-app-models
+  title: Blazor App Model
+  prompt: Choose a Blazor app model
+  pivots:
+    - id: server
+      title: Server
+    - id: webassembly
+      title: Blazor WebAssembly

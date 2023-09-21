@@ -12,8 +12,6 @@ uid: tutorials/publish-to-azure-webapp-using-vs
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-If you're working on macOS, see [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc).
-
 To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
 
 ## Set up

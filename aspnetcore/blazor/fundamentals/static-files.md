@@ -18,17 +18,7 @@ This article describes Blazor app configuration for serving static files.
 
 ## Static File Middleware
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section applies to server-side static files in Blazor Web Apps and the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to Blazor Server apps and the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution.*
-
-:::moniker-end
+*This section applies to server-side Blazor apps.*
 
 Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
 
@@ -60,7 +50,43 @@ if (builder.Environment.IsStaging())
 
 ## Static web asset base path
 
-<!-- UPDATE 8.0 TBD on how to compose this for BWA apps -->
+<!-- UPDATE 8.0 TBD if the content is correct for >=8.0 -->
+
+:::moniker range=">= aspnetcore-8.0"
+
+*This section applies to standalone Blazor WebAssembly apps.*
+
+By default, publishing the app places the app's static assets, including Blazor framework files (`_framework` folder assets), at the root path (`/`) in published output. The `<StaticWebAssetBasePath>` property specified in the project file (`.csproj`) sets the base path to a non-root path:
+
+```xml
+<PropertyGroup>
+  <StaticWebAssetBasePath>{PATH}</StaticWebAssetBasePath>
+</PropertyGroup>
+```
+
+In the preceding example, the `{PATH}` placeholder is the path.
+
+Without setting the `<StaticWebAssetBasePath>` property, a standalone app is published at `/BlazorStandaloneSample/bin/Release/{TFM}/publish/wwwroot/`.
+
+In the preceding example, the `{TFM}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) (for example, `net6.0`).
+
+If the `<StaticWebAssetBasePath>` property in a standalone Blazor WebAssembly app sets the published static asset path to `app1`, the root path to the app in published output is `/app1`.
+
+In the standalone Blazor WebAssembly app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <StaticWebAssetBasePath>app1</StaticWebAssetBasePath>
+</PropertyGroup>
+```
+
+In published output, the path to the standalone Blazor WebAssembly app is `/BlazorStandaloneSample/bin/Release/{TFM}/publish/wwwroot/app1/`.
+
+In the preceding example, the `{TFM}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) (for example, `net6.0`).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 *This section applies to standalone Blazor WebAssembly apps and hosted Blazor WebAssembly solutions.*
 
@@ -97,6 +123,8 @@ In published output:
 The `<StaticWebAssetBasePath>` property is most commonly used to control the paths to published static assets of multiple Blazor WebAssembly apps in a single hosted deployment. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>. The property is also effective in standalone Blazor WebAssembly apps.
 
 In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) (for example, `net6.0`).
+
+:::moniker-end
 
 ## File mappings and static file options
 
@@ -174,5 +202,15 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
 ## Additional resources
 
+:::moniker range=">= aspnetcore-8.0"
+
+[App base path](xref:blazor/host-and-deploy/index#app-base-path)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:blazor/host-and-deploy/multiple-hosted-webassembly>
+
+:::moniker-end

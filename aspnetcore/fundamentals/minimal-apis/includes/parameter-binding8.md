@@ -181,7 +181,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Mic
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
 
-There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+<a name="bind8"></a>
 
 #### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 
@@ -191,11 +191,11 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="17-22,43-57":::
 
-***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an anti-forgery token:
+***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an anti-forgery token:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
 
-For more information on XSRF attacks, see [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
+For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
 
 <a name="bindcc"></a>
 
@@ -216,8 +216,7 @@ The following code shows:
 In the preceding code:
 
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
-* Binding to record types is not currently supported, so complex types must be implemented as a class.
-* Recursive binding is not supported, so the `Todo` type does not contain any recursive references.
+* Binding from complex or collection types is ***not*** supported for minimal APIs that are compiled with the Request Delegate Generator.
 
 <a name="bindar"></a>
 

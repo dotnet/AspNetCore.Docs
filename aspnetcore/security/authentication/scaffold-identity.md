@@ -145,7 +145,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## Scaffold Identity into a Blazor Server project with authorization
+## Scaffold Identity into a server-side Blazor app with authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
@@ -157,7 +157,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 ### Style authentication endpoints
 
-Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
+Because server-side Blazor apps use Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
 
 * [Custom Identity components](#custom-identity-components)
 * [Use a custom layout with Blazor app styles](#use-a-custom-layout-with-blazor-app-styles)
@@ -185,9 +185,9 @@ For additional assistance when seeking to build custom Identity Razor components
 
 The Identity pages layout and styles can be modified to produce pages that use styles similar to the default Blazor theme. This approach isn't covered by the documentation.
 
-## Standalone or hosted Blazor WebAssembly apps
+## Client-side Blazor apps
 
-Client-side Blazor WebAssembly apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
+Client-side Blazor apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
 
 The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
 
@@ -443,7 +443,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## Scaffold Identity into a Blazor Server project without existing authorization
+## Scaffold Identity into a server-side Blazor app without existing authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -455,28 +455,28 @@ Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more i
 
 ### Style authentication endpoints
 
-Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
+Because server-side Blazor apps use Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
 
 * [Custom Identity components](#custom-identity-components)
 * [Use a custom layout with Blazor app styles](#use-a-custom-layout-with-blazor-app-styles)
 
 #### Custom Identity components
 
-An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use web API endpoints in the Blazor Server app to process user account actions.
+An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use web API endpoints in the Blazor app to process user account actions.
 
 #### Use a custom layout with Blazor app styles
 
 The Identity pages layout and styles can be modified to produce pages that use styles similar to the default Blazor theme. This approach isn't covered by the documentation.
 
-## Scaffold Identity into a Blazor Server project with authorization
+## Scaffold Identity into a server-side Blazor app with authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
 Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
-## Standalone or hosted Blazor WebAssembly apps
+## Client-side Blazor apps
 
-Client-side Blazor WebAssembly apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
+Client-side Blazor apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
 
 The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
 

@@ -1232,6 +1232,31 @@
         {
             "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-10-01.md",
             "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod4"
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/webassembly/hosted-with-azure-active-directory.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/hosted-with-microsoft-entra-id",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/webassembly/azure-active-directory-groups-and-roles.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/microsoft-entra-id-groups-and-roles",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/webassembly/standalone-with-azure-active-directory.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-microsoft-entra-id",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/tutorials/signalr-blazor-preview.md",
+            "redirect_url": "/aspnet/core/blazor/tutorials/signalr-blazor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/blazor-server-ef-core.md",
+            "redirect_url": "/aspnet/core/blazor/blazor-ef-core",
+            "redirect_document_id": false
         }
     ]
 }

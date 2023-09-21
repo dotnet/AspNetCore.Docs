@@ -91,12 +91,13 @@ A NuGet package must be added to support the database used in this tutorial.
 
   * Create a new web API project and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
+  * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **API**.

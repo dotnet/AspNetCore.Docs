@@ -25,6 +25,9 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
+<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
+     template survives in 8.0+ -->
+
 * Create a new project:
   * For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Next**.
   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
@@ -37,7 +40,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Create a new project:
   * For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
-  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
+  * For a standalone Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
 
 :::moniker-end
 
@@ -58,33 +61,56 @@ To create a Blazor app on Windows, use the following guidance:
 <!-- UPDATE 8.0 Cross-link SSR -->
 
 * For a Blazor Web App in the **Additional information** dialog:
-  * To enable interactivity with server-side rendering (SSR), select the **Use interactive server components** checkbox.
-  * To enable interactivity with client-side rendering (CSR), select the **Use interactive client components** checkbox.
+
+  * Interactivity with server rendering is enabled by default with the **Use interactive server components** checkbox.
+  * To enable interactivity with client rendering, select the **Use interactive WebAssembly components** checkbox.
+  * To include sample pages and a layout based on Bootstrap styling, select the **Include sample pages** checkbox. Disable this option for an empty project without Bootstrap styling.
+
+  If both the WebAssembly and Server render modes are selected, the template uses the Auto render mode. The Auto render mode initially uses the Server mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, Auto switches to the WebAssembly render mode.
+
+  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+
+  For more information, see <xref:blazor/components/render-modes>.
+
+<!-- UPDATE 8.0 I think the interactive root component checkbox
+     will appear at RC2. -->
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 * For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
+
+:::moniker-end
 
 * Select **Create**.
 
 * Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
+:::moniker range="< aspnetcore-8.0"
+
 When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
+:::moniker-end
+
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
+
+:::moniker range="< aspnetcore-8.0"
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 >
 > When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
+:::moniker-end
+
 :::zone-end
 
-:::zone pivot="linux"
+:::zone pivot="linux-macos"
 
-To create a Blazor app on Linux, use the following guidance:
+To create a Blazor app on Linux or macOS, use the following guidance:
 
-Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
+Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a command shell.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -104,7 +130,7 @@ Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/d
 dotnet --version
 ```
 
-Install the latest version of [Visual Studio Code](https://code.visualstudio.com).
+Install the latest version of [Visual Studio Code](https://code.visualstudio.com) for your platform.
 
 Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
@@ -112,26 +138,31 @@ Install the latest [C# for Visual Studio Code extension](https://marketplace.vis
 
 Create a new project:
 
-* For a Blazor Web App experience with demonstration code and Bootstrap (*recommended*), execute the following command:
+* For a Blazor Web App experience with demonstration code and Bootstrap (*recommended*), execute the following command in a command shell:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
   ```
 
-  <!-- UPDATE 8.0 Cross-link SSR -->
+  <!-- UPDATE 8.0 Cross-links -->
 
-  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
+  <!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
+
+  Interactivity with server rendering is enabled by default.
+
+  To enable interactivity with client rendering, add the `--use-wasm` option to the command:
 
   ```dotnetcli
-  dotnet new blazor -o BlazorApp --use-server
+  dotnet new blazor -o BlazorApp --use-wasm
   ```
 
-* For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+* For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
-* Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+
+* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
   ```dotnetcli
   dotnet new blazorwasm-empty -o BlazorApp
@@ -148,26 +179,31 @@ Create a new project:
   ```dotnetcli
   dotnet new blazorserver -o BlazorApp
   ```
+
 * Alternatively, create a Blazor Server app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
 
   ```dotnetcli
   dotnet new blazorserver-empty -o BlazorApp
   ```
-* For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+
+* For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
-* Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+
+* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
   ```dotnetcli
   dotnet new blazorwasm-empty -o BlazorApp
   ```
+
 * For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp -ho
   ```
+
 * Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
 
   ```dotnetcli
@@ -185,11 +221,13 @@ Create a new project:
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
+
 * For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp -ho
   ```
+
 * For a Blazor Server experience, execute the following command:
 
   ```dotnetcli
@@ -200,106 +238,12 @@ Create a new project:
 
 Open the `BlazorApp` folder in Visual Studio Code.
 
-The IDE requests that you add assets to build and debug the project. Select **Yes**.
+When Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
 
-If Visual Studio Code doesn't offer to create the assets automatically, use the following files:
+If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
 
-`.vscode/launch.json` (configured for launch and debug of a Blazor WebAssembly app):
-
-:::moniker range=">= aspnetcore-6.0"
-
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "blazorwasm",
-      "name": "Launch and Debug Blazor WebAssembly Application",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "browser": "edge"
-    }
-  ]
-}
-```
-
-`.vscode/tasks.json`:
-
-```json
-{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "build",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary",
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile"
-    }
-  ]
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```json
-{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "blazorwasm",
-      "name": "Launch and Debug Blazor WebAssembly Application",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "browser": "edge"
-    }
-  ]
-}
-```
-
-`.vscode/tasks.json`:
-
-```json
-{
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "build",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "build",
-        // Ask dotnet build to generate full paths for file names.
-        "/property:GenerateFullPaths=true",
-        // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-        "/consoleloggerparameters:NoSummary",
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile"
-    }
-  ]
-}
-```
-
-:::moniker-end
+> [!NOTE]
+> For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -311,6 +255,8 @@ The project's `Properties/launchSettings.json` file includes the `inspectUri` pr
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 **Hosted Blazor WebAssembly launch and task configuration**
 
 For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
@@ -320,7 +266,9 @@ For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add
 >
 > When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. Depending on the framework version, the URL protocol is either secure (HTTPS) `https://localhost:{PORT}` or insecure (HTTP) `http://localhost:{PORT}`, where the `{PORT}` placeholder is an assigned port. Note the URL for use in the `launch.json` file.
 
@@ -471,141 +419,44 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (m
 
 ## Trust a development certificate
 
-For more information, see <xref:security/enforcing-ssl#trust-https-certificate-on-linux-using-edge-or-chrome>.
-
-:::zone-end
-
-:::zone pivot="macos"
-
-To create a Blazor app on macOS, use the following guidance:
-
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 VS4Mac new project guidance -->
-
-* Install [Visual Studio for Mac Preview](https://visualstudio.microsoft.com/vs/mac/preview/). When the installer requests the workloads to install, select **.NET**.
-
-* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
-
-* For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac Preview can't create a Blazor Web App in its UI at this time.
-
-  Install the [.NET 8.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet/8.0) using the correct macOS installer for your platform architecture (Arm64 or x64). For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
-  
-  Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp
-  ```
-
-  <!-- UPDATE 8.0 Cross-link SSR -->
-
-  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp --use-server
-  ```
-
-  After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
-
-  > [!NOTE]
-  > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
-
-<!-- UPDATE 8.0
-
-In the sidebar, select **Web and Console** > **App**.
-
-For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Continue**.
-
--->
-
-* For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
-
-* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
-
-* In the sidebar, select **Web and Console** > **App**.
-
-* Create the app:
-  * For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
-  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Continue**.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-7.0"
-
-* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
-
-* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
-
-* In the sidebar, select **Web and Console** > **App**.
-
-* Create the app:
-  * For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
-  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. Select **Continue**.
-
-:::moniker-end
-
-* Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
-
-* For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
-
-<!-- UPDATE 8.0 Re-enable the next two bullets and the dev cert paragraph for 8.0 after VS4Mac supports creating the app in the UI -->
-
-* In the **Project name** field, name the app `BlazorApp`. Select **Create**.
-
-* Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
-
-If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
-
-> [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
->
-> When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
+For more information, see <xref:security/enforcing-ssl>.
 
 :::zone-end
 
 ## Visual Studio solution file (`.sln`)
 
-A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) uses a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
 
-Tooling outside of Visual Studio and Visual Studio for Mac can interact with solution files:
+Tooling outside of Visual Studio can interact with solution files:
 
 * The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
 * [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
 
-Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the **ASP.NET Core Hosted** option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+:::moniker range="< aspnetcore-8.0"
+
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the **ASP.NET Core Hosted** option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+
+:::moniker-end
 
 For more information, see the following resources in the Visual Studio documentation:
 
 * [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
 * [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
 
-:::zone pivot="windows"
-
 ## Use Visual Studio Code for cross-platform Blazor development
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux/macOS version of this article](?pivots=linux-macos).
 
-:::zone-end
-
-:::zone pivot="macos"
-
-## Use Visual Studio Code for cross-platform Blazor development
-
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
-
-:::zone-end
+For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
 
 ## Blazor template options
 
-The Blazor framework provides templates for creating new apps. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
+The Blazor framework provides templates for creating new apps. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
 
 :::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
+     template survives in 8.0+ -->
 
 * Blazor Web App project template (*recommended*): `blazor`
 * Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
@@ -637,6 +488,9 @@ For more information on template options, see the following resources:
 * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
 
 -->
+
+<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
+     template survives in 8.0+ -->
 
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)

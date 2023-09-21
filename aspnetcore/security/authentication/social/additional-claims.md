@@ -29,7 +29,7 @@ The OAuth authentication provider establishes a trust relationship with an app u
 * [Other authentication providers](xref:security/authentication/otherlogins)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
-Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Azure Active Directory (AAD) permits assigning optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
+Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits assigning optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
 
@@ -91,7 +91,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=49-53,73)]
 
 > [!NOTE]
-> For information on passing tokens to the Razor components of a Blazor Server app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+> For information on passing tokens to the Razor components of a server-side Blazor app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
 
 ## How to add additional custom tokens
 
@@ -197,7 +197,7 @@ The OAuth authentication provider establishes a trust relationship with an app u
 * [Other authentication providers](xref:security/authentication/otherlogins)
 * [OpenIdConnect](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2)
 
-Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Azure Active Directory (AAD) permits you to assign optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
+Optional claims sent in the ID or access token from the authentication provider are usually configured in the provider's online portal. For example, Microsoft Entra ID permits you to assign optional claims to the app's ID token in the app registration's **Token configuration** blade. For more information, see [How to: Provide optional claims to your app (Azure documentation)](/azure/active-directory/develop/active-directory-optional-claims). For other providers, consult their external documentation sets.
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
 
@@ -259,7 +259,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
 
 > [!NOTE]
-> For information on passing tokens to the Razor components of a Blazor Server app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+> For information on passing tokens to the Razor components of a server-side Blazor app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
 
 ## How to add additional custom tokens
 

@@ -21,9 +21,6 @@ The SignalR hub is the core abstraction for sending messages to clients connecte
 
 In ASP.NET Core SignalR, you can access an instance of `IHubContext` via dependency injection. You can inject an instance of `IHubContext` into a controller, middleware, or other DI service. Use the instance to send messages to clients.
 
-> [!NOTE]
-> This differs from ASP.NET 4.x SignalR which used GlobalHost to provide access to the `IHubContext`. ASP.NET Core has a dependency injection framework that removes the need for this global singleton.
-
 ### Inject an instance of `IHubContext` in a controller
 
 You can inject an instance of `IHubContext` into a controller by adding it to your constructor:

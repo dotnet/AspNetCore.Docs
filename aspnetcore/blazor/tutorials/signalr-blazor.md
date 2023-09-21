@@ -7,7 +7,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/25/2022
 uid: blazor/tutorials/signalr-blazor
-zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
 
@@ -30,6 +29,294 @@ Learn how to:
 
 At the end of this tutorial, you'll have a working chat app.
 
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Update prereq content -->
+
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+[Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [.NET 8.0 Preview](https://dotnet.microsoft.com/download/dotnet/8.0) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
+
+# [.NET Core CLI](#tab/netcore-cli/)
+
+[.NET 8.0 Preview](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+---
+
+## Create a Blazor Web App
+
+Follow the guidance for your choice of tooling:
+
+# [Visual Studio](#tab/visual-studio)
+
+> [!NOTE]
+> Visual Studio 2022 or later and .NET Core SDK 8.0.0 or later are required.
+
+Create a new project.
+
+Select the **Blazor Web App** template. Select **Next**.
+
+Type `BlazorSignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
+
+Confirm the **Framework** is .NET 8.0 or later. Select **Create**.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+In a command shell, execute the following command:
+
+```dotnetcli
+dotnet new blazor -o BlazorSignalRApp
+```
+
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
+
+In Visual Studio Code, open the app's project folder.
+
+When Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
+
+If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
+
+# [.NET Core CLI](#tab/netcore-cli/)
+
+In a command shell, execute the following command:
+
+```dotnetcli
+dotnet new blazor -o BlazorSignalRApp
+```
+
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
+
+---
+
+## Add the SignalR client library
+
+# [Visual Studio](#tab/visual-studio/)
+
+In **Solution Explorer**, right-click the `BlazorSignalRApp` project and select **Manage NuGet Packages**.
+
+In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to `nuget.org`.
+
+With **Browse** and **Include prerelease** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
+
+In the search results, select the latest **preview** [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. <!-- Set the version to match the shared framework of the app. --> Select **Install**.
+
+If the **Preview Changes** dialog appears, select **OK**.
+
+If the **License Acceptance** dialog appears, select **I Accept** if you agree with the license terms.
+
+# [Visual Studio Code](#tab/visual-studio-code/)
+
+In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
+```
+
+<!-- UPDATE 8.0
+
+Remove prerelease flag.
+
+To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
+
+-->
+
+# [.NET Core CLI](#tab/netcore-cli/)
+
+In a command shell from the project's folder, execute the following command:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
+```
+
+<!-- UPDATE 8.0
+
+Remove prerelease flag.
+
+To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
+
+-->
+
+---
+
+## Add a SignalR hub
+
+Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`) to the root of the app:
+
+```csharp
+using Microsoft.AspNetCore.SignalR;
+
+namespace BlazorSignalRApp.Hubs;
+
+public class ChatHub : Hub
+{
+    public async Task SendMessage(string user, string message)
+    {
+        await Clients.All.SendAsync("ReceiveMessage", user, message);
+    }
+}
+```
+
+## Add services and an endpoint for the SignalR hub
+
+Open the `Program` file.
+
+Add the namespaces for <xref:Microsoft.AspNetCore.ResponseCompression?displayProperty=fullName> and the `ChatHub` class to the top of the file:
+
+```csharp
+using Microsoft.AspNetCore.ResponseCompression;
+using BlazorSignalRApp.Hubs;
+```
+
+Add Response Compression Middleware services:
+
+```csharp
+builder.Services.AddResponseCompression(opts =>
+{
+   opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+         new[] { "application/octet-stream" });
+});
+```
+
+Use Response Compression Middleware at the top of the processing pipeline's configuration:
+   
+```csharp
+app.UseResponseCompression();
+```
+
+Add an endpoint for the hub immediately after the line `app.MapRazorComponents<App>();`:
+
+```csharp
+app.MapHub<ChatHub>("/chathub");
+```
+
+## Add Razor component code for chat
+
+Open the `Components/Pages/Home.razor` file.
+
+Replace the markup with the following code:
+
+```razor
+@page "/"
+@attribute [RenderModeServer]
+@using Microsoft.AspNetCore.SignalR.Client
+@inject NavigationManager Navigation
+@implements IAsyncDisposable
+
+<PageTitle>Home</PageTitle>
+
+<div class="form-group">
+    <label>
+        User:
+        <input @bind="userInput" />
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Message:
+        <input @bind="messageInput" size="50" />
+    </label>
+</div>
+<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
+
+<hr>
+
+<ul id="messagesList">
+    @foreach (var message in messages)
+    {
+        <li>@message</li>
+    }
+</ul>
+
+@code {
+    private HubConnection? hubConnection;
+    private List<string> messages = new List<string>();
+    private string? userInput;
+    private string? messageInput;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+            .Build();
+
+        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        {
+            var encodedMsg = $"{user}: {message}";
+            messages.Add(encodedMsg);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task Send()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+        }
+    }
+
+    public bool IsConnected =>
+        hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}
+```
+
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
+## Run the app
+
+Follow the guidance for your tooling:
+
+# [Visual Studio](#tab/visual-studio)
+
+Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+# [.NET Core CLI](#tab/netcore-cli/)
+
+In a command shell from the project's folder, execute the following commands:
+
+```dotnetcli
+dotnet run
+```
+
+---
+
+Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
+
+Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
+
+![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
+
+Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
@@ -44,10 +331,6 @@ At the end of this tutorial, you'll have a working chat app.
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/) with the **.NET** workload
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
@@ -60,11 +343,11 @@ Downloading the tutorial's sample chat app isn't required for this tutorial. The
 
 [View or download sample code](https://github.com/dotnet/blazor-samples)
 
-:::zone pivot="webassembly"
+## Hosted Blazor WebAssembly experience
 
-## Create a hosted Blazor WebAssembly app
+### Create the app
 
-Follow the guidance for your choice of tooling:
+Follow the guidance for your choice of tooling to create a hosted Blazor WebAssembly app:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -104,24 +387,6 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 * <xref:blazor/tooling?pivots=linux> (use the guidance for the *Linux* operating system regardless of platform)
 * <xref:blazor/debug>
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
-
-In the sidebar, select **Web and Console** > **App**.
-
-Choose the **Blazor WebAssembly App** template. Select **Continue**.
-
-Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Continue**.
-
-In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
-
-If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
-
-Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
-
-Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell, execute the following command:
@@ -138,7 +403,7 @@ Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence o
 
 ---
 
-## Add the SignalR client library
+### Add the SignalR client library
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -164,18 +429,6 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In the **Solution** sidebar, right-click the `BlazorWebAssemblySignalRApp.Client` project and select **Manage NuGet Packages**.
-
-In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
-
-With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
-
-In the search results, select the checkbox next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Add Package**.
-
-If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
@@ -188,11 +441,13 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ---
 
-## Add a SignalR hub
+### Add a SignalR hub
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs":::
 
@@ -216,9 +471,13 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 :::moniker-end
 
-## Add services and an endpoint for the SignalR hub
+:::moniker range="< aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-6.0"
+### Add services and an endpoint for the SignalR hub
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 In the `BlazorWebAssemblySignalRApp.Server` project, open the `Program.cs` file.
 
@@ -288,13 +547,17 @@ endpoints.MapHub<ChatHub>("/chathub");
 
 :::moniker-end
 
-## Add Razor component code for chat
+:::moniker range="< aspnetcore-8.0"
+
+### Add Razor component code for chat
 
 In the `BlazorWebAssemblySignalRApp.Client` project, open the `Pages/Index.razor` file.
 
 Replace the markup with the following code:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
@@ -318,14 +581,16 @@ Replace the markup with the following code:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
 > Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 :::moniker-end
 
-## Run the app
+:::moniker range="< aspnetcore-8.0"
+
+### Run the app
 
 Follow the guidance for your tooling:
 
@@ -348,20 +613,6 @@ In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` projec
 For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
-
-> [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
->
-> Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
-> 
-> If the app fails to start in the browser:
-> 
-> * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
-> * Refresh the browser using the browser's reload button.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
@@ -400,13 +651,11 @@ Choose either browser, enter a name and message, and select the button to send t
 
 Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
-:::zone-end
+## Blazor Server experience
 
-:::zone pivot="server"
+### Create the app
 
-## Create a Blazor Server app
-
-Follow the guidance for your choice of tooling:
+Follow the guidance for your choice of tooling to create a Blazor Server app:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -435,24 +684,6 @@ In Visual Studio Code, open the app's project folder.
 
 When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
-
-Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
-
-In the sidebar, select **Web and Console** > **App**.
-
-Choose the **Blazor Server App** template. Select **Continue**.
-
-Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
-
-In the **Project name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
-
-If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
-
-Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell, execute the following command:
@@ -465,7 +696,7 @@ The `-o|--output` option creates a folder for the project. If you've created a f
 
 ---
 
-## Add the SignalR client library
+### Add the SignalR client library
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -491,18 +722,6 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
-
-In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
-
-With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
-
-In the search results, select the checkbox next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Add Package**.
-
-If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell from the project's folder, execute the following command:
@@ -515,9 +734,11 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ---
 
+:::moniker-end
+
 :::moniker range="< aspnetcore-5.0"
 
-## Add the System.Text.Encodings.Web package
+### Add the System.Text.Encodings.Web package
 
 *This section only applies to apps for ASP.NET Core version 3.x.*
 
@@ -549,18 +770,6 @@ dotnet add package System.Text.Encodings.Web
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
-
-In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
-
-With **Browse** selected, type `System.Text.Encodings.Web` in the search box.
-
-In the search results, select the checkbox next to the [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) package, select the correct version of the package that matches the shared framework in use, and select **Add Package**.
-
-If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell from the project's folder, execute the following command:
@@ -575,11 +784,15 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 :::moniker-end
 
-## Add a SignalR hub
+:::moniker range="< aspnetcore-8.0"
+
+### Add a SignalR hub
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Hubs/ChatHub.cs":::
 
@@ -603,9 +816,13 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 :::moniker-end
 
-## Add services and an endpoint for the SignalR hub
+:::moniker range="< aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-6.0"
+### Add services and an endpoint for the SignalR hub
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Open the `Program.cs` file.
 
@@ -675,13 +892,17 @@ endpoints.MapHub<ChatHub>("/chathub");
 
 :::moniker-end
 
-## Add Razor component code for chat
+:::moniker range="< aspnetcore-8.0"
+
+### Add Razor component code for chat
 
 Open the `Pages/Index.razor` file.
 
 Replace the markup with the following code:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Pages/Index.razor":::
 
@@ -705,14 +926,16 @@ Replace the markup with the following code:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
 > Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 :::moniker-end
 
-## Run the app
+:::moniker range="< aspnetcore-8.0"
+
+### Run the app
 
 Follow the guidance for your tooling:
 
@@ -723,13 +946,6 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
-
-> [!IMPORTANT]
-> Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -749,7 +965,7 @@ Choose either browser, enter a name and message, and select the button to send t
 
 Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
-:::zone-end
+:::moniker-end
 
 ## Next steps
 

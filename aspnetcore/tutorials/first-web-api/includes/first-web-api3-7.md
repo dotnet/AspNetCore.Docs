@@ -64,8 +64,9 @@ The following diagram shows the design of the app.
 
   * Create a new web API project and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
+  * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -593,8 +594,9 @@ The following diagram shows the design of the app.
 
   * Create a new web API project and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
+  * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -1214,12 +1216,13 @@ The following diagram shows the design of the app.
    code -r ../TodoApi
    ```
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+  These commands:
 
-  The preceding commands:
+  * Create a new web API project and open it in Visual Studio Code.
+  * Add a NuGet package that is needed for the next section.
+  * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
-  * Creates a new web API project and opens it in Visual Studio Code.
-  * Adds the NuGet packages which are required in the next section.
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

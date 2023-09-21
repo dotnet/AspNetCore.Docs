@@ -18,9 +18,31 @@ NOTE: Daggered lines under the table (&dagger;, &Dagger;) use a double-space at 
 
 -->
 
-This article explains the different Blazor hosting models and how to choose which one to use.
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains Blazor hosting models, which can be applied in different parts of a Blazor app at either compile time or runtime.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+This article explains Blazor hosting models and how to choose which one to use.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways:
+
+* Server-side in ASP.NET Core (*Blazor Server* or statically rendered).
+* Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
+* Client-side in a native mobile or desktop app that renders components to an embedded Web View control (*Blazor Hybrid*).
+
+Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
@@ -34,38 +56,50 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 
 ## Blazor Server
 
-With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection using the [WebSockets protocol](xref:fundamentals/websockets). The state on the server associated with each connected client is called a *circuit*. Circuits aren't tied to a specific network connection and can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
+With the Blazor Server hosting model, components are executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection using the [WebSockets protocol](xref:fundamentals/websockets). The state on the server associated with each connected client is called a *circuit*. Circuits aren't tied to a specific network connection and can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
 
-In a traditional server-rendered app, opening the same app in multiple browser screens (tabs or `iframes`) typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of server-managed component state. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
+In a traditional server-rendered app, opening the same app in multiple browser screens (tabs or `iframes`) typically doesn't translate into additional resource demands on the server. For the Blazor Server hosting model, each browser screen requires a separate circuit and separate instances of server-managed component state. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
-![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
+![The browser interacts with Blazor (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
-On the client, the Blazor script (`blazor.server.js`) establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
+On the client, the Blazor script establishes the SignalR connection with the server. The script is served from an embedded resource in the ASP.NET Core shared framework.
 
 The Blazor Server hosting model offers several benefits:
 
-* Download size is significantly smaller than a Blazor WebAssembly app, and the app loads much faster.
+* Download size is significantly smaller than when the Blazor WebAssembly hosting model is used, and the app loads much faster.
 * The app takes full advantage of server capabilities, including the use of .NET Core APIs.
 * .NET Core on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
-* Thin clients are supported. For example, Blazor Server apps work with browsers that don't support WebAssembly and on resource-constrained devices.
+* Thin clients are supported. For example, Blazor Server works with browsers that don't support WebAssembly and on resource-constrained devices.
 * The app's .NET/C# code base, including the app's component code, isn't served to clients.
 
 The Blazor Server hosting model has the following limitations:
 
 * Higher latency usually exists. Every user interaction involves a network hop.
-* There's no offline support. If the client connection fails, the app stops working.
+* There's no offline support. If the client connection fails, interactivity fails.
 * Scaling apps with many users requires server resources to handle multiple client connections and client state.
 * An ASP.NET Core server is required to serve the app. Serverless deployment scenarios aren't possible, such as serving the app from a Content Delivery Network (CDN).
 
-We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections.
+We recommend using the [Azure SignalR Service](/azure/azure-signalr) for apps that adopt the Blazor Server hosting model. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections.
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly (WASM) apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+The Blazor WebAssembly hosting model runs components client-side in the browser on a WebAssembly-based .NET runtime. Razor components, their dependencies, and the .NET runtime are downloaded to the browser. Components are executed directly on the browser UI thread. UI updates and event handling occur within the same process. Assets are deployed as static files to a web server or service capable of serving static content to clients.
 
-![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
+![Blazor WebAssembly: Blazor runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
-When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app.
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor web apps can use the Blazor WebAssembly hosting model to enable client-side interactivity. When an app is created that exclusively runs on the Blazor WebAssembly hosting model without server-side rendering and interactivity, the app is called a *standalone* Blazor WebAssembly app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app.
+
+:::moniker-end
+
+When a standalone Blazor WebAssembly app uses a backend ASP.NET Core app to serve its files, the app is called a *hosted* Blazor WebAssembly app. Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:blazor/tutorials/signalr-blazor>).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -73,26 +107,24 @@ A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/prog
 
 :::moniker-end
 
-Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:blazor/tutorials/signalr-blazor>).
+The Blazor script handles:
 
-The `blazor.webassembly.js` script is provided by the framework and handles:
+* Downloading the .NET runtime, Razor components, and the component's dependencies.
+* Initialization of the runtime.
 
-* Downloading the .NET runtime, the app, and the app's dependencies.
-* Initialization of the runtime to run the app.
+The Blazor WebAssembly hosting model offers several benefits:
 
-The Blazor WebAssembly (WASM) hosting model offers several benefits:
-
-* There's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the server goes offline.
+* For standalone Blazor WebAssembly apps, there's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the server goes offline.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
-* An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
+* For standalone Blazor WebAssembly apps, an ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
 
 The Blazor WebAssembly hosting model has the following limitations:
 
-* The app is restricted to the capabilities of the browser.
+* Razor components are restricted to the capabilities of the browser.
 * Capable client hardware and software (for example, WebAssembly support) is required.
-* Download size is larger, and apps take longer to load.
-* The app's code can't be protected from inspection and tampering by users.
+* Download size is larger, and components take longer to load.
+* Code sent to the client can't be protected from inspection and tampering by users.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -102,13 +134,11 @@ The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter 
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
+Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
 
-The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code.
+The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>. The .NET compiler further precompresses a Blazor WebAssembly app for a smaller app payload.
-
-Blazor WebAssembly apps can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
+WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
 
 :::moniker-end
 
@@ -153,7 +183,17 @@ For more information on Microsoft native client frameworks, see the following re
 
 ## Which Blazor hosting model should I choose?
 
+:::moniker range=">= aspnetcore-8.0"
+
+A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/components/render-modes>. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Select the Blazor hosting model based on the app's feature requirements. The following table shows the primary considerations for selecting the hosting model.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0" 
 
@@ -203,7 +243,13 @@ To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutori
 
 ### Complete .NET API compatibility
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for Blazor WebAssembly are limited to a subset of .NET APIs. When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Blazor Server and Blazor Hybrid apps have complete .NET API compatibility, while Blazor WebAssembly apps are limited to a subset of .NET APIs. When an app's specification requires one or more .NET APIs that are unavailable to Blazor WebAssembly apps, then choose Blazor Server or Blazor Hybrid.
 
@@ -217,7 +263,18 @@ Blazor Server apps have complete .NET API compatibility, while Blazor WebAssembl
 
 ### Direct access to server and network resources
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+Components rendered for the Blazor Server hosting model have direct access to server and network resources where the app is executing. Because components hosted using Blazor WebAssembly or Blazor Hybrid execute on a client, they don't have direct access to server and network resources. Components can access server and network resources *indirectly* via protected server-based APIs. Server-based APIs might be available via third-party libraries, packages, and services. Take into account the following considerations:
+
+* Third-party libraries, packages, and services might be costly to implement and maintain, weakly supported, or introduce security risks.
+* If one or more server-based APIs are developed internally by your organization, additional resources are required to build and maintain them.
+
+Use the Blazor Server hosting model to avoid the need to expose APIs from the server environment.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Blazor Server apps have direct access to server and network resources where the app is executing. Because Blazor WebAssembly and Blazor Hybrid apps execute on a client, they don't have direct access to server and network resources. Blazor WebAssembly and Blazor Hybrid apps can access server and network resources *indirectly* via protected server-based APIs. Server-based APIs might be available via third-party libraries, packages, and services. Take into account the following considerations:
 
@@ -241,13 +298,29 @@ To avoid server-based APIs for Blazor WebAssembly apps, adopt Blazor Server, whi
 
 ### Small payload size with fast initial load time
 
+:::moniker range=">= aspnetcore-8.0"
+
+Rendering components from the server reduces the app payload size and improves initial load times. When a fast initial load time is desired, use the Blazor Server hosting model or consider static server rendering.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Blazor Server apps have relatively small payload sizes with faster initial load times. When a fast initial load time is desired, adopt Blazor Server.
+
+:::moniker-end
 
 ### Near native execution speed
 
-Blazor Server apps generally execute on the server quickly. However, Blazor Server apps are usually slower than other types of apps that execute natively on the client.
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-6.0"
+Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
+
+Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform. Consider using [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) to improve runtime performance when using Blazor WebAssembly.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
@@ -257,13 +330,21 @@ Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .N
 
 :::moniker range="< aspnetcore-6.0"
 
+Blazor Server apps generally execute on the server quickly.
+
 Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform.
 
 :::moniker-end
 
 ### App code secure and private on the server
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+Maintaining app code securely and privately on the server is a built-in feature of components rendered for the Blazor Server hosting model. Components rendered using the Blazor WebAssembly or Blazor Hybrid hosting models can use server-based APIs to access functionality that must be kept private and secure. The considerations for developing and maintaining server-based APIs described in the [Direct access to server and network resources](#direct-access-to-server-and-network-resources) section apply. If the development and maintenance of server-based APIs isn't desirable for maintaining secure and private app code, render components for the Blazor Server hosting model.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Maintaining app code securely and privately on the server is a built-in feature of Blazor Server. Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access functionality that must be kept private and secure. The considerations for developing and maintaining server-based APIs described in the [Direct access to server and network resources](#direct-access-to-server-and-network-resources) section apply. If the development and maintenance of server-based APIs isn't desirable for maintaining secure and private app code, adopt the Blazor Server hosting model.
 
@@ -277,7 +358,13 @@ Maintaining app code securely and privately on the server is a built-in feature 
 
 ### Run apps offline once downloaded
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+Standalone Blazor WebAssembly apps built as Progressive Web Apps (PWAs) and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Components rendered for the Blazor Server hosting model fail to run when the connection to the server is lost. If an app must run offline, standalone Blazor WebAssembly and Blazor Hybrid are the best choices.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Blazor WebAssembly apps built as Progressive Web Apps (PWAs) and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
 
@@ -291,15 +378,21 @@ Blazor WebAssembly apps can run offline, which is particularly useful when clien
 
 ### Static site hosting
 
-Static site hosting is possible with Blazor WebAssembly apps because they're downloaded to clients as a set of static files. Blazor WebAssembly apps don't require a server to execute server-side code in order to download and run. Blazor WebAssembly apps can be delivered via a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)).
+Static site hosting is possible with standalone Blazor WebAssembly apps because they're downloaded to clients as a set of static files. Standalone Blazor WebAssembly apps don't require a server to execute server-side code in order to download and run and can be delivered via a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)).
 
 :::moniker range=">= aspnetcore-6.0"
 
-Although Blazor Hybrid apps are compiled into one or more self-contained deployment assets, the assets are usually provided to clients through a third-party app store. If static hosting is an app requirement, select Blazor WebAssembly.
+Although Blazor Hybrid apps are compiled into one or more self-contained deployment assets, the assets are usually provided to clients through a third-party app store. If static hosting is an app requirement, select standalone Blazor WebAssembly.
 
 :::moniker-end
 
 ### Offloads processing to clients
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+Components rendered using the Blazor WebAssembly or Blazor Hybrid hosting models execute on clients and thus offload processing to clients. Components rendered for the Blazor Server hosting model execute on a server, so server resource demand typically increases with the number of users and the amount of processing required per user. When it's possible to offload most or all of an app's processing to clients and the app processes a significant amount of data, Blazor WebAssembly or Blazor Hybrid is the best choice.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -323,11 +416,19 @@ Blazor Hybrid apps have full access to native client API capabilities via .NET n
 
 ### Web-based deployment
 
-Blazor Server and Blazor WebAssembly are deployed as web apps that are updated on the next app refresh.
+Blazor web apps are updated on the next app refresh from the browser.
 
 :::moniker range=">= aspnetcore-6.0"
 
 Blazor Hybrid apps are native client apps that typically require an installer and platform-specific deployment mechanism.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Setting a component's hosting model
+
+To set a component's hosting model to Blazor Server or Blazor WebAssembly at compile-time or dynamically at runtime, you set its *render mode*. Render modes are fully explained and demonstrated in the <xref:blazor/components/render-modes> article. We don't recommend that you jump from this article directly to the *Render modes* article without reading the content in the articles between these two articles. For example, render modes are more easily understood by looking at Razor component examples, but basic Razor component structure and function isn't covered until the <xref:blazor/fundamentals/index> article is reached. It's also helpful to learn about Blazor's project templates and tooling before working with the component examples in the *Render modes* article.
 
 :::moniker-end
 
