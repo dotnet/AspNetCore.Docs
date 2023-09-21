@@ -14,7 +14,7 @@ uid: blazor/security/webassembly/standalone-with-authentication-library
 
 This article explains how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 
-The Blazor WebAssembly Authentication library (`Authentication.js`) only supports the Proof Key for Code Exchange (PKCE) authorization code flow via [Microsoft Authentication Library (MSAL, `msal.js`)](/azure/active-directory/develop/msal-overview). To implement other grant flows, access the MSAL guidance to implement MSAL directly, but we don't support or recommend the use of grant flows other than PKCE for Blazor apps.
+The Blazor WebAssembly Authentication library (`Authentication.js`) only supports the Proof Key for Code Exchange (PKCE) authorization code flow via the [Microsoft Authentication Library (MSAL, `msal.js`)](/azure/active-directory/develop/msal-overview). To implement other grant flows, access the MSAL guidance to implement MSAL directly, but we don't support or recommend the use of grant flows other than PKCE for Blazor apps.
 
 *For Microsoft Entra (ME-ID) and Azure Active Directory B2C (AAD B2C) guidance, don't follow the guidance in this topic. See <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.*
 
