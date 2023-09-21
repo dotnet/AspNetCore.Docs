@@ -49,7 +49,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker range=">= aspnetcore-8.0"
 
-* In a Blazor Web App app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in the server-side `Program` file:
+* In a Blazor Web App app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A> in the server-side `Program` file:
 
   ```csharp
   builder.Services.AddRazorComponents()
@@ -228,7 +228,7 @@ Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](h
 
 ### Blazor Web App registration
 
-To register a root component as a custom element in a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in the server-side `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+To register a root component as a custom element in a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A> in the server-side `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 <!-- UPDATE 8.0 Per PU issue https://github.com/dotnet/aspnetcore/issues/42329 and
      PR https://github.com/dotnet/aspnetcore/pull/42314.
@@ -351,7 +351,7 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in the `Program` file:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A> in the `Program` file:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
