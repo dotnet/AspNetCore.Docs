@@ -41,7 +41,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     > You may prefer to [use Visual Studio to create your app](/visualstudio/ide/quickstart-aspnet-core).
 
 1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`.  Replace `5001` with the port used by your app when using Visual Studio generated ports.
- 
+
 ## Modify the app
 
 1. Add the `Microsoft.Identity.Web` and `Microsoft.Identity.Web.UI` packages to the project. If you're using Visual Studio, you can use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio).
