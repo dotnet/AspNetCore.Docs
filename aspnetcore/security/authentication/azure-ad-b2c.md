@@ -17,7 +17,7 @@ By [Damien Bod](https://twitter.com/damien_bod)
 > Microsoft Entra ID (previously known as Azure AD) and Azure AD B2C are separate product offerings. An Entra ID tenant generally represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
 > [!TIP]
-> [Microsoft Entra External ID for customers](/azure/active-directory/external-identities/customers/overview-customers-ciam) is Microsoft’s new customer identity and access management (CIAM) solution
+> [Microsoft Entra External ID for customers](/azure/active-directory/external-identities/customers/overview-customers-ciam) is Microsoft’s new customer identity and access management (CIAM) solution.
 
 In this tutorial, you'll learn how to configure an ASP.NET Core app for authentication with Azure AD B2C.
 
