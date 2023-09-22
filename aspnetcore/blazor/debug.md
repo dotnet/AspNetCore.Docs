@@ -366,7 +366,7 @@ When opening a new app in Visual Studio Code and the IDE requests that you add a
 If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command for the **:::no-loc text="Server":::** project.
 
 > [!NOTE]
-> Only [browser debugging](#debug-in-the-browser) is supported at this time.
+> Only browser debugging is supported at this time.
 >
 > You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
