@@ -185,4 +185,6 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 [!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore6.md)]
 
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3-5.md)]
+[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore5.md)]
+
+[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3.md)]
