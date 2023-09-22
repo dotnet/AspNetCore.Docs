@@ -382,12 +382,12 @@ In Visual Studio Code, open the app's project folder.
 
 Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
-To configure Visual Studio Code assets in the `.vscode` folder for debugging, see:
+To configure Visual Studio Code debugging assets, see:
 
-* <xref:blazor/tooling?pivots=linux> (use the guidance for the *Linux* operating system regardless of platform)
+* <xref:blazor/tooling?pivots=linux-macos> (use the guidance for the *Linux / macOS* operating system regardless of platform)
 * <xref:blazor/debug>
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET Core CLI](#tab/netcore-cli)
 
 In a command shell, execute the following command:
 
