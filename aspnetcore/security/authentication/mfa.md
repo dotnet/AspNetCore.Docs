@@ -275,7 +275,7 @@ build.Services.AddAuthentication(options =>
 	options.ClientId = "<OpenID Connect client ID>";
 	options.ClientSecret = "<>";
 	options.ResponseType = "code";
-    options.UsePkce = true;	
+	options.UsePkce = true;	
 	options.Scope.Add("profile");
 	options.Scope.Add("offline_access");
 	options.SaveTokens = true;
@@ -442,8 +442,8 @@ builder.Services.AddAuthentication(options =>
 	options.RequireHttpsMetadata = true;
 	options.ClientId = "AspNetCoreRequireMfaOidc";
 	options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
-    options.ResponseType = "code";
-    options.UsePkce = true;	
+	options.ResponseType = "code";
+	options.UsePkce = true;	
 	options.Scope.Add("profile");
 	options.Scope.Add("offline_access");
 	options.SaveTokens = true;
