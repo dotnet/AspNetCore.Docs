@@ -555,7 +555,7 @@ items:
                 uid: blazor/security/content-security-policy
           - name: State management
             uid: blazor/state-management
-          - name: Debug WebAssembly
+          - name: Debug
             uid: blazor/debug
           - name: Lazy load assemblies with WebAssembly
             uid: blazor/webassembly-lazy-load-assemblies
