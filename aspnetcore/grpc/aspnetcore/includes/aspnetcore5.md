@@ -1,30 +1,19 @@
----
-title: gRPC services with ASP.NET Core
-author: jamesnk
-description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 09/21/2023
-uid: grpc/aspnetcore
----
-# gRPC services with ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-5.0"
 This document shows how to get started with gRPC services using ASP.NET Core.
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-5.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-5.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-5.0.md)]
 
 ---
 
@@ -48,12 +37,12 @@ gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCo
 
 ### Configure gRPC
 
-In `Program.cs`:
+In `Startup.cs`:
 
 * gRPC is enabled with the `AddGrpc` method.
 * Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample6/GrpcGreeter/Program.cs?highlight=9,14)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample3-5/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 ASP.NET Core middleware and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
@@ -98,7 +87,7 @@ In production, TLS must be explicitly configured. In the following `appsettings.
 
 Alternatively, Kestrel endpoints can be configured in `Program.cs`:
 
-[!code-csharp[](~/grpc/aspnetcore/sample-6/Program.cs?highlight=5&name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
 For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
@@ -180,9 +169,3 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 * <xref:fundamentals/servers/kestrel>
 
 :::moniker-end
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore7.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore6.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3-5.md)]
