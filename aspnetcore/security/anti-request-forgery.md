@@ -5,7 +5,7 @@ description: Discover how to prevent attacks against web apps where a malicious 
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 03/22/2021
+ms.date: 10/5/2023
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
