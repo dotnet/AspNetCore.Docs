@@ -58,8 +58,8 @@ For more information, see <xref:blazor/components/render-modes>.
   * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the server project containing the app's public static assets.
 
   * `Program.cs` file: The server project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
-    * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
-    * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.RazorComponentEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
+    * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
+    * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
 
   * App settings files (`appsettings.Development.json`, `appsettings.json`): Provide [configuration settings](xref:blazor/fundamentals/configuration) for the server project.
 

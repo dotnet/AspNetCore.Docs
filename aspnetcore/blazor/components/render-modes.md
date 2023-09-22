@@ -39,7 +39,7 @@ Services for Razor components are added by calling <xref:Microsoft.Extensions.De
 
 Component builder extensions:
 
-* <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
+* <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
 * `AddWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
 
 <!-- UPDATE 8.0 HOLD
@@ -50,7 +50,7 @@ Component builder extensions:
 
 Endpoint convention builder extensions:
 
-* <xref:Microsoft.AspNetCore.Builder.RazorComponentEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
+* <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
 * `AddWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
 
 <!-- UPDATE 8.0 HOLD
