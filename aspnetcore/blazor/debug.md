@@ -193,7 +193,8 @@ Breakpoints can also be hit in the server project.
 
 1. Set a breakpoint on the `currentCount++;` line in the `Counter2` component.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
-1. In the browser, navigate to `Counter` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
+1. In the browser, navigate to `Counter2` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
+1. Press <kbd>F5</kbd> to continue execution.
 
 Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
@@ -213,7 +214,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 <!-- UPDATE 8.0 Pull this NOTE at RC2 if fixed -->
 
 > [!NOTE]
-> During the .NET 8.0 *Release Candidate 1* preview, breakpoints placed anywhere in the server app of the solution aren't hit during debugging. This issue only applies to debugging with Visual Studio Code. This will be addressed in the next release candidate.
+> During the .NET 8.0 *Release Candidate 1* preview, breakpoints placed anywhere in the server app of the solution aren't hit during debugging. This issue only applies to debugging with Visual Studio Code. This will be addressed in a future preview release or for the final release of .NET 8.
 
 <!-- UPDATE 8.0 Surface the following when the bug is fixed
 
@@ -249,6 +250,7 @@ Breakpoints can also be hit in the server project.
 1. Set a breakpoint on the `currentCount++;` line in the `Counter2` component.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 1. In the browser, navigate to the `Counter2` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
+1. Press <kbd>F5</kbd> to continue execution.
 
 -->
 
@@ -436,14 +438,14 @@ The additional options in the following table only apply to **hosted Blazor WebA
 
 1. Run the app in a command shell with `dotnet run`.
 1. Launch a browser and navigate to the app's URL.
-1. Commence remote debugging by pressing:
+1. Start remote debugging by pressing:
 
    * <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd> on Windows.
    * <kbd>Shift</kbd>+<kbd>&#8984;</kbd>+<kbd>d</kbd> on macOS.
 
    The browser must be running with remote debugging enabled, which isn't the default. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is rendered with instructions for launching the browser with the debugging port open. Follow the instructions for your browser.
 
-   After the app opens in a new browser tab, commence remote debugging by pressing:
+   After the app opens in a new browser tab, start remote debugging by pressing:
 
    * <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd> on Windows.
    * <kbd>Shift</kbd>+<kbd>&#8984;</kbd>+<kbd>d</kbd> on macOS.
@@ -473,7 +475,7 @@ To debug a Blazor WebAssembly app in Firefox during development:
 1. Run the app in a command shell with `dotnet run`.
 1. Navigate to the app in Firefox.
 1. Open the Firefox Web Developer Tools and go to the `Console` tab.
-1. With app in focus by selecting the app's UI in the browser's window, commence remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
+1. With app in focus by selecting the app's UI in the browser's window, start remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
 1. Follow the instructions in the console output to configure Firefox for Blazor WebAssembly debugging:
    * Open `about:config` in a new browser tab. Read and dismiss the warning that appears.
    * Enable `devtools.debugger.remote-enabled`.
@@ -487,6 +489,7 @@ To debug a Blazor WebAssembly app in Firefox during development:
 1. Press <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd> to open the Firefox Web Developer tools and connect to the Firefox browser instance.
 1. In the `Debugger` tab, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint in the `IncrementCount` method of the `Counter` component (`Counter.razor`).
 1. Navigate to the `Counter` component page (`/counter`) and select the counter button to hit the breakpoint.
+1. Press <kbd>F5</kbd> to continue execution.
 
 :::moniker-end
 
