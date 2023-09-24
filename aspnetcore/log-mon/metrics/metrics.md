@@ -132,6 +132,25 @@ Inject the metrics type and record values where needed. Because the metrics type
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
 
+To monitor the "Contoso.Web" meter, use the following [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command.
+
+```dotnetcli
+dotnet-counters monitor -n WebMetric --counters Contoso.Web
+```
+
+Output similar to the following is displayed:
+
+
+```dotnetcli
+Press p to pause, r to resume, q to quit.
+    Status: Running
+
+[Contoso.Web]
+    contoso.product.sold (Count / 1 sec)
+        contoso.product.name=Eggs            12    
+        contoso.product.name=Milk            0    
+```
+
 ## View metrics in Grafana with OpenTelemetry and Prometheus
 
 ### Overview
