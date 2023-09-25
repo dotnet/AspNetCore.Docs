@@ -15,9 +15,7 @@ uid: fundamentals/aot/rdg
 
 The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source generator that compiles route handlers provided to a minimal API to request delegates that can be processed by ASP.NET Core's routing infrastructure. The RDG is implicitly enabled when applications are published with AoT enabled and generated trim and native AoT-friendly code.
 
-> [!NOTE]
-> * The native AOT feature is currently in preview.
-> * In .NET 8, not all ASP.NET Core features are compatible with native AOT.
+[!INCLUDE[](~/fundamentals/aot/includes/aot_preview.md)]
 
 The RDG:
 
