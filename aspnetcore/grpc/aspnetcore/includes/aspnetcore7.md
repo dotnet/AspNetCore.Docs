@@ -1,30 +1,19 @@
----
-title: gRPC services with ASP.NET Core
-author: jamesnk
-description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 09/21/2023
-uid: grpc/aspnetcore
----
-# gRPC services with ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 This document shows how to get started with gRPC services using ASP.NET Core.
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -182,13 +171,3 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 * <xref:fundamentals/servers/kestrel>
 
 :::moniker-end
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore7.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore6.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore5.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3_1.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3.md)]

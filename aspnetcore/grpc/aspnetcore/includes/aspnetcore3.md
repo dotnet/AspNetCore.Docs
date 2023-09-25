@@ -1,30 +1,19 @@
----
-title: gRPC services with ASP.NET Core
-author: jamesnk
-description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 09/21/2023
-uid: grpc/aspnetcore
----
-# gRPC services with ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-3.0"
 This document shows how to get started with gRPC services using ASP.NET Core.
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
 
 ---
 
@@ -48,12 +37,12 @@ gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCo
 
 ### Configure gRPC
 
-In `Program.cs`:
+In `Startup.cs`:
 
 * gRPC is enabled with the `AddGrpc` method.
 * Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample6/GrpcGreeter/Program.cs?highlight=9,14)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample3-5/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 ASP.NET Core middleware and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
@@ -86,7 +75,7 @@ Kestrel gRPC endpoints:
 
 gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) is `HTTP/2`.
 
-Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel/http2) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
+Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
 ### TLS
 
@@ -98,32 +87,20 @@ In production, TLS must be explicitly configured. In the following `appsettings.
 
 Alternatively, Kestrel endpoints can be configured in `Program.cs`:
 
-[!code-csharp[](~/grpc/aspnetcore/sample-6/Program.cs?highlight=5&name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
-For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#listenoptionsusehttps).
 
 ### Protocol negotiation
 
 TLS is used for more than securing communication. The TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake is used to negotiate the connection protocol between the client and the server when an endpoint supports multiple protocols. This negotiation determines whether the connection uses HTTP/1.1 or HTTP/2.
 
-If an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. An endpoint with multiple protocols, such as `HttpProtocols.Http1AndHttp2` for example, can't be used without TLS because there's no negotiation. All connections to the unsecured endpoint default to HTTP/1.1, and gRPC calls fail.
+If an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. An endpoint with multiple protocols, such as `HttpProtocols.Http1AndHttp2` for example, can't be used without TLS because there's no negotiation. All connections to the unsecured endpoint default to HTTP/1.1, and gRPC calls fail.
 
-For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 > [!NOTE]
 > macOS doesn't support ASP.NET Core gRPC with TLS before .NET 8. Additional configuration is required to successfully run gRPC services on macOS when using .NET 7 or earlier. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
-
-## IIS
-
-[Internet Information Services (IIS)](xref:host-and-deploy/iis/index) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core. .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later are required to host gRPC services with IIS.
-
-IIS must be configured to use TLS and HTTP/2. For more information, see <xref:host-and-deploy/iis/protocols>.
-
-## HTTP.sys
-
-[HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows. .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later are required to host gRPC services with HTTP.sys.
-
-HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [HTTP.sys web server HTTP/2 support](xref:fundamentals/servers/httpsys#http2-support).
 
 ## Host gRPC in non-ASP.NET Core projects
 
@@ -182,13 +159,3 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 * <xref:fundamentals/servers/kestrel>
 
 :::moniker-end
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore7.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore6.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore5.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3_1.md)]
-
-[!INCLUDE[](~/grpc/aspnetcore/includes/aspnetcore3.md)]
