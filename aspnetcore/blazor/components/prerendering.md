@@ -10,7 +10,9 @@ uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components
 
+<!--
 [!INCLUDE[](~/includes/not-latest-version.md)]
+-->
 
 This article explains Razor component prerendering scenarios for server-side Blazor apps.
   
