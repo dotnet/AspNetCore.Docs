@@ -153,7 +153,7 @@ Blazor apps that prerender their content on the server call <xref:Microsoft.AspN
 
 :::moniker range=">= aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 :::moniker-end
 
@@ -401,7 +401,7 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 :::moniker range=">= aspnetcore-8.0"
 
-The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 :::moniker-end
 

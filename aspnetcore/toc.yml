@@ -447,6 +447,8 @@ items:
                 uid: blazor/components/index
               - name: Render modes
                 uid: blazor/components/render-modes
+              - name: Prerender components
+                uid: blazor/components/prerender
               - name: Generic type support
                 uid: blazor/components/generic-type-support
               - name: Synchronization context
@@ -485,6 +487,8 @@ items:
                 uid: blazor/components/quickgrid
               - name: Prerender and integrate components
                 uid: blazor/components/prerendering-and-integration
+              - name: Integrate components
+                uid: blazor/components/integration
               - name: Class libraries
                 uid: blazor/components/class-libraries
               - name: JavaScript apps and SPA frameworks

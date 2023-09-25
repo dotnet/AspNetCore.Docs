@@ -385,7 +385,17 @@ The following rendered HTML markup is produced by the preceding nested layout. E
 
 ## Share a Razor Pages layout with integrated components
 
+:::moniker range=">= aspnetcore-8.0"
+
+When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/components/integration>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/components/prerendering-and-integration>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 

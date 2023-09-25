@@ -23,7 +23,17 @@ Security scenarios differ between server-side and client-side Blazor apps. Becau
 
 For a client-side app, authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a client-side app can't enforce authorization access rules.
 
+:::moniker range=">= aspnetcore-8.0"
+
+[Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
+
+:::moniker-end
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which generally isn't the Blazor app client-server communication model. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks. Building Razor components that directly handle Identity tasks is possible for several scenarios but isn't recommended or supported by Microsoft.
 
