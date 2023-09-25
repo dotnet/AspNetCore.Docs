@@ -1,9 +1,6 @@
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 The cross-link will change depending on how the
-     prerendering and integration guidance is updated. -->
-
-*This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerendering-and-integration>.*
+*This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
 
 :::moniker-end
 

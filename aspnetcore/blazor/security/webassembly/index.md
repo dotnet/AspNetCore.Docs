@@ -210,7 +210,17 @@ For examples, see the following resources:
 
 ## Prerendering support
 
+:::moniker range=">= aspnetcore-8.0"
+
+[Prerendering](xref:blazor/components/prerender) isn't supported for authentication endpoints (`/authentication/` path segment).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 [Prerendering](xref:blazor/components/prerendering-and-integration) isn't supported for authentication endpoints (`/authentication/` path segment).
+
+:::moniker-end
 
 For more information, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 

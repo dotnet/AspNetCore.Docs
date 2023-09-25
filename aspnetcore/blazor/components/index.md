@@ -14,7 +14,7 @@ uid: blazor/components/index
 
 This article explains how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 
-Blazor apps are built using *Razor components*, informally known as *Blazor components* or only *components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Razor components*, informally known as *Blazor components* or only *components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and used in MVC and Razor Pages apps.
 
 ## Component classes
 
@@ -1488,6 +1488,17 @@ MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.
 Statically-rendered components can only be added to the app. They can't be removed or updated afterwards.
 
 For more information, see the following resources:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* <xref:blazor/components/integration>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/prerendering-and-integration>
