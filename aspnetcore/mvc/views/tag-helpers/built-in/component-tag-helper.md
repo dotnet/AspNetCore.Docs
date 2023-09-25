@@ -138,7 +138,7 @@ The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/com
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using {APP ASSEMBLY}.Shared
+@using {APP ASSEMBLY}.Components
 
 ...
 
@@ -146,10 +146,7 @@ The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/com
     param-Size="14" param-Color="@("blue")" />
 ```
 
-The preceding example assumes that the `ColorfulCheckbox` component is in a *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared`).
-
-> [!NOTE]
-> In Blazor framework releases up to .NET 8, project templates included a `Shared` folder for shared components. This convention isn't used in .NET 8 or later project templates. Whatever folder layout you use for shared components, confirm that the namespace provided to the page or view with the Component Tag Helper uses the correct namespace to locate the component or that the component type is fully qualified for the tag helper's `type` parameter.
+The preceding example assumes that the `ColorfulCheckbox` component is in a *Components* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Components`).
 
 The following HTML is rendered in the page or view:
 
