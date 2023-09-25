@@ -14,7 +14,7 @@ zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 :::moniker range="< aspnetcore-7.0"
 
 > [!NOTE]
-> This isn't the latest version of this article. For the current release, see the [.NET 7 version of this article](?view=aspnetcore-7.0&preserve-view=true).
+> This isn't the latest version of this article. For the latest version of this article, see the [.NET 7 version](?view=aspnetcore-7.0&preserve-view=true).
 
 :::moniker-end
 

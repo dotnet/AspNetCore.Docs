@@ -34,7 +34,7 @@ For example, prerender a `Counter` component with an increment amount (`Incremen
     param-IncrementAmount="10" />
 ```
 
-For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components/prerendering-and-integration).
+For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components/prerendering-and-integration?view=aspnetcore-3.1&preserve-view=true).
 
 ## Support for shared queues in HTTP.sys
 

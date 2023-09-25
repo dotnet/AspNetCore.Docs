@@ -5,14 +5,20 @@ ms.author: riande
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 10/29/2020
+ms.date: 09/25/2023
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core
 
 ## Prerequisites
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-8.0"
+
+Follow the guidance in the *Configuration* section of the <xref:blazor/components/integration> article.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 Follow the guidance in the *Configuration* section for either:
 
@@ -48,24 +54,24 @@ Blazor WebAssembly app render modes are shown in the following table.
 | `WebAssembly` | Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages. |
 | `WebAssemblyPrerendered` | Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser. |
 
-Blazor Server app render modes are shown in the following table.
+Render modes are shown in the following table.
 
 | Render Mode | Description |
 | ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a server-side Blazor app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a server-side Blazor app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-Blazor Server app render modes are shown in the following table.
+App render modes are shown in the following table.
 
 | Render Mode | Description |
 | ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a server-side Blazor app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a server-side Blazor app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
 
 :::moniker-end
@@ -77,7 +83,7 @@ Additional characteristics include:
 * While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from a partial view in a component, factor out the partial view logic into a component.
 * Rendering server components from a static HTML page isn't supported.
 
-The following Component Tag Helper renders the `Counter` component in a page or view in a Blazor Server app with `ServerPrerendered`:
+The following Component Tag Helper renders the `Counter` component in a page or view in a server-side Blazor app with `ServerPrerendered`:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -88,7 +94,17 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages`).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
+
+:::moniker-end
 
 The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size:
 
@@ -130,7 +146,10 @@ The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/com
     param-Size="14" param-Color="@("blue")" />
 ```
 
-The preceding example assumes that the `ColorfulCheckbox` component is in the app's *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared`).
+The preceding example assumes that the `ColorfulCheckbox` component is in a *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared`).
+
+> [!NOTE]
+> In Blazor framework releases up to .NET 8, project templates included a `Shared` folder for shared components. This convention isn't used in .NET 8 or later project templates. Whatever folder layout you use for shared components, confirm that the namespace provided to the page or view with the Component Tag Helper uses the correct namespace to locate the component or that the component type is fully qualified for the tag helper's `type` parameter.
 
 The following HTML is rendered in the page or view:
 
