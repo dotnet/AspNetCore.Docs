@@ -248,10 +248,6 @@ A parameter on the delegate that isn't bound to the body and does ***not*** need
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Todo.cs" id="snippet_1":::
 
-<!-- ### C# 12 Interceptors
-
-[C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) supports intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions). `Map` method calls are replaced with code generated calls at compile time. The compiler generated implementations are compatible with native AOT and results in increased startup performance for apps published with the `PublishAot` property enabled. -->
-
 ## Known issues
 
 See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or review issues with native AOT support in ASP.NET Core.
