@@ -4,7 +4,7 @@ description: Learn how to configure and use request timeout middleware in ASP.NE
 author: tdykstra
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 06/06/2023
+ms.date: 09/25/2023
 uid: performance/timeouts
 ---
 # Request timeouts middleware in ASP.NET Core
@@ -20,6 +20,9 @@ When a timeout limit is hit, a <xref:System.Threading.CancellationToken> in <xre
 This article explains how to configure the timeout middleware. The timeout middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every timeout feature it illustrates is also supported in the other app types.
 
 Request timeouts are in the <xref:Microsoft.AspNetCore.Http.Timeouts> namespace.
+
+> [!NOTE]
+> When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](fundamentals/servers/kestrel#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
 
 ## Add the middleware to the app
 
