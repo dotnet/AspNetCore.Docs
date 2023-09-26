@@ -33,7 +33,7 @@ Consider the following `Expander` component that:
 
 After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
 
-`Shared/Expander.razor`:
+`Expander.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -64,7 +64,7 @@ The `Expander` component is added to the following `ExpanderExample` parent comp
 * Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
 * The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
 
-`Pages/ExpanderExample.razor`:
+`ExpanderExample.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -113,7 +113,7 @@ The following revised `Expander` component:
 > [!NOTE]
 > The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
 
-`Shared/Expander.razor`:
+`Expander.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

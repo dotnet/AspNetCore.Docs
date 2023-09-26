@@ -5,7 +5,7 @@ description: Use .NET Core Generic Host in ASP.NET Core apps.  Generic Host is r
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 09/05/2023
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host in ASP.NET Core
@@ -378,6 +378,8 @@ For more information, see:
 ## Manage the host lifetime
 
 Call methods on the built <xref:Microsoft.Extensions.Hosting.IHost> implementation to start and stop the app. These methods affect all  <xref:Microsoft.Extensions.Hosting.IHostedService> implementations that are registered in the service container.
+
+The difference between `Run*` and `Start*` methods is that `Run*` methods wait for the host to complete before returning, whereas `Start*` methods return immediately. The `Run*` methods are typically used in console apps, whereas the `Start*` methods are typically used in long-running services.
 
 ### Run
 
@@ -864,6 +866,8 @@ For more information, see:
 ## Manage the host lifetime
 
 Call methods on the built <xref:Microsoft.Extensions.Hosting.IHost> implementation to start and stop the app. These methods affect all  <xref:Microsoft.Extensions.Hosting.IHostedService> implementations that are registered in the service container.
+
+The difference between `Run*` and `Start*` methods is that `Run*` methods wait for the host to complete before returning, whereas `Start*` methods return immediately. The `Run*` methods are typically used in console apps, whereas the `Start*` methods are typically used in long-running services.
 
 ### Run
 
@@ -1369,6 +1373,8 @@ For more information, see:
 ## Manage the host lifetime
 
 Call methods on the built <xref:Microsoft.Extensions.Hosting.IHost> implementation to start and stop the app. These methods affect all  <xref:Microsoft.Extensions.Hosting.IHostedService> implementations that are registered in the service container.
+
+The difference between `Run*` and `Start*` methods is that `Run*` methods wait for the host to complete before returning, whereas `Start*` methods return immediately. The `Run*` methods are typically used in console apps, whereas the `Start*` methods are typically used in long-running services.
 
 ### Run
 

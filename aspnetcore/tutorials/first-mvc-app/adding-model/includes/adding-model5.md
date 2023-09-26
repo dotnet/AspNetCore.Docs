@@ -93,6 +93,8 @@ dotnet tool install --global dotnet-aspnet-codegenerator
 
 The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 ---
 
 Build the project as a check for compiler errors.
@@ -433,7 +435,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 * [Globalization and localization](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Previous Adding a View]((~/tutorials/first-mvc-app/adding-view.md)
-> [Next Working with SQL]((~/tutorials/first-mvc-app/working-with-sql.md)
+> [Previous Adding a View](~/tutorials/first-mvc-app/adding-view.md)
+> [Next Working with SQL](~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end

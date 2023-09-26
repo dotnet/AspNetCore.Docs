@@ -7,13 +7,10 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/18/2022
 uid: blazor/hybrid/tutorials/maui
-zone_pivot_groups: blazor-hybrid-tutorial-vs-operating-systems
 ---
 # Build a .NET MAUI Blazor Hybrid app
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::zone pivot="windows"
 
 This tutorial shows you how to build and run a .NET MAUI Blazor Hybrid app. You learn how to:
 
@@ -157,142 +154,6 @@ In this tutorial, you learned how to:
 > * Create a .NET MAUI Blazor Hybrid app project in Visual Studio
 > * Run the app on Windows
 > * Run the app on an emulated mobile device in the Android Emulator
-
-:::zone-end
-
-:::zone pivot="macos"
-
-This tutorial shows you how to build and run a .NET MAUI Blazor Hybrid app. You learn how to:
-
-> [!div class="checklist"]
-> * Create a .NET MAUI Blazor Hybrid app project in Visual Studio for Mac
-> * Run the app on macOS with Mac Catalyst
-> * Run the app on an emulated mobile device in the Android Emulator
-
-## Prerequisites
-
-* [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
-* [Apple ID](https://appleid.apple.com/account) / [Apple Developer Program](https://developer.apple.com/programs/)
-* [Apple Xcode](https://developer.apple.com/xcode/)
-* [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) with the **.NET Multi-platform App UI development** workload.
-
-> [!IMPORTANT]
-> Install Apple Xcode before installing Visual Studio for Mac.
->
-> If the IDEs are installed in reverse order, set the Apple SDK in Visual Studio for Mac with the following steps:
->
-> 1. Select **Visual Studio** > **Preferences** from the menu bar in Visual Studio for Mac.
-> 1. Under **SDK Locations** > **Apple**, set the **Apple SDK** > **Location** path to the physical location of the Xcode app.
-> 1. Select the **Restart Visual Studio** button.
-
-For more information on prerequisites and installing software on macOS for this tutorial, see the following resources in the .NET MAUI documentation:
-
-* [Supported platforms for .NET MAUI apps](/dotnet/maui/supported-platforms)
-* [Installation (Visual Studio for Mac)](/dotnet/maui/get-started/installation?tabs=vsmac)
-
-## Create a .NET MAUI Blazor Hybrid app
-
-Launch Visual Studio for Mac. If the **Start Window** isn't open, select **Show Start Window** from the **File** menu.
-
-Select the **New** button to create a new app:
-
-:::image type="content" source="maui/_static/mac/step01.png" alt-text="Visual Studio for Mac Start .":::
-
-<!-- In the following line, change the UI template name to ".NET MAUI Blazor Hybrid App" and uncomment the NOTE. -->
-
-Select the **.NET MAUI Blazor App** project template and select the **Continue** button:
-
-:::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor Hybrid App project template selected.":::
-
-<!--
-
-> [!NOTE]
-> In .NET 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
-
--->
-
-Select the target framework with the **Target framework** dropdown and select the **Continue** button:
-
-:::image type="content" source="maui/_static/mac/step03.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with the .NET 7.0 target framework selected.":::
-
-Name the project in the **Project name** field and select the **Create** button. The project name for this demonstration is `MauiBlazor`:
-
-:::image type="content" source="maui/_static/mac/step04.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with an project name of MauiBlazor.":::
-
-## Run the app on macOS with Mac Catalyst
-
-Select the play button (▶) to build and run the app:
-
-:::image type="content" source="maui/_static/mac/step05.png" alt-text="MauiBlazor window indicating the location of the play button.":::
-
-An alternative to using the play button to build and start the app is to select **Start Without Debugging** from the **Debug** menu.
-
-The app running on macOS with Mac Catalyst:
-
-:::image type="content" source="maui/_static/mac/step06.png" alt-text="The .NET MAUI Blazor Hybrid app running in Apple Safari.":::
-
-## Run the app in the Android Emulator
-
-Select the device portion of the **Debug** > **My Mac (MacCatalyst)** button:
-
-:::image type="content" source="maui/_static/mac/step07.png" alt-text="The Debug device button showing the My Mac (MacCatalyst) portion of the button.":::
-
-Select **Android Emulator** from the dropdown:
-
-:::image type="content" source="maui/_static/mac/step08.png" alt-text="The list of devices that appears after the device portion of the Debug device button is selected in the UI, which shows the Android Emulator as a device selection.":::
-
-Select the play button (▶):
-
-:::image type="content" source="maui/_static/mac/step09.png" alt-text="The play button shown next to the Debug device button.":::
-
-Because no Android devices exist, the **New Device** window appears with a default Android mobile device loaded. The following example shows the default device as a Google Pixel 5 mobile device using API 33. Regardless of the default device recommended or your selection of a different device, select the **Create** button:
-
-:::image type="content" source="maui/_static/mac/step10.png" alt-text="New Device window with the default Android mobile device loaded.":::
-
-If the **License Acceptance** window appears and you agree with the terms of the license, select the **Accept** button:
-
-:::image type="content" source="maui/_static/mac/step11.png" alt-text="The License Acceptance dialog describing the terms and conditions for using the Android Software Development Kit.":::
-
-The **Android Device Manager** dialog appears and shows the progress for downloading, unzipping, and installing the new Android mobile device:
-
-:::image type="content" source="maui/_static/mac/step12.png" alt-text="Android Device Manager dialog showing an 8% downloading progress for the Google Pixel 5 mobile device.":::
-
-Wait until the Android device is installed.
-
-Select the **Play** (▶) button to start the emulated mobile device:
-
-:::image type="content" source="maui/_static/mac/step13.png" alt-text="Android Device Manager dialog Play button for the Google Pixel 5 mobile device.":::
-
-The emulated Android mobile device appears. Wait until the device's emulated OS loads:
-
-:::image type="content" source="maui/_static/mac/step14.png" alt-text="Google Pixel 5 mobile device running in the Android Emulator.":::
-
-In Visual Studio for Mac, use the **Debug** device dropdown to select the new Android mobile device:
-
-:::image type="content" source="maui/_static/mac/step15.png" alt-text="Debug device dropdown showing the Google Pixel 5 mobile device entry.":::
-
-The Android device now appears in the **Debug** device button. Select the **Play** (▶) button to build and launch the app on the mobile device:
-
-:::image type="content" source="maui/_static/mac/step16.png" alt-text="The Play button next to the Debug device button in the Visual Studio for Mac UI.":::
-
-The Visual Studio status bar indicates that the app is deploying to the emulated mobile device:
-
-:::image type="content" source="maui/_static/mac/step17.png" alt-text="Deploying to Device message in the status bar.":::
-
-The app running on the emulated Android mobile device:
-
-:::image type="content" source="maui/_static/mac/step18.png" alt-text="The app running on an emulated Google Pixel 5 mobile device.":::
-
-## Next steps
-
-In this tutorial, you learned how to:
-
-> [!div class="checklist"]
-> * Create a .NET MAUI Blazor Hybrid app project in Visual Studio for Mac
-> * Run the app on macOS with Mac Catalyst
-> * Run the app on an emulated mobile device in the Android Emulator
-
-:::zone-end
 
 Learn more about Blazor Hybrid apps:
 

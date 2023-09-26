@@ -101,7 +101,7 @@ MVC benefits, in addition to the server rendering benefits:
 
 To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
 
-### Blazor Server
+### Server-side Blazor
 
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
 
@@ -120,9 +120,9 @@ Using .NET for client-side web development offers the following advantages:
 * Stay productive on Windows, Linux, or macOS with a development environment, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/).
 * Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
-Blazor Server provides support for hosting server-rendered UI in an ASP.NET Core app. Client UI updates are handled over a [SignalR](xref:signalr/introduction) connection. The runtime stays on the server and handles executing the app's C# code.
+Server-side Blazor provides support for hosting server-rendered UI in an ASP.NET Core app. Client UI updates are handled over a [SignalR](xref:signalr/introduction) connection. The runtime stays on the server and handles executing the app's C# code.
 
-For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. The client-rendered Blazor hosting model is described in the [Blazor WebAssembly](#blazor-webassembly) section later in this article.
+For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. The client-side Blazor hosting model is described in the [Blazor WebAssembly](#blazor-webassembly) section later in this article.
 
 ## Choose a client rendered ASP.NET Core solution
 
@@ -130,7 +130,7 @@ The following section briefly explains the ASP.NET Core web UI client rendered m
 
 ### Blazor WebAssembly
 
-Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with the general characteristics described in the [Blazor Server](#blazor-server) section earlier in this article.
+Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with the general characteristics described in the [Server-side Blazor](#server-side-blazor) section earlier in this article.
 
 Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
 
@@ -140,7 +140,7 @@ When a Blazor WebAssembly app is built and run:
 * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
 * Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
-For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. The server-rendered Blazor hosting model is described in the [Blazor Server](#blazor-server) section earlier in this article.
+For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. The server-side Blazor hosting model is described in the [Server-side Blazor](#server-side-blazor) section earlier in this article.
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
@@ -164,20 +164,43 @@ To get started, see:
 
 ## Choose a hybrid solution: ASP.NET Core MVC or Razor Pages plus Blazor
 
-MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly or Blazor Server solution. When a view or page is rendered, components can be prerendered at the same time.
+MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps. When a view or page is rendered, components can be prerendered at the same time.
 
 Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages benefits:
 
 * Prerendering executes Razor components on the server and renders them into a view or page, which improves the perceived load time of the app.
 * Add interactivity to existing views or pages with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
+:::moniker range=">= aspnetcore-8.0"
+
+To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/integration>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/prerendering-and-integration>.
+
+:::moniker-end
 
 ## Next steps
 
 For more information, see:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/index>
+* <xref:blazor/hosting-models>
+* <xref:blazor/components/integration>
+* <xref:grpc/comparison>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * <xref:blazor/index>
 * <xref:blazor/hosting-models>
 * <xref:blazor/components/prerendering-and-integration>
 * <xref:grpc/comparison>
+
+:::moniker-end

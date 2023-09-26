@@ -25,6 +25,8 @@ To install the LibMan CLI:
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.Web.LibraryManager.Cli](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Cli/) NuGet package.
 
 To install the LibMan CLI from a specific NuGet package source:

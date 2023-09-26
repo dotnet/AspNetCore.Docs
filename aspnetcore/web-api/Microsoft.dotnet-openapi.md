@@ -19,6 +19,8 @@ To install `Microsoft.dotnet-openapi`, run the following command:
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 ## Add
 
 Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the `.csproj` file:

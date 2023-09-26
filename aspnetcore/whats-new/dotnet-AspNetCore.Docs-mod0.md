@@ -11,10 +11,6 @@ Welcome to what's new in the ASP.NET Core docs for June 2023. This article lists
 
 ## Blazor
 
-### New articles
-
-- <xref:blazor/tutorials/signalr-blazor-preview>
-
 ### Updated articles
 
 - <xref:blazor/tutorials/build-a-blazor-app>  - Blazor ToDo tutorial updates

@@ -33,10 +33,6 @@ The word *progressive* is used to describe these apps because:
 
 When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
-
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
 Use the following command to create a PWA project in a command shell with the `--pwa` switch:
@@ -49,7 +45,11 @@ In the preceding command, the `-o|--output` option creates a new folder for the 
 
 ---
 
+:::moniker range="< aspnetcore-8.0"
+
 Optionally, PWA can be configured for an app created from the **ASP.NET Core Hosted** Blazor WebAssembly project template. The PWA scenario is independent of the hosting model.
+
+:::moniker-end
 
 ## Convert an existing Blazor WebAssembly app into a PWA
 
@@ -371,4 +371,4 @@ The [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) sample app de
 ## Additional resources
 
 * [Troubleshoot integrity PowerShell script](xref:blazor/host-and-deploy/webassembly#troubleshoot-integrity-powershell-script)
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
+* [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)

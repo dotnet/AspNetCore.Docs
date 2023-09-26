@@ -132,7 +132,6 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * <xref:tutorials/publish-to-azure-webapp-using-vscode>
 * <xref:host-and-deploy/visual-studio-publish-profiles>
-* [Publish a Web app to a folder using Visual Studio for Mac](/visualstudio/mac/publish-folder)
 
 ### Articles on IIS HTTPS configuration
 

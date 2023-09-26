@@ -14,9 +14,9 @@ By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
 This article provides information on securing SignalR.
 
-## Cross-origin resource sharing
+## Cross-Origin Resource Sharing
 
-[Cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/) can be used to allow cross-origin SignalR connections in the browser. If JavaScript code is hosted on a different domain from the SignalR app, [CORS middleware](xref:security/cors) must be enabled to allow the JavaScript to connect to the SignalR app. Allow cross-origin requests only from domains you trust or control. For example:
+[Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) can be used to allow cross-origin SignalR connections in the browser. If JavaScript code is hosted on a different domain from the SignalR app, [CORS middleware](xref:security/cors) must be enabled to allow the JavaScript to connect to the SignalR app. Allow cross-origin requests only from domains you trust or control. For example:
 
 * Your site is hosted on `http://www.example.com`
 * Your SignalR app is hosted on `http://signalr.example.com`

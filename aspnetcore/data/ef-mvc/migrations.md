@@ -43,6 +43,8 @@ Install EF Core tools as a [global tool](/ef/core/miscellaneous/cli/dotnet) and 
  dotnet ef database drop
  ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 The following section explains how to run CLI commands.
 
 ## Create an initial migration

@@ -728,6 +728,47 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+### `@rendermode`
+
+*This scenario only applies to Razor components (`.razor`).*
+
+<!-- UPDATE 8.0 RC2: Remove preview remark and update code -->
+
+Sets the render mode of a Razor component:
+
+* `Server`: Applies interactive server rendering using Blazor Server.
+* `WebAssembly`: Applies interactive client rendering using Blazor WebAssembly.
+* `Auto`: Initially applies interactive client rendering using Blazor Server, and then applies interactive client rendering using WebAssembly on subsequent visits after the Blazor bundle is downloaded.
+
+The following example sets the Server render mode to a `Dialog` component:
+
+```razor
+<Dialog @rendermode="@RenderMode.Server" />
+```
+
+To disable prerendering, pass the `prerender` flag with a value of `false`:
+
+```razor
+<Dialog @rendermode="@(new ServerRenderMode(prerender: false))" />
+```
+
+> [!NOTE]
+> During .NET 8 *Release Candidate 1*, use the following values:
+>
+> Render mode | Value
+> ----------- | -----
+> Server      | `@RenderMode.Server` or `@(new ServerRenderMode(prerender: false))`
+> WebAssembly | `@RenderMode.WebAssembly` or `@(new WebAssemblyRenderMode(prerender: false))`
+> Auto        | `@RenderMode.Auto` or `@(new AutoRenderMode(prerender: false))`
+>
+> The preceding syntax will be simplified in an upcoming preview release.
+
+For more information, see <xref:blazor/components/render-modes>.
+
+:::moniker-end
+
 ### `@section`
 
 *This scenario only applies to MVC views and Razor Pages (`.cshtml`).*

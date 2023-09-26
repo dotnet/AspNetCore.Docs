@@ -43,6 +43,8 @@ Drop-Database
   dotnet tool install --global dotnet-ef
   ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 * In the command prompt, navigate to the project folder. The project folder contains the `ContosoUniversity.csproj` file.
 
 * Delete the `CU.db` file, or run the following command:

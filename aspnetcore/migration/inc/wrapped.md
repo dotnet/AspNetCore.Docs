@@ -16,15 +16,6 @@ This implementation wraps the session provided on ASP.NET Core so that it can be
 
 Configuration for ASP.NET Core would look similar to the following:
 
-```csharp
-builder.Services.AddSystemWebAdapters()
-    .AddJsonSessionSerializer(options =>
-    {
-        // Serialization/deserialization requires each session key to be registered to a type
-        options.RegisterKey<int>("test-value");
-        options.RegisterKey<SessionDemoModel>("SampleSessionItem");
-    })
-    .WrapAspNetCoreSession();
-```
+:::code language="csharp" source="~/migration/inc/samples/wrapped/Program.cs" id="snippet_WrapAspNetCoreSession" :::
 
 The framework app would not need any changes to enable this behavior.

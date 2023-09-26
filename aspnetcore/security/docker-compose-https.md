@@ -110,7 +110,7 @@ version: '3.4'
 
 services:
   webapp:
-    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
     ports:
       - 80
       - 443
@@ -148,7 +148,7 @@ version: '3.4'
 
 services:
   webapp:
-    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
     ports:
       - 80
       - 443

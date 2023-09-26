@@ -1,6 +1,6 @@
 ﻿#define Second
 #if First
-#region FirstVersion
+// <snippet_FirstVersion>
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
@@ -57,10 +57,10 @@ public static class SeedData
     }
 }
 
-#endregion
+// </snippet_FirstVersion>
 #endif
 #if Second
-#region SecondVersion
+// <snippet_SecondVersion>
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
@@ -120,5 +120,5 @@ public static class SeedData
         }
     }
 }
-#endregion
+// </snippet_SecondVersion>
 #endif

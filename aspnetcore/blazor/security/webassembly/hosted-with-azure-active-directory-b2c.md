@@ -2,15 +2,13 @@
 title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
 author: guardrex
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/25/2023
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
@@ -48,7 +46,7 @@ Record the following information:
 
 * *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash). The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
-* AAD Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+* Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 Select **Expose an API** from the sidebar and follow these steps:
 
@@ -143,13 +141,13 @@ By default, the **:::no-loc text="Server":::** app API populates `User.Identity.
 
 To configure the app to receive the value from the `name` claim type:
 
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to the `Program` file:
 
   ```csharp
   using Microsoft.AspNetCore.Authentication.JwtBearer;
   ```
 
-* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in the `Program` file:
 
   ```csharp
   builder.Services.Configure<JwtBearerOptions>(
@@ -299,7 +297,7 @@ The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages
 
 Support for <xref:System.Net.Http.HttpClient> instances is added that include access tokens when making requests to the server project.
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient("{PROJECT NAME}.ServerAPI", client => 
@@ -314,7 +312,7 @@ The placeholder `{PROJECT NAME}` is the project name at solution creation. For e
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
-`Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -337,7 +335,7 @@ The default access token scopes represent the list of access token scopes that a
 * Included by default in the sign in request.
 * Used to provision an access token immediately after authentication.
 
-All scopes must belong to the same app per Azure Active Directory rules. Additional scopes can be added for additional API apps as needed:
+All scopes must belong to the same app per Microsoft Entra ID rules. Additional scopes can be added for additional API apps as needed:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -420,7 +418,7 @@ For more information, see the following sections of the *Additional scenarios* a
 ## Additional resources
 
 * [Configure an app's publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain)
-* [Azure Active Directory app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
+* [Microsoft Entra ID app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

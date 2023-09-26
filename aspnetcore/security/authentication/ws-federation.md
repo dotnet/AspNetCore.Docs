@@ -9,7 +9,7 @@ uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
-This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Azure Active Directory](/azure/active-directory/) (AAD). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
+This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
 
 For ASP.NET Core apps, WS-Federation support is provided by [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). This component is ported from [Microsoft.Owin.Security.WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) and shares many of that component's mechanics. However, the components differ in a couple of important ways.
 
@@ -55,24 +55,24 @@ By default, the new middleware:
 
 * Click **Finish** > **OK** in the **Edit Claim Rules** window.
 
-### Azure Active Directory
+### Microsoft Entra ID
 
-* Navigate to the AAD tenant's app registrations blade. Click **New application registration**:
+* Navigate to the Microsoft Entra ID tenant's app registrations blade. Click **New application registration**:
 
-![Azure Active Directory: App registrations](ws-federation/_static/AadNewAppRegistration.png)
+![Microsoft Entra ID: App registrations](ws-federation/_static/AadNewAppRegistration.png)
 
 * Enter a name for the app registration. This isn't important to the ASP.NET Core app.
 * Enter the URL the app listens on as the **Sign-on URL**:
 
-![Azure Active Directory: Create app registration](ws-federation/_static/AadCreateAppRegistration.png)
+![Microsoft Entra ID: Create app registration](ws-federation/_static/AadCreateAppRegistration.png)
 
 * Click **Endpoints** and note the **Federation Metadata Document** URL. This is the WS-Federation middleware's `MetadataAddress`:
 
-![Azure Active Directory: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
+![Microsoft Entra ID: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
 
 * Navigate to the new app registration. Click **Expose an API**. Click Application ID URI **Set** > **Save**. Make note of the  **Application ID URI**. This is the WS-Federation middleware's `Wtrealm`:
 
-![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
+![Microsoft Entra ID: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
 ## Use WS-Federation without ASP.NET Core Identity
 
@@ -108,8 +108,8 @@ Browse to the app and click the **Log in** link in the nav header. There's an op
 With ADFS as the provider, the button redirects to an ADFS sign-in page:
 ![ADFS sign-in page](ws-federation/_static/AdfsLoginPage.png)
 
-With Azure Active Directory as the provider, the button redirects to an AAD sign-in page:
-![AAD sign-in page](ws-federation/_static/AadSignIn.png)
+With Microsoft Entra ID as the provider, the button redirects to a Microsoft Entra ID sign-in page:
+![Microsoft Entra ID sign-in page](ws-federation/_static/AadSignIn.png)
 
 A successful sign-in for a new user redirects to the app's user registration page:
 ![Register page](ws-federation/_static/Register.png)

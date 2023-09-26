@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2023
 uid: blazor/call-web-api
-zone_pivot_groups: blazor-hosting-models
+zone_pivot_groups: blazor-render-modes
 ---
 # Call a web API from ASP.NET Core Blazor
 
@@ -15,20 +15,22 @@ zone_pivot_groups: blazor-hosting-models
 
 This article describes how to call a web API from a Blazor app.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the `string?`, `TodoItem[]?`, `WeatherForecast[]?`, and `IEnumerable<GitHubBranch>?` types in the article's examples.
 
 :::zone pivot="webassembly"
 
 > [!NOTE]
-> This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
+> This article has loaded **WebAssembly** render mode coverage for calling web APIs. The [Server render mode coverage](?pivots=server) addresses the following subjects:
 >
 > * Use of the `HttpClient` factory infrastructure to provide an `HttpClient` to the app.
-> * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
+> * Cross-Origin Resource Sharing (CORS) pertaining to server-side components.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
 
-[Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) apps call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service, which is focused on making requests back to the server of origin. Additional <xref:System.Net.Http.HttpClient> service configurations for other web APIs can be created in developer code. Requests are composed using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. Requests can include [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) option configuration.
+Client-side components call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service, which is focused on making requests back to the server of origin. Additional <xref:System.Net.Http.HttpClient> service configurations for other web APIs can be created in developer code. Requests are composed using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. Requests can include [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) option configuration.
 
 ## Examples in this article
 
@@ -49,9 +51,31 @@ public class TodoItem
 }
 ```
 
-For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
+For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-Origin Resource Sharing (CORS), see the *Cross-Origin Resource Sharing (CORS)* section later in this article.
 
-The Blazor WebAssembly examples that demonstrate obtaining weather data from a server API are based on a hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
+:::moniker range="< aspnetcore-8.0"
+
+The Blazor examples that demonstrate obtaining weather data from a server API are based on a hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Cross-link render modes -->
+
+For server-side components in Blazor Web Apps that require interactivity, add the `[RenderModeServer]` attribute to the top of the component:
+
+```razor
+@attribute [RenderModeServer]
+```
+
+For client-side components in Blazor Web Apps that require interactivity, add the `[RenderModeWebAssembly]` attribute to the top of the component:
+
+```razor
+@attribute [RenderModeWebAssembly]
+```
+
+:::moniker-end
 
 ## Package
 
@@ -61,7 +85,7 @@ The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json
 
 ## Add the `HttpClient` service
 
-In `Program.cs`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
+In the `Program` file, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -75,7 +99,7 @@ builder.Services.AddScoped(sp =>
 
 <xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server.
 
-<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-origin resource sharing (CORS)* section.
+<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-Origin Resource Sharing (CORS)* section.
 
 The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
 
@@ -359,7 +383,7 @@ public static class JSONPatchInputFormatter
 
 Configure the web API's controllers to use the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and process PATCH requests with the JSON PATCH input formatter. Insert the `JSONPatchInputFormatter` in the first position of MVC's input formatter collection so that it processes requests prior to any other input formatter.
 
-In `Program.cs` modify the call to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>:
+In the `Program` file modify the call to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>:
 
 ```csharp
 builder.Services.AddControllers(options =>
@@ -449,7 +473,7 @@ Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.E
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -464,7 +488,7 @@ In the following component code:
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-`Pages/FetchDataViaFactory.razor`:
+`FetchDataViaFactory.razor`:
 
 ```razor
 @page "/fetch-data-via-factory"
@@ -543,7 +567,7 @@ public class WeatherForecastHttpClient
 }
 ```
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
@@ -560,7 +584,7 @@ In the following component code:
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add an `@using` directive to the following component for <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-`Pages/FetchDataViaTypedHttpClient.razor`:
+`FetchDataViaTypedHttpClient.razor`:
 
 ```razor
 @page "/fetch-data-via-typed-httpclient"
@@ -606,11 +630,11 @@ else
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName> and <xref:System.Net.Http.Json?displayProperty=fullName>.
 
-`Pages/TodoRequest.razor`:
+`TodoRequest.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor":::
 
-Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
+Blazor's client-side implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
 | Extension method | Fetch API request property |
 | --- | --- |
@@ -635,7 +659,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Program.cs` file:
+The following example makes a [Cross-Origin Resource Sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Program` file:
 
 ```csharp
 app.UseCors(policy => 
@@ -648,7 +672,7 @@ Adjust the domains and ports of `WithOrigins` as needed for the Blazor app. For 
 
 By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run both apps on the same machine at the same time for testing, use a different port for the web API app (for example, port 10000). For more information on setting the port, see <xref:fundamentals/servers/kestrel/endpoints>.
 
-`Pages/CallWebAPI.razor`:
+`CallWebAPI.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor":::
 
@@ -665,7 +689,7 @@ In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-`Pages/ReturnHTMLOnException.razor`:
+`ReturnHTMLOnException.razor`:
 
 ```razor
 @page "/return-html-on-exception"
@@ -728,33 +752,33 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 :::zone pivot="server"
 
 > [!NOTE]
-> This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
+> This article has loaded **Server** render mode coverage for calling web APIs. The [WebAssembly render mode coverage](?pivots=webassembly) addresses the following subjects:
 >
-> * Blazor WebAssembly examples based on an client-side WebAssembly app that calls a web API to create, read, update, and delete todo list items.
+> * Client-side examples that call a web API to create, read, update, and delete todo list items.
 > * `System.Net.Http.Json` package.
 > * `HttpClient` service configuration.
 > * `HttpClient` and JSON helpers (`GetFromJsonAsync`, `PostAsJsonAsync`, `PutAsJsonAsync`, `DeleteAsync`).
 > * `IHttpClientFactory` services and the configuration of a named `HttpClient`.
 > * Typed `HttpClient`.
 > * `HttpClient` and `HttpRequestMessage` to customize requests.
-> * Call web API example with cross-origin resource sharing (CORS) and how CORS pertains to Blazor WebAssembly apps.
+> * Call web API example with Cross-Origin Resource Sharing (CORS) and how CORS pertains to client-side components.
 > * How to handle web API response errors in developer code.
 > * Blazor framework component examples for testing web API access.
-> * Additional resources for developing Blazor WebAssembly apps that call a web API.
+> * Additional resources for developing client-side components that call a web API.
 
-[Blazor Server](xref:blazor/hosting-models#blazor-server) apps call web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to Blazor Server, see <xref:fundamentals/http-requests>.
+Server-based components call web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see <xref:fundamentals/http-requests>.
 
-A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
+A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient();
 ```
 
-The following Blazor Server Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
 
-`Pages/CallWebAPI.razor`:
+`CallWebAPI.razor`:
 
 ```razor
 @page "/call-web-api"
@@ -818,19 +842,19 @@ else
 }
 ```
 
-For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server> article.
+For an additional working example, see the server-side file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server-with-server-side-rendering> article.
 
 :::zone-end
 
-## Cross-origin resource sharing (CORS)
+## Cross-Origin Resource Sharing (CORS)
 
-Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
+Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
 
 :::zone pivot="webassembly"
 
-For information on CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
+For information on client-side CORS requests, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
-For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Blazor WebAssembly apps, but the article is useful for learning general CORS concepts.
+For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
 
 :::zone-end
 
@@ -839,6 +863,31 @@ For information on CORS, see <xref:security/cors>. The article's examples don't 
 For more information, see <xref:security/cors>.
 
 :::zone-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Antiforgery support
+
+To add antiforgery support to an HTTP request, inject the `AntiforgeryStateProvider` and add a `RequestToken` to the headers collection as a `RequestVerificationToken`:
+
+```razor
+@inject AntiforgeryStateProvider Antiforgery
+```
+
+```csharp
+private async Task OnSubmit()
+{
+    var antiforgery = Antiforgery.GetAntiforgeryToken();
+    var request = new HttpRequestMessage(HttpMethod.Post, "action");
+    request.Headers.Add("RequestVerificationToken", antiforgery.RequestToken);
+    var response = await client.SendAsync(request);
+    ...
+}
+```
+
+For more information, see <xref:blazor/security/index#antiforgery-support>.
+
+:::moniker-end
 
 ## Blazor framework component examples for testing web API access
 
@@ -853,8 +902,8 @@ Various network tools are publicly available for testing web API backend apps di
 :::zone pivot="webassembly"
 
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
-* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
-* [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::zone-end
@@ -866,6 +915,6 @@ Various network tools are publicly available for testing web API backend apps di
 * <xref:security/enforcing-ssl>
 * <xref:security/cors>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
-* [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
 :::zone-end

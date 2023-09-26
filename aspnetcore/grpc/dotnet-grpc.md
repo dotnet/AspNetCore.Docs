@@ -19,6 +19,8 @@ To install the `dotnet-grpc` [.NET Core Global Tool](/dotnet/core/tools/global-t
 dotnet tool install -g dotnet-grpc
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 ## Add references
 
 `dotnet-grpc` can be used to add Protobuf references as `<Protobuf />` items to the `.csproj` file:

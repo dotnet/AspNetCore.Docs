@@ -24,7 +24,7 @@ This demonstration allows you to:
 * Select an `<input>` from among several rendered `Details` components.
 * Study the behavior of the page's focus as the people collection automatically grows.
 
-`Shared/Details.razor`:
+`Details.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -52,7 +52,7 @@ This demonstration allows you to:
 
 In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`](xref:mvc/views/razor#key) directive attribute is used to improve the user's experience.
 
-`Pages/PeopleExample.razor`:
+`PeopleExample.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

@@ -19,7 +19,7 @@ In the following `Splat` component:
 * The first `<input>` element (`id="useIndividualParams"`) uses individual component parameters.
 * The second `<input>` element (`id="useAttributesDict"`) uses attribute splatting.
 
-`Pages/Splat.razor`:
+`Splat.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -76,7 +76,7 @@ The <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedVal
 
 The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the position of element attributes is important. When [`@attributes`](xref:mvc/views/razor#attributes) are splatted on the element, the attributes are processed from right to left (last to first). Consider the following example of a parent component that consumes a child component:
 
-`Shared/AttributeOrderChild1.razor`:
+`AttributeOrderChild1.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -102,7 +102,7 @@ The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the
 
 :::moniker-end
 
-`Pages/AttributeOrderParent1.razor`:
+`AttributeOrderParent1.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -136,7 +136,7 @@ The `AttributeOrderChild1` component's `extra` attribute is set to the right of 
 
 In the following example, the order of `extra` and [`@attributes`](xref:mvc/views/razor#attributes) is reversed in the child component's `<div>`:
 
-`Shared/AttributeOrderChild2.razor`:
+`AttributeOrderChild2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -162,7 +162,7 @@ In the following example, the order of `extra` and [`@attributes`](xref:mvc/view
 
 :::moniker-end
 
-`Pages/AttributeOrderParent2.razor`:
+`AttributeOrderParent2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

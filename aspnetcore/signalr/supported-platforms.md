@@ -16,7 +16,7 @@ SignalR for ASP.NET Core supports any server platform that ASP.NET Core supports
 
 ## JavaScript client
 
-The [JavaScript client](xref:signalr/javascript-client) runs on the current [Node.js long-term support (LTS) release](https://nodejs.org/about/releases/) and the following browsers:
+The [JavaScript client](xref:signalr/javascript-client) runs on the current [Node.js long-term support (LTS) release](https://nodejs.org/en/download) and the following browsers:
 
 | Browser                          | Version         |
 | -------------------------------- | --------------- |

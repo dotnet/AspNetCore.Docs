@@ -21,7 +21,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2023. This article list
 - <xref:blazor/fundamentals/routing> - Hashed routing to named elements
 - <xref:blazor/components/cascading-values-and-parameters> - Cascading values and params versioning
 - <xref:blazor/js-interop/index> - Blazor JS interop overview versioning
-- <xref:blazor/security/webassembly/hosted-with-azure-active-directory> - Blazor security updates
+- <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id> - Blazor security updates
 - <xref:blazor/hybrid/root-component-parameters> - Repair bad root component param guidance
 - <xref:blazor/fundamentals/dependency-injection> - Monitor Blazor Server circuit activity
 - <xref:blazor/fundamentals/signalr> - Monitor Blazor Server circuit activity

@@ -230,6 +230,8 @@ In this section, the **Package Manager Console** (PMC) window is used to:
   dotnet ef database update
   ```
 
+  [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 

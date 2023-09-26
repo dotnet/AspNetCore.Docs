@@ -5,7 +5,7 @@ Collocate JS files using the following filename extension conventions:
 * Pages of Razor Pages apps and views of MVC apps: `.cshtml.js`. Examples:
   * `Pages/Index.cshtml.js` for the `Index` page of a Razor Pages app at `Pages/Index.cshtml`.
   * `Views/Home/Index.cshtml.js` for the `Index` view of an MVC app at `Views/Home/Index.cshtml`.
-* Razor components of Blazor apps: `.razor.js`. Example: `Pages/Index.razor.js` for the `Index` component at `Pages/Index.razor`.
+* Razor components of Blazor apps: `.razor.js`. Example: `Index.razor.js` for the `Index` component.
 
 Collocated JS files are publicly addressable using the ***path to the file in the project***:
 
@@ -31,9 +31,9 @@ Collocated JS files are publicly addressable using the ***path to the file in th
 
   Blazor example:
 
-  A JS file for the `Index` component is placed in the `Pages` folder (`Pages/Index.razor.js`) next to the `Index` component (`Pages/Index.razor`). In the `Index` component, the script is referenced at the path in the `Pages` folder.
+  A JS file for the `Index` component is placed next to the `Index` component (`Index.razor`). In the `Index` component, the script is referenced at its path.
 
-  `Pages/Index.razor.js`:
+  `Index.razor.js`:
 
   ```javascript
   export function showPrompt(message) {
@@ -41,14 +41,14 @@ Collocated JS files are publicly addressable using the ***path to the file in th
   }
   ```
 
-  In the `OnAfterRenderAsync` method of the `Index` component (`Pages/Index.razor`):
+  In the `OnAfterRenderAsync` method of the `Index` component (`Index.razor`):
 
   ```razor
   module = await JS.InvokeAsync<IJSObjectReference>(
-      "import", "./Pages/Index.razor.js");
+      "import", "./Components/Pages/Index.razor.js");
   ```
 
-  When the app is published, the framework automatically moves the script to the web root. In the preceding example, the script is moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Pages\Index.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks). No change is required to the script's relative URL in the `Index` component.
+  When the app is published, the framework automatically moves the script to the web root. In the preceding example, the script is moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Components\Pages\Index.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks). No change is required to the script's relative URL in the `Index` component.
 
 * For scripts provided by a Razor class library (RCL):
 
@@ -63,9 +63,9 @@ Collocated JS files are publicly addressable using the ***path to the file in th
   
   * The RCL's package identifier is `AppJS`.
   * A module's scripts are loaded for the `Index` component (`Index.razor`).
-  * The `Index` component is in the `Pages` folder of the RCL.
+  * The `Index` component is in the `Pages` folder of the `Components` folder of the RCL.
 
   ```csharp
   var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "./_content/AppJS/Pages/Index.razor.js");
+      "./_content/AppJS/Components/Pages/Index.razor.js");
   ```

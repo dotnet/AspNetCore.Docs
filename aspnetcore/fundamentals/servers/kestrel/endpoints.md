@@ -528,7 +528,7 @@ TLS is required to support more than one HTTP version. The TLS [Application-Laye
 | `Http1AndHttp2` | HTTP/1.1 and HTTP/2. HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake; otherwise, the connection defaults to HTTP/1.1. |
 | `Http1AndHttp2AndHttp3` | HTTP/1.1, HTTP/2 and HTTP/3. The first client request normally uses HTTP/1.1 or HTTP/2, and the [`alt-svc` response header](xref:fundamentals/servers/kestrel/http3#alt-svc) prompts the client to upgrade to HTTP/3. HTTP/2 and HTTP/3 requires TLS; otherwise, the connection defaults to HTTP/1.1. |
 
-The default protocol value for an endpoint is `HttpProtocols.Http1AndHttp2AndHttp3`.
+The default protocol value for an endpoint is `HttpProtocols.Http1AndHttp2`.
 
 TLS restrictions for HTTP/2:
 

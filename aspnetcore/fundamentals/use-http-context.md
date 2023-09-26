@@ -185,7 +185,7 @@ This article primarily discusses using `HttpContext` in request and response flo
 
 The following sample logs GitHub branches when requested from the `/branch` endpoint:
 
-[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=26-45)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=26-46)]
 
 The GitHub API requires two headers. The `User-Agent` header is added dynamically by the `UserAgentHeaderHandler`:
 

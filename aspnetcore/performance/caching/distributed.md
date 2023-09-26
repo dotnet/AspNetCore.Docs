@@ -12,7 +12,9 @@ uid: performance/caching/distributed
 
 By [Mohsin Nasir](https://github.com/mohsinnasir) and [smandia](https://github.com/smandia)
 
-:::moniker range=">= aspnetcore-6.0"
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+:::moniker range=">= aspnetcore-8.0"
 
 A distributed cache is a cache shared by multiple app servers, typically maintained as an external service to the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when the app is hosted by a cloud service or a server farm.
 
@@ -58,9 +60,9 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 
 We recommend production apps use the Distributed Redis Cache because it's the most performant. For more information see [Recommendations](#recommendations).
 
-[Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache.  You can configure an [Azure Redis Cache](https://azure.microsoft.com/services/cache/) for an Azure-hosted ASP.NET Core app, and use an Azure Redis Cache for local development.
+[Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache.  You can configure an [Azure Cache for  Redis](/azure/azure-cache-for-redis/cache-overview) for an Azure-hosted ASP.NET Core app, and use an Azure Cache for Redis for local development.
 
-An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance (<xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*>).
+An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance, by calling <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache%2A>. For [output caching](xref:performance/caching/output#cache-storage), use `AddStackExchangeRedisOutputCache`.
 
   1. Create an Azure Cache for Redis.
   1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
@@ -184,4 +186,5 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 
 :::moniker-end
 
+[!INCLUDE[](~/performance/caching/distributed/includes/distributed6-7.md)]
 [!INCLUDE[](~/performance/caching/distributed/includes/distributed5.md)]

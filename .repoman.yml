@@ -35,6 +35,15 @@ issues:
         - check:
             - type: metadata-comment
               name: technology
+              value: "(?i)aspnetcore-blazorhybrid$"
+          pass:
+            - labels-add: ["Blazor Hybrid"]
+            - projects-add: [106]
+            - labels-remove: [":watch: Not Triaged"]
+            - assignee-add: ["guardrex", "BethMassi"]
+        - check:
+            - type: metadata-comment
+              name: technology
               value: "(?i)aspnetcore-grpc$"
           pass:
             - labels-add: ["gRPC"]

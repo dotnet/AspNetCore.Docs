@@ -1,7 +1,7 @@
 ﻿#define Third
 
 #if First
-#region First
+// <snippet_First>
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
@@ -22,7 +22,7 @@ public class HelloWorldController : Controller
         return "This is the Welcome action method...";
     }
 }
-#endregion
+// </snippet_First>
 #endif
 
 #if Second
@@ -41,14 +41,14 @@ public class HelloWorldController : Controller
     }
     // 
     // GET: /HelloWorld/Welcome/ 
-#region Second
+// <snippet_Second>
     // GET: /HelloWorld/Welcome/ 
     // Requires using System.Text.Encodings.Web;
     public string Welcome(string name, int numTimes = 1)
     {
         return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
     }
-#endregion
+// </snippet_Second>
 }
 #endif
 
@@ -68,12 +68,12 @@ public class HelloWorldController : Controller
     }
     // 
     // GET: /HelloWorld/Welcome/ 
-#region Third
+// <snippet_Third>
     public string Welcome(string name, int ID = 1)
     {
         return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
     }
-#endregion
+// </snippet_Third>
 
     }
 
@@ -89,12 +89,12 @@ public class HelloWorldController : Controller
 {
     // 
     // GET: /HelloWorld/ 
-#region AddView
+// <snippet_AddView>
     public IActionResult Index()
     {
         return View();
     }
-#endregion
+// </snippet_AddView>
  
     // GET: /HelloWorld/Welcome/ 
     public string Welcome(string name, int ID = 1)
@@ -107,7 +107,7 @@ public class HelloWorldController : Controller
 #endif
 
 #if ViewData
-#region ViewData
+// <snippet_ViewData>
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
@@ -126,5 +126,5 @@ public class HelloWorldController : Controller
         return View();
     }
 }
-#endregion
+// </snippet_ViewData>
 #endif

@@ -23,7 +23,7 @@ This article describes the advanced scenario for building Blazor render trees ma
 
 Consider the following `PetDetails` component, which can be manually rendered in another component.
 
-`Shared/PetDetails.razor`:
+`PetDetails.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/advanced-scenarios/PetDetails.razor":::
 
@@ -31,9 +31,51 @@ In the following `BuiltContent` component, the loop in the `CreateComponent` met
 
 In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods with a sequence number, sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.** For more information, see the [Sequence numbers relate to code line numbers and not execution order](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) section.
 
-`Pages/BuiltContent.razor`:
+`BuiltContent.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/built-content"
+@attribute [RenderModeServer]
+
+<h1>Build a component</h1>
+
+<div>
+    @CustomRender
+</div>
+
+<button @onclick="RenderComponent">
+    Create three Pet Details components
+</button>
+
+@code {
+    private RenderFragment? CustomRender { get; set; }
+
+    private RenderFragment CreateComponent() => builder =>
+    {
+        for (var i = 0; i < 3; i++) 
+        {
+            builder.OpenComponent(0, typeof(PetDetails));
+            builder.AddAttribute(1, "PetDetailsQuote", "Someone's best friend!");
+            builder.CloseComponent();
+        }
+    };
+
+    private void RenderComponent()
+    {
+        CustomRender = CreateComponent();
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/advanced-scenarios/BuiltContent.razor" highlight="6,16-24,28":::
+
+:::moniker-end
 
 > [!WARNING]
 > The types in <xref:Microsoft.AspNetCore.Components.RenderTree> allow processing of the *results* of rendering operations. These are internal details of the Blazor framework implementation. These types should be considered *unstable* and subject to change in future releases.

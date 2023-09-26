@@ -4,14 +4,14 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/24/2023
+ms.date: 9/10/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
 
 This article highlights the most significant changes in ASP.NET Core 8.0 with links to relevant documentation.
 
-This article is under development and not complete. More information may be found in the ASP.NET Core 8.0 preview blogs and GitHub issue:
+This article is under development and not complete. More information may be found in the ASP.NET Core 8.0 preview blogs and GitHub issues:
 
 * [ASP.NET Core roadmap for .NET 8 on GitHub](https://github.com/dotnet/aspnetcore/issues/44984) 
 * [What's new in .NET 8 Preview 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-1/)
@@ -20,15 +20,182 @@ This article is under development and not complete. More information may be foun
 * [What's new in .NET 8 Preview 4](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/)
 * [What's new in .NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/)
 * [What's new in .NET 8 Preview 6](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-6/)
-<!--
 * [What's new in .NET 8 Preview 7](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-7/)
+<!--
+* [What's new in .NET 8 Release Candidate 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-1/)
+* [What's new in .NET 8 Release Candidate 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-2/)
+* [Announcing ASP.NET Core in .NET 8](https://devblogs.microsoft.com/dotnet/announcing-asp-net-core-in-dotnet-8/)
 -->
 
 [!INCLUDE [](~/includes/preview-notice.md)]
 
-<!--
 ## Blazor
+
+### Full-stack web UI
+
+With the release of .NET 8, Blazor is a full-stack web UI framework for developing apps that render content at either the component or page level with:
+
+* Static server rendering to generate static HTML.
+* Interactive server rendering using the Blazor Server hosting model.
+* Interactive client rendering using the Blazor WebAssembly hosting model.
+* Automatic interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates. Automatic rendering usually provides the fastest app startup experience.
+
+Interactive render modes also prerender content by default.
+
+For more information, see <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>.
+
+### New Blazor Web App template
+
+We've introduced a new Blazor project template: the *Blazor Web App* template. The new template provides a single starting point for using Blazor components to build any style of web UI. The template combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with the new Blazor capabilities added in .NET 8: static server rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
+
+As part of unifying the various Blazor hosting models into a single model in .NET 8, we're also consolidating the number of Blazor project templates. We removed the Blazor Server template, and the ASP.NET Core Hosted option has been removed from the Blazor WebAssembly template. Both of these scenarios are represented by options when using the Blazor Web App template.
+
+> [!NOTE]
+> Existing Blazor Server and Blazor WebAssembly apps remain supported in .NET 8. Optionally, these apps can be  updated to use the new full-stack web UI Blazor features.
+
+For more information on the new Blazor Web App template, see the following articles:
+
+* <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
+* <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
+
+### Form handling and model binding
+
+Blazor components can now handle submitted form requests, including model binding and validating the request data. Components can implement forms with separate form handlers using the standard HTML `<form>` tag or using the existing `EditForm` component.
+
+New antiforgery support is included in .NET 8. A new `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the new `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a 400 (Bad Request) response is returned without form processing. The new antiforgery features are enabled by default for forms based on `Editform` and can be applied manually to standard HTML forms.
+
+For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-8.0&preserve-view=true>.
+
+### Enhanced navigation and form handling
+
+Static server rendering typically performs a full page refresh whenever the user navigates to a new page or submits a form. In .NET 8, Blazor can enhance page navigation and form handling by intercepting the request and performing a fetch request instead. Blazor then handles the rendered response content by patching it into the browser DOM. Enhanced navigation and form handling avoids the need for a full page refresh and preserves more of the page state, so pages load faster and more smoothly. Enhanced navigation is enabled by default when the Blazor script (`blazor.web.js`) is loaded. Enhanced form handling can be optionally enabled for specific forms.
+
+New enhanced navigation API allows you to refresh the current page by calling `NavigationManager.Refresh(bool forceLoad = false)`.
+
+For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling>.
+
+### Streaming rendering
+
+You can now stream content updates on the response stream when using static server rendering with Blazor. Streaming rendering can improve the user experience for pages that perform long-running asynchronous tasks in order to fully render by rendering content as soon as it's available.
+
+For example, to render a page you might need to make a long running database query or an API call. Normally, asynchronous tasks executed as part of rendering a page must complete before the rendered response is sent, which can delay loading the page. Streaming rendering initially renders the entire page with placeholder content while asynchronous operations execute. After the asynchronous operations are complete, the updated content is sent to the client on the same response connection and patched by into the DOM. The benefit of this approach is that the main layout of the app renders as quickly as possible and the page is updated as soon as the content is ready.
+
+For more information, see <xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering>.
+
+<!-- UPDATE 8.0
+
+RC2
+
+### Blazor interactive server rendering APIs for accessing `HttpContext`
+
+Issue: https://github.com/dotnet/aspnetcore/issues/48769
+PR: https://github.com/dotnet/aspnetcore/pull/50253
+
 -->
+
+### Render Razor components outside of ASP.NET Core
+
+You can now render Razor components outside the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for a generating email or static site content.
+
+For more information, see <xref:blazor/components/render-outside-of-aspnetcore?view=aspnetcore-8.0&preserve-view=true>.
+
+### Sections support
+
+The new `SectionOutlet` and `SectionContent` components in Blazor add support for specifying outlets for content that can be filled in later. Sections are often used to define placeholders in layouts that are then filled in by specific pages. Sections are referenced either by a unique name or using a unique object ID.
+
+For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&preserve-view=true>.
+
+### QuickGrid
+
+The Blazor QuickGrid component is no longer experimental and is now part of the Blazor framework in .NET 8.
+
+QuickGrid is a high performance grid component for displaying data in tabular form. QuickGrid is built to be a simple and convenient way to display your data, while still providing powerful features, such as sorting, filtering, paging, and virtualization.
+
+For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-8.0&preserve-view=true>.
+
+### Route to named elements
+
+Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard `id` attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
+
+For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
+
+### Root-level cascading values
+
+Root-level cascading values can be registered for the entire component hierarchy. Named cascading values and subscriptions for update notifications are supported.
+
+For more information, see <xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values>.
+
+### Virtualize empty content
+
+Use the new `EmptyContent` parameter on the `Virtualize` component to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
+
+For more information, see <xref:blazor/components/virtualization?view=aspnetcore-8.0&preserve-view=true#empty-content>.
+
+### Monitor SignalR circuit activity
+
+You can now monitor inbound circuit activity in server-side apps using the new `CreateInboundActivityHandler` method on `CircuitHandler`. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
+
+For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#monitor-server-side-circuit-activity>.
+
+### Faster runtime performance with the Jiterpreter
+
+The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-in-Time (JIT) compilation support when running on WebAssembly to achieve improved runtime performance.
+
+For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>.
+### Ahead-of-time (AOT) SIMD and exception handling
+
+Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
+
+For more information, see the following:
+
+[AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
+[AOT: Exception handling](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
+
+### Web-friendly Webcil packaging
+
+Webcil is web-friendly packaging of .NET assemblies that removes content specific to native Windows execution to avoid issues when deploying to environments that block the download or use of `.dll` files. Webcil is enabled by default for Blazor WebAssembly apps.
+
+For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
+
+### Blazor WebAssembly debugging improvements
+
+When debugging .NET on WebAssembly, the debugger now downloads symbol data from symbol locations that are configured in Visual Studio preferences. This improves the debugging experience for apps that use NuGet packages.
+
+You can now debug Blazor WebAssembly apps using Firefox. Debugging Blazor WebAssembly apps requires configuring the browser for remote debugging and then connecting to the browser using the browser developer tools through the .NET WebAssembly debugging proxy. Debugging Firefox from Visual Studio isn't supported at this time.
+
+For more information, see <xref:blazor/debug?view=aspnetcore-8.0&preserve-view=true#debug-with-firefox>.
+
+### Content Security Policy (CSP) compatibility
+
+Blazor WebAssembly no longer requires enabling the `unsafe-eval` script source when specifying a Content Security Policy (CSP).
+
+For more information, see <xref:blazor/security/content-security-policy?view=aspnetcore-8.0&preserve-view=true>.
+
+### Handle caught exceptions outside of a Razor component's lifecycle
+
+Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as error boundaries, can process exceptions.
+
+For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-8.0&preserve-view=true#handle-caught-exceptions-outside-of-a-razor-components-lifecycle>.
+
+### Configure the .NET WebAssembly runtime
+
+The .NET WebAssembly runtime can now be configured for Blazor startup.
+
+For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true#configure-the-net-webAssembly-runtime>.
+
+### Configuration of connection timeouts in `HubConnectionBuilder`
+
+Prior workarounds for configuring hub connection timeouts can be replaced with formal SignalR hub connection builder timeout configuration.
+
+For more information, see the following:
+
+* <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#configure-signalr-timeouts-and-keep-alive-on-the-client>
+* <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/server?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
+
+### Project templates shed Open Iconic
+
+The Blazor project templates no longer depend on [Open Iconic](https://github.com/iconic/open-iconic) for icons.
 
 ## SignalR
 
@@ -159,6 +326,17 @@ For more information on the progress of the seamless reconnect feature for ASP.N
 
 This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
 
+## User override culture
+
+Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+
+```csharp
+    app.UseRequestLocalization(options =>
+    {
+        options.CultureInfoUseUserOverride = false;
+    });
+```
+
 ### Binding to forms
 
 Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
@@ -173,14 +351,26 @@ Binding from forms is now supported for:
 * Collections, for example [List](/dotnet/api/system.collections.generic.list-1) and [Dictionary](/dotnet/api/system.collections.generic.dictionary-2)
 * Complex types, for example, `Todo` or `Project`
 
-The following code shows:
-
-* A minimal endpoint that binds a multi-part form input to a complex object.
-* How to use the anti-forgery services to support the generation and validation of anti-forgery tokens.
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/ComplexBinding/Program.cs":::
-
 For more information, see [Bind to collections and complex types from forms](xref:fundamentals/minimal-apis/parameter-binding#bindcc).
+
+### Antiforgery with Minimal APIs
+
+This release adds a middleware for validating antiforgery tokens, which are used to mitigate cross-site request forgery attacks. Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the middleware when the antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3":::
+
+The antiforgery middleware:
+
+* Does ***not*** short-circuit the execution of the rest of the request pipeline.
+* Sets the [IAntiforgeryValidationFeature](https://source.dot.net/#Microsoft.AspNetCore.Http.Features/IAntiforgeryValidationFeature.cs,33a7a0e106f11c6f) in the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features) of the current request.
+
+The antiforgery token is only validated if:
+
+* The endpoint contains metadata implementing [IAntiforgeryMetadata](https://source.dot.net/#Microsoft.AspNetCore.Http.Abstractions/Metadata/IAntiforgeryMetadata.cs,5f49d4d07fc58320) where `RequiresValidation=true`.
+* The HTTP method associated with the endpoint is a relevant [HTTP method](https://developer.mozilla.org/docs/Web/HTTP/Methods). The relevant methods are all [HTTP methods](https://developer.mozilla.org/docs/Web/HTTP/Methods) except for TRACE, OPTIONS, HEAD, and GET.
+* The request is associated with a valid endpoint.
+
+For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
 ### Support for AsParameters and automatic metadata generation
 
@@ -195,21 +385,52 @@ The preceding generated code:
 * Annotates the endpoint metadata to indicate that it accepts a JSON payload.
 * Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
 
+### New IResettable interface in ObjectPool
+
+[Microsoft.Extensions.ObjectPool](xref:Microsoft.Extensions.ObjectPool) provides support for pooling object instances in memory. Apps can use an object pool if the values are expensive to allocate or initialize.
+
+In this release, we've made the object pool easier to use by adding the <xref:Microsoft.Extensions.ObjectPool.IResettable> interface. Reusable types often need to be reset back to a default state between uses. `IResettable` types are automatically reset when returned to an object pool.
+
+For more information, see the [ObjectPool sample](xref:performance/ObjectPool##objectpool-sample).
+
 ## Native AOT
 
 Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
 
+[!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
+
 ### New project template
 
-The new **ASP.NET Core API** template in Visual Studio 2022 has an **Enable native AOT publish** option. The equivalent template and option in the CLI is the `dotnet new api` command and the `--aot` option. This template is intended to produce a project focused on cloud-native, API-first scenarios. For more information, see [The API template](xref:fundamentals/native-aot#the-api-template).
+The new **ASP.NET Core Web API (native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (native AOT) template](xref:fundamentals/native-aot#the-web-api-native-aot-template).
 
-### New CreateSlimBuilder method
+### New `CreateSlimBuilder` method
 
-The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the API template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. It's used by the API template whether or not the AOT option is used. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the Web API (native AOT) template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. The `CreateSlimBuilder` method includes the following features that are typically needed for an efficient development experience:
+
+* JSON file configuration for `appsettings.json` and `appsettings.{EnvironmentName}.json`.
+* User secrets configuration.
+* Console logging.
+* Logging configuration.
+
+For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+
+### New `CreateEmptyBuilder` method
+
+There is another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> factory method for building small apps that only contain necessary features: `WebApplication.CreateEmptyBuilder(WebApplicationOptions options)`. This `WebApplicationBuilder` is created with no built-in behavior. The app it builds contains only the services and middleware that are explicitly configured.
+
+Here’s an example of using this API to create a small web application:
+
+:::code language="csharp" source="~/release-notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
+
+Publishing this code with native AOT using .NET 8 Preview 7 on a linux-x64 machine results in a self-contained native executable of about 8.5 MB.
 
 ### Reduced app size with configurable HTTPS support
 
 We've further reduced native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+
+### Improved performance using Interceptors
+
+The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) action methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
 
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
@@ -302,17 +523,6 @@ Time to create 100,000 connections:
 
 * Before : 5.916 seconds
 * After &nbsp; : 2.374 seconds
-
-
-### HTTP/3 enabled by default in Kestrel
-
-HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 offers several advantages over older HTTP protocols, including:
-
-* Faster connection setup.
-* No head-of-line blocking.
-* Better transitions between networks.
-
-.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8, HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <xref:fundamentals/servers/kestrel/http3>.
 
 ### HTTP/2 over TLS (HTTPS) support on macOS in Kestrel
 
@@ -458,6 +668,10 @@ The complete updated sample can be found [here](https://github.com/dotnet/AspNet
 
 See <xref:security/authorization/iard> for a detailed examination of the new sample.
 
+### Securing Swagger UI endpoints
+
+Swagger UI endpoints can now be secured in production environments by calling [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A). For more information, see [Securing Swagger UI endpoints](/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0&preserve-view=true#securing-swagger-ui-endpoints)
+
 ## Miscellaneous
 
 The following sections describe miscellaneous new features in ASP.NET Core 8.
@@ -579,10 +793,14 @@ Here are IPv4 examples:
 ```csharp
 // Using Parse
 var network = IPNetwork.Parse("192.168.0.1/32");
+```
 
+```csharp
 // Using TryParse
 bool success = IPNetwork.TryParse("192.168.0.1/32", out var network);
+```
 
+```csharp
 // Constructor equivalent
 var network = new IPNetwork(IPAddress.Parse("192.168.0.1"), 32);
 ```
@@ -592,13 +810,41 @@ And here are examples for IPv6:
 ```csharp
 // Using Parse
 var network = IPNetwork.Parse("2001:db8:3c4d::1/128");
+```
 
+```csharp
 // Using TryParse
 bool success = IPNetwork.TryParse("2001:db8:3c4d::1/128", out var network);
+```
 
+```csharp
 // Constructor equivalent
 var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 ```
+
+### Redis-based output caching
+
+ASP.NET Core 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
+
+### Short-circuit middleware after routing
+
+When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapget":::
+
+Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
+
+For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+
+### New APIs in ProblemDetails to support more resilient integrations
+
+In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> is not able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
+
+For more information, see [IProblemDetailsService fallback](xref:fundamentals/minimal-apis/handle-errors#iproblemdetailsservice-fallback)
 
 <!--
 ## API controllers

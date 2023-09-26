@@ -71,6 +71,8 @@ The `dotnet new` command creates a new Razor Pages project in the `SignalRChat` 
 
 The `code` command opens the `SignalRChat1 folder in the current instance of Visual Studio Code.
 
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **File** > **New Solution**.
@@ -120,6 +122,8 @@ dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Run the following command to get the SignalR client library by using LibMan. It may take a few seconds before displaying output.
 
 ```console
@@ -148,6 +152,8 @@ In the **Terminal**, run the following commands to install LibMan after uninstal
 dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Navigate to the project folder (the one that contains the `SignalRChat.csproj` file).
 

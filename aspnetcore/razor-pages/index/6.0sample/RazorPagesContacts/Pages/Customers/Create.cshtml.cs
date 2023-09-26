@@ -4,7 +4,7 @@ using RazorPagesContacts.Models;
 
 namespace RazorPagesContacts.Pages.Customers
 {
-    #region snippet
+    // <snippet_PageModel>
     public class CreateModel : PageModel
     {
         private readonly Data.CustomerDbContext _context;
@@ -19,7 +19,7 @@ namespace RazorPagesContacts.Pages.Customers
             return Page();
         }
 
-        #region snippet_OnPostAsync
+        // <snippet_OnPostAsync>
         [BindProperty]
         public Customer? Customer { get; set; }
 
@@ -35,7 +35,7 @@ namespace RazorPagesContacts.Pages.Customers
 
             return RedirectToPage("./Index");
         }
-        #endregion
+        // </snippet_OnPostAsync>
     }
-    #endregion
+    // </snippet_PageModel>
 }

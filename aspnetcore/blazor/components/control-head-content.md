@@ -22,7 +22,7 @@ Specify `<head>` element content with the <xref:Microsoft.AspNetCore.Components.
 
 The following example sets the page's title and description using Razor.
 
-`Pages/ControlHeadContent.razor`:
+`ControlHeadContent.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -42,7 +42,7 @@ The following example sets the page's title and description using Razor.
 
 *This section applies to prerendered Blazor WebAssembly apps and Blazor Server apps.*
 
-When [Razor components are prerendered](xref:blazor/components/prerendering-and-integration), the use of a layout page (`_Layout.cshtml`) is required to control `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control `<head>` content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
+When Razor components are prerendered, the use of a layout page (`_Layout.cshtml`) is required to control `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control `<head>` content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
 
 If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
 
@@ -103,7 +103,7 @@ In Blazor Server apps created from the Blazor Server project template, a [Compon
 
 :::moniker-end
 
-In an app created from the Blazor WebAssembly project template, the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in `Program.cs`:
+In an app created from the Blazor WebAssembly project template, the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in the client-side `Program` file:
 
 ```csharp
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -113,7 +113,19 @@ When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/
 
 ## Not found page title
 
+:::moniker range=">= aspnetcore-8.0"
+
+*This section only applies to Blazor WebAssembly apps.*
+
+In Blazor apps created from Blazor WebAssembly project template, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 In Blazor apps created from Blazor project templates, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
+
+:::moniker-end
 
 `App.razor`:
 

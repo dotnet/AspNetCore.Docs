@@ -26,7 +26,7 @@ See [ASP.NET Core metrics](https://github.com/dotnet/aspnetcore/issues/47536) fo
 
 There are two parts to using metrics in a .NET app:
 
-* **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name.
+* **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name. .NET and ASP.NET Core include many built-in metrics.
 * **Collection:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
 
 Instrumented code can record numeric measurements, but the measurements need to be aggregated, transmitted, and stored to create useful metrics for monitoring. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting metrics:
@@ -49,7 +49,7 @@ dotnet add package OpenTelemetry.Extensions.Hosting
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/log-mon/metrics/metrics/samples/Program.cs":::
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/web-metrics/Program.cs":::
 
 <!-- Review TODO: Add link to available meters -->
 
@@ -63,8 +63,7 @@ If the [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) tool isn't in
 dotnet tool update -g dotnet-counters
 ```
 
-While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
-The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft.AspNetCore.Hosting` meter.
+While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft.AspNetCore.Hosting` meter.
 
 ```dotnetcli
 dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting
@@ -85,22 +84,72 @@ Press p to pause, r to resume, q to quit.
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0.001
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
         host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
-        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0                                            12
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
 ```
 
-Run `WebMetric>dotnet-counters list` to show all available metrics.
+For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
 
-The following command shows the `Microsoft-AspNetCore-Server-Kestrel` meter with the `requests-per-second` and `total-requests` counters.
+## Enrich the ASP.NET Core request metric
 
-```dotnetcli
-dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting[requests-per-second,total-requests]
-```
+ASP.NET Core has many built-in metrics. The `http.server.request.duration` metric:
+* Records the duration of HTTP requests on the server.
+* Captures request information in tags, such as the matched route and response status code.
 
-For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). To learn more about metrics in .NET, see [built-in metrics](/dotnet/core/diagnostics/available-counters).
+The `http.server.request.duration` metric supports tag enrichment using <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. Enrichment is when a library or app adds its own tags to a metric. This is useful if an app wants to add a custom categorization to dashboards or alerts built with metrics.
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/EnrichMetrics/Program.cs":::
+
+The proceeding example:
+
+* Adds middleware to enrich the ASP.NET Core request metric.
+* Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` is not `null` before using it.
+* Adds a custom tag containing the request's marketing source to the `http.server.request.duration` metric.
+  * The tag has the name `mkt_medium` and a value based on the [utm_medium](https://wikipedia.org/wiki/UTM_parameters) query string value. The `utm_medium` value is resolved to a known range of values.
+  * The tag allows requests to be categorized by marketing medium type, which could be useful when analyzing web app traffic.
+
+> [!NOTE]
+> Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range cause a large combination of tags. Collection tools have a limit on how many combinations they support for a counter and may start filtering results out to avoid excessive memory usage.
 
 ## Create custom metrics
 
-See [Create custom metrics](/dotnet/core/diagnostics/metrics#create-custom-metrics) for information on creating custom metrics.
+Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespace. See [Create custom metrics](/dotnet/core/diagnostics/metrics-instrumentation#create-a-custom-metric) for information on creating custom metrics.
+
+### Creating metrics in ASP.NET Core apps with `IMeterFactory`
+
+We recommended creating `Meter` instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
+
+ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in dependency injection (DI) by default. The meter factory integrates metrics with DI, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
+
+To use `IMeterFactory` in an app, create a type that uses `IMeterFactory` to create the app's custom metrics:
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/ContosoMetrics.cs" id="snippet_ContosoMetrics":::
+
+Register the metrics type with DI in `Program.cs`:
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_RegisterMetrics":::
+
+Inject the metrics type and record values where needed. Because the metrics type is registered in DI it can be use with MVC controllers, minimal APIs, or any other type that is created by DI:
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/custom-metrics/Program.cs" id="snippet_InjectAndUseMetrics":::
+
+To monitor the "Contoso.Web" meter, use the following [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command.
+
+```dotnetcli
+dotnet-counters monitor -n WebMetric --counters Contoso.Web
+```
+
+Output similar to the following is displayed:
+
+
+```dotnetcli
+Press p to pause, r to resume, q to quit.
+    Status: Running
+
+[Contoso.Web]
+    contoso.product.sold (Count / 1 sec)
+        contoso.product.name=Eggs            12    
+        contoso.product.name=Milk            0    
+```
 
 ## View metrics in Grafana with OpenTelemetry and Prometheus
 
@@ -144,7 +193,7 @@ Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/firs
 
 Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app is exposing. Add the following highlighted text in the `scrape_configs` section:
 
-:::code language="yaml" source="~/log-mon/metrics/metrics/samples/prometheus.yml" highlight="31-99":::
+:::code language="yaml" source="~/log-mon/metrics/metrics/samples/web-metrics/prometheus.yml" highlight="31-99":::
 
 In the preceding highlighted YAML, replace `5045` with the port number that the example app is running on.
 
@@ -159,11 +208,11 @@ Select the **Open metric explorer** icon to see available metrics:
 
 ![Prometheus open_metric_exp](~/log-mon/metrics/metrics/static/open_metric_exp.png)
 
-Enter counter category such as `http_` in the **Expression** input box to see the available  metrics:
+Enter counter category such as `http_` in the **Expression** input box to see the available metrics:
 
 ![available metrics](~/log-mon/metrics/metrics/static/metrics2.png)
 
-Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available  metrics:
+Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available metrics:
 
 ![Prometheus kestrel](~/log-mon/metrics/metrics/static/kestrel.png)
 
@@ -174,6 +223,22 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
 
 ![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
+
+## Test metrics in ASP.NET Core apps
+
+It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
+
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
+
+The proceeding test:
+
+* Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
+* Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>.
+  * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
+  * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
+  * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
+* Makes an HTTP request to the web app.
+* Asserts the test using results from the metrics collector.
 
 ## ASP.NET Core meters and counters
 

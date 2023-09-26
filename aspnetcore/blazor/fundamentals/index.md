@@ -26,9 +26,9 @@ Blazor documentation adopts several conventions for showing and discussing compo
 
 * Project code, file paths and names, project template names, and other specialized terms are in United States English and usually code-fenced.
 * Components are usually referred to by their C# class name (Pascal case) followed by the word "component." For example, a typical file upload component is referred to as the "`FileUpload` component."
-* Usually, a component's C# class name is the same as its file name. Component paths within an app are usually indicated. For example, `Pages/FileUpload.razor`.
+* Usually, a component's C# class name is the same as its file name.
 * Routable components usually set their relative URLs to the component's class name in kebab-case. For example, a `FileUpload` component includes routing configuration to reach the rendered component at the relative URL `/file-upload`. Routing and navigation is covered in <xref:blazor/fundamentals/routing>.
-* When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component has a file name and location of `Pages/FileUpload3.razor` and is reached at `/file-upload-3`.
+* When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component is reached at `/file-upload-3`.
 * Access modifiers are used in article examples. For example, fields are `private` by default but are explicitly present in component code. For example, `private` is stated for declaring a field named `maxAllowedFiles` as `private int maxAllowedFiles = 3;`.
 * Generally, examples adhere to ASP.NET Core/C# coding conventions and engineering guidelines. For more information see the following resources:
   * [Engineering guidelines (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines)
@@ -36,28 +36,31 @@ Blazor documentation adopts several conventions for showing and discussing compo
 
 The following is an example counter component and part of an app created from a Blazor project template. Detailed components coverage is found in the *Components* articles later in the documentation. The following example demonstrates component concepts seen in the *Fundamentals* articles before reaching the *Components* articles later in the documentation.
 
-`Pages/Counter.razor`:
+`Counter.razor`:
 
-```razor
-@page "/counter"
+:::moniker range=">= aspnetcore-7.0"
 
-<PageTitle>Counter</PageTitle>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
-<h1>Counter</h1>
+:::moniker-end
 
-<p role="status">Current count: @currentCount</p>
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
-@code {
-    private int currentCount = 0;
+:::moniker-end
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/Counter.razor":::
+
+:::moniker-end
 
 The preceding `Counter` component:
 
@@ -68,7 +71,7 @@ The preceding `Counter` component:
 
 ## Document Object Model (DOM)
 
-In Blazor documentation, references to the *Document Object Model* use the abbreviation *DOM*.
+References to the *Document Object Model* use the abbreviation *DOM*.
 
 For more information, see the following resources:
 
@@ -83,14 +86,25 @@ Documentation sample apps are available for inspection and download:
 
 The repo contains two types of samples:
 
-* Snippet sample apps for Blazor Server and Blazor WebAssembly provide the code examples that appear in Blazor articles. These apps don't compile and aren't runnable apps. They're provided solely for the purpose of obtaining article example code.
+:::moniker range=">= aspnetcore-8.0"
+
+* Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
+* Samples apps to accompany Blazor articles compile and run for the following scenarios:
+  * Blazor Web App with with EF Core
+  * Blazor Web App with SignalR
+  * Blazor WebAssembly scopes-enabled logging
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
   * Blazor Server with EF Core
   * Blazor Server and Blazor WebAssembly with SignalR
   * Blazor WebAssembly scopes-enabled logging
 
-> [!NOTE]
-> Not all of the preceding sample apps are available for all releases of ASP.NET Core.
+:::moniker-end
 
 For more information, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
 
@@ -125,7 +139,7 @@ For a potential bug in the framework or product feedback, open an issue for the 
 
 For a potential problem with a Blazor article, open a documentation issue. To open a documentation issue, use the **This page** feedback button and form at the bottom of the article and leave the metadata in place when creating the opening comment. The metadata provides tracking data and automatically pings the author of the article. If the subject was discussed with the product unit, place a cross-link to the engineering issue in the documentation issue's opening comment.
 
-For problems or feedback on Visual Studio or Visual Studio for Mac, use the [**Report a Problem**](/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](/visualstudio/ide/suggest-a-feature) gestures from within Visual Studio, which open internal issues for Visual Studio teams. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home) or [How to report a problem in Visual Studio for Mac](/visualstudio/mac/report-a-problem).
+For problems or feedback on Visual Studio, use the [**Report a Problem**](/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](/visualstudio/ide/suggest-a-feature) gestures from within Visual Studio, which open internal issues for Visual Studio. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home).
 
 For problems with Visual Studio Code, ask for support on community support forums. For bug reports and product feedback, open an issue on the [`microsoft/vscode` GitHub repo](https://github.com/microsoft/vscode/issues).
 

@@ -22,19 +22,19 @@ Although the argument passed to `SectionName` can use any type of casing, the do
 
 In the following example, the app's main layout component implements an increment counter button for the app's `Counter` component.
 
-Add the namespace for sections to the `_Imports.razor` file:
+If the namespace for sections isn't in the `_Imports.razor` file, add it:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Sections
 ```
 
-In the `MainLayout` component (`Shared/MainLayout.razor`), place a `SectionOutlet` component and pass a string to the `SectionName` parameter to indicate the section's name. The following example uses the section name `top-bar`:
+In the `MainLayout` component (`MainLayout.razor`), place a `SectionOutlet` component and pass a string to the `SectionName` parameter to indicate the section's name. The following example uses the section name `top-bar`:
 
 ```razor
 <SectionOutlet SectionName="top-bar" />
 ```
 
-In the `Counter` component (`Pages/Counter.razor`), create a `SectionContent` component and pass the matching string (`top-bar`) to its `SectionName` parameter:
+In the `Counter` component (`Counter.razor`), create a `SectionContent` component and pass the matching string (`top-bar`) to its `SectionName` parameter:
 
 ```razor
 <SectionContent SectionName="top-bar">
@@ -66,7 +66,7 @@ In the `MainLayout` component's Razor markup, place a `SectionOutlet` component 
 
 Add a `SectionContent` component to the app's `Counter` component that renders an increment count button. Use the `MainLayout` component's `TopbarSection` section static `object` as the `SectionId` (`MainLayout.TopbarSection`).
 
-In `Pages/Counter.razor`:
+In `Counter.razor`:
 
 ```razor
 <SectionContent SectionId="MainLayout.TopbarSection">

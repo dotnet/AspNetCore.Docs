@@ -6,7 +6,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc, engagement-fy23
-ms.date: 03/31/2023
+ms.date: 07/25/2023
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -69,25 +69,22 @@ In the **Additional information** dialog, select **.NET 7.0 (Standard Term Suppo
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs)
 
-Change to the directory (`cd`) that will contain the project.
-
-Run the following commands:
+* Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change to the directory (`cd`) that will contain the project.
+* Run the following commands:
 
 ```dotnetcli
 dotnet new webapp -o SignalRChat
 code -r SignalRChat
 ```
 
-Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
-
-* The checkbox **trust the authors of all files in the parent folder**
-* **Yes, I trust the authors** (because dotnet generated the files).
-
 The `dotnet new` command creates a new Razor Pages project in the `SignalRChat` folder.
 
 The `code` command opens the `SignalRChat1 folder in the current instance of Visual Studio Code.
+
+[!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -138,6 +135,8 @@ dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Navigate to the project folder, which contains the `SignalRChat.csproj` file.
 
 Run the following command to get the SignalR client library by using LibMan. It may take a few seconds before displaying output.
@@ -168,6 +167,8 @@ In the **Terminal**, run the following commands to install LibMan after uninstal
 dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Navigate to the project folder, which contains the `SignalRChat.csproj` file.
 

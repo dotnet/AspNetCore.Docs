@@ -1,0 +1,11 @@
+GET http://localhost:5231/
+
+###
+
+POST http://localhost:5231/complete-sale
+Content-Type: application/json
+
+{
+  "productName": "Product One",
+  "quantitySold": 1
+}
