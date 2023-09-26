@@ -259,13 +259,6 @@ items:
                 uid: fundamentals/aot/request-delegate-generator/rgd012
               - name: RDG013
                 uid: fundamentals/aot/request-delegate-generator/rgd013
-- name: Code analysis
-    uid: diagnostics/code-analysis
-    items:
-      - name: ASP0000
-        uid: diagnostics/asp0000
-
-
       - name: Middleware
         items: 
           - name: Middleware overview
