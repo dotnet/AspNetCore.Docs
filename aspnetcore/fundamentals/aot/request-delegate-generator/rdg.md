@@ -55,4 +55,6 @@ Minimal APIs are optimized for using <xref:System.Text.Json?displayProperty=full
 
 ## Diagnostics emitted for unsupported RGD scenarios
 
-The RDG emits diagnostics for scenarios that aren't supported by native AOT. The diagnostics are emitted when the app is built. The diagnostics are emitted as warnings and don't prevent the app from building. <!-- tempory stub https://github.com/dotnet/aspnetcore/pull/49417  Once this API is published, replace with <xref> link --> The [DiagnosticDescriptors](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) class contains the diagnostics emitted by the RDG.
+The RDG emits [diagnostics](xref:fundamentals/aot/request-delegate-generator/rgd_ids) for scenarios that aren't supported by native AOT. The diagnostics are emitted when the app is built. The diagnostics are emitted as warnings and don't prevent the app from building. <!-- tempory stub https://github.com/dotnet/aspnetcore/pull/49417  Once this API is published, replace with <xref> link --> The [DiagnosticDescriptors](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) class contains the diagnostics emitted by the RDG.
+
+See <xref:fundamentals/aot/request-delegate-generator/rgd_ids> for a list of diagnostics emitted by the RDG.
