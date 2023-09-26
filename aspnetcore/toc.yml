@@ -232,6 +232,33 @@ items:
           - name: RDG diagnostics
             displayName: aot, RDG diagnostics
             uid: fundamentals/aot/request-delegate-generator/rgd_ids
+            items:
+              - name: RDG001
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg001
+              - name: RDG002
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
+              - name: RDG003
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg003
+              - name: RDG004
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg004
+              - name: RDG005
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg005
+              - name: RDG006
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg006
+              - name: RDG007
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg007
+              - name: RDG008
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg008
+              - name: RDG009
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg009
+              - name: RDG010
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg010
+              - name: RDG011
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg011
+              - name: RDG012
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
+              - name: RDG013
+                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
       - name: Middleware
         items: 
           - name: Middleware overview
