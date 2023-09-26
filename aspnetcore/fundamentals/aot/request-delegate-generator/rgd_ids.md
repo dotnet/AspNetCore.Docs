@@ -5,7 +5,7 @@ author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
 content_well_notification: AI-contribution
-ms.date: 9/22/2023
+ms.date: 9/23/2023
 ms.topic: article
 ms.prod: aspnet-core
 uid: fundamentals/aot/request-delegate-generator/rgd_ids
