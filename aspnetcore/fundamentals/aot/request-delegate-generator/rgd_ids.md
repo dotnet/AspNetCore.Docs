@@ -31,8 +31,8 @@ The following list contains the RDG diagnostics for ASP.NET Core:
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg011>
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg012>
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg013>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg014>
 <!--
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg014>
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg015>
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg016>
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg017>
