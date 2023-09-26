@@ -232,6 +232,40 @@ items:
           - name: RDG diagnostics
             displayName: aot, RDG diagnostics
             uid: fundamentals/aot/request-delegate-generator/rgd_ids
+            items:
+              - name: RDG001
+                uid: fundamentals/aot/request-delegate-generator/rgd001
+              - name: RDG002
+                uid: fundamentals/aot/request-delegate-generator/rgd002
+              - name: RDG003
+                uid: fundamentals/aot/request-delegate-generator/rgd003
+              - name: RDG004
+                uid: fundamentals/aot/request-delegate-generator/rgd004
+              - name: RDG005
+                uid: fundamentals/aot/request-delegate-generator/rgd005
+              - name: RDG006
+                uid: fundamentals/aot/request-delegate-generator/rgd006
+              - name: RDG007
+                uid: fundamentals/aot/request-delegate-generator/rgd007
+              - name: RDG008
+                uid: fundamentals/aot/request-delegate-generator/rgd008
+              - name: RDG009
+                uid: fundamentals/aot/request-delegate-generator/rgd009
+              - name: RDG010
+                uid: fundamentals/aot/request-delegate-generator/rgd010
+              - name: RDG011
+                uid: fundamentals/aot/request-delegate-generator/rgd011
+              - name: RDG012
+                uid: fundamentals/aot/request-delegate-generator/rgd012
+              - name: RDG013
+                uid: fundamentals/aot/request-delegate-generator/rgd013
+- name: Code analysis
+    uid: diagnostics/code-analysis
+    items:
+      - name: ASP0000
+        uid: diagnostics/asp0000
+
+
       - name: Middleware
         items: 
           - name: Middleware overview
