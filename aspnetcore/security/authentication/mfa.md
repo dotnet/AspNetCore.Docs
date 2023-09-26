@@ -274,8 +274,8 @@ build.Services.AddAuthentication(options =>
 	options.RequireHttpsMetadata = true;
 	options.ClientId = "<OpenID Connect client ID>";
 	options.ClientSecret = "<>";
-	// Code with PKCE can also be used here
-	options.ResponseType = "code id_token";
+	options.ResponseType = "code";
+	options.UsePkce = true;	
 	options.Scope.Add("profile");
 	options.Scope.Add("offline_access");
 	options.SaveTokens = true;
@@ -442,7 +442,8 @@ builder.Services.AddAuthentication(options =>
 	options.RequireHttpsMetadata = true;
 	options.ClientId = "AspNetCoreRequireMfaOidc";
 	options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
-	options.ResponseType = "code id_token";
+	options.ResponseType = "code";
+	options.UsePkce = true;	
 	options.Scope.Add("profile");
 	options.Scope.Add("offline_access");
 	options.SaveTokens = true;
@@ -781,8 +782,8 @@ public void ConfigureServices(IServiceCollection services)
         options.RequireHttpsMetadata = true;
         options.ClientId = "<OpenID Connect client ID>";
         options.ClientSecret = "<>";
-        // Code with PKCE can also be used here
-        options.ResponseType = "code id_token";
+        options.ResponseType = "code";
+        options.UsePkce = true;	
         options.Scope.Add("profile");
         options.Scope.Add("offline_access");
         options.SaveTokens = true;
@@ -980,7 +981,8 @@ public void ConfigureServices(IServiceCollection services)
         options.RequireHttpsMetadata = true;
         options.ClientId = "AspNetCoreRequireMfaOidc";
         options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
-        options.ResponseType = "code id_token";
+        options.ResponseType = "code";
+        options.UsePkce = true;	
         options.Scope.Add("profile");
         options.Scope.Add("offline_access");
         options.SaveTokens = true;
