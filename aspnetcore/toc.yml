@@ -226,6 +226,12 @@ items:
           - name: Tutorial
             displayName: native, aot
             uid: fundamentals/native-aot-tutorial
+          - name: Request Delegate Generator
+            displayName: aot, RDG, Request Delegate Generator
+            uid: fundamentals/aot/rdg
+          - name: RDG diagnostics
+            displayName: aot, RDG diagnostics
+            uid: fundamentals/aot/request-delegate-generator/rgd_ids
       - name: Middleware
         items: 
           - name: Middleware overview
