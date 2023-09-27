@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+using LargeFilesSample.Utilities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
@@ -16,6 +18,7 @@ namespace LargeFilesSample.Controllers
     public class FileUploadController : ControllerBase
     {
         private readonly ILogger<FileUploadController> _logger;
+        private static readonly FormOptions _defaultFormOptions = new();
 
         public FileUploadController(ILogger<FileUploadController> logger)
         {
@@ -46,7 +49,7 @@ namespace LargeFilesSample.Controllers
                 return new UnsupportedMediaTypeResult();
             }
 
-            var boundary = HeaderUtilities.RemoveQuotes(mediaTypeHeader.Boundary.Value).Value;
+            var boundary = MultipartRequestHelper.GetBoundary(mediaTypeHeader, _defaultFormOptions.MultipartBoundaryLengthLimit);
             var reader = new MultipartReader(boundary, request.Body);
             var section = await reader.ReadNextSectionAsync();
 
@@ -57,8 +60,7 @@ namespace LargeFilesSample.Controllers
                 var hasContentDispositionHeader = ContentDispositionHeaderValue.TryParse(section.ContentDisposition,
                     out var contentDisposition);
 
-                if (hasContentDispositionHeader && contentDisposition.DispositionType.Equals("form-data") &&
-                    !string.IsNullOrEmpty(contentDisposition.FileName.Value))
+                if (hasContentDispositionHeader && MultipartRequestHelper.HasFileContentDisposition(contentDisposition))
                 {
                     // Don't trust any file name, file extension, and file data from the request unless you trust them completely
                     // Otherwise, it is very likely to cause problems such as virus uploading, disk filling, etc
