@@ -19,32 +19,32 @@ The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates reque
 The following list contains the RDG diagnostics for ASP.NET Core:
 
 <!--
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg001>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg001>
 -->
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg002>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg002>
 <!--
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg003>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg003>
 -->
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg004>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg005>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg006>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg007>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg008>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg009>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg010>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg011>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg012>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg013>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg004>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg005>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg006>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg007>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg008>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg009>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg010>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg011>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg012>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg013>
 <!--
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg014>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg015>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg016>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg017>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg018>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg019>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg020>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg021>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg022>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg023>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg024>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rg025> -->
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg014>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg015>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg016>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg017>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg018>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg019>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg020>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg021>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg022>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg023>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg024>
+* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg025> -->
