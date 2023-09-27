@@ -437,11 +437,3 @@ Blazor Hybrid apps are native client apps that typically require an installer an
 To set a component's hosting model to Blazor Server or Blazor WebAssembly at compile-time or dynamically at runtime, you set its *render mode*. Render modes are fully explained and demonstrated in the <xref:blazor/components/render-modes> article. We don't recommend that you jump from this article directly to the *Render modes* article without reading the content in the articles between these two articles. For example, render modes are more easily understood by looking at Razor component examples, but basic Razor component structure and function isn't covered until the <xref:blazor/fundamentals/index> article is reached. It's also helpful to learn about Blazor's project templates and tooling before working with the component examples in the *Render modes* article.
 
 :::moniker-end
-
-## Additional resources
-
-* [HTML](https://www.w3.org/html/)
-* [WebAssembly](https://webassembly.org)
-* [mono/mono GitHub repository](https://github.com/mono/mono)
-* [C# Guide](/dotnet/csharp/)
-* <xref:mvc/views/razor>
