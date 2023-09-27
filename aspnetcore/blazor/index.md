@@ -101,18 +101,17 @@ Blazor Web Apps provide a component-based architecture with server-side renderin
 
 Blazor Web Apps can deliver UI to the browser fast by statically rendering HTML content from the server in response to requests. The page loads fast because UI rendering is performed quickly on the server without the need to download a large JavaScript bundle. Blazor can also further improve the user experience with various progressive enhancements to server rendering, such as enhanced navigation with form posts and streaming rendering of asynchronously-generated content.
 
-Blazor also supports *interactive* server rendering, where UI interactions are handled from the server over a real-time connection with the browser. Interactive server rendering enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources.
+Blazor supports *interactive* server rendering, where UI interactions are handled from the server over a real-time connection with the browser. Interactive server rendering enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources.
 
+Blazor Web Apps support interactivity with client rendering that relies on a .NET runtime built with [WebAssembly](https://webassembly.org) that you can download with your app. When running Blazor on WebAssembly, your .NET code can access the full functionality of the browser and interop with JavaScript. Your .NET code runs in the browser's security sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
-Blazor Web Apps also support interactivity with client rendering that relies on a .NET runtime built with [WebAssembly](https://webassembly.org) that you can download with your app. When running Blazor on WebAssembly, your .NET code can access the full functionality of the browser and interop with JavaScript. Your .NET code runs in the browser's security sandbox with the protections that the sandbox provides against malicious actions on the client machine.
-
-Blazor apps can also entirely target running on WebAssembly in the browser without the involvement of a server. For a *standalone Blazor WebAssembly app*, assets are deployed as static files to a web server or service capable of serving static content to clients. Once downloaded, standalone Blazor WebAssembly apps can be cached and executed offline as a Progressive Web App (PWA).
+Blazor apps can entirely target running on WebAssembly in the browser without the involvement of a server. For a *standalone Blazor WebAssembly app*, assets are deployed as static files to a web server or service capable of serving static content to clients. Once downloaded, standalone Blazor WebAssembly apps can be cached and executed offline as a Progressive Web App (PWA).
 
 ## Build a native client app with Blazor Hybrid
 
 *Blazor Hybrid* enables using Razor components in a native client app with a blend of native and web technologies for web, mobile, and desktop platforms. Code runs natively in the .NET process and renders web UI to an embedded Web View control using a local interop channel. WebAssembly isn't used in Hybrid apps. Hybrid apps are built with [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui), which is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
 
-The Blazor Hybrid also supports [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/) for app modernization efforts when you need to transition apps from earlier technology to .NET MAUI.
+The Blazor Hybrid supports [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/) to transition apps from earlier technology to .NET MAUI.
 
 :::moniker-end
 
