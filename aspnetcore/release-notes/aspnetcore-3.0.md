@@ -15,7 +15,7 @@ This article highlights the most significant changes in ASP.NET Core 3.0 with li
 
 Blazor is a new framework in ASP.NET Core for building interactive client-side web UI with .NET:
 
-* Create rich interactive UIs using C# instead of JavaScript.
+* Create rich interactive UIs using C#.
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 
