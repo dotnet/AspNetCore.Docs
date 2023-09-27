@@ -52,15 +52,7 @@ Use the following guidance to integrate Razor components into pages and views of
    @using {APP NAMESPACE}.Components
    ```
 
-XXXXXXXXXXXXXXXXXXX
 
-ADD Layout folder
-Add NavMenu
-Add MainLayout
-ADD Routes
-ADD App
-
-XXXXXXXXXXXXXXXXXXX
 
 1. In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps or `Views/Shared/_Layout.cshtml` in MVC apps):
 
@@ -78,13 +70,13 @@ XXXXXXXXXXXXXXXXXXX
 
      The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
 
-   * Add a `<script>` tag for the `blazor.web.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`):
+   * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`):
 
      ```html
-     <script src="_framework/blazor.web.js"></script>
+     <script src="_framework/blazor.server.js"></script>
      ```
 
-     The framework adds the `blazor.web.js` script to the app. There's no need to manually add a `blazor.web.js` script file to the app.
+     The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
 
    > [!NOTE]
    > Typically, the layout loads via a `_ViewStart.cshtml` file.
@@ -102,11 +94,13 @@ XXXXXXXXXXXXXXXXXXX
    app.MapBlazorHub();
    ```
 
-1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Shared` folder.
+1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Components` folder.
 
-   `Pages/Shared/Counter.razor` (Razor Pages) or `Views/Shared/Counter.razor` (MVC):
+   `Components/Counter.razor`:
 
    ```razor
+   @attribute [RenderModeServer]
+
    <h1>Counter</h1>
 
    <p>Current count: @currentCount</p>
@@ -131,7 +125,7 @@ XXXXXXXXXXXXXXXXXXX
 
    ```cshtml
    @page
-   @using {APP NAMESPACE}.Pages.Shared
+   @using {APP NAMESPACE}.Components
    @model IndexModel
    @{
        ViewData["Title"] = "Home page";
@@ -147,7 +141,7 @@ XXXXXXXXXXXXXXXXXXX
    `Views/Home/Index.cshtml`:
 
    ```cshtml
-   @using {APP NAMESPACE}.Views.Shared
+   @using {APP NAMESPACE}.Components
    @{
        ViewData["Title"] = "Home Page";
    }
@@ -158,6 +152,16 @@ XXXXXXXXXXXXXXXXXXX
 For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
 
 ## Use routable components in a Razor Pages app
+
+XXXXXXXXXXXXXXXXXXX
+
+ADD Layout folder
+Add NavMenu (and change {APP NAME} to the app's name)
+Add MainLayout
+ADD Routes
+ADD App (and update APP NAMESPACE in stylesheet href)
+
+XXXXXXXXXXXXXXXXXXX
 
 *This section pertains to adding components that are directly routable from user requests.*
 
