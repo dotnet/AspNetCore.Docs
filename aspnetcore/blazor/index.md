@@ -57,7 +57,41 @@ Using .NET for client-side web development offers the following advantages:
 > [!NOTE]
 > For a Blazor quick start tutorial, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
 
-<!-- Start >=8.0 coverage -->
+## Components
+
+Blazor apps are based on *components*. A component in Blazor is an element of UI, such as a page, dialog, or data entry form.
+
+Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/) that:
+
+* Define flexible UI rendering logic.
+* Handle user events.
+* Can be nested and reused.
+* Can be shared and distributed as [Razor class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).
+
+The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
+
+Blazor uses natural HTML tags for UI composition. The following Razor markup demonstrates a component (`Counter.razor`) that displays a dialog and processes an event when the user selects a button:
+
+```razor
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -73,32 +107,15 @@ Blazor Web Apps also support interactivity with client rendering that relies on 
 
 When running Blazor on WebAssembly, code can access the full functionality of the browser via JavaScript. .NET code runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
-After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
-
-* UI updates and JavaScript interop calls handled over a SignalR connection. The runtime stays on the server and handles:
-  * Executing the app's C# code.
-  * UI events from the browser that are sent to the server.
-  * Applying UI updates to a rendered component that are sent back by the server.
-* Rich interactivity and UI updates handled by a .NET runtime running in the browser on WebAssembly.
-  * C# code files and Razor files are compiled into .NET assemblies.
-  * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
-  * Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
-
 Blazor apps can entirely target running on WebAssembly in the browser without the involvement of a server. For a *standalone Blazor WebAssembly app*, assets are deployed as static files to a web server or service capable of serving static content to clients.
 
 ## Build a native client app with Blazor Hybrid
 
-*Blazor Hybrid* uses Blazor in a native client app with a blend of native and web technologies. Code runs natively in the .NET process and renders web UI to an embedded Web View control using a local interop channel. WebAssembly isn't used in Hybrid apps. Hybrid apps encompass the following technologies:
+*Blazor Hybrid* enables using Razor components in a native client app with a blend of native and web technologies for web, mobile, and desktop platforms. Code runs natively in the .NET process and renders web UI to an embedded Web View control using a local interop channel. WebAssembly isn't used in Hybrid apps. Hybrid apps are built with [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui), which is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
 
-* [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui): A cross-platform framework for creating native mobile and desktop apps with C# and XAML.
-* [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/): A UI framework that is resolution-independent and uses a vector-based rendering engine, built to take advantage of modern graphics hardware. 
-* [Windows Forms](/dotnet/desktop/winforms/overview/): A UI framework that creates rich desktop client apps for Windows. The Windows Forms development platform supports a broad set of app development features, including controls, graphics, data binding, and user input.
+The Blazor Hybrid also supports [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/) for app modernization efforts when you need to transition apps from earlier technology to .NET MAUI.
 
 :::moniker-end
-
-<!-- End >=8.0 coverage -->
-
-<!-- Start <8.0 coverage -->
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -175,8 +192,6 @@ Blazor implements the [.NET Standard](/dotnet/standard/net-standard), which enab
 APIs that aren't applicable inside of a web browser (for example, accessing the file system, opening a socket, and threading) throw a <xref:System.PlatformNotSupportedException>.
 
 :::moniker-end
-
-<!-- End <8.0 coverage -->
 
 ## Next steps
 
