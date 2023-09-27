@@ -233,12 +233,8 @@ items:
             displayName: aot, RDG diagnostics
             uid: fundamentals/aot/request-delegate-generator/rgd_ids
             items:
-              - name: RDG001
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg001
               - name: RDG002
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
-              - name: RDG003
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg003
               - name: RDG004
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg004
               - name: RDG005
