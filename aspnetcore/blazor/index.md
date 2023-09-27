@@ -26,13 +26,6 @@ Blazor is a framework for building interactive client-side web UI with [.NET](/d
 
 :::moniker-end
 
-
-
-
-
-
-
-
 :::moniker range=">= aspnetcore-6.0"
 
 * Create rich interactive UIs using [C#](/dotnet/csharp/).
