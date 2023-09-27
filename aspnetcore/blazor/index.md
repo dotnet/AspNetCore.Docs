@@ -67,7 +67,7 @@ Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/ass
 
 The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
 
-Blazor uses natural HTML tags for UI composition. The following Razor markup demonstrates a component (`Counter.razor`) that displays a dialog and processes an event when the user selects a button:
+Blazor uses natural HTML tags for UI composition. The following Razor markup demonstrates a component that increments a counter when the user selects a button.
 
 ```razor
 <PageTitle>Counter</PageTitle>
