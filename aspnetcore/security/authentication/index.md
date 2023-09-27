@@ -137,7 +137,7 @@ See the following links for differences between challenge and forbid:
 
 ## Authentication providers per tenant
 
-ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers to consider [Orchard Core](https://www.orchardcore.net/) or [ABP Framework](https://abp.io/) for multi-tenant authentication.
+ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers to consider [Orchard Core](https://www.orchardcore.net/), [ABP Framework](https://abp.io/), or [Finbuckle.MultiTenant](https://www.finbuckle.com/multitenant)  for multi-tenant authentication.
 
 Orchard Core is:
 
@@ -147,6 +147,15 @@ Orchard Core is:
 See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
 
 [ABP Framework](https://abp.io/) supports various architectural patterns including modularity, microservices, domain driven design, and multi-tenancy. See [ABP Framework source on GitHub](https://github.com/abpframework/abp).
+
+Finbuckle.MultiTenant:
+
+* Open source
+* Provides tenant resolution
+* Lightweight
+* Provides data isolation
+* Configure app behavior uniquely for each tenant
+
 
 ## Additional resources
 
