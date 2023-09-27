@@ -26,32 +26,36 @@ Blazor is a framework for building interactive client-side web UI with [.NET](/d
 
 :::moniker-end
 
+
+
+
+
+
+
+
 :::moniker range=">= aspnetcore-6.0"
 
-* Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
+* Create rich interactive UIs using [C#](/dotnet/csharp/).
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
-* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
 * Build hybrid desktop and mobile apps with .NET and Blazor.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
+* Create rich interactive UIs using [C#](/dotnet/csharp/).
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
-* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
 
 :::moniker-end
 
 Using .NET for client-side web development offers the following advantages:
 
-* Write code in C# instead of JavaScript.
+* Write code in C#, which can improve productivity in app development and maintenance.
 * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
-* Share app logic across server and client.
 * Benefit from .NET's performance, reliability, and security.
-* Stay productive on Windows, Linux, or macOS with a development environment, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/).
+* Stay productive on Windows, Linux, or macOS with a development environment, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/). Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
 * Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
 > [!NOTE]
