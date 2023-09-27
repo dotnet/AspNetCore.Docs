@@ -201,7 +201,7 @@ app.UseResponseCompression();
 app.MapRazorPages();
 ```
 
-For information about Single Page Applications, see the tutorials for the [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), and [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue) project templates.
+For information about Single Page Applications, see <xref:spa/intro>.
 
 ## UseCors and UseStaticFiles order
 

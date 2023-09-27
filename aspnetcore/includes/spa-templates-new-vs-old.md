@@ -4,11 +4,11 @@ ms.author: tdykstra
 ms.date: 09/12/2023
 ms.topic: include
 ---
-## Newer vs. older SPA templates
+## ASP.NET Core SPA templates
 
-The SPA templates that use the special project type for JavaScript and TypeScript are available in Visual Studio 2022 version 17.7 or later with the **ASP.NET and web development** workload installed. They're available only in Visual Studio, not by using the `dotnet new` command of the .NET CLI.
+Visual Studio includes templates for building ASP.NET Core apps with a JavaScript or TypeScript frontend. These templates are available in Visual Studio 2022 version 17.8 or later with the **ASP.NET and web development** workload installed.
 
-There are older SPA templates that don't use the special project type for JavaScript and TypeScript. The newer Visual Studio templates offer the following benefits compared to the older templates:
+The Visual Studio templates for building ASP.NET Core apps with a JavaScript or TypeScript frontend offer the following benefits:
 
 * Clean project separation for the frontend and backend.
 * Stay up-to-date with the latest frontend framework versions.
@@ -20,6 +20,6 @@ There are older SPA templates that don't use the special project type for JavaSc
 * Compatible with Visual Studio Code debugging and launch configuration.
 * Run frontend unit tests in [Test Explorer](/visualstudio/test/run-unit-tests-with-test-explorer) using JavaScript test frameworks.
 
-## How to get the old templates
+## Legacy ASP.NET Core SPA templates
 
-Install the [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0) to make the old SPA project templates available via the `dotnet new angular` or `dotnet new react` commands. For documentation on these older templates, see the ASP.NET Core 7.0 version of the [SPA overview](xref:spa/angular?view=aspnetcore-7.0&preserve-view=true&tabs=netcore-cli) and the [Angular](xref:spa/angular?view=aspnetcore-7.0&preserve-view=true&tabs=netcore-cli) and [React](xref:spa/react?view=aspnetcore-7.0&preserve-view=true&tabs=netcore-cli) articles.
+Earlier versions of the .NET SDK included what are now legacy templates for building SPA apps with ASP.NET Core. For documentation on these older templates, see the ASP.NET Core 7.0 version of the [SPA overview](xref:spa/angular?view=aspnetcore-7.0&preserve-view=true&tabs=netcore-cli) and the [Angular](xref:spa/angular?view=aspnetcore-7.0&preserve-view=true&tabs=netcore-cli) and [React](xref:spa/react?view=aspnetcore-7.0&preserve-view=true&tabs=netcore-cli) articles.
