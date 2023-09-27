@@ -19,8 +19,6 @@ This article explains Razor component integration scenarios for ASP.NET Core app
 > [!IMPORTANT]
 > This article is currently undergoing updates for .NET 8. Please check back periodically for new content or when .NET 8 is released.
 
-<!-- UPDATE 8.0 HOLD
-
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
   
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
@@ -36,25 +34,39 @@ After [configuring the project](#configuration), use the guidance in the followi
 
 Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
 
-1. Add an imports file to the root folder of the project with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
+1. Add a `Components` folder to the root folder of the project.
 
-   `_Imports.razor`:
+1. Add an imports file to the `Components` folder with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
+
+   `Components/_Imports.razor`:
 
    ```razor
    @using System.Net.Http
-   @using Microsoft.AspNetCore.Authorization
-   @using Microsoft.AspNetCore.Components.Authorization
+   @using System.Net.Http.Json
    @using Microsoft.AspNetCore.Components.Forms
    @using Microsoft.AspNetCore.Components.Routing
    @using Microsoft.AspNetCore.Components.Web
    @using Microsoft.AspNetCore.Components.Web.Virtualization
    @using Microsoft.JSInterop
    @using {APP NAMESPACE}
+   @using {APP NAMESPACE}.Components
    ```
+
+XXXXXXXXXXXXXXXXXXX
+
+ADD Layout folder
+Add NavMenu
+Add MainLayout
+ADD Routes
+ADD App
+
+XXXXXXXXXXXXXXXXXXX
 
 1. In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps or `Views/Shared/_Layout.cshtml` in MVC apps):
 
-   * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component Tag Helper to the `<head>` element:
+   * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component via a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to the `<head>` element:
+
+     <!-- UPDATE 8.0 ... I'm leaving the tilde ~ on the base href here. -->
 
      ```cshtml
      <base href="~/" />
@@ -66,21 +78,22 @@ Use the following guidance to integrate Razor components into pages and views of
 
      The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
 
-   * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`):
+   * Add a `<script>` tag for the `blazor.web.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`):
 
      ```html
-     <script src="_framework/blazor.server.js"></script>
+     <script src="_framework/blazor.web.js"></script>
      ```
 
-     The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
+     The framework adds the `blazor.web.js` script to the app. There's no need to manually add a `blazor.web.js` script file to the app.
 
    > [!NOTE]
    > Typically, the layout loads via a `_ViewStart.cshtml` file.
 
-1. Register the Blazor Server services in `Program.cs` where services are registered:
+1. Register the Blazor services in `Program.cs` where services are registered:
 
    ```csharp
-   builder.Services.AddServerSideBlazor();
+   builder.Services.AddRazorComponents()
+       .AddServerComponents();
    ```
 
 1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped. Place the following line after the call to `MapRazorPages` (Razor Pages) or `MapControllerRoute` (MVC):
@@ -393,21 +406,9 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 
 ## Persist prerendered state
 
-## Prerendered state size and SignalR message size limit
-
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
-
-* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
-
-To resolve the problem, use ***either*** of the following approaches:
-
-* Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
-
+-->
 
 ## Additional resources
 
 <xref:blazor/components/prerender>
 
--->

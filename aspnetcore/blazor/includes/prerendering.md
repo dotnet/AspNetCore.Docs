@@ -12,7 +12,7 @@
 
 While an app is prerendering, certain actions, such as calling into JavaScript (JS), aren't possible.
 
-For the following example, the `setElementText1` function is placed inside the `<head>` element. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value.
+For the following example, the `setElementText1` function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value.
 
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
@@ -43,7 +43,7 @@ The [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#af
 
 The following component demonstrates how to use JS interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must be careful to avoid creating an infinite loop in this scenario.
 
-For the following example, the `setElementText2` function is placed inside the `<head>` element. The function is called with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value.
+For the following example, the `setElementText2` function is called with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value.
 
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.

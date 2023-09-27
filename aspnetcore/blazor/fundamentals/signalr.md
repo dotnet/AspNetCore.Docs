@@ -105,6 +105,18 @@ If prerendering is configured, prerendering occurs before the client connection 
 
 :::moniker-end
 
+## Prerendered state size and SignalR message size limit
+
+A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+
+* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
+* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+
+To resolve the problem, use ***either*** of the following approaches:
+
+* Reduce the amount of data that you are putting into the prerendered state.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
+
 ## Additional client-side resources
 
 * [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)

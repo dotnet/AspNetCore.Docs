@@ -10,16 +10,22 @@ uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
 ---
 # Persist Component State Tag Helper in ASP.NET Core
 
-<!-- UPDATE 8.0 Content is TBD for the general concepts here -->
-
-> [!IMPORTANT]
-> This article is currently undergoing updates for .NET 8. Please check back periodically for new content or when .NET 8 is released.
+The Persist Component State Tag Helper saves the state of Razor components rendered in a Razor Pages page or MVC view.
 
 ## Prerequisites
 
 :::moniker range=">= aspnetcore-8.0"
 
+<!-- UPDATE 8.0 Content is TBD for the general concepts here -->
+
+> [!IMPORTANT]
+> This section is currently undergoing updates for .NET 8.
+
+<!-- UPDATE 8.0
+
 Follow the guidance in the *Configuration* section of the <xref:blazor/components/integration> article.
+
+-->
 
 :::moniker-end
 
@@ -71,22 +77,22 @@ For more information and examples, see <xref:blazor/components/prerendering-and-
 
 :::moniker-end
 
-## Prerendered state size and SignalR message size limit
-
-*This section only applies to server-side Blazor apps.*
-
-A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
-
-* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
-
-To resolve the problem, use ***either*** of the following approaches:
-
-* Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
-
 ## Additional resources
+
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/components/prerender>
+* <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
+* <xref:mvc/views/tag-helpers/intro>
+* <xref:blazor/components/index>
+
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>
+
+:::moniker-end

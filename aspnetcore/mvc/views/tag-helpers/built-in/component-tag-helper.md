@@ -10,6 +10,8 @@ uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core
 
+The Component Tag Helper renders a Razor component in a Razor Pages page or MVC view.
+
 ## Prerequisites
 
 :::moniker range=">= aspnetcore-8.0"
@@ -37,8 +39,12 @@ Follow the guidance in the *Configuration* section of the <xref:blazor/component
 
 To render a component from a page or view, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).
 
+:::moniker range="< aspnetcore-8.0"
+
 > [!NOTE]
 > Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.
+
+:::moniker-end
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
 
@@ -85,28 +91,22 @@ Additional characteristics include:
 
 The following Component Tag Helper renders the `Counter` component in a page or view in a server-side Blazor app with `ServerPrerendered`:
 
+:::moniker range=">= aspnetcore-8.0"
+
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using {APP ASSEMBLY}.Pages
+@using {APP ASSEMBLY}.Components.Pages
 
 ...
 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-:::moniker range=">= aspnetcore-8.0"
+The preceding example assumes that the `Counter` component is in the app's `Components/Pages` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Components.Pages`).
 
-The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages`).
+The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size.
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
-
-:::moniker-end
-
-The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size:
+`Components/ColorfulCheckbox.razor`:
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">
@@ -146,7 +146,68 @@ The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/com
     param-Size="14" param-Color="@("blue")" />
 ```
 
-The preceding example assumes that the `ColorfulCheckbox` component is in a *Components* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Components`).
+The preceding example assumes that the `ColorfulCheckbox` component is in the `Components` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Components`).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```cshtml
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using {APP ASSEMBLY}.Pages
+
+...
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered" />
+```
+
+The preceding example assumes that the `Counter` component is in the app's `Pages` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
+
+The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size.
+
+`Shared/ColorfulCheckbox.razor`:
+
+```razor
+<label style="font-size:@(Size)px;color:@Color">
+    <input @bind="Value"
+           id="survey" 
+           name="blazor" 
+           type="checkbox" />
+    Enjoying Blazor?
+</label>
+
+@code {
+    [Parameter]
+    public bool Value { get; set; }
+
+    [Parameter]
+    public int Size { get; set; } = 8;
+
+    [Parameter]
+    public string Color { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Size += 10;
+    }
+}
+```
+
+The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components/index#component-parameters) can be set by the Component Tag Helper:
+
+```cshtml
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using {APP ASSEMBLY}.Shared
+
+...
+
+<component type="typeof(ColorfulCheckbox)" render-mode="ServerPrerendered" 
+    param-Size="14" param-Color="@("blue")" />
+```
+
+The preceding example assumes that the `ColorfulCheckbox` component is in the `Shared` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared`).
+
+:::moniker-end
 
 The following HTML is rendered in the page or view:
 
@@ -187,10 +248,52 @@ public class MyClass
 
 **The class must have a public parameterless constructor.**
 
-`Shared/MyComponent.razor`:
+:::moniker range=">= aspnetcore-8.0"
+
+`Components/ParameterComponent.razor`:
 
 ```razor
-<h2>MyComponent</h2>
+<h2>ParameterComponent</h2>
+
+<p>Int: @MyObject.MyInt</p>
+<p>String: @MyObject.MyString</p>
+
+@code
+{
+    [Parameter]
+    public MyClass MyObject { get; set; }
+}
+```
+
+`Pages/MyPage.cshtml`:
+
+```cshtml
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using {APP ASSEMBLY}
+@using {APP ASSEMBLY}.Components
+
+...
+
+@{
+    var myObject = new MyClass();
+    myObject.MyInt = 7;
+    myObject.MyString = "Set by MyPage";
+}
+
+<component type="typeof(ParameterComponent)" render-mode="ServerPrerendered" 
+    param-MyObject="@myObject" />
+```
+
+The preceding example assumes that the `ParameterComponent` component is in the app's `Components`` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Components`). `MyClass` is in the app's namespace.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+`Shared/ParameterComponent.razor`:
+
+```razor
+<h2>ParameterComponent</h2>
 
 <p>Int: @MyObject.MyInt</p>
 <p>String: @MyObject.MyString</p>
@@ -217,14 +320,29 @@ public class MyClass
     myObject.MyString = "Set by MyPage";
 }
 
-<component type="typeof(MyComponent)" render-mode="ServerPrerendered" 
+<component type="typeof(ParameterComponent)" render-mode="ServerPrerendered" 
     param-MyObject="@myObject" />
 ```
 
-The preceding example assumes that the `MyComponent` component is in the app's *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`). `MyClass` is in the app's namespace.
+The preceding example assumes that the `ParameterComponent` component is in the app's `Shared`` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`). `MyClass` is in the app's namespace.
+
+:::moniker-end
 
 ## Additional resources
+
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/components/prerender>
+* <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
+* <xref:mvc/views/tag-helpers/intro>
+* <xref:blazor/components/index>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>
+
+:::moniker-end
