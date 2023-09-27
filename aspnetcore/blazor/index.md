@@ -63,15 +63,14 @@ Using .NET for client-side web development offers the following advantages:
 
 ## Build a full-stack web app with Blazor
 
-Blazor Web Apps provide a component-based architecture with server-side rendering and full client-side interactivity in a single project, where you can switch between server-side and client-side rendering modes and even mix them in the same page. 
+Blazor Web Apps provide a component-based architecture with server-side rendering and full client-side interactivity in a single solution, where you can switch between server-side and client-side rendering modes and even mix them in the same page. 
 
-When a Blazor Web App uses interactivity with server rendering, the server generates HTML in response to a request and sends it to the browser. The page loads fast because UI rendering is performed quickly on the server without the need to download a large JavaScript bundle or wait for the establishment of a [SignalR](xref:signalr/introduction) connection to the client.
+Blazor Web Apps can deliver UI to the browser fast by statically rendering HTML content from the server in response to requests. The page loads fast because UI rendering is performed quickly on the server without the need to download a large JavaScript bundle. Blazor can also further improve the user experience with various progressive enhancements to server rendering, such as enhanced navigation with form posts and streaming rendering of asynchronously-generated content.
 
-*Streaming rendering* can improve the user experience with SSR when long-running asynchronous tasks are required to fully render a page. Initially, Blazor renders the entire page for the browser with placeholder content. The asynchronous operations execute on the server. After the operations are complete, the updated content is sent to the browser on the same response connection and patched into page. The benefit of this approach is that the main layout of the app renders as quickly as possible.
+Blazor also supports *interactive* server rendering, where UI interactions are handled from the server over a real-time connection with the browser. Interactive server rendering enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources.
 
-Blazor Web Apps also support interactivity with client rendering that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins. WebAssembly works in all modern web browsers, including mobile browsers.
 
-When running Blazor on WebAssembly, code can access the full functionality of the browser via JavaScript. .NET code runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
+Blazor Web Apps also support interactivity with client rendering that relies on a .NET runtime built with [WebAssembly](https://webassembly.org) that you can download with your app. When running Blazor on WebAssembly, your .NET code can access the full functionality of the browser and interop with JavaScript. Your .NET code runs in the browser's security sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
 After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
 
@@ -84,7 +83,7 @@ After rendering is complete, interactivity on the client can adopt either or bot
   * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
   * Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
-Blazor apps can entirely target running on WebAssembly in the browser without the involvement of a server. For a *standalone Blazor WebAssembly app*, assets are deployed as static files to a web server or service capable of serving static content to clients.
+Blazor apps can also entirely target running on WebAssembly in the browser without the involvement of a server. For a *standalone Blazor WebAssembly app*, assets are deployed as static files to a web server or service capable of serving static content to clients. Once downloaded, standalone Blazor WebAssembly apps can be cached and executed offline as a Progressive Web App (PWA).
 
 ## Build a native client app with Blazor Hybrid
 
