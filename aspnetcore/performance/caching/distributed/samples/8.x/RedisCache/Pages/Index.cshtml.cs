@@ -1,9 +1,9 @@
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Text;
 
-namespace DistCacheSample.Pages
+namespace RedisCache.Pages
 {
     public class IndexModel : PageModel
     {
