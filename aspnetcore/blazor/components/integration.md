@@ -52,8 +52,6 @@ Use the following guidance to integrate Razor components into pages and views of
    @using {APP NAMESPACE}.Components
    ```
 
-
-
 1. In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps or `Views/Shared/_Layout.cshtml` in MVC apps):
 
    * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component via a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to the `<head>` element:
@@ -81,14 +79,13 @@ Use the following guidance to integrate Razor components into pages and views of
    > [!NOTE]
    > Typically, the layout loads via a `_ViewStart.cshtml` file.
 
-1. Register the Blazor services in `Program.cs` where services are registered:
+1. Register the server-side Blazor services in the `Program` file where services are registered:
 
    ```csharp
-   builder.Services.AddRazorComponents()
-       .AddServerComponents();
+   builder.Services.AddServerSideBlazor();
    ```
 
-1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped. Place the following line after the call to `MapRazorPages` (Razor Pages) or `MapControllerRoute` (MVC):
+1. Add the Blazor Hub endpoint to the endpoints of the `Program` file where routes are mapped. Place the following line after the call to `MapRazorPages` (Razor Pages) or `MapControllerRoute` (MVC):
 
    ```csharp
    app.MapBlazorHub();
@@ -99,8 +96,6 @@ Use the following guidance to integrate Razor components into pages and views of
    `Components/Counter.razor`:
 
    ```razor
-   @attribute [RenderModeServer]
-
    <h1>Counter</h1>
 
    <p>Current count: @currentCount</p>
@@ -153,25 +148,15 @@ For more information, see the [Render components from a page or view](#render-co
 
 ## Use routable components in a Razor Pages app
 
-XXXXXXXXXXXXXXXXXXX
-
-ADD Layout folder
-Add NavMenu (and change {APP NAME} to the app's name)
-Add MainLayout
-ADD Routes
-ADD App (and update APP NAMESPACE in stylesheet href)
-
-XXXXXXXXXXXXXXXXXXX
-
 *This section pertains to adding components that are directly routable from user requests.*
 
 To support routable Razor components in Razor Pages apps:
 
 1. Follow the guidance in the [Configuration](#configuration) section.
 
-1. Add an `App` component to the project root with the following content.
+1. Add an `App` component with the following content.
 
-   `App.razor`:
+   `Components/App.razor`:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -194,6 +179,7 @@ To support routable Razor components in Razor Pages apps:
    ```cshtml
    @page
    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+   @using {APP NAMESPACE}.Components
 
    <component type="typeof(App)" render-mode="ServerPrerendered" />
    ```
@@ -208,15 +194,15 @@ To support routable Razor components in Razor Pages apps:
 
    For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. In the `Program.cs` endpoints, add a low-priority route for the `_Host` page as the last endpoint:
+1. In the the `Program` file endpoints, add a low-priority route for the `_Host` page as the last endpoint:
 
    ```csharp
    app.MapFallbackToPage("/_Host");
    ```
 
-1. Add routable components to the project. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
+1. Create a `Components/Pages` folder in the app and add routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
 
-   `Pages/RoutableCounter.razor`:
+   `Components/Pages/RoutableCounter.razor`:
 
    ```razor
    @page "/routable-counter"
@@ -253,7 +239,7 @@ To support routable Razor components in MVC apps:
 
 1. Add an `App` component to the project root with the following content.
 
-   `App.razor`:
+   `Components/App.razor`:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -275,6 +261,7 @@ To support routable Razor components in MVC apps:
 
    ```cshtml
    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+   @using {APP NAMESPACE}.Components
 
    <component type="typeof(App)" render-mode="ServerPrerendered" />
    ```
@@ -300,15 +287,15 @@ To support routable Razor components in MVC apps:
    }
    ```
 
-1. In the `Program.cs` endpoints, add a low-priority route for the controller action that returns the `_Host` view:
+1. In the `Program` file endpoints, add a low-priority route for the controller action that returns the `_Host` view:
 
    ```csharp
    app.MapFallbackToController("Blazor", "Home");
    ```
 
-1. Create a `Pages` folder in the MVC app and add routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
+1. Create a `Components/Pages` folder in the app and add routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
 
-   `Pages/RoutableCounter.razor`:
+   `Components/Pages/RoutableCounter.razor`:
 
    ```razor
    @page "/routable-counter"
