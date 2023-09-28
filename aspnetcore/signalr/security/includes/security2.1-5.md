@@ -65,10 +65,12 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.2 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-6.0"
 
 ## WebSocket Origin Restriction
 
+:::moniker-end
+:::moniker range=">= aspnetcore-2.2 < aspnetcore-6.0"
 The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
 
 :::moniker-end
@@ -91,7 +93,7 @@ In ASP.NET Core 2.1 and later, header validation can be achieved using a custom 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-2.2 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-6.0"
 ## ConnectionId
 
 Exposing `ConnectionId` can lead to malicious impersonation if the SignalR server or client version is ASP.NET Core 2.2 or earlier. If the SignalR server and client version are ASP.NET Core 3.0 or later, the `ConnectionToken` rather than the `ConnectionId` must be kept secret. The `ConnectionToken` is purposely not exposed in any API.  It can be difficult to ensure that older SignalR clients aren't connecting to the server, so even if your SignalR server version is ASP.NET Core 3.0 or later, the `ConnectionId` shouldn't be exposed.
