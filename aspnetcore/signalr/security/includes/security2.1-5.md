@@ -84,7 +84,7 @@ However, browsers do send the `Origin` header when issuing WebSocket requests. A
 
 In ASP.NET Core 2.1 and later, header validation can be achieved using a custom middleware placed **before `UseSignalR`, and authentication middleware** in `Configure`:
 
-[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/?name=snippet2)]
+[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/Startup.cs?name=snippet2)]
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
