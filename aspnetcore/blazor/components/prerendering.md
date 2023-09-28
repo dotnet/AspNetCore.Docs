@@ -140,7 +140,7 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
   * [Startup: Control headers in C# code](xref:blazor/fundamentals/startup#control-headers-in-c-code)
   * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
   * [SignalR: Prerendered state size and SignalR message size limit](xref:blazor/fundamentals/signalr#prerendered-state-size-and-signalr-message-size-limit)
-* [Render modes: Prerendering](xref:blazor/components/render-modes@prerendering)
+* [Render modes: Prerendering](xref:blazor/components/render-modes#prerendering)
 * Components
   * [Control `<head>` content during prerendering](xref:blazor/components/control-head-content#control-head-content-during-prerendering)
   * Razor component lifecycle subjects that pertain to prerendering
