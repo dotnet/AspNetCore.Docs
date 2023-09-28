@@ -1,18 +1,4 @@
----
-title: Security considerations in ASP.NET Core SignalR
-author: bradygaster
-description: Learn about security in ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 09/16/2020
-uid: signalr/security
----
-# Security considerations in ASP.NET Core SignalR
-
-By [Andrew Stanton-Nurse](https://twitter.com/anurse)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-6.0"
 This article provides information on securing SignalR.
 
 ## Cross-Origin Resource Sharing
@@ -104,9 +90,3 @@ There are limits for incoming and outgoing messages, both can be configured on t
 Setting the limit to `0` disables the limit. Removing the limit allows a client to send a message of any size. Malicious clients sending large messages can cause excess memory to be allocated. Excess memory usage can significantly reduce the number of concurrent connections.
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/security/includes/security7.md)]
-
-[!INCLUDE[](~/signalr/security/includes/security6.md)]
-
-[!INCLUDE[](~/signalr/security/includes/security2.1-5.md)]

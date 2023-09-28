@@ -1,18 +1,4 @@
----
-title: Security considerations in ASP.NET Core SignalR
-author: bradygaster
-description: Learn about security in ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 09/16/2020
-uid: signalr/security
----
-# Security considerations in ASP.NET Core SignalR
-
-By [Andrew Stanton-Nurse](https://twitter.com/anurse)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-2.0 < aspnetcore-6.0"
 This article provides information on securing SignalR.
 
 ## Cross-Origin Resource Sharing
@@ -30,10 +16,20 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 * HTTP methods `GET` and `POST` must be allowed.
 * Credentials must be allowed in order for cookie-based sticky sessions to work correctly. They must be enabled even when authentication isn't used.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 However, in 5.0 we have provided an option in the TypeScript client to not use credentials.
 The option to not use credentials should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers for sticky sessions).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-2.0 < aspnetcore-6.0"
 For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -61,10 +57,41 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
+:::moniker-end
+
+:::moniker range="<= aspnetcore-2.2"
+
+[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/Startup.cs?name=snippet1)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-2.2 < aspnetcore-6.0"
+
 ## WebSocket Origin Restriction
 
 The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-2.2"
+
+The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
+
+* Perform CORS pre-flight requests.
+* Respect the restrictions specified in `Access-Control` headers when making WebSocket requests.
+
+However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
+
+In ASP.NET Core 2.1 and later, header validation can be achieved using a custom middleware placed **before `UseSignalR`, and authentication middleware** in `Configure`:
+
+[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS_2.1/?name=snippet2)]
+
+> [!NOTE]
+> The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-2.2 < aspnetcore-6.0"
 ## ConnectionId
 
 Exposing `ConnectionId` can lead to malicious impersonation if the SignalR server or client version is ASP.NET Core 2.2 or earlier. If the SignalR server and client version are ASP.NET Core 3.0 or later, the `ConnectionToken` rather than the `ConnectionId` must be kept secret. The `ConnectionToken` is purposely not exposed in any API.  It can be difficult to ensure that older SignalR clients aren't connecting to the server, so even if your SignalR server version is ASP.NET Core 3.0 or later, the `ConnectionId` shouldn't be exposed.
@@ -104,9 +131,3 @@ There are limits for incoming and outgoing messages, both can be configured on t
 Setting the limit to `0` disables the limit. Removing the limit allows a client to send a message of any size. Malicious clients sending large messages can cause excess memory to be allocated. Excess memory usage can significantly reduce the number of concurrent connections.
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/security/includes/security7.md)]
-
-[!INCLUDE[](~/signalr/security/includes/security6.md)]
-
-[!INCLUDE[](~/signalr/security/includes/security2.1-5.md)]
