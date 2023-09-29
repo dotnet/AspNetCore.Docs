@@ -87,8 +87,17 @@ In the `Program` file where services are registered before the line that builds 
 
 ```csharp
 builder.Services.AddRazorComponents()
+    .AddServerComponents();
+```
+
+<!-- UPDATE 8.0 RC2
+
+```csharp
+builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
+
+-->
 
 <!-- UPDATE 8.0 Update API cross-link -->
 
@@ -96,8 +105,17 @@ In the `Program` file immediately after the call to map Razor Pages (<xref:Micro
 
 ```csharp
 app.MapRazorComponents<App>()
+    .AddServerRenderMode();
+```
+
+<!-- UPDATE 8.0 RC2
+
+```csharp
+app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
+
+-->
 
 > [!NOTE]
 > If the app hasn't already been updated to include Antiforgery Middleware, add the following line after <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> is called:
@@ -382,8 +400,17 @@ In the `Program` file where services are registered before the line that builds 
 
 ```csharp
 builder.Services.AddRazorComponents()
+    .AddServerComponents();
+```
+
+<!-- UPDATE 8.0 RC2
+
+```csharp
+builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
+
+-->
 
 <!-- UPDATE 8.0 Update API cross-link -->
 
@@ -391,8 +418,17 @@ In the `Program` file immediately after the call to map Razor Pages (<xref:Micro
 
 ```csharp
 app.MapRazorComponents<App>()
+    .AddServerRenderMode();
+```
+
+<!-- UPDATE 8.0 RC2
+
+```csharp
+app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
+
+-->
 
 > [!NOTE]
 > If the app hasn't already been updated to include Antiforgery Middleware, add the following line after <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> is called:
@@ -407,7 +443,7 @@ Create a `Pages` folder in the `Components` folder for routable components. The 
 
 ```razor
 @page "/counter"
-@attribute [RenderModeInteractiveServer]
+@attribute [RenderModeServer]
 
 <PageTitle>Counter</PageTitle>
 
@@ -426,6 +462,12 @@ Create a `Pages` folder in the `Components` folder for routable components. The 
     }
 }
 ```
+
+<!-- UPDATE 8.0 RC2
+
+@attribute [RenderModeInteractiveServer]
+
+-->
 
 Run the project and navigate to the routable `Counter` component at `/counter`.
 
