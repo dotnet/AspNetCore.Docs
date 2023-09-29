@@ -140,8 +140,6 @@ Use the following guidance to integrate Razor components into pages and views of
    <component type="typeof(Counter)" render-mode="ServerPrerendered" />
    ```
 
-For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
-
 ## Use routable components in a Razor Pages app
 
 *This section pertains to adding interactive components that are directly routable from user requests.*
@@ -308,12 +306,12 @@ Add a main layout component and stylesheet.
     z-index: 1000;
 }
 
-#blazor-error-ui .dismiss {
-    cursor: pointer;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-}
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
 ```
 
 Add a `Routes` component to the `Components` folder with the following content.
