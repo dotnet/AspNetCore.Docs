@@ -468,6 +468,34 @@ Run the project and navigate to the routable `Counter` component at `/counter`.
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
+## Return a `RazorComponentResult` from an MVC controller action
+
+An MVC controller action can return a component with `RazorComponentResult`.
+
+`Components/Welcome.razor`:
+
+```razor
+<PageTitle>Welcome!</PageTitle>
+
+<h1>Welcome!</h1>
+
+<p>@Message</p>
+
+@code {
+    [Parameter]
+    public string? Message { get; set; }
+}
+```
+
+In a controller:
+
+```csharp
+public IResult GetWelcomeComponent()
+{
+    return new RazorComponentResult<Welcome>(new { Message = "Hello, world!" });
+}
+```
+
 ## Component namespaces
 
 When using a custom folder to hold the project's Razor components, add the namespace representing the folder to either the page/view or to the `_ViewImports.cshtml` file. In the following example:
