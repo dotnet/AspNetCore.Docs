@@ -14,101 +14,105 @@ uid: blazor/components/prerender
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
 
+<!--
+    NOTE: The console output block quotes in this topic use a double-space 
+    at the ends of lines to generate a bare return in block quote output.
+-->
+
 This article explains Razor component prerendering scenarios for server-rendered components in Blazor Web Apps.
   
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
-<!-- UPDATE 8.0 Remove IMPORTANT notice -->
+<!-- UPDATE 8.0 Remove WARNING at RC2 -->
 
-> [!IMPORTANT]
-> This article is currently undergoing updates for .NET 8. Please check back periodically for new content or when .NET 8 is released.
+> [!WARNING]
+> Guidance in this document pertains to the ***Release Candidate 2*** of .NET 8, which is targeted for release on October 10.
 
 ## Persist prerendered state
 
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
-
-Consider the following `PrerenderedCounter1` component, which is a version of the `Counter` component found in apps created from the Blazor project template. The component sets an initial counter value of 5 during prerendering. After the SignalR connection to the client is established, the component rerenders on the client, and the value of 5 is lost. The component's counter starts at zero.
+Consider the following `PrerenderedCounter1` component, which is a version of the `Counter` component found in apps created from the Blazor project template and that doesn't preserve the initial count (`currentCount`) during prerendering. The component sets an initial random counter value during prerendering. After the SignalR connection to the client is established, the component rerenders, and the initial count value is replaced when `OnInitialized` executes a second time.
 
 `Components/Pages/PrerenderedCounter1.razor`:
 
 ```razor
+@page "/prerendered-counter-1"
+@attribute [RenderModeInteractiveServer]
+@inject ILogger<PrerenderedCounter1> Logger
 
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount;
+    private Random r = new Random();
+
+    protected override void OnInitialized()
+    {
+        currentCount = r.Next(100);
+        Logger.LogInformation("currentCount set to {Count}", currentCount);
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
 ```
 
-To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. In this case, the `PrerenderedCounter` component should save the state of the counter.
+Run the app and inspect logging from the component:
 
-The following example is an updated version of the `PrerenderedCounter` component that persists counter state during prerendering and retrieves the state to initialize the component. 
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
+> :::no-loc text="      currentCount set to 41":::  
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
+> :::no-loc text="      currentCount set to 92":::
 
-<!-- The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations. -->
+The first logged count occurs during prerendering. The count is set again after prerendering when the component is rerendered. There's also a flicker in the UI when the count updates from 41 to 92.
 
-`Components/Pages/PrerenderedCounter2.razor`:
+To solve this problem, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
+
+To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
+
+In following example demonstrates the general pattern:
+
+* The `{TYPE}` placeholder represents the type of data to persist.
+* The `{TOKEN}` placeholder is a state identifier string.
 
 ```razor
-@page "/weather-forecast-preserve-state"
 @implements IDisposable
 @inject PersistentComponentState ApplicationState
 
-<PageTitle>Weather Forecast</PageTitle>
-
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+...
 
 @code {
-    private WeatherForecast[] forecasts = Array.Empty<WeatherForecast>();
+    private {TYPE} data;
     private PersistingComponentStateSubscription persistingSubscription;
 
     protected override async Task OnInitializedAsync()
     {
         persistingSubscription = 
-            ApplicationState.RegisterOnPersisting(PersistForecasts);
+            ApplicationState.RegisterOnPersisting(PersistData);
 
-        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
-            "fetchdata", out var restored))
+        if (!ApplicationState.TryTakeFromJson<{TYPE}>(
+            "{TOKEN}", out var restored))
         {
-            forecasts = 
-                await WeatherForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+            data = await ...;
         }
         else
         {
-            forecasts = restored!;
+            data = restored!;
         }
     }
 
-    private Task PersistForecasts()
+    private Task PersistData()
     {
-        ApplicationState.PersistAsJson("fetchdata", forecasts);
+        ApplicationState.PersistAsJson("{TOKEN}", data);
 
         return Task.CompletedTask;
     }
@@ -120,11 +124,79 @@ else
 }
 ```
 
+The following counter component example persists counter state during prerendering and retrieves the state to initialize the component. 
 
+`Components/Pages/PrerenderedCounter2.razor`:
 
-Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag.
+```razor
+@page "/prerendered-counter-2"
+@attribute [RenderModeInteractiveServer]
+@implements IDisposable
+@inject ILogger<PrerenderedCounter2> Logger
+@inject PersistentComponentState ApplicationState
 
-`Pages/_Host.cshtml`:
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount;
+    private Random r = new Random();
+    private PersistingComponentStateSubscription persistingSubscription;
+
+    protected override void OnInitialized()
+    {
+        persistingSubscription =
+            ApplicationState.RegisterOnPersisting(PersistCount);
+
+        if (!ApplicationState.TryTakeFromJson<int>(
+            "count", out var restoredCount))
+        {
+            currentCount = r.Next(100);
+            Logger.LogInformation("currentCount set to {Count}", currentCount);
+        }
+        else
+        {
+            currentCount = restoredCount!;
+            Logger.LogInformation("currentCount restored to {Count}", currentCount);
+        }
+    }
+
+    private Task PersistCount()
+    {
+        ApplicationState.PersistAsJson("count", currentCount);
+
+        return Task.CompletedTask;
+    }
+
+    void IDisposable.Dispose()
+    {
+        persistingSubscription.Dispose();
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered after prerendering:
+
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
+> :::no-loc text="      currentCount set to 96":::  
+> :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
+> :::no-loc text="      currentCount restored to 96":::
+
+By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+For components embedded into a page or view of a Razor Pages or MVC app, you must add the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) with the `<persist-component-state />` HTML tag inside the closing `</body>` tag of the app's layout. **This is only required for Razor Pages and MVC apps.** For more information, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
+
+`Pages/Shared/_Layout.cshtml`:
 
 ```cshtml
 <body>
@@ -133,11 +205,6 @@ Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</b
     <persist-component-state />
 </body>
 ```
-
-
-
-
-By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
 ## Prerendering guidance
 

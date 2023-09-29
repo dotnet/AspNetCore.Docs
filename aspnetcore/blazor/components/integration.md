@@ -14,6 +14,8 @@ uid: blazor/components/integration
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
 
+<!-- UPDATE 8.0 Remove WARNING at RC2 -->
+
 > [!WARNING]
 > Guidance in this document pertains to the ***Release Candidate 2*** of .NET 8, which is targeted for release on October 10.
 
