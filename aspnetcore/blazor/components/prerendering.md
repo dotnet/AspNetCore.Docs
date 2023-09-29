@@ -61,6 +61,12 @@ Consider the following `PrerenderedCounter1` component, which is a version of th
 }
 ```
 
+<!-- UPDATE 8.0 RC2
+
+@attribute [RenderModeInteractiveServer]
+
+-->
+
 Run the app and inspect logging from the component:
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
@@ -179,6 +185,12 @@ The following counter component example persists counter state during prerenderi
     }
 }
 ```
+
+<!-- UPDATE 8.0 RC2
+
+@attribute [RenderModeInteractiveServer]
+
+-->
 
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered after prerendering:
 

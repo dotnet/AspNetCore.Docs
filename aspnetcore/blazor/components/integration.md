@@ -14,11 +14,6 @@ uid: blazor/components/integration
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
 
-<!-- UPDATE 8.0 Remove WARNING at RC2 -->
-
-> [!WARNING]
-> Guidance in this document pertains to the ***Release Candidate 2*** of .NET 8, which is targeted for release on October 10.
-
 This article explains Razor component integration scenarios for ASP.NET Core apps, including prerendering of Razor components on the server.
 
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time. Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
