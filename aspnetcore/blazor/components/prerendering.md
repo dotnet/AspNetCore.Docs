@@ -25,36 +25,29 @@ Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mo
 
 ## Persist prerendered state
 
-> [!IMPORTANT]
-> This section is currently undergoing updates for .NET 8.
-
-<!-- UPDATE 8.0
-
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag.
+To solve these problems, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
 
-`Pages/_Host.cshtml`:
+Consider the following `PrerenderedCounter1` component, which is a version of the `Counter` component found in apps created from the Blazor project template. The component sets an initial counter value of 5 during prerendering. After the SignalR connection to the client is established, the component rerenders on the client, and the value of 5 is lost. The component's counter starts at zero.
 
-```cshtml
-<body>
-    ...
+`Components/Pages/PrerenderedCounter1.razor`:
 
-    <persist-component-state />
-</body>
+```razor
+
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
+To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. In this case, the `PrerenderedCounter` component should save the state of the counter.
 
-The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
+The following example is an updated version of the `PrerenderedCounter` component that persists counter state during prerendering and retrieves the state to initialize the component. 
 
-`Pages/WeatherForecastPreserveState.razor`:
+<!-- The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations. -->
+
+`Components/Pages/PrerenderedCounter2.razor`:
 
 ```razor
 @page "/weather-forecast-preserve-state"
 @implements IDisposable
-@using BlazorSample.Shared
-@inject IWeatherForecastService WeatherForecastService
 @inject PersistentComponentState ApplicationState
 
 <PageTitle>Weather Forecast</PageTitle>
@@ -127,9 +120,24 @@ else
 }
 ```
 
-By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
--->
+
+Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag.
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<body>
+    ...
+
+    <persist-component-state />
+</body>
+```
+
+
+
+
+By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
 ## Prerendering guidance
 

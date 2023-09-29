@@ -28,7 +28,15 @@ Use the guidance in the following sections depending on the project's requiremen
 
 ## Use non-routable components in pages or views
 
-Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
+Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+
+When server prerendering is used and the page or view renders:
+
+* The component is prerendered with the page or view.
+* The initial component state used for prerendering is lost.
+* New component state is created when the SignalR connection is established.
+
+For more information on rendering modes, including non-interactive static component rendering, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. To save the state of Razor components rendered in a page or view, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
 
 Add a `Components` folder to the root folder of the project.
 
@@ -421,55 +429,6 @@ Run the project and navigate to the routable `Counter` component at `/counter`.
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
-### Render stateful interactive components
-
-Stateful interactive components can be added to a Razor page or view.
-
-When the page or view renders:
-
-* The component is prerendered with the page or view.
-* The initial component state used for prerendering is lost.
-* New component state is created when the SignalR connection is established.
-
-The following Razor page renders a `Counter` component:
-
-```cshtml
-<h1>Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@functions {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
-
-### Render noninteractive components
-
-In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form. Since the component is statically rendered, the component isn't interactive:
-
-```cshtml
-<h1>Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@functions {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
-
 ## Component namespaces
 
 When using a custom folder to hold the project's Razor components, add the namespace representing the folder to either the page/view or to the `_ViewImports.cshtml` file. In the following example:
@@ -484,13 +443,6 @@ When using a custom folder to hold the project's Razor components, add the names
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
 For more information, see <xref:blazor/components/index#class-name-and-namespace>.
-
-<!-- UPDATE 8.0 This content will cross-link the section 
-                of the same name in the Prerendering article. 
-
-## Persist prerendered state
-
--->
 
 ## Additional resources
 

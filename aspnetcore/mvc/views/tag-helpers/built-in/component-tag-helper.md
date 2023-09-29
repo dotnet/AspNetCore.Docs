@@ -16,7 +16,7 @@ The Component Tag Helper renders a Razor component in a Razor Pages page or MVC 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Follow the guidance in the *Configuration* section of the <xref:blazor/components/integration> article.
+Follow the guidance in the *Use non-routable components in pages or views* section of the <xref:blazor/components/integration#use-non-routable-components-in-pages-or-views> article.
 
 :::moniker-end
 
@@ -89,20 +89,20 @@ Additional characteristics include:
 * While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from a partial view in a component, factor out the partial view logic into a component.
 * Rendering server components from a static HTML page isn't supported.
 
-The following Component Tag Helper renders the `Counter` component in a page or view in a server-side Blazor app with `ServerPrerendered`:
+The following Component Tag Helper renders the `EmbeddedCounter` component in a page or view in a server-side Blazor app with `ServerPrerendered`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using {APP ASSEMBLY}.Components.Pages
+@using {APP ASSEMBLY}.Components
 
 ...
 
-<component type="typeof(Counter)" render-mode="ServerPrerendered" />
+<component type="typeof(EmbeddedCounter)" render-mode="ServerPrerendered" />
 ```
 
-The preceding example assumes that the `Counter` component is in the app's `Components/Pages` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Components.Pages`).
+The preceding example assumes that the `EmbeddedCounter` component is in the app's `Components` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Components`).
 
 The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size.
 
@@ -154,14 +154,14 @@ The preceding example assumes that the `ColorfulCheckbox` component is in the `C
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using {APP ASSEMBLY}.Pages
+@using {APP ASSEMBLY}.Shared
 
 ...
 
-<component type="typeof(Counter)" render-mode="ServerPrerendered" />
+<component type="typeof(EmbeddedCounter)" render-mode="ServerPrerendered" />
 ```
 
-The preceding example assumes that the `Counter` component is in the app's `Pages` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
+The preceding example assumes that the `EmbeddedCounter` component is in the app's `Shared` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared` or `@using BlazorSample.Client.Shared` in a hosted Blazor solution).
 
 The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size.
 
