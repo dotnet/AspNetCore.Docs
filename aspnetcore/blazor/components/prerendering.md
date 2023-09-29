@@ -23,11 +23,6 @@ This article explains Razor component prerendering scenarios for server-rendered
   
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
-<!-- UPDATE 8.0 Remove WARNING at RC2 -->
-
-> [!WARNING]
-> Guidance in this document pertains to the ***Release Candidate 2*** of .NET 8, which is targeted for release on October 10.
-
 ## Persist prerendered state
 
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
@@ -38,7 +33,7 @@ Consider the following `PrerenderedCounter1` component, which is a version of th
 
 ```razor
 @page "/prerendered-counter-1"
-@attribute [RenderModeInteractiveServer]
+@attribute [RenderModeServer]
 @inject ILogger<PrerenderedCounter1> Logger
 
 <PageTitle>Counter</PageTitle>
@@ -130,7 +125,7 @@ The following counter component example persists counter state during prerenderi
 
 ```razor
 @page "/prerendered-counter-2"
-@attribute [RenderModeInteractiveServer]
+@attribute [RenderModeServer]
 @implements IDisposable
 @inject ILogger<PrerenderedCounter2> Logger
 @inject PersistentComponentState ApplicationState
