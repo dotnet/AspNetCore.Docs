@@ -35,31 +35,7 @@ The option to not use credentials should only be used when you know 100% that cr
 
 For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    // ... other middleware ...
-
-    // Make sure the CORS middleware is ahead of SignalR.
-    app.UseCors(builder =>
-    {
-        builder.WithOrigins("https://example.com")
-            .AllowAnyHeader()
-            .WithMethods("GET", "POST")
-            .AllowCredentials();
-    });
-
-    // ... other middleware ...
-    app.UseRouting();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapHub<ChatHub>("/chathub");
-    });
-
-    // ... other middleware ...
-}
-```
+[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS6-8/Program.cs?name=snippet_AddCors&highlight=9-18)]
 
 ## WebSocket Origin Restriction
 
