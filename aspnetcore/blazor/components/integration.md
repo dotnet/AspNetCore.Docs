@@ -14,23 +14,21 @@ uid: blazor/components/integration
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
 
+> [!WARNING]
+> Guidance in this document pertains to the ***Release Candidate 2*** of .NET 8, which is targeted for release on October 10.
+
 This article explains Razor component integration scenarios for ASP.NET Core apps, including prerendering of Razor components on the server.
 
-> [!IMPORTANT]
-> This article is currently undergoing updates for .NET 8. Please check back periodically for new content or when .NET 8 is released.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time. Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
-Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
-  
-Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
+Use the guidance in the following sections depending on the project's requirements:
 
-After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
-
-* For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
+* For interactive components that aren't directly routable from user requests, see the [Use non-routable components in pages or views](#use-non-routable-components-in-pages-or-views) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* For interactive components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* For components that aren't directly routable from user requests, see the [Render components from a page or view](#render-components-from-a-page-or-view) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-## Configuration
+## Use non-routable components in pages or views
 
 Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
 
@@ -55,8 +53,6 @@ Use the following guidance to integrate Razor components into pages and views of
 1. In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps or `Views/Shared/_Layout.cshtml` in MVC apps):
 
    * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component via a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to the `<head>` element:
-
-     <!-- UPDATE 8.0 ... I'm leaving the tilde ~ on the base href here. -->
 
      ```cshtml
      <base href="~/" />
@@ -148,152 +144,355 @@ For more information, see the [Render components from a page or view](#render-co
 
 ## Use routable components in a Razor Pages app
 
-*This section pertains to adding components that are directly routable from user requests.*
+*This section pertains to adding interactive components that are directly routable from user requests.*
 
 To support routable Razor components in Razor Pages apps:
 
-1. Follow the guidance in the [Configuration](#configuration) section.
+Add a `Components` folder to the root folder of the project.
 
-1. Add an `App` component with the following content.
+Add an imports file to the `Components` folder with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
 
-   `Components/App.razor`:
+`Components/_Imports.razor`:
 
-   ```razor
-   @using Microsoft.AspNetCore.Components.Routing
+```razor
+@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using {APP NAMESPACE}
+@using {APP NAMESPACE}.Components
+```
 
-   <Router AppAssembly="@typeof(App).Assembly">
-       <Found Context="routeData">
-           <RouteView RouteData="@routeData" />
-       </Found>
-       <NotFound>
-           <PageTitle>Not found</PageTitle>
-           <p role="alert">Sorry, there's nothing at this address.</p>
-       </NotFound>
-   </Router>
+Add a `Layout` folder to the `Components` folder.
+
+Add a footer component and stylesheet.
+
+`Components/Layout/Footer.razor`:
+
+```razor
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2023 - {APP TITLE} - <a href="/privacy">Privacy</a>
+    </div>
+</footer>
+```
+
+In the preceding markup, set the `{APP TITLE}` placeholder to the title of the app.
+
+`Components/Layout/Footer.razor.css`:
+
+```css
+.footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+white-space: nowrap;
+line-height: 60px;
+}
+```
+
+Add a navigation menu component.
+
+`Components/Layout/NavMenu.razor`:
+
+```razor
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<div class="container">
+    <a class="navbar-brand" href="/">{APP TITLE}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/privacy">Privacy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/counter">Counter</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+```
+
+In the preceding markup, set the `{APP TITLE}` placeholder to the title of the app.
+
+`Components/Layout/NavMenu.razor.css`:
+
+```css
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #0077cc;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
    ```
 
-1. Add a `_Host` page to the project with the following content. Replace the `{APP NAMESPACE}` placeholder with the app's namespace.
+Add a main layout component and stylesheet.
 
-   `Pages/_Host.cshtml`:
+`Components/Layout/MainLayout.razor`:
 
-   ```cshtml
-   @page
-   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-   @using {APP NAMESPACE}.Components
+```razor
+@inherits LayoutComponentBase
 
-   <component type="typeof(App)" render-mode="ServerPrerendered" />
-   ```
+<header>
+    <NavMenu />
+</header>
 
-   > [!NOTE]
-   > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
-  
-   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
+<div class="container">
+    <main role="main" class="pb-3">
+        @Body
+    </main>
+</div>
 
-   * Is prerendered into the page.
-   * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+<Footer />
 
-   For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+```
 
-1. In the the `Program` file endpoints, add a low-priority route for the `_Host` page as the last endpoint:
+`Components/Layout/MainLayout.razor.css`:
 
-   ```csharp
-   app.MapFallbackToPage("/_Host");
-   ```
+```css
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
 
-1. Create a `Components/Pages` folder in the app and add routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+```
 
-   `Components/Pages/RoutableCounter.razor`:
+Add a `Routes` component to the `Components` folder with the following content.
 
-   ```razor
-   @page "/routable-counter"
+`Components/Routes.razor`:
 
-   <PageTitle>Routable Counter</PageTitle>
+```razor
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>
+```
 
-   <h1>Routable Counter</h1>
+Add an `App` component to the `Components` folder with the following content.
 
-   <p>Current count: @currentCount</p>
+`Components/App.razor`:
 
-   <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+```razor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{APP TITLE}</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/{APP NAMESPACE}.styles.css" />
+    <HeadOutlet />
+</head>
+<body>
+    <Routes />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="_framework/blazor.web.js"></script>
+</body>
+</html>
+```
 
-   @code {
-       private int currentCount = 0;
+> [!IMPORTANT]
+> The page title and stylesheet of routable components doesn't currently flow from the Razor Pages app and must be set manually:
+>
+> * For the `{APP TITLE}` placeholder in the `<title>` element, set the Razor Pages app title.
+> * For the `{APP NAMESPACE}` placeholder in the stylesheet `<link>` element, set the app's namespace.
 
-       private void IncrementCount()
-       {
-           currentCount++;
-       }
-   }
-   ```
+In the `Program` file where services are registered before the line that builds the app (`builder.Build()`), add services for Razor components and services to support rendering interactive server components:
 
-1. Run the project and navigate to the routable `RoutableCounter` component at `/routable-counter`.
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+```
+
+<!-- UPDATE 8.0 Update API cross-link -->
+
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the middleware processing pipeline to discover available components and specify the root component for the app, which by default is the `App` component (`App.razor`). Chain a call to `AddInteractiveServerRenderMode` <!-- <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> --> to configure the Server render mode for the app:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+```
+
+Create a `Pages` folder in the `Components` folder for routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
+
+`Components/Pages/Counter.razor`:
+
+```razor
+@page "/counter"
+@attribute [RenderModeInteractiveServer]
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+Run the project and navigate to the routable `Counter` component at `/counter`.
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
 ## Use routable components in an MVC app
 
-*This section pertains to adding components that are directly routable from user requests.*
+*This section pertains to adding interactive components that are directly routable from user requests.*
 
 To support routable Razor components in MVC apps:
 
-1. Follow the guidance in the [Configuration](#configuration) section.
+1. Add a `Components` folder to the root folder of the project.
 
-1. Add an `App` component to the project root with the following content.
+1. Add an imports file to the `Components` folder with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
+
+   `Components/_Imports.razor`:
+
+   ```razor
+   @using System.Net.Http
+   @using System.Net.Http.Json
+   @using Microsoft.AspNetCore.Components.Forms
+   @using Microsoft.AspNetCore.Components.Routing
+   @using Microsoft.AspNetCore.Components.Web
+   @using Microsoft.AspNetCore.Components.Web.Virtualization
+   @using Microsoft.JSInterop
+   @using {APP NAMESPACE}
+   @using {APP NAMESPACE}.Components
+   ```
+
+1. Add a `Routes` component to the `Components` folder with the following content.
+
+   `Components/Routes.razor`:
+
+   ```razor
+   <Router AppAssembly="@typeof(Program).Assembly">
+       <Found Context="routeData">
+           <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+           <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+       </Found>
+   </Router>
+   ```
+
+1. Add an `App` component to the `Components` folder with the following content.
 
    `Components/App.razor`:
 
    ```razor
-   @using Microsoft.AspNetCore.Components.Routing
-
-   <Router AppAssembly="@typeof(App).Assembly">
-       <Found Context="routeData">
-           <RouteView RouteData="@routeData" />
-       </Found>
-       <NotFound>
-           <PageTitle>Not found</PageTitle>
-           <p role="alert">Sorry, there's nothing at this address.</p>
-       </NotFound>
-   </Router>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="utf-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <title>{APP TITLE}</title>
+       <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+       <link rel="stylesheet" href="/css/site.css" />
+       <link rel="stylesheet" href="/{APP NAMESPACE}.styles.css" />
+       <HeadOutlet />
+   </head>
+   <body>
+       <Routes />
+       <script src="/lib/jquery/dist/jquery.min.js"></script>
+       <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+       <script src="/js/site.js"></script>
+       <script src="_framework/blazor.web.js"></script>
+   </body>
+   </html>
    ```
 
-1. Add a `_Host` view to the project with the following content. Replace the `{APP NAMESPACE}` placeholder with the app's namespace.
+   > [!IMPORTANT]
+   > The page title and stylesheet of routable components doesn't currently flow from the Razor Pages app and must be set manually:
+   >
+   > * For the `{APP TITLE}` placeholder in the `<title>` element, set the Razor Pages app title.
+   > * For the `{APP NAMESPACE}` placeholder in the stylesheet `<link>` element, set the app's namespace.
 
-   `Views/Home/_Host.cshtml`:
-
-   ```cshtml
-   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-   @using {APP NAMESPACE}.Components
-
-   <component type="typeof(App)" render-mode="ServerPrerendered" />
-   ```
-
-   > [!NOTE]
-   > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
-
-   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
-
-   * Is prerendered into the page.
-   * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
-
-   For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
-
-1. Add an action to the Home controller.
-
-   `Controllers/HomeController.cs`:
+1. In the `Program` file where services are registered before the line that builds the app (`builder.Build()`), add services for Razor components and services to support rendering interactive server components:
 
    ```csharp
-   public IActionResult Blazor()
-   {
-      return View("_Host");
-   }
+   builder.Services.AddRazorComponents()
+       .AddInteractiveServerComponents();
    ```
 
-1. In the `Program` file endpoints, add a low-priority route for the controller action that returns the `_Host` view:
+<!-- UPDATE 8.0 Update API cross-link -->
+
+1. In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the middleware processing pipeline to discover available components and specify the root component for the app, which by default is the `App` component (`App.razor`). Chain a call to `AddInteractiveServerRenderMode` <!-- <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> --> to configure the Server render mode for the app:
 
    ```csharp
-   app.MapFallbackToController("Blazor", "Home");
+   app.MapRazorComponents<App>()
+       .AddInteractiveServerRenderMode();
    ```
 
-1. Create a `Components/Pages` folder in the app and add routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
+1. Create a `Pages` folder in the `Components` folder for routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
 
    `Components/Pages/RoutableCounter.razor`:
 
@@ -321,12 +520,6 @@ To support routable Razor components in MVC apps:
 1. Run the project and navigate to the routable `RoutableCounter` component at `/routable-counter`.
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
-
-## Render components from a page or view
-
-*This section pertains to adding components to pages or views, where the components aren't directly routable from user requests.*
-
-To render a component from a page or view, use the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ### Render stateful interactive components
 
