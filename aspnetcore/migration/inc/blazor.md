@@ -1,16 +1,16 @@
 ---
-title: Enable ASP.NET Core Blazor support with Yarp in incremental migration
+title: Enable ASP.NET Core Blazor Server support with Yarp in incremental migration
 author: twsouthwick
-description: Learn how to enable ASP.NET Core Blazor support with Yarp in incremental migration.
+description: Learn how to enable ASP.NET Core Blazor Server support with Yarp in incremental migration.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tasou
 ms.custom: "mvc"
 ms.date: 03/01/2023
 uid: migration/inc/blazor
 ---
-# Enable ASP.NET Core Blazor support with Yarp in incremental migration
+# Enable ASP.NET Core Blazor Server support with Yarp in incremental migration
 
-When adding Yarp to a Blazor app, both attempt to act as fallback routes for the app's request routing. Either Blazor or Yarp handles routing arbitrarily, which means that scenarios such as deep linking in Blazor may fail. This will be fixed in the .NET 8 release later this year. For migration to ASP.NET Core 6.0 and 7.0, map Blazor's endpoints to achieve correct request routing by following the guidance in this article.
+When adding Yarp to a Blazor Server app, both attempt to act as fallback routes for the app's request routing. Either Blazor or Yarp handles routing arbitrarily, which means that scenarios such as deep linking in Blazor may fail. This will be fixed in the .NET 8 release later this year. For migration to ASP.NET Core 6.0 and 7.0, map Blazor's endpoints to achieve correct request routing by following the guidance in this article.
 
 Add the following route builder extensions class to the project.
 
