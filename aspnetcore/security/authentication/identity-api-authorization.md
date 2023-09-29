@@ -5,7 +5,7 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/30/2022
+ms.date: 09/12/2023
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -426,4 +426,4 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 :::moniker-end
 
-[!INCLUDE[](~/security/authentication/identity-api-authorization/includes/identity-api-authorization.md)]
+[!INCLUDE[](~/security/authentication/identity-api-authorization/includes/identity-api-authorization3-7.md)]

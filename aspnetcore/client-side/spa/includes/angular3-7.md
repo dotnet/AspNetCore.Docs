@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-<!-- This section needs to be updated to 6.0 -->
+<!-- This section has not been updated to 6.0 -->
 
 The ASP.NET Core with Angular project template provides a convenient starting point for ASP.NET Core apps using Angular and the Angular CLI to implement a rich, client-side user interface (UI).
 
