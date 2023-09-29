@@ -5,7 +5,7 @@ description: Learn about security in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/16/2020
+ms.date: 09/28/2023
 uid: signalr/security
 ---
 # Security considerations in ASP.NET Core SignalR
@@ -33,33 +33,9 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 However, in 5.0 we have provided an option in the TypeScript client to not use credentials.
 The option to not use credentials should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers for sticky sessions).
 
-For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
+For example, the following highlighted CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    // ... other middleware ...
-
-    // Make sure the CORS middleware is ahead of SignalR.
-    app.UseCors(builder =>
-    {
-        builder.WithOrigins("https://example.com")
-            .AllowAnyHeader()
-            .WithMethods("GET", "POST")
-            .AllowCredentials();
-    });
-
-    // ... other middleware ...
-    app.UseRouting();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapHub<ChatHub>("/chathub");
-    });
-
-    // ... other middleware ...
-}
-```
+[!code-csharp[Main](~/signalr/security/sample/SignalR_CORS6-8/Program.cs?name=snippet_AddCors&highlight=7-16)]
 
 ## WebSocket Origin Restriction
 
