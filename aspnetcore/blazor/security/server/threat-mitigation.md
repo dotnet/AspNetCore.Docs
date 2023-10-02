@@ -43,7 +43,7 @@ Resource exhaustion can occur when a client interacts with the server and causes
 * [Memory](#memory)
 * [Client connections](#client-connections)
 
-Denial of service (DoS) attacks usually seek to exhaust an app or server's resources. However, resource exhaustion isn't necessarily the result of an attack on the system. For example, finite resources can be exhausted due to high user demand. DoS is covered further in the [Denial of service (DoS) attacks](#denial-of-service-dos-attacks) section.
+Denial of Service (DoS) attacks usually seek to exhaust an app or server's resources. However, resource exhaustion isn't necessarily the result of an attack on the system. For example, finite resources can be exhausted due to high user demand. DoS is covered further in the [DoS section](#denial-of-service-dos-attacks).
 
 Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:fundamentals/best-practices>.
 
@@ -123,9 +123,9 @@ By default, there's no limit on the number of connections per user for an app. I
 
 :::moniker-end
 
-## Denial of service (DoS) attacks
+## Denial of Service (DoS) attacks
 
-[Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack) involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor apps include default limits and rely on other ASP.NET Core and SignalR limits that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> to protect against DoS attacks:
+[Denial of Service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack) involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor apps include default limits and rely on other ASP.NET Core and SignalR limits that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> to protect against DoS attacks:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod?displayProperty=nameWithType>

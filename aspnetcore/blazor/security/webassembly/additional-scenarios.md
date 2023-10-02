@@ -1331,6 +1331,10 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
 
 For an additional example that works with ME-ID security groups and ME-ID Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/meid-groups-roles>.
 
+<!-- UPDATE 8.0 This entire scenario is based on hosted WASM.
+                A similar approach might need to be created
+                for WebAssembly rendering in BWAs -->
+
 :::moniker range="< aspnetcore-8.0"
 
 ## Prerendering with authentication
