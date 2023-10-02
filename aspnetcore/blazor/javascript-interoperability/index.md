@@ -482,6 +482,6 @@ For interactive components in server-side apps, JS interop calls passing data fr
 
 ## Determine where the app is running
 
-If it's relevant for the app to know where code is running for JS interop calls, use <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to determine if the component is being executed in the context of browser on WebAssembly.
+If it's relevant for the app to know where code is running for JS interop calls, use <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to determine if the component is executing in the context of browser on WebAssembly.
 
 :::moniker-end
