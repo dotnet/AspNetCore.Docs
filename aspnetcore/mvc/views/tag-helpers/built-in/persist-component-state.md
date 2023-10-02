@@ -79,6 +79,7 @@ For more information and examples, see <xref:blazor/components/prerendering-and-
 
 :::moniker range=">= aspnetcore-8.0"
 
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/prerender>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
@@ -88,6 +89,8 @@ For more information and examples, see <xref:blazor/components/prerendering-and-
 
 :::moniker range="< aspnetcore-8.0"
 
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* <xref:blazor/components/prerendering-and-integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>

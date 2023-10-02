@@ -25,9 +25,9 @@ Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mo
 
 ## Persist prerendered state
 
-Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered.
 
-Consider the following `PrerenderedCounter1` component, which is a version of the `Counter` component found in apps created from the Blazor project template and that doesn't preserve the initial count (`currentCount`) during prerendering. The component sets an initial random counter value during prerendering. After the SignalR connection to the client is established, the component rerenders, and the initial count value is replaced when `OnInitialized` executes a second time.
+Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in `OnInitialized`. After the SignalR connection to the client is established, the component rerenders, and the initial count value is replaced when `OnInitialized` executes a second time.
 
 `Components/Pages/PrerenderedCounter1.razor`:
 
@@ -36,9 +36,9 @@ Consider the following `PrerenderedCounter1` component, which is a version of th
 @attribute [RenderModeServer]
 @inject ILogger<PrerenderedCounter1> Logger
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Prerendered Counter 1</PageTitle>
 
-<h1>Counter</h1>
+<h1>Prerendered Counter 1</h1>
 
 <p role="status">Current count: @currentCount</p>
 
@@ -76,11 +76,11 @@ Run the app and inspect logging from the component:
 
 The first logged count occurs during prerendering. The count is set again after prerendering when the component is rerendered. There's also a flicker in the UI when the count updates from 41 to 92.
 
-To solve this problem, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
+To retain the initial value of the counter during prerendering, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
 
-To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
+To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the app resumes.
 
-In following example demonstrates the general pattern:
+The following example demonstrates the general pattern:
 
 * The `{TYPE}` placeholder represents the type of data to persist.
 * The `{TOKEN}` placeholder is a state identifier string.
@@ -136,9 +136,9 @@ The following counter component example persists counter state during prerenderi
 @inject ILogger<PrerenderedCounter2> Logger
 @inject PersistentComponentState ApplicationState
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Prerendered Counter 2</PageTitle>
 
-<h1>Counter</h1>
+<h1>Prerendered Counter 2</h1>
 
 <p role="status">Current count: @currentCount</p>
 
@@ -192,7 +192,7 @@ The following counter component example persists counter state during prerenderi
 
 -->
 
-When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered after prerendering:
+When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered:
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  

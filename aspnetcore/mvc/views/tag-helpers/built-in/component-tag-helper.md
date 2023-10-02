@@ -125,7 +125,7 @@ The Component Tag Helper can also pass parameters to components. Consider the fo
     public int Size { get; set; } = 8;
 
     [Parameter]
-    public string Color { get; set; }
+    public string? Color { get; set; }
 
     protected override void OnInitialized()
     {
@@ -184,7 +184,7 @@ The Component Tag Helper can also pass parameters to components. Consider the fo
     public int Size { get; set; } = 8;
 
     [Parameter]
-    public string Color { get; set; }
+    public string? Color { get; set; }
 
     protected override void OnInitialized()
     {
@@ -255,13 +255,13 @@ public class MyClass
 ```razor
 <h2>ParameterComponent</h2>
 
-<p>Int: @MyObject.MyInt</p>
-<p>String: @MyObject.MyString</p>
+<p>Int: @MyObject?.MyInt</p>
+<p>String: @MyObject?.MyString</p>
 
 @code
 {
     [Parameter]
-    public MyClass MyObject { get; set; }
+    public MyClass? MyObject { get; set; }
 }
 ```
 
@@ -284,7 +284,7 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-The preceding example assumes that the `ParameterComponent` component is in the app's `Components`` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Components`). `MyClass` is in the app's namespace.
+The preceding example assumes that the `ParameterComponent` component is in the app's `Components` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Components`). `MyClass` is in the app's namespace.
 
 :::moniker-end
 
@@ -295,13 +295,13 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 ```razor
 <h2>ParameterComponent</h2>
 
-<p>Int: @MyObject.MyInt</p>
-<p>String: @MyObject.MyString</p>
+<p>Int: @MyObject?.MyInt</p>
+<p>String: @MyObject?.MyString</p>
 
 @code
 {
     [Parameter]
-    public MyClass MyObject { get; set; }
+    public MyClass? MyObject { get; set; }
 }
 ```
 
@@ -324,7 +324,7 @@ The preceding example assumes that the `ParameterComponent` component is in the 
     param-MyObject="@myObject" />
 ```
 
-The preceding example assumes that the `ParameterComponent` component is in the app's `Shared`` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`). `MyClass` is in the app's namespace.
+The preceding example assumes that the `ParameterComponent` component is in the app's `Shared` folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`). `MyClass` is in the app's namespace.
 
 :::moniker-end
 
@@ -332,6 +332,7 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 
 :::moniker range=">= aspnetcore-8.0"
 
+* <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>
 * <xref:blazor/components/prerender>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
@@ -339,8 +340,19 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
+* <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>
+* <xref:blazor/components/prerendering-and-integration>
+* <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
+* <xref:mvc/views/tag-helpers/intro>
+* <xref:blazor/components/index>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+* <xref:blazor/components/prerendering-and-integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:blazor/components/index>

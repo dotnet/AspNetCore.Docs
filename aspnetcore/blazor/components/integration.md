@@ -33,7 +33,7 @@ When server prerendering is used and the page or view renders:
 * The initial component state used for prerendering is lost.
 * New component state is created when the SignalR connection is established.
 
-For more information on rendering modes, including non-interactive static component rendering, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. To save the state of Razor components rendered in a page or view, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
+For more information on rendering modes, including non-interactive static component rendering, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. To save the state of prerendered Razor components, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
 
 Add a `Components` folder to the root folder of the project.
 
@@ -55,7 +55,7 @@ Add an imports file to the `Components` folder with the following content. Chang
 
 In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps or `Views/Shared/_Layout.cshtml` in MVC apps):
 
-* Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component via a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to the `<head>` element:
+* Add the following `<base>` tag and [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component to the `<head>` markup:
 
   ```cshtml
   <base href="~/" />
@@ -73,12 +73,14 @@ In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps 
   <script src="_framework/blazor.web.js"></script>
   ```
 
-  The framework adds the `blazor.web.js` script to the app. There's no need to manually add a `blazor.web.js` script file to the app.
+  There's no need to manually add a `blazor.web.js` script to the app because the Blazor framework adds the `blazor.web.js` script to the app.
 
 > [!NOTE]
 > Typically, the layout loads via a `_ViewStart.cshtml` file.
 
-In the `Program` file where services are registered before the line that builds the app (`builder.Build()`), add services for Razor components and services to support rendering interactive server components:
+Where services are registered, add services for Razor components and services to support rendering interactive server components.
+
+In the `Program` file before the line that builds the app (`builder.Build()`):
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -94,9 +96,11 @@ builder.Services.AddRazorComponents()
 
 -->
 
+For more information on adding support for server and WebAssembly components, see <xref:blazor/components/render-modes>.
+
 <!-- UPDATE 8.0 Update API cross-link -->
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the middleware processing pipeline to discover available components and specify the root component for the app, which by default is the `App` component (`App.razor`). Chain a call to `AddInteractiveServerRenderMode` <!-- <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> --> to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveServerRenderMode` <!-- <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> --> to configure the Server render mode for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -176,11 +180,16 @@ In the project's `Index` view of an MVC app, add the `EmbeddedCounter` component
 
 Use the following guidance to integrate routable Razor components into an existing Razor Pages or MVC app.
 
+The guidance in this section assumes:
+
+* The title of the app is `Blazor Sample`.
+* The namespace of the app is `BlazorSample`.
+
 To support routable Razor components:
 
 Add a `Components` folder to the root folder of the project.
 
-Add an imports file to the `Components` folder with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
+Add an imports file to the `Components` folder with the following content.
 
 `Components/_Imports.razor`:
 
@@ -196,9 +205,16 @@ Add an imports file to the `Components` folder with the following content. Chang
 @using {APP NAMESPACE}.Components
 ```
 
+Change the `{APP NAMESPACE}` placeholder to the namespace of the project. For example:
+
+```razor
+@using BlazorSample
+@using BlazorSample.Components
+```
+
 Add a `Layout` folder to the `Components` folder.
 
-Add a footer component and stylesheet.
+Add a footer component and stylesheet to the `Layout` folder.
 
 `Components/Layout/Footer.razor`:
 
@@ -210,7 +226,11 @@ Add a footer component and stylesheet.
 </footer>
 ```
 
-In the preceding markup, set the `{APP TITLE}` placeholder to the title of the app.
+In the preceding markup, set the `{APP TITLE}` placeholder to the title of the app. For example:
+
+```html
+&copy; 2023 - Blazor Sample - <a href="/privacy">Privacy</a>
+```
 
 `Components/Layout/Footer.razor.css`:
 
@@ -224,7 +244,7 @@ line-height: 60px;
 }
 ```
 
-Add a navigation menu component.
+Add a navigation menu component to the `Layout` folder.
 
 `Components/Layout/NavMenu.razor`:
 
@@ -252,7 +272,11 @@ Add a navigation menu component.
 </nav>
 ```
 
-In the preceding markup, set the `{APP TITLE}` placeholder to the title of the app.
+In the preceding markup, set the `{APP TITLE}` placeholder to the title of the app. For example:
+
+```html
+<a class="navbar-brand" href="/">Blazor Sample</a>
+```
 
 `Components/Layout/NavMenu.razor.css`:
 
@@ -297,7 +321,7 @@ button.accept-policy {
 }
    ```
 
-Add a main layout component and stylesheet.
+Add a main layout component and stylesheet to the `Layout` folder.
 
 `Components/Layout/MainLayout.razor`:
 
@@ -385,13 +409,23 @@ Add an `App` component to the `Components` folder with the following content.
 </html>
 ```
 
-> [!IMPORTANT]
-> The page title and stylesheet of routable components doesn't currently flow from the app and must be set manually:
->
-> * For the `{APP TITLE}` placeholder in the `<title>` element, set the app title.
-> * For the `{APP NAMESPACE}` placeholder in the stylesheet `<link>` element, set the app's namespace.
+In the preceding code update the app title and stylesheet file name:
 
-In the `Program` file where services are registered before the line that builds the app (`builder.Build()`), add services for Razor components and services to support rendering interactive server components:
+* For the `{APP TITLE}` placeholder in the `<title>` element, set the app's title. For example:
+
+  ```html
+  <title>Blazor Sample</title>
+  ```
+
+* For the `{APP NAMESPACE}` placeholder in the stylesheet `<link>` element, set the app's namespace. For example:
+
+  ```html
+  <link rel="stylesheet" href="/BlazorSample.styles.css" />
+  ```
+
+Where services are registered, add services for Razor components and services to support rendering interactive server components.
+
+In the `Program` file before the line that builds the app (`builder.Build()`):
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -407,9 +441,11 @@ builder.Services.AddRazorComponents()
 
 -->
 
+For more information on adding support for server and WebAssembly components, see <xref:blazor/components/render-modes>.
+
 <!-- UPDATE 8.0 Update API cross-link -->
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>) or map controller routes (<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the middleware processing pipeline to discover available components and specify the root component for the app, which by default is the `App` component (`App.razor`). Chain a call to `AddInteractiveServerRenderMode` <!-- <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> --> to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveServerRenderMode` <!-- <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> --> to configure the Server render mode for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -432,7 +468,7 @@ app.MapRazorComponents<App>()
 > app.UseAntiforgery();
 > ```
 
-Create a `Pages` folder in the `Components` folder for routable components. The following example is a `RoutableCounter` component based on the `Counter` component in the Blazor project templates.
+Create a `Pages` folder in the `Components` folder for routable components. The following example is a `Counter` component based on the `Counter` component in the Blazor project templates.
 
 `Components/Pages/Counter.razor`:
 
@@ -505,6 +541,12 @@ When using a custom folder to hold the project's Razor components, add the names
 
 ```cshtml
 @using {APP NAMESPACE}.Components
+```
+
+For example:
+
+```cshtml
+@using BlazorSample.Components
 ```
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
