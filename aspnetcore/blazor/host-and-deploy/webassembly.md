@@ -703,6 +703,18 @@ To handle URL rewrites, add a `wwwroot/404.html` file with a script that handles
 
 When using a project site instead of an organization site, update the `<base>` tag in `wwwroot/index.html`. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `/my-repository/`). In the [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages), the base `href` is updated at publish by the [`.github/workflows/main.yml` configuration file](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml).
 
+:::moniker range=">= aspnetcore-8.0"
+
+Removing the .NET Intermediate Language (IL) for compiled methods after performing AOT compilation to WebAssembly (MSBuild property: `WasmStripILAfterAOT`) is ***not*** supported for GitHub Page hosting. Either remove the property or set its value to `false` in the project file:
+
+```xml
+<WasmStripILAfterAOT>false</WasmStripILAfterAOT>
+```
+
+For more information, see <xref:blazor/host-and-deploy/webassembly#trim-net-il-after-ahead-of-time-aot-compilation>.
+
+:::moniker-end
+
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
