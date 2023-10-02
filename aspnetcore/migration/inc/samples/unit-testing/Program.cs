@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System.Web;
 using System.Web.Hosting;
 
+// <snippet_UnitTestingFixture>
 namespace TestProject1
 {
     /// <summary>
@@ -60,3 +61,4 @@ namespace TestProject1
         }
     }
 }
+// <snippet_UnitTestingFixture>
