@@ -20,9 +20,9 @@ uid: blazor/hybrid/troubleshoot
 
 This article explains the steps to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging:
 
-1. Enable <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> and related components to log diagnostic information.
-1. Configure a logger to write the log output.
-1. View logger output.
+* Enable <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> and related components to log diagnostic information.
+* Configure a logger to write the log output.
+* View logger output.
 
 ## Enable `BlazorWebView` logging
 
