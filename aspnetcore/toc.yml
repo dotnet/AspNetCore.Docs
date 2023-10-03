@@ -1491,10 +1491,6 @@ items:
             uid: security/identity-management-solutions 
           - name: Secure ASP.NET Core apps with Microsoft Identity Web
             href: /azure/active-directory/develop/
-          - name: Secure ASP.NET Core apps with Duende Identity Server
-            href: https://docs.duendesoftware.com
-          - name: Secure ASP.NET Core apps with IdentityServer4
-            href: https://identityserver4.readthedocs.io/
           - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
             href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
           - name: Individual user accounts
