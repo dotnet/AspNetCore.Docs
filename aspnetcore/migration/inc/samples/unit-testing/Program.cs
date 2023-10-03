@@ -13,7 +13,8 @@ namespace TestProject1;
 /// This demonstrates an xUnit feature that ensures all tests
 /// in classes marked with this collection are run sequentially.
 /// </summary>
-[CollectionDefinition(nameof(SystemWebAdaptersHostedTests), DisableParallelization = true)]
+[CollectionDefinition(nameof(SystemWebAdaptersHostedTests),
+    DisableParallelization = true)]
 public class SystemWebAdaptersHostedTests
 {
 }
@@ -21,11 +22,14 @@ public class SystemWebAdaptersHostedTests
 public class RuntimeTests
 {
     /// <summary>
-    /// This method starts up a host in the background that makes it possible
-    /// to initialize <see cref="HttpRuntime"/> and <see cref="HostingEnvironment"/>
-    /// with values needed for testing with the <paramref name="configure"/> option.
+    /// This method starts up a host in the background that
+    /// makes it possible to initialize <see cref="HttpRuntime"/>
+    /// and <see cref="HostingEnvironment"/> with values needed 
+    /// for testing with the <paramref name="configure"/> option.
     /// </summary>
-    /// <param name="configure">Configuration for the hosting and runtime options.</param>
+    /// <param name="configure">
+    /// Configuration for the hosting and runtime options.
+    /// </param>
     public static async Task<IDisposable> EnableRuntimeAsync(
         Action<SystemWebAdaptersOptions>? configure = null,
         CancellationToken token = default)
