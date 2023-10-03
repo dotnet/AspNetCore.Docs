@@ -77,3 +77,4 @@ For guidance around usage, see the [usage guidance article](xref:migration/inc/u
 
 * [Example migration of eShop to ASP.NET Core](/dotnet/architecture/porting-existing-aspnet-apps/example-migration-eshop)
 * [Video:Tooling for Incremental ASP.NET Core Migrations](https://www.youtube.com/watch?v=P96l0pDNVpM)
+* <xref:migration/inc/unit-testing>
