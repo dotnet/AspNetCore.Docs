@@ -87,6 +87,34 @@ For more information, see the following resources:
 * [Xamarin.Forms String and Image Localization](/xamarin/xamarin-forms/app-fundamentals/localization/): The guidance generally applies to Blazor Hybrid apps. Not every scenario is supported at this time.
 * [Blazor Image component to display images that are not accessible through HTTP endpoints (dotnet/aspnetcore #25274)](https://github.com/dotnet/aspnetcore/issues/25274)
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Access scoped services from native UI
+
+<!-- UPDATE 8.0 Cross-link API -->
+
+<xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> has a `TryDispatchAsync` method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as <xref:Microsoft.AspNetCore.Components.NavigationManager>:
+
+```csharp
+private async void MyMauiButtonHandler(object sender, EventArgs e)
+{
+    var wasDispatchCalled = await _blazorWebView.TryDispatchAsync(sp =>
+    {
+        var navMan = sp.GetRequiredService<NavigationManager>();
+        navMan.CallSomeNavigationApi(...);
+    });
+
+    if (!wasDispatchCalled)
+    {
+        ...
+    }
+}
+```
+
+When `wasDispatchCalled` is `false`, consider what to do if the call wasn't dispatched. Generally, the dispatch shouldn't fail. If it fails, OS resources might be exhausted. If resources are exhausted, consider logging a message, throwing an exception, and perhaps alerting the user.
+
+:::moniker-end
+
 ## Additional resources
 
 * <xref:blazor/hybrid/tutorials/index>
