@@ -10,21 +10,22 @@ uid: security/authentication/community
 
 This page contains community-provided, open source authentication options for ASP.NET Core. This page is periodically updated as new providers become available.
 
-## OSS authentication identity providers [.NET]
+## OSS authentication providers [.NET]
 
 | Name | Description |
 | ---- | ----------- |
 | [Duende IdentityServer](https://duendesoftware.com/products/identityserver) | IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core. |
 | [OpenIddict](https://github.com/openiddict/openiddict-core) | Flexible and versatile OAuth 2.0/OpenID Connect stack for .NET. |
+| [FIDO2 .NET Library, WebAuthn](https://github.com/passwordless-lib/fido2-net-lib) | FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET |
 
-## OSS authentication identity provider clients [.NET]
+## OSS authentication provider clients [.NET]
 
 | Name | Description |
 | ---- | ----------- |
 | [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers)  | A collection of security middleware for ASP.NET Core apps to support social authentication. |
 | [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers) | A collection of security middleware for ASP.NET Core apps to support OpenID 2.0 authentication providers like [Steam](https://steampowered.com/). |
 
-## Other OSS authentication identity providers 
+## Other OSS authentication providers 
 
 | Name | Description |
 | ---- | ----------- |
