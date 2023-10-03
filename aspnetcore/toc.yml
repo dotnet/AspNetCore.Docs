@@ -446,6 +446,8 @@ items:
                     uid: blazor/hybrid/security/security-considerations
               - name: Publish
                 uid: blazor/hybrid/publish/index
+              - name: Troubleshoot
+                uid: blazor/hybrid/troubleshoot
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
