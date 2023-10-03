@@ -126,7 +126,7 @@ When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReple
 
 ### Concurrency limiter
 
-The concurrency limiter limits the number concurrent requests. Each request reduces the concurrency limit by one. When a request completes, the limit is increased by one. Unlike the other requests limiters that limit the total number of requests for a specified period, the concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period.
+The concurrency limiter limits the number of concurrent requests. Each request reduces the concurrency limit by one. When a request completes, the limit is increased by one. Unlike the other requests limiters that limit the total number of requests for a specified period, the concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period.
 
 The following code uses the concurrency limiter:
 
