@@ -21,7 +21,7 @@ uid: blazor/hybrid/troubleshoot
 This article explains the steps to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging:
 
 * Enable <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> and related components to log diagnostic information.
-* Configure a logger to write the log output.
+* Configure logging providers.
 * View logger output.
 
 ## Enable `BlazorWebView` logging
@@ -44,13 +44,17 @@ services.AddLogging(logging =>
 });
 ```
 
-## Configure logging output
+## Configure logging providers
 
-After configuring components to write log information, configure where the loggers should write log information and view the log output after running the app.
+After configuring components to write log information, configure where the loggers should write log information.
 
-The **Debug** logging providers write the output [using `Debug` statements](xref:fundamentals/logging/index#debug), and the output can be viewed from Visual Studio.
+The **Debug** logging providers write the output [using `Debug` statements](xref:fundamentals/logging/index#debug).
 
-To configure the **Debug** logging provider, add a reference in your project to the [`Microsoft.Extensions.Logging.Debug`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) NuGet package. Next, register the provider inside the call to <xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A> added in the previous step by calling the <xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug%2A> extension method:
+To configure the **Debug** logging provider, add a reference to the [`Microsoft.Extensions.Logging.Debug`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Register the provider inside the call to <xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A> added in the previous step by calling the <xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug%2A> extension method:
 
 ```csharp
 services.AddLogging(logging =>
