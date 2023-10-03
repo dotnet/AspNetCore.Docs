@@ -43,8 +43,9 @@ public class RuntimeTests
                        services.AddSystemWebAdapters();
                        if (configure is not null)
                        {
-                           services.AddOptions<SystemWebAdaptersOptions>()
-                            .Configure(configure);
+                           services.AddOptions
+                               <SystemWebAdaptersOptions>()
+                               .Configure(configure);
                        }
                    })
                    .Configure(app =>
