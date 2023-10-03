@@ -111,7 +111,7 @@ private async void MyMauiButtonHandler(object sender, EventArgs e)
 }
 ```
 
-When `wasDispatchCalled` is `false`, consider what to do if the call wasn't dispatched. The behavior is dependent on the app.
+When `wasDispatchCalled` is `false`, consider what to do if the call wasn't dispatched. Generally, the dispatch shouldn't fail. If it fails, OS resources might be exhausted. If resources are exhausted, consider logging a message, throwing an exception, and perhaps alerting the user.
 
 :::moniker-end
 
