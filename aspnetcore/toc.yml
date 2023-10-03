@@ -1827,7 +1827,9 @@ items:
             - name: Remote app session state
               uid: migration/inc/remote-session
             - name: Remote Authentication
-              uid: migration/inc/remote-authentication             
+              uid: migration/inc/remote-authentication
+            - name: Unit testing
+              uid: migration/inc/unit-testing
             - name: A/B Testing endpoints
               uid: migration/inc/ab-testing
             - name: Blazor support with YARP 
