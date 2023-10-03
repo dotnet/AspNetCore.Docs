@@ -21,7 +21,8 @@ uid: blazor/hybrid/troubleshoot
 This article explains the two steps for this logging:
 
 1. Enable <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> and related components to log diagnostic information.
-1. Configure a logger to write the log output to where to view logger output.
+1. Configure a logger to write the log output.
+1. View logger output.
 
 ## Enable `BlazorWebView` logging
 
@@ -43,7 +44,7 @@ services.AddLogging(logging =>
 });
 ```
 
-## Configure logging output and viewing the output
+## Configure logging output
 
 After configuring components to write log information, configure where the loggers should write log information and view the log output after running the app.
 
@@ -58,6 +59,8 @@ services.AddLogging(logging =>
     logging.AddDebug();
 });
 ```
+
+## View logger output
 
 When the app is run from Visual Studio with debugging enabled, the debug output appears in Visual Studio's **Output** window.
 
