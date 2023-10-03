@@ -167,7 +167,7 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 :::moniker-end
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
-* When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
+* When hosting on static hosting solutions that don't support statically-compressed file content negotiation, consider configuring the app to fetch and decode Brotli compressed files:
 
   * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
   
@@ -189,7 +189,7 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
       import { BrotliDecode } from './decode.min.js';
       Blazor.start({
         loadBootResource: function (type, name, defaultUri, integrity) {
-          if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+          if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration') {
             return (async function () {
               const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
               if (!response.ok) {

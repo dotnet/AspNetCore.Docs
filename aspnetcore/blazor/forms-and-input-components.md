@@ -3785,6 +3785,8 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
 }
 ```
 
+To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
