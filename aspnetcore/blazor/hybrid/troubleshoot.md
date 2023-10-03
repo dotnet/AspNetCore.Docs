@@ -18,7 +18,7 @@ uid: blazor/hybrid/troubleshoot
 
 <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> has built-in logging that can help you diagnose problems in your Blazor Hybrid app.
 
-This article explains the two steps for this logging:
+This article explains the steps to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging:
 
 1. Enable <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> and related components to log diagnostic information.
 1. Configure a logger to write the log output.
