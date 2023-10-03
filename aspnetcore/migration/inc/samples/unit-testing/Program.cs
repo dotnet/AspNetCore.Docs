@@ -56,7 +56,8 @@ public class RuntimeTests
     [Fact]
     public async Task RuntimeEnabled()
     {
-        using (await EnableRuntimeAsync(options => options.AppDomainAppPath = "path"))
+        using (await EnableRuntimeAsync(options =>
+            options.AppDomainAppPath = "path"))
         {
             Assert.True(HostingEnvironment.IsHosted);
             Assert.Equal("path", HttpRuntime.AppDomainAppPath);
