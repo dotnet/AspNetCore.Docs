@@ -45,10 +45,11 @@ Services for Razor components are added by calling <xref:Microsoft.Extensions.De
 
 Component builder extensions:
 
-* <!--xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.-->`AddInteractiveServerComponents`<!--%2A--> adds services to support rendering interactive server components.
+* `AddInteractiveServerComponents` adds services to support rendering interactive server components.
 * `AddInteractiveWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
 
 <!-- UPDATE 8.0 HOLD
+     <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
      <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>
 -->
 
