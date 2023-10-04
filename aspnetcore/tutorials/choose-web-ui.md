@@ -43,9 +43,7 @@ When a Blazor WebAssembly is built and run:
 * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
 * Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
-For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>.
-
-To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
+For a complete overview Blazor, its architecture and benefits, see <xref:blazor/index> and <xref:blazor/hosting-models>. To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
 
 ## ASP.NET Core Razor Pages
 
