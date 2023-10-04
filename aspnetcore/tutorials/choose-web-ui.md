@@ -17,7 +17,6 @@ Blazor is a full-stack web UI framework and is recommended for most web UI scena
 Blazor renders content with:
 
 * Reusable components included in pages or whole-page, routable components.
-* Switchable rendering modes that can be chosen at runtime for server-side or client-side interactivity.
 * Static server rendering to generate static HTML.
 * Progressive enhancements to static server rendering that enhance navigation and form handling and enable streaming rendering.
 * Interactive server rendering using the Blazor Server hosting model.
@@ -49,9 +48,7 @@ For a complete overview Blazor, its architecture and benefits, see <xref:blazor/
 
 ## ASP.NET Core Razor Pages
 
-Razor Pages are a mature and supported alternative to Blazor. Razor Pages adopts a page-based model. UI and business logic concerns are kept separate, but within the page.
-
-Razor pages UI are dynamically rendered on the server to generate the page's HTML and CSS in response to a browser request. The page arrives at the client ready to display. Support for Razor Pages is built on ASP.NET Core MVC.
+Razor Pages is a page-based model for building server rendered web UI. Razor pages UI are dynamically rendered on the server to generate the page's HTML and CSS in response to a browser request. The page arrives at the client ready to display. Support for Razor Pages is built on ASP.NET Core MVC.
 
 Razor Pages benefits:
 
