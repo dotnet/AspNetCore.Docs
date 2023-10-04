@@ -10,13 +10,14 @@ uid: tutorials/choose-web-ui
 
 ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
 
-## Blazor: the recommended ASP.NET full-stack web UI
+## ASP.NET Core Blazor
 
-Blazor provides an all-in-one web app solution and is recommended as a first choice for most ASP.NET web UI scenarios, starting with .NET 8.
+Blazor is a full-stack web app framework, recommended for most ASP.NET web UI scenarios.
 
-Blazor is a full-stack web UI framework for developing apps that renders content at a reusable component or page level with:
+Blazor renders content with:
 
-* Switchable rendering modes that can be chosen at runtime for server side or client side interactivity.
+* Reusable components included in pages or whole-page, routable components.
+* Switchable rendering modes that can be chosen at runtime for server-side or client-side interactivity.
 * Static server rendering to generate static HTML.
 * Interactive server rendering using the Blazor Server hosting model.
 * Interactive client rendering using the Blazor WebAssembly hosting model.
@@ -47,9 +48,9 @@ For a complete overview Blazor, its architecture and benefits, see <xref:blazor/
 
 ## ASP.NET Core Razor Pages
 
-Razor Pages are a mature and supported alternative to Blazor. Razor Pages is a page-based model. UI and business logic concerns are kept separate, but within the page.
+Razor Pages are a mature and supported alternative to Blazor. Razor Pages adopts a page-based model. UI and business logic concerns are kept separate, but within the page.
 
-Razor pages UI are dynamically rendered on the server to generate the page's HTML and CSS on the server in response to a browser request. The page arrives at the client ready to display. Support for Razor Pages is built on ASP.NET Core MVC.
+Razor pages UI are dynamically rendered on the server to generate the page's HTML and CSS in response to a browser request. The page arrives at the client ready to display. Support for Razor Pages is built on ASP.NET Core MVC.
 
 Razor Pages benefits:
 
@@ -63,7 +64,7 @@ To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials
 
 ## ASP.NET Core MVC
 
-ASP.NET Core MVC is a mature and supported alternative to Blazor. ASP.NET Core MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an app into three main groups of components: Models, Views, and Controllers. User requests are routed to a controller. The controller is responsible for working with the model to perform user actions or retrieve results of queries. The controller chooses the view to display to the user, and provides it with any model data it requires. Support for Razor Pages is built on ASP.NET Core MVC.
+ASP.NET Core MVC is a mature and supported alternative to Blazor. ASP.NET Core MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an app into three main groups of components: models, views, and controllers. User requests are routed to a controller. The controller is responsible for working with the model to perform user actions or retrieve results of queries. The controller chooses the view to display to the user and provides it with any model data it requires.
 
 ASP.NET Core MVC benefits:
 
