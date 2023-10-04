@@ -10,8 +10,10 @@ uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components
 
-<!--
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
 -->
 
 <!--
