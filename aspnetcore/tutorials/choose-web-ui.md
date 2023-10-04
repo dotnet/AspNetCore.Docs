@@ -12,7 +12,7 @@ ASP.NET Core is a complete UI framework. Choose which functionalities to combine
 
 ## ASP.NET Core Blazor
 
-Blazor is a full-stack web app framework, recommended for most ASP.NET web UI scenarios.
+Blazor is a full-stack web UI framework and is recommended for most web UI scenarios.
 
 Blazor renders content with:
 
