@@ -245,10 +245,6 @@ items:
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg007
               - name: RDG008
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg008
-                <!--
-              - name: RDG009
-                uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg009
-                -->
               - name: RDG010
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg010
               - name: RDG011
