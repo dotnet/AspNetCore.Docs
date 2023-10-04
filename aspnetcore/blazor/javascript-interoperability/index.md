@@ -122,7 +122,7 @@ In the following example, the `DOMCleanup` component:
 
 ```razor
 @page "/dom-cleanup"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @implements IAsyncDisposable
 @inject IJSRuntime JS
 

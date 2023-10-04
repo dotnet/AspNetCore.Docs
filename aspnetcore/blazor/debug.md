@@ -171,7 +171,7 @@ Breakpoints can also be hit in the server project.
 
    ```razor
    @page "/counter-2"
-   @attribute [RenderModeServer]
+   @attribute [RenderModeInteractiveServer]
 
    <PageTitle>Counter 2</PageTitle>
 
@@ -227,7 +227,7 @@ Breakpoints can also be hit in the server project.
 
    ```razor
    @page "/counter-2"
-   @attribute [RenderModeServer]
+   @attribute [RenderModeInteractiveServer]
 
    <PageTitle>Counter 2</PageTitle>
 

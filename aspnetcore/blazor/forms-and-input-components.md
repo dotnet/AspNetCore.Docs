@@ -43,16 +43,16 @@ A project created from the Blazor project template includes the namespace by def
 
 Components are configured for interactivity with server rendering. For a client-side experience in a Blazor Web App, change the render mode in the `@attribute` directive at the top of the component to either:
 
-* `RenderModeWebAssembly` for interactive client rendering only.
-* `RenderModeAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+* `RenderModeInteractiveWebAssembly` for interactive client rendering only.
+* `RenderModeInteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a Blazor WebAssembly app, take ***either*** of the following approaches:
 
-* Change the render mode to `RenderModeWebAssembly`:
+* Change the render mode to `RenderModeInteractiveWebAssembly`:
 
   ```diff
-  - @attribute [RenderModeServer]
-  + @attribute [RenderModeWebAssembly]
+  - @attribute [RenderModeInteractiveServer]
+  + @attribute [RenderModeInteractiveWebAssembly]
   ```
   
 * Remove the `@attribute` from the component.
@@ -142,7 +142,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 ```razor
 @page "/starship-1"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship1> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship1">
@@ -239,7 +239,7 @@ In the next example, the preceding component is modified to create the form in t
 
 ```razor
 @page "/starship-2"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship2> Logger
 
 <EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
@@ -447,7 +447,7 @@ builder.Services.AddRazorComponents(options =>
     options.MaxFormMappingErrorCount = 200;
     options.MaxFormMappingKeySize = 1024 * 2;
     options.MaxFormMappingRecursionDepth = 64;
-}).AddServerComponents();
+}).AddInteractiveServerComponents();
 ```
 
 ### Form names
@@ -547,7 +547,7 @@ The following example independently binds two forms to their models by form name
 
 ```razor
 @page "/starship-3"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship3> Logger
 
 <EditForm method="post" Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
@@ -648,7 +648,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 
 ```razor
 @page "/starship-4"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship4> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship4">
@@ -809,7 +809,7 @@ The following form accepts and validates user input using:
 
 ```razor
 @page "/starship-5"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship5> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -995,7 +995,7 @@ In the following example:
 
 ```razor
 @page "/starship-6"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship6> Logger
 
 <EditForm method="post" EditContext="@editContext" OnSubmit="@Submit" 
@@ -1137,7 +1137,7 @@ In the following example, the user must select at least two starship classificat
 
 ```razor
 @page "/starship-7"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship7> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
@@ -1426,7 +1426,7 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 ```razor
 @page "/starship-8"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @implements IDisposable
 @inject ILogger<Starship8> Logger
 
@@ -1722,7 +1722,7 @@ When validation messages are set in the component, they're added to the validato
 
 ```razor
 @page "/starship-9"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship9> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -2057,7 +2057,7 @@ moniker range=">= aspnetcore-8.0"
 
 ```razor
 @page "/starship-10"
-@attribute [RenderModeWebAssembly]
+@attribute [RenderModeInteractiveWebAssembly]
 @using System.Net
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Authorization
@@ -2364,7 +2364,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 ```razor
 @page "/starship-11"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship11> Logger
 
 <EditForm method="post" Model="@Model" OnValidSubmit="@Submit" 
@@ -2843,7 +2843,7 @@ The following component validates user input by applying the `SaladChefValidator
 
 ```razor
 @page "/starship-12"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off" FormName="Starship12">
@@ -3002,7 +3002,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 ```razor
 @page "/starship-13"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject ILogger<Starship13> Logger
 
 <EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
@@ -3371,7 +3371,7 @@ To enable and disable the submit button based on form validation, the following 
 
 ```razor
 @page "/starship-14"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 
@@ -3580,7 +3580,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 ```razor
 @page "/stream-form-data"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject IJSRuntime JS
 @inject ILogger<StreamFormData> Logger
 
@@ -3800,7 +3800,7 @@ For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `A
 For [forms based on the HTML `<form>` element](#html-forms), manually add the `AntiforgeryToken` component to the form:
 
 ```razor
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 
 <form method="post" @onsubmit="Submit" @formname="starshipForm">
     <AntiforgeryToken />

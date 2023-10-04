@@ -272,13 +272,13 @@ One way to resolve the error is to disable prerendering. This is usually the bes
 To disable prerendering, indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
 ```razor
-<Routes @rendermode="@(new ServerRenderMode(prerender: false))" />
+<Routes @rendermode="@(new InteractiveServerRenderMode(prerender: false))" />
 ```
 
 Also, disable prerendering for the `HeadOutlet` component:
 
 ```razor
-<HeadOutlet @rendermode="@(new ServerRenderMode(prerender: false))" />
+<HeadOutlet @rendermode="@(new InteractiveServerRenderMode(prerender: false))" />
 ```
 
 :::moniker-end

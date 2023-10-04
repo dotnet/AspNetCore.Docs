@@ -154,12 +154,12 @@ Configure the circuit with the <xref:Microsoft.AspNetCore.Components.Server.Circ
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A>. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
+Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
 
 In the `Program` file:
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents(options =>
+builder.Services.AddRazorComponents().AddInteractiveServerComponents(options =>
 {
     options.DetailedErrors = false;
     options.DisconnectedCircuitMaxRetained = 100;
@@ -218,7 +218,7 @@ To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <
 In the `Program` file:
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents().AddHubOptions(options =>
+builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddHubOptions(options =>
 {
     options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
     options.EnableDetailedErrors = false;
@@ -312,7 +312,7 @@ One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore
 <!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents()
+builder.Services.AddRazorComponents().AddInteractiveServerComponents()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 

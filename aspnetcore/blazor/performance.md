@@ -409,7 +409,7 @@ In the following example, no event handler added to the component triggers a rer
 
 ```razor
 @page "/handle-select-1"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @using Microsoft.Extensions.Logging
 @implements IHandleEvent
 @inject ILogger<HandleSelect1> Logger
@@ -527,7 +527,7 @@ In the following example:
 
 ```razor
 @page "/handle-select-2"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @using Microsoft.Extensions.Logging
 @inject ILogger<HandleSelect2> Logger
 
@@ -646,7 +646,7 @@ The following component shown in the [event handling article](xref:blazor/compon
 
 ```razor
 @page "/event-handler-example-5"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 
 <h1>@heading</h1>
 
@@ -687,7 +687,7 @@ If a large number of buttons are rendered using the preceding approach, renderin
 
 ```razor
 @page "/lambda-event-performance"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 
 <h1>@heading</h1>
 

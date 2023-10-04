@@ -95,10 +95,8 @@ The namespace of a component authored with Razor is based on the following (in p
 
 The following are **not** supported:
 
-<!-- UPDATE 8.0 Confirm second bullet is correct -->
-
 * The [`global::`](/dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
-* Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Components/Layout` folder (`Components/Layout/NavMenu.razor`) with `<Layout.NavMenu></Layout.NavMenu>`.
+* Partially-qualified names. For example, you can't add `@using BlazorSample.Components` to a component and then reference the `NavMenu` component in the app's `Components/Layout` folder (`Components/Layout/NavMenu.razor`) with `<Layout.NavMenu></Layout.NavMenu>`.
 
 :::moniker-end
 
@@ -1477,9 +1475,6 @@ In the preceding code, the CSS selector, `#app`, indicates that the `App` compon
 ```html
 <div id="app">...</app>
 ```
-
-<!-- UPDATE 8.0 Need to check on this: Is this still valid in a 
-     BW app, and is the render-mode still set in this way? -->
 
 MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
 

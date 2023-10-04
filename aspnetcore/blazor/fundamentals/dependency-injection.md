@@ -95,7 +95,7 @@ After creating a new app, examine part of the `Program` file:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorComponents().AddServerComponents();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 ```
 
 :::moniker-end
@@ -369,7 +369,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 ```razor
 @page "/users"
 @attribute [Authorize]
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inherits OwningComponentBase<AppDbContext>
 
 <h1>Users (@Service.Users.Count())</h1>

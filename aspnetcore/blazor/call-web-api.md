@@ -63,16 +63,16 @@ The Blazor examples that demonstrate obtaining weather data from a server API ar
 
 <!-- UPDATE 8.0 Cross-link render modes -->
 
-For server-side components in Blazor Web Apps that require interactivity, add the `[RenderModeServer]` attribute to the top of the component:
+For server-side components in Blazor Web Apps that require interactivity, add the `[RenderModeInteractiveServer]` attribute to the top of the component:
 
 ```razor
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 ```
 
-For client-side components in Blazor Web Apps that require interactivity, add the `[RenderModeWebAssembly]` attribute to the top of the component:
+For client-side components in Blazor Web Apps that require interactivity, add the `[RenderModeInteractiveWebAssembly]` attribute to the top of the component:
 
 ```razor
-@attribute [RenderModeWebAssembly]
+@attribute [RenderModeInteractiveWebAssembly]
 ```
 
 :::moniker-end

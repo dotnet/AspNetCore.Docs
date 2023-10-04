@@ -55,7 +55,7 @@ The following `Daleks` component displays the cascaded values.
 
 ```razor
 @page "/daleks"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 
 <h1>Root-level cascading value registration example</h1>
 

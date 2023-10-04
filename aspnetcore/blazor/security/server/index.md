@@ -276,7 +276,7 @@ In a component:
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <input @bind="userIdentifier" />
@@ -414,7 +414,7 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject AuthenticationService AuthenticationService
 
 <input @bind="userIdentifier" />
@@ -554,7 +554,7 @@ In the following `InjectAuthStateProvider` component:
 
 ```razor
 @page "/inject-auth-state-provider"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inherits OwningComponentBase
 
@@ -620,13 +620,13 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 * Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
   ```razor
-  <Routes @rendermode="@(new ServerRenderMode(prerender: false))" />
+  <Routes @rendermode="@(new InteractiveServerRenderMode(prerender: false))" />
   ```
 
   Also, disable prerendering for the `HeadOutlet` component:
 
   ```razor
-  <HeadOutlet @rendermode="@(new ServerRenderMode(prerender: false))" />
+  <HeadOutlet @rendermode="@(new InteractiveServerRenderMode(prerender: false))" />
   ```
 
 :::moniker-end

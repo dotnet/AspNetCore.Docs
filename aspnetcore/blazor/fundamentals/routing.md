@@ -364,7 +364,7 @@ Consider the following `Example` component that can receive a route parameter fr
 :::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE 8.0 Will this be recast with endpoint config 
-     provided by AddServerRenderMode? -->
+     provided by AddInteractiveServerRenderMode? -->
 
 For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in the `Program` file:
 
@@ -1485,7 +1485,7 @@ app.MapRazorComponents<App>();
 ```
 
 <!-- UPDATE 8.0 Will need additional remarks for additional endpoint config
-     with AddServerRenderMode and AddWebAssemblyRenderMode -->
+     with AddInteractiveServerRenderMode and AddInteractiveWebAssemblyRenderMode -->
 
 :::moniker-end
 

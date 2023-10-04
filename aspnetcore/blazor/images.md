@@ -40,7 +40,7 @@ In the following `ShowImage1` component:
 
 ```razor
 @page "/show-image-1"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 
 <h1>Dynamic Image Source Example</h1>
 
@@ -153,7 +153,7 @@ The following `ShowImage2` component:
 
 ```razor
 @page "/show-image-2"
-@attribute [RenderModeServer]
+@attribute [RenderModeInteractiveServer]
 @inject HttpClient Http
 @inject IJSRuntime JS
 
