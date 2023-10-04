@@ -21,7 +21,7 @@ Benefits of using Blazor:
 * Flexibly render components from the server or client via WebAssembly.
 * Build rich interactive web UI components in C#.
 * Render components statically from the server.
-* Progressively enhance server-rendered components for smoother navigation and form handling and to enable streaming rendering.
+* Progressively enhance server rendered components for smoother navigation and form handling and to enable streaming rendering.
 * Share code for common logic on the client and server.
 * Interop with JavaScript.
 * Integrate components with existing MVC, Razor Pages, or JavaScript based apps.
