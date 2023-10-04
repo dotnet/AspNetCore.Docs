@@ -19,6 +19,7 @@ Blazor renders content with:
 * Reusable components included in pages or whole-page, routable components.
 * Switchable rendering modes that can be chosen at runtime for server-side or client-side interactivity.
 * Static server rendering to generate static HTML.
+* Progressive enhancements to static server rendering that enhance navigation and form handling and enable streaming rendering.
 * Interactive server rendering using the Blazor Server hosting model.
 * Interactive client rendering using the Blazor WebAssembly hosting model.
 * Automatic interactive client rendering:
