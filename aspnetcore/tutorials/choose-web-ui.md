@@ -14,35 +14,17 @@ ASP.NET Core is a complete UI framework. Choose which functionalities to combine
 
 Blazor is a full-stack web UI framework and is recommended for most web UI scenarios.
 
-Blazor renders content with:
+Benefits of using Blazor:
 
-* Reusable components included in pages or whole-page, routable components.
-* Static server rendering to generate static HTML.
-* Progressive enhancements to static server rendering that enhance navigation and form handling and enable streaming rendering.
-* Interactive server rendering using the Blazor Server hosting model.
-* Interactive client rendering using the Blazor WebAssembly hosting model.
-* Automatic interactive client rendering:
-  * Using Blazor Server initially and then WebAssembly on subsequent visits, after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates.
-  * Automatic rendering usually provides the fastest app startup experience.
-
-For more information on Blazor interactive render modes, see <xref:blazor/components/render-modes>.
-
-Build interactive client-side web UI with [.NET](/dotnet/standard/tour):
-
-* Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
-* Render the UI as HTML and CSS for wide browser support, including mobile browsers.
-* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
-* Build hybrid desktop and mobile apps with .NET and Blazor.
-
-Blazor Web Apps support interactivity with client rendering that relies on a .NET runtime built with [WebAssembly](https://webassembly.org) that you can download with your app. When running Blazor on WebAssembly, your .NET code can access the full functionality of the browser and interop with JavaScript. Your .NET code runs in the browser's security sandbox with the protections that the sandbox provides against malicious actions on the client machine.
-
-Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
-
-When a Blazor WebAssembly is built and run:
-
-* C# code files and Razor files are compiled into .NET assemblies.
-* The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
-* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
+* Reusable component model.
+* Efficient diff-based component rendering.
+* Flexibly render components from the server or client via WebAssembly.
+* Build rich interactive web UI components in C#.
+* Render components statically from the server.
+* Progressively enhance server-rendered components for smoother navigation and form handling and to enable streaming rendering.
+* Share code for common logic on the client and server.
+* Interop with JavaScript.
+* Integrate components with existing MVC, Razor Pages, or JavaScript based apps.
 
 For a complete overview Blazor, its architecture and benefits, see <xref:blazor/index> and <xref:blazor/hosting-models>. To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
 
