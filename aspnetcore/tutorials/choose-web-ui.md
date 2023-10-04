@@ -20,7 +20,9 @@ Blazor is a full-stack web UI framework for developing apps that renders content
 * Static server rendering to generate static HTML.
 * Interactive server rendering using the Blazor Server hosting model.
 * Interactive client rendering using the Blazor WebAssembly hosting model.
-* Automatic interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates. Automatic rendering usually provides the fastest app startup experience.
+* Automatic interactive client rendering:
+  * Using Blazor Server initially and then WebAssembly on subsequent visits, after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates.
+  * Automatic rendering usually provides the fastest app startup experience.
 
 For more information on Blazor interactive render modes, see <xref:blazor/components/render-modes>.
 
