@@ -44,7 +44,7 @@ To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials
 
 ## ASP.NET Core MVC
 
-ASP.NET Core MVC is a mature and supported alternative to Blazor. ASP.NET Core MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an app into three main groups of components: models, views, and controllers. User requests are routed to a controller. The controller is responsible for working with the model to perform user actions or retrieve results of queries. The controller chooses the view to display to the user and provides it with any model data it requires.
+ASP.NET Core MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an app into three main groups of components: models, views, and controllers. User requests are routed to a controller. The controller is responsible for working with the model to perform user actions or retrieve results of queries. The controller chooses the view to display to the user and provides it with any model data it requires.
 
 ASP.NET Core MVC benefits:
 
@@ -54,7 +54,7 @@ ASP.NET Core MVC benefits:
 
 To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
 
-## ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
+## ASP.NET Core Single Page Applications (SPA) with frontend JavaScript frameworks
 
 Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). ASP.NET Core provides project templates for Angular, React, and Vue, and it can be used with other JavaScript frameworks as well.
 
