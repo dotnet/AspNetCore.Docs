@@ -26,7 +26,7 @@ Benefits of using Blazor:
 * Interop with JavaScript.
 * Integrate components with existing MVC, Razor Pages, or JavaScript based apps.
 
-For a complete overview Blazor, its architecture and benefits, see <xref:blazor/index> and <xref:blazor/hosting-models>. To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
+For a complete overview of Blazor, its architecture and benefits, see <xref:blazor/index> and <xref:blazor/hosting-models>. To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
 
 ## ASP.NET Core Razor Pages
 
