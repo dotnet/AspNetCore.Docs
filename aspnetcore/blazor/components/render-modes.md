@@ -57,10 +57,11 @@ Component builder extensions:
 
 Endpoint convention builder extensions:
 
-* <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A> configures the Server render mode for the app.
+* `AddInteractiveServerRenderMode` configures the Server render mode for the app.
 * `AddInteractiveWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
 
 <!-- UPDATE 8.0 HOLD
+    <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A>
     <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A>
 -->
 
