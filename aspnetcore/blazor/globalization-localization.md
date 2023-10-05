@@ -506,6 +506,14 @@ Examples of locations where an app might store a user's preference include in [b
 
 Guidance for ASP.NET Core 8.0 or later is scheduled for this article and tracked by [Dynamic culture approach updates (dotnet/AspNetCore.Docs #30002)](https://github.com/dotnet/AspNetCore.Docs/issues/30002).
 
+<!-- UPDATE 8.0 Hold for the HttpContext aspect 
+                for the App component
+
+[CascadingParameter]
+public HttpContext? HttpContext { get; set; }
+
+-->
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"

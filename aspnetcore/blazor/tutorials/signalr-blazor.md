@@ -207,7 +207,7 @@ Replace the markup with the following code:
 
 ```razor
 @page "/"
-@attribute [RenderModeInteractiveServer]
+@rendermode RenderMode.InteractiveServer
 @using Microsoft.AspNetCore.SignalR.Client
 @inject NavigationManager Navigation
 @implements IAsyncDisposable

@@ -22,9 +22,9 @@ Blazor Web App project template: `blazor`
 
 The Blazor Web App project template provides a single starting point for using Razor components to build any style of web UI, both server-side rendered and client-side rendered. It combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
 
-If both the WebAssembly and Server render modes are selected on app creation, the project template uses the Auto render mode. The Auto render mode initially uses the Server mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, Auto switches to the WebAssembly render mode.
+If both the WebAssembly and Server render modes are selected on app creation, the project template uses the automatic (Auto) render mode. The automatic rendering mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, automatic render mode (Auto) switches to the WebAssembly render mode.
 
-By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic (Auto) render modes must be built from the client project.
 
 For more information, see <xref:blazor/components/render-modes>.
 
@@ -51,6 +51,9 @@ For more information, see <xref:blazor/components/render-modes>.
     * `_Imports.razor`: Includes common Razor directives to include in the server-rendered app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
   * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+
+    > [!NOTE]
+    > The `http` profile precedes the `https` profile in the `launchSettings.json` file. When an app is run with the .NET CLI, the app runs at an HTTP endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with the .NET CLI without having to pass the `-lp https` or `--launch-profile https` option to the `dotnet run` command, simply place the `https` profile above the `http` profile in the file.
 
   * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the server project containing the app's public static assets.
 
@@ -283,7 +286,7 @@ Additional files and folders may appear in an app produced from a Blazor Server 
 
 Blazor WebAssembly project templates: `blazorwasm`
 
-The Blazor WebAssembly templates create the initial files and directory structure for a Blazor WebAssembly app:
+The Blazor WebAssembly templates create the initial files and directory structure for a standalone Blazor WebAssembly app:
 
 * If the `blazorwasm` template is used, the app is populated with the following:
   * Demonstration code for a `Weather` component that loads data from a static asset (`weather.json`) and user interaction with a `Counter` component.
@@ -310,6 +313,9 @@ Project structure:
   * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+
+  > [!NOTE]
+  > The `http` profile precedes the `https` profile in the `launchSettings.json` file. When an app is run with the .NET CLI, the app runs at an HTTP endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with the .NET CLI without having to pass the `-lp https` or `--launch-profile https` option to the `dotnet run` command, simply place the `https` profile above the `http` profile in the file.
 
 * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.

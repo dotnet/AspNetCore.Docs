@@ -37,7 +37,7 @@ In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods wi
 
 ```razor
 @page "/built-content"
-@attribute [RenderModeInteractiveServer]
+@rendermode RenderMode.InteractiveServer
 
 <h1>Build a component</h1>
 

@@ -195,7 +195,7 @@ EmptyContent.razor:
 
 ```razor
 @page "/empty-content"
-@attribute [RenderModeInteractiveServer]
+@rendermode RenderMode.InteractiveServer
 
 <h1>Empty Content Example</h1>
 

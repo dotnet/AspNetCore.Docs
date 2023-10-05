@@ -440,7 +440,7 @@ Create a `Pages` folder in the `Components` folder for routable components. The 
 
 ```razor
 @page "/counter"
-@attribute [RenderModeInteractiveServer]
+@rendermode RenderMode.InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 

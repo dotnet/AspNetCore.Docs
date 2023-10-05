@@ -110,7 +110,7 @@ The `-n|--name` option in the preceding command specifies the name of the new Ra
 Open the `Todo` component in any file editor and make the following changes at the top of the file:
 
 * Add an `@page` Razor directive with a relative URL of `/todo`.
-* Add the `[RenderModeInteractiveServer]` attribute. The attribute indicates that this component should be rendered on the server with client interactivity.
+* Set the interactive Server render mode for the component. The render mode indicates that this component should be rendered on the server with client interactivity.
 * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
 
 :::moniker-end

@@ -553,7 +553,66 @@ Pass `true` to the `forceLoad` parameter to ensure a full-page reload is always 
 Navigation.Refresh(true);
 ```
 
-To disable enhanced navigation and form handling, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
+Enhanced navigation is enabled by default, but it can be controlled hierarchically and on a per-link basis using the `data-enhance-nav` HTML attribute.
+
+The following examples disable enhanced navigation:
+
+```html
+<a href="redirect" data-enhance-nav="false">
+    GET without enhanced navigation
+</a>
+```
+
+```razor
+<ul data-enhance-nav="false">
+    <li>
+        <a href="redirect">GET without enhanced navigation</a>
+    </li>
+    <li>
+        <a href="redirect-2">GET without enhanced navigation</a>
+    </li>
+</ul>
+```
+
+If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, and the client-side JavaScript retries as a full page load. This ensures no confusion to the framework about external pages that shouldn't be patched into an existing page.
+
+Form POST requests adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the *explicit addition* of the `Enhance` parameter to `EditForm` forms or the *explicit addition* of the `data-enhance` attribute to the HTML form (`<form>`):
+
+```razor
+<EditForm Enhance ...>
+    ...
+</EditForm>
+```
+
+```html
+<form ... data-enhance>
+    ...
+</form>
+```
+
+Enhanced navigation isn't hierarchical and doesn't flow to child forms:
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
+
+```html```
+<div data-enhance>
+    <form ...>
+        <!-- NOT enhanced -->
+    </form>
+</div>
+```
+
+> [!WARNING]
+> ***Don't try to enhance form navigation for forms that POST to non-Blazor endpoints.***
+>
+> This is the main reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `EditForm` and `<form>` element and it doesn't flow down elements or to child forms. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
+
+To disable enhanced navigation:
+
+* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
+
+To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 

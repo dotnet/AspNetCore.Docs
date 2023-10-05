@@ -171,7 +171,7 @@ Breakpoints can also be hit in the server project.
 
    ```razor
    @page "/counter-2"
-   @attribute [RenderModeInteractiveServer]
+   @rendermode RenderMode.InteractiveServer
 
    <PageTitle>Counter 2</PageTitle>
 
@@ -227,7 +227,7 @@ Breakpoints can also be hit in the server project.
 
    ```razor
    @page "/counter-2"
-   @attribute [RenderModeInteractiveServer]
+   @rendermode RenderMode.InteractiveServer
 
    <PageTitle>Counter 2</PageTitle>
 
@@ -298,7 +298,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 :::moniker-end
 
-## Debug a standalone Blazor WebAssembly app in an IDE
+## Debug a Blazor WebAssembly app in an IDE
 
 # [Visual Studio](#tab/visual-studio)
 

@@ -369,7 +369,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 ```razor
 @page "/users"
 @attribute [Authorize]
-@attribute [RenderModeInteractiveServer]
+@rendermode RenderMode.InteractiveServer
 @inherits OwningComponentBase<AppDbContext>
 
 <h1>Users (@Service.Users.Count())</h1>
