@@ -31,7 +31,7 @@ body:
       value: "## 🚧 Article information 🚧"
   - type: markdown
     attributes:
-      value: "*Don't modify the following fields*. They are automatically filled in for you. Doing so will disconnect your issue from the affected article. *Don't edit them*."
+      value: "The following fields are automatically filled in for you. *Don't edit them*. Doing so will disconnect your issue from the affected article. To find other issues for ths article, search for the Document ID."
   - type: input
     id: pageUrl
     validations:
@@ -49,7 +49,7 @@ body:
     validations:
       required: true
     attributes:
-      label: Document Version Independent Id
+      label: Version Independent Document ID (use to find other issues for this article)
   - type: input
     id: author
     validations:
