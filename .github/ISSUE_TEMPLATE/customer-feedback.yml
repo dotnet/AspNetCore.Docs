@@ -49,7 +49,7 @@ body:
     validations:
       required: true
     attributes:
-      label: Version Independent Document ID (use to find other issues for this article)
+      label: Version Independent Document ID
   - type: input
     id: author
     validations:
