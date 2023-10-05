@@ -25,7 +25,7 @@ Many of the commercial licenses provide "community" or free options that may be 
 |**Auth0**|Managed|[Commercial](https://auth0.com/pricing)|[https://auth0.com/](https://auth0.com/)|[Get started](https://auth0.com/docs/get-started)|
 |**Duende IdentityServer**|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[https://duendesoftware.com/](https://duendesoftware.com/products/identityserver)|[ASP.NET Identity integration](https://docs.duendesoftware.com/identityserver/v6/aspnet_identity/)|
 |**Keycloak**|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[https://www.keycloak.org/](https://www.keycloak.org/)|[Keycloak client adapters documentation](https://www.keycloak.org/docs/latest/securing_apps/#client-adapters)|
-|**Microsoft Entra**|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[https://azure.microsoft.com/services/active-directory/](https://azure.microsoft.com/services/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
+|**Microsoft Entra ID**|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[https://azure.microsoft.com/services/active-directory/](https://azure.microsoft.com/services/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
 |**Okta**|Managed|[Commercial](https://www.okta.com/pricing/)|[https://www.okta.com/](https://www.okta.com/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
 |**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://github.com/openiddict/openiddict-core](https://github.com/openiddict/openiddict-core)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
 -->
@@ -36,7 +36,7 @@ Many of the commercial licenses provide "community" or free options that may be 
 |[Auth0](https://auth0.com/)|Managed|[Commercial](https://auth0.com/pricing)|[Get started](https://auth0.com/docs/get-started)|
 |[Duende IdentityServer](https://duendesoftware.com/products/identityserver)|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[ASP.NET Identity integration](https://docs.duendesoftware.com/identityserver/v6/aspnet_identity/)|
 |[Keycloak](https://www.keycloak.org)|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[Keycloak client adapters documentation](https://www.keycloak.org/docs/latest/securing_apps/#client-adapters)|
-|[Microsoft Entra](https://azure.microsoft.com/services/active-directory)|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
+|[Microsoft Entra ID](https://azure.microsoft.com/services/active-directory)|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
 |[Okta](https://www.okta.com)|Managed|[Commercial](https://www.okta.com/pricing/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
 |[OpenIddict](https://github.com/openiddict/openiddict-core)|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
 
