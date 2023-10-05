@@ -1459,12 +1459,14 @@ items:
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
             uid: security/authentication/jwt
-          - name: Azure Active Directory
+          - name: Azure
             items:
               - name: Overview
                 uid: security/authentication/azure-active-directory/index
-              - name: Integrate Azure AD into a web app
-                href: /azure/active-directory/develop/quickstart-v2-aspnet-core-webapp
+              - name: Secure ASP.NET Core apps with Microsoft Identity Web
+                href: /azure/active-directory/develop/
+              - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
+                href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
               - name: Scenarios
                 items:
                   - name: Web app that signs in users
@@ -1487,10 +1489,6 @@ items:
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Identity management solutions for ASP.NET Core apps
             uid: security/identity-management-solutions 
-          - name: Secure ASP.NET Core apps with Microsoft Identity Web
-            href: /azure/active-directory/develop/
-          - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
-            href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
           - name: Individual user accounts
             uid: security/authentication/individual
           - name: Configure certificate authentication
