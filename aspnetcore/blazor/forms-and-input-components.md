@@ -57,7 +57,7 @@ Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-n
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
 
-```html```
+```html
 <div data-enhance>
     <form ...>
         <!-- NOT enhanced -->
@@ -3861,7 +3861,7 @@ Enhanced navigation is supported with the *explicit addition* of the `data-enhan
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
 
-```html```
+```html
 <div data-enhance>
     <form ...>
         <!-- NOT enhanced -->

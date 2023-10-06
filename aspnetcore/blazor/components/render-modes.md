@@ -515,7 +515,7 @@ app.MapRazorComponents<App>()
 
 ## Closure of circuits when there are no remaining interactive server components
 
-[!INCLUDE[](~/blazor/security/includes/closure-of-circuits.md)]
+[!INCLUDE[](~/blazor/includes/closure-of-circuits.md)]
 
 ## Custom shorthand render modes
 

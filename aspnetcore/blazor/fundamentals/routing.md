@@ -594,7 +594,7 @@ Enhanced navigation isn't hierarchical and doesn't flow to child forms:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
 
-```html```
+```html
 <div data-enhance>
     <form ...>
         <!-- NOT enhanced -->
