@@ -5,16 +5,16 @@
 * The interface isn't implemented for interactive WebAssembly rendering.
 * For interactive server rendering, the implementation isn't guaranteed to exist.
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. However, we recommend avoid using it if possible.
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoid using it if possible.**
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in ***statically-rendered root components*** for general tasks, such as inspecting and modifying headers or other properties. The value is always `null` for interactive rendering.
+<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* for general tasks, such as inspecting and modifying headers or other properties. The value is always `null` for interactive rendering. It's permissable to use it in the `App` component (`Components/App.razor`).
 
 ```csharp
 [CascadingParameter]
 public HttpContext? HttpContext { get; set; }
 ```
 
-One caveat for using <xref:Microsoft.AspNetCore.Http.HttpContext> is that code doesn't compile in the `.Client` project of a Blazor Web App for WebAssembly rendering because the `.Client` project doesn't reference the [HTTP Abstractions package](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Abstractions). Even if the package reference is added to the `.Client` project, <xref:Microsoft.AspNetCore.Http.HttpContext> still isn't supported by the Blazor framework on WebAssembly, so there's no point in adding the package just to permit the Blazor Web App to compile.
+One caveat for using <xref:Microsoft.AspNetCore.Http.HttpContext> is that it won't compile in the `.Client` project of a Blazor Web App for WebAssembly rendering because the `.Client` project doesn't reference the [HTTP Abstractions package](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Abstractions). Even if the package reference is added to the `.Client` project, <xref:Microsoft.AspNetCore.Http.HttpContext> still isn't supported by the Blazor framework on WebAssembly, so there's no point in adding the package just to permit the `.Client` project to compile.
 
 <!-- UPDATE 8.0 Holding to hear back from Javier if he
                 was refering to passing tokens coverage
