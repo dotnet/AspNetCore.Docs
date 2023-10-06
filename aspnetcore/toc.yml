@@ -1459,11 +1459,11 @@ items:
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
             uid: security/authentication/jwt
-          - name: Azure
+          - name: Microsoft Entra ID
             items:
               - name: Overview
                 uid: security/authentication/azure-active-directory/index
-              - name: Secure ASP.NET Core apps with Microsoft Identity Web
+              - name: Secure ASP.NET Core apps with Microsoft identity platform
                 href: /azure/active-directory/develop/
               - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
                 href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
