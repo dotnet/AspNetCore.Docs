@@ -1459,7 +1459,7 @@ items:
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
             uid: security/authentication/jwt
-          - name: Microsoft Entra ID
+          - name: Azure
             items:
               - name: Overview
                 uid: security/authentication/azure-active-directory/index
