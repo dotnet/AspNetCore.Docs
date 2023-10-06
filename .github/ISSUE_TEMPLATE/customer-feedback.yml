@@ -31,7 +31,7 @@ body:
       value: "## 🚧 Article information 🚧"
   - type: markdown
     attributes:
-      value: "The following fields are automatically filled in for you. *Don't edit them*. Doing so will disconnect your issue from the affected article. To find other issues for this article, search for the Document ID."
+      value: "The following fields are automatically filled in. ***Don't edit them.*** Doing so will disconnect your issue from the affected article. To find other issues for this article, search for the Document ID."
   - type: input
     id: pageUrl
     validations:
