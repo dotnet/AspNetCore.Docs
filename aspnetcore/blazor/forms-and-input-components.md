@@ -37,31 +37,11 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 
 A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
 
-## Examples in this article
-
 :::moniker range=">= aspnetcore-8.0"
 
-Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
+## Enhanced navigation and form handling
 
-<!-- UPDATE 8.0 These simplify at RTM -->
-
-* `RenderMode.InteractiveWebAssembly` for interactive client rendering only.
-* `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
-
-If working with a Blazor WebAssembly app, take ***either*** of the following approaches:
-
-* Change the render mode to `RenderMode.InteractiveWebAssembly`:
-
-  ```diff
-  - @rendermode RenderMode.InteractiveServer
-  + @rendermode RenderMode.InteractiveWebAssembly
-  ```
-  
-* Remove the `@rendermode` directive from the component.
-
-When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
-
-Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute from the HTML form (`<form>`):
+Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm Enhance ...>
@@ -88,14 +68,58 @@ Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-n
 > [!WARNING]
 > ***Don't try to enhance form navigation for forms that POST to non-Blazor endpoints.***
 >
-> This is the main reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `EditForm` and `<form>` element. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
+> This is the primary reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `EditForm` and `<form>` element. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
 
 To disable enhanced navigation for a form:
 
 * For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
+Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
+
+In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
+
+```html
+<div data-permanent>
+    ...
+</div>
+```
+
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
+
+Once Blazor has started on the client, you can use the `enhancedload` event to listen for enhanced page updates. This allows for re-applying changes to the DOM that may have been undone by an enhanced page update.
+
+```javascript
+Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
+```
+
+:::moniker-end
+
+## Examples in this article
+
+:::moniker range=">= aspnetcore-8.0"
+
+Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
+
+<!-- UPDATE 8.0 These simplify at RTM -->
+
+* `RenderMode.InteractiveWebAssembly` for interactive client rendering only.
+* `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+
+If working with a standalone Blazor WebAssembly app, take ***either*** of the following approaches:
+
+* Change the render mode to `RenderMode.InteractiveWebAssembly`:
+
+  ```diff
+  - @rendermode RenderMode.InteractiveServer
+  + @rendermode RenderMode.InteractiveWebAssembly
+  ```
+  
+* Remove the `@rendermode` directive from the component.
+
+When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
+
+Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`).
 
 :::moniker-end
 
@@ -144,13 +168,14 @@ Form examples reference aspects of the [Star Trek](http://www.startrek.com/) uni
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExampleXXXX.razor":::
 -->
 
+<!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
+                The intention is to link to a few of the
+                framework test assets that include great
+                additional examples for inspection.
+
 ## Additional form examples
 
 The following additional form examples are available for inspection in the [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms).
-
-<!-- UPDATE 8.0 Saving the following in case there are
-     specific examples in the test assets that we want to
-     highlight for readers.
 
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> examples
   * xxx
@@ -159,9 +184,9 @@ The following additional form examples are available for inspection in the [ASP.
   * xxx
   * xxx
 
--->
-
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+-->
 
 ## Introduction
 

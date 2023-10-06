@@ -956,11 +956,17 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Server-side circuit handler to capture users for custom services
 
-<!-- UPDATE 8.0 Cross-link update -->
-
 Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see <xref:blazor/security/server/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
-## Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+:::moniker range=">= aspnetcore-8.0"
+
+## Closure of circuits when there are no remaining interactive server components
+
+[!INCLUDE[](~/blazor/security/includes/closure-of-circuits.md)]
+
+:::moniker-end
+
+## `IHttpContextAccessor`/`HttpContext` in Razor components
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 

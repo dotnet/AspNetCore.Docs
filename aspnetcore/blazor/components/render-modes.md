@@ -513,32 +513,38 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(DifferentAssemblyCounter).Assembly);
 ```
 
+## Closure of circuits when there are no remaining interactive server components
+
+[!INCLUDE[](~/blazor/security/includes/closure-of-circuits.md)]
+
 ## Custom shorthand render modes
 
 Whatever follows an `@rendermode` directive must be a valid Razor expression that would make sense as a method parameter in C#.
 
-For example, consider the scenario of disabling prerendering. The following expression isn't valid to pass to `@rendermode` because trying to pass `InteractiveServer(prerender: false)` as a method parameter in `SomeMethod(InteractiveServer(prerender: false))` isn't a valid C# construct for a method parameter of `SomeMethod`.
+For example, consider how prerendering is disabled. The following expression isn't valid to pass to `@rendermode` because seeking to pass `InteractiveServer(prerender: false)` as a method parameter in `SomeMethod(InteractiveServer(prerender: false))` isn't a valid C# construct for a method parameter of `SomeMethod`.
 
-<span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `@rendermode InteractiveServer(prerender: false)`
+<span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `SomeMethod(InteractiveServer(prerender: false))`
 
-The following C# expression is valid.
+However, the following C# expression passes a valid method parameter to `SomeMethod`.
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Valid:</span> `SomeMethod(new InteractiveServerRenderMode(prerender: false))`
 
-Therefore, disabling prerendering using the `@render-mode` directive requires the following explicit Razor expression:
+Therefore, disabling prerendering using the `@render-mode` directive requires the following example of an explicit Razor expression:
 
 ```razor
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
 ```
 
 > [!NOTE]
-> The example is somewhat contrived because normally a component would use the `@attribute` directive to disable prerendering:
+> The example is somewhat contrived because normally a component uses the following `@attribute` directive to disable prerendering:
 >
 > ```razor
 > @attribute [RenderModeInteractiveServer(prerender: false)]
 > ```
+>
+> For more information, see the [Prerendering](#prerendering) section.
 
-You can create a shorthand render modes in C# for use with the `@render-mode` directive. To create a shorthand render mode expression, use a static property of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>.
+You can create a shorthand render modes in C# for use with the `@render-mode` directive with a static property of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>.
 
 For a shorthand render mode that disables prerendering:
 

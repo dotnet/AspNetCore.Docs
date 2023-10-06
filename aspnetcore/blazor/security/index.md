@@ -66,7 +66,7 @@ Server-side Blazor operates over a SignalR connection with the client. [Authenti
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
-#### Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+#### `IHttpContextAccessor`/`HttpContext` in Razor components
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
