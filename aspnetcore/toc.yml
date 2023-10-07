@@ -1401,31 +1401,40 @@ items:
       - name: Authentication
         items:
           - name: Overview
-            uid: security/authentication/index
-          - name: Introduction to Identity
-            uid: security/authentication/identity
           - name: How to chose an identity management solution
             uid: security/how-to-choose-identity
+          - name: ASP.NET Core Identity
+            items:
+              - name: Overview
+                uid: security/authentication/identity
+              - name: Identity with SPA
+                uid: security/authentication/identity/spa               
+              - name: Scaffold Identity
+                uid: security/authentication/scaffold-identity
+              - name: Add custom user data to Identity
+                uid: security/authentication/add-user-data
+              - name: Customize Identity
+                uid: security/authentication/customize_identity_model
+              - name: Configure Identity
+                uid: security/authentication/identity-configuration
+              - name: Custom storage providers for Identity
+                uid: security/authentication/identity-custom-storage-providers
+              - name: Account confirmation and password recovery
+                uid: security/authentication/accconfirm
+              - name: Enable QR code generation in Identity
+                uid: security/authentication/identity-enable-qrcodes
+              - name: Two-factor authentication with SMS
+                uid: security/authentication/2fa
+              - name: Individual user accounts
+                uid: security/authentication/individual           
           - name: Mapping, customizing, and transforming claims
             uid: security/authentication/claims
-          - name: Identity with SPA
-            uid: security/authentication/identity/spa
-          - name: Scaffold Identity
-            uid: security/authentication/scaffold-identity
-          - name: Add custom user data to Identity
-            uid: security/authentication/add-user-data
           - name: Authentication samples
             uid: security/authentication/samples
-          - name: Customize Identity
-            uid: security/authentication/customize_identity_model
           - name: Community OSS authentication options
             uid: security/authentication/community
-          - name: Configure Identity
-            uid: security/authentication/identity-configuration
           - name: Configure Windows Authentication
             uid: security/authentication/windowsauth
-          - name: Custom storage providers for Identity
-            uid: security/authentication/identity-custom-storage-providers
           - name: Google, Facebook ...
             items:
               - name: Overview
@@ -1446,12 +1455,6 @@ items:
             uid: security/authentication/policyschemes
           - name: WS-Federation authentication
             uid: security/authentication/ws-federation
-          - name: Account confirmation and password recovery
-            uid: security/authentication/accconfirm
-          - name: Enable QR code generation in Identity
-            uid: security/authentication/identity-enable-qrcodes
-          - name: Two-factor authentication with SMS
-            uid: security/authentication/2fa
           - name: Use cookie authentication without Identity
             uid: security/authentication/cookie
           - name: Use social authentication without Identity
@@ -1489,8 +1492,6 @@ items:
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Identity management solutions for ASP.NET Core apps
             uid: security/identity-management-solutions 
-          - name: Individual user accounts
-            uid: security/authentication/individual
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Multi-factor authentication
