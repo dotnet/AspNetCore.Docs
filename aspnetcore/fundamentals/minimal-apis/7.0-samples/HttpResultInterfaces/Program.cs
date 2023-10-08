@@ -43,8 +43,7 @@ public class Program
             }
 
             var forecast = Enumerable.Range(1, days).Select(index =>
-               new WeatherForecast(DateTime.Now.AddDays(index), Random.Shared.Next(-20, 55), "Cool"))
-                .ToArray();
+               new WeatherForecast(DateTime.Now.AddDays(index), Random.Shared.Next(-20, 55), "Cool"));
             return Results.Ok(forecast);
         }).
         AddEndpointFilter(async (context, next) =>
