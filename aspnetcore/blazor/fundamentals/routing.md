@@ -602,10 +602,7 @@ Enhanced form handling isn't hierarchical and doesn't flow to child forms:
 </div>
 ```
 
-> [!WARNING]
-> ***Don't try to enhance form navigation for forms that POST to non-Blazor endpoints.***
->
-> This is the main reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `EditForm` and `<form>` element and it doesn't flow down elements or to child forms. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
+Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to non-Blazor endpoint results in an error.
 
 To disable enhanced navigation:
 
@@ -620,6 +617,12 @@ In the following example, the content of the `<div>` element is updated dynamica
 <div data-permanent>
     ...
 </div>
+```
+
+Once Blazor has started on the client, you can use the `enhancedload` event to listen for enhanced page updates. This allows for re-applying changes to the DOM that may have been undone by an enhanced page update.
+
+```javascript
+Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
 ```
 
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.

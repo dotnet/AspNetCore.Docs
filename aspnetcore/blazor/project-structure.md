@@ -22,9 +22,9 @@ Blazor Web App project template: `blazor`
 
 The Blazor Web App project template provides a single starting point for using Razor components to build any style of web UI, both server-side rendered and client-side rendered. It combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
 
-If both the WebAssembly and Server render modes are selected on app creation, the project template uses the automatic (Auto) render mode. The automatic rendering mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, automatic render mode (Auto) switches to the WebAssembly render mode.
+If both the WebAssembly and Server render modes are selected on app creation, the project template uses the Auto render mode. The automatic rendering mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, automatic render mode (Auto) switches to the WebAssembly render mode.
 
-By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic (Auto) render modes must be built from the client project.
+By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
 
 For more information, see <xref:blazor/components/render-modes>.
 

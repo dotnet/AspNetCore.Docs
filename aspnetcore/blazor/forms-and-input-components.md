@@ -37,64 +37,6 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 
 A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
 
-:::moniker range=">= aspnetcore-8.0"
-
-## Enhanced navigation and form handling
-
-Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
-
-```razor
-<EditForm Enhance ...>
-    ...
-</EditForm>
-```
-
-```html
-<form data-enhance ...>
-    ...
-</form>
-```
-
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced form handling.
-
-```html
-<div data-enhance>
-    <form ...>
-        <!-- NOT enhanced -->
-    </form>
-</div>
-```
-
-> [!WARNING]
-> ***Don't try to enhance form navigation for forms that POST to non-Blazor endpoints.***
->
-> This is the primary reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `EditForm` and `<form>` element. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
-
-To disable enhanced form handling:
-
-* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
-* For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
-
-Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
-
-In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
-
-```html
-<div data-permanent>
-    ...
-</div>
-```
-
-To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
-
-Once Blazor has started on the client, you can use the `enhancedload` event to listen for enhanced page updates. This allows for re-applying changes to the DOM that may have been undone by an enhanced page update.
-
-```javascript
-Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
-```
-
-:::moniker-end
-
 ## Examples in this article
 
 :::moniker range=">= aspnetcore-8.0"
@@ -106,20 +48,11 @@ Components are configured for interactivity with server rendering and enhanced n
 * `RenderMode.InteractiveWebAssembly` for interactive client rendering only.
 * `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
-If working with a standalone Blazor WebAssembly app, take ***either*** of the following approaches:
-
-* Change the render mode to `RenderMode.InteractiveWebAssembly`:
-
-  ```diff
-  - @rendermode RenderMode.InteractiveServer
-  + @rendermode RenderMode.InteractiveWebAssembly
-  ```
-  
-* Remove the `@rendermode` directive from the component.
+If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
 
 When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
 
-Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`).
+Examples don't adopt enhanced form handling for form POST requests, but all of the examples can be updated to adopt the enhanced features by following the guidance in the [Enhanced form handling](#enhanced-form-handling) section.
 
 :::moniker-end
 
@@ -208,8 +141,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship1> Logger
 
-<EditForm Enhance method="post" Model="@Model" OnSubmit="@Submit" 
-    FormName="Starship1">
+<EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship1">
     <InputText @bind-Value="Model!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -306,8 +238,7 @@ In the next example, the preceding component is modified to create the form in t
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship2> Logger
 
-<EditForm Enhance method="post" Model="@Model" OnValidSubmit="@Submit" 
-    FormName="Starship2">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />
@@ -544,7 +475,7 @@ In the following example, the `FormMappingScope` scope name is `ParentContext` f
 `HelloFormFromLibrary.razor`:
 
 ```razor
-<EditForm Enhance method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -577,7 +508,7 @@ In the following example, the `FormMappingScope` scope name is `ParentContext` f
 
 <div>Hello form using the same form name</div>
 
-<EditForm Enhance method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -615,13 +546,13 @@ The following example independently binds two forms to their models by form name
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship3> Logger
 
-<EditForm Enhance method="post" Model="@Model1" OnSubmit="@Submit1" 
+<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" 
     FormName="Holodeck1">
     <InputText @bind-Value="Model1!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
 
-<EditForm Enhance method="post" Model="@Model2" OnSubmit="@Submit2" 
+<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" 
     FormName="Holodeck2">
     <InputText @bind-Value="Model2!.Id" />
     <button type="submit">Submit</button>
@@ -718,7 +649,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship4> Logger
 
-<EditForm Enhance method="post" Model="@Model" OnSubmit="@Submit" 
+<EditForm method="post" Model="@Model" OnSubmit="@Submit" 
     FormName="Starship4">
     <div>
         <label>
@@ -884,8 +815,7 @@ The following form accepts and validates user input using:
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Enhance method="post" Model="@Model" OnValidSubmit="@Submit" 
-    FormName="Starship5">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship5">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -1067,7 +997,7 @@ In the following example:
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship6> Logger
 
-<EditForm Enhance method="post" EditContext="@editContext" OnSubmit="@Submit" 
+<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit" 
     FormName="Starship6">
     <DataAnnotationsValidator />
     <div>
@@ -1211,7 +1141,7 @@ In the following example, the user must select at least two starship classificat
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm Enhance method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
     FormName="Starship7">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -1501,7 +1431,7 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 <h2>Holodeck Configuration</h2>
 
-<EditForm Enhance method="post" EditContext="editContext" OnValidSubmit="@Submit" 
+<EditForm method="post" EditContext="editContext" OnValidSubmit="@Submit" 
     FormName="Starship8">
     <div>
         <label>
@@ -1798,8 +1728,7 @@ When validation messages are set in the component, they're added to the validato
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Enhance method="post" Model="@Model" OnValidSubmit="@Submit" 
-    FormName="Starship9">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship9">
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
     <div>
@@ -2141,8 +2070,7 @@ moniker range=">= aspnetcore-8.0"
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Enhance method="post" Model="@Model" OnValidSubmit="@Submit" 
-    FormName="Starship10">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship10">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
@@ -2437,8 +2365,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship11> Logger
 
-<EditForm Enhance method="post" Model="@Model" OnValidSubmit="@Submit" 
-    FormName="Starship11">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship11">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <CustomInputText @bind-Value="Model!.Id" />
@@ -2916,7 +2843,7 @@ The following component validates user input by applying the `SaladChefValidator
 @rendermode RenderMode.InteractiveServer
 @inject SaladChef SaladChef
 
-<EditForm Enhance Model="@this" autocomplete="off" FormName="Starship12">
+<EditForm Model="@this" autocomplete="off" FormName="Starship12">
 
     <DataAnnotationsValidator />
 
@@ -3075,7 +3002,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship13> Logger
 
-<EditForm Enhance method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
     FormName="Starship13">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -3445,7 +3372,7 @@ To enable and disable the submit button based on form validation, the following 
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 
-<EditForm Enhance method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
     FormName="Starship14">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -3656,7 +3583,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 <h1>Stream form data with JS interop</h1>
 
-<EditForm Enhance Model="@this" OnSubmit="@Submit" FormName="StreamFormData">
+<EditForm Model="@this" OnSubmit="@Submit" FormName="StreamFormData">
     <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to
@@ -3803,7 +3730,7 @@ If form processing fails because the component's form payload has exceeded the m
 
 <!-- UPDATE 8.0 Cross-link SSR -->
 
-Standard interactive HTML forms with server rendering are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, including with enhanced form handling.
+Standard interactive HTML forms with server rendering are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
@@ -3816,7 +3743,7 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
 @page "/html-form"
 @inject ILogger<HTMLForm> Logger
 
-<form data-enhance method="post" @onsubmit="AddContact" @formname="contact">
+<form method="post" @onsubmit="AddContact" @formname="contact">
     <AntiforgeryToken />
     <label>
         Name
@@ -3857,27 +3784,6 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
 
 To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
 
-Enable enhanced form handling by adding the `data-enhance` HTML attribute to the form.
-
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
-
-```html
-<div data-enhance>
-    <form ...>
-        <!-- NOT enhanced -->
-    </form>
-</div>
-```
-
-> [!WARNING]
-> ***Don't try to enhance form navigation for forms that POST to non-Blazor endpoints.***
->
-> This is the main reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `<form>` element. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
-
-To disable [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for a form, remove the `data-enhance` attribute or set it to `false` (`data-enhance="false"`).
-
-To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
@@ -3893,7 +3799,7 @@ For [forms based on the HTML `<form>` element](#html-forms), manually add the `A
 ```razor
 @rendermode RenderMode.InteractiveServer
 
-<form data-enhance method="post" @onsubmit="Submit" @formname="starshipForm">
+<form method="post" @onsubmit="Submit" @formname="starshipForm">
     <AntiforgeryToken />
     <input id="send" type="submit" value="Send" />
 </form>
@@ -3919,6 +3825,57 @@ For [forms based on the HTML `<form>` element](#html-forms), manually add the `A
 > ```
 
 For more information, see <xref:blazor/security/index#antiforgery-support>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Enhanced form handling
+
+Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
+
+```razor
+<EditForm Enhance ...>
+    ...
+</EditForm>
+```
+
+```html
+<form data-enhance ...>
+    ...
+</form>
+```
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced form handling.
+
+```html
+<div data-enhance>
+    <form ...>
+        <!-- NOT enhanced -->
+    </form>
+</div>
+```
+
+Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to non-Blazor endpoint results in an error.
+
+To disable enhanced form handling:
+
+* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
+
+Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
+
+In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
+
+```html
+<div data-permanent>
+    ...
+</div>
+```
+
+To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
+
+For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 

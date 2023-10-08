@@ -92,7 +92,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode();
 ```
 
-Example 3: The following `Program` file API adds services and configuration for enabling the interactive Server, WebAssembly, and automatic (Auto) render modes:
+Example 3: The following `Program` file API adds services and configuration for enabling the interactive Server, WebAssembly, and Auto render modes:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -118,12 +118,28 @@ In the following example, the Server render mode is applied to the `Dialog` comp
 <Dialog @rendermode="RenderMode.InteractiveServer" />
 ```
 
+<!-- UPDATE 8.0 Remove NOTE, and all @rendermode assignment
+                examples will be updated at RTM.
+                Although the NOTE will be removed, a remark
+                on the presence of the using static 
+                statement probably should be retained. -->
+
 > [!NOTE]
-> The preceding syntax will be simplified at the release of .NET 8 in November to:
+> For the release of .NET 8 in November, the Blazor templates will include a `using static` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the app's `_Imports` file for shorter `@rendermode` syntax.
+>
+> In `Components/_Imports.razor`:
+>
+> ```razor
+> @using static Microsoft.AspNetCore.Components.Web.RenderMode
+> ```
+>
+> Simplified `@rendermode` assignment:
 >
 > ```razor
 > <Dialog @rendermode="InteractiveServer" />
 > ```
+>
+> During *Release Candidate 2*, you can add the `using static` statement to your Blazor apps to shorten the syntax.
 
 ## Apply a render mode to a component definition
 
@@ -134,7 +150,18 @@ To specify the render mode for a component as part of its definition, use the [`
 @rendermode RenderMode.InteractiveServer
 ```
 
+<!-- UPDATE 8.0 Remove NOTE at RTM -->
+
+> [!NOTE]
+> In an app generated from the Blazor project template during *Release Candidate 2*, add a `using static` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> to `Components/_Imports.razor` if you want to use shortened syntax (`@rendermode InteractiveServer`):
+>
+> ```razor
+> @using static Microsoft.AspNetCore.Components.Web.RenderMode
+> ```
+
 Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
+
+Technically, `@rendermode` is both a Razor *directive* and a Razor *directive attribute*. The semantics are similar, but there are differences. The `@rendermode` directive is on the component definition, so the referenced render mode instance must be static. The `@rendermode` directive attribute can take any render mode instance.
 
 > [!NOTE]
 > Component authors should avoid coupling a component's implementation to a specific render mode. Instead, component authors should typically design components to support any render mode or hosting model. A component's implementation should avoid assumptions on where it's running (server or client) and should degrade gracefully when rendered statically. Specifying the render mode in the component definition may be needed if the component isn't instantiated directly (such as with a routable page component) or to specify a render mode for all component instances.
@@ -265,9 +292,9 @@ In the following example, the render mode is set to WebAssembly with `@rendermod
 
 If using the preceding component locally in a Blazor Web App, place the component in the client project's `Pages` folder. The client project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
 
-## Automatic (Auto) render mode
+## Auto render mode
 
-The automatic (Auto) render mode determines how to render the component at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the automatic render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
+The Auto render mode determines how to render the component at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the automatic render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
 
 In the following example, the component is interactive throughout the process. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI. Initially, the component is rendered interactively from the server, but on subsequent visits it's rendered from the client after the .NET runtime and app bundle are downloaded and cached.
 
@@ -519,34 +546,9 @@ app.MapRazorComponents<App>()
 
 ## Custom shorthand render modes
 
-Whatever follows an `@rendermode` directive must be a valid Razor expression that would make sense as a method parameter in C#.
+The `@rendermode` directive takes a single parameter that's a static instance of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>. The `@rendermode` directive attribute can take any render mode instance, static or not. The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Web.RenderMode> static class with some predefined render modes for convenience, but you can create your own.
 
-For example, consider how prerendering is disabled. The following expression isn't valid to pass to `@rendermode` because seeking to pass `InteractiveServer(prerender: false)` as a method parameter in `SomeMethod(InteractiveServer(prerender: false))` isn't a valid C# construct for a method parameter of `SomeMethod`.
-
-<span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `SomeMethod(InteractiveServer(prerender: false))`
-
-However, the following C# expression passes a valid method parameter to `SomeMethod`.
-
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Valid:</span> `SomeMethod(new InteractiveServerRenderMode(prerender: false))`
-
-Therefore, disabling prerendering using the `@rendermode` directive requires the following example of an explicit Razor expression:
-
-```razor
-@rendermode @(new InteractiveServerRenderMode(prerender: false))
-```
-
-> [!NOTE]
-> The example is somewhat contrived because normally a component uses the following `@attribute` directive to disable prerendering:
->
-> ```razor
-> @attribute [RenderModeInteractiveServer(prerender: false)]
-> ```
->
-> For more information, see the [Prerendering](#prerendering) section.
-
-You can create a shorthand render modes in C# for use with the `@render-mode` directive with a static property of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>.
-
-For a shorthand render mode that disables prerendering:
+Consider the following example that creates a shorthand interactive server render mode without prerendering:
 
 ```csharp
 public static IComponentRenderMode InteractiveServerWithoutPrerendering { get; } = 
@@ -558,3 +560,14 @@ Use the shorthand render mode in components:
 ```razor
 @rendermode InteractiveServerWithoutPrerendering
 ```
+
+> [!NOTE]
+> Normally, a component uses the following `@attribute` directive to disable prerendering:
+>
+> ```razor
+> @attribute [RenderModeInteractiveServer(prerender: false)]
+> ```
+>
+> For more information, see the [Prerendering](#prerendering) section.
+
+At the moment, the shorthand render mode approach is probably only useful for reducing the verbosity of specifying the `prerender` flag. The shorthand approach might be more useful in the future if additional flags become available for interactive rendering and you would like to create shorthand render modes with different combinations of flags.

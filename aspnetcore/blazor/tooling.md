@@ -25,9 +25,12 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
-* Create a new project:
-  * For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Next**.
-  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly Standalone App** template. Select **Next**.
+* Create a new project using one of the available Blazor templates:
+
+  * **Blazor Web App** (*recommended*): Creates a Blazor web app that supports interactive server and interactive client rendering.
+  * **Blazor WebAssembly Standalone App**: Creates a standalone client web app that can be deployed as a static site.
+
+Select **Next**.
 
 :::moniker-end
 
@@ -66,7 +69,7 @@ To create a Blazor app on Windows, use the following guidance:
     * To enable both interactive server and client rendering and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
     * If interactivity is set to `None`, the generated app has no interactivity (static server rendering only).
 
-    The automatic (Auto) render mode initially uses interactive server rendering while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to interactive WebAssembly rendering.
+    The Auto render mode initially uses interactive server rendering while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to interactive WebAssembly rendering.
 
     By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
 
@@ -169,9 +172,9 @@ Create a new project:
   dotnet new blazor -o BlazorApp -int None
   ```
 
-  The automatic (Auto) render mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to the WebAssembly render mode.
+  The Auto render mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to the WebAssembly render mode.
 
-  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic (Auto) render modes must be built from the client project.
+  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
 
   For more information, see <xref:blazor/components/render-modes>.
 
@@ -603,7 +606,11 @@ To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassem
 
 :::moniker range=">= aspnetcore-8.0"
 
-[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers. 
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers.
+
+Support for disabling SIMD is scheduled for a future release. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
+
+<!-- UPDATE 9.0 HOLD
 
 To disable SIMD, for example when targeting old browsers (on mobile devices), add the `<WasmEnableSIMD>` property set to `false` in the app's project file (`.csproj`):
 
@@ -613,10 +620,7 @@ To disable SIMD, for example when targeting old browsers (on mobile devices), ad
 </PropertyGroup>
 ```
 
-<!-- UPDATE 9.0 Remove note when https://github.com/dotnet/runtime/issues/89302 is fixed -->
-
-> [!IMPORTANT]
-> Disabling SIMD isn't supported. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
+-->
 
 For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
 

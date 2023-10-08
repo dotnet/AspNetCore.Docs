@@ -144,45 +144,6 @@ For more information, see the following resources:
 
 * <xref:Microsoft.AspNetCore.Components.Web.EventHandlers> holds attributes to configure the mappings between event names and event argument types.
 
-:::moniker range=">= aspnetcore-8.0"
-
-## Support for dialog cancel and close events
-
-Blazor supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
-
-In the following example:
-
-* `OnClose` is called when the `my-dialog` dialog is closed with the **Close** button.
-* `OnCancel` is called when the dialog is cancelled with the <kbd>Esc</kbd> key. Note that when an HTML dialog is dismissed with the <kbd>Esc</kbd> key, both the `cancel` and `close` events are triggered.
-
-```razor
-<div>
-    <p>Output: @message</p>
-
-    <button onclick="document.getElementById('my-dialog').showModal()">
-        Show modal dialog
-    </button>
-
-    <dialog id="my-dialog" @onclose="OnClose" @oncancel="OnCancel">
-        <p>Hi there!</p>
-
-        <form method="dialog">
-            <button>Close</button>
-        </form>
-    </dialog>
-</div>
-
-@code {
-    private string? message;
-
-    private void OnClose(EventArgs e) => message += "onclose, ";
-
-    private void OnCancel(EventArgs e) => message += "oncancel, ";
-}
-```
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-6.0"
 
 ## Custom event arguments
