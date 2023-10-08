@@ -32,8 +32,7 @@ app.MapGet("/weatherforecast", () =>
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
             Random.Shared.Next(-20, 55),
             summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
+        ));
     return forecast;
 })
 .WithSummary("Sends a weather forecast.")
@@ -54,8 +53,7 @@ app.MapGet("/weatherforecast2",
                 DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 Random.Shared.Next(-20, 55),
                 summaries[Random.Shared.Next(summaries.Length)]
-            ))
-            .ToArray();
+            ));
         return forecast;
     })
 .WithName("GetWeatherForecast2")
