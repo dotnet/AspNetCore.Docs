@@ -1431,7 +1431,7 @@ items:
             items:
               - name: Overview
                 uid: security/authentication/azure-active-directory/index
-              - name: Secure ASP.NET Core apps with Microsoft identity Web
+              - name: Secure ASP.NET Core apps with Microsoft identity web
                 href: https://github.com/AzureAD/microsoft-identity-web/wiki
               - name: Secure ASP.NET Core apps with Microsoft identity platform
                 href: /azure/active-directory/develop/
