@@ -14,7 +14,6 @@
 public HttpContext? HttpContext { get; set; }
 ```
 
-One caveat for using <xref:Microsoft.AspNetCore.Http.HttpContext> is that it won't compile in the `.Client` project of a Blazor Web App for WebAssembly rendering because the `.Client` project doesn't reference the [HTTP Abstractions package](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Abstractions). Even if the package reference is added to the `.Client` project, <xref:Microsoft.AspNetCore.Http.HttpContext> still isn't supported by the Blazor framework on WebAssembly, so there's no point in adding the package just to permit the `.Client` project to compile.
 
 <!-- UPDATE 8.0 Holding to hear back from Javier if he
                 was refering to passing tokens coverage
