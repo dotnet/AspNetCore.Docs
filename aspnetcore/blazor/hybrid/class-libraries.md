@@ -141,7 +141,7 @@ namespace SharedLibrary.Interfaces;
 
 public interface IWeatherForecastService
 {
-    Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate);
+    Task<IEnumerable<WeatherForecast>?> GetForecastAsync(DateTime startDate);
 }
 ```
 
@@ -170,7 +170,7 @@ public class WeatherForecastService : IWeatherForecastService
         this.http = http;
     }
 
-    public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
+    public async Task<IEnumerable<WeatherForecast>?> GetForecastAsync(DateTime startDate) =>
         await http.GetFromJsonAsync<WeatherForecast[]?>("WeatherForecast");
 }
 ```
@@ -192,7 +192,7 @@ public class WeatherForecastService : IWeatherForecastService
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"
     };
 
-    public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
+    public async Task<IEnumerable<WeatherForecast>?> GetForecastAsync(DateTime startDate) =>
         await Task.FromResult(Enumerable.Range(1, 5)
             .Select(index => new WeatherForecast
             {
@@ -249,7 +249,7 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private IEnumerable<WeatherForecast>? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
