@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace WebApiSample.Controllers
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = summaries[rng.Next(summaries.Length)]
-            }).ToArray();
+            });
         }
     }
 }
