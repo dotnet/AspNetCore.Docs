@@ -1,11 +1,8 @@
 :::moniker range=">= aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> must be avoided when interactive rendering for the following reasons:
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> must be avoided with interactive rendering because there isn't a valid `HttpContext` available.
 
-* The interface isn't implemented for interactive WebAssembly rendering.
-* For interactive server rendering, the implementation isn't guaranteed to exist.
-
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoid using it if possible.**
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.**
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* for general tasks, such as inspecting and modifying headers or other properties. The value is always `null` for interactive rendering. It's permissable to use it in the `App` component (`Components/App.razor`).
 
