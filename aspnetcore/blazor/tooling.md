@@ -73,8 +73,8 @@ To create a Blazor app on Windows, use the following guidance:
     For more information, see <xref:blazor/components/render-modes>.
 
   * **Interactivity location** dropdown list:
-    * **Per page/component**: The default sets up the app for interactivity set per page or per component.
-    * **Global**: Selecting this option sets interactivity for entire app in the `App` component by specifying a render mode for the top-level `HeadOutlet` and `Routes` components. Setting the interactivity on these components propagates the interactivity to all of the child components in the app.
+    * **Per page/component**: The default sets up interactivity per page or per component.
+    * **Global**: Selecting this option sets up interactivity globally for the entire app.
 
     Interactivity location can only be set if **Interactivity type** isn't `None` and authentication isn't enabled.
 
