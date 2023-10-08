@@ -576,7 +576,7 @@ The following examples disable enhanced navigation:
 
 If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, and the client-side JavaScript retries as a full page load. This ensures no confusion to the framework about external pages that shouldn't be patched into an existing page.
 
-Form POST requests adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the *explicit addition* of the `Enhance` parameter to `EditForm` forms or the *explicit addition* of the `data-enhance` attribute to the HTML form (`<form>`):
+To enable enhanced form handling, add the `Enhance` parameter to `EditForm` forms or the `data-enhance` attribute to HTML forms (`<form>`):
 
 ```razor
 <EditForm Enhance ...>
@@ -590,7 +590,7 @@ Form POST requests adopt [enhanced navigation](xref:blazor/fundamentals/routing#
 </form>
 ```
 
-Enhanced navigation isn't hierarchical and doesn't flow to child forms:
+Enhanced form handling isn't hierarchical and doesn't flow to child forms:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
 

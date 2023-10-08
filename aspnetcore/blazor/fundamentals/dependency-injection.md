@@ -272,7 +272,7 @@ public IMyService MyService { get; set; }
 ```
 
 > [!NOTE]
-> The `@inject` Razor directive doesn't currently support keyed services, but this scenario is scheduled for the final release of .NET 8 in November.
+> The `@inject` Razor directive doesn't currently support keyed services.
 
 :::moniker-end
 
