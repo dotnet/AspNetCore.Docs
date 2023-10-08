@@ -22,7 +22,7 @@ This article explains control of Razor component rendering in Blazor Web Apps, e
 
 Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's interactive.
 
-The following table shows the available render modes for rendering Razor components in a Blazor Web App. To apply a render mode to a component use the `@rendermode` directive on the component instance or in the component's Razor markup. Later in this article, examples are shown for each render mode scenario.
+The following table shows the available render modes for rendering Razor components in a Blazor Web App. To apply a render mode to a component use the `@rendermode` directive on the component instance or on the component definition. Later in this article, examples are shown for each render mode scenario.
 
 Name | Description | Render location | Interactive
 ---- | ----------- | :-------------: | :---------:
@@ -110,7 +110,7 @@ Blazor uses the Blazor WebAssembly hosting model to download and execute compone
 
 ## Apply a render mode to a component instance
 
-To apply a render mode to a component instance use the [`@rendermode` Razor directive](xref:mvc/views/razor#rendermode) where the component is used.
+To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#rendermode) where the component is used.
 
 In the following example, the Server render mode is applied to the `Dialog` component instance:
 
@@ -529,7 +529,7 @@ However, the following C# expression passes a valid method parameter to `SomeMet
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Valid:</span> `SomeMethod(new InteractiveServerRenderMode(prerender: false))`
 
-Therefore, disabling prerendering using the `@render-mode` directive requires the following example of an explicit Razor expression:
+Therefore, disabling prerendering using the `@rendermode` directive requires the following example of an explicit Razor expression:
 
 ```razor
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
