@@ -61,9 +61,9 @@ To create a Blazor app on Windows, use the following guidance:
                 **Interactive render mode** -->
 
   * **Interactivity type** dropdown list:
-    * Interactivity with server rendering is enabled by default with the **Server** option.
+    * Interactive server rendering is enabled by default with the **Server** option.
     * To only enable interactivity with client rendering, select the **WebAssembly** option.
-    * To enable interactive server rendering followed by interactive WebAssembly rendering, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
+    * To enable both interactive server and client rendering and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
     * If interactivity is set to `None`, the generated app has no interactivity (static server rendering only).
 
     The automatic (Auto) render mode initially uses interactive server rendering while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to interactive WebAssembly rendering.
