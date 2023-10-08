@@ -11,7 +11,8 @@ namespace Tests
         public void MapWeatherApiTest()
         {
             var result = WeatherApi.GetAllWeathers();
-            Assert.IsInstanceOfType(result, typeof(Ok<WeatherForecast[]>));
+            Assert.IsNotInstanceOfType(result, typeof(Ok<WeatherForecast[]>));
+            Assert.IsInstanceOfType(result, typeof(Ok<IEnumerable<WeatherForecast>>));
         }      
     }
     // </snippet_1>
