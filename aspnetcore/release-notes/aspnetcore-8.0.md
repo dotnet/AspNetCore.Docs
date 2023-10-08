@@ -142,6 +142,7 @@ For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&
 The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-in-Time (JIT) compilation support when running on WebAssembly to achieve improved runtime performance.
 
 For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>.
+
 ### Ahead-of-time (AOT) SIMD and exception handling
 
 Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
@@ -196,6 +197,41 @@ For more information, see the following:
 ### Project templates shed Open Iconic
 
 The Blazor project templates no longer depend on [Open Iconic](https://github.com/iconic/open-iconic) for icons.
+
+### Support for dialog cancel and close events
+
+Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
+
+In the following example:
+
+* `OnClose` is called when the `my-dialog` dialog is closed with the **Close** button.
+* `OnCancel` is called when the dialog is cancelled with the <kbd>Esc</kbd> key. Note that when an HTML dialog is dismissed with the <kbd>Esc</kbd> key, both the `cancel` and `close` events are triggered.
+
+```razor
+<div>
+    <p>Output: @message</p>
+
+    <button onclick="document.getElementById('my-dialog').showModal()">
+        Show modal dialog
+    </button>
+
+    <dialog id="my-dialog" @onclose="OnClose" @oncancel="OnCancel">
+        <p>Hi there!</p>
+
+        <form method="dialog">
+            <button>Close</button>
+        </form>
+    </dialog>
+</div>
+
+@code {
+    private string? message;
+
+    private void OnClose(EventArgs e) => message += "onclose, ";
+
+    private void OnCancel(EventArgs e) => message += "oncancel, ";
+}
+```
 
 ## SignalR
 
