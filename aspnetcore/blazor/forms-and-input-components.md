@@ -55,7 +55,7 @@ Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-n
 </form>
 ```
 
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced form handling.
 
 ```html
 <div data-enhance>
@@ -70,7 +70,7 @@ Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-n
 >
 > This is the primary reason why enabling form POSTs with enhanced navigation requires an explicit gesture on each `EditForm` and `<form>` element. It isn't safe to assume that all forms in general should use enhanced posts because any given form might not target a Blazor endpoint.
 
-To disable enhanced navigation for a form:
+To disable enhanced form handling:
 
 * For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
@@ -3803,7 +3803,7 @@ If form processing fails because the component's form payload has exceeded the m
 
 <!-- UPDATE 8.0 Cross-link SSR -->
 
-Standard interactive HTML forms with server rendering are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, including with ENHANCED NAV.
+Standard interactive HTML forms with server rendering are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, including with enhanced form handling.
 
 Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
@@ -3857,7 +3857,7 @@ Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` hand
 
 To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
 
-Enhanced navigation is supported with the *explicit addition* of the `data-enhance` HTML attribute.
+Enable enhanced form handling by adding the `data-enhance` HTML attribute to the form.
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
 
