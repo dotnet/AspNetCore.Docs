@@ -122,7 +122,9 @@ In the following example, the Server render mode is applied to the `Dialog` comp
                 examples will be updated at RTM.
                 Although the NOTE will be removed, a remark
                 on the presence of the using static 
-                statement probably should be retained. -->
+                statement probably should be retained here.
+                It just won't be in NOTE form. See the RC2
+                blog post language. -->
 
 > [!NOTE]
 > For the release of .NET 8 in November, the Blazor templates will include a `using static` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the app's `_Imports` file for shorter `@rendermode` syntax.
@@ -140,6 +142,19 @@ In the following example, the Server render mode is applied to the `Dialog` comp
 > ```
 >
 > During *Release Candidate 2*, you can add the `using static` statement to your Blazor apps to shorten the syntax.
+
+You can reference static render mode instances instantiated directly with custom configuration:
+
+```razor
+@rendermode renderMode
+
+...
+
+@code {
+    private static IComponentRenderMode renderMode = 
+        new InteractiveWebAssemblyRenderMode(prerender: false);
+}
+```
 
 ## Apply a render mode to a component definition
 
