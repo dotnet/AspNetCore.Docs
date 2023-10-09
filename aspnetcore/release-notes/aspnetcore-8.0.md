@@ -239,6 +239,30 @@ In the following example:
 }
 ```
 
+## Blazor identity UI
+
+Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*. You can either select the option for Individual Accounts in the new project dialog for Blazor Web Apps from Visual Studio or pass the option from the command line when you create a new project:
+
+```dotnetcli
+dotnet new blazor -au Individual
+```
+
+In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
+
+The template handles the following:
+
+* Adds the Identity-related packages and dependencies
+* References the Identity packages in `_Imports.razor`
+* Creates a custom Identity class called `ApplicationUser'
+* Creates and registers an EFCore DbContext
+* Adds and routes the built-in Identity endpoints
+* Adds all Identity UI components and related logic
+* Includes Identity validation and business logic
+
+The UI components also support advanced Identity concepts, such as multifactor authentication using a third-party app and email confirmations.
+
+Authentication samples for other app types are in development, including Blazor WebAssembly and single page apps (Angular, React).
+
 ## SignalR
 
 ### New approach to set the server timeout and Keep-Alive interval
