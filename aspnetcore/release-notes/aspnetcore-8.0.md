@@ -107,6 +107,10 @@ The new `SectionOutlet` and `SectionContent` components in Blazor add support fo
 
 For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&preserve-view=true>.
 
+### Error page support
+
+Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](xref:fundamentals/error-handling#exception-handler-page). The Blazor Web App project template includes a default error page (`Components/Pages/Error.razor`) with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from Exception Handling Middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
+
 ### QuickGrid
 
 The Blazor QuickGrid component is no longer experimental and is now part of the Blazor framework in .NET 8.
