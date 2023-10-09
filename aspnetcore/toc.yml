@@ -1494,7 +1494,7 @@ items:
             uid: security/authentication/samples
           - name: Community OSS authentication options
             uid: security/authentication/community
-          - name: Identity management solutions for ASP.NET Core apps
+          - name: Identity management solutions
             uid: security/identity-management-solutions 
           - name: Multi-factor authentication
             uid: security/authentication/mfa
