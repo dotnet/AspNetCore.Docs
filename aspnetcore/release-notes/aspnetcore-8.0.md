@@ -60,7 +60,7 @@ For more information on the new Blazor Web App template, see the following artic
 
 ### Persist component state in a Blazor Web App
 
-You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/components/prerendering?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state). Blazor Web Apps automatically persist any registered state during prerendering, removing the need for the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper).
+You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/components/prerender?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state). Blazor Web Apps automatically persist any registered state during prerendering, removing the need for the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper).
 
 ### Form handling and model binding
 
