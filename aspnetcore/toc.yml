@@ -1488,7 +1488,7 @@ items:
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
             uid: security/authentication/jwt
-          - name: Mapping, customizing, and transforming claims
+          - name: Map, customize, and transform claims
             uid: security/authentication/claims
           - name: Authentication samples
             uid: security/authentication/samples
