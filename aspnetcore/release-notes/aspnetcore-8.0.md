@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/10/2023
+ms.date: 10/09/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -21,8 +21,8 @@ This article is under development and not complete. More information may be foun
 * [What's new in .NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/)
 * [What's new in .NET 8 Preview 6](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-6/)
 * [What's new in .NET 8 Preview 7](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-7/)
-<!--
 * [What's new in .NET 8 Release Candidate 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-1/)
+<!--
 * [What's new in .NET 8 Release Candidate 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-2/)
 * [Announcing ASP.NET Core in .NET 8](https://devblogs.microsoft.com/dotnet/announcing-asp-net-core-in-dotnet-8/)
 -->
@@ -58,6 +58,10 @@ For more information on the new Blazor Web App template, see the following artic
 * <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
 * <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
 
+### Persist component state in a Blazor Web App
+
+You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/components/prerendering?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state). Blazor Web Apps automatically persist any registered state during prerendering, removing the need for the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper).
+
 ### Form handling and model binding
 
 Blazor components can now handle submitted form requests, including model binding and validating the request data. Components can implement forms with separate form handlers using the standard HTML `<form>` tag or using the existing `EditForm` component.
@@ -84,16 +88,27 @@ For example, to render a page you might need to make a long running database que
 
 For more information, see <xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering>.
 
-<!-- UPDATE 8.0
+### Inject keyed services into components
 
-RC2
+Blazor now supports injecting keyed services using the `[Inject]` attribute. Keys allow for scoping of registration and consumption of services when using dependency injection. Use the new `InjectAttribute.Key` property to specify the key for the service to inject:
 
-### Blazor interactive server rendering APIs for accessing `HttpContext`
+```csharp
+[Inject(Key = "my-service")]
+public IMyService MyService { get; set; }
+```
 
-Issue: https://github.com/dotnet/aspnetcore/issues/48769
-PR: https://github.com/dotnet/aspnetcore/pull/50253
+The `@inject` Razor directive doesn't support keyed services yet, but work is tracked to improve this for a future release.
 
--->
+### Access `HttpContext` as a cascading parameter
+
+You can now access the current <xref:Microsoft.AspNetCore.Http.HttpContext> as a cascading parameter from a static server component:
+
+```csharp
+[CascadingParameter]
+public HttpContext? HttpContext { get; set; }
+```
+
+Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component may be useful for inspecting and modifying headers or other properties.
 
 ### Render Razor components outside of ASP.NET Core
 
@@ -136,6 +151,10 @@ For more information, see <xref:blazor/components/cascading-values-and-parameter
 Use the new `EmptyContent` parameter on the `Virtualize` component to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
 
 For more information, see <xref:blazor/components/virtualization?view=aspnetcore-8.0&preserve-view=true#empty-content>.
+
+### Close circuits when there are no remaining interactive server components
+
+Interactive server components handle web UI events using a real-time connection with the browser called a circuit. A circuit and its associated state are setup when a root interactive server component is rendered. The circuit will now be closed when there are no remaining interactive server components on the page, which frees up server resources.
 
 ### Monitor SignalR circuit activity
 
@@ -239,7 +258,7 @@ In the following example:
 }
 ```
 
-## Blazor identity UI
+### Blazor identity UI
 
 Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*. You can either select the option for Individual Accounts in the new project dialog for Blazor Web Apps from Visual Studio or pass the option from the command line when you create a new project:
 
