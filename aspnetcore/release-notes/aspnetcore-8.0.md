@@ -258,7 +258,7 @@ In the following example:
 }
 ```
 
-### Blazor identity UI
+### Blazor Identity UI
 
 Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*. You can either select the option for Individual Accounts in the new project dialog for Blazor Web Apps from Visual Studio or pass the option from the command line when you create a new project:
 
