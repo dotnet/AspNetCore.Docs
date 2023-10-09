@@ -1427,6 +1427,36 @@ items:
                 uid: security/authentication/2fa
               - name: Individual user accounts
                 uid: security/authentication/individual           
+          - name: Azure
+            items:
+              - name: Overview
+                uid: security/authentication/azure-active-directory/index
+              - name: Secure ASP.NET Core apps with Microsoft identity web
+                href: https://github.com/AzureAD/microsoft-identity-web/wiki
+              - name: Secure ASP.NET Core apps with Microsoft identity platform
+                href: /azure/active-directory/develop/
+              - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
+                href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+              - name: Scenarios
+                items:
+                  - name: Web app that signs in users
+                    href: /azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore
+                  - name: Web app that calls web APIs
+                    href: /azure/active-directory/develop/scenario-web-app-call-api-overview
+                  - name: Protected web API
+                    href: /azure/active-directory/develop/scenario-protected-web-api-overview
+                  - name: Web API that calls other web APIs
+                    href: /azure/active-directory/develop/scenario-web-api-call-api-overview
+                  - name: Integrate Azure AD B2C into a web app
+                    uid: security/authentication/azure-ad-b2c
+              - name: Samples
+                items:
+                  - name: Sign-in users and call web APIs using Azure AD V2
+                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/
+                  - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
+                    href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
+                  - name: Web API with Azure AD B2C
+                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/            
           - name: Mapping, customizing, and transforming claims
             uid: security/authentication/claims
           - name: Authentication samples
@@ -1462,38 +1492,8 @@ items:
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
             uid: security/authentication/jwt
-          - name: Azure Active Directory
-            items:
-              - name: Overview
-                uid: security/authentication/azure-active-directory/index
-              - name: Integrate Azure AD into a web app
-                href: /azure/active-directory/develop/quickstart-v2-aspnet-core-webapp
-              - name: Scenarios
-                items:
-                  - name: Web app that signs in users
-                    href: /azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore
-                  - name: Web app that calls web APIs
-                    href: /azure/active-directory/develop/scenario-web-app-call-api-overview
-                  - name: Protected web API
-                    href: /azure/active-directory/develop/scenario-protected-web-api-overview
-                  - name: Web API that calls other web APIs
-                    href: /azure/active-directory/develop/scenario-web-api-call-api-overview
-                  - name: Integrate Azure AD B2C into a web app
-                    uid: security/authentication/azure-ad-b2c
-              - name: Samples
-                items:
-                  - name: Sign-in users and call web APIs using Azure AD V2
-                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/
-                  - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
-                    href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
-                  - name: Web API with Azure AD B2C
-                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Identity management solutions for ASP.NET Core apps
             uid: security/identity-management-solutions 
-          - name: Secure ASP.NET Core apps with Microsoft Identity Web
-            href: /azure/active-directory/develop/
-          - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
-            href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
           - name: Configure certificate authentication
             uid: security/authentication/certauth
           - name: Multi-factor authentication
