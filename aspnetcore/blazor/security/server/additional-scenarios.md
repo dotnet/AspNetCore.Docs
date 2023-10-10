@@ -83,6 +83,10 @@ builder.Services.AddScoped<TokenProvider>();
 
 In the `App` component (`Components/App.razor`), resolve the service and initialize it with the data from [`HttpContext` as a cascaded parameter](xref:blazor/security/index#avoid-ihttpcontextaccessorhttpcontext-in-razor-components):
 
+<!-- UPDATE 8.0 Ask Javier later if the 
+                return base.OnInitializedAsync();
+                is really necessary here? -->
+
 ```razor
 @inject TokenProvider TokenProvider
 
