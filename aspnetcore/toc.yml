@@ -1402,69 +1402,42 @@ items:
         items:
           - name: Overview
             uid: security/authentication/index
-          - name: Introduction to Identity
-            uid: security/authentication/identity
           - name: How to chose an identity management solution
             uid: security/how-to-choose-identity
-          - name: Mapping, customizing, and transforming claims
-            uid: security/authentication/claims
-          - name: Identity with SPA
-            uid: security/authentication/identity/spa
-          - name: Scaffold Identity
-            uid: security/authentication/scaffold-identity
-          - name: Add custom user data to Identity
-            uid: security/authentication/add-user-data
-          - name: Authentication samples
-            uid: security/authentication/samples
-          - name: Customize Identity
-            uid: security/authentication/customize_identity_model
-          - name: Community OSS authentication options
-            uid: security/authentication/community
-          - name: Configure Identity
-            uid: security/authentication/identity-configuration
-          - name: Configure Windows Authentication
-            uid: security/authentication/windowsauth
-          - name: Custom storage providers for Identity
-            uid: security/authentication/identity-custom-storage-providers
-          - name: Google, Facebook ...
+          - name: ASP.NET Core Identity
             items:
               - name: Overview
-                uid: security/authentication/social/index
-              - name: Google authentication
-                uid: security/authentication/google-logins
-              - name: Facebook authentication
-                uid: security/authentication/facebook-logins
-              - name: Microsoft authentication
-                uid: security/authentication/microsoft-logins
-              - name: Twitter authentication
-                uid: security/authentication/twitter-logins
-              - name: Other providers
-                uid: security/authentication/otherlogins
-              - name: Additional claims
-                uid: security/authentication/social/additional-claims
-          - name: Policy schemes
-            uid: security/authentication/policyschemes
-          - name: WS-Federation authentication
-            uid: security/authentication/ws-federation
-          - name: Account confirmation and password recovery
-            uid: security/authentication/accconfirm
-          - name: Enable QR code generation in Identity
-            uid: security/authentication/identity-enable-qrcodes
-          - name: Two-factor authentication with SMS
-            uid: security/authentication/2fa
-          - name: Use cookie authentication without Identity
-            uid: security/authentication/cookie
-          - name: Use social authentication without Identity
-            uid: security/authentication/social/social-without-identity
-          - name: Manage JWTs in development
-            displayName: jwt, JSON WEB Token
-            uid: security/authentication/jwt
-          - name: Azure Active Directory
+                uid: security/authentication/identity
+              - name: Identity with SPA
+                uid: security/authentication/identity/spa               
+              - name: Scaffold Identity
+                uid: security/authentication/scaffold-identity
+              - name: Add custom user data to Identity
+                uid: security/authentication/add-user-data
+              - name: Customize Identity
+                uid: security/authentication/customize_identity_model
+              - name: Configure Identity
+                uid: security/authentication/identity-configuration
+              - name: Custom storage providers for Identity
+                uid: security/authentication/identity-custom-storage-providers
+              - name: Account confirmation and password recovery
+                uid: security/authentication/accconfirm
+              - name: Enable QR code generation in Identity
+                uid: security/authentication/identity-enable-qrcodes
+              - name: Two-factor authentication with SMS
+                uid: security/authentication/2fa
+              - name: Individual user accounts
+                uid: security/authentication/individual
+          - name: Azure
             items:
               - name: Overview
                 uid: security/authentication/azure-active-directory/index
-              - name: Integrate Azure AD into a web app
-                href: /azure/active-directory/develop/quickstart-v2-aspnet-core-webapp
+              - name: Secure ASP.NET Core apps with Microsoft identity web
+                href: https://github.com/AzureAD/microsoft-identity-web/wiki
+              - name: Secure ASP.NET Core apps with Microsoft identity platform
+                href: /azure/active-directory/develop/
+              - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
+                href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
               - name: Scenarios
                 items:
                   - name: Web app that signs in users
@@ -1484,17 +1457,46 @@ items:
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
                     href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
-                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
-          - name: Identity management solutions for ASP.NET Core apps
-            uid: security/identity-management-solutions 
-          - name: Secure ASP.NET Core apps with Microsoft Identity Web
-            href: /azure/active-directory/develop/
-          - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
-            href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-          - name: Individual user accounts
-            uid: security/authentication/individual
+                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/            
+          - name: Configure cookie authentication
+            uid: security/authentication/cookie
           - name: Configure certificate authentication
             uid: security/authentication/certauth
+          - name: Configure Windows authentication
+            uid: security/authentication/windowsauth
+          - name: Configure WS-Federation authentication
+            uid: security/authentication/ws-federation
+          - name: Google, Facebook ...
+            items:
+              - name: Overview
+                uid: security/authentication/social/index
+              - name: Google authentication
+                uid: security/authentication/google-logins
+              - name: Facebook authentication
+                uid: security/authentication/facebook-logins
+              - name: Microsoft authentication
+                uid: security/authentication/microsoft-logins
+              - name: Twitter authentication
+                uid: security/authentication/twitter-logins
+              - name: Other providers
+                uid: security/authentication/otherlogins
+              - name: Additional claims
+                uid: security/authentication/social/additional-claims
+          - name: Policy schemes
+            uid: security/authentication/policyschemes
+          - name: Use social authentication without Identity
+            uid: security/authentication/social/social-without-identity
+          - name: Manage JWTs in development
+            displayName: jwt, JSON WEB Token
+            uid: security/authentication/jwt
+          - name: Map, customize, and transform claims
+            uid: security/authentication/claims
+          - name: Authentication samples
+            uid: security/authentication/samples
+          - name: Community OSS authentication options
+            uid: security/authentication/community
+          - name: Identity management solutions
+            uid: security/identity-management-solutions 
           - name: Multi-factor authentication
             uid: security/authentication/mfa
       - name: Authorization
