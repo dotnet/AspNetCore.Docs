@@ -1,13 +1,13 @@
 ---
-title: Overview of Single Page Applications (SPA) in ASP.NET Core
+title: Overview of Single Page Apps (SPAs) in ASP.NET Core
 author: rick-anderson
 ms.author: jacalvar
 monikerRange: '>= aspnetcore-6.0'
-description: Overview of Single Page Applications (SPA) in ASP.NET Core
+description: Overview of Single Page Apps (SPAs) in ASP.NET Core
 ms.date: 09/12/2023
 uid: spa/intro
 ---
-# Overview of Single Page Applications (SPA) in ASP.NET Core
+# Overview of Single Page Apps (SPAs) in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
