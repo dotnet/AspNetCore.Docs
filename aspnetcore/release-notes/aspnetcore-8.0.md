@@ -765,7 +765,7 @@ Visual Studio project templates are now the recommended way to create single-pag
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.
 * Use an ASP.NET Core project for the backend.
 
-For more information about the new templates and how to access the legacy templates, see <xref:spa/intro>
+For more information about the Visual Studio templates and how to access the legacy templates, see <xref:spa/intro>
 
 ### Support for generic attributes
 
