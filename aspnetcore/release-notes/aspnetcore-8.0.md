@@ -757,7 +757,7 @@ Swagger UI endpoints can now be secured in production environments by calling [`
 
 The following sections describe miscellaneous new features in ASP.NET Core 8.
 
-### New ASP.NET Core SPA templates
+### Visual Studio project templates for SPA apps with ASP.NET Core backend
 
 Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). These templates:
 
