@@ -65,7 +65,7 @@ In the following `CallJavaScript1` component:
 
 ```razor
 @page "/call-javascript-1"
-@attribute [RenderModeWebAssembly]
+@rendermode RenderMode.InteractiveWebAssembly
 @using System.Runtime.InteropServices.JavaScript
 
 <h1>
@@ -226,7 +226,7 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 
 ```razor
 @page "/call-dotnet-1"
-@attribute [RenderModeWebAssembly]
+@rendermode RenderMode.InteractiveWebAssembly
 @using System.Runtime.InteropServices.JavaScript
 
 <h1>
@@ -479,7 +479,7 @@ if (OperatingSystem.IsBrowser())
 
 ```razor
 @page "/call-javascript-2"
-@attribute [RenderModeWebAssembly]
+@rendermode RenderMode.InteractiveWebAssembly
 @using BlazorSample.JavaScriptInterop
 
 <h1>
@@ -532,7 +532,7 @@ if (OperatingSystem.IsBrowser())
 
 ```razor
 @page "/call-dotnet-2"
-@attribute [RenderModeWebAssembly]
+@rendermode RenderMode.InteractiveWebAssembly
 @using BlazorSample.JavaScriptInterop
 
 <h1>

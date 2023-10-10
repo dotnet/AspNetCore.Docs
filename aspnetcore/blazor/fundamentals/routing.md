@@ -364,7 +364,7 @@ Consider the following `Example` component that can receive a route parameter fr
 :::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE 8.0 Will this be recast with endpoint config 
-     provided by AddServerRenderMode? -->
+     provided by AddInteractiveServerRenderMode? -->
 
 For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in the `Program` file:
 
@@ -553,7 +553,79 @@ Pass `true` to the `forceLoad` parameter to ensure a full-page reload is always 
 Navigation.Refresh(true);
 ```
 
-To disable enhanced navigation and form handling, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
+Enhanced navigation is enabled by default, but it can be controlled hierarchically and on a per-link basis using the `data-enhance-nav` HTML attribute.
+
+The following examples disable enhanced navigation:
+
+```html
+<a href="redirect" data-enhance-nav="false">
+    GET without enhanced navigation
+</a>
+```
+
+```razor
+<ul data-enhance-nav="false">
+    <li>
+        <a href="redirect">GET without enhanced navigation</a>
+    </li>
+    <li>
+        <a href="redirect-2">GET without enhanced navigation</a>
+    </li>
+</ul>
+```
+
+If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, and the client-side JavaScript retries as a full page load. This ensures no confusion to the framework about external pages that shouldn't be patched into an existing page.
+
+To enable enhanced form handling, add the `Enhance` parameter to `EditForm` forms or the `data-enhance` attribute to HTML forms (`<form>`):
+
+```razor
+<EditForm Enhance ...>
+    ...
+</EditForm>
+```
+
+```html
+<form ... data-enhance>
+    ...
+</form>
+```
+
+Enhanced form handling isn't hierarchical and doesn't flow to child forms:
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
+
+```html
+<div data-enhance>
+    <form ...>
+        <!-- NOT enhanced -->
+    </form>
+</div>
+```
+
+Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to non-Blazor endpoint results in an error.
+
+To disable enhanced navigation:
+
+* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
+
+Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
+
+In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
+
+```html
+<div data-permanent>
+    ...
+</div>
+```
+
+Once Blazor has started on the client, you can use the `enhancedload` event to listen for enhanced page updates. This allows for re-applying changes to the DOM that may have been undone by an enhanced page update.
+
+```javascript
+Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
+```
+
+To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 
@@ -1485,7 +1557,7 @@ app.MapRazorComponents<App>();
 ```
 
 <!-- UPDATE 8.0 Will need additional remarks for additional endpoint config
-     with AddServerRenderMode and AddWebAssemblyRenderMode -->
+     with AddInteractiveServerRenderMode and AddInteractiveWebAssemblyRenderMode -->
 
 :::moniker-end
 

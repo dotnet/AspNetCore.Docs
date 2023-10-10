@@ -25,12 +25,12 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
-<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
-     template survives in 8.0+ -->
+* Create a new project using one of the available Blazor templates:
 
-* Create a new project:
-  * For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Next**.
-  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
+  * **Blazor Web App** (*recommended*): Creates a Blazor web app that supports interactive server and interactive client rendering.
+  * **Blazor WebAssembly Standalone App**: Creates a standalone client web app that can be deployed as a static site.
+
+Select **Next**.
 
 :::moniker-end
 
@@ -58,22 +58,32 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link SSR -->
-
 * For a Blazor Web App in the **Additional information** dialog:
 
-  * Interactivity with server rendering is enabled by default with the **Use interactive server components** checkbox.
-  * To enable interactivity with client rendering, select the **Use interactive WebAssembly components** checkbox.
-  * To include sample pages and a layout based on Bootstrap styling, select the **Include sample pages** checkbox. Disable this option for an empty project without Bootstrap styling.
+<!-- UPDATE 8.0 For RTM, the dropdown list label changes to 
+                **Interactive render mode** -->
 
-  If both the WebAssembly and Server render modes are selected, the template uses the Auto render mode. The Auto render mode initially uses the Server mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, Auto switches to the WebAssembly render mode.
+  * **Interactivity type** dropdown list:
+    * Interactive server rendering is enabled by default with the **Server** option.
+    * To only enable interactivity with client rendering, select the **WebAssembly** option.
+    * To enable both interactive server and client rendering and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
+    * If interactivity is set to `None`, the generated app has no interactivity (static server rendering only).
 
-  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+    The Auto render mode initially uses interactive server rendering while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to interactive WebAssembly rendering.
+
+    By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
+
+    For more information, see <xref:blazor/components/render-modes>.
+
+  * **Interactivity location** dropdown list:
+    * **Per page/component**: The default sets up interactivity per page or per component.
+    * **Global**: Selecting this option sets up interactivity globally for the entire app.
+
+    Interactivity location can only be set if **Interactivity type** isn't `None` and authentication isn't enabled.
+
+  * To include sample pages and a layout based on Bootstrap styling, select the **Include sample pages** checkbox. Disable this option for project without sample pages and Bootstrap styling.
 
   For more information, see <xref:blazor/components/render-modes>.
-
-<!-- UPDATE 8.0 I think the interactive root component checkbox
-     will appear at RC2. -->
 
 :::moniker-end
 
@@ -138,34 +148,62 @@ Install the latest [C# for Visual Studio Code extension](https://marketplace.vis
 
 Create a new project:
 
-* For a Blazor Web App experience with demonstration code and Bootstrap (*recommended*), execute the following command in a command shell:
+* For a Blazor Web App experience with default server interactivity, execute the following command in a command shell that uses the `blazor` project template:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
   ```
 
-  <!-- UPDATE 8.0 Cross-links -->
-
-  <!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
-
-  Interactivity with server rendering is enabled by default.
-
-  To enable interactivity with client rendering, add the `--use-wasm` option to the command:
+  To only enable interactive WebAssembly rendering, use the `-int|--interactivity` option set to `WebAssembly`:
 
   ```dotnetcli
-  dotnet new blazor -o BlazorApp --use-wasm
+  dotnet new blazor -o BlazorApp -int WebAssembly
   ```
 
-* For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+  To enable interactive server rendering followed by interactive WebAssembly rendering, use the `-int|--interactivity` option set to `Auto`:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp -int Auto
+  ```
+
+  If interactivity is disabled by setting the `-int|--interactivity` option to `None`, the generated app has no interactivity (static server rendering only):
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp -int None
+  ```
+
+  The Auto render mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to the WebAssembly render mode.
+
+  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+
+  For more information, see <xref:blazor/components/render-modes>.
+
+  Apps default the interactivity location on a per-component/page basis. To establish interactivity across the entire app, use the `-ai|--all-interactive` option:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp -ai
+  ```
+
+  Selecting this option sets interactivity for entire app in the `App` component by specifying a render mode for the top-level `HeadOutlet` and `Routes` components. Setting the interactivity on these components propagates the interactivity to all of the child components in the app.
+
+  Interactivity location can only be set if the interactivity type (`-int|--interactivity`) isn't `None` and authentication isn't enabled.
+
+  To create an app without sample pages and styling, use the `-e|--empty` option:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp -e
+  ```
+
+* For a standalone Blazor WebAssembly experience, execute the following command in a command shell that uses the `blazorwasm` template:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
 
-* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+  To create an standalone Blazor WebAssembly app without sample pages and styling, use the `-e|--empty` option:
 
   ```dotnetcli
-  dotnet new blazorwasm-empty -o BlazorApp
+  dotnet new blazorwasm -o BlazorApp -e
   ```
 
 :::moniker-end
@@ -455,11 +493,8 @@ The Blazor framework provides templates for creating new apps. The templates are
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
-     template survives in 8.0+ -->
-
 * Blazor Web App project template (*recommended*): `blazor`
-* Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
+* Blazor WebAssembly Standalone app project template: `blazorwasm`
 
 :::moniker-end
 
@@ -485,19 +520,19 @@ For more information on template options, see the following resources:
 
 <!-- UPDATE 8.0
 
+Add ...
+
 * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
+
+... after they add it to the doc.
 
 -->
 
-<!-- UPDATE 8.0 Confirm whether or not the blazorwasm-empty
-     template survives in 8.0+ -->
-
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
-  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
+  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
   * `dotnet new blazor -h`
   * `dotnet new blazorwasm -h`
-  * `dotnet new blazorwasm-empty -h`
 
 :::moniker-end
 
@@ -571,7 +606,11 @@ To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassem
 
 :::moniker range=">= aspnetcore-8.0"
 
-[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers. 
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers.
+
+Support for disabling SIMD is scheduled for a future release. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
+
+<!-- UPDATE 9.0 HOLD
 
 To disable SIMD, for example when targeting old browsers (on mobile devices), add the `<WasmEnableSIMD>` property set to `false` in the app's project file (`.csproj`):
 
@@ -581,10 +620,7 @@ To disable SIMD, for example when targeting old browsers (on mobile devices), ad
 </PropertyGroup>
 ```
 
-<!-- UPDATE 8.0 Remove note when https://github.com/dotnet/runtime/issues/89302 is fixed -->
-
-> [!IMPORTANT]
-> During 8.0 preview releases, disabling SIMD isn't supported. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
+-->
 
 For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
 

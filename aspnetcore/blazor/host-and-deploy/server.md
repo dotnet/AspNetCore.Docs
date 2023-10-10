@@ -75,7 +75,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   In the server project's `Program.cs` file:
 
   ```csharp
-  builder.Services.AddRazorComponents().AddServerComponents()
+  builder.Services.AddRazorComponents().AddInteractiveServerComponents()
       .AddHubOptions(options =>
   {
       options.ClientTimeoutInterval = TimeSpan.FromSeconds(60);

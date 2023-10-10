@@ -31,7 +31,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 [!INCLUDE[](~/blazor/security/includes/shared-state.md)]
 
-## Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+## `IHttpContextAccessor`/`HttpContext` in Razor components
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 

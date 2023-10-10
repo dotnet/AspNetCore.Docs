@@ -35,7 +35,7 @@ Consider the following `PrerenderedCounter1` counter component. The component se
 
 ```razor
 @page "/prerendered-counter-1"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<PrerenderedCounter1> Logger
 
 <PageTitle>Prerendered Counter 1</PageTitle>
@@ -62,12 +62,6 @@ Consider the following `PrerenderedCounter1` counter component. The component se
     }
 }
 ```
-
-<!-- UPDATE 8.0 RC2
-
-@attribute [RenderModeInteractiveServer]
-
--->
 
 Run the app and inspect logging from the component:
 
@@ -133,7 +127,7 @@ The following counter component example persists counter state during prerenderi
 
 ```razor
 @page "/prerendered-counter-2"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @implements IDisposable
 @inject ILogger<PrerenderedCounter2> Logger
 @inject PersistentComponentState ApplicationState
@@ -187,12 +181,6 @@ The following counter component example persists counter state during prerenderi
     }
 }
 ```
-
-<!-- UPDATE 8.0 RC2
-
-@attribute [RenderModeInteractiveServer]
-
--->
 
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered:
 
