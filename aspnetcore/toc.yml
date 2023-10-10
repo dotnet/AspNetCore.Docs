@@ -552,7 +552,7 @@ items:
             items:
               - name: Overview
                 uid: blazor/security/index
-              - name: Blazor Server
+              - name: Server
                 items:
                   - name: Overview
                     uid: blazor/security/server/index

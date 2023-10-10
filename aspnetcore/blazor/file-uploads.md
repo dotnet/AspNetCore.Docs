@@ -149,7 +149,7 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 ```razor
 @page "/file-upload-1"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<FileUpload1> Logger
 @inject IHostEnvironment Environment
 
@@ -282,7 +282,7 @@ The following example processes file bytes and doesn't send files to a destinati
 
 ```razor
 @page "/file-upload-1"
-@attribute [RenderModeWebAssembly]
+@rendermode RenderMode.InteractiveWebAssembly
 @inject ILogger<FileUpload1> Logger
 
 <h3>Upload Files</h3>
@@ -456,7 +456,7 @@ The following `FileUpload2` component:
 
 ```razor
 @page "/file-upload-2"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @using System.Net.Http.Headers
 @using System.Text.Json
 @inject IHttpClientFactory ClientFactory
@@ -817,7 +817,7 @@ A security best practice for production apps is to avoid sending error messages 
 > Add the WebAssembly component rendering attribute to the top of the following component in a Blazor Web App:
 >
 > ```razor
-> @attribute [RenderModeWebAssembly]
+> @rendermode RenderMode.InteractiveWebAssembly
 > ```
 
 :::moniker-end
@@ -1144,7 +1144,7 @@ To use the following example in a test app:
 
 ```razor
 @page "/file-upload-3"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<FileUpload3> Logger
 @inject IHostEnvironment Environment
 
@@ -1336,7 +1336,7 @@ The following `FileUpload4` component shows the complete example.
 
 ```razor
 @page "/file-upload-4"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject IJSRuntime JS
 
 <h1>File Upload Example</h1>

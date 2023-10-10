@@ -103,6 +103,28 @@ For more information:
 
 ---
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Blazor Identity UI (Individual Accounts)
+
+Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*.
+
+In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
+
+The template handles the following:
+
+* Adds the Identity-related packages and dependencies.
+* References the Identity packages in `_Imports.razor`.
+* Creates a custom Identity class called `ApplicationUser'.
+* Creates and registers an EFCore DbContext.
+* Adds and routes the built-in Identity endpoints.
+* Adds all Identity UI components and related logic.
+* Includes Identity validation and business logic.
+
+The UI components also support advanced Identity concepts, such as multifactor authentication using a third-party app and email confirmations.
+
+:::moniker-end
+
 ## Scaffold Identity
 
 :::moniker range=">= aspnetcore-6.0"
@@ -276,7 +298,7 @@ In a component:
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <input @bind="userIdentifier" />
@@ -414,7 +436,7 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject AuthenticationService AuthenticationService
 
 <input @bind="userIdentifier" />
@@ -554,7 +576,7 @@ In the following `InjectAuthStateProvider` component:
 
 ```razor
 @page "/inject-auth-state-provider"
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inherits OwningComponentBase
 
@@ -617,16 +639,18 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 
 :::moniker range=">= aspnetcore-8.0"
 
+<!-- UPDATE 8.0 The following simplifies at RTM -->
+
 * Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
   ```razor
-  <Routes @rendermode="@(new ServerRenderMode(prerender: false))" />
+  <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
   ```
 
   Also, disable prerendering for the `HeadOutlet` component:
 
   ```razor
-  <HeadOutlet @rendermode="@(new ServerRenderMode(prerender: false))" />
+  <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
   ```
 
 :::moniker-end

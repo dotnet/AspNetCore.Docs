@@ -91,7 +91,7 @@ Create or modify the Blazor error UI markup:
 
 :::moniker-end
 
-In a standalone Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
+In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
 
 ```html
 <div id="blazor-error-ui">
@@ -370,7 +370,7 @@ In `MainLayout.razor`:
 In Blazor Web Apps with the error boundary only applied to a noninteractive `MainLayout` component, the boundary is only active during the static server rendering phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactivity with server rendering at the top of the `Routes` component (`Components/Routes.razor`):
 
 ```razor
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 ```
 
 If you prefer not to enable server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable interactivity, not in the app's main layout. The important concepts to keep in mind are that wherever the error boundary is placed:

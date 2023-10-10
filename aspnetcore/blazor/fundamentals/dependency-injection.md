@@ -95,7 +95,7 @@ After creating a new app, examine part of the `Program` file:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorComponents().AddServerComponents();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 ```
 
 :::moniker-end
@@ -258,6 +258,24 @@ Prerequisites for constructor injection:
 * The applicable constructor must be `public`.
 * One applicable constructor must exist. In case of an ambiguity, DI throws an exception.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Inject keyed services into components
+
+<!-- UPDATE 8.0 Add API cross-link and remove the NOTE -->
+
+Blazor supports injecting keyed services using the `[Inject]` attribute. Keys allow for scoping of registration and consumption of services when using dependency injection. Use `InjectAttribute.Key` property to specify the key for the service to inject:
+
+```csharp
+[Inject(Key = "my-service")]
+public IMyService MyService { get; set; }
+```
+
+> [!NOTE]
+> The `@inject` Razor directive doesn't currently support keyed services.
+
+:::moniker-end
+
 ## Utility base component classes to manage a DI scope
 
 In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. Server-side, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. Client-side, services registered with a scoped lifetime are treated as singletons, so they live longer than scoped services in typical ASP.NET Core apps.
@@ -369,7 +387,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 ```razor
 @page "/users"
 @attribute [Authorize]
-@attribute [RenderModeServer]
+@rendermode RenderMode.InteractiveServer
 @inherits OwningComponentBase<AppDbContext>
 
 <h1>Users (@Service.Users.Count())</h1>

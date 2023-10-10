@@ -46,13 +46,11 @@ At the end of this tutorial, you'll have a working todo list app.
 
 Create a new Blazor Web App named `TodoList` in a command shell:
 
-<!-- UPDATE 8.0 Confirm default interactivity with SSR without --use-server -->
-
 ```dotnetcli
 dotnet new blazor -o TodoList
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. <!-- The `--use-server` option enables interactivity with server rendering. -->
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
 
 :::moniker-end
 
@@ -86,8 +84,6 @@ Add a new `Todo` Razor component to the app using the following command:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Confirm command for RC1 -->
-
 ```dotnetcli
 dotnet new razorcomponent -n Todo -o Components/Pages
 ```
@@ -113,10 +109,8 @@ The `-n|--name` option in the preceding command specifies the name of the new Ra
 
 Open the `Todo` component in any file editor and make the following changes at the top of the file:
 
-<!-- UPDATE 8.0 For render mode guidance -->
-
 * Add an `@page` Razor directive with a relative URL of `/todo`.
-* Add the `[RenderModeServer]` attribute. The attribute indicates that this component should be rendered on the server with client interactivity.
+* Enable interactivity on the page so that it isn't just statically rendered. The interactive server render mode enables the component to handle UI events from the server.
 * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
 
 :::moniker-end
@@ -139,8 +133,6 @@ Open the `Todo` component in any file editor and add an `@page` Razor directive 
 `Todo.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 At RC2, we'll enable SSR from the root component -->
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1-4":::
 

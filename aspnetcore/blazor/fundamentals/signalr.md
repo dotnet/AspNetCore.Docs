@@ -154,12 +154,16 @@ Configure the circuit with the <xref:Microsoft.AspNetCore.Components.Server.Circ
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddServerComponents%2A>. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
+Configure the options in the `Program` file with an options delegate to `AddInteractiveServerComponents`. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
+
+<!-- UPDATE 8.0 HOLD
+  <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
+-->
 
 In the `Program` file:
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents(options =>
+builder.Services.AddRazorComponents().AddInteractiveServerComponents(options =>
 {
     options.DetailedErrors = false;
     options.DisconnectedCircuitMaxRetained = 100;
@@ -218,7 +222,7 @@ To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <
 In the `Program` file:
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents().AddHubOptions(options =>
+builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddHubOptions(options =>
 {
     options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
     options.EnableDetailedErrors = false;
@@ -312,7 +316,7 @@ One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore
 <!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents()
+builder.Services.AddRazorComponents().AddInteractiveServerComponents()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
@@ -952,11 +956,17 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Server-side circuit handler to capture users for custom services
 
-<!-- UPDATE 8.0 Cross-link update -->
-
 Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see <xref:blazor/security/server/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
-## Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+:::moniker range=">= aspnetcore-8.0"
+
+## Closure of circuits when there are no remaining interactive server components
+
+[!INCLUDE[](~/blazor/includes/closure-of-circuits.md)]
+
+:::moniker-end
+
+## `IHttpContextAccessor`/`HttpContext` in Razor components
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
