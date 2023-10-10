@@ -10,4 +10,4 @@ Visual Studio provides project templates for creating single-page apps (SPAs) ba
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.
 * Use an ASP.NET Core project for the backend.
 
-Projects created by using the Visual Studio templates can be run from the command line on Windows, Linux, and macOS. To run the app, use `dotnet run --launch-profile https` to run the server project, which will then automatically start the frontend JavaScript development server. The `https` launch profile is currently required.
+Projects created by using the Visual Studio templates can be run from the command line on Windows, Linux, and macOS. To run the app, use `dotnet run --launch-profile https` to run the server project. Running the server project automatically starts the frontend JavaScript development server. The `https` launch profile is currently required.
