@@ -103,6 +103,28 @@ For more information:
 
 ---
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Blazor Identity UI (Individual Accounts)
+
+Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*.
+
+In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
+
+The template handles the following:
+
+* Adds the Identity-related packages and dependencies.
+* References the Identity packages in `_Imports.razor`.
+* Creates a custom Identity class called `ApplicationUser'.
+* Creates and registers an EFCore DbContext.
+* Adds and routes the built-in Identity endpoints.
+* Adds all Identity UI components and related logic.
+* Includes Identity validation and business logic.
+
+The UI components also support advanced Identity concepts, such as multifactor authentication using a third-party app and email confirmations.
+
+:::moniker-end
+
 ## Scaffold Identity
 
 :::moniker range=">= aspnetcore-6.0"

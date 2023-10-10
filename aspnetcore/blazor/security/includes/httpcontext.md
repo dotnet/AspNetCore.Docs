@@ -4,22 +4,14 @@
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used for components that are statically rendered on the server. **However, we recommend avoiding it if possible.**
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* for general tasks, such as inspecting and modifying headers or other properties. The value is always `null` for interactive rendering. It's permissable to use it in the `App` component (`Components/App.razor`).
+<xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in *statically-rendered root components* for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`Components/App.razor`). The value is always `null` for interactive rendering.
 
 ```csharp
 [CascadingParameter]
 public HttpContext? HttpContext { get; set; }
 ```
 
-
-<!-- UPDATE 8.0 Holding to hear back from Javier if he
-                was refering to passing tokens coverage
-                in the security docs for the pattern to
-                cross-link
-
-For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required, we recommend flowing the data via persistent component state from the server. For more information, see <xref:>.
-
--->
+For scenarios where the <xref:Microsoft.AspNetCore.Http.HttpContext> is required in interactive components, we recommend flowing the data via persistent component state from the server. For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
 
 :::moniker-end
 

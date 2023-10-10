@@ -496,28 +496,6 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Dynamically set the server-side culture by user preference
 
-<!-- UPDATE 8.0 Requires a new approach for BWA apps -->
-
-:::moniker range=">= aspnetcore-8.0"
-
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api).
-
-*This article doesn't carry guidance for this scenario at this time.*
-
-Guidance for ASP.NET Core 8.0 or later is scheduled for this article and tracked by [Dynamic culture approach updates (dotnet/AspNetCore.Docs #30002)](https://github.com/dotnet/AspNetCore.Docs/issues/30002).
-
-<!-- UPDATE 8.0 Hold for the HttpContext aspect 
-                for the App component
-
-[CascadingParameter]
-public HttpContext? HttpContext { get; set; }
-
--->
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
@@ -550,6 +528,41 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.
 
+:::moniker range=">= aspnetcore-8.0"
+
+Modifications to the `App` component (`Components/App.razor`) file require the following namespaces:
+
+* <xref:System.Globalization?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName>
+
+Add the following to the file:
+
+```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
+@code {
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    protected override void OnInitialized()
+    {
+        HttpContext.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(
+                    CultureInfo.CurrentCulture,
+                    CultureInfo.CurrentUICulture)));
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Modifications to the `Pages/_Host.cshtml` file require the following namespaces:
 
 * <xref:System.Globalization?displayProperty=fullName>
@@ -569,6 +582,8 @@ Add the following to the file:
                 CultureInfo.CurrentUICulture)));
 }
 ```
+
+:::moniker-end
 
 For information on ordering the Localization Middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
 
@@ -686,8 +701,6 @@ Inside the closing `</main>` tag in the `MainLayout` component (`MainLayout.razo
 ```
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how the preceding example works.
-
-:::moniker-end
 
 ## Localization
 
