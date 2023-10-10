@@ -1401,6 +1401,7 @@ items:
       - name: Authentication
         items:
           - name: Overview
+            uid: security/authentication/index
           - name: How to chose an identity management solution
             uid: security/how-to-choose-identity
           - name: ASP.NET Core Identity
