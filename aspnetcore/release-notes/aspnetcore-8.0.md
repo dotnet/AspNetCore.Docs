@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/09/2023
+ms.date: 10/10/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -673,10 +673,6 @@ Apps that use asynchronous I/O and that may have more than one write outstanding
 
 ASP.NET Core 8 adds new features to authentication and authorization. 
 
-### Authentication updates in ASP.NET Core SPA templates
-
-The ASP.NET Core React and Angular project templates no longer have a dependency on the Duende IdentityServer. Instead, these templates now handle authentication for individual user accounts using the default [ASP.NET Core Identity](xref:security/authentication/identity) UI and cookie authentication. This makes it possible to create secure single page app (SPA) projects without the complexity of configuring and managing a full-featured OpenID Connect (OIDC) server. For projects that still require full OIDC support, use the [Duende project templates for setting up Duende IdentityServer with ASP.NET Core Identity](https://docs.duendesoftware.com/identityserver/v5/quickstarts/5_aspnetid/).
-
 ### Identity API endpoints
 
 [MapIdentityApi\<TUser>()](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
@@ -760,6 +756,16 @@ Swagger UI endpoints can now be secured in production environments by calling [`
 ## Miscellaneous
 
 The following sections describe miscellaneous new features in ASP.NET Core 8.
+
+### Visual Studio project templates for SPA apps with ASP.NET Core backend
+
+Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). These templates:
+
+* Create a Visual Studio solution with a frontend project and a backend project.
+* Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.
+* Use an ASP.NET Core project for the backend.
+
+For more information about the Visual Studio templates and how to access the legacy templates, see <xref:spa/intro>
 
 ### Support for generic attributes
 
