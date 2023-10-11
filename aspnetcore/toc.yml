@@ -1426,6 +1426,22 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
+          - name: Google, Facebook ...
+            items:
+                  - name: Overview
+                    uid: security/authentication/social/index
+                  - name: Google authentication
+                    uid: security/authentication/google-logins
+                  - name: Facebook authentication
+                    uid: security/authentication/facebook-logins
+                  - name: Microsoft authentication
+                    uid: security/authentication/microsoft-logins
+                  - name: Twitter authentication
+                    uid: security/authentication/twitter-logins
+                  - name: Other providers
+                    uid: security/authentication/otherlogins
+                  - name: Additional claims
+                    uid: security/authentication/social/additional-claims
               - name: Individual user accounts
                 uid: security/authentication/individual
           - name: Azure
@@ -1466,26 +1482,10 @@ items:
             uid: security/authentication/windowsauth
           - name: Configure WS-Federation authentication
             uid: security/authentication/ws-federation
-          - name: Google, Facebook ...
-            items:
-              - name: Overview
-                uid: security/authentication/social/index
-              - name: Google authentication
-                uid: security/authentication/google-logins
-              - name: Facebook authentication
-                uid: security/authentication/facebook-logins
-              - name: Microsoft authentication
-                uid: security/authentication/microsoft-logins
-              - name: Twitter authentication
-                uid: security/authentication/twitter-logins
-              - name: Other providers
-                uid: security/authentication/otherlogins
-              - name: Additional claims
-                uid: security/authentication/social/additional-claims
+          - name: Configure social authentication
+            uid: security/authentication/social/social-without-identity
           - name: Policy schemes
             uid: security/authentication/policyschemes
-          - name: Use social authentication without Identity
-            uid: security/authentication/social/social-without-identity
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
             uid: security/authentication/jwt
