@@ -1426,8 +1426,8 @@ items:
                 uid: security/authentication/identity-enable-qrcodes
               - name: Two-factor authentication with SMS
                 uid: security/authentication/2fa
-          - name: Google, Facebook ...
-            items:
+              - name: Google, Facebook ...
+                items:
                   - name: Overview
                     uid: security/authentication/social/index
                   - name: Google authentication
