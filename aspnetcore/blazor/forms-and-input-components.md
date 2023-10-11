@@ -1202,7 +1202,7 @@ In the following example, the user must select at least two starship classificat
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @page "/starship-7"
