@@ -233,7 +233,7 @@ It's possible to test metrics in ASP.NET Core apps. One way to do that is collec
 The proceeding test:
 
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
-* Collects metrics values with <!--<xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](https://learn.microsoft.com/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1?view=dotnet-plat-ext-8.0)-->`Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector`.
+* Collects metrics values with <!--<xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1?view=dotnet-plat-ext-8.0)-->`Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector`.
 
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
