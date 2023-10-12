@@ -22,8 +22,8 @@ This article is under development and not complete. More information may be foun
 * [What's new in .NET 8 Preview 6](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-6/)
 * [What's new in .NET 8 Preview 7](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-7/)
 * [What's new in .NET 8 Release Candidate 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-1/)
-<!--
 * [What's new in .NET 8 Release Candidate 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-2/)
+<!--
 * [Announcing ASP.NET Core in .NET 8](https://devblogs.microsoft.com/dotnet/announcing-asp-net-core-in-dotnet-8/)
 -->
 
@@ -109,6 +109,8 @@ public HttpContext? HttpContext { get; set; }
 ```
 
 Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component may be useful for inspecting and modifying headers or other properties.
+
+For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/server/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
 
 ### Render Razor components outside of ASP.NET Core
 
