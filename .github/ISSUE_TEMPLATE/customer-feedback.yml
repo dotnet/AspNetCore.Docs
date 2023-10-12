@@ -7,19 +7,7 @@ body:
       value: "## Issue information"
   - type: markdown
     attributes:
-      value: Select the issue type, and describe the issue in the text box below. Add as much detail as needed to help us resolve the issue.
-  - type: dropdown
-    id: issue-type
-    attributes:
-      label: Type of issue
-      options:
-        - Typo
-        - Code doesn't work
-        - Missing information
-        - Outdated article
-        - Other (describe below)
-    validations:
-      required: true
+      value: Describe the issue in the following text box. Add as much detail as needed to help us resolve the issue.
   - type: textarea
     id: feedback
     validations:
@@ -49,7 +37,7 @@ body:
     validations:
       required: true
     attributes:
-      label: Version Independent Document ID
+      label: Document ID
   - type: input
     id: author
     validations:
