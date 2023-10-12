@@ -61,7 +61,6 @@ An alternative is to use the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.A
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_argumentlist_record&highlight=1-2)]
 
-
 For more information, see the section on [AsParameters](#parameter-binding-for-argument-lists-with-asparameters) later in this article.
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
@@ -84,7 +83,7 @@ Parameters declared in route handlers are treated as required:
 | URI | result |
 | --------- | -------------- |
 | `/products?pageNumber=3` | 3 returned |
-| `/products` | `BadHttpRequestException`: Required parameter "int pageNumber" was not provided from query string. |
+| `/products` | `BadHttpRequestException`: Required parameter "int pageNumber" wasn't provided from query string. |
 | `/products/1` | HTTP 404 error, no matching route |
 
 To make `pageNumber` optional, define the type as optional or provide a default value:
@@ -196,6 +195,8 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
 
 For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
+
+For more information, see [Form binding in minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
 
 <a name="bindcc"></a>
 
@@ -338,9 +339,9 @@ When binding fails, the framework logs a debug message and returns various statu
 |--|--|--|--|
 |`{ParameterType}.TryParse` returns `false` |yes|route/query/header|400|
 |`{ParameterType}.BindAsync` returns `null` |yes|custom|400|
-|`{ParameterType}.BindAsync` throws |does not matter|custom|500|
-| Failure to deserialize JSON body |does not matter|body|400|
-| Wrong content type (not `application/json`) |does not matter|body|415|
+|`{ParameterType}.BindAsync` throws |doesn't matter|custom|500|
+| Failure to deserialize JSON body |doesn't matter|body|400|
+| Wrong content type (not `application/json`) |doesn't matter|body|415|
 
 ### Binding Precedence
 
@@ -367,7 +368,7 @@ The rules for determining a binding source from a parameter:
     1. [`PipeReader`](xref:System.IO.Pipelines.PipeReader) ([`HttpContext.Request.BodyReader`](xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader))
 1. Parameter type has a valid static [`BindAsync`](xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601.BindAsync%2A) method.
 1. Parameter type is a string or has a valid static [`TryParse`](xref:System.IParsable%601.TryParse%2A) method.
-   1. If the parameter name exists in the route template e.g. `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
+   1. If the parameter name exists in the route template for example, `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
    1. Bound from the query string.
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
 1. The parameter is from the body.
