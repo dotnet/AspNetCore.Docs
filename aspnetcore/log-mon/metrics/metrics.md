@@ -4,7 +4,7 @@ description: Metrics for ASP.NET Core apps
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 6/30/2023
+ms.date: 7/30/2023
 ms.topic: article
 ms.prod: aspnet-core
 uid: log-mon/metrics/metrics
