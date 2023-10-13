@@ -45,6 +45,12 @@ The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> enables injecting a se
 
 [!code-csharp[](~/mvc/controllers/dependency-injection/3.1sample/ControllerDI/Controllers/HomeController.cs?name=snippet2)]
 
+## Action injection with `FromKeyedServices`
+
+The following code shows how to access keyed services from the DI container by using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceController/Program.cs" :::
+
 ## Access settings from a controller
 
 Accessing app or configuration settings from within a controller is a common pattern. The *options pattern* described in <xref:fundamentals/configuration/options> is the preferred approach to manage settings. Generally, don't directly inject <xref:Microsoft.Extensions.Configuration.IConfiguration> into a controller.
