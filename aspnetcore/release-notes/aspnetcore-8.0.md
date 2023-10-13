@@ -35,7 +35,7 @@ This article is under development and not complete. More information may be foun
 
 Keyed services provides a mechanism  for registering and retrieving Dependency Injection (DI) services using keys. Keys allow for scoping of registration and consumption of services. Support has been added using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute.
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,39,12-14":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,67,75":::
 
 ## Blazor
 
