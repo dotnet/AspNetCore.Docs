@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2021
+ms.date: 10/13/2023
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -141,6 +141,12 @@ public class MyService
     }
 }
 ```
+
+### Keyed services
+
+*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47":::
 
 ## Constructor injection behavior
 
