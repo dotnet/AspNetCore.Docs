@@ -73,4 +73,4 @@ The following code requests the `IOptions<SampleWebSettings>` settings from the 
 
 :::moniker-end
 
-[!INCLUDE[](~/mvc/controllers/includes/dependency-injection7.md]
+[!INCLUDE[](~/mvc/controllers/includes/dependency-injection7.md)]
