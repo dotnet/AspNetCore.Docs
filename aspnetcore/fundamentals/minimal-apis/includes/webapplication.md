@@ -151,7 +151,7 @@ The following code shows how to get services from the DI container during applic
 
 The following code shows how to access keys from the DI container using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceController/Program.cs" :::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceMinAPI/Program.cs" :::
 
 For more information on DI, see <xref:fundamentals/dependency-injection>.
 
