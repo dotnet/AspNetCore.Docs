@@ -47,7 +47,7 @@ The <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute> enables injecting a se
 
 ## Action injection with `FromKeyedServices`
 
-The following code shows how to access keys from the DI container using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute:
+The following code shows how to access keyed services from the DI container by using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/KeyServiceController/Program.cs" :::
 
