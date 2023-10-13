@@ -29,6 +29,14 @@ This article is under development and not complete. More information may be foun
 
 [!INCLUDE [](~/includes/preview-notice.md)]
 
+## ASP.NET Core improvements in .NET 8
+
+### Keyed services support in Dependency Injection
+
+Keyed services provides a mechanism  for registering and retrieving Dependency Injection (DI) services using keys. Keys allow for scoping of registration and consumption of services. Support has been added using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute.
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,39,4712-14":::
+
 ## Blazor
 
 ### Full-stack web UI
@@ -677,7 +685,7 @@ ASP.NET Core 8 adds new features to authentication and authorization.
 
 ### Identity API endpoints
 
-[MapIdentityApi\<TUser>()](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
+[MapIdentityApi/<TUser>()](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
 ### IAuthorizationRequirementData
 
