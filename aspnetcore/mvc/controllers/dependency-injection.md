@@ -10,8 +10,9 @@ uid: mvc/controllers/dependency-injection
 
 :::moniker range=">= aspnetcore-8.0"
 
-By [Shadi Alnamrouti](https://stackoverflow.com/users/3380497/shadi-alnamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://github.com/ardalis)
+By [Shadi Alnamrouti](https://stackoverflow.com/users/3380497/shadi-alnamrouti) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+<!-- @shadialnamrouti -->
 ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection (DI)](xref:fundamentals/dependency-injection). DI makes apps easier to test and maintain.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
@@ -72,4 +73,4 @@ The following code requests the `IOptions<SampleWebSettings>` settings from the 
 
 :::moniker-end
 
-[!INCLUDE[](~/mvc/controllers/includes/dependency-injection7.md"]
+[!INCLUDE[](~/mvc/controllers/includes/dependency-injection7.md]
