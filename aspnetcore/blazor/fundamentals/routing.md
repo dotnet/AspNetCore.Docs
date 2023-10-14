@@ -625,7 +625,7 @@ Once Blazor has started on the client, you can use the `enhancedload` event to l
 Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
 ```
 
-To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
+To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling>.
 
 :::moniker-end
 
