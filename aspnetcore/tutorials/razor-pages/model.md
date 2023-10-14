@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 08/16/2023
+ms.date: 10/13/2023
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/model
@@ -98,11 +98,11 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-   ![New Scaffolded Item](~/tutorials/razor-pages/model/_static/5/sca.png)
+   ![New Scaffolded Item](~/tutorials/razor-pages/model/_static/8/new-scaffolded-item.png)
 
 1. In the **Add New Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Add Scaffold](~/tutorials/razor-pages/model/_static/8/add_scaffold_VS22_17.7.0.png)
+   ![Add Scaffold](~/tutorials/razor-pages/model/_static/8/add_scaffold_VS22_17.8.0.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
@@ -111,7 +111,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
       1. In the **Database provider** drop down, select **SQL Server**.
    1. Select **Add**.
 
-   ![Add Razor Pages](~/tutorials/razor-pages/model/_static/8/arp_VS22_17.7.0.png)
+   ![Add Razor Pages](~/tutorials/razor-pages/model/_static/8/add_razorpages_VS22_17.8.0.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 

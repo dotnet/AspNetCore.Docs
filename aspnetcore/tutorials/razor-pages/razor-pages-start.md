@@ -4,7 +4,7 @@ author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/12/2023
+ms.date: 10/13/2023
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -58,7 +58,7 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 
   The following starter project is created:
 
-   ![Solution Explorer](~/tutorials/razor-pages/razor-pages-start/_static/6/se.png)
+   ![Solution Explorer](~/tutorials/razor-pages/razor-pages-start/_static/8/solution-explorer-project.png)
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
