@@ -225,7 +225,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-   ![PMC menu](~/tutorials/razor-pages/model/_static/8/pmc_VS22_17.7.0.png)
+   ![PMC menu](~/tutorials/razor-pages/model/_static/8/pmc_VS22_17.8.0.png)
 
 1. In the PMC, enter the following commands:
 
