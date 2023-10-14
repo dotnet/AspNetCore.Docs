@@ -212,6 +212,7 @@ The following command enables the `null` Windows Service:
 
 ```cmd
 sc.exe start null
+```
 
 ### Connection reset
 
