@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/21/2023
+ms.date: 10/16/2023
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3, engagement-fy23
 ---
@@ -62,7 +62,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/net8-additional-info.png)
+![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/8/additional-info-VS22-17.8.0.png)
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -123,11 +123,11 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 You can launch the app in debug or non-debug mode from the **Debug** menu:
 
-![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/debug_menu50.png)
+![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/8/debug-menu-VS22-17.8.0.png)
 
 You can debug the app by selecting the **https** button in the toolbar:
 
-![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/net7-debug-button.png)
+![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/8/debug-button-VS22-17.8.0.png)
 
 The following image shows the app:
 
