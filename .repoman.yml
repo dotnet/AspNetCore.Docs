@@ -24,6 +24,7 @@ issues:
         - type: metadata-exists
       pass:
         - labels-add: ["Source - Docs.ms"]
+        - prod_tech_labels: true
 
         # technology types
         - check:
