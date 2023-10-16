@@ -9,6 +9,9 @@ config:
 
     ParserRegex: "^\\* (.*): (.*)$"
 
+    ContentUrlRegex:
+     - "### Page URL\n\n(.*)"
+
 issues:
 
   opened:
