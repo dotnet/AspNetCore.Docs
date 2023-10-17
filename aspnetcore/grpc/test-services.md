@@ -62,7 +62,7 @@ To configure a `HttpContext` during test setup, create a new instance and add it
 var httpContext = new DefaultHttpContext();
 
 var serverCallContext = TestServerCallContext.Create();
-serviceCallContext.UserState["__HttpContext"] = httpContext;
+serverCallContext.UserState["__HttpContext"] = httpContext;
 ```
 
 Execute service methods with this call context to use the configured `HttpContext` instance.
