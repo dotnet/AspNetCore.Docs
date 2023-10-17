@@ -18,7 +18,6 @@ issues:
     # New issue opened, add Not Triaged  
     - labels-add: [":watch: Not Triaged"]
 
-
     # default for doc comment
     - check:
         - type: metadata-exists
@@ -27,24 +26,6 @@ issues:
         - prod_tech_labels: true
 
         # technology types
-        - check:
-            - type: metadata-comment
-              name: technology
-              value: "(?i)aspnetcore-blazor$"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        - check:
-            - type: metadata-comment
-              name: technology
-              value: "(?i)aspnetcore-blazorhybrid$"
-          pass:
-            - labels-add: ["Blazor Hybrid"]
-            - projects-add: [106]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex", "BethMassi"]
         - check:
             - type: metadata-comment
               name: technology
@@ -59,33 +40,7 @@ issues:
             - labels-add: ["SignalR"]
 
         # Checks for specific files
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component-tag-helper.md"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/persist-component-state.md"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
-        - check:
-            - type: metadata-comment
-              name: content source
-              value: "(?i).*main\/aspnetcore\/client-side\/dotnet-interop.md"
-          pass:
-            - labels-add: ["Blazor"]
-            - projects-add: [35]
-            - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex", "pavelsavara"]
+      
         
         # If the word appears anywhere in the file name path, add the label
         - check:
