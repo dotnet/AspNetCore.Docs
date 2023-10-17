@@ -4,22 +4,31 @@ on:
     types:
       - labeled
 jobs:
-  add-comment:
+  comment:
     if: github.event.label.name == 'aspnetcore-blazor/tech'
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
-      - name: Add comment
-        uses: peter-evans/create-or-update-comment@v2.1.0
+      - uses: actions/github-script@v6
         with:
-          issue-number: ${{ github.event.issue.number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            ### 🎃 ***Happy Halloween!*** 🧟 
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: |
+                ### 🎃 ***Happy Halloween!*** 🧟 
             
-            The Blazor docs green dinosaur 🦖 ... @guardrex ... will be along shortly to assist. *Stand-by ........*
-            
+                The Blazor docs green dinosaur 🦖 ... @guardrex ... will be along shortly to assist. *Stand-by ........*
+            })
+
+  apply-label:
+    if: github.event.label.name == 'aspnetcore-blazor/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
       - name: Add label
         uses: actions/github-script@v6
         with:
