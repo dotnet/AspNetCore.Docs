@@ -20,3 +20,14 @@ jobs:
             
             The Blazor docs green dinosaur 🦖 ... @guardrex ... will be along shortly to assist. *Stand-by ........*
             
+      - name: Add label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["Blazor"]
+            })
+            
