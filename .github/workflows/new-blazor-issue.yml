@@ -17,9 +17,9 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ### 🎃 ***Happy Halloween!*** 🧟 
+              body: ### 🎃 '***Happy Halloween!*** 🧟 
 
-                The Blazor docs green dinosaur 🦖 ... @guardrex ... will be along shortly to assist. *Stand-by ........*
+                The Blazor docs green dinosaur 🦖 ... @guardrex ... will be along shortly to assist. *Stand-by ........*'
             })
 
   apply-label:
