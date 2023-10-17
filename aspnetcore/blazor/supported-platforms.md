@@ -53,7 +53,7 @@ Blazor is supported in the browsers shown in the following table on both mobile 
 | Mozilla Firefox             | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.  
-&Dagger;Additional polyfills are required. For example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle.
+&Dagger;Additional polyfills are required. For example, promises can be added via a [`Polyfill.io`](https://polyfill.io) bundle.
 
 :::moniker-end
 
