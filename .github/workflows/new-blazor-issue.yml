@@ -79,10 +79,9 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.addProjects({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              projects: [35]
+            github.rest.projects.createCard({
+              column_id: 4248551,
+              content_id: context.payload.issue.id,
+              content_type: "Issue"
             })
   
