@@ -265,7 +265,6 @@ public class ChatHub : Hub
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::moniker-end
 ## Handle events for a connection
 
 The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync%2A> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the hub, such as adding it to a group:
