@@ -1,0 +1,22 @@
+name: Process Blazor issue
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    if: github.event.label.name == 'aspnetcore-blazor/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add comment
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            ### 🎃 ***Happy Halloween!*** 🧟 
+            
+            The Blazor docs green dinosaur 🦖 ... @guardrex ... will be along shortly to assist. *Stand-by ........*
+            
