@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc, engagement-fy23
-ms.date: 9/21/2023
+ms.date: 10/17/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -140,8 +140,7 @@ Without this added code, `System.Text.Json` uses reflection to serialize and des
 
 For more information, see:
 
-* [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation)
-* [JsonSerializerOptions.TypeInfoResolverChain](https://devblogs.microsoft.com/dotnet/announcing-dotnet-8-preview-4/#jsonserializeroptions-typeinforesolverchain)
+* [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation?pivots=dotnet-8-0#combine-source-generators)
 * <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>
 
 ### Changes to `launchSettings.json`
@@ -241,8 +240,11 @@ All types that are transmitted as part of the HTTP body or returned from request
 
 In the preceding highlighted code:
 
-* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection).
+* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection). For more information, see:
+  * [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation?pivots=dotnet-8-0#combine-source-generators)
+  * <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>
 * The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute to enable source generated JSON serializer code for the `ToDo` type.
+
 
 A parameter on the delegate that isn't bound to the body and does ***not*** need to be serializable. For example, a query string parameter that is a rich object type and implements `IParsable<T>`.
 
