@@ -251,6 +251,22 @@ public class ChatHub : Hub
 > [!NOTE]
 > This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented by DI implementations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+### Keyed services support in Dependency Injection
+
+*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47":::
+
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+:::moniker-end
 ## Handle events for a connection
 
 The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync%2A> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the hub, such as adding it to a group:
