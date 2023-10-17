@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 08/16/2023
+ms.date: 10/13/2023
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/sql
 ---
@@ -50,19 +50,19 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 <a name="ssox"></a>
 1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-   ![View menu](~/tutorials/razor-pages/sql/_static/8/ssox_VS22_17.7.0.png)
+   ![View menu](~/tutorials/razor-pages/sql/_static/8/ssox_VS22_17.8.0.png)
 
 1. Right-click on the `Movie` table and select **View Designer**:
 
-   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/_static/5/design.png)
+   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/_static/8/view_designer_VS22_17.8.0.png)
 
-   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/_static/dv605.png)
+   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/_static/8/db_VS22_17.8.0.png)
 
    Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 1. Right-click on the `Movie` table and select **View Data**:
 
-   ![Movie table open showing table data](~/tutorials/razor-pages/sql/_static/vd22.png)
+   ![Movie table open showing table data](~/tutorials/razor-pages/sql/_static/8/view_data_VS22_17.8.0.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 

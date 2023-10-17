@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2023
+ms.date: 10/16/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -28,14 +28,6 @@ This article is under development and not complete. More information may be foun
 -->
 
 [!INCLUDE [](~/includes/preview-notice.md)]
-
-## ASP.NET Core improvements in .NET 8
-
-### Keyed services support in Dependency Injection
-
-Keyed services provides a mechanism for registering and retrieving Dependency Injection (DI) services using keys. Keys allow for scoping of registration and consumption of services. Support has been added using the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute.
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47":::
 
 ## Blazor
 
@@ -766,6 +758,12 @@ Swagger UI endpoints can now be secured in production environments by calling [`
 ## Miscellaneous
 
 The following sections describe miscellaneous new features in ASP.NET Core 8.
+
+### Keyed services support in Dependency Injection
+
+*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47":::
 
 ### Visual Studio project templates for SPA apps with ASP.NET Core backend
 

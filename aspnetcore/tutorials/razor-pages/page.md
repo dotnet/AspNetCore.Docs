@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 08/16/2023
+ms.date: 10/13/2023
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/page
 ---
@@ -170,7 +170,7 @@ Visual Studio displays the following tags in a distinctive bold font used for Ta
 * `<input asp-for="Movie.Title" class="form-control" />`
 * `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
 
-![VS17 view of Create.cshtml page](~/tutorials/razor-pages/page/_static/th3.png)
+![VS17 view of Create.cshtml page](~/tutorials/razor-pages/page/_static/8/tag_helpers_VS22_17.8.0.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 

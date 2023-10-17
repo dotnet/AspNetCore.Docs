@@ -9,6 +9,9 @@ config:
 
     ParserRegex: "^\\* (.*): (.*)$"
 
+    ContentUrlRegex:
+     - "### Page URL\n\n(.*)"
+
 issues:
 
   opened:
@@ -21,6 +24,7 @@ issues:
         - type: metadata-exists
       pass:
         - labels-add: ["Source - Docs.ms"]
+        - prod_tech_labels: true
 
         # technology types
         - check:
