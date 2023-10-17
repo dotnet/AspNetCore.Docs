@@ -240,8 +240,11 @@ All types that are transmitted as part of the HTTP body or returned from request
 
 In the preceding highlighted code:
 
-* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection).
+* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection). For more information, see:
+  * [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation?pivots=dotnet-8-0#combine-source-generators)
+  * <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>
 * The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute to enable source generated JSON serializer code for the `ToDo` type.
+
 
 A parameter on the delegate that isn't bound to the body and does ***not*** need to be serializable. For example, a query string parameter that is a rich object type and implements `IParsable<T>`.
 
