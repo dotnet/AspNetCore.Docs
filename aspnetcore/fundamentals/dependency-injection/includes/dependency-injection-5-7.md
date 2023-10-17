@@ -23,11 +23,11 @@ This topic provides information on dependency injection in ASP.NET Core. The pri
 
 A *dependency* is an object that another object depends on. Examine the following `MyDependency` class with a `WriteMessage` method that other classes depend on:
 
-[!code-csharp[](dependency-injection/samples/6.x/DIwebApp/MyDependency.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIwebApp/MyDependency.cs?name=snippet)]
 
 A class can create an instance of the `MyDependency` class to make use of its `WriteMessage` method. In the following example, the `MyDependency` class is a dependency of the `IndexModel` class:
 
-[!code-csharp[](dependency-injection/samples/6.x/DIwebApp/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIwebApp/Pages/Index.cshtml.cs?name=snippet)]
 
 The class creates and directly depends on the `MyDependency` class. Code dependencies, such as in the previous example, are problematic and should be avoided for the following reasons:
 
@@ -41,21 +41,21 @@ Dependency injection addresses these problems through:
 * Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are typically registered in the app's `Program.cs` file.
 * *Injection* of the service into the constructor of the class where it's used. The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
 
-In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples/6.x), the `IMyDependency` interface defines the `WriteMessage` method:
+In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/~/fundamentals/dependency-injection/samples/6.x), the `IMyDependency` interface defines the `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
 
 This interface is implemented by a concrete type, `MyDependency`:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
 The sample app registers the `IMyDependency` service with the concrete type `MyDependency`. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
 
 In the sample app, the `IMyDependency` service is requested and used to call the `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
 
 By using the DI pattern, the controller or Razor Page:
 
@@ -64,11 +64,11 @@ By using the DI pattern, the controller or Razor Page:
 
 The implementation of the `IMyDependency` interface can be improved by using the built-in logging API:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
 
 The updated `Program.cs` registers the new `IMyDependency` implementation:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet2)]
 
 `MyDependency2` depends on <xref:Microsoft.Extensions.Logging.ILogger%601>, which it requests in the constructor. `ILogger<TCategoryName>` is a [framework-provided service](#framework-provided-services).
 
@@ -83,7 +83,7 @@ In dependency injection terminology, a service:
 
 The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
 
 Using the preceding code, there is no need to update `Program.cs`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
@@ -93,7 +93,7 @@ The ASP.NET Core framework uses a convention for registering a group of related 
 
 The following code is generated by the Razor Pages template using individual user accounts and shows how to add additional services to the container using the extension methods <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> and <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/ProgramEF.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/ProgramEF.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/combine-di6.md)]
 
@@ -144,27 +144,27 @@ By default, Entity Framework contexts are added to the service container using t
 
 To demonstrate the difference between service lifetimes and their registration options, consider the following interfaces that represent a task as an operation with an identifier, `OperationId`. Depending on how the lifetime of an operation's service is configured for the following interfaces, the container provides either the same or different instances of the service when requested by a class:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
 The following `Operation` class implements all of the preceding interfaces. The `Operation` constructor generates a GUID and stores the last 4 characters in the `OperationId` property:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
 The following code creates multiple registrations of the `Operation` class according to the named lifetimes:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3&highlight=5-7,20)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3&highlight=5-7,20)]
 
 The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
 Similar to the `IndexModel`, the middleware resolves the same services:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
 Scoped and transient services must be resolved in the `InvokeAsync` method:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
 
 The logger output shows:
 
@@ -174,13 +174,13 @@ The logger output shows:
 
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the `appsettings.Development.json` file:
 
-[!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
+[!code-json[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
 ## Resolve a service at app start up
 
 The following code shows how to resolve a scoped service for a limited duration when the app starts:
 
-[!code-csharp[](dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
 
 ## Scope validation
 
@@ -213,11 +213,11 @@ The container calls <xref:System.IDisposable.Dispose%2A> for the <xref:System.ID
 
 In the following example, the services are created by the service container and disposed automatically:
                 dependency-injection\samples\6.x\DIsample2\DIsample2\Services\Service1.cs
-[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
 
-[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet)]
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DIsample2/DIsample2/Pages/Index.cshtml.cs?name=snippet)]
 
 The debug console shows the following output after each refresh of the Index page:
 
@@ -232,7 +232,7 @@ Service1.Dispose
 
 Consider the following code:
 
-[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet3)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet3)]
 
 In the preceding code:
 
@@ -256,7 +256,7 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 
   **Incorrect:**
 
-    ![Incorrect code](dependency-injection/_static/bad.png)
+    ![Incorrect code](~/fundamentals/dependency-injection/_static/bad.png)
 
   **Correct**:
 
@@ -295,7 +295,7 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 
   A correct way to get `LoginPath` is to use the options pattern's built-in support for DI:
 
-  [!code-csharp[](dependency-injection/samples/6.x/AntiPattern3/Program.cs?name=snippet)]
+  [!code-csharp[](~/fundamentals/dependency-injection/samples/6.x/AntiPattern3/Program.cs?name=snippet)]
 
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
 * Enable scope validation to make sure the app doesn't have singletons that capture scoped services. For more information, see [Scope validation](#scope-validation).
@@ -408,19 +408,19 @@ Dependency injection addresses these problems through:
 
 In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples), the `IMyDependency` interface defines the `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
 
 This interface is implemented by a concrete type, `MyDependency`:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
 The sample app registers the `IMyDependency` service with the concrete type `MyDependency`. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1)]
 
 In the sample app, the `IMyDependency` service is requested and used to call the `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
 
 By using the DI pattern, the controller:
 
@@ -429,11 +429,11 @@ By using the DI pattern, the controller:
 
 The implementation of the `IMyDependency` interface can be improved by using the built-in logging API:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
 
 The updated `ConfigureServices` method registers the new `IMyDependency` implementation:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency2.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency2.cs?name=snippet1)]
 
 `MyDependency2` depends on <xref:Microsoft.Extensions.Logging.ILogger%601>, which it requests in the constructor. `ILogger<TCategoryName>` is a [framework-provided service](#framework-provided-services).
 
@@ -448,7 +448,7 @@ In dependency injection terminology, a service:
 
 The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered in `ConfigureServices`:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
 
 Using the preceding code, there is no need to update `ConfigureServices`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
@@ -479,7 +479,7 @@ The ASP.NET Core framework uses a convention for registering a group of related 
 
 The following code is generated by the Razor Pages template using individual user accounts and shows how to add additional services to the container using the extension methods <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> and <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupEF.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/StartupEF.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/combine-di.md)]
 
@@ -534,27 +534,27 @@ By default, Entity Framework contexts are added to the service container using t
 
 To demonstrate the difference between service lifetimes and their registration options, consider the following interfaces that represent a task as an operation with an identifier, `OperationId`. Depending on how the lifetime of an operation's service is configured for the following interfaces, the container provides either the same or different instances of the service when requested by a class:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
 The following `Operation` class implements all of the preceding interfaces. The `Operation` constructor generates a GUID and stores the last 4 characters in the `OperationId` property:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
 The `Startup.ConfigureServices` method creates multiple registrations of the `Operation` class according to the named lifetimes:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup2.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Startup2.cs?name=snippet1)]
 
 The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
 Similar to the `IndexModel`, the middleware resolves the same services:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
 Scoped services must be resolved in the `InvokeAsync` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
 
 The logger output shows:
 
@@ -564,7 +564,7 @@ The logger output shows:
 
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the `appsettings.Development.json` file:
 
-[!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
+[!code-json[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
 ## Call services from main
 
@@ -572,7 +572,7 @@ Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IS
 
 The following example shows how to access the scoped `IMyDependency` service and call its `WriteMessage` method in `Program.Main`:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DependencyInjectionSample/Program.cs?name=snippet)]
 
 <a name="sv"></a>
 
@@ -607,11 +607,11 @@ The container calls <xref:System.IDisposable.Dispose%2A> for the <xref:System.ID
 
 In the following example, the services are created by the service container and disposed automatically:
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Startup.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DIsample2/DIsample2/Startup.cs?name=snippet)]
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DIsample2/DIsample2/Pages/Index.cshtml.cs?name=snippet)]
 
 The debug console shows the following output after each refresh of the Index page:
 
@@ -626,7 +626,7 @@ Service1.Dispose
 
 Consider the following code:
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Startup2.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/DIsample2/DIsample2/Startup2.cs?name=snippet)]
 
 In the preceding code:
 
@@ -650,7 +650,7 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 
   **Incorrect:**
 
-    ![Incorrect code](dependency-injection/_static/bad.png)
+    ![Incorrect code](~/fundamentals/dependency-injection/_static/bad.png)
 
   **Correct**:
 
@@ -688,7 +688,7 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 
   A correct way to get `LoginPath` is to use the options pattern's built-in support for DI:
 
-  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
+  [!code-csharp[](~/fundamentals/dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
 * Enable scope validation to make sure the app doesn't have singletons that capture scoped services. For more information, see [Scope validation](#scope-validation).
