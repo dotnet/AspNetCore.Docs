@@ -302,9 +302,11 @@ items:
           - name: Health checks
             displayName: logging, monitoring
             uid: host-and-deploy/health-checks
-          - name: Metrics
+          - name: Metrics overview
             displayName: logging, monitoring
             uid: log-mon/metrics/metrics
+          - name: Built-in >>
+            href: /dotnet/core/diagnostics/built-in-metrics-aspnetcore
       - name: HttpContext
         uid: fundamentals/use-httpcontext
       - name: Routing
