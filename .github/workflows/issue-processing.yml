@@ -1,7 +1,8 @@
 name: Issue processing
 on:
   issues:
-    types: [opened, transferred]
+    types:
+      - labeled
 jobs:
   process-grpc-issue:
     if: github.event.label.name == 'aspnetcore-grpc/tech'
@@ -79,6 +80,7 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
