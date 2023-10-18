@@ -1,0 +1,130 @@
+name: Issue processing
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  process-grpc-issue:
+    if: github.event.label.name == 'aspnetcore-grpc/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["gRPC"]
+            })
+
+  process-signalr-issue:
+    if: github.event.label.name == 'aspnetcore-signalr/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["SignalR"]
+            })
+
+  process-blazorhybrid-issue:
+    if: github.event.label.name == 'aspnetcore-blazorhybrid/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["Blazor Hybrid"]
+            })
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addAssignees({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              assignees: ["guardrex", "BethMassi"]
+            })
+
+  process-blazor-issue:
+    if: github.event.label.name == 'aspnetcore-blazor/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### 🎃 ***Happy Halloween!*** 🧟 
+
+            A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
+            })
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["Blazor"]
+            })
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addAssignees({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              assignees: ["guardrex"]
+            })
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.projects.createCard({
+              column_id: 4248551,
+              content_id: context.payload.issue.id,
+              content_type: "Issue"
+            })
