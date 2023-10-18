@@ -36,7 +36,7 @@ jobs:
               labels: ["SignalR"]
             })
 
-  process--blazor-issue:
+  process-blazor-issue:
     if: github.event.label.name == 'aspnetcore-blazor/tech'
     runs-on: ubuntu-latest
     permissions:
