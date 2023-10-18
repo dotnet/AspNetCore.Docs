@@ -305,7 +305,7 @@ items:
           - name: Metrics overview
             displayName: logging, monitoring
             uid: log-mon/metrics/metrics
-          - name: Built-in >>
+          - name: Built-in metrics >>
             href: /dotnet/core/diagnostics/built-in-metrics-aspnetcore
       - name: HttpContext
         uid: fundamentals/use-httpcontext
