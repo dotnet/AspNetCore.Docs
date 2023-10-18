@@ -79,7 +79,6 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -89,28 +88,24 @@ jobs:
 
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             })
-
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: ["Blazor"]
             })
-
             await github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               name: [":watch: Not Triaged"]
             })
-
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
-
             await github.rest.projects.createCard({
               column_id: 4248551,
               content_id: context.payload.issue.id,
