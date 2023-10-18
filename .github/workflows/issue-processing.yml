@@ -86,7 +86,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `### 🎃 ***Happy Halloween!*** 🧟
-              
+
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             });
 
