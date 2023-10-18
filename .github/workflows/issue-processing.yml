@@ -82,7 +82,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -91,28 +91,28 @@ jobs:
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             });
 
-            github.rest.issues.addLabels({
+            await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: ["Blazor"]
             });
 
-            github.rest.issues.removeLabel({
+            await github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               name: [":watch: Not Triaged"]
             });
 
-            github.rest.issues.addAssignees({
+            await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               assignees: ["guardrex"]
             });
 
-            github.rest.projects.createCard({
+            await github.rest.projects.createCard({
               column_id: 4248551,
               content_id: context.payload.issue.id,
               content_type: "Issue"
