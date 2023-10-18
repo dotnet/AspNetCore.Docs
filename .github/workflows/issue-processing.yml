@@ -4,7 +4,39 @@ on:
     types:
       - labeled
 jobs:
-  process-issue:
+  process-grpc-issue:
+    if: github.event.label.name == 'aspnetcore-grpc/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["gRPC"]
+            })
+
+  process-signalr-issue:
+    if: github.event.label.name == 'aspnetcore-signalr/tech'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["SignalR"]
+            })
+
+  process--blazor-issue:
     if: github.event.label.name == 'aspnetcore-blazor/tech'
     runs-on: ubuntu-latest
     permissions:
