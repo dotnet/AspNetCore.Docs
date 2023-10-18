@@ -95,25 +95,25 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ['Blazor']
+              labels: ["Blazor"]
             });
 
             github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              name: [':watch: Not Triaged']
+              name: [":watch: Not Triaged"]
             });
 
             github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              assignees: ['guardrex']
+              assignees: ["guardrex"]
             });
 
             github.rest.projects.createCard({
               column_id: 4248551,
               content_id: context.payload.issue.id,
-              content_type: 'Issue'
+              content_type: "Issue"
             });
