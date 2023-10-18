@@ -1,4 +1,4 @@
-name: Process Blazor issue
+name: Issue processing
 on:
   issues:
     types:
