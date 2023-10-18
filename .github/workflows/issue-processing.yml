@@ -1,9 +1,7 @@
 name: Issue processing
 on:
   issues:
-    types:
-      - opened
-      - transferred
+    types: [opened, transferred]
 jobs:
   process-grpc-issue:
     if: github.event.label.name == 'aspnetcore-grpc/tech'
