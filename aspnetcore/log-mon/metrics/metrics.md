@@ -243,6 +243,4 @@ The proceeding test:
 
 ## ASP.NET Core meters and counters
 
-* [HostingMetrics](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingMetrics.cs,0e3eae9d5e50ff0d)
-* [KestrelMetrics](https://source.dot.net/#Microsoft.AspNetCore.Server.Kestrel.Core/Internal/Infrastructure/KestrelMetrics.cs,8d505625d99068a6)
-* SignalR [HttpConnectionsMetrics](https://source.dot.net/#Microsoft.AspNetCore.Http.Connections/Internal/HttpConnectionsMetrics.cs,2d63d88d7202e42d,references)
+See [ASP.NET Core Metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a list of ASP.NET Core meters and counters.
