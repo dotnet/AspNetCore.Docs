@@ -4,7 +4,7 @@ description: Metrics for ASP.NET Core apps
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 7/30/2023
+ms.date: 10/18/2023
 ms.topic: article
 ms.prod: aspnet-core
 uid: log-mon/metrics/metrics
@@ -51,8 +51,6 @@ Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/web-metrics/Program.cs":::
 
-<!-- Review TODO: Add link to available meters -->
-
 ## View metrics with dotnet-counters
 
 [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a command-line tool that can view live metrics for .NET Core apps on demand. It doesn't require setup, making it useful for ad-hoc investigations or verifying that metric instrumentation is working. It works with both <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> based APIs and [EventCounters](/dotnet/core/diagnostics/event-counters).
@@ -63,7 +61,7 @@ If the [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) tool isn't in
 dotnet tool update -g dotnet-counters
 ```
 
-While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft.AspNetCore.Hosting` meter.
+While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). The following command shows an example of `dotnet-counters` monitoring all metrics from the [`Microsoft.AspNetCore.Hosting` meter](/dotnet/core/diagnostics/built-in-metrics-aspnetcore).
 
 ```dotnetcli
 dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting
@@ -103,7 +101,7 @@ The proceeding example:
 
 * Adds middleware to enrich the ASP.NET Core request metric.
 * Gets the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature> from the `HttpContext`. The feature is only present on the context if someone is listening to the metric. Verify `IHttpMetricsTagsFeature` is not `null` before using it.
-* Adds a custom tag containing the request's marketing source to the `http.server.request.duration` metric.
+* Adds a custom tag containing the request's marketing source to the [`http.server.request.duration`](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) metric.
   * The tag has the name `mkt_medium` and a value based on the [utm_medium](https://wikipedia.org/wiki/UTM_parameters) query string value. The `utm_medium` value is resolved to a known range of values.
   * The tag allows requests to be categorized by marketing medium type, which could be useful when analyzing web app traffic.
 
@@ -116,7 +114,7 @@ Metrics are created using APIs in the <xref:System.Diagnostics.Metrics> namespac
 
 ### Creating metrics in ASP.NET Core apps with `IMeterFactory`
 
-We recommended creating `Meter` instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
+We recommended creating <xref:System.Diagnostics.Metrics.Meter> instances in ASP.NET Core apps with <xref:System.Diagnostics.Metrics.IMeterFactory>.
 
 ASP.NET Core registers <xref:System.Diagnostics.Metrics.IMeterFactory> in dependency injection (DI) by default. The meter factory integrates metrics with DI, making isolating and collecting metrics easy. `IMeterFactory` is especially useful for testing. It allows for multiple tests to run side-by-side and only collecting metrics values that are recorded in a test.
 
@@ -139,7 +137,6 @@ dotnet-counters monitor -n WebMetric --counters Contoso.Web
 ```
 
 Output similar to the following is displayed:
-
 
 ```dotnetcli
 Press p to pause, r to resume, q to quit.
