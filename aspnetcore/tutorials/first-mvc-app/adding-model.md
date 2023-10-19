@@ -121,7 +121,7 @@ Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CR
 
 In **Solution Explorer**, right-click the *Controllers* folder and select **Add > New Scaffolded Item**.
 
-![view of above step](~/tutorials/first-mvc-app/adding-model/8/add_new_scaffoldvs22v17.8.0.png)
+![view of above step](~/tutorials/first-mvc-app/adding-model/_static/8/add_new_scaffoldvs22v17.8.0.png)
 
 In the **Add New Scaffolded Item** dialog:
 
