@@ -41,26 +41,27 @@ This section covers adding Blazor support to an ASP.NET Core app.
 
 1. Create a donor Blazor Web App, which will provide assets to the app. Follow the guidance in the <xref:blazor/tooling> article, selecting support for the following template features when generating the Blazor Web App.
 
-   For the app's name, use the same name as the ASP.NET Core app, which results in matching app name markup in components and matching namespaces in code.
+   > [!IMPORTANT]
+   > For the app's name, use the same name as the ASP.NET Core app, which results in matching app name markup in components and matching namespaces in code. Using the same name/namespace isn't strictly required, as namespaces can be adjusted after assets are moved from the donor app to the ASP.NET Core app. However, time is saved by matching the namespaces at the outset, so that assets can be moved from the donor app to the ASP.NET Core app and used without spending time making manual namespace adjustments.
 
    * For **Interactivity type**, select **Auto (Server and WebAssembly)** for Visual Studio or use the `-int Auto` option if using the .NET CLI.
-   * Set the **Interactivity location** to **Per page/component**.
+   * Set the **Interactivity location** to **Per page/component** for Visual Studio or ***avoid*** using the `-ai|--all-interactive` option when using the .NET CLI.
+
+1. From the donor Blazor Web App, copy Bootstrap and Blazor styles into the ASP.NET Core project's `wwwroot` folder:
+
+   * `wwwroot/bootstrap` folder
+   * `app.css`
 
 1. From the donor Blazor Web App, copy the entire `.Client` project into the solution folder of the ASP.NET Core app.
 
    > [!IMPORTANT]
-   > Don't copy the `.Client` folder into the ASP.NET Core project's folder. The best approach for organizing .NET solutions is to place each project of the solution into its own folder inside of a top-level solution folder. If a solution folder above the ASP.NET Core project's folder doesn't exist, create one. Next, copy the `.Client` project's folder from the donor Blazor Web App into the solution folder. The final project folder structure should have the following layout:
+   > **Don't copy the `.Client` folder into the ASP.NET Core project's folder.** The best approach for organizing .NET solutions is to place each project of the solution into its own folder inside of a top-level solution folder. If a solution folder above the ASP.NET Core project's folder doesn't exist, create one. Next, copy the `.Client` project's folder from the donor Blazor Web App into the solution folder. The final project folder structure should have the following layout:
    >
    > * `AspNetCoreAppSolution` (top-level solution folder)
    >   * `AspNetCoreApp` (original ASP.NET Core project)
    >   * `AspNetCoreApp.Client` (`.Client` project folder from the donor Blazor Web App)
    >
    > For the ASP.NET Core solution file, you can leave it in the ASP.NET Core project's folder. Alternatively, you can move the solution file or create a new one in the top-level solution folder as long as the project references correctly point to the project files (`.csproj`) of the two projects in the solution folder.
-
-1. In the ASP.NET Core project:
-
-   * Create a `Components` folder.
-   * Create a `Pages` folder inside of the `Components` folder.
 
 1. From the donor Blazor Web App, copy the entire `Components` folder into the ASP.NET Core project folder.
 
@@ -69,7 +70,7 @@ This section covers adding Blazor support to an ASP.NET Core app.
    * `Home` component (`Home.razor`)
    * `Weather` component (`Weather.razor`)
 
-1. If you named the donor Blazor Web App when you created the donor project the same as the ASP.NET Core app, the namespaces used by the donated assets match those in the ASP.NET Core app. You shouldn't need to take further steps. If you used a different name, which results in a mismatch between the donor app's namespaces and the ASP.NET Core app, you must adjust the namespaces across the donated assets. If this is required, adjust the namespaces before proceeding.
+1. If you named the donor Blazor Web App when you created the donor project the same as the ASP.NET Core app, the namespaces used by the donated assets match those in the ASP.NET Core app. You shouldn't need to take further steps to match namespaces. If you used a different namespace when creating the donor Blazor Web App project, you must adjust the namespaces across the donated assets to match if you intend to use the rest of this guidance exactly as presented. If the namespaces don't match, ***either*** adjust the namespaces before proceeding ***or*** adjust the namespaces as you following the remaining guidance in this section.
 
 1. Delete the donor Blazor Web App, as it has no further use in this process.
 
@@ -86,7 +87,7 @@ This section covers adding Blazor support to an ASP.NET Core app.
    If using the .NET CLI, from the ASP.NET Core project's folder, use the following command:
 
    ```dotnetcli
-   dotnet add reference ../AspNetCoreApp.Client/AspNetCoreApp.Client.csproj 
+   dotnet add reference ../AspNetCoreApp.Client/AspNetCoreApp.Client.csproj
    ```
 
    > [!NOTE]
@@ -97,12 +98,24 @@ This section covers adding Blazor support to an ASP.NET Core app.
    >
    > For more information on the `dotnet add reference` command, see [`dotnet add reference` (.NET documentation)](/dotnet/core/tools/dotnet-add-reference).
 
-1. In the ASP.NET Core app's `Program` file, add the interactive component services (`AddInteractiveServerComponents` and `AddInteractiveWebAssemblyComponents`) with Razor component services (`AddRazorComponents`) before the app is built (the line that calls `builder.Build()`):
+1. In the ASP.NET Core project's `Program` file, add a `using` statement to the top of the file for the project's components:
+
+   ```csharp
+   using AspNetCoreApp.Components;
+   ```
+
+   Add the interactive component services (`AddInteractiveServerComponents` and `AddInteractiveWebAssemblyComponents`) with Razor component services (`AddRazorComponents`) before the app is built (the line that calls `builder.Build()`):
 
    ```csharp
    builder.Services.AddRazorComponents()
        .AddInteractiveServerComponents()
        .AddInteractiveWebAssemblyComponents();
+   ```
+
+   Add [Antiforgery Middleware](xref:blazor/security/index#antiforgery-support) to the request processing pipeline after the call to `app.UseRouting`. If there are calls to `app.UseRouting` and `app.UseEndpoints`, the call to `app.UseAntiforgery` must go between them. A call to `app.UseAntiforgery` must be placed after calls to `app.UseAuthentication` and `app.UseAuthorization`.
+
+   ```csharp
+   app.UseAntiforgery();
    ```
 
    Add the interactive render modes (`AddInteractiveServerRenderMode` and `AddInteractiveWebAssemblyRenderMode`) and additional assemblies for the `.Client` project with `MapRazorComponents` before the app is run (the line that calls `app.Run`):
@@ -140,8 +153,8 @@ This section covers adding Blazor support to an ASP.NET Core app.
    - @page "/counter"
    + @page "/counter-2"
    ```
-     
-   Also, change the interactive render mode using ***either*** of the following lines:
+
+   Change the interactive render mode using ***either*** of the following lines:
    
    ```razor
    @attribute [RenderModeInteractiveServer]
@@ -149,6 +162,34 @@ This section covers adding Blazor support to an ASP.NET Core app.
 
    ```razor
    @rendermode InteractiveServer
+   ```
+
+   Change the page title and heading markup to reflect that this is the 2nd counter component in the app:
+
+   ```razor
+   <PageTitle>Counter 2</PageTitle>
+
+   <h1>Counter 2</h1>
+   ```
+
+   Add the `Counter2` component to the `NavMenu` component (`Pages/Layout/NavMenu.razor`):
+
+   ```razor
+   <div class="nav-item px-3">
+       <NavLink class="nav-link" href="counter-2">
+           <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Counter 2
+       </NavLink>
+   </div>
+   ```
+
+   Remove the `Weather` component navigation menu entry from the `NavMenu` component:
+
+   ```diff
+   - <div class="nav-item px-3">
+   -     <NavLink class="nav-link" href="weather">
+   -         <span class="bi bi-list-nested" aria-hidden="true"></span> Weather
+   -     </NavLink>
+   - </div>
    ```
 
    For components that should also strictly adopt the interactive server render mode, add ***either*** of the preceding directives to them and leave them in the ASP.NET Core project's `Pages`/`Shared` folders. Such components only ever render on the server. Component code is kept private on the server using the interactive server render mode.
