@@ -13,7 +13,6 @@ uid: fundamentals/http-logging/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-[!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
 :::moniker range=">= aspnetcore-8.0"
 
 HTTP Logging is a middleware that logs information about incoming HTTP requests and HTTP responses. HTTP logging provides logs of:
