@@ -53,7 +53,7 @@ In the **Add New Item - MvcMovie** dialog:
 * Keep the **Name** box value, `Index.cshtml`.
 * Select **Add**
 
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/8/add-view-vs22-17.8.0.png)
+![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/8/add-view-vs22-17.8.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
