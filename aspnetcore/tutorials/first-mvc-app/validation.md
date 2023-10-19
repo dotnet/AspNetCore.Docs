@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 04/25/2023
+ms.date: 10/19/2023
 ms.custom: engagement-fy23
 uid: tutorials/first-mvc-app/validation
 ---
