@@ -100,8 +100,10 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
+            const columnsResponse = await github.rest.projects.listColumns({ project_id: 312 })
+            const triageColumn = columnsResponse.data.find(column => column.name === "Triage")
             await github.rest.projects.createCard({
-              column_id: 4248551,
+              column_id: triageColumn.id,
               content_id: context.payload.issue.id,
               content_type: "Issue"
             })
