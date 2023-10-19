@@ -26,7 +26,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 
-app.UseHttpLogging(); 
+app.UseHttpLogging();
 
 app.Use(async (context, next) =>
 {
@@ -44,6 +44,8 @@ app.Run();
 #region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpLogging(o => o.LoggingFields = HttpLoggingFields.All);
+
 var app = builder.Build();
 
 app.UseHttpLogging();
@@ -54,7 +56,7 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("", () => "Hello World!");
 
 app.Run();
 #endregion
