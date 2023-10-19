@@ -62,7 +62,7 @@ Note the key icon next to `ID`. By default, EF makes a property named `ID` the p
 
 Right-click on the `Movie` table **> View Data**
 
-![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/8/sox2_vs22v17.8.0.png)
+![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/8/ssox2_vs22v17.8.0.png)
 
 ![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/8/vd_vs22_17.8.0.png)
 -->
