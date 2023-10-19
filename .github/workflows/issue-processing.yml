@@ -100,7 +100,14 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
-            const columnsResponse = await github.rest.projects.listColumns({ project_id: 'PVT_kwDOAIt-yc4AXA65' })
+            const projectList = await github.request('GET /orgs/{org}/projects', {
+              org: 'dotnet',
+              headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+              }
+            })
+            const blazorDocsProject = projectList.data.find(project => project.number === 312)
+            const columnsResponse = await github.rest.projects.listColumns({ project_id: blazorDocsProject.id })
             const triageColumn = columnsResponse.data.find(column => column.name === "Triage")
             await github.rest.projects.createCard({
               column_id: triageColumn.id,
