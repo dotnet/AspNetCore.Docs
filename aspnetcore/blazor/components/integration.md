@@ -130,6 +130,8 @@ Add `MapRazorComponents` to the app's request processing pipeline with the `App`
 app.MapRazorComponents<App>();
 ```
 
+When the app is run, the `Welcome` component is accessed at the `/welcome` endpoint.
+
 ### Enable interactive server rendering
 
 Follow the guidance in the [Enable interactive server rendering](#enable-interactive-server-rendering) section.
@@ -175,6 +177,8 @@ Add a `Counter` component to the app with the interactive server render mode.
     }
 }
 ```
+
+When the app is run, the `Counter` component is accessed at the `/counter` endpoint.
 
 ### Enable interactive Auto or WebAssembly rendering
 
