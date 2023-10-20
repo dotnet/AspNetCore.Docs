@@ -22,18 +22,40 @@ Razor components can be integrated into Razor Pages, MVC, and other types of ASP
 
 Use the guidance in the following sections depending on the project's requirements:
 
-<!-- * Blazor support can be [added to an ASP.NET Core app](#add-blazor-support-to-an-aspnet-core-app). -->
+* Blazor support can be [added to an ASP.NET Core app](#add-blazor-support-to-an-aspnet-core-app).
 * For interactive components that aren't directly routable from user requests, see the [Use non-routable components in pages or views](#use-non-routable-components-in-pages-or-views) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 * For interactive components that are directly routable from user requests, see the [Use routable components](#use-routable-components) section. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
 
-<!-- HOLD
-
 ## Add Blazor support to an ASP.NET Core app
 
-This section covers adding Blazor support to an ASP.NET Core app.
+This section covers adding Blazor support to an ASP.NET Core app:
+
+* [Add static server Razor component rendering](#add-static-server-razor-component-rendering)
+* [Enable interactive server rendering](#enable-interactive-server-rendering)
+* [Enable interactive Auto or WebAssembly rendering](#enable-interactive-auto-or-webassembly-rendering)
 
 > [!NOTE]
 > For the examples in this section, the example app's name and namespace is `AspNetCoreApp`.
+
+### Add static server Razor component rendering
+
+No donor needed ... just show the minimal API changes and additions required.
+
+
+
+
+
+
+### Enable interactive server rendering
+
+No donor needed ... just minimal changes.
+
+
+
+
+
+
+### Enable interactive Auto or WebAssembly rendering
 
 1. Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server) NuGet package to the app.
 
@@ -223,8 +245,6 @@ UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM
    For the `Counter` component of the `.Client` project, navigate to `/counter`.
 
    If you added the `Counter2` component, which is strictly configured for interactive server rendering, navigate to `/counter-2`.
-
--->
 
 ## Use non-routable components in pages or views
 
