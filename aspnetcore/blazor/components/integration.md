@@ -76,8 +76,6 @@ Add the following assets to the app, updating the `{APP NAMESPACE}` to the app's
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css" /> -->
-    <!-- <link rel="stylesheet" href="app.css" /> -->
     <link rel="stylesheet" href="{APP NAMESPACE}.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <HeadOutlet />
