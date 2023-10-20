@@ -38,7 +38,7 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, which adds HTTP logging middleware.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet2&highlight=5)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet2&highlight=5)]
 
 By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
@@ -54,7 +54,7 @@ The output is logged as a single message at `LogLevel.Information`.
 
 To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices)]
 
 > [!NOTE]
 > In the preceding sample and following samples, `UseHttpLogging` is called after `UseStaticFiles`, so HTTP logging is not enabled for static file. To enable static file HTTP logging, call `UseHttpLogging` before `UseStaticFiles`.
@@ -67,13 +67,13 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection. The following code logs the request header `"sec-ch-ua"`. If `logging.RequestHeaders.Add("sec-ch-ua");` is removed, the value of the request header `"sec-ch-ua"` is redacted. The following highlighted code calls [`HttpLoggingOptions.RequestHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders) and [`HttpLoggingOptions.ResponseHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders) :
 
-[!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
 
 ### `MediaTypeOptions`
 
 <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.MediaTypeOptions> provides configuration for selecting which encoding to use for a specific media type.
 
-[!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices&highlight=10)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=10)]
 
 This approach can also be used to enable logging for data that is not logged by default (e.g. form data, which might have a media type such as `application/x-www-form-urlencoded` or `multipart/form-data`).
 
@@ -88,7 +88,7 @@ This approach can also be used to enable logging for data that is not logged by 
 * <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestBodyLogLimit>
 * <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseBodyLogLimit>
 
-[!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
 
 :::moniker-end
 
