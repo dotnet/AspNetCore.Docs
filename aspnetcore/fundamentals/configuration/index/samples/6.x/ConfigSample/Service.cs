@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
-    #region snippet_Class
+// <snippet_Class>
     public class Service
     {
         private readonly IConfiguration _config;
@@ -17,5 +17,5 @@ namespace ConfigSample
             // ...
         }
     }
-    #endregion
+// </snippet_Class>
 }

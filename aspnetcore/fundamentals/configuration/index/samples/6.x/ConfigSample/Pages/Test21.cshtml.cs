@@ -1,11 +1,11 @@
-﻿using ConfigSample.Options;
+using ConfigSample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample.Pages
 {
-    #region snippet
+// <snippet>
     public class Test21Model : PageModel
     {
         private readonly IConfiguration Configuration;
@@ -25,5 +25,5 @@ namespace ConfigSample.Pages
                            $"Name: {positionOptions.Name}");
         }
     }
-    #endregion
+// </snippet>
 }
