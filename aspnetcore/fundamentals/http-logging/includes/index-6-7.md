@@ -39,7 +39,7 @@ By default, HTTP Logging logs common properties such as path, status-code, and h
 
 The output is logged as a single message at `LogLevel.Information`.
 
-![Sample request output](_static/requestlog.png)
+![Sample request output](~/fundamentals/http-logging/_static/requestlog.png)
 
 ## HTTP Logging options
 
