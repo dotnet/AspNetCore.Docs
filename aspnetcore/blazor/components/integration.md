@@ -49,6 +49,7 @@ Add the following assets to the app, updating the `{APP NAMESPACE}` to the app's
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
 @using {APP NAMESPACE}
@@ -77,7 +78,6 @@ Add the following assets to the app, updating the `{APP NAMESPACE}` to the app's
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <link rel="stylesheet" href="{APP NAMESPACE}.styles.css" />
-    <link rel="icon" type="image/png" href="favicon.png" />
     <HeadOutlet />
 </head>
 
@@ -134,7 +134,7 @@ When the app is run, the `Welcome` component is accessed at the `/welcome` endpo
 
 ### Enable interactive server rendering
 
-Follow the guidance in the [Enable interactive server rendering](#enable-interactive-server-rendering) section.
+Follow the guidance in the [Add static server Razor component rendering](#add-static-server-razor-component-rendering) section.
 
 Make the following changes in the app's `Program` file.
 
@@ -158,7 +158,7 @@ Add a `Counter` component to the app with the interactive server render mode.
 
 ```razor
 @page "/counter"
-@attribute [RenderModeInteractiveServer]
+@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
