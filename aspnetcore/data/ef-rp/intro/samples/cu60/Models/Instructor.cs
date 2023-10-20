@@ -1,6 +1,6 @@
-﻿//#define BeforeInheritance
+//#define BeforeInheritance
 #if BeforeInheritance
-#region snippet_BeforeInheritance
+// <snippet_BeforeInheritance>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -38,7 +38,7 @@ namespace ContosoUniversity.Models
         public OfficeAssignment OfficeAssignment { get; set; }
     }
 }
-#endregion
+// </snippet_BeforeInheritance>
 #else
 using System;
 using System.Collections.Generic;

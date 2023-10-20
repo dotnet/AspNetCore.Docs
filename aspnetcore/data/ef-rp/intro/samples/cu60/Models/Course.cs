@@ -1,6 +1,6 @@
-﻿#define FIRST
+#define FIRST
 #if FIRST
-#region snippet_first
+// <snippet_first>
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversity.Models
@@ -15,14 +15,14 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_first>
 #elif LAST
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversity.Models
 {
-#region snippet_last
+// <snippet_last>
     public class Course
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -42,5 +42,5 @@ namespace ContosoUniversity.Models
         public ICollection<Instructor> Instructors { get; set; }
     }
 }
-#endregion
+// </snippet_last>
 #endif
