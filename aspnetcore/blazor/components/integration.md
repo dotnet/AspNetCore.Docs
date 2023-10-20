@@ -16,9 +16,9 @@ uid: blazor/components/integration
 
 -->
 
-This article explains Razor component integration scenarios for ASP.NET Core apps, including prerendering of Razor components on the server.
+This article explains Razor component integration scenarios for ASP.NET Core apps.
 
-Razor components can be integrated into Razor Pages, MVC, and other types of ASP.NET Core apps with prerendering. Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
+Razor components can be integrated into Razor Pages, MVC, and other types of ASP.NET Core apps. Razor components can also be integrated into any web app, including apps not based on ASP.NET Core, as [custom HTML elements](https://learn.microsoft.com/aspnet/core/blazor/components/js-spa-frameworks#blazor-custom-elements).
 
 Use the guidance in the following sections depending on the project's requirements:
 
