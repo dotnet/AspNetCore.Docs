@@ -72,3 +72,11 @@ groups:
       title: Server
     - id: webassembly
       title: Blazor WebAssembly
+- id: blazor-groups-and-roles
+  title: Approach
+  prompt: Choose the Microsoft Graph SDK version
+  pivots:
+    - id: graph-sdk-4
+      title: Graph SDK v4
+    - id: graph-sdk-5
+      title: Graph SDK v5

@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 12/16/2022
 uid: blazor/security/webassembly/meid-groups-roles
-zone_pivot_groups: blazor-graph-api
+zone_pivot_groups: blazor-groups-and-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles
 
@@ -151,6 +151,17 @@ Add the following custom user account factory to the **CLIENT** app. The custom 
 `CustomAccountFactory.cs`:
 
 :::zone pivot="graph-sdk-5"
+
+The following example assumes that the project's app settings file includes an entry for the base URL:
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+  ...
+}
+```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
 
 ```csharp
 using System.Security.Claims;
