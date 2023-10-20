@@ -44,7 +44,7 @@ app.Run();
 #region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpLogging();
+builder.Services.AddHttpLogging(o => { });
 
 var app = builder.Build();
 
