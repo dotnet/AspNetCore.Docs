@@ -39,21 +39,106 @@ This section covers adding Blazor support to an ASP.NET Core app:
 
 ### Add static server Razor component rendering
 
-No donor needed ... just show the minimal API changes and additions required.
+Add the following assets to the app, updating the `{APP NAMESPACE}` to the app's namespace as each file is added.
 
+`Components/_Imports.razor`:
 
+```razor
+@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using {APP NAMESPACE}
+@using {APP NAMESPACE}.Components
+```
 
+`Components/Routes.razor`:
 
+```razor
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>
+```
 
+`Components/App.razor`:
+
+```razor
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <!-- <link rel="stylesheet" href="bootstrap/bootstrap.min.css" /> -->
+    <!-- <link rel="stylesheet" href="app.css" /> -->
+    <link rel="stylesheet" href="{APP NAMESPACE}.styles.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet />
+</head>
+
+<body>
+    <Routes />
+    <script src="_framework/blazor.web.js"></script>
+</body>
+
+</html>
+```
+
+`Components/Pages/Welcome.razor`:
+
+```razor
+@page "/welcome"
+
+<PageTitle>Welcome!</PageTitle>
+
+<h1>Welcome to Blazor!</h1>
+
+<p>@message</p>
+
+@code {
+    private string message = 
+        "Hello from a Razor component and welcome to Blazor!";
+}
+```
+
+In the ASP.NET Core project's `Program` file, add a `using` statement to the top of the file for the project's components:
+
+```csharp
+using {APP NAMESPACE}.Components;
+```
+
+Add Razor component services (`AddRazorComponents`) before the app is built (the line that calls `builder.Build()`):
+
+```csharp
+builder.Services.AddRazorComponents();
+```
+
+Add [Antiforgery Middleware](xref:blazor/security/index#antiforgery-support) to the request processing pipeline after the call to `app.UseRouting`. If there are calls to `app.UseRouting` and `app.UseEndpoints`, the call to `app.UseAntiforgery` must go between them. A call to `app.UseAntiforgery` must be placed after calls to `app.UseAuthentication` and `app.UseAuthorization`.
+
+```csharp
+app.UseAntiforgery();
+```
+
+Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component. Place the following code before the app is run (the line that calls `app.Run`):
+
+```csharp
+app.MapRazorComponents<App>();
+```
 
 ### Enable interactive server rendering
 
-No donor needed ... just minimal changes.
+<!-- No donor needed ... just minimal changes. -->
 
-
-
-
-
+*************
+**** WIP ****
+*************
 
 ### Enable interactive Auto or WebAssembly rendering
 
@@ -61,7 +146,7 @@ No donor needed ... just minimal changes.
 
    [!INCLUDE[](~/includes/package-reference.md)]
 
-UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM
+<!-- UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM -->
 
 1. Create a donor Blazor Web App, which will provide assets to the app. Follow the guidance in the <xref:blazor/tooling> article, selecting support for the following template features when generating the Blazor Web App.
 
