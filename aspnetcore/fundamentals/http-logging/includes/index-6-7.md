@@ -1,19 +1,10 @@
 ---
-title: HTTP Logging in .NET Core and ASP.NET Core
 author: rick-anderson
-description: Learn how to log HTTP Requests and Response.
-monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
-ms.custom: mvc
 ms.date: 10/19/2023
-uid: fundamentals/http-logging/index
 ---
 
-# HTTP Logging in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 
 HTTP Logging is a middleware that logs information about incoming HTTP requests and HTTP responses. HTTP logging provides logs of:
 
@@ -91,5 +82,3 @@ This approach can also be used to enable logging for data that is not logged by 
 [!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/http-logging/includes/index-6-7.md)]
