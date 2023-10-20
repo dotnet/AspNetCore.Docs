@@ -61,12 +61,14 @@ After adding the Microsoft Graph API scopes in the ME-ID area of the Azure porta
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/v1.0",
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
   "Scopes": [
     "user.read"
   ]
 }
 ```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -268,7 +270,6 @@ public class CustomAccountFactory
                         userIdentity.AddClaim(new Claim("officelocation",
                             user.OfficeLocation ?? "Not set"));
                     }
-                    
                 }
                 catch (AccessTokenNotAvailableException exception)
                 {
@@ -387,12 +388,14 @@ After adding the Microsoft Graph API scopes in the ME-ID area of the Azure porta
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/v1.0",
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
   "Scopes": [
     "user.read"
   ]
 }
 ```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -730,12 +733,14 @@ After adding the Microsoft Graph API scopes in the ME-ID area of the Azure porta
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/v1.0",
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
   "Scopes": [
     "user.read"
   ]
 }
 ```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
 
 Create the following `GraphAuthorizationMessageHandler` class and project configuration in the `Program` file for working with Graph API. The base URL and scopes are provided to the handler from configuration.
 
