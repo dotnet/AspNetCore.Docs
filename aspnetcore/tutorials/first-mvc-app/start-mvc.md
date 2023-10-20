@@ -123,7 +123,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 You can launch the app in debug or non-debug mode from the **Debug** menu:
 
-![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/8/debug-menu-VS22-17.8.0.png)
+![Start Debug and Start Without Debugging menus](~/tutorials/first-mvc-app/start-mvc/_static/8/debug-and-without-debug-menus-VS22-17.8.0.png)
 
 You can debug the app by selecting the **https** button in the toolbar:
 
