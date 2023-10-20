@@ -268,7 +268,6 @@ public class CustomAccountFactory
                         userIdentity.AddClaim(new Claim("officelocation",
                             user.OfficeLocation ?? "Not set"));
                     }
-                    
                 }
                 catch (AccessTokenNotAvailableException exception)
                 {
