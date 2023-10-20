@@ -1,4 +1,4 @@
-#region snippet_all
+// <snippet_all>
 using ContosoUniversity.Models;
 using ContosoUniversity.Models.SchoolViewModels;  // Add VM
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -24,7 +24,7 @@ namespace ContosoUniversity.Pages.Instructors
         public async Task OnGetAsync(int? id, int? courseID)
         {
             InstructorData = new InstructorIndexData();
-            #region snippet_EagerLoading
+// <snippet_EagerLoading>
             InstructorData.Instructors = await _context.Instructors
                 .Include(i => i.OfficeAssignment)                 
                 .Include(i => i.CourseAssignments)
@@ -37,9 +37,9 @@ namespace ContosoUniversity.Pages.Instructors
                 .AsNoTracking()
                 .OrderBy(i => i.LastName)
                 .ToListAsync();
-            #endregion
+// </snippet_EagerLoading>
 
-            #region snippet_SelectInstructor
+// <snippet_SelectInstructor>
             if (id != null)
             {
                 InstructorID = id.Value;
@@ -47,9 +47,9 @@ namespace ContosoUniversity.Pages.Instructors
                     .Where(i => i.ID == id.Value).Single();
                 InstructorData.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
-            #endregion
+// </snippet_SelectInstructor>
 
-            #region snippet_SelectCourse
+// <snippet_SelectCourse>
             if (courseID != null)
             {
                 CourseID = courseID.Value;
@@ -57,8 +57,8 @@ namespace ContosoUniversity.Pages.Instructors
                     .Where(x => x.CourseID == courseID).Single();
                 InstructorData.Enrollments = selectedCourse.Enrollments;
             }
-            #endregion
+// </snippet_SelectCourse>
         }
     }
 }
-#endregion
+// </snippet_all>

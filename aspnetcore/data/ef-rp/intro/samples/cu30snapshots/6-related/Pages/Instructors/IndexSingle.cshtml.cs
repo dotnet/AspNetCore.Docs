@@ -23,7 +23,7 @@ namespace ContosoUniversity.Pages.Instructors
         public int InstructorID { get; set; }
         public int CourseID { get; set; }
 
-        #region snippet_single
+// <snippet_single>
         public async Task OnGetAsync(int? id, int? courseID)
         {
             InstructorData = new InstructorIndexData();
@@ -57,7 +57,7 @@ namespace ContosoUniversity.Pages.Instructors
                     x => x.CourseID == courseID).Enrollments;
             }
         }
-        #endregion
+// </snippet_single>
     }
 }
 #endif

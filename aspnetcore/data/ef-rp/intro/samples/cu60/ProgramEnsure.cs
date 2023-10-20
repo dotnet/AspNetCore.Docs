@@ -2,9 +2,9 @@
    context.Database.EnsureCreated();
 // DbInitializer.Initialize(context);
 #if !SQLiteVersion
-#region snippet_sx_all
-#region snippet_sx_filter
-#region snippet_sx
+// <snippet_sx_all>
+// <snippet_sx_filter>
+// <snippet_sx>
 using ContosoUniversity.Data;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +13,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<SchoolContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolContext")));
-#endregion
+// </snippet_sx>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -29,7 +29,7 @@ else
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
-#endregion
+// </snippet_sx_filter>
 
 using (var scope = app.Services.CreateScope())
 {
@@ -50,11 +50,11 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet_sx_all>
 #else
-#region snippet_sqlite_all
-#region snippet_sqlite_filter
-#region snippet_sqlite
+// <snippet_sqlite_all>
+// <snippet_sqlite_filter>
+// <snippet_sqlite>
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 var builder = WebApplication.CreateBuilder(args);
@@ -63,7 +63,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<SchoolContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SchoolContextSQLite")));
-#endregion
+// </snippet_sqlite>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -79,7 +79,7 @@ else
     app.UseDeveloperExceptionPage();
     app.UseMigrationsEndPoint();
 }
-#endregion
+// </snippet_sqlite_filter>
 
 using (var scope = app.Services.CreateScope())
 {
@@ -100,6 +100,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet_sqlite_all>
 #endif
 #endif

@@ -51,7 +51,7 @@ namespace ContosoUniversity.Controllers
             return View(department);
         }
 #elif RawSQL
-        #region snippet_RawSQL
+// <snippet_RawSQL>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace ContosoUniversity.Controllers
 
             return View(department);
         }
-        #endregion
+// </snippet_RawSQL>
 #endif
 
         // GET: Departments/Create
@@ -94,9 +94,9 @@ namespace ContosoUniversity.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            #region snippet_Dropdown
+// <snippet_Dropdown>
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
-            #endregion
+// </snippet_Dropdown>
             return View(department);
         }
 
@@ -108,12 +108,12 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            #region snippet_EagerLoading
+// <snippet_EagerLoading>
             var department = await _context.Departments
                 .Include(i => i.Administrator)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
-            #endregion
+// </snippet_EagerLoading>
             if (department == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace ContosoUniversity.Controllers
         // POST: Departments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        #region snippet_EditPost
+// <snippet_EditPost>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, byte[] rowVersion)
@@ -204,10 +204,10 @@ namespace ContosoUniversity.Controllers
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", departmentToUpdate.InstructorID);
             return View(departmentToUpdate);
         }
-        #endregion
+// </snippet_EditPost>
 
         // GET: Departments/Delete/5
-        #region snippet_DeleteGet
+// <snippet_DeleteGet>
         public async Task<IActionResult> Delete(int? id, bool? concurrencyError)
         {
             if (id == null)
@@ -240,10 +240,10 @@ namespace ContosoUniversity.Controllers
 
             return View(department);
         }
-        #endregion
+// </snippet_DeleteGet>
 
         // POST: Departments/Delete/5
-        #region snippet_DeletePost
+// <snippet_DeletePost>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Department department)
@@ -263,6 +263,6 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction(nameof(Delete), new { concurrencyError = true, id = department.DepartmentID });
             }
         }
-        #endregion
+// </snippet_DeletePost>
     }
 }
