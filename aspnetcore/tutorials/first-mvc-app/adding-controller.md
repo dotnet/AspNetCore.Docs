@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 08/21/2023
+ms.date: 10/16/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: contperf-fy21q3, engagement-fy23
@@ -43,11 +43,11 @@ These concepts are introduced and demonstrated in this tutorial series while bui
 
 In **Solution Explorer**, right-click **Controllers > Add > Controller**.
 
-![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllercopyvs22v17.6.png)
+![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/8/add-controller-VS22-17.8.0.png)
 
 In the **Add New Scaffolded Item** dialog box, select **MVC Controller - Empty** > **Add**.
 
-![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
+![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/8/add-scaffolded-item-controller-VS22-17.8.0.png)
 
 In the **Add New Item - MvcMovie** dialog, enter *`HelloWorldController.cs`* and select **Add**.
 

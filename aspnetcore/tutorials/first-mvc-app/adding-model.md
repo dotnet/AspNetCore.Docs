@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 08/22/2023
+ms.date: 10/19/2023
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3, engagement-fy23
 ---
@@ -121,7 +121,7 @@ Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CR
 
 In **Solution Explorer**, right-click the *Controllers* folder and select **Add > New Scaffolded Item**.
 
-![view of above step](~/tutorials/first-mvc-app/adding-model/_static/add_new_scaffoldVS22v17.6.png)
+![view of above step](~/tutorials/first-mvc-app/adding-model/_static/8/add_new_scaffoldvs22v17.8.0.png)
 
 In the **Add New Scaffolded Item** dialog:
 
@@ -129,7 +129,7 @@ In the **Add New Scaffolded Item** dialog:
 * Select  **MVC Controller with views, using Entity Framework**.
 * Select **Add**.
 
-![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/add_scaffold5.png)
+![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/8/add_scaffold-VS22-17.8.0.png)
 
 Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
@@ -141,7 +141,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * **Views** and **Controller name**: Keep the default.
 * Select **Add**.
 
-![Add Data context keep defaults](~/tutorials/first-mvc-app/adding-model/_static/dc_last_step_vs22v17.6.png)
+![Add Data context keep defaults](~/tutorials/first-mvc-app/adding-model/_static/8/dc_last_step_vs22v17.8.0.png)
 
 If you get an error message, select **Add** a second time to try it again.
 

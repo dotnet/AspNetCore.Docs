@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 08/21/2023
+ms.date: 10/16/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
 ms.custom: contperf-fy21q3, engagement-fy23
@@ -53,7 +53,7 @@ In the **Add New Item - MvcMovie** dialog:
 * Keep the **Name** box value, `Index.cshtml`.
 * Select **Add**
 
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_viewVS22_17.6.png)
+![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/8/add-view-vs22-17.8.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
