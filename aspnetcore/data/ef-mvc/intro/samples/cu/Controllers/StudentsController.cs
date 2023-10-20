@@ -12,7 +12,7 @@ using ContosoUniversity.Models;
 using System;
 using Microsoft.Extensions.Logging;
 
-#region snippet_Context
+// <snippet_Context>
 namespace ContosoUniversity.Controllers
 {
     public class StudentsController : Controller
@@ -23,19 +23,19 @@ namespace ContosoUniversity.Controllers
         {
             _context = context;
         }
-#endregion
+// </snippet_Context>
 
         // GET: Students
 
 #if (ScaffoldedIndex)
-#region snippet_ScaffoldedIndex
+// <snippet_ScaffoldedIndex>
         public async Task<IActionResult> Index()
         {
             return View(await _context.Students.ToListAsync());
         }
-#endregion
+// </snippet_ScaffoldedIndex>
 #elif (SortOnly)
-#region snippet_SortOnly
+// <snippet_SortOnly>
         public async Task<IActionResult> Index(string sortOrder)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -59,9 +59,9 @@ namespace ContosoUniversity.Controllers
             }
             return View(await students.AsNoTracking().ToListAsync());
         }
-#endregion
+// </snippet_SortOnly>
 #elif (SortFilter)
-#region snippet_SortFilter
+// <snippet_SortFilter>
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -92,9 +92,9 @@ namespace ContosoUniversity.Controllers
             }
             return View(await students.AsNoTracking().ToListAsync());
         }
-#endregion
+// </snippet_SortFilter>
 #elif (SortFilterPage)
-#region snippet_SortFilterPage
+// <snippet_SortFilterPage>
         public async Task<IActionResult> Index(
             string sortOrder,
             string currentFilter,
@@ -142,9 +142,9 @@ namespace ContosoUniversity.Controllers
             int pageSize = 3;
             return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
-#endregion
+// </snippet_SortFilterPage>
 #elif (DynamicLinq)
-#region snippet_DynamicLinq
+// <snippet_DynamicLinq>
         public async Task<IActionResult> Index(
             string sortOrder,
             string currentFilter,
@@ -202,11 +202,11 @@ namespace ContosoUniversity.Controllers
             return View(await PaginatedList<Student>.CreateAsync(students.AsNoTracking(), 
                 pageNumber ?? 1, pageSize));
         }
-#endregion
+// </snippet_DynamicLinq>
 #endif
 
         // GET: Students/Details/5
-#region snippet_Details
+// <snippet_Details>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -227,7 +227,7 @@ namespace ContosoUniversity.Controllers
 
             return View(student);
         }
-#endregion
+// </snippet_Details>
 
         // GET: Students/Create
         public IActionResult Create()
@@ -236,7 +236,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Students/Create
-#region snippet_Create
+// <snippet_Create>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
@@ -260,7 +260,7 @@ namespace ContosoUniversity.Controllers
             }
             return View(student);
         }
-#endregion
+// </snippet_Create>
 
         // GET: Students/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -282,7 +282,7 @@ namespace ContosoUniversity.Controllers
 
         // POST: Students/Edit/5
 #if (CreateAndAttach)
-#region snippet_CreateAndAttach
+// <snippet_CreateAndAttach>
         public async Task<IActionResult> Edit(int id, [Bind("ID,EnrollmentDate,FirstMidName,LastName")] Student student)
         {
             if (id != student.ID)
@@ -307,9 +307,9 @@ namespace ContosoUniversity.Controllers
             }
             return View(student);
         }
-#endregion
+// </snippet_CreateAndAttach>
 #elif (ReadFirst)
-#region snippet_ReadFirst
+// <snippet_ReadFirst>
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
@@ -339,11 +339,11 @@ namespace ContosoUniversity.Controllers
             }
             return View(studentToUpdate);
         }
-#endregion
+// </snippet_ReadFirst>
 #endif
 
         // GET: Students/Delete/5
-#region snippet_DeleteGet
+// <snippet_DeleteGet>
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -368,10 +368,10 @@ namespace ContosoUniversity.Controllers
 
             return View(student);
         }
-#endregion
+// </snippet_DeleteGet>
         // POST: Students/Delete/5
 #if (DeleteWithReadFirst)
-#region snippet_DeleteWithReadFirst
+// <snippet_DeleteWithReadFirst>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -394,9 +394,9 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
         }
-#endregion
+// </snippet_DeleteWithReadFirst>
 #elif (DeleteWithoutReadFirst)
-#region snippet_DeleteWithoutReadFirst
+// <snippet_DeleteWithoutReadFirst>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -414,7 +414,7 @@ namespace ContosoUniversity.Controllers
                 return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
         }
-#endregion
+// </snippet_DeleteWithoutReadFirst>
 #endif
     }
 }
