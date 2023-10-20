@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 12/16/2022
 uid: blazor/security/webassembly/meid-groups-roles
+zone_pivot_groups: blazor-groups-and-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles
 
@@ -149,6 +150,116 @@ Add the following custom user account factory to the **CLIENT** app. The custom 
 
 `CustomAccountFactory.cs`:
 
+:::zone pivot="graph-sdk-5"
+
+The following example assumes that the project's app settings file includes an entry for the base URL:
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+  ...
+}
+```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
+
+```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+using Microsoft.Graph;
+using Microsoft.Kiota.Abstractions.Authentication;
+
+public class CustomAccountFactory
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
+{
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
+    private readonly string? baseUrl;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger,
+        IConfiguration config)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+        baseUrl = config.GetSection("MicrosoftGraph")["BaseUrl"];
+    }
+
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
+        CustomUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+
+        if (initialUser.Identity is not null &&
+            initialUser.Identity.IsAuthenticated)
+        {
+            var userIdentity = initialUser.Identity as ClaimsIdentity;
+
+            if (userIdentity is not null && !string.IsNullOrEmpty(baseUrl))
+            {
+                account?.Roles?.ForEach((role) =>
+                {
+                    userIdentity.AddClaim(new Claim("appRole", role));
+                });
+
+                account?.Wids?.ForEach((wid) =>
+                {
+                    userIdentity.AddClaim(new Claim("directoryRole", wid));
+                });
+
+                try
+                {
+                    var client = new GraphServiceClient(
+                        new HttpClient(),
+                        serviceProvider
+                            .GetRequiredService<IAuthenticationProvider>(),
+                        baseUrl);
+
+                    var user = await client.Me.GetAsync();
+
+                    if (user is not null)
+                    {
+                        userIdentity.AddClaim(new Claim("mobilephone",
+                            user.MobilePhone ?? "(000) 000-0000"));
+                        userIdentity.AddClaim(new Claim("officelocation",
+                            user.OfficeLocation ?? "Not set"));
+                    }
+
+                    var requestMemberOf = client.Users[account?.Oid].MemberOf;
+                    var memberships = await requestMemberOf.Request().GetAsync();
+
+                    if (memberships is not null)
+                    {
+                        foreach (var entry in memberships)
+                        {
+                            if (entry.ODataType == "#microsoft.graph.group")
+                            {
+                                userIdentity.AddClaim(
+                                    new Claim("directoryGroup", entry.Id));
+                            }
+                        }
+                    }
+                }
+                catch (AccessTokenNotAvailableException exception)
+                {
+                    exception.Redirect();
+                }
+            }
+        }
+
+        return initialUser;
+    }
+}
+```
+
+:::zone-end
+
+:::zone pivot="graph-sdk-4"
+
 ```csharp
 using System.Security.Claims;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -234,6 +345,8 @@ public class CustomAccountFactory
     }
 }
 ```
+
+:::zone-end
 
 The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
 
