@@ -134,11 +134,49 @@ app.MapRazorComponents<App>();
 
 ### Enable interactive server rendering
 
-<!-- No donor needed ... just minimal changes. -->
+Follow the guidance in the [Enable interactive server rendering](#enable-interactive-server-rendering) section.
 
-*************
-**** WIP ****
-*************
+Make the following changes in the app's `Program` file.
+
+Add a call to `AddInteractiveServerComponents` where Razor component services are added with `AddRazorComponents`:
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+```
+
+Add a call to `AddInteractiveServerRenderMode` where Razor components are mapped with `MapRazorComponents`:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+```
+
+Add a `Counter` component to the app with the interactive server render mode.
+
+`Components/Pages/Counter.razor`:
+
+```razor
+@page "/counter"
+@attribute [RenderModeInteractiveServer]
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
 
 ### Enable interactive Auto or WebAssembly rendering
 
