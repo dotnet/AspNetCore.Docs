@@ -18,13 +18,15 @@ uid: blazor/components/integration
 
 This article explains Razor component integration scenarios for ASP.NET Core apps.
 
-Razor components can be integrated into Razor Pages, MVC, and other types of ASP.NET Core apps. Razor components can also be integrated into any web app, including apps not based on ASP.NET Core, as [custom HTML elements](https://learn.microsoft.com/aspnet/core/blazor/components/js-spa-frameworks#blazor-custom-elements).
+Razor components can be integrated into Razor Pages, MVC, and other types of ASP.NET Core apps. Razor components can also be integrated into any web app, including apps not based on ASP.NET Core, as [custom HTML elements](xref:blazor/components/js-spa-frameworks#blazor-custom-elements).
 
 Use the guidance in the following sections depending on the project's requirements:
 
-* Blazor support can be [added to an ASP.NET Core app](#add-blazor-support-to-an-aspnet-core-app).
+<!-- * Blazor support can be [added to an ASP.NET Core app](#add-blazor-support-to-an-aspnet-core-app). -->
 * For interactive components that aren't directly routable from user requests, see the [Use non-routable components in pages or views](#use-non-routable-components-in-pages-or-views) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 * For interactive components that are directly routable from user requests, see the [Use routable components](#use-routable-components) section. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
+
+<!-- HOLD
 
 ## Add Blazor support to an ASP.NET Core app
 
@@ -37,7 +39,7 @@ This section covers adding Blazor support to an ASP.NET Core app.
 
    [!INCLUDE[](~/includes/package-reference.md)]
 
-<!-- UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM -->
+UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM
 
 1. Create a donor Blazor Web App, which will provide assets to the app. Follow the guidance in the <xref:blazor/tooling> article, selecting support for the following template features when generating the Blazor Web App.
 
@@ -221,6 +223,8 @@ This section covers adding Blazor support to an ASP.NET Core app.
    For the `Counter` component of the `.Client` project, navigate to `/counter`.
 
    If you added the `Counter2` component, which is strictly configured for interactive server rendering, navigate to `/counter-2`.
+
+-->
 
 ## Use non-routable components in pages or views
 
