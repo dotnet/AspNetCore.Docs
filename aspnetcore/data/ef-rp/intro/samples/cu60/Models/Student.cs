@@ -1,6 +1,6 @@
-﻿#define FIRST // FIRST
+#define FIRST // FIRST
 #if FIRST
-#region snippet_first
+// <snippet_first>
 namespace ContosoUniversity.Models
 {
     public class Student
@@ -13,7 +13,7 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_first>
 #elif PERSON
 using System.ComponentModel.DataAnnotations;
 

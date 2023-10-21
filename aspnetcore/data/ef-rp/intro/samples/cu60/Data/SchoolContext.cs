@@ -1,6 +1,6 @@
-﻿#define First // LAST First
+#define First // LAST First
 #if First
-#region snippet_first
+// <snippet_first>
 using ContosoUniversity.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +25,6 @@ namespace ContosoUniversity.Data
         }
     }
 }
-#endregion
+// </snippet_first>
 #elif LAST
 #endif

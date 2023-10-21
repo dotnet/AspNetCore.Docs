@@ -3,7 +3,7 @@ title: Part 5, work with a database in an ASP.NET Core MVC app
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 04/23/2023
+ms.date: 10/19/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/working-with-sql
 ms.custom: contperf-fy21q3, engagement-fy23
@@ -54,17 +54,17 @@ From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
 Right-click on the `Movie` table (`dbo.Movie`) **> View Designer**
 
-![Right-click on the Movie table > View Designer.](~/tutorials/first-mvc-app/working-with-sql/_static/designvs22v17.6.png)
+![Right-click on the Movie table > View Designer.](~/tutorials/first-mvc-app/working-with-sql/_static/8/designvs22v17.8.0.png)
 
-![Movie table open in Designer](~/tutorials/first-mvc-app/working-with-sql/_static/dv_vs22v17.6.png)
+![Movie table open in Designer](~/tutorials/first-mvc-app/working-with-sql/_static/8/dv_vs22v17.8.0.png)
 
 Note the key icon next to `ID`. By default, EF makes a property named `ID` the primary key.
 
 Right-click on the `Movie` table **> View Data**
 
-![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/ssox2_vs22v17.6.png)
+![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/8/ssox2_vs22v17.8.0.png)
 
-![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/vd_VS22_17.6.png)
+![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/8/vd_vs22_17.8.0.png)
 -->
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)

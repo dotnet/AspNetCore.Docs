@@ -1,7 +1,7 @@
-﻿#define AfterInheritance // or Intro or StringLength or DataType or BeforeInheritance
+#define AfterInheritance // or Intro or StringLength or DataType or BeforeInheritance
 
 #if Intro
-#region snippet_Intro
+// <snippet_Intro>
 using System;
 using System.Collections.Generic;
 
@@ -17,10 +17,10 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_Intro>
 
 #elif DataType
-#region snippet_DataType
+// <snippet_DataType>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,10 +39,10 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_DataType>
 
 #elif StringLength
-#region snippet_StringLength
+// <snippet_StringLength>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -63,10 +63,10 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_StringLength>
 
 #elif Column
-#region snippet_Column
+// <snippet_Column>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -89,11 +89,11 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_Column>
 
 
 #elif BeforeInheritance
-#region snippet_BeforeInheritance
+// <snippet_BeforeInheritance>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -129,9 +129,9 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_BeforeInheritance>
 #elif AfterInheritance
-#region snippet_AfterInheritance
+// <snippet_AfterInheritance>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -150,5 +150,5 @@ namespace ContosoUniversity.Models
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
-#endregion
+// </snippet_AfterInheritance>
 #endif
