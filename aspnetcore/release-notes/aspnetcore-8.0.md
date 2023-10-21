@@ -377,11 +377,11 @@ builder.On<string, string>("ReceiveMessage", (user, message) => ...
 await builder.StartAsync();
 ```
 
-### SignalR seamless reconnect
+### SignalR stateful reconnect
 
-SignalR seamless reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
+SignalR stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
 
-Seamless reconnect achieves this by:
+Stateful reconnect achieves this by:
 
 * Temporarily buffering data on the server and client.
 * Acknowledging messages received (ACK-ing) by both the server and client.
@@ -389,25 +389,25 @@ Seamless reconnect achieves this by:
 
 To opt-in to seamless reconnect:
 
-* Update the .NET client code to enable the `UseAcks` option:
+* Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
 
-  ```csharp
-  var hubConnection = new HubConnectionBuilder()
-      .WithUrl("<hub url>",
-               options =>
-               {
-                  options.UseAcks = true;
-               })
-      .Build();
+  ```JavaScript
+  const builder = new signalR.HubConnectionBuilder()
+    .withUrl("/hubname")
+    .withStatefulReconnect({ bufferSize: 1000 }); // optional options, defaults to 100,000
+  const connection = builder.build();
   ```
 
-* Update the server hub endpoint configuration to enable the `AllowAcks` option:
+* The server also needs to enable support on the endpoint being accessed by the client:
 
   ```csharp
-  app.MapHub<AppHub>("/default", o => o.AllowAcks = true);
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
   ```
 
-For more information on the progress of the seamless reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
+For more information on the progress of the SignalR stateful reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
 
 ## Minimal APIs
 
