@@ -387,14 +387,14 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
 
-To opt-in to seamless reconnect:
+To opt-in to stateful reconnect for a JavaScript or Typescript client:
 
 * Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
 
   ```JavaScript
   const builder = new signalR.HubConnectionBuilder()
     .withUrl("/hubname")
-    .withStatefulReconnect({ bufferSize: 1000 }); // optional options, defaults to 100,000
+    .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
   ```
 
@@ -405,6 +405,27 @@ To opt-in to seamless reconnect:
   {
       options.AllowStatefulReconnects = true;
   });
+  ```
+
+To opt-in to stateful reconnect for a .NET client:
+
+* Update the .NET client code to enable the `UseStatefulReconnect` option:
+
+  ```csharp
+  var hubConnection = new HubConnectionBuilder()
+      .WithUrl("<hub url>",
+               options =>
+               {
+                  options.UseStatefulReconnect = true;
+                  options.StatefulReconnectBufferSize = 1000;  // Optional, defaults to 100,000
+               })
+      .Build();
+  ```
+
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+
+  ```csharp
+  app.MapHub<AppHub>("/default", o => o.AllowStatefulReconnects = true);
   ```
 
 For more information on the progress of the SignalR stateful reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
