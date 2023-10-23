@@ -398,7 +398,7 @@ To opt-in to stateful reconnect for a JavaScript or Typescript client:
   const connection = builder.build();
   ```
 
-* The server also needs to enable support on the endpoint being accessed by the client:
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
 
   ```csharp
   app.MapHub<MyHub>("/hubName", options =>
@@ -422,7 +422,10 @@ To opt-in to stateful reconnect for a .NET client:
 * Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
 
   ```csharp
-  app.MapHub<AppHub>("/default", o => o.AllowStatefulReconnects = true);
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
   ```
 
 For more information on the progress of the SignalR stateful reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
