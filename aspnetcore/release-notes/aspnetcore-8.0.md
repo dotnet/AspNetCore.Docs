@@ -428,8 +428,6 @@ To opt-in to stateful reconnect for a .NET client:
   });
   ```
 
-For more information on the progress of the SignalR stateful reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
-
 ## Minimal APIs
 
 This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
