@@ -32,7 +32,7 @@ This section covers adding Blazor support to an ASP.NET Core app:
 
 * [Add static server Razor component rendering](#add-static-server-razor-component-rendering)
 * [Enable interactive server rendering](#enable-interactive-server-rendering)
-* [Enable interactive Auto or WebAssembly rendering](#enable-interactive-auto-or-webassembly-rendering)
+* [Enable interactive Auto or WebAssembly rendering](#enable-interactive-auto-and-webassembly-rendering)
 
 > [!NOTE]
 > For the examples in this section, the example app's name and namespace is `AspNetCoreApp`.
