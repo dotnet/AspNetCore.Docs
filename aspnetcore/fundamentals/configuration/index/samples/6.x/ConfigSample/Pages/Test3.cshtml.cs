@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
-    #region snippet
+// <snippet>
     public class Test3Model : PageModel
     {
         private readonly IConfiguration Config;
@@ -25,5 +25,5 @@ namespace ConfigSample
                     $"Key6: '{Config["Key6"]}'");
         }
     }
-    #endregion
+// </snippet>
 }

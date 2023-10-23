@@ -23,7 +23,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif CONFIG
-#region snippet
+// <snippet>
 using ConfigSample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,7 +35,7 @@ builder.Services.Configure<PositionOptions>(
 
 var app = builder.Build();
 
-#endregion
+// </snippet>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -53,7 +53,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif Second
-#region snippet2
+// <snippet2>
 using ConfigSample.Options;
 using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
@@ -71,7 +71,7 @@ builder.Services.AddScoped<IMyDependency2, MyDependency2>();
 
 var app = builder.Build();
 
-#endregion
+// </snippet2>
 if (!app.Environment.IsDevelopment())
 { 
     app.UseExceptionHandler("/Error");
@@ -89,7 +89,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif Third
-#region snippet3
+// <snippet3>
 using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -101,7 +101,7 @@ builder.Services
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet3>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -119,7 +119,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif ENV
-#region snippet_env
+// <snippet_env>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -127,7 +127,7 @@ builder.Services.AddRazorPages();
 builder.Configuration.AddEnvironmentVariables(prefix: "MyCustomPrefix_");
 
 var app = builder.Build();
-#endregion
+// </snippet_env>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -145,7 +145,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif SWITCH
-#region snippet_sw
+// <snippet_sw>
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -165,7 +165,7 @@ builder.Configuration.AddCommandLine(args, switchMappings);
 
 var app = builder.Build();
 
-#endregion
+// </snippet_sw>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -183,7 +183,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif JSON1
-#region snippet_json
+// <snippet_json>
 using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -195,7 +195,7 @@ builder.Configuration.AddJsonFile("MyConfig.json",
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet_json>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -213,7 +213,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif INI
-#region snippet_ini
+// <snippet_ini>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
@@ -227,7 +227,7 @@ builder.Configuration.AddCommandLine(args);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet_ini>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -245,7 +245,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif XML
-#region snippet_xml
+// <snippet_xml>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
@@ -259,7 +259,7 @@ builder.Configuration.AddCommandLine(args);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet_xml>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -277,7 +277,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif MEM
-#region snippet_mem
+// <snippet_mem>
 var builder = WebApplication.CreateBuilder(args);
 
 var Dict = new Dictionary<string, string>
@@ -295,7 +295,7 @@ builder.Configuration.AddCommandLine(args);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet_mem>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -313,7 +313,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif SUB
-#region snippet_sub
+// <snippet_sub>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
@@ -324,7 +324,7 @@ builder.Configuration
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet_sub>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -342,7 +342,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif BA
-#region snippet_ba
+// <snippet_ba>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
@@ -353,7 +353,7 @@ builder.Configuration
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-#endregion
+// </snippet_ba>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
