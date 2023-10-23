@@ -90,6 +90,8 @@ To use Safari developer tools with an iOS app:
 
 <!-- On macOS, XML files use 4-space indents. Also, the PU uses 4-space indents in the .NET MAUI template file. -->
 
+:::moniker range="< aspnetcore-8.0"
+
 Add the `com.apple.security.get-task-allow` key, of type `Boolean`, to the [entitlements file](/dotnet/maui/ios/entitlements) of the app for its debug build.
 
 To add an entitlements file with the `com.apple.security.get-task-allow` key, add the following XML file named `Entitlements.Debug.plist` to the `Platforms/MacCatalyst` folder of the project.
@@ -114,6 +116,8 @@ To consume the entitlements file for debug builds on :::no-loc text="Mac Catalys
     <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
 </PropertyGroup>
 ```
+
+:::moniker-end
 
 To use Safari developer tools with a macOS app:
 
