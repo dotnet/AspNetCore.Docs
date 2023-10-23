@@ -412,14 +412,11 @@ To opt-in to stateful reconnect for a .NET client:
 * Update the .NET client code to enable the `UseStatefulReconnect` option:
 
   ```csharp
-  var hubConnection = new HubConnectionBuilder()
-      .WithUrl("<hub url>",
-               options =>
-               {
-                  options.UseStatefulReconnect = true;
-                  options.StatefulReconnectBufferSize = 1000;  // Optional, defaults to 100,000
-               })
-      .Build();
+    var builder = new HubConnectionBuilder()
+        .WithUrl("<hub url>")
+        .WithStatefulReconnect();
+    builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
+    var hubConnection = builder.Build();
   ```
 
 * Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
