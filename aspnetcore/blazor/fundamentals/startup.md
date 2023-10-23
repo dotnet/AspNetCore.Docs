@@ -75,7 +75,7 @@ To define a JS initializer, add a JS module to the project named `{NAME}.lib.mod
 The module exports either or both of the following conventional functions:
 
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * Client-side, `beforeStart` receives the Blazor options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
+  * Client-side, `beforeStart` receives the Blazor options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
   * Server-side, `beforeStart` receives SignalR circuit start options (`options` in this section's examples).
   * In a [`BlazorWebView`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor` in this section's example).
