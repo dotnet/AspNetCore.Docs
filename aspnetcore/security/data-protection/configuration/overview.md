@@ -97,7 +97,7 @@ You can rotate certificates and decrypt keys at rest using an array of <xref:Sys
 
 ## SetDefaultKeyLifetime
 
-To configure the system to use a key lifetime of 14 days instead of the default 90 days, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
+To configure the system to use a key lifetime of 14 days instead of the default 1 day, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetDefaultKeyLifetime":::
 
@@ -394,7 +394,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## SetDefaultKeyLifetime
 
-To configure the system to use a key lifetime of 14 days instead of the default 90 days, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
+To configure the system to use a key lifetime of 14 days instead of the default 1 day, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
