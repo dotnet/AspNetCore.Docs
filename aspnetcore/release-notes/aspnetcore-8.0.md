@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/16/2023
+ms.date: 10/23/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -409,7 +409,7 @@ To opt-in to stateful reconnect for a JavaScript or Typescript client:
 
 To opt-in to stateful reconnect for a .NET client:
 
-* Update the .NET client code to enable the `UseStatefulReconnect` option:
+* Update the .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
     var builder = new HubConnectionBuilder()
