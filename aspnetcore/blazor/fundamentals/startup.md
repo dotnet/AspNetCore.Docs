@@ -44,6 +44,37 @@ The Blazor startup process is automatic and asynchronous via the Blazor script (
 
 To manually start Blazor:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
+* Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+* Place static server rendering options in the `ssr` function.
+* Place server-side Blazor-SignalR circuit options in the `circuit` function.
+* Place client-side WebAssembly options in the `webAssembly` function.
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  ...
+  Blazor.start({
+    ssr: {
+      ...
+    },
+    circuit: {
+      ...
+    },
+    webAssembly: {
+      ...
+    }
+  });
+  ...
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
@@ -55,6 +86,8 @@ To manually start Blazor:
   ...
 </script>
 ```
+
+:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
