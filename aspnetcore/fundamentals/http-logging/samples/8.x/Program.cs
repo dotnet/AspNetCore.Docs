@@ -72,7 +72,7 @@ builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = HttpLoggingFields.Duration;
 });
-//builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
+builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
 // </snippet4>
 var app = builder.Build();
 
@@ -93,14 +93,14 @@ app.Use(async (context, next) =>
     await next();
 });
 
-// <snippet5>
 app.MapGet("/", () => "Hello World!");
 
+// <snippet5>
 app.MapGet("/duration", [HttpLogging(loggingFields: HttpLoggingFields.Duration)]
-    () => "Hello World! (attribute)");
+    () => "Hello World! (logging duration)");
 
 app.MapGet("/request", [HttpLogging(loggingFields: HttpLoggingFields.RequestPropertiesAndHeaders)]
-    () => "Hello World! (attribute)");
+    () => "Hello World! (logging request)");
 // </snippet5>
 
 app.Run();
