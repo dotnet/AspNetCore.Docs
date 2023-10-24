@@ -723,6 +723,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
     circuit: {
       configureSignalR: function (builder) {
         builder.configureLogging(2);
+      }
     }
   });
 </script>

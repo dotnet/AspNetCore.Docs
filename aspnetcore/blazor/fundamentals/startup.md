@@ -48,9 +48,9 @@ To manually start Blazor:
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
-* Place static server rendering options in the `ssr` function.
-* Place server-side Blazor-SignalR circuit options in the `circuit` function.
-* Place client-side WebAssembly options in the `webAssembly` function.
+* Place static server rendering options in the `ssr` property.
+* Place server-side Blazor-SignalR circuit options in the `circuit` property.
+* Place client-side WebAssembly options in the `webAssembly` property.
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
