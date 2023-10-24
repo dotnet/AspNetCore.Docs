@@ -1,7 +1,7 @@
 ---
 title: HTTP logging in .NET Core and ASP.NET Core
 author: rick-anderson
-description: Learn how to log HTTP Requests and Response.
+description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
@@ -23,18 +23,18 @@ HTTP logging is a middleware that logs information about incoming HTTP requests 
 * Body
 * HTTP response information
 
-HTTP logging can be configured to:
+HTTP logging can:
 
 * Log all requests and responses or only requests and responses that meet certain criteria.
-* Filter which parts of the request and response are logged.
-* Redact sensitive information from the logs.
+* Select which parts of the request and response are logged.
+* Allow you to redact sensitive information from the logs.
 
 HTTP logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
 
 > [!WARNING]
 > HTTP logging can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information.
 
-## Enabling HTTP logging
+## Enable HTTP logging
 
 HTTP logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, as shown in the following example:
 
@@ -92,7 +92,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 ### `RequestHeaders` and `ResponseHeaders`
 
-<xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders> and <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders> are sets of HTTP headers that are logged. Header values are only logged for header names that are in these collections. The following code adds `sec-ch-ua` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders>, so the value of the `sec-ch-ua` header is logged. And it adds `MyResponseHeader` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders>, so the value of the `MyResponseHeader` header is logged. If these lines are removed, the values of these headers are redacted.
+<xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders> and <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders> are sets of HTTP headers that are logged. Header values are only logged for header names that are in these collections. The following code adds `sec-ch-ua` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders>, so the value of the `sec-ch-ua` header is logged. And it adds `MyResponseHeader` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders>, so the value of the `MyResponseHeader` header is logged. If these lines are removed, the values of these headers are `[Redacted]`.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
 
@@ -123,6 +123,12 @@ Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> t
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=13)]
 
+## The `[HttpLogging]` attribute
+
+Use the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute for endpoint-specific logging configuration, as shown in the following example:
+
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet5)]
+
 ## `IHttpLoggingInterceptor`
 
 <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> is the interface for a service that can be implemented to handle per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. An implementation can:
@@ -132,7 +138,7 @@ Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> t
 * Adjust how much of the request or response body is logged.
 * Add custom fields to the logs.
 
-Register an `IHttpLoggingInterceptor` implementation by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they're run in the order registered.
+Register an `IHttpLoggingInterceptor` implementation by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they're run in the order registered.
 
 The following example shows how to register an `IHttpLoggingInterceptor` implementation:
 
@@ -140,14 +146,14 @@ The following example shows how to register an `IHttpLoggingInterceptor` impleme
 
 The following example is an `IHttpLoggingInterceptor` implementation that:
 
-* Inspects the request path and disables logging for requests that don't start with `/api`.
-* For `/api` requests:
+* Inspects the request path and disables logging for POST requests.
+* For non-POST requests:
   * Redacts request path, request headers, and response headers.
   * Adds custom fields and field values to the request and response logs.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/SampleHttpLoggingInterceptor.cs)]
 
-With this interceptor, a request that doesn't start with `/api` doesn't generate any logs even if HTTP logging is configured to log `HttpLoggingFields.All`. An `/api` request generates logs similar to the following example:
+With this interceptor, a POST request doesn't generate any logs even if HTTP logging is configured to log `HttpLoggingFields.All`. A GET request generates logs similar to the following example:
 
 ```output
 info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[1]
@@ -177,10 +183,18 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
       ResponseEnrichment: Stuff
       StatusCode: 200
 info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[4]
-      ResponseBody: Hello World from an /api URL
+      ResponseBody: Hello World!
 info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[8]
       Duration: 2.2778ms
 ```
+
+## Logging configuration order of precedence
+
+The following list shows the order of precedence for logging configuration:
+
+1. Global configuration from <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>, set by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A>.
+1. Endpoint-specific configuration from the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute overrides global configuration.
+1. [`IHttpLoggingInterceptor`](#ihttplogginginterceptor) is called with the results and can further modify the configuration per request.
 
 :::moniker-end
 

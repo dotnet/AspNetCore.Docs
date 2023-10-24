@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND THIRD
+#define THIRD // FIRST SECOND THIRD
 #if NEVER
 #elif FIRST
 // <snippet_Addservices>
@@ -70,9 +70,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpLogging(logging =>
 {
-    logging.LoggingFields = HttpLoggingFields.All;
+    logging.LoggingFields = HttpLoggingFields.Duration;
 });
-builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
+//builder.Services.AddHttpLoggingInterceptor<SampleHttpLoggingInterceptor>();
 // </snippet4>
 var app = builder.Build();
 
@@ -93,8 +93,15 @@ app.Use(async (context, next) =>
     await next();
 });
 
+// <snippet5>
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/api/hello", () => "Hello World from an /api URL");
+
+app.MapGet("/duration", [HttpLogging(loggingFields: HttpLoggingFields.Duration)]
+    () => "Hello World! (attribute)");
+
+app.MapGet("/request", [HttpLogging(loggingFields: HttpLoggingFields.RequestPropertiesAndHeaders)]
+    () => "Hello World! (attribute)");
+// </snippet5>
 
 app.Run();
 // </snippet3>

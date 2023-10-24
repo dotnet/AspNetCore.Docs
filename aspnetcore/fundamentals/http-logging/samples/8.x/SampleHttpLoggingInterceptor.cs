@@ -6,9 +6,9 @@ internal sealed class SampleHttpLoggingInterceptor : IHttpLoggingInterceptor
 {
     public ValueTask OnRequestAsync(HttpLoggingInterceptorContext logContext)
     {
-        if (!logContext.HttpContext.Request.Path.StartsWithSegments("/api"))
+        if (logContext.HttpContext.Request.Method == "POST")
         {
-            // Don't log anything if the path doesn't start with /api.
+            // Don't log anything if the request is a POST.
             logContext.LoggingFields = HttpLoggingFields.None;
         }
 
