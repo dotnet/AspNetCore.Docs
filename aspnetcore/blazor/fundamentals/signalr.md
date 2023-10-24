@@ -842,6 +842,8 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 
 `wwwroot/boot.js`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ```javascript
@@ -910,7 +912,7 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```javascript
 (() => {
@@ -975,6 +977,8 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
