@@ -1,5 +1,5 @@
 ---
-title: HTTP Logging in .NET Core and ASP.NET Core
+title: HTTP logging in .NET Core and ASP.NET Core
 author: rick-anderson
 description: Learn how to log HTTP Requests and Response.
 monikerRange: '>= aspnetcore-6.0'
@@ -9,7 +9,7 @@ ms.date: 10/24/2023
 uid: fundamentals/http-logging/index
 ---
 
-# HTTP Logging in ASP.NET Core
+# HTTP logging in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -25,18 +25,18 @@ HTTP logging is a middleware that logs information about incoming HTTP requests 
 
 HTTP logging can be configured to log all requests and responses or only requests and responses that meet certain criteria. It can filter which parts of the request and response are logged. It can also redact sensitive information from the logs.
 
-HTTP Logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
+HTTP logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
 
 > [!WARNING]
-> HTTP Logging can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information.
+> HTTP logging can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information.
 
 ## Enabling HTTP logging
 
-HTTP Logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, as shown in the following example:
+HTTP logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, as shown in the following example:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet2&highlight=3,7)]
 
-The empty lambda in the preceding example of calling `AddHttpLogging` adds the middleware with the default configuration. By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
+The empty lambda in the preceding example of calling `AddHttpLogging` adds the middleware with the default configuration. By default, HTTP logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
 ```json
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
@@ -73,7 +73,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
       Server: Kestrel
 ```
 
-## HTTP Logging options
+## HTTP logging options
 
 To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
 
