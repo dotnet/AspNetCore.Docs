@@ -86,9 +86,9 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 [`HttpLoggingOptions.LoggingFields`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.LoggingFields) is an enum flag that configures specific parts of the request and response to log. ``HttpLoggingOptions.LoggingFields`` defaults to <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestPropertiesAndHeaders> | <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders>.
 
-### `RequestHeaders`
+### `RequestHeaders` and `ResponseHeaders`
 
-<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection. The following code logs the request header `"sec-ch-ua"`. If `logging.RequestHeaders.Add("sec-ch-ua");` is removed, the value of the request header `"sec-ch-ua"` is redacted. The following highlighted code calls [`HttpLoggingOptions.RequestHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders) and [`HttpLoggingOptions.ResponseHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders) :
+<xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders> and <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders> are sets of HTTP headers that are allowed to be logged. Header values are only logged for header names that are in these collections. The following code adds `sec-ch-ua` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders>, so the value of the `sec-ch-ua` header is logged. And it adds `MyResponseHeader` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders>, so the value of the `MyResponseHeader` header is logged. If these lines are removed, the values of these headers are redacted.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
 
@@ -115,13 +115,13 @@ This approach can also be used to enable logging for data that is not logged by 
 
 ### `CombineLogs`
 
-Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> to `true` configures the middleware to consolidate all of its enabled logs for a request/response into one log at the end. This includes the request, request body, response, response body, and duration.
+Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> to `true` configures the middleware to consolidate all of its enabled logs for a request and response into one log at the end. This includes the request, request body, response, response body, and duration.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=13)]
 
 ## `IHttpLoggingInterceptor`
 
-<xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> is the interface for a service that can be implemented to handle per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. The implementation can:
+<xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> is the interface for a service that can be implemented to handle per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. An implementation can:
 
 * Inspect a request or response.
 * Enable or disable any <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields>.
