@@ -23,7 +23,11 @@ HTTP logging is a middleware that logs information about incoming HTTP requests 
 * Body
 * HTTP response information
 
-HTTP logging can be configured to log all requests and responses or only requests and responses that meet certain criteria. It can filter which parts of the request and response are logged. It can also redact sensitive information from the logs.
+HTTP logging can be configured to:
+
+* Log all requests and responses or only requests and responses that meet certain criteria.
+* Filter which parts of the request and response are logged.
+* Redact sensitive information from the logs.
 
 HTTP logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
 
