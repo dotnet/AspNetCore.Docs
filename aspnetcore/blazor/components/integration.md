@@ -210,7 +210,7 @@ Add the following `Counter` component to the app that adopts the interactive ser
 
 When the app is run, the `Counter` component is accessed at `/counter`.
 
-### Enable interactive Auto or WebAssembly rendering
+### Enable interactive Auto and WebAssembly rendering
 
 Follow the guidance in the [Add static server Razor component rendering](#add-static-server-razor-component-rendering) section.
 
