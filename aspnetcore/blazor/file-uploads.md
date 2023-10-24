@@ -107,7 +107,7 @@ The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Fo
 
 For large client-side file uploads that fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
-<!-- UPDATE 9.0 - Check PU issues to see if new capabilities are landing. -->
+<!-- UPDATE 9.0 PU PR: https://github.com/dotnet/runtime/pull/91295 -->
 
 Work is currently scheduled for .NET 9 (late 2024) to address the client-side file size upload limitation.
 
