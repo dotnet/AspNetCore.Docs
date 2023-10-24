@@ -105,7 +105,7 @@ Add an `App` component to the app, which serves as the root component for other 
 </html>
 ```
 
-For the `<link>` element in the preceding example, change `AspNetCoreApp` in the stylesheet's file name to match the app's namespace. For example, an app with the namespace `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name:
+For the `<link>` element in the preceding example, change `AspNetCoreApp` in the stylesheet's file name to match the app's project name. For example, a project named `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name:
 
 ```html
 <link rel="stylesheet" href="ContosoApp.styles.css" />
