@@ -46,7 +46,7 @@ By default, HTTP Logging logs common properties such as path, status-code, and h
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
  ```
 
-A request and response is logged as a pair of messages at `LogLevel.Information`.
+With the default configuration, a request and response is logged as a pair of messages similar to the following example:
 
 ```output
 info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[1]
