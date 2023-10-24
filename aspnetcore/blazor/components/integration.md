@@ -210,12 +210,16 @@ Add the following `Counter` component to the app that adopts the interactive ser
 
 When the app is run, the `Counter` component is accessed at `/counter`.
 
-### Enable interactive Auto and WebAssembly rendering
+### Enable interactive Auto or WebAssembly rendering
 
-Follow the guidance in the following sections to enable static and interactive server rendering:
+Follow the guidance in the [Add static server Razor component rendering](#add-static-server-razor-component-rendering) section.
 
-* [Add static server Razor component rendering](#add-static-server-razor-component-rendering)
-* [Enable interactive server rendering](#enable-interactive-server-rendering)
+Auto render mode components render on the server first, then render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. The interactive WebAssembly render mode renders only renders components on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that component code is ***not*** private using the Auto or WebAssembly render modes. For more information, see <xref:blazor/components/render-modes>.
+
+After deciding which render mode to adopt:
+
+* If you plan to adopt the Auto render mode, follow the guidance in the [Enable interactive server rendering](#enable-interactive-server-rendering) section. 
+* If you plan to only adopt interactive WebAssembly rendering, continue without adding interactive server rendering.
 
 Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server) NuGet package to the app.
 
@@ -283,7 +287,9 @@ Add a project reference to the ASP.NET Core project for the client project:
 
 Make the following changes to the ASP.NET Core app's `Program` file:
 
-* Add interactive WebAssembly component services with `AddInteractiveWebAssemblyComponents` where Razor component services are added with `AddRazorComponents`:
+* Add interactive WebAssembly component services with `AddInteractiveWebAssemblyComponents` where Razor component services are added with `AddRazorComponents`.
+
+  For interactive Auto rendering:
 
   ```csharp
   builder.Services.AddRazorComponents()
@@ -291,7 +297,16 @@ Make the following changes to the ASP.NET Core app's `Program` file:
       .AddInteractiveWebAssemblyComponents();
   ```
 
-* Add the interactive WebAssembly render mode (`AddInteractiveWebAssemblyRenderMode`) and additional assemblies for the `.Client` project where Razor components are mapped with `MapRazorComponents`:
+  For only interactive WebAssembly rendering:
+
+  ```csharp
+  builder.Services.AddRazorComponents()
+      .AddInteractiveWebAssemblyComponents();
+  ```
+
+* Add the interactive WebAssembly render mode (`AddInteractiveWebAssemblyRenderMode`) and additional assemblies for the `.Client` project where Razor components are mapped with `MapRazorComponents`.
+
+  For interactive Auto rendering:
 
   ```csharp
   app.MapRazorComponents<App>()
@@ -300,13 +315,19 @@ Make the following changes to the ASP.NET Core app's `Program` file:
       .AddAdditionalAssemblies(typeof(AspNetCoreApp.Client._Imports).Assembly);
   ```
 
-  In the preceding example, change `AspNetCoreApp.Client` to match the `.Client` project's namespace.
+  For only interactive WebAssembly rendering:
+
+  ```csharp
+  app.MapRazorComponents<App>()
+      .AddInteractiveWebAssemblyRenderMode()
+      .AddAdditionalAssemblies(typeof(AspNetCoreApp.Client._Imports).Assembly);
+  ```
+
+  In the preceding examples, change `AspNetCoreApp.Client` to match the `.Client` project's namespace.
 
 Add a `Components` folder and a `Components/Pages` folder to the `.Client` project.
 
-To demonstrate the interactive Auto render mode, add the following `Counter` component to the `.Client` project.
-
-`Components/Pages/Counter.razor` in the `.Client` project:
+Add the following `Counter` component (`Components/Pages/Counter.razor`) to the `.Client` project:
 
 ```razor
 @page "/counter"
@@ -330,7 +351,11 @@ To demonstrate the interactive Auto render mode, add the following `Counter` com
 }
 ```
 
-Auto render mode components render on the server first, then render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. Keep in mind that component code is ***not*** private using the Auto render mode. For more information, see <xref:blazor/components/render-modes>.
+If the app is only adopting interactive WebAssembly rendering, remove the `@rendermode` directive and value:
+
+```diff
+- @rendermode InteractiveAuto
+```
 
 Run the solution from the ***ASP.NET Core app*** project:
 
