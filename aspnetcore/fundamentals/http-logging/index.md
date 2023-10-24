@@ -130,7 +130,7 @@ Calling <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs%2A
 * Inspect a request or response.
 * Enable or disable any <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields>.
 * Adjust how much of the request or response body is logged.
-* Add custom parameters to the logs.
+* Add custom fields to the logs.
 
 Register an `IHttpLoggingInterceptor` by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they are run in the order registered.
 
