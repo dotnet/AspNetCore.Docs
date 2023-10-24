@@ -187,7 +187,7 @@ public class EmailController : Controller
 }
 ```
 
-## `IHttpContextAccessor`/`HttpContext` in Razor components
+## `IHttpContextAccessor`/`HttpContext` in Razor components (Blazor)
 
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
