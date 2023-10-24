@@ -211,7 +211,6 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
     For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
-
 :::moniker range=">= aspnetcore-8.0"
 
 To disable compression, add the `CompressionEnabled` MSBuild property to the app's project file and set the value to `false`:

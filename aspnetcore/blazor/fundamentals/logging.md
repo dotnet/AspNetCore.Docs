@@ -678,6 +678,25 @@ For the `configureLogging` log level value, pass the argument as either the stri
 
 Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
 
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      configureSignalR: function (builder) {
+        builder.configureLogging("information");
+      }
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -689,9 +708,29 @@ Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
+:::moniker-end
+
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      configureSignalR: function (builder) {
+        builder.configureLogging(2);
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}"></script>
@@ -703,6 +742,8 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
   });
 </script>
 ```
+
+:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 

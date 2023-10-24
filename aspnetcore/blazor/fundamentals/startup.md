@@ -293,6 +293,31 @@ The `loadBootResource` function can return a URI string to override the loading 
 
 The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    webAssembly: {
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
+        switch (type) {
+          case 'dotnetjs':
+          case 'dotnetwasm':
+          case 'timezonedata':
+            return `https://cdn.example.com/blazorwebassembly/{VERSION}/${name}`;
+        }
+      }
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -310,9 +335,38 @@ The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for exampl
 </script>
 ```
 
+:::moniker-end
+
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
+
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    webAssembly: {
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        if (type == 'dotnetjs') {
+          return null;
+        } else {
+          return fetch(defaultUri, {
+            cache: 'no-cache',
+            integrity: integrity,
+            headers: { 'Custom-Header': 'Custom Value' }
+          });
+        }
+      }
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -332,6 +386,8 @@ To customize more than just the URLs for boot resources, the `loadBootResource` 
   });
 </script>
 ```
+
+:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
@@ -503,8 +559,10 @@ The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `tru
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
-    configureRuntime: dotnet => {
-      dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
+    webAssembly: {
+      configureRuntime: dotnet => {
+        dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
+      }
     }
   });
 </script>

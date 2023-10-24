@@ -670,8 +670,10 @@ The following example for the `App.razor` file (Blazor Web App) shows the assign
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
-    configureSignalR: function (builder) {
-      builder.withServerTimeout(30000).withKeepAliveInterval(15000);
+    circuit: {
+      configureSignalR: function (builder) {
+        builder.withServerTimeout(30000).withKeepAliveInterval(15000);
+      }
     }
   });
 </script>
@@ -772,6 +774,26 @@ To modify the connection events, register callbacks for the following connection
 
 **Both `onConnectionDown` and `onConnectionUp` must be specified.**
 
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      reconnectionHandler: {
+        onConnectionDown: (options, error) => console.error(error),
+        onConnectionUp: () => console.log("Up, up, and away!")
+      }
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -783,6 +805,8 @@ To modify the connection events, register callbacks for the following connection
   });
 </script>
 ```
+
+:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
@@ -817,6 +841,76 @@ The default reconnection behavior requires the user to take manual action to ref
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 `wwwroot/boot.js`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```javascript
+(() => {
+  const maximumRetryCount = 3;
+  const retryIntervalMilliseconds = 5000;
+  const reconnectModal = document.getElementById('reconnect-modal');
+  
+  const startReconnectionProcess = () => {
+    reconnectModal.style.display = 'block';
+
+    let isCanceled = false;
+
+    (async () => {
+      for (let i = 0; i < maximumRetryCount; i++) {
+        reconnectModal.innerText = `Attempting to reconnect: ${i + 1} of ${maximumRetryCount}`;
+
+        await new Promise(resolve => setTimeout(resolve, retryIntervalMilliseconds));
+
+        if (isCanceled) {
+          return;
+        }
+
+        try {
+          const result = await Blazor.reconnect();
+          if (!result) {
+            // The server was reached, but the connection was rejected; reload the page.
+            location.reload();
+            return;
+          }
+
+          // Successfully reconnected to the server.
+          return;
+        } catch {
+          // Didn't reach the server; try again.
+        }
+      }
+
+      // Retried too many times; reload the page.
+      location.reload();
+    })();
+
+    return {
+      cancel: () => {
+        isCanceled = true;
+        reconnectModal.style.display = 'none';
+      },
+    };
+  };
+
+  let currentReconnectionProcess = null;
+
+  Blazor.start({
+    circuit: {
+      reconnectionHandler: {
+        onConnectionDown: () => currentReconnectionProcess ??= startReconnectionProcess(),
+        onConnectionUp: () => {
+          currentReconnectionProcess?.cancel();
+          currentReconnectionProcess = null;
+        }
+      }
+    }
+  });
+})();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```javascript
 (() => {
@@ -874,11 +968,13 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
       onConnectionUp: () => {
         currentReconnectionProcess?.cancel();
         currentReconnectionProcess = null;
-      },
-    },
+      }
+    }
   });
 })();
 ```
+
+:::moniker-end
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
@@ -887,6 +983,26 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 ## Adjust the server-side reconnection retry count and interval
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
+
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      reconnectionOptions: {
+        maxRetries: 3,
+        retryIntervalMilliseconds: 2000
+      }
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -899,6 +1015,8 @@ To adjust the reconnection retry count and interval, set the number of retries (
   });
 </script>
 ```
+
+:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 

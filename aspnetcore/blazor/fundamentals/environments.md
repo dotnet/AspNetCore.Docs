@@ -71,6 +71,27 @@ For more information on how to configure the server-side environment, see <xref:
 
 The following example starts Blazor in the `Staging` environment if the hostname includes `localhost`. Otherwise, the environment is set to its default value.
 
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  if (window.location.hostname.includes("localhost")) {
+    Blazor.start({
+      webAssembly: {
+        environment: "Staging"
+      }
+    });
+  } else {
+    Blazor.start();
+  }
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -83,6 +104,8 @@ The following example starts Blazor in the `Staging` environment if the hostname
   }
 </script>
 ```
+
+:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 

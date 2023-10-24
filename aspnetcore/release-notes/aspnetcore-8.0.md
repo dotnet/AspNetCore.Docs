@@ -338,8 +338,10 @@ The following example shows the ***new approach*** for assigning values that are
 
 ```javascript
 Blazor.start({
-  configureSignalR: function (builder) {
-    builder.withServerTimeout(60000).withKeepAliveInterval(30000);
+  circuit: {
+    configureSignalR: function (builder) {
+      builder.withServerTimeout(60000).withKeepAliveInterval(30000);
+    }
   }
 });
 ```
