@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
-    #region snippet
+// <snippet>
     public class TestModel : PageModel
     {
         // requires using Microsoft.Extensions.Configuration;
@@ -29,5 +29,5 @@ namespace ConfigSample
                            $"Default Log Level: {defaultLogLevel}");
         }
     }
-    #endregion
+// </snippet>
 }
