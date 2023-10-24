@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 07/10/2023
+ms.date: 10/23/2023
 uid: signalr/configuration
 ---
 
@@ -325,6 +325,61 @@ var connection = new signalR.HubConnectionBuilder()
 
 ---
 
+### Configure stateful reconnect options
+
+Stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
+
+Stateful reconnect achieves this by:
+
+* Temporarily buffering data on the server and client.
+* Acknowledging messages received (ACK-ing) by both the server and client.
+* Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
+
+To opt-in to stateful reconnect for a JavaScript or Typescript client:
+
+* Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
+
+  ```JavaScript
+  const builder = new signalR.HubConnectionBuilder()
+    .withUrl("/hubname")
+    .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
+  const connection = builder.build();
+  ```
+
+  The `bufferSize` option is optional with a default of 100,000 bytes.
+
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+
+  ```csharp
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
+  ```
+
+To opt-in to stateful reconnect for a .NET client:
+
+* Update the .NET client code to enable the `WithStatefulReconnect` option:
+
+  ```csharp
+    var builder = new HubConnectionBuilder()
+        .WithUrl("<hub url>")
+        .WithStatefulReconnect();
+    builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
+    var hubConnection = builder.Build();
+  ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
+
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+
+  ```csharp
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
+  ```
+
 ### Configure additional options
 
 Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) method on `HubConnectionBuilder` or on the various configuration APIs on the `HttpHubConnectionBuilder` in the Java client:
@@ -346,6 +401,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | `WebSocketConfiguration` | `null` | A delegate that can be used to configure additional WebSocket options. Receives an instance of <xref:System.Net.WebSockets.ClientWebSocketOptions> that can be used to configure the options. |
 | `ApplicationMaxBufferSize` | 1 MB | The maximum number of bytes received from the server that the client buffers before applying backpressure. Increasing this value allows the client to receive larger messages faster without applying backpressure, but can increase memory consumption. |
 | `TransportMaxBufferSize` | 1 MB | The maximum number of bytes sent by the user application that the client buffers before observing backpressure. Increasing this value allows the client to buffer larger messages faster without awaiting backpressure, but can increase memory consumption. |
+| `WithStatefulReconnect` | 100,000 | Enables stateful reconnect with a default |
 
 # [JavaScript](#tab/javascript)
 
