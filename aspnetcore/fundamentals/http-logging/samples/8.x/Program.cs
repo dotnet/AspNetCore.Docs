@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND THIRD
+#define FIRST // FIRST SECOND THIRD
 #if NEVER
 #elif FIRST
 // <snippet_Addservices>
@@ -14,7 +14,7 @@ builder.Services.AddHttpLogging(logging =>
     logging.MediaTypeOptions.AddText("application/javascript");
     logging.RequestBodyLogLimit = 4096;
     logging.ResponseBodyLogLimit = 4096;
-
+    logging.CombineLogs = true;
 });
 
 var app = builder.Build();
