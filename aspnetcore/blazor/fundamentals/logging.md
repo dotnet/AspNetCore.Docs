@@ -722,7 +722,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
   Blazor.start({
     circuit: {
       configureSignalR: function (builder) {
-        builder.configureLogging(2);
+        builder.configureLogging("information");
       }
     }
   });
