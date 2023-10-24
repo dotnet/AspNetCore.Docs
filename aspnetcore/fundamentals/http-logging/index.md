@@ -140,7 +140,7 @@ Use the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttri
 * Adjust how much of the request or response body is logged.
 * Add custom fields to the logs.
 
-Register an `IHttpLoggingInterceptor` implementation by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they're run in the order registered.
+Register an `IHttpLoggingInterceptor` implementation by calling [`AddHttpLoggingInterceptor<T>`](xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)) in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they're run in the order registered.
 
 The following example shows how to register an `IHttpLoggingInterceptor` implementation:
 
