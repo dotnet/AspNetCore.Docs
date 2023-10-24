@@ -323,7 +323,12 @@ Make the following changes to the ASP.NET Core app's `Program` file:
 
 Add a `Pages` folder to the `.Client` project.
 
-Add the following `Counter` component (`Pages/Counter.razor`) to the `.Client` project:
+If the ASP.NET Core project has an existing `Counter` component:
+
+* Move the component to the `Pages` folder of the `.Client` project.
+* Remove the `@rendermode` directive at the top of the component file.
+
+If the ASP.NET Core app doesn't have a `Counter` component, add the following `Counter` component (`Pages/Counter.razor`) to the `.Client` project:
 
 ```razor
 @page "/counter"
