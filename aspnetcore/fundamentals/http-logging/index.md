@@ -5,7 +5,7 @@ description: Learn how to log HTTP Requests and Response.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/19/2023
+ms.date: 10/23/2023
 uid: fundamentals/http-logging/index
 ---
 
@@ -117,7 +117,7 @@ This approach can also be used to enable logging for data that is not logged by 
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
 
-## `CombineLogs`
+### `CombineLogs`
 
 Calling <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs%2A> configures the middleware to consolidate all of its enabled logs for a request/response into one log at the end. This includes the request, request body, response, response body, and duration.
 
