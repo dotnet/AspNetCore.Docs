@@ -36,7 +36,7 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 ## Enabling HTTP logging
 
-HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, which adds HTTP logging middleware.
+HTTP Logging is enabled by calling <xref:Microsoft.AspNetCore.Telemetry.HttpLoggingServiceExtensions.AddHttpLogging%2A> and <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> to add HTTP logging middleware.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet2&highlight=3,7)]
 
@@ -46,9 +46,36 @@ By default, HTTP Logging logs common properties such as path, status-code, and h
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
  ```
 
-The output is logged as a single message at `LogLevel.Information`.
+A request and response is logged as a pair of messages at `LogLevel.Information`.
 
-![Sample request output](~/fundamentals/http-logging/_static/requestlog.png)
+```output
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[1]
+      Request:
+      Protocol: HTTP/2
+      Method: GET
+      Scheme: https
+      PathBase:
+      Path: /
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+      Host: localhost:52941
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.61
+      Accept-Encoding: gzip, deflate, br
+      Accept-Language: en-US,en;q=0.9
+      Upgrade-Insecure-Requests: [Redacted]
+      sec-ch-ua: [Redacted]
+      sec-ch-ua-mobile: [Redacted]
+      sec-ch-ua-platform: [Redacted]
+      sec-fetch-site: [Redacted]
+      sec-fetch-mode: [Redacted]
+      sec-fetch-user: [Redacted]
+      sec-fetch-dest: [Redacted]
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
+      Response:
+      StatusCode: 200
+      Content-Type: text/plain; charset=utf-8
+      Date: Tue, 24 Oct 2023 02:03:53 GMT
+      Server: Kestrel
+```
 
 ## HTTP Logging options
 
@@ -57,7 +84,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices)]
 
 > [!NOTE]
-> In the preceding sample and following samples, `UseHttpLogging` is called after `UseStaticFiles`, so HTTP logging is not enabled for static file. To enable static file HTTP logging, call `UseHttpLogging` before `UseStaticFiles`.
+> In the preceding sample and following samples, `UseHttpLogging` is called after `UseStaticFiles`, so HTTP logging is not enabled for static files. To enable static file HTTP logging, call `UseHttpLogging` before `UseStaticFiles`.
 
 ### `LoggingFields`
 
@@ -89,6 +116,71 @@ This approach can also be used to enable logging for data that is not logged by 
 * <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseBodyLogLimit>
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
+
+## `CombineLogs`
+
+Calling <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs%2A> configures the middleware to consolidate all of its enabled logs for a request/response into one log at the end. This includes the request, request body, response, response body, and duration.
+
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=13)]
+
+### IHttpLoggingInterceptor
+
+<xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> is the interface for a service that can be implemented to handle per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. The implementation can:
+
+* Inspect a request or response.
+* Enable or disable any <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields>.
+* Adjust how much of the request or response body is logged.
+* Add custom parameters to the logs.
+
+Register an `IHttpLoggingInterceptor` by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they are run in the order registered.
+
+The following example shows how to register an `IHttpLoggingInterceptor` instance:
+
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet4&highlight=7)]
+
+The following example is an `IHttpLoggingInterceptor` implementation that:
+
+* Inspects the request path and disables logging for requests that don't start with `/api`.
+* For `/api` requests:
+  * Redacts request path, request headers, and response headers.
+  * Adds custom fields and field values to the request and response logs.
+
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/SampleHttpLoggingInterceptor.cs)]
+
+With this interceptor, a request that doesn't start with `/api` doesn't generate any logs even if HTTP logging is configured to log `HttpLoggingFields.All`. An `/api` request generates logs similar to the following example:
+
+```output
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[1]
+      Request:
+      Path: RedactedPath
+      Accept: RedactedHeader
+      Host: RedactedHeader
+      User-Agent: RedactedHeader
+      Accept-Encoding: RedactedHeader
+      Accept-Language: RedactedHeader
+      Upgrade-Insecure-Requests: RedactedHeader
+      sec-ch-ua: RedactedHeader
+      sec-ch-ua-mobile: RedactedHeader
+      sec-ch-ua-platform: RedactedHeader
+      sec-fetch-site: RedactedHeader
+      sec-fetch-mode: RedactedHeader
+      sec-fetch-user: RedactedHeader
+      sec-fetch-dest: RedactedHeader
+      RequestEnrichment: Stuff
+      Protocol: HTTP/2
+      Method: GET
+      Scheme: https
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
+      Response:
+      Content-Type: RedactedHeader
+      MyResponseHeader: RedactedHeader
+      ResponseEnrichment: Stuff
+      StatusCode: 200
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[4]
+      ResponseBody: Hello World from an /api URL
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[8]
+      Duration: 2.2778ms
+```
 
 :::moniker-end
 
