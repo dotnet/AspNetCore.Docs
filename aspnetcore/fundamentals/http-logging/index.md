@@ -88,7 +88,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 ### `RequestHeaders` and `ResponseHeaders`
 
-<xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders> and <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders> are sets of HTTP headers that are allowed to be logged. Header values are only logged for header names that are in these collections. The following code adds `sec-ch-ua` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders>, so the value of the `sec-ch-ua` header is logged. And it adds `MyResponseHeader` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders>, so the value of the `MyResponseHeader` header is logged. If these lines are removed, the values of these headers are redacted.
+<xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders> and <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders> are sets of HTTP headers that are logged. Header values are only logged for header names that are in these collections. The following code adds `sec-ch-ua` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders>, so the value of the `sec-ch-ua` header is logged. And it adds `MyResponseHeader` to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders>, so the value of the `MyResponseHeader` header is logged. If these lines are removed, the values of these headers are redacted.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
 
@@ -98,7 +98,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=10)]
 
-This approach can also be used to enable logging for data that is not logged by default (e.g. form data, which might have a media type such as `application/x-www-form-urlencoded` or `multipart/form-data`).
+This approach can also be used to enable logging for data that isn't logged by default (for example, form data, which might have a media type such as `application/x-www-form-urlencoded` or `multipart/form-data`).
 
 #### `MediaTypeOptions` methods
 
@@ -128,9 +128,9 @@ Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> t
 * Adjust how much of the request or response body is logged.
 * Add custom fields to the logs.
 
-Register an `IHttpLoggingInterceptor` by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they are run in the order registered.
+Register an `IHttpLoggingInterceptor` implementation by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`. If multiple `IHttpLoggingInterceptor` instances are registered, they're run in the order registered.
 
-The following example shows how to register an `IHttpLoggingInterceptor` instance:
+The following example shows how to register an `IHttpLoggingInterceptor` implementation:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet4&highlight=7)]
 
