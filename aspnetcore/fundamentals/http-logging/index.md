@@ -123,7 +123,7 @@ Calling <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs%2A
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=13)]
 
-### IHttpLoggingInterceptor
+## `IHttpLoggingInterceptor`
 
 <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor> is the interface for a service that can be implemented to handle per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. The implementation can:
 
