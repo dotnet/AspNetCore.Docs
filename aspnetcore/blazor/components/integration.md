@@ -214,7 +214,7 @@ When the app is run, the `Counter` component is accessed at `/counter`.
 
 Follow the guidance in the [Add static server Razor component rendering](#add-static-server-razor-component-rendering) section.
 
-Auto render mode components render on the server first, then render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. The interactive WebAssembly render mode renders only renders components on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that component code is ***not*** private using the Auto or WebAssembly render modes. For more information, see <xref:blazor/components/render-modes>.
+Components using the Auto render mode initially use interactive server rendering, but then switch to render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. Components using the WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Auto or WebAssembly render modes, component code downloaded to the client is ***not*** private. For more information, see <xref:blazor/components/render-modes>.
 
 After deciding which render mode to adopt:
 
@@ -254,10 +254,6 @@ From the donor Blazor Web App, copy the entire `.Client` project into the soluti
 >
 > For the ASP.NET Core solution file, you can leave it in the ASP.NET Core project's folder. Alternatively, you can move the solution file or create a new one in the top-level solution folder as long as the project references correctly point to the project files (`.csproj`) of the two projects in the solution folder.
 
-From the donor Blazor Web App, copy the `Components` folder into the ASP.NET Core app's project folder.
-
-In the ASP.NET Core project's `Components/Pages` folder, delete the `Home` component (`Home.razor`).
-
 If you named the donor Blazor Web App when you created the donor project the same as the ASP.NET Core app, the namespaces used by the donated assets match those in the ASP.NET Core app. You shouldn't need to take further steps to match namespaces. If you used a different namespace when creating the donor Blazor Web App project, you must adjust the namespaces across the donated assets to match if you intend to use the rest of this guidance exactly as presented. If the namespaces don't match, ***either*** adjust the namespaces before proceeding ***or*** adjust the namespaces as you follow the remaining guidance in this section.
 
 Delete the donor Blazor Web App, as it has no further use in this process.
@@ -268,7 +264,7 @@ Add the `.Client` project to the solution:
 
 * .NET CLI: Use the [`dotnet sln add` command](/dotnet/core/tools/dotnet-sln#add) to add the `.Client` project to the solution.
 
-Add a project reference to the ASP.NET Core project for the client project:
+Add a project reference from the ASP.NET Core project to the client project:
 
 * Visual Studio: Right-click the ASP.NET Core project and select **Add** > **Project Reference**. Select the `.Client` project and select **OK**.
 
@@ -325,9 +321,9 @@ Make the following changes to the ASP.NET Core app's `Program` file:
 
   In the preceding examples, change `AspNetCoreApp.Client` to match the `.Client` project's namespace.
 
-Add a `Components` folder and a `Components/Pages` folder to the `.Client` project.
+Add a `Pages` folder to the `.Client` project.
 
-Add the following `Counter` component (`Components/Pages/Counter.razor`) to the `.Client` project:
+Add the following `Counter` component (`Pages/Counter.razor`) to the `.Client` project:
 
 ```razor
 @page "/counter"
