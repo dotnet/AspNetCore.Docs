@@ -325,7 +325,7 @@ var connection = new signalR.HubConnectionBuilder()
 
 ---
 
-### Configure stateful reconnect options
+### Configure stateful reconnect
 
 Stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
 
