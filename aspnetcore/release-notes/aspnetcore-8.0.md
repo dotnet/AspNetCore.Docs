@@ -108,7 +108,7 @@ You can now access the current <xref:Microsoft.AspNetCore.Http.HttpContext> as a
 public HttpContext? HttpContext { get; set; }
 ```
 
-Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component may be useful for inspecting and modifying headers or other properties.
+Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component might be useful for inspecting and modifying headers or other properties.
 
 For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/server/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
 
@@ -156,7 +156,7 @@ For more information, see <xref:blazor/components/virtualization?view=aspnetcore
 
 ### Close circuits when there are no remaining interactive server components
 
-Interactive server components handle web UI events using a real-time connection with the browser called a circuit. A circuit and its associated state are setup when a root interactive server component is rendered. The circuit will now be closed when there are no remaining interactive server components on the page, which frees up server resources.
+Interactive server components handle web UI events using a real-time connection with the browser called a circuit. A circuit and its associated state are set up when a root interactive server component is rendered. The circuit is closed when there are no remaining interactive server components on the page, which frees up server resources.
 
 ### Monitor SignalR circuit activity
 
@@ -174,7 +174,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetco
 
 Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
 
-For more information, see the following:
+For more information, see the following articles:
 
 [AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
 [AOT: Exception handling](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
@@ -232,7 +232,7 @@ Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HT
 In the following example:
 
 * `OnClose` is called when the `my-dialog` dialog is closed with the **Close** button.
-* `OnCancel` is called when the dialog is cancelled with the <kbd>Esc</kbd> key. Note that when an HTML dialog is dismissed with the <kbd>Esc</kbd> key, both the `cancel` and `close` events are triggered.
+* `OnCancel` is called when the dialog is canceled with the <kbd>Esc</kbd> key. When an HTML dialog is dismissed with the <kbd>Esc</kbd> key, both the `cancel` and `close` events are triggered.
 
 ```razor
 <div>
@@ -385,9 +385,9 @@ Stateful reconnect achieves this by:
 
 * Temporarily buffering data on the server and client.
 * Acknowledging messages received (ACK-ing) by both the server and client.
-* Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
+* Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
 
-To opt-in to stateful reconnect for a JavaScript or Typescript client:
+To opt in to stateful reconnect for a JavaScript or TypeScript client:
 
 * Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
 
@@ -407,7 +407,7 @@ To opt-in to stateful reconnect for a JavaScript or Typescript client:
   });
   ```
 
-To opt-in to stateful reconnect for a .NET client:
+To opt in to stateful reconnect for a .NET client:
 
 * Update the .NET client code to enable the `WithStatefulReconnect` option:
 
@@ -434,7 +434,7 @@ This section describes new features for minimal APIs. See also [the section on n
 
 ## User override culture
 
-Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use non-default Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
+Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the application to decide whether or not to use nondefault Windows settings for the <xref:System.Globalization.CultureInfo> <xref:System.Globalization.CultureInfo.DateTimeFormat> and <xref:System.Globalization.CultureInfo.NumberFormat> properties. This has no impact on Linux. This directly corresponds to <xref:System.Globalization.CultureInfo.UseUserOverride>.
 
 ```csharp
     app.UseRequestLocalization(options =>
@@ -478,7 +478,7 @@ The antiforgery token is only validated if:
 
 For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
-### Support for AsParameters and automatic metadata generation
+### Support for `AsParameters` and automatic metadata generation
 
 Minimal APIs generated at compile-time include support for parameters decorated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute and support automatic metadata inference for request and response types. Consider the following code:
 
@@ -491,7 +491,7 @@ The preceding generated code:
 * Annotates the endpoint metadata to indicate that it accepts a JSON payload.
 * Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
 
-### New IResettable interface in ObjectPool
+### New `IResettable` interface in `ObjectPool`
 
 [Microsoft.Extensions.ObjectPool](xref:Microsoft.Extensions.ObjectPool) provides support for pooling object instances in memory. Apps can use an object pool if the values are expensive to allocate or initialize.
 
@@ -522,7 +522,7 @@ For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/nat
 
 ### New `CreateEmptyBuilder` method
 
-There is another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> factory method for building small apps that only contain necessary features: `WebApplication.CreateEmptyBuilder(WebApplicationOptions options)`. This `WebApplicationBuilder` is created with no built-in behavior. The app it builds contains only the services and middleware that are explicitly configured.
+There's another new <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> factory method for building small apps that only contain necessary features: `WebApplication.CreateEmptyBuilder(WebApplicationOptions options)`. This `WebApplicationBuilder` is created with no built-in behavior. The app it builds contains only the services and middleware that are explicitly configured.
 
 Here’s an example of using this API to create a small web application:
 
@@ -560,7 +560,7 @@ In order to make Minimal APIs compatible with native AOT, we're introducing the 
 
 * Removes the runtime generation of this code.
 * Ensures that the types used in APIs are statically analyzable by the native AOT tool-chain.
-* Ensures that required code is not trimmed away.
+* Ensures that required code isn't trimmed away.
 
 We're working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
 
@@ -640,7 +640,7 @@ If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled
 
 ### `HTTP_PORTS` and `HTTPS_PORTS` config keys
 
-Applications and containers are often only given a port to listen on, like 80, without additional constraints like host or path. `HTTP_PORTS` and `HTTPS_PORTS` are new config keys that allow specifying the listening ports for the Kestrel and HTTP.sys servers. These may be defined with the `DOTNET_` or `ASPNETCORE_` environment variable prefixes, or specified directly through any other config input like appsettings.json. Each is a semicolon delimited list of port values. For example:
+Applications and containers are often only given a port to listen on, like 80, without additional constraints like host or path. `HTTP_PORTS` and `HTTPS_PORTS` are new config keys that allow specifying the listening ports for the Kestrel and HTTP.sys servers. These can be defined with the `DOTNET_` or `ASPNETCORE_` environment variable prefixes, or specified directly through any other config input like appsettings.json. Each is a semicolon delimited list of port values. For example:
 
 ```cli
 ASPNETCORE_HTTP_PORTS=80;8080
@@ -663,7 +663,7 @@ SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-expl
 
 Normally the host name is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in an app can use that information for purposes such as diagnostics, rate limiting, routing, and billing.
 
-Exposing the host name is particularly useful for large-scale services managing thousands of SNI bindings. This feature can significantly improve debugging efficiency during customer escalations. The increased transparency allows for faster problem resolution and enhanced service reliability.
+Exposing the host name is useful for large-scale services managing thousands of SNI bindings. This feature can significantly improve debugging efficiency during customer escalations. The increased transparency allows for faster problem resolution and enhanced service reliability.
 
 For more information, see [ITlsHandshakeFeature.HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,30).
 
@@ -674,7 +674,7 @@ For more information, see [ITlsHandshakeFeature.HostName](https://source.dot.net
 * Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
 * The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
 * The index of the timing can be cast to [HttpSysRequestTimingType](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysRequestTimingType.cs,e62e7bcd02f8589e) to know what the timing represents.
-* The value may be 0 if the timing isn't available for the current request.
+* The value might be 0 if the timing isn't available for the current request.
 
 [IHttpSysRequestTimingFeature.TryGetTimestamp](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) retrieves the timestamp for the provided timing type:
 
@@ -688,7 +688,7 @@ In some scenarios, high volumes of small writes with high latency can cause sign
 
 Response buffering should be enabled by an app that does synchronous I/O, or asynchronous I/O with no more than one outstanding write at a time. In these scenarios, response buffering can significantly improve throughput over high-latency connections.
 
-Apps that use asynchronous I/O and that may have more than one write outstanding at a time should **_not_** use this flag. Enabling this flag can result in higher CPU and memory usage by HTTP.Sys.
+Apps that use asynchronous I/O and that can have more than one write outstanding at a time should **_not_** use this flag. Enabling this flag can result in higher CPU and memory usage by HTTP.Sys.
 
 ## Authentication and authorization
 
@@ -696,7 +696,7 @@ ASP.NET Core 8 adds new features to authentication and authorization.
 
 ### Identity API endpoints
 
-[`MapIdentityApi<TUser>`](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
+[`MapIdentityApi<TUser>`](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and nonbrowser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
 ### IAuthorizationRequirementData
 
@@ -828,16 +828,16 @@ Generic variants are supported for the following attributes:
 
 The new analyzers shown in the following table are available in ASP.NET Core 8.0.
 
-| Diagnostic ID | Breaking or non-breaking | Description |
+| Diagnostic ID | Breaking or nonbreaking | Description |
 | --- | --- | --- |
-| [ASP0016](xref:diagnostics/asp0016) | Non-breaking | Do not return a value from RequestDelegate |
-| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using IHeaderDictionary.Append or the indexer |
-| [ASP0020](xref:diagnostics/asp0020) | Non-breaking | Complex types referenced by route parameters must be parsable |
-| [ASP0021](xref:diagnostics/asp0021) | Non-breaking | The return type of the BindAsync method must be `ValueTask<T>` |
-| [ASP0022](xref:diagnostics/asp0022) | Non-breaking | Route conflict detected between route handlers |
-| [ASP0023](xref:diagnostics/asp0023) | Non-breaking | MVC: Route conflict detected between route handlers |
-| [ASP0024](xref:diagnostics/asp0024) | Non-breaking | Route handler has multiple parameters with the `[FromBody]` attribute |
-| [ASP0025](xref:diagnostics/asp0025) | Non-breaking | Use AddAuthorizationBuilder |
+| [ASP0016](xref:diagnostics/asp0016) | Nonbreaking | Don't return a value from RequestDelegate |
+| [ASP0019](xref:diagnostics/asp0019) | Nonbreaking | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0020](xref:diagnostics/asp0020) | Nonbreaking | Complex types referenced by route parameters must be parsable |
+| [ASP0021](xref:diagnostics/asp0021) | Nonbreaking | The return type of the BindAsync method must be `ValueTask<T>` |
+| [ASP0022](xref:diagnostics/asp0022) | Nonbreaking | Route conflict detected between route handlers |
+| [ASP0023](xref:diagnostics/asp0023) | Nonbreaking | MVC: Route conflict detected between route handlers |
+| [ASP0024](xref:diagnostics/asp0024) | Nonbreaking | Route handler has multiple parameters with the `[FromBody]` attribute |
+| [ASP0025](xref:diagnostics/asp0025) | Nonbreaking | Use AddAuthorizationBuilder |
 
 ### Route tooling
 
@@ -862,7 +862,7 @@ Metrics are measurements reported over time and are most often used to monitor t
 
 This preview adds new metrics throughout ASP.NET Core using <xref:System.Diagnostics.Metrics>. `Metrics` is a modern API for reporting and collecting information about apps.
 
-Metrics offers a number of improvements compared to existing event counters:
+Metrics offers many improvements compared to existing event counters:
 
 * New kinds of measurements with counters, gauges and histograms.
 * Powerful reporting with multi-dimensional values.
@@ -972,7 +972,7 @@ For more information, see <xref:~/fundamentals/http-logging>.
 
 ### New APIs in ProblemDetails to support more resilient integrations
 
-In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> is not able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
+In .NET 7, the [ProblemDetails service](xref:fundamentals/error-handling#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> isn't able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync%2A> API:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
