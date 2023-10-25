@@ -63,7 +63,7 @@ An alternative is to use the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.A
 
 For more information, see the section on [AsParameters](#parameter-binding-for-argument-lists-with-asparameters) later in this article.
 
-The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/IFormFile) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 #### Secure binding from IFormFile and IFormFileCollection
 
@@ -71,9 +71,11 @@ Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFil
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1":::
 
-Parameters bound to the request with `[FromForm]` include an anti-forgery token. The anti-forgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
+Parameters bound to the request with `[FromForm]` include an [anti-forgery token](xref:security/anti-request-forgery). The anti-forgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
 For more information, see [Form binding in minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/).
+
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 ### Parameter binding with dependency injection
 
