@@ -131,7 +131,7 @@ For endpoint-specific configuration in minimal API apps, a <xref:Microsoft.AspNe
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet6)]
 
-For endpoint-specific configuration in apps that use controllers or Razor pages, the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute is available. The attribute can also be used in minimal API apps, as shown in the following example:
+For endpoint-specific configuration in apps that use controllers, the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute is available. The attribute can also be used in minimal API apps, as shown in the following example:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet5)]
 
