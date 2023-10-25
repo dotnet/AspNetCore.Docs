@@ -65,6 +65,12 @@ For more information, see the section on [AsParameters](#parameter-binding-for-a
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
+#### Explicit binding from IFormFile and IFormFileCollection
+
+Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> using the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute):
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1":::
+
 ### Parameter binding with dependency injection
 
 Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
