@@ -152,7 +152,7 @@ The following example shows how to register an `IHttpLoggingInterceptor` impleme
 
 The following example is an `IHttpLoggingInterceptor` implementation that:
 
-* Inspects the request path and disables logging for POST requests.
+* Inspects the request method and disables logging for POST requests.
 * For non-POST requests:
   * Redacts request path, request headers, and response headers.
   * Adds custom fields and field values to the request and response logs.
