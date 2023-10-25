@@ -1,16 +1,4 @@
----
-title: Minimal APIs quick reference
-author: rick-anderson
-description: Provides an overview of minimal APIs in ASP.NET Core
-ms.author: riande
-monikerRange: '>= aspnetcore-6.0'
-ms.date: 6/23/2023
-uid: fundamentals/minimal-apis
----
-
-# Minimal APIs quick reference
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 This document:
 
@@ -22,7 +10,7 @@ The minimal APIs consist of:
 * [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
-[!INCLUDE [WebApplication](~/fundamentals/minimal-apis/includes/webapplication.md)]
+[!INCLUDE [WebApplication](~/fundamentals/minimal-apis/includes/webapplication7.md)]
 
 ## ASP.NET Core Middleware
 
@@ -62,7 +50,7 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
 
 ## Responses
 
@@ -241,6 +229,3 @@ Moved to uid: tutorials/min-web-api
 * <xref:fundamentals/minimal-apis/test-min-api>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis7.md)]
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis6.md)]
