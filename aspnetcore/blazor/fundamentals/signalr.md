@@ -1022,11 +1022,9 @@ Blazor Web App:
 </script>
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 Blazor Server:
+
+:::moniker-end
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1039,8 +1037,6 @@ Blazor Server:
   });
 </script>
 ```
-
-:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
