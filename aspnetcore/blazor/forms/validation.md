@@ -304,11 +304,11 @@ public class CustomValidation : ComponentBase
 
 For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
 
-[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
+Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 In the following example:
 
-* A shortened version of the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
+* A shortened version of the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
 * The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
 * The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
 
@@ -478,7 +478,7 @@ When validation messages are set in the component, they're added to the validato
 <!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. -->
 
 > [!NOTE]
-> For prior releases of .NET, this section was based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance by selecting an earlier version of this article.
+> For prior releases of .NET, this section was based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](xref:blazor/forms/index#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance by selecting an earlier version of this article.
 
 :::moniker-end
 
@@ -494,12 +494,12 @@ Server validation is supported in addition to client validation:
 * The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
 * Either disable the form on success or display the errors.
 
-[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
+Basic validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 The following example is based on:
 
 * A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
-* The `Starship` model  (`Starship.cs`) of the [Example form](#example-form) section.
+* The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
 Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
@@ -1686,7 +1686,7 @@ public class ShipDescription
 
 To enable and disable the submit button based on form validation, the following example:
 
-* Uses a shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* Uses a shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * Uses the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
 * Validates the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
 * Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.

@@ -398,7 +398,7 @@ Developers aren't expected to interact with `FormMappingContext` directly, as it
 
 :::moniker range=">= aspnetcore-5.0"
 
-The example in this section is based on the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section of this article.
+The example in this section is based on the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of this article.
 
 Add the following [`enum` types](/dotnet/csharp/language-reference/language-specification/enums) to the app. Create a new file to hold them or add them to the `Starship.cs` file.
 
@@ -416,7 +416,7 @@ Make the `enums` class accessible to the:
 * `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;`).
 * `Starfleet Starship Database` form (`Starship5.razor`) (for example, `@using static ComponentEnums`).
 
-Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](#example-form) section:
+Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article:
 
 ```csharp
 [Required]
@@ -431,7 +431,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Update the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section. Add the components to produce:
+Update the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
 * A nested radio button group for engine and ship color.
@@ -535,7 +535,7 @@ Update the `Starfleet Starship Database` form (`Starship5` component) of the [Ex
 > [!NOTE]
 > If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components are grouped by their most recent ancestor.
 
-If you implemented the preceding Razor markup in the `Starship5` component of the [Example form](#example-form) section, update the logging for the `Submit` method:
+If you implemented the preceding Razor markup in the `Starship5` component of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article, update the logging for the `Submit` method:
 
 ```csharp
 Logger.LogInformation("Id = {Id} Description = {Description} " +

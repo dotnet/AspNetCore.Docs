@@ -117,7 +117,7 @@ public class Starship
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Several of Blazor's [built-in input components](#built-in-input-components).
+* Several of Blazor's built-in input components.
 
 `Starship5.razor`:
 
