@@ -146,7 +146,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
 
   Blazor Server:
 
-    ```html
+  ```html
   <script>
     Blazor.start({
       configureSignalR: function (builder) {
