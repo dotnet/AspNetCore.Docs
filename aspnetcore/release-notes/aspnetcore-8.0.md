@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2023
+ms.date: 10/25/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -961,14 +961,14 @@ For more information, see [Short-circuit middleware after routing](xref:fundamen
 The HTTP logging middleware has several new capabilities:
 
 * <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.Duration?displayProperty=nameWithType>: When enabled, the middleware emits a new log at the end of the request and response that measures the total time taken for processing. This new field has been added to the <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All?displayProperty=nameWithType> set.
-* <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs?displayProperty=nameWithType>: When enabled, the middleware consolidates all of its enabled logs for a request and response into one log at the end. Information in a single log message includes the request, request body, response, response body, and duration.
+* <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs?displayProperty=nameWithType>: When enabled, the middleware consolidates all of its enabled logs for a request and response into one log at the end. A single log message includes the request, request body, response, response body, and duration.
 * <xref:Microsoft.AspNetCore.HttpLogging.IHttpLoggingInterceptor>: A new interface for a service that can be implemented and registered (using <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLoggingInterceptor%2A>) to receive per-request and per-response callbacks for customizing what details get logged. Any endpoint-specific log settings are applied first and can then be overridden in these callbacks. An implementation can:
   * Inspect a request and response.
   * Enable or disable any <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingFields>.
   * Adjust how much of the request or response body is logged.
   * Add custom fields to the logs.
 
-For more information, see [CombineLogs](xref:~/fundamentals/http-logging#combinelogs) and [IHttpLoggingInterceptor](xref:~/fundamentals/http-logging#ihttplogginginterceptor) in the <xref:~/fundamentals/http-logging> documentation.
+For more information, see <xref:~/fundamentals/http-logging>.
 
 ### New APIs in ProblemDetails to support more resilient integrations
 
