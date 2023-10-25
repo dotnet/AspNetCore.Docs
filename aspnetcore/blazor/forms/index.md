@@ -46,6 +46,7 @@ Standard interactive HTML forms with server rendering are supported. Create a fo
 ```razor
 @page "/starship-plain-form"
 @rendermode RenderMode.InteractiveServer
+@inject ILogger<StarshipPlainForm> Logger
 
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
     <AntiforgeryToken />
