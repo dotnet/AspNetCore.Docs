@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor forms and input components
+title: ASP.NET Core Blazor forms overview
 author: guardrex
-description: Learn how to use forms with field validation and built-in input components in Blazor.
+description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/08/2022
-uid: blazor/forms-and-input-components
+uid: blazor/forms/index
 ---
-# ASP.NET Core Blazor forms and input components
+# ASP.NET Core Blazor forms overview
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -17,16 +17,16 @@ The Blazor framework supports forms and provides built-in input components:
 :::moniker range=">= aspnetcore-8.0"
 
 * Bound to an object or model that can use [data annotations](xref:mvc/models/validation)
-  * An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component
   * HTML forms with the `<form>` element
-* [Built-in input components](#built-in-input-components)
+  * An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component
+* [Built-in input components](xref:blazor/forms/input-components)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 * An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](xref:mvc/models/validation)
-* [Built-in input components](#built-in-input-components)
+* [Built-in input components](xref:blazor/forms/input-components)
 
 :::moniker-end
 
@@ -37,98 +37,60 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 
 A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
 
-## Examples in this article
-
 :::moniker range=">= aspnetcore-8.0"
 
-Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
+## HTML forms
 
-<!-- UPDATE 8.0 These simplify at RTM -->
+<!-- UPDATE 8.0 Cross-link SSR -->
 
-* `RenderMode.InteractiveWebAssembly` for interactive client rendering only.
-* `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+Standard interactive HTML forms with server rendering are supported without using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
-If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
+Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
-When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
-
-Examples don't adopt enhanced form handling for form POST requests, but all of the examples can be updated to adopt the enhanced features by following the guidance in the [Enhanced form handling](#enhanced-form-handling) section.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9.0 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
-
-```csharp
-public ShipDescription ShipDescription { get; set; } = new();
-```
-
-If using C# 8.0 or earlier (.NET 3.1), modify the example code to state the type to the `new` operator:
-
-```csharp
-public ShipDescription ShipDescription { get; set; } = new ShipDescription();
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see <xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis>.
-
-If using C# 9.0 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
-
-The .NET SDK applies implicit global `using` directives to projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
-
-If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
-
-:::moniker-end
-
-To demonstrate how forms work with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to use the namespace, make the namespace available throughout the app's components with the imports file. Add the following line to the project's `_Imports.razor` file:
+`StarshipPlainForm.razor`:
 
 ```razor
-@using System.ComponentModel.DataAnnotations
+@page "/starship-plain-form"
+@rendermode RenderMode.InteractiveServer
+
+<form method="post" @onsubmit="Submit" @formname="starship-plain-form">
+    <AntiforgeryToken />
+    <InputText @bind-Value="Model!.Id" />
+    <button type="submit">Submit</button>
+</form>
+
+@code {
+    [SupplyParameterFromForm]
+    public Starship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        Logger.LogInformation("Id = {Id}", Model?.Id);
+    }
+
+    public class Starship
+    {
+        public string? Id { get; set; }
+    }
+}
 ```
 
-Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
+The preceding example includes antiforgery support by including an `AntiforgeryToken` component in the form. Antiforgery support is explained further in the [Antiforgery support](#antiforgery-support) section of this article.
 
-<!-- UPDATE 8.0 Saving cross-link formats for 
-     snippet sample app work later.
+To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/FormExampleXXXX.razor":::
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppSample/XXXX.cs" highlight="XXXX":::
+> [!IMPORTANT]
+> For an HTML form, always use the `@formname` attribute directive to assign the form's name.
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExampleXXXX.razor":::
--->
+Instead of using plain forms in Blazor apps, a form is typically defined with Blazor's built-in form support using the framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
 
-<!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
-                The intention is to link to a few of the
-                framework test assets that include great
-                additional examples for inspection.
+:::moniker-end
 
-## Additional form examples
-
-The following additional form examples are available for inspection in the [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms).
-
-* <xref:Microsoft.AspNetCore.Components.Forms.EditForm> examples
-  * xxx
-  * xxx
-* HTML forms (`<form>`) examples
-  * xxx
-  * xxx
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
--->
-
-## Introduction
+:::moniker range="< aspnetcore-8.0"
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component.
-
-:::moniker range=">= aspnetcore-8.0"
-
-> [!NOTE]
-> Most of this article's examples use Blazor's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component to create a form. Alternatively, forms can be bound with an HTML `<form>` element. For more information, see the [HTML forms](#html-forms) section.
 
 :::moniker-end
 
@@ -227,7 +189,7 @@ In the next example, the preceding component is modified to create the form in t
   * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Id is too long.`"). `Submit` is **not** called.
   * If the `<input>` form field contains a valid value when the **`Submit`** button is selected, `Submit` is called.
 
-&dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](#validator-components) section. &Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](#validation-summary-and-validation-message-components) section.
+&dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](xref:blazor/forms/validation#validator-components) section. &Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](xref:blazor/forms/validation#validation-summary-and-validation-message-components) section.
 
 `Starship2.razor`:
 
@@ -301,390 +263,6 @@ In the next example, the preceding component is modified to create the form in t
 
 :::moniker-end
 
-## Binding
-
-An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned object as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which form fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
-
-### Model binding
-
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>:
-
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-<EditForm ... Model="@Model" ...>
-    ...
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-<EditForm Model="@Model" ...>
-    ...
-</EditForm>
-
-@code {
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-}
-```
-
-> [!NOTE]
-> Most of this article's form model examples bind forms to C# *properties*, but C# field binding is also supported.
-
-:::moniker-end
-
-### Context binding
-
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
-
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-<EditForm ... EditContext="@editContext" ...>
-    ...
-</EditForm>
-
-@code {
-    private EditContext? editContext;
-
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model ??= new();
-        editContext = new(Model);
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-<EditForm EditContext="@editContext" ...>
-    ...
-</EditForm>
-
-@code {
-    private EditContext? editContext;
-
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model ??= new();
-        editContext = new(Model);
-    }
-}
-```
-
-:::moniker-end
-
-Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. If both are assigned, a runtime error is thrown.
-
-:::moniker range=">= aspnetcore-8.0"
-
-### Supported types
-
-Binding supports:
-
-* Primitive types
-* Collections
-* Complex types
-* Recursive types
-* Types with constructors
-* Enums
-
-You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemberAttribute) and [`[IgnoreDataMember]`](xref:System.Runtime.Serialization.IgnoreDataMemberAttribute) attributes to customize model binding. Use these attributes to rename properties, ignore properties, and mark properties as required.
-
-### Additional binding options
-
-<!-- UPDATE 8.0 
-    There's a remark in the API for MaxCollectionSize that says,
-    "Not configurable for now ..." at ...
-
-    https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/FormMapping/FormDataMapperOptions.cs#L28
-
-    ... but it seems that it can be configured via
-    MaxFormMappingCollectionSize. Is that a stale API remark?
-
-    Also, FormMappingUseCurrentCulture is available at Pre7, but it
-    looks like it might have been removed for RC1.
- -->
-
-Additional model binding options are available from `RazorComponentOptions` when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
-
-* `MaxFormMappingCollectionSize`: Maximum number of elements allowed in a form collection.
-* `MaxFormMappingRecursionDepth`: Maximum depth allowed when recursively mapping form data.
-* `MaxFormMappingErrorCount`: Maximum number of errors allowed when mapping form data.
-* `MaxFormMappingKeySize`: Maximum size of the buffer used to read form data keys.
-
-The following demonstrates the default values assigned by the framework:
-
-```csharp
-builder.Services.AddRazorComponents(options =>
-{
-    options.FormMappingUseCurrentCulture = true;
-    options.MaxFormMappingCollectionSize = 1024;
-    options.MaxFormMappingErrorCount = 200;
-    options.MaxFormMappingKeySize = 1024 * 2;
-    options.MaxFormMappingRecursionDepth = 64;
-}).AddInteractiveServerComponents();
-```
-
-### Form names
-
-Use the `FormName` parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
-
-```razor
-<EditForm ... FormName="RomulanAle">
-    ...
-</EditForm>
-```
-
-Supplying a form name:
-
-<!-- UPDATE 8.0 Cross-link render modes article -->
-
-* Is required on all forms that are submitted via interactivity with server rendering.
-* Not required for interactive rendering, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
-
-The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request (an SSR form post). The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
-
-> [!WARNING]
-> We recommend supplying a unique form name for every form to prevent runtime form posting errors.
-
-Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
-
-In the following example, the `FormMappingScope` scope name is `ParentContext` for the library-supplied form. POST events are routed to the correct form.
-
-`HelloFormFromLibrary.razor`:
-
-```razor
-<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
-    <InputText @bind-Value="Name" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@if (submitted)
-{
-    <p>Hello @Name from the library form!</p>
-}
-
-@code {
-    bool submitted = false;
-
-    [SupplyParameterFromForm]
-    public string? Name { get; set; }
-
-    private void Submit() => submitted = true;
-}
-```
-
-`NamedFormsWithScope.razor`:
-
-```razor
-@page "/named-forms-with-scope"
-
-<div>Hello form from a library</div>
-
-<FormMappingScope Name="ParentContext">
-    <HelloFormFromLibrary />
-</FormMappingScope>
-
-<div>Hello form using the same form name</div>
-
-<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
-    <InputText @bind-Value="Name" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@if (submitted)
-{
-    <p>Hello @Name from the app form!</p>
-}
-
-@code {
-    bool submitted = false;
-
-    [SupplyParameterFromForm]
-    public string? Name { get; set; }
-
-    private void Submit() => submitted = true;
-}
-```
-
-### Supply a parameter from the form (`[SupplyParameterFromForm]`)
-
-The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding.
-
-You can specify the following form binding parameters to the `[SupplyParameterFromForm]` attribute:
-
-* `Name`: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
-* `FormName`: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
-
-The following example independently binds two forms to their models by form name.
-
-`Starship3.razor`:
-
-```razor
-@page "/starship-3"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship3> Logger
-
-<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" 
-    FormName="Holodeck1">
-    <InputText @bind-Value="Model1!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" 
-    FormName="Holodeck2">
-    <InputText @bind-Value="Model2!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm(FormName = "Holodeck1")]
-    public Holodeck? Model1 { get; set; }
-
-    [SupplyParameterFromForm(FormName = "Holodeck2")]
-    public Holodeck? Model2 { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model1 ??= new();
-        Model2 ??= new();
-    }
-
-    private void Submit1()
-    {
-        Logger.LogInformation("Submit1: Id = {Id}", Model1?.Id);
-    }
-
-    private void Submit2()
-    {
-        Logger.LogInformation("Submit2: Id = {Id}", Model2?.Id);
-    }
-
-    public class Holodeck
-    {
-        public string? Id { get; set; }
-    }
-}
-```
-
-### Nest and bind forms
-
-The following guidance demonstrates how to nest and bind child forms.
-
-<!-- UPDATE 8.0 At RTM or upon API browser updates, cross-link 
-     Microsoft.AspNetCore.Components.Forms.Editor<T>. -->
-
-The following ship details class (`ShipDetails`) holds a description and length for a subform.
-
-`ShipDetails.cs`:
-
-```csharp
-public class ShipDetails
-{
-    public string? Description { get; set; }
-    public int? Length { get; set; }
-}
-```
-
-The following `Ship` class names an identifier (`Id`) and includes the ship details.
-
-`Ship.cs`:
-
-```csharp
-public class Ship
-{
-    public string? Id { get; set; }
-    public ShipDetails Details { get; set; } = new();
-}
-```
-
-The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component. `Editor<T>` ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
-
-`StarshipSubform.razor`:
-
-```razor
-@inherits Editor<ShipDetails>
-
-<div>
-    <label>
-        Description:
-        <InputText @bind-Value="Value!.Description" />
-    </label>
-</div>
-<div>
-    <label>
-        Length:
-        <InputNumber @bind-Value="Value!.Length" />
-    </label>
-</div>
-```
-
-The main form is bound to the `Ship` class. The `StarshipSubform` component is used to edit ship details, bound as `Model!.Details`.
-
-`Starship4.razor`:
-
-```razor
-@page "/starship-4"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship4> Logger
-
-<EditForm method="post" Model="@Model" OnSubmit="@Submit" 
-    FormName="Starship4">
-    <div>
-        <label>
-            Id:
-            <InputText @bind-Value="Model!.Id" />
-        </label>
-    </div>
-    <StarshipSubform @bind-Value="Model!.Details" />
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm]
-    public Ship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Id = {Id} Desc = {Description} Length = {Length}", 
-            Model?.Id, Model?.Details?.Description, Model?.Details?.Length);
-    }
-}
-```
-
-### Advanced form mapping error scenarios
-
-The framework instantiates and populates the `FormMappingContext` for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a `FormMappingScope` component) instantiates `FormMappingContext`. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the `FormMappingContext` with the attempted value and any mapping errors.
-
-Developers aren't expected to interact with `FormMappingContext` directly, as it's mainly a source of data for `InputBase`, `EditContext`, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access `FormMappingContext` directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
-
-:::moniker-end
-
 ## Handle form submission
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following callbacks for handling form submission:
@@ -692,6 +270,211 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> to assign an event handler to run when a form with valid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Antiforgery support
+
+The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
+
+For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `AntiforgeryToken` component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
+
+For forms based on the HTML `<form>` element, manually add the `AntiforgeryToken` component to the form:
+
+```razor
+@rendermode RenderMode.InteractiveServer
+
+<form method="post" @onsubmit="Submit" @formname="starshipForm">
+    <AntiforgeryToken />
+    <input id="send" type="submit" value="Send" />
+</form>
+
+@if (submitted)
+{
+    <p>Form submitted!</p>
+}
+
+@code{
+    private bool submitted = false;
+
+    private void Submit() => submitted = true;
+}
+```
+
+> [!WARNING]
+> For forms based on either <xref:Microsoft.AspNetCore.Components.Forms.EditForm> or the HTML `<form>` element, antiforgery protection can be disabled by passing `required: false` to the `[RequireAntiforgeryToken]` attribute. The following example disables antiforgery and is ***not recommended*** for public apps:
+>
+> ```razor
+> @using Microsoft.AspNetCore.Antiforgery
+> @attribute [RequireAntiforgeryToken(required: false)]
+> ```
+
+For more information, see <xref:blazor/security/index#antiforgery-support>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Enhanced form handling
+
+Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
+
+```razor
+<EditForm Enhance ...>
+    ...
+</EditForm>
+```
+
+```html
+<form data-enhance ...>
+    ...
+</form>
+```
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced form handling.
+
+```html
+<div data-enhance>
+    <form ...>
+        <!-- NOT enhanced -->
+    </form>
+</div>
+```
+
+Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to non-Blazor endpoint results in an error.
+
+To disable enhanced form handling:
+
+* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
+
+Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
+
+In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
+
+```html
+<div data-permanent>
+    ...
+</div>
+```
+
+To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
+
+For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+
+:::moniker-end
+
+## Examples
+
+:::moniker range=">= aspnetcore-8.0"
+
+Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
+
+<!-- UPDATE 8.0 These simplify at RTM -->
+
+* `RenderMode.InteractiveWebAssembly` for interactive client rendering only.
+* `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+
+If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
+
+When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
+
+Examples don't adopt enhanced form handling for form POST requests, but all of the examples can be updated to adopt the enhanced features by following the guidance in the [Enhanced form handling](#enhanced-form-handling) section.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference/operators/new-operator#target-typed-new), which was introduced with C# 9.0 and .NET 5. In the following example, the type isn't explicitly stated for the `new` operator:
+
+```csharp
+public ShipDescription ShipDescription { get; set; } = new();
+```
+
+If using C# 8.0 or earlier (.NET 3.1), modify the example code to state the type to the `new` operator:
+
+```csharp
+public ShipDescription ShipDescription { get; set; } = new ShipDescription();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Components use nullable reference types (NRTs), and the .NET compiler performs null-state static analysis, both of which are supported in .NET 6 or later. For more information, see <xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis>.
+
+If using C# 9.0 or earlier (.NET 5 or earlier), remove the NRTs from the examples. Usually, this merely involves removing the question marks (`?`) and exclamation points (`!`) from the types in the example code.
+
+The .NET SDK applies implicit global `using` directives to projects when targeting .NET 6 or later. The examples use a logger to log information about form processing, but it isn't necessary to specify an `@using` directive for the <xref:Microsoft.Extensions.Logging?displayProperty=nameWithType> namespace in the component examples. For more information, see [.NET project SDKs: Implicit using directives](/dotnet/core/project-sdk/overview#implicit-using-directives).
+
+If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the top of the component after the `@page` directive for any API required by the example. Find API namespaces through Visual Studio (right-click the object and select **Peek Definition**) or the [.NET API browser](/dotnet/api/).
+
+:::moniker-end
+
+To demonstrate how forms work with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to use the namespace, make the namespace available throughout the app's components with the imports file. Add the following line to the project's `_Imports.razor` file:
+
+```razor
+@using System.ComponentModel.DataAnnotations
+```
+
+Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
+
+<!-- UPDATE 8.0 Saving cross-link formats for 
+     snippet sample app work later.
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/FormExampleXXXX.razor":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppSample/XXXX.cs" highlight="XXXX":::
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExampleXXXX.razor":::
+-->
+
+<!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
+                The intention is to link to a few of the
+                framework test assets that include great
+                additional examples for inspection.
+
+## Additional form examples
+
+The following additional form examples are available for inspection in the [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms).
+
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm> examples
+  * xxx
+  * xxx
+* HTML forms (`<form>`) examples
+  * xxx
+  * xxx
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+-->
+
+## Additional resources
+
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/file-uploads>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* <xref:blazor/file-uploads>
+* <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id>
+* <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
+* <xref:blazor/security/webassembly/hosted-with-identity-server>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
+
+:::moniker-end
+
+
+
+
+
+
+
 
 ## Built-in input components
 
@@ -800,7 +583,7 @@ public class Starship
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Several of Blazor's [built-in input components](#built-in-input-components).
+* Several of Blazor's [built-in input components](xref:blazor/forms/input-components).
 
 `Starship5.razor`:
 
@@ -1271,7 +1054,7 @@ In the following example, the user must select at least two starship classificat
 
 :::moniker range=">= aspnetcore-6.0"
 
-For information on how empty strings and `null` values are handled in data binding, see the [Binding `InputSelect` options to C# object `null` values](#binding-inputselect-options-to-c-object-null-values) section.
+For information on how empty strings and `null` values are handled in data binding, see the [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms/binding#binding-inputselect-options-to-c-object-null-values) section.
 
 :::moniker-end
 
@@ -1415,7 +1198,7 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
 
-Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
+Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](xref:blazor/forms/validation#validator-components) is recommended where an independent model class is used across several components.
 
 In the following component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
 
@@ -1614,8 +1397,8 @@ Validator components support form validation by managing a <xref:Microsoft.AspNe
 
 The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client validation followed by server validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
 
-* [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
-* [Server validation with a validator component](#server-validation-with-a-validator-component)
+* [Business logic validation with a validator component](xref:blazor/forms/validation#business-logic-validation-with-a-validator-component)
+* [Server validation with a validator component](xref:blazor/forms/validation#server-validation-with-a-validator-component)
 
 > [!NOTE]
 > Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -1703,14 +1486,14 @@ public class CustomValidation : ComponentBase
 
 ## Business logic validation with a validator component
 
-For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
+For general business logic validation, use a [validator component](xref:blazor/forms/validation#validator-components) that receives form errors in a dictionary.
 
 [Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 In the following example:
 
 * A shortened version of the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
-* The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
+* The `CustomValidation` component from the [Validator components](xref:blazor/forms/validation#validator-components) section of this article is used.
 * The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
 
 When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s validation summary.
@@ -1870,7 +1653,7 @@ When validation messages are set in the component, they're added to the validato
 :::moniker-end
 
 > [!NOTE]
-> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> As an alternative to using [validation components](xref:blazor/forms/validation#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 ## Server validation with a validator component
 
@@ -1901,7 +1684,7 @@ The following example is based on:
 
 * A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) of the [Example form](#example-form) section.
-* The `CustomValidation` component shown in the [Validator components](#validator-components) section.
+* The `CustomValidation` component shown in the [Validator components](xref:blazor/forms/validation#validator-components) section.
 
 Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
@@ -2042,7 +1825,7 @@ builder.Services.AddControllersWithViews()
 
 For more information, see <xref:web-api/handle-errors#validation-failure-error-response>.
 
-In the **:::no-loc text="Client":::** project, add the `CustomValidation` component shown in the [Validator components](#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
+In the **:::no-loc text="Client":::** project, add the `CustomValidation` component shown in the [Validator components](xref:blazor/forms/validation#validator-components) section. Update the namespace to match the app (for example, `namespace BlazorSample.Client`).
 
 In the **:::no-loc text="Client":::** project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
@@ -2326,7 +2109,7 @@ moniker-end
 -->
 
 > [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> As an alternative to the use of a [validation component](xref:blazor/forms/validation#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
 > The server validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
@@ -3786,98 +3569,7 @@ To submit a form based on another element's DOM events, for example `oninput` or
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
 
-## Antiforgery support
-
-The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
-
-For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `AntiforgeryToken` component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
-
-For [forms based on the HTML `<form>` element](#html-forms), manually add the `AntiforgeryToken` component to the form:
-
-```razor
-@rendermode RenderMode.InteractiveServer
-
-<form method="post" @onsubmit="Submit" @formname="starshipForm">
-    <AntiforgeryToken />
-    <input id="send" type="submit" value="Send" />
-</form>
-
-@if (submitted)
-{
-    <p>Form submitted!</p>
-}
-
-@code{
-    private bool submitted = false;
-
-    private void Submit() => submitted = true;
-}
-```
-
-> [!WARNING]
-> For forms based on either <xref:Microsoft.AspNetCore.Components.Forms.EditForm> or the HTML `<form>` element, antiforgery protection can be disabled by passing `required: false` to the `[RequireAntiforgeryToken]` attribute. The following example disables antiforgery and is ***not recommended*** for public apps:
->
-> ```razor
-> @using Microsoft.AspNetCore.Antiforgery
-> @attribute [RequireAntiforgeryToken(required: false)]
-> ```
-
-For more information, see <xref:blazor/security/index#antiforgery-support>.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Enhanced form handling
-
-Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
-
-```razor
-<EditForm Enhance ...>
-    ...
-</EditForm>
-```
-
-```html
-<form data-enhance ...>
-    ...
-</form>
-```
-
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced form handling.
-
-```html
-<div data-enhance>
-    <form ...>
-        <!-- NOT enhanced -->
-    </form>
-</div>
-```
-
-Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to non-Blazor endpoint results in an error.
-
-To disable enhanced form handling:
-
-* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
-* For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
-
-Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
-
-In the following example, the content of the `<div>` element is updated dynamically by a script when the page loads:
-
-```html
-<div data-permanent>
-    ...
-</div>
-```
-
-To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#enhanced-navigation-and-form-handling>.
-
-For guidance on using the `enhancedload` event to listen for enhanced page updates, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
-
-:::moniker-end
 
 ## Troubleshoot
 
@@ -3897,26 +3589,7 @@ When assigning to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>, c
 
 For more information and guidance, see the following resources:
 
-* [Large form payloads and the SignalR message size limit](#large-form-payloads-and-the-signalr-message-size-limit)
+* [Large form payloads and the SignalR message size limit](xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit)
 * <xref:blazor/fundamentals/signalr#maximum-receive-message-size>
 
-## Additional resources
 
-:::moniker range=">= aspnetcore-8.0"
-
-* <xref:blazor/file-uploads>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-* [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* <xref:blazor/file-uploads>
-* <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id>
-* <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
-* <xref:blazor/security/webassembly/hosted-with-identity-server>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-* [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
-
-:::moniker-end

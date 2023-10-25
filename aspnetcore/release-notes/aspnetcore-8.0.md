@@ -70,7 +70,7 @@ Form model binding in Blazor honors the data contract attributes (for example, `
 
 New antiforgery support is included in .NET 8. A new `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the new `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a 400 (Bad Request) response is returned without form processing. The new antiforgery features are enabled by default for forms based on `Editform` and can be applied manually to standard HTML forms.
 
-For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see <xref:blazor/forms/index?view=aspnetcore-8.0&preserve-view=true>.
 
 ### Enhanced navigation and form handling
 

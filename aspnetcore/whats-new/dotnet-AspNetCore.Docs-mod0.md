@@ -20,7 +20,7 @@ Welcome to what's new in the ASP.NET Core docs for June 2023. This article lists
   - Drop lists in Tooling article
 - <xref:blazor/project-structure> - Project structure article updates
 - <xref:blazor/host-and-deploy/webassembly> - .NET assembly packaging (Webcil)
-- <xref:blazor/forms-and-input-components>
+- <xref:blazor/forms/index>
   - Message size limit enhancements
   - Forms/input components article NRT updates
 - <xref:blazor/fundamentals/signalr> - Message size limit enhancements

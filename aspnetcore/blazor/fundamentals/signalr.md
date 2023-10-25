@@ -326,7 +326,7 @@ A better option for reading large payloads is to send the content in smaller chu
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data to the server, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
+Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data to the server, see <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>.
 
 :::moniker-end
 
@@ -345,7 +345,7 @@ A better option for reading large payloads is to send the content in smaller chu
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data in a Blazor Server app, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
+Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data in a Blazor Server app, see <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>.
 
 :::moniker-end
 
@@ -369,7 +369,7 @@ Consider the following guidance when developing code that transfers a large amou
 * Leverage the native streaming JS interop support to transfer data larger than the SignalR incoming message size limit:
   * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
   * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
-  * Form payload example: <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>
+  * Form payload example: <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>
 * General tips:
   * Don't allocate large objects in JS and C# code.
   * Free consumed memory when the process is completed or cancelled.

@@ -48,7 +48,7 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 
 Blazor adds Antiforgery Middleware and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) by default. 
 
-The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and this component is automatically added to form (`EditForm`) instances. For more information, see <xref:blazor/forms-and-input-components#antiforgery-support>.
+The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and this component is automatically added to form (`EditForm`) instances. For more information, see <xref:blazor/forms/index#antiforgery-support>.
 
 The `AntiforgeryStateProvider` service provides access to an antiforgery token associated with the current session. Inject the service and call its `GetAntiforgeryToken` method to obtain the current `AntiforgeryRequestToken`. For more information, see <xref:blazor/call-web-api#antiforgery-support>.
 

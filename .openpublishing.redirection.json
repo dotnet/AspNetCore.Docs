@@ -847,7 +847,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/forms-validation.md",
-            "redirect_url": "/aspnet/core/blazor/forms-and-input-components",
+            "redirect_url": "/aspnet/core/blazor/forms/",
             "redirect_document_id": false
         },
         {
@@ -1201,7 +1201,7 @@
         },
         {
             "source_path": "aspnetcore/blazor/forms-validation.md",
-            "redirect_url": "/aspnet/core/blazor/forms-and-input-components",
+            "redirect_url": "/aspnet/core/blazor/forms/",
             "redirect_document_id": false
         },
         {
@@ -1256,6 +1256,11 @@
         {
             "source_path": "aspnetcore/blazor/blazor-server-ef-core.md",
             "redirect_url": "/aspnet/core/blazor/blazor-ef-core",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/forms-and-input-components.md",
+            "redirect_url": "/aspnet/core/blazor/forms/",
             "redirect_document_id": false
         }
     ]
