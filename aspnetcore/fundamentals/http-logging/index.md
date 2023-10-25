@@ -5,7 +5,7 @@ description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2023
+ms.date: 10/25/2023
 uid: fundamentals/http-logging/index
 ---
 
@@ -125,9 +125,13 @@ Setting <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.CombineLogs> t
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet_Addservices&highlight=13)]
 
-## The `[HttpLogging]` attribute
+## Endpoint-specific configuration
 
-Use the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute for endpoint-specific logging configuration, as shown in the following example:
+For endpoint-specific configuration in minimal API apps, a <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging%2A> extension method is available. The following example shows how to configure HTTP logging for one endpoint:
+
+[!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet6)]
+
+For endpoint-specific configuration in apps that use controllers or Razor pages, the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute is available. The attribute can also be used in minimal API apps, as shown in the following example:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet5)]
 

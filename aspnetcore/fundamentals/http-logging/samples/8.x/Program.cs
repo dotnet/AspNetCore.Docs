@@ -103,6 +103,11 @@ app.MapGet("/request", [HttpLogging(loggingFields: HttpLoggingFields.RequestProp
     () => "Hello World! (logging request)");
 // </snippet5>
 
+// <snippet6>
+app.MapGet("/withlogging", () => "Hello World! (logging response)")
+    .WithHttpLogging(HttpLoggingFields.ResponsePropertiesAndHeaders);
+// </snippet6>
+
 app.Run();
 // </snippet3>
 #endif
