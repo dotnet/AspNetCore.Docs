@@ -199,7 +199,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[8]
 The following list shows the order of precedence for logging configuration:
 
 1. Global configuration from <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>, set by calling <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A>.
-1. Endpoint-specific configuration from the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute overrides global configuration.
+1. Endpoint-specific configuration from the [`[HttpLogging]`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.HttpLoggingEndpointConventionBuilderExtensions.WithHttpLogging%2A> extension method overrides global configuration.
 1. [`IHttpLoggingInterceptor`](#ihttplogginginterceptor) is called with the results and can further modify the configuration per request.
 
 :::moniker-end
