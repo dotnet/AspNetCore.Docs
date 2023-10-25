@@ -98,9 +98,6 @@ app.MapGet("/", () => "Hello World!");
 // <snippet5>
 app.MapGet("/duration", [HttpLogging(loggingFields: HttpLoggingFields.Duration)]
     () => "Hello World! (logging duration)");
-
-app.MapGet("/request", [HttpLogging(loggingFields: HttpLoggingFields.RequestPropertiesAndHeaders)]
-    () => "Hello World! (logging request)");
 // </snippet5>
 
 // <snippet6>
