@@ -32,7 +32,7 @@ To enable authentication, call [`AddAuthentication`](/dotnet/api/microsoft.exten
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
 
-Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JWT bearer-based authentication. This example makes use of the [`Microsoft.AspNetCore.Authentication.JwtBearer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) NuGet package, which is provided to the app by the [shared framework](xref:fundamentals/metapackage-app).
+Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JWT bearer-based authentication. This example makes use of the [`Microsoft.AspNetCore.Authentication.JwtBearer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) NuGet package, which isn't provided by the [shared framework](xref:fundamentals/metapackage-app).
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2-3":::
 
