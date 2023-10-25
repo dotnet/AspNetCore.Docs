@@ -18,7 +18,7 @@ The Blazor framework supports forms and provides built-in input components:
 
 * Bound to an object or model that can use [data annotations](xref:mvc/models/validation)
   * HTML forms with the `<form>` element
-  * An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component
+  * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components
 * [Built-in input components](xref:blazor/forms/input-components)
 
 :::moniker-end
@@ -38,8 +38,6 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
 
 :::moniker range=">= aspnetcore-8.0"
-
-## HTML forms
 
 <!-- UPDATE 8.0 Cross-link SSR -->
 
