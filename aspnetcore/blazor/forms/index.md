@@ -75,6 +75,19 @@ Standard interactive HTML forms with server rendering are supported. Create a fo
 }
 ```
 
+In the preceding `StarshipPlainForm` component:
+
+* The form is rendered where the `<form>` element appears.
+* The model is created in the component's `@code` block and held in a public property (`Model`). <!-- The property is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. -->
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
+* The `Submit` method is registered as a handler for the <!-- <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> --> `@onsubmit` callback. The handler is called when the form is submitted by the user.
+
+Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for plain HTML forms.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 The preceding example includes antiforgery support by including an `AntiforgeryToken` component in the form. Antiforgery support is explained further in the [Antiforgery support](#antiforgery-support) section of this article.
 
 To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
@@ -131,9 +144,9 @@ In the preceding `Starship1` component:
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
-Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
-[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported with forms. For an example, see the [`StreamingRenderingForm` test asset (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms/StreamingRenderingForm.razor).
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. For an example, see the [`StreamingRenderingForm` test asset (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms/StreamingRenderingForm.razor).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
