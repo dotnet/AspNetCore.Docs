@@ -261,53 +261,41 @@ By default, the Intermediate Language (IL) Linker configuration for client-side 
 
 The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` Blazor start option. The following example configures the app to launch using the United States English (`en-US`) culture.
 
-* Prevent Blazor autostart by adding `autostart="false"` to Blazor's script tag:
+Prevent Blazor autostart by adding `autostart="false"` to Blazor's script tag:
 
-  ```html
-  <script src="{BLAZOR SCRIPT}" autostart="false"></script>
-  ```
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+```
 
-  In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-* Add the following `<script>` block after Blazor's `<script>` tag and before the closing `</body>` tag:
+Add the following `<script>` block after Blazor's `<script>` tag and before the closing `</body>` tag:
 
 :::moniker range=">= aspnetcore-8.0"
 
-  Blazor Web App:
+Blazor Web App:
 
-  ```html
-  <script>
-    Blazor.start({
-      webAssembly: {
-        applicationCulture: 'en-US'
-      }
-    });
-  </script>
-  ```
-
-  Standalone Blazor WebAssembly:
-
-  ```html
-  <script>
-    Blazor.start({
+```html
+<script>
+  Blazor.start({
+    webAssembly: {
       applicationCulture: 'en-US'
-    });
-  </script>
-  ```
+    }
+  });
+</script>
+```
+
+Standalone Blazor WebAssembly:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
-
-  ```html
-  <script>
-    Blazor.start({
-      applicationCulture: 'en-US'
-    });
-  </script>
-  ```
-
-:::moniker-end
+```html
+<script>
+  Blazor.start({
+    applicationCulture: 'en-US'
+  });
+</script>
+```
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 

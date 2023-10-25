@@ -187,7 +187,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, a custom value of 60 seconds is used for the server timeout.
 
-  The following example applies to `Pages/_Host.cshtml`:
+  In `Pages/_Host.cshtml`:
 
   ```html
   <script src="_framework/blazor.server.js" autostart="false"></script>

@@ -681,7 +681,7 @@ Blazor Web App:
 </script>
 ```
 
-Blazor Server: The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0).
+The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0).
 
 Blazor Server:
 
@@ -808,11 +808,9 @@ Blazor Web App:
 </script>
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 Blazor Server:
+
+:::moniker-end
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -825,8 +823,6 @@ Blazor Server:
   });
 </script>
 ```
-
-:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
@@ -936,6 +932,8 @@ Blazor Server:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-7.0"
+
 ```javascript
 (() => {
   const maximumRetryCount = 3;
@@ -997,8 +995,6 @@ Blazor Server:
   });
 })();
 ```
-
-:::moniker range=">= aspnetcore-7.0"
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
