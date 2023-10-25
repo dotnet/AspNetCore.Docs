@@ -295,9 +295,9 @@ items:
         items:
           - name: Logging
             uid: fundamentals/logging/index
-          - name: HTTP Logging
+          - name: HTTP logging
             uid: fundamentals/http-logging/index
-          - name: W3C Logger
+          - name: W3C logger
             uid: fundamentals/w3c-logger/index
           - name: Health checks
             displayName: logging, monitoring

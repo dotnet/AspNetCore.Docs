@@ -271,5 +271,3 @@ For more information, see <xref:fundamentals/middleware/index>
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_dep)]
 :::moniker-end
-
-[!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/webapplication7.md)]
