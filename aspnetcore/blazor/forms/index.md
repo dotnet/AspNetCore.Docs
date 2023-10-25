@@ -39,8 +39,6 @@ A project created from the Blazor project template includes the namespace by def
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link SSR -->
-
 Standard interactive HTML forms with server rendering are supported. Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
 `StarshipPlainForm.razor`:
