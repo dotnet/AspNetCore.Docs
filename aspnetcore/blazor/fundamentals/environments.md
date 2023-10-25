@@ -73,6 +73,8 @@ The following example starts Blazor in the `Staging` environment if the hostname
 
 :::moniker range=">= aspnetcore-8.0"
 
+Blazor Web App:
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -88,9 +90,9 @@ The following example starts Blazor in the `Staging` environment if the hostname
 </script>
 ```
 
-:::moniker-end
+Standalone Blazor WebAssembly:
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker-end
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -104,8 +106,6 @@ The following example starts Blazor in the `Staging` environment if the hostname
   }
 </script>
 ```
-
-:::moniker-end
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 

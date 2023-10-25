@@ -169,47 +169,82 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, consider configuring the app to fetch and decode Brotli compressed files:
 
-  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
+Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
   
-    > [!NOTE]
-    > If the minified version of the `decode.js` script (`decode.min.js`) fails, try using the unminified version (`decode.js`) instead.
+> [!NOTE]
+> If the minified version of the `decode.js` script (`decode.min.js`) fails, try using the unminified version (`decode.js`) instead.
 
-  * Update the app to use the decoder.
+Update the app to use the decoder.
     
-    In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<script>` tag:
+In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<script>` tag:
     
-    ```html
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    ```
+```html
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+```
     
-    After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block:
-  
-    ```html
-    <script type="module">
-      import { BrotliDecode } from './decode.min.js';
-      Blazor.start({
-        loadBootResource: function (type, name, defaultUri, integrity) {
-          if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration') {
-            return (async function () {
-              const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-              if (!response.ok) {
-                throw new Error(response.statusText);
-              }
-              const originalResponseBuffer = await response.arrayBuffer();
-              const originalResponseArray = new Int8Array(originalResponseBuffer);
-              const decompressedResponseArray = BrotliDecode(originalResponseArray);
-              const contentType = type === 
-                'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-              return new Response(decompressedResponseArray, 
-                { headers: { 'content-type': contentType } });
-            })();
-          }
+After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script type="module">
+  import { BrotliDecode } from './decode.min.js';
+  Blazor.start({
+    webAssembly: {
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration') {
+          return (async function () {
+            const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+            const originalResponseBuffer = await response.arrayBuffer();
+            const originalResponseArray = new Int8Array(originalResponseBuffer);
+            const decompressedResponseArray = BrotliDecode(originalResponseArray);
+            const contentType = type === 
+              'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+            return new Response(decompressedResponseArray, 
+              { headers: { 'content-type': contentType } });
+          })();
         }
-      });
-    </script>
-    ```
+      }
+    }
+  });
+</script>
+```
 
-    For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
+Standalone Blazor WebAssembly:
+
+:::moniker-end
+
+```html
+<script type="module">
+  import { BrotliDecode } from './decode.min.js';
+  Blazor.start({
+    loadBootResource: function (type, name, defaultUri, integrity) {
+      if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration') {
+        return (async function () {
+          const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          const originalResponseBuffer = await response.arrayBuffer();
+          const originalResponseArray = new Int8Array(originalResponseBuffer);
+          const decompressedResponseArray = BrotliDecode(originalResponseArray);
+          const contentType = type === 
+            'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+          return new Response(decompressedResponseArray, 
+            { headers: { 'content-type': contentType } });
+        })();
+      }
+    }
+  });
+</script>
+```
+
+For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
 
 :::moniker range=">= aspnetcore-8.0"
 

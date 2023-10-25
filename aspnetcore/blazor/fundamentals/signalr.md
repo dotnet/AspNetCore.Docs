@@ -664,7 +664,9 @@ Configure the following values for the client:
 * `withServerTimeout`: Configures the server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`withKeepAliveInterval`).
 * `withKeepAliveInterval`: Configures the Keep-Alive interval in milliseconds (default interval at which to ping the server). This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`withServerTimeout`).
 
-The following example for the `App.razor` file (Blazor Web App) shows the assignment of default values:
+The following example for the `App.razor` file (Blazor Web App) shows the assignment of default values.
+
+Blazor Web App:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -675,6 +677,20 @@ The following example for the `App.razor` file (Blazor Web App) shows the assign
         builder.withServerTimeout(30000).withKeepAliveInterval(15000);
       }
     }
+  });
+</script>
+```
+
+Blazor Server: The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0).
+
+Blazor Server:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+        builder.withServerTimeout(30000).withKeepAliveInterval(15000);
   });
 </script>
 ```
@@ -776,6 +792,8 @@ To modify the connection events, register callbacks for the following connection
 
 :::moniker range=">= aspnetcore-8.0"
 
+Blazor Web App:
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -793,6 +811,8 @@ To modify the connection events, register callbacks for the following connection
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+Blazor Server:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -840,11 +860,13 @@ The default reconnection behavior requires the user to take manual action to ref
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-`wwwroot/boot.js`:
+Create the following `wwwroot/boot.js` file.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
 
 ```javascript
 (() => {
@@ -910,9 +932,9 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 })();
 ```
 
-:::moniker-end
+Blazor Server:
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker-end
 
 ```javascript
 (() => {
@@ -976,8 +998,6 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 })();
 ```
 
-:::moniker-end
-
 :::moniker range=">= aspnetcore-7.0"
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
@@ -989,6 +1009,8 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
 :::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1007,6 +1029,8 @@ To adjust the reconnection retry count and interval, set the number of retries (
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+Blazor Server:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>

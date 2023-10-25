@@ -273,12 +273,24 @@ The app's culture can be set in JavaScript when Blazor starts with the `applicat
 
 :::moniker range=">= aspnetcore-8.0"
 
+  Blazor Web App:
+
   ```html
   <script>
     Blazor.start({
       webAssembly: {
         applicationCulture: 'en-US'
       }
+    });
+  </script>
+  ```
+
+  Standalone Blazor WebAssembly:
+
+  ```html
+  <script>
+    Blazor.start({
+      applicationCulture: 'en-US'
     });
   </script>
   ```
