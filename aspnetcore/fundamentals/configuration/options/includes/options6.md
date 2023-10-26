@@ -1,16 +1,4 @@
----
-title: Options pattern in ASP.NET Core
-author: rick-anderson
-description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 01/13/2022
-uid: fundamentals/configuration/options
---- 
-# Options pattern in ASP.NET Core
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT).
 
@@ -492,6 +480,3 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
 
 :::moniker-end
-
-[!INCLUDE[](~/aspnetcore/fundamentals/configuration/options/includes/options6.md]
-
