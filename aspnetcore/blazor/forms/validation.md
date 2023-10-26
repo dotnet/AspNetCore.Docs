@@ -24,7 +24,7 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 ```razor
 @page "/starship-8"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IDisposable
 @inject ILogger<Starship8> Logger
 
@@ -308,7 +308,7 @@ Basic validation is useful in cases where the form's model is defined within the
 
 In the following example:
 
-* A shortened version of the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
+* A shortened version of the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
 * The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
 * The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
 
@@ -320,7 +320,7 @@ When validation messages are set in the component, they're added to the validato
 
 ```razor
 @page "/starship-9"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<Starship9> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -475,10 +475,13 @@ When validation messages are set in the component, they're added to the validato
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. -->
+<!-- UPDATE 8.0 Will work this ASAP, but it might be post-RTM. 
+                I think security node work has a higher 
+                priority, and security work is scheduled in 
+                the coming weeks prior to RTM. -->
 
 > [!NOTE]
-> For prior releases of .NET, this section was based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a supported project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](xref:blazor/forms/index#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance by selecting an earlier version of this article.
+> For prior releases of .NET, this section was based on a hosted Blazor WebAssembly example, but hosted Blazor WebAssembly is no longer a project template in .NET 8. This section hasn't been updated to include new [.NET 8 antiforgery support features](xref:blazor/forms/index#antiforgery-support) and guidance for Blazor Web Apps. Article updates for this section are scheduled by [Add server validation with validator components for 8.0/BWA (dotnet/AspNetCore.Docs #30055)](https://github.com/dotnet/AspNetCore.Docs/issues/30055). You can inspect the prior guidance by selecting an earlier version of this article.
 
 :::moniker-end
 
@@ -649,13 +652,14 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 `Starship10.razor`:
 
-<!-- UPDATE 8.0 HOLD ...
+<!-- UPDATE 8.0 HOLD for when this section is reached
+                for updates.
 
 moniker range=">= aspnetcore-8.0"
 
 ```razor
 @page "/starship-10"
-@rendermode RenderMode.InteractiveWebAssembly
+@rendermode InteractiveWebAssembly
 @using System.Net
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Authorization
@@ -961,7 +965,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 ```razor
 @page "/starship-11"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<Starship11> Logger
 
 <EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship11">
@@ -1077,7 +1081,7 @@ Control the style of validation messages in the app's stylesheet (`wwwroot/css/a
 
 ## Determine if a form field is valid
 
-<!-- UPDATE 8.0 API cross-link -->
+<!-- UPDATE 8.0 Add API cross-link -->
 
 Use `EditContext.IsValid(fieldIdentifier)` to determine if a field is valid without obtaining validation messages.
 
@@ -1172,7 +1176,7 @@ The following component validates user input by applying the `SaladChefValidator
 
 ```razor
 @page "/starship-12"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off" FormName="Starship12">
@@ -1331,7 +1335,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 ```razor
 @page "/starship-13"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<Starship13> Logger
 
 <EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
@@ -1686,7 +1690,7 @@ public class ShipDescription
 
 To enable and disable the submit button based on form validation, the following example:
 
-* Uses a shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* Uses a shortened version of the earlier `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article that only accepts a value for the ship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * Uses the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
 * Validates the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
 * Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
@@ -1700,7 +1704,7 @@ To enable and disable the submit button based on form validation, the following 
 
 ```razor
 @page "/starship-14"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 

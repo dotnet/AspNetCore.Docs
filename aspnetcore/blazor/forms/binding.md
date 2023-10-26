@@ -122,19 +122,6 @@ You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemb
 
 ## Additional binding options
 
-<!-- UPDATE 8.0 
-    There's a remark in the API for MaxCollectionSize that says,
-    "Not configurable for now ..." at ...
-
-    https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/FormMapping/FormDataMapperOptions.cs#L28
-
-    ... but it seems that it can be configured via
-    MaxFormMappingCollectionSize. Is that a stale API remark?
-
-    Also, FormMappingUseCurrentCulture is available at Pre7, but it
-    looks like it might have been removed for RC1.
- -->
-
 Additional model binding options are available from `RazorComponentOptions` when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
 
 * `MaxFormMappingCollectionSize`: Maximum number of elements allowed in a form collection.
@@ -166,8 +153,6 @@ Use the `FormName` parameter to assign a form name. Form names must be unique to
 ```
 
 Supplying a form name:
-
-<!-- UPDATE 8.0 Cross-link render modes article -->
 
 * Is required on all forms that are submitted via interactivity with server rendering.
 * Not required for interactive rendering, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
@@ -248,12 +233,12 @@ You can specify the following form binding parameters to the `[SupplyParameterFr
 
 The following example independently binds two forms to their models by form name.
 
-`Starship3.razor`:
+`Starship6.razor`:
 
 ```razor
-@page "/starship-3"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship3> Logger
+@page "/starship-6"
+@rendermode InteractiveServer
+@inject ILogger<Starship6> Logger
 
 <EditForm method="post" Model="@Model1" OnSubmit="@Submit1" 
     FormName="Holodeck1">
@@ -351,15 +336,15 @@ The following subform is used for editing values of the `ShipDetails` type. This
 
 The main form is bound to the `Ship` class. The `StarshipSubform` component is used to edit ship details, bound as `Model!.Details`.
 
-`Starship4.razor`:
+`Starship7.razor`:
 
 ```razor
-@page "/starship-4"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship4> Logger
+@page "/starship-7"
+@rendermode InteractiveServer
+@inject ILogger<Starship7> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit" 
-    FormName="Starship4">
+    FormName="Starship7">
     <div>
         <label>
             Id:
@@ -398,7 +383,7 @@ Developers aren't expected to interact with `FormMappingContext` directly, as it
 
 :::moniker range=">= aspnetcore-5.0"
 
-The example in this section is based on the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of this article.
+The example in this section is based on the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of this article.
 
 Add the following [`enum` types](/dotnet/csharp/language-reference/language-specification/enums) to the app. Create a new file to hold them or add them to the `Starship.cs` file.
 
@@ -414,7 +399,7 @@ public class ComponentEnums
 Make the `enums` class accessible to the:
 
 * `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;`).
-* `Starfleet Starship Database` form (`Starship5.razor`) (for example, `@using static ComponentEnums`).
+* `Starfleet Starship Database` form (`Starship3.razor`) (for example, `@using static ComponentEnums`).
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article:
 
@@ -431,7 +416,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Update the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article. Add the components to produce:
+Update the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
 * A nested radio button group for engine and ship color.
@@ -535,7 +520,7 @@ Update the `Starfleet Starship Database` form (`Starship5` component) of the [Ex
 > [!NOTE]
 > If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components are grouped by their most recent ancestor.
 
-If you implemented the preceding Razor markup in the `Starship5` component of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article, update the logging for the `Submit` method:
+If you implemented the preceding Razor markup in the `Starship3` component of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article, update the logging for the `Submit` method:
 
 ```csharp
 Logger.LogInformation("Id = {Id} Description = {Description} " +

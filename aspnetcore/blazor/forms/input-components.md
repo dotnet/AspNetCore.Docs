@@ -71,7 +71,7 @@ For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFil
 
 ## Example form
 
-The following `Starship` type, which is used in several of this article's examples, defines a diverse set of properties with data annotations:
+The following `Starship` type, which is used in several of this article's examples and examples in other *Forms* node articles, defines a diverse set of properties with data annotations:
 
 * `Id` is required because it's annotated with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>. `Id` requires a value of at least one character but no more than 16 characters using the <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute>.
 * `Description` is optional because it isn't annotated with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>.
@@ -119,20 +119,20 @@ The following form accepts and validates user input using:
 * The properties and validation defined in the preceding `Starship` model.
 * Several of Blazor's built-in input components.
 
-`Starship5.razor`:
+`Starship3.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-5"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship5> Logger
+@page "/starship-3"
+@rendermode InteractiveServer
+@inject ILogger<Starship3> Logger
 
 <h1>Starfleet Starship Database</h1>
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship5">
+<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship3">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -202,7 +202,7 @@ The following form accepts and validates user input using:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship5.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship3.razor":::
 -->
 
 :::moniker-end
@@ -210,8 +210,8 @@ The following form accepts and validates user input using:
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-5"
-@inject ILogger<Starship5> Logger
+@page "/starship-3"
+@inject ILogger<Starship3> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -286,7 +286,7 @@ The following form accepts and validates user input using:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship5.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship3.razor":::
 -->
 
 :::moniker-end
@@ -295,7 +295,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding examp
 
 In the following example:
 
-* A shortened version of the earlier `Starfleet Starship Database` form (`Starship5` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* A shortened version of the earlier `Starfleet Starship Database` form (`Starship3` component) is used that only accepts a value for the starship's Id. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * The `Submit` method executes when the **`Submit`** button is selected.
 * The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `Submit` method.
 * Logging is executed depending on the validation result.
@@ -305,17 +305,17 @@ In the following example:
 >
 > > This async method lacks 'await' operators and will run synchronously. ...
 
-`Starship6.razor`:
+`Starship4.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-6"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship6> Logger
+@page "/starship-4"
+@rendermode InteractiveServer
+@inject ILogger<Starship4> Logger
 
 <EditForm method="post" EditContext="@editContext" OnSubmit="@Submit" 
-    FormName="Starship6">
+    FormName="Starship4">
     <DataAnnotationsValidator />
     <div>
         <label>
@@ -367,7 +367,7 @@ In the following example:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship6.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship4.razor":::
 -->
 
 :::moniker-end
@@ -375,8 +375,8 @@ In the following example:
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/starship-6"
-@inject ILogger<Starship6> Logger
+@page "/starship-4"
+@inject ILogger<Starship4> Logger
 
 <EditForm EditContext="@editContext" OnSubmit="@Submit">
     <DataAnnotationsValidator />
@@ -429,7 +429,7 @@ In the following example:
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship6.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship4.razor":::
 -->
 
 :::moniker-end
@@ -445,21 +445,21 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
 
 In the following example, the user must select at least two starship classifications but no more than three classifications.
 
-`Starship7.razor`:
+`Starship5.razor`:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/starship-7"
-@rendermode RenderMode.InteractiveServer
-@inject ILogger<Starship7> Logger
+@page "/starship-5"
+@rendermode InteractiveServer
+@inject ILogger<Starship5> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
 <EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
-    FormName="Starship7">
+    FormName="Starship5">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -522,8 +522,8 @@ In the following example, the user must select at least two starship classificat
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
-@page "/starship-7"
-@inject ILogger<Starship7> Logger
+@page "/starship-5"
+@inject ILogger<Starship5> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
@@ -581,7 +581,7 @@ In the following example, the user must select at least two starship classificat
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship7.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship5.razor":::
 -->
 
 :::moniker-end
@@ -602,7 +602,7 @@ For information on how empty strings and `null` values are handled in data bindi
 
 Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter.
 
-In the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
+In the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
 
 ```razor
 <label>
@@ -629,7 +629,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 > The Production Date field must be a date.
 
-<!-- UPDATE 8.0 This isn't currently supported.
+<!-- UPDATE 9.0 The feature has been backlogged.
      https://github.com/dotnet/aspnetcore/issues/49147
 
 > [!NOTE]
@@ -662,7 +662,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 :::moniker range=">= aspnetcore-5.0"
 
-In the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section with a [friendly display name](#display-name-support) assigned, the `Production Date` field produces an error message using the following default error message template:
+In the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](#example-form) section with a [friendly display name](#display-name-support) assigned, the `Production Date` field produces an error message using the following default error message template:
 
 ```css
 The {0} field must be a date.
@@ -697,7 +697,7 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 :::moniker range="< aspnetcore-5.0"
 
-In the `Starfleet Starship Database` form (`Starship5` component) of the [Example form](#example-form) section uses a default error message template:
+In the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](#example-form) section uses a default error message template:
 
 ```css
 The {0} field must be a date.

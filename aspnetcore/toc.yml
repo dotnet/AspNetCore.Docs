@@ -534,10 +534,10 @@ items:
             items:
               - name: Overview
                 uid: blazor/forms/index
-              - name: Binding
-                uid: blazor/forms/binding
               - name: Input components
                 uid: blazor/forms/input-components
+              - name: Binding
+                uid: blazor/forms/binding
               - name: Validation
                 uid: blazor/forms/validation
               - name: Troubleshoot
