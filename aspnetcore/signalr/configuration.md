@@ -337,7 +337,7 @@ Stateful reconnect achieves this by:
 
 Stateful reconnect is available in ASP.NET Core 8.0 and later.
 
-Opt-in to stateful reconnect at both the server hub enpoint and the client:
+Opt-in to stateful reconnect at both the server hub endpoint and the client:
 
 * Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
 
