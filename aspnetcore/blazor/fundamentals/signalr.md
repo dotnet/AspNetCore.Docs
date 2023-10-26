@@ -294,6 +294,8 @@ Configure <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtens
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.Transports>
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.WebSockets> (*Read only*)
 
+:::moniker range=">= aspnetcore-8.0"
+
 In the following example, options are set to their default values. Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file.
 
 ```csharp
@@ -302,6 +304,37 @@ app.MapBlazorHub(options =>
     options.{OPTION} = {VALUE};
 });
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+In the following example, options are set to their default values. Place the call to `app.MapBlazorHub` after the call to `app.UseRouting` in the app's `Program` file.
+
+```csharp
+app.MapBlazorHub(options =>
+{
+    options.{OPTION} = {VALUE};
+});
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In the following example, options are set to their default values. Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file.
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapBlazorHub(options =>
+    {
+        options.{OPTION} = {VALUE};
+    });
+    ...
+});
+
+:::moniker-end
 
 In the preceding example, the `{OPTION}` placeholder is the option, and the `{VALUE}` placeholder is the value.
 
