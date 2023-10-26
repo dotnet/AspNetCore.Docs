@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/23/2023
+ms.date: 10/26/2023
 uid: signalr/configuration
 ---
 
