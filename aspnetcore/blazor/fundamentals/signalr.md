@@ -296,7 +296,7 @@ Configure <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtens
 
 :::moniker range=">= aspnetcore-8.0"
 
-Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file.
+Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file:
 
 ```csharp
 app.MapBlazorHub(options =>
@@ -309,7 +309,7 @@ app.MapBlazorHub(options =>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Place the call to `app.MapBlazorHub` after the call to `app.UseRouting` in the app's `Program` file.
+Supply the options to `app.MapBlazorHub` after the call to `app.UseRouting` in the app's `Program` file:
 
 ```csharp
 app.MapBlazorHub(options =>
@@ -322,7 +322,7 @@ app.MapBlazorHub(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file.
+Supply the options to `app.MapBlazorHub` in endpoint routing configuration:
 
 ```csharp
 app.UseEndpoints(endpoints =>
