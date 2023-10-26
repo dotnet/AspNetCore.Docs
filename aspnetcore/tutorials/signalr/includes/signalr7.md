@@ -1,22 +1,4 @@
----
-title: Get started with ASP.NET Core SignalR
-author: bradygaster
-description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-<!-- ms.author: bradyg -->
-ms.author: wpickett
-monikerRange: '>= aspnetcore-3.1'
-ms.custom: mvc, engagement-fy23
-ms.date: 10/26/2023
-uid: tutorials/signalr
-
-# Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
----
-
-# Tutorial: Get started with ASP.NET Core SignalR
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
@@ -35,15 +17,15 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -284,9 +266,3 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr7.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr6.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr3-5.md)]
