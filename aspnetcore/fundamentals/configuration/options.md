@@ -232,3 +232,5 @@ To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
+
+[!INCLUDE[](~/aspnetcore/fundamentals/configuration/options/includes/options6.md]
