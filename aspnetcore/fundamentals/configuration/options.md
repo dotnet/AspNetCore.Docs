@@ -10,6 +10,8 @@ uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-7.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT).
@@ -233,4 +235,4 @@ To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 
 :::moniker-end
 
-[!INCLUDE[](~/aspnetcore/fundamentals/configuration/options/includes/options6.md]
+[!INCLUDE[](~/aspnetcore/fundamentals/configuration/options/includes/options6.md)]
