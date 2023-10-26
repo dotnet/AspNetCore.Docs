@@ -235,4 +235,4 @@ To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 
 :::moniker-end
 
-[!INCLUDE[](~/aspnetcore/fundamentals/configuration/options/includes/options6.md)]
+[!INCLUDE[](~/fundamentals/configuration/options/includes/options6.md)]
