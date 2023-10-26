@@ -56,14 +56,21 @@ if (builder.Environment.IsStaging())
 
 Use the `PathPrefix` endpoint option to gets or set the path string that indicates the prefix for Blazor WebAssembly assets. The path must correspond to a referenced Blazor WebAssembly application project.
 
-
 ```csharp
 endpoints.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode(options => 
         options.PathPrefix = "{PATH PREFIX}");
 ```
 
-In the preceding example, the `{PATH PREFIX}` placeholder is the path prefix and must start with a forward slash (for example: `/path-prefix`).
+In the preceding example, the `{PATH PREFIX}` placeholder is the path prefix and must start with a forward slash (`/`).
+
+In the following example, the path prefix is set to `/path-prefix`:
+
+```csharp
+endpoints.MapRazorComponents<App>()
+    .AddInteractiveWebAssemblyRenderMode(options => 
+        options.PathPrefix = "/path-prefix");
+```
 
 :::moniker-end
 
