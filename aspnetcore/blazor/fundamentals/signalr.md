@@ -309,7 +309,7 @@ app.MapBlazorHub(options =>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Supply the options to `app.MapBlazorHub` after the call to `app.UseRouting` in the app's `Program` file:
+Supply the options to `app.MapBlazorHub` in the app's `Program` file:
 
 ```csharp
 app.MapBlazorHub(options =>
