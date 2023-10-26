@@ -327,7 +327,7 @@ var connection = new signalR.HubConnectionBuilder()
 
 ### Configure stateful reconnect
 
-SignalR stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
+SignalR stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access. Stateful reconnect is available in ASP.NET Core 8.0 and later.
 
 Stateful reconnect achieves this by:
 
@@ -354,7 +354,9 @@ Opt-in to stateful reconnect at both the server hub enpoint and the client:
     .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
   ```
-
+  
+  The `bufferSize` option is optional with a default of 100,000 bytes.
+  
 * Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
@@ -364,6 +366,8 @@ Opt-in to stateful reconnect at both the server hub enpoint and the client:
     builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
     var hubConnection = builder.Build();
   ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
 ### Configure additional options
 
