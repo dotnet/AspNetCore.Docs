@@ -968,7 +968,7 @@ The HTTP logging middleware has several new capabilities:
   * Adjust how much of the request or response body is logged.
   * Add custom fields to the logs.
 
-For more information, see <xref:~/fundamentals/http-logging/index>.
+For more information, see <xref:fundamentals/http-logging/index>.
 
 ### New APIs in ProblemDetails to support more resilient integrations
 
