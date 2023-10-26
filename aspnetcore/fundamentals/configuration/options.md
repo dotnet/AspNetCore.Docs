@@ -12,6 +12,9 @@ uid: fundamentals/configuration/options
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+<!-- Update [!INCLUDE[](~/includes/bind7.md)] 
+when updating this article -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT).
@@ -31,7 +34,7 @@ This article provides information on the options pattern in ASP.NET Core. For in
 
 ## Bind hierarchical configuration
 
-[!INCLUDE[](~/includes/bind6.md)]
+[!INCLUDE[](~/includes/bind7.md)]
 
 <a name="oi"></a>
 
