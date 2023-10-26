@@ -69,7 +69,7 @@ The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tre
 
 Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> using the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute):
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1" highlight="20-28":::
 
 Parameters bound to the request with `[FromForm]` include an [anti-forgery token](xref:security/anti-request-forgery). The anti-forgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
