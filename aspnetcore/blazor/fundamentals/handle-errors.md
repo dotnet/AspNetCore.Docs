@@ -287,6 +287,28 @@ The <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors> 
 > [!WARNING]
 > Always avoid exposing error information to clients on the Internet, which is a security risk.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Detailed errors for Razor component server-side rendering
+
+*This section applies to Blazor Web Apps.*
+
+Use the `DetailedErrors` option to control producing detailed information on errors for Razor component server-side rendering. The default value is `false`.
+
+The following example enables detailed errors:
+
+```csharp
+builder.Services.AddRazorComponents(options => options.DetailedErrors = true);
+```
+
+<!-- UPDATE 8.0 We need to flesh out this warning with the consequences
+                of enabling detailed errors in production. -->
+
+> [!WARNING]
+> Only enable detailed errors in the Development environment.
+
+:::moniker-end
+
 ## Manage unhandled exceptions in developer code
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.

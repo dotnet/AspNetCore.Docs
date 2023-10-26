@@ -279,6 +279,32 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 
 For information on memory management, see <xref:blazor/host-and-deploy/server#memory-management>.
 
+## Blazor hub options
+
+Configure `MapBlazorHub` options to control <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions> of the Blazor hub:
+
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AllowStatefulReconnects>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.MinimumProtocolVersion>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.Transports>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.WebSockets> (*Read only*)
+
+In the following example, options are set to their default values. Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file.
+
+```csharp
+app.MapBlazorHub(options =>
+{
+    options.{OPTION} = {VALUE};
+});
+```
+
+In the preceding example, the `{OPTION}` placeholder is the option, and the `{VALUE}` placeholder is the value.
+
 ## Maximum receive message size
 
 *This section only applies to projects that implement SignalR.*

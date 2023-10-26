@@ -48,9 +48,26 @@ if (builder.Environment.IsStaging())
 }
 ```
 
-## Static web asset base path
+:::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 TBD if the content is correct for >=8.0 -->
+## Prefix for Blazor WebAssembly assets
+
+*This section applies to Blazor Web Apps.*
+
+Use the `PathPrefix` endpoint option to gets or set the path string that indicates the prefix for Blazor WebAssembly assets. The path must correspond to a referenced Blazor WebAssembly application project.
+
+
+```csharp
+endpoints.MapRazorComponents<App>()
+    .AddInteractiveWebAssemblyRenderMode(options => 
+        options.PathPrefix = "{PATH PREFIX}");
+```
+
+In the preceding example, the `{PATH PREFIX}` placeholder is the path prefix and must start with a forward slash (for example: `/path-prefix`).
+
+:::moniker-end
+
+## Static web asset base path
 
 :::moniker range=">= aspnetcore-8.0"
 
