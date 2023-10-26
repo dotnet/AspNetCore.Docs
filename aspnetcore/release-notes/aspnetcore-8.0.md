@@ -387,6 +387,17 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
 
+Opt-in to stateful reconnect at both the server hub enpoint and the client:
+
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+
+  ```csharp
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
+  ```
+
 To opt-in to stateful reconnect for a JavaScript or Typescript client:
 
 * Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
@@ -396,15 +407,6 @@ To opt-in to stateful reconnect for a JavaScript or Typescript client:
     .withUrl("/hubname")
     .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
-  ```
-
-* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
-
-  ```csharp
-  app.MapHub<MyHub>("/hubName", options =>
-  {
-      options.AllowStatefulReconnects = true;
-  });
   ```
 
 To opt-in to stateful reconnect for a .NET client:
@@ -417,15 +419,6 @@ To opt-in to stateful reconnect for a .NET client:
         .WithStatefulReconnect();
     builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
     var hubConnection = builder.Build();
-  ```
-
-* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
-
-  ```csharp
-  app.MapHub<MyHub>("/hubName", options =>
-  {
-      options.AllowStatefulReconnects = true;
-  });
   ```
 
 ## Minimal APIs
