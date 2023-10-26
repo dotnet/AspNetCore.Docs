@@ -691,6 +691,24 @@ Two additional abstractions participate in managing authentication state:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Temporary redirection URL validity duration
+
+*This section applies to Blazor Web Apps.*
+
+Use the `TemporaryRedirectionUrlValidityDuration` option to get or set the lifetime of data protection validity for temporary redirection URLs emitted by Blazor server-side rendering. These are only used transiently, so the lifetime only needs to be long enough for a client to receive the URL and begin navigation to it. However, it should also be long enough to allow for clock skew across servers. The default value is five minutes.
+
+In the following example the value is extended to seven minutes:
+
+```csharp
+builder.Services.AddRazorComponents(options => 
+    options.TemporaryRedirectionUrlValidityDuration = 
+        TimeSpan.FromMinutes(7));
+```
+
+:::moniker-end
+
 ## Additional resources
 
 * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
