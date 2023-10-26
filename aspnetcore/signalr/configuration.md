@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 07/10/2023
+ms.date: 10/26/2023
 uid: signalr/configuration
 ---
 
@@ -324,6 +324,52 @@ var connection = new signalR.HubConnectionBuilder()
 | `getKeepAliveInterval` / `setKeepAliveInterval` | 15 seconds (15,000 milliseconds) | Determines the interval at which the client sends ping messages. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the `ClientTimeoutInterval` set on the server, the server considers the client disconnected. |
 
 ---
+
+### Configure stateful reconnect
+
+SignalR stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
+
+Stateful reconnect achieves this by:
+
+* Temporarily buffering data on the server and client.
+* Acknowledging messages received (ACK-ing) by both the server and client.
+* Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
+
+Stateful reconnect is available in ASP.NET Core 8.0 and later.
+
+Opt-in to stateful reconnect at both the server hub enpoint and the client:
+
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+
+  ```csharp
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
+  ```
+
+* Update JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
+
+  ```JavaScript
+  const builder = new signalR.HubConnectionBuilder()
+    .withUrl("/hubname")
+    .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
+  const connection = builder.build();
+  ```
+  
+  The `bufferSize` option is optional with a default of 100,000 bytes.
+  
+* Update .NET client code to enable the `WithStatefulReconnect` option:
+
+  ```csharp
+    var builder = new HubConnectionBuilder()
+        .WithUrl("<hub url>")
+        .WithStatefulReconnect();
+    builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
+    var hubConnection = builder.Build();
+  ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
 ### Configure additional options
 
