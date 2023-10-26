@@ -385,7 +385,7 @@ Stateful reconnect achieves this by:
 
 * Temporarily buffering data on the server and client.
 * Acknowledging messages received (ACK-ing) by both the server and client.
-* Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
+* Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
 
 Opt-in to stateful reconnect at both the server hub enpoint and the client:
 
@@ -398,9 +398,7 @@ Opt-in to stateful reconnect at both the server hub enpoint and the client:
   });
   ```
 
-To opt-in to stateful reconnect for a JavaScript or Typescript client:
-
-* Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
+* Update JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
 
   ```JavaScript
   const builder = new signalR.HubConnectionBuilder()
@@ -409,9 +407,7 @@ To opt-in to stateful reconnect for a JavaScript or Typescript client:
   const connection = builder.build();
   ```
 
-To opt-in to stateful reconnect for a .NET client:
-
-* Update the .NET client code to enable the `UseStatefulReconnect` option:
+* Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
     var builder = new HubConnectionBuilder()
