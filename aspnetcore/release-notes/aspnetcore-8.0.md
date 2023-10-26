@@ -406,7 +406,9 @@ Opt-in to stateful reconnect at both the server hub enpoint and the client:
     .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
   const connection = builder.build();
   ```
-
+  
+  The `bufferSize` option is optional with a default of 100,000 bytes.
+  
 * Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
@@ -416,6 +418,8 @@ Opt-in to stateful reconnect at both the server hub enpoint and the client:
     builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
     var hubConnection = builder.Build();
   ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
 ## Minimal APIs
 
