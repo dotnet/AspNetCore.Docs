@@ -65,7 +65,6 @@ For more information, see the section on [AsParameters](#parameter-binding-for-a
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/IFormFile) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
-zz
 #### Secure binding from IFormFile and IFormFileCollection
 
 Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> using the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute):
@@ -193,7 +192,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Mic
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
 
-<a name="bind8"></a> zz
+<a name="bind8"></a>
 
 #### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 
