@@ -350,13 +350,13 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
 
   Optionally, the maximimum buffer size in bytes allowed by the server can be set globally or for a specific hub with the `StatefulReconnectBufferSize` option:
 
-  The `StatefulReconnectBufferSize`` option set globally:
+  The `StatefulReconnectBufferSize` option set globally:
 
   ```csharp
   builder.AddSignalR(o => o.StatefulReconnectBufferSize = 1000);
   ```
 
-  The `StatefulReconnectBufferSize`` option set for a specific hub:
+  The `StatefulReconnectBufferSize` option set for a specific hub:
 
   ```csharp
   builder.AddSignalR().AddHubOptions<MyHub>(o => o.StatefulReconnectBufferSize = 1000);
