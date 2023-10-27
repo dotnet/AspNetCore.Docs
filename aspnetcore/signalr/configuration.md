@@ -68,9 +68,9 @@ The following table describes options for configuring SignalR hubs:
 | `SupportedProtocols` | All installed protocols | Protocols supported by this hub. By default, all protocols registered on the server are allowed. Protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false` because these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
-| `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value may increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
+| `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value might increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
 | `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
-| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments will be resolved from DI if possible. |
+| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments are resolved from DI if possible. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
 
@@ -108,7 +108,7 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
 | `MinimumProtocolVersion` | 0 | Specify the minimum version of the negotiate protocol. This is used to limit clients to newer versions. |
-| `CloseOnAuthenticationExpiration` | false | Set this option to enable authentication expiration tracking which will close connections when a token expires. |
+| `CloseOnAuthenticationExpiration` | false | Set this option to enable authentication expiration tracking, which will close connections when a token expires. |
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
 
@@ -337,7 +337,7 @@ Stateful reconnect achieves this by:
 
 Stateful reconnect is available in ASP.NET Core 8.0 and later.
 
-Opt-in to stateful reconnect at both the server hub endpoint and the client:
+Opt in to stateful reconnect at both the server hub endpoint and the client:
 
 * Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
 
@@ -350,13 +350,13 @@ Opt-in to stateful reconnect at both the server hub endpoint and the client:
 
   Optionally, the maximimum buffer size in bytes allowed by the server can be set globally or for a specific hub with the `StatefulReconnectBufferSize` option:
 
-  The StatefulReconnectBufferSize option set globally:
+  The `StatefulReconnectBufferSize`` option set globally:
 
   ```csharp
   builder.AddSignalR(o => o.StatefulReconnectBufferSize = 1000);
   ```
 
-  The StatefulReconnectBufferSize option set for a specific hub:
+  The `StatefulReconnectBufferSize`` option set for a specific hub:
 
   ```csharp
   builder.AddSignalR().AddHubOptions<MyHub>(o => o.StatefulReconnectBufferSize = 1000);
