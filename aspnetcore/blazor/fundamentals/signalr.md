@@ -283,18 +283,18 @@ For information on memory management, see <xref:blazor/host-and-deploy/server#me
 
 Configure <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> options to control <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions> of the Blazor hub:
 
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
+:::moniker range=">= aspnetcore-8.0"
+
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AllowStatefulReconnects>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration>
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.MinimumProtocolVersion>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.Transports>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.WebSockets> (*Read only*)
-
-:::moniker range=">= aspnetcore-8.0"
 
 Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file:
 
@@ -309,6 +309,13 @@ app.MapBlazorHub(options =>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
+
 Supply the options to `app.MapBlazorHub` in the app's `Program` file:
 
 ```csharp
@@ -321,6 +328,11 @@ app.MapBlazorHub(options =>
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
+
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
+* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
 
 Supply the options to `app.MapBlazorHub` in endpoint routing configuration:
 
