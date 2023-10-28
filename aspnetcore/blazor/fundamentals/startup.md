@@ -20,27 +20,24 @@ For general guidance on ASP.NET Core app configuration for server-side developme
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `web` for a Blazor Web App or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or client of a Blazor Web App, or the `App.razor` file of a Blazor Web App.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is:
+
+* `web` for a Blazor Web App
+* `server` for a Blazor Server app
+* `webassembly` for a Blazor WebAssembly app
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is:
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
+* `server` for a Blazor Server app
+* `webassembly` for a Blazor WebAssembly app
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0"
-
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
-
-:::moniker-end
+For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 To manually start Blazor:
 
