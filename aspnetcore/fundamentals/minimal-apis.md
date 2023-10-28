@@ -3,6 +3,7 @@ title: Minimal APIs quick reference
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
+content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 6/23/2023
 uid: fundamentals/minimal-apis
@@ -239,6 +240,13 @@ Moved to uid: tutorials/min-web-api
 * <xref:fundamentals/minimal-apis/handle-errors>
 * <xref:fundamentals/minimal-apis/security>
 * <xref:fundamentals/minimal-apis/test-min-api>
+* [A look behind the scenes of minimal API endpoints](https://andrewlock.net/a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
+* [A look behind the scenes of minimal API routing](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-routing/)
+* [A look behind the scenes of minimal API parameter binding](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-parameter-binding/)
+* [A look behind the scenes of minimal API responses](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-responses/)
+* [A look behind the scenes of minimal API filters](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-filters/)
+* [A look behind the scenes of minimal API authorization](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-authorization/)
+* [A look behind the scenes of minimal API CORS](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-cors/)
 
 :::moniker-end
 
