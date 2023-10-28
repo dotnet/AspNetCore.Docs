@@ -44,9 +44,9 @@ app.MapGet("/", (HttpContext context, IAntiforgery antiforgery) =>
 app.MapPost("/upload", async Task<Results<Ok<string>,
    BadRequest<string>>> (IFormFile file, HttpContext context, IAntiforgery antiforgery) =>
 {
-        var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
-        await UploadFileWithName(file, fileSaveName);
-        return TypedResults.Ok("File uploaded successfully!");
+    var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+    await UploadFileWithName(file, fileSaveName);
+    return TypedResults.Ok("File uploaded successfully!");
 });
 
 app.Run();
