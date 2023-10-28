@@ -258,3 +258,4 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 
 * <xref:fundamentals/native-aot-tutorial>
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
+* [Using the configuration binder source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-using-the-new-configuration-binder-source-generator/)
