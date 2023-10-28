@@ -265,3 +265,4 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 * [The minimal API AOT compilation template](https://andrewlock.net/exploring-the-dotnet-8-preview-the-minimal-api-aot-template/)
 * [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-webapplication-createbuilder-to-createslimbuilder/)
 * [Exploring the new minimal API source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-the-minimal-api-source-generator/)
+* [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-replacing-method-calls-with-interceptors/)

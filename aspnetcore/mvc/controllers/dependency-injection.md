@@ -74,7 +74,7 @@ The following code requests the `IOptions<SampleWebSettings>` settings from the 
 ## Additional resources
 
 * See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
-
+* [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
 * [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).
 
 :::moniker-end
