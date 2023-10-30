@@ -20,29 +20,59 @@ For general guidance on ASP.NET Core app configuration for server-side developme
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `web` for a Blazor Web App or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or client of a Blazor Web App, or the `App.razor` file of a Blazor Web App.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is:
+
+* `web` for a Blazor Web App
+* `server` for a Blazor Server app
+* `webassembly` for a Blazor WebAssembly app
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is:
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
+* `server` for a Blazor Server app
+* `webassembly` for a Blazor WebAssembly app
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0"
-
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
-
-:::moniker-end
+For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 To manually start Blazor:
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+* Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
+* Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+* Place static server rendering options in the `ssr` property.
+* Place server-side Blazor-SignalR circuit options in the `circuit` property.
+* Place client-side WebAssembly options in the `webAssembly` property.
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  ...
+  Blazor.start({
+    ssr: {
+      ...
+    },
+    circuit: {
+      ...
+    },
+    webAssembly: {
+      ...
+    }
+  });
+  ...
+</script>
+```
+
+Blazor Server:
+
+:::moniker-end
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
@@ -260,6 +290,33 @@ The `loadBootResource` function can return a URI string to override the loading 
 
 The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    webAssembly: {
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
+        switch (type) {
+          case 'dotnetjs':
+          case 'dotnetwasm':
+          case 'timezonedata':
+            return `https://cdn.example.com/blazorwebassembly/{VERSION}/${name}`;
+        }
+      }
+    }
+  });
+</script>
+```
+
+Standalone Blazor WebAssembly:
+
+:::moniker-end
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -280,6 +337,35 @@ The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for exampl
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    webAssembly: {
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        if (type == 'dotnetjs') {
+          return null;
+        } else {
+          return fetch(defaultUri, {
+            cache: 'no-cache',
+            integrity: integrity,
+            headers: { 'Custom-Header': 'Custom Value' }
+          });
+        }
+      }
+    }
+  });
+</script>
+```
+
+Standalone Blazor WebAssembly:
+
+:::moniker-end
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -466,6 +552,23 @@ To configure the .NET WebAssembly runtime, use the `configureRuntime` function w
 
 The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `true`:
 
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    webAssembly: {
+      configureRuntime: dotnet => {
+        dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
+      }
+    }
+  });
+</script>
+```
+
+Standalone Blazor WebAssembly:
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -489,7 +592,7 @@ The .NET runtime instance can be accessed from `Blazor.runtime`.
 
 *This section applies to Blazor Web Apps.*
 
-To disable enhanced navigation and form handling, set `disableDomPreservation` to `true` for `Blazor.start`:
+To disable enhanced navigation and form handling, set `disableDomPreservation` to `true` for `Blazor.start`.
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>

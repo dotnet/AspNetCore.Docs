@@ -735,15 +735,33 @@ Configure the following values for the client:
 * `withServerTimeout`: Configures the server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`withKeepAliveInterval`).
 * `withKeepAliveInterval`: Configures the Keep-Alive interval in milliseconds (default interval at which to ping the server). This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`withServerTimeout`).
 
-The following example for the `App.razor` file (Blazor Web App) shows the assignment of default values:
+The following example for the `App.razor` file (Blazor Web App) shows the assignment of default values.
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      configureSignalR: function (builder) {
+        builder.withServerTimeout(30000).withKeepAliveInterval(15000);
+      }
+    }
+  });
+</script>
+```
+
+The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0).
+
+Blazor Server:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.withServerTimeout(30000).withKeepAliveInterval(15000);
-    }
+        builder.withServerTimeout(30000).withKeepAliveInterval(15000);
   });
 </script>
 ```
@@ -843,6 +861,28 @@ To modify the connection events, register callbacks for the following connection
 
 **Both `onConnectionDown` and `onConnectionUp` must be specified.**
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      reconnectionHandler: {
+        onConnectionDown: (options, error) => console.error(error),
+        onConnectionUp: () => console.log("Up, up, and away!")
+      }
+    }
+  });
+</script>
+```
+
+Blazor Server:
+
+:::moniker-end
+
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
@@ -887,7 +927,83 @@ The default reconnection behavior requires the user to take manual action to ref
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-`wwwroot/boot.js`:
+Create the following `wwwroot/boot.js` file.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```javascript
+(() => {
+  const maximumRetryCount = 3;
+  const retryIntervalMilliseconds = 5000;
+  const reconnectModal = document.getElementById('reconnect-modal');
+  
+  const startReconnectionProcess = () => {
+    reconnectModal.style.display = 'block';
+
+    let isCanceled = false;
+
+    (async () => {
+      for (let i = 0; i < maximumRetryCount; i++) {
+        reconnectModal.innerText = `Attempting to reconnect: ${i + 1} of ${maximumRetryCount}`;
+
+        await new Promise(resolve => setTimeout(resolve, retryIntervalMilliseconds));
+
+        if (isCanceled) {
+          return;
+        }
+
+        try {
+          const result = await Blazor.reconnect();
+          if (!result) {
+            // The server was reached, but the connection was rejected; reload the page.
+            location.reload();
+            return;
+          }
+
+          // Successfully reconnected to the server.
+          return;
+        } catch {
+          // Didn't reach the server; try again.
+        }
+      }
+
+      // Retried too many times; reload the page.
+      location.reload();
+    })();
+
+    return {
+      cancel: () => {
+        isCanceled = true;
+        reconnectModal.style.display = 'none';
+      },
+    };
+  };
+
+  let currentReconnectionProcess = null;
+
+  Blazor.start({
+    circuit: {
+      reconnectionHandler: {
+        onConnectionDown: () => currentReconnectionProcess ??= startReconnectionProcess(),
+        onConnectionUp: () => {
+          currentReconnectionProcess?.cancel();
+          currentReconnectionProcess = null;
+        }
+      }
+    }
+  });
+})();
+```
+
+Blazor Server:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ```javascript
 (() => {
@@ -945,8 +1061,8 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
       onConnectionUp: () => {
         currentReconnectionProcess?.cancel();
         currentReconnectionProcess = null;
-      },
-    },
+      }
+    }
   });
 })();
 ```
@@ -958,6 +1074,28 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 ## Adjust the server-side reconnection retry count and interval
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      reconnectionOptions: {
+        maxRetries: 3,
+        retryIntervalMilliseconds: 2000
+      }
+    }
+  });
+</script>
+```
+
+Blazor Server:
+
+:::moniker-end
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>

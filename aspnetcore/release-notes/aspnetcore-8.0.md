@@ -332,9 +332,23 @@ Blazor.start({
 });
 ```
 
-#### New approach for the JavaScript client of a Blazor Server app
+#### New approach for the JavaScript client of server-side Blazor app
 
-The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later for Blazor Web Apps and Blazor Server.
+
+Blazor Web App:
+
+```javascript
+Blazor.start({
+  circuit: {
+    configureSignalR: function (builder) {
+      builder.withServerTimeout(60000).withKeepAliveInterval(30000);
+    }
+  }
+});
+```
+
+Blazor Server:
 
 ```javascript
 Blazor.start({

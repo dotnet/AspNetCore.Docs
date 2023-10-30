@@ -539,6 +539,62 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker-end
 
+## Location of the Blazor script
+
+The script is served from an embedded resource in the ASP.NET Core shared framework.
+
+:::moniker range=">= aspnetcore-8.0"
+
+In a Blazor Web App, the Blazor script is located in the `Components/App.razor` file:
+
+```
+<script src="_framework/blazor.web.js"></script>
+```
+
+In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml` file:
+
+```
+<script src="_framework/blazor.server.js"></script>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml` file:
+
+```
+<script src="_framework/blazor.server.js"></script>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+In a Blazor Server app, the Blazor script is located in the `Pages/_Layout.cshtml` file:
+
+```
+<script src="_framework/blazor.server.js"></script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml` file:
+
+```
+<script src="_framework/blazor.server.js"></script>
+```
+
+:::moniker-end
+
+In a Blazor WebAssembly app, the Blazor script content is located in the `wwwroot/index.html` file:
+
+```
+<script src="_framework/blazor.webassembly.js"></script>
+```
+
 ## Location of `<head>` and `<body>` content
 
 :::moniker range=">= aspnetcore-8.0"

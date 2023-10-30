@@ -676,7 +676,28 @@ For the `configureLogging` log level value, pass the argument as either the stri
 | <xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5               |
 | <xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6               |
 
-Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
+Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      configureSignalR: function (builder) {
+        builder.configureLogging("information");
+      }
+    }
+  });
+</script>
+```
+
+Blazor Server:
+
+:::moniker-end
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -691,10 +712,31 @@ Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value.
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web App:
 
 ```html
-<script src="{BLAZOR SCRIPT}"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start({
+    circuit: {
+      configureSignalR: function (builder) {
+        builder.configureLogging("information");
+      }
+    }
+  });
+</script>
+```
+
+Blazor Server:
+
+:::moniker-end
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {

@@ -128,7 +128,23 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, a custom value of 60 seconds is used for the server timeout.
 
-  In the [startup configuration](xref:blazor/fundamentals/startup) of a server-side Blazor app after the Blazor script (`blazor.*.js`) `<script>` tag:
+  In the [startup configuration](xref:blazor/fundamentals/startup) of a server-side Blazor app after the Blazor script (`blazor.*.js`) `<script>` tag.
+
+  Blazor Web App:
+
+  ```html
+  <script>
+    Blazor.start({
+      circuit: {
+        configureSignalR: function (builder) {
+          builder.withServerTimeout(60000);
+        }
+      }
+    });
+  </script>
+  ```
+
+  Blazor Server:
 
   ```html
   <script>
