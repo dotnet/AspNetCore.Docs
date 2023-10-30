@@ -206,7 +206,7 @@ For a builder that omits even these features, see [The `CreateEmptyBuilder` meth
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
-For more information on `CreateSlimBuilder`, see [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-webapplication-createbuilder-to-createslimbuilder/)
+For more information on `CreateSlimBuilder`, see [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
 
 ## Source generators
 
