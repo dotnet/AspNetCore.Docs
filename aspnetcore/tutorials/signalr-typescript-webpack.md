@@ -11,7 +11,7 @@ uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
 
-By [Sébastien Sougnez](https://twitter.com/ssougnez)
+By [Sébastien Sougnez](https://twitter.com/s_sougnez)
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
