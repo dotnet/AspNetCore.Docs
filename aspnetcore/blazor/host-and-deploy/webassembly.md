@@ -189,7 +189,7 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
       import { BrotliDecode } from './decode.min.js';
       Blazor.start({
         loadBootResource: function (type, name, defaultUri, integrity) {
-          if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration') {
+          if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration' && type !== 'manifest') {
             return (async function () {
               const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
               if (!response.ok) {
