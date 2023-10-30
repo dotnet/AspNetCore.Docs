@@ -22,7 +22,6 @@
       "_navPath": "/foo",
       "_navRel": "/foo",
       "breadcrumb_path": "/aspnet/core/breadcrumb/toc.json",
-      "extendBreadcrumb": true,
       "feedback_system": "OpenSource",
       "feedback_github_repo": "dotnet/AspNetCore.Docs",
       "open_source_feedback_contributorGuideUrl": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute",

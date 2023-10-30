@@ -194,7 +194,7 @@ Blazor Web App:
   Blazor.start({
     webAssembly: {
       loadBootResource: function (type, name, defaultUri, integrity) {
-        if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration') {
+        if (type !== 'dotnetjs' && location.hostname !== 'localhost' && type !== 'configuration' && type !== 'manifest') {
           return (async function () {
             const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
             if (!response.ok) {

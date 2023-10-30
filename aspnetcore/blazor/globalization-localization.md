@@ -516,6 +516,19 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> The following example assumes that the app adopts ***global*** interactivity by specifying the interactive server render mode on the `Routes` component in the `App` component (`Components/App.razor`):
+>
+> ```razor
+> <Routes @rendermode="InteractiveServer" />
+> ```
+>
+> If the app adopts ***per-page/component*** interactivity, see the remarks at the end of this section to modify the render modes of the example's components.
+
+:::moniker-end
+
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
@@ -530,7 +543,17 @@ builder.Services.AddLocalization();
 
 Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
-Immediately after Routing Middleware is added to the processing pipeline:
+:::moniker range=">= aspnetcore-8.0"
+
+Before the call to `app.MapRazorComponents` in the request processing pipeline, place the following code:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+After the call to `app.UseRouting` in the request processing pipeline, place the following code:
+
+:::moniker-end
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CL" };
@@ -548,26 +571,28 @@ The following example shows how to set the current culture in a cookie that can 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Modifications to the `App` component (`Components/App.razor`) file require the following namespaces:
+The following namespaces are required for the `App` component:
 
 * <xref:System.Globalization?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName>
 
-Add the following to the file:
+Add the following to the top of the `App` component file (`Components/App.razor`):
 
-```cshtml
+```razor
 @using System.Globalization
 @using Microsoft.AspNetCore.Localization
+```
 
-...
+Add the following `@code` block to the bottom of the `App` component file:
 
+```razor
 @code {
     [CascadingParameter]
     public HttpContext? HttpContext { get; set; }
 
     protected override void OnInitialized()
     {
-        HttpContext.Response.Cookies.Append(
+        HttpContext?.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
@@ -613,18 +638,10 @@ If the app isn't configured to process controller actions:
   builder.Services.AddControllers();
   ```
 
-* Add controller endpoint routing in the `Program` file by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>:
+* Add controller endpoint routing in the `Program` file by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> (`app`):
 
   ```csharp
   app.MapControllers();
-  ```
-
-  The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
-
-  ```csharp
-  app.MapControllers();
-  app.MapBlazorHub();
-  app.MapFallbackToPage("/_Host");
   ```
 
 To provide UI to allow a user to select a culture, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a controller. The controller sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
@@ -661,7 +678,7 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 `CultureSelector.razor`:
 
 ```razor
-@using  System.Globalization
+@using System.Globalization
 @inject NavigationManager Navigation
 
 <p>
@@ -710,7 +727,17 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 }
 ```
 
-Inside the closing `</main>` tag in the `MainLayout` component (`MainLayout.razor`), add the `CultureSelector` component:
+:::moniker range=">= aspnetcore-8.0"
+
+Add the `CultureSelector` component to the the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Components/Layout/MainLayout.razor` file:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Add the `CultureSelector` component to the the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Shared/MainLayout.razor` file:
+
+:::moniker-end
 
 ```razor
 <article class="bottom-row px-4">
@@ -719,6 +746,30 @@ Inside the closing `</main>` tag in the `MainLayout` component (`MainLayout.razo
 ```
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how the preceding example works.
+
+:::moniker range=">= aspnetcore-8.0"
+
+The preceding example assumes that the app adopts ***global*** interactivity by specifying the interactive server render mode on the `Routes` component in the `App` component (`Components/App.razor`):
+
+```razor
+<Routes @rendermode="InteractiveServer" />
+```
+
+If the app adopts ***per-page/component*** interactivity, make the following changes:
+
+* Add the interactive server render mode at the top of the `CultureExample1` component file (`Components/Pages/CultureExample1.razor`):
+
+  ```razor
+  @rendermode InteractiveServer
+  ```
+
+* In the app's main layout (`Components/Layout/MainLayout.razor`), enable interactive server rendering for the `CultureSelector` component:
+
+  ```razor
+  <CultureSelector @rendermode="InteractiveServer" />
+  ```
+
+:::moniker-end
 
 ## Localization
 

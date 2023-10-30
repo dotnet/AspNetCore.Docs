@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder();
 builder.Services.AddAntiforgery();
 
 var app = builder.Build();
+app.UseAntiforgery();
 
 string GetOrCreateFilePath(string fileName, string filesDirectory = "uploadFiles")
 {
@@ -43,17 +44,9 @@ app.MapGet("/", (HttpContext context, IAntiforgery antiforgery) =>
 app.MapPost("/upload", async Task<Results<Ok<string>,
    BadRequest<string>>> (IFormFile file, HttpContext context, IAntiforgery antiforgery) =>
 {
-    try
-    {
-        await antiforgery.ValidateRequestAsync(context);
-        var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
-        await UploadFileWithName(file, fileSaveName);
-        return TypedResults.Ok("File uploaded successfully!");
-    }
-    catch (AntiforgeryValidationException e)
-    {
-        return TypedResults.BadRequest("Invalid anti-forgery token");
-    }
+    var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+    await UploadFileWithName(file, fileSaveName);
+    return TypedResults.Ok("File uploaded successfully!");
 });
 
 app.Run();
