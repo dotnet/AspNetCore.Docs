@@ -239,9 +239,6 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 * [A look behind the scenes of minimal API routing](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-routing/)
 * [Exploring minimal API parameter binding](https://andrewlock.net/behind-the-scenes-of-minimal-apis-3-exploring-the-model-binding-logic-of-minimal-apis/)
 * [A look behind the scenes of minimal API responses](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-responses/)
-* [A look behind the scenes of minimal API filters](https://andrewlock.net/behind-the-scenes-of-minimal-apis-8-customising-the-request-delegate-with-filters/)
-* [A look behind the scenes of minimal API authorization](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-authorization/)
-* [A look behind the scenes of minimal API CORS](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-cors/)
 
 :::moniker-end
 
