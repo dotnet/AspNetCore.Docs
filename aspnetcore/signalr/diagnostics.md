@@ -72,7 +72,7 @@ When using the JavaScript client, you can configure logging options using the `c
 
 [!code-javascript[](diagnostics/logging-config-js.js?highlight=3)]
 
-To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
+To disable framework logging, specify `signalR.LogLevel.None` in the `configureLogging` method. Note that some logging is emitted directly by the browser and can't be disabled via setting the log level.
 
 The following table shows log levels available to the JavaScript client. Setting the log level to one of these values enables logging at that level and all levels above it in the table.
 

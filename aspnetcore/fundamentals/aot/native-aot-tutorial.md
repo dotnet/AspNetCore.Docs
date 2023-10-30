@@ -4,6 +4,7 @@ author: mitchdenny
 description: Learn about how to publish an ASP.NET Core app using native AOT.
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: tutorial
+content_well_notification: AI-contribution
 ms.author: midenn
 ms.custom: mvc
 ms.date: 08/10/2023
@@ -161,3 +162,8 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * <xref:fundamentals/native-aot>
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
+* [Using the configuration binder source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-using-the-new-configuration-binder-source-generator/)
+* [The minimal API AOT compilation template](https://andrewlock.net/exploring-the-dotnet-8-preview-the-minimal-api-aot-template/)
+* [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
+* [Exploring the new minimal API source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-exploring-the-new-minimal-api-source-generator/)
+* [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-changing-method-calls-with-interceptors/)

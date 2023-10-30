@@ -178,6 +178,7 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
 * [GC using Docker and small containers](xref:performance/memory#sc)
 * [System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached](xref:host-and-deploy/docker/index#d128)
+* [Updates to Docker images](https://andrewlock.net/exploring-the-dotnet-8-preview-updates-to-docker-images-in-dotnet-8/)
 
 ## Next steps
 

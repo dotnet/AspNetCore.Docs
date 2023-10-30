@@ -238,3 +238,4 @@ There may be an expectation for the production or release image to be smaller in
 * [Visual Studio Container Tools GitHub repository](https://github.com/Microsoft/DockerTools)
 * [GC using Docker and small containers](xref:performance/memory#sc)
 * [System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached](xref:host-and-deploy/docker/index#d128)
+* [Updates to Docker images](https://andrewlock.net/exploring-the-dotnet-8-preview-updates-to-docker-images-in-dotnet-8/)
