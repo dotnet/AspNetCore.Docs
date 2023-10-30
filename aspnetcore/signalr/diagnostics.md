@@ -72,7 +72,7 @@ When using the JavaScript client, you can configure logging options using the `c
 
 [!code-javascript[](diagnostics/logging-config-js.js?highlight=3)]
 
-To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method. Note that certain logs related to websockets are [emitted directly](https://websockets.spec.whatwg.org/#eventdef-websocket-error) by the browser and [cannot be disabled](https://github.com/dotnet/aspnetcore/issues/43822#issuecomment-1241205216) via the LogLevel or any other means.
+To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method. Note that some logging related to WebSockets are emitted directly by the browser and can't be disabled via setting the log level or any other means.
 
 The following table shows log levels available to the JavaScript client. Setting the log level to one of these values enables logging at that level and all levels above it in the table.
 
