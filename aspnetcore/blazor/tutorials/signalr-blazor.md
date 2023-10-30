@@ -53,6 +53,12 @@ The Visual Studio Code instructions use the .NET CLI for ASP.NET Core developmen
 
 ---
 
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/blazor-samples)
+
 ## Create a Blazor Web App
 
 Follow the guidance for your choice of tooling:
@@ -152,19 +158,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`) to the root of the app:
 
-```csharp
-using Microsoft.AspNetCore.SignalR;
-
-namespace BlazorSignalRApp.Hubs;
-
-public class ChatHub : Hub
-{
-    public async Task SendMessage(string user, string message)
-    {
-        await Clients.All.SendAsync("ReceiveMessage", user, message);
-    }
-}
-```
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSignalRApp/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -193,7 +187,7 @@ Use Response Compression Middleware at the top of the processing pipeline's conf
 app.UseResponseCompression();
 ```
 
-Add an endpoint for the hub immediately after the line `app.MapRazorComponents<App>();`:
+Add an endpoint for the hub immediately after the line that maps Razor comonents (`app.MapRazorComponents<T>()`):
 
 ```csharp
 app.MapHub<ChatHub>("/chathub");
@@ -205,80 +199,7 @@ Open the `Components/Pages/Home.razor` file.
 
 Replace the markup with the following code:
 
-```razor
-@page "/"
-@rendermode RenderMode.InteractiveServer
-@using Microsoft.AspNetCore.SignalR.Client
-@inject NavigationManager Navigation
-@implements IAsyncDisposable
-
-<PageTitle>Home</PageTitle>
-
-<div class="form-group">
-    <label>
-        User:
-        <input @bind="userInput" />
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Message:
-        <input @bind="messageInput" size="50" />
-    </label>
-</div>
-<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
-
-<hr>
-
-<ul id="messagesList">
-    @foreach (var message in messages)
-    {
-        <li>@message</li>
-    }
-</ul>
-
-@code {
-    private HubConnection? hubConnection;
-    private List<string> messages = new List<string>();
-    private string? userInput;
-    private string? messageInput;
-
-    protected override async Task OnInitializedAsync()
-    {
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-            .Build();
-
-        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-        {
-            var encodedMsg = $"{user}: {message}";
-            messages.Add(encodedMsg);
-            InvokeAsync(StateHasChanged);
-        });
-
-        await hubConnection.StartAsync();
-    }
-
-    private async Task Send()
-    {
-        if (hubConnection is not null)
-        {
-            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
-        }
-    }
-
-    public bool IsConnected =>
-        hubConnection?.State == HubConnectionState.Connected;
-
-    public async ValueTask DisposeAsync()
-    {
-        if (hubConnection is not null)
-        {
-            await hubConnection.DisposeAsync();
-        }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSignalRApp/Pages/Home.razor":::
 
 > [!NOTE]
 > Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
