@@ -3,6 +3,7 @@ title: Minimal APIs quick reference
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
+content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 6/23/2023
 uid: fundamentals/minimal-apis
@@ -223,14 +224,6 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
-<a name="openapi7"></a>
-
-<!-- 
-# Differences between minimal APIs and APIs with controllers
-
-Moved to uid: tutorials/min-web-api
--->
-
 ## See also
 
 * <xref:fundamentals/minimal-apis/openapi>
@@ -239,6 +232,10 @@ Moved to uid: tutorials/min-web-api
 * <xref:fundamentals/minimal-apis/handle-errors>
 * <xref:fundamentals/minimal-apis/security>
 * <xref:fundamentals/minimal-apis/test-min-api>
+* [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)
+* [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
+* [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
+* [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
 
 :::moniker-end
 

@@ -4,6 +4,7 @@ author: mitchdenny
 description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
+content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
 ms.date: 10/17/2023
 uid: fundamentals/native-aot
@@ -106,10 +107,11 @@ The **ASP.NET Core Web API (native AOT)** template (short name `webapiaot`) crea
 The following example shows the code added to the `Program.cs` file to support JSON serialization source generation:
 
 ```diff
-|using MyFirstAotWebApi;
+using MyFirstAotWebApi;
 +using System.Text.Json.Serialization;
 
-var builder = WebApplication.CreateSlimBuilder(args);
+-var builder = WebApplication.CreateBuilder();
++var builder = WebApplication.CreateSlimBuilder(args);
 
 +builder.Services.ConfigureHttpJsonOptions(options =>
 +{
@@ -204,6 +206,8 @@ For a builder that omits even these features, see [The `CreateEmptyBuilder` meth
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
+For more information on `CreateSlimBuilder`, see [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
+
 ## Source generators
 
 Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. [Source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview) are used to produce code that avoids the need for reflection. In some cases, source generators produce code optimized for AOT even when a generator isn't required.
@@ -245,7 +249,6 @@ In the preceding highlighted code:
   * <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>
 * The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute to enable source generated JSON serializer code for the `ToDo` type.
 
-
 A parameter on the delegate that isn't bound to the body and does ***not*** need to be serializable. For example, a query string parameter that is a rich object type and implements `IParsable<T>`.
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Todo.cs" id="snippet_1":::
@@ -258,3 +261,8 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 
 * <xref:fundamentals/native-aot-tutorial>
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
+* [Using the configuration binder source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-using-the-new-configuration-binder-source-generator/)
+* [The minimal API AOT compilation template](https://andrewlock.net/exploring-the-dotnet-8-preview-the-minimal-api-aot-template/)
+* [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
+* [Exploring the new minimal API source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-exploring-the-new-minimal-api-source-generator/)
+* [Replacing method calls with Interceptors](https://andrewlock.net/exploring-the-dotnet-8-preview-changing-method-calls-with-interceptors/)
