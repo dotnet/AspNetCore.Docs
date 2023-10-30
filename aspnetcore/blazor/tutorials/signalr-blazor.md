@@ -199,7 +199,7 @@ Open the `Components/Pages/Home.razor` file.
 
 Replace the markup with the following code:
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSignalRApp/Pages/Home.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSignalRApp/Components/Pages/Home.razor":::
 
 > [!NOTE]
 > Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
