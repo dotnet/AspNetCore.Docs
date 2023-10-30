@@ -236,9 +236,6 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 * [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
 * [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
-* [A look behind the scenes of minimal API routing](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-routing/)
-* [Exploring minimal API parameter binding](https://andrewlock.net/behind-the-scenes-of-minimal-apis-3-exploring-the-model-binding-logic-of-minimal-apis/)
-* [A look behind the scenes of minimal API responses](https://andrewlock.net/a-look-behind-the-scenes-of-minimal-api-responses/)
 
 :::moniker-end
 
