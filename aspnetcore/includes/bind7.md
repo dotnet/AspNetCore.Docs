@@ -33,7 +33,7 @@ In the preceding code, by default, changes to the JSON configuration file after 
 
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
-An options class can be used with a generic parameter for the `get<>` method because bind allows generics and the concretion of an abstract class. Consider the following code which uses the abstract class `SomethingWithAName`:
+An options class can be used with a generic parameter for the `Get<T>` method because bind allows generics. Bind also allows the concretion of an abstract class. Consider the following code which uses the abstract class `SomethingWithAName`:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Options/NameTitleOptions.cs?name=snippet)]
 
