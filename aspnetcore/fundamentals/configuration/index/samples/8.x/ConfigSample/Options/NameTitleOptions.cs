@@ -1,5 +1,4 @@
-﻿namespace ConfigSample.Options;
-
+namespace ConfigSample.Options;
 
 public abstract class SomethingWithAName
 {
