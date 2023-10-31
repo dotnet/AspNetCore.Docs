@@ -628,7 +628,7 @@ Verify you can post and get all fields except the secret field.
 
 ### Configure JSON serialization options
 
-For information on how to configure JSON serialization in your Minimal API apps, see [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
+See [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
 
 ### Handle errors and exceptions
 
@@ -640,11 +640,15 @@ For an example of testing a minimal API app, see [this GitHub sample](https://gi
 
 ### Use OpenAPI (Swagger)
 
-For information on how to use OpenAPI with minimal API apps, see [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
+See [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
 
 ### Publish to Azure
 
 For information on how to deploy to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+
+### Organize ASP.NET Core Minimal APIs
+
+See [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
 
 ### Learn more
 
