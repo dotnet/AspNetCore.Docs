@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/25/2023
+ms.date: 10/27/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -284,6 +284,12 @@ The UI components also support advanced Identity concepts, such as multifactor a
 
 Authentication samples for other app types are in development, including Blazor WebAssembly and single page apps (Angular, React).
 
+## Blazor Server with Yarp routing
+
+Routing and deep linking for Blazor Server with Yarp work correctly in .NET 8.
+
+For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-routing-workaround>.
+
 ## SignalR
 
 ### New approach to set the server timeout and Keep-Alive interval
@@ -401,16 +407,9 @@ Stateful reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
 
-To opt in to stateful reconnect for a JavaScript or TypeScript client:
+Stateful reconnect is available in ASP.NET Core 8.0 and later.
 
-* Update the JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
-
-  ```JavaScript
-  const builder = new signalR.HubConnectionBuilder()
-    .withUrl("/hubname")
-    .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
-  const connection = builder.build();
-  ```
+Opt in to stateful reconnect at both the server hub endpoint and the client:
 
 * Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
 
@@ -421,9 +420,34 @@ To opt in to stateful reconnect for a JavaScript or TypeScript client:
   });
   ```
 
-To opt in to stateful reconnect for a .NET client:
+  Optionally, the maximum buffer size in bytes allowed by the server can be set globally or for a specific hub with the `StatefulReconnectBufferSize` option:
 
-* Update the .NET client code to enable the `WithStatefulReconnect` option:
+  The `StatefulReconnectBufferSize` option set globally:
+
+  ```csharp
+  builder.AddSignalR(o => o.StatefulReconnectBufferSize = 1000);
+  ```
+
+  The `StatefulReconnectBufferSize` option set for a specific hub:
+
+  ```csharp
+  builder.AddSignalR().AddHubOptions<MyHub>(o => o.StatefulReconnectBufferSize = 1000);
+  ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
+
+* Update JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
+
+  ```JavaScript
+  const builder = new signalR.HubConnectionBuilder()
+    .withUrl("/hubname")
+    .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
+  const connection = builder.build();
+  ```
+  
+  The `bufferSize` option is optional with a default of 100,000 bytes.
+  
+* Update .NET client code to enable the `WithStatefulReconnect` option:
 
   ```csharp
     var builder = new HubConnectionBuilder()
@@ -433,14 +457,9 @@ To opt in to stateful reconnect for a .NET client:
     var hubConnection = builder.Build();
   ```
 
-* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
-  ```csharp
-  app.MapHub<MyHub>("/hubName", options =>
-  {
-      options.AllowStatefulReconnects = true;
-  });
-  ```
+For more information, see [Configure stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect).
 
 ## Minimal APIs
 

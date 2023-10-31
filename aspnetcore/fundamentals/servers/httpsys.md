@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/26/2023
+ms.date: 10/30/2023
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -64,7 +64,7 @@ HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the con
 
 ## HTTP/3 support
 
-[HTTP/3](https://quicwg.org/base-drafts/v2-samples/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps when the following base requirements are met:
+[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is enabled for ASP.NET Core apps when the following base requirements are met:
 
 * Windows Server 2022/Windows 11 or later
 * An `https` url binding is used.
@@ -171,7 +171,12 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys.
 
-   HTTP.sys uses the [HTTP Server API UrlPrefix string formats](/windows/win32/http/urlprefix-strings).
+   HTTP.sys recognizes two types of wild cards in URL prefixes:   
+
+   * `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
+   * `+` is a *strong binding*. If the URL prefix is `http://+:5000`, this binding will be used before other port 5000 bindings.
+
+   For more information, see [UrlPrefix Strings](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings create app security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names or IP addresses rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) isn't a security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). For more information, see [RFC 9110: Section 7.2: Host and :authority](https://www.rfc-editor.org/rfc/rfc9110#field.host).
@@ -314,6 +319,10 @@ Requirements to run gRPC with HTTP.sys:
 ### Reset
 
 [!INCLUDE[](~/includes/reset.md)]
+
+## Tracing
+
+For information about how to get traces from HTTP.sys, see [HTTP.sys Manageability Scenarios](/windows/win32/http/http-sys-manageability-scenarios).
 
 ## Additional resources
 

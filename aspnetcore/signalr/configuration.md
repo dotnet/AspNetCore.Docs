@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 07/10/2023
+ms.date: 10/26/2023
 uid: signalr/configuration
 ---
 
@@ -68,9 +68,9 @@ The following table describes options for configuring SignalR hubs:
 | `SupportedProtocols` | All installed protocols | Protocols supported by this hub. By default, all protocols registered on the server are allowed. Protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false` because these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
-| `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value may increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
+| `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value might increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
 | `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
-| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments will be resolved from DI if possible. |
+| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments are resolved from DI if possible. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
 
@@ -108,7 +108,7 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
 | `MinimumProtocolVersion` | 0 | Specify the minimum version of the negotiate protocol. This is used to limit clients to newer versions. |
-| `CloseOnAuthenticationExpiration` | false | Set this option to enable authentication expiration tracking which will close connections when a token expires. |
+| `CloseOnAuthenticationExpiration` | false | Set this option to enable authentication expiration tracking, which will close connections when a token expires. |
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
 
@@ -324,6 +324,68 @@ var connection = new signalR.HubConnectionBuilder()
 | `getKeepAliveInterval` / `setKeepAliveInterval` | 15 seconds (15,000 milliseconds) | Determines the interval at which the client sends ping messages. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the `ClientTimeoutInterval` set on the server, the server considers the client disconnected. |
 
 ---
+
+### Configure stateful reconnect
+
+SignalR stateful reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
+
+Stateful reconnect achieves this by:
+
+* Temporarily buffering data on the server and client.
+* Acknowledging messages received (ACK-ing) by both the server and client.
+* Recognizing when a connection is up and replaying messages that might have been sent while the connection was down.
+
+Stateful reconnect is available in ASP.NET Core 8.0 and later.
+
+Opt in to stateful reconnect at both the server hub endpoint and the client:
+
+* Update the server hub endpoint configuration to enable the `AllowStatefulReconnects` option:
+
+  ```csharp
+  app.MapHub<MyHub>("/hubName", options =>
+  {
+      options.AllowStatefulReconnects = true;
+  });
+  ```
+
+  Optionally, the maximum buffer size in bytes allowed by the server can be set globally or for a specific hub with the `StatefulReconnectBufferSize` option:
+
+  The `StatefulReconnectBufferSize` option set globally:
+
+  ```csharp
+  builder.AddSignalR(o => o.StatefulReconnectBufferSize = 1000);
+  ```
+
+  The `StatefulReconnectBufferSize` option set for a specific hub:
+
+  ```csharp
+  builder.AddSignalR().AddHubOptions<MyHub>(o => o.StatefulReconnectBufferSize = 1000);
+  ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
+
+* Update JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
+
+  ```JavaScript
+  const builder = new signalR.HubConnectionBuilder()
+    .withUrl("/hubname")
+    .withStatefulReconnect({ bufferSize: 1000 });  // Optional, defaults to 100,000
+  const connection = builder.build();
+  ```
+  
+  The `bufferSize` option is optional with a default of 100,000 bytes.
+  
+* Update .NET client code to enable the `WithStatefulReconnect` option:
+
+  ```csharp
+    var builder = new HubConnectionBuilder()
+        .WithUrl("<hub url>")
+        .WithStatefulReconnect();
+    builder.Services.Configure<HubConnectionOptions>(o => o.StatefulReconnectBufferSize = 1000);
+    var hubConnection = builder.Build();
+  ```
+
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
 
 ### Configure additional options
 
