@@ -1,5 +1,6 @@
 ﻿using ConfigSample.Options;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
