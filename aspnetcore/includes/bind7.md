@@ -43,6 +43,8 @@ The following code displays the `NameTitleOptions` configuration values:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Pages/Test33.cshtml.cs?name=snippet)]
 
+## The Options Pattern
+
 An alternative approach when using the ***options pattern*** is to bind the `Position` section and add it to the [dependency injection service container](xref:fundamentals/dependency-injection). In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet)]
