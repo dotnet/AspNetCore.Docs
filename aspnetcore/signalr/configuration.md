@@ -348,7 +348,7 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
   });
   ```
 
-  Optionally, the maximimum buffer size in bytes allowed by the server can be set globally or for a specific hub with the `StatefulReconnectBufferSize` option:
+  Optionally, the maximum buffer size in bytes allowed by the server can be set globally or for a specific hub with the `StatefulReconnectBufferSize` option:
 
   The `StatefulReconnectBufferSize` option set globally:
 
