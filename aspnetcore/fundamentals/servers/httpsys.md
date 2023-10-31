@@ -64,7 +64,7 @@ HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the con
 
 ## HTTP/3 support
 
-[HTTP/3](https://quicwg.org/base-drafts/v2-samples/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps when the following base requirements are met:
+[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is enabled for ASP.NET Core apps when the following base requirements are met:
 
 * Windows Server 2022/Windows 11 or later
 * An `https` url binding is used.
@@ -322,7 +322,7 @@ Requirements to run gRPC with HTTP.sys:
 
 ## Tracing
 
-For information about how to get traces from HTTP.sys, see [HTTP.sys Manageability Scenarios](https://learn.microsoft.com/windows/win32/http/http-sys-manageability-scenarios).
+For information about how to get traces from HTTP.sys, see [HTTP.sys Manageability Scenarios](/windows/win32/http/http-sys-manageability-scenarios).
 
 ## Additional resources
 
