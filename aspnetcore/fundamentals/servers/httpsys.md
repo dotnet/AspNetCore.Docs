@@ -171,10 +171,12 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys.
 
-   HTTP.sys uses the [HTTP Server API UrlPrefix string formats](/windows/win32/http/urlprefix-strings). These string formats include two types of wildcard bindings:
+   HTTP.sys recognizes two types wild cards in URL prefixes:   
 
-   `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is, `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
+   `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
    `+` is a *strong binding*. If the URL prefix is http://+:5000, this binding will be used before other port 5000 bindings.
+
+   For more information, see [UrlPrefix Strings](/windows/win32/http/urlprefix-strings).
 
    > [!WARNING]
    > Top-level wildcard bindings (`http://*:80/` and `http://+:80`) should **not** be used. Top-level wildcard bindings create app security vulnerabilities. This applies to both strong and weak wildcards. Use explicit host names or IP addresses rather than wildcards. Subdomain wildcard binding (for example, `*.mysub.com`) isn't a security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). For more information, see [RFC 9110: Section 7.2: Host and :authority](https://www.rfc-editor.org/rfc/rfc9110#field.host).
