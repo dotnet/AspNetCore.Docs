@@ -173,8 +173,8 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    HTTP.sys recognizes two types of wild cards in URL prefixes:   
 
-   `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
-   `+` is a *strong binding*. If the URL prefix is http://+:5000, this binding will be used before other port 5000 bindings.
+   * `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
+   * `+` is a *strong binding*. If the URL prefix is `http://+:5000`, this binding will be used before other port 5000 bindings.
 
    For more information, see [UrlPrefix Strings](/windows/win32/http/urlprefix-strings).
 
