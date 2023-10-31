@@ -122,9 +122,13 @@ In the app's project file:
 
 This setting trims away the IL code for most compiled methods, including methods from libraries and methods in the app. Not all compiled methods can be trimmed, as some are still required by the .NET interpreter at runtime.
 
-<!-- UPDATE 8.0 Remove the next line after some time has passed -->
+To report a problem with the trimming option, [open an issue on the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/issues).
 
-If you hit any issues using this trimming option, [open an issue on the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/issues).
+Disable the trimming property if it prevents your app from running normally:
+
+```xml
+<WasmStripILAfterAOT>false</WasmStripILAfterAOT>
+```
 
 :::moniker-end
 
