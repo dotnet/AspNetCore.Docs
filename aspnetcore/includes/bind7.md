@@ -37,11 +37,14 @@ Bind also allows the concretion of an abstract class. Consider the following cod
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Options/NameTitleOptions.cs)]
 
-Calls to `Bind` are less strict than calls to `Get<>`, `Bind` allows the concretion of an abstract, but `Get<>` has to create an instance itself.
-
 The following code displays the `NameTitleOptions` configuration values:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Pages/Test33.cshtml.cs?name=snippet)]
+
+Calls to `Bind` are less strict than calls to `Get<>`:
+
+* `Bind` allows the concretion of an abstract.
+* `Get<>` has to create an instance itself.
 
 ## The Options Pattern
 
