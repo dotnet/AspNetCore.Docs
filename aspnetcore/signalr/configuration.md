@@ -333,7 +333,7 @@ Stateful reconnect achieves this by:
 
 * Temporarily buffering data on the server and client.
 * Acknowledging messages received (ACK-ing) by both the server and client.
-* Recognizing when a connection is returning and replaying messages that might have been sent while the connection was down.
+* Recognizing when a connection is up and replaying messages that might have been sent while the connection was down.
 
 Stateful reconnect is available in ASP.NET Core 8.0 and later.
 
