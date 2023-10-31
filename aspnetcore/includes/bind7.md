@@ -29,13 +29,13 @@ In the preceding code, by default, changes to the JSON configuration file after 
 
 [`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `ConfigurationBinder.Get<T>` may be more convenient than using `ConfigurationBinder.Bind`. The following code shows how to use `ConfigurationBinder.Get<T>` with the `PositionOptions` class:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test21.cshtml.cs)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test21.cshtml.cs name=snippet)]
 
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
 Bind also allows the concretion of an abstract class. Consider the following code which uses the abstract class `SomethingWithAName`:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Options/NameTitleOptions.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Options/NameTitleOptions.cs)]
 
 The following code displays the `NameTitleOptions` configuration values:
 
