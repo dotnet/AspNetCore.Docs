@@ -14,8 +14,8 @@ Create the following `PositionOptions` class:
 An options class:
 
 * Must be non-abstract.
-* Contain all public read-write properties of the type are bound.
-* Have fields that are ***not*** bound. In the preceding code, `Position` is not bound. The `Position` field is used so the string `"Position"` doesn't need to be hard coded in the app when binding the class to a configuration provider.
+* Have its read-write properties bound to matching entries in configuration.
+* Does ***not*** fields bound. In the preceding code, `Position` is not bound. The `Position` field is used so the string `"Position"` doesn't need to be hard coded in the app when binding the class to a configuration provider.
 
 The following code:
 
