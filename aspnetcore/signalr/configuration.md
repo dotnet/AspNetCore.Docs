@@ -362,6 +362,8 @@ Opt in to stateful reconnect at both the server hub endpoint and the client:
   builder.AddSignalR().AddHubOptions<MyHub>(o => o.StatefulReconnectBufferSize = 1000);
   ```
 
+  The `StatefulReconnectBufferSize` option is optional with a default of 100,000 bytes.
+
 * Update JavaScript or TypeScript client code to enable the `withStatefulReconnect` option:
 
   ```JavaScript
