@@ -284,6 +284,12 @@ The UI components also support advanced Identity concepts, such as multifactor a
 
 Authentication samples for other app types are in development, including Blazor WebAssembly and single page apps (Angular, React).
 
+## Blazor Server with Yarp routing
+
+Routing and deep linking for Blazor Server with Yarp work correctly in .NET 8.
+
+For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-routing-workaround>.
+
 ## SignalR
 
 ### New approach to set the server timeout and Keep-Alive interval
