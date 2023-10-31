@@ -652,7 +652,7 @@ See [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/20
 
 ### Learn more
 
-For more information about minimal API apps, see <xref:fundamentals/minimal-apis>.
+See <xref:fundamentals/minimal-apis>
 
 :::moniker-end
 
