@@ -43,7 +43,7 @@ Welcome to what's new in the ASP.NET Core docs for September 2023. This article 
 
 ### New articles
 
-- <xref:fundamentals/aot/request-delegate-generator/rgd_ids>
+- <xref:fundamentals/aot/request-delegate-generator/rdg-ids>
 - <xref:fundamentals/aot/rdg>
 
 ## gRPC
