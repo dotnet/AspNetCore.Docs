@@ -480,7 +480,7 @@ When the button is selected in the `ChildComponent`:
 
 ```razor
 <ChildComponent 
-    OnClickCallback="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
+    OnClickCallback="@(async (text) => { await Task.Yield(); messageText = text; })" />
 ```
 
 Invoke an <xref:Microsoft.AspNetCore.Components.EventCallback> or <xref:Microsoft.AspNetCore.Components.EventCallback%601> with <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> and await the <xref:System.Threading.Tasks.Task>:
