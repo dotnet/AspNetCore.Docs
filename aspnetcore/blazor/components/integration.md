@@ -188,7 +188,7 @@ Add the following `Counter` component to the app that adopts the interactive ser
 
 ```razor
 @page "/counter"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 

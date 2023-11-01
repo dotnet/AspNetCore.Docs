@@ -1419,7 +1419,7 @@ For more information on SignalR configuration and how to set <xref:Microsoft.Asp
 
 * <xref:blazor/file-downloads>
 * <xref:mvc/models/file-uploads#security-considerations>
-* <xref:blazor/forms-and-input-components>
+* <xref:blazor/forms/index>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
@@ -1427,7 +1427,7 @@ For more information on SignalR configuration and how to set <xref:Microsoft.Asp
 :::moniker range="< aspnetcore-6.0"
 
 * <xref:mvc/models/file-uploads#security-considerations>
-* <xref:blazor/forms-and-input-components>
+* <xref:blazor/forms/index>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end

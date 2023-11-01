@@ -371,7 +371,7 @@ Examples:
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
 
 <!--
 
@@ -437,13 +437,13 @@ For more information, see [Developers targeting browser-wasm can use Web Crypto 
 
 You can now inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
 
-For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-7.0#custom-validation-attributes>.
+For more information, see <xref:blazor/forms/validation?view=aspnetcore-7.0#custom-validation-attributes>.
 
 ### `Input*` components outside of an `EditContext`/`EditForm`
 
 The built-in input components are now supported outside of a form in Razor component markup.
 
-For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-7.0#built-in-input-components>.
+For more information, see <xref:blazor/forms/input-components?view=aspnetcore-7.0>.
 
 ### Project template changes
 

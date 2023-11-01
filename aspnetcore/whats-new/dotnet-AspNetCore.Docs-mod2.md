@@ -21,7 +21,7 @@ Welcome to what's new in the ASP.NET Core docs for August 2023. This article lis
 - <xref:blazor/file-downloads> - File downloads article updates 8.0
 - <xref:blazor/file-uploads> - Blazor File Uploads article updates 8.0
 - <xref:blazor/components/cascading-values-and-parameters> - Root-level cascading values 8.0
-- <xref:blazor/forms-and-input-components>
+- <xref:blazor/forms/index>
   - Blazor forms and antiforgery 8.0 updates
   - Blazor forms and antiforgery 8.0
 - <xref:blazor/globalization-localization> - Glob & loc full-stack UI updates

@@ -530,8 +530,18 @@ items:
                 uid: blazor/components/built-in-components
           - name: Globalization and localization
             uid: blazor/globalization-localization
-          - name: Forms and input components
-            uid: blazor/forms-and-input-components
+          - name: Forms
+            items:
+              - name: Overview
+                uid: blazor/forms/index
+              - name: Input components
+                uid: blazor/forms/input-components
+              - name: Binding
+                uid: blazor/forms/binding
+              - name: Validation
+                uid: blazor/forms/validation
+              - name: Troubleshoot
+                uid: blazor/forms/troubleshoot
           - name: File uploads
             uid: blazor/file-uploads
           - name: File downloads
