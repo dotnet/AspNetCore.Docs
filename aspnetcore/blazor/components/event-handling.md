@@ -476,22 +476,54 @@ When the button is selected in the `ChildComponent`:
 * The `Parent` component's `ShowMessage` method is called. `message` is updated and displayed in the `Parent` component.
 * A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically to rerender the `Parent` component, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering>.
 
-<xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
+Use <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> for event handling and binding component parameters.
 
-```razor
-<ChildComponent 
-    OnClickCallback="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
-```
+Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%601> over <xref:Microsoft.AspNetCore.Components.EventCallback>. <xref:Microsoft.AspNetCore.Components.EventCallback%601> provides enhanced error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use <xref:Microsoft.AspNetCore.Components.EventCallback> when there's no value passed to the callback.
+
+<xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
 
 Invoke an <xref:Microsoft.AspNetCore.Components.EventCallback> or <xref:Microsoft.AspNetCore.Components.EventCallback%601> with <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> and await the <xref:System.Threading.Tasks.Task>:
 
 ```csharp
-await OnClickCallback.InvokeAsync(arg);
+await OnClickCallback.InvokeAsync();
 ```
 
-Use <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> for event handling and binding component parameters.
+The following parent-child example demonstrates the technique.
 
-Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%601> over <xref:Microsoft.AspNetCore.Components.EventCallback>. <xref:Microsoft.AspNetCore.Components.EventCallback%601> provides enhanced error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use <xref:Microsoft.AspNetCore.Components.EventCallback> when there's no value passed to the callback.
+`Child2.razor`:
+
+```razor
+<h3>Child2 Component</h3>
+
+<button @onclick="TriggerEvent">Click Me</button>
+
+@code {
+    [Parameter]
+    public EventCallback<string> OnClickCallback { get; set; }
+
+    private async Task TriggerEvent()
+    {
+        await OnClickCallback.InvokeAsync("Blaze It!");
+    }
+}
+```
+
+`Parent2.razor`:
+
+```razor
+@page "/parent-2"
+@rendermode InteractiveServer
+
+<Child2 OnClickCallback="@(async (value) => { await Task.Yield(); messageText = value; })" />
+
+<p>
+    @messageText
+</p>
+
+@code {
+    private string messageText = string.Empty;
+}
+```
 
 ## Prevent default actions
 
