@@ -1,9 +1,8 @@
-﻿namespace ConfigSample.Options
+namespace ConfigSample.Options;
+
+// <snippet>
+public class ArrayExample
 {
-    #region snippet
-    public class ArrayExample
-    {
-        public string[]? Entries { get; set; } 
-    }
-    #endregion
+    public string[]? Entries { get; set; } 
 }
+// </snippet>
