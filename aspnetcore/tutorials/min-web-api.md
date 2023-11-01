@@ -626,29 +626,16 @@ Verify you can post and get all fields except the secret field.
 
 ## Next steps
 
-### Configure JSON serialization options
-
-For information on how to configure JSON serialization in your Minimal API apps, see [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-
-### Handle errors and exceptions
-
-The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:web-api/handle-errors).
-
-### Test minimal API apps
-
-For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-
-### Use OpenAPI (Swagger)
-
-For information on how to use OpenAPI with minimal API apps, see [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
-
-### Publish to Azure
-
-For information on how to deploy to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+* [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
+* Handle errors and exceptions: The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:web-api/handle-errors).
+* For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
+* [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
+* [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
+* [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
 
 ### Learn more
 
-For more information about minimal API apps, see <xref:fundamentals/minimal-apis>.
+See <xref:fundamentals/minimal-apis>
 
 :::moniker-end
 
