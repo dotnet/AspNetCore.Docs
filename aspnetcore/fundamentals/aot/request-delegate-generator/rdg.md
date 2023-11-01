@@ -42,7 +42,7 @@ The RDG:
 * Is enabled automatically in projects when publishing with native AOT is enabled.
 * Can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file:
 
-:::code language="xml" source="~/fundamentals/aot/samples/rgd/RDG.csproj" highlight="7":::
+:::code language="xml" source="~/fundamentals/aot/samples/rdg/RDG.csproj" highlight="7":::
 
 Manually enabling RDG can be useful for:
 
@@ -51,10 +51,10 @@ Manually enabling RDG can be useful for:
 
 Minimal APIs are optimized for using <xref:System.Text.Json?displayProperty=fullName>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
 
-:::code language="csharp" source="~/fundamentals/aot/samples/rgd/Program.cs" highlight="5-9,32-99":::
+:::code language="csharp" source="~/fundamentals/aot/samples/rdg/Program.cs" highlight="5-9,32-99":::
 
-## Diagnostics emitted for unsupported RGD scenarios
+## Diagnostics emitted for unsupported RDG scenarios
 
-The RDG emits [diagnostics](xref:fundamentals/aot/request-delegate-generator/rgd_ids) for scenarios that aren't supported by native AOT. The diagnostics are emitted when the app is built. The diagnostics are emitted as warnings and don't prevent the app from building. <!-- tempory stub https://github.com/dotnet/aspnetcore/pull/49417  Once this API is published, replace with <xref> link --> The [DiagnosticDescriptors](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) class contains the diagnostics emitted by the RDG.
+The RDG emits [diagnostics](xref:fundamentals/aot/request-delegate-generator/rdg-ids) for scenarios that aren't supported by native AOT. The diagnostics are emitted when the app is built. The diagnostics are emitted as warnings and don't prevent the app from building. <!-- tempory stub https://github.com/dotnet/aspnetcore/pull/49417  Once this API is published, replace with <xref> link --> The [DiagnosticDescriptors](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) class contains the diagnostics emitted by the RDG.
 
-See <xref:fundamentals/aot/request-delegate-generator/rgd_ids> for a list of diagnostics emitted by the RDG.
+See <xref:fundamentals/aot/request-delegate-generator/rdg-ids> for a list of diagnostics emitted by the RDG.

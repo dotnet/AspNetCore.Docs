@@ -8,7 +8,7 @@ content_well_notification: AI-contribution
 ms.date: 9/23/2023
 ms.topic: article
 ms.prod: aspnet-core
-uid: fundamentals/aot/request-delegate-generator/rgd_ids
+uid: fundamentals/aot/request-delegate-generator/rdg-ids
 ---
 # ASP.NET Core Request Delegate Generator (RDG) diagnostics
 

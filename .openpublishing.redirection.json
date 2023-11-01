@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/fundamentals/aot/request-delegate-generator/rgd_ids.md",
+            "redirect_url": "/aspnet/core/fundamentals/aot/request-delegate-generator/rdg_ids",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/fundamentals/minimal-apis/handle-errrors.md",
             "redirect_url": "/aspnet/core/fundamentals/minimal-apis/handle-errors",
             "redirect_document_id": false
