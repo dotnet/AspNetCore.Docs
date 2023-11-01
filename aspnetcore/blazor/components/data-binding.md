@@ -180,7 +180,7 @@ Additional examples
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
 
 Components support two-way data binding by defining a pair of parameters:
 
@@ -229,7 +229,7 @@ Examples
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
 
 For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
 
@@ -457,7 +457,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and either use `@bind:get`/`@bind:set` modifiers (described earlier in this article) or [bind to a property with custom `get` and `set` accessor logic](#binding-to-a-property-with-c-get-and-set-accessors) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms/validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -812,8 +812,8 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-and-input-components>
-* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms/index>
+* [Binding to radio buttons in a form](xref:blazor/forms/binding#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms/binding#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)

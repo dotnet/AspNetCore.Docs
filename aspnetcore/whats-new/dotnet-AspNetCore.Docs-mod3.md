@@ -25,7 +25,7 @@ Welcome to what's new in the ASP.NET Core docs for September 2023. This article 
 - <xref:blazor/host-and-deploy/index> - Host and Deploy node updates 8.0
 - <xref:blazor/host-and-deploy/server> - Host and Deploy node updates 8.0
 - <xref:blazor/tutorials/signalr-blazor> - Merge versions of Blazor-SignalR tutorial
-- <xref:blazor/forms-and-input-components> - EditContext with IsValid examples update
+- <xref:blazor/forms/index> - EditContext with IsValid examples update
 - <xref:blazor/fundamentals/routing> - Enhanced navigation & form handling 8.0
 - <xref:blazor/tutorials/build-a-blazor-app> - Blazor RC1 updates
 - <xref:blazor/hosting-models> - Hosting models/render modes & What's New 8.0

@@ -1807,7 +1807,7 @@ In the preceding example:
 
 <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
-<xref:blazor/file-uploads> covers how to upload a file in Blazor. For a forms example that streams `<textarea>` data in a server-side component, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
+<xref:blazor/file-uploads> covers how to upload a file in Blazor. For a forms example that streams `<textarea>` data in a server-side component, see <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>.
 
 :::moniker-end
 

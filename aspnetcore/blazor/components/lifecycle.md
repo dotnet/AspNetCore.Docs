@@ -579,7 +579,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-and-input-components) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms/index) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 <!-- UPDATE 8.0 There's a form here, potentially to receive 8.0 updates -->
 
@@ -690,7 +690,7 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   }
   ```
 
-  The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms-and-input-components#validator-components> article.
+  The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms/validation#validator-components> article.
 
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
