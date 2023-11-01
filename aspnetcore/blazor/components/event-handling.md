@@ -479,8 +479,27 @@ When the button is selected in the `ChildComponent`:
 <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
 
 ```razor
-<ChildComponent 
-    OnClickCallback="@(async (text) => { await Task.Yield(); messageText = text; })" />
+@page "/parent"
+<ChildComponent OnClickCallback="@(async (value) => { await Task.Yield(); messageText = value; })" />
+@code {
+    private string messageText = "";
+}
+```
+
+```razor
+<h3>Child Component</h3>
+<button @onclick="TriggerEvent">Click Me</button>
+
+@code {
+    [Parameter]
+    public EventCallback<string> OnClickCallback { get; set; }
+
+    private async Task TriggerEvent()
+    {
+        // Trigger the event and pass a message
+        await OnClickCallback.InvokeAsync("Blaze It!");
+    }
+}
 ```
 
 Invoke an <xref:Microsoft.AspNetCore.Components.EventCallback> or <xref:Microsoft.AspNetCore.Components.EventCallback%601> with <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> and await the <xref:System.Threading.Tasks.Task>:
