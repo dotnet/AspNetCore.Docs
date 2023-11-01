@@ -45,7 +45,7 @@ Standard interactive HTML forms with server rendering are supported. Create a fo
 
 ```razor
 @page "/starship-plain-form"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<StarshipPlainForm> Logger
 
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
@@ -108,7 +108,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 ```razor
 @page "/starship-1"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship1> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship1">
@@ -138,12 +138,12 @@ In the preceding `Starship1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a public property (`Model`). The property is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter. The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an [input component](xref:blazor/forms/input-components) for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `Submit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
 Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components. For more information, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
-[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. For an example, see the [`StreamingRenderingForm` test asset (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms/StreamingRenderingForm.razor).
+[Streaming rendering](xref:blazor/components/rendering#streaming-rendering) is supported for <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -205,7 +205,7 @@ In the next example, the preceding component is modified to create the form in t
 
 ```razor
 @page "/starship-2"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship2> Logger
 
 <EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
@@ -290,7 +290,7 @@ For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `A
 For forms based on the HTML `<form>` element, manually add the `AntiforgeryToken` component to the form:
 
 ```razor
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 
 <form method="post" @onsubmit="Submit" @formname="starshipForm">
     <AntiforgeryToken />
@@ -325,7 +325,7 @@ For more information, see <xref:blazor/security/index#antiforgery-support>.
 
 ## Enhanced form handling
 
-Examples adopt [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
+[Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm Enhance ...>
@@ -378,16 +378,14 @@ For guidance on using the `enhancedload` event to listen for enhanced page updat
 
 Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
 
-<!-- UPDATE 8.0 Place API cross-links for 
-                RenderMode.InteractiveWebAssembly and
-                RenderMode.InteractiveAuto -->
+<!-- UPDATE 8.0 Place API cross-links and simplify values -->
 
-* `RenderMode.InteractiveWebAssembly` (`@rendermode InteractiveWebAssembly`) for only interactive client rendering after prerendering.
-* `RenderMode.InteractiveAuto`  (`@rendermode InteractiveAuto`) for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+* `RenderMode.InteractiveWebAssembly` for only interactive client rendering after prerendering.
+* `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
 
-When using the WebAssembly render mode, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
+When using the WebAssembly or Auto render modes, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
 
 Examples don't adopt enhanced form handling for form POST requests, but all of the examples can be updated to adopt the enhanced features by following the guidance in the [Enhanced form handling](#enhanced-form-handling) section.
 

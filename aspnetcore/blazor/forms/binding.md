@@ -237,7 +237,7 @@ The following example independently binds two forms to their models by form name
 
 ```razor
 @page "/starship-6"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship6> Logger
 
 <EditForm method="post" Model="@Model1" OnSubmit="@Submit1" 
@@ -340,7 +340,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 
 ```razor
 @page "/starship-7"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship7> Logger
 
 <EditForm method="post" Model="@Model" OnSubmit="@Submit" 

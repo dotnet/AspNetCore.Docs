@@ -51,7 +51,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 ```razor
 @page "/stream-form-data"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject IJSRuntime JS
 @inject ILogger<StreamFormData> Logger
 

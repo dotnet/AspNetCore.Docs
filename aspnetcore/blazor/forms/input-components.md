@@ -125,7 +125,7 @@ The following form accepts and validates user input using:
 
 ```razor
 @page "/starship-3"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship3> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -311,7 +311,7 @@ In the following example:
 
 ```razor
 @page "/starship-4"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship4> Logger
 
 <EditForm method="post" EditContext="@editContext" OnSubmit="@Submit" 
@@ -453,7 +453,7 @@ In the following example, the user must select at least two starship classificat
 
 ```razor
 @page "/starship-5"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship5> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
