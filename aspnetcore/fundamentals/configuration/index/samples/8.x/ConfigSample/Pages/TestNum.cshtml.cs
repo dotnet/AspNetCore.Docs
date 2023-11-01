@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
-    #region snippet
+// <snippet>
     public class TestNumModel : PageModel
     {
         private readonly IConfiguration Configuration;
@@ -22,5 +22,5 @@ namespace ConfigSample
             return Content($"{number}");
         }
     }
-    #endregion
+// </snippet>
 }

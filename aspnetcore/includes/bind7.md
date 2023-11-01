@@ -33,6 +33,21 @@ In the preceding code, by default, changes to the JSON configuration file after 
 
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
+Bind also allows the concretion of an abstract class. Consider the following code which uses the abstract class `SomethingWithAName`:
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Options/NameTitleOptions.cs)]
+
+The following code displays the `NameTitleOptions` configuration values:
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/8.x/ConfigSample/Pages/Test33.cshtml.cs?name=snippet)]
+
+Calls to `Bind` are less strict than calls to `Get<>`:
+
+* `Bind` allows the concretion of an abstract.
+* `Get<>` has to create an instance itself.
+
+## The Options Pattern
+
 An alternative approach when using the ***options pattern*** is to bind the `Position` section and add it to the [dependency injection service container](xref:fundamentals/dependency-injection). In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet)]

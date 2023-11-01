@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 namespace ConfigSample.Pages
 {
-    #region snippet
+// <snippet>
     public class Index2Model : PageModel
     {
         private IConfigurationRoot ConfigRoot;
@@ -26,5 +26,5 @@ namespace ConfigSample.Pages
             return Content(str);
         }
     }
-    #endregion
+// </snippet>
 }

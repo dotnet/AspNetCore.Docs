@@ -1,4 +1,4 @@
-#define DEFAULT // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY BA RP
+#define CONFIG // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY BA RP
 #if DEFAULT
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +32,9 @@ builder.Services.AddRazorPages();
 
 builder.Services.Configure<PositionOptions>(
     builder.Configuration.GetSection(PositionOptions.Position));
+
+builder.Services.Configure<NameTitleOptions>(
+    builder.Configuration.GetSection(NameTitleOptions.NameTitle));
 
 var app = builder.Build();
 
