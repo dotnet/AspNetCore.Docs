@@ -35,7 +35,6 @@ Welcome to what's new in the ASP.NET Core docs for October 2023. This article li
 - <xref:blazor/fundamentals/routing> - Blazor RC2 Updates 8.0
 - <xref:blazor/security/server/additional-scenarios> - Blazor RC2 Updates 8.0
 - <xref:blazor/tooling> - Blazor RC2 Updates 8.0
-- [Title not found in: #30514](blazor/components/prerendering.md) - Prerender and Integrate work (Round 2)
 
 ## Fundamentals
 
