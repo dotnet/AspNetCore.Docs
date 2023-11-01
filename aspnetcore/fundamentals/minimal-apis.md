@@ -226,6 +226,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## See also
 
+* <xref:fundamentals/minimal-apis>
 * <xref:fundamentals/minimal-apis/openapi>
 * <xref:fundamentals/minimal-apis/responses>
 * <xref:fundamentals/minimal-apis/min-api-filters>
