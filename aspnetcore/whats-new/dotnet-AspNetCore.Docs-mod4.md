@@ -31,7 +31,6 @@ Welcome to what's new in the ASP.NET Core docs for October 2023. This article li
   - Prerender and Integrate work (Round 2)
 - <xref:blazor/security/webassembly/meid-groups-roles> - Graph SDK v5 update
 - <xref:blazor/components/render-modes> - Blazor RC2 Updates 8.0
-- <xref:blazor/forms-and-input-components> - Blazor RC2 Updates 8.0
 - <xref:blazor/fundamentals/routing> - Blazor RC2 Updates 8.0
 - <xref:blazor/security/server/additional-scenarios> - Blazor RC2 Updates 8.0
 - <xref:blazor/tooling> - Blazor RC2 Updates 8.0
