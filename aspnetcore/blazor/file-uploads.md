@@ -403,9 +403,7 @@ else
 
 The following example demonstrates uploading files from a server-side app to a backend web API controller in a separate app, possibly on a separate server.
 
-In the server-side app, add <xref:System.Net.Http.IHttpClientFactory> and related services that allow the app to create <xref:System.Net.Http.HttpClient> instances.
-
-In the `Program` file, add the following line where services are added:
+In the server-side app's `Program` file, add <xref:System.Net.Http.IHttpClientFactory> and related services that allow the app to create <xref:System.Net.Http.HttpClient> instances:
 
 ```csharp
 builder.Services.AddHttpClient();
@@ -759,6 +757,8 @@ public class FilesaveController : ControllerBase
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
+The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
+
 ## Upload files to a server with client-side rendering
 
 :::moniker range=">= aspnetcore-8.0"
@@ -826,6 +826,8 @@ In the Blazor Web App main project, add <xref:System.Net.Http.IHttpClientFactory
 ```csharp
 builder.Services.AddHttpClient();
 ```
+
+For more information, see <xref:fundamentals/http-requests>.
 
 The client project of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
 
