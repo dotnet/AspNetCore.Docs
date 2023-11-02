@@ -558,6 +558,8 @@ items:
                 uid: blazor/js-interop/call-dotnet-from-javascript
               - name: JSImport/JSExport interop
                 uid: blazor/js-interop/import-export-interop
+              - name: Static Server rendering
+                uid: blazor/js-interop/ssr
           - name: Call a web API
             uid: blazor/call-web-api
           - name: Images
