@@ -158,7 +158,7 @@ app.MapBlazorHub("base/path");
 
 The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
 
-You can also map the SignalR hub when the app is in a virtual folder inside a forked pipeline using a snippet similar to the following:
+You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
 
 ```csharp
 app.Map("/base/path/", subapp => {
