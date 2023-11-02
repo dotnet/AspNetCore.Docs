@@ -115,8 +115,8 @@ The module exports either or both of the following conventional functions:
 
 For Blazor Web Apps:
 
-* `beforeWebStart(options)`: Called before the Blazor Web App starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options. Receives the Blazor Web options (`options`).
-* `afterWebStarted(blazor)`: Called after the Blazor Web App is ready to receive calls from JS. For example, `afterWebStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterWebStarted` as an argument (`blazor`).
+* `beforeWebStart(options)`: Called before the Blazor Web App starts. For example, `beforeWebStart` is used to customize the loading process, logging level, and other options. Receives the Blazor Web options (`options`).
+* `afterWebStarted(blazor)`: Called after all `beforeWebStart` promises resolve. For example, `afterWebStarted` can be used to register Blazor event listeners and custom event types. The Blazor instance is passed to `afterWebStarted` as an argument (`blazor`).
 * `beforeServerStart(options, extensions)`: Called before the first Server runtime is started. Receives SignalR circuit start options (`options`) and any extensions (`extensions`) added during publishing.
 * `afterServerStarted(blazor)`: Called after the first interactive Server runtime is started.
 * `beforeWebAssemblyStart(options, extensions)`: Called before the interactive WebAssembly runtime is started. Receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
