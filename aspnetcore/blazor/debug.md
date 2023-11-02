@@ -511,11 +511,14 @@ To debug a Blazor WebAssembly app in Firefox during development:
 
 ## Break on unhandled exceptions
 
-Blazor catches exceptions that are unhandled by developer code, so the exceptions are handled from the debugger's perspective. The debugger doesn't break on such exceptions by default.
+The debugger doesn't break on unhandled exceptions by default because Blazor catches exceptions that are unhandled by developer code.
 
-To break when the exception is thrown, ...
+To break on unhandled exceptions:
 
-<!-- GUIDANCE HERE -->
+* Open the debugger's exception settings (**Debug** > **Windows** > **Exception Settings**) in Visual Studio.
+* Set the following **JavaScript Exceptions** settings:
+  * **All Exceptions**
+  * **Uncaught Exceptions**
 
 ## Browser source maps
 
