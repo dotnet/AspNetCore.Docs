@@ -642,7 +642,7 @@ The following `FileUpload2` component:
 The following controller in the web API project saves uploaded files from the client.
 
 > [!IMPORTANT]
-> The controller in this section is intended for use in a separate web API project from the Blazor app.
+> The controller in this section is intended for use in a separate web API project from the Blazor app. The web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if users are authenticated.
 
 :::moniker range="= aspnetcore-6.0"
 
@@ -657,6 +657,8 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 > [!WARNING]
 > The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+>
+> Additionally, the web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if users are authenticated.
 
 `Controllers/FilesaveController.cs`:
 
@@ -761,7 +763,7 @@ In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to g
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to client-side rendered Razor components in Blazor Web Apps.*
+*This section applies to client-side rendered Razor components in either a Blazor Web App or a standalone Blazor WebAssembly app.*
 
 :::moniker-end
 
@@ -811,14 +813,32 @@ A security best practice for production apps is to avoid sending error messages 
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link render mode -->
+<!-- UPDATE 8.0 Cross-link render mode
+                AND ... ask the PU about the service
+                registrations because it seems odd to
+                be required to register an HttpClient
+                in the BWA's main project. Why can't 
+                only the .Client project register it
+                like a standalone WASM app does? -->
 
-> [!NOTE]
-> Add the WebAssembly component rendering attribute to the top of the following component in a Blazor Web App:
->
-> ```razor
-> @rendermode RenderMode.InteractiveWebAssembly
-> ```
+In the Blazor Web App main project, add <xref:System.Net.Http.IHttpClientFactory> and related services in the project's `Program` file:
+
+```csharp
+builder.Services.AddHttpClient();
+```
+
+The client project of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
+
+```csharp
+builder.Services.AddScoped(sp => 
+    new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+```
+
+Add the WebAssembly component rendering attribute to the top of the following component in a Blazor Web App:
+
+```razor
+@rendermode RenderMode.InteractiveWebAssembly
+```
 
 :::moniker-end
 
@@ -873,7 +893,7 @@ A security best practice for production apps is to avoid sending error messages 
 }
 
 <p>
-    @message;
+    @message
 </p>
 
 @code {
@@ -991,7 +1011,7 @@ A security best practice for production apps is to avoid sending error messages 
 
 :::moniker-end
 
-The following controller in the **:::no-loc text="Server":::** project saves uploaded files from the client.
+The following controller in the server-side project saves uploaded files from the client.
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -1000,12 +1020,16 @@ The following controller in the **:::no-loc text="Server":::** project saves upl
 
 :::moniker-end
 
-**To use the following code, create a `Development/unsafe_uploads` folder at the root of the :::no-loc text="Server"::: project for the app running in the `Development` environment.**
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the server-side project for the app running in the `Development` environment.**
 
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
 > The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+>
+> Additionally, the web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if users are authenticated.
+
+In the following example, update the shared project's namespace to match the shared project if a shared project is supplying the `UploadResult` class.
 
 `Controllers/FilesaveController.cs`:
 
@@ -1015,7 +1039,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -1113,6 +1136,8 @@ public class FilesaveController : ControllerBase
 ```
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+
+The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
 
 ## Cancel a file upload
 
