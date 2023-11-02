@@ -10,7 +10,11 @@ uid: blazor/js-interop/ssr
 ---
 # ASP.NET Core Blazor JavaScript with Blazor static Server rendering
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article explains general concepts on how to interact with JavaScript in a Blazor Web App with static Server rendering.
 
