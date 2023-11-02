@@ -107,7 +107,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 Using the `environment` property overrides the environment set by the [`Blazor-Environment` header](#set-the-environment-via-header).
 

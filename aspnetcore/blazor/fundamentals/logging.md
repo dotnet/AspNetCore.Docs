@@ -710,7 +710,7 @@ Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value.
 
@@ -746,7 +746,7 @@ Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
