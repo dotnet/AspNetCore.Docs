@@ -503,7 +503,6 @@ If the client isn't always sending messages and you don't want to time out just 
 > [!NOTE]
 > The internal [`ManagedWebSocket`](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.WebSockets/src/System/Net/WebSockets/ManagedWebSocket.cs) handles the Ping/Pong frames implicitly to keep the connection alive if the `KeepAliveInterval` option is greater than zero, which defaults to 30 seconds (`TimeSpan.FromSeconds(30)`).
 
-
 ## WebSocket origin restriction
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
