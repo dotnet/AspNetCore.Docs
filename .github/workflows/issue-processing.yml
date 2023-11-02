@@ -77,7 +77,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🎃 ***Happy Halloween!*** 🧟
+              body: `### 🍂 ***Happy Autumn!*** ☕
 
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             })
