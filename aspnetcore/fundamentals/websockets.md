@@ -500,6 +500,10 @@ The server isn't automatically informed when the client disconnects due to loss 
 
 If the client isn't always sending messages and you don't want to time out just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message hasn't arrived within 2\*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
 
+> [!NOTE]
+> The internal [ManagedWebSocket](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.WebSockets/src/System/Net/WebSockets/ManagedWebSocket.cs) will handle the Ping/Pong frames implicitly to keep the connection alive if the `KeepAliveInterval` option is greater than zero which is default ` TimeSpan.FromSeconds(30)`.
+
+
 ## WebSocket origin restriction
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
