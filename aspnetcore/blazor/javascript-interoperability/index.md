@@ -351,7 +351,7 @@ Place the JavaScript (JS) tags (`<script>...</script>`) inside the [closing `</b
 </body>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -376,7 +376,10 @@ Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`s
 </body>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
+In the preceding example:
+
+* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+* The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
 
 In the following example of the preceding `<script>` tag, the `scripts.js` file is in the `wwwroot/js` folder of the app:
 

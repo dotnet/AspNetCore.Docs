@@ -541,7 +541,7 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 ## Location of the Blazor script
 
-The script is served from an embedded resource in the ASP.NET Core shared framework.
+The Blazor script is served from an embedded resource in the ASP.NET Core shared framework.
 
 :::moniker range=">= aspnetcore-8.0"
 
