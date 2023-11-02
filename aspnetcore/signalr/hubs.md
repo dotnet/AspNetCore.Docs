@@ -278,7 +278,7 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 <xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
 
 > [!NOTE]
-> If the [SignalR transport method](/aspnet/core/signalr/introduction#transports) is `Long Polling`, the `OnDisconnectedAsync` will not be called by closing the browser tab when the debugger is attached.
+> If the [SignalR transport method](/aspnet/core/signalr/introduction#transports) is Long Polling, the `OnDisconnectedAsync` isn't called by closing the browser tab when the debugger is attached.
 
 ## Handle errors
 
