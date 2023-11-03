@@ -718,7 +718,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 `Starship10.razor`:
 
-moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
 > By default, forms based on `EditForm` automatically enable [anti-forgery support](xref:blazor/forms/index#antiforgery-support). The controller should use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> to register controller services and automatically enable anti-forgery support for the web API.
@@ -863,9 +863,9 @@ builder.Services.AddScoped(sp =>
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship10.razor":::
 -->
 
-moniker-end
+:::moniker-end
 
-moniker range="< aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/starship-10"
@@ -994,7 +994,7 @@ moniker range="< aspnetcore-8.0"
 }
 ```
 
-moniker-end
+:::moniker-end
 
 <!--
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship10.razor":::
