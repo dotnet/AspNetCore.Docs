@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: bdorrans
-ms.date: 01/10/2022
+ms.date: 11/03/2023
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core
@@ -1009,7 +1009,7 @@ The implementation and configuration of this feature varies by server and framew
 
 IIS manages the client certificate negotiation on your behalf. A subsection of the application can enable the `SslRequireCert` option to negotiate the client certificate for those requests. See [Configuration in the IIS documentation](/iis/configuration/system.webserver/security/access#configuration) for details.
 
-IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48MB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime).
+IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48KB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime).
 
 #### HttpSys
 
@@ -1667,7 +1667,7 @@ The implementation and configuration of this feature varies by server and framew
 
 IIS manages the client certificate negotiation on your behalf. A subsection of the application can enable the `SslRequireCert` option to negotiate the client certificate for those requests. See [Configuration in the IIS documentation](/iis/configuration/system.webserver/security/access#configuration) for details.
 
-IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48MB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime).
+IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed the limit are rejected with a 413 response. This limit defaults to 48KB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime).
 
 #### HttpSys
 
