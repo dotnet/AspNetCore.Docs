@@ -640,7 +640,7 @@ The following `FileUpload2` component:
 The following controller in the web API project saves uploaded files from the client.
 
 > [!IMPORTANT]
-> The controller in this section is intended for use in a separate web API project from the Blazor app. The web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if users are authenticated.
+> The controller in this section is intended for use in a separate web API project from the Blazor app. The web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if file upload users are authenticated.
 
 :::moniker range="= aspnetcore-6.0"
 
@@ -655,8 +655,6 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 > [!WARNING]
 > The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
->
-> Additionally, the web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if users are authenticated.
 
 `Controllers/FilesaveController.cs`:
 
@@ -1028,8 +1026,6 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 > [!WARNING]
 > The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
->
-> Additionally, the web API should [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery) if users are authenticated.
 
 In the following example, update the shared project's namespace to match the shared project if a shared project is supplying the `UploadResult` class.
 
@@ -1140,6 +1136,14 @@ public class FilesaveController : ControllerBase
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
+
+<!--
+
+HOLD: Tracking anti-request forgery work for this article in the UE tracking issue.
+
+We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, anti-forgery is ***not*** enabled automatically. For more information, see <xref:mvc/controllers/routing>.
+
+-->
 
 ## Cancel a file upload
 

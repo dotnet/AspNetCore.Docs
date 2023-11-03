@@ -86,7 +86,7 @@ Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -104,16 +104,84 @@ To define a JS initializer, add a JS module to the project named `{NAME}.lib.mod
 
 The module exports either or both of the following conventional functions:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Remove NOTE -->
+
+> [!NOTE]
+> JS initializers for Blazor Web Apps is an upcoming feature that will appear with the release of .NET 8 in mid-November.
+
+For Blazor Web Apps:
+
+* `beforeWebStart(options)`: Called before the Blazor Web App starts. For example, `beforeWebStart` is used to customize the loading process, logging level, and other options. Receives the Blazor Web options (`options`).
+* `afterWebStarted(blazor)`: Called after all `beforeWebStart` promises resolve. For example, `afterWebStarted` can be used to register Blazor event listeners and custom event types. The Blazor instance is passed to `afterWebStarted` as an argument (`blazor`).
+* `beforeServerStart(options, extensions)`: Called before the first Server runtime is started. Receives SignalR circuit start options (`options`) and any extensions (`extensions`) added during publishing.
+* `afterServerStarted(blazor)`: Called after the first interactive Server runtime is started.
+* `beforeWebAssemblyStart(options, extensions)`: Called before the interactive WebAssembly runtime is started. Receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
+* `afterWebAssemblyStarted(blazor)`: Called after the interactive WebAssembly runtime is started.
+
+> [!NOTE]
+> Legacy JS initializers (`beforeStart`, `afterStarted`) are ***not*** invoked by default in a Blazor Web App. You can enable the legacy initializers to run with the `enableClassicInitializers` option. However, legacy initializer execution is unpredictable.
+>
+> ```html
+> <script>
+>   Blazor.start({ enableClassicInitializers: true });
+> </script>
+> ```
+
+For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * Client-side, `beforeStart` receives the Blazor options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
-  * Server-side, `beforeStart` receives SignalR circuit start options (`options` in this section's examples).
+  * Client-side, `beforeStart` receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
+  * Server-side, `beforeStart` receives SignalR circuit start options (`options`).
   * In a [`BlazorWebView`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
-* `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor` in this section's example).
+* `afterStarted(blazor)`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor`).
 
 For the file name:
 
 * If the JS initializers are consumed as a static asset in the project, use the format `{ASSEMBLY NAME}.lib.module.js`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, name the file `BlazorSample.lib.module.js` for a project with an assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
 * If the JS initializers are consumed from an RCL, use the format `{LIBRARY NAME/PACKAGE ID}.lib.module.js`, where the `{LIBRARY NAME/PACKAGE ID}` placeholder is the project's library name or package identifier. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the library's `wwwroot` folder.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Remove NOTE -->
+
+> [!NOTE]
+> JS initializers for Blazor Web Apps is an upcoming feature that will appear with the release of .NET 8 in mid-November.
+
+For Blazor Web Apps:
+
+The following example demonstrates JS initializers that load custom scripts before and after the Blazor Web App has started by appending them to the `<head>` in `beforeWebStart` and `afterWebStarted`:
+
+```javascript
+export function beforeWebStart() {
+  var customScript = document.createElement('script');
+  customScript.setAttribute('src', 'beforeStartScripts.js');
+  document.head.appendChild(customScript);
+}
+
+export function afterWebStarted() {
+  var customScript = document.createElement('script');
+  customScript.setAttribute('src', 'afterStartedScripts.js');
+  document.head.appendChild(customScript);
+}
+```
+
+The preceding `beforeWebStart` example only guarantees that the custom script loads before Blazor starts. It doesn't guarantee that awaited promises in the script complete their execution before Blazor starts.
+
+For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The following example demonstrates JS initializers that load custom scripts before and after Blazor has started by appending them to the `<head>` in `beforeStart` and `afterStarted`:
 
@@ -232,7 +300,7 @@ The following example starts Blazor when the document is ready:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -247,7 +315,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -334,7 +402,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
 
@@ -386,7 +454,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
@@ -580,7 +648,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 The .NET runtime instance can be accessed from `Blazor.runtime`.
 
@@ -603,7 +671,7 @@ To disable enhanced navigation and form handling, set `disableDomPreservation` t
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker-end
 

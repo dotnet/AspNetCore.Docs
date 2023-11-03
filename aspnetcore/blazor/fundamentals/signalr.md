@@ -766,7 +766,7 @@ Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example shows the assignment of default values:
 
@@ -814,7 +814,7 @@ The following example for the `Pages/_Host.cshtml` file (Blazor Server, all vers
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example shows the assignment of default values:
 
@@ -895,7 +895,7 @@ Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -925,7 +925,7 @@ The default reconnection behavior requires the user to take manual action to ref
 <script src="boot.js"></script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 Create the following `wwwroot/boot.js` file.
 
@@ -1109,7 +1109,7 @@ Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
