@@ -61,7 +61,7 @@ export function onDispose() {
 }
 ```
 
-In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), add the following module:
+In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) (the example RCL is named `BlazorPageScript`), add the following module:
 
 * In `initializePageScriptModule`:
   * A relative path is normalized by by making it an absolute URL with document's app base path.
