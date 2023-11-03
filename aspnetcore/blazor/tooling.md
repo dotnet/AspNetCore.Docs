@@ -606,13 +606,9 @@ To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassem
 
 :::moniker range=">= aspnetcore-8.0"
 
-[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers.
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default.
 
-Support for disabling SIMD is scheduled for a future release. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
-
-<!-- UPDATE 9.0 HOLD
-
-To disable SIMD, for example when targeting old browsers (on mobile devices), add the `<WasmEnableSIMD>` property set to `false` in the app's project file (`.csproj`):
+To disable SIMD, for example when targeting old browsers or browsers on mobile devices that don't support SIMD, set the `<WasmEnableSIMD>` property to `false` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
@@ -620,15 +616,13 @@ To disable SIMD, for example when targeting old browsers (on mobile devices), ad
 </PropertyGroup>
 ```
 
--->
-
-For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://aka.ms/dotnet-wasm-features#simd---single-instruction-multiple-data) and note that the guidance isn't versioned and applies to the latest public release.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. 
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is disabled by default.
 
 To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's project file (`.csproj`):
 
@@ -638,7 +632,7 @@ To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's p
 </PropertyGroup>
 ```
 
-For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data). Note that the guidance in this document isn't versioned and applies to the latest public release.
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://aka.ms/dotnet-wasm-features#simd---single-instruction-multiple-data) and note that the guidance isn't versioned and applies to the latest public release.
 
 :::moniker-end
 
