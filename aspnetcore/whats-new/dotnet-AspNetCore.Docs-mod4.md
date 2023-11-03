@@ -2,7 +2,7 @@
 title: "ASP.NET Core docs: What's new for October 2023"
 description: "What's new in the ASP.NET Core docs for October 2023."
 ms.custom: October-2023
-ms.date: 11/01/2023
+ms.date: 11/03/2023
 ---
 
 # ASP.NET Core docs: What's new for October 2023
@@ -17,10 +17,32 @@ Welcome to what's new in the ASP.NET Core docs for October 2023. This article li
 
 ### Updated articles
 
-- <xref:blazor/globalization-localization> - Dynamic server-side culture selection (BWA) 8.0
-- <xref:blazor/fundamentals/signalr> - Manual Blazor start updates 8.0
+- <xref:blazor/fundamentals/routing>
+  - Handlers and enhanced navigation 8.0
+  - Blazor RC2 Updates 8.0
+- <xref:blazor/globalization-localization>
+  - Dynamic server-side culture selection (BWA) 8.0
+  - Manual Blazor start updates 8.0
+  - Blazor RC2 Updates 8.0
+- <xref:blazor/fundamentals/signalr>
+  - Version API list
+  - Update option location guidance
+  - Blazor options configuration 8.0
+  - Manual Blazor start updates 8.0
+  - Blazor RC2 Updates 8.0
+  - Prerender and Integrate work (Round 2)
+- <xref:blazor/fundamentals/handle-errors> - Blazor options configuration 8.0
+- <xref:blazor/fundamentals/static-files> - Blazor options configuration 8.0
+- <xref:blazor/security/server/index>
+  - Blazor options configuration 8.0
+  - Blazor RC2 Updates 8.0
+- <xref:blazor/fundamentals/environments> - Manual Blazor start updates 8.0
+- <xref:blazor/fundamentals/logging> - Manual Blazor start updates 8.0
 - <xref:blazor/fundamentals/startup> - Manual Blazor start updates 8.0
-- <xref:blazor/host-and-deploy/webassembly> - Manual Blazor start updates 8.0
+- <xref:blazor/host-and-deploy/server> - Manual Blazor start updates 8.0
+- <xref:blazor/host-and-deploy/webassembly>
+  - Manual Blazor start updates 8.0
+  - GitHub page hosting without WasmStripILAfterAOT
 - <xref:blazor/project-structure>
   - Manual Blazor start updates 8.0
   - Blazor RC2 Updates 8.0
@@ -30,16 +52,35 @@ Welcome to what's new in the ASP.NET Core docs for October 2023. This article li
   - Blazor migration guidance 8.0
   - Prerender and Integrate work (Round 2)
 - <xref:blazor/security/webassembly/meid-groups-roles> - Graph SDK v5 update
+- <xref:blazor/components/index> - Blazor RC2 Updates 8.0
+- <xref:blazor/components/js-spa-frameworks> - Blazor RC2 Updates 8.0
 - <xref:blazor/components/render-modes> - Blazor RC2 Updates 8.0
-- <xref:blazor/fundamentals/routing> - Blazor RC2 Updates 8.0
+- [Title not found in: #30576](blazor/forms-and-input-components.md) - Blazor RC2 Updates 8.0
+- <xref:blazor/fundamentals/dependency-injection> - Blazor RC2 Updates 8.0
+- <xref:blazor/js-interop/call-dotnet-from-javascript> - Blazor RC2 Updates 8.0
+- <xref:blazor/js-interop/call-javascript-from-dotnet> - Blazor RC2 Updates 8.0
 - <xref:blazor/security/server/additional-scenarios> - Blazor RC2 Updates 8.0
 - <xref:blazor/tooling> - Blazor RC2 Updates 8.0
+- <xref:blazor/hybrid/index> - TryDispatchAsync for BlazorWebView 8.0
+- [Title not found in: #30514](blazor/components/prerendering.md) - Prerender and Integrate work (Round 2)
 
 ## Fundamentals
 
 ### Updated articles
 
-- <xref:fundamentals/http-logging/index> - HTTP logging middleware in .NET 8
+- <xref:fundamentals/servers/httpsys> - Note wildcard options, link to tracing info
+- <xref:fundamentals/native-aot> - Add See also links /7
+- <xref:fundamentals/configuration/options> - mon prep
+- <xref:fundamentals/http-logging/index>
+  - HTTP logging middleware in .NET 8
+  - Moniker prep
+- <xref:fundamentals/dependency-injection> - Moniker prep
+
+## Hosting and deployment
+
+### Updated articles
+
+- <xref:host-and-deploy/linux-nginx> - Add websocket support to generic nginx docs
 
 ## Migration
 
@@ -49,30 +90,59 @@ Welcome to what's new in the ASP.NET Core docs for October 2023. This article li
 
 ### Updated articles
 
-- <xref:migration/70-to-80> - Blazor migration guidance 8.0
+- <xref:migration/70-to-80>
+  - Blazor options configuration 8.0
+  - Manual Blazor start updates 8.0
+  - Content structure updates
+  - Blazor migration guidance 8.0
 
 ## MVC
 
 ### Updated articles
 
+- <xref:mvc/controllers/dependency-injection> - fix
+- <xref:mvc/views/razor> - Blazor RC2 Updates 8.0
 - <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> - Prerender and Integrate work (Round 2)
+- <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper> - Prerender and Integrate work (Round 2)
 
 ## Release notes
 
 ### Updated articles
 
-- <xref:aspnetcore-8> - Blazor Release Notes updates 8.0 RC2
+- <xref:aspnetcore-8>
+  - 8.0 Update: SignalR Config: stateful reconnect (try 2)
+  - WN: HTTP Logging and Acrolinx
+  - Manual Blazor start updates 8.0
+  - 8.0: Update What's New: SignalR stateful reconnect
+  - Keyed services to What's new /7
+  - WN: SPA templates
+  - Blazor Release Notes updates 8.0 RC2
+
+## Security
+
+### Updated articles
+
+- <xref:security/authentication/community> - Updated community oss authentication options
+- <xref:security/authentication/index> - Add Finbuckle.MultiTenant
 
 ## SignalR
 
 ### Updated articles
 
 - <xref:signalr/configuration> - 8.0 Update: SignalR Config: stateful reconnect (try 2)
+- <xref:signalr/hubs> - Hub key svc
+
+## Tutorials
+
+### Updated articles
+
+- <xref:tutorials/choose-web-ui> - 8.0 Update for Choose a web UI
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
+- [guardrex](https://github.com/guardrex) - Luke Latham ![60 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-60-green)
 - [damienbod](https://github.com/damienbod) - damienbod ![10 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-10-green)
 - [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![3 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
 - [AddisonRogers](https://github.com/AddisonRogers) - Addison ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
