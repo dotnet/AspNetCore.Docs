@@ -616,7 +616,7 @@ To disable SIMD, for example when targeting old browsers or browsers on mobile d
 </PropertyGroup>
 ```
 
-For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md).
 
 :::moniker-end
 
