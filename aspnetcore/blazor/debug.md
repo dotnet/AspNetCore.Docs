@@ -35,14 +35,12 @@ Available scenarios for Blazor WebAssembly debugging include:
 
 Unsupported scenarios include:
 
-* Break on unhandled exceptions.
-* Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
 * Debug in Firefox from Visual Studio or Visual Studio Code.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Blazor Server apps can be debugged in an IDE, Visual Studio or Visual Studio Code.
 
@@ -59,10 +57,28 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 * Resume code execution with a keyboard shortcut in IDEs.
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
+* Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
+* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
 
-For now, you *can't*:
+:::moniker-end
 
-* Break on unhandled exceptions.
+:::moniker range="< aspnetcore-6.0"
+
+Blazor Server apps can be debugged in an IDE, Visual Studio or Visual Studio Code.
+
+Blazor WebAssembly apps can be debugged:
+
+* In an IDE, Visual Studio or Visual Studio Code.
+* Using browser developer tools in Chromium-based browsers, including Microsoft Edge and Google Chrome.
+
+Unsupported scenarios for Blazor WebAssembly apps include:
+
+* Set and remove breakpoints.
+* Run the app with debugging support in IDEs.
+* Single-step through the code.
+* Resume code execution with a keyboard shortcut in IDEs.
+* In the *Locals* window, observe the values of local variables.
+* See the call stack, including call chains between JavaScript and .NET.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
 * Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
@@ -492,6 +508,17 @@ To debug a Blazor WebAssembly app in Firefox during development:
 1. Press <kbd>F5</kbd> to continue execution.
 
 :::moniker-end
+
+## Break on unhandled exceptions
+
+The debugger doesn't break on unhandled exceptions by default because Blazor catches exceptions that are unhandled by developer code.
+
+To break on unhandled exceptions:
+
+* Open the debugger's exception settings (**Debug** > **Windows** > **Exception Settings**) in Visual Studio.
+* Set the following **JavaScript Exceptions** settings:
+  * **All Exceptions**
+  * **Uncaught Exceptions**
 
 ## Browser source maps
 
