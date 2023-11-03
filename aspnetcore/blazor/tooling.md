@@ -608,19 +608,13 @@ To enable [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassem
 
 [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is enabled by default for all major browsers.
 
-Support for disabling SIMD is scheduled for a future release. For more information, see [SIMD cannot be disabled (dotnet/runtime #89302)](https://github.com/dotnet/runtime/issues/89302).
-
-<!-- UPDATE 9.0 HOLD
-
-To disable SIMD, for example when targeting old browsers (on mobile devices), add the `<WasmEnableSIMD>` property set to `false` in the app's project file (`.csproj`):
+To disable SIMD, for example when targeting old browsers (on mobile devices), set the `<WasmEnableSIMD>` property to `false` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
   <WasmEnableSIMD>false</WasmEnableSIMD>
 </PropertyGroup>
 ```
-
--->
 
 For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#simd---single-instruction-multiple-data).
 
