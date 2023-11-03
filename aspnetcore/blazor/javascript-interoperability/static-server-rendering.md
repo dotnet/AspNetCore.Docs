@@ -5,7 +5,7 @@ description: Learn how to use JavaScript in a Blazor Web App with static Server 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/02/2023
+ms.date: 11/03/2023
 uid: blazor/js-interop/ssr
 ---
 # ASP.NET Core Blazor JavaScript with Blazor static Server rendering
@@ -16,53 +16,59 @@ uid: blazor/js-interop/ssr
 
 -->
 
-This article explains general concepts on how to interact with JavaScript in a Blazor Web App with static Server rendering.
+This article explains how to load JavaScript (JS) in a Blazor Web App with static Server rendering and [enhanced navigation feature](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
 
-Some applications may depend on JavaScript to perform initialization tasks that are specific to each page. However, when using Blazor's enhanced navigation feature, which allows the user to navigate between pages without reloading the entire page, JavaScript code may not be re-executed as expected. Therefore, page-specific `<script>` elements may not be executed again when the user navigates to a different page.
+Some applications may depend on JS to perform initialization tasks that are specific to each page. When using Blazor's enhanced navigation feature, which allows the user to avoid reloading the entire page, JS code may not re-execute as expected. Therefore, page-specific `<script>` elements may not be executed again as expected each time an enhanced page navigation occurs.
 
-To avoid this problem, it is not recommended to rely on having page-specific `<script>` elements outside the app's common layout. Instead, scripts should register an `afterWebStarted(blazor)` JavaScript initializer to perform initialization logic, and use `blazor.addEventListener("enhancedload", callback)` to listen to page updates caused by enhanced navigation.
+To avoid this problem, we don't recommended relying on page-specific `<script>` elements outside of the app's common layout. Instead, scripts should register an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to perform initialization logic and use an event listener (`blazor.addEventListener("enhancedload", callback)`) to listen for page updates caused by enhanced navigation.
 
-Following is an example demonstrating one way to configure JavaScript code that runs when a page gets initially loaded or updated.
+The following example demonstrates one way to configure JS code to run when a page is initially loaded or updated.
 
-In the Blazor Web App:
+In the Blazor Web App, add the following `EnhancedLoadScript` component.
 
-* Add the following `MyPage` component.
-* `home.js` JS file.
-
-`Components/Pages/MyPage.razor`:
+`Components/Pages/EnhancedLoadScript.razor`:
 
 ```razor
-@page "/my-page"
+@page "/enhanced-load-script"
 @using BlazorPageScript
 
-<PageTitle>My page</PageTitle>
+<PageTitle>Enhanced Load Script Example</PageTitle>
 
 <PageScript Src="js/pages/home.js" />
 
 Welcome to my page.
 ```
 
+In the Blazor Web App, add the following JS file (`home.js`):
+
+* The `onLoad` function is called when the page loads the first time.
+* The `onUpdate` function is called each time an enhanced load occurs on the page, plus once when the page is first loaded.
+* The `onDispose` function is called when the user leaves the page due to an enhanced navigation.
+
+The `home.js` file is placed in the `wwwroot` folder and not [collocated with the component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) in order to make it reusable around the app from a common location.
+
 `wwwroot/js/pages/home.js`:
 
 ```javascript
-// Called when the page first gets loaded
 export function onLoad() {
-    console.log('Loaded');
+  console.log('Loaded');
 }
 
-// Called each time an enhanced load occurs on the page,
-// plus once when the page first gets loaded
 export function onUpdate() {
-    console.log('Updated');
+  console.log('Updated');
 }
 
-// Called when the user leaves the page due to an enhanced navigation
 export function onDispose() {
-    console.log('Disposed');
+  console.log('Disposed');
 }
 ```
 
-In the BlazorPageScript (Razor Class Library):
+In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), add the following module:
+
+* In the `afterWebStarted` function, `attributeChangedCallback` is used instead of `connectedCallback` because a page script element might be reused between enhanced navigation operations. For more information, see [Using custom elements: Custom element lifecycle callbacks (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks).
+* The `loadPageScript` function is abandoned if the loaded path (`pathnameOnLoad`) is equal to the current path (`currentPathname`) to avoid reloading the page script if the user is already on the same page. The function is also exited if `location.pathname` isn't equal to the loaded path (`pathnameOnLoad`) because the user changed pages since the module started loading, so there's nothing left to do.
+
+A RCL is used in order to make the module (and following `PageScript` component) reusable across projects.
 
 `wwwroot/BlazorPageScript.lib.module.js`:
 
@@ -71,57 +77,54 @@ let currentPageModule = null;
 let currentPathname = null;
 
 export function afterWebStarted(blazor) {
-    customElements.define('page-script', class extends HTMLElement {
-        static observedAttributes = ['src'];
+  customElements.define('page-script', class extends HTMLElement {
+    static observedAttributes = ['src'];
 
-        // We use attributeChangedCallback instead of connectedCallback
-        // because a page script element might get reused between enhanced
-        // navigations.
-        attributeChangedCallback(name, oldValue, newValue) {
-            if (name === 'src') {
-                loadPageScript(newValue);
-            }
-        }
-    });
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (name === 'src') {
+        loadPageScript(newValue);
+      }
+    }
+  });
 
-    blazor.addEventListener('enhancedload', onEnhancedLoad);
+  blazor.addEventListener('enhancedload', onEnhancedLoad);
 }
 
 async function loadPageScript(src) {
-    const pathnameOnLoad = document.location.pathname;
+  const pathnameOnLoad = document.location.pathname;
 
-    if (pathnameOnLoad === currentPathname) {
-        // We don't reload the page script if we're already on the same page.
-        return;
-    }
+  if (pathnameOnLoad === currentPathname) {
+    return;
+  }
 
-    currentPathname = pathnameOnLoad;
-    currentPageModule?.onDispose?.();
-    currentPageModule = null;
+  currentPathname = pathnameOnLoad;
+  currentPageModule?.onDispose?.();
+  currentPageModule = null;
 
-    const module = await import(`${document.location.origin}/${src}`);
+  const module = await import(`${document.location.origin}/${src}`);
 
-    if (location.pathname !== pathnameOnLoad) {
-        // We changed pages since we started loading the module - nothing left to do.
-        return;
-    }
+  if (location.pathname !== pathnameOnLoad) {
+    return;
+  }
 
-    currentPageModule = module;
-    currentPageModule.onLoad?.();
-    currentPageModule.onUpdate?.();
+  currentPageModule = module;
+  currentPageModule.onLoad?.();
+  currentPageModule.onUpdate?.();
 }
 
 function onEnhancedLoad() {
-    if (location.pathname !== currentPathname) {
-        currentPathname = null;
-        currentPageModule?.onDispose?.();
-        currentPageModule = null;
-        return;
-    }
+  if (location.pathname !== currentPathname) {
+    currentPathname = null;
+    currentPageModule?.onDispose?.();
+    currentPageModule = null;
+    return;
+  }
 
-    currentPageModule?.onUpdate?.();
+  currentPageModule?.onUpdate?.();
 }
 ```
+
+In the RCL, add the following `PageScript` component.
 
 `PageScript.razor`:
 
@@ -135,4 +138,4 @@ function onEnhancedLoad() {
 }
 ```
 
-To monitor changes in specific DOM elements, use the `MutationObserver` API.
+To monitor changes in specific DOM elements, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
