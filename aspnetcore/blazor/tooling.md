@@ -616,13 +616,13 @@ To disable SIMD, for example when targeting old browsers or browsers on mobile d
 </PropertyGroup>
 ```
 
-For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://aka.ms/dotnet-wasm-features#simd---single-instruction-multiple-data).
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://aka.ms/dotnet-wasm-features#simd---single-instruction-multiple-data) and note that the guidance isn't versioned and applies to the latest public release.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. 
+[WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. SIMD is disabled by default.
 
 To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's project file (`.csproj`):
 
@@ -632,7 +632,7 @@ To enable SIMD, add the `<WasmEnableSIMD>` property set to `true` in the app's p
 </PropertyGroup>
 ```
 
-For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://aka.ms/dotnet-wasm-features#simd---single-instruction-multiple-data). Note that the guidance in this document isn't versioned and applies to the latest public release.
+For more information, see [Configuring and hosting .NET WebAssembly applications: SIMD - Single instruction, multiple data](https://aka.ms/dotnet-wasm-features#simd---single-instruction-multiple-data) and note that the guidance isn't versioned and applies to the latest public release.
 
 :::moniker-end
 
