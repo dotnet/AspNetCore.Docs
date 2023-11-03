@@ -100,7 +100,7 @@ An app can't modify headers after the response has started. Once the response st
 > System.InvalidOperationException: Headers are read-only, response has already started.
 
 > [!NOTE]
-> Unless response buffering is enabled, all write operations (for example, `WriteAsync`) flush the response body internally and mark the response as started. Response buffering is disabled by default.
+> Unless response buffering is enabled, all write operations (for example, <xref:Microsoft.AspNetCore.Http.HttpResponseWritingExtensions.WriteAsync%2A>) flush the response body internally and mark the response as started. Response buffering is disabled by default.
 
 ### Write response body
 
