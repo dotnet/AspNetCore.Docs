@@ -255,6 +255,8 @@ In the following example, there's no designation for the component's render mode
 
 If using the preceding component locally in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
 
+[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static rendering requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+
 ## Server render mode
 
 The Server render mode renders the component interactively from the server using Blazor Server. User interactions are handled over a real-time connection with the browser. The circuit connection is established when the Server component is rendered.
@@ -586,3 +588,7 @@ Use the shorthand render mode in components:
 > For more information, see the [Prerendering](#prerendering) section.
 
 At the moment, the shorthand render mode approach is probably only useful for reducing the verbosity of specifying the `prerender` flag. The shorthand approach might be more useful in the future if additional flags become available for interactive rendering and you would like to create shorthand render modes with different combinations of flags.
+
+## Additional resources
+
+* <xref:blazor/js-interop/ssr>
