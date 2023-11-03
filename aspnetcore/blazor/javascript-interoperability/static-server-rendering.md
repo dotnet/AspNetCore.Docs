@@ -61,18 +61,7 @@ export function onDispose() {
 }
 ```
 
-In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) (the example RCL is named `BlazorPageScript`), add the following module:
-
-* In `initializePageScriptModule`:
-  * A relative path is normalized by by making it an absolute URL with document's app base path.
-  * If `pageScriptInfo.referenceCount <= 0`, all page-script elements with the same 'src' were unregistered while the module was loading.
-* In `onEnhancedLoad`:
-  * Start by invoking `onDispose` on any modules that are no longer referenced.
-  * Invoke `onUpdate` on the remaining modules.
-* In the `afterWebStarted` function, `attributeChangedCallback` is used instead of `connectedCallback` because a page script element might be reused between enhanced navigation operations. For more information, see [Using custom elements: Custom element lifecycle callbacks (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks).
-* The `loadPageScript` function is abandoned if the loaded path (`pathnameOnLoad`) is equal to the current path (`currentPathname`) to avoid reloading the page script if the user is already on the same page. The function is also exited if `location.pathname` isn't equal to the loaded path (`pathnameOnLoad`) because the user changed pages since the module started loading, so there's nothing left to do.
-
-A RCL is used in order to make the module (and following `PageScript` component) reusable across projects.
+In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) (the example RCL is named `BlazorPageScript`), add the following module.
 
 `wwwroot/BlazorPageScript.lib.module.js`:
 
@@ -159,6 +148,16 @@ export function afterWebStarted(blazor) {
   blazor.addEventListener('enhancedload', onEnhancedLoad);
 }
 ```
+
+For the preceding module:
+
+* In `initializePageScriptModule`:
+  * A relative path is normalized by by making it an absolute URL with document's app base path.
+  * If `pageScriptInfo.referenceCount <= 0`, all page-script elements with the same 'src' were unregistered while the module was loading.
+* In `onEnhancedLoad`:
+  * Start by invoking `onDispose` on any modules that are no longer referenced.
+  * Invoke `onUpdate` on the remaining modules.
+* In the `afterWebStarted` function, `attributeChangedCallback` is used instead of `connectedCallback` because a page script element might be reused between enhanced navigation operations. For more information, see [Using custom elements: Custom element lifecycle callbacks (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Web_components/Using_custom_elements#custom_element_lifecycle_callbacks).
 
 In the RCL, add the following `PageScript` component.
 
