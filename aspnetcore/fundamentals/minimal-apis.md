@@ -230,15 +230,15 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 The following code shows `ValidateScopes` is enabled by default in development mode but disabled in release mode:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_1" highlight="1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_1" highlight="3,16-25":::
 
 The following code shows `ValidateOnBuild` is enabled by default in development mode but disabled in release mode:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_vob" highlight="1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_vob" highlight="10":::
 
 The following code disables `ValidateScopes` and `ValidateOnBuild` in `Development`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_2" highlight="1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_2":::
 
 ## See also
 
