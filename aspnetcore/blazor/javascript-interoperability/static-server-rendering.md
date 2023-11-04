@@ -34,7 +34,7 @@ In the Blazor Web App, add the following `PageWithScript` component.
 
 <PageTitle>Enhanced Load Script Example</PageTitle>
 
-<PageScript Src="js/pages/home.js" />
+<PageScript Src="./Components/Pages/PageWithScript.razor.js" />
 
 Welcome to my page.
 ```
@@ -167,10 +167,10 @@ The `PageScript` component functions normally on the top-level of a page.
 
 If you place the `PageScript` component in the app's layout (for example, `Components/Layout/MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation.
 
-To reuse the same module among pages, but have the `onLoad` and `onDispose` callbacks invoked on each page change, append a query string to the end of the script so that it's recognized as a different module:
+To reuse the same module among pages, but have the `onLoad` and `onDispose` callbacks invoked on each page change, append a query string to the end of the script so that it's recognized as a different module. An app could adopt the convention of using the component's name as the query string value. In the following example, the query string is "`counter`" because this `PageScript` component reference is placed in a `Counter` component. This is merely a suggestion, and you can use whatever query string scheme that you prefer.
 
 ```razor
-<PageScript Src="./page.js?counter" />
+<PageScript Src="./Components/Pages/PageWithScript.razor.js?counter" />
 ```
 
 To monitor changes in specific DOM elements, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
