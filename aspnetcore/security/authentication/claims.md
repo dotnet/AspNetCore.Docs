@@ -49,13 +49,7 @@ ASP.NET Core adds default namespaces to some known claims, which might not be re
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
-
 [!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
-
-If you need to disable the namespaces per scheme and not globally, you can use the **MapInboundClaims = false** option.
-
-[!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS8&highlight=20)]
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
@@ -63,6 +57,11 @@ If you need to disable the namespaces per scheme and not globally, you can use t
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
+
+If you need to disable the namespaces per scheme and not globally, you can use the **MapInboundClaims = false** option.
+
+[!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS8&highlight=20)]
+
 
 ## Extend or add custom claims using `IClaimsTransformation`
 
