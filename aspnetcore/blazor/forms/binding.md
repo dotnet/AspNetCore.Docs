@@ -154,17 +154,16 @@ Use the `FormName` parameter to assign a form name. Form names must be unique to
 
 Supplying a form name:
 
-* Is required on all forms that are submitted via interactivity with server rendering.
-* Not required for interactive rendering, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
+* Is required for all forms that are submitted by statically-rendered server-side components.
+* Isn't strictly required for forms that are submitted by interactively-rendered components, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
 
-The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request (an SSR form post). The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
+By default, there's an empty-named form scope above the app's root component, which suffices when there are no form name collisions. However, we recommend supplying a unique form name for every form to prevent runtime form posting errors.
 
-> [!WARNING]
-> We recommend supplying a unique form name for every form to prevent runtime form posting errors.
+The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request from a statically-rendered server-side component. The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
 
-Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
-The FormMappingScope should be used in the `SSR project` as setting it in the `Web Assembly client project will trigger a warning.
-In the following example, the `FormMappingScope` scope name is `ParentContext` for the library-supplied form. POST events are routed to the correct form.
+To prevent form name collisions, add a scope for form names with the `FormMappingScope` component in the server-side project (not the `.Client` project). The `FormMappingScope` component and a unique form scope is especially useful for including forms supplied by a library and you have no way to control the form name used by the library's developer. 
+
+In the following example, the `HelloFromLibrary` component has a form named `Hello` and is supplied to the project by a library. The `NamedFormsWithScope` component uses the library's `HelloFromLibrary` component and also has a form named `Hello`. The `FormMappingScope` component's scope name is `ParentContext` for the library-supplied form. Although both of the forms have the form name `Hello`, the form names don't collide and events are routed to the correct form for POST events.
 
 `HelloFormFromLibrary.razor`:
 
