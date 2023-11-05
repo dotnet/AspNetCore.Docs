@@ -155,7 +155,6 @@ The output looks like the following example:
 
 ```console
 wwwroot/js/signalr/dist/browser/signalr.js written to disk
-wwwroot/js/signalr/dist/browser/signalr.js written to disk
 Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
 ```
 
