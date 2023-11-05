@@ -163,7 +163,7 @@ The form name is only checked when the form is posted to an endpoint as a tradit
 > We recommend supplying a unique form name for every form to prevent runtime form posting errors.
 
 Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
-
+The FormMappingScope should be used in the `SSR project` as setting it in the `Web Assembly client project will trigger a warning.
 In the following example, the `FormMappingScope` scope name is `ParentContext` for the library-supplied form. POST events are routed to the correct form.
 
 `HelloFormFromLibrary.razor`:
