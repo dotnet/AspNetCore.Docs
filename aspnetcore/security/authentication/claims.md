@@ -194,7 +194,6 @@ public void Configure(IApplicationBuilder app)
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 ```
 
-
 ## Extend or add custom claims using `IClaimsTransformation`
 
 The `IClaimsTransformation` interface can be used to add extra claims to the `ClaimsPrincipal` class. The interface requires a single method `TransformAsync`. This method might get called multiple times. Only add a new claim if it does not already exist in the `ClaimsPrincipal`. A `ClaimsIdentity` is created to add the new claims and this can be added to the `ClaimsPrincipal`.
