@@ -66,7 +66,6 @@ If you need to disable the namespaces per scheme and not globally, you can use t
 
 [!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS8&highlight=20)]
 
-
 ## Extend or add custom claims using `IClaimsTransformation`
 
 The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>. This method might get called multiple times. Only add a new claim if it does not already exist in the `ClaimsPrincipal`. A `ClaimsIdentity` is created to add the new claims and this can be added to the `ClaimsPrincipal`.
