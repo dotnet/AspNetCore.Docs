@@ -114,16 +114,16 @@ The following `User` component can be used directly in apps or serve as the basi
 @using System.Security.Claims
 @inject IAccessTokenProvider AuthorizationService
 
-<h1>Welcome @AuthenticatedUser?.Identity?.Name</h1>
+<h1>@AuthenticatedUser?.Identity?.Name</h1>
 
-<h2>Claims for the user</h2>
+<h2>Claims</h2>
 
 @foreach (var claim in AuthenticatedUser?.Claims ?? Array.Empty<Claim>())
 {
     <p class="claim">@(claim.Type): @claim.Value</p>
 }
 
-<h2>Access token for the user</h2>
+<h2>Access token</h2>
 
 <p id="access-token">@AccessToken?.Value</p>
 
