@@ -1,5 +1,5 @@
 // See https://github.com/dotnet/AspNetCore.Docs/pull/28082
-// This is proposed
+// This code has been proposed but has not be tested.
 using System;
 using System.Collections.Generic;
 using System.Linq;
