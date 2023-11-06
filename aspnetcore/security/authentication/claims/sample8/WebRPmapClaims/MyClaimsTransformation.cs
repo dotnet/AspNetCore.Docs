@@ -7,12 +7,14 @@ public class MyClaimsTransformation : IClaimsTransformation
     {
         ClaimsIdentity claimsIdentity = new ClaimsIdentity();
         var claimType = "myNewClaim";
+
         if (!principal.HasClaim(claim => claim.Type == claimType))
         {
             claimsIdentity.AddClaim(new Claim(claimType, "myClaimValue"));
         }
 
         principal.AddIdentity(claimsIdentity);
+
         return Task.FromResult(principal);
     }
 }
