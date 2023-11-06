@@ -675,6 +675,8 @@ Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
 
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling>.
 
+Enhanced navigation with [static server rendering](xref:blazor/components/render-modes) requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+
 :::moniker-end
 
 ## Produce a URI relative to the base URI prefix
