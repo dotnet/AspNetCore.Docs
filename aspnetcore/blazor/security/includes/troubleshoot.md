@@ -105,11 +105,91 @@ When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:bla
 
 ### Inspect the user
 
-The [ASP.NET Core framework's test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/WebAssembly/testassets) include a [Blazor WebAssembly client app](https://github.com/dotnet/aspnetcore/tree/main/src/Components/WebAssembly/testassets/Wasm.Authentication.Client) with a `User` component that can be useful in troubleshooting. The `User` component can be used directly in apps or serve as the basis for further customization:
+The following `User` component can be used directly in apps or serve as the basis for further customization:
 
-[`User` test component in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/testassets/Wasm.Authentication.Client/Pages/User.razor)
+```razor
+@page "/User"
+@attribute [Authorize]
+@using System.Text.Json
+@using System.Security.Claims
+@inject IAccessTokenProvider AuthorizationService
 
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+<h1>@AuthenticatedUser?.Identity?.Name</h1>
+
+<h2>Claims</h2>
+
+@foreach (var claim in AuthenticatedUser?.Claims ?? Array.Empty<Claim>())
+{
+    <p class="claim">@(claim.Type): @claim.Value</p>
+}
+
+<h2>Access token</h2>
+
+<p id="access-token">@AccessToken?.Value</p>
+
+<h2>Access token claims</h2>
+
+@foreach (var claim in GetAccessTokenClaims())
+{
+    <p>@(claim.Key): @claim.Value.ToString()</p>
+}
+
+@if (AccessToken != null)
+{
+    <h2>Access token expires</h2>
+
+    <p>Current time: <span id="current-time">@DateTimeOffset.Now</span></p>
+    <p id="access-token-expires">@AccessToken.Expires</p>
+
+    <h2>Access token granted scopes (as reported by the API)</h2>
+
+    @foreach (var scope in AccessToken.GrantedScopes)
+    {
+        <p>Scope: @scope</p>
+    }
+}
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationState { get; set; }
+
+    public ClaimsPrincipal AuthenticatedUser { get; set; }
+    public AccessToken AccessToken { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var state = await AuthenticationState;
+        var accessTokenResult = await AuthorizationService.RequestAccessToken();
+
+        if (!accessTokenResult.TryGetToken(out var token))
+        {
+            throw new InvalidOperationException(
+                "Failed to provision the access token.");
+        }
+
+        AccessToken = token;
+
+        AuthenticatedUser = state.User;
+    }
+
+    protected IDictionary<string, object> GetAccessTokenClaims()
+    {
+        if (AccessToken == null)
+        {
+            return new Dictionary<string, object>();
+        }
+
+        // header.payload.signature
+        var payload = AccessToken.Value.Split(".")[1];
+        var base64Payload = payload.Replace('-', '+').Replace('_', '/')
+            .PadRight(payload.Length + (4 - payload.Length % 4) % 4, '=');
+
+        return JsonSerializer.Deserialize<IDictionary<string, object>>(
+            Convert.FromBase64String(base64Payload));
+    }
+}
+```
 
 ### Inspect the content of a JSON Web Token (JWT)
 
