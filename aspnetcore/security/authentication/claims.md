@@ -46,7 +46,25 @@ If the `User.Identity.Name` has no value or the roles are missing, please check 
 
 ASP.NET Core adds default namespaces to some known claims, which might not be required in the app. Optionally, disable these added namespaces and use the exact claims that the OpenID Connect server created.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+[!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
+
 [!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+If you need to disable the namespaces per scheme and not globally, you can use the **MapInboundClaims = false** option.
+
+[!code-csharp[](~/security/authentication/claims/sample8/WebRPmapClaims/Program.cs?name=snippet_NS8&highlight=20)]
 
 ## Extend or add custom claims using `IClaimsTransformation`
 
