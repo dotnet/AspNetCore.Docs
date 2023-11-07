@@ -151,10 +151,10 @@ The parameters specify the following options:
 * Copy files to the `wwwroot/js/signalr` destination.
 * Copy only the specified files.
 
-The output looks like the following example:
+The output looks similar to the following:
 
 ```console
-wwwroot/js/signalr/dist/browser/signalr.js written to disk
+Downloading file https://unpkg.com/@microsoft/signalr@latest/dist/browser/signalr.js...
 wwwroot/js/signalr/dist/browser/signalr.js written to disk
 Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
 ```
