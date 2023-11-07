@@ -129,7 +129,6 @@ public class IndexModel : PageModel
     }
     // </snippet_CacheDependencies>
 
-
     public void OnGeCacheExpirationToken()
     {
         // <snippet_OnGeCacheExpirationToken>
@@ -137,10 +136,12 @@ public class IndexModel : PageModel
         {
             cacheValue = DateTime.Now;
 
-            var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+            var cancellationTokenSource = new 
+                CancellationTokenSource(TimeSpan.FromSeconds(10));
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .AddExpirationToken(new CancellationChangeToken(cancellationTokenSource.Token))
+                .AddExpirationToken(
+                    new CancellationChangeToken(cancellationTokenSource.Token))
                 .RegisterPostEvictionCallback((key, value, reason, state) =>
                 {
                     ((CancellationTokenSource)state).Dispose();
