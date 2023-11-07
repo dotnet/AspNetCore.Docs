@@ -54,7 +54,7 @@ ASP.NET Core adds default namespaces to some known claims, which might not be re
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 [!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=5)]
 
