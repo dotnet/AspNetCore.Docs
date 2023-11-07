@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 6/23/2023
+ms.date: 10/23/2023
 uid: fundamentals/minimal-apis
 ---
 
@@ -223,6 +223,28 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
+
+## ValidateScopes and ValidateOnBuild
+
+<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> are enabled by default in the [Development](xref:fundamentals/environments) environment but disabled in other environments.
+
+When `ValidateOnBuild` is `true`, the DI container validates the service configuration at build time. If the service configuration is invalid, the build fails at app startup, rather than at runtime when the service is requested.
+
+When `ValidateScopes` is `true`, the DI container validates that a scoped service isn't resolved from the root scope. Resolving a scoped service from the root scope can result in a memory leak because the services is retained in memory longer than the scope of the request.
+
+`ValidateScopes` and `ValidateOnBuild` are false by default in in non-Development modes for performance reasons.
+
+The following code shows `ValidateScopes` is enabled by default in development mode but disabled in release mode:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_1" highlight="3,16-25":::
+
+The following code shows `ValidateOnBuild` is enabled by default in development mode but disabled in release mode:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_vob" highlight="10":::
+
+The following code disables `ValidateScopes` and `ValidateOnBuild` in `Development`:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/ValidateOnBuildWeb/Program.cs" id="snippet_2":::
 
 ## See also
 
