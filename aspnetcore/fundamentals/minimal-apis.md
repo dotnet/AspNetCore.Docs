@@ -226,11 +226,11 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## ValidateScopes and ValidateOnBuild
 
-<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> are enabled by default in the [Development](xref:fundamentals/environments) but disabled in release mode.
+<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> are enabled by default in the [Development](xref:fundamentals/environments) environment but disabled in other environments.
 
-When `ValidateOnBuild=true`, the DI container validates the service configuration at build time. If the service configuration is invalid, the build fails at app startup, rather than at runtime when the service is requested.
+When `ValidateOnBuild` is `true`, the DI container validates the service configuration at build time. If the service configuration is invalid, the build fails at app startup, rather than at runtime when the service is requested.
 
-When `ValidateScopes=true`, the DI container validates a scoped service isn't resolved from the singleton container. Resolving a scoped service from the singleton container can result in a memory leak because the services is retained in memory longer than the scope of the request.
+When `ValidateScopes` is `true`, the DI container validates that a scoped service isn't resolved from the root scope. Resolving a scoped service from the root scope can result in a memory leak because the services is retained in memory longer than the scope of the request.
 
 `ValidateScopes` and `ValidateOnBuild` are false by default in release mode for performance reasons.
 
