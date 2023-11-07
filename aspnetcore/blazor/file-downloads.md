@@ -106,9 +106,8 @@ The following component:
 @code {
     private Stream GetFileStream()
     {
-        var randomBinaryData = new byte[50 * 1024];
-        var fileStream = new MemoryStream(randomBinaryData);
-
+        var binaryData = new byte[50 * 1024];
+        var fileStream = new MemoryStream(binaryData);
         return fileStream;
     }
 
