@@ -130,7 +130,7 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify theme information (`ThemeInfo`) as a cascading value for all of the app's components:
+Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify theme information (`ThemeInfo`) as a cascading value for all of the app's components.
 
 `Components/Routes.razor`:
 
@@ -151,14 +151,14 @@ Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft
 }
 ```
 
-In the `App` component (`Components/App.razor`), adopt interactive server rendering for the entire app:
+In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts interactive server rendering:
 
 ```razor
 <Routes @rendermode="RenderMode.InteractiveServer" />
 ```
 
 > [!NOTE]
-> The alternative to adopting interactive server rendering for the entire app via setting the render mode on the `Routes` component is to specify a *root-level cascading value* for the theme information (`ThemeInfo`) as a service. For more information, see the [Root-level cascading values](#root-level-cascading-values) section.
+> The alternative to adopting an interactive render mode for the entire app via the `Routes` component is to specify a *root-level cascading value* for the theme information (`ThemeInfo`) as a service. For more information, see the [Root-level cascading values](#root-level-cascading-values) section.
 >
 > The following example demonstrates passing theme information in the app's `Program` file:
 >
@@ -169,7 +169,7 @@ In the `App` component (`Components/App.razor`), adopt interactive server render
 >
 > If you adopt this approach, you don't need to set the render mode for the entire app on the `Routes` component or use a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component in the `Routes` component to pass the theme information to [cascading parameters](#cascadingparameter-attribute).
 >
-> For more information, see the [Cascading parameters and render mode boundaries](#cascading-valuesparameters-and-render-mode-boundaries) section.
+> For more information, see the [Cascading values/parameters and render mode boundaries](#cascading-valuesparameters-and-render-mode-boundaries) section.
 
 :::moniker-end
 
@@ -279,7 +279,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 :::moniker range=">= aspnetcore-6.0"
 
-Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender:
+Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender.
 
 `MainLayout.razor`:
 
