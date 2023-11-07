@@ -136,8 +136,8 @@ public class IndexModel : PageModel
         {
             cacheValue = DateTime.Now;
 
-            var cancellationTokenSource = new 
-                CancellationTokenSource(TimeSpan.FromSeconds(10));
+            var cancellationTokenSource = new CancellationTokenSource(
+                TimeSpan.FromSeconds(10));
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .AddExpirationToken(
