@@ -13,10 +13,6 @@ uid: fundamentals/native-aot
 
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
-> [!WARNING]
-> In .NET 8, not all ASP.NET Core features are compatible with native AOT.
-> See [this GitHub issue](https://github.com/dotnet/core/issues/8288) for a list of known native AOT issues.
-
 ## Why use native AOT with ASP.NET Core
 
 Publishing and deploying a native AOT app provides the following benefits:
@@ -62,9 +58,15 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
-It's important to test an app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed from the untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues AOT warnings during publishing is not guaranteed to work correctly. If no AOT warnings are issued at publish time, the published AOT app should work the same as when it's run in development.
+For more information on limitations, see:
 
-For more information, see [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings).
+* [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot#limitations-of-native-aot-deployment)
+* [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings)
+* [Known trimming incompatibilities](/dotnet/core/deploying/trimming/incompatibilities)
+* [Introduction to trim warnings](/dotnet/core/deploying/trimming/fixing-warnings)
+* [GitHub issue dotnet/core #8288](https://github.com/dotnet/core/issues/8288)
+
+It's important to test an app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed from the untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues [AOT warnings](/dotnet/core/deploying/trimming/fixing-warnings) during publishing may not work correctly. If no AOT warnings are issued at publish time, the published AOT app should work the same as the untrimmed and JIT-compiled app.
 
 ## Native AOT publishing
 
@@ -261,6 +263,7 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 
 * <xref:fundamentals/native-aot-tutorial>
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
+* [Optimize AOT deployments](/dotnet/core/deploying/native-aot/optimizing)
 * [Using the configuration binder source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-using-the-new-configuration-binder-source-generator/)
 * [The minimal API AOT compilation template](https://andrewlock.net/exploring-the-dotnet-8-preview-the-minimal-api-aot-template/)
 * [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)

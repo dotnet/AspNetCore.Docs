@@ -6,7 +6,7 @@ monikerRange: ">= aspnetcore-2.1"
 <!-- ms.author: bradyg -->
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 03/17/2023
+ms.date: 11/07/2023
 uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
@@ -55,7 +55,7 @@ Launch Visual Studio. At the start window, select **Continue without code**.
 1. Navigate to **Tools** > **Options** > **Projects and Solutions** > **Web Package Management** > **External Web Tools**.
 1. Select the `$(PATH)` entry from the list. Select the up arrow to move the entry to the second position in the list, and select **OK**:
 
-   ![Visual Studio Configuration](~/tutorials/signalr-typescript-webpack/_static/8.x/signalr-configure-path-visual-studio.png).
+   ![Visual Studio Configuration](~/tutorials/signalr-typescript-webpack/_static/8.x/signalr-configure-path-visual-studio-v17.8.0.png).
 
 To create a new ASP.NET Core web app:
 

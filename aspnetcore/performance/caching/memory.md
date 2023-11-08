@@ -5,7 +5,8 @@ description: Learn how to cache data in memory in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/07/2023
+content_well_notification: AI-contribution
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
@@ -346,7 +347,7 @@ Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache en
   * Multiple requests can find the cached key value empty because the callback hasn't completed.
   * This can result in several threads repopulating the cached item.
 * When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
-* Use <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache.
+* Use <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache. In the example code, <xref:System.Threading.CancellationTokenSource.Dispose?displayProperty=nameWithType> is called to release the unmanaged resources used by the `CancellationTokenSource`. However, the `CancellationTokenSource` is not disposed immediately because it is still being used by the cache entry. The `CancellationToken` is passed to `MemoryCacheEntryOptions` to create a cache entry that expires after a certain time. So `Dispose` should not be called until the cache entry is removed or expired. The example code calls the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.RegisterPostEvictionCallback%2A> method to register a callback that will be invoked when the cache entry is evicted, and it disposes the `CancellationTokenSource` in that callback.
 * For most apps, `IMemoryCache` is enabled. For example, calling `AddMvc`, `AddControllersWithViews`, `AddRazorPages`, `AddMvcCore().AddRazorViewEngine`, and many other `Add{Service}` methods in `ConfigureServices`, enables `IMemoryCache`. For apps that are not calling one of the preceding `Add{Service}` methods, it may be necessary to call <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache%2A> in `ConfigureServices`.
 
 ## Background cache update
