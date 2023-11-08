@@ -131,7 +131,7 @@ In some scenarios, you might want to deploy an app to a container by copying its
 To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build an image.
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
 COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
@@ -145,7 +145,7 @@ Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It 
 
 ```dockerfile
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
@@ -159,7 +159,7 @@ WORKDIR /source/aspnetapp
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
 COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
