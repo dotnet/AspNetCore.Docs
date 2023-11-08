@@ -145,7 +145,7 @@ For more information:
 
 Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*.
 
-In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
+The Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
 
 The template handles the following:
 
