@@ -191,6 +191,8 @@ By default, the .NET method identifier for the JS call is the .NET method name, 
 ```csharp
 [JSInvokable("DifferentMethodName")]
 ```
+> [!NOTE]
+> All [JSInvokable] methods within the same assembly must have different identifiers. You can pass a custom identifier as a parameter to the [JSInvokable] attribute.
 
 :::moniker-end
 
