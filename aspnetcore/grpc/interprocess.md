@@ -143,4 +143,4 @@ The client and server must be configured to use an inter-process communication (
 
 :::moniker-end
 
-[!INCLUDE[](~/grpc/interprocess/interprocess5-7.md)]
+[!INCLUDE[](~/grpc/interprocess/includes/interprocess5-7.md)]
