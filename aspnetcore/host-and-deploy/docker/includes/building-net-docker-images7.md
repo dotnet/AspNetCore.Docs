@@ -1,22 +1,4 @@
----
-title: Docker images for ASP.NET Core
-author: rick-anderson
-description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
-ms.author: riande
-ms.custom: mvc
-ms.date: 10/15/2023
-uid: host-and-deploy/docker/building-net-docker-images
----
-
-# Docker images for ASP.NET Core
-
-This article shows how to run an ASP.NET Core app in Docker containers.
-
-Windows Home Edition doesn't support Hyper-V, and Hyper-V is needed for Docker.
-
-See [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container) for information on containerized a .NET app with `dotnet publish`.
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 ## ASP.NET Core Docker images
 
@@ -188,7 +170,3 @@ The Git repository that contains the sample app also includes documentation. For
 > [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images7.md)]
-[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images5.md)]
-
