@@ -38,9 +38,19 @@ Create a new server-side Blazor app by following the guidance in <xref:blazor/to
 
 After choosing the server-side app template and configuring the project, select the app's authentication under **Authentication type**:
 
+:::moniker range=">= aspnetcore-8.0"
+
+**Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
 * **Microsoft identity platform**: For more information, see <xref:blazor/security/index#additional-resources>.
 * **Windows**: Use Windows Authentication.
+
+:::moniker-end
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
