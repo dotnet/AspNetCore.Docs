@@ -145,6 +145,8 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Scaffold Identity into a server-side Blazor app with authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
@@ -184,6 +186,8 @@ For additional assistance when seeking to build custom Identity Razor components
 #### Use a custom layout with Blazor app styles
 
 The Identity pages layout and styles can be modified to produce pages that use styles similar to the default Blazor theme. This approach isn't covered by the documentation.
+
+:::moniker-end
 
 ## Client-side Blazor apps
 
