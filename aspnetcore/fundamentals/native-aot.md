@@ -58,7 +58,7 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
-For more information limitations, see:
+For more information on limitations, see:
 
 * [Limitations of Native AOT deployment](/dotnet/core/deploying/native-aot#limitations-of-native-aot-deployment)
 * [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings)
@@ -66,7 +66,7 @@ For more information limitations, see:
 * [Introduction to trim warnings](/dotnet/core/deploying/trimming/fixing-warnings)
 * [This GitHub issue](https://github.com/dotnet/core/issues/8288)
 
-It's important to test an app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed from the untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues AOT warnings during publishing is not guaranteed to work correctly. If no AOT warnings are issued at publish time, the published AOT app should work the same as when it's run in development.
+It's important to test an app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed from the untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues [AOT warnings](/dotnet/core/deploying/trimming/fixing-warnings) during publishing may not work correctly. If no AOT warnings are issued at publish time, the published AOT app should work the same as the untrimmed and JIT-compiled app.
 
 ## Native AOT publishing
 
