@@ -147,7 +147,7 @@ In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL 
 
 The template handles the following:
 
-* Adds Razor component-based Identity components and related logic for routine authentication tasks, such as signing users in and out, email confirmation, and password recovery. The Identity components also support advanced Identity concepts, such as multifactor authentication using a third-party app and email confirmations.
+* Adds Razor component-based Identity components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity concepts, such as password recovery, multifactor authentication using a third-party app, and email address confirmation.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in `_Imports.razor`.
 * Creates a custom user Identity class (`ApplicationUser`).
