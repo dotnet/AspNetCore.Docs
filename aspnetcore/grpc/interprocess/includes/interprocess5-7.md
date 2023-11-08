@@ -120,3 +120,5 @@ public static GrpcChannel CreateChannel()
 ```
 
 Channels created using the preceding code send gRPC calls over Unix domain sockets. Support for other IPC technologies can be implemented using the extensibility in Kestrel and `SocketsHttpHandler`.
+
+:::moniker-end
