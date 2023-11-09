@@ -4,30 +4,12 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2023
+ms.date: 11/7/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
 
 This article highlights the most significant changes in ASP.NET Core 8.0 with links to relevant documentation.
-
-This article is under development and not complete. More information may be found in the ASP.NET Core 8.0 preview blogs and GitHub issues:
-
-* [ASP.NET Core roadmap for .NET 8 on GitHub](https://github.com/dotnet/aspnetcore/issues/44984) 
-* [What's new in .NET 8 Preview 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-1/)
-* [What's new in .NET 8 Preview 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-2/)
-* [What's new in .NET 8 Preview 3](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-3/)
-* [What's new in .NET 8 Preview 4](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/)
-* [What's new in .NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/)
-* [What's new in .NET 8 Preview 6](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-6/)
-* [What's new in .NET 8 Preview 7](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-7/)
-* [What's new in .NET 8 Release Candidate 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-1/)
-* [What's new in .NET 8 Release Candidate 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-rc-2/)
-<!--
-* [Announcing ASP.NET Core in .NET 8](https://devblogs.microsoft.com/dotnet/announcing-asp-net-core-in-dotnet-8/)
--->
-
-[!INCLUDE [](~/includes/preview-notice.md)]
 
 ## Blazor
 
@@ -514,19 +496,6 @@ The antiforgery token is only validated if:
 
 For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
-### Support for `AsParameters` and automatic metadata generation
-
-Minimal APIs generated at compile-time include support for parameters decorated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute and support automatic metadata inference for request and response types. Consider the following code:
-
-:::code language="csharp" source="~/release-notes/sample/ProgramAsParameters.cs" highlight="22":::
-
-The preceding generated code:
-
-* Binds a `projectId` parameter from the query.
-* Binds a `Todo` parameter from the JSON body.
-* Annotates the endpoint metadata to indicate that it accepts a JSON payload.
-* Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
-
 ### New `IResettable` interface in `ObjectPool`
 
 [Microsoft.Extensions.ObjectPool](xref:Microsoft.Extensions.ObjectPool) provides support for pooling object instances in memory. Apps can use an object pool if the values are expensive to allocate or initialize.
@@ -570,10 +539,6 @@ Publishing this code with native AOT using .NET 8 Preview 7 on a linux-x64 machi
 
 We've further reduced native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
 
-### Improved performance using Interceptors
-
-The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API’s [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) action methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
-
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
 New features were added to <xref:System.Text.Json> to better support native AOT. These new features add capabilities for the source generation mode of `System.Text.Json`, because reflection isn't supported by AOT.
@@ -601,6 +566,10 @@ In order to make Minimal APIs compatible with native AOT, we're introducing the 
 We're working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
 
 The RDG is enabled automatically in a project when publishing with native AOT is enabled. RDG can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project's readiness for native AOT, or to reduce the startup time of an app.
+
+### Improved performance using Interceptors
+
+The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
 
 ### Logging and exception handling in compile-time generated minimal APIs
 

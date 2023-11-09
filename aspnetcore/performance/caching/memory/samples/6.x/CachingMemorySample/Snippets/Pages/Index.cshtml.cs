@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
 
@@ -141,7 +141,11 @@ public class IndexModel : PageModel
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .AddExpirationToken(
-                    new CancellationChangeToken(cancellationTokenSource.Token));
+                    new CancellationChangeToken(cancellationTokenSource.Token))
+                .RegisterPostEvictionCallback((key, value, reason, state) =>
+                {
+                    ((CancellationTokenSource)state).Dispose();
+                }, cancellationTokenSource);
 
             _memoryCache.Set(CacheKeys.Entry, cacheValue, cacheEntryOptions);
         }

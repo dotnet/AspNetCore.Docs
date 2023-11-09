@@ -1,20 +1,4 @@
----
-title: Configuration in ASP.NET Core
-author: rick-anderson
-description: Learn how to use the Configuration API to configure AppSettings in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 11/11/2022
-uid: fundamentals/configuration/index
----
-# Configuration in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0" 
+:::moniker range="= aspnetcore-7.0" 
 
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
@@ -954,7 +938,3 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:blazor/fundamentals/configuration>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index7.md)]
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index6.md)]
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index3-5.md)]
