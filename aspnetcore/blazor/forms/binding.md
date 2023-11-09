@@ -154,29 +154,26 @@ Use the `FormName` parameter to assign a form name. Form names must be unique to
 
 Supplying a form name:
 
-* Is required on all forms that are submitted via interactivity with server rendering.
-* Not required for interactive rendering, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode.
+* Is required for all forms that are submitted by statically-rendered server-side components.
+* Isn't required for forms that are submitted by interactively-rendered components, which includes forms in Blazor WebAssembly apps and components with an interactive render mode. However, we recommend supplying a unique form name for every form to prevent runtime form posting errors if interactivity is ever dropped for a form.
 
-The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request (an SSR form post). The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
+The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request from a statically-rendered server-side component. The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
 
-> [!WARNING]
-> We recommend supplying a unique form name for every form to prevent runtime form posting errors.
+By default, there's an unnamed (empty string) form scope above the app's root component, which suffices when there are no form name collisions in the app. If form name collisions are possible, such as when including a form from a library and you have no control of the form name used by the library's developer, provide a form name scope with the `FormMappingScope` component in the Blazor Web App's main project.
 
-Define a scope for form names using the `FormMappingScope` component, which is useful for preventing form name collisions when a library supplies a form to a component and you have no way to control the form name used by the library's developer. By default, there's an empty-named scope above the app's root component, which suffices when there are no form name collisions.
-
-In the following example, the `FormMappingScope` scope name is `ParentContext` for the library-supplied form. POST events are routed to the correct form.
+In the following example, the `HelloFormFromLibrary` component has a form named `Hello` and is in a library.
 
 `HelloFormFromLibrary.razor`:
 
 ```razor
-<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm Model="@this" OnSubmit="@Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
 
 @if (submitted)
 {
-    <p>Hello @Name from the library form!</p>
+    <p>Hello @Name from the library's form!</p>
 }
 
 @code {
@@ -188,6 +185,8 @@ In the following example, the `FormMappingScope` scope name is `ParentContext` f
     private void Submit() => submitted = true;
 }
 ```
+
+The following `NamedFormsWithScope` component uses the library's `HelloFormFromLibrary` component and also has a form named `Hello`. The `FormMappingScope` component's scope name is `ParentContext` for any forms supplied by the `HelloFormFromLibrary` component. Although both of the forms in this example have the form name (`Hello`), the form names don't collide and events are routed to the correct form for form POST events.
 
 `NamedFormsWithScope.razor`:
 
@@ -202,7 +201,7 @@ In the following example, the `FormMappingScope` scope name is `ParentContext` f
 
 <div>Hello form using the same form name</div>
 
-<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm Model="@this" OnSubmit="@Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -240,14 +239,12 @@ The following example independently binds two forms to their models by form name
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship6> Logger
 
-<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" 
-    FormName="Holodeck1">
+<EditForm Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
     <InputText @bind-Value="Model1!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
 
-<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" 
-    FormName="Holodeck2">
+<EditForm Model="@Model2" OnSubmit="@Submit2" FormName="Holodeck2">
     <InputText @bind-Value="Model2!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -343,8 +340,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship7> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit" 
-    FormName="Starship7">
+<EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship7">
     <div>
         <label>
             Id:

@@ -4,16 +4,18 @@ author: jamesnk
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
-ms.date: 09/12/2023
+ms.date: 11/08/2023
 uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC
 
-By [James Newton-King](https://twitter.com/jamesnk)
+:::moniker range=">= aspnetcore-8.0"
 
 Processes running on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are Unix domain sockets and Named pipes.
 
 .NET provides support for inter-process communication using gRPC.
+
+Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.
 
 ## Get started
 
@@ -138,3 +140,7 @@ The client and server must be configured to use an inter-process communication (
 
 > [!NOTE]
 > Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later. .NET 8 is currently in preview and will be released near the end of 2023.
+
+:::moniker-end
+
+[!INCLUDE[](~/grpc/interprocess/includes/interprocess5-7.md)]
