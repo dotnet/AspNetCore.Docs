@@ -149,13 +149,27 @@ The Blazor Web App template scaffolds Identity code for a SQL Server database. T
 
 The template handles the following:
 
-* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity features, such as password recovery, multifactor authentication using a third-party app, and email address confirmation.
+* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out.
+  * The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multifactor authentication](xref:security/authentication/mfa) using a third-party app.
+  * Interactive server and interactive client rendering scenarios are supported.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in `_Imports.razor`.
 * Creates a custom user Identity class (`ApplicationUser`).
 * Creates and registers an EF Core database context (`ApplicationDbContext`).
 * Configures routing for the built-in Identity endpoints.
 * Includes Identity validation and business logic.
+
+<!-- UPDATE 8.0 Cross-link API -->
+
+When you choose the WebAssembly or Auto interactivity types, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a `PersistentAuthenticationStateProvider` class in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
+
+In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` (Server interactivity solutions only) or `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions).
+
+For more information on persisting prerendered state, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+<!-- UPDATE 9.0 Remove blog post cross-link -->
+
+For more information, see [What's new with identity in .NET 8: The Blazor identity UI](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui).
 
 :::moniker-end
 
