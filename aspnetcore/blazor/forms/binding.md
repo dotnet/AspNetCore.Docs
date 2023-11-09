@@ -155,7 +155,7 @@ Use the `FormName` parameter to assign a form name. Form names must be unique to
 Supplying a form name:
 
 * Is required for all forms that are submitted by statically-rendered server-side components.
-* Isn't strictly required for forms that are submitted by interactively-rendered components, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode. However, we recommend supplying a unique form name for every form to prevent runtime form posting errors.
+* Isn't required for forms that are submitted by interactively-rendered components, which includes forms in Blazor WebAssembly apps and components marked with an interactive render mode. However, we recommend supplying a unique form name for every form to prevent runtime form posting errors if interactivity is ever dropped for a form.
 
 The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request from a statically-rendered server-side component. The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
 
