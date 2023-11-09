@@ -145,7 +145,7 @@ Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It 
 
 ```dockerfile
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
