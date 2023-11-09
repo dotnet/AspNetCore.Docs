@@ -27,7 +27,7 @@ Claim based authorization checks:
 * Are applied to Razor Pages, controllers, or actions within a controller.
 * Can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
-Claims in code specify claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
+Claims in code specify claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based; the developer must build and register a policy expressing the claims requirements.
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
