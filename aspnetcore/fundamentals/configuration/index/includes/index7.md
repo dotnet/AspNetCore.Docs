@@ -938,7 +938,3 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:blazor/fundamentals/configuration>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index6.md)]
-
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index3-5.md)]
