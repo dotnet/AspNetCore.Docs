@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 08/22/2023
+ms.date: 11/09/2023
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -60,7 +60,7 @@ This tutorial creates the following API:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/empty.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/8.x/create-new-project-empty-vs17.8.0.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
@@ -68,7 +68,7 @@ This tutorial creates the following API:
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/add-info8.png)
+  ![Additional information](~/tutorials/min-web-api/_static/8.x/add-info-vs17.8.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
