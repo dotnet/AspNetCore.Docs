@@ -580,6 +580,8 @@ items:
                 items:
                   - name: Overview
                     uid: blazor/security/webassembly/index
+                  - name: Standalone with Identity
+                    uid: blazor/security/webassembly/standalone-with-identity
                   - name: Standalone with Authentication library
                     uid: blazor/security/webassembly/standalone-with-authentication-library
                   - name: Standalone with Microsoft Accounts
