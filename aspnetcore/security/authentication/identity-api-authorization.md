@@ -1,429 +1,286 @@
 ---
-title: Introduction to authentication for Single Page Apps on ASP.NET Core
-author: javiercn
-description: Use Identity with a Single Page App hosted inside an ASP.NET Core app.
+title: Use Identity to secure a Web API backend for SPAs
+author: jeremy-likness
+description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 09/12/2023
+ms.author: tdykstra
+ms.date: 11/09/2023
 uid: security/authentication/identity/spa
 ---
-# Authentication and authorization for SPAs
+# How to use Identity to secure a Web API backend for SPAs
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
-The ASP.NET Core templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
+[ASP.NET Core Identity](xref:security/authentication/identity) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. There's a token-based option for clients that can't use cookies.
 
-> [!IMPORTANT]
-> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
+This article shows how to use Identity to secure a Web API backend for SPAs such as Angular, React, and Vue apps. The same backend APIs can be used to secure [Blazor WebAssembly apps](xref:blazor/security/webassembly/standalone-with-identity).
 
-An authentication parameter was added to the **Angular** and **React** project templates that is similar to the authentication parameter in the **Web Application (Model-View-Controller)** (MVC) and **Web Application** (Razor Pages) project templates. The allowed parameter values are **None** and **Individual**.
+## Prerequisites
 
-## Create an app with API authorization support
+The steps shown in this article add authentication and authorization to an ASP.NET Core Web API app that:
 
-User authentication and authorization can be used with both Angular and React SPAs. Open a command shell, and run the following command:
+* Targets `net8.0` or later.
+* Includes OpenAPI support.
+* Can be either minimal API or controller-based API.
+* Does not already have authentication and authorization code.
 
-**Angular**:
+## Install NuGet packages
 
-```dotnetcli
-dotnet new angular -au Individual
-```
+Install the following NuGet packages:
 
-**React**:
+* [`Microsoft.AspNetCore.Identity.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore) - Enables Identity to work with Entity Framework Core (EF Core).
+* One that enables EF Core to work with a database, such as one of the following packages:
+  * [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer) or
+  * [`Microsoft.EntityFrameworkCore.Sqlite`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite) or
+  * [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory).
 
-```dotnetcli
-dotnet new react -au Individual
-```
+For the quickest way to get started, use the in-memory database.
 
-The preceding command creates an ASP.NET Core app with a *ClientApp* directory containing the SPA.
+Change the database later to SQLite or SQL Server to save user data between sessions when testing or for production use. That introduces some complexity compared to in-memory, as it requires the database to be created through [migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](https://learn.microsoft.com/ef/core/get-started/overview/first-app).
 
-## General description of the ASP.NET Core components of the app
+Install these packages by using the [NuGet package manager in Visual Studio](/nuget/consume-packages/install-use-packages-visual-studio) or the [dotnet add package](/dotnet/core/tools/dotnet-add-package) CLI command.
 
-The following sections describe additions to the project when authentication support is included:
+## Create an `IdentityUser`
 
-### `Program.cs`
+Identity allows you to customize both the user information and the user database. To get started with a basic example, just use the default user information and database.
 
-The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
-
-`dotnet new angular -au Individual` generates the following `Program.cs` file:
-
-[!code-csharp[](~/security/authentication/identity-api-authorization/6samples/Program.cs)]
-
-The preceding code configures:
-
-* Identity with the default UI:
-
-  ```csharp
-  builder.Services.AddDbContext<ApplicationDbContext>(options =>
-      options.UseSqlite(connectionString));
-  builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-  
-  builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-      .AddEntityFrameworkStores<ApplicationDbContext>();
-  ```
-
-* IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
-
-  ```csharp
-  builder.Services.AddIdentityServer()
-      .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-  ```
-
-* Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:
-
-   ```csharp
-   builder.Services.AddAuthentication()
-   .AddIdentityServerJwt();
-   ```
-
-* The authentication middleware that is responsible for validating the request credentials and setting the user on the request context:
-
-    ```csharp
-    app.UseAuthentication();
-    ```
-
-* The IdentityServer middleware that exposes the OpenID Connect endpoints:
-
-    ```csharp
-    app.UseIdentityServer();
-    ```
-
-### Azure App Service on Linux
-
-For Azure App Service deployments on Linux, specify the issuer explicitly:
+Add to the project a class named `MyUser` that inherits from <xref:Microsoft.AspNetCore.Identity.IdentityUser>:
 
 ```csharp
-builder.Services.Configure<JwtBearerOptions>(
-    IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
-    options =>
-    {
-        options.Authority = "{AUTHORITY}";
-    });
-```
+using Microsoft.AspNetCore.Identity;
 
-In the preceding code, the `{AUTHORITY}` placeholder is the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> to use when making OpenID Connect calls.
-
-Example:
-
-```csharp
-options.Authority = "https://contoso-service.azurewebsites.net";
-```
-
-### `AddApiAuthorization`
-
-This helper method configures IdentityServer to use our supported configuration. IdentityServer is a powerful and extensible framework for handling app security concerns. At the same time, that exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided to you that are considered a good starting point. Once your authentication needs change, the full power of IdentityServer is still available to customize authentication to suit your needs.
-
-### `AddIdentityServerJwt`
-
-This helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to let Identity handle all requests routed to any subpath in the Identity URL space "/Identity". The `JwtBearerHandler` handles all other requests. Additionally, this method registers an `<<ApplicationName>>API` API resource with IdentityServer with a default scope of `<<ApplicationName>>API` and configures the JWT Bearer token middleware to validate tokens issued by IdentityServer for the app.
-
-### `WeatherForecastController`
-
-In the  file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
-
-### `ApplicationDbContext`
-
-In the  file, notice the same `DbContext` is used in Identity with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `IdentityDbContext`) to include the schema for IdentityServer.
-
-To gain full control of the database schema, inherit from one of the available Identity `DbContext` classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.
-
-### `OidcConfigurationController`
-
-In the  file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.
-
-### `appsettings.json`
-
-In the `appsettings.json` file of the project root, there's a new `IdentityServer` section that describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. It's used internally to drive conventions that simplify the configuration process for the server. There are several profiles available, as explained in the [Application profiles](#application-profiles) section.
-
-```json
-"IdentityServer": {
-  "Clients": {
-    "angularindividualpreview3final": {
-      "Profile": "IdentityServerSPA"
-    }
-  }
-}
-```
-
-### `appsettings.Development.json`
-
-In the `appsettings.Development.json` file of the project root, there's an `IdentityServer` section that describes the key used to sign tokens. When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section.
-
-```json
-"IdentityServer": {
-  "Key": {
-    "Type": "Development"
-  }
-}
-```
-
-## General description of the Angular app
-
-The authentication and API authorization support in the Angular template resides in its own Angular module in the *ClientApp/src/api-authorization* directory. The module is composed of the following elements:
-
-* 3 components:
-  * `login.component.ts`: Handles the app's login flow.
-  * `logout.component.ts`: Handles the app's logout flow.
-  * `login-menu.component.ts`: A widget that displays one of the following sets of links:
-    * User profile management and log out links when the user is authenticated.
-    * Registration and log in links when the user isn't authenticated.
-* A route guard `AuthorizeGuard` that can be added to routes and requires a user to be authenticated before visiting the route.
-* An HTTP interceptor `AuthorizeInterceptor` that attaches the access token to outgoing HTTP requests targeting the API when the user is authenticated.
-* A service `AuthorizeService` that handles the lower-level details of the authentication process and exposes information about the authenticated user to the rest of the app for consumption.
-* An Angular module that defines routes associated with the authentication parts of the app. It exposes the login menu component, the interceptor, the guard, and the service for consumption from the rest of the app.
-
-## General description of the React app
-
-The support for authentication and API authorization in the React template resides in the *ClientApp/src/components/api-authorization* directory. It's composed of the following elements:
-
-* 4 components:
-  * `Login.js`: Handles the app's login flow.
-  * `Logout.js`: Handles the app's logout flow.
-  * `LoginMenu.js`: A widget that displays one of the following sets of links:
-    * User profile management and log out links when the user is authenticated.
-    * Registration and log in links when the user isn't authenticated.
-  * `AuthorizeRoute.js`: A route component that requires a user to be authenticated before rendering the component indicated in the `Component` parameter.
-* An exported `authService` instance of class `AuthorizeService` that handles the lower-level details of the authentication process and exposes information about the authenticated user to the rest of the app for consumption.
-
-Now that you've seen the main components of the solution, you can take a deeper look at individual scenarios for the app.
-
-## Require authorization on a new API
-
-By default, the system is configured to easily require authorization for new APIs. To do so, create a new controller and add the `[Authorize]` attribute to the controller class or to any action within the controller.
-
-## Customize the API authentication handler
-
-To customize the configuration of the API's JWT handler, configure its <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> instance:
-
-```csharp
-builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
-
-builder.Services.Configure<JwtBearerOptions>(
-    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
-    options =>
-    {
-        ...
-    });
-```
-
-The API's JWT handler raises events that enable control over the authentication process using `JwtBearerEvents`. To provide support for API authorization, `AddIdentityServerJwt` registers its own event handlers.
-
-To customize the handling of an event, wrap the existing event handler with additional logic as required. For example:
-
-```csharp
-builder.Services.Configure<JwtBearerOptions>(
-    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
-    options =>
-    {
-        var onTokenValidated = options.Events.OnTokenValidated;       
-        
-        options.Events.OnTokenValidated = async context =>
-        {
-            await onTokenValidated(context);
-            ...
-        }
-    });
-```
-
-In the preceding code, the `OnTokenValidated` event handler is replaced with a custom implementation. This implementation:
-
-1. Calls the original implementation provided by the API authorization support.
-1. Run its own custom logic.
-
-## Protect a client-side route (Angular)
-
-Protecting a client-side route is done by adding the authorize guard to the list of guards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
-
-```typescript
-RouterModule.forRoot([
-  // ...
-  { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-])
-```
-
-It's important to mention that protecting a route doesn't protect the actual endpoint (which still requires an `[Authorize]` attribute applied to it) but that it only prevents the user from navigating to the given client-side route when it isn't authenticated.
-
-## Authenticate API requests (Angular)
-
-Authenticating requests to APIs hosted alongside the app is done automatically through the use of the HTTP client interceptor defined by the app.
-
-## Protect a client-side route (React)
-
-Protect a client-side route by using the `AuthorizeRoute` component instead of the plain `Route` component. For example, notice how the `fetch-data` route is configured within the `App` component:
-
-```jsx
-<AuthorizeRoute path='/fetch-data' component={FetchData} />
-```
-
-Protecting a route:
-
-* Doesn't protect the actual endpoint (which still requires an `[Authorize]` attribute applied to it).
-* Only prevents the user from navigating to the given client-side route when it isn't authenticated.
-
-## Authenticate API requests (React)
-
-Authenticating requests with React is done by first importing the `authService` instance from the `AuthorizeService`. The access token is retrieved from the `authService` and is attached to the request as shown below. In React components, this work is typically done in the `componentDidMount` lifecycle method or as the result from some user interaction.
-
-### Import the `authService` into a component
-
-```javascript
-import authService from './api-authorization/AuthorizeService'
-```
-
-### Retrieve and attach the access token to the response
-
-```javascript
-async populateWeatherData() {
-  const token = await authService.getAccessToken();
-  const response = await fetch('api/SampleData/WeatherForecasts', {
-    headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
-  });
-  const data = await response.json();
-  this.setState({ forecasts: data, loading: false });
-}
-```
-
-## Deploy to production
-
-To deploy the app to production, the following resources need to be provisioned:
-
-* A database to store the Identity user accounts and the IdentityServer grants.
-* A production certificate to use for signing tokens.
-  * There are no specific requirements for this certificate; it can be a self-signed certificate or a certificate provisioned through a CA authority.
-  * It can be generated through standard tools like PowerShell or OpenSSL.
-  * It can be installed into the certificate store on the target machines or deployed as a *.pfx* file with a strong password.
-
-### Example: Deploy to a non-Azure web hosting provider
-
-In your web hosting panel, create or load your certificate. Then in the app's `appsettings.json` file, modify the `IdentityServer` section to include the key details. For example:
-
-```json
-"IdentityServer": {
-  "Key": {
-    "Type": "Store",
-    "StoreName": "WebHosting",
-    "StoreLocation": "CurrentUser",
-    "Name": "CN=MyApplication"
-  }
-}
-```
-
-In the preceding example:
-
-* `StoreName` represents the name of the certificate store where the certificate is stored. In this case, it points to the web hosting store.
-* `StoreLocation` represents where to load the certificate from (`CurrentUser` in this case).
-* `Name` corresponds with the distinguished subject for the certificate.
-
-### Example: Deploy to Azure App Service
-
-This section describes deploying the app to Azure App Service using a certificate stored in the certificate store. To modify the app to load a certificate from the certificate store, a Standard tier service plan or better is required when you configure the app in the Azure portal in a later step.
-
-In the app's `appsettings.json` file, modify the `IdentityServer` section to include the key details:
-
-```json
-"IdentityServer": {
-  "Key": {
-    "Type": "Store",
-    "StoreName": "My",
-    "StoreLocation": "CurrentUser",
-    "Name": "CN=MyApplication"
-  }
-}
-```
-
-* The store name represents the name of the certificate store where the certificate is stored. In this case, it points to the personal user store.
-* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
-* The name property on certificate corresponds with the distinguished subject for the certificate.
-
-To deploy to Azure App Service, follow the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure), which explains how to create the necessary Azure resources and deploy the app to production.
-
-After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app must be configured in the Azure portal. Locate the thumbprint for the certificate and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-the-certificate-in-code).
-
-While these steps mention SSL, there's a **Private certificates** section in the Azure portal where you can upload the provisioned certificate to use with the app.
-
-After configuring the app and the app's settings in the Azure portal, restart the app in the portal.
-
-## Other configuration options
-
-The support for API authorization builds on top of IdentityServer with a set of conventions, default values, and enhancements to simplify the experience for SPAs. Needless to say, the full power of IdentityServer is available behind the scenes if the ASP.NET Core integrations don't cover your scenario. The ASP.NET Core support is focused on "first-party" apps, where all the apps are created and deployed by our organization. As such, support isn't offered for things like consent or federation. For those scenarios, use IdentityServer and follow their documentation.
-
-### Application profiles
-
-Application profiles are predefined configurations for apps that further define their parameters. At this time, the following profiles are supported:
-
-* `IdentityServerSPA`: Represents a SPA hosted alongside IdentityServer as a single unit.
-  * The `redirect_uri` defaults to `/authentication/login-callback`.
-  * The `post_logout_redirect_uri` defaults to `/authentication/logout-callback`.
-  * The set of scopes includes the `openid`, `profile`, and every scope defined for the APIs in the app.
-  * The set of allowed OIDC response types is `id_token token` or each of them individually (`id_token`, `token`).
-  * The allowed response mode is `fragment`.
-* `SPA`: Represents a SPA that isn't hosted with IdentityServer.
-  * The set of scopes includes the `openid`, `profile`, and every scope defined for the APIs in the app.
-  * The set of allowed OIDC response types is `id_token token` or each of them individually (`id_token`, `token`).
-  * The allowed response mode is `fragment`.
-* `IdentityServerJwt`: Represents an API that is hosted alongside with IdentityServer.
-  * The app is configured to have a single scope that defaults to the app name.
-* `API`: Represents an API that isn't hosted with IdentityServer.
-  * The app is configured to have a single scope that defaults to the app name.
-
-### Configuration through `AppSettings`
-
-Configure the apps through the configuration system by adding them to the list of `Clients` or `Resources`.
-
-Configure each client's `redirect_uri` and `post_logout_redirect_uri` property, as shown in the following example:
-
-```json
-"IdentityServer": {
-  "Clients": {
-    "MySPA": {
-      "Profile": "SPA",
-      "RedirectUri": "https://www.example.com/authentication/login-callback",
-      "LogoutUri": "https://www.example.com/authentication/logout-callback"
-    }
-  }
-}
-```
-
-When configuring resources, you can configure the scopes for the resource as shown below:
-
-```json
-"IdentityServer": {
-  "Resources": {
-    "MyExternalApi": {
-      "Profile": "API",
-      "Scopes": "a b c"
-    }
-  }
-}
-```
-
-### Configuration through code
-
-You can also configure the clients and resources through code using an overload of `AddApiAuthorization` that takes an action to configure options.
-
-```csharp
-AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
+public class MyUser : IdentityUser
 {
-    options.Clients.AddSPA(
-        "My SPA", spa =>
-        spa.WithRedirectUri("http://www.example.com/authentication/login-callback")
-           .WithLogoutRedirectUri(
-               "http://www.example.com/authentication/logout-callback"));
-
-    options.ApiResources.AddApiResource("MyExternalApi", resource =>
-        resource.WithScopes("a", "b", "c"));
-});
+}
 ```
 
-## Additional resources
+## Create an `IdentityDbContext`
 
-* <xref:spa/angular>
-* <xref:spa/react>
-* <xref:security/authentication/scaffold-identity>
+Add a class named `AppDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
 
+```csharp
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+class AppDbContext(DbContextOptions<AppDbContext> options) :
+    IdentityDbContext<MyUser>(options)
+{
+}
+```
+
+The code shown provides a special constructor that makes it possible to configure the database for different environments.
+
+## *Program.cs* changes
+
+Add the following using statements to *Program.cs*:
+
+```csharp
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+```
+
+### Configure cookie-based authentication
+
+in *Program.cs* after the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)> and <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> to set up cookie-based authentication:
+
+```csharp
+builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddIdentityCookies();
+```
+
+### Enable authorization checks
+
+After the call to `AddIdentityCookies`, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)> to enable authorization checks:
+
+```csharp
+builder.Services.AddAuthorizationBuilder();
+```
+
+### Configure the EF Core context
+
+As noted earlier, the simplest way to get started is to use the in-memory database. With in-memory each run starts with a fresh database, and there's no need to use migrations. Before the call to `builder.Build()`, add the following code to configure an in-memory database named `AppDb`:
+
+```csharp
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseInMemoryDatabase("AppDb"));
+```
+
+To save user data between sessions when testing or for production use, change the database to SQLite or SQL Server.
+
+### Use EF Core and expose endpoints
+
+Before the call to `builder.Build()`, configure Identity to use the EF Core database by calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>. Call <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A> to expose the Identity endpoints.
+
+```csharp
+builder.Services.AddIdentityCore<MyUser>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddApiEndpoints();
+```
+
+### Map routes
+
+After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the identity endpoints:
+
+```csharp
+app.MapIdentityApi<MyUser>();
+```
+
+### Secure endpoints
+
+To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method on the `Map{Method}` call that defines the route. For example:
+
+```csharp
+app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+{
+    //var forecast = Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        {
+            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        })
+        .ToArray();
+    return forecast;
+})
+.WithName("GetWeatherForecast")
+.WithOpenApi()
+.RequireAuthorization();
+```
+
+The `RequireAuthorization` method can also be used to secure Swagger UI endpoints, as shown in the following example:
+    
+```csharp
+app.MapSwagger().RequireAuthorization();
+```
+
+In a controller-based web API project, secure endpoints by applying the [[`Authorize`]](<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action.
+
+## Test the API
+
+A quick way to test authentication is to use the in-memory database and the Swagger UI that's included with the project template. The following steps show how to test the API with the Swagger UI. Make sure that the [Swagger UI endpoints aren't secured](#secure-endpoints). 
+
+### Attempt to access a secured endpoint
+
+* Run the app and navigate to the Swagger UI.
+* Expand a secured endpoint, such as `/weatherforecast` in a project created by the web API template.
+* Select  **Try it out**.
+* Select **Execute**. The response is `404 - not found`. The 404 status code is intended to be more secure than a `401 - not authorized` response because it doesn't reveal that the endpoint exists.
+
+  ![Swagger UI with 404](~/security/authentication/identity-api-authorization/_static/swagger404.png)
+
+### Register and log in
+
+* Expand `/register` and select **Try it out**.
+* In the **Parameters** section of the UI, a sample request body is shown:
+
+  ```json
+  {
+    "email": "string",
+    "password": "string"
+  }
+  ```
+
+* Replace "string" with a valid email address and password, and then select **Execute**.
+
+  The password must be at least 6 characters long and contain at least one of each of the following:
+
+  * Uppercase letter
+  * Lowercase letter
+  * Numeric digit
+  * Non-alphanumeric character
+
+  If you enter an invalid email address or a bad password, the result includes the validation errors. Here's an example of a response body with validation errors:
+
+  ```json
+  {
+    "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+    "title": "One or more validation errors occurred.",
+    "status": 400,
+    "errors": {
+      "PasswordTooShort": [
+        "Passwords must be at least 6 characters."
+      ],
+      "PasswordRequiresNonAlphanumeric": [
+        "Passwords must have at least one non alphanumeric character."
+      ],
+      "PasswordRequiresDigit": [
+        "Passwords must have at least one digit ('0'-'9')."
+      ],
+      "PasswordRequiresLower": [
+        "Passwords must have at least one lowercase ('a'-'z')."
+      ]
+    }
+  }
+  ```
+
+  The errors are returned in the [ProblemDetails](https://learn.microsoft.com/aspnet/core/web-api/handle-errors?view=aspnetcore-8.0#validation-failure-error-response) format so the client can easily parse them and display validation errors as needed.
+
+  A successful registration results in a `200 - OK` response.
+
+* Expand `/login` and select **Try it out**. The example request body shows two additional parameters:
+
+  ```json
+  {
+    "email": "string",
+    "password": "string",
+    "twoFactorCode": "string",
+    "twoFactorRecoveryCode": "string"
+  }
+  ```
+
+  The extra JSON properties aren't needed for this example and can be deleted. Set `useCookies` to `true`. 
+
+* Replace "string" with the email address and password that you used to register, and then select **Execute**.
+
+  A successful login results in a `200 - OK` response with a cookie in the response header.
+
+  ![Swagger UI with cookie](~/security/authentication/identity-api-authorization/_static/cookie.png)
+
+  The cookie is automatically sent with the request and the endpoint is authorized.
+
+### Retest the secured endpoint
+
+After a successful login, rerun the secured endpoint. The authentication cookie is automatically sent with the request, and the endpoint is authorized. Cookie-based authentication is securely built-in to the browser and "just works." 
+
+### Testing with non-browser clients
+
+Some web clients might not include cookies in the header by default:
+
+* If you're using a tool for testing APIs, you might need to enable cookies in the settings.
+* The JavaScript `fetch` API doesn't include cookies by default. Enable them by setting `credentials` to the value `include` in the options.
+* An `HttpClient` running in a Blazor WebAssembly app needs the `HttpRequestMessage` to include credentials, like the following:
+
+```csharp
+request.SetBrowserRequestCredential(BrowserRequestCredentials.Include);
+```
+
+## Tokens
+
+For clients that don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the application to request a new token when the old one expires without forcing the user to log in again.
+
+The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
+
+To enable token-based authentication for the login API:
+
+* In *Program.cs*, use the <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme> scheme:
+  
+  ```csharp
+  builder.Services.AddAuthentication(IdentityConstants.BearerScheme)
+      .AddBearerToken()
+  ```
+
+* Set the `useCookies` query string parameter to `false`.
+
+## See also
+
+For more information, see the following resources:
+
+* [Choose the right ASP.NET Core identity solution](https://learn.microsoft.com/aspnet/core/security/how-to-choose-identity-solution)
+* [List of identity management solutions for ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/identity-management-solutions)
+
+<!--- TODO link to the Angular sample app-->
 :::moniker-end
 
 [!INCLUDE[](~/security/authentication/identity-api-authorization/includes/identity-api-authorization3-7.md)]
