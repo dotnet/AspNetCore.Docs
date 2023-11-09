@@ -314,8 +314,7 @@ In the following example:
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship4> Logger
 
-<EditForm EditContext="@editContext" OnSubmit="@Submit" 
-    FormName="Starship4">
+<EditForm EditContext="@editContext" OnSubmit="@Submit" FormName="Starship4">
     <DataAnnotationsValidator />
     <div>
         <label>
@@ -458,8 +457,7 @@ In the following example, the user must select at least two starship classificat
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit" 
-    FormName="Starship5">
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship5">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>

@@ -239,14 +239,12 @@ The following example independently binds two forms to their models by form name
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship6> Logger
 
-<EditForm Model="@Model1" OnSubmit="@Submit1" 
-    FormName="Holodeck1">
+<EditForm Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
     <InputText @bind-Value="Model1!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
 
-<EditForm Model="@Model2" OnSubmit="@Submit2" 
-    FormName="Holodeck2">
+<EditForm Model="@Model2" OnSubmit="@Submit2" FormName="Holodeck2">
     <InputText @bind-Value="Model2!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -342,8 +340,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship7> Logger
 
-<EditForm Model="@Model" OnSubmit="@Submit" 
-    FormName="Starship7">
+<EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship7">
     <div>
         <label>
             Id:
