@@ -21,7 +21,7 @@ An identity can contain multiple claims with multiple values and can contain mul
 
 ## Adding claims checks
 
-Claim based authorization checks:
+Claim-based authorization checks:
 
 * Are declarative.
 * Are applied to Razor Pages, controllers, or actions within a controller.
@@ -92,7 +92,7 @@ An identity can contain multiple claims with multiple values and can contain mul
 
 ## Adding claims checks
 
-Claim based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
+Claim-based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
@@ -238,7 +238,7 @@ An identity can contain multiple claims with multiple values and can contain mul
 
 ## Adding claims checks
 
-Claim based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
+Claim-based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
