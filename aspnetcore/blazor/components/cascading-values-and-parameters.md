@@ -95,7 +95,7 @@ builder.Services.AddCascadingValue(sp =>
 
 An ancestor component provides a cascading value using the Blazor framework's [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component, which wraps a subtree of a component hierarchy and supplies a single value to all of the components within its subtree.
 
-The following example demonstrates the flow of theme information down the component hierarchy of a layout component to provide a CSS style class to buttons in child components.
+The following example demonstrates the flow of theme information down the component hierarchy to provide a CSS style class to buttons in child components.
 
 The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` and specifies the theme information.
 
@@ -128,11 +128,60 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify theme information (`ThemeInfo`) as a cascading value for all of the app's components.
+
+`Components/Routes.razor`:
+
+```razor
+@using BlazorSample.UIThemeClasses
+
+<CascadingValue Value="@theme">
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+    </Router>
+</CascadingValue>
+
+@code {
+    private ThemeInfo theme = new() { ButtonClass = "btn-success" };
+}
+```
+
+In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts interactive server rendering:
+
+```razor
+<Routes @rendermode="RenderMode.InteractiveServer" />
+```
+
+> [!NOTE]
+> The alternative to adopting an interactive render mode for the entire app via the `Routes` component is to specify a *root-level cascading value* for the theme information (`ThemeInfo`) as a service. For more information, see the [Root-level cascading values](#root-level-cascading-values) section.
+>
+> The following example demonstrates passing theme information in the app's `Program` file:
+>
+> ```csharp
+> builder.Services.AddCascadingValue(sp => 
+>     new ThemeInfo() { ButtonClass = "btn-primary" });
+> ```
+>
+> If you adopt this approach, you don't need to set the render mode for the entire app on the `Routes` component or use a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component in the `Routes` component to pass the theme information to [cascading parameters](#cascadingparameter-attribute).
+>
+> For more information, see the [Cascading values/parameters and render mode boundaries](#cascading-valuesparameters-and-render-mode-boundaries) section.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The following [layout component](xref:blazor/components/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 
 `MainLayout.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/MainLayout.razor":::
 
@@ -164,7 +213,47 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `ThemedCounter.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/themed-counter"
+@rendermode RenderMode.InteractiveServer
+@using BlazorSample.UIThemeClasses
+
+<h1>Themed Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<p>
+    <button @onclick="IncrementCount">
+        Increment Counter (Unthemed)
+    </button>
+</p>
+
+<p>
+    <button 
+        class="btn @(ThemeInfo is not null ? ThemeInfo.ButtonClass : string.Empty)"
+            @onclick="IncrementCount">
+        Increment Counter (Themed)
+    </button>
+</p>
+
+@code {
+    private int currentCount = 0;
+
+    [CascadingParameter]
+    protected ThemeInfo? ThemeInfo { get; set; }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor":::
 
@@ -190,7 +279,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 :::moniker range=">= aspnetcore-6.0"
 
-Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender:
+Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender.
 
 `MainLayout.razor`:
 
@@ -219,6 +308,34 @@ Similar to a regular component parameter, components accepting a cascading param
 ```
 
 <xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization. 
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Cascading values/parameters and render mode boundaries
+
+Cascading parameters don't pass data across render mode boundaries:
+
+* Interactive sessions run in a different context than the static server-rendered pages. There's no requirement that the server producing the page is even the same machine that hosts some later interactive server session, including for WebAssembly components where the server is a different machine to the client. The benefit of static server rendering is to gain the full performance of pure stateless HTML rendering.
+
+* State crossing the boundary between static and interactive rendering must be serializable. Components are arbitrary objects that reference a vast chain of other objects, including the renderer, the DI container, and every DI service instance. You must explicitly cause state to be serialized from static server rendering to make it available in subsequent interactively-rendered components. Two approaches are adopted:
+  * Via the Blazor framework, parameters passed across a static server rendering to interactive boundary are serialized automatically if they're JSON-serializable, or an error is thrown.
+  * State stored in [`PersistentComponentState`](xref:blazor/components/prerendering-and-integration#persist-prerendered-state) is serialized and recovered automatically if it's JSON-serializable, or an error is thrown.
+
+Cascading parameters aren't JSON-serialize because the typical usage patterns for cascading parameters are somewhat like DI services. There are often platform-specific variants of cascading parameters, so it would be unhelpful to developers if the framework stopped developers from having server-interactive-specific versions or WebAssembly-specific versions. Also, many cascading parameter values in general aren't serializable, so it would be impractical to update existing apps if you had to stop using all nonserializable cascading parameter values.
+
+Recommendations:
+
+* If you need to make state available to all interactive components as a cascading parameter, we recommend using [root-level cascading values](#root-level-cascading-values). A factory pattern is available, and the app can emit updated values after app startup. Root-level cascading values are available to all components, including interactive components, since they're processed as DI services.
+
+* For component library authors, you can create an extension method for library consumers similar to the following:
+
+  ```csharp
+  builder.Services.AddLibraryCascadingParameters();
+  ```
+
+  Instruct developers to call your extension method. This is a sound alternative to instructed them to add a `<RootComponent>` component in their `MainLayout` component.
 
 :::moniker-end
 
