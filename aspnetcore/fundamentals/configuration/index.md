@@ -945,6 +945,10 @@ For more information on migrating app configuration from earlier versions of ASP
 
 An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
+## Configuration-binding source generator
+
+The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator) provides AOT and trim-friendly configuration. For more information, see [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator).
+
 ## Additional resources
 
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
