@@ -38,11 +38,21 @@ Create a new server-side Blazor app by following the guidance in <xref:blazor/to
 
 After choosing the server-side app template and configuring the project, select the app's authentication under **Authentication type**:
 
-<!-- UPDATE 8.0 Check this at RC2 -->
+:::moniker range=">= aspnetcore-8.0"
 
+* **None** (default): No authentication.
+* **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* **None** (default): No authentication.
 * **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
 * **Microsoft identity platform**: For more information, see <xref:blazor/security/index#additional-resources>.
 * **Windows**: Use Windows Authentication.
+
+:::moniker-end
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -57,6 +67,17 @@ When issuing the .NET CLI command to create and configure the server-side Blazor
 
 Permissible authentication values for the `{AUTHENTICATION}` placeholder are shown in the following table.
 
+:::moniker range=">= aspnetcore-8.0"
+
+| Authentication mechanism | Description |
+| ------------------------ | ----------- |
+| `None` (default)         | No authentication |
+| `Individual`             | Users stored in the app with ASP.NET Core Identity |
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 | Authentication mechanism | Description |
 | ------------------------ | ----------- |
 | `None` (default)         | No authentication |
@@ -65,6 +86,8 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `SingleOrg`              | Organizational authentication for a single tenant |
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
+
+:::moniker-end
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
@@ -81,6 +104,17 @@ When issuing the .NET CLI command to create and configure the server-side Blazor
 
 Permissible authentication values for the `{AUTHENTICATION}` placeholder are shown in the following table.
 
+:::moniker range=">= aspnetcore-8.0"
+
+| Authentication mechanism | Description |
+| ------------------------ | ----------- |
+| `None` (default)         | No authentication |
+| `Individual`             | Users stored in the app with ASP.NET Core Identity |
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 | Authentication mechanism | Description |
 | ------------------------ | ----------- |
 | `None` (default)         | No authentication |
@@ -89,6 +123,8 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `SingleOrg`              | Organizational authentication for a single tenant |
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
+
+:::moniker-end
 
 For more information:
 
@@ -109,25 +145,41 @@ For more information:
 
 Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*.
 
-In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
+The Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
 
 The template handles the following:
 
+* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out.
+  * The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multifactor authentication](xref:security/authentication/mfa) using a third-party app.
+  * Interactive server and interactive client rendering scenarios are supported.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in `_Imports.razor`.
-* Creates a custom Identity class called `ApplicationUser'.
-* Creates and registers an EFCore DbContext.
-* Adds and routes the built-in Identity endpoints.
-* Adds all Identity UI components and related logic.
+* Creates a custom user Identity class (`ApplicationUser`).
+* Creates and registers an EF Core database context (`ApplicationDbContext`).
+* Configures routing for the built-in Identity endpoints.
 * Includes Identity validation and business logic.
 
-The UI components also support advanced Identity concepts, such as multifactor authentication using a third-party app and email confirmations.
+<!-- UPDATE 8.0 Cross-link API -->
+
+When you choose the WebAssembly or Auto interactivity types, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a `PersistentAuthenticationStateProvider` class in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
+
+In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` (Server interactivity solutions only) or `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions).
+
+For more information on persisting prerendered state, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+<!-- UPDATE 9.0 Remove blog post cross-link -->
+
+For more information on the Blazor Identity UI and guidance on integrating external logins through social websites, see [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui).
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Scaffold Identity
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 For more information on scaffolding Identity into a server-side Blazor app, see <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-server-side-blazor-app>.
 
