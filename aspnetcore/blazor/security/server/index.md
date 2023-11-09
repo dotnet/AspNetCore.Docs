@@ -169,6 +169,10 @@ For more information on persisting prerendered state, see <xref:blazor/component
 
 <!-- UPDATE 9.0 Remove blog post cross-link -->
 
+<!-- UPDATE 8.0 Include the external login guidance in a 
+                new section, but it will need to 
+                wait until after release. -->
+
 For more information on the Blazor Identity UI and guidance on integrating external logins through social websites, see [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui).
 
 :::moniker-end
