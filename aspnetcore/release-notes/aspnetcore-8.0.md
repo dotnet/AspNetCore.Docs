@@ -569,7 +569,7 @@ The RDG is enabled automatically in a project when publishing with native AOT is
 
 ### Improved performance using Interceptors
 
-The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) action methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
+The Request Delegate Generator uses the new [C# 12 interceptors compiler feature](/dotnet/csharp/whats-new/csharp-12) to support intercepting calls to minimal API [Map](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) methods with statically generated variants at runtime. The use of interceptors results in increased startup performance for apps compiled with `PublishAot`.
 
 ### Logging and exception handling in compile-time generated minimal APIs
 
