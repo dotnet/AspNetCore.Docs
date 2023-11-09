@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 08/22/2023
+ms.date: 11/09/2023
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -60,7 +60,7 @@ This tutorial creates the following API:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/empty.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/8.x/create-new-project-empty-vs17.8.0.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
@@ -68,7 +68,7 @@ This tutorial creates the following API:
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/add-info8.png)
+  ![Additional information](~/tutorials/min-web-api/_static/8.x/add-info-vs17.8.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -248,7 +248,7 @@ Use the POST endpoint to add data to the app.
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
 
-  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/generate-request.png)
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/8.x/generate-request-vs17.8.0.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
 
@@ -295,11 +295,11 @@ Use the POST endpoint to add data to the app.
 
 * Select the **Send request** link that is above the `POST` request line.
 
-  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
+  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/8.x/http-file-run-button-vs17.8.0.png)
 
   The POST request is sent to the app and the response is displayed in the **Response** pane.
 
-  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/http-file-window-with-response.png)
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/8.x/http-file-window-with-response-vs17.8.0.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
