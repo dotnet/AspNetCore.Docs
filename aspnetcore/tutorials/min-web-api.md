@@ -248,7 +248,7 @@ Use the POST endpoint to add data to the app.
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
 
-  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/generate-request.png)
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/8.x/generate-request-vs17.8.0.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
 
@@ -295,11 +295,11 @@ Use the POST endpoint to add data to the app.
 
 * Select the **Send request** link that is above the `POST` request line.
 
-  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
+  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/8.x/http-file-run-button-vs17.8.0.png)
 
   The POST request is sent to the app and the response is displayed in the **Response** pane.
 
-  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/http-file-window-with-response.png)
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/8.x/http-file-window-with-response-vs17.8.0.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
