@@ -111,7 +111,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship1> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit" FormName="Starship1">
+<EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship1">
     <InputText @bind-Value="Model!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -208,7 +208,7 @@ In the next example, the preceding component is modified to create the form in t
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship2> Logger
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
+<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />

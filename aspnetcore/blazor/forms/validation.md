@@ -30,8 +30,7 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 <h2>Holodeck Configuration</h2>
 
-<EditForm method="post" EditContext="editContext" OnValidSubmit="@Submit" 
-    FormName="Starship8">
+<EditForm EditContext="editContext" OnValidSubmit="@Submit" FormName="Starship8">
     <div>
         <label>
             <InputCheckbox @bind-Value="Model!.Subsystem1" />
@@ -327,7 +326,7 @@ When validation messages are set in the component, they're added to the validato
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship9">
+<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship9">
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
     <div>
@@ -739,7 +738,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship10">
+<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship10">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
@@ -1042,7 +1041,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship11> Logger
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship11">
+<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship11">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <CustomInputText @bind-Value="Model!.Id" />
@@ -1254,25 +1253,20 @@ The following component validates user input by applying the `SaladChefValidator
 @inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off" FormName="Starship12">
-
     <DataAnnotationsValidator />
-
     <p>
         <label>
             Salad topper (@saladToppers):
             <input @bind="SaladIngredient" />
         </label>
     </p>
-
     <button type="submit">Submit</button>
-
     <ul>
         @foreach (var message in context.GetValidationMessages())
         {
             <li class="validation-message">@message</li>
         }
     </ul>
-
 </EditForm>
 
 @code {
@@ -1295,25 +1289,20 @@ The following component validates user input by applying the `SaladChefValidator
 @inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off">
-
     <DataAnnotationsValidator />
-
     <p>
         <label>
             Salad topper (@saladToppers):
             <input @bind="SaladIngredient" />
         </label>
     </p>
-
     <button type="submit">Submit</button>
-
     <ul>
         @foreach (var message in context.GetValidationMessages())
         {
             <li class="validation-message">@message</li>
         }
     </ul>
-
 </EditForm>
 
 @code {
@@ -1412,8 +1401,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship13> Logger
 
-<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
-    FormName="Starship13">
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship13">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />
@@ -1782,8 +1770,7 @@ To enable and disable the submit button based on form validation, the following 
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 
-<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
-    FormName="Starship14">
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship14">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>

@@ -166,7 +166,7 @@ In the following example, the `HelloFormFromLibrary` component has a form named 
 `HelloFormFromLibrary.razor`:
 
 ```razor
-<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm Model="@this" OnSubmit="@Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -201,7 +201,7 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
 
 <div>Hello form using the same form name</div>
 
-<EditForm method="post" Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm Model="@this" OnSubmit="@Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -239,14 +239,12 @@ The following example independently binds two forms to their models by form name
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship6> Logger
 
-<EditForm method="post" Model="@Model1" OnSubmit="@Submit1" 
-    FormName="Holodeck1">
+<EditForm Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
     <InputText @bind-Value="Model1!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
 
-<EditForm method="post" Model="@Model2" OnSubmit="@Submit2" 
-    FormName="Holodeck2">
+<EditForm Model="@Model2" OnSubmit="@Submit2" FormName="Holodeck2">
     <InputText @bind-Value="Model2!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -342,8 +340,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship7> Logger
 
-<EditForm method="post" Model="@Model" OnSubmit="@Submit" 
-    FormName="Starship7">
+<EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship7">
     <div>
         <label>
             Id:
