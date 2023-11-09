@@ -496,13 +496,6 @@ The antiforgery token is only validated if:
 
 For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
 
-The preceding generated code:
-
-* Binds a `projectId` parameter from the query.
-* Binds a `Todo` parameter from the JSON body.
-* Annotates the endpoint metadata to indicate that it accepts a JSON payload.
-* Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
-
 ### New `IResettable` interface in `ObjectPool`
 
 [Microsoft.Extensions.ObjectPool](xref:Microsoft.Extensions.ObjectPool) provides support for pooling object instances in memory. Apps can use an object pool if the values are expensive to allocate or initialize.
