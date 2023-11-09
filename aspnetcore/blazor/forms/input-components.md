@@ -132,7 +132,7 @@ The following form accepts and validates user input using:
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm method="post" Model="@Model" OnValidSubmit="@Submit" FormName="Starship3">
+<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship3">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -314,7 +314,7 @@ In the following example:
 @rendermode RenderMode.InteractiveServer
 @inject ILogger<Starship4> Logger
 
-<EditForm method="post" EditContext="@editContext" OnSubmit="@Submit" 
+<EditForm EditContext="@editContext" OnSubmit="@Submit" 
     FormName="Starship4">
     <DataAnnotationsValidator />
     <div>
@@ -458,7 +458,7 @@ In the following example, the user must select at least two starship classificat
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm method="post" EditContext="@editContext" OnValidSubmit="@Submit" 
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit" 
     FormName="Starship5">
     <DataAnnotationsValidator />
     <ValidationSummary />
