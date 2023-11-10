@@ -391,7 +391,7 @@ else
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to interactive server-side Razor components in Blazor Web Apps.*
+*This section applies to Interactive Server components in Blazor Web Apps.*
 
 :::moniker-end
 
@@ -811,8 +811,7 @@ A security best practice for production apps is to avoid sending error messages 
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link render mode
-                AND ... ask the PU about the service
+<!-- UPDATE 8.0 Ask the PU about the service
                 registrations because it seems odd to
                 be required to register an HttpClient
                 in the BWA's main project. Why can't 
@@ -1287,8 +1286,6 @@ For more information, see the following API resources:
 * <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
 
 ## File streams
-
-<!-- UPDATE 8.0 Cross-link server interactivity -->
 
 With server interactivity, file data is streamed over the SignalR connection into .NET code on the server as the file is read.
 

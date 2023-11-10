@@ -119,8 +119,6 @@ For events that support an event argument type, specifying an event parameter in
 
 Supported <xref:System.EventArgs> are shown in the following table.
 
-<!-- UPDATE 8.0 Review and update event args for the framework -->
-
 | Event            | Class  | DOM notes |
 | ---------------- | ------ | --- |
 | Clipboard        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | |

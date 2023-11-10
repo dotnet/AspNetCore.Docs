@@ -306,7 +306,7 @@ To avoid server-based APIs for Blazor WebAssembly apps, adopt Blazor Server, whi
 
 :::moniker range=">= aspnetcore-8.0"
 
-Rendering components from the server reduces the app payload size and improves initial load times. When a fast initial load time is desired, use the Blazor Server hosting model or consider static server rendering.
+Rendering components from the server reduces the app payload size and improves initial load times. When a fast initial load time is desired, use the Blazor Server hosting model or consider Static Server rendering.
 
 :::moniker-end
 

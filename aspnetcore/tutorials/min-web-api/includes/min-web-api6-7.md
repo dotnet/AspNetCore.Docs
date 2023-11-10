@@ -414,6 +414,10 @@ Verify you can post and get all fields except the secret field.
 
 <a name="diff-v7"></a>
 
+## Troubleshooting with the completed sample
+
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:index#how-to-download-a-sample)).
+
 ## Next steps
 
 ### Configure JSON serialization options
@@ -898,6 +902,10 @@ The following code uses <xref:System.Text.Json.JsonSerializerOptions>:
 [!code-csharp[](~/tutorials/min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_2)]
 
 The preceding code uses [web defaults](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions), which converts property names to camel case.
+
+## Troubleshooting with the completed sample
+
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Test minimal API
 

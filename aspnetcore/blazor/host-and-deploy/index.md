@@ -305,8 +305,6 @@ In typical configurations for Azure/IIS hosting, additional configuration usuall
 * To serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`).
 * To serve the Blazor script (`_framework/blazor.*.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 
-<!-- UPDATE 8.0 This will need to be validated/updated for BWAs -->
-
 For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
 ```dotnetcli

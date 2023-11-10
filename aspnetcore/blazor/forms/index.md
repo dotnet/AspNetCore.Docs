@@ -378,10 +378,8 @@ For guidance on using the `enhancedload` event to listen for enhanced page updat
 
 Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
 
-<!-- UPDATE 8.0 Place API cross-links and simplify values -->
-
 * `RenderMode.InteractiveWebAssembly` for only interactive client rendering after prerendering.
-* `RenderMode.InteractiveAuto` for interactive client rendering after interactive server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+* `RenderMode.InteractiveAuto` for interactive client rendering after Interactive Server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
 
@@ -426,15 +424,6 @@ To demonstrate how forms work with [data annotations](xref:mvc/models/validation
 ```
 
 Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
-
-<!-- UPDATE 8.0 Saving cross-link formats for 
-     snippet sample app work later.
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/FormExampleXXXX.razor":::
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppSample/XXXX.cs" highlight="XXXX":::
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExampleXXXX.razor":::
--->
 
 <!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
                 The intention is to link to a few of the

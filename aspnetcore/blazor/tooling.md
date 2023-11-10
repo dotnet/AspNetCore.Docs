@@ -27,7 +27,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Create a new project using one of the available Blazor templates:
 
-  * **Blazor Web App** (*recommended*): Creates a Blazor web app that supports interactive server and interactive client rendering.
+  * **Blazor Web App** (*recommended*): Creates a Blazor web app that supports Interactive Server and interactive client rendering.
   * **Blazor WebAssembly Standalone App**: Creates a standalone client web app that can be deployed as a static site.
 
 Select **Next**.
@@ -66,12 +66,12 @@ Select **Next**.
   * **Interactivity type** dropdown list:
     * Interactive server rendering is enabled by default with the **Server** option.
     * To only enable interactivity with client rendering, select the **WebAssembly** option.
-    * To enable both interactive server and client rendering and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
-    * If interactivity is set to `None`, the generated app has no interactivity (static server rendering only).
+    * To enable both Interactive Server and client rendering and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
+    * If interactivity is set to `None`, the generated app has no interactivity (Static Server rendering only).
 
-    The Auto render mode initially uses interactive server rendering while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to interactive WebAssembly rendering.
+    The Auto render mode initially uses Interactive Server rendering while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to Interactive WebAssembly rendering.
 
-    By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
+    By default, the Blazor Web App template enables both Static and Interactive Server rendering using a single project. If you also enable Interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
 
     For more information, see <xref:blazor/components/render-modes>.
 
@@ -154,19 +154,19 @@ Create a new project:
   dotnet new blazor -o BlazorApp
   ```
 
-  To only enable interactive WebAssembly rendering, use the `-int|--interactivity` option set to `WebAssembly`:
+  To only enable Interactive WebAssembly rendering, use the `-int|--interactivity` option set to `WebAssembly`:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp -int WebAssembly
   ```
 
-  To enable interactive server rendering followed by interactive WebAssembly rendering, use the `-int|--interactivity` option set to `Auto`:
+  To enable Interactive Server rendering followed by Interactive WebAssembly rendering, use the `-int|--interactivity` option set to `Auto`:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp -int Auto
   ```
 
-  If interactivity is disabled by setting the `-int|--interactivity` option to `None`, the generated app has no interactivity (static server rendering only):
+  If interactivity is disabled by setting the `-int|--interactivity` option to `None`, the generated app has no interactivity (Static Server rendering only):
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp -int None
@@ -174,7 +174,7 @@ Create a new project:
 
   The Auto render mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to the WebAssembly render mode.
 
-  By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+  By default, the Blazor Web App template enables both Static and Interactive Server rendering using a single project. If you also enable the WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
 
   For more information, see <xref:blazor/components/render-modes>.
 

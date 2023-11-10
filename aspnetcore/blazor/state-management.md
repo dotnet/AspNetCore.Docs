@@ -271,8 +271,6 @@ One way to resolve the error is to disable prerendering. This is usually the bes
 
 To disable prerendering, indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
 
-<!-- UPDATE 8.0 The following simplifies at RTM -->
-
 ```razor
 <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```

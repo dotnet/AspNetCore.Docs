@@ -1082,7 +1082,7 @@ In the preceding example, the namespace of the app is `BlazorSample` with shared
 
 ## Harden JavaScript interop calls
 
-*This section only applies to interactive server-side components, but client-side components may also set JS interop timeouts if conditions warrant it.*
+*This section only applies to Interactive Server components, but client-side components may also set JS interop timeouts if conditions warrant it.*
 
 In server-side apps with server interactivity, JavaScript (JS) interop may fail due to networking errors and should be treated as unreliable. By default, Blazor apps use a one minute timeout for JS interop calls. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches.
 
@@ -1090,7 +1090,19 @@ In server-side apps with server interactivity, JavaScript (JS) interop may fail 
 
 Set a global timeout in the `Program.cs` with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>:
 
-<!-- UPDATE 8.0 This seems like it's still supported 8.0+ ... check on it. -->
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents(options => 
+        options.JSInteropDefaultCallTimeout = {TIMEOUT});
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```csharp
 builder.Services.AddServerSideBlazor(

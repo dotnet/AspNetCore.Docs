@@ -55,8 +55,6 @@ The following example:
 
 `Counter1.razor`:
 
-<!-- UPDATE 8.0 The highlights will break. -->
-
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor" highlight="2,15":::
@@ -84,8 +82,6 @@ The following example:
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Counter2.razor`:
-
-<!-- UPDATE 8.0 The highlights will break. -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -327,8 +323,6 @@ After ***either*** of the preceding filters is added to the app, the console out
 :::moniker-end
 
 ## Client-side custom logger provider
-
-<!-- UPDATE 8.0 Confirm this works in the client of a BWA -->
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -593,26 +587,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 ## Client-side log scopes
 
-The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
-
-:::moniker-end
-
-<!-- UPDATE 8.0 When creating this app, move from the Index component to a
-     'CustomLoggerExample' component -->
-
-:::moniker range=">= aspnetcore-7.0"
-
-[`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/7.0/BlazorWebAssemblyScopesLogger)
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-[`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
+The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples).
 
 The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
 
@@ -653,8 +628,6 @@ The `{CLASS}` placeholder in the preceding example is `BlazorWebAssemblyScopesLo
 :::moniker-end
 
 ## Prerendered component logging
-
-<!-- UPDATE 8.0 Cross-link 'prerendered components' -->
 
 Prerendered components execute [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 

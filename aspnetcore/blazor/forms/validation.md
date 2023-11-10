@@ -498,7 +498,7 @@ The following example is based on:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* A Blazor Web App with interactive WebAssembly components created from the [Blazor Web App project template](xref:blazor/project-structure).
+* A Blazor Web App with Interactive WebAssembly components created from the [Blazor Web App project template](xref:blazor/project-structure).
 * The `Starship` model  (`Starship.cs`) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
