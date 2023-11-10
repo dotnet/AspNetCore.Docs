@@ -15,9 +15,10 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
 <!--UPDATE 8.0 Is the tenant name going to change to 
-    match the rest of the MS Entra ID branding? -->
+    match the rest of the MS Entra ID branding? 
+    ANSWER: YES! It will be "Microsoft Entra tenant" now. -->
 
-This article focuses on the use of an **Azure Active Directory** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
+This article focuses on the use of a **Microsoft Entra** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -41,14 +42,11 @@ Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/dev
 
 Register an ME-ID app for the *Server API app*:
 
-<!--UPDATE 8.0 Is the tenant name going to change to 
-    match the rest of the MS Entra ID branding? -->
-
 1. Navigate to [**Microsoft Entra ID** in the Azure portal](https://entra.microsoft.com/#home). Select **Applications** > **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
-1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
+1. This article assumes the app is registered in a **Microsoft Entra** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 Record the following information:
@@ -82,14 +80,11 @@ Record the following information:
 
 Register an ME-ID app for the *Client app*:
 
-<!--UPDATE 8.0 Is the tenant name going to change to 
-    match the rest of the MS Entra ID branding? -->
-
 1. Navigate to **Microsoft Entra ID** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Client ME-ID**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
-1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
+1. This article assumes the app is registered in a **Microsoft Entra** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 > [!NOTE]

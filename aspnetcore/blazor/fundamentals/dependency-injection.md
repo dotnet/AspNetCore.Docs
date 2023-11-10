@@ -183,8 +183,6 @@ For an example of this approach, see <xref:blazor/security/webassembly/additiona
 
 Services can be configured with the lifetimes shown in the following table.
 
-<!-- UPDATE 8.0 Hosting models article cross-link -->
-
 | Lifetime | Description |
 | -------- | ----------- |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Client-side doesn't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>Server-side development supports the `Scoped` lifetime across HTTP requests but not across SignalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes a tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state in server-side apps, see <xref:blazor/state-management>.</p> |
@@ -262,7 +260,7 @@ Prerequisites for constructor injection:
 
 ## Inject keyed services into components
 
-<!-- UPDATE 8.0 Add API cross-link and remove the NOTE -->
+<!-- UPDATE 8.0 Add API cross-link -->
 
 Blazor supports injecting keyed services using the `[Inject]` attribute. Keys allow for scoping of registration and consumption of services when using dependency injection. Use `InjectAttribute.Key` property to specify the key for the service to inject:
 
@@ -270,9 +268,6 @@ Blazor supports injecting keyed services using the `[Inject]` attribute. Keys al
 [Inject(Key = "my-service")]
 public IMyService MyService { get; set; }
 ```
-
-> [!NOTE]
-> The `@inject` Razor directive doesn't currently support keyed services.
 
 :::moniker-end
 
@@ -335,9 +330,36 @@ In the following `TimeTravel` component:
 * The time travel service is directly injected with `@inject` as `TimeTravel1`.
 * The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
 
-<!-- UPDATE 8.0 Confirm that this example won't require interactivity to execute -->
-
 `TimeTravel.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/time-travel"
+@rendermode RenderMode.InteractiveServer
+@inject ITimeTravel TimeTravel1
+@inherits OwningComponentBase
+
+<h1><code>OwningComponentBase</code> Example</h1>
+
+<ul>
+    <li>TimeTravel1.DT: @TimeTravel1?.DT</li>
+    <li>TimeTravel2.DT: @TimeTravel2?.DT</li>
+</ul>
+
+@code {
+    private ITimeTravel TimeTravel2 { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```razor
 @page "/time-travel"
@@ -360,6 +382,8 @@ In the following `TimeTravel` component:
     }
 }
 ```
+
+:::moniker-end
 
 Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
   

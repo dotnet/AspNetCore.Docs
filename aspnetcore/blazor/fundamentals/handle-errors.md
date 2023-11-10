@@ -387,9 +387,7 @@ In `MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link SSR -->
-
-In Blazor Web Apps with the error boundary only applied to a noninteractive `MainLayout` component, the boundary is only active during the static server rendering phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactivity with server rendering at the top of the `Routes` component (`Components/Routes.razor`):
+In Blazor Web Apps with the error boundary only applied to a noninteractive `MainLayout` component, the boundary is only active during the Static Server rendering phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactivity with server rendering at the top of the `Routes` component (`Components/Routes.razor`):
 
 ```razor
 @rendermode RenderMode.InteractiveServer
@@ -398,7 +396,7 @@ In Blazor Web Apps with the error boundary only applied to a noninteractive `Mai
 If you prefer not to enable server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable interactivity, not in the app's main layout. The important concepts to keep in mind are that wherever the error boundary is placed:
 
 * If the error boundary isn't interactive, it's only capable of activating on the server during static rendering. For example, the boundary can activate when an error is thrown in a component lifecycle method.
-* If the error boundary is interactive, it's capable of activating for interactive server-rendered components that it wraps.
+* If the error boundary is interactive, it's capable of activating for Interactive Server-rendered components that it wraps.
 
 :::moniker-end
 
@@ -859,9 +857,6 @@ For more information, see the following articles:
 :::moniker range=">= aspnetcore-6.0"
 
 ### Prerendering
-
-<!-- UPDATE 8.0 This section makes some claims about the TH that probably
-     require updates >=8.0. -->
 
 Razor components are prerendered by default so that their rendered HTML markup is returned as part of the user's initial HTTP request.
 

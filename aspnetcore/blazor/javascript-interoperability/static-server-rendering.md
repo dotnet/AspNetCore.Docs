@@ -1,14 +1,14 @@
 ---
-title: ASP.NET Core Blazor JavaScript with Blazor static server rendering
+title: ASP.NET Core Blazor JavaScript with Blazor Static Server rendering
 author: guardrex
-description: Learn how to use JavaScript in a Blazor Web App with static server rendering.
+description: Learn how to use JavaScript in a Blazor Web App with Static Server rendering.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/03/2023
 uid: blazor/js-interop/ssr
 ---
-# ASP.NET Core Blazor JavaScript with Blazor static server rendering
+# ASP.NET Core Blazor JavaScript with Blazor Static Server rendering
 
 <!-- UPDATE 9.0 Activate after release and INCLUDE is updated
 
@@ -16,7 +16,7 @@ uid: blazor/js-interop/ssr
 
 -->
 
-This article explains how to load JavaScript (JS) in a Blazor Web App with static server rendering and [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+This article explains how to load JavaScript (JS) in a Blazor Web App with Static Server rendering and [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
 
 Some applications may depend on JS to perform initialization tasks that are specific to each page. When using Blazor's enhanced navigation feature, which allows the user to avoid reloading the entire page, JS code may not re-execute as expected. Therefore, page-specific `<script>` elements may not be executed again as expected each time an enhanced page navigation occurs.
 

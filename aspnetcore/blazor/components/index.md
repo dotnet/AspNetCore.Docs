@@ -1478,24 +1478,6 @@ In the preceding code, the CSS selector, `#app`, indicates that the `App` compon
 
 :::moniker-end
 
-<!-- UPDATE 8.0 Reverting ... I think this was correct
-                because this whole section is about 
-                statically-rendered root components. 
-
-:::moniker range=">= aspnetcore-8.0"
-
-MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register interactive server and WebAssembly render mode components. The tag helper doesn't support Auto render mode components.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register Blazor WebAssembly root components:
-
-:::moniker-end
-
--->
-
 MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
 
 :::moniker range=">= aspnetcore-6.0"

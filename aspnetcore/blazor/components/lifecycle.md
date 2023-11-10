@@ -169,9 +169,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ::: moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Cross-link render modes article -->
-
-Use *streaming rendering* with interactive server components to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
+Use *streaming rendering* with Interactive Server components to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
 
 :::moniker-end
 
@@ -242,8 +240,6 @@ For more information on route parameters and constraints, see <xref:blazor/funda
 ## After component render (`OnAfterRender{Async}`)
 
 :::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Cross-link render modes article -->
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements.
 
@@ -581,8 +577,6 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms/index) examples show how to unsubscribe an event handler in the `Dispose` method:
 
-<!-- UPDATE 8.0 There's a form here, potentially to receive 8.0 updates -->
-
 * Private field and lambda approach
 
   ```razor
@@ -649,6 +643,8 @@ Always unsubscribe event handlers from .NET events. The following [Blazor form](
   ```
   
 For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+
+For more information on the `EditForm` component and forms, see <xref:blazor/forms/index> and the other forms articles in the *Forms* node.
 
 ### Anonymous functions, methods, and expressions
 

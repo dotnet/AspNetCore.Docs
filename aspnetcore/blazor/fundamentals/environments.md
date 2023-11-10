@@ -10,16 +10,14 @@ uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
-<!-- UPDATE 8.0 This entire article should be checked
-                at about RC2 after the final round of
-                WASM template updates and final stability
-                of BWAs. The article was originally tied
-                exclusively to WASM scenarios. It should
-                cover client- and server-side scenarios 
-                with BWAs. Especially, the scenarios for
-                the Blazor-Environment header must be 
-                validated in the BWA world. Clear Azure
-                coverage should be provided. -->
+<!-- UPDATE 8.0 This entire article should be checked and
+                improved for the BWA world order. The article 
+                was originally tied exclusively to WASM 
+                scenarios. It should cover client- and 
+                server-side scenarios with BWAs. Especially, 
+                the scenarios for the Blazor-Environment 
+                header must be validated in the BWA world. 
+                Clear Azure coverage should be provided. -->
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 

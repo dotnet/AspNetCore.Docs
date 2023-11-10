@@ -110,7 +110,7 @@ The `-n|--name` option in the preceding command specifies the name of the new Ra
 Open the `Todo` component in any file editor and make the following changes at the top of the file:
 
 * Add an `@page` Razor directive with a relative URL of `/todo`.
-* Enable interactivity on the page so that it isn't just statically rendered. The interactive server render mode enables the component to handle UI events from the server.
+* Enable interactivity on the page so that it isn't just statically rendered. The Interactive Server render mode enables the component to handle UI events from the server.
 * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
 
 :::moniker-end
@@ -427,13 +427,11 @@ Update the `<h3>` header to show a count of the number of todo items that aren't
 <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
 ```
 
-<!-- UPDATE 8.0 Re-enable the completed component display after the 8.0 sample app is created
-
 The completed `Todo` component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Components/Pages/build-a-blazor-app/Todo.razor":::
 
 :::moniker-end
 
@@ -460,8 +458,6 @@ The completed `Todo` component:
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
 
 :::moniker-end
-
--->
 
 Save the `Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
