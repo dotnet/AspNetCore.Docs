@@ -743,14 +743,14 @@ Sets the render mode of a Razor component:
 For a component instance:
 
 ```razor
-<... @rendermode="RenderMode.InteractiveServer" />
+<... @rendermode="InteractiveServer" />
 ```
 
 In the component definition:
 
 ```razor
 @page "..."
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 ```
 
 <!-- UPDATE 8.0 Remove at RTM -->

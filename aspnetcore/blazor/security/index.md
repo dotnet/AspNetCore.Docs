@@ -111,7 +111,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 ```razor
 @page "/claims-principle-data"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @using System.Security.Claims
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -226,7 +226,7 @@ If authentication state data is required for procedural logic, such as when perf
 
 ```razor
 @page "/cascade-auth-state"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <h1>Cascade Auth State</h1>
 
@@ -573,7 +573,7 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 
 ```razor
 @page "/users/{id}/edit"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize(Policy = "EditUser")]
 
@@ -675,7 +675,7 @@ A server-side Blazor app includes the appropriate namespaces by default when cre
 
 ```razor
 @page "/procedural-logic"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IAuthorizationService AuthorizationService
 
 <h1>Procedural Logic Example</h1>

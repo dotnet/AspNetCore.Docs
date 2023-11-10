@@ -93,7 +93,7 @@ The following component:
 
 ```razor
 @page "/file-download-1"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @using System.IO
 @inject IJSRuntime JS
 
@@ -202,7 +202,7 @@ Change the port in the following example to match the localhost development port
 
 ```razor
 @page "/file-download-2"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>File Download Example 2</h1>

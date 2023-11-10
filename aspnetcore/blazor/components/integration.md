@@ -188,7 +188,7 @@ Add the following `Counter` component to the app that adopts the Interactive Ser
 
 ```razor
 @page "/counter"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
@@ -225,15 +225,13 @@ Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Se
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-<!-- UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM -->
-
 Create a donor Blazor Web App to provide assets to the app. Follow the guidance in the <xref:blazor/tooling> article, selecting support for the following template features when generating the Blazor Web App.
 
 For the app's name, use the same name as the ASP.NET Core app, which results in matching app name markup in components and matching namespaces in code. Using the same name/namespace isn't strictly required, as namespaces can be adjusted after assets are moved from the donor app to the ASP.NET Core app. However, time is saved by matching the namespaces at the outset.
 
 Visual Studio:
 
-* For **Interactivity type**, select **Auto (Server and WebAssembly)**.
+* For **Interactive render mode**, select **Auto (Server and WebAssembly)**.
 * Set the **Interactivity location** to **Per page/component**.
 * Deselect the checkbox for **Include sample pages**.
 
@@ -777,7 +775,7 @@ Create a `Pages` folder in the `Components` folder for routable components. The 
 
 ```razor
 @page "/counter"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 

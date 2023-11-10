@@ -108,11 +108,6 @@ The module exports either or both of the following conventional functions:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Remove NOTE -->
-
-> [!NOTE]
-> JS initializers for Blazor Web Apps is an upcoming feature that will appear with the release of .NET 8 in mid-November.
-
 For Blazor Web Apps:
 
 * `beforeWebStart(options)`: Called before the Blazor Web App starts. For example, `beforeWebStart` is used to customize the loading process, logging level, and other options. Receives the Blazor Web options (`options`).
@@ -151,11 +146,6 @@ For the file name:
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Remove NOTE -->
-
-> [!NOTE]
-> JS initializers for Blazor Web Apps is an upcoming feature that will appear with the release of .NET 8 in mid-November.
 
 For Blazor Web Apps:
 

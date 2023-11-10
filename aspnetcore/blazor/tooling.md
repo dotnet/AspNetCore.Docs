@@ -19,11 +19,9 @@ This article describes tools for building Blazor apps on various platforms. Sele
 
 To create a Blazor app on Windows, use the following guidance:
 
-<!-- UPDATE 8.0 Remove Preview VS install from versioning blocks -->
-
 :::moniker range=">= aspnetcore-8.0"
 
-* Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com/vs/) with the **ASP.NET and web development** workload.
 
 * Create a new project using one of the available Blazor templates:
 
@@ -60,10 +58,7 @@ Select **Next**.
 
 * For a Blazor Web App in the **Additional information** dialog:
 
-<!-- UPDATE 8.0 For RTM, the dropdown list label changes to 
-                **Interactive render mode** -->
-
-  * **Interactivity type** dropdown list:
+  * **Interactive render mode** dropdown list:
     * Interactive server rendering is enabled by default with the **Server** option.
     * To only enable interactivity with client rendering, select the **WebAssembly** option.
     * To enable both Interactive Server and client rendering and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
@@ -79,7 +74,7 @@ Select **Next**.
     * **Per page/component**: The default sets up interactivity per page or per component.
     * **Global**: Selecting this option sets up interactivity globally for the entire app.
 
-    Interactivity location can only be set if **Interactivity type** isn't `None` and authentication isn't enabled.
+    Interactivity location can only be set if **Interactive render mode** isn't `None` and authentication isn't enabled.
 
   * To include sample pages and a layout based on Bootstrap styling, select the **Include sample pages** checkbox. Disable this option for project without sample pages and Bootstrap styling.
 
@@ -122,19 +117,7 @@ To create a Blazor app on Linux or macOS, use the following guidance:
 
 Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a command shell.
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Drop preview content -->
-
-Install the latest version of the [.NET Core SDK Preview](https://dotnet.microsoft.com/download/dotnet/8.0). If you previously installed the SDK, you can determine your installed version by executing the following command:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
-
-:::moniker-end
 
 ```dotnetcli
 dotnet --version
@@ -186,7 +169,7 @@ Create a new project:
 
   Selecting this option sets interactivity for entire app in the `App` component by specifying a render mode for the top-level `HeadOutlet` and `Routes` components. Setting the interactivity on these components propagates the interactivity to all of the child components in the app.
 
-  Interactivity location can only be set if the interactivity type (`-int|--interactivity`) isn't `None` and authentication isn't enabled.
+  Interactivity location can only be set if the interactive render mode (`-int|--interactivity`) isn't `None` and authentication isn't enabled.
 
   To create an app without sample pages and styling, use the `-e|--empty` option:
 

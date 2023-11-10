@@ -69,6 +69,31 @@ The preceding `Counter` component:
 * Renders the current count with `@currentCount`. `currentCount` is an integer variable defined in the C# code of the `@code` block.
 * Displays a button to trigger the `IncrementCount` method, which is also found in the `@code` block and increases the value of the `currentCount` variable.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Render modes
+
+Articles in the *Fundamentals* node make reference to the concept of *render modes*. This subject is covered in detail in the <xref:blazor/components/render-modes> article in the *Components* node, which appears after the *Fundamentals* node of articles.
+
+For the early references in this node of articles to render mode concepts, merely note the following at this time:
+
+Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's rendered statically on the server, rendered with for user interactivity on the server, or rendered for user interactivity on the client (usually with prerendering on the server).
+
+Blazor Server and Blazor WebAssembly apps for ASP.NET Core releases prior to .NET 8 remain fixated on *hosting model* concepts, not render modes. Render modes are conceptually applied to Blazor Web Apps in .NET 8 or later.
+
+The following table shows the available render modes for rendering Razor components in a Blazor Web App. Render modes are applied to components with the `@rendermode` directive on the component instance or on the component definition. It's also possible to set a render mode for the entire app.
+
+Name | Description | Render location | Interactive
+---- | ----------- | :-------------: | :---------:
+Static | Static server rendering |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
+Interactive Server | Interactive server rendering using Blazor Server | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive WebAssembly | Interactive client rendering using Blazor WebAssembly | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive Auto | Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+
+The preceding information on render modes is all that you need to know to understand the *Fundamentals* node articles. If you're new to Blazor and reading Blazor articles in order down the table of contents, you can delay consuming in-depth information on render modes until you reach the <xref:blazor/components/render-modes> article in the *Components* node.
+
+:::moniker-end
+
 ## Document Object Model (DOM)
 
 References to the *Document Object Model* use the abbreviation *DOM*.

@@ -35,7 +35,7 @@ Consider the following `PrerenderedCounter1` counter component. The component se
 
 ```razor
 @page "/prerendered-counter-1"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<PrerenderedCounter1> Logger
 
 <PageTitle>Prerendered Counter 1</PageTitle>
@@ -127,7 +127,7 @@ The following counter component example persists counter state during prerenderi
 
 ```razor
 @page "/prerendered-counter-2"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IDisposable
 @inject ILogger<PrerenderedCounter2> Logger
 @inject PersistentComponentState ApplicationState
