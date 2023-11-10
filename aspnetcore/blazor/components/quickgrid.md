@@ -16,9 +16,7 @@ The `QuickGrid` component is a Razor component for quickly and efficiently displ
 
 ## Package
 
-<!-- UPDATE 8.0 Remove the prerelease content from the 8.0 content ONLY (Lines 21 and 83). The package will always be prerelease for 7.0 apps. -->
-
-Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
