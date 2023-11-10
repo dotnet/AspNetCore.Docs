@@ -519,7 +519,7 @@ Examples of locations where an app might store a user's preference include in [b
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> The following example assumes that the app adopts ***global*** interactivity by specifying the interactive server render mode on the `Routes` component in the `App` component (`Components/App.razor`):
+> The following example assumes that the app adopts ***global*** interactivity by specifying the Interactive Server render mode on the `Routes` component in the `App` component (`Components/App.razor`):
 >
 > ```razor
 > <Routes @rendermode="InteractiveServer" />
@@ -749,7 +749,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker range=">= aspnetcore-8.0"
 
-The preceding example assumes that the app adopts ***global*** interactivity by specifying the interactive server render mode on the `Routes` component in the `App` component (`Components/App.razor`):
+The preceding example assumes that the app adopts ***global*** interactivity by specifying the Interactive Server render mode on the `Routes` component in the `App` component (`Components/App.razor`):
 
 ```razor
 <Routes @rendermode="InteractiveServer" />
@@ -757,13 +757,13 @@ The preceding example assumes that the app adopts ***global*** interactivity by 
 
 If the app adopts ***per-page/component*** interactivity, make the following changes:
 
-* Add the interactive server render mode at the top of the `CultureExample1` component file (`Components/Pages/CultureExample1.razor`):
+* Add the Interactive Server render mode at the top of the `CultureExample1` component file (`Components/Pages/CultureExample1.razor`):
 
   ```razor
   @rendermode InteractiveServer
   ```
 
-* In the app's main layout (`Components/Layout/MainLayout.razor`), enable interactive server rendering for the `CultureSelector` component:
+* In the app's main layout (`Components/Layout/MainLayout.razor`), enable Interactive Server rendering for the `CultureSelector` component:
 
   ```razor
   <CultureSelector @rendermode="InteractiveServer" />

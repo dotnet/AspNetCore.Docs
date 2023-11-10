@@ -16,13 +16,6 @@ This article explains how to configure and manage SignalR connections in Blazor 
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 
-<!--
-     UPDATE 8.0 It's not clear if we'll host guidance on adding SignalR 
-     to the client project of a BWA for a CSR/interactivity scenario.
-     Currently, the Blazor-SignalR tutorial is only a BWA SSR/interactivity
-     exercise.
--->
-
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation, especially <xref:signalr/configuration#configure-server-options>.
 
 :::moniker range=">= aspnetcore-6.0"
@@ -156,10 +149,6 @@ Configure the circuit with the <xref:Microsoft.AspNetCore.Components.Server.Circ
 
 Configure the options in the `Program` file with an options delegate to `AddInteractiveServerComponents`. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
 
-<!-- UPDATE 8.0 HOLD
-  <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
--->
-
 In the `Program` file:
 
 ```csharp
@@ -216,8 +205,6 @@ services.AddServerSideBlazor(options =>
 To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that the file uses the <xref:System> namespace (`using System;`).
 
 :::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
 
 In the `Program` file:
 
@@ -384,8 +371,6 @@ Error:
 
 One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in the `Program` file. The following example sets the maximum receive message size to 64 KB:
 
-<!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
-
 ```csharp
 builder.Services.AddRazorComponents().AddInteractiveServerComponents()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
@@ -473,8 +458,6 @@ Consider the following guidance when developing code that transfers a large amou
 In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor script (`blazor.*.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
 ## Reflect the server-side connection state in the UI
-
-<!-- UPDATE 8.0 Confirm working guidance in a BWA with server interactivity -->
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
@@ -601,11 +584,14 @@ There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 
 ## Server-side render mode
 
-<!-- UPDATE 8.0 We'll probably have a new Prerender article to cross-link. -->
+<!-- UPDATE 8.0 Before making a cross-link to the new
+                Prerender article, the Prerender article
+                should receive a basic description of
+                prerendering in Blazor apps. -->
 
 :::moniker range=">= aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. <!-- For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
+By default, components are prerendered on the server before the client connection to the server is established. <!-- For more information, see <xref:blazor/components/prerender>. -->
 
 :::moniker-end
 
@@ -1169,7 +1155,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Closure of circuits when there are no remaining interactive server components
+## Closure of circuits when there are no remaining Interactive Server components
 
 [!INCLUDE[](~/blazor/includes/closure-of-circuits.md)]
 
@@ -1180,8 +1166,6 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 [!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
 ## Additional server-side resources
-
-<!-- UPDATE 8.0 Cross-link updates -->
 
 * [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:signalr/introduction>

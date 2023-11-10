@@ -47,7 +47,7 @@ Blazor Web App:
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
-* Place static server rendering options in the `ssr` property.
+* Place Static Server rendering options in the `ssr` property.
 * Place server-side Blazor-SignalR circuit options in the `circuit` property.
 * Place client-side WebAssembly options in the `webAssembly` property.
 
@@ -118,9 +118,9 @@ For Blazor Web Apps:
 * `beforeWebStart(options)`: Called before the Blazor Web App starts. For example, `beforeWebStart` is used to customize the loading process, logging level, and other options. Receives the Blazor Web options (`options`).
 * `afterWebStarted(blazor)`: Called after all `beforeWebStart` promises resolve. For example, `afterWebStarted` can be used to register Blazor event listeners and custom event types. The Blazor instance is passed to `afterWebStarted` as an argument (`blazor`).
 * `beforeServerStart(options, extensions)`: Called before the first Server runtime is started. Receives SignalR circuit start options (`options`) and any extensions (`extensions`) added during publishing.
-* `afterServerStarted(blazor)`: Called after the first interactive Server runtime is started.
-* `beforeWebAssemblyStart(options, extensions)`: Called before the interactive WebAssembly runtime is started. Receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
-* `afterWebAssemblyStarted(blazor)`: Called after the interactive WebAssembly runtime is started.
+* `afterServerStarted(blazor)`: Called after the first Interactive Server runtime is started.
+* `beforeWebAssemblyStart(options, extensions)`: Called before the Interactive WebAssembly runtime is started. Receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
+* `afterWebAssemblyStarted(blazor)`: Called after the Interactive WebAssembly runtime is started.
 
 > [!NOTE]
 > Legacy JS initializers (`beforeStart`, `afterStarted`) are ***not*** invoked by default in a Blazor Web App. You can enable the legacy initializers to run with the `enableClassicInitializers` option. However, legacy initializer execution is unpredictable.
@@ -569,8 +569,6 @@ The default round progress indicator is implemented in HTML in the `wwwroot/inde
 ```
 
 To review the project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
-
-<!-- UPDATE 8.0 Check if the project name changes for release -->
 
 * [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/index.html)
 * [`app.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/css/app.css)

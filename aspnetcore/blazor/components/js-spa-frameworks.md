@@ -51,10 +51,6 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 * In a Blazor Web App app, modify the call to `AddInteractiveServerComponents` in the server-side `Program` file:
 
-    <!-- UPDATE 8.0 HOLD
-     <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
-    -->
-
   ```csharp
   builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents(options =>
@@ -232,15 +228,23 @@ Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](h
 
 ### Blazor Web App registration
 
-To register a root component as a custom element in a Blazor Web App, modify the call to `AddInteractiveServerComponents` in the server-side `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+Take the following steps to register a root component as a custom element in a Blazor Web App.
 
-<!-- UPDATE 8.0 HOLD
-  <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
--->
+Add the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace to the top of the server-side `Program` file:
 
-<!-- UPDATE 8.0 Per PU issue https://github.com/dotnet/aspnetcore/issues/42329 and
-     PR https://github.com/dotnet/aspnetcore/pull/42314.
-     Check that this compiles under Pre7. -->
+```csharp
+using Microsoft.AspNetCore.Components.Web;
+```
+
+Add a namespace for the app's components. In the following example, the app's namespace is `BlazorSample` and the components are located in the `Components/Pages` folder:
+
+```csharp
+using BlazorSample.Components.Pages;
+```
+
+Modify the call to `AddInteractiveServerComponents` to specify the custom element with `RegisterCustomElement` on the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents> circuit option. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+
+
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -250,16 +254,27 @@ builder.Services.AddRazorComponents()
     });
 ```
 
-> [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) at the top of the server-side `Program` file.
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ### Blazor Server registration
 
-To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+Take the following steps to register a root component as a custom element in a Blazor Server app.
+
+Add the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace to the top of the `Program` file:
+
+```csharp
+using Microsoft.AspNetCore.Components.Web;
+```
+
+Add a namespace for the app's components. In the following example, the app's namespace is `BlazorSample` and the components are located in the `Pages` folder:
+
+```csharp
+using BlazorSample.Pages;
+```
+
+Modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. Specify the custom element with `RegisterCustomElement` on the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents> circuit option. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 ```csharp
 builder.Services.AddServerSideBlazor(options =>
@@ -268,23 +283,31 @@ builder.Services.AddServerSideBlazor(options =>
 });
 ```
 
-> [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) at the top of the `Program` file.
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
 ### Blazor WebAssembly registration
 
-To register a root component as a custom element in a Blazor WebAssembly app, call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+Take the following steps to register a root component as a custom element in a Blazor WebAssembly app.
+
+Add the <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> namespace to the top of the `Program` file:
+
+```csharp
+using Microsoft.AspNetCore.Components.Web;
+```
+
+Add a namespace for the app's components. In the following example, the app's namespace is `BlazorSample` and the components are located in the `Pages` folder:
+
+```csharp
+using BlazorSample.Pages;
+```
+
+Call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents>. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 ```csharp
 builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 ```
-
-> [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) at the top of the client-side `Program` file.
 
 ### Use the registered custom element
 
@@ -360,10 +383,6 @@ Supported parameter types:
 Register a root component as a custom element:
 
 * In a Blazor Server app, modify the call to `AddInteractiveServerComponents` in the `Program` file:
-
-<!-- UPDATE 8.0 HOLD
-  <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
--->
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>

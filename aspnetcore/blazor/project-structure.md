@@ -24,7 +24,7 @@ The Blazor Web App project template provides a single starting point for using R
 
 If both the WebAssembly and Server render modes are selected on app creation, the project template uses the Auto render mode. The automatic rendering mode initially uses the Server render mode while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, automatic render mode (Auto) switches to the WebAssembly render mode.
 
-By default, the Blazor Web App template enables both static and interactive server rendering using a single project. If you also enable interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
+By default, the Blazor Web App template enables both Static and Interactive Server rendering using a single project. If you also enable Interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or Auto render modes must be built from the client project.
 
 For more information, see <xref:blazor/components/render-modes>.
 
@@ -58,15 +58,8 @@ For more information, see <xref:blazor/components/render-modes>.
   * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the server project containing the app's public static assets.
 
   * `Program.cs` file: The server project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
-    * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. `AddInteractiveServerComponents` adds services to support rendering interactive server components. `AddInteractiveWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
+    * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. `AddInteractiveServerComponents` adds services to support rendering Interactive Server components. `AddInteractiveWebAssemblyComponents` adds services to support rendering Interactive WebAssembly components.
     * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`). `AddInteractiveServerRenderMode` configures the Server render mode for the app. `AddInteractiveWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
-
-<!-- UPDATE 8.0 HOLD
-  <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
-  <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>
-  <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A>
-  <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A>
--->
 
   * App settings files (`appsettings.Development.json`, `appsettings.json`): Provide [configuration settings](xref:blazor/fundamentals/configuration) for the server project.
 

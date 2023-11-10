@@ -45,13 +45,8 @@ Services for Razor components are added by calling <xref:Microsoft.Extensions.De
 
 Component builder extensions:
 
-* `AddInteractiveServerComponents` adds services to support rendering interactive server components.
-* `AddInteractiveWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
-
-<!-- UPDATE 8.0 HOLD
-     <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>
-     <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>
--->
+* `AddInteractiveServerComponents` adds services to support rendering Interactive Server components.
+* `AddInteractiveWebAssemblyComponents` adds services to support rendering Interactive WebAssembly components.
 
 <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
 
@@ -59,11 +54,6 @@ Endpoint convention builder extensions:
 
 * `AddInteractiveServerRenderMode` configures the Server render mode for the app.
 * `AddInteractiveWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
-
-<!-- UPDATE 8.0 HOLD
-    <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder.AddInteractiveServerRenderMode%2A>
-    <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A>
--->
 
 > [!NOTE]
 > For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
@@ -92,7 +82,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode();
 ```
 
-Example 3: The following `Program` file API adds services and configuration for enabling the interactive Server, WebAssembly, and Auto render modes:
+Example 3: The following `Program` file API adds services and configuration for enabling the Interactive Server, WebAssembly, and Auto render modes:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -342,7 +332,7 @@ Render modes propagate down the component hierarchy.
 Rules for applying render modes:
 
 * The default render mode is Static. 
-* The interactive Server (`InteractiveServer`), WebAssembly (`InteractiveWebAssembly`), and automatic (`InteractiveAuto`) render modes can be used from a Static component, including using different render modes for sibling components. 
+* The Interactive Server (`InteractiveServer`), WebAssembly (`InteractiveWebAssembly`), and automatic (`InteractiveAuto`) render modes can be used from a Static component, including using different render modes for sibling components. 
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
@@ -504,7 +494,7 @@ The following component results in a runtime error when the component is rendere
 
 <span aria-hidden="true">❌</span> **Error**:
 
-> :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by interactive server-side rendering.":::
+> :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
 
 ## Set the render mode for the entire app
 
@@ -546,9 +536,9 @@ To enable root-level interactivity when creating a Blazor Web App:
 
 For more information, see <xref:blazor/tooling>.
 
-## Discover components from additional assemblies for static server rendering
+## Discover components from additional assemblies for Static Server rendering
 
-Configure additional assemblies to use for discovering routable Razor components for static server rendering using the `AddAdditionalAssemblies` method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+Configure additional assemblies to use for discovering routable Razor components for Static Server rendering using the `AddAdditionalAssemblies` method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
 The following example includes the assembly of the `DifferentAssemblyCounter` component:
 
@@ -557,7 +547,7 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(DifferentAssemblyCounter).Assembly);
 ```
 
-## Closure of circuits when there are no remaining interactive server components
+## Closure of circuits when there are no remaining Interactive Server components
 
 [!INCLUDE[](~/blazor/includes/closure-of-circuits.md)]
 
@@ -565,7 +555,7 @@ app.MapRazorComponents<App>()
 
 The `@rendermode` directive takes a single parameter that's a static instance of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>. The `@rendermode` directive attribute can take any render mode instance, static or not. The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Web.RenderMode> static class with some predefined render modes for convenience, but you can create your own.
 
-Consider the following example that creates a shorthand interactive server render mode without prerendering:
+Consider the following example that creates a shorthand Interactive Server render mode without prerendering:
 
 ```csharp
 public static IComponentRenderMode InteractiveServerWithoutPrerendering { get; } = 

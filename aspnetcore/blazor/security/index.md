@@ -650,9 +650,7 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 Not authorized.
 ```
 
-<!-- UPDATE 8.0 Confirm this is still true for a WASM app at RC2 -->
-
-An app created from the client-side Blazor project template with authentication enabled includes a `RedirectToLogin` component, which is positioned in the `<NotAuthorized>` content of the Blazor's router. When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
+An app created from the Blazor WebAssembly project template with authentication enabled includes a `RedirectToLogin` component, which is positioned in the `<NotAuthorized>` content of the Blazor's router. When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
 
 ## Procedural logic
 
