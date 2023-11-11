@@ -327,6 +327,8 @@ Route constraints also work with [optional parameters](#route-parameters). In th
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Routing with URLs that contain dots
 
 A ***server-side*** default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the relative URL `/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](xref:mvc/views/razor#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
@@ -335,9 +337,9 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Example.razor`:
 
-<!-- UPDATE 8.0 Might want to change the name of this to RoutingExample component -->
+:::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/routing/Example.razor" highlight="1":::
 
@@ -361,19 +363,6 @@ Consider the following `Example` component that can receive a route parameter fr
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Will this be recast with endpoint config 
-     provided by AddInteractiveServerRenderMode? -->
-
-For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in the `Program` file:
-
-```csharp
-app.MapFallbackToPage("/example/{param?}", "/");
-```
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in the `Program` file:
@@ -387,6 +376,8 @@ To configure a Blazor Server app to route the request with a dot in the `param` 
 ```csharp
 app.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
+
+For more information, see <xref:fundamentals/routing>.
 
 :::moniker-end
 
@@ -408,9 +399,9 @@ To configure a Blazor Server app to route the request with a dot in the `param` 
 endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
-:::moniker-end
-
 For more information, see <xref:fundamentals/routing>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -1587,9 +1578,6 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
-
-<!-- UPDATE 8.0 If there are fallback-route concepts to describe for
-     >=8.0 bits, this content should be addressed -->
 
 The typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app.
 
