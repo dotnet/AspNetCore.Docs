@@ -759,7 +759,7 @@ In the component definition:
 > @using static Microsoft.AspNetCore.Components.Web.RenderMode
 > ```
 >
-> Without the preceding directive, components must specify the static <xref:Microsoft.AspNetCore.Components.Web.RenderMode> class in `@rendermode` syntax:
+> Without the preceding directive, components must specify the static <xref:Microsoft.AspNetCore.Components.Web.RenderMode> class in `@rendermode` syntax explicitly:
 >
 > ```razor
 > <Dialog @rendermode="RenderMode.InteractiveServer" />
