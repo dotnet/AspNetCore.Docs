@@ -151,7 +151,7 @@ To disable prerendering for a *component instance*, pass the `prerender` flag wi
 * `<... @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />`
 * `<... @rendermode="new InteractiveAutoRenderMode(prerender: false)" />`
 
-To disable prerendering in a *component definition*, pass the `prerender` flag with a value of `false` to the render mode:
+To disable prerendering in a *component definition*:
 
 * `@rendermode @(new InteractiveServerRenderMode(prerender: false))`
 * `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
