@@ -153,18 +153,9 @@ To disable prerendering for a *component instance*, pass the `prerender` flag wi
 
 To disable prerendering in a *component definition*, pass the `prerender` flag with a value of `false` to the render mode:
 
-<!-- UPDATE 8.0 Should we be doing this the way that the PU
-                repo does it?
-
-* `@rendermode @(new InteractiveServerRenderMode(prerender: false))
-* `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
-* `@rendermode @(new InteractiveAutoRenderMode(prerender: false))
-
--->
-
-* `@attribute [RenderModeInteractiveServer(prerender: false)]`
-* `@attribute [RenderModeInteractiveWebAssembly(prerender: false)]`
-* `@attribute [RenderModeInteractiveAuto(prerender: false)]`
+* `@rendermode @(new InteractiveServerRenderMode(prerender: false))`
+* `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
+* `@rendermode @(new InteractiveAutoRenderMode(prerender: false))`
 
 To disable prerendering for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy **that isn't a root component**.
 
