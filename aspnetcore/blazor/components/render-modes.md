@@ -145,13 +145,13 @@ Prerendering is enabled by default for interactive components.
 
 <!-- UPDATE 8.0 Are there any simplifications for these at RTM? -->
 
-To disable prerendering for a component instance, pass the `prerender` flag with a value of `false` to the render mode:
+To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
 
 * `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`
 * `<... @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />`
 * `<... @rendermode="new InteractiveAutoRenderMode(prerender: false)" />`
 
-To disable prerendering in a component definition, pass the `prerender` flag with a value of `false` to the render mode:
+To disable prerendering in a *component definition*, pass the `prerender` flag with a value of `false` to the render mode:
 
 <!-- UPDATE 8.0 Should we be doing this the way that the PU
                 repo does it?
@@ -166,7 +166,9 @@ To disable prerendering in a component definition, pass the `prerender` flag wit
 * `@attribute [RenderModeInteractiveWebAssembly(prerender: false)]`
 * `@attribute [RenderModeInteractiveAuto(prerender: false)]`
 
-To disable prerendering for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template. The following example sets the app's render mode to Interactive Server with prerendering disabled:
+To disable prerendering for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy **that isn't a root component**.
+
+This is important, because root components can't be interactive. Hence, the render mode is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template. The following example sets the app's render mode to Interactive Server with prerendering disabled:
 
 ```razor
 <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
