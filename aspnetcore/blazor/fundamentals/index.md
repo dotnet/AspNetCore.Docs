@@ -28,7 +28,7 @@ The term *rendering* means to produce the HTML markup that browsers display.
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Static versus interactive concepts
+## Static and interactive rendering concepts
 
 Razor components are either *statically* rendered or *interactively* rendered.
 
