@@ -26,6 +26,20 @@ The term *rendering* means to produce the HTML markup that browsers display.
 
 *Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank. Prerendering is always followed by final rendering, either on the server or the client.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Static versus interactive concepts
+
+Razor components are either *statically* rendered or *interactively* rendered.
+
+*Static* or *static rendering* means that the component is rendered without the capacity for interplay between the user and .NET/C# code of the component. JavaScript and HTML DOM events remain unaffected, but any events associated with .NET running either on the server or in the browser with WebAssembly aren't operational.
+
+*Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via a component's C# code. The .NET events are either processed on the server or in the browser on the client.
+
+More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/rendering-modes> article, later in the Blazor documentation.
+
+:::moniker-end
+
 ## Razor components
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
@@ -50,7 +64,33 @@ The following is an example counter component and part of an app created from a 
 
 `Counter.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
