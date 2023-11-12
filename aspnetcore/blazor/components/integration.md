@@ -81,7 +81,7 @@ You can supply a default layout with the <xref:Microsoft.AspNetCore.Components.R
 
 For more information, see <xref:blazor/components/layouts#apply-a-default-layout-to-an-app>.
 
-Add an `App` component to the app, which serves as the root component for other components.
+Add an `App` component to the app, which serves as the root component, which is the first component the app loads.
 
 `Components/App.razor`:
 
@@ -154,7 +154,7 @@ In the ASP.NET Core project's `Program` file:
   app.UseAntiforgery();
   ```
 
-* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component. Place the following code before the the line that calls `app.Run`:
+* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component (the first component loaded). Place the following code before the the line that calls `app.Run`:
 
   ```csharp
   app.MapRazorComponents<App>();
@@ -430,7 +430,7 @@ builder.Services.AddRazorComponents()
 
 For more information on adding support for Interactive Server and WebAssembly components, see <xref:blazor/components/render-modes>.
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component (the first component loaded). By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure the Server render mode for the app:
 
 ```csharp
 app.MapRazorComponents<App>()

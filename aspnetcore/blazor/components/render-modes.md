@@ -18,6 +18,9 @@ uid: blazor/components/render-modes
 
 This article explains control of Razor component rendering in Blazor Web Apps, either at compile time or runtime.
 
+> [!NOTE]
+> This guidance doesn't apply to standalone Blazor WebAssembly apps.
+
 ## Render modes
 
 Every component in a Blazor Web App adopts a *render mode* to determine the hosting model that it uses, where it's rendered, and whether or not it's interactive.
@@ -31,7 +34,7 @@ Interactive Server | Interactive server rendering using Blazor Server | Server |
 Interactive WebAssembly | Interactive client rendering using Blazor WebAssembly | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 Interactive Auto | Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 
-Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article. 
+Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article.
 
 The following examples demonstrate setting the component's render mode with a few basic Razor component features.
 
@@ -48,7 +51,7 @@ Component builder extensions:
 * `AddInteractiveServerComponents` adds services to support rendering Interactive Server components.
 * `AddInteractiveWebAssemblyComponents` adds services to support rendering Interactive WebAssembly components.
 
-<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
+<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`).
 
 Endpoint convention builder extensions:
 
@@ -141,6 +144,8 @@ Technically, `@rendermode` is both a Razor *directive* and a Razor *directive at
 
 ## Prerendering
 
+*Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
+
 Prerendering is enabled by default for interactive components.
 
 <!-- UPDATE 8.0 Are there any simplifications for these at RTM? -->
@@ -157,9 +162,12 @@ To disable prerendering in a *component definition*:
 * `@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))`
 * `@rendermode @(new InteractiveAutoRenderMode(prerender: false))`
 
-To disable prerendering for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy **that isn't a root component**.
+To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
 
-This is important, because root components can't be interactive. Hence, the render mode is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template. The following example sets the app's render mode to Interactive Server with prerendering disabled:
+> [!NOTE]
+> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, prerendering can't be disabled directly by the `App` component.
+
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
 
 ```razor
 <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
@@ -427,7 +435,12 @@ The following component results in a runtime error when the component is rendere
 
 ## Set the render mode for the entire app
 
-To set the render mode for the entire app, indicate the render mode at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
+To set the render mode for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
+
+> [!NOTE]
+> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, the render mode for the entire app can't be set directly by the `App` component.
+
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`):
 
 ```razor
 <Routes @rendermode="InteractiveServer" />
@@ -441,10 +454,7 @@ You also typically must set the same interactive render mode on the `HeadOutlet`
 <HeadOutlet @rendermode="InteractiveServer" />
 ```
 
-> [!NOTE]
-> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times.
-
-To enable root-level interactivity when creating a Blazor Web App:
+To enable global interactivity when creating a Blazor Web App:
 
 * Visual Studio: Set the **Interactivity location** dropdown list to **Global**.
 * .NET CLI: Use the `-ai|--all-interactive` option.

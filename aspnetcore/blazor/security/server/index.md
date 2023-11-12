@@ -689,9 +689,12 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 The following simplifies at RTM -->
+* Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component.
 
-* Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
+  > [!NOTE]
+  > Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, prerendering can't be disabled directly by the `App` component.
+
+  For apps based on the Blazor Web App project template, prerendering is typically disabled where the `Routes` component is used in the `App` component (`Components/App.razor`) :
 
   ```razor
   <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
