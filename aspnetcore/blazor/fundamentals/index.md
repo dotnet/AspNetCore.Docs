@@ -32,9 +32,9 @@ The term *rendering* means to produce the HTML markup that browsers display.
 
 Razor components are either *statically* rendered or *interactively* rendered.
 
-*Static* or *static rendering* is a server-side scenario that means the component is rendered without the capacity for interplay between the user and .NET/C# code. JavaScript and HTML DOM events remain unaffected, but no user events on the client can be associated with .NET running on the server.
+*Static* or *static rendering* is a server-side scenario that means the component is rendered without the capacity for interplay between the user and .NET/C# code. JavaScript and HTML DOM events remain unaffected, but no user events on the client can be processed with .NET running on the server.
 
-*Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via a component's C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
+*Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
 
 More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article, later in the Blazor documentation.
 
