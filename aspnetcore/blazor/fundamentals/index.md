@@ -36,7 +36,7 @@ Razor components are either *statically* rendered or *interactively* rendered.
 
 *Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
 
-More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article, later in the Blazor documentation.
+More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article later in the Blazor documentation.
 
 :::moniker-end
 
