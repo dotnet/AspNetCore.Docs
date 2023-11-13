@@ -1,6 +1,6 @@
 ---
 title: Use Identity to secure a Web API backend for SPAs
-author: jeremy-likness
+author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
@@ -38,7 +38,7 @@ Install the following NuGet packages:
 
 For the quickest way to get started, use the in-memory database.
 
-Change the database later to SQLite or SQL Server to save user data between sessions when testing or for production use. That introduces some complexity compared to in-memory, as it requires the database to be created through [migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](https://learn.microsoft.com/ef/core/get-started/overview/first-app).
+Change the database later to SQLite or SQL Server to save user data between sessions when testing or for production use. That introduces some complexity compared to in-memory, as it requires the database to be created through [migrations](/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app).
 
 Install these packages by using the [NuGet package manager in Visual Studio](/nuget/consume-packages/install-use-packages-visual-studio) or the [dotnet add package](/dotnet/core/tools/dotnet-add-package) CLI command.
 
@@ -215,7 +215,7 @@ A quick way to test authentication is to use the in-memory database and the Swag
   }
   ```
 
-  The errors are returned in the [ProblemDetails](https://learn.microsoft.com/aspnet/core/web-api/handle-errors?view=aspnetcore-8.0#validation-failure-error-response) format so the client can easily parse them and display validation errors as needed.
+  The errors are returned in the [ProblemDetails](/aspnet/core/web-api/handle-errors#validation-failure-error-response) format so the client can easily parse them and display validation errors as needed.
 
   A successful registration results in a `200 - OK` response.
 
@@ -235,8 +235,6 @@ A quick way to test authentication is to use the in-memory database and the Swag
 * Replace "string" with the email address and password that you used to register, and then select **Execute**.
 
   A successful login results in a `200 - OK` response with a cookie in the response header.
-
-  ![Swagger UI with cookie](~/security/authentication/identity-api-authorization/_static/cookie.png)
 
   The cookie is automatically sent with the request and the endpoint is authorized.
 
@@ -277,8 +275,8 @@ To enable token-based authentication for the login API:
 
 For more information, see the following resources:
 
-* [Choose the right ASP.NET Core identity solution](https://learn.microsoft.com/aspnet/core/security/how-to-choose-identity-solution)
-* [List of identity management solutions for ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/identity-management-solutions)
+* [Choose the right ASP.NET Core identity solution](/aspnet/core/security/how-to-choose-identity-solution)
+* [List of identity management solutions for ASP.NET Core](/aspnet/core/security/identity-management-solutions)
 
 <!--- TODO link to the Angular sample app-->
 :::moniker-end
