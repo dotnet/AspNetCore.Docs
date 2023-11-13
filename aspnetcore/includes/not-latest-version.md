@@ -5,6 +5,7 @@
 
 :::moniker-end
 
+<!--
 :::moniker range="> aspnetcore-8.0"
 
 > [!IMPORTANT]
@@ -13,3 +14,4 @@
 > For the current release, see the [.NET 8 version of this article](?view=aspnetcore-8.0&preserve-view=true).
 
 :::moniker-end
+-->
