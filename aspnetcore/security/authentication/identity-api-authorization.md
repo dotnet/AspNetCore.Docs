@@ -111,7 +111,7 @@ To save user data between sessions when testing or for production use, change th
 
 ### Use EF Core and expose endpoints
 
-Before the call to `builder.Build()`, configure Identity to use the EF Core database by calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>. Call <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A> to expose the Identity endpoints.
+Before the call to `builder.Build()`, configure Identity to use the EF Core database by calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>. Call <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A> to activate the Identity APIs.
 
 ```csharp
 builder.Services.AddIdentityCore<MyUser>()
@@ -166,7 +166,7 @@ A quick way to test authentication is to use the in-memory database and the Swag
 * Run the app and navigate to the Swagger UI.
 * Expand a secured endpoint, such as `/weatherforecast` in a project created by the web API template.
 * Select  **Try it out**.
-* Select **Execute**. The response is `404 - not found`. The 404 status code is intended to be more secure than a `401 - not authorized` response because it doesn't reveal that the endpoint exists.
+* Select **Execute**. The response is `404 - not found`. The 404 status code is returned because by default an unauthenticated user is redirected to a server-side login page that isn't implemented for this example. It is possible to override the login URL with a call to `services.ConfigureApplicationCookie(opts => opts.LoginPath = "/custompath");`
 
   ![Swagger UI with 404](~/security/authentication/identity-api-authorization/_static/swagger404.png)
 
