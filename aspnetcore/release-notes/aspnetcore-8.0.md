@@ -18,13 +18,21 @@ This article highlights the most significant changes in ASP.NET Core 8.0 with li
 With the release of .NET 8, Blazor is a full-stack web UI framework for developing apps that render content at either the component or page level with:
 
 * Static server rendering to generate static HTML.
-* Interactive server rendering using the Blazor Server hosting model.
-* Interactive client rendering using the Blazor WebAssembly hosting model.
-* Automatic interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates. Automatic rendering usually provides the fastest app startup experience.
+* Interactive Server rendering.
+* Interactive WebAssembly rendering.
+* Interactive Auto (automatic) rendering initially uses the server-side ASP.NET Core runtime for content rendering and interactivity. The .NET WebAssembly runtime on the client is used for subsequent rendering and interactivity after the Blazor bundle is downloaded and the WebAssembly runtime activates. Interactive Auto rendering usually provides the fastest app startup experience.
 
 Interactive render modes also prerender content by default.
 
-For more information, see <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see the following articles:
+
+* <xref:blazor/fundamentals/index?view=aspnetcore-8.0&preserve-view=true>: New sections on rendering and static/interactive concepts appear at the top of the article.
+* <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>
+* <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true>
+* <xref:blazor/js-interop/ssr?view=aspnetcore-8.0&preserve-view=true>
+* **Migration coverage**: <xref:migration/70-to-80#blazor>
+
+Examples throughout the Blazor documentation have been updated for use in Blazor Web Apps. Blazor Server examples remain in content versioned for .NET 7 or earlier. 
 
 ### New Blazor Web App template
 
@@ -39,6 +47,13 @@ For more information on the new Blazor Web App template, see the following artic
 
 * <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
 * <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
+
+### Split of prerendering and integration guidance
+
+For prior releases of .NET, we covered prerendering and integration in a single article. To simplify and focus our coverage, we've split the subjects into the following new articles, which have been updated for .NET 8:
+
+* <xref:blazor/components/prerender?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
+* <xref:blazor/components/integration?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
 
 ### Persist component state in a Blazor Web App
 
@@ -60,7 +75,10 @@ Static server rendering typically performs a full page refresh whenever the user
 
 New enhanced navigation API allows you to refresh the current page by calling `NavigationManager.Refresh(bool forceLoad = false)`.
 
-For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling>.
+For more information, see the following sections of the Blazor *Routing* article:
+
+* [Enhanced navigation and form handling](xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
+* [Location changes](xref:blazor/fundamentals/routing#location-changes?view=aspnetcore-8.0&preserve-view=true#location-changes)
 
 ### Streaming rendering
 
@@ -79,7 +97,9 @@ Blazor now supports injecting keyed services using the `[Inject]` attribute. Key
 public IMyService MyService { get; set; }
 ```
 
-The `@inject` Razor directive doesn't support keyed services yet, but work is tracked to improve this for a future release.
+The `@inject` Razor directive doesn't support keyed services for this release, but work is tracked by [Update `@inject` to support keyed services (dotnet/razor #9286)](https://github.com/dotnet/razor/issues/9286) for a future .NET release.
+
+For more information, see <xref:blazor/fundamentals/dependency-injection?view=aspnetcore-8.0&preserve-view=true#inject-keyed-services-into-components>.
 
 ### Access `HttpContext` as a cascading parameter
 
@@ -109,6 +129,8 @@ For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&p
 ### Error page support
 
 Blazor Web Apps can define a custom error page for use with the [ASP.NET Core exception handling middleware](xref:fundamentals/error-handling#exception-handler-page). The Blazor Web App project template includes a default error page (`Components/Pages/Error.razor`) with similar content to the one used in MVC and Razor Pages apps. When the error page is rendered in response to a request from Exception Handling Middleware, the error page always renders as a static server component, even if interactivity is otherwise enabled.
+
+[`Error.razor` in 8.0 reference source](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Pages/Error.razor)
 
 ### QuickGrid
 
@@ -166,6 +188,9 @@ For more information, see the following articles:
 Webcil is web-friendly packaging of .NET assemblies that removes content specific to native Windows execution to avoid issues when deploying to environments that block the download or use of `.dll` files. Webcil is enabled by default for Blazor WebAssembly apps.
 
 For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
+
+> [!NOTE]
+> Prior to the release of .NET 8, guidance in <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-8.0&preserve-view=true> addresses environments that block clients from downloading and executing DLLs with a multipart bundling approach. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. Multipart bundling using the experimental NuGet package described by the *WebAssembly deployment layout* article isn't supported for Blazor apps in .NET 8 or later. For more information, see [Enhance `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package to define a custom bundle format (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978#issuecomment-1439283893). If you desire to continue using the multipart bundle package in .NET 8 or later apps, you can use the guidance in the article to create your own multipart bundling NuGet package, but it won't be supported by Microsoft.
 
 ### Blazor WebAssembly debugging improvements
 
@@ -244,33 +269,36 @@ In the following example:
 
 ### Blazor Identity UI
 
-Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*. You can either select the option for Individual Accounts in the new project dialog for Blazor Web Apps from Visual Studio or pass the option from the command line when you create a new project:
+Blazor supports generating a full Blazor-based Identity UI when you choose the authentication option for *Individual Accounts*. You can either select the option for Individual Accounts in the new project dialog for Blazor Web Apps from Visual Studio or pass the `-au|--auth` option set to `Individual` from the command line when you create a new project.
 
-```dotnetcli
-dotnet new blazor -au Individual
-```
+For more information, see the following resources:
 
-In Visual Studio, the Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite by default and includes a SQLite database for Identity.
+* <xref:blazor/security/server/index?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts>
+* [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
-The template handles the following:
+### Secure Blazor WebAssembly with ASP.NET Core Identity
 
-* Adds the Identity-related packages and dependencies
-* References the Identity packages in `_Imports.razor`
-* Creates a custom Identity class called `ApplicationUser'
-* Creates and registers an EFCore DbContext
-* Adds and routes the built-in Identity endpoints
-* Adds all Identity UI components and related logic
-* Includes Identity validation and business logic
+The Blazor documentation hosts a new article and sample app to cover securing a standalone Blazor WebAssembly app with ASP.NET Core Identity.
 
-The UI components also support advanced Identity concepts, such as multifactor authentication using a third-party app and email confirmations.
+For more information, see the following resources:
 
-Authentication samples for other app types are in development, including Blazor WebAssembly and single page apps (Angular, React).
+* <xref:blazor/security/webassembly/standalone-with-identity?view=aspnetcore-8.0&preserve-view=true>
+* [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
-## Blazor Server with Yarp routing
+### Blazor Server with Yarp routing
 
 Routing and deep linking for Blazor Server with Yarp work correctly in .NET 8.
 
 For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-routing-workaround>.
+
+### Blazor Hybrid
+
+The following articles document changes for Blazor Hybrid in .NET 8:
+
+* <xref:blazor/hybrid/troubleshoot?view=aspnetcore-8.0&preserve-view=true>: A new article explains how to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging.
+* <xref:blazor/hybrid/tutorials/maui?view=aspnetcore-8.0&preserve-view=true>: The project template name **:::no-loc text=".NET MAUI Blazor":::** has changed to **:::no-loc text=".NET MAUI Blazor Hybrid":::**.
+* <xref:blazor/hybrid/index?view=aspnetcore-8.0&preserve-view=true#access-scoped-services-from-native-ui>: `BlazorWebView` gains a `TryDispatchAsync` method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as `NavigationManager`.
+* <xref:blazor/hybrid/routing?view=aspnetcore-8.0&preserve-view=true&pivots=maui#get-or-set-a-path-for-initial-navigation>: Use the `BlazorWebView.StartPath` property to get or set the path for initial navigation within the Blazor navigation context when the Razor component is finished loading.
 
 ## SignalR
 
