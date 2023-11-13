@@ -24,7 +24,6 @@ The steps shown in this article add authentication and authorization to an ASP.N
 * Targets `net8.0` or later.
 * Includes OpenAPI support.
 * Can be either minimal API or controller-based API.
-* Does not already have authentication and authorization code.
 
 ## Install NuGet packages
 
@@ -42,92 +41,67 @@ Change the database later to SQLite or SQL Server to save user data between sess
 
 Install these packages by using the [NuGet package manager in Visual Studio](/nuget/consume-packages/install-use-packages-visual-studio) or the [dotnet add package](/dotnet/core/tools/dotnet-add-package) CLI command.
 
-## Create an `IdentityUser`
-
-Identity allows you to customize both the user information and the user database. To get started with a basic example, just use the default user information and database.
-
-Add to the project a class named `MyUser` that inherits from <xref:Microsoft.AspNetCore.Identity.IdentityUser>:
-
-```csharp
-using Microsoft.AspNetCore.Identity;
-
-public class MyUser : IdentityUser
-{
-}
-```
-
 ## Create an `IdentityDbContext`
 
-Add a class named `AppDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
+Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
 
 ```csharp
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
-class AppDbContext(DbContextOptions<AppDbContext> options) :
-    IdentityDbContext<MyUser>(options)
+public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
+        base(options) { }
 }
 ```
 
 The code shown provides a special constructor that makes it possible to configure the database for different environments.
 
-## *Program.cs* changes
-
-Add the following using statements to *Program.cs*:
+Add one or more of the following `using` directives as needed when adding the code shown in these steps.
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 ```
 
-### Configure cookie-based authentication
+## Configure the EF Core context
 
-in *Program.cs* after the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)> and <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> to set up cookie-based authentication:
-
-```csharp
-builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddIdentityCookies();
-```
-
-### Enable authorization checks
-
-After the call to `AddIdentityCookies`, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)> to enable authorization checks:
+As noted earlier, the simplest way to get started is to use the in-memory database. With in-memory each run starts with a fresh database, and there's no need to use migrations. After the call to `WebApplication.CreateBuilder(args)`, add the following code to configure Identity to use an in-memory database:
 
 ```csharp
-builder.Services.AddAuthorizationBuilder();
-```
-
-### Configure the EF Core context
-
-As noted earlier, the simplest way to get started is to use the in-memory database. With in-memory each run starts with a fresh database, and there's no need to use migrations. Before the call to `builder.Build()`, add the following code to configure an in-memory database named `AppDb`:
-
-```csharp
-builder.Services.AddDbContext<AppDbContext>(
+builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseInMemoryDatabase("AppDb"));
 ```
 
-To save user data between sessions when testing or for production use, change the database to SQLite or SQL Server.
+To save user data between sessions when testing or for production use, change the database later to SQLite or SQL Server.
+    
+## Add Identity services to the container
 
-### Use EF Core and expose endpoints
-
-Before the call to `builder.Build()`, configure Identity to use the EF Core database by calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>. Call <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A> to expose the Identity endpoints.
-
-```csharp
-builder.Services.AddIdentityCore<MyUser>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddApiEndpoints();
-```
-
-### Map routes
-
-After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the identity endpoints:
+After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> to add services to the dependency injection (DI) container:
 
 ```csharp
-app.MapIdentityApi<MyUser>();
+builder.Services.AddAuthorization();
 ```
 
-### Secure endpoints
+## Activate Identity APIs
+
+After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
+
+```csharp
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+```
+
+By default, both cookies and proprietary tokens are activated. Cookies are issued if the `useCookies` query string parameter in the login endpoint is `true`.
+
+## Map Identity routes
+
+After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
+
+```csharp
+app.MapIdentityApi<IdentityUser>();
+```
+
+## Secure endpoints
 
 To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method on the `Map{Method}` call that defines the route. For example:
 
@@ -166,9 +140,7 @@ A quick way to test authentication is to use the in-memory database and the Swag
 * Run the app and navigate to the Swagger UI.
 * Expand a secured endpoint, such as `/weatherforecast` in a project created by the web API template.
 * Select  **Try it out**.
-* Select **Execute**. The response is `404 - not found`. The 404 status code is intended to be more secure than a `401 - not authorized` response because it doesn't reveal that the endpoint exists.
-
-  ![Swagger UI with 404](~/security/authentication/identity-api-authorization/_static/swagger404.png)
+* Select **Execute**. The response is `401 - not authorized`.
 
 ### Register and log in
 
@@ -260,16 +232,7 @@ For clients that don't support cookies, the login API provides a parameter to re
 
 The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-To enable token-based authentication for the login API:
-
-* In *Program.cs*, use the <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme> scheme:
-  
-  ```csharp
-  builder.Services.AddAuthentication(IdentityConstants.BearerScheme)
-      .AddBearerToken()
-  ```
-
-* Set the `useCookies` query string parameter to `false`.
+To use token-based authentication with the login API, set the `useCookies` query string parameter to `false`.
 
 ## See also
 
@@ -277,6 +240,11 @@ For more information, see the following resources:
 
 * [Choose the right ASP.NET Core identity solution](/aspnet/core/security/how-to-choose-identity-solution)
 * [List of identity management solutions for ASP.NET Core](/aspnet/core/security/identity-management-solutions)
+* [Sample Web API backend for SPAs](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/SimpleAuthCookiesAndTokens/SimpleAuthCookiesAndTokens)
+  The .http file shows token-based authentication. For example:
+  * Doesn't set `useCookies`
+  * Uses the Authorization header to pass the token
+  * Shows refresh to extend session without forcing the user to login again
 * [Sample Angular app that uses Identity to secure a Web API backend](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/ngIdentity)
 
 :::moniker-end
