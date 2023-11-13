@@ -277,8 +277,8 @@ For more information, see the following resources:
 
 * [Choose the right ASP.NET Core identity solution](/aspnet/core/security/how-to-choose-identity-solution)
 * [List of identity management solutions for ASP.NET Core](/aspnet/core/security/identity-management-solutions)
+* [Sample Angular app that uses Identity to secure a Web API backend](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/ngIdentity)
 
-<!--- TODO link to the Angular sample app-->
 :::moniker-end
 
 [!INCLUDE[](~/security/authentication/identity-api-authorization/includes/identity-api-authorization3-7.md)]
