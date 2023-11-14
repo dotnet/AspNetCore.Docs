@@ -1033,3 +1033,8 @@ For more information, see [IProblemDetailsService fallback](xref:fundamentals/mi
 
 ## gRPC
 -->
+
+## Additional resources
+
+* [ASP.NET Core annoucements and breaking changes (`aspnet/Annoucements` GitHub repository)](https://github.com/aspnet/Announcements/issues)
+* [.NET annoucements and breaking changes (`dotnet/Annoucements` GitHub repository)](https://github.com/dotnet/announcements/issues)
