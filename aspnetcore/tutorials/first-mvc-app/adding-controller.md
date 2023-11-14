@@ -11,6 +11,8 @@ ms.custom: contperf-fy21q3, engagement-fy23
 
 # Part 2, add a controller to an ASP.NET Core MVC app
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"

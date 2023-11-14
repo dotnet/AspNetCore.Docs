@@ -11,6 +11,8 @@ uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Pratik Khandelwal](https://twitter.com/K2Prk) and [Scott Addie](https://twitter.com/Scott_Addie)
 
 :::moniker range=">= aspnetcore-8.0"

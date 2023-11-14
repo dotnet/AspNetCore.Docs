@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"

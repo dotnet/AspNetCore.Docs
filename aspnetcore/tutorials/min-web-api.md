@@ -11,10 +11,10 @@ uid: tutorials/min-web-api
 
 # Tutorial: Create a minimal API with ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 <!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 

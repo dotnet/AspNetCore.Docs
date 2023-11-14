@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/search
 ---
 # Part 6, add search to ASP.NET Core Razor Pages
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"

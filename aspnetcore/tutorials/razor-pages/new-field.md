@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"
