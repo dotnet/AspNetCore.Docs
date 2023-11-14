@@ -46,16 +46,16 @@ For more information on the new Blazor Web App template, see the following artic
 * <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
 * <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
 
-### Blazor start changes for Blazor Web Apps
+### New JS initializers for Blazor Web Apps
 
 For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
 
 * `beforeWebStart` is used for tasks such as customizing the loading process, logging level, and other options.
 * `afterWebStarted` is used for tasks such as registering Blazor event listeners and custom event types.
 
-The preceding legacy JS initializers aren't invoked by default in a Blazor Web App. For Blazor Web Apps, a new set of startup functions are used: `beforeWebStart`, `afterWebStarted`, `beforeServerStart`, `afterServerStarted`, `beforeWebAssemblyStart`, and `afterWebAssemblyStarted`.
+The preceding legacy JS initializers aren't invoked by default in a Blazor Web App. For Blazor Web Apps, a new set of JS initializers are used: `beforeWebStart`, `afterWebStarted`, `beforeServerStart`, `afterServerStarted`, `beforeWebAssemblyStart`, and `afterWebAssemblyStarted`.
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true#javascript-initializers>.
 
 ### Split of prerendering and integration guidance
 
