@@ -20,7 +20,7 @@ Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by 
 
 ## Endpoints for registering, logging in, and logging out
 
-Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in a backend server-based web API to add JSON API endpoints for registering, logging in, and logging out users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
+Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in a backend API to add JSON API endpoints for registering, logging in, and logging out users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
 
 On the client, call the `/register` endpoint to register a user with their email address and password:
 
@@ -33,7 +33,7 @@ var result = await _httpClient.PostAsJsonAsync(
     });
 ```
 
-On the client, log in a user with cookie authentication using the `/login` endpoint with the `useCookies` query string set to `true`:
+On the client, log in a user with cookie authentication using the `/login` endpoint with `useCookies` query string set to `true`:
 
 ```csharp
 var result = await _httpClient.PostAsJsonAsync(
@@ -42,6 +42,14 @@ var result = await _httpClient.PostAsJsonAsync(
         email,
         password
     });
+```
+
+The backend server API establishes cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder:
+
+```csharp
+builder.Services
+    .AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddIdentityCookies();
 ```
 
 ## Token authentication
@@ -55,6 +63,14 @@ To use token-based authentication with the login API, set the `useCookies` query
 ```diff
 - /login?useCookies=true
 + /login?useCookies=false
+```
+
+Instead of the backend server API establishing cookie authentication with a call to `AddIdentityCookies` on the authentication builder, the server API sets up bearer token auth with the `AddBearerToken` extension method:
+
+```csharp
+builder.Services
+    .AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddBearerToken();
 ```
 
 ## Sample apps
@@ -146,7 +162,7 @@ The `Models` folder contains the app's models:
 
 The [`IAccountManagement` interface (`Identity/CookieHandler.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/IAccountManagement.cs) provides account management services.
 
-The [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) handles state for cookie-based authentication and provides account management service implementations described by the `IAccountManagement` interface. For more information, see <xref:blazor/security/index#authenticationstateprovider-service>.
+The [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) handles state for cookie-based authentication and provides account management service implementations described by the `IAccountManagement` interface. The `LoginAsync` method explicitly enables cookie authentication via the `useCookies` query string value of `true`.
 
 The [`CookieHandler` class (`Identity/CookieHandler.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieHandler.cs) ensures cookie credentials are sent with each request to the backend web API, which handles Identity and maintains the Identity data store.
 
@@ -186,4 +202,5 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 
 <!-- UPDATE 9.0 Drop the What's New blog post -->
 
-[What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/)
+* [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/)
+* [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
