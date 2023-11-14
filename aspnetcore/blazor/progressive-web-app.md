@@ -5,7 +5,7 @@ description: Learn how to build a Blazor Progressive Web Application (PWA) that 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/23/2023
+ms.date: 11/14/2023
 uid: blazor/progressive-web-app
 ---
 # ASP.NET Core Blazor Progressive Web Application (PWA)

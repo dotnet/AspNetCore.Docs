@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/20/2023
+ms.date: 11/14/2023
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components

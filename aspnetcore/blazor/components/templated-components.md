@@ -5,7 +5,7 @@ description: Learn how templated components can accept one or more UI templates 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/14/2023
 uid: blazor/components/templated-components
 ---
 # ASP.NET Core Blazor templated components
