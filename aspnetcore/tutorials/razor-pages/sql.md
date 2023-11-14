@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Joe Audette](https://twitter.com/joeaudette)
 
 :::moniker range=">= aspnetcore-8.0"

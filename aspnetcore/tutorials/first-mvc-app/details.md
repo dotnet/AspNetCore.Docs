@@ -11,6 +11,8 @@ uid: tutorials/first-mvc-app/details
 
 # Part 10, examine the Details and Delete methods of an ASP.NET Core app
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"

@@ -11,6 +11,8 @@ ms.custom: contperf-fy21q3, engagement-fy23
 
 # Part 4, add a model to an ASP.NET Core MVC app
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
 :::moniker range=">= aspnetcore-8.0"

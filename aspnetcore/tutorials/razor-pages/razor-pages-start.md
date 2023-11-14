@@ -11,6 +11,8 @@ uid: tutorials/razor-pages/razor-pages-start
 
 # Tutorial: Get started with Razor Pages in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"

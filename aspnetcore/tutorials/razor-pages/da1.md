@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/da1
 ---
 # Part 5, update the generated pages in an ASP.NET Core app
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
