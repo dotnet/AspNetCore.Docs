@@ -65,7 +65,7 @@ To use token-based authentication with the login API, set the `useCookies` query
 + /login?useCookies=false
 ```
 
-Instead of the backend server API establishing cookie authentication with a call to `AddIdentityCookies` on the authentication builder, the server API sets up bearer token auth with the `AddBearerToken` extension method:
+Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method:
 
 ```csharp
 builder.Services
