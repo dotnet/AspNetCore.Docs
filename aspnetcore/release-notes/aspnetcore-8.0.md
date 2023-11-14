@@ -28,8 +28,6 @@ For more information, see the following articles:
 
 * <xref:blazor/fundamentals/index?view=aspnetcore-8.0&preserve-view=true>: New sections on rendering and static/interactive concepts appear at the top of the article.
 * <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>
-* <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true>
-* <xref:blazor/js-interop/ssr?view=aspnetcore-8.0&preserve-view=true>
 * **Migration coverage**: <xref:migration/70-to-80#blazor>
 
 Examples throughout the Blazor documentation have been updated for use in Blazor Web Apps. Blazor Server examples remain in content versioned for .NET 7 or earlier. 
@@ -48,6 +46,17 @@ For more information on the new Blazor Web App template, see the following artic
 * <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
 * <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
 
+### New JS initializers for Blazor Web Apps
+
+For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
+
+* `beforeWebStart` is used for tasks such as customizing the loading process, logging level, and other options.
+* `afterWebStarted` is used for tasks such as registering Blazor event listeners and custom event types.
+
+The preceding legacy JS initializers aren't invoked by default in a Blazor Web App. For Blazor Web Apps, a new set of JS initializers are used: `beforeWebStart`, `afterWebStarted`, `beforeServerStart`, `afterServerStarted`, `beforeWebAssemblyStart`, and `afterWebAssemblyStarted`.
+
+For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true#javascript-initializers>.
+
 ### Split of prerendering and integration guidance
 
 For prior releases of .NET, we covered prerendering and integration in a single article. To simplify and focus our coverage, we've split the subjects into the following new articles, which have been updated for .NET 8:
@@ -57,7 +66,9 @@ For prior releases of .NET, we covered prerendering and integration in a single 
 
 ### Persist component state in a Blazor Web App
 
-You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/components/prerender?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state). Blazor Web Apps automatically persist any registered state during prerendering, removing the need for the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper).
+You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/components/prerender?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state).
+
+Blazor Web Apps automatically persist any registered app-level state created during prerendering, removing the need for the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper).
 
 ### Form handling and model binding
 
@@ -79,6 +90,12 @@ For more information, see the following sections of the Blazor *Routing* article
 
 * [Enhanced navigation and form handling](xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
 * [Location changes](xref:blazor/fundamentals/routing#location-changes?view=aspnetcore-8.0&preserve-view=true#location-changes)
+
+### New article on static rendering with enhanced navigation for JS interop
+
+Some apps depend on JS interop to perform initialization tasks that are specific to each page. When using Blazor's enhanced navigation feature with statically-rendered pages that perform JS interop initialization tasks, page-specific JS may not be executed again as expected each time an enhanced page navigation occurs. A new article explains how to address this scenario in Blazor Web Apps:
+
+<xref:blazor/js-interop/ssr?view=aspnetcore-8.0&preserve-view=true>
 
 ### Streaming rendering
 
@@ -180,8 +197,8 @@ Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-w
 
 For more information, see the following articles:
 
-[AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
-[AOT: Exception handling](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
+* [AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
+* [AOT: Exception handling](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
 
 ### Web-friendly Webcil packaging
 
@@ -1016,3 +1033,8 @@ For more information, see [IProblemDetailsService fallback](xref:fundamentals/mi
 
 ## gRPC
 -->
+
+## Additional resources
+
+* [ASP.NET Core annoucements and breaking changes (`aspnet/Annoucements` GitHub repository)](https://github.com/aspnet/Announcements/issues)
+* [.NET annoucements and breaking changes (`dotnet/Annoucements` GitHub repository)](https://github.com/dotnet/announcements/issues)
