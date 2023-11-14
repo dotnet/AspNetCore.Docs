@@ -11,6 +11,8 @@ uid: tutorials/first-mvc-app/controller-methods-views
 
 # Part 6, controller methods and views in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"

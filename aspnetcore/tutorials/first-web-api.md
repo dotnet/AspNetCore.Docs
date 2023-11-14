@@ -10,9 +10,9 @@ uid: tutorials/first-web-api
 
 # Tutorial: Create a web API with ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 :::moniker range=">= aspnetcore-8.0"
 

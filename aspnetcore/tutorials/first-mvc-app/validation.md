@@ -11,6 +11,8 @@ uid: tutorials/first-mvc-app/validation
 
 # Part 9, add validation to an ASP.NET Core MVC app
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"
