@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 12/16/2022
+ms.date: 11/14/2023
 uid: blazor/security/webassembly/meid-groups-roles
 zone_pivot_groups: blazor-groups-and-roles
 ---

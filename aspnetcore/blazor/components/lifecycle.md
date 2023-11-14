@@ -5,7 +5,7 @@ description: Learn about the ASP.NET Core Razor component lifecycle and how to u
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/14/2023
 uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle

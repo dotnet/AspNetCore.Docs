@@ -5,7 +5,7 @@ description: Learn how to use browser developer tools with ASP.NET Core Blazor H
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 01/14/2022
+ms.date: 11/14/2023
 uid: blazor/hybrid/developer-tools
 zone_pivot_groups: blazor-hybrid-operating-systems
 ---

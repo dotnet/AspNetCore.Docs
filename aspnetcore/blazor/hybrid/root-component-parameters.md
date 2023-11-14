@@ -5,7 +5,7 @@ description: Learn how to pass an optional dictionary of parameters to the root 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 04/20/2023
+ms.date: 11/14/2023
 uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid

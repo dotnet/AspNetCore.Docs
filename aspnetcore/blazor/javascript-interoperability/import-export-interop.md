@@ -5,10 +5,12 @@ description: Learn how to interact with JavaScript in client-side components usi
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/10/2022
+ms.date: 11/14/2023
 uid: blazor/js-interop/import-export-interop
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later.
 

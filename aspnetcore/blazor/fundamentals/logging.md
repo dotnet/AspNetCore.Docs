@@ -5,7 +5,7 @@ description: Learn about Blazor app logging, including configuration and how to 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/01/2023
+ms.date: 11/14/2023
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
