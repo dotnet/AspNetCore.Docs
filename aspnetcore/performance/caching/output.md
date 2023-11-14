@@ -191,8 +191,8 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 
 An alternative is to use [Redis](https://redis.io/) cache. Redis cache provides consistency between server nodes via a shared cache that outlives individual server processes. To use Redis for output caching:
 
-* Install the [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) NuGet package.
-* Call `builder.AddStackExchangeRedisOutputCache` (not `AddStackExchangeRedisCache`), and provide a connection string that points to a Redis server.
+* Install the [Microsoft.AspNetCore.OutputCaching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.AspNetCore.OutputCaching.StackExchangeRedis) NuGet package.
+* Call `builder.Services.AddStackExchangeRedisOutputCache` (not `AddStackExchangeRedisCache`), and provide a connection string that points to a Redis server.
 
   For example:
 
