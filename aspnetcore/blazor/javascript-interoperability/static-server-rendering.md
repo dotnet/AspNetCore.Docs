@@ -10,7 +10,11 @@ uid: blazor/js-interop/ssr
 ---
 # ASP.NET Core Blazor JavaScript with Blazor Static Server rendering
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article explains how to load JavaScript (JS) in a Blazor Web App with Static Server rendering and [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
 

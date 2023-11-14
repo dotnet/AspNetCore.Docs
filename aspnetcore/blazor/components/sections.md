@@ -10,7 +10,11 @@ uid: blazor/components/sections
 ---
 # ASP.NET Core Blazor sections
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 To control the content in a Razor component from a child Razor component, Blazor supports *sections* using the following built-in components:
 

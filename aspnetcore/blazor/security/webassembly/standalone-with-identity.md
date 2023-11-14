@@ -10,7 +10,11 @@ uid: blazor/security/webassembly/standalone-with-identity
 ---
 # Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by following the guidance in this article.
 

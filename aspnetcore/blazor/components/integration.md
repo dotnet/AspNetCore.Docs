@@ -10,7 +10,11 @@ uid: blazor/components/integration
 ---
 # Integrate ASP.NET Core Razor components into ASP.NET Core apps
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article explains Razor component integration scenarios for ASP.NET Core apps.
 

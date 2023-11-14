@@ -10,7 +10,11 @@ uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article explains control of Razor component rendering in Blazor Web Apps, either at compile time or runtime.
 
