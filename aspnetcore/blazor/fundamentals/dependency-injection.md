@@ -336,7 +336,7 @@ In the following `TimeTravel` component:
 
 ```razor
 @page "/time-travel"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ITimeTravel TimeTravel1
 @inherits OwningComponentBase
 
@@ -411,7 +411,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 ```razor
 @page "/users"
 @attribute [Authorize]
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inherits OwningComponentBase<AppDbContext>
 
 <h1>Users (@Service.Users.Count())</h1>

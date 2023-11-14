@@ -63,7 +63,7 @@ The following `CallJsExample1` component:
 
 ```razor
 @page "/call-js-example-1"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call JS <code>convertArray</code> Function</h1>
@@ -163,7 +163,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 ```razor
 @page "/call-js-example-2"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call JS Example 2</h1>
@@ -254,7 +254,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 ```razor
 @page "/call-js-example-3"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IDisposable
 @inject IJSRuntime JS
 
@@ -353,7 +353,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 ```razor
 @page "/call-js-example-4"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call JS Example 4</h1>
@@ -453,7 +453,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 ```razor
 @page "/call-js-example-5"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IDisposable
 @inject IJSRuntime JS
 
@@ -622,7 +622,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 ```razor
 @page "/call-js-example-6"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IAsyncDisposable
 @inject IJSRuntime JS
 
@@ -846,7 +846,7 @@ The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 @using JsInteropClasses
 
@@ -961,7 +961,7 @@ For a parent component to make an element reference available to other component
 
 ```razor
 @page "/call-js-example-7"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <h1>Call JS Example 7</h1>
 
@@ -1219,7 +1219,7 @@ Add the following `<link>` element to the `<head>` element markup ([location of 
 
 ```razor
 @page "/call-js-example-8"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @implements IAsyncDisposable
 @inject IJSRuntime JS
 
@@ -1331,7 +1331,7 @@ Provide a `receiveByteArray` JS function. The function is called with <xref:Micr
 
 ```razor
 @page "/call-js-example-9"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call JS Example 9</h1>
@@ -1469,7 +1469,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 ```razor
 @page "/call-js-example-11"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call JS Example 11</h1>
@@ -1583,7 +1583,7 @@ The following `CallJsExample12` component:
 
 ```razor
 @page "/call-js-example-12"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Cancel long-running JS interop</h1>

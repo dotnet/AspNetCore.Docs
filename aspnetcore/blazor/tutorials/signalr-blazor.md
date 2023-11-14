@@ -29,27 +29,23 @@ Learn how to:
 
 At the end of this tutorial, you'll have a working chat app.
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Update prereq content -->
-
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload
+[Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
-* [.NET 8.0 Preview](https://dotnet.microsoft.com/download/dotnet/8.0) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[.NET 8.0 Preview](https://dotnet.microsoft.com/download/dotnet/8.0)
+[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 ---
 
@@ -58,6 +54,8 @@ The Visual Studio Code instructions use the .NET CLI for ASP.NET Core developmen
 Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
 
 [View or download sample code](https://github.com/dotnet/blazor-samples)
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Create a Blazor Web App
 
@@ -112,9 +110,9 @@ In **Solution Explorer**, right-click the `BlazorSignalRApp` project and select 
 
 In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to `nuget.org`.
 
-With **Browse** and **Include prerelease** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
+With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-In the search results, select the latest **preview** [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. <!-- Set the version to match the shared framework of the app. --> Select **Install**.
+In the search results, select the latest release of the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Select **Install**.
 
 If the **Preview Changes** dialog appears, select **OK**.
 
@@ -125,32 +123,20 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
+dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 
-<!-- UPDATE 8.0
-
-Remove prerelease flag.
-
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
-
--->
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell from the project's folder, execute the following command:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
+dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 
-<!-- UPDATE 8.0
-
-Remove prerelease flag.
-
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
-
--->
 
 ---
 
@@ -237,32 +223,6 @@ Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
-
-## Prerequisites
-
-# [Visual Studio](#tab/visual-studio)
-
-[Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
-* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
-
-The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
-
-# [.NET Core CLI](#tab/netcore-cli/)
-
-[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
-
----
-
-## Sample app
-
-Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
-
-[View or download sample code](https://github.com/dotnet/blazor-samples)
 
 ## Hosted Blazor WebAssembly experience
 

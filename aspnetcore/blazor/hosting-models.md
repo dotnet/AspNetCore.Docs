@@ -20,7 +20,7 @@ NOTE: Daggered lines under the table (&dagger;, &Dagger;) use a double-space at 
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article explains Blazor hosting models, which can be applied in different parts of a Blazor app at either compile time or runtime.
+This article explains Blazor hosting models, primarily focused on Blazor Server and Blazor WebAssembly apps in versions of .NET earlier than .NET 8. The guidance in this article is relevant under all .NET releases for Blazor Hybrid apps that run on native mobile and desktop platforms. Blazor Web Apps in .NET 8 or later are better conceptualized by how Razor components are rendered, which is described as their *render mode*. Render modes are briefly touched on in the *Fundamentals* overview article and covered in detail in <xref:blazor/components/render-modes> of the *Components* node.
 
 :::moniker-end
 
@@ -30,19 +30,7 @@ This article explains Blazor hosting models and how to choose which one to use.
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways:
-
-* Server-side in ASP.NET Core (*Blazor Server* or statically rendered).
-* Client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
-* Client-side in a native mobile or desktop app that renders components to an embedded Web View control (*Blazor Hybrid*).
-
-Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 

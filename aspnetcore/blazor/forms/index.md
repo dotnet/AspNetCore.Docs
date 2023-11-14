@@ -45,7 +45,7 @@ Standard interactive HTML forms with server rendering are supported. Create a fo
 
 ```razor
 @page "/starship-plain-form"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<StarshipPlainForm> Logger
 
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
@@ -108,7 +108,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 ```razor
 @page "/starship-1"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<Starship1> Logger
 
 <EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship1">
@@ -205,7 +205,7 @@ In the next example, the preceding component is modified to create the form in t
 
 ```razor
 @page "/starship-2"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<Starship2> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
@@ -290,7 +290,7 @@ For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `A
 For forms based on the HTML `<form>` element, manually add the `AntiforgeryToken` component to the form:
 
 ```razor
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <form method="post" @onsubmit="Submit" @formname="starshipForm">
     <AntiforgeryToken />
@@ -378,8 +378,8 @@ For guidance on using the `enhancedload` event to listen for enhanced page updat
 
 Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
 
-* `RenderMode.InteractiveWebAssembly` for only interactive client rendering after prerendering.
-* `RenderMode.InteractiveAuto` for interactive client rendering after Interactive Server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+* `InteractiveWebAssembly` for only interactive client rendering after prerendering.
+* `InteractiveAuto` for interactive client rendering after Interactive Server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
 

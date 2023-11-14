@@ -88,7 +88,7 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 > [!NOTE]
 > Guidance in this article that focuses on using Visual Studio or Visual Studio Code only supports the latest release of the tooling. Confirm that you've updated your IDE to the latest released version.
 >
-> For Visual Studio Code, the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) ([Getting Started with C# in VS Code](https://code.visualstudio.com/docs/csharp/get-started)) is a preview product. The guidance in this article should work with the C# Dev Kit. If you encounter warnings or errors, you can [open an issue (microsoft/vscode-dotnettools GitHub repository)](https://github.com/microsoft/vscode-dotnettools/issues) describing the problem.
+> For Visual Studio Code, the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) is compatible with the guidance in this article. If you encounter warnings or errors, you can [open an issue (`microsoft/vscode-dotnettools` GitHub repository)](https://github.com/microsoft/vscode-dotnettools/issues) describing the problem.
 
 ## Prerequisites
 
@@ -187,7 +187,7 @@ Breakpoints can also be hit in the server project.
 
    ```razor
    @page "/counter-2"
-   @rendermode RenderMode.InteractiveServer
+   @rendermode InteractiveServer
 
    <PageTitle>Counter 2</PageTitle>
 
@@ -227,13 +227,6 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 1. In the browser, navigate to the `Counter2` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
 
-<!-- UPDATE 8.0 Pull this NOTE at RC2 if fixed -->
-
-> [!NOTE]
-> During the .NET 8.0 *Release Candidate 1* preview, breakpoints placed anywhere in the server app of the solution aren't hit during debugging. This issue only applies to debugging with Visual Studio Code. This will be addressed in a future preview release or for the final release of .NET 8.
-
-<!-- UPDATE 8.0 Surface the following when the bug is fixed
-
 Breakpoints can also be hit in the server project.
 
 1. Stop the debugger.
@@ -243,7 +236,7 @@ Breakpoints can also be hit in the server project.
 
    ```razor
    @page "/counter-2"
-   @rendermode RenderMode.InteractiveServer
+   @rendermode InteractiveServer
 
    <PageTitle>Counter 2</PageTitle>
 
@@ -267,8 +260,6 @@ Breakpoints can also be hit in the server project.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 1. In the browser, navigate to the `Counter2` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
-
--->
 
 Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 

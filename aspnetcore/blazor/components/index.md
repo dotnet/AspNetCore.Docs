@@ -1436,9 +1436,9 @@ Whitespace isn't preserved from the preceding markup:
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Render static root Razor components
+## Root component
 
-A *root Razor component* is the first component loaded of any component hierarchy created by the app.
+A *root Razor component* (*root component*) is the first component loaded of any component hierarchy created by the app.
 
 :::moniker-end
 
@@ -1449,6 +1449,9 @@ In an app created from the Blazor Web App project template, the `App` component 
 ```csharp
 app.MapRazorComponents<App>();
 ```
+
+> [!NOTE]
+> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times.
 
 :::moniker-end
 
