@@ -102,8 +102,6 @@ JS initializers are detected as part of the build process and imported automatic
 
 To define a JS initializer, add a JS module to the project named `{NAME}.lib.module.js`, where the `{NAME}` placeholder is the assembly name, library name, or package identifier. Place the file in the project's web root, which is typically the `wwwroot` folder.
 
-The module exports either or both of the following conventional functions:
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
