@@ -18,6 +18,45 @@ uid: blazor/security/webassembly/standalone-with-identity
 
 Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by following the guidance in this article.
 
+## Endpoints for registering, logging in, and logging out
+
+Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in a backend server-based web API to add JSON API endpoints for registering, logging in, and logging out users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
+
+On the client, call the `/register` endpoint to register a user with their email address and password:
+
+```csharp
+var result = await _httpClient.PostAsJsonAsync(
+    "register", new
+    {
+        email,
+        password
+    });
+```
+
+On the client, log in a user with cookie authentication using the `/login` endpoint with the `useCookies` query string set to `true`:
+
+```csharp
+var result = await _httpClient.PostAsJsonAsync(
+    "login?useCookies=true", new
+    {
+        email,
+        password
+    });
+```
+
+## Token authentication
+
+For clients that don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
+
+The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
+
+To use token-based authentication with the login API, set the `useCookies` query string parameter to `false`:
+
+```diff
+- /login?useCookies=true
++ /login?useCookies=false
+```
+
 ## Sample apps
 
 In this article, sample apps serve as a reference for standalone Blazor WebAssembly apps that access ASP.NET Core Identity through a backend web API. The demonstration includes two apps:
@@ -142,21 +181,6 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 > * <xref:blazor/security/index#authorizeview-component>
 > * <xref:blazor/call-web-api>
 > * <xref:blazor/security/webassembly/additional-scenarios>
-
-## Tokens
-
-For clients that don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
-
-The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
-
-To use token-based authentication with the login API, set the `useCookies` query string parameter to `false`.
-
-In the [`LoginAsync` method of the `CookieAuthenticationStateProvider` class](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs#L123), make the following change for the login `useCookies` query string value:
-
-```diff
-- login?useCookies=true
-+ login?useCookies=false
-```
 
 ## Additional resources
 
