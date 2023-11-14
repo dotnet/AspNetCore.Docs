@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/index
 ---
 # Tutorial: Create a Razor Pages web app with ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This series of tutorials explains the basics of building a Razor Pages web app.
 
 For a more advanced introduction aimed at developers who are familiar with controllers and views, see <xref:razor-pages/index>.
