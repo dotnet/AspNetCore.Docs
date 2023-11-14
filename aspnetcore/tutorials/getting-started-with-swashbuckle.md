@@ -58,16 +58,6 @@ Run the following command from the **Integrated Terminal**:
 dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0
 ```
 
-### [Csproj file](#tab/csproj)
-
-Add the following to your csproj file
-
-```xml
-<ItemGroup>
-  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-</ItemGroup>
-```
-
 ### [.NET Core CLI](#tab/netcore-cli)
 
 Run the following command:
