@@ -159,9 +159,7 @@ The template handles the following:
 * Configures routing for the built-in Identity endpoints.
 * Includes Identity validation and business logic.
 
-<!-- UPDATE 8.0 Cross-link API -->
-
-When you choose the WebAssembly or Auto interactivity types, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a `PersistentAuthenticationStateProvider` class in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
+When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a `PersistentAuthenticationStateProvider` class in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
 
 In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` (Server interactivity solutions only) or `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions).
 
@@ -350,7 +348,7 @@ In a component:
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <input @bind="userIdentifier" />
@@ -488,7 +486,7 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject AuthenticationService AuthenticationService
 
 <input @bind="userIdentifier" />
@@ -628,7 +626,7 @@ In the following `InjectAuthStateProvider` component:
 
 ```razor
 @page "/inject-auth-state-provider"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inherits OwningComponentBase
 
@@ -691,9 +689,12 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 The following simplifies at RTM -->
+* Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component.
 
-* Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component (root components can't be interactive). Typically, this is where the `Routes` component is used in the `App` component (`Components/App.razor`) for apps based on the Blazor Web App project template:
+  > [!NOTE]
+  > Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, prerendering can't be disabled directly by the `App` component.
+
+  For apps based on the Blazor Web App project template, prerendering is typically disabled where the `Routes` component is used in the `App` component (`Components/App.razor`) :
 
   ```razor
   <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />

@@ -44,7 +44,7 @@ For more information, see <xref:blazor/components/render-modes>.
       * `Home` component (`Home.razor`): Implements the *Home* page.
       * `Weather` component (`Weather.razor`): Implements the *Weather forecast* page.
 
-    * `App` component (`App.razor`): The root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag.
+    * `App` component (`App.razor`): The root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag. The root component is the first component that the app loads.
 
     * `Routes` component (`Routes.razor`): Sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -59,7 +59,7 @@ For more information, see <xref:blazor/components/render-modes>.
 
   * `Program.cs` file: The server project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
     * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. `AddInteractiveServerComponents` adds services to support rendering Interactive Server components. `AddInteractiveWebAssemblyComponents` adds services to support rendering Interactive WebAssembly components.
-    * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`). `AddInteractiveServerRenderMode` configures the Server render mode for the app. `AddInteractiveWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
+    * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`). `AddInteractiveServerRenderMode` configures the Server render mode for the app. `AddInteractiveWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
 
   * App settings files (`appsettings.Development.json`, `appsettings.json`): Provide [configuration settings](xref:blazor/fundamentals/configuration) for the server project.
 

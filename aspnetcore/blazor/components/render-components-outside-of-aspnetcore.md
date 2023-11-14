@@ -29,11 +29,9 @@ cd ConsoleApp1
 
 In a command shell in the `ConsoleApp1` folder, add package references for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> and <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to the console app:
 
-<!-- UPDATE 8.0 Remove prerelease switches -->
-
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.Components.Web --prerelease
-dotnet add package Microsoft.Extensions.Logging --prerelease
+dotnet add package Microsoft.AspNetCore.Components.Web
+dotnet add package Microsoft.Extensions.Logging
 ```
 
 In the console app's project file (`ConsoleApp1.csproj`), update the console app project to use the Razor SDK:

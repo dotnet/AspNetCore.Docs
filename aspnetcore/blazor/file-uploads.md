@@ -149,7 +149,7 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 ```razor
 @page "/file-upload-1"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<FileUpload1> Logger
 @inject IHostEnvironment Environment
 
@@ -282,7 +282,7 @@ The following example processes file bytes and doesn't send files to a destinati
 
 ```razor
 @page "/file-upload-1"
-@rendermode RenderMode.InteractiveWebAssembly
+@rendermode InteractiveWebAssembly
 @inject ILogger<FileUpload1> Logger
 
 <h3>Upload Files</h3>
@@ -454,7 +454,7 @@ The following `FileUpload2` component:
 
 ```razor
 @page "/file-upload-2"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @using System.Net.Http.Headers
 @using System.Text.Json
 @inject IHttpClientFactory ClientFactory
@@ -836,7 +836,7 @@ builder.Services.AddScoped(sp =>
 Add the WebAssembly component rendering attribute to the top of the following component in a Blazor Web App:
 
 ```razor
-@rendermode RenderMode.InteractiveWebAssembly
+@rendermode InteractiveWebAssembly
 ```
 
 :::moniker-end
@@ -1174,7 +1174,7 @@ To use the following example in a test app:
 
 ```razor
 @page "/file-upload-3"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject ILogger<FileUpload3> Logger
 @inject IHostEnvironment Environment
 
@@ -1364,7 +1364,7 @@ The following `FileUpload4` component shows the complete example.
 
 ```razor
 @page "/file-upload-4"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>File Upload Example</h1>

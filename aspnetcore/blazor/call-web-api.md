@@ -64,13 +64,13 @@ The Blazor examples that demonstrate obtaining weather data from a server API ar
 For server-side components in Blazor Web Apps that require interactivity, add Interactive Server rendering to the component:
 
 ```razor
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 ```
 
 For client-side components in Blazor Web Apps that require interactivity, add Interactive WebAssembly rendering to the component:
 
 ```razor
-@rendermode RenderMode.InteractiveWebAssembly
+@rendermode InteractiveWebAssembly
 ```
 
 :::moniker-end

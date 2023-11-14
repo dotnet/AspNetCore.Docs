@@ -81,7 +81,7 @@ You can supply a default layout with the <xref:Microsoft.AspNetCore.Components.R
 
 For more information, see <xref:blazor/components/layouts#apply-a-default-layout-to-an-app>.
 
-Add an `App` component to the app, which serves as the root component for other components.
+Add an `App` component to the app, which serves as the root component, which is the first component the app loads.
 
 `Components/App.razor`:
 
@@ -154,7 +154,7 @@ In the ASP.NET Core project's `Program` file:
   app.UseAntiforgery();
   ```
 
-* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component. Place the following code before the the line that calls `app.Run`:
+* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component (the first component loaded). Place the following code before the the line that calls `app.Run`:
 
   ```csharp
   app.MapRazorComponents<App>();
@@ -188,7 +188,7 @@ Add the following `Counter` component to the app that adopts the Interactive Ser
 
 ```razor
 @page "/counter"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
@@ -225,15 +225,13 @@ Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Se
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-<!-- UPDATE 8.0 'Interactivity type' will change to 'Interactive render mode' at RTM -->
-
 Create a donor Blazor Web App to provide assets to the app. Follow the guidance in the <xref:blazor/tooling> article, selecting support for the following template features when generating the Blazor Web App.
 
 For the app's name, use the same name as the ASP.NET Core app, which results in matching app name markup in components and matching namespaces in code. Using the same name/namespace isn't strictly required, as namespaces can be adjusted after assets are moved from the donor app to the ASP.NET Core app. However, time is saved by matching the namespaces at the outset.
 
 Visual Studio:
 
-* For **Interactivity type**, select **Auto (Server and WebAssembly)**.
+* For **Interactive render mode**, select **Auto (Server and WebAssembly)**.
 * Set the **Interactivity location** to **Per page/component**.
 * Deselect the checkbox for **Include sample pages**.
 
@@ -432,7 +430,7 @@ builder.Services.AddRazorComponents()
 
 For more information on adding support for Interactive Server and WebAssembly components, see <xref:blazor/components/render-modes>.
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component (the first component loaded). By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure the Server render mode for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -777,7 +775,7 @@ Create a `Pages` folder in the `Components` folder for routable components. The 
 
 ```razor
 @page "/counter"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 

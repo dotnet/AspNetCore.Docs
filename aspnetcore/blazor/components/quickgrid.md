@@ -16,9 +16,7 @@ The `QuickGrid` component is a Razor component for quickly and efficiently displ
 
 ## Package
 
-<!-- UPDATE 8.0 Remove the prerelease content from the 8.0 content ONLY (Lines 21 and 83). The package will always be prerelease for 7.0 apps. -->
-
-Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -55,7 +53,7 @@ For example, add the following component to render a grid.
 ```razor
 @page "/quickgrid-example"
 @using Microsoft.AspNetCore.Components.QuickGrid
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <QuickGrid Items="@people">
     <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
@@ -78,7 +76,7 @@ For example, add the following component to render a grid.
 }
 ```
 
-The preceding example specifies server rendering (`@rendermode RenderMode.InteractiveServer`), which enables the `QuickGrid`'s interactive features. In this case, the only interactive feature is sortable columns.
+The preceding example specifies server rendering (`@rendermode InteractiveServer`), which enables the `QuickGrid`'s interactive features. In this case, the only interactive feature is sortable columns.
 
 For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework Core as the queryable data source, see the [`SampleQuickGridComponent` component in the ASP.NET Core Basic Test App (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/QuickGridTest/SampleQuickGridComponent.razor).
 
@@ -115,7 +113,7 @@ Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Componen
 [!INCLUDE[](~/includes/package-reference.md)]
 
 > [!NOTE]
-> Because the `Microsoft.AspNetCore.Components.QuickGrid` package is an experimental package for .NET 7, the package remains in *prerelease* status forever for .NET 7 Blazor apps. The package reached production status for .NET 8. For more information, see an 8.0 or later version of this article.
+> Because the `Microsoft.AspNetCore.Components.QuickGrid` package is an experimental package for .NET 7, the package remains in *prerelease* status forever for .NET 7 Blazor apps. The package reached production status for .NET 8 or later. For more information, see an 8.0 or later version of this article.
 
 Add the following component to render a grid.
 

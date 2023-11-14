@@ -55,7 +55,7 @@ The following `Daleks` component displays the cascaded values.
 
 ```razor
 @page "/daleks"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 
 <h1>Root-level cascading value registration example</h1>
 
@@ -154,7 +154,7 @@ Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft
 In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts Interactive Server rendering:
 
 ```razor
-<Routes @rendermode="RenderMode.InteractiveServer" />
+<Routes @rendermode="InteractiveServer" />
 ```
 
 > [!NOTE]
@@ -217,7 +217,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 ```razor
 @page "/themed-counter"
-@rendermode RenderMode.InteractiveServer
+@rendermode InteractiveServer
 @using BlazorSample.UIThemeClasses
 
 <h1>Themed Counter</h1>
