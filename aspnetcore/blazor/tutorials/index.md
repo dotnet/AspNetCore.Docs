@@ -5,7 +5,7 @@ description: Learn how to build Blazor apps with the tutorials listed in this ar
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/14/2023
 uid: blazor/tutorials/index
 ---
 # ASP.NET Core Blazor tutorials

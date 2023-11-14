@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for Blazor apps, 
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/14/2023
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
 ---

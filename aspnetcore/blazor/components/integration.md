@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios ASP.NET Core apps
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/14/2023
 uid: blazor/components/integration
 ---
 # Integrate ASP.NET Core Razor components into ASP.NET Core apps

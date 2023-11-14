@@ -5,7 +5,7 @@ description: Learn how to troubleshoot issues in ASP.NET Core Blazor Hybrid with
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 10/03/2023
+ms.date: 11/14/2023
 uid: blazor/hybrid/troubleshoot
 ---
 # Troubleshoot ASP.NET Core Blazor Hybrid
