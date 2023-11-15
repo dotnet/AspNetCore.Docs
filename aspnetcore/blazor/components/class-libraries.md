@@ -308,7 +308,7 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 To make routable components in the RCL available for direct requests, the RCL's assembly must be added to the app's router.
 
-Open the app's `App` component (`App.razor`). Add or update the `AdditionalAssemblies` parameter to the `<Router>` tag with the RCL's assembly. In the following example, the `ComponentLibrary.Component1` component is used to discover the RCL's assembly.
+Open the app's `App` component (`App.razor`). Add or update the `AdditionalAssemblies` parameter of the `<Router>` tag to include the RCL's assembly. In the following example, the `ComponentLibrary.Component1` component is used to discover the RCL's assembly.
 
 ```razor
 AdditionalAssemblies="new[] { typeof(ComponentLibrary.Component1).Assembly }"
