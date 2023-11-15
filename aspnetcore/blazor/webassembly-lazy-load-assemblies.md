@@ -20,15 +20,15 @@ This article's initial sections cover the app configuration. For a working demon
 
 ## Project file configuration
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.dll` extension. The Blazor framework prevents the assembly from loading at app launch.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.wasm` extension. The Blazor framework prevents the assembly from loading at app launch.
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="{ASSEMBLY NAME}.dll" />
+  <BlazorWebAssemblyLazyLoad Include="{ASSEMBLY NAME}.wasm" />
 </ItemGroup>
 ```
 
-The `{ASSEMBLY NAME}` placeholder is the name of the assembly. The `.dll` file extension is required.
+The `{ASSEMBLY NAME}` placeholder is the name of the assembly. The `.wasm` file extension is required.
 
 Include one `BlazorWebAssemblyLazyLoad` item for each assembly. If an assembly has dependencies, include a `BlazorWebAssemblyLazyLoad` entry for each dependency.
 
@@ -58,7 +58,7 @@ In the following example:
 * The namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName> is specified.
 * The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service is injected (`AssemblyLoader`).
 * The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
-* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.wasm` extensions (for example, `"Assembly1.wasm", "Assembly2.wasm"`).
 
 `App.razor`:
 
@@ -149,7 +149,7 @@ In the following example:
 
 * The [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> in `lazyLoadedAssemblies` passes the assembly list to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>. The framework searches the assemblies for routes and updates the route collection if new routes are found. To access the <xref:System.Reflection.Assembly> type, the namespace for <xref:System.Reflection?displayProperty=fullName> is included at the top of the `App.razor` file.
 * The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
-* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.wasm` extensions (for example, `"Assembly1.wasm", "Assembly2.wasm"`).
 
 `App.razor`:
 
@@ -309,7 +309,7 @@ services.AddScoped<LazyAssemblyLoader>();
 
 The demonstration in this section:
 
-* Creates a robot controls assembly (`GrantImaharaRobotControls.dll`) as a [Razor class library (RCL)](xref:blazor/components/class-libraries) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
+* Creates a robot controls assembly (`GrantImaharaRobotControls.wasm`) as a [Razor class library (RCL)](xref:blazor/components/class-libraries) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
 * Lazily loads the RCL's assembly to render its `Robot` component when the `/robot` URL is requested by the user.
 
 1. Create a new ASP.NET Core class library project:
@@ -485,21 +485,21 @@ Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembl
    * Visual Studio: Add the `GrantImaharaRobotControls` RCL project to the solution (**Add** > **Existing Project**). Select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
    * Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from the project's folder. The `{PATH}` placeholder is the path to the RCL project.
 
-Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.
+Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.wasm` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
+![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.wasm assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
 
-Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
+Configure the app to lazy load the `GrantImaharaRobotControls.wasm` assembly:
 
 1. Specify the RCL's assembly for lazy loading in the Blazor WebAssembly app's project file (`.csproj`):
 
    ```xml
    <ItemGroup>
-     <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+     <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.wasm" />
    </ItemGroup>
    ```
 
-1. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.dll` assembly when the user navigates to `/robot`. Replace the app's default `App` component with the following `App` component.
+1. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.wasm` assembly when the user navigates to `/robot`. Replace the app's default `App` component with the following `App` component.
 
    During page transitions, a styled message is displayed to the user with the `<Navigating>` element. For more information, see the [User interaction with `<Navigating>` content](#user-interaction-with-navigating-content) section.
 
@@ -545,7 +545,7 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
                if (args.Path == "robot")
                {
                    var assemblies = await AssemblyLoader.LoadAssembliesAsync(
-                       new[] { "GrantImaharaRobotControls.dll" });
+                       new[] { "GrantImaharaRobotControls.wasm" });
                    lazyLoadedAssemblies.AddRange(assemblies);
                }
            }
@@ -597,7 +597,7 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
                if (args.Path == "robot")
                {
                    var assemblies = await AssemblyLoader.LoadAssembliesAsync(
-                       new[] { "GrantImaharaRobotControls.dll" });
+                       new[] { "GrantImaharaRobotControls.wasm" });
                    lazyLoadedAssemblies.AddRange(assemblies);
                }
            }
@@ -611,13 +611,13 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
 
 :::moniker-end
 
-Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.dll`) does **not** load for the `Index` component:
+Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.wasm`) does **not** load for the `Index` component:
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
+![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.wasm assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
 
-If the `Robot` component from the RCL is requested at `/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
+If the `Robot` component from the RCL is requested at `/robot`, the `GrantImaharaRobotControls.wasm` assembly is loaded and the `Robot` component is rendered:
 
-![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
+![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.wasm assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
 
 ## Troubleshoot
 
