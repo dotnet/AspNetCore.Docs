@@ -12,34 +12,41 @@ uid: blazor/webassembly-lazy-load-assemblies
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-<!-- UPDATE 8.0 Remove NOTE when 
-                https://github.com/dotnet/AspNetCore.Docs/issues/31039
-                is worked. -->
-
-:::moniker range=">= aspnetcore-8.0"
-
-> [!IMPORTANT]
-> The examples in this article are based on Dynamic-Link Libraries (`.dll` file extension). This article hasn't been updated for Blazor in .NET 8, which uses the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies) (`.wasm` file extension). To use the guidance in its current form, substitute "`.wasm`" for "`.dll`" in the instructions. This article will be updated for Webcil packaging shortly, which is tracked by [Update from DLL to WASM files 8.0 (dotnet/AspNetCore.Docs #31039)](https://github.com/dotnet/AspNetCore.Docs/issues/31039).
-
-:::moniker-end
-
 Blazor WebAssembly app startup performance can be improved by waiting to load app assemblies until the assemblies are required, which is called *lazy loading*.
 
 This article's initial sections cover the app configuration. For a working demonstration, see the [Complete example](#complete-example) section at the end of this article.
 
 *This article only applies to Blazor WebAssembly apps.* Assembly lazy loading doesn't benefit server-side apps because server-rendered apps don't download assemblies to the client.
 
+## File extension placeholder (`{FILE EXTENSION}`) for assembly files
+
+:::moniker range=">= aspnetcore-8.0"
+
+Assembly files use the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies) with a `.wasm` file extension.
+
+Throughout the article, the `{FILE EXTENSION}` placeholder represents "`wasm`".
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Assembly files are based on Dynamic-Link Libraries (DLLs) with a `.dll` file extension.
+
+Throughout the article, the `{FILE EXTENSION}` placeholder represents "`dll`".
+
+:::moniker-end
+
 ## Project file configuration
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.dll` extension. The Blazor framework prevents the assembly from loading at app launch.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with file extension. The Blazor framework prevents the assembly from loading at app launch.
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="{ASSEMBLY NAME}.dll" />
+  <BlazorWebAssemblyLazyLoad Include="{ASSEMBLY NAME}.{FILE EXTENSION}" />
 </ItemGroup>
 ```
 
-The `{ASSEMBLY NAME}` placeholder is the name of the assembly. The `.dll` file extension is required.
+The `{ASSEMBLY NAME}` placeholder is the name of the assembly, and the `{FILE EXTENSION}` placeholder is the file extension. The file extension is required.
 
 Include one `BlazorWebAssemblyLazyLoad` item for each assembly. If an assembly has dependencies, include a `BlazorWebAssemblyLazyLoad` entry for each dependency.
 
@@ -69,7 +76,7 @@ In the following example:
 * The namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName> is specified.
 * The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service is injected (`AssemblyLoader`).
 * The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
-* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their file extensions (for example, `"Assembly1.{FILE EXTENSION}", "Assembly2.{FILE EXTENSION}"`).
 
 `App.razor`:
 
@@ -160,7 +167,7 @@ In the following example:
 
 * The [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> in `lazyLoadedAssemblies` passes the assembly list to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>. The framework searches the assemblies for routes and updates the route collection if new routes are found. To access the <xref:System.Reflection.Assembly> type, the namespace for <xref:System.Reflection?displayProperty=fullName> is included at the top of the `App.razor` file.
 * The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
-* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their file extensions (for example, `"Assembly1.{FILE EXTENSION}", "Assembly2.{FILE EXTENSION}"`).
 
 `App.razor`:
 
@@ -320,315 +327,303 @@ services.AddScoped<LazyAssemblyLoader>();
 
 The demonstration in this section:
 
-* Creates a robot controls assembly (`GrantImaharaRobotControls.dll`) as a [Razor class library (RCL)](xref:blazor/components/class-libraries) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
+* Creates a robot controls assembly (`GrantImaharaRobotControls.{FILE EXTENSION}`) as a [Razor class library (RCL)](xref:blazor/components/class-libraries) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
 * Lazily loads the RCL's assembly to render its `Robot` component when the `/robot` URL is requested by the user.
 
-1. Create a new ASP.NET Core class library project:
+Create a standalone Blazor WebAssembly app to demonstrate lazy loading of a Razor class library's assembly. Name the project `LazyLoadTest`.
 
-   * Visual Studio: **Create a solution** > **Create a new project** > **Razor Class Library**. Name the project `GrantImaharaRobotControls`.
-   * Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder for the [solution](xref:blazor/tooling#visual-studio-solution-file-sln) and names the project `GrantImaharaRobotControls`.
+Add an ASP.NET Core class library project to the solution: 
 
-1. The example component presented later in this section uses a [Blazor form](xref:blazor/forms/index). In the RCL project, add the [`Microsoft.AspNetCore.Components.Forms`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Forms) package to the project.
+* Visual Studio: Right-click the solution file in **Solution Explorer** and select **Add** > **New project**. From the dialog of new project types, select **Razor Class Library**. Name the project `GrantImaharaRobotControls`. Do **not** select the **Support pages and view** checkbox.
+* Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder and names the project `GrantImaharaRobotControls`.
 
-   [!INCLUDE[](~/includes/package-reference.md)]
+The example component presented later in this section uses a [Blazor form](xref:blazor/forms/index). In the RCL project, add the [`Microsoft.AspNetCore.Components.Forms`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Forms) package to the project.
 
-1. Create a `HandGesture` class in the RCL with a `ThumbUp` method that hypothetically makes a robot perform a thumbs-up gesture. The method accepts an argument for the axis, `Left` or `Right`, as an [`enum`](/dotnet/csharp/language-reference/builtin-types/enum). The method returns `true` on success.
+[!INCLUDE[](~/includes/package-reference.md)]
 
-   `HandGesture.cs`:
+Create a `HandGesture` class in the RCL with a `ThumbUp` method that hypothetically makes a robot perform a thumbs-up gesture. The method accepts an argument for the axis, `Left` or `Right`, as an [`enum`](/dotnet/csharp/language-reference/builtin-types/enum). The method returns `true` on success.
+
+`HandGesture.cs`:
 
 :::moniker range=">= aspnetcore-6.0"
 
-   ```csharp
-   using Microsoft.Extensions.Logging;
+```csharp
+using Microsoft.Extensions.Logging;
 
-   namespace GrantImaharaRobotControls;
+namespace GrantImaharaRobotControls;
 
-   public static class HandGesture
-   {
-       public static bool ThumbUp(Axis axis, ILogger logger)
-       {
-           logger.LogInformation("Thumb up gesture. Axis: {Axis}", axis);
+public static class HandGesture
+{
+    public static bool ThumbUp(Axis axis, ILogger logger)
+    {
+        logger.LogInformation("Thumb up gesture. Axis: {Axis}", axis);
 
-           // Code to make robot perform gesture
+        // Code to make robot perform gesture
 
-           return true;
-       }
-   }
+        return true;
+    }
+}
 
-   public enum Axis { Left, Right }
-   ```
+public enum Axis { Left, Right }
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-   ```csharp
-   using Microsoft.Extensions.Logging;
+```csharp
+using Microsoft.Extensions.Logging;
 
-   namespace GrantImaharaRobotControls
-   {
-       public static class HandGesture
-       {
-           public static bool ThumbUp(Axis axis, ILogger logger)
-           {
-               logger.LogInformation("Thumb up gesture. Axis: {Axis}", axis);
+namespace GrantImaharaRobotControls
+{
+    public static class HandGesture
+    {
+        public static bool ThumbUp(Axis axis, ILogger logger)
+        {
+            logger.LogInformation("Thumb up gesture. Axis: {Axis}", axis);
 
-               // Code to make robot perform gesture
+            // Code to make robot perform gesture
 
-               return true;
-           }
-       }
+            return true;
+        }
+    }
 
-       public enum Axis { Left, Right }
-   }
-   ```
+    public enum Axis { Left, Right }
+}
+```
 
 :::moniker-end
 
-1. Add the following component to the root of the RCL project. The component permits the user to submit a left or right hand thumb-up gesture request.
+Add the following component to the root of the RCL project. The component permits the user to submit a left or right hand thumb-up gesture request.
 
-   `Robot.razor`:
+`Robot.razor`:
 
 :::moniker range=">= aspnetcore-6.0"
 
-   ```razor
-   @page "/robot"
-   @using Microsoft.AspNetCore.Components.Forms
-   @using Microsoft.Extensions.Logging
-   @inject ILogger<Robot> Logger
+```razor
+@page "/robot"
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Extensions.Logging
+@inject ILogger<Robot> Logger
 
-   <h1>Robot</h1>
+<h1>Robot</h1>
 
-   <EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
-       <InputRadioGroup @bind-Value="robotModel.AxisSelection">
-           @foreach (var entry in (Axis[])Enum
-               .GetValues(typeof(Axis)))
-           {
-               <InputRadio Value="@entry" />
-               <text>&nbsp;</text>@entry<br>
-           }
-       </InputRadioGroup>
+<EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
+    <InputRadioGroup @bind-Value="robotModel.AxisSelection">
+        @foreach (var entry in (Axis[])Enum
+            .GetValues(typeof(Axis)))
+        {
+            <InputRadio Value="@entry" />
+            <text>&nbsp;</text>@entry<br>
+        }
+    </InputRadioGroup>
 
-       <button type="submit">Submit</button>
-   </EditForm>
+    <button type="submit">Submit</button>
+</EditForm>
 
-   <p>
-       @message
-   </p>
+<p>
+    @message
+</p>
 
-   @code {
-       private RobotModel robotModel = new() { AxisSelection = Axis.Left };
-       private string? message;
+@code {
+    private RobotModel robotModel = new() { AxisSelection = Axis.Left };
+    private string? message;
 
-       private void HandleValidSubmit()
-       {
-           Logger.LogInformation("HandleValidSubmit called");
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
 
-           var result = HandGesture.ThumbUp(robotModel.AxisSelection, Logger);
+        var result = HandGesture.ThumbUp(robotModel.AxisSelection, Logger);
 
-           message = $"ThumbUp returned {result} at {DateTime.Now}.";
-       }
+        message = $"ThumbUp returned {result} at {DateTime.Now}.";
+    }
 
-       public class RobotModel
-       {
-           public Axis AxisSelection { get; set; }
-       }
-   }
-   ```
+    public class RobotModel
+    {
+        public Axis AxisSelection { get; set; }
+    }
+}
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-   ```razor
-   @page "/robot"
-   @using Microsoft.AspNetCore.Components.Forms
-   @using Microsoft.Extensions.Logging
-   @inject ILogger<Robot> Logger
+```razor
+@page "/robot"
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Extensions.Logging
+@inject ILogger<Robot> Logger
 
-   <h1>Robot</h1>
+<h1>Robot</h1>
 
-   <EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
-       <InputRadioGroup @bind-Value="robotModel.AxisSelection">
-           @foreach (var entry in (Axis[])Enum
-               .GetValues(typeof(Axis)))
-           {
-               <InputRadio Value="@entry" />
-               <text>&nbsp;</text>@entry<br>
-           }
-       </InputRadioGroup>
+<EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
+    <InputRadioGroup @bind-Value="robotModel.AxisSelection">
+        @foreach (var entry in (Axis[])Enum
+            .GetValues(typeof(Axis)))
+        {
+            <InputRadio Value="@entry" />
+            <text>&nbsp;</text>@entry<br>
+        }
+    </InputRadioGroup>
 
-       <button type="submit">Submit</button>
-   </EditForm>
+    <button type="submit">Submit</button>
+</EditForm>
 
-   <p>
-       @message
-   </p>
+<p>
+    @message
+</p>
 
-   @code {
-       private RobotModel robotModel = new RobotModel() { AxisSelection = Axis.Left };
-       private string message;
+@code {
+    private RobotModel robotModel = new RobotModel() { AxisSelection = Axis.Left };
+    private string message;
 
-       private void HandleValidSubmit()
-       {
-           Logger.LogInformation("HandleValidSubmit called");
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
 
-           var result = HandGesture.ThumbUp(robotModel.AxisSelection, Logger);
+        var result = HandGesture.ThumbUp(robotModel.AxisSelection, Logger);
 
-           message = $"ThumbUp returned {result} at {DateTime.Now}.";
-       }
+        message = $"ThumbUp returned {result} at {DateTime.Now}.";
+    }
 
-       public class RobotModel
-       {
-           public Axis AxisSelection { get; set; }
-       }
-   }
-   ```
+    public class RobotModel
+    {
+        public Axis AxisSelection { get; set; }
+    }
+}
+```
 
 :::moniker-end
 
-Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembly:
+In the `LazyLoadTest` project, create a project reference for the `GrantImaharaRobotControls` RCL:
 
-1. Create the Blazor WebAssembly app in Visual Studio, Visual Studio Code, or via a command prompt with the .NET CLI. Name the project `LazyLoadTest`.
+* Visual Studio: Right-click the `LazyLoadTest` project and select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
+* Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from the project's folder. The `{PATH}` placeholder is the path to the RCL project.
 
-1. Create a project reference for the `GrantImaharaRobotControls` RCL:
+Specify the RCL's assembly for lazy loading in the `LazyLoadTest` app's project file (`.csproj`):
 
-   * Visual Studio: Add the `GrantImaharaRobotControls` RCL project to the solution (**Add** > **Existing Project**). Select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
-   * Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from the project's folder. The `{PATH}` placeholder is the path to the RCL project.
+```xml
+<ItemGroup>
+    <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.{FILE EXTENSION}" />
+</ItemGroup>
+```
 
-Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.
+The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.{FILE EXTENSION}` assembly when the user navigates to `/robot`. Replace the app's default `App` component with the following `App` component.
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
+During page transitions, a styled message is displayed to the user with the `<Navigating>` element. For more information, see the [User interaction with `<Navigating>` content](#user-interaction-with-navigating-content) section.
 
-Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
+The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>, which results in the router searching the assembly for routable components, where it finds the `Robot` component. The `Robot` component's route is added to the app's route collection. For more information, see the <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies> article and the [Assemblies that include routable components](#assemblies-that-include-routable-components) section of this article.
 
-1. Specify the RCL's assembly for lazy loading in the Blazor WebAssembly app's project file (`.csproj`):
-
-   ```xml
-   <ItemGroup>
-     <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
-   </ItemGroup>
-   ```
-
-1. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.dll` assembly when the user navigates to `/robot`. Replace the app's default `App` component with the following `App` component.
-
-   During page transitions, a styled message is displayed to the user with the `<Navigating>` element. For more information, see the [User interaction with `<Navigating>` content](#user-interaction-with-navigating-content) section.
-
-   The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>, which results in the router searching the assembly for routable components, where it finds the `Robot` component. The `Robot` component's route is added to the app's route collection. For more information, see the <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies> article and the [Assemblies that include routable components](#assemblies-that-include-routable-components) section of this article.
-
-   `App.razor`:
+`App.razor`:
 
 :::moniker range=">= aspnetcore-6.0"
 
-   ```razor
-   @using System.Reflection
-   @using Microsoft.AspNetCore.Components.Routing
-   @using Microsoft.AspNetCore.Components.WebAssembly.Services
-   @using Microsoft.Extensions.Logging
-   @inject LazyAssemblyLoader AssemblyLoader
-   @inject ILogger<App> Logger
+```razor
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
 
-   <Router AppAssembly="@typeof(App).Assembly"
-           AdditionalAssemblies="@lazyLoadedAssemblies" 
-           OnNavigateAsync="@OnNavigateAsync">
-       <Navigating>
-           <div style="padding:20px;background-color:blue;color:white">
-               <p>Loading the requested page&hellip;</p>
-           </div>
-       </Navigating>
-       <Found Context="routeData">
-           <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-       </Found>
-       <NotFound>
-           <LayoutView Layout="@typeof(MainLayout)">
-               <p>Sorry, there's nothing at this address.</p>
-           </LayoutView>
-       </NotFound>
-   </Router>
+<Router AppAssembly="@typeof(App).Assembly"
+        AdditionalAssemblies="@lazyLoadedAssemblies" 
+        OnNavigateAsync="@OnNavigateAsync">
+    <Navigating>
+        <div style="padding:20px;background-color:blue;color:white">
+            <p>Loading the requested page&hellip;</p>
+        </div>
+    </Navigating>
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
 
-   @code {
-       private List<Assembly> lazyLoadedAssemblies = new();
+@code {
+    private List<Assembly> lazyLoadedAssemblies = new();
 
-       private async Task OnNavigateAsync(NavigationContext args)
-       {
-           try
-           {
-               if (args.Path == "robot")
-               {
-                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
-                       new[] { "GrantImaharaRobotControls.dll" });
-                   lazyLoadedAssemblies.AddRange(assemblies);
-               }
-           }
-           catch (Exception ex)
-           {
-               Logger.LogError("Error: {Message}", ex.Message);
-           }
-       }
-   }
-   ```
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            if (args.Path == "robot")
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                    new[] { "GrantImaharaRobotControls.{FILE EXTENSION}" });
+                lazyLoadedAssemblies.AddRange(assemblies);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
+    }
+}
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-   ```razor
-   @using System.Reflection
-   @using Microsoft.AspNetCore.Components.Routing
-   @using Microsoft.AspNetCore.Components.WebAssembly.Services
-   @using Microsoft.Extensions.Logging
-   @inject LazyAssemblyLoader AssemblyLoader
-   @inject ILogger<App> Logger
+```razor
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
 
-   <Router AppAssembly="@typeof(Program).Assembly"
-           AdditionalAssemblies="@lazyLoadedAssemblies" 
-           OnNavigateAsync="@OnNavigateAsync">
-       <Navigating>
-           <div style="padding:20px;background-color:blue;color:white">
-               <p>Loading the requested page&hellip;</p>
-           </div>
-       </Navigating>
-       <Found Context="routeData">
-           <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-       </Found>
-       <NotFound>
-           <LayoutView Layout="@typeof(MainLayout)">
-               <p>Sorry, there's nothing at this address.</p>
-           </LayoutView>
-       </NotFound>
-   </Router>
+<Router AppAssembly="@typeof(Program).Assembly"
+        AdditionalAssemblies="@lazyLoadedAssemblies" 
+        OnNavigateAsync="@OnNavigateAsync">
+    <Navigating>
+        <div style="padding:20px;background-color:blue;color:white">
+            <p>Loading the requested page&hellip;</p>
+        </div>
+    </Navigating>
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
 
-   @code {
-       private List<Assembly> lazyLoadedAssemblies = new List<Assembly>();
+@code {
+    private List<Assembly> lazyLoadedAssemblies = new List<Assembly>();
 
-       private async Task OnNavigateAsync(NavigationContext args)
-       {
-           try
-           {
-               if (args.Path == "robot")
-               {
-                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
-                       new[] { "GrantImaharaRobotControls.dll" });
-                   lazyLoadedAssemblies.AddRange(assemblies);
-               }
-           }
-           catch (Exception ex)
-           {
-               Logger.LogError("Error: {Message}", ex.Message);
-           }
-       }
-   }
-   ```
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            if (args.Path == "robot")
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                    new[] { "GrantImaharaRobotControls.{FILE EXTENSION}" });
+                lazyLoadedAssemblies.AddRange(assemblies);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
+    }
+}
+```
 
 :::moniker-end
 
-Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.dll`) does **not** load for the `Index` component:
+Build and run the app.
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
-
-If the `Robot` component from the RCL is requested at `/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
-
-![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
+When the `Robot` component from the RCL is requested at `/robot`, the `GrantImaharaRobotControls.{FILE EXTENSION}` assembly is loaded and the `Robot` component is rendered. You can inspect the assembly loading in the **Network** tab of the browser's developer tools.
 
 ## Troubleshoot
 
