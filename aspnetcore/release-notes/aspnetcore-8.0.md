@@ -950,7 +950,10 @@ The debugger display for `WebApplication` highlights important information such 
 
 :::image type="content" source="~/release-notes/static/webapplication-debugging-after.png" alt-text="Helpful debugger display of WebApplication type in .NET 8.":::
 
-For more information about debugging improvements in .NET 8, see GitHub issue [dotnet/aspnetcore 48205](https://github.com/dotnet/aspnetcore/issues/48205). 
+For more information about debugging improvements in .NET 8, see:
+
+* [Debugging Enhancements in .NET 8](https://devblogs.microsoft.com/dotnet/debugging-enhancements-in-dotnet-8/)
+* GitHub issue [dotnet/aspnetcore 48205](https://github.com/dotnet/aspnetcore/issues/48205)
 
 ### `IPNetwork.Parse` and `TryParse`
 
