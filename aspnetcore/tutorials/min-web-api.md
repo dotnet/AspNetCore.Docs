@@ -64,11 +64,11 @@ This tutorial creates the following API:
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 8.0**
+  * Select **.NET 8.0 (Long Term Support)**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/8.x/add-info-vs17.8.0.png)
+  ![Additional information](~/tutorials/min-web-api/_static/8.x/add-info-vs17.9.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

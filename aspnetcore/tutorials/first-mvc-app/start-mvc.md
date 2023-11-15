@@ -60,11 +60,11 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 * In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 8.0 (Preview)**.
+  * Select **.NET 8.0 (Long Term Support)**.
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/8/additional-info-VS22-17.8.0.png)
+![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/8/additional-info-VS22-17.9.0.png)
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 

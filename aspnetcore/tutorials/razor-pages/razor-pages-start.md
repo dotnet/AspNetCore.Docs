@@ -48,11 +48,11 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio and select **New project**.
-* In the **Create a new project** dialog, select **ASP.NET Core Web App** > **Next**.
+* In the **Create a new project** dialog, select **ASP.NET Core Web App (Razor Pages)** > **Next**.
 * In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 8.0 (Preview)**.
+  * Select **.NET 8.0 (Long Term Support)**.
   * Verify: **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
