@@ -8,7 +8,8 @@ ms.custom: "mvc"
 ms.date: 11/14/2023
 uid: blazor/index
 ---
-# ASP.NET Core Blazor
+
+# ASP.NET Core Blazor1
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
