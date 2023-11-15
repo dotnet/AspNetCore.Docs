@@ -19,7 +19,7 @@ uid: blazor/webassembly-lazy-load-assemblies
 :::moniker range=">= aspnetcore-8.0"
 
 > [!IMPORTANT]
-> The examples in this article are based on lazy loading Dynamic-Link Libraries (`.dll` file extension). This article hasn't been updated for Blazor in .NET 8, which uses the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies) (`.wasm` file extension). To use the guidance in its current form, substitute "`.wasm`" for "`.dll`" in the instructions. This article will be updated for Webcil packaging shortly, which is tracked by [Update from DLL to WASM files 8.0 (dotnet/AspNetCore.Docs #31039)](https://github.com/dotnet/AspNetCore.Docs/issues/31039).
+> The examples in this article are based on Dynamic-Link Libraries (`.dll` file extension). This article hasn't been updated for Blazor in .NET 8, which uses the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies) (`.wasm` file extension). To use the guidance in its current form, substitute "`.wasm`" for "`.dll`" in the instructions. This article will be updated for Webcil packaging shortly, which is tracked by [Update from DLL to WASM files 8.0 (dotnet/AspNetCore.Docs #31039)](https://github.com/dotnet/AspNetCore.Docs/issues/31039).
 
 :::moniker-end
 
