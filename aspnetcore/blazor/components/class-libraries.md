@@ -304,6 +304,18 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 :::moniker-end
 
+## Make routable components available from the RCL
+
+To make routable components in the RCL available for direct requests, the RCL's assembly must be added to the app's router.
+
+Open the app's `App` component (`App.razor`). Add or update the `AdditionalAssemblies` parameter of the `<Router>` tag to include the RCL's assembly. In the following example, the `ComponentLibrary.Component1` component is used to discover the RCL's assembly.
+
+```razor
+AdditionalAssemblies="new[] { typeof(ComponentLibrary.Component1).Assembly }"
+```
+
+For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
+
 ## Create an RCL with static assets in the `wwwroot` folder
 
 An RCL's static assets are available to any app that consumes the library.
