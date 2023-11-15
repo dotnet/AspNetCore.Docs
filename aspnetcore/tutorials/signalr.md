@@ -57,7 +57,7 @@ Start Visual Studio 2022 and select **Create a new project**.
 
 In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
 
-![Create an ASP.NET Core Web App](~/tutorials/signalr/_static/8.x/new-project-select-vs17.8.0.png)
+![Create an ASP.NET Core Web App](~/tutorials/signalr/_static/8.x/new-project-select-vs17.9.0.png)
 
 In the **Configure your new project** dialog, enter `SignalRChat` for **Project name**. It's important to name the project `SignalRChat`, including matching the capitalization, so the namespaces match the code in the tutorial.
 
@@ -65,7 +65,7 @@ Select **Next**.
 
 In the **Additional information** dialog, select **.NET 8.0 (Long Term Support)** and then select **Create**.
 
-![Additional information](~/tutorials/signalr/_static/8.x/additional-info-vs17.8.0.png)
+![Additional information](~/tutorials/signalr/_static/8.x/additional-info-vs17.9.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
