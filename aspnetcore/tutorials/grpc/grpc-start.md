@@ -43,7 +43,7 @@ In this tutorial, you:
 * In the **Create a new project** dialog, search for `gRPC`. Select **ASP.NET Core gRPC Service** and select **Next**.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 8.0 (Preview)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 8.0 (Long Term Support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -110,7 +110,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * Open a second instance of Visual Studio and select **New Project**.
 * In the **Create a new project** dialog, select **Console App**, and select **Next**.
 * In the **Project name** text box, enter **GrpcGreeterClient** and select **Next**.
-* In the **Additional information** dialog, select **.NET 8.0 (Preview)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 8.0 (Long Term Support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -129,7 +129,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * In Visual Studio 2022 for Mac select **File** > **Add** > **Project...**.
 * In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **Console Application**, and select **Continue**.
-* Select **.NET 8.0** for the target framework, and select **Continue**.
+* Select **.NET 8.0 (Long Term Support)** for the target framework, and select **Continue**.
 * Name the project **GrpcGreeterClient**. It's important to name the project *GrpcGreeterClient* so the namespaces match when you copy and paste code.
 * Select **Continue**.
 

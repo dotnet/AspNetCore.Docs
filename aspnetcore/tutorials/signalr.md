@@ -63,7 +63,7 @@ In the **Configure your new project** dialog, enter `SignalRChat` for **Project 
 
 Select **Next**.
 
-In the **Additional information** dialog, select **.NET 8.0** and then select **Create**.
+In the **Additional information** dialog, select **.NET 8.0 (Long Term Support)** and then select **Create**.
 
 ![Additional information](~/tutorials/signalr/_static/8.x/additional-info-vs17.8.0.png)
 

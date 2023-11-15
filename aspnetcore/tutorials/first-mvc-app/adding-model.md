@@ -99,9 +99,9 @@ Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-aspnet-codegenerator --version 8.0.0-preview.*
+dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool uninstall --global dotnet-ef
-dotnet tool install --global dotnet-ef --version 8.0.0-preview.*
+dotnet tool install --global dotnet-ef
 ```
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
