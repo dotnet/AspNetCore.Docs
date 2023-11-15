@@ -198,6 +198,12 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 > * <xref:blazor/call-web-api>
 > * <xref:blazor/security/webassembly/additional-scenarios>
 
+## Roles
+
+For security reasons, role claims aren't sent back from the `manage/info` endpoint in order to create role claims for users.
+
+To create role claims on your own, make a separate request in the `LoginAsync` method of the `CookieAuthenticationStateProvider` to a custom web API in the `Backend` project that provides user roles from the backend's user data store. We plan to provide additional guidance on setting this up. The work is tracked by [Role claims guidance in standalone WASM w/Identity article (dotnet/AspNetCore.Docs #31045)](https://github.com/dotnet/AspNetCore.Docs/issues/31045).
+
 ## Additional resources
 
 <!-- UPDATE 9.0 Drop the What's New blog post -->
