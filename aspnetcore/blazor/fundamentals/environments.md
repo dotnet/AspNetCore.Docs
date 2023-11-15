@@ -10,15 +10,6 @@ uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
-<!-- UPDATE 8.0 This entire article should be checked and
-                improved for the BWA world order. The article 
-                was originally tied exclusively to WASM 
-                scenarios. It should cover client- and 
-                server-side scenarios with BWAs. Especially, 
-                the scenarios for the Blazor-Environment 
-                header must be validated in the BWA world. 
-                Clear Azure coverage should be provided. -->
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
@@ -39,27 +30,31 @@ For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/e
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
+We recommend the following conventions:
+
+* Always use the "`Development`" environment name for local development. This is because the Blazor framework expects exactly that name when configuring the app and tooling for local development runs of a Blazor app.
+
+* For testing, staging, and production environments, always publish and deploy the app. You can use any environment naming scheme that you wish for published apps, but always use app setting file names with casing of the environment segment that exactly matches the environment name. For staging, use "`Staging`" (capital ":::no-loc text="S":::") as the environment name, and name the app settings file to match (`appsettings.Staging.json`). For production, use "`Production`" (capital ":::no-loc text="P":::") as the environment name, and name the app settings file to match (`appsettings.Production.json`).
+
 The environment is set using any of the following approaches:
 
 * [Blazor start configuration](#set-the-environment-via-startup-configuration)
-* [`Blazor-Environment` header](#set-the-environment-via-header)
+* [`blazor-environment` header](#set-the-environment-via-header)
 * [Azure App Service](#set-the-environment-for-azure-app-service)
-
-<!-- UPDATE 8.0 Confirm that this is still correct -->
 
 :::moniker range=">= aspnetcore-8.0"
 
-On the client for a Blazor Web App, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
+On the client for a Blazor Web App, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `blazor-environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-On the client for a Blazor Web App or the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `Blazor-Environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
+On the client for a Blazor Web App or the client of a hosted Blazor WebAssembly app, the environment is determined from the server via a middleware that communicates the environment to the browser via a header named `blazor-environment`. The header sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in the client-side `Program` file (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>).
 
 :::moniker-end
 
-For a standalone client app running locally, the development server adds the `Blazor-Environment` header.
+For a standalone client app running locally, the development server adds the `blazor-environment` header.
 
 For app's running locally in development, the app defaults to the `Development` environment. Publishing the app defaults the environment to `Production`.
 
@@ -107,15 +102,24 @@ Standalone Blazor WebAssembly:
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
-Using the `environment` property overrides the environment set by the [`Blazor-Environment` header](#set-the-environment-via-header).
+Using the `environment` property overrides the environment set by the [`blazor-environment` header](#set-the-environment-via-header).
+
+The preceding approach sets the client's environment without changing the `blazor-environment` header's value, nor does it change the server project's console logging of the startup environment for a Blazor Web App that has adopted global Interactive WebAssembly rendering.
+
+To log the environment to the console in either a standalone Blazor WebAssembly project or the `.Client` project of a Blazor Web App, place the following C# code in the `Program` file after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created with <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType> and before the line that builds and runs the project (`await builder.Build().RunAsync();`):
+
+```csharp
+Console.WriteLine(
+    $"Client Hosting Environment: {builder.HostEnvironment.Environment}");
+```
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Set the environment via header
 
-To specify the environment for other hosting environments, add the `Blazor-Environment` header.
+To specify the environment for other hosting environments, add the `blazor-environment` header.
 
-In the following example for IIS, the custom header (`Blazor-Environment`) is added to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the placeholder `{TARGET FRAMEWORK}` is the target framework:
+In the following example for IIS, the custom header (`blazor-environment`) is added to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the placeholder `{TARGET FRAMEWORK}` is the target framework:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -126,7 +130,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
     <httpProtocol>
       <customHeaders>
-        <add name="Blazor-Environment" value="Staging" />
+        <add name="blazor-environment" value="Staging" />
       </customHeaders>
     </httpProtocol>
   </system.webServer>
@@ -135,14 +139,18 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
 > [!NOTE]
 > To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
+>
+> Although the Blazor framework issues the header name in all lowercase letters (`blazor-enviornment`), you're welcome to use any casing that you desire. For example, a header name that capitalizes each word (`Blazor-Enviornment`) is supported.
 
 ## Set the environment for Azure App Service
 
-For a standalone client app, you can set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header). To set the environment via an `ASPNETCORE_ENVIRONMENT` app setting in Azure:
+<!-- UPDATE 9.0 The underlying problem with app settings filename 
+                case sensitivity is tracked for 9.0 by ...
+                https://github.com/dotnet/aspnetcore/issues/25152 -->
 
-<!-- UPDATE 8.0 Need to confirm this works for BWA with client-side only -->
+For a standalone client app, you can set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`blazor-environment` header](#set-the-environment-via-header). To set the environment via an `ASPNETCORE_ENVIRONMENT` app setting in Azure:
 
-1. Confirm that the casing of environment segments in app settings file names match their environment name casing ***exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
+1. ***Confirm that the casing of environment segments in app settings file names match their environment name casing exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 
 1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. For an app named `BlazorAzureAppSample`, the app is deployed to the `Staging` deployment slot.
 
@@ -150,7 +158,7 @@ For a standalone client app, you can set the environment manually via [start con
 
 When requested in a browser, the `BlazorAzureAppSample/Staging` app loads in the `Staging` environment at `https://blazorazureappsample-staging.azurewebsites.net`.
 
-When the app is loaded in the browser, the response header collection for `blazor.boot.json` indicates that the `Blazor-Environment` header value is `Staging`.
+When the app is loaded in the browser, the response header collection for `blazor.boot.json` indicates that the `blazor-environment` header value is `Staging`.
 
 App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the app, where the `{ENVIRONMENT}` placeholder is the app's environment. In the preceding example, settings from the `appsettings.Staging.json` file are loaded.
 
