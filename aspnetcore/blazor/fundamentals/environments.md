@@ -30,6 +30,10 @@ For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/e
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
+<!-- UPDATE 9.0 The underlying problem with app settings filename 
+                case sensitivity is tracked for 9.0 by ...
+                https://github.com/dotnet/aspnetcore/issues/25152 -->
+                
 We recommend the following conventions:
 
 * Always use the "`Development`" environment name for local development. This is because the Blazor framework expects exactly that name when configuring the app and tooling for local development runs of a Blazor app.
