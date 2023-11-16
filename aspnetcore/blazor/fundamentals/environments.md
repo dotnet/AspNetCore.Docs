@@ -195,7 +195,7 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Read the client-side environment in a Blazor Web App
+## Read the environment in a Blazor Web App
 
 Assuming that prerendering isn't disabled for a component or the app, a component in the `.Client` project is prerendered on the server. Because the server doesn't have a registered <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service, it isn't possible to inject the service and use the service implementation's host environment extension methods and properties during server prerendering. Injecting the service into an Interactive WebAssembly or Interactive Auto component results in the following runtime error:
 

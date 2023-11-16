@@ -339,7 +339,7 @@ This error occurs because the component must compile and execute on the server d
 
 There are a four approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
-* *Recommended*: Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the service in the component. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-client-side-environment-in-a-blazor-web-app>.
+* *Recommended*: Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the service in the component. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-web-app>.
 
 * Add a check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and use the check to determine whether to obtain a service instance from an injected <xref:System.IServiceProvider>.
 
