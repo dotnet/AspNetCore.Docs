@@ -115,7 +115,7 @@ Standalone Blazor WebAssembly:
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
-Using the `environment` property overrides the environment set by the [`blazor-environment` header](#set-the-environment-via-header).
+Using the `environment` property overrides the environment set by the [`blazor-environment` header](#set-the-client-side-environment-via-header).
 
 The preceding approach sets the client's environment without changing the `blazor-environment` header's value, nor does it change the server project's console logging of the startup environment for a Blazor Web App that has adopted global Interactive WebAssembly rendering.
 
@@ -161,7 +161,7 @@ In the following example for IIS, the custom header (`blazor-environment`) is ad
                 case sensitivity is tracked for 9.0 by ...
                 https://github.com/dotnet/aspnetcore/issues/25152 -->
 
-For a standalone client app, you can set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`blazor-environment` header](#set-the-environment-via-header).
+For a standalone client app, you can set the environment manually via [start configuration](#set-the-client-side-environment-via-startup-configuration) or the [`blazor-environment` header](#set-the-client-side-environment-via-header).
 
 For a server-side app, set the environment via an `ASPNETCORE_ENVIRONMENT` app setting in Azure:
 
@@ -326,7 +326,7 @@ The following component is placed in the `.Client` project to demonstrate using 
 The preceding example can demonstrate that it's possible to have a different server environment than client environment, which isn't recommended and may lead to arbitrary effects. When setting the environment in a Blazor Web App, it's best to match server and `.Client` project environments. Consider the following scenario:
 
 * Implement the client-side (`webassembly`) environment property with the `Staging` environment via `Blazor.start`. See the [Set the client-side environment via startup configuration](#set-the-client-side-environment-via-startup-configuration) section for an example.
-* Don't change the server-side `Properties/launchSettings.json` file. Leave the `environmentVariables` section with the   `ASPNETCORE_ENVIRONMENT` environment variable set to `Development`.
+* Don't change the server-side `Properties/launchSettings.json` file. Leave the `environmentVariables` section with the `ASPNETCORE_ENVIRONMENT` environment variable set to `Development`.
 
 You can see the values of the above extension methods and the `@Environment.EnvironmentName` property change in the UI of a test app.
 
@@ -346,7 +346,7 @@ When the component is rerendered just a second or two later, after the Blazor bu
 * **Is Production:** False
 * **Is Environment (Staging):** True
 
-Therefore, we recommend setting the server environment to match the client environment for development, testing, and production deployments.
+The preceding example demonstrates why we recommend setting the server environment to match the client environment for development, testing, and production deployments.
 
 For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering) section of the *Render modes* article, which appears later in the Blazor documentation.
 
