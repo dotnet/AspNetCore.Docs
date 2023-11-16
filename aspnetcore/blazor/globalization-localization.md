@@ -208,7 +208,7 @@ In ***client-side development***, dynamically setting the culture from the `Acce
 > [!NOTE]
 > If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the client-side culture by user preference](#dynamically-set-the-client-side-culture-by-user-preference) section of this article.
 
-In ***server-side development***, apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+Apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 In the `Program` file:
 
@@ -216,7 +216,7 @@ In the `Program` file:
 builder.Services.AddLocalization();
 ```
 
-Specify the app's supported cultures immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Chilean Spanish:
+In ***server-side development***, you can specify the app's supported cultures immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Chilean Spanish:
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
