@@ -11,7 +11,7 @@ uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 
-By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://ardalis.com/)
+By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan) snd [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -275,7 +275,7 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery(IServiceCollection)> and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery(IApplicationBuilder)> to register antiforgery services in DI.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery8/Program.cs" id="snippet_short" highlight="3,7":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3,7":::
 
 The antiforgery middleware:
 
