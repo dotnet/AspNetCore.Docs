@@ -333,7 +333,7 @@ For example, consider the following `Home` component in the `.Client` project in
 
 No compile time error occurs, but a runtime error occurs during prerendering:
 
-> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorWebApp80EnvironmentTesting.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorWebAppSample.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
 This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
 
