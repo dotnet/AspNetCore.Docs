@@ -155,7 +155,7 @@ For apps based on the Blazor Web App project template, a render mode assigned to
 <Routes @rendermode="InteractiveServer" />
 ```
 
-The Blazor router propagates its render mode to the pages it routes. The pages aren't technically child components of the router, but when the routes are discovered at runtime for the router, they inherit the router's render mode.
+The Blazor router propagates its render mode to the pages it routes.
 
 You also typically must set the same interactive render mode on the `HeadOutlet` component, which is also found in the `App` component of a Blazor Web App generated from the project template:
 
@@ -320,22 +320,22 @@ For example, consider the following `Home` component in the `.Client` project in
 
 ```razor
 @page "/"
-@inject IBlazorHostEnvironment Environment
+@inject IWebAssemblyHostEnvironment Environment
 
 <PageTitle>Home</PageTitle>
 
 <h1>Home</h1>
 
 <p>
-    Environment: @Environment.EnvironmentName
+    Environment: @Environment.Environment
 </p>
 ```
 
 No compile time error occurs, but a runtime error occurs during prerendering:
 
-> :::no-loc text="Cannot provide a value for property 'HostEnvironment' on type 'BlazorWebApp80EnvironmentTesting.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorWebApp80EnvironmentTesting.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
-This error occurs because the component must compile and execute on the server during prerendering but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service and has no implementation on on the server.
+This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
 
 There are a four approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
