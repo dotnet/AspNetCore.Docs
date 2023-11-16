@@ -208,12 +208,12 @@ In the client project (`.Client`):
 * Add an interface for the service abstraction.
 * Add a service implementation that obtains the host environment from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment%2A?displayProperty=nameWithType>.
 
-`IHostEnvironment.cs`:
+`IAppEnvironment.cs`:
 
 ```csharp
-public interface IHostEnvironment
+public interface IAppEnvironment
 {
-    string EnvironmentName { get; set; }
+    string EnvironmentName { get; }
 }
 ```
 
@@ -222,16 +222,16 @@ public interface IHostEnvironment
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-public class WasmHostEnvironment(IWebAssemblyHostEnvironment env) : IHostEnvironment
+public class WasmHostEnvironment(IWebAssemblyHostEnvironment env) : IAppEnvironment
 {
-    public string EnvironmentName { get; set; } = env.Environment;
+    public string EnvironmentName => env.Environment;
 }
 ```
 
 In the `.Client` project's `Program` file, register the service:
 
 ```csharp
-builder.Services.AddSingleton<IHostEnvironment, WasmHostEnvironment>();
+builder.Services.AddSingleton<IAppEnvironment, WasmHostEnvironment>();
 ```
 
 In the server project, create a service implementation that obtains the host environment from <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment%2A?displayProperty=nameWithType>.
@@ -239,19 +239,19 @@ In the server project, create a service implementation that obtains the host env
 `ServerHostEnvironment.cs`:
 
 ```csharp
-public class ServerHostEnvironment(IWebHostEnvironment env) : IHostEnvironment
+public class ServerHostEnvironment(IWebHostEnvironment env) : IAppEnvironment
 {
-    public string EnvironmentName { get; set; } = env.EnvironmentName;
+    public string EnvironmentName => env.EnvironmentName;
 }
 ```
 
 In the server project's `Program` file, register the service:
 
 ```csharp
-builder.Services.AddScoped<IHostEnvironment, ServerHostEnvironment>();
+builder.Services.AddScoped<IAppEnvironment, ServerHostEnvironment>();
 ```
 
-At this point, the `IHostEnvironment` service can be injected into an interactive WebAssembly or interactive Auto component. 
+At this point, the `IAppEnvironment` service can be injected into an interactive WebAssembly or interactive Auto component. 
 
 During prerendering, the server-side service instance is used to access host environment. During client-side WebAssembly component rendering, the client-side service instance is used.
 
@@ -262,7 +262,7 @@ The following component is placed in the `.Client` project to demonstrate using 
 ```razor
 @page "/environment"
 @rendermode InteractiveAuto
-@inject IHostEnvironment Environment
+@inject IAppEnvironment Environment
 
 <PageTitle>Environment</PageTitle>
 
