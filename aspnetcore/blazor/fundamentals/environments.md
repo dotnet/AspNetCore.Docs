@@ -273,18 +273,18 @@ The following component is placed in the `.Client` project to demonstrate using 
 </p>
 ```
 
-The preceding example can demonstrate that it's possible to have a different server environment than client environment, which isn't recommended and may lead to arbitrary effects. When setting the environment in a Blazor Web App, it's best to match server and `.Client` project environments. Consider the following scenario:
+The preceding example can demonstrate that it's possible to have a different server environment than client environment, which isn't recommended and may lead to arbitrary results. When setting the environment in a Blazor Web App, it's best to match server and `.Client` project environments. Consider the following scenario in a test app:
 
 * Implement the client-side (`webassembly`) environment property with the `Staging` environment via `Blazor.start`. See the [Set the client-side environment via startup configuration](#set-the-client-side-environment-via-startup-configuration) section for an example.
 * Don't change the server-side `Properties/launchSettings.json` file. Leave the `environmentVariables` section with the `ASPNETCORE_ENVIRONMENT` environment variable set to `Development`.
 
-You can see the value of the host environment in the `@Environment.EnvironmentName` property change in the UI of a test app.
+You can see the value of the host environment in the `@Environment.EnvironmentName` property change in the UI.
 
-When prerendering occurs, the component is rendered in the `Development` environment:
+When prerendering occurs on the server, the component is rendered in the `Development` environment:
 
 > :::no-loc text="**Environment:** Development":::
 
-When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the Blazor WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment:
+When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the Blazor WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment on the client:
 
 > :::no-loc text="**Environment:** Staging":::
 
