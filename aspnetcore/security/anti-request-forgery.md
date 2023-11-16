@@ -300,7 +300,7 @@ The preceding code has three arguments, the action, the anti-forgery token, and 
 
 Consider the following sample:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_all" highlight="6":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_all" highlight="6,10":::
 
 In the preceding code, posts to:
 
