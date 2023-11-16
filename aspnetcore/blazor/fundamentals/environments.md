@@ -203,103 +203,57 @@ Assuming that prerendering isn't disabled for a component or the app, a componen
 
 To address this, create a shared service abstraction and instantiate the service in the server and `.Client` projects with the host environment. The following example demonstrates the approach.
 
-> [!NOTE]
-> When using a shared service approach, you can use two distinct service implementations, one for the server project and a separate one for the `.Client` project, or you can use a single service implementation that's configured by server-side or client-side API when the service is created.
->
-> The demonstration in this section uses a single service implementation:
->
-> * When the service is instantiated on the server, the host environment is provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment%2A?displayProperty=nameWithType>.
-> * When the service is instantiated on the client, the host environment is provided by <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment%2A?displayProperty=nameWithType>.
->
-> The service registrations are shown later in this section.
-
-Add a shared class library project for the Blazor Web App:
-
-* Visual Studio: Right-click the Blazor Web App's solution file in **Solution Explorer**. Select **Add** > **New Project** > **Class Library**. Use the name of the server project with "`.Shared`" added to the end of the name (for example: `BlazorWebAppSample.Shared`).
-* Visual Studio Code/.NET CLI: Execute `dotnet new classlib -o {PROJECT NAME}` from a command prompt in the solution's folder. The `-o|--output` option creates a folder for the class library and names the project. For the `{PROJECT NAME}` placeholder, use the name of the server project with "`.Shared`" added to the end of the name (for example: `BlazorWebAppSample.Shared`).
-
-Create a project reference for the class library in both the server and `.Client` projects:
-
-* Visual Studio: Right-click each project and select **Add** > **Project Reference**. Select the checkbox for the shared project and select **OK**.
-* Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from each of the server and `.Client` project folders. The `{PATH}` placeholder is the path to the shared class library project.
-
-In the shared (`.Shared`) project:
+In the client project (`.Client`):
 
 * Add an interface for the service abstraction.
-* Add classes for the service implementation and host environment extensions.
+* Add a service implementation that obtains the host environment from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment%2A?displayProperty=nameWithType>.
 
-`BlazorHostEnvironment.cs`:
+`IHostEnvironment.cs`:
 
 ```csharp
-public interface IBlazorHostEnvironment
+public interface IHostEnvironment
 {
     string EnvironmentName { get; set; }
 }
+```
 
-public class BlazorHostEnvironment(string environment) : IBlazorHostEnvironment, 
-    IDisposable
+`WasmHostEnvironment.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
+public class WasmHostEnvironment(IWebAssemblyHostEnvironment env) : IHostEnvironment
 {
-    private bool _disposed;
-
-    public string EnvironmentName { get; set; } = environment;
-
-    public void Dispose()
-    {
-        if (_disposed)
-        {
-            return;
-        }
-
-        _disposed = true;
-    }
-}
-
-public static class BlazorHostEnvironmentExtensions
-{
-    public static bool IsDevelopment(this IBlazorHostEnvironment hostEnvironment)
-    {
-        return hostEnvironment.IsEnvironment("Development");
-    }
-
-    public static bool IsStaging(this IBlazorHostEnvironment hostEnvironment)
-    {
-        return hostEnvironment.IsEnvironment("Staging");
-    }
-
-    public static bool IsProduction(this IBlazorHostEnvironment hostEnvironment)
-    {
-        return hostEnvironment.IsEnvironment("Production");
-    }
-
-    public static bool IsEnvironment(
-        this IBlazorHostEnvironment hostEnvironment,
-        string environmentName)
-    {
-        return string.Equals(
-            hostEnvironment.EnvironmentName,
-            environmentName,
-            StringComparison.OrdinalIgnoreCase);
-    }
+    public string EnvironmentName { get; set; } = env.Environment;
 }
 ```
 
-In the server project's `Program` file, register a `IBlazorHostEnvironment` service with the `BlazorHostEnvironment` implementation. Set the host environment with <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment%2A?displayProperty=nameWithType>, which is only available on the server:
+In the `.Client` project's `Program` file, register the service:
 
 ```csharp
-builder.Services.AddSingleton<IBlazorHostEnvironment>(
-    sp => new BlazorHostEnvironment(builder.Environment.EnvironmentName));
+builder.Services.AddSingleton<IHostEnvironment, WasmHostEnvironment>();
 ```
 
-In the `.Client` project's `Program` file, register a `IBlazorHostEnvironment` service with the `BlazorHostEnvironment` implementation. Set the host environment with <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment%2A?displayProperty=nameWithType>, which is only available on the client:
+In the server project, create a service implementation that obtains the host environment from <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment%2A?displayProperty=nameWithType>.
+
+`ServerHostEnvironment.cs`:
 
 ```csharp
-builder.Services.AddSingleton<IBlazorHostEnvironment>(
-    sp => new BlazorHostEnvironment(builder.HostEnvironment.Environment));
+public class ServerHostEnvironment(IWebHostEnvironment env) : IHostEnvironment
+{
+    public string EnvironmentName { get; set; } = env.EnvironmentName;
+}
 ```
 
-At this point, the `IBlazorHostEnvironment` service can be injected into an interactive WebAssembly or interactive Auto component. 
+In the server project's `Program` file, register the service:
 
-During prerendering, the server-side service instance is used to access host environment extension methods and the environment. During client-side WebAssembly component rendering, the client-side service instance is used.
+```csharp
+builder.Services.AddScoped<IHostEnvironment, ServerHostEnvironment>();
+```
+
+At this point, the `IHostEnvironment` service can be injected into an interactive WebAssembly or interactive Auto component. 
+
+During prerendering, the server-side service instance is used to access host environment. During client-side WebAssembly component rendering, the client-side service instance is used.
 
 The following component is placed in the `.Client` project to demonstrate using the service. The example assumes that the Interactive Auto render mode is set on a per-page/component basis. If you use the following component in an app that only adopts Interactive WebAssembly rendering, change the `@rendermode` directive to `@rendermode InteractiveWebAssembly`. If your app sets the interactive render mode globally, remove the `@rendermode` directive from the component.
 
@@ -308,19 +262,15 @@ The following component is placed in the `.Client` project to demonstrate using 
 ```razor
 @page "/environment"
 @rendermode InteractiveAuto
-@inject IBlazorHostEnvironment Environment
+@inject IHostEnvironment Environment
 
 <PageTitle>Environment</PageTitle>
 
 <h1>Environment Example</h1>
 
-<ul>
-    <li><b>Environment:</b> @Environment.EnvironmentName</li>
-    <li><b>Is Development:</b> @Environment.IsDevelopment()</li>
-    <li><b>Is Staging:</b> @Environment.IsStaging()</li>
-    <li><b>Is Production:</b> @Environment.IsProduction()</li>
-    <li><b>Is Environment (Staging):</b> @Environment.IsEnvironment("StAgInG")</li>
-</ul>
+<p>
+    <b>Environment:</b> @Environment.EnvironmentName
+</p>
 ```
 
 The preceding example can demonstrate that it's possible to have a different server environment than client environment, which isn't recommended and may lead to arbitrary effects. When setting the environment in a Blazor Web App, it's best to match server and `.Client` project environments. Consider the following scenario:
@@ -328,23 +278,15 @@ The preceding example can demonstrate that it's possible to have a different ser
 * Implement the client-side (`webassembly`) environment property with the `Staging` environment via `Blazor.start`. See the [Set the client-side environment via startup configuration](#set-the-client-side-environment-via-startup-configuration) section for an example.
 * Don't change the server-side `Properties/launchSettings.json` file. Leave the `environmentVariables` section with the `ASPNETCORE_ENVIRONMENT` environment variable set to `Development`.
 
-You can see the values of the above extension methods and the `@Environment.EnvironmentName` property change in the UI of a test app.
+You can see the value of the host environment in the `@Environment.EnvironmentName` property change in the UI of a test app.
 
 When prerendering occurs, the component is rendered in the `Development` environment:
 
-* **Environment:** Development
-* **Is Development:** True
-* **Is Staging:** False
-* **Is Production:** False
-* **Is Environment (Staging):** False
+> :::no-loc text="**Environment:** Development":::
 
 When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the Blazor WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment:
 
-* **Environment:** Staging
-* **Is Development:** False
-* **Is Staging:** True
-* **Is Production:** False
-* **Is Environment (Staging):** True
+> :::no-loc text="**Environment:** Staging":::
 
 The preceding example demonstrates why we recommend setting the server environment to match the client environment for development, testing, and production deployments.
 
