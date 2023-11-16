@@ -181,6 +181,8 @@ Optionally, add a menu item to the navigation in the `NavMenu` component (`NavMe
 
 ## Dynamically set the culture from the `Accept-Language` header
 
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
+
 The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Chilean Spanish with a preference for United States English or English:
 
 **Accept-Language**: en-US,en;q=0.9,es-CL;q=0.8
@@ -210,7 +212,7 @@ In ***client-side development***, dynamically setting the culture from the `Acce
 
 Apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
-In the `Program` file:
+Add the following line to the `Program` file where services are registered:
 
 ```csharp
 builder.Services.AddLocalization();
