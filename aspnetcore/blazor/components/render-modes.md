@@ -142,6 +142,34 @@ Technically, `@rendermode` is both a Razor *directive* and a Razor *directive at
 > [!NOTE]
 > Component authors should avoid coupling a component's implementation to a specific render mode. Instead, component authors should typically design components to support any render mode or hosting model. A component's implementation should avoid assumptions on where it's running (server or client) and should degrade gracefully when rendered statically. Specifying the render mode in the component definition may be needed if the component isn't instantiated directly (such as with a routable page component) or to specify a render mode for all component instances.
 
+## Apply a render mode to the entire app
+
+To set the render mode for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
+
+> [!NOTE]
+> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, the render mode for the entire app can't be set directly by the `App` component.
+
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`):
+
+```razor
+<Routes @rendermode="InteractiveServer" />
+```
+
+The Blazor router propagates its render mode to the pages it routes. The pages aren't technically child components of the router, but when the routes are discovered at runtime for the router, they inherit the router's render mode.
+
+You also typically must set the same interactive render mode on the `HeadOutlet` component, which is also found in the `App` component of a Blazor Web App generated from the project template:
+
+```
+<HeadOutlet @rendermode="InteractiveServer" />
+```
+
+To enable global interactivity when creating a Blazor Web App:
+
+* Visual Studio: Set the **Interactivity location** dropdown list to **Global**.
+* .NET CLI: Use the `-ai|--all-interactive` option.
+
+For more information, see <xref:blazor/tooling>.
+
 ## Prerendering
 
 *Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
@@ -283,6 +311,43 @@ In the following example, the component is interactive throughout the process. T
 ```
 
 If using the preceding component locally in a Blazor Web App, place the component in the client project's `Pages` folder. The client project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-4` in the browser's address bar.
+
+## Client-side services fail to resolve during prerendering
+
+Assuming that prerendering isn't disabled for a component or for the app, a component in the `.Client` project is prerendered on the server. Because the server doesn't have access to registered client-side Blazor services, it isn't possible to inject these services into a component without receiving an error that the service can't be found during prerendering.
+
+For example, consider the following `Home` component in the `.Client` project in a Blazor Web App with [global Interactive WebAssembly or Interactive Auto rendering](#apply-a-render-mode-to-the-entire-app). The component attempts to inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> to obtain the environment's name.
+
+```razor
+@page "/"
+@inject IBlazorHostEnvironment Environment
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<p>
+    Environment: @Environment.EnvironmentName
+</p>
+```
+
+No compile time error occurs, but a runtime error occurs during prerendering:
+
+> :::no-loc text="Cannot provide a value for property 'HostEnvironment' on type 'BlazorWebApp80EnvironmentTesting.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+
+This error occurs because the component must compile and execute on the server during prerendering but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service and has no implementation on on the server.
+
+There are a four approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
+
+* *Recommended*: Create a service abstraction and create implementations&dagger; for the service in the `.Client` and server projects. Register the services in each project. Inject the service in the component. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-client-side-environment-in-a-blazor-web-app>.
+
+  &dagger;One implementation can be created if the implementation can be configured for execution in the `.Client` and server projects.
+
+* Add a check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and use the check to determine whether to obtain a service instance from an injected <xref:System.IServiceProvider>.
+
+* Similar to the preceding approach that works during prerendering, you might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
+
+* Disable prerendering for the component. For more information, see the [Prerendering](#prerendering) section.
 
 ## Render mode propagation
 
@@ -433,37 +498,9 @@ The following component results in a runtime error when the component is rendere
 
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
 
-## Set the render mode for the entire app
-
-To set the render mode for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
-
-> [!NOTE]
-> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, the render mode for the entire app can't be set directly by the `App` component.
-
-For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`):
-
-```razor
-<Routes @rendermode="InteractiveServer" />
-```
-
-The Blazor router propagates its render mode to the pages it routes. The pages aren't technically child components of the router, but when the routes are discovered at runtime for the router, they inherit the router's render mode.
-
-You also typically must set the same interactive render mode on the `HeadOutlet` component, which is also found in the `App` component of a Blazor Web App generated from the project template:
-
-```
-<HeadOutlet @rendermode="InteractiveServer" />
-```
-
-To enable global interactivity when creating a Blazor Web App:
-
-* Visual Studio: Set the **Interactivity location** dropdown list to **Global**.
-* .NET CLI: Use the `-ai|--all-interactive` option.
-
-For more information, see <xref:blazor/tooling>.
-
 ## Discover components from additional assemblies for Static Server rendering
 
-Configure additional assemblies to use for discovering routable Razor components for Static Server rendering using the `AddAdditionalAssemblies` method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+Configure additional assemblies to discover routable Razor components for Static Server rendering using the `AddAdditionalAssemblies` method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
 The following example includes the assembly of the `DifferentAssemblyCounter` component:
 
