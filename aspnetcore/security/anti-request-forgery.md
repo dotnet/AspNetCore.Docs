@@ -94,7 +94,8 @@ Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>
-* [`AddAntiforgery`](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) <!-- <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery(IServiceCollection)> --> For more information, see [Antiforgery with Minimal APIs](#afwma).
+
+For more information, see [Antiforgery with Minimal APIs](#afwma).
 
 The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
@@ -271,9 +272,9 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 ### Antiforgery with Minimal APIs
 
-Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) <!-- <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery(IServiceCollection)> --> to register antiforgery services in DI. `WebApplicationBuilder` automatically adds the antiforgery middleware when antiforgery services have been registered in the DI container. Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
+Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery(IServiceCollection)> and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery(IApplicationBuilder)> to register antiforgery services in DI.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery8/Program.cs" id="snippet_short" highlight="3":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery8/Program.cs" id="snippet_short" highlight="3,7":::
 
 The antiforgery middleware:
 
