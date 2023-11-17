@@ -367,15 +367,15 @@ If the app doesn't require the value during prerendering, this problem can be so
 
 However, the preceding approach isn't useful if your logic requires a value during prerendering.
 
-There are a four approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
+You can also avoid the problem if you [disable prerendering](#prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
+
+There are a three approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
 * *Recommended*: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
 
 * Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
 
 * You might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
-
-* Disable prerendering for the component. For more information, see the [Prerendering](#prerendering) section.
 
 ## Render mode propagation
 
