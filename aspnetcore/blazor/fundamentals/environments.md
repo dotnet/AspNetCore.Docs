@@ -153,7 +153,7 @@ In the following example for IIS, the custom header (`blazor-environment`) is ad
 > [!NOTE]
 > To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
 >
-> Although the Blazor framework issues the header name in all lowercase letters (`blazor-enviornment`), you're welcome to use any casing that you desire. For example, a header name that capitalizes each word (`Blazor-Enviornment`) is supported.
+> Although the Blazor framework issues the header name in all lowercase letters (`blazor-environment`), you're welcome to use any casing that you desire. For example, a header name that capitalizes each word (`Blazor-Environment`) is supported.
 
 ## Set the environment for Azure App Service
 
