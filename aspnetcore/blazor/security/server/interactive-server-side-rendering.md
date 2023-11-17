@@ -1,18 +1,18 @@
 ---
-title: Threat mitigation guidance for server-side ASP.NET Core Blazor
+title: Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering
 author: guardrex
-description: Learn how to mitigate security threats to server-side Blazor apps.
+description: Learn how to mitigate security threats in interactive server-side Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2023
-uid: blazor/security/server/threat-mitigation
+uid: blazor/security/server/interactive-server-side-rendering
 ---
-# Threat mitigation guidance for server-side ASP.NET Core Blazor
+# Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to mitigate security threats to server-side Blazor apps.
+This article explains how to mitigate security threats in interactive server-side Blazor.
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 

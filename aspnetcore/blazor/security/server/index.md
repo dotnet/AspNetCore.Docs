@@ -229,7 +229,22 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 }
 ```
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+The `CustomAuthenticationStateProvider` service is registered in the `Program` file:
+
+```csharp
+using Microsoft.AspNetCore.Components.Authorization;
+
+...
+
+builder.Services.AddScoped<AuthenticationStateProvider, 
+    CustomAuthenticationStateProvider>();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 The `CustomAuthenticationStateProvider` service is registered in the `Program` file ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
@@ -267,6 +282,35 @@ services.AddScoped<AuthenticationStateProvider,
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> for the Blazor router.
+
+In the `Routes` component (`Components/Routes.razor`):
+
+```razor
+<Router ...>
+    <Found ...>
+        <AuthorizeRouteView RouteData="@routeData" 
+            DefaultLayout="@typeof(Layout.MainLayout)" />
+        ...
+    </Found>
+</Router>
+```
+
+Add cascading authentication state services to the service collection in the `Program` file:
+
+```csharp
+builder.Services.AddCascadingAuthenticationState();
+```
+
+> [!NOTE]
+> When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and call to <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A>. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter> with additional information presented in the article's [Customize unauthorized content with the Router component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component) section.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> for the Blazor router:
 
 ```razor
@@ -283,6 +327,8 @@ Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeR
 
 > [!NOTE]
 > When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the preceding example. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter> with additional information presented in the article's [Customize unauthorized content with the Router component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component) section.
+
+:::moniker-end
 
 An <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> demonstrates the authenticated user's name in any component:
 

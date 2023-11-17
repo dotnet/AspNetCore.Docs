@@ -572,8 +572,10 @@ items:
                 items:
                   - name: Overview
                     uid: blazor/security/server/index
-                  - name: Threat mitigation
-                    uid: blazor/security/server/threat-mitigation
+                  - name: Static server-side rendering threats
+                    uid: blazor/security/server/static-server-side-rendering
+                  - name: Interactive server-side rendering threats
+                    uid: blazor/security/server/interactive-server-side-rendering
                   - name: Additional scenarios
                     uid: blazor/security/server/additional-scenarios
               - name: Blazor WebAssembly

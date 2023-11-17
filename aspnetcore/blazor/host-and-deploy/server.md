@@ -31,7 +31,10 @@ When considering the scalability of a single server (scale up), the memory avail
 * Number of active circuits that a server can support.
 * UI latency on the client.
 
-For guidance on building secure and scalable server-side Blazor apps, see <xref:blazor/security/server/threat-mitigation>.
+For guidance on building secure and scalable server-side Blazor apps, see the following resources:
+
+* <xref:blazor/security/server/static-server-side-rendering>
+* <xref:blazor/security/server/interactive-server-side-rendering>
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 

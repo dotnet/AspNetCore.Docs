@@ -972,7 +972,7 @@
         },
         {
             "source_path": "aspnetcore/security/blazor/server/threat-mitigation.md",
-            "redirect_url": "/aspnet/core/blazor/security/server/threat-mitigation",
+            "redirect_url": "/aspnet/core/blazor/security/server/interactive-server-side-rendering",
             "redirect_document_id": false
         },
         {
@@ -1266,6 +1266,11 @@
         {
             "source_path": "aspnetcore/blazor/forms-and-input-components.md",
             "redirect_url": "/aspnet/core/blazor/forms/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/threat-mitigation.md",
+            "redirect_url": "/aspnet/core/blazor/security/server/interactive-server-side-rendering",
             "redirect_document_id": false
         }
     ]
