@@ -337,15 +337,43 @@ No compile time error occurs, but a runtime error occurs during prerendering:
 
 This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
 
+If the app doesn't require the value during prerendering, this problem can be solved by injecting <xref:System.IServiceProvider> to obtain the service instead of the service type itself:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IServiceProvider Services
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<p>
+    <b>Environment:</b> @environmentName
+</p>
+
+@code {
+    private string? environmentName;
+
+    protected override void OnInitialized()
+    {
+        if (Services.GetService<IWebAssemblyHostEnvironment>() is { } env)
+        {
+            environmentName = env.Environment;
+        }
+    }
+}
+```
+
+However, the preceding approach isn't useful if your logic requires a value during prerendering.
+
 There are a four approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
 * *Recommended*: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
 
 * Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
 
-* Add a check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and use the check to determine whether to obtain a service instance from an injected <xref:System.IServiceProvider>.
-
-* Similar to the preceding approach that works during prerendering, you might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
+* You might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
 
 * Disable prerendering for the component. For more information, see the [Prerendering](#prerendering) section.
 
