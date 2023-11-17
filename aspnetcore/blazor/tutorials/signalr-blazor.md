@@ -872,5 +872,6 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
-* <xref:blazor/security/server/threat-mitigation>
+* <xref:blazor/security/server/static-server-side-rendering>
+* <xref:blazor/security/server/interactive-server-side-rendering>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)

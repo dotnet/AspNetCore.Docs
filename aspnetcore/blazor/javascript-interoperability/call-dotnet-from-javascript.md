@@ -1850,4 +1850,4 @@ For more information, see <xref:blazor/js-interop/index#javascript-interop-calls
 * [Interaction with the DOM](xref:blazor/js-interop/index#interaction-with-the-dom)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors#javascript-interop> (*JavaScript interop* section)
-* [Threat mitigation: .NET methods invoked from the browser](xref:blazor/security/server/threat-mitigation#net-methods-invoked-from-the-browser)
+* [Threat mitigation: .NET methods invoked from the browser](xref:blazor/security/server/interactive-server-side-rendering#net-methods-invoked-from-the-browser)
