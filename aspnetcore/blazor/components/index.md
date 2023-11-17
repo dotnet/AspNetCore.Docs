@@ -1451,7 +1451,7 @@ app.MapRazorComponents<App>();
 ```
 
 > [!NOTE]
-> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times.
+> Making a root component interactive, such as the `App` component, isn't supported.
 
 :::moniker-end
 

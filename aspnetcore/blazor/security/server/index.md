@@ -738,7 +738,7 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
 * Disable prerendering: Indicate the render mode with the `prerender` parameter set to `false` at the highest-level component in the app's component hierarchy that isn't a root component.
 
   > [!NOTE]
-  > Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, prerendering can't be disabled directly by the `App` component.
+  > Making a root component interactive, such as the `App` component, isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
 
   For apps based on the Blazor Web App project template, prerendering is typically disabled where the `Routes` component is used in the `App` component (`Components/App.razor`) :
 
