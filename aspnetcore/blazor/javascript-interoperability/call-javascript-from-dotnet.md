@@ -1137,7 +1137,7 @@ In the preceding example:
 
 Although a common cause of JS interop failures are network failures with server-side components, per-invocation timeouts can be set for JS interop calls for client-side components. Although no SignalR circuit exists for a client-side component, JS interop calls might fail for other reasons that apply.
 
-For more information on resource exhaustion, see <xref:blazor/security/server/threat-mitigation>.
+For more information on resource exhaustion, see <xref:blazor/security/server/interactive-server-side-rendering>.
 
 ## Avoid circular object references
 
@@ -1813,4 +1813,4 @@ For more information, see <xref:blazor/js-interop/index#javascript-interop-calls
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors#javascript-interop> (*JavaScript interop* section)
-* [Threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/threat-mitigation#javascript-functions-invoked-from-net)
+* [Threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/interactive-server-side-rendering#javascript-functions-invoked-from-net)
