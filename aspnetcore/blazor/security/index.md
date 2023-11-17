@@ -96,7 +96,17 @@ For more information, see <xref:blazor/security/webassembly/index>.
 
 ## `AuthenticationStateProvider` service
 
+:::moniker range=">= aspnetcore-8.0"
+
+<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and cascading authentication services to obtain the authentication state for a user.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to obtain the authentication state for a user.
+
+:::moniker-end
 
 You don't typically use <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> directly. Use the [`AuthorizeView` component](#authorizeview-component) or [`Task<AuthenticationState>`](#expose-the-authentication-state-as-a-cascading-parameter) approaches described later in this article. The main drawback to using <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> directly is that the component isn't notified automatically if the underlying authentication state data changes.
 
@@ -291,6 +301,32 @@ If authentication state data is required for procedural logic, such as when perf
 
 If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.
 
+:::moniker range=">= aspnetcore-8.0"
+
+Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and cascading authentication state services.
+
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjectionCascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
+
+```razor
+<Router ...>
+    <Found ...>
+        <AuthorizeRouteView RouteData="@routeData" 
+            DefaultLayout="@typeof(Layout.MainLayout)" />
+        ...
+    </Found>
+</Router>
+```
+
+In the `Program` file, register cascading authentication state services:
+
+```csharp
+builder.Services.AddCascadingAuthenticationState();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components.
 
 When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
@@ -306,6 +342,8 @@ When you create a Blazor app from one of the Blazor project templates with authe
     </Router>
 </CascadingAuthenticationState>
 ```
+
+:::moniker-end
 
 :::moniker range="= aspnetcore-5.0"
 
@@ -615,6 +653,36 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
 * The user fails an [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) condition applied to the component. The markup of the [`<NotAuthorized>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized?displayProperty=nameWithType) element is displayed. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.
 * Asynchronous authorization is in progress, which usually means that the process of authenticating the user is in progress. The markup of the [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) element is displayed.
 
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+<Router ...>
+    <Found ...>
+        <AuthorizeRouteView ...>
+            <NotAuthorized>
+                ...
+            </NotAuthorized>
+            <Authorizing>
+                ...
+            </Authorizing>
+        </AuthorizeRouteView>
+    </Found>
+</Router>
+```
+
+The content of `<NotAuthorized>` and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
+
+> [!NOTE]
+> The preceding requires cascading authentication state services registration in the app's `Program` file:
+>
+> ```csharp
+> builder.Services.AddCascadingAuthenticationState();
+> ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```razor
 <CascadingAuthenticationState>
     <Router ...>
@@ -631,14 +699,6 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
     </Router>
 </CascadingAuthenticationState>
 ```
-
-:::moniker range=">= aspnetcore-8.0"
-
-The content of `<NotAuthorized>` and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
 
 The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
 
@@ -772,7 +832,9 @@ Common errors:
 
 * **`null` value is received for `authenticationStateTask`**
 
-It's likely that the project wasn't created using a server-side Blazor template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example around the Blazor router:
+It's likely that the project wasn't created using a server-side Blazor template with authentication enabled.
+
+In .NET 7 or earlier, wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example around the Blazor router:
 
 ```razor
 <CascadingAuthenticationState>
@@ -782,7 +844,23 @@ It's likely that the project wasn't created using a server-side Blazor template 
 </CascadingAuthenticationState>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
+In .NET 8 or later, don't use the <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component:
+
+```diff
+- <CascadingAuthenticationState>
+      <Router ...>
+          ...
+      </Router>
+- </CascadingAuthenticationState>
+```
+
+Instead, add cascading authentication state services to the service collection in the `Program` file:
+
+```csharp
+builder.Services.AddCascadingAuthenticationState();
+```
+
+The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component (.NET 7 or earlier) or services provided by <xref:Microsoft.Extensions.DependencyInjectionCascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState> (.NET 8 or later) supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
 
 ## Additional resources
 
