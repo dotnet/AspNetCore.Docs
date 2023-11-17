@@ -193,7 +193,7 @@ To disable prerendering in a *component definition*:
 To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
 
 > [!NOTE]
-> Making a root component interactive, such as the `App` component, isn't supported because the Blazor script may be evaluated multiple times. Therefore, prerendering can't be disabled directly by the `App` component.
+> Making a root component interactive, such as the `App` component, isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
 
 For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
 
@@ -339,7 +339,9 @@ This error occurs because the component must compile and execute on the server d
 
 There are a four approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
-* *Recommended*: Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the service in the component. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-web-app>.
+* *Recommended*: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
+
+* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
 
 * Add a check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and use the check to determine whether to obtain a service instance from an injected <xref:System.IServiceProvider>.
 
