@@ -305,7 +305,7 @@ If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membe
 
 Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and cascading authentication state services.
 
-When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjectionCascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
 
 ```razor
 <Router ...>
@@ -860,7 +860,7 @@ Instead, add cascading authentication state services to the service collection i
 builder.Services.AddCascadingAuthenticationState();
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component (.NET 7 or earlier) or services provided by <xref:Microsoft.Extensions.DependencyInjectionCascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState> (.NET 8 or later) supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
+The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component (.NET 7 or earlier) or services provided by <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> (.NET 8 or later) supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
 
 ## Additional resources
 
