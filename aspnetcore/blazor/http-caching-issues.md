@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/20/2023
-uid: blazor/http-caching-issues-drop
+uid: blazor/http-caching-issues
 ---
 # Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps
 
