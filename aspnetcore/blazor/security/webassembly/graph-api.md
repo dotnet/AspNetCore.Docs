@@ -201,7 +201,7 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using the Graph SDK
 
@@ -285,7 +285,7 @@ public class CustomAccountFactory
 
 Configure the MSAL authentication to use the custom user account factory.
 
-Confirm that the the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Confirm that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -357,7 +357,7 @@ else
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 :::zone-end
 
@@ -557,7 +557,7 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using the Graph SDK
 
@@ -634,7 +634,7 @@ public class CustomAccountFactory
 
 Configure the MSAL authentication to use the custom user account factory.
 
-Confirm that the the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Confirm that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -707,7 +707,7 @@ else
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 :::zone-end
 
@@ -836,7 +836,7 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
 }
 ```
 
-When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using a named `HttpClient`
 
@@ -927,7 +927,7 @@ public class CustomAccountFactory
 }
 ```
 
-The MSAL authentication is configured to use the custom user account factory. Start by confirming that the the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+The MSAL authentication is configured to use the custom user account factory. Start by confirming that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -991,7 +991,7 @@ else
 }
 ```
 
-When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 :::zone-end
 
@@ -999,7 +999,7 @@ When testing with the Graph API locally, we recommend using a new in-private/inc
 
 ## Hosted Blazor WebAssembly solutions
 
-The examples in this article pertain to using the Graph SDK or a named `HttpClient` with Graph API directly from a standalone Blazor WebAssembly app or directly from the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). An additional scenario that isn't covered by this article is for a **:::no-loc text="Client":::** app of a hosted solution to call the **:::no-loc text="Server":::** app of the solution via web API, and then the the **:::no-loc text="Server":::** app uses the Graph SDK/API to call Microsoft Graph and return data to the **:::no-loc text="Client":::** app. Although this is a supported approach, it isn't covered by this article. If you wish to adopt this approach:
+The examples in this article pertain to using the Graph SDK or a named `HttpClient` with Graph API directly from a standalone Blazor WebAssembly app or directly from the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). An additional scenario that isn't covered by this article is for a **:::no-loc text="Client":::** app of a hosted solution to call the **:::no-loc text="Server":::** app of the solution via web API, and then the **:::no-loc text="Server":::** app uses the Graph SDK/API to call Microsoft Graph and return data to the **:::no-loc text="Client":::** app. Although this is a supported approach, it isn't covered by this article. If you wish to adopt this approach:
 
 * Follow the guidance in <xref:blazor/call-web-api> for the web API aspects on issuing requests to the **:::no-loc text="Server":::** app from the **:::no-loc text="Client":::** app and returning data to the **:::no-loc text="Client":::** app.
 * Follow the guidance in the primary [Microsoft Graph documentation](/graph/) to use the Graph SDK with a typical ASP.NET Core app, which in this scenario is the **:::no-loc text="Server":::** app of the solution. If you use the Blazor WebAssembly project template to the create the hosted Blazor WebAssembly solution (**ASP.NET Core Hosted**/`-h|--hosted`) with organizational authorization (single organization/`SingleOrg` or multiple organization/`MultiOrg`) and the Microsoft Graph option (**Microsoft identity platform** > **Connected Services** > **Add Microsoft Graph permissions** in Visual Studio or the `--calls-graph` option with the .NET CLI `dotnet new` command), the **:::no-loc text="Server":::** app of the solution is configured to use the Graph SDK when the solution is created from the project template.

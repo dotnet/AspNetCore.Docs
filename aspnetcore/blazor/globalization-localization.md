@@ -733,13 +733,13 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Add the `CultureSelector` component to the the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Components/Layout/MainLayout.razor` file:
+Add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Components/Layout/MainLayout.razor` file:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-Add the `CultureSelector` component to the the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Shared/MainLayout.razor` file:
+Add the `CultureSelector` component to the `MainLayout` component. Place the following markup inside the closing `</main>` tag in the `Shared/MainLayout.razor` file:
 
 :::moniker-end
 

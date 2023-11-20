@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor sections
 author: guardrex
-description: Learn how to to control the content in a Razor component from a child Razor component.
+description: Learn how to control the content in a Razor component from a child Razor component.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -18,7 +18,7 @@ uid: blazor/components/sections
 
 To control the content in a Razor component from a child Razor component, Blazor supports *sections* using the following built-in components:
 
-* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionName` or `SectionId` arguments. Two or more `SectionOutlet` components can't have the the same `SectionName` or `SectionId`.
+* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionName` or `SectionId` arguments. Two or more `SectionOutlet` components can't have the same `SectionName` or `SectionId`.
 
 * `SectionContent`: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to `SectionOutlet` components with a matching `SectionName` or `SectionId`. If several `SectionContent` components have the same `SectionName` or `SectionId`, the matching `SectionOutlet` component renders the content of the last rendered `SectionContent`.
 
