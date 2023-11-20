@@ -806,7 +806,7 @@ The Azure documentation contains additional detail on using Azure services and c
 * [Secure a custom DNS name with a TLS/SSL binding in Azure App Service](/azure/app-service/configure-ssl-bindings)
 * [Azure Key Vault](/azure/key-vault/)
 
-We recommend using a new in-private or incognito browser window for each app test run after a change to the app, app configuration, or Azure services in the Azure portal. Lingering cookies from a previous test run can result in failed authentication or authorization when testing the site even when the site's configuration is correct. For more information on how to configure Visual Studio to open a new in-private or incognito browser window for each test run, see the [Cookies and site data](#cookies-and-site-data) section.
+We recommend using a new private mode browser window (for example, Microsoft Edge InPrivate mode or Google Chrome Incognito mode) for each app test run after a change to the app, app configuration, or Azure services in the Azure portal. Lingering cookies from a previous test run can result in failed authentication or authorization when testing the site even when the site's configuration is correct. For more information on how to configure Visual Studio to open a new private browser window for each test run, see the [Cookies and site data](#cookies-and-site-data) section.
 
 When App Service configuration is changed in the Azure portal, the updates generally take effect quickly but aren't instant. Sometimes, you must wait a short period for an App Service to restart in order for a configuration change to take effect.
 

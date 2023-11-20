@@ -540,13 +540,13 @@ The Blazor script is served from an embedded resource in the ASP.NET Core shared
 
 In a Blazor Web App, the Blazor script is located in the `Components/App.razor` file:
 
-```
+```html
 <script src="_framework/blazor.web.js"></script>
 ```
 
 In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml` file:
 
-```
+```html
 <script src="_framework/blazor.server.js"></script>
 ```
 
@@ -556,7 +556,7 @@ In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml`
 
 In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml` file:
 
-```
+```html
 <script src="_framework/blazor.server.js"></script>
 ```
 
@@ -566,7 +566,7 @@ In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml`
 
 In a Blazor Server app, the Blazor script is located in the `Pages/_Layout.cshtml` file:
 
-```
+```html
 <script src="_framework/blazor.server.js"></script>
 ```
 
@@ -576,7 +576,7 @@ In a Blazor Server app, the Blazor script is located in the `Pages/_Layout.cshtm
 
 In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml` file:
 
-```
+```html
 <script src="_framework/blazor.server.js"></script>
 ```
 
@@ -584,7 +584,7 @@ In a Blazor Server app, the Blazor script is located in the `Pages/_Host.cshtml`
 
 In a Blazor WebAssembly app, the Blazor script content is located in the `wwwroot/index.html` file:
 
-```
+```html
 <script src="_framework/blazor.webassembly.js"></script>
 ```
 

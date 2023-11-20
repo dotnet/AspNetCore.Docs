@@ -154,7 +154,7 @@ In the ASP.NET Core project's `Program` file:
   app.UseAntiforgery();
   ```
 
-* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component (the first component loaded). Place the following code before the the line that calls `app.Run`:
+* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component (the first component loaded). Place the following code before the line that calls `app.Run`:
 
   ```csharp
   app.MapRazorComponents<App>();
