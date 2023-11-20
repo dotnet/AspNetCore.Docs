@@ -149,7 +149,7 @@ To set the render mode for the entire app, indicate the render mode at the highe
 > [!NOTE]
 > Making a root component interactive, such as the `App` component, isn't supported. Therefore, the render mode for the entire app can't be set directly by the `App` component.
 
-For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`):
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`:
 
 ```razor
 <Routes @rendermode="InteractiveServer" />
@@ -162,6 +162,12 @@ You also typically must set the same interactive render mode on the `HeadOutlet`
 ```
 <HeadOutlet @rendermode="InteractiveServer" />
 ```
+
+For apps that adopt the Interactive WebAssembly or Interactive Auto rendering mode and enable the render mode for the entire app via the `Routes` component instance in the `App` component:
+
+* Place or move the layout and navigation files of the server app's `Components/Layout` folder into the `.Client` project's `Layout` folder. Create a `Layout` folder in the `.Client` project if it doesn't exist.
+* Place or move the components of the server app's `Components/Pages` folder into the `.Client` project's `Pages` folder. Create a `Pages` folder in the `.Client` project if it doesn't exist.
+* Place or move the `Routes` component of the server app's `Components` folder into the `.Client` project's root folder.
 
 To enable global interactivity when creating a Blazor Web App:
 
