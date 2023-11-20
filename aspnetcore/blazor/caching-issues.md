@@ -1,14 +1,14 @@
 ---
-title: Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps
+title: Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps (drop)
 author: guardrex
-description: Learn how to avoid HTTP caching issues when upgrading Blazor apps.
+description: Learn how to avoid HTTP caching issues when upgrading Blazor apps (drop).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/20/2023
 uid: blazor/http-caching-issues-drop
 ---
-# Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps
+# Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps (drop)
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
