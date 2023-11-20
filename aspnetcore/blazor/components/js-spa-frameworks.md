@@ -392,7 +392,7 @@ Register a root component as a custom element:
   ```
   
   > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the the `Program` file.
+  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the `Program` file.
 
 * In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the `Program` file:
 
@@ -401,7 +401,7 @@ Register a root component as a custom element:
   ```
   
   > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the the `Program` file.
+  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the `Program` file.
 
 Include the following `<script>` tag in the app's HTML ***before*** the Blazor script tag:
 
