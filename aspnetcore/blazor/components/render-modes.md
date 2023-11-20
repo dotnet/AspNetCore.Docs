@@ -149,7 +149,7 @@ To set the render mode for the entire app, indicate the render mode at the highe
 > [!NOTE]
 > Making a root component interactive, such as the `App` component, isn't supported. Therefore, the render mode for the entire app can't be set directly by the `App` component.
 
-For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`:
+For apps based on the Blazor Web App project template, a render mode assigned to the entire app is typically specified where the `Routes` component is used in the `App` component (`Components/App.razor`):
 
 ```razor
 <Routes @rendermode="InteractiveServer" />
