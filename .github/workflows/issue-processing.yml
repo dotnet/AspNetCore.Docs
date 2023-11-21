@@ -101,11 +101,13 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
-            if (contains(github.event.issue.labels.*.name, '⌚ Not Triaged')) {
-              await github.rest.issues.removeLabel({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: [":watch: Not Triaged"]
-              })
-            }
+      - uses: actions/github-script@v6
+        if: contains(github.event.issue.labels.*.name, '⌚ Not Triaged')
+        with:
+          script: |
+            await github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })
