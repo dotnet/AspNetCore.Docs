@@ -3,8 +3,6 @@ on:
   issues:
     types:
       - labeled
-env:
-  ACTIONS_STEP_DEBUG: true
 jobs:
   process-grpc-issue:
     if: github.event.label.name == 'aspnetcore-grpc/tech'
@@ -59,6 +57,12 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex", "BethMassi"]
             })
+            await github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })
 
   process-blazor-issue:
     if: github.event.label.name == 'aspnetcore-blazor/tech'
@@ -101,10 +105,6 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
-      - uses: actions/github-script@v6
-        if: contains(github.event.issue.labels.*.name, '⌚ Not Triaged')
-        with:
-          script: |
             await github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
