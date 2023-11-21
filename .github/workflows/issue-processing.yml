@@ -3,6 +3,8 @@ on:
   issues:
     types:
       - labeled
+env:
+  ACTIONS_STEP_DEBUG: true
 jobs:
   process-grpc-issue:
     if: github.event.label.name == 'aspnetcore-grpc/tech'
@@ -103,8 +105,6 @@ jobs:
   process-not-triaged-label:
     if: (github.event.label.name == 'aspnetcore-blazorhybrid/tech' || github.event.label.name == 'aspnetcore-blazor/tech') && contains(github.event.issue.labels.*.name, '⌚ Not Triaged')
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_STEP_DEBUG: true
     permissions:
       issues: write
     steps:
