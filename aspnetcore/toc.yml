@@ -524,6 +524,8 @@ items:
                 uid: blazor/components/integration
               - name: Class libraries
                 uid: blazor/components/class-libraries
+              - name: Class libraries with static SSR
+                uid: blazor/components/class-libraries-with-static-ssr
               - name: JavaScript apps and SPA frameworks
                 uid: blazor/components/js-spa-frameworks
               - name: Components outside of ASP.NET Core
