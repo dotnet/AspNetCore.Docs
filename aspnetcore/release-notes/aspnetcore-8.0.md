@@ -36,7 +36,7 @@ Examples throughout the Blazor documentation have been updated for use in Blazor
 
 We've added a new article that discusses component library authorship in Razor class libraries (RCLs) with static server-side rendering (static SSR).
 
-For more information, see <xref:blazor/components/class-libraries-with-ssr>.
+For more information, see <xref:blazor/components/class-libraries-with-static-ssr>.
 
 ### New article on HTTP caching issues
 
@@ -263,7 +263,7 @@ The Blazor project templates no longer depend on [Open Iconic](https://github.co
 
 ### Support for dialog cancel and close events
 
-Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
+Blazor now supports the [`cancel`](https://developer.mozilla.org/docs/Web/API/HTMLElement/cancel_event) and [`close`](https://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) events on the `dialog` HTML element.
 
 In the following example:
 
