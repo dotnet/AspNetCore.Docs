@@ -101,7 +101,7 @@ jobs:
             })
 
   process-not-triaged-label:
-    if: github.event.label.name == '⌚ Not Triaged' && (github.event.label.name == 'aspnetcore-blazorhybrid/tech' || github.event.label.name == 'aspnetcore-blazor/tech')
+    if: contains(github.event.issue.labels.*.name, '⌚ Not Triaged') && (contains(github.event.issue.labels.*.name, 'aspnetcore-blazorhybrid/tech') || contains(github.event.issue.labels.*.name, 'aspnetcore-blazor/tech'))
     runs-on: ubuntu-latest
     permissions:
       issues: write
