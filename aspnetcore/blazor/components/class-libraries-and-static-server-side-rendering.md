@@ -97,9 +97,7 @@ Reusable Razor components may include forms (either `<form @onsubmit=...>` or `<
 Consider the following example:
 
 ```razor
-<EditForm Enhance FormName="create-product" Model="@Item" 
-    OnValidSubmit="SaveProductAsync">
-
+<EditForm Enhance FormName="NewProduct" Model="@Item" OnValidSubmit="SaveProduct">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -112,7 +110,7 @@ Consider the following example:
     [SupplyParameterFromForm]
     public Product Item { get; set; } = new();
 
-    private async Task SaveProductAsync()
+    private async Task Save()
     {
         ...
     }
