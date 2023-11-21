@@ -29,12 +29,12 @@ The following table shows the available render modes for rendering Razor compone
 
 Name | Description | Render location | Interactive
 ---- | ----------- | :-------------: | :---------:
-Static | Static server rendering |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
+Static Server | Static server rendering |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
 Interactive Server | Interactive server rendering using Blazor Server | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 Interactive WebAssembly | Interactive client rendering using Blazor WebAssembly | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 Interactive Auto | Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 
-Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article.
+Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article. For general industry terminology on client and server rendering concepts, see <xref:blazor/fundamentals/index#client-and-server-rendering-concepts>.
 
 The following examples demonstrate setting the component's render mode with a few basic Razor component features.
 
