@@ -31,7 +31,7 @@ By default, all existing components can still be used with static SSR. However, 
 * There's no .NET code in the browser to run them.
 * The server has immediately discarded any component and renderer state that would be needed to execute event handlers or to rerender the same component instances.
 
-&dagger;There's a special exception for the `@onsubmit` event handler, which is described later in this article.
+&dagger;There's a special exception for the `@onsubmit` event handler for forms, which is always functional, regardless of render mode.
 
 This is equivalent to how components behave during [prerendering](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), before a Blazor circuit or Blazor WebAssembly runtime is started.
 
