@@ -57,6 +57,12 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex", "BethMassi"]
             })
+            await github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })
 
   process-blazor-issue:
     if: github.event.label.name == 'aspnetcore-blazor/tech'
@@ -99,16 +105,6 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
-
-  process-not-triaged-label:
-    if: github.event.label.name == '⌚ Not Triaged' && (github.event.label.name == 'aspnetcore-blazorhybrid/tech' || github.event.label.name == 'aspnetcore-blazor/tech')
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
             await github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
