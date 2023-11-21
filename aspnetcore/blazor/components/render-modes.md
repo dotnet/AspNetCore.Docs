@@ -583,4 +583,4 @@ At the moment, the shorthand render mode approach is probably only useful for re
 
 * <xref:blazor/js-interop/ssr>
 * [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading parameters](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-parameters) section earlier in the article.
-
+* <xref:blazor/components/class-libraries-with-static-ssr>
