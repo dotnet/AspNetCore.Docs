@@ -101,19 +101,11 @@ jobs:
               repo: context.repo.repo,
               assignees: ["guardrex"]
             })
-
-  process-not-triaged-label:
-    if: (github.event.label.name == 'aspnetcore-blazorhybrid/tech' || github.event.label.name == 'aspnetcore-blazor/tech') && contains(github.event.issue.labels.*.name, '⌚ Not Triaged')
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            await github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: [":watch: Not Triaged"]
-            })
+            if (contains(github.event.issue.labels.*.name, '⌚ Not Triaged')) {
+              await github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: [":watch: Not Triaged"]
+              })
+            }
