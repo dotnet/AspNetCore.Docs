@@ -51,14 +51,6 @@ jobs:
               repo: context.repo.repo,
               labels: ["Blazor Hybrid"]
             })
-            if (github.event.label.name === ':watch: Not Triaged') {
-              await github.rest.issues.removeLabel({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: [":watch: Not Triaged"]
-              })
-            }
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -101,17 +93,25 @@ jobs:
               repo: context.repo.repo,
               labels: ["Blazor"]
             })
-            if (github.event.label.name === ':watch: Not Triaged') {
-              await github.rest.issues.removeLabel({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: [":watch: Not Triaged"]
-              })
-            }
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               assignees: ["guardrex"]
+            })
+
+  process-not-triaged-label:
+    if: ((github.event.label.name == 'aspnetcore-blazorhybrid/tech' || github.event.label.name == 'aspnetcore-blazor/tech') && github.event.label.name == ':watch: Not Triaged')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
             })
