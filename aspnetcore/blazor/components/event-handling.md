@@ -152,84 +152,104 @@ Blazor supports custom event arguments, which enable you to pass arbitrary data 
 
 Custom events with custom event arguments are generally enabled with the following steps.
 
-1. In JavaScript, define a function for building the custom event argument object from the source event:
+In JavaScript, define a function for building the custom event argument object from the source event:
 
-   ```javascript
-   function eventArgsCreator(event) { 
-     return {
-       customProperty1: 'any value for property 1',
-       customProperty2: event.srcElement.value
-     };
-   }
-   ```
+```javascript
+function eventArgsCreator(event) { 
+  return {
+    customProperty1: 'any value for property 1',
+    customProperty2: event.srcElement.value
+  };
+}
+```
 
-1. Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
+Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
 
-   `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
+`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
-   ```javascript
-   export function afterStarted(blazor) {
-     blazor.registerCustomEventType('customevent', {
-       createEventArgs: eventArgsCreator
-     });
-   }
-   ```
+:::moniker-end
 
-   In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
+:::moniker range=">= aspnetcore-8.0"
 
-   > [!NOTE]
-   > The call to `registerCustomEventType` is performed in a script only once per event.
-   >
-   > For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+For a Blazor Web App:
 
-1. Define a class for the event arguments:
+```javascript
+export function afterWebStarted(blazor) {
+  blazor.registerCustomEventType('customevent', {
+    createEventArgs: eventArgsCreator
+  });
+}
+```
 
-   ```csharp
-   namespace BlazorSample.CustomEvents;
+For a Blazor Server or Blazor WebAssembly app:
 
-   public class CustomEventArgs : EventArgs
-   {
-       public string? CustomProperty1 {get; set;}
-       public string? CustomProperty2 {get; set;}
-   }
-   ```
+:::moniker-end
 
-1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event:
+:::moniker range=">= aspnetcore-6.0"
 
-   * In order for the compiler to find the `[EventHandler]` class, it must be placed into a C# class file (`.cs`), making it a normal top-level class.
-   * Mark the class `public`.
-   * The class doesn't require members.
-   * The class *must* be called "`EventHandlers`" in order to be found by the Razor compiler.
-   * Place the class under a namespace specific to your app.
-   * Import the namespace into the Razor component (`.razor`) where the event is used.
+```javascript
+export function afterStarted(blazor) {
+  blazor.registerCustomEventType('customevent', {
+    createEventArgs: eventArgsCreator
+  });
+}
+```
 
-   ```csharp
-   using Microsoft.AspNetCore.Components;
+In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
 
-   namespace BlazorSample.CustomEvents;
+> [!NOTE]
+> The call to `registerCustomEventType` is performed in a script only once per event.
+>
+> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
-   [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-   public static class EventHandlers
-   {
-   }
-   ```
+Define a class for the event arguments:
 
-1. Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
+```csharp
+namespace BlazorSample.CustomEvents;
 
-   ```razor
-   @using namespace BlazorSample.CustomEvents
+public class CustomEventArgs : EventArgs
+{
+    public string? CustomProperty1 {get; set;}
+    public string? CustomProperty2 {get; set;}
+}
+```
 
-   <button @oncustomevent="HandleCustomEvent">Handle</button>
+Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event:
 
-   @code
-   {
-       private void HandleCustomEvent(CustomEventArgs eventArgs)
-       {
-           // eventArgs.CustomProperty1
-           // eventArgs.CustomProperty2
-       }
-   }
-   ```
+* In order for the compiler to find the `[EventHandler]` class, it must be placed into a C# class file (`.cs`), making it a normal top-level class.
+* Mark the class `public`.
+* The class doesn't require members.
+* The class *must* be called "`EventHandlers`" in order to be found by the Razor compiler.
+* Place the class under a namespace specific to your app.
+* Import the namespace into the Razor component (`.razor`) where the event is used.
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample.CustomEvents;
+
+[EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+public static class EventHandlers
+{
+}
+```
+
+Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
+
+```razor
+@using namespace BlazorSample.CustomEvents
+
+<button @oncustomevent="HandleCustomEvent">Handle</button>
+
+@code
+{
+    private void HandleCustomEvent(CustomEventArgs eventArgs)
+    {
+        // eventArgs.CustomProperty1
+        // eventArgs.CustomProperty2
+    }
+}
+```
 
 If the `@oncustomevent` attribute isn't recognized by [IntelliSense](/visualstudio/ide/using-intellisense), make sure that the component or the `_Imports.razor` file contains an `@using` statement for the namespace containing the `EventHandler` class.
 
@@ -267,6 +287,32 @@ Add JavaScript code to supply data for the <xref:System.EventArgs> subclass with
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+For a Blazor Web App:
+
+```javascript
+export function afterWebStarted(blazor) {
+  blazor.registerCustomEventType('custompaste', {
+    browserEventName: 'paste',
+    createEventArgs: event => {
+      return {
+        eventTimestamp: new Date(),
+        pastedData: event.clipboardData.getData('text')
+      };
+    }
+  });
+}
+```
+
+For a Blazor Server or Blazor WebAssembly app:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ```javascript
 export function afterStarted(blazor) {
   blazor.registerCustomEventType('custompaste', {
@@ -284,7 +330,7 @@ export function afterStarted(blazor) {
 In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
 
 > [!NOTE]
-> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
 The preceding code tells the browser that when a native [`paste`](https://developer.mozilla.org/docs/Web/API/Element/paste_event) event occurs:
 
