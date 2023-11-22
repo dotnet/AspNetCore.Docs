@@ -314,10 +314,11 @@ When a CSP is applied to a Blazor app's `<head>` content, it interferes with loc
 > [!NOTE]
 > The examples in this section don't show the full `<meta>` tag for the CSPs. The complete `<meta>` tags are found in the subsections of the [Apply the policy](#apply-the-policy) section.
 
-Two approaches are available for server-side and client-side Blazor Apps:
+Three general approaches are available for server-side and client-side Blazor Apps:
 
 * Apply the CSP via the `App` component, which applies the CSP to all layouts of the app.
 * Apply the CSP to the app's layout files using the [`<HeadContent>` tag](xref:blazor/components/control-head-content). For complete effectiveness, every app layout file must adopt the approach.
+* The hosting service or server can append the CSP via a [`Content-Security-Policy` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) to an app's outgoing responses. Because this approach varies quite a bit by hosting service or server, it isn't addressed in the following examples. If you wish to adopt this approach, consult the hosting service provider or hosting server documentation.
 
 ### Blazor Web App approaches
 
@@ -409,6 +410,7 @@ Test and update an app's policy every release.
 ## Additional resources
 
 * [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
-* [MDN web docs: Content-Security-Policy](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
+* [MDN web docs: Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+* [MDN web docs: Content-Security-Policy response header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
