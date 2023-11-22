@@ -64,7 +64,7 @@ public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
     // Create a tracking context from the authorization inputs.
     var authContext = _contextFactory.CreateContext(requirements, user, resource);
 
-    // By default this returns an IEnumerable<IAuthorizationHandlers> from DI.
+    // By default this returns an IEnumerable<IAuthorizationHandler> from DI.
     var handlers = await _handlers.GetHandlersAsync(authContext);
 
     // Invoke all handlers.
