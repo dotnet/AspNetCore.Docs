@@ -170,6 +170,25 @@ Using a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-ini
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
+:::moniker range=">= aspnetcore-8.0"
+
+For a Blazor Web App:
+
+```javascript
+export function afterWebStarted(blazor) {
+  let targetElement = document.getElementById('quoteContainer2');
+  blazor.rootComponents.add(targetElement, 'quote',
+    {
+      text: "Crow: I have my doubts that this movie is actually 'starring' " +
+          "anybody. More like, 'camera is generally pointed at.'"
+    });
+}
+```
+
+For a Blazor Server or Blazor WebAssembly app:
+
+:::moniker-end
+
 ```javascript
 export function afterStarted(blazor) {
   let targetElement = document.getElementById('quoteContainer2');
@@ -182,7 +201,7 @@ export function afterStarted(blazor) {
 ```
 
 > [!NOTE]
-> For the call to `rootComponents.add`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+> For the call to `rootComponents.add`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
 For an advanced example with additional features, see the example in the `BasicTestApp` of the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
 
