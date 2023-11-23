@@ -312,13 +312,13 @@ The particular script associated with the error is displayed in the console next
 When a CSP is applied to a Blazor app's `<head>` content, it interferes with local testing in the Development environment. For example, [Browser Link](xref:client-side/using-browserlink) and the browser refresh script fail to load. The following examples demonstrate how to apply the CSP's `<meta>` tag in non-Development environments.
 
 > [!NOTE]
-> The examples in this section don't show the full `<meta>` tag for the CSPs. The complete `<meta>` tags are found in the subsections of the [Apply the policy](#apply-the-policy) section.
+> The examples in this section don't show the full `<meta>` tag for the CSPs. The complete `<meta>` tags are found in the subsections of the [Apply the policy](#apply-the-policy) section earlier in this article.
 
-Three general approaches are available for server-side and client-side Blazor Apps:
+Three general approaches are available:
 
 * Apply the CSP via the `App` component, which applies the CSP to all layouts of the app.
 * Apply the CSP to the app's layout files using the [`<HeadContent>` tag](xref:blazor/components/control-head-content). For complete effectiveness, every app layout file must adopt the approach.
-* The hosting service or server can append the CSP via a [`Content-Security-Policy` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) to an app's outgoing responses. Because this approach varies quite a bit by hosting service or server, it isn't addressed in the following examples. If you wish to adopt this approach, consult the hosting service provider or hosting server documentation.
+* The hosting service or server can provide a CSP via a [`Content-Security-Policy` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) added an app's outgoing responses. Because this approach varies by hosting service or server, it isn't addressed in the following examples. If you wish to adopt this approach, consult the documentation for your hosting service provider or server.
 
 ### Blazor Web App approaches
 
