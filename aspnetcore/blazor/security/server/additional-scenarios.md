@@ -426,7 +426,24 @@ For an app that uses more than one Authentication Middleware and thus has more t
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
+...
+
+app.MapRazorComponents<App>().RequireAuthorization(
+    new AuthorizeAttribute
+    {
+        AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme
+    })
+    .AddInteractiveServerRenderMode();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -759,7 +776,13 @@ public class UserServiceMiddleware
 }
 ```
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+Immediately before the call to `app.MapRazorComponents<App>()` in the `Program` file, call the middleware:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Immediately before the call to `app.MapBlazorHub()` in the `Program` file, call the middleware:
 
