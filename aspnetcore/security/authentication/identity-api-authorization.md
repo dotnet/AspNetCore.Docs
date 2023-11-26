@@ -129,7 +129,7 @@ The `RequireAuthorization` method can also be used to secure Swagger UI endpoint
 app.MapSwagger().RequireAuthorization();
 ```
 
-In a controller-based web API project, secure endpoints by applying the [[`Authorize`]](<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action.
+In a controller-based web API project, secure endpoints by applying the [[`Authorize`]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action.
 
 ## Test the API
 
