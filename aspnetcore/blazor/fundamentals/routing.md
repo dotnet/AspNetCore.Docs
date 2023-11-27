@@ -135,29 +135,44 @@ Arbitrary items are supported as content of the `<NotFound>` tags, such as other
 
 ## Route to components from multiple assemblies
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to set a collection of additional assemblies to search for components that can match request URIs. This API is used to discover routable components of [component class libraries](xref:blazor/components/class-libraries). Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
 
-:::moniker range=">= aspnetcore-6.0"
-
-```razor
-<Router
-    AppAssembly="@typeof(App).Assembly"
-    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
-    @* ... Router component elements ... *@
-</Router>
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
+In the following example, `Component1` is a routable component defined in a referenced `ComponentLibrary`. The following example results in routing support for `Component1`. In the router instance of the project that's consuming `ComponentLibrary`:
 
 ```razor
 <Router
-    AppAssembly="@typeof(Program).Assembly"
-    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
-    @* ... Router component elements ... *@
+    AppAssembly="..."
+    AdditionalAssemblies="new[] { typeof(ComponentLibrary.Component1).Assembly }">
+    ...
 </Router>
 ```
+
+:::moniker range=">= aspnetcore-8.0"
+
+In the following Blazor Web App example, the server project has a project reference to a separate `BlazorSample.Client` project that provides routable client-side components. The `BlazorSample.Client` project has an `_Imports.razor` file that can be used to identify the assembly:
+
+```razor
+<Router
+    AppAssembly="..."
+    AdditionalAssemblies="new[] { typeof(BlazorSample.Client._Imports).Assembly }">
+    ...
+</Router>
+```
+
+> [NOTE]
+> Blazor Web Apps have similarly-named API, <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, for adding additional assemblies to the app for the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder> in the `Program` file. 
+>
+> In the following example, the `BlazorSample.Client` project's `_Imports.razor` file is used to load the `.Client` project's assembly:
+>
+> ```csharp
+> app.MapRazorComponents<App>();
+>     .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
+> ```
+>
+> The preceding code is required by the Blazor framework to identify the components of the `.Client` project. Although the preceding code doesn't require you to also name the assembly to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component:
+>
+> * The Blazor Web App project template sets up a new project with the assignment to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter.
+> * We recommend that you adopt the pattern in your apps.
 
 :::moniker-end
 
