@@ -135,7 +135,7 @@ Arbitrary items are supported as content of the `<NotFound>` tags, such as other
 
 ## Route to components from multiple assemblies
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to provide a collection of additional assemblies to search for components that can match request URIs. Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to discover routable components in additional assemblies. Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
 
 In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries) named `ComponentLibrary`:
 
@@ -149,7 +149,7 @@ In the following example, `Component1` is a routable component defined in a refe
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the following Blazor Web App example, the server project has a project reference to a separate `BlazorSample.Client` project that provides routable client-side components. The `BlazorSample.Client` project has an `_Imports.razor` file that can be used to identify the assembly:
+In the following Blazor Web App example, the `_Imports.razor` file of the `BlazorSample.Client` project indicates the assembly to search for routable components:
 
 ```razor
 <Router
@@ -158,6 +158,10 @@ In the following Blazor Web App example, the server project has a project refere
     ...
 </Router>
 ```
+
+A Blazor Web App is required to indicate the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> if the Blazor router (`<Router>` in the `Routes` component) inherits an interactive render mode from the `Routes` component instance in the `App` component (for example `<Routes @rendermode="InteractiveAuto" />`.
+
+If the the Blazor router (`<Router>`) isn't an interactive router, routable components of the `.Client` project are discovered without specifying the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
 
 > [NOTE]
 > Blazor Web Apps use similarly-named API, <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, to add additional assemblies to the app for the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder> in the app's `Program` file. 
@@ -170,7 +174,7 @@ In the following Blazor Web App example, the server project has a project refere
 >     .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
 > ```
 >
-> The preceding code is required by the Blazor framework to identify the components of the `.Client` project. When a Blazor Web App provides a project's assembly to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, the app isn't required to provide the assembly to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component. However, the Blazor Web App project template sets up a new project with `.Client` project assembly assignment to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter.
+> Indicating the `.Client` project's assembly and any other referenced projects with Razor components is **required**.
 
 :::moniker-end
 
