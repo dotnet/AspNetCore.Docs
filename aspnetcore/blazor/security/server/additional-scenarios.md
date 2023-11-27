@@ -29,7 +29,7 @@ Tokens available outside of the Razor components in a server-side Blazor app can
 > Passing the [anti-request forgery (CSRF/XSRF) token](xref:security/anti-request-forgery) to Razor components is useful in scenarios where components POST to Identity or other endpoints that require validation. However, don't follow the guidance in this section for processing form POST requests or web API requests with XSRF support. The Blazor framework provides built-in antiforgery support for forms and calling web APIs. For more information, see the following resources:
 >
 > * General support for antiforgery: <xref:blazor/security/index#antiforgery-support>
-> * Antiforgery support for forms: <blazor/forms/index#antiforgery-support>
+> * Antiforgery support for forms: <xref:blazor/forms/index#antiforgery-support>
 > * Antiforgery support for web API: <xref:blazor/call-web-api#antiforgery-support>
 
 Authenticate the app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
