@@ -135,9 +135,9 @@ Arbitrary items are supported as content of the `<NotFound>` tags, such as other
 
 ## Route to components from multiple assemblies
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to set a collection of additional assemblies to search for components that can match request URIs. This API is used to discover routable components of [component class libraries](xref:blazor/components/class-libraries). Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to provide a collection of additional assemblies to search for components that can match request URIs. Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
 
-In the following example, `Component1` is a routable component defined in a referenced `ComponentLibrary`. The following example results in routing support for `Component1`. In the router instance of the project that's consuming `ComponentLibrary`:
+In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries) named `ComponentLibrary`:
 
 ```razor
 <Router
@@ -160,19 +160,17 @@ In the following Blazor Web App example, the server project has a project refere
 ```
 
 > [NOTE]
-> Blazor Web Apps have similarly-named API, <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, for adding additional assemblies to the app for the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder> in the `Program` file. 
+> Blazor Web Apps use similarly-named API, <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, to add additional assemblies to the app for the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilder> in the app's `Program` file. 
 >
 > In the following example, the `BlazorSample.Client` project's `_Imports.razor` file is used to load the `.Client` project's assembly:
 >
 > ```csharp
-> app.MapRazorComponents<App>();
+> app.MapRazorComponents<App>()
+>     ...
 >     .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
 > ```
 >
-> The preceding code is required by the Blazor framework to identify the components of the `.Client` project. Although the preceding code doesn't require you to also name the assembly to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component:
->
-> * The Blazor Web App project template sets up a new project with the assignment to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter.
-> * We recommend that you adopt the pattern in your apps.
+> The preceding code is required by the Blazor framework to identify the components of the `.Client` project. When a Blazor Web App provides a project's assembly to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, the app isn't required to provide the assembly to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component. However, the Blazor Web App project template sets up a new project with `.Client` project assembly assignment to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter.
 
 :::moniker-end
 
