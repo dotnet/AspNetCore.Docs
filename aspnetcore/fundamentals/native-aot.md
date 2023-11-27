@@ -42,7 +42,8 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | MVC | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 | Blazor Server | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 | SignalR | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
-| Authentication | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> (JWT soon) |
+| JWT Authentication | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| Other Authentication | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>  |
 | CORS | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | HealthChecks | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | HttpLogging | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
