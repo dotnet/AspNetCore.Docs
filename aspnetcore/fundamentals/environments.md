@@ -136,7 +136,7 @@ Profiles can be selected:
 * Using the [`dotnet run`](/dotnet/core/tools/dotnet-run) CLI command with the `--launch-profile` option set to the profile's name. *This approach only supports Kestrel profiles.*
 
   ```dotnetcli
-  dotnet run --launch-profile "SampleApp"
+  dotnet run --launch-profile "EnvironmentsSample"
   ```
 
 > [!WARNING]
