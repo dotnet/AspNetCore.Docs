@@ -520,7 +520,40 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 ## Client-side loading progress indicators
 
-*This section only applies to Blazor WebAssembly apps.*
+A loading progress indicator shows the loading progress of the app to users, indicating that the app is loading normally and that the user should wait until loading is finished.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+### Blazor Web App loading progress
+
+The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive client-side components (Interactive WebAssembly rendering) because Blazor Web Apps prerender the components on the server for fast initial load times. The framework or developer code must also be careful to avoid the following problems:
+
+* Showing multiple loading indicators on the same rendered page.
+* Inadvertently discarding prerendered content while the WebAssembly runtime is loading.
+
+<!-- UPDATE 9.0 Will be removed for a new feature in this area. 
+                Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
+
+A future release of .NET might provide a framework-based loading progress indicator for times when you need to explicitly disable prerendering. In the meantime, you can add a custom loading progress indicator to a Blazor Web App for WebAssembly components that aren't prerendered:
+
+
+
+
+* Prerender a wrapper component that displays the placeholder on the page. Inside the wrapper, render the component with prerendering disabled.
+* Have the wrapper use `@if(OsPlatform.IsBrowser())` to distinguish between SSR and WebAssembly and render your placeholder or the actual component.
+
+
+
+
+
+
+### Blazor WebAssembly app loading progress
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 The project template contains Scalable Vector Graphics (SVG) and text indicators that show the loading progress of the app.
 
