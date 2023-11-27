@@ -159,9 +159,9 @@ In the following Blazor Web App example, the `_Imports.razor` file of the `Blazo
 </Router>
 ```
 
-A Blazor Web App is required to indicate the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> if the Blazor router (`<Router>` in the `Routes` component) inherits an interactive render mode from the `Routes` component instance in the `App` component (for example `<Routes @rendermode="InteractiveAuto" />`.
+A Blazor Web App is required to indicate the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> if the Blazor router is interactive, either on the server or on the client.
 
-If the the Blazor router (`<Router>`) isn't an interactive router, routable components of the `.Client` project are discovered without specifying the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
+If the the Blazor router isn't an interactive router, routable components of the `.Client` project are discovered without specifying the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
 
 > [NOTE]
 > Blazor Web Apps use similarly-named API, <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, to configure additional assemblies to discover routable Razor components for static server-side rendering. For more information, see <xref:blazor/components/render-modes#discover-components-from-additional-assemblies-for-static-server-rendering>.
