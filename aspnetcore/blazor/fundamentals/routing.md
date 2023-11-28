@@ -19,6 +19,18 @@ This article explains how to manage Blazor app request routing and how to use th
 > [!IMPORTANT]
 > Code examples throughout this article show methods called on `Navigation`, which is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> in classes and components.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Static versus interactive routing
+
+*This section applies to Blazor Web Apps.*
+
+If [prerendering isn't disabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*, and the Blazor router is called a *static router* when static routing is taking place.
+
+An interactive render mode can be assigned to the `Routes` component that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns the Interactive Server render mode to the `Routes` component. The `Router` component inherits the Interactive Server render mode from the `Routes` component. The router becomes *interactive* after static routing on the server. This type of routing is called *interactive routing*, and the Blazor router is called an *interactive router*. An interactive router can route requests either on the server, *interactive server (or server-side) routing*, or on the client, *interactive client-side routing*.
+
+:::moniker-end
+
 ## Route templates
 
 :::moniker range=">= aspnetcore-8.0"
@@ -157,7 +169,7 @@ app.MapRazorComponents<App>()
 
 ### Interactive routing
 
-An interactive render mode can be specified to the `Routes` component (`Routes.razor`) that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns the Interactive Server render mode to the `Routes` component. The `Routes` component renders the `Router` component (`<Router>` in `Routes.razor`), and the router inherits the Interactive Server render mode. The router becomes interactive after static routing on the server.
+An interactive render mode can be assigned to the `Routes` component (`Routes.razor`) that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns the Interactive Server render mode to the `Routes` component. The `Router` component inherits the Interactive Server render mode from the `Routes` component. The router becomes interactive after static routing on the server.
 
 If the `Routes` component is defined in the server project, the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component should include the `.Client` project's assembly. This allows the router to work correctly when rendered interactively.
 
