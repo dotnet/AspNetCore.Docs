@@ -528,7 +528,7 @@ A loading progress indicator shows the loading progress of the app to users, ind
 
 ### Blazor Web App loading progress
 
-The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive components because Blazor Web Apps prerender components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
+The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
 
 * Showing multiple loading indicators on the same rendered page.
 * Inadvertently discarding prerendered content while the WebAssembly runtime is loading.
@@ -536,23 +536,14 @@ The loading progress indicator used in Blazor WebAssembly apps isn't present in 
 <!-- UPDATE 9.0 Will be removed for a new feature in this area. 
                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
-A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App that only adopts interactive client-side rendering.
-
-> [!IMPORTANT]
->The demonstration in this section only applies to apps that implement global Interactive WebAssembly rendering via the `App` component (`Components/App.razor`) in the server project:
->
-> ```razor
-> <HeadOutlet @rendermode="InteractiveWebAssembly" />
-> ...
-> <Routes @rendermode="InteractiveWebAssembly" />
-> ```
+A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App.
 
 Create a `LoadingProgress` component in the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
 
-* When <xref:System.OperatingSystem.IsBrowser%2A> is `false`, display a loading progress indicator while the Blazor bundle is downloaded and before the Blazor runtime activates on the client.
-* When <xref:System.OperatingSystem.IsBrowser%2A> is `true`, render the requested component.
+* When `false`, display a loading progress indicator while the Blazor bundle is downloaded and before the Blazor runtime activates on the client.
+* When `true`, render the requested component.
 
-The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including the styles that the template provides. The styles are loaded into the app's `<head>` content by <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including a modification of the styles that the template provides. The styles are loaded into the app's `<head>` content by <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
 `LoadingProgress.razor`:
 
@@ -586,10 +577,10 @@ The following demonstration uses the loading progress indicator found in apps cr
                     }
 
             .loading-progress-text {
-                position: absolute;
+                position: relative;
                 text-align: center;
                 font-weight: bold;
-                inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+                top: -90px;
             }
 
                 .loading-progress-text:after {
@@ -618,18 +609,32 @@ else
 }
 ```
 
-In the `Routes` component, wrap the `<Found>` content with the `LoadingProgress` component. In the following example, the `.Client` project's namespace is `BlazorSample.Client`, and the `LoadingProgress` component is in the project's `Pages` folder:
+In a component that adopts Interactive WebAssembly rendering, wrap the component's Razor markup with the `LoadingProgress` component. The following example demonstrates the approach with the `Counter` component of an app created from the Blazor Web App project template.
+
+`Pages/Counter.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <BlazorSample.Client.Pages.LoadingProgress>
-            <RouteView RouteData="@routeData" 
-                DefaultLayout="@typeof(Layout.MainLayout)" />
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-        </BlazorSample.Client.Pages.LoadingProgress>
-    </Found>
-</Router>
+@page "/counter"
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Counter</PageTitle>
+
+<LoadingProgress>
+    <h1>Counter</h1>
+
+    <p role="status">Current count: @currentCount</p>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</LoadingProgress>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
 ```
 
 ### Blazor WebAssembly app loading progress
