@@ -8,12 +8,9 @@ about: Create an issue to help us improve
 If the issue is with an ASP.NET Core document:
 
 * Do **not** open a new issue using this form.
-* Open the issue with the **This page** button and form at the bottom of the document's page.
+* Open the issue using the **Open a documentation issue** link and feedback form at the bottom of the article. 
 
-Using the **This page** button and form to open an issue:
-
-* Adds article metadata for tracking, which indicates the article that you're commenting on.
-* Automatically notifies the article's author about your issue.
+Using the **Open a documentation issue** link and form to open an issue adds article metadata for tracking, which indicates the article that you're commenting on.
 
 If the issue is:
 
