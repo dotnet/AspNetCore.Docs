@@ -569,8 +569,6 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 
 If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigations initiated from an interactive runtime. In future releases, additional types of navigations, such as link clicks, may also invoke location changing handlers.
 
-If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router. This point is only relevant in an uncommon scenario where an interactive `<Router>` is nested inside a server-side rendered `<Router>`. In that case, the interactive router takes priority when handling navigation, so enhanced navigation isn't used for navigation because it's a server-side routing feature.
-
 When an enhanced navigation occurs, [`LocationChanged` event handlers](#location-changes) registered with Interactive Server and WebAssembly runtimes are typically invoked. There are cases when location changing handlers might not intercept an enhanced navigation. For example, the user might switch to another page before an interactive runtime becomes available. Therefore, it's important that app logic not rely on invoking a location changing handler, as there's no guarantee of the handler executing.
 
 When calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>:
