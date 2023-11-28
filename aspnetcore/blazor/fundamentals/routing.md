@@ -163,8 +163,14 @@ A Blazor Web App is required to indicate the `.Client` project's assembly to <xr
 
 If the the Blazor router isn't an interactive router, routable components of the `.Client` project are discovered without specifying the `.Client` project's assembly to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
 
-> [NOTE]
-> Blazor Web Apps use similarly-named API, <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A>, to configure additional assemblies to discover routable Razor components for static server-side rendering. For more information, see <xref:blazor/components/render-modes#discover-components-from-additional-assemblies-for-static-server-rendering>.
+To discover components from additional assemblies for static server-side rendering, idenfity the additional assemblies with the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+
+The following example includes the assembly of the `.Client` project in a Blazor Web App:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
+```
 
 :::moniker-end
 
