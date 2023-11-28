@@ -317,7 +317,7 @@ When a CSP is applied to a Blazor app's `<head>` content, it interferes with loc
 Three general approaches are available:
 
 * Apply the CSP via the `App` component, which applies the CSP to all layouts of the app.
-* Apply the CSP to the app's layout files using the [`<HeadContent>` tag](xref:blazor/components/control-head-content). For complete effectiveness, every app layout file must adopt the approach.
+* If you need to apply CSPs to different areas of the app, for example a custom CSP for only the admin pages, apply the CSPs on a per-layout basis using the [`<HeadContent>` tag](xref:blazor/components/control-head-content). For complete effectiveness, every app layout file must adopt the approach.
 * The hosting service or server can provide a CSP via a [`Content-Security-Policy` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) added an app's outgoing responses. Because this approach varies by hosting service or server, it isn't addressed in the following examples. If you wish to adopt this approach, consult the documentation for your hosting service provider or server.
 
 ### Blazor Web App approaches
@@ -337,7 +337,7 @@ In the `App` component's `<head>` content, apply the CSP when not in the Develop
 }
 ```
 
-Alternatively, apply the CSP in every app layout file in the `Components/Layout` folder:
+Alternatively, apply CSPs on a per-layout basis in the `Components/Layout` folder, as the following example demonstrates. Make sure that every layout specifies a CSP.
 
 ```razor
 @inject IHostEnvironment Env
@@ -370,7 +370,7 @@ In the `App` component's `<head>` content, apply the CSP when not in the Develop
 }
 ```
 
-Alternatively, use the preceding code but apply the CSP in every app layout file in the `Layout` folder.
+Alternatively, use the preceding code but apply CSPs on a per-layout basis in the `Layout` folder. Make sure that every layout specifies a CSP.
 
 :::moniker-end
 
