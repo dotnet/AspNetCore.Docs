@@ -528,7 +528,7 @@ A loading progress indicator shows the loading progress of the app to users, ind
 
 ### Blazor Web App loading progress
 
-The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive client-side components (Interactive WebAssembly rendering) because Blazor Web Apps prerender the components on the server for fast initial load times. The framework or developer code must also be careful to avoid the following problems:
+The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive components because Blazor Web Apps prerender components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
 
 * Showing multiple loading indicators on the same rendered page.
 * Inadvertently discarding prerendered content while the WebAssembly runtime is loading.
@@ -536,18 +536,101 @@ The loading progress indicator used in Blazor WebAssembly apps isn't present in 
 <!-- UPDATE 9.0 Will be removed for a new feature in this area. 
                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
 
-A future release of .NET might provide a framework-based loading progress indicator for times when you need to explicitly disable prerendering. In the meantime, you can add a custom loading progress indicator to a Blazor Web App for WebAssembly components that aren't prerendered:
+A future release of .NET might provide a framework-based loading progress indicator. In the meantime, you can add a custom loading progress indicator to a Blazor Web App that only adopts interactive client-side rendering.
 
+> [!IMPORTANT]
+>The demonstration in this section only applies to apps that implement global Interactive WebAssembly rendering via the `App` component (`Components/App.razor`) in the server project:
+>
+> ```razor
+> <HeadOutlet @rendermode="InteractiveWebAssembly" />
+> ...
+> <Routes @rendermode="InteractiveWebAssembly" />
+> ```
 
+Create a `LoadingProgress` component in the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
 
+* When <xref:System.OperatingSystem.IsBrowser%2A> is `false`, display a loading progress indicator while the Blazor bundle is downloaded and before the Blazor runtime activates on the client.
+* When <xref:System.OperatingSystem.IsBrowser%2A> is `true`, render the requested component.
 
-* Prerender a wrapper component that displays the placeholder on the page. Inside the wrapper, render the component with prerendering disabled.
-* Have the wrapper use `@if(OsPlatform.IsBrowser())` to distinguish between SSR and WebAssembly and render your placeholder or the actual component.
+The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including the styles that the template provides. The styles are loaded into the app's `<head>` content by <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
+`LoadingProgress.razor`:
 
+```razor
+@if (!OperatingSystem.IsBrowser())
+{
+    <HeadContent>
+        <style>
+            .loading-progress {
+                position: relative;
+                display: block;
+                width: 8rem;
+                height: 8rem;
+                margin: 20vh auto 1rem auto;
+            }
 
+                .loading-progress circle {
+                    fill: none;
+                    stroke: #e0e0e0;
+                    stroke-width: 0.6rem;
+                    transform-origin: 50% 50%;
+                    transform: rotate(-90deg);
+                }
 
+                    .loading-progress circle:last-child {
+                        stroke: #1b6ec2;
+                        stroke-dasharray: 
+                            calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 
+                            500%;
+                        transition: stroke-dasharray 0.05s ease-in-out;
+                    }
 
+            .loading-progress-text {
+                position: absolute;
+                text-align: center;
+                font-weight: bold;
+                inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+            }
+
+                .loading-progress-text:after {
+                    content: var(--blazor-load-percentage-text, "Loading");
+                }
+
+            code {
+                color: #c02d76;
+            }
+        </style>
+    </HeadContent>
+    <svg class="loading-progress">
+        <circle r="40%" cx="50%" cy="50%" />
+        <circle r="40%" cx="50%" cy="50%" />
+    </svg>
+    <div class="loading-progress-text"></div>
+}
+else
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+In the `Routes` component, wrap the `<Found>` content with the `LoadingProgress` component. In the following example, the `.Client` project's namespace is `BlazorSample.Client`, and the `LoadingProgress` component is in the project's `Pages` folder:
+
+```razor
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <BlazorSample.Client.Pages.LoadingProgress>
+            <RouteView RouteData="@routeData" 
+                DefaultLayout="@typeof(Layout.MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </BlazorSample.Client.Pages.LoadingProgress>
+    </Found>
+</Router>
+```
 
 ### Blazor WebAssembly app loading progress
 
