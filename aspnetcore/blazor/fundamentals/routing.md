@@ -165,7 +165,7 @@ If the the Blazor router isn't an interactive router, routable components of the
 
 To discover components from additional assemblies for static server-side rendering, idenfity the additional assemblies with the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
-The following example includes the assembly of the `.Client` project in a Blazor Web App:
+The following example includes the `.Client` project's assembly using the project's `_Imports.razor` file:
 
 ```csharp
 app.MapRazorComponents<App>()
