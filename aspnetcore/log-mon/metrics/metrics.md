@@ -20,7 +20,8 @@ Metrics are numerical measurements reported over time. They're typically used to
 
 These metrics can be reported to a monitoring system at regular intervals. Dashboards can be setup to view metrics and alerts created to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
-See [ASP.NET Core metrics](https://github.com/dotnet/aspnetcore/issues/47536) for ASP.NET Core specific metrics. See [.NET metrics](/dotnet/core/diagnostics/metrics) for .NET metrics.
+> [!TIP]
+> See [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a comprehensive list of all instruments together with their attributes.
 
 ## Using metrics
 
@@ -217,7 +218,7 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 1. Follow the [installation instructions](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph) to install Grafana and connect it to a Prometheus data source.
 
-1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
+1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [.NET team dashboards @ grafana.com](https://aka.ms/dotnet/grafana-dashboards) to configure Grafana.
 
 ![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
 
@@ -231,7 +232,6 @@ The proceeding test:
 
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
 * Collects metrics values with <!--<xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1?view=dotnet-plat-ext-8.0)-->`Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector`.
-
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
@@ -240,4 +240,4 @@ The proceeding test:
 
 ## ASP.NET Core meters and counters
 
-See [ASP.NET Core Metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a list of ASP.NET Core meters and counters.
+See [ASP.NET Core metrics](/dotnet/core/diagnostics/built-in-metrics-aspnetcore) for a list of ASP.NET Core meters and counters.
