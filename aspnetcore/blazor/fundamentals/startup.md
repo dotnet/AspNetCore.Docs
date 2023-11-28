@@ -541,9 +541,9 @@ A future release of .NET might provide a framework-based loading progress indica
 Create a `LoadingProgress` component in the `.Client` app that calls <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>:
 
 * When `false`, display a loading progress indicator while the Blazor bundle is downloaded and before the Blazor runtime activates on the client.
-* When `true`, render the requested component.
+* When `true`, render the requested component's content.
 
-The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including a modification of the styles that the template provides. The styles are loaded into the app's `<head>` content by <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+The following demonstration uses the loading progress indicator found in apps created from the Blazor WebAssembly template, including a modification of the styles that the template provides. The styles are loaded into the app's `<head>` content by the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
 
 `LoadingProgress.razor`:
 
