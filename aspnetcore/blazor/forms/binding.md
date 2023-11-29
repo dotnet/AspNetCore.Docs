@@ -122,8 +122,6 @@ You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemb
 
 ## Additional binding options
 
-<!-- UPDATE 8.0 No API doc for RazorComponentOptions -->
-
 Additional model binding options are available from <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions> when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
 
 * <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingCollectionSize%2A>: Maximum number of elements allowed in a form collection.
