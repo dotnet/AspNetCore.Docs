@@ -481,16 +481,6 @@ For more information and guidance on migrating your existing Identity store, see
 
 See [Configuration](#pw) for a sample that sets the minimum password requirements.
 
-## AddDefaultIdentity and AddIdentity
-
-<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A> was introduced in ASP.NET Core 2.1. Calling `AddDefaultIdentity` is similar to calling the following:
-
-* <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>
-* <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A>
-
-See [AddDefaultIdentity source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63) for more information.
-
 ## Prevent publish of static Identity assets
 
 To prevent publishing static Identity assets (stylesheets and JavaScript files for Identity UI) to the web root, add the following `ResolveStaticWebAssetsInputsDependsOn` property and `RemoveIdentityAssets` target to the app's project file:
@@ -512,6 +502,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 ## Next Steps
 
 * [ASP.NET Core Identity source code](https://github.com/dotnet/aspnetcore/tree/main/src/Identity)
+* [AddDefaultIdentity source](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Identity/UI/src/IdentityServiceCollectionUIExtensions.cs#L47-L63)
 * See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/5131) for information on configuring Identity using SQLite.
 * [Configure Identity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
