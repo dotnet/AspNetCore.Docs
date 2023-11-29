@@ -51,7 +51,7 @@ Copy the `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml` partial 
 
 If the RCL uses Razor Pages, enable the Razor Pages services and endpoints in the hosting app:
 
-[!code-csharp[](ui-class/6samples/MvcProgram.cs?highlight=4,25)]
+[!code-csharp[](~/razor-pages/ui-class/6samples/MvcProgram.cs?highlight=4,25)]
 
 <a name="rcl-lay"></a>
 
@@ -133,11 +133,11 @@ The files included in the `wwwroot` folder of the RCL are exposed to either the 
 
 The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in:
 
-[!code-csharp[](ui-class/6samples/MvcProgram.cs?highlight=15)]
+[!code-csharp[](~/razor-pages/ui-class/6samples/MvcProgram.cs?highlight=15)]
 
 When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
 
-[!code-csharp[](ui-class/6samples/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
+[!code-csharp[](~/razor-pages/ui-class/6samples/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
 
 Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`).
 
@@ -364,7 +364,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 An RCL has the following project file:
 
-[!code-xml[](ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
+[!code-xml[](~/razor-pages/ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -458,11 +458,11 @@ The `_ViewStart.cshtml` file is required to use the layout of the Razor Pages pr
 
 * Replace the markup in `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml` with the following code:
 
-  [!code-cshtml[](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
+  [!code-cshtml[](~/razor-pages/ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
 
 * Replace the markup in `RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml` with the following code:
 
-  [!code-cshtml[](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
+  [!code-cshtml[](~/razor-pages/ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
 
   `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a `_ViewImports.cshtml` file. For example:
 
@@ -604,7 +604,7 @@ Copy the `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml` partial 
 
 If the RCL uses Razor Pages, enable the Razor Pages services and endpoints in the hosting app:
 
-[!code-csharp[](ui-class/samples/Startup.cs?name=snippet&highlight=4,17)]
+[!code-csharp[](~/razor-pages/ui-class/samples/Startup.cs?name=snippet&highlight=4,17)]
 
 <a name="rcl-lay"></a>
 
