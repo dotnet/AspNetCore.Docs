@@ -139,10 +139,9 @@ When running the consuming app from build output (`dotnet run`), static web asse
 
 [!code-csharp[](~/razor-pages/ui-class/6samples/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
 
-Note: .NET 6 only requires calling `builder.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets`.
-`
+***Note:*** .NET 6 only requires calling `builder.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets`.  For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/38212).
 
-Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/38212).
+Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`).
 
 ### Multi-project development flow
 
