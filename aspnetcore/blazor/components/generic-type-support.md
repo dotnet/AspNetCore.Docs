@@ -101,7 +101,7 @@ By adding `@attribute [CascadingTypeParameter(...)]` to a component, the specifi
 * Also declare a [`@typeparam`](xref:mvc/views/razor#typeparam) with the exact same name.
 * Don't have another value explicitly supplied or implicitly inferred for the type parameter. If another value is supplied or inferred, it takes precedence over the cascaded generic type.
 
-When receiving a cascaded type parameter, components obtain the parameter value from the closest ancestor that has a <xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute> with a matching name. Cascaded generic type parameters are overridden within a particular subtree.
+When receiving a cascaded type parameter, components obtain the parameter value from the closest ancestor that has a [`[CascadingTypeParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute) with a matching name. Cascaded generic type parameters are overridden within a particular subtree.
 
 Matching is only performed by name. Therefore, we recommend avoiding a cascaded generic type parameter with a generic name, for example `T` or `TItem`. If a developer opts into cascading a type parameter, they're implicitly promising that its name is unique enough not to clash with other cascaded type parameters from unrelated components.
 

@@ -78,7 +78,7 @@ The following `Daleks` component displays the cascaded values.
 }
 ```
 
-In the following example, `Daleks` is registered as a cascading value using `CascadingValueSource<T>`, where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all receipients are subscribed for update notifications, which are issued by calling `NotifyChangedAsync`. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+In the following example, `Daleks` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all recipients are subscribed for update notifications, which are issued by calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A>. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
 
 ```csharp
 builder.Services.AddCascadingValue(sp =>

@@ -159,6 +159,8 @@ The template handles the following:
 * Configures routing for the built-in Identity endpoints.
 * Includes Identity validation and business logic.
 
+<!-- UPDATE 8.0 No API docs for the code-fenced API below. -->
+
 When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a `PersistentAuthenticationStateProvider` class in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
 
 In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` (Server interactivity solutions only) or `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions).
@@ -284,7 +286,7 @@ services.AddScoped<AuthenticationStateProvider,
 
 :::moniker range=">= aspnetcore-8.0"
 
-Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> for the Blazor router.
+Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> to the <xref:Microsoft.AspNetCore.Components.Routing.Router> component.
 
 In the `Routes` component (`Components/Routes.razor`):
 
@@ -311,7 +313,7 @@ builder.Services.AddCascadingAuthenticationState();
 
 :::moniker range="< aspnetcore-8.0"
 
-Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> for the Blazor router:
+Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> to the <xref:Microsoft.AspNetCore.Components.Routing.Router> component:
 
 ```razor
 <CascadingAuthenticationState>
@@ -796,7 +798,7 @@ Two additional abstractions participate in managing authentication state:
 
 *This section applies to Blazor Web Apps.*
 
-Use the `TemporaryRedirectionUrlValidityDuration` option to get or set the lifetime of data protection validity for temporary redirection URLs emitted by Blazor server-side rendering. These are only used transiently, so the lifetime only needs to be long enough for a client to receive the URL and begin navigation to it. However, it should also be long enough to allow for clock skew across servers. The default value is five minutes.
+Use the <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.TemporaryRedirectionUrlValidityDuration%2A?displayProperty=nameWithType> option to get or set the lifetime of data protection validity for temporary redirection URLs emitted by Blazor server-side rendering. These are only used transiently, so the lifetime only needs to be long enough for a client to receive the URL and begin navigation to it. However, it should also be long enough to allow for clock skew across servers. The default value is five minutes.
 
 In the following example the value is extended to seven minutes:
 

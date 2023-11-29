@@ -52,9 +52,9 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 
 Blazor adds Antiforgery Middleware and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) by default. 
 
-The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and this component is automatically added to form (`EditForm`) instances. For more information, see <xref:blazor/forms/index#antiforgery-support>.
+The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component renders an antiforgery token as a hidden field, and this component is automatically added to form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>) instances. For more information, see <xref:blazor/forms/index#antiforgery-support>.
 
-The `AntiforgeryStateProvider` service provides access to an antiforgery token associated with the current session. Inject the service and call its `GetAntiforgeryToken` method to obtain the current `AntiforgeryRequestToken`. For more information, see <xref:blazor/call-web-api#antiforgery-support>.
+The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider> service provides access to an antiforgery token associated with the current session. Inject the service and call its <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider.GetAntiforgeryToken> method to obtain the current <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryRequestToken>. For more information, see <xref:blazor/call-web-api#antiforgery-support>.
 
 Blazor stores request tokens in component state, which guarantees that antiforgery tokens are available to interactive components, even when they don't have access to the request.
 
@@ -68,7 +68,7 @@ Blazor uses the existing ASP.NET Core authentication mechanisms to establish the
 
 Server-side Blazor operates over a SignalR connection with the client. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server).
 
-The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
 #### `IHttpContextAccessor`/`HttpContext` in Razor components
 
@@ -710,7 +710,7 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 Not authorized.
 ```
 
-An app created from the Blazor WebAssembly project template with authentication enabled includes a `RedirectToLogin` component, which is positioned in the `<NotAuthorized>` content of the Blazor's router. When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
+An app created from the Blazor WebAssembly project template with authentication enabled includes a `RedirectToLogin` component, which is positioned in the `<NotAuthorized>` content of the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
 
 ## Procedural logic
 
@@ -834,7 +834,7 @@ Common errors:
 
 It's likely that the project wasn't created using a server-side Blazor template with authentication enabled.
 
-In .NET 7 or earlier, wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example around the Blazor router:
+In .NET 7 or earlier, wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example around the Blazor Router:
 
 ```razor
 <CascadingAuthenticationState>

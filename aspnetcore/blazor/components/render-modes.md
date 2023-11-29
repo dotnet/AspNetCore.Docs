@@ -48,15 +48,15 @@ Services for Razor components are added by calling <xref:Microsoft.Extensions.De
 
 Component builder extensions:
 
-* `AddInteractiveServerComponents` adds services to support rendering Interactive Server components.
-* `AddInteractiveWebAssemblyComponents` adds services to support rendering Interactive WebAssembly components.
+* <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> adds services to support rendering Interactive Server components.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A> adds services to support rendering Interactive WebAssembly components.
 
 <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`).
 
 Endpoint convention builder extensions:
 
-* `AddInteractiveServerRenderMode` configures the Server render mode for the app.
-* `AddInteractiveWebAssemblyRenderMode` configures the WebAssembly render mode for the app.
+* <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures the Server render mode for the app.
+* <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A> configures the WebAssembly render mode for the app.
 
 > [!NOTE]
 > For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
@@ -135,7 +135,7 @@ To specify the render mode for a component as part of its definition, use the [`
 @rendermode InteractiveServer
 ```
 
-Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the router component that rendered the page.
+Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the <xref:Microsoft.AspNetCore.Components.Routing.Router> component that rendered the page.
 
 Technically, `@rendermode` is both a Razor *directive* and a Razor *directive attribute*. The semantics are similar, but there are differences. The `@rendermode` directive is on the component definition, so the referenced render mode instance must be static. The `@rendermode` directive attribute can take any render mode instance.
 
@@ -155,9 +155,9 @@ For apps based on the Blazor Web App project template, a render mode assigned to
 <Routes @rendermode="InteractiveServer" />
 ```
 
-The Blazor router propagates its render mode to the pages it routes.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component propagates its render mode to the pages it routes.
 
-You also typically must set the same interactive render mode on the `HeadOutlet` component, which is also found in the `App` component of a Blazor Web App generated from the project template:
+You also typically must set the same interactive render mode on the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component), which is also found in the `App` component of a Blazor Web App generated from the project template:
 
 ```
 <HeadOutlet @rendermode="InteractiveServer" />
@@ -207,7 +207,7 @@ For apps based on the Blazor Web App project template, a render mode assigned to
 <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-Also, disable prerendering for the `HeadOutlet` component:
+Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component):
 
 ```razor
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
@@ -390,7 +390,7 @@ Render modes propagate down the component hierarchy.
 Rules for applying render modes:
 
 * The default render mode is Static. 
-* The Interactive Server (`InteractiveServer`), WebAssembly (`InteractiveWebAssembly`), and automatic (`InteractiveAuto`) render modes can be used from a Static component, including using different render modes for sibling components. 
+* The Interactive Server (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>), WebAssembly (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>), and automatic (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto>) render modes can be used from a Static component, including using different render modes for sibling components. 
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
@@ -490,7 +490,7 @@ Non-serializable component parameters, such as child content or a render fragmen
 
 > :::no-loc text="System.InvalidOperationException: Cannot pass the parameter 'ChildContent' to component 'SharedMessage' with rendermode 'InteractiveServerRenderMode'. This is because the parameter is of the delegate type 'Microsoft.AspNetCore.Components.RenderFragment', which is arbitrary code and cannot be serialized.":::
 
-To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the Blazor router.
+To circumvent the preceding limitation, wrap the child component in another component that doesn't have the parameter. This is the approach taken in the Blazor Web App project template with the `Routes` component (`Components/Routes.razor`) to wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component.
 
 `WrapperComponent.razor`:
 
@@ -534,7 +534,7 @@ The following component results in a runtime error when the component is rendere
 
 ## Discover components from additional assemblies for Static Server rendering
 
-Configure additional assemblies to discover routable Razor components for Static Server rendering using the `AddAdditionalAssemblies` method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
+Configure additional assemblies to discover routable Razor components for Static Server rendering using the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
 The following example includes the assembly of the `DifferentAssemblyCounter` component:
 

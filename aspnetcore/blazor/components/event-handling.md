@@ -214,7 +214,7 @@ public class CustomEventArgs : EventArgs
 }
 ```
 
-Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event:
+Wire up the custom event with the event arguments by adding an [`[EventHandler]` attribute](xref:Microsoft.AspNetCore.Components.EventHandlerAttribute) annotation for the custom event:
 
 * In order for the compiler to find the `[EventHandler]` class, it must be placed into a C# class file (`.cs`), making it a normal top-level class.
 * Mark the class `public`.
@@ -255,7 +255,7 @@ If the `@oncustomevent` attribute isn't recognized by [IntelliSense](/visualstud
 
 Whenever the custom event is fired on the DOM, the event handler is called with the data passed from the JavaScript.
 
-If you're attempting to fire a custom event, [`bubbles`](https://developer.mozilla.org/docs/Web/API/Event/bubbles) must be enabled by setting its value to `true`. Otherwise, the event doesn't reach the Blazor handler for processing into the C# custom <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> method. For more information, see [MDN Web Docs: Event bubbling](https://developer.mozilla.org/docs/Web/Guide/Events/Creating_and_triggering_events#event_bubbling).
+If you're attempting to fire a custom event, [`bubbles`](https://developer.mozilla.org/docs/Web/API/Event/bubbles) must be enabled by setting its value to `true`. Otherwise, the event doesn't reach the Blazor handler for processing into the C# custom [`[EventHandler]` attribute](xref:Microsoft.AspNetCore.Components.EventHandlerAttribute) class. For more information, see [MDN Web Docs: Event bubbling](https://developer.mozilla.org/docs/Web/Guide/Events/Creating_and_triggering_events#event_bubbling).
 
 ### Custom clipboard paste event example
 
@@ -459,7 +459,7 @@ Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?d
 
 A common scenario with nested components executes a parent component's method when a child component event occurs. An `onclick` event occurring in the child component is a common use case. To expose events across components, use an <xref:Microsoft.AspNetCore.Components.EventCallback>. A parent component can assign a callback method to a child component's <xref:Microsoft.AspNetCore.Components.EventCallback>.
 
-The following `Child` component demonstrates how a button's `onclick` handler is set up to receive an <xref:Microsoft.AspNetCore.Components.EventCallback> delegate from the sample's `ParentComponent`. The <xref:Microsoft.AspNetCore.Components.EventCallback> is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device.
+The following `Child` component demonstrates how a button's `onclick` handler is set up to receive an <xref:Microsoft.AspNetCore.Components.EventCallback> delegate from the sample's `ParentComponent`. The <xref:Microsoft.AspNetCore.Components.EventCallback> is typed with <xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>, which is appropriate for an `onclick` event from a peripheral device.
 
 `Child.razor`:
 
