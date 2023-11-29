@@ -175,4 +175,4 @@ When the app is published, the companion assets from all referenced projects and
 
 :::moniker-end
 
-[!INCLUDE[](~/razor-pages/ui-class/includes/ui-class6.md]
+[!INCLUDE[](~/razor-pages/ui-class/includes/ui-class6.md)]
