@@ -534,7 +534,7 @@ The following component results in a runtime error when the component is rendere
 
 ## Discover components from additional assemblies
 
-Additional assemblies must be identified to the Blazor framework to discover routable Razor components in referenced projects. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
+Additional assemblies must be disclosed to the Blazor framework to discover routable Razor components in referenced projects. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
 
 ## Closure of circuits when there are no remaining Interactive Server components
 
