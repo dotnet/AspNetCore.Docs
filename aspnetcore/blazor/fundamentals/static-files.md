@@ -54,7 +54,7 @@ if (builder.Environment.IsStaging())
 
 *This section applies to Blazor Web Apps.*
 
-Use the `PathPrefix` endpoint option to gets or set the path string that indicates the prefix for Blazor WebAssembly assets. The path must correspond to a referenced Blazor WebAssembly application project.
+Use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.WebAssemblyComponentsEndpointOptions.PathPrefix?displayProperty=nameWithType> endpoint option to set the path string that indicates the prefix for Blazor WebAssembly assets. The path must correspond to a referenced Blazor WebAssembly application project.
 
 ```csharp
 endpoints.MapRazorComponents<App>()

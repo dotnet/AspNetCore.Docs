@@ -421,7 +421,7 @@ The most plausible `null` equivalent in HTML is an *empty string* `value`. The B
 
 ## Unparsable values
 
-When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
+When a user provides an unparsable value to a data-bound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
 Consider the following component, where an `<input>` element is bound to an `int` type with an initial value of `123`.
 

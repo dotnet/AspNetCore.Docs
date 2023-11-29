@@ -260,9 +260,7 @@ Prerequisites for constructor injection:
 
 ## Inject keyed services into components
 
-<!-- UPDATE 8.0 Add API cross-link -->
-
-Blazor supports injecting keyed services using the `[Inject]` attribute. Keys allow for scoping of registration and consumption of services when using dependency injection. Use `InjectAttribute.Key` property to specify the key for the service to inject:
+Blazor supports injecting keyed services using the `[Inject]` attribute. Keys allow for scoping of registration and consumption of services when using dependency injection. Use the <xref:Microsoft.AspNetCore.Components.InjectAttribute.Key?displayProperty=nameWithType> property to specify the key for the service to inject:
 
 ```csharp
 [Inject(Key = "my-service")]

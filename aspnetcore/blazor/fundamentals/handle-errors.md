@@ -117,12 +117,12 @@ The `blazor-error-ui` element is normally hidden due to the presence of the `dis
 
 ## Handle caught exceptions outside of a Razor component's lifecycle
 
-Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
+Use <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A?displayProperty=nameWithType> in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
 
 > [!NOTE]
-> `ComponentBase.DispatchExceptionAsync` is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use `RenderHandle.DispatchExceptionAsync`.
+> <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A?displayProperty=nameWithType> is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync%2A?displayProperty=nameWithType>.
 
-To handle caught exceptions outside of a Razor component's lifecycle, pass the exception to `DispatchExceptionAsync` and await the result:
+To handle caught exceptions outside of a Razor component's lifecycle, pass the exception to <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync%2A> and await the result:
 
 ```csharp
 try
@@ -154,7 +154,7 @@ In the following example, the user selects the **Send report** button to trigger
 }
 ```
 
-To treat failures like lifecycle method exceptions, explicitly dispatch exceptions back to the component with `DispatchExceptionAsync`, as the following example demonstrates: 
+To treat failures like lifecycle method exceptions, explicitly dispatch exceptions back to the component with <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A>, as the following example demonstrates: 
 
 ```razor
 <button @onclick="SendReport">Send report</button>
@@ -179,7 +179,7 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
 }
 ```
 
-For a working demonstration of `DispatchExceptionAsync`, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in the `Program` file as the section explains:
+For a working demonstration, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in the `Program` file as the section explains:
 
 * `TimerService.cs`
 * `NotifierService.cs`
@@ -220,7 +220,7 @@ If you run the app at this point, the exception is thrown when the elapsed count
 Change the `OnNotify` method of the `ReceiveNotification` component (`ReceiveNotification.razor`):
 
 * Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
-* Pass any <xref:System.Exception> to `DispatchExceptionAsync` and await the result.
+* Pass any <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and await the result.
 
 ```csharp
 public async Task OnNotify(string key, int value)
@@ -293,7 +293,7 @@ The <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors> 
 
 *This section applies to Blazor Web Apps.*
 
-Use the `DetailedErrors` option to control producing detailed information on errors for Razor component server-side rendering. The default value is `false`.
+Use the <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.DetailedErrors?displayProperty=nameWithType> option to control producing detailed information on errors for Razor component server-side rendering. The default value is `false`.
 
 The following example enables detailed errors:
 
@@ -521,7 +521,7 @@ In `App.razor`:
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 In `App.razor`:
 
@@ -618,7 +618,7 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
-In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
 

@@ -200,7 +200,7 @@ The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor 
 Specifying a layout in `_Imports.razor` overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
 
 > [!WARNING]
-> Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the `Router` component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
+> Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
 
 > [!NOTE]
 > The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
@@ -239,7 +239,7 @@ Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCo
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
 
-Specifying the layout as a default layout in the `Router` component is a useful practice because you can override the layout on a per-component or per-folder basis, as described in the preceding sections of this article. We recommend using the `Router` component to set the app's default layout because it's the most general and flexible approach for using layouts.
+Specifying the layout as a default layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component is a useful practice because you can override the layout on a per-component or per-folder basis, as described in the preceding sections of this article. We recommend using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to set the app's default layout because it's the most general and flexible approach for using layouts.
 
 ### Apply a layout to arbitrary content (`LayoutView` component)
 

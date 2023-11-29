@@ -501,13 +501,11 @@ For more information on template options, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0
-
-Add ...
+<!-- UPDATE 8.0 Add the following after the template is
+                added to the .NET doc. Tracked by
+                https://github.com/dotnet/docs/issues/38507
 
 * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
-
-... after they add it to the doc.
 
 -->
 
