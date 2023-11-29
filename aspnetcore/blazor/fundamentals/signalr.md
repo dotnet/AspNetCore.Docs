@@ -147,7 +147,7 @@ Configure the circuit with the <xref:Microsoft.AspNetCore.Components.Server.Circ
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the options in the `Program` file with an options delegate to `AddInteractiveServerComponents`. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
+Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
 
 In the `Program` file:
 
@@ -609,7 +609,7 @@ By default, components are prerendered on the server before the client connectio
 
 ## Monitor server-side circuit activity
 
-Monitor inbound circuit activity using the `CreateInboundActivityHandler` method on <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
+Monitor inbound circuit activity using the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.CreateInboundActivityHandler%2A> method on <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
 
 For example, you can use a circuit activity handler to detect if the client is idle:
 

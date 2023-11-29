@@ -59,9 +59,9 @@ Add the following `RenderMessage` component to the project.
 Update the `Program` file:
 
 * Set up dependency injection (<xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>/<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>) and logging (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A>/<xref:Microsoft.Extensions.Logging.ILoggerFactory>).
-* Create an `HtmlRenderer` and render the `RenderMessage` component by calling `RenderComponentAsync`.
+* Create an <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer> and render the `RenderMessage` component by calling <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A>.
 
-Any calls to `RenderComponentAsync` must be made in the context of calling `InvokeAsync` on a component dispatcher. A component dispatcher is available from the `HtmlRender.Dispatcher` property.
+Any calls to <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A> must be made in the context of calling `InvokeAsync` on a component dispatcher. A component dispatcher is available from the <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.Dispatcher?displayProperty=nameWithType> property.
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -95,8 +95,8 @@ Console.WriteLine(html);
 ```
 
 > [!NOTE]
-> Pass <xref:Microsoft.AspNetCore.Components.ParameterView.Empty?displayProperty=nameWithType> to `RenderComponentAsync` when rendering the component without passing parameters.
+> Pass <xref:Microsoft.AspNetCore.Components.ParameterView.Empty?displayProperty=nameWithType> to <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A> when rendering the component without passing parameters.
 
 Alternatively, you can write the HTML to a <xref:System.IO.TextWriter> by calling `output.WriteHtmlTo(textWriter)`.
 
-The task returned by `RenderComponentAsync` completes when the component is fully rendered, including completing any asynchronous lifecycle methods. If you want to observe the rendered HTML earlier, call `BeginRenderComponentAsync` instead. Then, wait for the component rendering to complete by awaiting `WaitForQuiescenceAsync` on the returned `HtmlComponent` instance.
+The task returned by <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A> completes when the component is fully rendered, including completing any asynchronous lifecycle methods. If you want to observe the rendered HTML earlier, call `BeginRenderComponentAsync` instead. Then, wait for the component rendering to complete by awaiting `WaitForQuiescenceAsync` on the returned `HtmlComponent` instance.

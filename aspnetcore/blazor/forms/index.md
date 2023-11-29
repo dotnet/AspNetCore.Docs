@@ -85,7 +85,7 @@ Blazor enhances page navigation and form handling by intercepting the request in
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-The preceding example includes antiforgery support by including an `AntiforgeryToken` component in the form. Antiforgery support is explained further in the [Antiforgery support](#antiforgery-support) section of this article.
+The preceding example includes antiforgery support by including an <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component in the form. Antiforgery support is explained further in the [Antiforgery support](#antiforgery-support) section of this article.
 
 To submit a form based on another element's DOM events, for example `oninput` or `onblur`, use JavaScript to submit the form ([`submit` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit)).
 
@@ -283,11 +283,11 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 
 ## Antiforgery support
 
-The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
+The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
 
-For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the `AntiforgeryToken` component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
+For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
 
-For forms based on the HTML `<form>` element, manually add the `AntiforgeryToken` component to the form:
+For forms based on the HTML `<form>` element, manually add the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component to the form:
 
 ```razor
 @rendermode InteractiveServer
@@ -325,7 +325,7 @@ For more information, see <xref:blazor/security/index#antiforgery-support>.
 
 ## Enhanced form handling
 
-[Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the `Enhance` parameter for `EditForm` forms or the `data-enhance` attribute for HTML forms (`<form>`):
+[Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
 <EditForm Enhance ...>
@@ -353,7 +353,7 @@ Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to
 
 To disable enhanced form handling:
 
-* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
 Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
@@ -378,8 +378,8 @@ For guidance on using the `enhancedload` event to listen for enhanced page updat
 
 Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
 
-* `InteractiveWebAssembly` for only interactive client rendering after prerendering.
-* `InteractiveAuto` for interactive client rendering after Interactive Server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly> for only interactive client rendering after prerendering.
+* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> for interactive client rendering after Interactive Server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
 

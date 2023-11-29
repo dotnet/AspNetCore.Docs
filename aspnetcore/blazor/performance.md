@@ -81,7 +81,7 @@ For more information, see the following resources:
 
 When rendering large amounts of UI within a loop, for example, a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering. Given that the user can only see a small number of elements at once without scrolling, it's often wasteful to spend time rendering elements that aren't currently visible.
 
-Blazor provides the `Virtualize` component to create the appearance and scroll behaviors of an arbitrarily-large list while only rendering the list items that are within the current scroll viewport. For example, a component can render a list with 100,000 entries but only pay the rendering cost of 20 items that are visible.
+Blazor provides the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component to create the appearance and scroll behaviors of an arbitrarily-large list while only rendering the list items that are within the current scroll viewport. For example, a component can render a list with 100,000 entries but only pay the rendering cost of 20 items that are visible.
 
 For more information, see <xref:blazor/components/virtualization>.
 

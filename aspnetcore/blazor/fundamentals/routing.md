@@ -613,7 +613,7 @@ The following examples disable enhanced navigation:
 
 If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, and the client-side JavaScript retries as a full page load. This ensures no confusion to the framework about external pages that shouldn't be patched into an existing page.
 
-To enable enhanced form handling, add the `Enhance` parameter to `EditForm` forms or the `data-enhance` attribute to HTML forms (`<form>`):
+To enable enhanced form handling, add the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter to <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute to HTML forms (`<form>`):
 
 ```razor
 <EditForm Enhance ...>
@@ -643,7 +643,7 @@ Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to
 
 To disable enhanced navigation:
 
-* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
 Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.

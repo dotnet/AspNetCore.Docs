@@ -307,7 +307,7 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering. When the app prerenders:
 
 1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
-1. When the Blazor script (`blazor.webassembly.js` or `blazor.server.js`) start in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
+1. When the Blazor script (`blazor.{server|webassembly|web}.js`) starts in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
 If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
@@ -423,7 +423,7 @@ Developer code must ensure that <xref:System.IAsyncDisposable> implementations d
 
 Examples throughout the [JavaScript (JS) interop articles](xref:blazor/js-interop/index) demonstrate typical object disposal patterns:
 
-* When calling JS from .NET, as described in <xref:blazor/js-interop/call-javascript-from-dotnet>, dispose any created <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference>/`JSObjectReference` either from .NET or from JS to avoid leaking JS memory.
+* When calling JS from .NET, as described in <xref:blazor/js-interop/call-javascript-from-dotnet>, dispose any created <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference>/<xref:Microsoft.JSInterop.Implementation.JSObjectReference> either from .NET or from JS to avoid leaking JS memory.
 
 * When calling .NET from JS, as described in <xref:blazor/js-interop/call-dotnet-from-javascript>, dispose of a created <xref:Microsoft.JSInterop.DotNetObjectReference> either from .NET or from JS to avoid leaking .NET memory.
 
@@ -493,7 +493,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 > [!NOTE]
 > In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
-If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
+If the object is created in a lifecycle method, such as [`OnInitialized{Async}](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
 `CounterWithTimerDisposal2.razor`:
 
@@ -644,7 +644,7 @@ Always unsubscribe event handlers from .NET events. The following [Blazor form](
   
 For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
-For more information on the `EditForm` component and forms, see <xref:blazor/forms/index> and the other forms articles in the *Forms* node.
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component and forms, see <xref:blazor/forms/index> and the other forms articles in the *Forms* node.
 
 ### Anonymous functions, methods, and expressions
 

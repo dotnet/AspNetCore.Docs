@@ -14,6 +14,8 @@ uid: blazor/components/quickgrid
 
 :::moniker range=">= aspnetcore-8.0"
 
+<!-- UPDATE 8.0 No API doc for Quickgrid and Microsoft.AspNetCore.Components.QuickGrid -->
+
 The `QuickGrid` component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
 ## Package

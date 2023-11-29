@@ -589,7 +589,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples).
 
-The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
+The sample app uses standard ASP.NET Core <xref:Microsoft.Extensions.Logging.LoggerExtensions.BeginScope%2A> logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
 
 ```csharp
 using (Logger.BeginScope("L1"))
