@@ -142,7 +142,7 @@ When running the consuming app from build output (`dotnet run`), static web asse
 Note: .NET 6 only requires calling `builder.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets`.
 `
 
-Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`).
+Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/38212).
 
 ### Multi-project development flow
 
