@@ -401,24 +401,22 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> in the `Program` file:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file to call call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents%2A?displayProperty=nameWithType>:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
   {
-      options.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
+      options.RootComponents.RegisterCustomElement<Counter>("my-counter");
   });
   ```
   
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the `Program` file.
 
-<!-- UPDATE 8.0 No API doc for RegisterAsCustomElement -->
-
-* In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the `Program` file:
+* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents?displayProperty=nameWithType> in the `Program` file:
 
   ```csharp
-  builder.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
+  builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
   ```
   
   > [!NOTE]
