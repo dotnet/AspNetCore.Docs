@@ -76,7 +76,7 @@ To choose among these approaches, reusable Razor component authors must make a c
 
 ## When to use the `@rendermode` directive
 
-In most cases, reusable component authors should **not** specify a render mode, even when interactivity is required. This is because the component author doesn't know whether the app enables support for `InteractiveServer`, `InteractiveWebAssembly`, or both with `InteractiveAuto`. By not specifying a `@rendermode`, the component author leaves the choice to the app developer.
+In most cases, reusable component authors should **not** specify a render mode, even when interactivity is required. This is because the component author doesn't know whether the app enables support for <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or both with <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto>. By not specifying a `@rendermode`, the component author leaves the choice to the app developer.
 
 Even if the component author thinks that interactivity is required, there may still be cases where an app author considers it sufficient to use static SSR alone. For example, a draggable, zoomable map component may seem to require interactivity. However, some scenarios may only call for rendering a static map image and avoiding drag/zoom features.
 
@@ -84,11 +84,11 @@ The only reason why a reusable component author should use the `@rendermode` dir
 
 ## Streaming rendering
 
-Reusable Razor components are free to declare `@attribute [StreamRendering]` for [streaming rendering](xref:blazor/components/rendering#streaming-rendering). This results in incremental UI updates during static SSR. Since the same data-loading patterns produce incremental UI updates during interactive rendering (regardless of the [`StreamRendering` attribute](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute)), the component can behave correctly in all cases. Even in cases where streaming static SSR is suppressed on the server, the component still renders its correct final state.
+Reusable Razor components are free to declare `@attribute [StreamRendering]` for [streaming rendering](xref:blazor/components/rendering#streaming-rendering) ([`[StreamRendering]` attribute API](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute)). This results in incremental UI updates during static SSR. Since the same data-loading patterns produce incremental UI updates during interactive rendering, regardless of the presence of the `[StreamRendering]` attribute, the component can behave correctly in all cases. Even in cases where streaming static SSR is suppressed on the server, the component still renders its correct final state.
 
 ## Using links across render modes
 
-Reusable Razor components may use links and enhanced navigation. HTML `<a>` tags should produce equivalent behaviors with or without an interactive `<Router>` component and whether or not enhanced navigation is enabled/disabled at an ancestor level in the DOM.
+Reusable Razor components may use links and enhanced navigation. HTML `<a>` tags should produce equivalent behaviors with or without an interactive <xref:Microsoft.AspNetCore.Components.Routing.Router> component and whether or not enhanced navigation is enabled/disabled at an ancestor level in the DOM.
 
 ## Using forms across render modes
 
@@ -119,7 +119,7 @@ Consider the following example:
 }
 ```
 
-The `Enhance`, `FormName`, and `SupplyParameterFromForm` APIs are only used during static SSR and are ignored during interactive rendering. The form works correctly during both interactive and static SSR.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A>, and <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute> APIs are only used during static SSR and are ignored during interactive rendering. The form works correctly during both interactive and static SSR.
 
 ## Avoid APIs that are specific to static SSR
 

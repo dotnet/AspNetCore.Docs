@@ -122,12 +122,14 @@ You can also use the [`[DataMember]`](xref:System.Runtime.Serialization.DataMemb
 
 ## Additional binding options
 
-Additional model binding options are available from `RazorComponentOptions` when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+<!-- UPDATE 8.0 No API doc for RazorComponentOptions -->
 
-* `MaxFormMappingCollectionSize`: Maximum number of elements allowed in a form collection.
-* `MaxFormMappingRecursionDepth`: Maximum depth allowed when recursively mapping form data.
-* `MaxFormMappingErrorCount`: Maximum number of errors allowed when mapping form data.
-* `MaxFormMappingKeySize`: Maximum size of the buffer used to read form data keys.
+Additional model binding options are available from <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions> when calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingCollectionSize%2A>: Maximum number of elements allowed in a form collection.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingRecursionDepth%2A>: Maximum depth allowed when recursively mapping form data.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingErrorCount%2A>: Maximum number of errors allowed when mapping form data.
+* <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.MaxFormMappingKeySize%2A>: Maximum size of the buffer used to read form data keys.
 
 The following demonstrates the default values assigned by the framework:
 
@@ -144,7 +146,7 @@ builder.Services.AddRazorComponents(options =>
 
 ## Form names
 
-Use the `FormName` parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
+Use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
 
 ```razor
 <EditForm ... FormName="RomulanAle">
@@ -159,7 +161,7 @@ Supplying a form name:
 
 The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request from a statically-rendered server-side component. The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
 
-By default, there's an unnamed (empty string) form scope above the app's root component, which suffices when there are no form name collisions in the app. If form name collisions are possible, such as when including a form from a library and you have no control of the form name used by the library's developer, provide a form name scope with the `FormMappingScope` component in the Blazor Web App's main project.
+By default, there's an unnamed (empty string) form scope above the app's root component, which suffices when there are no form name collisions in the app. If form name collisions are possible, such as when including a form from a library and you have no control of the form name used by the library's developer, provide a form name scope with the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component in the Blazor Web App's main project.
 
 In the following example, the `HelloFormFromLibrary` component has a form named `Hello` and is in a library.
 
@@ -186,7 +188,7 @@ In the following example, the `HelloFormFromLibrary` component has a form named 
 }
 ```
 
-The following `NamedFormsWithScope` component uses the library's `HelloFormFromLibrary` component and also has a form named `Hello`. The `FormMappingScope` component's scope name is `ParentContext` for any forms supplied by the `HelloFormFromLibrary` component. Although both of the forms in this example have the form name (`Hello`), the form names don't collide and events are routed to the correct form for form POST events.
+The following `NamedFormsWithScope` component uses the library's `HelloFormFromLibrary` component and also has a form named `Hello`. The <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component's scope name is `ParentContext` for any forms supplied by the `HelloFormFromLibrary` component. Although both of the forms in this example have the form name (`Hello`), the form names don't collide and events are routed to the correct form for form POST events.
 
 `NamedFormsWithScope.razor`:
 
@@ -225,10 +227,10 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
 
 The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding.
 
-You can specify the following form binding parameters to the `[SupplyParameterFromForm]` attribute:
+You can specify the following form binding parameters to the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute):
 
-* `Name`: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
-* `FormName`: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
+* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.Name%2A>: Gets or sets the name for the parameter. The name is used to determine the prefix to use to match the form data and decide whether or not the value needs to be bound.
+* <xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute.FormName%2A>: Gets or sets the name for the handler. The name is used to match the parameter to the form by form name to decide whether or not the value needs to be bound.
 
 The following example independently binds two forms to their models by form name.
 
@@ -369,9 +371,9 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 
 ## Advanced form mapping error scenarios
 
-The framework instantiates and populates the `FormMappingContext` for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a `FormMappingScope` component) instantiates `FormMappingContext`. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the `FormMappingContext` with the attempted value and any mapping errors.
+The framework instantiates and populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component) instantiates <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext>. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> with the attempted value and any mapping errors.
 
-Developers aren't expected to interact with `FormMappingContext` directly, as it's mainly a source of data for `InputBase`, `EditContext`, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access `FormMappingContext` directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
+Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly, as it's mainly a source of data for <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, and other internal implementations to show mapping errors as validation errors. In advanced custom scenarios, developers can access <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> directly as a `[CascadingParameter]` to write custom code that consumes the attempted values and mapping errors.
 
 :::moniker-end
 

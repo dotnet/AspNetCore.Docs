@@ -35,7 +35,7 @@ This section covers adding Blazor support to an ASP.NET Core app:
 * [Enable interactive Auto or WebAssembly rendering](#enable-interactive-auto-and-webassembly-rendering)
 
 > [!NOTE]
-> For the examples in this section, the example app's name and namespace is `AspNetCoreApp`.
+> For the examples in this section, the example app's name and namespace is `BlazorSample`.
 
 ### Add Static Server Razor component rendering
 
@@ -54,13 +54,13 @@ Add the following `_Imports` file for namespaces used by Razor components.
 @using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
-@using AspNetCoreApp
-@using AspNetCoreApp.Components
+@using BlazorSample
+@using BlazorSample.Components
 ```
 
-Change the namespace `AspNetCoreApp` in the preceding example to match the app.
+Change the namespace `BlazorSample` in the preceding example to match the app.
 
-Add the Blazor router (`<Router>`) to the app in a `Routes` component, which is placed in the app's `Components` folder.
+Add the Blazor Router (`<Router>`, <xref:Microsoft.AspNetCore.Components.Routing.Router>) to the app in a `Routes` component, which is placed in the app's `Components` folder.
 
 `Components/Routes.razor`:
 
@@ -93,7 +93,7 @@ Add an `App` component to the app, which serves as the root component, which is 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="AspNetCoreApp.styles.css" />
+    <link rel="stylesheet" href="BlazorSample.styles.css" />
     <HeadOutlet />
 </head>
 
@@ -105,7 +105,7 @@ Add an `App` component to the app, which serves as the root component, which is 
 </html>
 ```
 
-For the `<link>` element in the preceding example, change `AspNetCoreApp` in the stylesheet's file name to match the app's project name. For example, a project named `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name:
+For the `<link>` element in the preceding example, change `BlazorSample` in the stylesheet's file name to match the app's project name. For example, a project named `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name:
 
 ```html
 <link rel="stylesheet" href="ContosoApp.styles.css" />
@@ -137,12 +137,12 @@ In the ASP.NET Core project's `Program` file:
 * Add a `using` statement to the top of the file for the project's components:
 
   ```csharp
-  using AspNetCoreApp.Components;
+  using BlazorSample.Components;
   ```
 
-  In the preceding example, change `AspNetCoreApp` in the namespace to match the app.
+  In the preceding example, change `BlazorSample` in the namespace to match the app.
 
-* Add Razor component services (`AddRazorComponents`). Add the following line before the line that calls `builder.Build()`):
+* Add Razor component services (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>). Add the following line before the line that calls `builder.Build()`):
 
   ```csharp
   builder.Services.AddRazorComponents();
@@ -154,7 +154,7 @@ In the ASP.NET Core project's `Program` file:
   app.UseAntiforgery();
   ```
 
-* Add `MapRazorComponents` to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component (the first component loaded). Place the following code before the line that calls `app.Run`:
+* Add <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to the app's request processing pipeline with the `App` component (`App.razor`) specified as the default root component (the first component loaded). Place the following code before the line that calls `app.Run`:
 
   ```csharp
   app.MapRazorComponents<App>();
@@ -168,14 +168,14 @@ Follow the guidance in the [Add Static Server Razor component rendering](#add-st
 
 Make the following changes in the app's `Program` file:
 
-* Add a call to `AddInteractiveServerComponents` where Razor component services are added with `AddRazorComponents`:
+* Add a call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> where Razor component services are added with <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
 
   ```csharp
   builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
   ```
 
-* Add a call to `AddInteractiveServerRenderMode` where Razor components are mapped with `MapRazorComponents`:
+* Add a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
 
   ```csharp
   app.MapRazorComponents<App>()
@@ -246,9 +246,9 @@ From the donor Blazor Web App, copy the entire `.Client` project into the soluti
 > [!IMPORTANT]
 > **Don't copy the `.Client` folder into the ASP.NET Core project's folder.** The best approach for organizing .NET solutions is to place each project of the solution into its own folder inside of a top-level solution folder. If a solution folder above the ASP.NET Core project's folder doesn't exist, create one. Next, copy the `.Client` project's folder from the donor Blazor Web App into the solution folder. The final project folder structure should have the following layout:
 >
-> * `AspNetCoreAppSolution` (top-level solution folder)
->   * `AspNetCoreApp` (original ASP.NET Core project)
->   * `AspNetCoreApp.Client` (`.Client` project folder from the donor Blazor Web App)
+> * `BlazorSampleSolution` (top-level solution folder)
+>   * `BlazorSample` (original ASP.NET Core project)
+>   * `BlazorSample.Client` (`.Client` project folder from the donor Blazor Web App)
 >
 > For the ASP.NET Core solution file, you can leave it in the ASP.NET Core project's folder. Alternatively, you can move the solution file or create a new one in the top-level solution folder as long as the project references correctly point to the project files (`.csproj`) of the two projects in the solution folder.
 
@@ -269,19 +269,19 @@ Add a project reference from the ASP.NET Core project to the client project:
 * .NET CLI: From the ASP.NET Core project's folder, use the following command:
 
   ```dotnetcli
-  dotnet add reference ../AspNetCoreApp.Client/AspNetCoreApp.Client.csproj
+  dotnet add reference ../BlazorSample.Client/BlazorSample.Client.csproj
   ```
 
   The preceding command assumes the following:
   
-  * The project file name is `AspNetCoreApp.Client.csproj`.
-  * The `.Client` project is in a `AspNetCoreApp.Client` folder inside the solution folder. The `.Client` folder is side-by-side with the ASP.NET Core project's folder.
+  * The project file name is `BlazorSample.Client.csproj`.
+  * The `.Client` project is in a `BlazorSample.Client` folder inside the solution folder. The `.Client` folder is side-by-side with the ASP.NET Core project's folder.
   
   For more information on the `dotnet add reference` command, see [`dotnet add reference` (.NET documentation)](/dotnet/core/tools/dotnet-add-reference).
 
 Make the following changes to the ASP.NET Core app's `Program` file:
 
-* Add Interactive WebAssembly component services with `AddInteractiveWebAssemblyComponents` where Razor component services are added with `AddRazorComponents`.
+* Add Interactive WebAssembly component services with <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A> where Razor component services are added with <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>.
 
   For interactive Auto rendering:
 
@@ -298,7 +298,7 @@ Make the following changes to the ASP.NET Core app's `Program` file:
       .AddInteractiveWebAssemblyComponents();
   ```
 
-* Add the Interactive WebAssembly render mode (`AddInteractiveWebAssemblyRenderMode`) and additional assemblies for the `.Client` project where Razor components are mapped with `MapRazorComponents`.
+* Add the Interactive WebAssembly render mode (<xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A>) and additional assemblies for the `.Client` project where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
   For interactive Auto rendering:
 
@@ -306,7 +306,7 @@ Make the following changes to the ASP.NET Core app's `Program` file:
   app.MapRazorComponents<App>()
       .AddInteractiveServerRenderMode()
       .AddInteractiveWebAssemblyRenderMode()
-      .AddAdditionalAssemblies(typeof(AspNetCoreApp.Client._Imports).Assembly);
+      .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
   ```
 
   For only Interactive WebAssembly rendering:
@@ -314,10 +314,10 @@ Make the following changes to the ASP.NET Core app's `Program` file:
   ```csharp
   app.MapRazorComponents<App>()
       .AddInteractiveWebAssemblyRenderMode()
-      .AddAdditionalAssemblies(typeof(AspNetCoreApp.Client._Imports).Assembly);
+      .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
   ```
 
-  In the preceding examples, change `AspNetCoreApp.Client` to match the `.Client` project's namespace.
+  In the preceding examples, change `BlazorSample.Client` to match the `.Client` project's namespace.
 
 Add a `Pages` folder to the `.Client` project.
 
@@ -755,7 +755,7 @@ builder.Services.AddRazorComponents()
 
 For more information on adding support for Interactive Server and WebAssembly components, see <xref:blazor/components/render-modes>.
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> to configure the Server render mode for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -801,7 +801,7 @@ For more information on namespaces, see the [Component namespaces](#component-na
 
 ## Return a `RazorComponentResult` from an MVC controller action
 
-An MVC controller action can return a component with `RazorComponentResult`.
+An MVC controller action can return a component with <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult%601>.
 
 `Components/Welcome.razor`:
 

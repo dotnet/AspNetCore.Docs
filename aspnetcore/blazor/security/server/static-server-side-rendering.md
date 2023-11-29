@@ -42,7 +42,7 @@ The server-side rendering (SSR) model is based on the traditional request/respon
 
 All input arriving from the client must be considered untrusted unless its information was generated and protected on the server, such as a CSRF token, an authentication cookie, a session identifier, or any other payload that's protected with authenticated encryption.
 
-Input is normally available to the app through a binding process, for example via `[SupplyParameterFromQuery]` or `[SupplyParameterFromForm]`. Before processing this input, the app must make sure that the data is valid. For example, the app must confirm that there were no binding errors when mapping the form data to a component property. Otherwise, the app might process invalid data.
+Input is normally available to the app through a binding process, for example via the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) or [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute). Before processing this input, the app must make sure that the data is valid. For example, the app must confirm that there were no binding errors when mapping the form data to a component property. Otherwise, the app might process invalid data.
 
 If the input is used to perform a redirect, the app must make sure that the input is valid and that it isn't pointing to a domain considered invalid or to an invalid subpath within the app base path. Otherwise, the app may be exposed to open redirection attacks, where an attacker can craft a link that redirects the user to a malicious site.
 
@@ -112,5 +112,5 @@ For WebAssembly workloads, there's usually little concern over the amount of wor
 * Properly manage user sessions to ensure that state isn't mistakenly shared across users.
 * Handle and log errors properly to avoid exposing sensitive information.
 * Log important events in the app to identify potential issues and audit actions performed by users.
-* Protect sensitive information using the ASP.NET Core Data Protection APIs or one of the available components (`ProtectedBrowserStorage`, `PersistentComponentState`).
+* Protect sensitive information using the ASP.NET Core Data Protection APIs or one of the available components (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, <xref:Microsoft.AspNetCore.Components.PersistentComponentState>).
 * Ensure that the app understands the resources that can be consumed by a given request and has limits in place to avoid denial of service attacks.

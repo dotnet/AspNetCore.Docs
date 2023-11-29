@@ -307,7 +307,7 @@ Basic validation is useful in cases where the form's model is defined within the
 
 In the following example:
 
-* A shortened version of the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the `DataAnnotationsValidator` component isn't included in the form.
+* A shortened version of the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article is used that only accepts the starship's classification and description. Data annotation validation is **not** triggered on form submission because the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component isn't included in the form.
 * The `CustomValidation` component from the [Validator components](#validator-components) section of this article is used.
 * The validation requires a value for the ship's description (`Description`) if the user selects the "`Defense`" ship classification (`Classification`).
 
@@ -720,7 +720,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> By default, forms based on `EditForm` automatically enable [anti-forgery support](xref:blazor/forms/index#antiforgery-support). The controller should use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> to register controller services and automatically enable anti-forgery support for the web API.
+> By default, forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm> automatically enable [anti-forgery support](xref:blazor/forms/index#antiforgery-support). The controller should use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> to register controller services and automatically enable anti-forgery support for the web API.
 
 ```razor
 @page "/starship-10"
@@ -1569,7 +1569,7 @@ Add the `Description` to the `CustomValidationForm` component's form:
 <InputText @bind-Value="Model!.Description" />
 ```
 
-Update the `EditContext` instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
+Update the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A> instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
 
 ```csharp
 editContext?.SetFieldCssClassProvider(new CustomFieldClassProvider2());
@@ -1670,7 +1670,7 @@ public class CustomFieldClassProvider3 : FieldCssClassProvider
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
 -->
 
-Update the `EditContext` instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
+Update the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext%2A> instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
 
 ```csharp
 editContext.SetFieldCssClassProvider(new CustomFieldClassProvider3());

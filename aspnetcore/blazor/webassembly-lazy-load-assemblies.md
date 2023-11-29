@@ -151,7 +151,7 @@ In the following example:
 :::moniker-end
 
 > [!NOTE]
-> The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
+> The preceding example doesn't show the contents of the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
 :::moniker range="= aspnetcore-5.0"
 
@@ -161,7 +161,7 @@ In the following example:
 
 ## Assemblies that include routable components
 
-When the list of assemblies includes routable components, the assembly list for a given path is passed to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection.
+When the list of assemblies includes routable components, the assembly list for a given path is passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection.
 
 In the following example:
 
@@ -252,7 +252,7 @@ In the following example:
 :::moniker-end
 
 > [!NOTE]
-> The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
+> The preceding example doesn't show the contents of the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
 :::moniker range="= aspnetcore-5.0"
 

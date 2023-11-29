@@ -14,15 +14,15 @@ uid: blazor/components/virtualization
 
 This article explains how to use component virtualization in ASP.NET Core Blazor apps.
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support with the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601). Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support with the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.
 
-Use the `Virtualize` component ([reference source](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601)) when:
+Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component when:
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
 * The rendered items are the same size.
 
-When the user scrolls to an arbitrary point in the `Virtualize` component's list of items, the component calculates the visible items to show. Unseen items aren't rendered.
+When the user scrolls to an arbitrary point in the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component's list of items, the component calculates the visible items to show. Unseen items aren't rendered.
 
 Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in a list. In the following example:
 
@@ -41,9 +41,9 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 
 If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't seen because they fall outside of the height of the `<div>` element.
 
-Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the `Virtualize` component:
+Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
-* Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the currently visible flights are rendered by the `Virtualize` component.
+* Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
 * Specify a context for each flight with the `Context` parameter. In the following example, `flight` is used as the context, which provides access to each flight's members.
 
 ```razor
@@ -64,14 +64,14 @@ If a context isn't specified with the `Context` parameter, use the value of `con
 </div>
 ```
 
-The `Virtualize` component:
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
 * Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
-The item content for the `Virtualize` component can include:
+The item content for the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component can include:
 
 * Plain HTML and Razor code, as the preceding example shows.
 * One or more Razor components.
@@ -79,7 +79,7 @@ The item content for the `Virtualize` component can include:
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection%601>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
+If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection%601>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -92,7 +92,7 @@ If you don't want to load all of the items into memory or the collection isn't a
 
 The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderRequest>, which specifies the required number of items starting at a specific start index. The items provider then retrieves the requested items from a database or other service and returns them as an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderResult%601> along with a count of the total items. The items provider can choose to retrieve the items with each request or cache them so that they're readily available.
 
-A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
+A <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
 The following example loads employees from an `EmployeeService` (not shown):
 
@@ -131,7 +131,7 @@ In the following example, a collection of <xref:System.Data.DataRow> is a non-ge
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> updates a `Virtualize` component's data without causing a rerender. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is invoked from a Blazor event handler or component lifecycle method, triggering a render isn't required because a render is automatically triggered at the end of the event handler or lifecycle method. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is triggered separately from a background task or event, such as in the following `ForecastUpdated` delegate, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to update the UI at the end of the background task or event:
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> updates a <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component's data without causing a rerender. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is invoked from a Blazor event handler or component lifecycle method, triggering a render isn't required because a render is automatically triggered at the end of the event handler or lifecycle method. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is triggered separately from a background task or event, such as in the following `ForecastUpdated` delegate, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to update the UI at the end of the background task or event:
 
 ```csharp
 <Virtualize ... @ref="virtualizeComponent">
@@ -157,7 +157,7 @@ protected override void OnInitialized()
 
 In the preceding example:
 
-* <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is called first to obtain new data for the `Virtualize` component.
+* <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is called first to obtain new data for the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
 * `StateHasChanged` is called to rerender the component.
 
 :::moniker-end
@@ -238,7 +238,7 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 </Virtualize>
 ```
 
-By default, the `Virtualize` component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second re-render is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
+By default, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second re-render is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
 ## Overscan count
 
@@ -252,7 +252,7 @@ By default, the `Virtualize` component measures the rendering size (height) of i
 
 ## State changes
 
-When making changes to items rendered by the `Virtualize` component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
+When making changes to items rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -274,7 +274,7 @@ To learn more about the meaning of `tabindex` value `-1`, `0`, or other values, 
 
 ## Advanced styles and scroll detection
 
-The `Virtualize` component is only designed to support specific element layout mechanisms. To understand which element layouts work correctly, the following explains how `Virtualize` detects which elements should be visible for display in the correct place.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component is only designed to support specific element layout mechanisms. To understand which element layouts work correctly, the following explains how `Virtualize` detects which elements should be visible for display in the correct place.
 
 If your source code looks like the following:
 
@@ -286,7 +286,7 @@ If your source code looks like the following:
 </div>
 ```
 
-At runtime, the `Virtualize` component renders a DOM structure similar to the following:
+At runtime, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component renders a DOM structure similar to the following:
 
 ```html
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
@@ -317,13 +317,13 @@ The spacer elements internally use an [Intersection Observer](https://developer.
   * Scroll container styling requires a `display` with any of the following values:
     * `block` (the default for a `div`).
     * `table-row-group` (the default for a `tbody`).
-    * `flex` with `flex-direction` set to `column`. Ensure that immediate children of the `Virtualize` component don't shrink under flex rules. For example, add `.mycontainer > div { flex-shrink: 0 }`.
+    * `flex` with `flex-direction` set to `column`. Ensure that immediate children of the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component don't shrink under flex rules. For example, add `.mycontainer > div { flex-shrink: 0 }`.
   * Content row styling requires a `display` with either of the following values:
     * `block` (the default for a `div`).
     * `table-row` (the default for a `tr`).
   * Don't use CSS to interfere with the layout for the spacer elements. By default, the spacer elements have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence spacer element width or height, including by causing them to have a border or `content` pseudo-elements.
 
-Any approach that stops the spacers and content elements from rendering as a single vertical stack, or causes the content items to vary in height, prevents correct functioning of the `Virtualize` component.
+Any approach that stops the spacers and content elements from rendering as a single vertical stack, or causes the content items to vary in height, prevents correct functioning of the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
 
 :::moniker-end
 
@@ -331,7 +331,7 @@ Any approach that stops the spacers and content elements from rendering as a sin
 
 :::moniker range=">= aspnetcore-7.0"
 
-The `Virtualize` component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. In the following example, the `<html>` or `<body>` elements are styled in a component with `overflow-y: scroll`:
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. In the following example, the `<html>` or `<body>` elements are styled in a component with `overflow-y: scroll`:
 
 ```razor
 <HeadContent>
@@ -345,7 +345,7 @@ The `Virtualize` component supports using the document itself as the scroll root
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-The `Virtualize` component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. When using the document as the scroll root, avoid styling the `<html>` or `<body>` elements with `overflow-y: scroll` because it causes the [intersection observer](#advanced-styles-and-scroll-detection) to treat the full scrollable height of the page as the visible region, instead of just the window viewport.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. When using the document as the scroll root, avoid styling the `<html>` or `<body>` elements with `overflow-y: scroll` because it causes the [intersection observer](#advanced-styles-and-scroll-detection) to treat the full scrollable height of the page as the visible region, instead of just the window viewport.
 
 You can reproduce this problem by creating a large virtualized list (for example, 100,000 items) and attempt to use the document as the scroll root with `html { overflow-y: scroll }` in the page CSS styles. Although it may work correctly at times, the browser attempts to render all 100,000 items at least once at the start of rendering, which may cause a browser tab lockup.
 
@@ -363,7 +363,7 @@ To work around this problem prior to the release of .NET 7, either avoid styling
 
 :::moniker range="< aspnetcore-6.0"
 
-The `Virtualize` component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. When using the document as the scroll root, avoid styling the `<html>` or `<body>` elements with `overflow-y: scroll` because it cause the full scrollable height of the page to be treated as the visible region, instead of just the window viewport.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. When using the document as the scroll root, avoid styling the `<html>` or `<body>` elements with `overflow-y: scroll` because it cause the full scrollable height of the page to be treated as the visible region, instead of just the window viewport.
 
 You can reproduce this problem by creating a large virtualized list (for example, 100,000 items) and attempt to use the document as the scroll root with `html { overflow-y: scroll }` in the page CSS styles. Although it may work correctly at times, the browser attempts to render all 100,000 items at least once at the start of rendering, which may cause a browser tab lockup.
 
@@ -381,7 +381,7 @@ To work around this problem prior to the release of .NET 7, either avoid styling
 
 ## Control the spacer element tag name
 
-If the `Virtualize` component is placed inside an element that requires a specific child tag name, <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.SpacerElement> allows you to obtain or set the virtualization spacer tag name. The default value is `div`. For the following example, the `Virtualize` component renders inside a table body element ([`tbody`](https://developer.mozilla.org/docs/Web/HTML/Element/tbody)), so the appropriate child element for a table row ([`tr`](https://developer.mozilla.org/docs/Web/HTML/Element/tr)) is set as the spacer.
+If the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component is placed inside an element that requires a specific child tag name, <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.SpacerElement> allows you to obtain or set the virtualization spacer tag name. The default value is `div`. For the following example, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component renders inside a table body element ([`tbody`](https://developer.mozilla.org/docs/Web/HTML/Element/tbody)), so the appropriate child element for a table row ([`tr`](https://developer.mozilla.org/docs/Web/HTML/Element/tr)) is set as the spacer.
 
 `VirtualizedTable.razor`:
 

@@ -139,6 +139,68 @@ Use a `<meta>` tag to apply the policy:
 
 The following sections show example policies. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
+### Server-side Blazor apps
+
+In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src 'self';
+               style-src 'self';
+               upgrade-insecure-requests;">
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self' 
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self' 
+                          'sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self' 
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+:::moniker-end
+
+Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports the hash for a required script not covered by the policy:
+
+> Refused to execute inline script because it violates the following Content Security Policy directive: " ... ". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
+
+The particular script associated with the error is displayed in the console next to the error.
+
 ### Client-side Blazor apps
 
 In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
@@ -243,67 +305,74 @@ Add additional `script-src` and `style-src` hashes as required by the app. Durin
 
 The particular script associated with the error is displayed in the console next to the error.
 
-### Server-side Blazor apps
+:::moniker range=">= aspnetcore-8.0"
 
-In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
+## Apply a CSP in non-Development environments
 
-:::moniker range=">= aspnetcore-6.0"
+When a CSP is applied to a Blazor app's `<head>` content, it interferes with local testing in the Development environment. For example, [Browser Link](xref:client-side/using-browserlink) and the browser refresh script fail to load. The following examples demonstrate how to apply the CSP's `<meta>` tag in non-Development environments.
 
-```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src 'self';
-               style-src 'self';
-               upgrade-insecure-requests;">
+> [!NOTE]
+> The examples in this section don't show the full `<meta>` tag for the CSPs. The complete `<meta>` tags are found in the subsections of the [Apply the policy](#apply-the-policy) section earlier in this article.
+
+Three general approaches are available:
+
+* Apply the CSP via the `App` component, which applies the CSP to all layouts of the app.
+* If you need to apply CSPs to different areas of the app, for example a custom CSP for only the admin pages, apply the CSPs on a per-layout basis using the [`<HeadContent>` tag](xref:blazor/components/control-head-content). For complete effectiveness, every app layout file must adopt the approach.
+* The hosting service or server can provide a CSP via a [`Content-Security-Policy` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) added an app's outgoing responses. Because this approach varies by hosting service or server, it isn't addressed in the following examples. If you wish to adopt this approach, consult the documentation for your hosting service provider or server.
+
+### Blazor Web App approaches
+
+In the `App` component (`Components/App.razor`), inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment>:
+
+```razor
+@inject IHostEnvironment Env
 ```
 
-:::moniker-end
+In the `App` component's `<head>` content, apply the CSP when not in the Development environment:
 
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self' 
-                         'unsafe-inline';
-               upgrade-insecure-requests;">
+```razor
+@if (!Env.IsDevelopment())
+{
+    <meta ...>
+}
 ```
 
-:::moniker-end
+Alternatively, apply CSPs on a per-layout basis in the `Components/Layout` folder, as the following example demonstrates. Make sure that every layout specifies a CSP.
 
-:::moniker range="< aspnetcore-5.0"
+```razor
+@inject IHostEnvironment Env
 
-```html
-<meta http-equiv="Content-Security-Policy" 
-      content="base-uri 'self';
-               default-src 'self';
-               img-src data: https:;
-               object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self' 
-                          'sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self' 
-                         'unsafe-inline';
-               upgrade-insecure-requests;">
+@if (!Env.IsDevelopment())
+{
+    <HeadContent>
+        <meta ...>
+    </HeadContent>
+}
 ```
 
+### Blazor WebAssembly app approaches
+
+In the `App` component (`App.razor`), inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment>:
+
+```razor
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment Env
+```
+
+In the `App` component's `<head>` content, apply the CSP when not in the Development environment:
+
+```razor
+@if (!Env.IsDevelopment())
+{
+    <HeadContent>
+        <meta ...>
+    </HeadContent>
+}
+```
+
+Alternatively, use the preceding code but apply CSPs on a per-layout basis in the `Layout` folder. Make sure that every layout specifies a CSP.
+
 :::moniker-end
-
-Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports the hash for a required script not covered by the policy:
-
-> Refused to execute inline script because it violates the following Content Security Policy directive: " ... ". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
-
-The particular script associated with the error is displayed in the console next to the error.
 
 ## Meta tag limitations
 
@@ -341,6 +410,7 @@ Test and update an app's policy every release.
 ## Additional resources
 
 * [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
-* [MDN web docs: Content-Security-Policy](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
+* [MDN web docs: Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+* [MDN web docs: Content-Security-Policy response header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)

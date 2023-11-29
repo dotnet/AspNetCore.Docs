@@ -620,8 +620,6 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 
 If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigations initiated from an interactive runtime. In future releases, additional types of navigations, such as link clicks, may also invoke location changing handlers.
 
-If enhanced navigation is available for interactive client routing, navigation always goes through the interactive client-side router. This point is only relevant in an uncommon scenario where an interactive `<Router>` is nested inside a server-side rendered `<Router>`. In that case, the interactive router takes priority when handling navigation, so enhanced navigation isn't used for navigation because it's a server-side routing feature.
-
 When an enhanced navigation occurs, [`LocationChanged` event handlers](#location-changes) registered with Interactive Server and WebAssembly runtimes are typically invoked. There are cases when location changing handlers might not intercept an enhanced navigation. For example, the user might switch to another page before an interactive runtime becomes available. Therefore, it's important that app logic not rely on invoking a location changing handler, as there's no guarantee of the handler executing.
 
 When calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>:
@@ -666,7 +664,7 @@ The following examples disable enhanced navigation:
 
 If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, and the client-side JavaScript retries as a full page load. This ensures no confusion to the framework about external pages that shouldn't be patched into an existing page.
 
-To enable enhanced form handling, add the `Enhance` parameter to `EditForm` forms or the `data-enhance` attribute to HTML forms (`<form>`):
+To enable enhanced form handling, add the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter to <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute to HTML forms (`<form>`):
 
 ```razor
 <EditForm Enhance ...>
@@ -696,7 +694,7 @@ Enhanced form posts only work with Blazor endpoints. Posting an enhanced form to
 
 To disable enhanced navigation:
 
-* For an `EditForm`, remove the `Enhance` parameter from the form element (or set it to `false`: `Enhance="false"`).
+* For an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, remove the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter from the form element (or set it to `false`: `Enhance="false"`).
 * For an HTML `<form>`, remove the `data-enhance` attribute from form element (or set it to `false`: `data-enhance="false"`).
 
 Blazor's enhanced navigation and form handing may undo dynamic changes to the DOM if the updated content isn't part of the server rendering. To preserve the content of an element, use the `data-permanent` attribute.
