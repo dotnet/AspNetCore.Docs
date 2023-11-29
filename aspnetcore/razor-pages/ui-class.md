@@ -110,7 +110,7 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 
 ```xml
 <PropertyGroup>
-  <DefaultItemExcludes>$(DefaultItemExcludes);wwwroot/lib.css</DefaultItemExcludes>
+  <DefaultItemExcludes>$(DefaultItemExcludes);wwwroot\lib.css</DefaultItemExcludes>
 </PropertyGroup>
 ```
 
