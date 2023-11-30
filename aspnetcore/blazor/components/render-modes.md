@@ -163,7 +163,7 @@ You also typically must set the same interactive render mode on the [`HeadOutlet
 <HeadOutlet @rendermode="InteractiveServer" />
 ```
 
-For apps that adopt the Interactive WebAssembly or Interactive Auto rendering mode and enable the render mode for the entire app via the `Routes` component instance in the `App` component:
+For apps that adopt the Interactive WebAssembly or Interactive Auto rendering mode, enable the render mode for the entire app via the `Routes` component instance in the `App` component:
 
 * Place or move the layout and navigation files of the server app's `Components/Layout` folder into the `.Client` project's `Layout` folder. Create a `Layout` folder in the `.Client` project if it doesn't exist.
 * Place or move the components of the server app's `Components/Pages` folder into the `.Client` project's `Pages` folder. Create a `Pages` folder in the `.Client` project if it doesn't exist.
