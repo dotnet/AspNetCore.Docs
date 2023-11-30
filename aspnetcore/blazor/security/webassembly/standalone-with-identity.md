@@ -132,9 +132,7 @@ Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.
 
 A logout endpoint (`/Logout`) is configured in the middleware pipeline to sign users out.
 
-<!-- UPDATE 8.0 Cross-link API -->
-
-To secure an endpoint, add the `RequireAuthentication` extension method to the route definition. For a controller, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
+To secure an endpoint, add the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method to the route definition. For a controller, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
 
 For more information on basic patterns for initialization and configuration of a <xref:Microsoft.EntityFrameworkCore.DbContext> instance, see
 [DbContext Lifetime, Configuration, and Initialization](/ef/core/dbcontext-configuration/) in the EF Core documentation.
