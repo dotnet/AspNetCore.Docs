@@ -163,9 +163,11 @@ function eventArgsCreator(event) {
 }
 ```
 
-Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). Provide the appropriate broswer event name to `browserEventName`, which in this case is `click` for a button selection in the UI.
+The `event` parameter is a [DOM Event (MDN documentation)](https://developer.mozilla.org/en-US/docs/Web/API/Event).
 
-`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
+Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). Provide the appropriate broswer event name to `browserEventName`, which for the example shown in this section is `click` for a button selection in the UI.
+
+`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js` (the `{PACKAGE ID/ASSEMBLY NAME}` placeholder is the package ID or assembly name of the app):
 
 :::moniker-end
 
@@ -196,8 +198,6 @@ export function afterStarted(blazor) {
   });
 }
 ```
-
-In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
 
 > [!NOTE]
 > The call to `registerCustomEventType` is performed in a script only once per event.
