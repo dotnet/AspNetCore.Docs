@@ -158,12 +158,12 @@ In JavaScript, define a function for building the custom event argument object f
 function eventArgsCreator(event) { 
   return {
     customProperty1: 'any value for property 1',
-    customProperty2: event.srcElement.value
+    customProperty2: event.srcElement.id
   };
 }
 ```
 
-Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
+Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). Provide the appropriate broswer event name to `browserEventName`, which in this case is `click` for a button selection in the UI.
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
@@ -176,6 +176,7 @@ For a Blazor Web App:
 ```javascript
 export function afterWebStarted(blazor) {
   blazor.registerCustomEventType('customevent', {
+    browserEventName: 'click',
     createEventArgs: eventArgsCreator
   });
 }
@@ -190,6 +191,7 @@ For a Blazor Server or Blazor WebAssembly app:
 ```javascript
 export function afterStarted(blazor) {
   blazor.registerCustomEventType('customevent', {
+    browserEventName: 'click',
     createEventArgs: eventArgsCreator
   });
 }
@@ -239,14 +241,25 @@ Register the event handler on one or more HTML elements. Access the data that wa
 ```razor
 @using namespace BlazorSample.CustomEvents
 
-<button @oncustomevent="HandleCustomEvent">Handle</button>
+<button id="buttonId" @oncustomevent="HandleCustomEvent">Handle</button>
+
+@if (!string.IsNullOrEmpty(propVal1) && !string.IsNullOrEmpty(propVal1))
+{
+    <ul>
+        <li>propVal1: @propVal1</li>
+        <li>propVal2: @propVal2</li>
+    </ul>
+}
 
 @code
 {
+    private string? propVal1;
+    private string? propVal2;
+
     private void HandleCustomEvent(CustomEventArgs eventArgs)
     {
-        // eventArgs.CustomProperty1
-        // eventArgs.CustomProperty2
+        propVal1 = eventArgs.CustomProperty1;
+        propVal2 = eventArgs.CustomProperty2;
     }
 }
 ```
