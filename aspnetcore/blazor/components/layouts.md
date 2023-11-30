@@ -63,32 +63,6 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 In an app created from a [Blazor project template](xref:blazor/project-structure), the `MainLayout` component is the app's [default layout](#apply-a-default-layout-to-an-app). Blazor's layout adopts the [:::no-loc text="Flexbox"::: layout model (MDN documentation)](https://developer.mozilla.org/docs/Glossary/Flexbox) ([W3C specification](https://www.w3.org/TR/css-flexbox-1/)).
 
-`MainLayout.razor`:
-
-:::moniker range=">= aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor":::
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-8.0"
 
 [Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
@@ -112,6 +86,29 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 :::moniker-end
 
 ## Apply a layout
+
+### Make the layout namespace available
+
+ Layout file locations and namespaces changed over time for the Blazor framework. Depending on the version of Blazor and type of Blazor app that you're building, you may need to indicate the layout's namespace when using it. When referencing a layout implementation and the layout isn't found without indicating the layout's namespace, take any of the following approaches:
+
+* Add an `@using` directive to the `_Imports.razor` file for the location of the layouts. In the following example, a folder of layouts with the name `Layout` is inside a `Components` folder, and the app's namespace is `BlazorSample`:
+
+  ```razor
+  @using BlazorSample.Components.Layout
+  ```
+
+* Add an `@using` directive at the top the component definition where the layout is used:
+
+  ```razor
+  @using BlazorSample.Components.Layout
+  @layout DoctorWhoLayout
+  ```
+
+* Fully qualify the namespace of the layout where it's used:
+
+  ```razor
+  @layout BlazorSample.Components.Layout.DoctorWhoLayout
+  ```
 
 ### Apply a layout to a component
 
@@ -207,39 +204,15 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 
 ### Apply a default layout to an app
 
-Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
+Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.RouteView> component. Use the <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout%2A> parameter to set the layout type:
 
-`App.razor`:
+```razor
+<RouteView RouteData="@routeData" DefaultLayout="@typeof({LAYOUT})" />
+```
 
-:::moniker range=">= aspnetcore-7.0"
+In the preceding example, the `{LAYOUT}` placeholder is the layout (for example, `DoctorWhoLayout` if the layout file name is `DoctorWhoLayout.razor`). You may need to idenfity the layout's namespace depending on the .NET version and type of Blazor app. For more information, see the [Make the layout namespace available](#make-the-layout-namespace-available) section.
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/layouts/App1.razor" highlight="3":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/layouts/App1.razor" highlight="3":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/layouts/App1.razor" highlight="3":::
-
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/layouts/App1.razor" highlight="3":::
-
-:::moniker-end
-
-For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
-
-Specifying the layout as a default layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component is a useful practice because you can override the layout on a per-component or per-folder basis, as described in the preceding sections of this article. We recommend using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to set the app's default layout because it's the most general and flexible approach for using layouts.
+Specifying the layout as a default layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.RouteView> is a useful practice because you can override the layout on a per-component or per-folder basis, as described in the preceding sections of this article. We recommend using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to set the app's default layout because it's the most general and flexible approach for using layouts.
 
 ### Apply a layout to arbitrary content (`LayoutView` component)
 
@@ -251,8 +224,6 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
 > The following example is specifically for a Blazor WebAssembly app because Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`). However, the template is supported for backward compatibility to avoid a breaking change in the framework. Blazor Web Apps typically process bad URL requests by either displaying the browser's built-in 404 UI or returning a custom 404 page from the ASP.NET Core server via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
 
 :::moniker-end
-
-`App.razor`:
 
 ```razor
 <Router ...>
@@ -267,6 +238,8 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
     </NotFound>
 </Router>
 ```
+
+You may need to idenfity the layout's namespace depending on the .NET version and type of Blazor app. For more information, see the [Make the layout namespace available](#make-the-layout-namespace-available) section.
 
 :::moniker range="= aspnetcore-5.0"
 
