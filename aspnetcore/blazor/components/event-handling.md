@@ -158,14 +158,16 @@ In JavaScript, define a function for building the custom event argument object f
 function eventArgsCreator(event) { 
   return {
     customProperty1: 'any value for property 1',
-    customProperty2: event.srcElement.value
+    customProperty2: event.srcElement.id
   };
 }
 ```
 
-Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
+The `event` parameter is a [DOM Event (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Event).
 
-`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
+Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). Provide the appropriate broswer event name to `browserEventName`, which for the example shown in this section is `click` for a button selection in the UI.
+
+`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js` (the `{PACKAGE ID/ASSEMBLY NAME}` placeholder is the package ID or assembly name of the app):
 
 :::moniker-end
 
@@ -176,6 +178,7 @@ For a Blazor Web App:
 ```javascript
 export function afterWebStarted(blazor) {
   blazor.registerCustomEventType('customevent', {
+    browserEventName: 'click',
     createEventArgs: eventArgsCreator
   });
 }
@@ -190,12 +193,11 @@ For a Blazor Server or Blazor WebAssembly app:
 ```javascript
 export function afterStarted(blazor) {
   blazor.registerCustomEventType('customevent', {
+    browserEventName: 'click',
     createEventArgs: eventArgsCreator
   });
 }
 ```
-
-In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
 
 > [!NOTE]
 > The call to `registerCustomEventType` is performed in a script only once per event.
@@ -237,16 +239,27 @@ public static class EventHandlers
 Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
 
 ```razor
-@using namespace BlazorSample.CustomEvents
+@using BlazorSample.CustomEvents
 
-<button @oncustomevent="HandleCustomEvent">Handle</button>
+<button id="buttonId" @oncustomevent="HandleCustomEvent">Handle</button>
+
+@if (!string.IsNullOrEmpty(propVal1) && !string.IsNullOrEmpty(propVal1))
+{
+    <ul>
+        <li>propVal1: @propVal1</li>
+        <li>propVal2: @propVal2</li>
+    </ul>
+}
 
 @code
 {
+    private string? propVal1;
+    private string? propVal2;
+
     private void HandleCustomEvent(CustomEventArgs eventArgs)
     {
-        // eventArgs.CustomProperty1
-        // eventArgs.CustomProperty2
+        propVal1 = eventArgs.CustomProperty1;
+        propVal2 = eventArgs.CustomProperty2;
     }
 }
 ```
