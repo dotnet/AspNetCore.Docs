@@ -239,7 +239,7 @@ public static class EventHandlers
 Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
 
 ```razor
-@using namespace BlazorSample.CustomEvents
+@using BlazorSample.CustomEvents
 
 <button id="buttonId" @oncustomevent="HandleCustomEvent">Handle</button>
 
