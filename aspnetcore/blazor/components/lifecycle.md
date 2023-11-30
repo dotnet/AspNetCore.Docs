@@ -493,7 +493,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 > [!NOTE]
 > In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
-If the object is created in a lifecycle method, such as [`OnInitialized{Async}](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
+If the object is created in a lifecycle method, such as [`OnInitialized{Async}`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
 `CounterWithTimerDisposal2.razor`:
 
