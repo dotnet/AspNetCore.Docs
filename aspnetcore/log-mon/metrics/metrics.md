@@ -216,9 +216,9 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 ### Show metrics on a Grafana dashboard
 
-1. Follow the [installation instructions](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph) to install Grafana and connect it to a Prometheus data source.
+* Follow the [installation instructions](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph) to install Grafana and connect it to a Prometheus data source.
 
-1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, pre-built dashboards for .NET metrics are available to download at [.NET team dashboards @ grafana.com](https://aka.ms/dotnet/grafana-dashboards). Downloaded dashboard JSON can be [imported into Grafana](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/#import-a-dashboard).
+* Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, pre-built dashboards for .NET metrics are available to download at [.NET team dashboards @ grafana.com](https://aka.ms/dotnet/grafana-dashboards). Downloaded dashboard JSON can be [imported into Grafana](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/#import-a-dashboard).
 
 ![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
 
