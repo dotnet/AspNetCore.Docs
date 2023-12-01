@@ -165,6 +165,8 @@ For more information, see <xref:grpc/clientfactory>.
 * <xref:security/cors>
 * <xref:grpc/json-transcoding>
 
+:::moniker-end
+
 [!INCLUDE[](~/grpc/grpcweb/includes/grpcweb6-7.md)]
 
 [!INCLUDE[](~/grpc/grpcweb/includes/grpcweb3-5.md)]
