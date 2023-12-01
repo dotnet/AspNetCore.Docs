@@ -53,7 +53,7 @@ public class GitHubService
             }
         };
 
-        var httpClient = _httpClientFactory.CreateClient();
+        using var httpClient = _httpClientFactory.CreateClient();
         var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
 
         httpResponseMessage.EnsureSuccessStatusCode();
