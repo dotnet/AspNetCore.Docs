@@ -30,7 +30,7 @@ There are pros and cons to each approach. If an app's environment is already usi
 
 ## Configure gRPC-Web in ASP.NET Core
 
-gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web doesn't require any changes to services. The only modification is in setting the middelware in `Program.cs`.
+gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web doesn't require any changes to services. The only modification is in setting the middleware in `Program.cs`.
 
 To enable gRPC-Web with an ASP.NET Core gRPC service:
 
