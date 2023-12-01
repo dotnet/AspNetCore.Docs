@@ -23,7 +23,7 @@ This article describes how to call a web API from a Blazor app.
 :::zone pivot="webassembly"
 
 > [!NOTE]
-> This article has loaded **WebAssembly** render mode coverage for calling web APIs. The [Server render mode coverage](?pivots=server) addresses the following subjects:
+> This article has loaded **WebAssembly** client-side rendering (CSR) coverage for calling web APIs. The [coverage for **Server** interactive server-side rendering (interactive SSR)](?pivots=server) addresses the following subjects:
 >
 > * Use of the `HttpClient` factory infrastructure to provide an `HttpClient` to the app.
 > * Cross-Origin Resource Sharing (CORS) pertaining to server-side components.
@@ -61,7 +61,7 @@ The Blazor examples that demonstrate obtaining weather data from a server API ar
 
 :::moniker range=">= aspnetcore-8.0"
 
-For server-side components in Blazor Web Apps that require interactivity, add Interactive Server rendering to the component:
+For server-side components in Blazor Web Apps that require interactivity, add interactive server-side rendering (interactive SSR) to the component:
 
 ```razor
 @rendermode InteractiveServer
@@ -750,7 +750,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 :::zone pivot="server"
 
 > [!NOTE]
-> This article has loaded **Server** render mode coverage for calling web APIs. The [WebAssembly render mode coverage](?pivots=webassembly) addresses the following subjects:
+> This article has loaded **Server** interactive server-side rendering (interactive SSR) coverage for calling web APIs. The [**WebAssembly** client-side rendering (CSR) coverage](?pivots=webassembly) addresses the following subjects:
 >
 > * Client-side examples that call a web API to create, read, update, and delete todo list items.
 > * `System.Net.Http.Json` package.

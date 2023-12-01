@@ -29,10 +29,12 @@ The following table shows the available render modes for rendering Razor compone
 
 Name | Description | Render location | Interactive
 ---- | ----------- | :-------------: | :---------:
-Static Server | Static server rendering |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
-Interactive Server | Interactive server rendering using Blazor Server | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
-Interactive WebAssembly | Interactive client rendering using Blazor WebAssembly | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
-Interactive Auto | Interactive client rendering using Blazor Server initially and then WebAssembly on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Static Server | Static server-side rendering (static SSR) |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
+Interactive Server | Interactive server-side rendering (interactive SSR) using Blazor Server | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive WebAssembly | Client-side rendering (CSR) using Blazor WebAssembly&dagger; | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+
+&dagger;Client-side rendering (CSR) is assumed to be interactive. "*Interactive* client-side rendering" and "*interactive* CSR" aren't used by the industry or in the Blazor documentation.
 
 Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article. For general industry terminology on client and server rendering concepts, see <xref:blazor/fundamentals/index#client-and-server-rendering-concepts>.
 
@@ -55,13 +57,13 @@ Component builder extensions:
 
 Endpoint convention builder extensions:
 
-* <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures the Server render mode for the app.
-* <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A> configures the WebAssembly render mode for the app.
+* <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures interactive server-side rendering (interactive SSR) for the app.
+* <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A> configures the Interactive WebAssembly render mode for the app.
 
 > [!NOTE]
 > For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
 
-Example 1: The following `Program` file API adds services and configuration for enabling the Server render mode:
+Example 1: The following `Program` file API adds services and configuration for enabling interactive SSR:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -73,7 +75,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
 
-Example 2: The following `Program` file API adds services and configuration for enabling the WebAssembly render mode:
+Example 2: The following `Program` file API adds services and configuration for enabling the Interactive WebAssembly render mode:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -85,7 +87,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode();
 ```
 
-Example 3: The following `Program` file API adds services and configuration for enabling the Interactive Server, WebAssembly, and Auto render modes:
+Example 3: The following `Program` file API adds services and configuration for enabling the Interactive Server, Interactive WebAssembly, and Interactive Auto render modes:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -99,13 +101,13 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode();
 ```
 
-Blazor uses the Blazor WebAssembly hosting model to download and execute components that use the WebAssembly render mode. A separate client project is required to set up Blazor WebAssembly hosting for these components. The client project contains the startup code for the Blazor WebAssembly host and sets up the .NET runtime for running in a browser. The Blazor Web App template adds this client project for you when you select the option to enable WebAssembly interactivity. Any components using the WebAssembly render mode should be built from the client project, so they get included in the downloaded app bundle.
+Blazor uses the Blazor WebAssembly hosting model to download and execute components that use the Interactive WebAssembly render mode. A separate client project is required to set up Blazor WebAssembly hosting for these components. The client project contains the startup code for the Blazor WebAssembly host and sets up the .NET runtime for running in a browser. The Blazor Web App template adds this client project for you when you select the option to enable WebAssembly interactivity. Any components using the Interactive WebAssembly render mode should be built from the client project, so they get included in the downloaded app bundle.
 
 ## Apply a render mode to a component instance
 
 To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#rendermode) where the component is used.
 
-In the following example, the Server render mode is applied to the `Dialog` component instance:
+In the following example, interactive server-side rendering (interactive SSR) is applied to the `Dialog` component instance:
 
 ```razor
 <Dialog @rendermode="InteractiveServer" />
@@ -124,7 +126,7 @@ In the following example, the Server render mode is applied to the `Dialog` comp
 > <Dialog @rendermode="RenderMode.InteractiveServer" />
 > ```
 
-You can also reference static render mode instances instantiated directly with custom configuration. For more information, see the [Custom shorthand render modes](#custom-shorthand-render-modes) section later in this article.
+You can also reference custom render mode instances instantiated directly with custom configuration. For more information, see the [Custom shorthand render modes](#custom-shorthand-render-modes) section later in this article.
 
 ## Apply a render mode to a component definition
 
@@ -213,9 +215,9 @@ Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/componen
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-## Static render mode
+## Static server-side rendering (static SSR)
 
-By default, components use the Static render mode. The component renders to the response stream and interactivity isn't enabled.
+By default, components use the static server-side rendering (static SSR). The component renders to the response stream and interactivity isn't enabled.
 
 In the following example, there's no designation for the component's render mode, and the component inherits the default render mode from its parent. Therefore, the component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
 
@@ -238,13 +240,13 @@ In the following example, there's no designation for the component's render mode
 
 If using the preceding component locally in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-1` in the browser's address bar.
 
-[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static rendering requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+[Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
 
-## Server render mode
+## Interactive server-side rendering (interactive SSR)
 
-The Server render mode renders the component interactively from the server using Blazor Server. User interactions are handled over a real-time connection with the browser. The circuit connection is established when the Server component is rendered.
+Interactive server-side rendering (interactive SSR) renders the component interactively from the server using Blazor Server. User interactions are handled over a real-time connection with the browser. The circuit connection is established when the Server component is rendered.
 
-In the following example, the render mode is set to Server by adding `@rendermode InteractiveServer` to the component definition. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
+In the following example, the render mode is set interactive SSR by adding `@rendermode InteractiveServer` to the component definition. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
 
 `RenderMode2.razor`:
 
@@ -266,11 +268,11 @@ In the following example, the render mode is set to Server by adding `@rendermod
 
 If using the preceding component locally in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
 
-## WebAssembly render mode
+## Client-side rendering (CSR)
 
-The WebAssembly render mode renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded and cached when the WebAssembly component is initially rendered. Components using the WebAssembly render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
+Client-side rendering (CSR) renders the component interactively on the client using Blazor WebAssembly. The .NET runtime and app bundle are downloaded and cached when the WebAssembly component is initially rendered. Components using CSR must be built from a separate client project that sets up the Blazor WebAssembly host.
 
-In the following example, the render mode is set to WebAssembly with `@rendermode InteractiveWebAssembly`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
+In the following example, the render mode is set to CSR with `@rendermode InteractiveWebAssembly`. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI.
 
 `RenderMode3.razor`:
 
@@ -292,9 +294,9 @@ In the following example, the render mode is set to WebAssembly with `@rendermod
 
 If using the preceding component locally in a Blazor Web App, place the component in the client project's `Pages` folder. The client project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-3` in the browser's address bar.
 
-## Auto render mode
+## Automatic (Auto) rendering
 
-The Auto render mode determines how to render the component at runtime. The component is initially rendered server-side with interactivity using the Blazor Server hosting model. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the automatic render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
+Automatic (Auto) rendering determines how to render the component at runtime. The component is initially rendered with interactive server-side rendering (interactive SSR) using the Blazor Server hosting model. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the automatic render mode must be built from a separate client project that sets up the Blazor WebAssembly host.
 
 In the following example, the component is interactive throughout the process. The button calls the `UpdateMessage` method when selected. The value of `message` changes, and the component is rerendered to update the message in the UI. Initially, the component is rendered interactively from the server, but on subsequent visits it's rendered from the client after the .NET runtime and app bundle are downloaded and cached.
 
@@ -390,7 +392,7 @@ Render modes propagate down the component hierarchy.
 Rules for applying render modes:
 
 * The default render mode is Static. 
-* The Interactive Server (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>), WebAssembly (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>), and automatic (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto>) render modes can be used from a Static component, including using different render modes for sibling components. 
+* The Interactive Server (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>), Interactive WebAssembly (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>), and Interactive Auto (<xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto>) render modes can be used from a component, including using different render modes for sibling components. 
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
@@ -450,8 +452,8 @@ In the following example, the `SharedMessage` component is interactive over a Si
 
 In the following example, both `SharedMessage` components are prerendered (by default) and appear when the page is displayed in the browser.
 
-* The first `SharedMessage` component with Server rendering is interactive after the SignalR circuit is established.
-* The second `SharedMessage` component with WebAssembly rendering is interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
+* The first `SharedMessage` component with interactive server-side rendering (interactive SSR) is interactive after the SignalR circuit is established.
+* The second `SharedMessage` component with client-side rendering (CSR) is interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
 
 `RenderMode7.razor`:
 
@@ -532,16 +534,9 @@ The following component results in a runtime error when the component is rendere
 
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
 
-## Discover components from additional assemblies for Static Server rendering
+## Discover components from additional assemblies
 
-Configure additional assemblies to discover routable Razor components for Static Server rendering using the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
-
-The following example includes the assembly of the `DifferentAssemblyCounter` component:
-
-```csharp
-app.MapRazorComponents<App>()
-    .AddAdditionalAssemblies(typeof(DifferentAssemblyCounter).Assembly);
-```
+Additional assemblies must be disclosed to the Blazor framework to discover routable Razor components in referenced projects. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
 
 ## Closure of circuits when there are no remaining Interactive Server components
 
@@ -557,7 +552,7 @@ Normally, a component uses the following `@attribute` directive to [disable prer
 @attribute [RenderModeInteractiveServer(prerender: false)]
 ```
 
-However, consider the following example that creates a shorthand Interactive Server render mode without prerendering via the app's `_Imports` file (`Components/_Imports.razor`):
+However, consider the following example that creates a shorthand interactive server-side render mode without prerendering via the app's `_Imports` file (`Components/_Imports.razor`):
 
 ```csharp
 public static IComponentRenderMode InteractiveServerWithoutPrerendering { get; } = 

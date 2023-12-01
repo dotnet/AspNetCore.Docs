@@ -79,17 +79,15 @@ The preceding example configures the hub connection URL to the absolute URI addr
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
-:::moniker range=">= aspnetcore-8.0"
+## Client-side rendering
 
-## Client-side render mode
+:::moniker range=">= aspnetcore-8.0"
 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/components/prerender>.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
-
-## Client-side render mode
 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
@@ -586,7 +584,7 @@ There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 
 :::moniker-end
 
-## Server-side render mode
+## Server-side rendering
 
 <!-- UPDATE 8.0 Before making a cross-link to the new
                 Prerender article, the Prerender article

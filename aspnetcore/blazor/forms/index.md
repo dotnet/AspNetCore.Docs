@@ -39,7 +39,7 @@ A project created from the Blazor project template includes the namespace by def
 
 :::moniker range=">= aspnetcore-8.0"
 
-Standard interactive HTML forms with server rendering are supported. Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
+Standard interactive HTML forms with interactive server-side rendering (`@rendermode InteractiveServer`) are supported. Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
 `StarshipPlainForm.razor`:
 
@@ -376,14 +376,14 @@ For guidance on using the `enhancedload` event to listen for enhanced page updat
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components are configured for interactivity with server rendering and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
+Components are configured for interactive server-side rendering (interactive SSR) and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
 
-* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly> for only interactive client rendering after prerendering.
-* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> for interactive client rendering after Interactive Server rendering, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
+* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly> for only client-side rendering (CSR) after prerendering.
+* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> for CSR after interactive SSR, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
 
 If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
 
-When using the WebAssembly or Auto render modes, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
+When using the Interactive WebAssembly or Interactive Auto render modes, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
 
 Examples don't adopt enhanced form handling for form POST requests, but all of the examples can be updated to adopt the enhanced features by following the guidance in the [Enhanced form handling](#enhanced-form-handling) section.
 
