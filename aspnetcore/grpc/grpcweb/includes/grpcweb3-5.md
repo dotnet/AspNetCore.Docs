@@ -24,7 +24,7 @@ To enable gRPC-Web with an ASP.NET Core gRPC service:
 * Add a reference to the [`Grpc.AspNetCore.Web`](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
 * Configure the app to use gRPC-Web by adding `UseGrpcWeb` and `EnableGrpcWeb` to `Startup.cs`:
 
-[!code-csharp[](~/grpc/grpcweb/sample/Startup.cs?name=snippet_1&highlight=10,14)]
+[!code-csharp[](~/grpc/grpcweb/sample/3-5.x/Startup.cs?name=snippet_1&highlight=10,14)]
 
 The preceding code:
 
@@ -33,7 +33,7 @@ The preceding code:
 
 Alternatively, the gRPC-Web middleware can be configured so that all services support gRPC-Web by default and `EnableGrpcWeb` isn't required. Specify `new GrpcWebOptions { DefaultEnabled = true }` when the middleware is added.
 
-[!code-csharp[](~/grpc/grpcweb/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=12)]
+[!code-csharp[](~/grpc/grpcweb/sample/3-5.x/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=12)]
 
 > [!NOTE]
 > There is a known issue that causes gRPC-Web to fail when [hosted by HTTP.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
@@ -46,7 +46,7 @@ Browser security prevents a web page from making requests to a different domain 
 
 To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders%2A>.
 
-[!code-csharp[](~/grpc/grpcweb/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
+[!code-csharp[](~/grpc/grpcweb/sample/3-5.x/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
 
 The preceding code:
 
@@ -106,7 +106,7 @@ To use gRPC-Web:
 * Ensure the reference to [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) package is version 2.29.0 or later.
 * Configure the channel to use the `GrpcWebHandler`:
 
-[!code-csharp[](~/grpc/grpcweb/sample/Handler.cs?name=snippet_1)]
+[!code-csharp[](~/grpc/grpcweb/sample/3-5.x/Handler.cs?name=snippet_1)]
 
 The preceding code:
 
@@ -151,3 +151,5 @@ For more information, see <xref:grpc/clientfactory>.
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
 * <xref:grpc/json-transcoding>
+
+:::moniker-end
