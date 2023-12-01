@@ -119,7 +119,7 @@ To use gRPC-Web:
 * Ensure the reference to [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) package is version 2.29.0 or later.
 * Configure the channel to use the `GrpcWebHandler`:
 
-:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeterClient/Program.cs" id="snippet_Handler" highlight="9,11":::
+:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeterClient/Program.cs" id="snippet_Handler":::
 
 The preceding code:
 
