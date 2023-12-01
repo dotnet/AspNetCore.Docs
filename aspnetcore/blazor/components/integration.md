@@ -30,14 +30,14 @@ Use the guidance in the following sections depending on the project's requiremen
 
 This section covers adding Blazor support to an ASP.NET Core app:
 
-* [Add Static Server Razor component rendering](#add-static-server-razor-component-rendering)
-* [Enable Interactive Server rendering](#enable-interactive-server-rendering)
-* [Enable interactive Auto or WebAssembly rendering](#enable-interactive-auto-and-webassembly-rendering)
+* [Add static server-side rendering (static SSR)](#add-static-server-side-rendering-static-ssr)
+* [Enable interactive server-side rendering (interactive SSR)](#enable-interactive-server-side-rendering-interactive-ssr)
+* [Enable interactive automatic (Auto) or client-side rendering (CSR)](#enable-interactive-automatic-auto-or-client-side-rendering-csr)
 
 > [!NOTE]
 > For the examples in this section, the example app's name and namespace is `BlazorSample`.
 
-### Add Static Server Razor component rendering
+### Add static server-side rendering (static SSR)
 
 Add a `Components` folder to the app.
 
@@ -60,7 +60,7 @@ Add the following `_Imports` file for namespaces used by Razor components.
 
 Change the namespace `BlazorSample` in the preceding example to match the app.
 
-Add the Blazor Router (`<Router>`, <xref:Microsoft.AspNetCore.Components.Routing.Router>) to the app in a `Routes` component, which is placed in the app's `Components` folder.
+Add the Blazor router (`<Router>`, <xref:Microsoft.AspNetCore.Components.Routing.Router>) to the app in a `Routes` component, which is placed in the app's `Components` folder.
 
 `Components/Routes.razor`:
 
@@ -113,7 +113,7 @@ For the `<link>` element in the preceding example, change `BlazorSample` in the 
 
 Add a `Pages` folder to the `Components` folder to hold routable Razor components.
 
-Add the following `Welcome` component to demonstrate Static Server rendering.
+Add the following `Welcome` component to demonstrate static SSR.
 
 `Components/Pages/Welcome.razor`:
 
@@ -162,27 +162,25 @@ In the ASP.NET Core project's `Program` file:
 
 When the app is run, the `Welcome` component is accessed at the `/welcome` endpoint.
 
-### Enable Interactive Server rendering
+### Enable interactive server-side rendering (interactive SSR)
 
-Follow the guidance in the [Add Static Server Razor component rendering](#add-static-server-razor-component-rendering) section.
+Follow the guidance in the [Add static server-side rendering (static SSR)](#add-static-server-side-rendering-static-ssr) section.
 
-Make the following changes in the app's `Program` file:
+In the app's `Program` file, add a call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> where Razor component services are added with <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
 
-* Add a call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> where Razor component services are added with <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+```
 
-  ```csharp
-  builder.Services.AddRazorComponents()
-      .AddInteractiveServerComponents();
-  ```
+Also in the `Program` file, add a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
 
-* Add a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
+```csharp
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+```
 
-  ```csharp
-  app.MapRazorComponents<App>()
-      .AddInteractiveServerRenderMode();
-  ```
-
-Add the following `Counter` component to the app that adopts the Interactive Server render mode.
+Add the following `Counter` component to the app that adopts interactive server-side rendering (interactive SSR).
 
 `Components/Pages/Counter.razor`:
 
@@ -210,16 +208,16 @@ Add the following `Counter` component to the app that adopts the Interactive Ser
 
 When the app is run, the `Counter` component is accessed at `/counter`.
 
-### Enable interactive Auto and WebAssembly rendering
+### Enable interactive automatic (Auto) or client-side rendering (CSR)
 
-Follow the guidance in the [Add Static Server Razor component rendering](#add-static-server-razor-component-rendering) section.
+Follow the guidance in the [Add static server-side rendering (static SSR)](#add-static-server-side-rendering-static-ssr) section.
 
-Components using the Auto render mode initially use Interactive Server rendering, but then switch to render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. Components using the WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Auto or WebAssembly render modes, component code downloaded to the client is ***not*** private. For more information, see <xref:blazor/components/render-modes>.
+Components using the Interactive Auto render mode initially use interactive SSR, but then switch to render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. Components using the Interactive WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Interactive Auto or Interactive WebAssembly render modes, component code downloaded to the client is ***not*** private. For more information, see <xref:blazor/components/render-modes>.
 
 After deciding which render mode to adopt:
 
-* If you plan to adopt the Auto render mode, follow the guidance in the [Enable Interactive Server rendering](#enable-interactive-server-rendering) section. 
-* If you plan to only adopt Interactive WebAssembly rendering, continue without adding Interactive Server rendering.
+* If you plan to adopt the Interactive Auto render mode, follow the guidance in the [Enable interactive server-side rendering (interactive SSR)](#enable-interactive-server-side-rendering-interactive-ssr) section. 
+* If you plan to only adopt Interactive WebAssembly rendering, continue without adding interactive SSR.
 
 Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server) NuGet package to the app.
 
@@ -300,7 +298,7 @@ Make the following changes to the ASP.NET Core app's `Program` file:
 
 * Add the Interactive WebAssembly render mode (<xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode%2A>) and additional assemblies for the `.Client` project where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
 
-  For interactive Auto rendering:
+  For interactive automatic (Auto) rendering:
 
   ```csharp
   app.MapRazorComponents<App>()
@@ -430,7 +428,7 @@ builder.Services.AddRazorComponents()
 
 For more information on adding support for Interactive Server and WebAssembly components, see <xref:blazor/components/render-modes>.
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component (the first component loaded). By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component (the first component loaded). By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure interactive server-side rendering (interactive SSR) for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -755,7 +753,7 @@ builder.Services.AddRazorComponents()
 
 For more information on adding support for Interactive Server and WebAssembly components, see <xref:blazor/components/render-modes>.
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> to configure the Server render mode for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component. By default, the app's root component is the `App` component (`App.razor`). Chain a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> to configure interactive server-side rendering (interactive SSR) for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -851,4 +849,3 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 ## Additional resources
 
 <xref:blazor/components/prerender>
-

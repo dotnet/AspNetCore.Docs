@@ -151,7 +151,7 @@ The template handles the following:
 
 * Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out.
   * The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multifactor authentication](xref:security/authentication/mfa) using a third-party app.
-  * Interactive server and interactive client rendering scenarios are supported.
+  * Interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios are supported.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in `_Imports.razor`.
 * Creates a custom user Identity class (`ApplicationUser`).

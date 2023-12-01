@@ -387,7 +387,7 @@ In `MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-In Blazor Web Apps with the error boundary only applied to a noninteractive `MainLayout` component, the boundary is only active during the Static Server rendering phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactivity with server rendering at the top of the `Routes` component (`Components/Routes.razor`):
+In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during the static server-side rendering (static SSR) phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactive server-side rendering (interactive SSR) at the top of the `Routes` component (`Components/Routes.razor`):
 
 ```razor
 @rendermode InteractiveServer

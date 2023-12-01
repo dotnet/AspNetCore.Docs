@@ -907,7 +907,7 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 ## Route parameters
 
-Components can specify route parameters in the route template of the [`@page`][9] directive. The [Blazor Router](xref:blazor/fundamentals/routing) uses route parameters to populate corresponding component parameters.
+Components can specify route parameters in the route template of the [`@page`][9] directive. The [Blazor router](xref:blazor/fundamentals/routing) uses route parameters to populate corresponding component parameters.
 
 :::moniker range=">= aspnetcore-5.0"
 
