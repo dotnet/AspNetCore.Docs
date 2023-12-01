@@ -19,6 +19,20 @@ This article explains how to manage Blazor app request routing and how to use th
 > [!IMPORTANT]
 > Code examples throughout this article show methods called on `Navigation`, which is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> in classes and components.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Static versus interactive routing
+
+*This section applies to Blazor Web Apps.*
+
+If [prerendering isn't disabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
+
+When an interactive render mode is assigned to the `Routes` component, the Blazor router becomes interactive after static SSR with static routing on the server. This type of routing is called *interactive routing*.
+
+Static routers use endpoint routing and the HTTP request path to determine which component to render. When the router becomes interactive, it uses the document's URL (the URL in the browser's address bar) to determine which component to render. This means that the interactive router can dynamically change which component is rendered if the document's URL dynamically changes to another valid internal URL, and it can do so without performing an HTTP request to fetch new page content.
+
+:::moniker-end
+
 ## Route templates
 
 :::moniker range=">= aspnetcore-8.0"
@@ -135,29 +149,68 @@ Arbitrary items are supported as content of the `<NotFound>` tags, such as other
 
 ## Route to components from multiple assemblies
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-6.0"
+*This section applies to Blazor Web Apps.*
+
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter and the endpoint convention builder <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> to discover routable components in additional assemblies. The following subsections explain when and how to use each API.
+
+### Static routing
+
+To discover routable components from additional assemblies for static server-side rendering (static SSR), even if the router later becomes interactive for interactive rendering, the assemblies must be disclosed to the Blazor framework. Call the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method with the additional assemblies chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the server project's `Program` file.
+
+The following example includes the routable components in the `BlazorSample.Client` project's assembly using the project's `_Imports.razor` file:
+
+```csharp
+app.MapRazorComponents<App>()
+    .AddAdditionalAssemblies(typeof(BlazorSample.Client._Imports).Assembly);
+```
+
+> [!NOTE]
+> The preceding guidance also applies in [component class library](xref:blazor/components/class-libraries) scenarios. Additional important guidance for class libraries and static SSR is found in <xref:blazor/components/class-libraries-with-static-ssr>.
+
+### Interactive routing
+
+An interactive render mode can be assigned to the `Routes` component (`Routes.razor`) that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns the Interactive Server render mode to the `Routes` component. The `Router` component inherits the Interactive Server render mode from the `Routes` component. The router becomes interactive after static routing on the server.
+
+If the `Routes` component is defined in the server project, the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component should include the `.Client` project's assembly. This allows the router to work correctly when rendered interactively.
+
+In the following example, the `Routes` component is in the server project, and the `_Imports.razor` file of the `BlazorSample.Client` project indicates the assembly to search for routable components:
 
 ```razor
 <Router
-    AppAssembly="@typeof(App).Assembly"
-    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
-    @* ... Router component elements ... *@
+    AppAssembly="..."
+    AdditionalAssemblies="new[] { typeof(BlazorSample.Client._Imports).Assembly }">
+    ...
 </Router>
 ```
+
+Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
+
+> [!NOTE]
+> The preceding guidance also applies in [component class library](xref:blazor/components/class-libraries) scenarios.
+
+Alterntively, routable components only exist in the `.Client` project with global Interactive WebAssembly or Auto rendering applied, and the `Routes` component is defined in the `.Client` project, not the server project. In this case, there aren't external assemblies with routable components, so it isn't necessary to specify a value for <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-8.0"
+
+*This section applies to Blazor Server apps.*
+
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter and the endpoint convention builder <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> to discover routable components in additional assemblies.
+
+In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries) named `ComponentLibrary`:
 
 ```razor
 <Router
-    AppAssembly="@typeof(Program).Assembly"
-    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
-    @* ... Router component elements ... *@
+    AppAssembly="..."
+    AdditionalAssemblies="new[] { typeof(ComponentLibrary.Component1).Assembly }">
+    ...
 </Router>
 ```
+
+Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
 
 :::moniker-end
 

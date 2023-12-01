@@ -532,16 +532,9 @@ The following component results in a runtime error when the component is rendere
 
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
 
-## Discover components from additional assemblies for Static Server rendering
+## Discover components from additional assemblies
 
-Configure additional assemblies to discover routable Razor components for Static Server rendering using the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>.
-
-The following example includes the assembly of the `DifferentAssemblyCounter` component:
-
-```csharp
-app.MapRazorComponents<App>()
-    .AddAdditionalAssemblies(typeof(DifferentAssemblyCounter).Assembly);
-```
+Additional assemblies must be disclosed to the Blazor framework to discover routable Razor components in referenced projects. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
 
 ## Closure of circuits when there are no remaining Interactive Server components
 
