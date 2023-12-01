@@ -25,9 +25,11 @@ This article explains how to manage Blazor app request routing and how to use th
 
 *This section applies to Blazor Web Apps.*
 
-If [prerendering isn't disabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*, and the Blazor router is called a *static router* when static routing is taking place.
+If [prerendering isn't disabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
 
-An interactive render mode can be assigned to the `Routes` component that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns the Interactive Server render mode to the `Routes` component. The `Router` component inherits the Interactive Server render mode from the `Routes` component. The router becomes *interactive* after static routing on the server. This type of routing is called *interactive routing*, and the Blazor router is called an *interactive router*. An interactive router can route requests either on the server, *interactive server-side routing*, or on the client, *interactive client-side routing*.
+When an interactive render mode is assigned to the `Routes` component, the Blazor router becomes interactive after static SSR with static routing on the server. This type of routing is called *interactive routing*.
+
+Static routers use endpoint routing and the HTTP request path to determine which component to render. When the router becomes interactive, it uses the document's URL (the URL in the browser's address bar) to determine which component to render. This means that the interactive router can dynamically change which component is rendered if the document's URL dynamically changes to another valid internal URL, and it can do so without performing an HTTP request to fetch new page content.
 
 :::moniker-end
 
