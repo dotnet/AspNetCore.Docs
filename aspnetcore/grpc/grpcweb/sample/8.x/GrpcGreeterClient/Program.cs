@@ -8,11 +8,12 @@ var channel = GrpcChannel.ForAddress("https://localhost:53305", new GrpcChannelO
 {
     HttpHandler = new GrpcWebHandler(new HttpClientHandler())
 });
-var client = new Greeter.GreeterClient(channel);
 
+var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
+// </snippet_Handler>
+
 Console.WriteLine("Greeting: " + response.Message);
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
-// </snippet_Handler>
