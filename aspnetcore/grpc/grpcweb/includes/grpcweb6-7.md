@@ -1,17 +1,4 @@
----
-title: gRPC-Web in ASP.NET Core gRPC apps
-author: jamesnk
-description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
-monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 06/30/2020
-uid: grpc/grpcweb
----
-# gRPC-Web in ASP.NET Core gRPC apps
-
-By [James Newton-King](https://twitter.com/jamesnk)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Learn how to configure an existing ASP.NET Core gRPC service to be callable from browser apps, using the [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) protocol. gRPC-Web allows browser JavaScript and Blazor apps to call gRPC services. It's not possible to call an HTTP/2 gRPC service from a browser-based app. gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC.
 
@@ -30,14 +17,14 @@ There are pros and cons to each approach. If an app's environment is already usi
 
 ## Configure gRPC-Web in ASP.NET Core
 
-gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web doesn't require any changes to services. The only modification is in setting the middleware in `Program.cs`.
+gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web doesn't require any changes to services. The only modification is in setting the middelware in `Program.cs`.
 
 To enable gRPC-Web with an ASP.NET Core gRPC service:
 
 * Add a reference to the [`Grpc.AspNetCore.Web`](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
 * Configure the app to use gRPC-Web by adding `UseGrpcWeb` and `EnableGrpcWeb` to `Program.cs`:
 
-:::code language="csharp" source="~/grpc/grpcweb/sample/8.x/GrpcGreeter/Program.cs" id="snippet_WebEnable" highlight="9,11":::
+:::code language="csharp" source="~/grpc/grpcweb/sample/7.x/GrpcGreeter/Program.cs" id="snippet_WebEnable" highlight="9,11":::
 
 The preceding code:
 
@@ -130,8 +117,8 @@ The preceding code:
 
 * `InnerHandler`: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the gRPC HTTP request, for example, `HttpClientHandler`.
 * `GrpcWebMode`: An enumeration type that specifies whether the gRPC HTTP request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
-  * `GrpcWebMode.GrpcWeb` configures sending content without encoding. Default value.
-  * `GrpcWebMode.GrpcWebText` configures base64-encoded content. Required for server streaming calls in browsers.
+    * `GrpcWebMode.GrpcWeb` configures sending content without encoding. Default value.
+    * `GrpcWebMode.GrpcWebText` configures base64-encoded content. Required for server streaming calls in browsers.
 * `HttpVersion`: HTTP protocol `Version` used to set <xref:System.Net.Http.HttpRequestMessage.Version?displayProperty=nameWithType> on the underlying gRPC HTTP request. gRPC-Web doesn't require a specific version and doesn't override the default unless specified.
 
 > [!IMPORTANT]
@@ -166,7 +153,3 @@ For more information, see <xref:grpc/clientfactory>.
 * <xref:grpc/json-transcoding>
 
 :::moniker-end
-
-[!INCLUDE[](~/grpc/grpcweb/includes/grpcweb6-7.md)]
-
-[!INCLUDE[](~/grpc/grpcweb/includes/grpcweb3-5.md)]
