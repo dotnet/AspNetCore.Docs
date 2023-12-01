@@ -171,7 +171,7 @@ app.MapRazorComponents<App>()
 
 ### Interactive routing
 
-An interactive render mode can be assigned to the `Routes` component (`Routes.razor`) that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns the Interactive Server render mode to the `Routes` component. The `Router` component inherits the Interactive Server render mode from the `Routes` component. The router becomes interactive after static routing on the server.
+An interactive render mode can be assigned to the `Routes` component (`Routes.razor`) that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns interactive server-side rendering (interactive SSR) to the `Routes` component. The `Router` component inherits interactive server-side rendering (interactive SSR) from the `Routes` component. The router becomes interactive after static routing on the server.
 
 If the `Routes` component is defined in the server project, the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component should include the `.Client` project's assembly. This allows the router to work correctly when rendered interactively.
 
@@ -190,7 +190,7 @@ Additional assemblies are scanned in addition to the assembly specified to <xref
 > [!NOTE]
 > The preceding guidance also applies in [component class library](xref:blazor/components/class-libraries) scenarios.
 
-Alterntively, routable components only exist in the `.Client` project with global Interactive WebAssembly or Auto rendering applied, and the `Routes` component is defined in the `.Client` project, not the server project. In this case, there aren't external assemblies with routable components, so it isn't necessary to specify a value for <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
+Alternatively, routable components only exist in the `.Client` project with global Interactive WebAssembly or Auto rendering applied, and the `Routes` component is defined in the `.Client` project, not the server project. In this case, there aren't external assemblies with routable components, so it isn't necessary to specify a value for <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
 
 :::moniker-end
 
@@ -717,7 +717,7 @@ Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
 
 To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling>.
 
-Enhanced navigation with [Static Server rendering](xref:blazor/components/render-modes) requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+Enhanced navigation with [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr) requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
 
 :::moniker-end
 

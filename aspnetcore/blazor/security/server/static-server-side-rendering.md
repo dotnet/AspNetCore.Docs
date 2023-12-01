@@ -83,7 +83,7 @@ The framework offers mechanisms for protecting sensitive information for a given
 * Making sure that a user can't inspect or modify the private information of another user.
 * Making sure that a user can't modify user data of another user, such as an internal identifier.
 
-With regard to data protection, you must clearly understand where the code is executing. For the Static Server and Interactive Server render modes, code is stored on the server and never reaches the client. For the Interactive WebAssembly render mode, the app code *always reaches the client*, which means that any sensitive information stored in the app code is available to anyone with access to the app. Obfuscation and other similar technique to "protect" the code isn't effective. Once the code reaches the client, it can be reverse-engineered to extract the sensitive information.
+With regard to data protection, you must clearly understand where the code is executing. For the static server-side rendering (static SSR) and interactive server-side rendering (interactive SSR), code is stored on the server and never reaches the client. For the Interactive WebAssembly render mode, the app code *always reaches the client*, which means that any sensitive information stored in the app code is available to anyone with access to the app. Obfuscation and other similar technique to "protect" the code isn't effective. Once the code reaches the client, it can be reverse-engineered to extract the sensitive information.
 
 ## Denial of service
 
