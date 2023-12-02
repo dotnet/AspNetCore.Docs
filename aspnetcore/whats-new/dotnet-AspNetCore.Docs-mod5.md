@@ -17,7 +17,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 - <xref:blazor/forms/index>
 - <xref:blazor/components/class-libraries-with-static-ssr>
 - <xref:blazor/http-caching-issues>
-- [Title not found in: #31073](blazor/caching-issues.md)
+- [Blazor caching issues](blazor/caching-issues.md)
 - <xref:blazor/security/server/static-server-side-rendering>
 - <xref:blazor/security/webassembly/standalone-with-identity>
 - <xref:blazor/forms/validation>
@@ -136,8 +136,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 
 - <xref:fundamentals/native-aot> - Update AOT limitations /8
 - <xref:fundamentals/minimal-apis> - validate scopes /8
-- <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg009> - fix RDG9 /8
-- <xref:fundamentals/aot/rdg> - Fix rgd --> rdg
+- <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg009> - fix RDG9
 
 ## gRPC
 
@@ -149,7 +148,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 
 ### Updated articles
 
-- <xref:host-and-deploy/docker/building-net-docker-images> - Update docker for .NET 8 /3
+- <xref:host-and-deploy/docker/building-net-docker-images> - Update docker for .NET 8
 
 ## Migration
 
