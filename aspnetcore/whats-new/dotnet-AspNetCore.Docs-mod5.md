@@ -17,7 +17,6 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 - <xref:blazor/forms/index>
 - <xref:blazor/components/class-libraries-with-static-ssr>
 - <xref:blazor/http-caching-issues>
-- [Blazor caching issues](blazor/caching-issues.md)
 - <xref:blazor/security/server/static-server-side-rendering>
 - <xref:blazor/security/webassembly/standalone-with-identity>
 - <xref:blazor/forms/validation>
