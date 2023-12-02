@@ -33,37 +33,37 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 - <xref:blazor/components/layouts> - Address layout namespaces
 - <xref:blazor/tutorials/build-a-blazor-app> - Fix example code
 - <xref:blazor/components/integration>
-  - Cross-link API
+  - Cross-link API documentation
   - Blazor 8.0 release updates
   - Blazor language and note updates 8.0
 - <xref:blazor/components/js-spa-frameworks>
-  - Cross-link API
+  - Cross-link API documentation
   - Update additional Blazor start examples
   - Blazor language and note updates 8.0
 - <xref:blazor/components/render-modes>
-  - Cross-link API
+  - Cross-link API documentation
   - Clarify global interactive WASM/Auto folders/files
   - Environments + client services w/prerendering
   - Blazor 8.0 release updates
   - Blazor language and note updates 8.0
   - JavaScript with Blazor static server rendering
-- <xref:blazor/components/sections> - Cross-link API
-- <xref:blazor/components/virtualization> - Cross-link API
+- <xref:blazor/components/sections> - Cross-link API documentation
+- <xref:blazor/components/virtualization> - Cross-link API documentation
 - <xref:blazor/forms/binding>
-  - Cross-link API
+  - Cross-link API documentation
   - EditForm examples update
   - Update binding.md
   - Blazor forms node
 - <xref:blazor/forms/index>
-  - Cross-link API
+  - Cross-link API documentation
   - Blazor 8.0 release updates
   - Blazor forms node
-- <xref:blazor/fundamentals/handle-errors> - Cross-link API
+- <xref:blazor/fundamentals/handle-errors> - Cross-link API documentation
 - <xref:blazor/security/index>
-  - Cross-link API
+  - Cross-link API documentation
   - Migrate to cascading auth state services
 - <xref:blazor/security/server/index>
-  - Cross-link API
+  - Cross-link API documentation
   - Migrate to cascading auth state services
   - Blazor 8.0 release updates
   - Blazor security BWA with Identity components 8.0
