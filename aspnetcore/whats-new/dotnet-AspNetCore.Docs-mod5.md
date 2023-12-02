@@ -107,14 +107,14 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 - <xref:blazor/fundamentals/routing> - Blazor 8.0 release updates
 - <xref:blazor/js-interop/call-dotnet-from-javascript> - Blazor 8.0 release updates
 - <xref:blazor/js-interop/call-javascript-from-dotnet>
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Blazor language and note updates 8.0
 - <xref:blazor/js-interop/ssr>
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - JavaScript with Blazor static server rendering
-- <xref:blazor/performance> - Blazor :meat_on_bone: RTM 8.0
-- <xref:blazor/state-management> - Blazor :meat_on_bone: RTM 8.0
-- <xref:blazor/tutorials/signalr-blazor> - Blazor :meat_on_bone: RTM 8.0
+- <xref:blazor/performance> - Blazor 8.0 release updates
+- <xref:blazor/state-management> - Blazor 8.0 release updates
+- <xref:blazor/tutorials/signalr-blazor> - Blazor 8.0 release updates
 - <xref:blazor/fundamentals/dependency-injection> - Blazor language and note updates 8.0
 - <xref:blazor/tooling>
   - Blazor language and note updates 8.0
@@ -165,7 +165,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 
 ### Updated articles
 
-- <xref:mvc/views/razor> - Blazor :meat_on_bone: RTM 8.0
+- <xref:mvc/views/razor> - Blazor 8.0 release updates
 
 ## Razor Pages
 
