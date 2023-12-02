@@ -207,7 +207,6 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![60 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-60-green)
 - [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![3 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
 - [BenjaminMichaelis](https://github.com/BenjaminMichaelis) - Benjamin Michaelis ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [damienbod](https://github.com/damienbod) - damienbod ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
