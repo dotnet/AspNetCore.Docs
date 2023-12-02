@@ -34,7 +34,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 - <xref:blazor/tutorials/build-a-blazor-app> - Fix example code
 - <xref:blazor/components/integration>
   - Cross-link API
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Blazor language and note updates 8.0
 - <xref:blazor/components/js-spa-frameworks>
   - Cross-link API
@@ -44,7 +44,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
   - Cross-link API
   - Clarify global interactive WASM/Auto folders/files
   - Environments + client services w/prerendering
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Blazor language and note updates 8.0
   - JavaScript with Blazor static server rendering
 - <xref:blazor/components/sections> - Cross-link API
@@ -56,7 +56,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
   - Blazor forms node
 - <xref:blazor/forms/index>
   - Cross-link API
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Blazor forms node
 - <xref:blazor/fundamentals/handle-errors> - Cross-link API
 - <xref:blazor/security/index>
@@ -65,7 +65,7 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
 - <xref:blazor/security/server/index>
   - Cross-link API
   - Migrate to cascading auth state services
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Blazor security BWA with Identity components 8.0
 - <xref:blazor/security/server/additional-scenarios> - Apply auth attribute update & Blazor hub notes
 - <xref:blazor/security/content-security-policy> - Apply a CSP in non-Development environments
@@ -91,21 +91,21 @@ Welcome to what's new in the ASP.NET Core docs for November 2023. This article l
   - Add NOTE to WASM lazy load doc
 - <xref:blazor/security/webassembly/standalone-with-identity>
   - Add role claim remarks
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Blazor WASM w/Identity article 8.0
-- <xref:blazor/components/index> - Blazor :meat_on_bone: RTM 8.0
+- <xref:blazor/components/index> - Blazor 8.0 release updates
 - <xref:blazor/file-uploads>
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - Server validation with a validator component 8.0
   - CSR/BWA/web API updates 8.0
 - <xref:blazor/forms/validation>
-  - Blazor :meat_on_bone: RTM 8.0
+  - Blazor 8.0 release updates
   - EditForm examples update
   - Server validation with a validator component 8.0
   - Blazor forms node
-- <xref:blazor/fundamentals/index> - Blazor :meat_on_bone: RTM 8.0
-- <xref:blazor/fundamentals/routing> - Blazor :meat_on_bone: RTM 8.0
-- <xref:blazor/js-interop/call-dotnet-from-javascript> - Blazor :meat_on_bone: RTM 8.0
+- <xref:blazor/fundamentals/index> - Blazor 8.0 release updates
+- <xref:blazor/fundamentals/routing> - Blazor 8.0 release updates
+- <xref:blazor/js-interop/call-dotnet-from-javascript> - Blazor 8.0 release updates
 - <xref:blazor/js-interop/call-javascript-from-dotnet>
   - Blazor :meat_on_bone: RTM 8.0
   - Blazor language and note updates 8.0
