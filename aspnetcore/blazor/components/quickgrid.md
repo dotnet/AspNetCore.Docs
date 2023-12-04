@@ -56,8 +56,8 @@ For example, add the following component to render a grid.
 
 ```razor
 @page "/quickgrid-example"
-@using Microsoft.AspNetCore.Components.QuickGrid
 @rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.QuickGrid
 
 <QuickGrid Items="@people">
     <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />

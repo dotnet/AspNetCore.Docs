@@ -178,8 +178,8 @@ In the following example:
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
 @using Microsoft.Extensions.Logging
-@inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
+@inject LazyAssemblyLoader AssemblyLoader
 
 <Router AppAssembly="@typeof(App).Assembly" 
     AdditionalAssemblies="@lazyLoadedAssemblies" 
@@ -218,8 +218,8 @@ In the following example:
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
 @using Microsoft.Extensions.Logging
-@inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
+@inject LazyAssemblyLoader AssemblyLoader
 
 <Router AppAssembly="@typeof(Program).Assembly" 
     AdditionalAssemblies="@lazyLoadedAssemblies" 
@@ -524,8 +524,8 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
 @using Microsoft.Extensions.Logging
-@inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
+@inject LazyAssemblyLoader AssemblyLoader
 
 <Router AppAssembly="@typeof(App).Assembly"
         AdditionalAssemblies="@lazyLoadedAssemblies" 
@@ -576,8 +576,8 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
 @using Microsoft.Extensions.Logging
-@inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
+@inject LazyAssemblyLoader AssemblyLoader
 
 <Router AppAssembly="@typeof(Program).Assembly"
         AdditionalAssemblies="@lazyLoadedAssemblies" 

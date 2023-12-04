@@ -35,6 +35,42 @@ Developers typically create Razor components from Razor component files (`.razor
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
 
 * [Directives](xref:mvc/views/razor#directives): Change the way component markup is parsed or functions. For example, the [`@page`][9] directive specifies a routable component with a route template and can be reached directly by a user's request in the browser at a specific URL.
+
+  By convention, a component's directives at the top of a component definition (`.razor` file) are placed in a consistent order. For repeated directives, directives are placed alphabetically by namespace or type, except `@using` directives, which have special second-level ordering.
+  
+  The following order is adopted by Blazor sample apps and documentation. Components provided by a Blazor project template may differ from the following order and use a different format. For example, Blazor framework Identity components include blank lines between blocks of `@using` directives and blocks of `@inject` directives. You're free to use a custom ordering scheme and format in your own apps.
+
+  Documentation and sample app Razor directive order:
+
+  * `@page`
+  * `@rendermode` (.NET 8 or later)
+  * `@using`
+    * `System` namespaces
+    * `Microsoft` namespaces
+    * App namespaces
+  * Other directives
+
+  No blank lines appear among the directives. One blank line appears between the directives and the fist line of Razor markup.
+
+  Example:
+
+  ```razor
+  @page "/doctor-who-episodes/{season:int}"
+  @rendermode InteractiveWebAssembly
+  @using System.Globalization
+  @using System.Text.Json
+  @using Microsoft.AspNetCore.Localization
+  @using DoctorWhoTemplates.Layout
+  @attribute [Authorize]
+  @implements IAsyncDisposable
+  @inject IJSRuntime JS
+  @inject ILogger<DoctorWhoEpisodes> Logger
+
+  <PageTitle>Doctor Who Episode List</PageTitle>
+
+  ...
+  ```
+
 * [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is parsed or functions. For example, the [`@bind`][10] directive attribute for an `<input>` element binds data to the element's value.
 
 Directives and directive attributes used in components are explained further in this article and other articles of the Blazor documentation set. For general information on Razor syntax, see <xref:mvc/views/razor>.

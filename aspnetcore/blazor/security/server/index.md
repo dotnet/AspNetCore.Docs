@@ -675,8 +675,8 @@ In the following `InjectAuthStateProvider` component:
 ```razor
 @page "/inject-auth-state-provider"
 @rendermode InteractiveServer
-@inject AuthenticationStateProvider AuthenticationStateProvider
 @inherits OwningComponentBase
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h1>Inject <code>AuthenticationStateProvider</code> Example</h1>
 

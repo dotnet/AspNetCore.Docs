@@ -324,8 +324,8 @@ You can use the following `UserClaims` component to study the user's claims afte
 @page "/user-claims"
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Authorization
-@inject AuthenticationStateProvider AuthenticationStateProvider
 @attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h1>User Claims</h1>
 
@@ -674,8 +674,8 @@ You can use the following `UserClaims` component to study the user's claims afte
 @page "/user-claims"
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Authorization
-@inject AuthenticationStateProvider AuthenticationStateProvider
 @attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h1>User Claims</h1>
 
@@ -806,9 +806,10 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
 @page "/graph-example"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
 @inject IConfiguration Config
 @inject IHttpClientFactory ClientFactory
-@attribute [Authorize]
+
 
 <h1>Microsoft Graph Component Example</h1>
 
@@ -958,8 +959,8 @@ You can use the following `UserClaims` component to study the user's claims afte
 @page "/user-claims"
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Authorization
-@inject AuthenticationStateProvider AuthenticationStateProvider
 @attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h1>User Claims</h1>
 
