@@ -509,19 +509,29 @@ To enable 2FA for the currently authenticated user:
   
 ### Log in with 2FA
 
-* Call the `/login` endpoint, sending the email address, password, and TOTP in the request body. For example:
+Call the `/login` endpoint, sending the email address, password, and TOTP in the request body. For example:
+
+```json
+{
+  "email": "string",
+  "password": "string",
+  "twoFactorCode": "string"
+}
+```
+
+If the user doesn't have access to the authenticator app, log in by calling the `/login` endpoint with one of the recovery codes that was provided when 2FA was enabled. The request body looks like the following example:
 
   ```json
   {
     "email": "string",
     "password": "string",
-    "twoFactorCode": "string"
+    "twoFactorRecoveryCode": "string"
   }
   ```
 
 ### Reset the recovery codes
 
-To get a new collection of recovery codes, call this endpoint with <xref:Microsoft.AspNetCore.Identity.Data.ManageTwoFactorRequest.ResetRecoveryCodes> set to `true`. Here's a request body example:
+To get a new collection of recovery codes, call this endpoint with <xref:Microsoft.AspNetCore.Identity.Data.TwoFactorRequest.ResetRecoveryCodes> set to `true`. Here's a request body example:
 
 ```json
 {
@@ -531,7 +541,7 @@ To get a new collection of recovery codes, call this endpoint with <xref:Microso
 
 ### Reset the shared key
 
-To get a new random shared key, call this endpoint with <xref:Microsoft.AspNetCore.Identity.Data.ManageTwoFactorRequest.ResetSharedKey> set to `true`. Here's a request body example:
+To get a new random shared key, call this endpoint with <xref:Microsoft.AspNetCore.Identity.Data.TwoFactorRequest.ResetSharedKey> set to `true`. Here's a request body example:
 
 ```json
 {
@@ -543,7 +553,7 @@ Resetting the key automatically disables the two-factor login requirement for th
 
 ### Forget the machine
 
-To clear the cookie "remember me flag" if present, call this endpoint with <xref:Microsoft.AspNetCore.Identity.Data.ManageTwoFactorRequest.ForgetMachine> set to true. Here's a request body example:
+To clear the cookie "remember me flag" if present, call this endpoint with <xref:Microsoft.AspNetCore.Identity.Data.TwoFactorRequest.ForgetMachine> set to true. Here's a request body example:
 
 ```json
 {
