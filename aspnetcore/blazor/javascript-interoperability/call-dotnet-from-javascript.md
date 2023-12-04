@@ -875,8 +875,8 @@ In the following `GenericsExample` component:
 @page "/generics-example"
 @rendermode InteractiveServer
 @using System.Runtime.InteropServices
-@inject IJSRuntime JS
 @implements IDisposable
+@inject IJSRuntime JS
 
 <p>
     <button @onclick="InvokeInterop">Invoke Interop</button>
@@ -923,8 +923,8 @@ In the following `GenericsExample` component:
 ```razor
 @page "/generics-example"
 @using System.Runtime.InteropServices
-@inject IJSRuntime JS
 @implements IDisposable
+@inject IJSRuntime JS
 
 <p>
     <button @onclick="InvokeInterop">Invoke Interop</button>

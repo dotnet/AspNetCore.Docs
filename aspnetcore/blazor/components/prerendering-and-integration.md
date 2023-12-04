@@ -843,8 +843,8 @@ The following example is an updated version of the `FetchData` component in a ho
 
 ```razor
 @page "/weather-forecast-preserve-state"
-@implements IDisposable
 @using BlazorSample.Shared
+@implements IDisposable
 @inject IWeatherForecastService WeatherForecastService
 @inject PersistentComponentState ApplicationState
 

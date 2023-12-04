@@ -897,9 +897,9 @@ The `Authentication` component (`Authentication.razor`) saves and restores the a
 
 ```razor
 @page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IJSRuntime JS
 @inject StateContainer State
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 <RemoteAuthenticatorViewCore Action="@Action"
                              TAuthenticationState="ApplicationAuthenticationState"
@@ -951,9 +951,9 @@ The `Authentication` component (`Authentication.razor`) saves and restores the a
 
 ```razor
 @page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IJSRuntime JS
 @inject StateContainer State
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 <RemoteAuthenticatorViewCore Action="@Action"
                              TAuthenticationState="ApplicationAuthenticationState"

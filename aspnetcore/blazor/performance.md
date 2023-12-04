@@ -345,8 +345,8 @@ Some browser events fire extremely frequently. For example, `onmousemove` and `o
 Rather than use native events that rapidly fire, consider the use of JS interop to register a callback that fires less frequently. For example, the following component displays the position of the mouse but only updates at most once every 500 ms:
 
 ```razor
-@inject IJSRuntime JS
 @implements IDisposable
+@inject IJSRuntime JS
 
 <h1>@message</h1>
 

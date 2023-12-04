@@ -359,7 +359,7 @@ Route constraints also work with [optional parameters](#route-parameters). In th
 `User.razor`:
 
 ```razor
-@page "/user/{Id:int}/{Option:bool?}"
+@page "/user/{id:int}/{option:bool?}"
 
 <p>
     Id: @Id
@@ -1425,8 +1425,8 @@ In the following example, a location changing handler is registered for navigati
 
 ```razor
 @page "/nav-handler"
-@inject NavigationManager Navigation
 @implements IDisposable
+@inject NavigationManager Navigation
 
 <p>
     <button @onclick="@(() => Navigation.NavigateTo("/"))">
