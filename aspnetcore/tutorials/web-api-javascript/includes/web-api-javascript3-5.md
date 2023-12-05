@@ -1,6 +1,8 @@
 
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
+This tutorial shows how to call an ASP.NET Core web API with JavaScript, using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API).
+
 ## Prerequisites
 
 * Complete [Tutorial: Create a web API](xref:tutorials/first-web-api)
@@ -16,7 +18,7 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Configure the app to [serve static files](xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)) and [enable default file mapping](xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)). The following highlighted code is needed in the `Configure` method of `Startup.cs`:
 
-    [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
+    [!code-csharp[](~/tutorials/first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
 1. Create a *wwwroot* folder in the project root.
 
@@ -26,15 +28,15 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Add an HTML file named `index.html` to the *wwwroot* folder. Replace the contents of `index.html` with the following markup:
 
-    [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
+    [!code-html[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
 1. Add a CSS file named `site.css` to the *wwwroot/css* folder. Replace the contents of `site.css` with the following styles:
 
-    [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
+    [!code-css[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
 
 1. Add a JavaScript file named `site.js` to the *wwwroot/js* folder. Replace the contents of `site.js` with the following code:
 
-    [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
+    [!code-javascript[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally:
 
@@ -47,7 +49,7 @@ This sample calls all of the CRUD methods of the web API. Following are explanat
 
 In the following code, an HTTP GET request is sent to the *api/todoitems* route:
 
-[!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_GetItems)]
+[!code-javascript[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_GetItems)]
 
 When the web API returns a successful status code, the `_displayItems` function is invoked. Each to-do item in the array parameter accepted by `_displayItems` is added to a table with **Edit** and **Delete** buttons. If the web API request fails, an error is logged to the browser's console.
 
@@ -62,7 +64,7 @@ In the following code:
   * `headers`&mdash;specifies the `Accept` and `Content-Type` HTTP request headers. Both headers are set to `application/json` to specify the media type being received and sent, respectively.
 * An HTTP POST request is sent to the *api/todoitems* route.
 
-[!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
+[!code-javascript[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
 
 When the web API returns a successful status code, the `getItems` function is invoked to update the HTML table. If the web API request fails, an error is logged to the browser's console.
 
@@ -73,13 +75,13 @@ Updating a to-do item is similar to adding one; however, there are two significa
 * The route is suffixed with the unique identifier of the item to update. For example, *api/todoitems/1*.
 * The HTTP action verb is PUT, as indicated by the `method` option.
 
-[!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]
+[!code-javascript[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]
 
 ### Delete a to-do item
 
 To delete a to-do item, set the request's `method` option to `DELETE` and specify the item's unique identifier in the URL.
 
-[!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_DeleteItem)]
+[!code-javascript[](~/tutorials/first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_DeleteItem)]
 
 Advance to the next tutorial to learn how to generate web API help pages:
 
