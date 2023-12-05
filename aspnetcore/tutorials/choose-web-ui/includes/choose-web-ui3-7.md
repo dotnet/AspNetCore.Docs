@@ -1,15 +1,5 @@
----
-title: Choose an ASP.NET Core UI
-author: wadepickett
-description: Learn when to use which ASP.NET Core web UI technologies. Understand the server, client and hybrid options.
-ms.author: wpickett
-ms.date: 12/04/2023
-uid: tutorials/choose-web-ui
----
 
-# Choose an ASP.NET Core web UI
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
 
@@ -90,15 +80,15 @@ Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages b
 
 To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/integration>.
 
+To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/prerendering-and-integration>.
+
 ## Next steps
 
 For more information, see:
 
 * <xref:blazor/index>
 * <xref:blazor/hosting-models>
-* <xref:blazor/components/integration>
+* <xref:blazor/components/prerendering-and-integration>
 * <xref:grpc/comparison>
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/choose-web-ui/includes/choose-web-ui3-7.md)]
