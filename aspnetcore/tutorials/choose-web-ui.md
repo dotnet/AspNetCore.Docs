@@ -6,8 +6,10 @@ ms.author: wpickett
 ms.date: 12/04/2023
 uid: tutorials/choose-web-ui
 ---
-:::moniker range=">= aspnetcore-8.0"
+
 # Choose an ASP.NET Core web UI
+
+:::moniker range=">= aspnetcore-8.0"
 
 ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
 
@@ -98,3 +100,5 @@ For more information, see:
 * <xref:grpc/comparison>
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/choose-web-ui/includes/choose-web-ui3-7.md)]
