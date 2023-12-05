@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 08/17/2023
+ms.date: 12/04/2023
 uid: tutorials/first-web-api
 ---
 
@@ -70,7 +70,6 @@ A NuGet package must be added to support the database used in this tutorial.
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
-* Select the **Include prerelease** checkbox.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 
@@ -308,9 +307,9 @@ Make sure that all of your changes so far are saved.
 Run the following commands:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0
-dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet tool update -g dotnet-aspnet-codegenerator
