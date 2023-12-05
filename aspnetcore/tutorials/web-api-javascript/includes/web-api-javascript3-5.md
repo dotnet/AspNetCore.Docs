@@ -1,4 +1,3 @@
-
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
 This tutorial shows how to call an ASP.NET Core web API with JavaScript, using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API).
