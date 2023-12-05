@@ -546,10 +546,10 @@ Additional assemblies must be disclosed to the Blazor framework to discover rout
 
 The `@rendermode` directive takes a single parameter that's a static instance of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>. The `@rendermode` directive attribute can take any render mode instance, static or not. The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Web.RenderMode> static class with some predefined render modes for convenience, but you can create your own.
 
-Normally, a component uses the following `@attribute` directive to [disable prerendering](#prerendering):
+Normally, a component uses the following `@rendermode` directive to [disable prerendering](#prerendering):
 
 ```razor
-@attribute [RenderModeInteractiveServer(prerender: false)]
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
 ```
 
 However, consider the following example that creates a shorthand interactive server-side render mode without prerendering via the app's `_Imports` file (`Components/_Imports.razor`):
