@@ -27,7 +27,6 @@ app.Run();
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseWebRoot("wwwroot");
 builder.WebHost.UseWebRoot("wwwroot").UseStaticWebAssets();
 
 builder.Services.AddRazorPages();
