@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 12/03/2023
+ms.date: 12/06/2023
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -233,7 +233,7 @@ For clients that don't support cookies, the login API provides a parameter to re
 
 The tokens aren't standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option isn't intended to be a full-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-To use token-based authentication, set the `useCookies` query string parameter to `false` when calling the `/login` endpoint. For more information, see [`POST /login`](#post-login) later in this article.
+To use token-based authentication, set the `useCookies` query string parameter to `false` when calling the `/login` endpoint. For more information, see [Use the `POST /login` endpoint](#use-the-post-login-endpoint) later in this article.
 
 ## Log out
 
@@ -267,18 +267,18 @@ public signOut() {
 
 The call to `MapIdentityApi<TUser>` adds the following endpoints to the app:
 
-* [`POST /register`](#post-register)
-* [`POST /login`](#post-login)
-* [`POST /refresh`](#post-refresh)
-* [`GET /confirmEmail`](#get-confirmemail)
-* [`POST /resendConfirmationEmail`](#post-resendconfirmationemail)
-* [`POST /forgotPassword`](#post-forgotpassword)
-* [`POST /reset Password`](#post-resetpassword)
-* [`POST /manage/2fa`](#post-manage2fa)
-* [`GET /manage/info`](#get-manageinfo)
-* [`POST /manage/info`](#post-manageinfo)
+* [Use the `POST /register`](#use-the-post-register-endpoint)
+* [Use the `POST /login`](#use-the-post-login-endpoint)
+* [Use the `POST /refresh`](#use-the-post-refresh-endpoint)
+* [Use the `GET /confirmEmail`](#use-the-get-confirmemail-endpoint)
+* [Use the `POST /resendConfirmationEmail`](#use-the-post-resendconfirmationemail-endpoint)
+* [Use the `POST /forgotPassword`](#use-the-post-forgotpassword-endpoint)
+* [Use the `POST /reset Password`](#use-the-post-resetpassword-endpoint)
+* [Use the `POST /manage/2fa`](#use-the-post-manage2fa-endpoint)
+* [Use the `GET /manage/info`](#use-the-get-manageinfo-endpoint)
+* [Use the `POST /manage/info`](#use-the-post-manageinfo-endpoint)
 
-## `POST /register`
+## Use the `POST /register` endpoint
 
 The request body must have <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.Email> and <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.Password> properties:
 
@@ -294,9 +294,9 @@ For more information, see:
 * [Test registration](#test-registration) earlier in this article.
 * <xref:Microsoft.AspNetCore.Identity.Data.RegisterRequest>.
 
-## `POST /login`
+## Use the `POST /login` endpoint
 
-In the request body, <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.Email> and <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.Password> are required. If two-factor authentication (2FA) is enabled, either <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.TwoFactorCode> or <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.TwoFactorRecoveryCode> is required. If 2FA isn't enabled, omit both `twoFactorCode` and `twoFactorRecoveryCode`. For more information, see [`POST /manage/2fa`](#post-manage2fa) later in this article.
+In the request body, <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.Email> and <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.Password> are required. If two-factor authentication (2FA) is enabled, either <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.TwoFactorCode> or <xref:Microsoft.AspNetCore.Identity.Data.LoginRequest.TwoFactorRecoveryCode> is required. If 2FA isn't enabled, omit both `twoFactorCode` and `twoFactorRecoveryCode`. For more information, see [Use the `POST /manage/2fa` endpoint](#use-the-post-manage2fa-endpoint) later in this article.
 
 Here's a request body example with 2FA not enabled:
 
@@ -352,9 +352,9 @@ Put the access token in a header to make authenticated requests, as shown in the
 Authorization: Bearer {access token}
 ```
 
-When the access token is about to expire, call the [/refresh](#post-refresh) endpoint.
+When the access token is about to expire, call the [/refresh](#use-the-post-refresh-endpoint) endpoint.
 
-## `POST /refresh`
+## Use the `POST /refresh` endpoint
 
 For use only with token-based authentication. Gets a new access token without forcing the user to log in again. Call this endpoint when the access token is about to expire.
 
@@ -377,7 +377,7 @@ If the call is successful, the response body is a new <xref:Microsoft.AspNetCore
 }
 ```
 
-## `GET /confirmEmail`
+## Use the `GET /confirmEmail` endpoint
 
 If Identity is set up for email confirmation, a successful call to the `/register` endpoint sends an email that contains a link to the `/confirmEmail` endpoint. The link contains the following query string parameters:
 
@@ -409,7 +409,7 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
 
-## `POST /resendConfirmationEmail`
+## Use the `POST /resendConfirmationEmail` endpoint
 
 Sends an email only if the address is valid for a registered user.
 
@@ -421,11 +421,11 @@ The request body contains only the <xref:Microsoft.AspNetCore.Identity.Data.Rese
 }
 ```
 
-For more information, see [`GET /confirmEmail`](#get-confirmemail) earlier in this article.
+For more information, see [Use the `GET /confirmEmail` endpoint](#use-the-get-confirmemail-endpoint) earlier in this article.
 
-## `POST /forgotPassword`
+## Use the `POST /forgotPassword` endpoint
 
-Generates an email that contains a password reset code. Send that code to [`/resetPassword`](#post-resetpassword) with a new password.
+Generates an email that contains a password reset code. Send that code to [`/resetPassword`](#use-the-post-resetpassword-endpoint) with a new password.
 
 The request body contains only the <xref:Microsoft.AspNetCore.Identity.Data.ForgotPasswordRequest.Email>. Here's an example:
 
@@ -435,9 +435,9 @@ The request body contains only the <xref:Microsoft.AspNetCore.Identity.Data.Forg
 }
 ```
 
-For information about how to enable Identity to send emails, see [`GET /confirmEmail`](#get-confirmemail).
+For information about how to enable Identity to send emails, see [Use the `GET /confirmEmail` endpoint](#use-the-get-confirmemail-endpoint).
 
-## `POST /resetPassword`
+## Use the `POST /resetPassword` endpoint
 
 Call this endpoint after getting a reset code by calling the `/forgotPassword` endpoint.
 
@@ -451,7 +451,7 @@ The request body requires <xref:Microsoft.AspNetCore.Identity.Data.ResetPassword
 }
 ```
 
-## `POST /manage/2fa`
+## Use the `POST /manage/2fa` endpoint
 
 Configures two-factor authentication (2FA) for the user. When 2FA is enabled, successful login requires a code produced by an authenticator app in addition to the email address and password.
 
@@ -563,7 +563,7 @@ To clear the cookie "remember me flag" if present, call this endpoint with <xref
 
 This endpoint has no impact on token-based authentication. 
 
-## `GET /manage/info`
+## Use the `GET /manage/info` endpoint
 
 Gets email address and email confirmation status of the logged-in user. Claims were omitted from this endpoint for security reasons. If claims are needed, use the server-side APIs to set up an endpoint for claims. Or instead of sharing all of the users' claims, provide a validation endpoint that accepts a claim and responds whether the user has it.
 
@@ -576,7 +576,7 @@ The request doesn't require any parameters. The response body includes the <xref
 }
 ```
 
-## `POST /manage/info`
+## Use the `POST /manage/info` endpoint
 
 Updates the email address and password of the logged-in user. Send <xref:Microsoft.AspNetCore.Identity.Data.InfoRequest.NewEmail>, <xref:Microsoft.AspNetCore.Identity.Data.InfoRequest.NewPassword>, and <xref:Microsoft.AspNetCore.Identity.Data.InfoRequest.OldPassword> in the request body, as shown in the following example:
 
