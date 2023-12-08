@@ -62,7 +62,7 @@ The following guidance begins the process of implementing token-based authentica
 
 Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method. Specify the scheme for bearer authentication tokens with <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme%2A?displayProperty=nameWithType>.
 
-In `Backend/Program.cs`: 
+In `Backend/Program.cs`, change the authentication services and configuration to the following: 
 
 ```csharp
 builder.Services
