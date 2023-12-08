@@ -60,9 +60,9 @@ The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is 
 
 The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. For more information, see <xref:security/authentication/identity/spa>.
 
-Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method.
+Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method. Specify the scheme for bearer authentication tokens with <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme%2A?displayProperty=nameWithType>.
 
-In `Backend/Program.cs`:
+In `Backend/Program.cs`: 
 
 ```csharp
 builder.Services
