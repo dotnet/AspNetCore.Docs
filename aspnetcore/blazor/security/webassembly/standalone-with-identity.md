@@ -54,24 +54,40 @@ builder.Services
 
 ## Token authentication
 
-For clients that don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
+For native and mobile scenarios where some clients don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core Identity platform) is issued that can be used to authenticate subsequent requests. The token should be passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
 
 The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-To use token-based authentication with the login API, set the `useCookies` query string parameter to `false`:
+The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. For more information, see <xref:security/authentication/identity/spa>.
 
-```diff
-- /login?useCookies=true
-+ /login?useCookies=false
-```
+Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method. Specify the scheme for bearer authentication tokens with <xref:Microsoft.AspNetCore.Identity.IdentityConstants.BearerScheme%2A?displayProperty=nameWithType>.
 
-Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method:
+In `Backend/Program.cs`, change the authentication services and configuration to the following: 
 
 ```csharp
 builder.Services
-    .AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddBearerToken();
+    .AddAuthentication()
+    .AddBearerToken(IdentityConstants.BearerScheme);
 ```
+
+In `BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs`, remove the `useCookies` query string parameter in the `LoginAsync` method of the `CookieAuthenticationStateProvider`:
+
+```diff
+- /login?useCookies=true
++ /login
+```
+
+At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see <xref:security/authentication/identity/spa>.
+
+## Additional Identity scenarios
+
+For additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
+
+* Secure selected endpoints
+* Token authentication
+* Two-factor authentication (2FA)
+* Recovery codes
+* User info management
 
 ## Sample apps
 
@@ -119,7 +135,7 @@ User identity with cookie authentication is added by calling <xref:Microsoft.Ext
 
 Only recommended for demonstrations, the app uses the [EF Core in-memory database provider](/ef/core/providers/in-memory/) for the database context registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>). The in-memory database provider makes it easy to restart the app and test the registration and login user flows. However, each run starts with a fresh database. If the database is changed to SQLite, users are saved between sessions, but the database must be created through [migrations](/ef/core/managing-schemas/migrations/),as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app). You can use other relational providers such as SQL Server for your production code.
 
-Configure identity to use the EF Core database and expose the Identity endpoints via the calls to <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>, <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%2A>, and <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A>.
+Configure Identity to use the EF Core database and expose the Identity endpoints via the calls to <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>, <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%2A>, and <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A>.
 
 A [Cross-Origin Resource Sharing (CORS)](xref:security/cors) policy is established to permit requests from the frontend and backend apps. Fallback URLs are configured for the CORS policy if app settings don't provide them:
 
