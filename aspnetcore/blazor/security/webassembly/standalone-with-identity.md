@@ -52,13 +52,23 @@ builder.Services
     .AddIdentityCookies();
 ```
 
+## Additional authentication scenarios
+
+For additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
+
+* Secure selected endpoints
+* Token authentication
+* Two-factor authentication (2FA)
+* Recovery codes
+* User info management
+
 ## Token authentication
 
 For native and mobile scenarios where clients don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core Identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
 
 The tokens are not standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option is not intended to be a fully-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. 
+The following guidance begins the process of implementing token-based authentication with the login API. Custom code is required to complete the implementation. For more information, see <xref:security/authentication/identity/spa>.
 
 Instead of the backend server API establishing cookie authentication with a call to <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A> on the authentication builder, the server API sets up bearer token auth with the <xref:Microsoft.Extensions.DependencyInjection.BearerTokenExtensions.AddBearerToken%2A> extension method.
 
@@ -77,7 +87,7 @@ In `BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs`, remove the `u
 + /login
 ```
 
-At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens.
+At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see <xref:security/authentication/identity/spa>.
 
 ## Sample apps
 
