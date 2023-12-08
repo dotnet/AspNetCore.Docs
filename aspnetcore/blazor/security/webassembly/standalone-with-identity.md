@@ -52,16 +52,6 @@ builder.Services
     .AddIdentityCookies();
 ```
 
-## Additional authentication scenarios
-
-For additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
-
-* Secure selected endpoints
-* Token authentication
-* Two-factor authentication (2FA)
-* Recovery codes
-* User info management
-
 ## Token authentication
 
 For native and mobile scenarios where clients don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core Identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
@@ -88,6 +78,16 @@ In `BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs`, remove the `u
 ```
 
 At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see <xref:security/authentication/identity/spa>.
+
+## Additional Identity scenarios
+
+For additional Identity scenarios provided by the API, see <xref:security/authentication/identity/spa>:
+
+* Secure selected endpoints
+* Token authentication
+* Two-factor authentication (2FA)
+* Recovery codes
+* User info management
 
 ## Sample apps
 
