@@ -173,7 +173,7 @@ Use Response Compression Middleware at the top of the processing pipeline's conf
 app.UseResponseCompression();
 ```
 
-Add an endpoint for the hub immediately after the line that maps Razor comonents (`app.MapRazorComponents<T>()`):
+Add an endpoint for the hub immediately after the line that maps Razor components (`app.MapRazorComponents<T>()`):
 
 ```csharp
 app.MapHub<ChatHub>("/chathub");
