@@ -23,7 +23,7 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the bar directs you to the browser console, where you can see the exception.
 * In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure).
+The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure). Not all Blazor project templates use the [`data-nosnippet`](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag) attribute to signal to browsers not to cache the contents of the error UI, but all versions of the Blazor documentation apply the attribute.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -38,7 +38,7 @@ At the top of `Components/Layout/MainLayout.razor`:
 Create or modify the Blazor error UI markup:
 
 ```razor
-<div id="blazor-error-ui">
+<div id="blazor-error-ui" data-nosnippet>
     @if (HostEnvironment.IsProduction())
     {
         <span>An error has occurred.</span>
@@ -77,7 +77,7 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 Create or modify the Blazor error UI markup:
 
 ```cshtml
-<div id="blazor-error-ui">
+<div id="blazor-error-ui" data-nosnippet>
     <environment include="Staging,Production">
         An error has occurred.
     </environment>
@@ -94,7 +94,7 @@ Create or modify the Blazor error UI markup:
 In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
 
 ```html
-<div id="blazor-error-ui">
+<div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
