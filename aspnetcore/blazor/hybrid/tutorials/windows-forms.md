@@ -97,7 +97,7 @@ Add an `index.html` file to the `wwwroot` folder with the following markup.
 
     <div id="app">Loading...</div>
 
-    <div id="blazor-error-ui">
+    <div id="blazor-error-ui" data-nosnippet>
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
