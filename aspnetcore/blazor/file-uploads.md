@@ -273,7 +273,7 @@ else
 
 The following example processes file bytes and doesn't send files to a destination outside of the app. For an example of a Razor component that sends a file to a server or service, see the following sections:
 
-* [Upload files to a server with client-side rendering](#upload-files-to-a-server-with-client-side-rendering)
+* [Upload files to a server](#upload-files-to-a-server)
 * [Upload files to an external service](#upload-files-to-an-external-service)
 
 :::moniker range=">= aspnetcore-8.0"
@@ -757,19 +757,7 @@ In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to g
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
 
-## Upload files to a server with client-side rendering
-
-:::moniker range=">= aspnetcore-8.0"
-
-*This section applies to client-side rendered Razor components in either a Blazor Web App or a standalone Blazor WebAssembly app.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to hosted Blazor WebAssembly apps.*
-
-:::moniker-end
+## Upload files to a server
 
 The following example demonstrates uploading files to a web API controller.
 

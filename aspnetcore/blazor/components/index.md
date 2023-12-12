@@ -1265,9 +1265,17 @@ Strings are normally rendered using DOM text nodes, which means that any markup 
 
 The following example shows using the <xref:Microsoft.AspNetCore.Components.MarkupString> type to add a block of static HTML content to the rendered output of a component.
 
-`MarkupStringExample.razor`:
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+`MarkupStrings.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/MarkupStrings.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`MarkupStringExample.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
@@ -1275,17 +1283,23 @@ The following example shows using the <xref:Microsoft.AspNetCore.Components.Mark
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`MarkupStringExample.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`MarkupStringExample.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`MarkupStringExample.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
