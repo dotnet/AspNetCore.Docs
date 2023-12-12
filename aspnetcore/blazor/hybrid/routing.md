@@ -128,6 +128,12 @@ In the `MainPage` XAML markup (`MainPage.xaml`), specify the start path. The fol
 <BlazorWebView>
 ```
 
+Alternatively, the start path can be set in the `MainPage` constructor (`MainPage.xaml.cs`):
+
+```csharp
+blazorWebView.StartPath = "/welcome";
+```
+
 :::zone-end
 
 :::zone pivot="wpf"
@@ -275,9 +281,7 @@ For more information, see the following resources:
 
 ## Deep linking
 
-Deep linking support is planned for .NET 9 in late 2024. For more information, see [Support deep linking into .NET MAUI Blazor apps (dotnet/maui #3788)](https://github.com/dotnet/maui/issues/3788#issuecomment-1421550198).
-
-Until the framework supports deep linking, the following guidance provides a suitable deep linking approach for Android and iOS devices.
+The guidance in this section describes deep linking approaches for Android and iOS devices.
 
 ### Sample app
 
@@ -486,6 +490,10 @@ Testing on iOS might be more tedious than testing on Android. There are many pub
 After the app is deployed to a device, test the URLs by going to **Settings** > **Developer** > **Universal Links** and enable **Associated Domains Development**. Open **Diagnostics**. Enter the URL to test. For the demonstration in this section, the test URL is `https://redth.dev`. You should see a green checkmark with **Opens Installed Application** and the App ID of the app.
 
 It's also worth noting from the [Add domain association entitlements to the app](#add-domain-association-entitlements-to-the-app) step that adding the `applink` entitlement with `?mode=developer` to the app results in the app bypassing Apple's CDN cache when testing and debugging, which is helpful for iterating on your `apple-app-site-association` JSON file.
+
+### Apps launched via a deep link
+
+If the app is launched via a deep link, set the path for initial navigation in the [`BlazorWebView.StartPath` property](#get-or-set-a-path-for-initial-navigation).
 
 :::zone-end
 
