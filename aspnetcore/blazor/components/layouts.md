@@ -144,36 +144,29 @@ The content of the following `Episodes` component is inserted into the `DoctorWh
 
 The following rendered HTML markup is produced by the preceding `DoctorWhoLayout` and `Episodes` component. Extraneous markup doesn't appear in order to focus on the content provided by the two components involved:
 
-* The **Doctor Who&trade; Episode Database** heading (`<h1>...</h1>`) in the header (`<header>...</header>`), navigation bar (`<nav>...</nav>`), and trademark information element (`<div>...</div>`) in the footer (`<footer>...</footer>`) come from the `DoctorWhoLayout` component.
-* The **Episodes** heading (`<h2>...</h2>`) and episode list (`<ul>...</ul>`) come from the `Episodes` component.
+* The H1 "database" heading (`<h1>...</h1>`) in the header (`<header>...</header>`), navigation bar (`<nav>...</nav>`), and trademark information in the footer (`<footer>...</footer>`) come from the `DoctorWhoLayout` component.
+* The H2 "episodes" heading (`<h2>...</h2>`) and episode list (`<ul>...</ul>`) come from the `Episodes` component.
 
 ```html
-<body>
-    <div id="app">
-        <header>
-            <h1>Doctor Who&trade; Episode Database</h1>
-        </header>
+<header>
+    <h1 ...>...</h1>
+</header>
 
-        <nav>
-            <a href="main-list">Main Episode List</a>
-            <a href="search">Search</a>
-            <a href="new">Add Episode</a>
-        </nav>
+<nav>
+    ...
+</nav>
 
-        <h2>Episodes</h2>
+<h2>...</h2>
 
-        <ul>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-        </ul>
+<ul>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+</ul>
 
-        <footer>
-            Doctor Who is a registered trademark of the BBC. 
-            https://www.doctorwho.tv/
-        </footer>
-    </div>
-</body>
+<footer>
+    ...
+</footer>
 ```
 
 Specifying the layout directly in a component overrides a *default layout*:
@@ -312,48 +305,43 @@ The `ProductionsLayout` component contains the top-level layout elements, where 
 The following rendered HTML markup is produced by the preceding nested layout. Extraneous markup doesn't appear in order to focus on the nested content provided by the three components involved:
 
 * The header (`<header>...</header>`), production navigation bar (`<nav>...</nav>`), and footer (`<footer>...</footer>`) elements and their content come from the `ProductionsLayout` component.
-* The **Doctor Who&trade; Episode Database** heading (`<h1>...</h1>`), episode navigation bar (`<nav>...</nav>`), and trademark information element (`<div>...</div>`) come from the `DoctorWhoLayout` component.
-* The **Episodes** heading (`<h2>...</h2>`) and episode list (`<ul>...</ul>`) come from the `Episodes` component.
+* The H1 "database" heading (`<h1>...</h1>`), episode navigation bar (`<nav>...</nav>`), and trademark information (`<div>...</div>`) come from the `DoctorWhoLayout` component.
+* The H2 "episodes" heading (`<h2>...</h2>`) and episode list (`<ul>...</ul>`) come from the `Episodes` component.
 
 ```html
-<body>
-    <div id="app">
-        <header>
-            <h1>Productions</h1>
-        </header>
+<header>
+    ...
+</header>
 
-        <nav>
-            <a href="main-production-list">Main Production List</a>
-            <a href="production-search">Search</a>
-            <a href="new-production">Add Production</a>
-        </nav>
+<nav>
+    <a href="main-production-list">Main Production List</a>
+    <a href="production-search">Search</a>
+    <a href="new-production">Add Production</a>
+</nav>
 
-        <h1>Doctor Who&trade; Episode Database</h1>
+<h1>...</h1>
 
-        <nav>
-            <a href="main-episode-list">Main Episode List</a>
-            <a href="episode-search">Search</a>
-            <a href="new-episode">Add Episode</a>
-        </nav>
+<nav>
+    <a href="main-episode-list">Main Episode List</a>
+    <a href="episode-search">Search</a>
+    <a href="new-episode">Add Episode</a>
+</nav>
 
-        <h2>Episodes</h2>
+<h2>...</h2>
 
-        <ul>
-            <li>...</li>
-            <li>...</li>
-            <li>...</li>
-        </ul>
+<ul>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+</ul>
 
-        <div>
-            Doctor Who is a registered trademark of the BBC. 
-            https://www.doctorwho.tv/
-        </div>
+<div>
+    ...
+</div>
 
-        <footer>
-            Footer of Productions Layout
-        </footer>
-    </div>
-</body>
+<footer>
+    ...
+</footer>
 ```
 
 ## Share a Razor Pages layout with integrated components

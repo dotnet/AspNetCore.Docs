@@ -52,9 +52,17 @@ This demonstration allows you to:
 
 In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`](xref:mvc/views/razor#key) directive attribute is used to improve the user's experience.
 
-`PeopleExample.razor`:
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+`People.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/People.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`PeopleExample.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
@@ -62,17 +70,23 @@ In the following `PeopleExample` component, each iteration of adding a person in
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`PeopleExample.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`PeopleExample.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`PeopleExample.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
