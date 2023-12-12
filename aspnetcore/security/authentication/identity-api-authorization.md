@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 12/06/2023
+ms.date: 12/12/2023
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -25,6 +25,8 @@ The steps shown in this article add authentication and authorization to an ASP.N
 * Targets `net8.0` or later.
 * Includes OpenAPI support.
 * Can be either minimal API or controller-based API.
+
+Some of the testing instructions in this article use the [Swagger UI](/aspnet/core/tutorials/web-api-help-pages-using-swagger) that's included with the project template. The Swagger UI isn't required to use Identity with a Web API backend.
 
 ## Install NuGet packages
 
@@ -92,7 +94,7 @@ builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 ```
 
-By default, both cookies and proprietary tokens are activated. Cookies are issued at login if the `useCookies` query string parameter in the login endpoint is `true`.
+By default, both cookies and proprietary tokens are activated. Cookies and tokens are issued at login if the `useCookies` query string parameter in the login endpoint is `true`.
 
 ## Map Identity routes
 
@@ -124,10 +126,18 @@ app.MapGet("/weatherforecast", (HttpContext httpContext) =>
 .RequireAuthorization();
 ```
 
-The `RequireAuthorization` method can also be used to secure Swagger UI endpoints, as shown in the following example:
+The `RequireAuthorization` method can also be used to:
+
+* Secure Swagger UI endpoints, as shown in the following example:
     
+  ```csharp
+  app.MapSwagger().RequireAuthorization();
+  ```
+
+* Secure with a specific claim or permission, as shown in the following example:
+
 ```csharp
-app.MapSwagger().RequireAuthorization();
+RequiresAuthorization("Admin")
 ```
 
 In a controller-based web API project, secure endpoints by applying the [[`Authorize`]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action.
@@ -233,7 +243,7 @@ For clients that don't support cookies, the login API provides a parameter to re
 
 The tokens aren't standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option isn't intended to be a full-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
-To use token-based authentication, set the `useCookies` query string parameter to `false` when calling the `/login` endpoint. For more information, see [Use the `POST /login` endpoint](#use-the-post-login-endpoint) later in this article.
+To use token-based authentication, set the `useCookies` query string parameter to `false` when calling the `/login` endpoint. Tokens use the _bearer_ authentication scheme. Using the token returned from the call to `/login`, subsequent calls to protected endpoints should add the header `Authorization: Bearer <token>` where `<token>` is the access token. For more information, see [Use the `POST /login` endpoint](#use-the-post-login-endpoint) later in this article.
 
 ## Log out
 
