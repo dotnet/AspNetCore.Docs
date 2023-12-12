@@ -23,7 +23,7 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the bar directs you to the browser console, where you can see the exception.
 * In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure). Not all Blazor project templates use the [`data-nosnippet`](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag) attribute to signal to browsers not to cache the contents of the error UI, but all versions of the Blazor documentation apply the attribute.
+The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure). Not all versions of the Blazor project templates use the [`data-nosnippet` attribute](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag) to signal to browsers not to cache the contents of the error UI, but all versions of the Blazor documentation apply the attribute.
 
 :::moniker range=">= aspnetcore-8.0"
 
