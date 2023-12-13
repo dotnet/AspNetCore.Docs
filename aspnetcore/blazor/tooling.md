@@ -512,15 +512,8 @@ For more information on template options, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Add the following after the template is
-                added to the .NET doc. Tracked by
-                https://github.com/dotnet/docs/issues/38507
-
-* [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
-
--->
-
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
+  * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
   * `dotnet new blazor -h`
