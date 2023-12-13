@@ -243,7 +243,7 @@ Register the event handler on one or more HTML elements. Access the data that wa
 
 <button id="buttonId" @oncustomevent="HandleCustomEvent">Handle</button>
 
-@if (!string.IsNullOrEmpty(propVal1) && !string.IsNullOrEmpty(propVal1))
+@if (!string.IsNullOrEmpty(propVal1) && !string.IsNullOrEmpty(propVal2))
 {
     <ul>
         <li>propVal1: @propVal1</li>
