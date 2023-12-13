@@ -424,7 +424,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 **Windows Authentication configuration (Optional)**  
 For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
 
- :::moniker range="= aspnetcore-7.0"
+ :::moniker range=">= aspnetcore-7.0"
 
 ## Shadow copy
 
