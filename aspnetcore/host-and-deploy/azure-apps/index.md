@@ -186,7 +186,7 @@ Follow the guidance in the [Deploy the app self-contained](#deploy-the-app-self-
 
 ### Use Docker with Web Apps for containers
 
-The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
+The [Docker Hub](https://hub.docker.com/_/microsoft-dotnet) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ### Install the preview site extension
 
