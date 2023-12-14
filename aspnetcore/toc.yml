@@ -1813,7 +1813,7 @@ items:
               - name: 2.1 to 2.2
                 displayName: migrate, migration
                 uid: migration/21-to-22
-              - name: Logging 2.1/2.2 to 3.0
+              - name: Logging 2.1 to 2.2 or 3.0
                 displayName: migrate, migration
                 uid: migration/logging-nonaspnetcore
               - name: 2.0 to 2.1
