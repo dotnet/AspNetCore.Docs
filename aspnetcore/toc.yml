@@ -1774,9 +1774,6 @@ items:
       - name: High performance logging
         displayName: loggermessage
         href: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-      - name: Logging (not ASP.NET Core)
-        displayName: migrate, migration
-        uid: migration/logging-nonaspnetcore
       - name: Use a file watcher
         uid: tutorials/dotnet-watch
       - name: Factory-based middleware
@@ -1816,6 +1813,9 @@ items:
               - name: 2.1 to 2.2
                 displayName: migrate, migration
                 uid: migration/21-to-22
+              - name: Logging 2.1/2.2 to 3.0
+                displayName: migrate, migration
+                uid: migration/logging-nonaspnetcore
               - name: 2.0 to 2.1
                 displayName: migrate, migration
                 uid: migration/20_21
