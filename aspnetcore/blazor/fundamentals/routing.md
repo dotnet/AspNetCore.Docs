@@ -309,27 +309,22 @@ In the following example, the route to the `User` component only matches if:
 
 `User.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+```razor
+@page "/user/{Id:int}"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/User.razor" highlight="1":::
+<PageTitle>User</PageTitle>
 
-:::moniker-end
+<h1>User Example</h1>
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+<p>User Id: @Id</p>
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/User.razor" highlight="1":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/User.razor" highlight="1":::
-
-:::moniker-end
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}
+```
 
 :::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/User.razor" highlight="1":::
 
 > [!NOTE]
 > Route constraints don't work with query string values. To work with query strings, see the [Query strings](#query-strings) section.
