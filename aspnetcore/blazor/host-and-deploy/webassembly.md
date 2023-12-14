@@ -549,6 +549,8 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
+Configure the app's base path by following the guidance in the <xref:blazor/host-and-deploy/index#app-base-path> article.
+
 #### Brotli and Gzip compression
 
 :::moniker range=">= aspnetcore-8.0"
