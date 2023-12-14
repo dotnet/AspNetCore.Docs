@@ -1492,12 +1492,12 @@ items:
                     uid: security/authentication/azure-ad-b2c
               - name: Samples
                 items:
-                  - name: Sign-in users and call web APIs using Azure AD V2
-                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/
+                  - name: Enable your Web Apps to sign-in users and call APIs with the Microsoft identity platform for developers
+                    href: https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
                     href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
-                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/            
+                    href: /azure/active-directory-b2c/enable-authentication-web-api          
           - name: Configure cookie authentication
             uid: security/authentication/cookie
           - name: Configure certificate authentication
