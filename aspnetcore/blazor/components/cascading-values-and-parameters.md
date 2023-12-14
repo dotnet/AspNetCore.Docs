@@ -106,7 +106,7 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/UIThemeClasses/ThemeInfo.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ThemeInfo.cs":::
 
 :::moniker-end
 
