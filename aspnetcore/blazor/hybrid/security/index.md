@@ -50,7 +50,6 @@ For additional guidance, see the following resources:
 WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For guidance and examples, see the following resources:
 
 * [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview)
-* [Sign-in a user with the Microsoft Identity Platform in a WPF Desktop application and call an ASP.NET Core Web API](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
 * [Add authentication to your Windows (WPF) app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/wpf/authentication)
 * [Tutorial: Sign in users and call Microsoft Graph in Windows Presentation Foundation (WPF) desktop app](/azure/active-directory/develop/tutorial-v2-windows-desktop)
 * [Quickstart: Acquire a token and call Microsoft Graph API from a desktop application](/azure/active-directory/develop/desktop-app-quickstart?pivots=devlang-windows-desktop)
@@ -582,7 +581,6 @@ For additional guidance, see the following resources:
 WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Microsoft Entra (ME-ID) and AAD B2C. For guidance and examples, see the following resources:
 
 * [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview)
-* [Sign-in a user with the Microsoft Identity Platform in a WPF Desktop application and call an ASP.NET Core Web API](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
 * [Add authentication to your Windows (WPF) app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/wpf/authentication)
 * [Tutorial: Sign in users and call Microsoft Graph in Windows Presentation Foundation (WPF) desktop app](/azure/active-directory/develop/tutorial-v2-windows-desktop)
 * [Quickstart: Acquire a token and call Microsoft Graph API from a desktop application](/azure/active-directory/develop/desktop-app-quickstart?pivots=devlang-windows-desktop)
