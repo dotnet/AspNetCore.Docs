@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 12/12/2023
+ms.date: 12/15/2023
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -250,16 +250,15 @@ To use token-based authentication, set the `useCookies` query string parameter t
 To provide a way for the user to log out, define a `/logout` endpoint like the following example:
 
 ```csharp
-app.MapPost("/logout", async (
-    SignInManager<MyUser> signInManager,
+app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
     [FromBody]object empty) =>
 {
-    if (empty is not null)
+    if (empty != null)
     {
         await signInManager.SignOutAsync();
         return Results.Ok();
     }
-    return Results.NotFound();
+    return Results.NotAuthorized();
 }).RequireAuthorization();
 ```
 
