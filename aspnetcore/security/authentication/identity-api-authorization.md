@@ -259,7 +259,9 @@ app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
         return Results.Ok();
     }
     return Results.Unauthorized();
-}).RequireAuthorization();
+})
+.WithOpenApi()
+.RequireAuthorization();
 ```
 
 Provide an empty JSON object (`{}`) in the request body when calling this endpoint. The following code is an example of a call to the logout endpoint:
