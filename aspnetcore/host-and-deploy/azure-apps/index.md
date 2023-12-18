@@ -186,7 +186,19 @@ Follow the guidance in the [Deploy the app self-contained](#deploy-the-app-self-
 
 ### Use Docker with Web Apps for containers
 
-The [Docker Hub](https://hub.docker.com/_/microsoft-dotnet) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
+<!-- UPDATE 9.0
+
+     Doc author note on the Docker Hub cross-link (@guardrex 12/18/23)
+
+     The landing page at https://hub.docker.com/_/microsoft-dotnet
+     is throwing a 405 on load, which is triggering a broken link
+     warning on our doc builds. For the time being, I'm setting the
+     link with code fencing. I'll report the problem to them, and
+     we can switch back to a cross-link later. I've left my 
+     tracking tag "UPDATE 9.0" to find and review this in late '24.
+-->
+
+The Docker Hub at `https://hub.docker.com/_/microsoft-dotnet` contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ### Install the preview site extension
 
