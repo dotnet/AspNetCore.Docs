@@ -288,22 +288,20 @@ The Blazor WebAssembly templates create the initial files and directory structur
 
 Project structure:
 
-* `Components` folder:
+* `Layout` folder: Contains the following layout components and stylesheets:
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout.razor.css`: Stylesheet for the app's main layout.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
 
-  * `Layout` folder: Contains the following layout components and stylesheets:
-    * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
-    * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-    * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
-    * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+  * `Counter` component (`Counter.razor`): Implements the Counter page.
+  * `Index` component (`Index.razor`): Implements the Home page.
+  * `Weather` component (`Weather.razor`): Implements the Weather page.
 
-  * `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
-    * `Counter` component (`Counter.razor`): Implements the Counter page.
-    * `Index` component (`Index.razor`): Implements the Home page.
-    * `Weather` component (`Weather.razor`): Implements the Weather page.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
-  * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
-
-  * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
+* `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
   
 * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 

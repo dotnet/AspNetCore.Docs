@@ -14,8 +14,6 @@ uid: blazor/fundamentals/startup
 
 This article explains Blazor app startup configuration.
 
-[!INCLUDE[](~/blazor/includes/location-client.md)]
-
 For general guidance on ASP.NET Core app configuration for server-side development, see <xref:fundamentals/configuration/index>.
 
 :::moniker range=">= aspnetcore-8.0"

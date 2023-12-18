@@ -14,8 +14,6 @@ uid: blazor/fundamentals/environments
 
 This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
 
-[!INCLUDE[](~/blazor/includes/location-client.md)]
-
 :::moniker range=">= aspnetcore-8.0"
 
 For general guidance on setting the environment for a Blazor Web App, see <xref:fundamentals/environments>.
