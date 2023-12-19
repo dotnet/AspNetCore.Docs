@@ -34,7 +34,13 @@ In the event a component must be updated based on an external event, such as a t
 
 `TimerService.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/TimerService.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/TimerService.cs":::
 
@@ -60,7 +66,13 @@ In the event a component must be updated based on an external event, such as a t
 
 `NotifierService.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/NotifierService.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/NotifierService.cs":::
 
@@ -102,9 +114,17 @@ Register the services:
 
 Use the `NotifierService` to update a component.
 
-`ReceiveNotifications.razor`:
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+`Notifications.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Notifications.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`ReceiveNotifications.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/synchronization-context/ReceiveNotifications.razor":::
 
@@ -112,17 +132,23 @@ Use the `NotifierService` to update a component.
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`ReceiveNotifications.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/synchronization-context/ReceiveNotifications.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`ReceiveNotifications.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/synchronization-context/ReceiveNotifications.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`ReceiveNotifications.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/synchronization-context/ReceiveNotifications.razor":::
 

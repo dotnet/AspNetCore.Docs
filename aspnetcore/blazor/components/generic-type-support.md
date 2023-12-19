@@ -32,7 +32,13 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 `ListGenericTypeItems1.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListGenericTypeItems1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/generic-type-support/ListGenericTypeItems1.razor":::
 
@@ -56,14 +62,22 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 :::moniker-end
 
-The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
+The following component renders two `ListGenericTypeItems1` components:
 
 * String or integer data is assigned to the `ExampleList` parameter of each component.
 * Type `string` or `int` that matches the type of the assigned data is set for the type parameter (`TExample`) of each component.
 
-`GenericTypeExample1.razor`:
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+`GenericType1.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/GenericType1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`GenericTypeExample1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
 
@@ -71,17 +85,23 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`GenericTypeExample1.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`GenericTypeExample1.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`GenericTypeExample1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
 
@@ -179,12 +199,12 @@ The following `ListGenericTypeItems2` component receives data and cascades a gen
 }
 ```
 
-The following `GenericTypeExample2` parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListGenericTypeItems2` components specifying the `ListGenericTypeItems2` types (`TExample`), which are cascaded to child components. `ListDisplay` components are rendered with the list item data shown in the example. String data is used with the first `ListGenericTypeItems2` component, and integer data is used with the second `ListGenericTypeItems2` component.
+The following parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListGenericTypeItems2` components specifying the `ListGenericTypeItems2` types (`TExample`), which are cascaded to child components. `ListDisplay` components are rendered with the list item data shown in the example. String data is used with the first `ListGenericTypeItems2` component, and integer data is used with the second `ListGenericTypeItems2` component.
 
-`GenericTypeExample2.razor`:
+`GenericType2.razor`:
 
 ```razor
-@page "/generic-type-example-2"
+@page "/generic-type-2"
 
 <h1>Generic Type Example 2</h1>
 
@@ -276,12 +296,12 @@ Specifying the type explicitly also allows the use of [cascading values and para
 }
 ```
 
-When cascading the data in the following example, the type must be provided to the `ListGenericTypeItems3` component.
+When cascading the data in the following example, the type must be provided to the component.
 
-`GenericTypeExample3.razor`:
+`GenericType3.razor`:
 
 ```razor
-@page "/generic-type-example-3"
+@page "/generic-type-3"
 
 <h1>Generic Type Example 3</h1>
 
@@ -357,12 +377,12 @@ The demonstration in this section cascades a type inferred for `TExample`.
 }
 ```
 
-The following `GenericTypeExample4` component with inferred cascaded types provides different data for display.
+The following component with inferred cascaded types provides different data for display.
 
-`GenericTypeExample4.razor`:
+`GenericType4.razor`:
 
 ```razor
-@page "/generic-type-example-4"
+@page "/generic-type-4"
 
 <h1>Generic Type Example 4</h1>
 
@@ -377,12 +397,12 @@ The following `GenericTypeExample4` component with inferred cascaded types provi
 </ListGenericTypeItems4>
 ```
 
-The following `GenericTypeExample5` component with inferred cascaded types provides the same data for display. The following example directly assigns the data to the components.
+The following component with inferred cascaded types provides the same data for display. The following example directly assigns the data to the components.
 
-`GenericTypeExample5.razor`:
+`GenericType5.razor`:
 
 ```razor
-@page "/generic-type-example-5"
+@page "/generic-type-5"
 
 <h1>Generic Type Example 5</h1>
 

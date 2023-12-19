@@ -33,6 +33,8 @@ The following class is used in this section's examples.
 // "Dalek" ©Terry Nation https://www.imdb.com/name/nm0622334/
 // "Doctor Who" ©BBC https://www.bbc.co.uk/programmes/b006q2x0
 
+namespace BlazorSample;
+
 public class Daleks
 {
     public int Units { get; set; }
@@ -65,8 +67,8 @@ The following `Daleks` component displays the cascaded values.
 </ul>
 
 <p>
-    Dalek ©<a href="https://www.imdb.com/name/nm0622334/">Terry Nation</a><br>
-    Doctor Who ©<a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>
+    Dalek© <a href="https://www.imdb.com/name/nm0622334/">Terry Nation</a><br>
+    Doctor Who© <a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>
 </p>
 
 @code {
@@ -97,12 +99,12 @@ An ancestor component provides a cascading value using the Blazor framework's [`
 
 The following example demonstrates the flow of theme information down the component hierarchy to provide a CSS style class to buttons in child components.
 
-The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` and specifies the theme information.
+The following `ThemeInfo` C# class specifies the theme information.
 
 > [!NOTE]
 > For the examples in this section, the app's namespace is `BlazorSample`. When experimenting with the code in your own sample app, change the app's namespace to your sample app's namespace.
 
-`UIThemeClasses/ThemeInfo.cs`:
+`ThemeInfo.cs`:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -134,56 +136,13 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify theme information (`ThemeInfo`) as a cascading value for all of the app's components.
-
-`Components/Routes.razor`:
-
-```razor
-@using BlazorSample.UIThemeClasses
-
-<CascadingValue Value="@theme">
-    <Router AppAssembly="@typeof(Program).Assembly">
-        <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-        </Found>
-    </Router>
-</CascadingValue>
-
-@code {
-    private ThemeInfo theme = new() { ButtonClass = "btn-success" };
-}
-```
-
-In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts interactive server-side rendering (interactive SSR):
-
-```razor
-<Routes @rendermode="InteractiveServer" />
-```
-
-> [!NOTE]
-> The alternative to adopting an interactive render mode for the entire app via the `Routes` component is to specify a *root-level cascading value* for the theme information (`ThemeInfo`) as a service. For more information, see the [Root-level cascading values](#root-level-cascading-values) section.
->
-> The following example demonstrates passing theme information in the app's `Program` file:
->
-> ```csharp
-> builder.Services.AddCascadingValue(sp => 
->     new ThemeInfo() { ButtonClass = "btn-primary" });
-> ```
->
-> If you adopt this approach, you don't need to set the render mode for the entire app on the `Routes` component or use a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component in the `Routes` component to pass the theme information to [cascading parameters](#cascadingparameter-attribute).
->
-> For more information, see the [Cascading values/parameters and render mode boundaries](#cascading-valuesparameters-and-render-mode-boundaries) section.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 The following [layout component](xref:blazor/components/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 
 `MainLayout.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Layout/MainLayout.razor":::
 
 :::moniker-end
 
@@ -211,6 +170,54 @@ The following [layout component](xref:blazor/components/layouts) specifies theme
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor Web Apps provide alternative approaches for cascading values that apply more broadly to the app than furnishing them via a layout:
+
+* Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify the data as a cascading value for all of the app's components.
+
+  The following example cascades `ThemeInfo` data from the `Routes` component.
+
+  `Routes.razor`:
+
+  ```razor
+  <CascadingValue Value="@theme">
+      <Router ...>
+          <Found ...>
+              ...
+          </Found>
+      </Router>
+  </CascadingValue>
+
+  @code {
+      private ThemeInfo theme = new() { ButtonClass = "btn-success" };
+  }
+  ```
+
+  In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts interactive server-side rendering (interactive SSR):
+
+  ```razor
+  <Routes @rendermode="InteractiveServer" />
+  ```
+
+* Specify a *root-level cascading value* as a service by calling the <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> extension method on the service collection builder.
+
+  The following example cascades `ThemeInfo` data from the `Program` file.
+
+  `Program.cs`
+
+  ```csharp
+  builder.Services.AddCascadingValue(sp => 
+      new ThemeInfo() { ButtonClass = "btn-primary" });
+  ```
+
+For more information, see the following sections of this article:
+
+* [Root-level cascading values](#root-level-cascading-values)
+* [Cascading values/parameters and render mode boundaries](#cascading-valuesparameters-and-render-mode-boundaries)
+
+:::moniker-end
+
 ## `[CascadingParameter]` attribute
 
 To make use of cascading values, descendent components declare cascading parameters using the [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute). Cascading values are bound to cascading parameters **by type**. Cascading multiple values of the same type is covered in the [Cascade multiple values](#cascade-multiple-values) section later in this article.
@@ -221,41 +228,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/themed-counter"
-@rendermode InteractiveServer
-@using BlazorSample.UIThemeClasses
-
-<h1>Themed Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<p>
-    <button @onclick="IncrementCount">
-        Increment Counter (Unthemed)
-    </button>
-</p>
-
-<p>
-    <button 
-        class="btn @(ThemeInfo is not null ? ThemeInfo.ButtonClass : string.Empty)"
-            @onclick="IncrementCount">
-        Increment Counter (Themed)
-    </button>
-</p>
-
-@code {
-    private int currentCount = 0;
-
-    [CascadingParameter]
-    protected ThemeInfo? ThemeInfo { get; set; }
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ThemedCounter.razor":::
 
 :::moniker-end
 
