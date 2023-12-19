@@ -111,7 +111,13 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `ControlRender.razor`:
 
-::: moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ControlRender.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor":::
 
@@ -163,7 +169,13 @@ Consider the following `CounterState1` component, which updates the count four t
 
 `CounterState1.razor`:
 
-::: moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CounterState1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor" highlight="17,21,25,29":::
 
@@ -202,7 +214,13 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 `CounterState2.razor`:
 
-::: moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CounterState2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="23-27":::
 

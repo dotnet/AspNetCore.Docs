@@ -67,7 +67,31 @@ In the following example, a Razor component renders a component based on the use
 | ULA&reg;                           | `UnitedLaunchAlliance.razor` |
 | Virgin Galactic&reg;               | `VirginGalactic.razor`       |
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+`RocketLab.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/RocketLab.razor":::
+
+`SpaceX.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/SpaceX.razor":::
+
+`UnitedLaunchAlliance.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/UnitedLaunchAlliance.razor":::
+
+`VirginGalactic.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/VirginGalactic.razor":::
+
+`DynamicComponent1.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/DynamicComponent1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 `RocketLab.razor`:
 
@@ -128,7 +152,13 @@ The following example configures a component metadata object (`ComponentMetadata
 
 `ComponentMetadata.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ComponentMetadata.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/ComponentMetadata.cs":::
 
@@ -144,7 +174,13 @@ The following `RocketLabWithWindowSeat` component (`RocketLabWithWindowSeat.razo
 
 `RocketLabWithWindowSeat.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/RocketLabWithWindowSeat.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/RocketLabWithWindowSeat.razor" highlight="13-14":::
 
@@ -167,15 +203,25 @@ In the following example:
     * `UnitedLaunchAlliance` (`UnitedLaunchAlliance.razor`)
     * `VirginGalactic` (`VirginGalactic.razor`)
 
-`DynamicComponentExample2.razor`:
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+`DynamicComponent2.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/DynamicComponent2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`DynamicComponentExample2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+`DynamicComponentExample2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample2.razor":::
 
@@ -187,7 +233,13 @@ Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be pa
 
 `ComponentMetadata.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ComponentMetadata.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/ComponentMetadata.cs":::
 
@@ -203,7 +255,13 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 `RocketLab2.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/RocketLab2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/RocketLab2.razor":::
 
@@ -217,7 +275,13 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 `SpaceX2.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/SpaceX2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/SpaceX2.razor":::
 
@@ -231,7 +295,13 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 `UnitedLaunchAlliance2.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/UnitedLaunchAlliance2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/UnitedLaunchAlliance2.razor":::
 
@@ -245,7 +315,13 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 `VirginGalactic2.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/VirginGalactic2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/VirginGalactic2.razor":::
 
@@ -265,17 +341,27 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 * The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# fields, so a C# property is used for the parameter dictionary.
 
 > [!IMPORTANT]
-> For the following `DynamicComponentExample3` component, modify the code in the `OnDropdownChange` method. Change the namespace name of "`BlazorSample`" in the `Type.GetType()` argument to match your app's namespace.
+> For the following component, modify the code in the `OnDropdownChange` method. Change the namespace name of "`BlazorSample`" in the `Type.GetType()` argument to match your app's namespace.
+
+:::moniker range=">= aspnetcore-8.0"
+
+`DynamicComponent3.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/DynamicComponent3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 `DynamicComponentExample3.razor`:
-
-:::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/dynamiccomponent/DynamicComponentExample3.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+`DynamicComponentExample3.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/dynamiccomponent/DynamicComponentExample3.razor":::
 
@@ -292,3 +378,4 @@ Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocket
 ## Additional resources
 
 * <xref:blazor/components/event-handling#eventcallback>
+* <xref:Microsoft.AspNetCore.Components.DynamicComponent>
