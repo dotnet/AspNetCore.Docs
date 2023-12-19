@@ -358,6 +358,7 @@ cat <<EOF | sudo tee /usr/lib/firefox/distribution/policies.json
 }
 EOF
 ```
+Note: Ubuntu 21.10 Firefox comes as a snap package and the installation folder is `/snap/firefox/current/usr/lib/firefox`.
   
 See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
 
