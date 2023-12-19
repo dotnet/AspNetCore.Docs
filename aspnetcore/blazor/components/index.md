@@ -1065,15 +1065,17 @@ Optional route parameters aren't supported, so two [`@page`][9] directives are a
 
 :::moniker-end
 
-`RouteParameter.razor`:
-
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter.razor":::
+`OptionalParameter.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/OptionalParameter.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`RouteParameter.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
 
@@ -1081,17 +1083,23 @@ Optional route parameters aren't supported, so two [`@page`][9] directives are a
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`RouteParameter.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`RouteParameter.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`RouteParameter.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="2,7-8":::
 
@@ -1184,7 +1192,7 @@ The following component provides content for rendering the `RenderFragmentChild`
 
 :::moniker-end
 
-Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
+Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding parent component:
 
 ```razor
 <h1>Three children with an index variable</h1>
@@ -1199,7 +1207,7 @@ Due to the way that Blazor renders child content, rendering components inside a 
 }
 ```
 
-Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
+Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding parent component:
 
 ```razor
 <h1>Second example of three children with an index variable</h1>

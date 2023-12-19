@@ -118,7 +118,7 @@ Use the `NotifierService` to update a component.
 
 `Notifications.razor`:
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ReceiveNotifications.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Notifications.razor":::
 
 :::moniker-end
 

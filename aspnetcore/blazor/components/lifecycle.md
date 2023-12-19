@@ -127,8 +127,6 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
-
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor" highlight="8":::
 
 :::moniker-end
@@ -222,8 +220,6 @@ For the following example component, navigate to the component's page at a URL:
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
-
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor":::
 
 :::moniker-end
@@ -295,8 +291,6 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor":::
 
@@ -406,8 +400,6 @@ The following code demonstrates a `WeatherForecastService` that avoids the chang
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::moniker range=">= aspnetcore-7.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/lifecycle/WeatherForecastService.cs":::
 
