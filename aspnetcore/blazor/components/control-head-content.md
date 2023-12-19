@@ -24,7 +24,13 @@ The following example sets the page's title and description using Razor.
 
 `ControlHeadContent.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ControlHeadContent.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor" highlight="13,15-17":::
 
@@ -117,13 +123,13 @@ When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/
 
 *This section only applies to Blazor WebAssembly apps.*
 
-In Blazor apps created from Blazor WebAssembly project template, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
+In Blazor apps created from the Blazor WebAssembly Standalone App project template, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In Blazor apps created from Blazor project templates, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
+In Blazor apps created from a Blazor project template, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
 
 :::moniker-end
 
