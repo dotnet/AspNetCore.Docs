@@ -18,6 +18,8 @@ uid: blazor/components/quickgrid
 
 The `QuickGrid` component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
 ## Package
 
 Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package.
@@ -52,11 +54,12 @@ To implement a `QuickGrid` component:
 
 For example, add the following component to render a grid.
 
+The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app, which enables interactive features. For the following example, the only interactive feature is sortable columns.
+
 `QuickGridExample.razor`:
 
 ```razor
 @page "/quickgrid-example"
-@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.QuickGrid
 
 <QuickGrid Items="@people">
@@ -79,8 +82,6 @@ For example, add the following component to render a grid.
     }.AsQueryable();
 }
 ```
-
-The preceding example specifies interactive server-side rendering (interactive SSR) with `@rendermode InteractiveServer`, which enables the `QuickGrid`'s interactive features. In this case, the only interactive feature is sortable columns.
 
 For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework Core as the queryable data source, see the [`SampleQuickGridComponent` component in the ASP.NET Core Basic Test App (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/QuickGridTest/SampleQuickGridComponent.razor).
 

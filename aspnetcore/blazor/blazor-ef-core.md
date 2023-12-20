@@ -19,6 +19,8 @@ Server-side Blazor is a stateful app framework. The app maintains an ongoing con
 > [!NOTE]
 > This article addresses EF Core in server-side Blazor apps. Blazor WebAssembly apps run in a WebAssembly sandbox that prevents most direct database connections. Running EF Core in Blazor WebAssembly is beyond the scope of this article.
 
+[!INCLUDE[](~/blazor/includes/location-server.md)]
+
 ## Sample app
 
 The sample app was built as a reference for server-side Blazor apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.

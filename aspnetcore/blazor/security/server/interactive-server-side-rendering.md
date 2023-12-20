@@ -14,7 +14,7 @@ uid: blazor/security/server/interactive-server-side-rendering
 
 This article explains how to mitigate security threats in interactive server-side Blazor.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 Apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 

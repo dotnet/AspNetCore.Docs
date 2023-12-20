@@ -22,7 +22,7 @@ This article explains how to invoke .NET methods from JavaScript (JS).
 
 For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Invoke a static .NET method
 
@@ -76,7 +76,6 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 ```razor
 @page "/call-dotnet-example-1"
-@rendermode InteractiveServer
 
 <h1>Call .NET Example 1</h1>
 
@@ -364,7 +363,6 @@ For the following `CallDotNetExample2` component:
 
 ```razor
 @page "/call-dotnet-example-2"
-@rendermode InteractiveServer
 @implements IDisposable
 @inject IJSRuntime JS
 
@@ -461,7 +459,6 @@ Provide the parameter list to the .NET method.
 
 ```razor
 @page "/call-dotnet-example-3"
-@rendermode InteractiveServer
 @implements IDisposable
 @inject IJSRuntime JS
 
@@ -550,7 +547,6 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
 
 ```razor
 @page "/call-dotnet-example-one-helper"
-@rendermode InteractiveServer
 @implements IDisposable
 @inject IJSRuntime JS
 
@@ -873,7 +869,6 @@ In the following `GenericsExample` component:
 
 ```razor
 @page "/generics-example"
-@rendermode InteractiveServer
 @using System.Runtime.InteropServices
 @implements IDisposable
 @inject IJSRuntime JS
@@ -1088,7 +1083,6 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 ```razor
 @page "/call-dotnet-example-4"
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call .NET Example 4</h1>
@@ -1167,7 +1161,6 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 ```razor
 @page "/call-dotnet-example-5"
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>Call .NET Example 5</h1>
@@ -1311,7 +1304,6 @@ When a `ListItem1` component's **`InteropCall`** button is selected, `updateMess
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <li>
@@ -1488,7 +1480,6 @@ The <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the compon
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <li>
@@ -1705,7 +1696,6 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
 
 ```razor
 @page "/call-dotnet-example-8"
-@rendermode InteractiveServer
 @using System.Text
 
 <h1>Call .NET Example 8</h1>

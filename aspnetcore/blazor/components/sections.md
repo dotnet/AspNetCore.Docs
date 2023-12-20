@@ -16,6 +16,12 @@ uid: blazor/components/sections
 
 -->
 
+This article explains how to control the content in a Razor component from a child Razor component.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net8-or-later.md)]
+
+## Blazor sections
+
 To control the content in a Razor component from a child Razor component, Blazor supports *sections* using the following built-in components:
 
 * <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet>: Renders content provided by <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components with matching <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionName%2A> or <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId%2A> arguments. Two or more <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet> components can't have the same <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionName%2A> or <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId%2A>.

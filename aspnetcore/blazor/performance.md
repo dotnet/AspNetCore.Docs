@@ -17,6 +17,8 @@ Blazor is optimized for high performance in most realistic application UI scenar
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
 ## Optimize rendering speed
 
 Optimize rendering speed to minimize rendering workload and improve UI responsiveness, which can yield a *ten-fold or higher improvement* in UI rendering speed.
@@ -405,42 +407,6 @@ In the following example, no event handler added to the component triggers a rer
 
 `HandleSelect1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/handle-select-1"
-@rendermode InteractiveServer
-@using Microsoft.Extensions.Logging
-@implements IHandleEvent
-@inject ILogger<HandleSelect1> Logger
-
-<p>
-    Last render DateTime: @dt
-</p>
-
-<button @onclick="HandleSelect">
-    Select me (Avoids Rerender)
-</button>
-
-@code {
-    private DateTime dt = DateTime.Now;
-
-    private void HandleSelect()
-    {
-        dt = DateTime.Now;
-
-        Logger.LogInformation("This event handler doesn't trigger a rerender.");
-    }
-
-    Task IHandleEvent.HandleEventAsync(
-        EventCallbackWorkItem callback, object? arg) => callback.InvokeAsync(arg);
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 ```razor
 @page "/handle-select-1"
 @using Microsoft.Extensions.Logging
@@ -469,8 +435,6 @@ In the following example, no event handler added to the component triggers a rer
         EventCallbackWorkItem callback, object? arg) => callback.InvokeAsync(arg);
 }
 ```
-
-:::moniker-end
 
 In addition to preventing rerenders after event handlers fire in a component in a global fashion, it's possible to prevent rerenders after a single event handler by employing the following utility method.
 
@@ -523,63 +487,6 @@ In the following example:
 
 `HandleSelect2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/handle-select-2"
-@rendermode InteractiveServer
-@using Microsoft.Extensions.Logging
-@inject ILogger<HandleSelect2> Logger
-
-<p>
-    Last render DateTime: @dt
-</p>
-
-<button @onclick="HandleClick1">
-    Select me (Rerenders)
-</button>
-
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
-    Select me (Avoids Rerender)
-</button>
-
-<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
-    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
-</button>
-
-@code {
-    private DateTime dt = DateTime.Now;
-
-    private void HandleClick1()
-    {
-        dt = DateTime.Now;
-
-        Logger.LogInformation("This event handler triggers a rerender.");
-    }
-
-    private void HandleClick2()
-    {
-        dt = DateTime.Now;
-
-        Logger.LogInformation("This event handler doesn't trigger a rerender.");
-    }
-    
-    private void HandleClick3(MouseEventArgs args)
-    {
-        dt = DateTime.Now;
-
-        Logger.LogInformation(
-            "This event handler doesn't trigger a rerender. " +
-            "Mouse coordinates: {ScreenX}:{ScreenY}", 
-            args.ScreenX, args.ScreenY);
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 ```razor
 @page "/handle-select-2"
 @using Microsoft.Extensions.Logging
@@ -629,8 +536,6 @@ In the following example:
     }
 }
 ```
-
-:::moniker-end
 
 In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
 
@@ -646,7 +551,6 @@ The following component shown in the [event handling article](xref:blazor/compon
 
 ```razor
 @page "/event-handler-example-5"
-@rendermode InteractiveServer
 
 <h1>@heading</h1>
 
@@ -683,62 +587,6 @@ If a large number of buttons are rendered using the preceding approach, renderin
 
 `LambdaEventPerformance.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/lambda-event-performance"
-@rendermode InteractiveServer
-
-<h1>@heading</h1>
-
-@foreach (var button in Buttons)
-{
-    <p>
-        <button @key="button.Id" @onclick="button.Action">
-            Button #@button.Id
-        </button>
-    </p>
-}
-
-@code {
-    private string heading = "Select a button to learn its position";
-
-    private List<Button> Buttons { get; set; } = new();
-
-    protected override void OnInitialized()
-    {
-        for (var i = 0; i < 100; i++)
-        {
-            var button = new Button();
-
-            button.Id = Guid.NewGuid().ToString();
-
-            button.Action = (e) =>
-            {
-                UpdateHeading(button, e);
-            };
-
-            Buttons.Add(button);
-        }
-    }
-
-    private void UpdateHeading(Button button, MouseEventArgs e)
-    {
-        heading = $"Selected #{button.Id} at {e.ClientX}:{e.ClientY}";
-    }
-
-    private class Button
-    {
-        public string? Id { get; set; }
-        public Action<MouseEventArgs> Action { get; set; } = e => { };
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 ```razor
 @page "/lambda-event-performance"
 
@@ -787,8 +635,6 @@ If a large number of buttons are rendered using the preceding approach, renderin
     }
 }
 ```
-
-:::moniker-end
 
 ## Optimize JavaScript interop speed
 

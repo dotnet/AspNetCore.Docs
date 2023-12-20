@@ -14,7 +14,7 @@ uid: blazor/security/index
 
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 Security scenarios differ between server-side and client-side Blazor apps. Because a server-side app runs on the server, authorization checks are able to determine:
 
@@ -121,7 +121,6 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 ```razor
 @page "/claims-principle-data"
-@rendermode InteractiveServer
 @using System.Security.Claims
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -236,7 +235,6 @@ If authentication state data is required for procedural logic, such as when perf
 
 ```razor
 @page "/cascade-auth-state"
-@rendermode InteractiveServer
 
 <h1>Cascade Auth State</h1>
 
@@ -611,7 +609,6 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 
 ```razor
 @page "/users/{id}/edit"
-@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize(Policy = "EditUser")]
 
@@ -735,7 +732,6 @@ A server-side Blazor app includes the appropriate namespaces by default when cre
 
 ```razor
 @page "/procedural-logic"
-@rendermode InteractiveServer
 @inject IAuthorizationService AuthorizationService
 
 <h1>Procedural Logic Example</h1>

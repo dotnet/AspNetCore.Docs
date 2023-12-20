@@ -14,13 +14,15 @@ uid: blazor/components/lifecycle
 
 This article explains the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
+## Lifecycle events
+
 The Razor component processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
 This article simplifies component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks on lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-## Lifecycle events
 
 The following simplified diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 

@@ -22,7 +22,7 @@ Blazor Web App project template: `blazor`
 
 The Blazor Web App project template provides a single starting point for using Razor components to build any style of web UI, both server-side rendered and client-side rendered. It combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
 
-If both client-side rendering (CSR) and interactive server-side rendering (interactive SSR) are selected on app creation, the project template uses the Interactive Auto render mode. The automatic rendering mode initially uses interactive SSR while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, rendering switches to CSR.
+If both client-side rendering (CSR) and interactive server-side rendering (interactive SSR) are selected on app creation, the project template uses the Interactive Auto render mode. The automatic rendering mode initially uses interactive SSR while the .NET app bundle and runtime are downloaded to the browser. After the .NET WebAssembly runtime is activated, rendering switches to CSR.
 
 By default, the Blazor Web App template enables both static and interactive server-side rendering using a single project. If you also enable Interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the Interactive WebAssembly or Interactive Auto render modes must be built from the client project.
 
@@ -284,7 +284,7 @@ The Blazor WebAssembly templates create the initial files and directory structur
 * If the `blazorwasm` template is used, the app is populated with the following:
   * Demonstration code for a `Weather` component that loads data from a static asset (`weather.json`) and user interaction with a `Counter` component.
   * [Bootstrap](https://getbootstrap.com/) frontend toolkit.
-* If the `blazorwasm` template can also be generated without sample pages and styling.
+* The `blazorwasm` template can also be generated without sample pages and styling.
 
 Project structure:
 

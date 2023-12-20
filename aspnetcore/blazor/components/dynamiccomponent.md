@@ -16,6 +16,10 @@ By [Dave Brock](https://twitter.com/daveabrock)
 
 Use the built-in <xref:Microsoft.AspNetCore.Components.DynamicComponent> component to render components by type.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
+## Dynamic components
+
 A <xref:Microsoft.AspNetCore.Components.DynamicComponent> is useful for rendering components without iterating through possible types or using conditional logic. For example, <xref:Microsoft.AspNetCore.Components.DynamicComponent> can render a component based on a user selection from a dropdown list.
 
 In the following example:

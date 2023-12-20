@@ -24,7 +24,7 @@ This article explains how Blazor apps can inject services into components.
 > [!NOTE]
 > We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Default services
 
@@ -360,7 +360,6 @@ In the following `TimeTravel` component:
 
 ```razor
 @page "/time-travel"
-@rendermode InteractiveServer
 @inject ITimeTravel TimeTravel1
 @inherits OwningComponentBase
 
@@ -430,28 +429,6 @@ In spite of the scoped service registration in the `Program` file and the longev
 
 <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/users"
-@rendermode InteractiveServer
-@attribute [Authorize]
-@inherits OwningComponentBase<AppDbContext>
-
-<h1>Users (@Service.Users.Count())</h1>
-
-<ul>
-    @foreach (var user in Service.Users)
-    {
-        <li>@user.UserName</li>
-    }
-</ul>
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 ```razor
 @page "/users"
 @attribute [Authorize]
@@ -466,8 +443,6 @@ In spite of the scoped service registration in the `Program` file and the longev
     }
 </ul>
 ```
-
-:::moniker-end
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 

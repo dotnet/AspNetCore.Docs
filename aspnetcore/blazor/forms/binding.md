@@ -12,6 +12,12 @@ uid: blazor/forms/binding
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article explains how to use binding in Blazor forms.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
+## `EditForm`/`EditContext` model
+
 An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned object as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which form fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
 
 ## Model binding
@@ -236,7 +242,6 @@ The following example independently binds two forms to their models by form name
 
 ```razor
 @page "/starship-6"
-@rendermode InteractiveServer
 @inject ILogger<Starship6> Logger
 
 <EditForm Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
@@ -283,9 +288,6 @@ The following example independently binds two forms to their models by form name
 
 The following guidance demonstrates how to nest and bind child forms.
 
-<!-- UPDATE 8.0 At RTM or upon API browser updates, cross-link 
-     Microsoft.AspNetCore.Components.Forms.Editor<T>. -->
-
 The following ship details class (`ShipDetails`) holds a description and length for a subform.
 
 `ShipDetails.cs`:
@@ -310,7 +312,7 @@ public class Ship
 }
 ```
 
-The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting `Editor<T>` at the top of the component. `Editor<T>` ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
+The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting <xref:Microsoft.AspNetCore.Components.Forms.Editor%601> at the top of the component. <xref:Microsoft.AspNetCore.Components.Forms.Editor%601> ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
 
 `StarshipSubform.razor`:
 
@@ -337,7 +339,6 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 
 ```razor
 @page "/starship-7"
-@rendermode InteractiveServer
 @inject ILogger<Starship7> Logger
 
 <EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship7">

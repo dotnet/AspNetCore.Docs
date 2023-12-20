@@ -14,6 +14,8 @@ uid: blazor/components/generic-type-support
 
 This article describes generic type support in Razor components.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
 ## Generic type parameter support
 
 The [`@typeparam`](xref:mvc/views/razor#typeparam) directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
