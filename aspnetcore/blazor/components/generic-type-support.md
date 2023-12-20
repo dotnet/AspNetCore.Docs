@@ -14,7 +14,7 @@ uid: blazor/components/generic-type-support
 
 This article describes generic type support in Razor components.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Generic type parameter support
 

@@ -14,7 +14,7 @@ uid: blazor/forms/validation
 
 This article explains how to use validation in Blazor forms.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Form validation
 

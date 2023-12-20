@@ -14,7 +14,7 @@ Blazor uses a synchronization context (<xref:System.Threading.SynchronizationCon
 
 Blazor's server-side synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. At any given point in time, work is performed on exactly one thread, which yields the impression of a single logical thread. No two operations execute concurrently.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Avoid thread-blocking calls
 

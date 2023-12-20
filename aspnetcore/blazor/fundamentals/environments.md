@@ -14,7 +14,7 @@ uid: blazor/fundamentals/environments
 
 This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 

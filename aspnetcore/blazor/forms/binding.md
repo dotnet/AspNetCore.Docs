@@ -14,7 +14,7 @@ uid: blazor/forms/binding
 
 This article explains how to use binding in Blazor forms.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## `EditForm`/`EditContext` model
 

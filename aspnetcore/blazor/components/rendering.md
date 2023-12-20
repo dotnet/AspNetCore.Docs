@@ -14,7 +14,7 @@ uid: blazor/components/rendering
 
 This article explains Razor component rendering in ASP.NET Core Blazor apps, including when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to manually trigger a component to render.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Rendering conventions for `ComponentBase`
 

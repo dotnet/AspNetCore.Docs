@@ -18,7 +18,7 @@ uid: blazor/components/quickgrid
 
 The `QuickGrid` component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net7-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Package
 

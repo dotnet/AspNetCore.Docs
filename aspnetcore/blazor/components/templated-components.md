@@ -14,7 +14,7 @@ uid: blazor/components/templated-components
 
 This article explains how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Templated components
 

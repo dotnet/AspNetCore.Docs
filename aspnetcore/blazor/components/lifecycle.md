@@ -14,7 +14,7 @@ uid: blazor/components/lifecycle
 
 This article explains the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Lifecycle events
 

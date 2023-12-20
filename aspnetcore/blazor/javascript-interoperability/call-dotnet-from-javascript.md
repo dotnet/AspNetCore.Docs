@@ -22,7 +22,7 @@ This article explains how to invoke .NET methods from JavaScript (JS).
 
 For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Invoke a static .NET method
 

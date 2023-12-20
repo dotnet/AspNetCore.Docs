@@ -14,7 +14,7 @@ uid: blazor/js-interop/index
 
 This article explains general concepts on how to interact with JavaScript in Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## JavaScript interop
 
@@ -34,7 +34,7 @@ Further JS interop guidance is provided in the following articles:
 
 :::moniker-end
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## JavaScript interop abstractions and features package
 

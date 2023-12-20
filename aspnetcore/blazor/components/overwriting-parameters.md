@@ -12,7 +12,7 @@ uid: blazor/components/overwriting-parameters
 
 This article explains how to avoid overwriting parameters in Blazor apps during rerendering.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Overwritten parameters
 

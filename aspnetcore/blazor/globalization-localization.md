@@ -14,7 +14,7 @@ uid: blazor/globalization-localization
 
 This article explains how to render globalized and localized content to users in different cultures and languages.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Globalization and localization
 

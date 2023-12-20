@@ -17,7 +17,7 @@ This article describes the advanced scenario for building Blazor render trees ma
 > [!WARNING]
 > Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of app features, and ***compromised security***.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Manually build a render tree (`RenderTreeBuilder`)
 

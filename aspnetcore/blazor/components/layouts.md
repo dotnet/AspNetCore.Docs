@@ -14,7 +14,7 @@ uid: blazor/components/layouts
 
 This article explains how to create reusable layout components for Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Usefulness of Blazor layouts
 

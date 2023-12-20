@@ -14,7 +14,7 @@ uid: blazor/forms/input-components
 
 This article describes Blazor's built-in input components.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Input components
 
@@ -94,7 +94,7 @@ The following `Starship` type, which is used in several of this article's exampl
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Starship.cs":::
 

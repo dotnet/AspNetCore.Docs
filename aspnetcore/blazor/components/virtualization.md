@@ -14,7 +14,7 @@ uid: blazor/components/virtualization
 
 This article explains how to use component virtualization in ASP.NET Core Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net5-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Virtualization
 

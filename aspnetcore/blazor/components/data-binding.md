@@ -14,7 +14,7 @@ uid: blazor/components/data-binding
 
 This article explains data binding features for Razor components and DOM elements in Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Binding features
 
