@@ -77,13 +77,13 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 
 To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the app resumes.
 
+> [!IMPORTANT]
+> Persisting component state only works during the initial render of a component and not across enhanced page navigations. Currently, the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigations, and there's no mechanism to deliver state updates to components that are already running. A mechanism to deliver state updates for enhanced navigations is planned for .NET 9, which is targeted for release in late 2024. For more information, see [[Blazor] Support persistent component state across enhanced page navigations (dotnet/aspnetcore #51584)](https://github.com/dotnet/aspnetcore/issues/51584).
+
 The following example demonstrates the general pattern:
 
 * The `{TYPE}` placeholder represents the type of data to persist.
 * The `{TOKEN}` placeholder is a state identifier string.
-
-> [!IMPORTANT]
-> Persisting component state only works during the initial render of a component and not across enhanced page navigations. Currently, the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigations, and there's no mechanism to deliver state updates to components that are already running. A mechanism to deliver state updates for enhanced navigations is planned for .NET 9, which is targeted for release in late 2024. For more information, see [[Blazor] Support persistent component state across enhanced page navigations (dotnet/aspnetcore #51584)](https://github.com/dotnet/aspnetcore/issues/51584).
 
 ```razor
 @implements IDisposable
