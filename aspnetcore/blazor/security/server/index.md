@@ -14,7 +14,7 @@ uid: blazor/security/server/index
 
 This article explains how to secure server-side Blazor apps as ASP.NET Core applications.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 Server-side Blazor apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>.
 
@@ -396,7 +396,6 @@ In a component:
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode InteractiveServer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <input @bind="userIdentifier" />
@@ -534,7 +533,6 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode InteractiveServer
 @inject AuthenticationService AuthenticationService
 
 <input @bind="userIdentifier" />
@@ -674,7 +672,6 @@ In the following `InjectAuthStateProvider` component:
 
 ```razor
 @page "/inject-auth-state-provider"
-@rendermode InteractiveServer
 @inherits OwningComponentBase
 @inject AuthenticationStateProvider AuthenticationStateProvider
 

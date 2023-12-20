@@ -18,6 +18,10 @@ uid: blazor/components/integration
 
 This article explains Razor component integration scenarios for ASP.NET Core apps.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net8-or-later.md)]
+
+## Razor component integration
+
 Razor components can be integrated into Razor Pages, MVC, and other types of ASP.NET Core apps. Razor components can also be integrated into any web app, including apps not based on ASP.NET Core, as [custom HTML elements](xref:blazor/components/js-spa-frameworks#blazor-custom-elements).
 
 Use the guidance in the following sections depending on the project's requirements:

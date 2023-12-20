@@ -14,7 +14,7 @@ uid: blazor/images
 
 This article describes common scenarios for working with images in Blazor apps. 
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net6-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Dynamically set an image source
 
@@ -40,7 +40,6 @@ In the following `ShowImage1` component:
 
 ```razor
 @page "/show-image-1"
-@rendermode InteractiveServer
 
 <h1>Dynamic Image Source Example</h1>
 
@@ -153,7 +152,6 @@ The following `ShowImage2` component:
 
 ```razor
 @page "/show-image-2"
-@rendermode InteractiveServer
 @inject HttpClient Http
 @inject IJSRuntime JS
 

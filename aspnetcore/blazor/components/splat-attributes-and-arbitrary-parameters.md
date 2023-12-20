@@ -12,6 +12,8 @@ uid: blazor/components/attribute-splatting
 
 Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
 ## Attribute splatting
 
 In the following `Splat` component:

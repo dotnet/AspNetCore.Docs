@@ -12,6 +12,12 @@ uid: blazor/forms/input-components
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article describes Blazor's built-in input components.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
+## Input components
+
 The Blazor framework provides built-in input components to receive and validate user input. The built-in input components in the following table are supported in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 
 :::moniker range=">= aspnetcore-7.0"
@@ -82,37 +88,35 @@ The following `Starship` type, which is used in several of this article's exampl
 
 `Starship.cs`:
 
-```csharp
-using System.ComponentModel.DataAnnotations;
+:::moniker range=">= aspnetcore-8.0"
 
-public class Starship
-{
-    [Required]
-    [StringLength(16, ErrorMessage = "Id too long (16 character limit).")]
-    public string? Id { get; set; }
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Starship.cs":::
 
-    public string? Description { get; set; }
+:::moniker-end
 
-    [Required]
-    public string? Classification { get; set; }
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-    [Range(1, 100000, ErrorMessage = "Accommodation invalid (1-100000).")]
-    public int MaximumAccommodation { get; set; }
-
-    [Required]
-    [Range(typeof(bool), "true", "true", 
-        ErrorMessage = "This form disallows unapproved ships.")]
-    public bool IsValidatedDesign { get; set; }
-
-    [Required]
-    public DateTime ProductionDate { get; set; }
-}
-```
-
-<!--
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppSample/Starship.cs":::
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Starship.cs":::
--->
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Starship.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Starship.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Starship.cs":::
+
+:::moniker-end
 
 The following form accepts and validates user input using:
 
@@ -125,7 +129,6 @@ The following form accepts and validates user input using:
 
 ```razor
 @page "/starship-3"
-@rendermode InteractiveServer
 @inject ILogger<Starship3> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -311,7 +314,6 @@ In the following example:
 
 ```razor
 @page "/starship-4"
-@rendermode InteractiveServer
 @inject ILogger<Starship4> Logger
 
 <EditForm EditContext="@editContext" OnSubmit="@Submit" FormName="Starship4">
@@ -452,7 +454,6 @@ In the following example, the user must select at least two starship classificat
 
 ```razor
 @page "/starship-5"
-@rendermode InteractiveServer
 @inject ILogger<Starship5> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>

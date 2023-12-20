@@ -14,6 +14,8 @@ uid: blazor/components/control-head-content
 
 Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements).
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
 ## Control `<head>` content in a Razor component
 
 Specify the page's title with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, which enables rendering an HTML `<title>` element to a [`HeadOutlet` component](#headoutlet-component).

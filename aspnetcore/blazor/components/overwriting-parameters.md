@@ -10,6 +10,12 @@ uid: blazor/components/overwriting-parameters
 ---
 # Avoid overwriting parameters in ASP.NET Core Blazor
 
+This article explains how to avoid overwriting parameters in Blazor apps during rerendering.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
+
+## Overwritten parameters
+
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
 
 * Parameters aren't overwritten unexpectedly.

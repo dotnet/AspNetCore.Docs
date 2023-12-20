@@ -19,7 +19,7 @@ uid: blazor/fundamentals/logging
 
 This article explains Blazor app logging, including configuration and how to write log messages from Razor components.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
 ## Configuration
 
@@ -106,7 +106,6 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="3,16-17":::
 
 :::moniker-end
-
 
 ## Server-side logging
 

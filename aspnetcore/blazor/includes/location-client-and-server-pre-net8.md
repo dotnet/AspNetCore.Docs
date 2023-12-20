@@ -1,5 +1,7 @@
 Throughout this article, the terms **server**/**server-side** and **client**/**client-side** are used to distinguish locations where app code executes:
 
+:::moniker range=">= aspnetcore-8.0"
+
 * **Server**/**server-side**: Interactive server-side rendering (interactive SSR) of a Blazor Web App.
 * **Client**/**client-side**
   * Client-side rendering (CSR) of a Blazor Web App.
@@ -12,6 +14,19 @@ Documentation component examples usually don't configure an interactive render m
 * In a standalone Blazor WebAssembly app, the components function as shown and don't require a render mode because components always run interactively on WebAssembly in a Blazor WebAssembly app.
 
 When using the the Interactive WebAssembly or Interactive Auto render modes, component code sent to the client can be decompiled and inspected. Don't place private code, app secrets, or other sensitive information in client-rendered components.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* **Server**/**server-side**
+  * The **`Server`** project of a hosted Blazor WebAssembly app.
+  * A Blazor Server app.
+* **Client**/**client-side**
+  * The **`Client`** project of a hosted Blazor WebAssembly app.
+  * A Blazor WebAssembly app.
+
+:::moniker-end
 
 For guidance on the purpose and locations of files and folders, see <xref:blazor/project-structure>, which also describes the [location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script) and the [location of `<head>` and `<body>` content](xref:blazor/project-structure#location-of-head-and-body-content).
 
