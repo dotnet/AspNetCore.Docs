@@ -181,13 +181,12 @@ Hosted Blazor WebAssembly:
 Breakpoints can also be hit in the server project.
 
 1. Stop the debugger.
-1. Add the following component to the server app.
+1. Add the following component to the server app. The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app.
 
    `Components/Pages/Counter2.razor`:
 
    ```razor
    @page "/counter-2"
-   @rendermode InteractiveServer
 
    <PageTitle>Counter 2</PageTitle>
 
@@ -230,13 +229,12 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 Breakpoints can also be hit in the server project.
 
 1. Stop the debugger.
-1. Add the following component to the server app.
+1. Add the following component to the server app. The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app.
 
    `Components/Pages/Counter2.razor`:
 
    ```razor
    @page "/counter-2"
-   @rendermode InteractiveServer
 
    <PageTitle>Counter 2</PageTitle>
 

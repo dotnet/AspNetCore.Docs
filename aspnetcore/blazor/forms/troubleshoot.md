@@ -14,6 +14,8 @@ uid: blazor/forms/troubleshoot
 
 This article provides troubleshooting guidance for Blazor forms.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 ## Large form payloads and the SignalR message size limit
 
 *This section only applies to Blazor Web Apps, Blazor Server apps, and hosted Blazor WebAssembly solutions that implement SignalR.*
@@ -51,7 +53,6 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 ```razor
 @page "/stream-form-data"
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 @inject ILogger<StreamFormData> Logger
 

@@ -12,6 +12,12 @@ uid: blazor/forms/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article explains how to use forms in Blazor.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## Input components and forms
+
 The Blazor framework supports forms and provides built-in input components:
 
 :::moniker range=">= aspnetcore-8.0"
@@ -39,13 +45,12 @@ A project created from the Blazor project template includes the namespace by def
 
 :::moniker range=">= aspnetcore-8.0"
 
-Standard interactive HTML forms with interactive server-side rendering (`@rendermode InteractiveServer`) are supported. Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
+Standard HTML forms are supported. Create a form using the normal HTML `<form>` tag and specify an `@onsubmit` handler for handling the submitted form request.
 
 `StarshipPlainForm.razor`:
 
 ```razor
 @page "/starship-plain-form"
-@rendermode InteractiveServer
 @inject ILogger<StarshipPlainForm> Logger
 
 <form method="post" @onsubmit="Submit" @formname="starship-plain-form">
@@ -108,7 +113,6 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 ```razor
 @page "/starship-1"
-@rendermode InteractiveServer
 @inject ILogger<Starship1> Logger
 
 <EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship1">
@@ -205,7 +209,6 @@ In the next example, the preceding component is modified to create the form in t
 
 ```razor
 @page "/starship-2"
-@rendermode InteractiveServer
 @inject ILogger<Starship2> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
@@ -290,8 +293,6 @@ For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the <x
 For forms based on the HTML `<form>` element, manually add the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component to the form:
 
 ```razor
-@rendermode InteractiveServer
-
 <form method="post" @onsubmit="Submit" @formname="starshipForm">
     <AntiforgeryToken />
     <input id="send" type="submit" value="Send" />
@@ -375,15 +376,6 @@ For guidance on using the `enhancedload` event to listen for enhanced page updat
 ## Examples
 
 :::moniker range=">= aspnetcore-8.0"
-
-Components are configured for interactive server-side rendering (interactive SSR) and enhanced navigation. For a client-side experience in a Blazor Web App, change the render mode in the `@rendermode` directive at the top of the component to either:
-
-* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly> for only client-side rendering (CSR) after prerendering.
-* <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> for CSR after interactive SSR, which operates while the Blazor app bundle downloads in the background and the .NET WebAssembly runtime starts on the client.
-
-If working with a standalone Blazor WebAssembly app, render modes aren't used. Blazor WebAssembly apps always run interactively on WebAssembly. The example interactive forms in this article function in a standalone Blazor WebAssembly app as long as the code doesn't make assumptions about running on the server instead of the client. You can remove the `@rendermode` directive from the component when using the example forms in a Blazor WebAssembly app.
-
-When using the Interactive WebAssembly or Interactive Auto render modes, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
 
 Examples don't adopt enhanced form handling for form POST requests, but all of the examples can be updated to adopt the enhanced features by following the guidance in the [Enhanced form handling](#enhanced-form-handling) section.
 

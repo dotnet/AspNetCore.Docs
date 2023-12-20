@@ -14,6 +14,10 @@ uid: blazor/components/event-handling
 
 This article explains Blazor's event handling features, including event argument types, event callbacks, and managing default browser events.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## Delegate event handlers
+
 Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
 * The `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
@@ -659,7 +663,6 @@ The following parent-child example demonstrates the technique.
 
 ```razor
 @page "/parent-child-2"
-@rendermode InteractiveServer
 
 <Child2 OnClickCallback="@(async (value) => { await Task.Yield(); messageText = value; })" />
 

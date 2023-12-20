@@ -18,6 +18,8 @@ This article explains how to configure and manage SignalR connections in Blazor 
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation, especially <xref:signalr/configuration#configure-server-options>.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Disable response compression for Hot Reload

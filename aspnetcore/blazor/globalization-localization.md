@@ -14,6 +14,10 @@ uid: blazor/globalization-localization
 
 This article explains how to render globalized and localized content to users in different cultures and languages.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## Globalization and localization
+
 For [globalization](/dotnet/core/extensions/globalization), Blazor provides number and date formatting. For [localization](/dotnet/core/extensions/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
@@ -41,8 +45,6 @@ In this article, *language* refers to selections made by a user in their browser
 
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the article's examples.
-
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 
 ## Globalization
 

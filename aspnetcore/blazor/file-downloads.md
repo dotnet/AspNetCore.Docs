@@ -16,6 +16,8 @@ This article explains how to download files in Blazor apps.
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-net6-or-later.md)]
 
+## File downloads
+
 Files can be downloaded from the app's own static assets or from any other location:
 
 * ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of server-side apps.
@@ -93,7 +95,6 @@ The following component:
 
 ```razor
 @page "/file-download-1"
-@rendermode InteractiveServer
 @using System.IO
 @inject IJSRuntime JS
 
@@ -202,7 +203,6 @@ Change the port in the following example to match the localhost development port
 
 ```razor
 @page "/file-download-2"
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>File Download Example 2</h1>

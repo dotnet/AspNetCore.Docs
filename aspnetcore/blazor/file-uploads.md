@@ -16,6 +16,8 @@ This article explains how to upload files in Blazor with the <xref:Microsoft.Asp
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
 
+## File uploads
+
 > [!WARNING]
 > Always follow security best practices when permitting users to upload files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
@@ -149,7 +151,6 @@ Because the example uses the app's [environment](xref:blazor/fundamentals/enviro
 
 ```razor
 @page "/file-upload-1"
-@rendermode InteractiveServer
 @inject ILogger<FileUpload1> Logger
 @inject IHostEnvironment Environment
 
@@ -276,13 +277,14 @@ The following example processes file bytes and doesn't send files to a destinati
 * [Upload files to a server](#upload-files-to-a-server)
 * [Upload files to an external service](#upload-files-to-an-external-service)
 
+The component assumes that the Interactive WebAssembly render mode (`InteractiveWebAssembly`) is inherited from a parent component or applied globally to the app.
+
 :::moniker range=">= aspnetcore-8.0"
 
 `FileUpload1.razor`:
 
 ```razor
 @page "/file-upload-1"
-@rendermode InteractiveWebAssembly
 @inject ILogger<FileUpload1> Logger
 
 <h3>Upload Files</h3>
@@ -454,7 +456,6 @@ The following `FileUpload2` component:
 
 ```razor
 @page "/file-upload-2"
-@rendermode InteractiveServer
 @using System.Net.Http.Headers
 @using System.Text.Json
 @inject IHttpClientFactory ClientFactory
@@ -799,20 +800,15 @@ A security best practice for production apps is to avoid sending error messages 
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Ask the PU about the service
-                registrations because it seems odd to
-                be required to register an HttpClient
-                in the BWA's main project. Why can't 
-                only the .Client project register it
-                like a standalone WASM app does? -->
-
 In the Blazor Web App main project, add <xref:System.Net.Http.IHttpClientFactory> and related services in the project's `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient();
 ```
 
-For more information, see <xref:fundamentals/http-requests>.
+The `HttpClient` services must be added to the main project because the client-side component is prerendered on the server. If you [disable prerendering for the following component](xref:blazor/components/render-modes#prerendering), you aren't required to provide the `HttpClient` services in the main app and don't need to add the preceding line to the main project.
+
+For more information on adding `HttpClient` services to an ASP.NET Core app, see <xref:fundamentals/http-requests>.
 
 The client project of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
 
@@ -821,7 +817,7 @@ builder.Services.AddScoped(sp =>
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
 
-Add the WebAssembly component rendering attribute to the top of the following component in a Blazor Web App:
+Specify the Interactive WebAssembly render mode attribute at the top of the following component in a Blazor Web App:
 
 ```razor
 @rendermode InteractiveWebAssembly
@@ -1162,7 +1158,6 @@ To use the following example in a test app:
 
 ```razor
 @page "/file-upload-3"
-@rendermode InteractiveServer
 @inject ILogger<FileUpload3> Logger
 @inject IHostEnvironment Environment
 
@@ -1352,7 +1347,6 @@ The following `FileUpload4` component shows the complete example.
 
 ```razor
 @page "/file-upload-4"
-@rendermode InteractiveServer
 @inject IJSRuntime JS
 
 <h1>File Upload Example</h1>

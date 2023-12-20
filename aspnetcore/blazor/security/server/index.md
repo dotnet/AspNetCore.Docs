@@ -396,7 +396,6 @@ In a component:
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode InteractiveServer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <input @bind="userIdentifier" />
@@ -534,7 +533,6 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@rendermode InteractiveServer
 @inject AuthenticationService AuthenticationService
 
 <input @bind="userIdentifier" />
@@ -674,7 +672,6 @@ In the following `InjectAuthStateProvider` component:
 
 ```razor
 @page "/inject-auth-state-provider"
-@rendermode InteractiveServer
 @inherits OwningComponentBase
 @inject AuthenticationStateProvider AuthenticationStateProvider
 

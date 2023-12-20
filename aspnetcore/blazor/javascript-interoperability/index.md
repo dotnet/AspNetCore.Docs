@@ -14,6 +14,10 @@ uid: blazor/js-interop/index
 
 This article explains general concepts on how to interact with JavaScript in Blazor apps.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## JavaScript interop
+
 A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
 Further JS interop guidance is provided in the following articles:
@@ -118,11 +122,8 @@ In the following example, the `DOMCleanup` component:
 
 `DOMCleanup.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
 ```razor
 @page "/dom-cleanup"
-@rendermode InteractiveServer
 @implements IAsyncDisposable
 @inject IJSRuntime JS
 
@@ -153,45 +154,6 @@ In the following example, the `DOMCleanup` component:
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```razor
-@page "/dom-cleanup"
-@implements IAsyncDisposable
-@inject IJSRuntime JS
-
-<h1>DOM Cleanup Example</h1>
-
-<div id="cleanupDiv"></div>
-
-@code {
-    private IJSObjectReference? jsModule;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            jsModule = await JS.InvokeAsync<IJSObjectReference>(
-                "import", "./Pages/DOMCleanup.razor.js");
-
-            await jsModule.InvokeVoidAsync("DOMCleanup.createObserver");
-        }
-    }
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (jsModule is not null)
-        {
-            await jsModule.DisposeAsync();
-        }
-    }
-}
-```
-
-:::moniker-end
 
 In the following example, the `MutationObserver` callback is executed each time a DOM change occurs. Execute your cleanup code when the `if` statement confirms that the target element (`cleanupDiv`) was removed (`if (targetRemoved) { ... }`). It's important to disconnect and delete the `MutationObserver` to avoid a memory leak after your cleanup code executes.
 

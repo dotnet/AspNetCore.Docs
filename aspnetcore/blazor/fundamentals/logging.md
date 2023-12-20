@@ -107,7 +107,6 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 :::moniker-end
 
-
 ## Server-side logging
 
 For general ASP.NET Core logging guidance, see <xref:fundamentals/logging/index>.

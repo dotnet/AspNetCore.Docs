@@ -19,6 +19,8 @@ This article explains how to flow data from an ancestor Razor component to desce
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the `CascadingType?`, `@ActiveTab?`, `RenderFragment?`, `ITab?`, `TabSet?`, and `string?` types in the article's examples.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## Root-level cascading values
@@ -57,7 +59,6 @@ The following `Daleks` component displays the cascaded values.
 
 ```razor
 @page "/daleks"
-@rendermode InteractiveServer
 
 <h1>Root-level cascading value registration example</h1>
 
@@ -193,6 +194,8 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
       private ThemeInfo theme = new() { ButtonClass = "btn-success" };
   }
   ```
+
+  <!-- UPDATE 8.0 Check on this next instruction and confirm if it's required. -->
 
   In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts interactive server-side rendering (interactive SSR):
 

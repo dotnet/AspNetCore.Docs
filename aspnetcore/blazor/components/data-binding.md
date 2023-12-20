@@ -14,6 +14,10 @@ uid: blazor/components/data-binding
 
 This article explains data binding features for Razor components and DOM elements in Blazor apps.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## Binding features
+
 Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
 
 The following example binds:

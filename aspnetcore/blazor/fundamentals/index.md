@@ -70,9 +70,10 @@ The following is an example counter component and part of an app created from a 
 
 :::moniker range=">= aspnetcore-8.0"
 
+The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app.
+
 ```razor
 @page "/counter"
-@rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
@@ -167,19 +168,23 @@ Documentation sample apps are available for inspection and download:
 
 [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
-The repo contains two types of samples:
-
 :::moniker range=">= aspnetcore-8.0"
 
-* Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
-* Samples apps to accompany Blazor articles compile and run for the following scenarios:
-  * Blazor Web App with EF Core
-  * Blazor Web App with SignalR
-  * Blazor WebAssembly scopes-enabled logging
+Samples apps to accompany Blazor articles compile and run for the following scenarios:
+
+* Blazor Web App
+* Blazor WebAssembly
+* Blazor Web App with EF Core
+* Blazor Web App with SignalR
+* Blazor Web App with OIDC and Aspire
+* Blazor WebAssembly scopes-enabled logging
+* Blazor WebAssembly with ASP.NET Core Identity
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+The sample repo contains two types of samples:
 
 * Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:

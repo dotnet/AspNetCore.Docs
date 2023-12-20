@@ -12,6 +12,12 @@ uid: blazor/forms/validation
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+This article explains how to use validation in Blazor forms.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net31-or-later.md)]
+
+## Form validation
+
 In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
 
 Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
@@ -24,7 +30,6 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 ```razor
 @page "/starship-8"
-@rendermode InteractiveServer
 @implements IDisposable
 @inject ILogger<Starship8> Logger
 
@@ -319,7 +324,6 @@ When validation messages are set in the component, they're added to the validato
 
 ```razor
 @page "/starship-9"
-@rendermode InteractiveServer
 @inject ILogger<Starship9> Logger
 
 <h1>Starfleet Starship Database</h1>
@@ -1038,7 +1042,6 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 ```razor
 @page "/starship-11"
-@rendermode InteractiveServer
 @inject ILogger<Starship11> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship11">
@@ -1249,7 +1252,6 @@ The following component validates user input by applying the `SaladChefValidator
 
 ```razor
 @page "/starship-12"
-@rendermode InteractiveServer
 @inject SaladChef SaladChef
 
 <EditForm Model="@this" autocomplete="off" FormName="Starship12">
@@ -1398,7 +1400,6 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 ```razor
 @page "/starship-13"
-@rendermode InteractiveServer
 @inject ILogger<Starship13> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship13">
@@ -1766,7 +1767,6 @@ To enable and disable the submit button based on form validation, the following 
 
 ```razor
 @page "/starship-14"
-@rendermode InteractiveServer
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 

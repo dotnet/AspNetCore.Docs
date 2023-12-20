@@ -26,6 +26,8 @@ This article describes an alternative JS interop approach specific to client-sid
 > [!NOTE]
 > This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop>.
 
+
+
 ## Obsolete JavaScript interop API
 
 Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core 7.0 or later. Follow the guidance in this article to replace the obsolete API.

@@ -25,17 +25,18 @@ This article explains Razor component prerendering scenarios for server-rendered
 
 *Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server-net8-or-later.md)]
+
 ## Persist prerendered state
 
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered.
 
 Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). After the SignalR connection to the client is established, the component rerenders, and the initial count value is replaced when `OnInitialized` executes a second time.
 
-`Components/Pages/PrerenderedCounter1.razor`:
+`PrerenderedCounter1.razor`:
 
 ```razor
 @page "/prerendered-counter-1"
-@rendermode InteractiveServer
 @inject ILogger<PrerenderedCounter1> Logger
 
 <PageTitle>Prerendered Counter 1</PageTitle>
@@ -121,13 +122,12 @@ The following example demonstrates the general pattern:
 }
 ```
 
-The following counter component example persists counter state during prerendering and retrieves the state to initialize the component. 
+The following counter component example persists counter state during prerendering and retrieves the state to initialize the component.
 
-`Components/Pages/PrerenderedCounter2.razor`:
+`PrerenderedCounter2.razor`:
 
 ```razor
 @page "/prerendered-counter-2"
-@rendermode InteractiveServer
 @implements IDisposable
 @inject ILogger<PrerenderedCounter2> Logger
 @inject PersistentComponentState ApplicationState
