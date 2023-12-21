@@ -24,17 +24,7 @@ Configure Static File Middleware to serve static assets to clients by calling <x
 
 ## Static files in non-`Development` environments
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section applies to server-side static files in Blazor Web Apps.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to Blazor Server apps.*
-
-:::moniker-end
+*This section applies to server-side static files.*
 
 When running an app locally, static web assets are only enabled by default in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> in the `Program` file.
 
@@ -152,17 +142,7 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 ## File mappings and static file options
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section applies to server-side static files in Blazor Web Apps.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to Blazor Server apps.*
-
-:::moniker-end
+*This section applies to server-side static files.*
 
 To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
 

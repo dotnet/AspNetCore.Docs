@@ -588,14 +588,9 @@ There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 
 ## Server-side rendering
 
-<!-- UPDATE 8.0 Before making a cross-link to the new
-                Prerender article, the Prerender article
-                should receive a basic description of
-                prerendering in Blazor apps. -->
-
 :::moniker range=">= aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. <!-- For more information, see <xref:blazor/components/prerender>. -->
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:blazor/components/prerender>.
 
 :::moniker-end
 

@@ -29,7 +29,7 @@ The UI for this error handling experience is part of the [Blazor project templat
 
 In a Blazor Web App, customize the experience in the `MainLayout` component. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
 
-At the top of `Components/Layout/MainLayout.razor`:
+At the top of `MainLayout.razor`:
 
 ```razor
 @inject IHostEnvironment HostEnvironment
@@ -198,7 +198,7 @@ if (elapsedCount == 2)
 
 Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
 
-`Components/Layout/MainLayout.razor`:
+In `MainLayout.razor`:
 
 ```razor
 <article class="content px-4">
@@ -320,17 +320,7 @@ In production, don't render framework exception messages or stack traces in the 
 
 ## Unhandled exceptions for circuits
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section applies to Blazor Web Apps operating over a circuit.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to Blazor Server apps.*
-
-:::moniker-end
+*This section applies to server-side apps operating over a circuit.*
 
 Razor components with server interactivity enabled are stateful on the server. While users interact with the component on the server, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
 
@@ -752,7 +742,13 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ProductDetails.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
