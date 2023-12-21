@@ -243,7 +243,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 The `BooksService` class uses the following `MongoDB.Driver` members to run CRUD operations against the database:
 
-* [MongoClient](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for running database operations. The constructor of this class is provided the MongoDB connection string:
+* [MongoClient](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for running database operations. The constructor of this class is provided in the MongoDB connection string:
 
   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_ctor" highlight="4-5":::
 
