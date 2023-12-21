@@ -730,7 +730,17 @@ By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run bot
 
 `CallWebAPI.razor`:
 
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/CallWebAPI.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor":::
+
+:::moniker-end
 
 ## Handle errors
 

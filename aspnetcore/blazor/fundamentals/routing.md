@@ -62,7 +62,13 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `BlazorRoute.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BlazorRoute.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
 
@@ -220,7 +226,13 @@ The router uses route parameters to populate the corresponding [component parame
 
 `RouteParameter1.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
 
@@ -258,7 +270,13 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 
 `RouteParameter2.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor" highlight="1":::
 
@@ -333,16 +351,16 @@ In the following example, the route to the `User` component only matches if:
 
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
-| Constraint | Example           | Example Matches                                                                  | Invariant<br>culture<br>matching |
-| ---------- | ----------------- | -------------------------------------------------------------------------------- | :------------------------------: |
-| `bool`     | `{active:bool}`   | `true`, `FALSE`                                                                  | No                               |
-| `datetime` | `{dob:datetime}`  | `2016-12-31`, `2016-12-31 7:32pm`                                                | Yes                              |
-| `decimal`  | `{price:decimal}` | `49.99`, `-1,000.01`                                                             | Yes                              |
-| `double`   | `{weight:double}` | `1.234`, `-1,001.01e8`                                                           | Yes                              |
-| `float`    | `{weight:float}`  | `1.234`, `-1,001.01e8`                                                           | Yes                              |
-| `guid`     | `{id:guid}`       | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No                               |
-| `int`      | `{id:int}`        | `123456789`, `-123456789`                                                        | Yes                              |
-| `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Yes                              |
+Constraint | Example | Example Matches | Invariant<br>culture<br>matching
+--- | --- | --- | :---:
+`bool` | `{active:bool}` | `true`, `FALSE` | No
+`datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Yes
+`decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Yes
+`double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Yes
+`float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Yes
+`guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No
+`int` | `{id:int}` | `123456789`, `-123456789` | Yes
+`long` | `{ticks:long}` | `123456789`, `-123456789` | Yes
 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
@@ -376,6 +394,10 @@ Route constraints also work with [optional parameters](#route-parameters). In th
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+<!--
+    NOTE: Section removed at 8.0 when routing with dots became supported.
+-->
 
 ## Routing with URLs that contain dots
 
@@ -467,7 +489,13 @@ Catch-all route parameters are:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Catchall.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor":::
 
@@ -572,7 +600,13 @@ The following component:
 
 `Navigate.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Nagivate.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
 
@@ -615,7 +649,7 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 * The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling).
 * The destination URL is within the internal base URI space (the app's base path).
 
-If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigations initiated from an interactive runtime. In future releases, additional types of navigations, such as link clicks, may also invoke location changing handlers.
+If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigation initiated from an interactive runtime. In future releases, additional types of navigation, such as link clicks, may also invoke location changing handlers.
 
 When an enhanced navigation occurs, [`LocationChanged` event handlers](#location-changes) registered with Interactive Server and WebAssembly runtimes are typically invoked. There are cases when location changing handlers might not intercept an enhanced navigation. For example, the user might switch to another page before an interactive runtime becomes available. Therefore, it's important that app logic not rely on invoking a location changing handler, as there's no guarantee of the handler executing.
 

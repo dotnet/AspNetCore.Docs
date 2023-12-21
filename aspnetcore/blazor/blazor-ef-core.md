@@ -174,31 +174,31 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/Home.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/Home.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 :::moniker-end
 
@@ -241,31 +241,31 @@ The sample app ensures the context is disposed when the component is disposed:
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 :::moniker-end
 
@@ -273,31 +273,31 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet2":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet2":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 In the preceding example:
 

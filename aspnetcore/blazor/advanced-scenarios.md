@@ -27,7 +27,7 @@ Consider the following `PetDetails` component, which can be manually rendered in
 
 `PetDetails.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/advanced-scenarios/PetDetails.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/PetDetails.razor":::
 
 In the following `BuiltContent` component, the loop in the `CreateComponent` method generates three `PetDetails` components.
 
@@ -37,38 +37,7 @@ In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods wi
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/built-content"
-
-<h1>Build a component</h1>
-
-<div>
-    @CustomRender
-</div>
-
-<button @onclick="RenderComponent">
-    Create three Pet Details components
-</button>
-
-@code {
-    private RenderFragment? CustomRender { get; set; }
-
-    private RenderFragment CreateComponent() => builder =>
-    {
-        for (var i = 0; i < 3; i++) 
-        {
-            builder.OpenComponent(0, typeof(PetDetails));
-            builder.AddAttribute(1, "PetDetailsQuote", "Someone's best friend!");
-            builder.CloseComponent();
-        }
-    };
-
-    private void RenderComponent()
-    {
-        CustomRender = CreateComponent();
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BuiltContent.razor":::
 
 :::moniker-end
 

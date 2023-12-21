@@ -72,26 +72,7 @@ The following is an example counter component and part of an app created from a 
 
 The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app.
 
-```razor
-@page "/counter"
-
-<PageTitle>Counter</PageTitle>
-
-<h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Counter.razor":::
 
 :::moniker-end
 

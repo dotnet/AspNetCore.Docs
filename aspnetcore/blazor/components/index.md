@@ -285,7 +285,7 @@ The following `Counter` component splits presentation HTML and Razor markup from
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CounterPartialClass.razor.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CounterPartialClass.razor.cs":::
 
 :::moniker-end
 
@@ -438,7 +438,7 @@ In the following example, the `BlazorRocksBase` base class derives from <xref:Mi
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/BlazorRocksBase.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/BlazorRocksBase.cs":::
 
 :::moniker-end
 
@@ -650,7 +650,7 @@ The `Heading` component example shown in this section doesn't have an [`@page`][
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/PanelBody.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/PanelBody.cs":::
 
 :::moniker-end
 

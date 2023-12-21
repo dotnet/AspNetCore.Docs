@@ -38,35 +38,7 @@ In the following `ShowImage1` component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/show-image-1"
-
-<h1>Dynamic Image Source Example</h1>
-
-@if (imageSource is not null)
-{
-    <p>
-        <img src="@imageSource" />
-    </p>
-}
-
-@for (var i = 1; i <= 3; i++)
-{
-    var imageId = i;
-    <button @onclick="() => ShowImage(imageId)">
-        Image @imageId
-    </button>
-}
-
-@code {
-    private string? imageSource;
-
-    private void ShowImage(int id)
-    {
-        imageSource = $"images/image{id}.png";
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ShowImage1.razor":::
 
 :::moniker-end
 
@@ -150,36 +122,7 @@ The following `ShowImage2` component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/show-image-2"
-@inject HttpClient Http
-@inject IJSRuntime JS
-
-<h1>Stream Image Data Example</h1>
-
-<p>
-    <img id="image" />
-</p>
-
-<button @onclick="SetImageAsync">
-    Set Image
-</button>
-
-@code {
-    private async Task<Stream> GetImageStreamAsync()
-    {
-        return await Http.GetStreamAsync(
-            "https://avatars.githubusercontent.com/u/9141961");
-    }
-
-    private async Task SetImageAsync()
-    {
-        var imageStream = await GetImageStreamAsync();
-        var dotnetImageStream = new DotNetStreamReference(imageStream);
-        await JS.InvokeVoidAsync("setImage", "image", dotnetImageStream);
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ShowImage2.razor":::
 
 :::moniker-end
 
