@@ -95,7 +95,8 @@ After creating a new app, examine part of the `Program` file:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
 ```
 
 :::moniker-end
@@ -456,7 +457,13 @@ The following Blazor WebAssembly example shows how to detect client-side disposa
 
 <!-- UPDATE 8.0 Do we need to see if the code works in the client of a BWA? -->
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/DetectIncorrectUsagesOfTransientDisposables.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs":::
 
@@ -580,7 +587,13 @@ The following example shows how to detect server-side disposable transient servi
 
 <!-- UPDATE 8.0 Confirm that it works in a BWA -->
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/DetectIncorrectUsagesOfTransientDisposables.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs":::
 
@@ -689,17 +702,7 @@ public class TransientDependency
 
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-:::moniker range=">= aspnetcore-8.0"
-
-`Components/Pages/TransientExample.razor`:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 `TransientExample.razor`:
-
-:::moniker-end
 
 ```razor
 @page "/transient-example"

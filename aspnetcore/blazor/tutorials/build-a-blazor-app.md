@@ -190,7 +190,7 @@ Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to h
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/TodoItem.cs":::
 
 :::moniker-end
 
@@ -419,41 +419,7 @@ The completed `Todo` component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/todo"
-@rendermode InteractiveServer
-
-<PageTitle>Todo</PageTitle>
-
-<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
-
-<ul>
-    @foreach (var todo in todos)
-    {
-        <li>
-            <input type="checkbox" @bind="todo.IsDone" />
-            <input @bind="todo.Title" />
-        </li>
-    }
-</ul>
-
-<input placeholder="Something todo" @bind="newTodo" />
-<button @onclick="AddTodo">Add todo</button>
-
-@code {
-    private List<TodoItem> todos = new();
-    private string? newTodo;
-
-    private void AddTodo()
-    {
-        if (!string.IsNullOrWhiteSpace(newTodo))
-        {
-            todos.Add(new TodoItem { Title = newTodo });
-            newTodo = string.Empty;
-        }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/Todo.razor":::
 
 :::moniker-end
 

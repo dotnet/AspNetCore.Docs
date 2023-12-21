@@ -44,35 +44,23 @@ Configuration in app settings files are loaded by default. In the following exam
 
 `wwwroot/appsettings.json`:
 
-:::moniker range=">= aspnetcore-7.0"
-
-:::code language="json" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="json" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="json" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="json" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
-
-:::moniker-end
+```json
+{
+    "h1FontSize": "50px"
+}
+```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
 `ConfigExample.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/ConfigExample.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/configuration/ConfigExample.razor":::
 
@@ -145,35 +133,33 @@ using Microsoft.Extensions.Configuration.Memory;
 
 In the `Program` file:
 
-:::moniker range=">= aspnetcore-7.0"
+```csharp
+var vehicleData = new Dictionary<string, string?>()
+{
+    { "color", "blue" },
+    { "type", "car" },
+    { "wheels:count", "3" },
+    { "wheels:brand", "Blazin" },
+    { "wheels:brand:type", "rally" },
+    { "wheels:year", "2008" },
+};
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
+var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
-
-:::moniker-end
+builder.Configuration.Add(memoryConfig);
+```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
 `MemoryConfig.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/MemoryConfig.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/configuration/MemoryConfig.razor":::
 

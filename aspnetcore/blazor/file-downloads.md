@@ -93,35 +93,7 @@ The following component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/file-download-1"
-@using System.IO
-@inject IJSRuntime JS
-
-<h1>File Download Example 1</h1>
-
-<button @onclick="DownloadFileFromStream">
-    Download File From Stream
-</button>
-
-@code {
-    private Stream GetFileStream()
-    {
-        var binaryData = new byte[50 * 1024];
-        var fileStream = new MemoryStream(binaryData);
-        return fileStream;
-    }
-
-    private async Task DownloadFileFromStream()
-    {
-        var fileStream = GetFileStream();
-        var fileName = "log.bin";
-        using var streamRef = new DotNetStreamReference(stream: fileStream);
-
-        await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload1.razor":::
 
 :::moniker-end
 
@@ -159,7 +131,13 @@ The example in this section uses a download file named `quote.txt`, which is pla
 
 `wwwroot/files/quote.txt`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="text" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/wwwroot/files/quote.txt":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="text" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/wwwroot/files/quote.txt":::
 
@@ -201,26 +179,7 @@ Change the port in the following example to match the localhost development port
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/file-download-2"
-@inject IJSRuntime JS
-
-<h1>File Download Example 2</h1>
-
-<button @onclick="DownloadFileFromURL">
-    Download File From URL
-</button>
-
-@code {
-    private async Task DownloadFileFromURL()
-    {
-        var fileName = "quote.txt";
-        var fileURL = Path.Combine("https://localhost:7029", "files", fileName);
-
-        await JS.InvokeVoidAsync("triggerFileDownload", fileName, fileURL);
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
 
 :::moniker-end
 

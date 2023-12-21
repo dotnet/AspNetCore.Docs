@@ -239,7 +239,7 @@ Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be pa
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ComponentMetadata.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ComponentMetadata.cs":::
 
 :::moniker-end
 
