@@ -446,7 +446,7 @@ For more information and configuration guidance, consult the following resources
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/MeasureLatency.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/MeasureLatency.razor":::
 
 :::moniker-end
 

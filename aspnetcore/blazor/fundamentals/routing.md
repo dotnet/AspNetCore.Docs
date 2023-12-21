@@ -602,7 +602,7 @@ The following component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Nagivate.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Navigate.razor":::
 
 :::moniker-end
 

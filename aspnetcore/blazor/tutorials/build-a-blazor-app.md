@@ -190,7 +190,7 @@ Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to h
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/TodoItem.cs":::
 
 :::moniker-end
 
