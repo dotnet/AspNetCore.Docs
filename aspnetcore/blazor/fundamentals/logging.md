@@ -506,8 +506,6 @@ In the following `CustomLoggerExample` component:
 
 ```razor
 @page "/custom-logger-example"
-@rendermode InteractiveWebAssembly
-@using Microsoft.Extensions.Logging
 @inject ILogger<CustomLoggerExample> Logger
 
 <p>
