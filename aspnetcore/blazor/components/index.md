@@ -347,6 +347,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Sections
 using Microsoft.AspNetCore.Components.Web;
+using static Microsoft.AspNetCore.Components.Web.RenderMode;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.JSInterop;
 ```
@@ -356,6 +357,12 @@ Typical namespaces also include the namespace of the app and the namespace corre
 ```csharp
 using BlazorSample;
 using BlazorSample.Components;
+```
+
+Additional folders can also be included, such as the `Layout` folder:
+
+```razor
+using BlazorSample.Components.Layout;
 ```
 
 :::moniker-end
