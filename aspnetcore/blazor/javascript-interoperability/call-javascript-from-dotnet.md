@@ -54,57 +54,22 @@ The following example is based on [`TextDecoder`](https://developer.mozilla.org/
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
 
-The following `CallJsExample1` component:
+The following component:
 
 * Invokes the `convertArray` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when selecting a button (**`Convert Array`**).
 * After the JS function is called, the passed array is converted into a string. The string is returned to the component for display (`text`).
 
-`CallJsExample1.razor`:
-
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-1"
-@inject IJSRuntime JS
+`CallJs1.razor`:
 
-<h1>Call JS <code>convertArray</code> Function</h1>
-
-<p>
-    <button @onclick="ConvertArray">Convert Array</button>
-</p>
-
-<p>
-    @text
-</p>
-
-<p>
-    Quote &copy;2005 <a href="https://www.uphe.com">Universal Pictures</a>: 
-    <a href="https://www.uphe.com/movies/serenity-2005">Serenity</a><br>
-    <a href="https://www.imdb.com/name/nm0472710/">David Krumholtz on IMDB</a>
-</p>
-
-@code {
-    private MarkupString text;
-
-    private uint[] quoteArray = 
-        new uint[]
-        {
-            60, 101, 109, 62, 67, 97, 110, 39, 116, 32, 115, 116, 111, 112, 32,
-            116, 104, 101, 32, 115, 105, 103, 110, 97, 108, 44, 32, 77, 97,
-            108, 46, 60, 47, 101, 109, 62, 32, 45, 32, 77, 114, 46, 32, 85, 110,
-            105, 118, 101, 114, 115, 101, 10, 10,
-        };
-
-    private async Task ConvertArray()
-    {
-        text = new(await JS.InvokeAsync<string>("convertArray", quoteArray));
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
 
@@ -112,17 +77,23 @@ The following `CallJsExample1` component:
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample1.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample1.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34-35":::
 
@@ -156,45 +127,19 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 ### Component (`.razor`) example (`InvokeVoidAsync`)
 
-`TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample2` component.
-
-`CallJsExample2.razor`:
+`TickerChanged` calls the `handleTickerChanged1` method in the following component.
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-2"
-@inject IJSRuntime JS
+`CallJs2.razor`:
 
-<h1>Call JS Example 2</h1>
-
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
-
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
-
-@code {
-    private Random r = new();
-    private string? stockSymbol;
-    private decimal price;
-
-    private async Task SetStock()
-    {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        await JS.InvokeVoidAsync("displayTickerAlert1", stockSymbol, price);
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
 
@@ -202,17 +147,23 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample2.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample2.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
 
@@ -222,7 +173,13 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `JsInteropClasses1.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/JsInteropClasses1.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/JsInteropClasses1.cs":::
 
@@ -246,57 +203,19 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 :::moniker-end
 
-`TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
-
-`CallJsExample3.razor`:
+`TickerChanged` calls the `handleTickerChanged1` method in the following component.
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-3"
-@implements IDisposable
-@inject IJSRuntime JS
+`CallJs3.razor`:
 
-<h1>Call JS Example 3</h1>
-
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
-
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
-
-@code {
-    private Random r = new();
-    private string? stockSymbol;
-    private decimal price;
-    private JsInteropClasses1? jsClass;
-
-    protected override void OnInitialized()
-    {
-        jsClass = new(JS);
-    }
-
-    private async Task SetStock()
-    {
-        if (jsClass is not null)
-        {
-            stockSymbol = 
-                $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-            price = r.Next(1, 101);
-            await jsClass.TickerChanged(stockSymbol, price);
-        }
-    }
-
-    public void Dispose() => jsClass?.Dispose();
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample3.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor":::
 
@@ -304,17 +223,23 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample3.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample3.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample3.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor":::
 
@@ -344,54 +269,19 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 ### Component (`.razor`) example (`InvokeAsync`)
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample4` component.
-
-`CallJsExample4.razor`:
+`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-4"
-@inject IJSRuntime JS
+`CallJs4.razor`:
 
-<h1>Call JS Example 4</h1>
-
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
-
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
-
-@if (result is not null)
-{
-    <p>@result</p>
-}
-
-@code {
-    private Random r = new();
-    private string? stockSymbol;
-    private decimal price;
-    private string? result;
-
-    private async Task SetStock()
-    {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        var interopResult = 
-            await JS.InvokeAsync<string>("displayTickerAlert2", stockSymbol, price);
-        result = $"Result of TickerChanged call for {stockSymbol} at " +
-            $"{price.ToString("c")}: {interopResult}";
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample4.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
 
@@ -399,17 +289,23 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample4.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample4.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample4.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
 
@@ -419,7 +315,13 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `JsInteropClasses2.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/JsInteropClasses2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/JsInteropClasses2.cs":::
 
@@ -443,65 +345,19 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 :::moniker-end
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
-
-`CallJsExample5.razor`:
+`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following component.
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-5"
-@implements IDisposable
-@inject IJSRuntime JS
+`CallJs5.razor`:
 
-<h1>Call JS Example 5</h1>
-
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
-
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
-
-@if (result is not null)
-{
-    <p>@result</p>
-}
-
-@code {
-    private Random r = new();
-    private string? stockSymbol;
-    private decimal price;
-    private JsInteropClasses2? jsClass;
-    private string? result;
-
-    protected override void OnInitialized()
-    {
-        jsClass = new(JS);
-    }
-
-    private async Task SetStock()
-    {
-        if (jsClass is not null)
-        {
-            stockSymbol = 
-                $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-            price = r.Next(1, 101);
-            var interopResult = await jsClass.TickerChanged(stockSymbol, price);
-            result = $"Result of TickerChanged call for {stockSymbol} at " +
-                $"{price.ToString("c")}: {interopResult}";
-        }
-    }
-
-    public void Dispose() => jsClass?.Dispose();
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs5.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample5.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
 
@@ -509,17 +365,23 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample5.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample5.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,38-40,43":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample5.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,38-40,43":::
 
@@ -611,62 +473,19 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 <xref:Microsoft.JSInterop.IJSRuntime> imports the module as an <xref:Microsoft.JSInterop.IJSObjectReference>, which represents a reference to a JS object from .NET code. Use the <xref:Microsoft.JSInterop.IJSObjectReference> to invoke exported JS functions from the module.
 
-`CallJsExample6.razor`:
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-6"
-@implements IAsyncDisposable
-@inject IJSRuntime JS
+`CallJs6.razor`:
 
-<h1>Call JS Example 6</h1>
-
-<p>
-    <button @onclick="TriggerPrompt">Trigger browser window prompt</button>
-</p>
-
-<p>
-    @result
-</p>
-
-@code {
-    private IJSObjectReference? module;
-    private string? result;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", 
-                "./scripts.js");
-        }
-    }
-
-    private async Task TriggerPrompt()
-    {
-        result = await Prompt("Provide some text");
-    }
-
-    public async ValueTask<string?> Prompt(string message) =>
-        module is not null ? 
-            await module.InvokeAsync<string>("showPrompt", message) : null;
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (module is not null)
-        {
-            await module.DisposeAsync();
-        }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs6.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample6.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor":::
 
@@ -674,11 +493,15 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample6.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+`CallJsExample6.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor":::
 
@@ -950,25 +773,17 @@ For a parent component to make an element reference available to other component
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
 
-`CallJsExample7.razor` (parent component):
-
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-7"
+`CallJs7.razor` (parent component):
 
-<h1>Call JS Example 7</h1>
-
-<h2 @ref="title">Hello, world!</h2>
-
-Welcome to your new app.
-
-<SurveyPrompt Parent="@this" Title="How is Blazor working for you?" />
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs7.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample7.razor` (parent component):
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
 
@@ -976,11 +791,15 @@ Welcome to your new app.
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample7.razor` (parent component):
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+`CallJsExample7.razor` (parent component):
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
 
@@ -988,13 +807,23 @@ Welcome to your new app.
 
 :::moniker range="< aspnetcore-5.0"
 
+`CallJsExample7.razor` (parent component):
+
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
 
 :::moniker-end
 
-`CallJsExample7.razor.cs`:
+:::moniker range=">= aspnetcore-8.0"
 
-:::moniker range=">= aspnetcore-7.0"
+`CallJs7.razor.cs`:
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/CallJs7.razor.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample7.razor.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs":::
 
@@ -1002,17 +831,23 @@ Welcome to your new app.
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample7.razor.cs`:
+
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample7.razor.cs`:
+
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample7.razor.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs":::
 
@@ -1022,7 +857,13 @@ In the preceding example, the namespace of the app is `BlazorSample`. If testing
 
 `SurveyPrompt.razor` (child component):
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/SurveyPrompt.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor":::
 
@@ -1048,7 +889,13 @@ In the preceding example, the namespace of the app is `BlazorSample`. If testing
 
 `SurveyPrompt.razor.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/SurveyPrompt.razor.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs":::
 
@@ -1205,74 +1052,27 @@ Add the following `<link>` element to the `<head>` element markup ([location of 
     rel="stylesheet" />
 ```
 
-`CallJsExample8.razor`:
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-8"
-@implements IAsyncDisposable
-@inject IJSRuntime JS
+`CallJs8.razor`:
 
-<h1>Call JS Example 8</h1>
-
-<div @ref="mapElement" style='width:400px;height:300px'></div>
-
-<button @onclick="() => ShowAsync(51.454514, -2.587910)">Show Bristol, UK</button>
-<button @onclick="() => ShowAsync(35.6762, 139.6503)">Show Tokyo, Japan</button>
-
-@code
-{
-    private ElementReference mapElement;
-    private IJSObjectReference? mapModule;
-    private IJSObjectReference? mapInstance;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            mapModule = await JS.InvokeAsync<IJSObjectReference>(
-                "import", "./mapComponent.js");
-            mapInstance = await mapModule.InvokeAsync<IJSObjectReference>(
-                "addMapToElement", mapElement);
-        }
-    }
-
-    private async Task ShowAsync(double latitude, double longitude)
-    {
-        if (mapModule is not null && mapInstance is not null)
-        {
-            await mapModule.InvokeVoidAsync("setMapCenter", mapInstance, 
-                latitude, longitude).AsTask();
-        }
-    }
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (mapInstance is not null)
-        {
-            await mapInstance.DisposeAsync();
-        }
-
-        if (mapModule is not null)
-        {
-            await mapModule.DisposeAsync();
-        }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs8.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample8.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+`CallJsExample8.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor":::
 
@@ -1316,14 +1116,14 @@ Provide a `receiveByteArray` JS function. The function is called with <xref:Micr
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
 
-`CallJsExample9.razor`:
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
+`CallJs9.razor`:
+
 ```razor
-@page "/call-js-example-9"
+@page "/call-js-9"
 @inject IJSRuntime JS
 
 <h1>Call JS Example 9</h1>
@@ -1360,6 +1160,8 @@ Provide a `receiveByteArray` JS function. The function is called with <xref:Micr
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+`CallJsExample9.razor`:
 
 ```razor
 @page "/call-js-example-9"
@@ -1455,49 +1257,17 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 > `Could not find 'nonFunction' ('nonFunction' was undefined).`
 
-`CallJsExample11.razor`:
-
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/call-js-example-11"
-@inject IJSRuntime JS
+`CallJs11.razor`:
 
-<h1>Call JS Example 11</h1>
-
-<p>
-    <button @onclick="CatchUndefinedJSFunction">Catch Exception</button>
-</p>
-
-<p>
-    @result
-</p>
-
-<p>
-    @errorMessage
-</p>
-
-@code {
-    private string? errorMessage;
-    private string? result;
-
-    private async Task CatchUndefinedJSFunction()
-    {
-        try
-        {
-            result = await JS.InvokeAsync<string>("nonFunction");
-        }
-        catch (JSException e)
-        {
-            errorMessage = $"Error Message: {e.Message}";
-        }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallJs11.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+`CallJsExample11.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
@@ -1505,17 +1275,23 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+`CallJsExample11.razor`:
+
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+`CallJsExample11.razor`:
+
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+`CallJsExample11.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
@@ -1560,20 +1336,20 @@ The following JS `Helpers` class contains a simulated long-running function, `lo
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
 
-The following `CallJsExample12` component:
+The following component:
 
 * Invokes the JS function `longRunningFn` when the **`Start Task`** button is selected. A <xref:System.Threading.CancellationTokenSource> is used to manage the execution of the long-running function. <xref:System.Threading.CancellationToken.Register%2A?displayProperty=nameWithType> sets a JS interop call delegate to execute the JS function `stopFn` when the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled.
 * When the **`Cancel Task`** button is selected, the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled with a call to <xref:System.Threading.CancellationTokenSource.Cancel%2A>.
 * The <xref:System.Threading.CancellationTokenSource> is disposed in the `Dispose` method.
 
-`CallJsExample12.razor`:
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
+`CallJs12.razor`:
+
 ```razor
-@page "/call-js-example-12"
+@page "/call-js-12"
 @inject IJSRuntime JS
 
 <h1>Cancel long-running JS interop</h1>
@@ -1610,6 +1386,8 @@ The following `CallJsExample12` component:
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+`CallJsExample12.razor`:
 
 ```razor
 @page "/call-js-example-12"
