@@ -276,7 +276,8 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorSample.CustomEvents;
 
-[EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("oncustomevent", typeof(CustomEventArgs),
+    enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers
 {
 }
@@ -556,7 +557,7 @@ The following `Child` component demonstrates how a button's `onclick` handler is
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/event-handling/Child.razor":::
 

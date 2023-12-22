@@ -234,11 +234,11 @@ You can see the value of the <xref:Microsoft.AspNetCore.Components.WebAssembly.H
 
 When prerendering occurs on the server, the component is rendered in the `Development` environment:
 
-> :::no-loc text="**Environment:** Development":::
+> **:::no-loc text="Environment:":::** :::no-loc text="Development":::
 
 When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the Blazor WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment on the client:
 
-> :::no-loc text="**Environment:** Staging":::
+> **:::no-loc text="Environment:":::** :::no-loc text="Staging":::
 
 The preceding example demonstrates why we recommend setting the server environment to match the client environment for development, testing, and production deployments.
 

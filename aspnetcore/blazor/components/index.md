@@ -75,7 +75,13 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
   ...
   ```
 
-* [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is parsed or functions. For example, the [`@bind`][10] directive attribute for an `<input>` element binds data to the element's value.
+* [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is parsed or functions.
+
+  Example:
+
+  ```razor
+  <input @bind="episodeId" />
+  ```
 
 Directives and directive attributes used in components are explained further in this article and other articles of the Blazor documentation set. For general information on Razor syntax, see <xref:mvc/views/razor>.
 
@@ -341,6 +347,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Sections
 using Microsoft.AspNetCore.Components.Web;
+using static Microsoft.AspNetCore.Components.Web.RenderMode;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.JSInterop;
 ```
@@ -350,6 +357,12 @@ Typical namespaces also include the namespace of the app and the namespace corre
 ```csharp
 using BlazorSample;
 using BlazorSample.Components;
+```
+
+Additional folders can also be included, such as the `Layout` folder:
+
+```razor
+using BlazorSample.Components.Layout;
 ```
 
 :::moniker-end
