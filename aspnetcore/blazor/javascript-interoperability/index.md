@@ -256,6 +256,8 @@ Load JavaScript (JS) code using any of the following approaches:
 
 :::moniker-end
 
+<!-- UPDATE 8.0 Confirm for >=8.0 now that the warning is being removed. -->
+
 > [!WARNING]
 > Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
 
