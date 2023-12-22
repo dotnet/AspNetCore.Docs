@@ -75,7 +75,13 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
   ...
   ```
 
-* [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is parsed or functions. For example, the [`@bind`][10] directive attribute for an `<input>` element binds data to the element's value.
+* [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is parsed or functions.
+
+  Example:
+
+  ```razor
+  <input @bind="episodeId" />
+  ```
 
 Directives and directive attributes used in components are explained further in this article and other articles of the Blazor documentation set. For general information on Razor syntax, see <xref:mvc/views/razor>.
 
