@@ -193,9 +193,9 @@ Because requesting items from a remote data source might take some time, you hav
 
 ## Empty content
 
-Use the `EmptyContent` parameter to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
+Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.EmptyContent> parameter to supply content when the component has loaded and either <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A> is empty or <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderResult%601.TotalItemCount%2A?displayProperty=nameWithType> is zero.
 
-EmptyContent.razor:
+`EmptyContent.razor`:
 
 ```razor
 @page "/empty-content"
