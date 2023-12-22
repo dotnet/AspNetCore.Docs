@@ -70,7 +70,7 @@ The following is an example counter component and part of an app created from a 
 
 :::moniker range=">= aspnetcore-8.0"
 
-The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app.
+The component assumes that an interactive render mode is inherited from a parent component or applied globally to the app.
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Counter.razor":::
 
@@ -151,15 +151,17 @@ Documentation sample apps are available for inspection and download:
 
 :::moniker range=">= aspnetcore-8.0"
 
-Samples apps to accompany Blazor articles compile and run for the following scenarios:
+Samples apps in the repository:
+
+<!-- UPDATE 8.0 Uncomment link when article is live -->
 
 * Blazor Web App
 * Blazor WebAssembly
-* Blazor Web App with EF Core
-* Blazor Web App with SignalR
-* Blazor Web App with OIDC and Aspire
-* Blazor WebAssembly scopes-enabled logging
-* Blazor WebAssembly with ASP.NET Core Identity
+* Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
+* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
+* Blazor Web App with OIDC and Aspire <!-- (<xref:blazor/security/server/blazor-web-app-with-oidc-and-aspire>) -->
+* Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
+* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity>)
 
 :::moniker-end
 
