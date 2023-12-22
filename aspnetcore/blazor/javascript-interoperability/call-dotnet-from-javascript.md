@@ -1499,7 +1499,7 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
 
 `CallDotNetExample8.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_BlazorWebApp/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotnetExample8.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotnetExample8.razor":::
 
 :::moniker-end
 
@@ -1507,7 +1507,7 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
 
 `CallDotNetExample8.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_BlazorWebApp/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotnetExample8.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotnetExample8.razor":::
 
 :::moniker-end
 
