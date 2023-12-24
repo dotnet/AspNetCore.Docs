@@ -11,7 +11,7 @@ Documentation component examples usually don't configure an interactive render m
 
 * In a standalone Blazor WebAssembly app, the components function as shown and don't require a render mode because components always run interactively on WebAssembly in a Blazor WebAssembly app.
 
-When using the the Interactive WebAssembly or Interactive Auto render modes, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
+When using the Interactive WebAssembly or Interactive Auto render modes, keep in mind that all of the component code is compiled and sent to the client, where users can decompile and inspect it. Don't place private code, app secrets, or other sensitive information in client-rendered components.
 
 :::moniker-end
 
