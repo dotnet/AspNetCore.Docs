@@ -57,4 +57,4 @@ Writeable session state protocol starts with the same as the readonly, but diffe
 - Requires an additional `PUT` request to update the state
 - The initial `GET` request must be kept open until the session is done; if closed, the session will not be able to be updated
 
-![Writeable session state protocol starts with the the same as the readonl](~/migration/inc/overview/static/writesession.png)
+![Writeable session state protocol starts with the same as the readonly](~/migration/inc/overview/static/writesession.png)

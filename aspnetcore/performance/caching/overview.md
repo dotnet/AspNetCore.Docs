@@ -61,7 +61,7 @@ The output caching middleware enables caching of HTTP responses. Output caching 
 
 * Resource locking mitigates the risk of cache stampede and thundering herd.
 
-  *Cache stampede* happens when a frequently used cache entry is revoked, and too many requests try to repopulate the same cache entry at the same time. *Thundering herd* is similar: a burst of requests for the same response that isn't already in a cache entry. Resource locking ensures that all requests for a given response wait for the the first request to populate the cache. Response caching doesn't have a resource locking feature.
+  *Cache stampede* happens when a frequently used cache entry is revoked, and too many requests try to repopulate the same cache entry at the same time. *Thundering herd* is similar: a burst of requests for the same response that isn't already in a cache entry. Resource locking ensures that all requests for a given response wait for the first request to populate the cache. Response caching doesn't have a resource locking feature.
 
 * Cache revalidation minimizes bandwidth usage.
 
