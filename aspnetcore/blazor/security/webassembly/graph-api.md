@@ -285,7 +285,7 @@ public class CustomAccountFactory
 
 Configure the MSAL authentication to use the custom user account factory.
 
-Confirm that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Confirm that the `Program` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -634,7 +634,7 @@ public class CustomAccountFactory
 
 Configure the MSAL authentication to use the custom user account factory.
 
-Confirm that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Confirm that the `Program` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -928,7 +928,7 @@ public class CustomAccountFactory
 }
 ```
 
-The MSAL authentication is configured to use the custom user account factory. Start by confirming that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+The MSAL authentication is configured to use the custom user account factory. Start by confirming that the `Program` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;

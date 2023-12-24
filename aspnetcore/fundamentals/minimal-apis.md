@@ -232,7 +232,7 @@ When `ValidateOnBuild` is `true`, the DI container validates the service configu
 
 When `ValidateScopes` is `true`, the DI container validates that a scoped service isn't resolved from the root scope. Resolving a scoped service from the root scope can result in a memory leak because the services is retained in memory longer than the scope of the request.
 
-`ValidateScopes` and `ValidateOnBuild` are false by default in in non-Development modes for performance reasons.
+`ValidateScopes` and `ValidateOnBuild` are false by default in non-Development modes for performance reasons.
 
 The following code shows `ValidateScopes` is enabled by default in development mode but disabled in release mode:
 

@@ -1344,7 +1344,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-For the **:::no-loc text="Client":::** project's the `Program` file file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project). Common services are those that the developer registers for use by both the client and server projects.
+For the **:::no-loc text="Client":::** project's the `Program` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -1370,7 +1370,7 @@ await builder.Build().RunAsync();
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In the **:::no-loc text="Server":::** project's the `Program` file file, register the following additional services and call `ConfigureCommonServices`:
+In the **:::no-loc text="Server":::** project's the `Program` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;

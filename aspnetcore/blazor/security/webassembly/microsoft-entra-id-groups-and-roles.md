@@ -354,7 +354,7 @@ The preceding code ignores group membership claims (`groups`) that are ME-ID Adm
 
 In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
-Confirm that the `Program` file file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Confirm that the `Program` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
