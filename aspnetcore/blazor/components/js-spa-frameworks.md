@@ -49,7 +49,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker range=">= aspnetcore-8.0"
 
-* In a Blazor Web App app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> in the server-side `Program` file:
+* In a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> in the server-side `Program` file:
 
   ```csharp
   builder.Services.AddRazorComponents()
@@ -401,7 +401,7 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file to call call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents%2A?displayProperty=nameWithType>:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file to call <xref:Microsoft.AspNetCore.Components.Web.CustomElementsJSComponentConfigurationExtensions.RegisterCustomElement%2A> on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.RootComponents%2A?displayProperty=nameWithType>:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>

@@ -179,7 +179,7 @@ Kestrel only shows `WWW-Authenticate: Negotiate`
 
 The `WWW-Authenticate: Negotiate` header means that the server can use NTLM or Kerberos. Kestrel requires the [`Negotiate` header prefix](https://www.ietf.org/rfc/rfc4559.txt), it doesn’t support directly specifying `NTLM` in the request or response auth headers. NTLM is supported in Kestrel, but it must be sent as `Negotiate`.
 
-On Kestrel, to see if NTLM or Kerberos is used, Base64 decode the the header and it shows either `NTLM` or `HTTP`. `HTTP` indicates Kerberos was used.
+On Kestrel, to see if NTLM or Kerberos is used, Base64 decode the header and it shows either `NTLM` or `HTTP`. `HTTP` indicates Kerberos was used.
 
 ### Linux and macOS environment configuration
 
