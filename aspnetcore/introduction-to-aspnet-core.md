@@ -20,7 +20,7 @@ With ASP.NET Core, you can:
 * Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
-* Run on [.NET Core](/dotnet/core/introduction).
+* Run on [.NET](/dotnet/core/introduction).
 
 ## Why choose ASP.NET Core?
 
