@@ -37,8 +37,6 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 ## Store the Google client ID and secret
 
-Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
-
 Store sensitive settings such as the Google client ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
 1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
@@ -54,6 +52,8 @@ Store sensitive settings such as the Google client ID and secret values with [Se
 You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 
 ## Configure Google authentication
+
+Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
 
 :::moniker range="< aspnetcore-6.0"
 
