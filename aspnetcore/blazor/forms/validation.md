@@ -1356,7 +1356,7 @@ public class CustomFieldClassProvider : FieldCssClassProvider
     public override string GetFieldCssClass(EditContext editContext, 
         in FieldIdentifier fieldIdentifier)
     {
-        var isValid = editContext.isValid(fieldIdentifier);
+        var isValid = editContext.IsValid(fieldIdentifier);
 
         return isValid ? "validField" : "invalidField";
     }
@@ -1507,7 +1507,7 @@ public class CustomFieldClassProvider2 : FieldCssClassProvider
     {
         if (fieldIdentifier.FieldName == "Name")
         {
-            var isValid = editContext.isValid(fieldIdentifier);
+            var isValid = editContext.IsValid(fieldIdentifier);
 
             return isValid ? "validField" : "invalidField";
         }
@@ -1609,7 +1609,7 @@ public class CustomFieldClassProvider3 : FieldCssClassProvider
     public override string GetFieldCssClass(EditContext editContext,
         in FieldIdentifier fieldIdentifier)
     {
-        var isValid = editContext.isValid(fieldIdentifier);
+        var isValid = editContext.IsValid(fieldIdentifier);
 
         if (fieldIdentifier.FieldName == "Name")
         {
