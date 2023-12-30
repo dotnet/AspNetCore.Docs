@@ -576,9 +576,21 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 The `?` following `handler` means the route parameter is optional.
 
+:::moniker range=">= aspnetcore-8.0"
+
 ## Collocation of JavaScript (JS) files
 
-[!INCLUDE[](~/includes/js-collocation.md)]
+[!INCLUDE[](~/includes/js-collocation-net8-or-later.md)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+## Collocation of JavaScript (JS) files
+
+[!INCLUDE[](~/includes/js-collocation-net7-or-earlier.md)]
+
+:::moniker-end
 
 ## Advanced configuration and settings
 

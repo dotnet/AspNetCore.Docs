@@ -41,7 +41,7 @@ Collocated JS files are publicly addressable using the ***path to the file in th
   }
   ```
 
-  In the `OnAfterRenderAsync` method of the `Index` component (`Index.razor`):
+  In the `OnAfterRenderAsync` method of the `Index` component (`Index.razor`) with `module` is a private nullable <xref:Microsoft.JSInterop.IJSObjectReference> of the component class (`private IJSObjectReference? module;`):
 
   ```razor
   module = await JS.InvokeAsync<IJSObjectReference>(

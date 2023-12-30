@@ -256,7 +256,7 @@ In a Razor component:
 
 @code {
     private string dataResourceText = "Loading resource ...";
-    private IJSObjectReference module;
+    private IJSObjectReference? module;
     private string result;
 
     protected override async Task OnInitializedAsync()

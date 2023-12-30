@@ -375,11 +375,19 @@ Rendered `Jeep` component:
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
 
 ## Create an RCL with JavaScript files collocated with components
 
-[!INCLUDE[](~/includes/js-collocation.md)]
+[!INCLUDE[](~/includes/js-collocation-net8-or-later.md)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+## Create an RCL with JavaScript files collocated with components
+
+[!INCLUDE[](~/includes/js-collocation-net7-or-earlier.md)]
 
 :::moniker-end
 
