@@ -321,7 +321,7 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
-[!INCLUDE[](~/includes/js-interop/8.0/js-collocation.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/8.0/js-collocation.md)]
 
 For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
@@ -331,7 +331,7 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
-[!INCLUDE[](~/includes/js-interop/7.0/js-collocation.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/7.0/js-collocation.md)]
 
 For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
