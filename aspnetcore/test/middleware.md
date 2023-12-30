@@ -108,6 +108,45 @@ public async Task TestMiddleware_ExpectedResponse()
 
 As with the earlier example that tested for a *404 - Not Found* response, check the opposite for each `Assert` statement in the preceding test. The check confirms that the test fails correctly when the middleware is operating normally. After you've confirmed that the false positive test works, set the final `Assert` statements for the expected conditions and values of the test. Run it again to confirm that the test passes.
 
+## Adding request routes
+
+Often it is helpful to add some routes to the TestServer for more realistic scenarios. This can be done by configuring routing add adding routes in the configuration, this time using the test HttpClient (but the same approach works with the test `server.SendAsync` approach used above:
+
+```csharp
+	[Fact]
+	public async Task TestWithEndpoint_ExpectedResponse ()
+	{
+		using var host = await new HostBuilder()
+			.ConfigureWebHost(webBuilder =>
+			{
+				webBuilder
+					.UseTestServer()
+					.ConfigureServices(services =>
+					{
+						services.AddRouting();
+					})
+					.Configure(app =>
+					{
+						app.UseRouting();
+						app.UseEndpoints(endpoints =>
+						{
+							endpoints.MapGet("/hello", () =>
+								TypedResults.Text("Hello Tests"));
+						});
+					});
+			})
+			.StartAsync();
+
+		var client = host.GetTestClient();
+
+		var response = await client.GetAsync("/hello");
+
+		Assert.True(response.IsSuccessStatusCode);
+		var responseBody = await response.Content.ReadAsStringAsync();
+		Assert.Equal("Hello Tests", responseBody);
+```
+
+
 ## TestServer limitations
 
 TestServer:
