@@ -48,6 +48,9 @@ Collocated JS files are publicly addressable using the ***path to the file in th
       "import", "./Components/Pages/Index.razor.js");
   ```
 
+  > [!NOTE]
+  > When using JS modules, confirm that the code implements either <xref:System.IDisposable> or <xref:System.IAsyncDisposable> and that the code disposes of JS object references. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
   When the app is published, the framework automatically moves the script to the web root. In the preceding example, the script is moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Components\Pages\Index.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks). No change is required to the script's relative URL in the `Index` component.
 
 * For scripts provided by a Razor class library (RCL):
