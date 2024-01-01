@@ -36,7 +36,9 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 <HeadContent>
     @*
         Change the {PATH} placeholder in the next 
-        line to the path of the component in the app.
+        line to the path of the collocated JS file 
+        in the app.
+
         Example: Components/Pages
     *@
     <script type="text/javascript" 
@@ -111,7 +113,9 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
         {
             /*
                 Change the {PATH} placeholder in the next 
-                line to the path of the component in the app.
+                line to the path of the collocated JS file 
+                in the app.
+
                 Example: Components/Pages
             */
             module = await JS.InvokeAsync<IJSObjectReference>("import",
