@@ -109,11 +109,11 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
     {
         if (firstRender)
         {
-            @*
+            /*
                 Change the {PATH} placeholder in the next 
                 line to the path of the component in the app.
                 Example: Components/Pages
-            *@
+            */
             module = await JS.InvokeAsync<IJSObjectReference>("import",
                 "./{PATH}/JsCollocation2.razor.js");
         }
