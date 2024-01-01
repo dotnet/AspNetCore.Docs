@@ -21,7 +21,13 @@ This section and the following examples are primarily focused on explaining JS f
 The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>. The `{PATH}` placeholder is the path to the component.
 
 > [!IMPORTANT]
-> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component.
+> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages`). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
+
+Add the following script after the Blazor script ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)):
+
+```html
+<script src="{PATH}/JsCollocation1.razor.js"></script>
+```
 
 `JsCollocation1` component (`{PATH}/JsCollocation1.razor`):
 
@@ -32,18 +38,6 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 <PageTitle>JS Collocation 1</PageTitle>
 
 <h1>JS Collocation Example 1</h1>
-
-<HeadContent>
-    @*
-        Change the {PATH} placeholder in the next 
-        line to the path of the collocated JS file 
-        in the app.
-
-        Example: Components/Pages
-    *@
-    <script type="text/javascript" 
-        src="./{PATH}/JsCollocation1.razor.js"></script>
-</HeadContent>
 
 <button @onclick="ShowPrompt">Call showPrompt1</button>
 
@@ -66,7 +60,7 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 }
 ```
 
-The collocated JS file is placed next to the `JsCollocation1` component file with the file name `JsCollocation1.razor.js`. In the `JsCollocation1` component, the script is referenced at the path of the collocated file. In the following example, the `showPrompt1` function accepts the user's name from a prompt and returns it to the `JsCollocation1` component for display.
+The collocated JS file is placed next to the `JsCollocation1` component file with the file name `JsCollocation1.razor.js`. In the `JsCollocation1` component, the script is referenced at the path of the collocated file. In the following example, the `showPrompt1` function accepts the user's name from a [`Window prompt()`](https://developer.mozilla.org/docs/Web/API/Window/prompt) and returns it to the `JsCollocation1` component for display.
 
 `{PATH}/JsCollocation1.razor.js`:
 
@@ -81,7 +75,7 @@ The preceding approach isn't recommended for general use in production apps beca
 The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a JS module into `module`, which is an <xref:Microsoft.JSInterop.IJSObjectReference> of the component class. `module` is used to call the `showPrompt2` function. The `{PATH}` placeholder is the path to the component.
 
 > [!IMPORTANT]
-> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component.
+> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages`). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
 
 `JsCollocation2` component (`{PATH}/JsCollocation2.razor`):
 
