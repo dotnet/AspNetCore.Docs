@@ -19,7 +19,7 @@ Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInte
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
+This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking during code execution if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
 
 > [!NOTE]
 > This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop>.
