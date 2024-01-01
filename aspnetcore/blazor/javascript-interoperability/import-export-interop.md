@@ -14,12 +14,10 @@ uid: blazor/js-interop/import-export-interop
 
 This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later.
 
-Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, which is uniformly supported across Blazor render modes and described in the following articles:
+Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. Blazor's JS interop is uniformly supported across Blazor render modes and for Blazor Hybrid apps. <xref:Microsoft.JSInterop.IJSRuntime> also enables library authors to build JS interop libraries for sharing across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor. See the following articles:
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
-
-<xref:Microsoft.JSInterop.IJSRuntime> enables library authors to build JS interop libraries that can be shared across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor.
 
 This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
 
