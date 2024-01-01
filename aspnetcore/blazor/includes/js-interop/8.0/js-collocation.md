@@ -8,14 +8,11 @@ Razor components of Blazor apps collocate JS files using the `.razor.js` extensi
 * The `{COMPONENT}` placeholder is the component.
 * The `{EXTENSION}` placeholder matches the extension of the component (`razor`).
 
-When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Components\Pages\{COMPONENT}.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) and the `{COMPONENT}` placeholder is the component name. No change is required to the script's relative URL, as Blazor takes care of placing the JS file in published static assets for you.
+When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/Components/Pages/{COMPONENT}.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) and the `{COMPONENT}` placeholder is the component name. No change is required to the script's relative URL, as Blazor takes care of placing the JS file in published static assets for you.
 
-> [!NOTE]
-> This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load functions, which is the recommended approach for most professional production apps.
->
-> Calling JS from .NET is fully covered in <xref:blazor/js-interop/call-javascript-from-dotnet>, where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load functions, which is the recommended approach for most professional production apps. Calling JS from .NET is fully covered in <xref:blazor/js-interop/call-javascript-from-dotnet>, where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls the function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>.
+The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>.
 
 `JsCollocation1` component (`Components/Pages/JsCollocation1.razor`):
 
@@ -53,19 +50,19 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 }
 ```
 
-The collocated JS file for the `JsCollocation1` component is placed next to the `JsCollocation1` component with the file name `JsCollocation1.razor.js`. In the `JsCollocation1` component, the script is referenced at the path of the collocated file. In the following example, the `showPrompt1` function accepts input from a prompt.
+The collocated JS file is placed next to the `JsCollocation1` component file with the file name `JsCollocation1.razor.js`. In the `JsCollocation1` component, the script is referenced at the path of the collocated file. In the following example, the `showPrompt1` function accepts the user's name from a prompt and returns it to the `JsCollocation1` component for display.
 
 `Components/Pages/JsCollocation1.razor.js`:
 
 ```javascript
 function showPrompt1(message) {
-  return prompt(message, 'Type anything here');
+  return prompt(message, 'Type your name here');
 }
 ```
 
-The next example uses a JS module, which is recommended over the preceding approach, which pollutes the client with global methods. The same general principles apply to loading JS from a collocated JS file.
+The preceding approach isn't recommended for general use in production apps because it pollutes the client with global functions. A better approach for production apps is to use JS modules. The same general principles apply to loading JS modules from a collocated JS file, as the next examples demonstrates.
 
-The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a JS module into `module`, which is a private nullable <xref:Microsoft.JSInterop.IJSObjectReference> of the component class. `module` is used to call the `showPrompt2` function.
+The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a JS module into `module`, which is an <xref:Microsoft.JSInterop.IJSObjectReference> of the component class. `module` is used to call the `showPrompt2` function.
 
 `JsCollocation2` component (`Components/Pages/JsCollocation2.razor`):
 
@@ -124,26 +121,26 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
 
 ```javascript
 export function showPrompt2(message) {
-  return prompt(message, 'Type anything here');
+  return prompt(message, 'Type your name here');
 }
 ```
 
-For scripts provided by a Razor class library (RCL):
+For scripts or modules provided by a Razor class library (RCL), the following path is used:
 
-`_content/{PACKAGE ID}/{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
+`_content/{PACKAGE ID}/{PATH}/{COMPONENT}.{EXTENSION}.js`
 
 * The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library referenced by the app).
-* The `{PATH}` placeholder is the path to the page, view, or component. If a Razor component is located at the root of the RCL, the path segment isn't included.
-* The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
-* The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
+* The `{PATH}` placeholder is the path to the component. If a Razor component is located at the root of the RCL, the path segment isn't included.
+* The `{COMPONENT}` placeholder is the component name.
+* The `{EXTENSION}` placeholder matches the extension of component, either `razor` or `cshtml`.
 
 In the following Blazor app example:
 
 * The RCL's package identifier is `AppJS`.
-* A module's scripts are loaded for the `Home` component (`Home.razor`).
-* The `Home` component is in the `Pages` folder of the `Components` folder of the RCL.
+* A module's scripts are loaded for the `JsCollocation3` component (`JsCollocation3.razor`).
+* The `JsCollocation3` component is in the `Components/Pages` folder of the RCL.
 
 ```csharp
 module = await JS.InvokeAsync<IJSObjectReference>("import", 
-    "./_content/AppJS/Components/Pages/Home.razor.js");
+    "./_content/AppJS/Components/Pages/JsCollocation3.razor.js");
 ```

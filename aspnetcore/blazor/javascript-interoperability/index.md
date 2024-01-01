@@ -327,11 +327,21 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
 [!INCLUDE[](~/blazor/includes/js-interop/7.0/js-collocation.md)]
+
+For more information on RCLs, see <xref:blazor/components/class-libraries>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+### Load a script from an external JavaScript file (`.js`) collocated with a component
+
+[!INCLUDE[](~/blazor/includes/js-interop/6.0/js-collocation.md)]
 
 For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
