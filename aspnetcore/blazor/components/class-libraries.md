@@ -379,7 +379,7 @@ For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-a
 
 ## Create an RCL with JavaScript files collocated with components
 
-[!INCLUDE[](~/includes/js-collocation.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/js-collocation.md)]
 
 :::moniker-end
 

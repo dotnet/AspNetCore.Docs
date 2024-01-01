@@ -132,24 +132,24 @@ In the following example, the `DOMCleanup` component:
 <div id="cleanupDiv"></div>
 
 @code {
-    private IJSObjectReference? jsModule;
+    private IJSObjectReference? module;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            jsModule = await JS.InvokeAsync<IJSObjectReference>(
+            module = await JS.InvokeAsync<IJSObjectReference>(
                 "import", "./Components/Pages/DOMCleanup.razor.js");
 
-            await jsModule.InvokeVoidAsync("DOMCleanup.createObserver");
+            await module.InvokeVoidAsync("DOMCleanup.createObserver");
         }
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        if (jsModule is not null)
+        if (module is not null)
         {
-            await jsModule.DisposeAsync();
+            await module.DisposeAsync();
         }
     }
 }
@@ -321,7 +321,7 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
-[!INCLUDE[](~/includes/js-collocation.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/js-collocation.md)]
 
 For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
