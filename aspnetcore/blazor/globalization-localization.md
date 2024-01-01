@@ -409,7 +409,7 @@ Provide JS functions to get and set the user's culture selection with browser lo
 :::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
+> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
 
 :::moniker-end
 
