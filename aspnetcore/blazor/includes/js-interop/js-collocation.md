@@ -8,13 +8,22 @@ Razor components of Blazor apps collocate JS files using the `.razor.js` extensi
 * The `{COMPONENT}` placeholder is the component.
 * The `{EXTENSION}` placeholder matches the extension of the component (`razor`).
 
-When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/Components/Pages/{COMPONENT}.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) and the `{COMPONENT}` placeholder is the component name. No change is required to the script's relative URL, as Blazor takes care of placing the JS file in published static assets for you.
+When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/{PATH}/Pages/{COMPONENT}.razor.js`, where the placeholders are:
+
+* `{TARGET FRAMEWORK MONIKER}` is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks).
+* `{PATH}` is the path to the component.
+* `{COMPONENT}` is the component name.
+
+No change is required to the script's relative URL, as Blazor takes care of placing the JS file in published static assets for you.
 
 This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load functions, which is the recommended approach for most professional production apps. Calling JS from .NET is fully covered in <xref:blazor/js-interop/call-javascript-from-dotnet>, where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>.
+The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>. The `{PATH}` placeholder is the path to the component.
 
-`JsCollocation1` component (`Components/Pages/JsCollocation1.razor`):
+> [!IMPORTANT]
+> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component.
+
+`JsCollocation1` component (`{PATH}/JsCollocation1.razor`):
 
 ```razor
 @page "/js-collocation-1"
@@ -25,8 +34,13 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 <h1>JS Collocation Example 1</h1>
 
 <HeadContent>
+    @*
+        Change the {PATH} placeholder in the next 
+        line to the path of the component in the app.
+        Example: Components/Pages
+    *@
     <script type="text/javascript" 
-        src="./Components/Pages/JsCollocation1.razor.js"></script>
+        src="./{PATH}/JsCollocation1.razor.js"></script>
 </HeadContent>
 
 <button @onclick="ShowPrompt">Call showPrompt1</button>
@@ -52,7 +66,7 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 
 The collocated JS file is placed next to the `JsCollocation1` component file with the file name `JsCollocation1.razor.js`. In the `JsCollocation1` component, the script is referenced at the path of the collocated file. In the following example, the `showPrompt1` function accepts the user's name from a prompt and returns it to the `JsCollocation1` component for display.
 
-`Components/Pages/JsCollocation1.razor.js`:
+`{PATH}/JsCollocation1.razor.js`:
 
 ```javascript
 function showPrompt1(message) {
@@ -62,9 +76,12 @@ function showPrompt1(message) {
 
 The preceding approach isn't recommended for general use in production apps because it pollutes the client with global functions. A better approach for production apps is to use JS modules. The same general principles apply to loading JS modules from a collocated JS file, as the next examples demonstrates.
 
-The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a JS module into `module`, which is an <xref:Microsoft.JSInterop.IJSObjectReference> of the component class. `module` is used to call the `showPrompt2` function.
+The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a JS module into `module`, which is an <xref:Microsoft.JSInterop.IJSObjectReference> of the component class. `module` is used to call the `showPrompt2` function. The `{PATH}` placeholder is the path to the component.
 
-`JsCollocation2` component (`Components/Pages/JsCollocation2.razor`):
+> [!IMPORTANT]
+> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component.
+
+`JsCollocation2` component (`{PATH}/JsCollocation2.razor`):
 
 ```razor
 @page "/js-collocation-2"
@@ -92,8 +109,13 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
     {
         if (firstRender)
         {
+            @*
+                Change the {PATH} placeholder in the next 
+                line to the path of the component in the app.
+                Example: Components/Pages
+            *@
             module = await JS.InvokeAsync<IJSObjectReference>("import",
-                "./Components/Pages/JsCollocation2.razor.js");
+                "./{PATH}/JsCollocation2.razor.js");
         }
     }
 
@@ -117,7 +139,7 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
 }
 ```
 
-`Components/Pages/JsCollocation2.razor.js`:
+`{PATH}/JsCollocation2.razor.js`:
 
 ```javascript
 export function showPrompt2(message) {
