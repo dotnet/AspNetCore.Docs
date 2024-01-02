@@ -33,7 +33,7 @@ The [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#af
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor" highlight="2-3,10-17":::
 
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
+> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
 >
 > Example:
 >
@@ -69,7 +69,7 @@ Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWit
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor" highlight="3-4,18,23-29":::
 
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
+> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
 >
 > Example:
 >

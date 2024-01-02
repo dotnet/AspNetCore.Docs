@@ -45,7 +45,6 @@ The following example is based on [`TextDecoder`](https://developer.mozilla.org/
     var win1251decoder = new TextDecoder('windows-1251');
     var bytes = new Uint8Array(win1251Array);
     var decodedArray = win1251decoder.decode(bytes);
-    console.log(decodedArray);
     return decodedArray;
   };
 </script>
@@ -527,9 +526,10 @@ Dynamically importing a module requires a network request, so it can only be ach
 > * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 > * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. In the following example, the library's assembly name is `ComponentLibrary` and the library's project file doesn't specify `<PackageId>`.
 > * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
+> * `module` is a private nullable <xref:Microsoft.JSInterop.IJSObjectReference> of the component class (`private IJSObjectReference? module;`).
 >
 > ```csharp
-> var module = await js.InvokeAsync<IJSObjectReference>(
+> module = await js.InvokeAsync<IJSObjectReference>(
 >     "import", "./_content/ComponentLibrary/scripts.js");
 > ```
 >
