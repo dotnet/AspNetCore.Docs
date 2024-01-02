@@ -128,6 +128,7 @@ Often it is helpful to add some routes to the TestServer for more realistic scen
 					.Configure(app =>
 					{
 						app.UseRouting();
+						app.UseMiddleware<MyMiddleware>();
 						app.UseEndpoints(endpoints =>
 						{
 							endpoints.MapGet("/hello", () =>
