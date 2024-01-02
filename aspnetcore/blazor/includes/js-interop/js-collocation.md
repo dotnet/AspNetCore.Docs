@@ -16,12 +16,12 @@ When the app is published, the framework automatically moves the script to the w
 
 No change is required to the script's relative URL, as Blazor takes care of placing the JS file in published static assets for you.
 
-This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load functions, which is the recommended approach for most professional production apps. Calling JS from .NET is fully covered in <xref:blazor/js-interop/call-javascript-from-dotnet>, where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load a function, which is the recommended approach for most production apps. Calling JS from .NET is fully covered in <xref:blazor/js-interop/call-javascript-from-dotnet>, where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>. The `{PATH}` placeholder is the path to the component.
 
 > [!IMPORTANT]
-> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages`). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
+> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages` in .NET 8 or later or `Pages` in .NET 7 or earlier). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
 
 Add the following script after the Blazor script ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)):
 
@@ -70,12 +70,12 @@ function showPrompt1(message) {
 }
 ```
 
-The preceding approach isn't recommended for general use in production apps because it pollutes the client with global functions. A better approach for production apps is to use JS modules. The same general principles apply to loading JS modules from a collocated JS file, as the next examples demonstrates.
+The preceding approach isn't recommended for general use in production apps because it pollutes the client with global functions. A better approach for production apps is to use JS modules. The same general principles apply to loading a JS module from a collocated JS file, as the next example demonstrates.
 
 The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a JS module into `module`, which is an <xref:Microsoft.JSInterop.IJSObjectReference> of the component class. `module` is used to call the `showPrompt2` function. The `{PATH}` placeholder is the path to the component.
 
 > [!IMPORTANT]
-> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages`). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
+> If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component. In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
 
 `JsCollocation2` component (`{PATH}/JsCollocation2.razor`):
 
@@ -106,11 +106,11 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
         if (firstRender)
         {
             /*
-                Change the {PATH} placeholder in the next 
-                line to the path of the collocated JS file 
-                in the app.
+                Change the {PATH} placeholder in the next line to the path of
+                the collocated JS file in the app. Examples:
 
-                Example: Components/Pages
+                ./Components/Pages/JsCollocation2.razor.js (.NET 8 or later)
+                ./Pages/JsCollocation2.razor.js (.NET 7 or earlier)
             */
             module = await JS.InvokeAsync<IJSObjectReference>("import",
                 "./{PATH}/JsCollocation2.razor.js");
