@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 10/19/2023
+ms.date: 01/01/2024
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3, engagement-fy23
 ---
