@@ -29,65 +29,33 @@ Root-level cascading values can be registered for the entire component hierarchy
 
 The following class is used in this section's examples.
 
-`Daleks.cs`:
+`Dalek.cs`:
 
-```csharp
-// "Dalek" ©Terry Nation https://www.imdb.com/name/nm0622334/
-// "Doctor Who" ©BBC https://www.bbc.co.uk/programmes/b006q2x0
-
-namespace BlazorSample;
-
-public class Daleks
-{
-    public int Units { get; set; }
-}
-```
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Dalek.cs":::
 
 The following registrations are made in the app's `Program` file:
 
-* `Daleks` with a property value for `Units` is registered as a fixed cascading value.
-* A second `Daleks` registration with a different property value for `Units` is named "`AlphaGroup`".
+* `Dalek` with a property value for `Units` is registered as a fixed cascading value.
+* A second `Dalek` registration with a different property value for `Units` is named "`AlphaGroup`".
 
 ```csharp
-builder.Services.AddCascadingValue(sp => new Daleks { Units = 123 });
-builder.Services.AddCascadingValue("AlphaGroup", sp => new Daleks { Units = 456 });
+builder.Services.AddCascadingValue(sp => new Dalek { Units = 123 });
+builder.Services.AddCascadingValue("AlphaGroup", sp => new Dalek { Units = 456 });
 ```
 
 The following `Daleks` component displays the cascaded values.
 
 `Daleks.razor`:
 
-```razor
-@page "/daleks"
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Daleks.razor":::
 
-<h1>Root-level cascading value registration example</h1>
-
-<ul>
-    <li>Dalek Units: @Daleks?.Units</li>
-    <li>Alpha Group Dalek Units: @AlphaGroupDaleks?.Units</li>
-</ul>
-
-<p>
-    Dalek© <a href="https://www.imdb.com/name/nm0622334/">Terry Nation</a><br>
-    Doctor Who© <a href="https://www.bbc.co.uk/programmes/b006q2x0">BBC</a>
-</p>
-
-@code {
-    [CascadingParameter]
-    public Daleks? Daleks { get; set; }
-
-    [CascadingParameter(Name = "AlphaGroup")]
-    public Daleks? AlphaGroupDaleks { get; set; }
-}
-```
-
-In the following example, `Daleks` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all recipients are subscribed for update notifications, which are issued by calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A>. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
+In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all recipients are subscribed for update notifications, which are issued by calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A>. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
 
 ```csharp
 builder.Services.AddCascadingValue(sp =>
 {
-    var daleks = new Daleks { Units = 789 };
-    var source = new CascadingValueSource<Daleks>(daleks, isFixed: false);
+    var dalek = new Dalek { Units = 789 };
+    var source = new CascadingValueSource<Dalek>(dalek, isFixed: false);
     return source;
 });
 ```

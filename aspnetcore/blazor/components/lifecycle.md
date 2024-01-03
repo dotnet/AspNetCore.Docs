@@ -393,6 +393,12 @@ This can result in a noticeable change in the data displayed in the UI when the 
 
 The following code demonstrates a `WeatherForecastService` that avoids the change in data display due to prerendering. The awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
 
+Add <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> services with <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache%2A> on the service collection in the app's `Program` file:
+
+```csharp
+builder.Services.AddMemoryCache();
+```
+
 `WeatherForecastService.cs`:
 
 :::moniker range=">= aspnetcore-8.0"
