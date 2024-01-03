@@ -72,7 +72,9 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<!-- This tab intentionally left blank. -->
+Add the following new field into the form.
+
+![The developer has added the new Rating field into the form.](~/tutorials/first-mvc-app/new-field/_static/8/AddRatingField-VSCode.png)
 
 ---
 
