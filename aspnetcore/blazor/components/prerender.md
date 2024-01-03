@@ -35,36 +35,9 @@ Consider the following `PrerenderedCounter1` counter component. The component se
 
 `PrerenderedCounter1.razor`:
 
-```razor
-@page "/prerendered-counter-1"
-@inject ILogger<PrerenderedCounter1> Logger
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter1.razor":::
 
-<PageTitle>Prerendered Counter 1</PageTitle>
-
-<h1>Prerendered Counter 1</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount;
-    private Random r = new Random();
-
-    protected override void OnInitialized()
-    {
-        currentCount = r.Next(100);
-        Logger.LogInformation("currentCount set to {Count}", currentCount);
-    }
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
-
-Run the app and inspect logging from the component:
+Run the app and inspect logging from the component. The following is example output:
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
 > :::no-loc text="      currentCount set to 41":::  
@@ -78,7 +51,7 @@ To retain the initial value of the counter during prerendering, Blazor supports 
 To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the app resumes.
 
 > [!IMPORTANT]
-> Persisting component state only works during the initial render of a component and not across enhanced page navigations. Currently, the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigations, and there's no mechanism to deliver state updates to components that are already running. A mechanism to deliver state updates for enhanced navigations is planned for .NET 9, which is targeted for release in late 2024. For more information, see [[Blazor] Support persistent component state across enhanced page navigations (dotnet/aspnetcore #51584)](https://github.com/dotnet/aspnetcore/issues/51584). For more information on enhanced navigation, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
+> Persisting component state only works during the initial render of a component and not across enhanced page navigation events. Currently, the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigation, and there's no mechanism to deliver state updates to components that are already running. A mechanism to deliver state updates for enhanced navigation is planned for .NET 9, which is targeted for release in late 2024. For more information, see [[Blazor] Support persistent component state across enhanced page navigations (dotnet/aspnetcore #51584)](https://github.com/dotnet/aspnetcore/issues/51584). For more information on enhanced navigation, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
 The following example demonstrates the general pattern:
 
@@ -129,63 +102,9 @@ The following counter component example persists counter state during prerenderi
 
 `PrerenderedCounter2.razor`:
 
-```razor
-@page "/prerendered-counter-2"
-@implements IDisposable
-@inject ILogger<PrerenderedCounter2> Logger
-@inject PersistentComponentState ApplicationState
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter2.razor":::
 
-<PageTitle>Prerendered Counter 2</PageTitle>
-
-<h1>Prerendered Counter 2</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount;
-    private Random r = new Random();
-    private PersistingComponentStateSubscription persistingSubscription;
-
-    protected override void OnInitialized()
-    {
-        persistingSubscription =
-            ApplicationState.RegisterOnPersisting(PersistCount);
-
-        if (!ApplicationState.TryTakeFromJson<int>(
-            "count", out var restoredCount))
-        {
-            currentCount = r.Next(100);
-            Logger.LogInformation("currentCount set to {Count}", currentCount);
-        }
-        else
-        {
-            currentCount = restoredCount!;
-            Logger.LogInformation("currentCount restored to {Count}", currentCount);
-        }
-    }
-
-    private Task PersistCount()
-    {
-        ApplicationState.PersistAsJson("count", currentCount);
-
-        return Task.CompletedTask;
-    }
-
-    void IDisposable.Dispose()
-    {
-        persistingSubscription.Dispose();
-    }
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
-
-When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered:
+When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output:
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  

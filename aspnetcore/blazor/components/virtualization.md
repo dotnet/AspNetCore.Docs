@@ -197,30 +197,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.
 
 `EmptyContent.razor`:
 
-```razor
-@page "/empty-content"
-
-<h1>Empty Content Example</h1>
-
-<Virtualize Items="@stringList">
-    <ItemContent>
-        <p>
-            @context
-        </p>
-    </ItemContent>
-    <EmptyContent>
-        <p>
-            There are no strings to display.
-        </p>
-    </EmptyContent>
-</Virtualize>
-
-@code {
-    private List<string>? stringList;
-
-    protected override void OnInitialized() => stringList ??= new();
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/EmptyContent.razor":::
 
 Change the `OnInitialized` method lambda to see the component display strings:
 
@@ -388,38 +365,7 @@ If the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> 
 
 `VirtualizedTable.razor`:
 
-```razor
-@page "/virtualized-table"
-
-<HeadContent>
-    <style>
-        html, body { overflow-y: scroll }
-    </style>
-</HeadContent>
-
-<h1>Virtualized Table Example</h1>
-
-<table id="virtualized-table">
-    <thead style="position: sticky; top: 0; background-color: silver">
-        <tr>
-            <th>Item</th>
-            <th>Another column</th>
-        </tr>
-    </thead>
-    <tbody>
-        <Virtualize Items="@fixedItems" ItemSize="30" SpacerElement="tr">
-            <tr @key="context" style="height: 30px;" id="row-@context">
-                <td>Item @context</td>
-                <td>Another value</td>
-            </tr>
-        </Virtualize>
-    </tbody>
-</table>
-
-@code {
-    private List<int> fixedItems = Enumerable.Range(0, 1000).ToList();
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/VirtualizedTable.razor":::
 
 In the preceding example, the document root is used as the scroll container, so the `html` and `body` elements are styled with `overflow-y: scroll`. For more information, see the following resources:
 
