@@ -56,32 +56,9 @@ For example, add the following component to render a grid.
 
 The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app, which enables interactive features. For the following example, the only interactive feature is sortable columns.
 
-`QuickGridExample.razor`:
+`PromotionGrid.razor`:
 
-```razor
-@page "/quickgrid-example"
-@using Microsoft.AspNetCore.Components.QuickGrid
-
-<QuickGrid Items="@people">
-    <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.PromotionDate)" Format="yyyy-MM-dd" Sortable="true" />
-</QuickGrid>
-
-@code {
-    private record Person(int PersonId, string Name, DateOnly PromotionDate);
-
-    private IQueryable<Person> people = new[]
-    {
-        new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
-        new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
-        new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
-        new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
-        new Person(11898, "Jose Hernandez", new DateOnly(2011, 5, 3)),
-        new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
-    }.AsQueryable();
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
 
 For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework Core as the queryable data source, see the [`SampleQuickGridComponent` component in the ASP.NET Core Basic Test App (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/QuickGridTest/SampleQuickGridComponent.razor).
 
@@ -122,10 +99,10 @@ Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Componen
 
 Add the following component to render a grid.
 
-`QuickGridExample.razor`:
+`PromotionGrid.razor`:
 
 ```razor
-@page "/quickgrid-example"
+@page "/promotion-grid"
 @using Microsoft.AspNetCore.Components.QuickGrid
 
 <QuickGrid Items="@people">
@@ -151,6 +128,6 @@ Add the following component to render a grid.
 
 :::moniker-end
 
-Access the component in a browser at the relative path `/quickgrid-example`.
+Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
