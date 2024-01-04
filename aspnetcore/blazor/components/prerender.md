@@ -107,7 +107,7 @@ The following counter component example persists counter state during prerenderi
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts interactive (enhanced) routing and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output.
+> If the app adopts interactive routing and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
