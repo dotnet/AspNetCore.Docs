@@ -62,7 +62,7 @@ The following diagram shows the design of the app.
 
   These commands:
 
-  * Create a new web API project using .NET 7.0 and open it in Visual Studio Code.
+  * Create a new web API project that targets .NET 7.0 and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
