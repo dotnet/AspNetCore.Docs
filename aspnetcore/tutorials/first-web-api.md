@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 12/04/2023
+ms.date: 01/03/2024
 uid: tutorials/first-web-api
 ---
 
@@ -310,6 +310,7 @@ Run the following commands:
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet tool update -g dotnet-aspnet-codegenerator

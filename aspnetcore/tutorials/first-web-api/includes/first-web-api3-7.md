@@ -54,15 +54,15 @@ The following diagram shows the design of the app.
 * Run the following commands:
 
    ```dotnetcli
-   dotnet new webapi -o TodoApi
+   dotnet new webapi -o TodoApi -f net7.0
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory -v 7.0.0
    code -r ../TodoApi
    ```
 
   These commands:
 
-  * Create a new web API project and open it in Visual Studio Code.
+  * Create a new web API project that targets .NET 7.0 and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
   * Open the *TodoApi* folder in the current instance of Visual Studio Code.
 
@@ -293,6 +293,7 @@ Run the following commands:
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Tools -v 7.0.0
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet tool update -g dotnet-aspnet-codegenerator
