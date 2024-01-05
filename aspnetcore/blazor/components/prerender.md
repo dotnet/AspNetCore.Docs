@@ -37,7 +37,10 @@ Consider the following `PrerenderedCounter1` counter component. The component se
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter1.razor":::
 
-Run the app and inspect logging from the component. The following is example output:
+Run the app and inspect logging from the component. The following is example output.
+
+> [!NOTE]
+> If the app adopts interactive (enhanced) routing and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter1` component to see the following output.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter1[0]":::  
 > :::no-loc text="      currentCount set to 41":::  
@@ -49,9 +52,6 @@ The first logged count occurs during prerendering. The count is set again after 
 To retain the initial value of the counter during prerendering, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
 
 To preserve prerendered state, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the app resumes.
-
-> [!IMPORTANT]
-> Persisting component state only works during the initial render of a component and not across enhanced page navigation events. Currently, the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigation, and there's no mechanism to deliver state updates to components that are already running. A mechanism to deliver state updates for enhanced navigation is planned for .NET 9, which is targeted for release in late 2024. For more information, see [[Blazor] Support persistent component state across enhanced page navigations (dotnet/aspnetcore #51584)](https://github.com/dotnet/aspnetcore/issues/51584). For more information on enhanced navigation, see <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>.
 
 The following example demonstrates the general pattern:
 
@@ -104,7 +104,10 @@ The following counter component example persists counter state during prerenderi
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter2.razor":::
 
-When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output:
+When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
+
+> [!NOTE]
+> If the app adopts interactive routing and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
@@ -112,6 +115,8 @@ When the component executes, `currentCount` is only set once during prerendering
 > :::no-loc text="      currentCount restored to 96":::
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+## Components embedded into pages and views (Razor Pages/MVC)
 
 For components embedded into a page or view of a Razor Pages or MVC app, you must add the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) with the `<persist-component-state />` HTML tag inside the closing `</body>` tag of the app's layout. **This is only required for Razor Pages and MVC apps.** For more information, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
 
@@ -124,6 +129,12 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
     <persist-component-state />
 </body>
 ```
+
+## Interactive routing and prerendering
+
+Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests.
+
+The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service only works on the initial page load and not across [enhanced page navigation events](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). If the app performs a full (non-enhanced) navigation to a page utilizing persistent component state, the persisted state is made available for the app to use when it becomes interactive. But if an interactive circuit has already been established and an enhanced navigation is performed to a page that renders persisted component state, that state isn't made available in the existing circuit. The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigation, and there's no mechanism to deliver state updates to components that are already running.
 
 ## Prerendering guidance
 

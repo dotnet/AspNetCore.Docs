@@ -2,6 +2,9 @@
 
 *This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
 
+> [!NOTE]
+> Internal navigation for interactive routing in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/components/prerender#interactive-routing-and-prerendering>.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
@@ -30,7 +33,7 @@ The [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#af
 
 `PrerenderedInterop1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor" highlight="2-3,10-17":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedInterop1.razor":::
 
 > [!NOTE]
 > The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
@@ -66,7 +69,7 @@ Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWit
 
 `PrerenderedInterop2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor" highlight="3-4,18,23-29":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedInterop2.razor":::
 
 > [!NOTE]
 > The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
