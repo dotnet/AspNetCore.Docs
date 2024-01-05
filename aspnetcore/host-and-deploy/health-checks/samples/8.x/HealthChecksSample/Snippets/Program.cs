@@ -166,9 +166,14 @@ public static class Program
     public static void AddHealthChecksSqlServer(WebApplicationBuilder builder)
     {
         // <snippet_AddHealthChecksSqlServer>
+        var conStr = builder.Configuration.GetConnectionString("DefaultConnection");
+        if (string.IsNullOrEmpty(conStr))
+        {
+            throw new InvalidOperationException(
+                               "Could not find a connection string named 'DefaultConnection'.");
+        }
         builder.Services.AddHealthChecks()
-            .AddSqlServer(
-                builder.Configuration.GetConnectionString("DefaultConnection"));
+            .AddSqlServer(conStr);
         // </snippet_AddHealthChecksSqlServer>
     }
 
