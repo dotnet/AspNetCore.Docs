@@ -5,7 +5,7 @@ description: Learn how to use binding in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/04/2024
+ms.date: 01/05/2024
 uid: blazor/forms/binding
 ---
 # ASP.NET Core Blazor forms binding
@@ -240,49 +240,7 @@ The following example independently binds two forms to their models by form name
 
 `Starship6.razor`:
 
-```razor
-@page "/starship-6"
-@inject ILogger<Starship6> Logger
-
-<EditForm Model="@Model1" OnSubmit="@Submit1" FormName="Holodeck1">
-    <InputText @bind-Value="Model1!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-<EditForm Model="@Model2" OnSubmit="@Submit2" FormName="Holodeck2">
-    <InputText @bind-Value="Model2!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm(FormName = "Holodeck1")]
-    public Holodeck? Model1 { get; set; }
-
-    [SupplyParameterFromForm(FormName = "Holodeck2")]
-    public Holodeck? Model2 { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model1 ??= new();
-        Model2 ??= new();
-    }
-
-    private void Submit1()
-    {
-        Logger.LogInformation("Submit1: Id = {Id}", Model1?.Id);
-    }
-
-    private void Submit2()
-    {
-        Logger.LogInformation("Submit2: Id = {Id}", Model2?.Id);
-    }
-
-    public class Holodeck
-    {
-        public string? Id { get; set; }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship6.razor":::
 
 ## Nest and bind forms
 
@@ -292,81 +250,25 @@ The following ship details class (`ShipDetails`) holds a description and length 
 
 `ShipDetails.cs`:
 
-```csharp
-public class ShipDetails
-{
-    public string? Description { get; set; }
-    public int? Length { get; set; }
-}
-```
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ShipDetails.cs":::
 
 The following `Ship` class names an identifier (`Id`) and includes the ship details.
 
 `Ship.cs`:
 
-```csharp
-public class Ship
-{
-    public string? Id { get; set; }
-    public ShipDetails Details { get; set; } = new();
-}
-```
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Ship.cs":::
 
 The following subform is used for editing values of the `ShipDetails` type. This is implemented by inheriting <xref:Microsoft.AspNetCore.Components.Forms.Editor%601> at the top of the component. <xref:Microsoft.AspNetCore.Components.Forms.Editor%601> ensures that the child component generates the correct form field names based on the model (`T`), where `T` in the following example is `ShipDetails`.
 
 `StarshipSubform.razor`:
 
-```razor
-@inherits Editor<ShipDetails>
-
-<div>
-    <label>
-        Description:
-        <InputText @bind-Value="Value!.Description" />
-    </label>
-</div>
-<div>
-    <label>
-        Length:
-        <InputNumber @bind-Value="Value!.Length" />
-    </label>
-</div>
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/StarshipSubform.razor":::
 
 The main form is bound to the `Ship` class. The `StarshipSubform` component is used to edit ship details, bound as `Model!.Details`.
 
 `Starship7.razor`:
 
-```razor
-@page "/starship-7"
-@inject ILogger<Starship7> Logger
-
-<EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship7">
-    <div>
-        <label>
-            Id:
-            <InputText @bind-Value="Model!.Id" />
-        </label>
-    </div>
-    <StarshipSubform @bind-Value="Model!.Details" />
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm]
-    public Ship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Id = {Id} Desc = {Description} Length = {Length}", 
-            Model?.Id, Model?.Details?.Description, Model?.Details?.Length);
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship7.razor":::
 
 ## Advanced form mapping error scenarios
 

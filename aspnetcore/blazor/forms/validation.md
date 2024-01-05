@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/04/2024
+ms.date: 01/05/2024
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -28,87 +28,7 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-8"
-@implements IDisposable
-@inject ILogger<Starship8> Logger
-
-<h2>Holodeck Configuration</h2>
-
-<EditForm EditContext="editContext" OnValidSubmit="@Submit" FormName="Starship8">
-    <div>
-        <label>
-            <InputCheckbox @bind-Value="Model!.Subsystem1" />
-            Safety Subsystem
-        </label>
-    </div>
-    <div>
-        <label>
-            <InputCheckbox @bind-Value="Model!.Subsystem2" />
-            Emergency Shutdown Subsystem
-        </label>
-    </div>
-    <div>
-        <ValidationMessage For="() => Model!.Options" />
-    </div>
-    <div>
-        <button type="submit">Update</button>
-    </div>
-</EditForm>
-
-@code {
-    private EditContext? editContext;
-
-    [SupplyParameterFromForm]
-    public Holodeck? Model { get; set; }
-
-    private ValidationMessageStore? messageStore;
-
-    protected override void OnInitialized()
-    {
-        Model ??= new();
-        editContext = new(Model);
-        editContext.OnValidationRequested += HandleValidationRequested;
-        messageStore = new(editContext);
-    }
-
-    private void HandleValidationRequested(object? sender,
-        ValidationRequestedEventArgs args)
-    {
-        messageStore?.Clear();
-
-        // Custom validation logic
-        if (!Model!.Options)
-        {
-            messageStore?.Add(() => Model.Options, "Select at least one.");
-        }
-    }
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public class Holodeck
-    {
-        public bool Subsystem1 { get; set; }
-        public bool Subsystem2 { get; set; }
-        public bool Options => Subsystem1 || Subsystem2;
-    }
-
-    public void Dispose()
-    {
-        if (editContext is not null)
-        {
-            editContext.OnValidationRequested -= HandleValidationRequested;
-        }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship8.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship8.razor":::
 
 :::moniker-end
 
@@ -237,62 +157,7 @@ Update the namespace in the following class to match your app's namespace.
 
 `CustomValidation.cs`:
 
-```csharp
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-
-namespace BlazorSample;
-
-public class CustomValidation : ComponentBase
-{
-    private ValidationMessageStore? messageStore;
-
-    [CascadingParameter]
-    private EditContext? CurrentEditContext { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (CurrentEditContext is null)
-        {
-            throw new InvalidOperationException(
-                $"{nameof(CustomValidation)} requires a cascading " +
-                $"parameter of type {nameof(EditContext)}. " +
-                $"For example, you can use {nameof(CustomValidation)} " +
-                $"inside an {nameof(EditForm)}.");
-        }
-
-        messageStore = new(CurrentEditContext);
-
-        CurrentEditContext.OnValidationRequested += (s, e) => 
-            messageStore?.Clear();
-        CurrentEditContext.OnFieldChanged += (s, e) => 
-            messageStore?.Clear(e.FieldIdentifier);
-    }
-
-    public void DisplayErrors(Dictionary<string, List<string>> errors)
-    {
-        if (CurrentEditContext is not null)
-        {
-            foreach (var err in errors)
-            {
-                messageStore?.Add(CurrentEditContext.Field(err.Key), err.Value);
-            }
-
-            CurrentEditContext.NotifyValidationStateChanged();
-        }
-    }
-
-    public void ClearErrors()
-    {
-        messageStore?.Clear();
-        CurrentEditContext?.NotifyValidationStateChanged();
-    }
-}
-```
-
-<!--
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomValidation.cs":::
--->
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/CustomValidation.cs":::
 
 > [!IMPORTANT]
 > Specifying a namespace is **required** when deriving from <xref:Microsoft.AspNetCore.Components.ComponentBase>. Failing to specify a namespace results in a build error:
@@ -322,77 +187,7 @@ When validation messages are set in the component, they're added to the validato
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-9"
-@inject ILogger<Starship9> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship9">
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" />
-        </label>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    private CustomValidation? customValidation;
-
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() =>
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private void Submit()
-    {
-        customValidation?.ClearErrors();
-
-        var errors = new Dictionary<string, List<string>>();
-
-        if (Model!.Classification == "Defense" &&
-                string.IsNullOrEmpty(Model.Description))
-        {
-            errors.Add(nameof(Model.Description),
-                new() { "For a 'Defense' ship classification, " +
-                "'Description' is required." });
-        }
-
-        if (errors.Any())
-        {
-            customValidation?.DisplayErrors(errors);
-        }
-        else
-        {
-            Logger.LogInformation("Submit called: Processing the form");
-        }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship9.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship9.razor":::
 
 :::moniker-end
 
@@ -748,7 +543,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
     <ValidationSummary />
     <div>
         <label>
-            Id:
+            Identifier: 
             <InputText @bind-Value="Model!.Id" disabled="@disabled" />
         </label>
     </div>
@@ -891,7 +686,7 @@ builder.Services.AddScoped(sp =>
     <ValidationSummary />
     <div>
         <label>
-            Id:
+            Identifier: 
             <InputText @bind-Value="Model!.Id" disabled="@disabled" />
         </label>
     </div>
@@ -1025,14 +820,7 @@ The following `CustomInputText` component inherits the framework's `InputText` c
 
 `CustomInputText.razor`:
 
-```razor
-@inherits InputText
-
-<input @attributes="AdditionalAttributes" 
-    class="@CssClass" 
-    @bind="CurrentValueAsString" 
-    @bind:event="oninput" />
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/CustomInputText.razor":::
 
 The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following  component uses the shared `CustomInputText` component.
 
@@ -1040,44 +828,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-11"
-@inject ILogger<Starship11> Logger
-
-<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship11">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <CustomInputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-<div>
-    CurrentValue: @Model?.Id
-</div>
-
-@code {
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public class Starship
-    {
-        [Required]
-        [StringLength(10, ErrorMessage = "Id is too long.")]
-        public string? Id { get; set; }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship11.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship11.razor":::
 
 :::moniker-end
 
@@ -1085,6 +836,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 ```razor
 @page "/starship-11"
+@using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship11> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
@@ -1204,13 +956,7 @@ The `SaladChef` class indicates the approved starship ingredient list for a Ten 
 
 `SaladChef.cs`:
 
-```csharp
-public class SaladChef
-{
-    public string[] SaladToppers = { "Horva", "Kanda Root",
-        "Krintar", "Plomeek", "Syto Bean" };
-}
-```
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/SaladChef.cs":::
 
 Register `SaladChef` in the app's DI container in the `Program` file:
 
@@ -1222,27 +968,7 @@ The `IsValid` method of the following `SaladChefValidatorAttribute` class obtain
 
 `SaladChefValidatorAttribute.cs`:
 
-```csharp
-using System.ComponentModel.DataAnnotations;
-
-public class SaladChefValidatorAttribute : ValidationAttribute
-{
-    protected override ValidationResult? IsValid(object? value,
-        ValidationContext validationContext)
-    {
-        var saladChef = validationContext.GetRequiredService<SaladChef>();
-
-        if (saladChef.SaladToppers.Contains(value?.ToString()))
-        {
-            return ValidationResult.Success;
-        }
-
-        return new ValidationResult("Is that a Vulcan salad topper?! " +
-            "The following toppers are available for a Ten Forward salad: " +
-            string.Join(", ", saladChef.SaladToppers));
-    }
-}
-```
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/SaladChefValidatorAttribute.cs":::
 
 The following component validates user input by applying the `SaladChefValidatorAttribute` (`[SaladChefValidator]`) to the salad ingredient string (`SaladIngredient`).
 
@@ -1250,37 +976,7 @@ The following component validates user input by applying the `SaladChefValidator
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-12"
-@inject SaladChef SaladChef
-
-<EditForm Model="@this" autocomplete="off" FormName="Starship12">
-    <DataAnnotationsValidator />
-    <p>
-        <label>
-            Salad topper (@saladToppers):
-            <input @bind="SaladIngredient" />
-        </label>
-    </p>
-    <button type="submit">Submit</button>
-    <ul>
-        @foreach (var message in context.GetValidationMessages())
-        {
-            <li class="validation-message">@message</li>
-        }
-    </ul>
-</EditForm>
-
-@code {
-    private string? saladToppers;
-
-    [SaladChefValidator]
-    public string? SaladIngredient { get; set; }
-
-    protected override void OnInitialized() => 
-        saladToppers ??= string.Join(", ", SaladChef.SaladToppers);
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship12.razor":::
 
 :::moniker-end
 
@@ -1398,47 +1094,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-13"
-@inject ILogger<Starship13> Logger
-
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship13">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <InputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    private EditContext? editContext;
-
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model ??= new();
-        editContext = new(Model);
-        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
-    }
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public class Starship
-    {
-        [Required]
-        [StringLength(10, ErrorMessage = "Id is too long.")]
-        public string? Id { get; set; }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship13.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship13.razor":::
 
 :::moniker-end
 
@@ -1446,6 +1102,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 ```razor
 @page "/starship-13"
+@using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship13> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@Submit">
@@ -1765,74 +1422,7 @@ To enable and disable the submit button based on form validation, the following 
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-14"
-@implements IDisposable
-@inject ILogger<Starship14> Logger
-
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship14">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div>
-        <label>
-            Id:
-            <InputText @bind-Value="Model!.Id" />
-        </label>
-    </div>
-    <div>
-        <button type="submit" disabled="@formInvalid">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    private bool formInvalid = false;
-    private EditContext? editContext;
-
-    [SupplyParameterFromForm]
-    private Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model ??=
-            new()
-            {
-                Id = "NCC-1701",
-                Classification = "Exploration",
-                MaximumAccommodation = 150,
-                IsValidatedDesign = true,
-                ProductionDate = new DateTime(2245, 4, 11)
-            };
-        editContext = new(Model);
-        editContext.OnFieldChanged += HandleFieldChanged;
-    }
-
-    private void HandleFieldChanged(object? sender, FieldChangedEventArgs e)
-    {
-        if (editContext is not null)
-        {
-            formInvalid = !editContext.Validate();
-            StateHasChanged();
-        }
-    }
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    public void Dispose()
-    {
-        if (editContext is not null)
-        {
-            editContext.OnFieldChanged -= HandleFieldChanged;
-        }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship14.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship14.razor":::
 
 :::moniker-end
 
@@ -1848,7 +1438,7 @@ To enable and disable the submit button based on form validation, the following 
     <ValidationSummary />
     <div>
         <label>
-            Id:
+            Identifier: 
             <InputText @bind-Value="Model!.Id" />
         </label>
     </div>

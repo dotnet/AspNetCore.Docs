@@ -5,7 +5,7 @@ description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/04/2024
+ms.date: 01/05/2024
 uid: blazor/forms/index
 ---
 # ASP.NET Core Blazor forms overview
@@ -49,33 +49,7 @@ Standard HTML forms are supported. Create a form using the normal HTML `<form>` 
 
 `StarshipPlainForm.razor`:
 
-```razor
-@page "/starship-plain-form"
-@inject ILogger<StarshipPlainForm> Logger
-
-<form method="post" @onsubmit="Submit" @formname="starship-plain-form">
-    <AntiforgeryToken />
-    <InputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</form>
-
-@code {
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Id = {Id}", Model?.Id);
-    }
-
-    public class Starship
-    {
-        public string? Id { get; set; }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/StarshipPlainForm.razor":::
 
 In the preceding `StarshipPlainForm` component:
 
@@ -111,32 +85,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-1"
-@inject ILogger<Starship1> Logger
-
-<EditForm Model="@Model" OnSubmit="@Submit" FormName="Starship1">
-    <InputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Id = {Id}", Model?.Id);
-    }
-
-    public class Starship
-    {
-        public string? Id { get; set; }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship1.razor":::
 
 In the preceding `Starship1` component:
 
@@ -207,36 +156,7 @@ In the next example, the preceding component is modified to create the form in t
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-2"
-@inject ILogger<Starship2> Logger
-
-<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship2">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <InputText @bind-Value="Model!.Id" />
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
-
-    protected override void OnInitialized() => Model ??= new();
-
-    private void Submit()
-    {
-        Logger.LogInformation("Id = {Id}", Model?.Id);
-    }
-
-    public class Starship
-    {
-        [Required]
-        [StringLength(10, ErrorMessage = "Id is too long.")]
-        public string? Id { get; set; }
-    }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship2.razor":::
 
 :::moniker-end
 
@@ -244,6 +164,7 @@ In the next example, the preceding component is modified to create the form in t
 
 ```razor
 @page "/starship-2"
+@using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship2> Logger
 
 <EditForm Model="@Model" OnValidSubmit="@Submit">
@@ -409,7 +330,7 @@ If using C# 9.0 or earlier (.NET 5 or earlier), add `@using` directives to the t
 
 :::moniker-end
 
-To demonstrate how forms work with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. To avoid an extra line of code in each example to use the namespace, make the namespace available throughout the app's components with the imports file. Add the following line to the project's `_Imports.razor` file:
+To demonstrate how forms work with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. If you wish to avoid an extra line of code in components that use data annotations, make the namespace available throughout the app's components with the imports file (`_Imports.razor`):
 
 ```razor
 @using System.ComponentModel.DataAnnotations
