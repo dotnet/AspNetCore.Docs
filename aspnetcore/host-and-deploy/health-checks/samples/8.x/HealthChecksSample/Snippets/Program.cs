@@ -26,6 +26,31 @@ public static class Program
         // </snippet_MapHealthChecksComplete>
     }
 
+    public static void MapHealthChecksComplete2(string[] args)
+    {
+        // <snippet_MapHealthChecksComplete2>
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddHealthChecks()
+           .Add(new HealthCheckRegistration(
+               name: "SampleHealthCheck1",
+               instance: new DelegateHealthCheck(_ => Task.FromResult(HealthCheckResult.Healthy(HealthyMessage))),
+               failureStatus: null,
+               tags: null,
+               timeout: default)
+   {
+       Delay = TimeSpan.FromSeconds(40),
+       Period = TimeSpan.FromSeconds(30)
+   });
+
+        var app = builder.Build();
+
+        app.MapHealthChecks("/healthz");
+
+        app.Run();
+        // </snippet_MapHealthChecksComplete2>
+    }
+
     public static void AddHealthChecks(WebApplicationBuilder builder)
     {
         // <snippet_AddHealthChecks>
