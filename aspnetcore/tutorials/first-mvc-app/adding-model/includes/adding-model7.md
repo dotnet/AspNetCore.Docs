@@ -350,9 +350,13 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Program.cs?name=snippet_FirstSQLServer&highlight=3-4)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
+Add a file named `Movie.cs` to the *Models* folder.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Control-click the **Models** folder and select **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
 
 ---
 
