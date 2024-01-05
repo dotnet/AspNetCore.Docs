@@ -5,7 +5,7 @@ description: Learn how to use forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 01/04/2024
 uid: blazor/forms/index
 ---
 # ASP.NET Core Blazor forms overview
