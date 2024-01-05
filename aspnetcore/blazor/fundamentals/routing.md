@@ -29,7 +29,9 @@ If [prerendering isn't disabled](xref:blazor/components/render-modes#prerenderin
 
 When an interactive render mode is assigned to the `Routes` component, the Blazor router becomes interactive after static SSR with static routing on the server. This type of routing is called *interactive routing*.
 
-Static routers use endpoint routing and the HTTP request path to determine which component to render. When the router becomes interactive, it uses the document's URL (the URL in the browser's address bar) to determine which component to render. This means that the interactive router can dynamically change which component is rendered if the document's URL dynamically changes to another valid internal URL, and it can do so without performing an HTTP request to fetch new page content. Interactive routing also prevents prerendering because new page content isn't requested from the server with a normal page request.
+Static routers use endpoint routing and the HTTP request path to determine which component to render. When the router becomes interactive, it uses the document's URL (the URL in the browser's address bar) to determine which component to render. This means that the interactive router can dynamically change which component is rendered if the document's URL dynamically changes to another valid internal URL, and it can do so without performing an HTTP request to fetch new page content.
+
+Interactive routing also prevents prerendering because new page content isn't requested from the server with a normal page request. For more information, see <xref:blazor/components/prerender#interactive-routing-and-prerendering>.
 
 :::moniker-end
 
