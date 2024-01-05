@@ -45,6 +45,9 @@ The preceding example:
 
 `GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a <xref:System.Net.Http.SocketsHttpHandler> that has a custom <xref:System.Net.Http.SocketsHttpHandler.ConnectCallback>. The callback allows the client to make connections over custom transports and then send HTTP requests over that transport.
 
+> [!NOTE]
+> Some advanced features of `GrpcChannel`, such as client side load balancing and channel status, can't be used together with named pipes.
+
 Named pipes connection factory example:
 
 ```csharp
