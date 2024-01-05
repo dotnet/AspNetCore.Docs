@@ -12,9 +12,7 @@ uid: host-and-deploy/health-checks
 
 By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
 
-:::moniker range="< aspnetcore-6.0"
 [!INCLUDE[](~/includes/not-latest-version.md)]
-:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
