@@ -334,7 +334,7 @@ dotnet add package Microsoft.Extensions.Configuration
 dotnet add package Microsoft.Extensions.Configuration.UserSecrets
 ```
 
-Once installed, you can load and use user secrets in your app like this (requires a user secret called "Foo" [to be set](#set-a-secret):
+Once the packages are installed, [initialize the project](#enable-secret-storage) and [set secrets](#set-a-secret) the same way as for a web app. The following example shows a console application that retrieves the value of a secret that was set with the key "Foo":
 
 ```csharp
 using Microsoft.Extensions.Configuration;
