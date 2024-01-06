@@ -318,7 +318,7 @@ Projects which target `Microsoft.NET.Sdk.Web` automatically include support for 
 
 ## User secrets in non-web applications 
 
-For projects which target `Microsoft.NET.Sdk`, such as console applications, you must install the configuration extension and user secrets nuget packages explicitly
+For projects which target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
 
 Installing with PowerShell:
 
