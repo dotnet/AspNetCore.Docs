@@ -50,6 +50,7 @@ Instead of rendering the entire list of flights at once, replace the [`foreach`]
 * Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
 * Specify a context for each flight with the `Context` parameter. In the following example, `flight` is used as the context, which provides access to each flight's members.
 
+
 ```razor
 <div style="height:500px;overflow-y:scroll">
     <Virtualize Items="@allFlights" Context="flight">
@@ -57,6 +58,7 @@ Instead of rendering the entire list of flights at once, replace the [`foreach`]
     </Virtualize>
 </div>
 ```
+
 
 If a context isn't specified with the `Context` parameter, use the value of `context` in the item content template to access each flight's members:
 
@@ -80,6 +82,36 @@ The item content for the <xref:Microsoft.AspNetCore.Components.Web.Virtualizatio
 * Plain HTML and Razor code, as the preceding example shows.
 * One or more Razor components.
 * A mix of HTML/Razor and Razor components.
+
+Virtualize is a Component that will only work if InteractiveServer rendering mode is set explicitly, for that the following actions must be validated:
+
+1. InteractiveServerRenderMode is configured on the application startup
+
+```csharp
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+....
+
+var app = builder.Build();
+
+....
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+```
+2. Set the render mode globally or per component where you want to use the Virtualize Component. 
+    
+```razor
+
+@page "/"
+@rendermode InteractiveServer
+```
+
 
 ## Item provider delegate
 
