@@ -316,7 +316,7 @@ The Secret Manager tool stores sensitive data during application development. In
 
 Projects which target `Microsoft.NET.Sdk.Web` automatically include support for user secrets. 
 
-## Installing the User Secrets Extension for Non-Web Applications 
+## User secrets in non-web applications 
 
 For projects which target `Microsoft.NET.Sdk`, such as console applications, you must install the configuration extension and user secrets nuget packages explicitly
 
