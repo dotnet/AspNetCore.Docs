@@ -327,7 +327,7 @@ Install-Package Microsoft.Extensions.Configuration
 Install-Package Microsoft.Extensions.Configuration.UserSecrets
 ```
 
-Installing with the .NET CLI:
+Using the .NET CLI:
 
 ```dotnetcli
 dotnet add package Microsoft.Extensions.Configuration
