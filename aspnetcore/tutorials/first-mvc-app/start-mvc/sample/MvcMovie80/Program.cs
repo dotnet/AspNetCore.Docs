@@ -46,12 +46,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 
-// <snippet_FirstSQLiteDI>
+// <snippet_FirstSQLite>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));
-// </snippet_FirstSQLiteDI>
+// </snippet_FirstSQLite>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
