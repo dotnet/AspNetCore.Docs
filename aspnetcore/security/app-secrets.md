@@ -353,8 +353,6 @@ class Program
     }
 }
 ```
-
-
 ## How the Secret Manager tool works
 
 The Secret Manager tool hides implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a JSON file in the local machine's user profile folder:
