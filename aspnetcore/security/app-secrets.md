@@ -320,7 +320,7 @@ Projects which target `Microsoft.NET.Sdk.Web` automatically include support for 
 
 For projects which target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
 
-Installing with PowerShell:
+Using PowerShell:
 
 ```powershell
 Install-Package Microsoft.Extensions.Configuration
