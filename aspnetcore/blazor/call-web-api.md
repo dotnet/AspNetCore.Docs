@@ -93,6 +93,32 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Client-side services for `HttpClient` fail during prerendering
+
+*This section only applies to WebAssembly components in Blazor Web Apps.*
+
+Blazor Web Apps normally prerender client-side WebAssembly components. <xref:System.Net.Http.HttpClient> services aren't registered by default in a Blazor Web App's main project. If the app is run with only the <xref:System.Net.Http.HttpClient> services registered in the `.Client` project, as described in the [Add the `HttpClient` service](#add-the-httpclient-service) section, executing the app results in a runtime error:
+
+> :::no-loc text="InvalidOperationException: Cannot provide a value for property 'Http' on type '{ASSEMBLY}.Client.Pages.{COMPONENT}'. There is no registered service of type 'System.Net.Http.HttpClient'.":::
+
+Use ***either*** of the following approaches to resolve this problem:
+
+* Add the <xref:System.Net.Http.HttpClient> services to the main project to make them available during component prerendering. Use the following service registration in the main project's `Program` file:
+
+  ```csharp
+  builder.Services.AddHttpClient();
+  ```
+
+  No explicit package reference is required for the main project because <xref:System.Net.Http.HttpClient> services are provided by the shared framework.
+
+* If prerendering isn't required for the component, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App.
+
+For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering).
+
+:::moniker-end
+
 ## `HttpClient` and JSON helpers
 
 <xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server.
