@@ -159,17 +159,19 @@ The template handles the following:
 * Configures routing for the built-in Identity endpoints.
 * Includes Identity validation and business logic.
 
-<!-- UPDATE 8.0 No API docs for the code-fenced API below. -->
+To inspect the Blazor framework's Identity components, access them in the `Pages` and `Shared` folders of the [`Account` folder in the Blazor Web App project template (reference source)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account).
 
-When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a `PersistentAuthenticationStateProvider` class in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
+When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components remain on the server in the Blazor Web App's main project. The project template includes a [`PersistentAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp.Client/PersistentAuthenticationStateProvider.cs) in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
 
-In the main project of a Blazor Web App, the authentication state provider is named either `IdentityRevalidatingAuthenticationStateProvider` (Server interactivity solutions only) or `PersistingRevalidatingAuthenticationStateProvider` (WebAssembly or Auto interactivity solutions).
+In the main project of a Blazor Web App, the authentication state provider is named either [`IdentityRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) (Server interactivity solutions only) or [`PersistingRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingRevalidatingAuthenticationStateProvider.cs) (WebAssembly or Auto interactivity solutions).
 
 For more information on persisting prerendered state, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 <!-- UPDATE 9.0 Remove blog post cross-link -->
 
 For more information on the Blazor Identity UI and guidance on integrating external logins through social websites, see [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
