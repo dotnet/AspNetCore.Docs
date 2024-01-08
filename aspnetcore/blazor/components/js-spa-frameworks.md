@@ -243,6 +243,14 @@ Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](h
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
+### Example component
+
+The following examples are based on the `Counter` component from the Blazor project template.
+
+`Counter.razor`:
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Counter.razor":::
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
