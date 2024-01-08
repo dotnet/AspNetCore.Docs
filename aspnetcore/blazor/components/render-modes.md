@@ -341,7 +341,7 @@ For example, consider the following `Home` component in the `.Client` project in
 
 No compile time error occurs, but a runtime error occurs during prerendering:
 
-> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorWebAppSample.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorSample.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
 This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
 
@@ -379,7 +379,9 @@ You can also avoid the problem if you [disable prerendering](#prerendering) for 
 
 There are a three approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
 
-* *Recommended*: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
+* *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in <xref:blazor/call-web-api?pivots=webassembly#client-side-services-for-httpclient-fail-during-prerendering>.
+
+* *Recommended* for services outside of the shared framework: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
 
 * Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
 
