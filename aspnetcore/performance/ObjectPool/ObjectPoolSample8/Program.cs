@@ -37,7 +37,7 @@ app.MapGet("/hash/{name}", (string name, ObjectPool<ReusableBuffer> bufferPool) 
     }
     finally
     {
-        // Data is automatically reset because thit type implemented IResettable
+        // Data is automatically reset because this type implemented IResettable
         bufferPool.Return(buffer); 
     }
 });
