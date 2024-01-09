@@ -7,7 +7,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/22/2022
 uid: fundamentals/minimal-apis/overview
 ---
-
 # Minimal APIs overview
 
 Minimal APIs are a simplified approach for building fast HTTP APIs with  ASP.NET Core.

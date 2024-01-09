@@ -180,6 +180,25 @@ Client.Program.ConfigureCommonServices(builder.Services);
 
 For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Client-side services that fail during prerendering
+
+*This section only applies to WebAssembly components in Blazor Web Apps.*
+
+Blazor Web Apps normally prerender client-side WebAssembly components. If an app is run with a required service only registered in the `.Client` project, executing the app results in a runtime error similar to the following when a component attempts to use the required service during prerendering:
+
+> :::no-loc text="InvalidOperationException: Cannot provide a value for {PROPERTY} on type '{ASSEMBLY}}.Client.Pages.{COMPONENT NAME}'. There is no registered service of type '{SERVICE}'.":::
+
+Use ***either*** of the following approaches to resolve this problem:
+
+* Register the service in the main project to make it available during component prerendering.
+* If prerendering isn't required for the component, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to register the service in the main project.
+
+For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering).
+
+:::moniker-end
+
 ## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.

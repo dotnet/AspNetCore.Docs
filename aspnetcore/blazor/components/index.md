@@ -54,7 +54,7 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
     * App namespaces
   * Other directives
 
-  No blank lines appear among the directives. One blank line appears between the directives and the fist line of Razor markup.
+  No blank lines appear among the directives. One blank line appears between the directives and the first line of Razor markup.
 
   Example:
 

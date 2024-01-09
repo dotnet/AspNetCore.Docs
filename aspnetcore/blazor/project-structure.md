@@ -628,7 +628,7 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 
 * <xref:blazor/tooling>
 * <xref:blazor/hosting-models>
-* <xref:fundamentals/minimal-apis>
+* <xref:fundamentals/minimal-apis/overview>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end

@@ -5,7 +5,7 @@ description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 01/05/2024
 uid: blazor/forms/input-components
 ---
 # ASP.NET Core Blazor input components
@@ -127,86 +127,7 @@ The following form accepts and validates user input using:
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-3"
-@inject ILogger<Starship3> Logger
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship3">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div>
-        <label>
-            Id:
-            <InputText @bind-Value="Model!.Id" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="Model!.Description" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="Model!.Classification">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <label>
-            Maximum Accommodation:
-            <InputNumber @bind-Value="Model!.MaximumAccommodation" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Engineering Approval:
-            <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Production Date:
-            <InputDate @bind-Value="Model!.ProductionDate" />
-        </label>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    [SupplyParameterFromForm]
-    private Starship? Model { get; set; }
-
-    protected override void OnInitialized() =>
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
-
-    private void Submit()
-    {
-        Logger.LogInformation("Id = {Id} Description = {Description} " +
-            "Classification = {Classification} MaximumAccommodation = " +
-            "{MaximumAccommodation} IsValidatedDesign = " +
-            "{IsValidatedDesign} ProductionDate = {ProductionDate}", 
-            Model?.Id, Model?.Description, Model?.Classification, 
-            Model?.MaximumAccommodation, Model?.IsValidatedDesign, 
-            Model?.ProductionDate);
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship3.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship3.razor":::
 
 :::moniker-end
 
@@ -225,7 +146,7 @@ The following form accepts and validates user input using:
     <ValidationSummary />
     <div>
         <label>
-            Id:
+            Identifier:
             <InputText @bind-Value="Model!.Id" />
         </label>
     </div>
@@ -306,70 +227,13 @@ In the following example:
 > [!NOTE]
 > `Submit` in the next example is demonstrated as an asynchronous method because storing form values often uses asynchronous calls (`await ...`). If the form is used in a test app as shown, `Submit` merely runs synchronously. For testing purposes, ignore the following build warning:
 >
-> > This async method lacks 'await' operators and will run synchronously. ...
+> > :::no-loc text="This async method lacks 'await' operators and will run synchronously. ...":::
 
 `Starship4.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-4"
-@inject ILogger<Starship4> Logger
-
-<EditForm EditContext="@editContext" OnSubmit="@Submit" FormName="Starship4">
-    <DataAnnotationsValidator />
-    <div>
-        <label>
-            Id:
-            <InputText @bind-Value="Model!.Id" />
-        </label>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@code {
-    private EditContext? editContext;
-
-    [SupplyParameterFromForm]
-    private Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model ??= 
-            new()
-            {
-                Id = "NCC-1701",
-                Classification = "Exploration",
-                MaximumAccommodation = 150,
-                IsValidatedDesign = true,
-                ProductionDate = new DateTime(2245, 4, 11)
-            };
-        editContext = new(Model);
-    }
-
-    private async Task Submit()
-    {
-        if (editContext != null && editContext.Validate())
-        {
-            Logger.LogInformation("Submit called: Form is valid");
-
-            // await ...
-
-            await Task.CompletedTask;
-        }
-        else
-        {
-            Logger.LogInformation("Submit called: Form is INVALID");
-        }
-    }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship4.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship4.razor":::
 
 :::moniker-end
 
@@ -383,7 +247,7 @@ In the following example:
     <DataAnnotationsValidator />
     <div>
         <label>
-            Id:
+            Identifier:
             <InputText @bind-Value="Model!.Id" />
         </label>
     </div>
@@ -418,8 +282,6 @@ In the following example:
             Logger.LogInformation("Submit called: Form is valid");
 
             // await ...
-
-            await Task.CompletedTask;
         }
         else
         {
@@ -452,69 +314,7 @@ In the following example, the user must select at least two starship classificat
 
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/starship-5"
-@inject ILogger<Starship5> Logger
-
-<h1>Bind Multiple <code>InputSelect</code> Example</h1>
-
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit" FormName="Starship5">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div>
-        <label>
-            Select classifications (Minimum: 2, Maximum: 3):
-            <InputSelect @bind-Value="Model!.SelectedClassification">
-                <option value="@Classification.Exploration">Exploration</option>
-                <option value="@Classification.Diplomacy">Diplomacy</option>
-                <option value="@Classification.Defense">Defense</option>
-                <option value="@Classification.Research">Research</option>
-            </InputSelect>
-        </label>
-    </div>
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</EditForm>
-
-@if (Model?.SelectedClassification?.Length > 0)
-{
-    <div>@string.Join(", ", Model.SelectedClassification)</div>
-}
-
-@code {
-    private EditContext? editContext;
-
-    [SupplyParameterFromForm]
-    private Starship? Model { get; set; }
-
-    protected override void OnInitialized()
-    {
-        Model = new();
-        editContext = new(Model);
-    }
-
-    private void Submit()
-    {
-        Logger.LogInformation("Submit called: Processing the form");
-    }
-
-    private class Starship
-    {
-        [Required]
-        [MinLength(2, ErrorMessage = "Select at least two classifications.")]
-        [MaxLength(3, ErrorMessage = "Select no more than three classifications.")]
-        public Classification[]? SelectedClassification { get; set; } =
-            new[] { Classification.None };
-    }
-
-    private enum Classification { None, Exploration, Diplomacy, Defense, Research }
-}
-```
-
-<!--
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppSample/Components/Pages/Starship7.razor":::
--->
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship5.razor":::
 
 :::moniker-end
 
@@ -522,6 +322,7 @@ In the following example, the user must select at least two starship classificat
 
 ```razor
 @page "/starship-5"
+@using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship5> Logger
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
