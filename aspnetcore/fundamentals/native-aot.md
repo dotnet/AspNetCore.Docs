@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
-ms.date: 10/17/2023
+ms.date: 1/11/2024
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -198,18 +198,35 @@ The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builde
 
 As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTTPS or HTTP/3. These protocols typically aren't required for apps that run behind a TLS termination proxy. For example, see [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview). HTTPS can be enabled by calling [builder.WebHost.UseKestrelHttpsConfiguration](https://source.dot.net/#Microsoft.AspNetCore.Server.Kestrel/WebHostBuilderKestrelExtensions.cs,fcec859000ccaa50) <!-- TODO replace with xref: (xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A) --> HTTP/3 can be enabled by calling [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A).
 
-The `CreateSlimBuilder` method does include the following features needed for an efficient development experience:
+### `CreateSlimBuilder` vs `CreateBuilder`
+
+The `CreateSlimBuilder` method doesn't support the following features that are supported by the `CreateBuilder` method:
+
+* [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup(IWebHostBuilder, Type)>
+* The following logging providers:
+    * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
+    * [Debug](/aspnet/core/fundamentals/logging#debug)
+    * [Event Source](/aspnet/core/fundamentals/logging#event-source)
+* Web hosting features:
+    * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A>
+    * [IIS Integration](xref:host-and-deploy/iis/index)
+* Kestrel configuration
+    * [HTTPS endpoints in Kestrel](xref:fundamentals/servers/kestrel/endpoints#https)
+* [Regex and alpha constraints used in routing](https://github.com/dotnet/aspnetcore/issues/46142)
+
+The `CreateSlimBuilder` method includes the following features needed for an efficient development experience:
 
 * JSON file configuration for `appsettings.json` and `appsettings.{EnvironmentName}.json`.
 * User secrets configuration.
 * Console logging.
 * Logging configuration.
 
-For a builder that omits even these features, see [The `CreateEmptyBuilder` method](xref:aspnetcore-8#new-createemptybuilder-method).
+For a builder that omits the preceding features, see [The `CreateEmptyBuilder` method](xref:aspnetcore-8#new-createemptybuilder-method).
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
-For more information on `CreateSlimBuilder`, see [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
+For more detailed information, see [Comparing `WebApplication.CreateBuilder` to `CreateSlimBuilder`](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
 
 ## Source generators
 
