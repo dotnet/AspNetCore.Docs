@@ -351,7 +351,7 @@ Add the app settings file to the app. The following example is for the `Staging`
 }
 ```
 
-In server-side Blazor apps, load the base path from configuration in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+In a server-side Blazor app, load the base path from configuration in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
 
 ```razor
 @inject IConfiguration Config
@@ -365,15 +365,15 @@ In server-side Blazor apps, load the base path from configuration in [`<head>` c
 </head>
 ```
 
-Alternatively, a server-side app can obtain the value from configuration for <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in .NET 6 or later. Place the following code ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`). The following example uses the configuration key `AppBasePath`:
+:::moniker range=">= aspnetcore-6.0"
+
+Alternatively, a server-side app can obtain the value from configuration for <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A>. Place the following code ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`). The following example uses the configuration key `AppBasePath`:
 
 ```csharp
 app.UsePathBase($"/{app.Configuration.GetValue<string>("AppBasePath")}");
 ```
 
-:::moniker range=">= aspnetcore-6.0"
-
-In client-side Blazor WebAssembly apps:
+In a client-side Blazor WebAssembly app:
 
 * Remove the `<base>` tag from `wwwroot/index.html`:
 
