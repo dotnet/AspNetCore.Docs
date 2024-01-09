@@ -73,7 +73,7 @@ To host a Blazor app in IIS, see the following resources:
 * <xref:blazor/host-and-deploy/server>: Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
 * <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
 * IIS sub-application hosting
-  * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
+  * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp` and show how to [obtain the base path from app settings or other configuration providers](#obtain-the-app-base-path-from-configuration).
   * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
@@ -285,7 +285,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
 
 Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
@@ -338,6 +338,69 @@ Using `CoolApp` as the example:
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+
+## Obtain the app base path from configuration
+
+The following guidance explains how to obtain the path for the `<base>` tag from an app settings file for different [environments](xref:blazor/fundamentals/environments).
+
+Add the app settings file to the app. The following example is for the `Staging` environment (`appsettings.Staging.json`):
+
+```json
+{
+  "AppBasePath": "staging/"
+}
+```
+
+In server-side Blazor apps, load the base path from configuration in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+
+```razor
+@inject IConfiguration Config
+
+...
+
+<head>
+    ...
+    <base href="/@(Config.GetValue<string>("AppBasePath"))" />
+    ...
+</head>
+```
+
+Alternatively, a server-side app can obtain the value from configuration for <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in .NET 6 or later. Place the following code ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`). The following example uses the configuration key `AppBasePath`:
+
+```csharp
+app.UsePathBase($"/{app.Configuration.GetValue<string>("AppBasePath")}");
+```
+
+:::moniker range=">= aspnetcore-6.0"
+
+In client-side Blazor WebAssembly apps:
+
+* Remove the `<base>` tag from `wwwroot/index.html`:
+
+  ```diff
+  - <base href="..." />
+  ```
+
+* Supply the app base path via a [`HeadContent` component](xref:blazor/components/control-head-content#control-head-content-in-a-razor-component) in the `App` component (`App.razor`):
+
+  ```razor
+  @inject IConfiguration Config
+
+  ...
+
+  <HeadContent>
+      <base href="/@(Config.GetValue<string>("AppBasePath"))" />
+  </HeadContent>
+  ```
+
+:::moniker-end
+
+If there's no configuration value to load, for example in non-staging environments, the preceding `href` resolves to the root path `/`.
+
+The examples in this section focus on supplying the app base path from app settings, but the approach of reading the path from <xref:Microsoft.Extensions.Configuration.IConfiguration> is valid for any configuration provider. For more information, see the following resources:
+
+* <xref:blazor/fundamentals/configuration>
+* <xref:fundamentals/configuration/index>
 
 :::moniker range="< aspnetcore-8.0"
 
