@@ -213,6 +213,7 @@ The `CreateSlimBuilder` method doesn't support the following features that are s
     * [IIS Integration](xref:host-and-deploy/iis/index)
 * Kestrel configuration
     * [HTTPS endpoints in Kestrel](xref:fundamentals/servers/kestrel/endpoints#https)
+    * [Quic (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
 * [Regex and alpha constraints used in routing](https://github.com/dotnet/aspnetcore/issues/46142)
 
 The `CreateSlimBuilder` method includes the following features needed for an efficient development experience:
