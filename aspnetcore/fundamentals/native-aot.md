@@ -203,7 +203,7 @@ As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTT
 The `CreateSlimBuilder` method doesn't support the following features that are supported by the `CreateBuilder` method:
 
 * [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup(IWebHostBuilder, Type)>
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A>
 * The following logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
     * [Debug](/aspnet/core/fundamentals/logging#debug)
