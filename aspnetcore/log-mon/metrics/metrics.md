@@ -5,7 +5,6 @@ author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/18/2023
-ms.service: aspnet-core
 ms.topic: article
 uid: log-mon/metrics/metrics
 ---
