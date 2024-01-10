@@ -128,7 +128,7 @@ Rich errors are created from `Google.Rpc.Status`. Note that this type is differe
 
 `Google.Rpc.Status` has status, message, and details fields. The most important field is details, which is a repeating field of [`Any`](xref:grpc/protobuf#any) values. Details is where complex payloads are added.
 
-Although any type can be used with any, it is recommanded to use one of the [standard error payloads](https://cloud.google.com/apis/design/errors#error_model):
+Although any type can be used as a payload, it's recommanded to use one of the [standard error payloads](https://cloud.google.com/apis/design/errors#error_model):
 
 * `BadRequest`
 * `PreconditionFailure`
