@@ -215,7 +215,7 @@ private IComponentRenderMode? RenderModeForPage =>
     HttpContext.Request.Path.StartsWithSegments("/Admin") ? InteractiveServer : null;
 ```
 
-Additional information on render mode propagation and inheritance is provided later in this article.
+Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article.
 
 ## Prerendering
 
