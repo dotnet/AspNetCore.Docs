@@ -180,6 +180,10 @@ For more information, see <xref:blazor/tooling>.
 
 ## Apply a render mode programatically
 
+Properties and fields can assign a render mode to a component or a group of components via inheritance.
+
+### By component definition
+
 A component definition can define a render mode via a private field:
 
 ```razor
@@ -192,6 +196,8 @@ A component definition can define a render mode via a private field:
         new InteractiveServerRenderMode();
 }
 ```
+
+### By component instance
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> is available in statically-rendered root components, such as the `App` component (`App.razor`). You can use [`HttpContext.Request.Path`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A) to specify a render mode for a group of pages.
 
@@ -208,6 +214,8 @@ private HttpContext HttpContext { get; set; } = default!;
 private IComponentRenderMode? RenderModeForPage => 
     HttpContext.Request.Path.StartsWithSegments("/Admin") ? InteractiveServer : null;
 ```
+
+Additional information on render mode propagation and inheritance is provided later in this article.
 
 ## Prerendering
 
