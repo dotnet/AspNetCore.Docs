@@ -252,7 +252,7 @@ See [this GitHub repository](https://github.com/blowdart/idunno.Authentication/t
 
 Set the [environment](xref:fundamentals/environments) in the custom application factory:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1&highlight=20)]
+[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1&highlight=36)]
 
 ## How the test infrastructure infers the app content root path
 
