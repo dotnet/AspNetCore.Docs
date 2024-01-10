@@ -47,26 +47,15 @@
         "whats-new/**/**.md": "riande"
       },
       "ms.subservice": {
-        "**/client-side/**/**.md": "clientside",
-        "**/data/**/**.md": "data",
         "**/fundamentals/**/**.md": "fundamentals",
-        "**/getting-started/**/**.md": "getstarted",
         "**/grpc/**/**.md": "grpc",
-        "**/host-and-deploy/**/**.md": "hostdeploy",
         "**/migration/**/**.md": "migration",
         "**/mobile/**/**.md": "mobile",
         "**/mvc/**/**.md": "mvc",
         "**/performance/**/**.md": "performance",
-        "**/razor-pages/**/**.md": "razorpages",
-        "**/release-notes/**/**.md": "releasenotes",
         "**/security/**/**.md": "security",
-        "**/signalr/**/**.md": "signalr",
-        "**/test/**/**.md": "test",
         "**/tutorials/**/**.md": "tutorials",
-        "**/web-api/**/**.md": "webapi",
-        "whats-new/**/**.md": "whatsnew",
-        "**/blazor/**/**.md": "blazor",
-        "**/blazor/hybrid/**/**.md": "blazorhybrid"
+        "**/blazor/**/**.md": "blazor"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
