@@ -78,7 +78,7 @@ public class GreeterService : GreeterBase
 }
 ```
 
-Thrown exception types that aren't `RpcException` also cause the call to fail, but with a an `UNKNOWN` status code and a generic message `Exception was thrown by handler`.
+Thrown exception types that aren't `RpcException` also cause the call to fail, but with an `UNKNOWN` status code and a generic message `Exception was thrown by handler`.
 
 `Exception was thrown by handler` is sent to the client rather than the exception message to prevent exposing potentially sensitive information. To see a more descriptive error message in a development environment, configure [`EnableDetailedErrors`](xref:grpc/configuration#configure-services-options).
 
