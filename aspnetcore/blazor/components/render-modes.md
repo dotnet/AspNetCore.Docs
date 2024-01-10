@@ -178,6 +178,37 @@ To enable global interactivity when creating a Blazor Web App:
 
 For more information, see <xref:blazor/tooling>.
 
+## Apply a render mode programatically
+
+A component definition can define a render mode via a private field:
+
+```razor
+@rendermode componentRenderMode
+
+...
+
+@code {
+    private static IComponentRenderMode componentRenderMode =
+        new InteractiveServerRenderMode();
+}
+```
+
+<xref:Microsoft.AspNetCore.Http.HttpContext> is available in statically-rendered root components, such as the `App` component (`App.razor`). You can use [`HttpContext.Request.Path`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A) to specify a render mode for a group of pages.
+
+The following example applies interactive server-side rendering (interactive SSR) to any request for a component in the app's `Admin` folder (`Components/Admin`), including subfolders. Components at any other path don't receive a render mode (`null`) from the `Routes` component, and they either render statically, inherit a render mode from a parent component, or set their own render mode.
+
+```razor
+<Routes @rendermode="@RenderModeForPage" />
+
+...
+
+[CascadingParameter]
+private HttpContext HttpContext { get; set; } = default!;
+
+private IComponentRenderMode? RenderModeForPage => 
+    HttpContext.Request.Path.StartsWithSegments("/Admin") ? InteractiveServer : null;
+```
+
 ## Prerendering
 
 *Prerendering* is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank.
