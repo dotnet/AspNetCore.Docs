@@ -7,7 +7,6 @@ ms.author: riande
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: article
-ms.prod: aspnet-core
 ms.date: 9/21/2023
 uid: fundamentals/aot/rdg
 ---

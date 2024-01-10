@@ -6,7 +6,6 @@ ms.author: amehrabani
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/03/2023
 ms.topic: article
-ms.prod: aspnet-core
 uid: migration/inc/unit-testing
 ---
 

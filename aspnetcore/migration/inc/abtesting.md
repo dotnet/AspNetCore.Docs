@@ -6,7 +6,6 @@ ms.author: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 3/1/2023
 ms.topic: article
-ms.prod: aspnet-core
 uid: migration/inc/ab-testing
 ---
 
