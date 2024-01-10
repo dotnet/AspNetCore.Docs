@@ -188,32 +188,45 @@ A component definition can define a render mode via a private field:
 
 ```razor
 @rendermode componentRenderMode
+```
 
-...
-
-@code {
-    private static IComponentRenderMode componentRenderMode =
-        new InteractiveServerRenderMode();
-}
+```csharp
+private static IComponentRenderMode componentRenderMode = new InteractiveServerRenderMode();
 ```
 
 ### By component instance
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> is available in statically-rendered root components, such as the `App` component (`App.razor`). You can use [`HttpContext.Request.Path`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A) to specify a render mode for a group of pages.
+<xref:Microsoft.AspNetCore.Http.HttpContext> is available in statically-rendered root components, such as the `App` component (`App.razor`). You can use [`HttpContext.Request.Path`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A) to specify a render mode for a group of pages from a statically-rendered root component.
 
 The following example applies interactive server-side rendering (interactive SSR) to any request for a component in the app's `Admin` folder (`Components/Admin`), including subfolders. Components at any other path don't receive a render mode (`null`) from the `Routes` component, and they either render statically, inherit a render mode from a parent component, or set their own render mode.
 
 ```razor
 <Routes @rendermode="@RenderModeForPage" />
+```
 
-...
-
+```csharp
 [CascadingParameter]
 private HttpContext HttpContext { get; set; } = default!;
 
 private IComponentRenderMode? RenderModeForPage => 
     HttpContext.Request.Path.StartsWithSegments("/Admin") ? InteractiveServer : null;
 ```
+
+You can also set the render mode of the app dynamically based on the render modes of the components in the app. Each component sets a render mode, and the `App` component assigns the render mode of the loaded component to the `Routes` component:
+
+```razor
+<Routes @rendermode="@RenderModeForPage" />
+```
+
+```csharp
+[CascadingParameter]
+private HttpContext HttpContext { get; set; } = default!;
+
+private IComponentRenderMode? RenderModeForPage =>
+    HttpContext.GetEndpoint()?.Metadata.GetMetadata<RenderModeAttribute>()?.Mode;
+```
+
+A final approach for applying a render mode programatically is to apply the render mode to a <xref:Microsoft.AspNetCore.Components.ComponentBase> base class and [use the base class](xref:blazor/components/index#specify-a-base-class) to create components.
 
 Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article.
 
