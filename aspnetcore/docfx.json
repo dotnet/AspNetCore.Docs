@@ -47,15 +47,26 @@
         "whats-new/**/**.md": "riande"
       },
       "ms.subservice": {
+        "**/client-side/**/**.md": "client-side",
+        "**/data/**/**.md": "data-access",
         "**/fundamentals/**/**.md": "fundamentals",
+        "**/getting-started/**/**.md": "get-started",
         "**/grpc/**/**.md": "grpc",
+        "**/host-and-deploy/**/**.md": "hosting-deployment",
         "**/migration/**/**.md": "migration",
         "**/mobile/**/**.md": "mobile",
         "**/mvc/**/**.md": "mvc",
         "**/performance/**/**.md": "performance",
+        "**/razor-pages/**/**.md": "razor-pages",
+        "**/release-notes/**/**.md": "release-notes",
         "**/security/**/**.md": "security",
+        "**/signalr/**/**.md": "aspnetcore-signalr",
+        "**/test/**/**.md": "testing",
         "**/tutorials/**/**.md": "tutorials",
-        "**/blazor/**/**.md": "blazor"
+        "**/web-api/**/**.md": "web-api",
+        "whats-new/**/**.md": "whats-new",
+        "**/blazor/**/**.md": "blazor",
+        "**/blazor/hybrid/**/**.md": "blazor-hybrid"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
