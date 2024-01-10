@@ -14,7 +14,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article discusses error handling and gRPC.
 
 * Built-in error handling capabilities using gRPC status codes and error messages.
-* Sending complex, structured error information using and [rich error handling](#rich-error-handling).
+* Sending complex, structured error information using [rich error handling](#rich-error-handling).
 
 ## Built-in error handling
 
@@ -24,7 +24,7 @@ The types commonly used with error handling are:
 
 * `StatusCode`: An enumeration of [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). `OK` signals success and other values are failure.
 * `Status`: A struct that combines a `StatusCode` and an optional string error message. The error message provides further details about what hapened.
-* `RpcException`: An exception type that has `Status` value. This exception is thrown by gRPC server methods and caught by gRPC clients.
+* `RpcException`: An exception type that has `Status` value. This exception is thrown in gRPC server methods and caught by gRPC clients.
 
 Built-in error handling only supports a status code and string description. To send complex error information from the server to the client, [use rich error handling](#rich-error-handling).
 
