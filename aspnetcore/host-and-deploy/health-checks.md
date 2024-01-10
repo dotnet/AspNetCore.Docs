@@ -296,8 +296,7 @@ The following example registers a health check publisher as a singleton and conf
 
 ### Individual Healthchecks
 
-[`Delay` and `Period`](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthCheckRegistration.cs#L161-L185) can be set on each each <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration> individually. This is useful when you want to run some health checks more frequently than the period set in <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>.
-
+[`Delay` and `Period`](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthCheckRegistration.cs#L161-L185) can be set on each each <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration> individually. This is useful when you want to run some health checks at a different rate than the period set in <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>.
 
 The following code sets the `Delay` and `Period` for the `SampleHealthCheck1`:
 
