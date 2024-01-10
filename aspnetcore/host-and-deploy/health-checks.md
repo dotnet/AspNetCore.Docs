@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/1/2024
+ms.date: 1/11/2024
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -289,10 +289,18 @@ The following example registers a health check publisher as a singleton and conf
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_HealthCheckPublisherOptionsService":::
 
-> [!NOTE]
-> [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) includes publishers for several systems, including [Application Insights](/azure/application-insights/app-insights-overview).
->
-> [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) isn't maintained or supported by Microsoft.
+[`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks):
+
+* Includes publishers for several systems, including [Application Insights](/azure/application-insights/app-insights-overview).
+* Is ***not*** maintained or supported by Microsoft.
+
+### Individual Healthchecks
+
+[`Delay` and `Period`](https://github.com/dotnet/aspnetcore/blob/main/src/HealthChecks/Abstractions/src/HealthCheckRegistration.cs#L161-L185) can be set on each each <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration> individually. This is useful when you want to run some health checks at a different rate than the period set in <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>.
+
+The following code sets the `Delay` and `Period` for the `SampleHealthCheck1`:
+
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete2":::
 
 ## Dependency Injection and Health Checks
 
