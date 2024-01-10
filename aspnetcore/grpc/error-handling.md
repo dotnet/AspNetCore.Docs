@@ -11,19 +11,22 @@ uid: grpc/error-handling
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article discusses error handling and gRPC.
+This article discusses error handling and gRPC:
 
 * Built-in error handling capabilities using gRPC status codes and error messages.
 * Sending complex, structured error information using [rich error handling](#rich-error-handling).
 
 ## Built-in error handling
 
-gRPC calls communicate success or failure with a status code. When a gRPC call completes successfully the server returns an `OK` status to the client. If an error occurs, gRPC returns an error status code, such as `CANCELLED` or `UNAVAILABLE`, along with an optional string error message.
+gRPC calls communicate success or failure with a status code. When a gRPC call completes successfully the server returns an `OK` status to the client. If an error occurs, gRPC returns:
+
+* An error status code, such as `CANCELLED` or `UNAVAILABLE`.
+* An optional string error message.
 
 The types commonly used with error handling are:
 
-* `StatusCode`: An enumeration of [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). `OK` signals success and other values are failure.
-* `Status`: A struct that combines a `StatusCode` and an optional string error message. The error message provides further details about what happened.
+* `StatusCode`: An enumeration of [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). `OK` signals success; other values are failure.
+* `Status`: A `struct` that combines a `StatusCode` and an optional string error message. The error message provides further details about what happened.
 * `RpcException`: An exception type that has `Status` value. This exception is thrown in gRPC server methods and caught by gRPC clients.
 
 Built-in error handling only supports a status code and string description. To send complex error information from the server to the client, [use rich error handling](#rich-error-handling).
@@ -59,7 +62,7 @@ The preceding code:
 
 ### Server error status
 
-gRPC methods return an error status code by throwing an exception. When an `RpcException` is thrown on the server, its status code and description is returned to the client.
+gRPC methods return an error status code by throwing an exception. When an `RpcException` is thrown on the server, its status code and description is returned to the client:
 
 ```cs
 public class GreeterService : GreeterBase
@@ -75,13 +78,13 @@ public class GreeterService : GreeterBase
 }
 ```
 
-Throw exception types that aren't `RpcException` also cause the call to fail, but with a an `UNKNOWN` status code and a generic message: `Exception was thrown by handler`. 
+Thrown exception types that aren't `RpcException` also cause the call to fail, but with a an `UNKNOWN` status code and a generic message `Exception was thrown by handler`.
 
-`Exception was thrown by handler` is sent to the client instead of the exception message to prevent exposing potentially sensitive information. To see a more descriptive error message in a development environment, configure [`EnableDetailedErrors`](xref:grpc/configuration#configure-services-options).
+`Exception was thrown by handler` is sent to the client rather than the exception message to prevent exposing potentially sensitive information. To see a more descriptive error message in a development environment, configure [`EnableDetailedErrors`](xref:grpc/configuration#configure-services-options).
 
 ## Handle client errors
 
-When a gRPC client makes a call, the status code is automatically validated when accessing the response. For example, awaiting a unary gRPC call returns the message sent by the server if the call is successful, and throws an `RpcException` if there's a failure. Catch `RpcException` to handle errors in a client.
+When a gRPC client makes a call, the status code is automatically validated when accessing the response. For example, awaiting a unary gRPC call returns the message sent by the server if the call is successful, and throws an `RpcException` if there's a failure. Catch `RpcException` to handle errors in a client:
 
 ```cs
 var client = new Greet.GreeterClient(channel);
@@ -120,7 +123,7 @@ Rich error handling allows complex, structured information to be sent with error
 gRPC on .NET supports a rich error model using the `Grpc.StatusProto` package. This package has methods for creating rich error models on the server and reading them by a client. The rich error model builds on top of gRPC's built-in handling capabilities and they can be used side-by-side.
 
 > [!IMPORTANT]
-> Errors are included in headers, and total headers in responses are often limited to 8 KB (8,192 bytes). Ensure that errors do not exceed this size.
+> Errors are included in headers, and total headers in responses are often limited to 8 KB (8,192 bytes). Ensure that the headers containing errors do not exceed 8 KB.
 
 ### Creating rich errors on the server
 
@@ -128,7 +131,7 @@ Rich errors are created from `Google.Rpc.Status`. This type is ***different*** f
 
 `Google.Rpc.Status` has status, message, and details fields. The most important field is details, which is a repeating field of [`Any`](xref:grpc/protobuf#any) values. Details are where complex payloads are added.
 
-Although any message type can be used as a payload, it's recommanded to use one of the [standard error payloads](https://cloud.google.com/apis/design/errors#error_model):
+Although any message type can be used as a payload, it's recommended to use one of the [standard error payloads](https://cloud.google.com/apis/design/errors#error_model):
 
 * `BadRequest`
 * `PreconditionFailure`
