@@ -32,10 +32,16 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddHealthChecks()
-           .AddAsyncCheck(name: "SampleHealthCheck1",
-               check: _ => Task.FromResult(HealthCheckResult.Healthy("HealthyMessage")),
+           .Add(new HealthCheckRegistration(
+               name: "SampleHealthCheck1",
+               instance: new SampleHealthCheck(),
+               failureStatus: null,
                tags: null,
-               timeout: default);
+               timeout: default)
+           {
+               Delay = TimeSpan.FromSeconds(40),
+               Period = TimeSpan.FromSeconds(30)
+           });
 
         var app = builder.Build();
 
