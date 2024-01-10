@@ -1,17 +1,4 @@
----
-title: Use hubs in ASP.NET Core SignalR
-author: bradygaster
-description: Learn how to use hubs in ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 02/14/2023
-uid: signalr/hubs
----
-
-# Use hubs in SignalR for ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-7.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
