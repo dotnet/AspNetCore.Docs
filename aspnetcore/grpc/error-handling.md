@@ -23,7 +23,7 @@ gRPC calls communicate success or failure with a status code. When a gRPC call c
 The types commonly used with error handling are:
 
 * `StatusCode`: An enumeration of [gRPC status codes](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). `OK` signals success and other values are failure.
-* `Status`: A struct that combines a `StatusCode` and an optional string error message. The error message provides further details about what hapened.
+* `Status`: A struct that combines a `StatusCode` and an optional string error message. The error message provides further details about what happened.
 * `RpcException`: An exception type that has `Status` value. This exception is thrown in gRPC server methods and caught by gRPC clients.
 
 Built-in error handling only supports a status code and string description. To send complex error information from the server to the client, [use rich error handling](#rich-error-handling).
@@ -81,7 +81,7 @@ Throw exception types that aren't `RpcException` also cause the call to fail, bu
 
 ## Handle client errors
 
-When a gRPC client makes a call, the status code is automatically validated when accessing the response. For example, awaiting a unary gRPC call returns the message sent by the server if the call is successful, and throws an `RpcException` if there is a failure. Catch `RpcException` to handle errors in a client.
+When a gRPC client makes a call, the status code is automatically validated when accessing the response. For example, awaiting a unary gRPC call returns the message sent by the server if the call is successful, and throws an `RpcException` if there's a failure. Catch `RpcException` to handle errors in a client.
 
 ```cs
 var client = new Greet.GreeterClient(channel);
@@ -101,7 +101,7 @@ catch (RpcException ex)
 The preceding code:
 
 * Makes a unary gRPC call to the `SayHello` method.
-* Writes the response message to the console if it is successful.
+* Writes the response message to the console if it's successful.
 * Catches `RpcException` and writes out the error details on failure.
 
 ### Error scenarios
@@ -109,9 +109,9 @@ The preceding code:
 Errors are represented by `RpcException` with an error status code and optional detail message. `RpcException` is thrown in many scenarios:
 
 * The call failed on the server and the server sent an error status code. For example, the gRPC client started a call that was missing required data from the request message and the server returns an `INVALID_ARGUMENT` status code.
-* An error occured inside the client when making the gRPC call. For example, a client makes a gRPC call, can't connect to the server, and throws an error with a status of `UNAVAILABLE`.
-* The <xref:System.Threading.CancellationToken> passed to the gRPC call is canceled. The gRPC call is stopped and the and the client throws an error with a status of `CANCELLED`.
-* A gRPC call exceeds its configured deadline. The gRPC call is stopped and the and the client throws an error with a status of `DEADLINE_EXCEEDED`.
+* An error occurred inside the client when making the gRPC call. For example, a client makes a gRPC call, can't connect to the server, and throws an error with a status of `UNAVAILABLE`.
+* The <xref:System.Threading.CancellationToken> passed to the gRPC call is canceled. The gRPC call is stopped and the client throws an error with a status of `CANCELLED`.
+* A gRPC call exceeds its configured deadline. The gRPC call is stopped and the client throws an error with a status of `DEADLINE_EXCEEDED`.
 
 ## Rich error handling
 
@@ -124,9 +124,9 @@ gRPC on .NET supports a rich error model using the `Grpc.StatusProto` package. T
 
 ### Creating rich errors on the server
 
-Rich errors are created from `Google.Rpc.Status`. Note that this type is different from `Grpc.Core.Status`.
+Rich errors are created from `Google.Rpc.Status`. This type is ***different*** from `Grpc.Core.Status`.
 
-`Google.Rpc.Status` has status, message, and details fields. The most important field is details, which is a repeating field of [`Any`](xref:grpc/protobuf#any) values. Details is where complex payloads are added.
+`Google.Rpc.Status` has status, message, and details fields. The most important field is details, which is a repeating field of [`Any`](xref:grpc/protobuf#any) values. Details are where complex payloads are added.
 
 Although any message type can be used as a payload, it's recommanded to use one of the [standard error payloads](https://cloud.google.com/apis/design/errors#error_model):
 
