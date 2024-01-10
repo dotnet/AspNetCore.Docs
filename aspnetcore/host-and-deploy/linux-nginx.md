@@ -264,7 +264,7 @@ KillSignal=SIGINT
 SyslogIdentifier=dotnet-example
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+Environment=DOTNET_NOLOGO=false
 
 [Install]
 WantedBy=multi-user.target
