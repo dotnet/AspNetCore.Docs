@@ -47,6 +47,9 @@
         "whats-new/**/**.md": "riande"
       },
       "ms.subservice": {
+        "introduction-to-aspnet-core.md": "index-page",
+        "**/blazor/**/**.md": "blazor",
+        "**/blazor/hybrid/**/**.md": "blazor-hybrid",
         "**/client-side/**/**.md": "client-side",
         "**/data/**/**.md": "data-access",
         "**/fundamentals/**/**.md": "fundamentals",
@@ -64,9 +67,7 @@
         "**/test/**/**.md": "testing",
         "**/tutorials/**/**.md": "tutorials",
         "**/web-api/**/**.md": "web-api",
-        "whats-new/**/**.md": "whats-new",
-        "**/blazor/**/**.md": "blazor",
-        "**/blazor/hybrid/**/**.md": "blazor-hybrid"
+        "whats-new/**/**.md": "whats-new"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
