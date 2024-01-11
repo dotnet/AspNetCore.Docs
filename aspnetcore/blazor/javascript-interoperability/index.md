@@ -85,6 +85,7 @@ Blazor uses <xref:System.Text.Json?displayProperty=fullName> for serialization w
 * Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
 * Serializing .NET member names results in lowercase JSON key names.
 * JSON is deserialized as <xref:System.Text.Json.JsonElement> C# instances, which permit mixed casing. Internal casting for assignment to C# model properties works as expected in spite of any case differences between JSON key names and C# property names.
+* Complex framework types, such as <xref:System.Collections.Generic.KeyValuePair>, might be [trimmed away by the IL Trimmer on publish](xref:blazor/host-and-deploy/configure-trimmer) and not present for JS interop. Create your own custom types instead.
 
 <xref:System.Text.Json.Serialization.JsonConverter> API is available for custom serialization. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type.
 
