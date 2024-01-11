@@ -49,10 +49,11 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
   * `@page`
   * `@rendermode` (.NET 8 or later)
   * `@using`
-    * `System` namespaces
-    * `Microsoft` namespaces
-    * App namespaces
-  * Other directives
+    * `System` namespaces (alphabetical order)
+    * `Microsoft` namespaces (alphabetical order)
+    * Third-party API namespaces (alphabetical order)
+    * App namespaces (alphabetical order)
+  * Other directives (alphabetical order)
 
   No blank lines appear among the directives. One blank line appears between the directives and the first line of Razor markup.
 
@@ -64,7 +65,8 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
   @using System.Globalization
   @using System.Text.Json
   @using Microsoft.AspNetCore.Localization
-  @using DoctorWhoTemplates.Layout
+  @using Mandrill
+  @using BlazorSample.Components.Layout
   @attribute [Authorize]
   @implements IAsyncDisposable
   @inject IJSRuntime JS

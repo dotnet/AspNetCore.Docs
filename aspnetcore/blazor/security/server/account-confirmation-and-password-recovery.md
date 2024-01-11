@@ -55,11 +55,11 @@ Implement `IEmailSender` for the provider. The following example is based on Mai
 `Components/Account/EmailSender.cs`:
 
 ```csharp
-using BlazorSample.Data;
-using Mandrill;
-using Mandrill.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using Mandrill;
+using Mandrill.Model;
+using BlazorSample.Data;
 
 namespace BlazorSample.Components.Account;
 
@@ -106,6 +106,9 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 }
 ```
 
+> [!NOTE]
+> Body content for messages might require special encoding for the email service provider. If the link in the message body isn't clickable in the email message, consult the service provider's documentation. 
+
 ## Configure app to support email
 
 In the `Program` file, change the email sender implementation to the `EmailSender`:
@@ -137,13 +140,13 @@ Also in the `RegisterConfirmation` component, remove the Razor markup and code f
 - {
      <p>Please check your email to confirm your account.</p>
 - }
-```
 
 @code {
 -    private string? emailConfirmationLink;
 
      ...
 }
+```
 
 ## Email and activity timeout
 
@@ -219,6 +222,7 @@ public class CustomPasswordResetTokenProvider<TUser>
     {
     }
 }
+
 public class PasswordResetTokenProviderOptions : 
     DataProtectionTokenProviderOptions
 {
