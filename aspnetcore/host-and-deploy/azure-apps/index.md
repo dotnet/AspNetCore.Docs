@@ -186,18 +186,14 @@ Follow the guidance in the [Deploy the app self-contained](#deploy-the-app-self-
 
 ### Use Docker with Web Apps for containers
 
-<!-- UPDATE 9.0
-
-     Doc author note on the Docker Hub cross-link (@guardrex 12/18/23)
+<!--
+     Doc author note on the Docker Hub cross-link (@guardrex 1/11/24)
 
      The landing page at https://hub.docker.com/_/microsoft-dotnet
-     is throwing a 405 on load, which is triggering a broken link
-     warning on our doc builds. For the time being, I'm setting the
-     link with code fencing. I've reported the problem to them at
-     https://github.com/dotnet/dotnet-docker/issues/5064. We can 
-     switch back to a cross-link later if they fix the errors in
-     their page. I've left my tracking tag "UPDATE 9.0" to find and 
-     review this in late '24.
+     is throwing 401/404/405 errors on load, which is triggering a 
+     broken link warning on our doc builds. I've code fenced the link.
+     I asked them about the errors, and they say that they can't
+     fix them. https://github.com/dotnet/dotnet-docker/issues/5064
 -->
 
 The Docker Hub at `https://hub.docker.com/_/microsoft-dotnet` contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
