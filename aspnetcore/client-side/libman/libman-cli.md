@@ -153,7 +153,7 @@ The following options are available for the `libman install` command:
 
   The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in `libman.json`, this option is required.
 
-   ***Note:*** Their are limitations to the destination path. For example, when the package source has a full project structure and not just the distribution folder, you can't specify moving a folder. For more information, see [Issue #407](https://github.com/aspnet/LibraryManager/issues/407) and [Issue #702](https://github.com/aspnet/LibraryManager/issues/702)
+   ***Note:*** There are limitations to the destination path. For example, when the package source has a full project structure and not just the distribution folder, you can't specify moving a folder. For more information, see [Issue #407](https://github.com/aspnet/LibraryManager/issues/407) and [Issue #702](https://github.com/aspnet/LibraryManager/issues/702)
 
 * `--files <FILE>`
 
