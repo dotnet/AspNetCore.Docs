@@ -6,7 +6,6 @@ ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/18/2023
 ms.topic: article
-ms.prod: aspnet-core
 uid: log-mon/metrics/metrics
 ---
 

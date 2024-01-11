@@ -38,6 +38,8 @@ Commonly used members on `HttpRequest` include:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestHeaders&highlight=6-7)]
 
+For information on efficiently handling headers that appear more than once, see [A brief look at StringValues](https://andrewlock.net/a-brief-look-at-stringvalues/).
+
 ### Read request body
 
 An HTTP request can include a request body. The request body is data associated with the request, such as the content of an HTML form, UTF-8 JSON payload, or a file.

@@ -829,6 +829,17 @@ public IResult GetWelcomeComponent()
 }
 ```
 
+Only HTML markup for the rendered component is returned. Layouts and HTML page markup aren't automatically rendered with the component. To produce a complete HTML page, the app can maintain a [Blazor layout](xref:blazor/components/layouts) that provides HTML markup for `<html>`, `<head>`, `<body>`, and other tags. The component includes the layout with the [`@layout`](xref:mvc/views/razor#layout) Razor directive at the top of the component definition file, `Welcome.razor` for the example in this section. The following example assumes that the app has a layout named `RazorComponentResultLayout` (`Components/Layout/RazorComponentResultLayout.razor`):
+
+```razor
+@using BlazorSample.Components.Layout
+@layout RazorComponentResultLayout
+```
+
+You can avoid placing the `@using` statement for the `Layout` folder in individual components by moving it to the app's `_Imports.razor` file.
+
+For more information, see <xref:blazor/components/layouts>.
+
 ## Component namespaces
 
 When using a custom folder to hold the project's Razor components, add the namespace representing the folder to either the page/view or to the `_ViewImports.cshtml` file. In the following example:
