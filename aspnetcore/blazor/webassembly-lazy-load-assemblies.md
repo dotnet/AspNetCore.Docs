@@ -12,11 +12,13 @@ uid: blazor/webassembly-lazy-load-assemblies
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor WebAssembly app startup performance can be improved by waiting to load app assemblies until the assemblies are required, which is called *lazy loading*.
+Blazor WebAssembly app startup performance can be improved by waiting to load developer-created app assemblies until the assemblies are required, which is called *lazy loading*.
 
 This article's initial sections cover the app configuration. For a working demonstration, see the [Complete example](#complete-example) section at the end of this article.
 
 *This article only applies to Blazor WebAssembly apps.* Assembly lazy loading doesn't benefit server-side apps because server-rendered apps don't download assemblies to the client.
+
+Lazy loading shouldn't be used for core runtime assemblies, which might be trimmed on publish and unavailable on the client when the app loads.
 
 ## File extension placeholder (`{FILE EXTENSION}`) for assembly files
 
