@@ -38,7 +38,7 @@ Commonly used members on `HttpRequest` include:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestHeaders&highlight=6-7)]
 
-For information on efficiently storing and fetching header strings, see [A brief look at StringValues](https://andrewlock.net/a-brief-look-at-stringvalues/).
+For information on efficiently handling headers that appear more than once, see [A brief look at StringValues](https://andrewlock.net/a-brief-look-at-stringvalues/).
 
 ### Read request body
 
