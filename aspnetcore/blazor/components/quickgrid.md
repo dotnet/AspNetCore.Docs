@@ -136,6 +136,9 @@ There aren't current plans to extend `QuickGrid` with features that full-blown c
 
 <!-- UPDATE 9.0 Remove when out of preview -->
 
+> [!IMPORTANT]
+> The `QuickGrid` scaffolder is in ***preview***. The scaffolder is unsupported for use in production apps. Features of the scaffolder are subject to change without notice.
+
 The preview `QuickGrid` scaffolder offered in [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) scaffolds Razor components with `QuickGrid` to display data from a database.
 
 To use the scaffolder, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**.
