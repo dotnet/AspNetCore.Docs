@@ -578,6 +578,8 @@ items:
                     uid: blazor/security/server/static-server-side-rendering
                   - name: Interactive server-side rendering threats
                     uid: blazor/security/server/interactive-server-side-rendering
+                  - name: Account confirmation and password recovery
+                    uid: blazor/security/server/account-confirmation-and-password-recovery
                   - name: Additional scenarios
                     uid: blazor/security/server/additional-scenarios
               - name: Blazor WebAssembly

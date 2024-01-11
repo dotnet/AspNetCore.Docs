@@ -7,7 +7,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.date: 2/9/2022
 uid: security/authentication/accconfirm
 ---
-
 # Account confirmation and password recovery in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com/Ponant), and [Joe Audette](https://twitter.com/joeaudette)
@@ -17,6 +16,12 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 * [ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
 * [Authentication](xref:security/authentication/identity)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
+
+:::moniker range=">= aspnetcore-8.0"
+
+For Blazor guidance, see <xref:blazor/security/server/account-confirmation-and-password-recovery>.
+
+:::moniker-end
 
 <!-- see Dropbox/wrk/Code/SendGridConsole/Program.cs -->
 
