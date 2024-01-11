@@ -131,3 +131,17 @@ Add the following component to render a grid.
 Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
+
+## `QuickGrid` scaffolder (Preview)
+
+<!-- UPDATE 9.0 Remove when out of preview -->
+
+The preview `QuickGrid` scaffolder offered in [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) scaffolds Razor components with `QuickGrid` to display data from a database.
+
+To use the scaffolder, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**.
+
+The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
+
+The scaffolded Blazor components are added to the project's `Pages` folder in a generated folder named after the model class. The generated `Index` component in the folder produced by the scaffolder uses `QuickGrid` to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as sorting and filtering.
+
+The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
