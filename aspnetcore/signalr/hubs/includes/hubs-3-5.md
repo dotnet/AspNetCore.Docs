@@ -13,7 +13,7 @@ The SignalR Hubs API enables you to call methods on connected clients from the s
 
 The SignalR middleware requires some services, which are configured by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Startup.cs" range="38":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Startup.cs" range="38":::
 
 When adding SignalR functionality to an ASP.NET Core app, setup SignalR routes by calling <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in the `Startup.Configure` method's <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> callback:
 
