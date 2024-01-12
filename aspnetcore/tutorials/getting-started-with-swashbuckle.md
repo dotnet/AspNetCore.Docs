@@ -10,7 +10,7 @@ uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 There are three main components to Swashbuckle:
 
