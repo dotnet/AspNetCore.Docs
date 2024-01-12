@@ -104,7 +104,7 @@ To make calls to specific clients, use the properties of the `Clients` object. I
 * `SendMessageToCaller` sends a message back to the caller, using `Clients.Caller`.
 * `SendMessageToGroup` sends a message to all clients in the `SignalR Users` group.
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="HubMethods":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="HubMethods":::
 
 ## Strongly typed hubs
 
@@ -112,11 +112,11 @@ A drawback of using `SendAsync` is that it relies on a magic string to specify t
 
 An alternative to using `SendAsync` is to strongly type the <xref:Microsoft.AspNetCore.SignalR.Hub> with <xref:Microsoft.AspNetCore.SignalR.Hub%601>. In the following example, the `ChatHub` client methods have been extracted out into an interface called `IChatClient`.
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/IChatClient.cs" id="snippet_IChatClient":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/IChatClient.cs" id="snippet_IChatClient":::
 
 This interface can be used to refactor the preceding `ChatHub` example:
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/StronglyTypedChatHub.cs" range="8-18,36":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/StronglyTypedChatHub.cs" range="8-18,36":::
 
 Using `Hub<IChatClient>` enables compile-time checking of the client methods. This prevents issues caused by using magic strings, since `Hub<T>` can only provide access to the methods defined in the interface.
 
@@ -136,17 +136,17 @@ public interface IClient
 
 By default, a server hub method name is the name of the .NET method. However, you can use the [HubMethodName](xref:Microsoft.AspNetCore.SignalR.HubMethodNameAttribute) attribute to change this default and manually specify a name for the method. The client should use this name, instead of the .NET method name, when invoking the method:
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="HubMethodName" highlight="1":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="HubMethodName" highlight="1":::
 
 ## Handle events for a connection
 
 The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync%2A> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the Hub, such as adding it to a group:
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="OnConnectedAsync":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="OnConnectedAsync":::
 
 Override the `OnDisconnectedAsync` virtual method to perform actions when a client disconnects. If the client disconnects intentionally (by calling `connection.stop()`, for example), the `exception` parameter will be `null`. However, if the client is disconnected due to an error (such as a network failure), the `exception` parameter will contain an exception describing the failure:
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="OnDisconnectedAsync":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="OnDisconnectedAsync":::
 
 <xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
 
@@ -156,7 +156,7 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 Exceptions thrown in your hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). When the client receives an error with a handler attached to the promise using `catch`, it's invoked and passed as a JavaScript `Error` object:
 
-:::code language="JavaScript" source="hubs/samples/2.x/SignalRChat/wwwroot/js/chat.js" range="23":::
+:::code language="JavaScript" source="~/signalr/hubs/samples/2.x/SignalRChat/wwwroot/js/chat.js" range="23":::
 
 If your Hub throws an exception, connections aren't closed. By default, SignalR returns a generic error message to the client. For example:
 
@@ -168,7 +168,7 @@ Unexpected exceptions often contain sensitive information, such as the name of a
 
 If you have an exceptional condition you *do* want to propagate to the client, you can use the <xref:Microsoft.AspNetCore.SignalR.HubException> class. If you throw a `HubException` from your hub method, SignalR **will** send the entire message to the client, unmodified:
 
-:::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="ThrowHubException" highlight="3":::
+:::code language="csharp" source="~/signalr/hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="ThrowHubException" highlight="3":::
 
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
