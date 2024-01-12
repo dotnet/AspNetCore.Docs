@@ -1,17 +1,4 @@
----
-title: Use hubs in ASP.NET Core SignalR
-author: bradygaster
-description: Learn how to use hubs in ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 02/14/2023
-uid: signalr/hubs
----
-
-# Use hubs in SignalR for ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
@@ -88,8 +75,6 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.Asp
 
 Each property or method in the preceding tables returns an object with a `SendAsync` method. The `SendAsync` method receives the name of the client method to call and any parameters.
 
-The object returned by the `Client` and `Caller` methods also contain an `InvokeAsync` method, which can be used to wait for a [result from the client](xref:signalr/hubs#client-results).
-
 ## Send messages to clients
 
 To make calls to specific clients, use the properties of the `Clients` object. In the following example, there are three hub methods:
@@ -117,145 +102,11 @@ Using `Hub<IChatClient>` enables compile-time checking of the client methods. Th
 > [!NOTE]
 > The `Async` suffix isn't stripped from method names. Unless a client method is defined with `.on('MyMethodAsync')`, don't use `MyMethodAsync` as the name.
 
-## Client results
-
-In addition to making calls to clients, the server can request a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler.
-
-There are two ways to use the API on the server, the first is to call `Client(...)` or `Caller` on the `Clients` property in a Hub method:
-
-```csharp
-public class ChatHub : Hub
-{
-    public async Task<string> WaitForMessage(string connectionId)
-    {
-        var message = await Clients.Client(connectionId).InvokeAsync<string>(
-            "GetMessage");
-        return message;
-    }
-}
-```
-
-The second way is to call `Client(...)` on an instance of [`IHubContext<T>`](xref:signalr/hubcontext):
-
-```csharp
-async Task SomeMethod(IHubContext<MyHub> context)
-{
-    string result = await context.Clients.Client(connectionID).InvokeAsync<string>(
-        "GetMessage");
-}
-```
-
-Strongly-typed hubs can also return values from interface methods:
-
-```csharp
-public interface IClient
-{
-    Task<string> GetMessage();
-}
-
-public class ChatHub : Hub<IClient>
-{
-    public async Task<string> WaitForMessage(string connectionId)
-    {
-        string message = await Clients.Client(connectionId).GetMessage();
-        return message;
-    }
-}
-```
-
-Clients return results in their `.On(...)` handlers, as shown below:
-
-#### .NET client
-
-```csharp
-hubConnection.On("GetMessage", async () =>
-{
-    Console.WriteLine("Enter message:");
-    var message = await Console.In.ReadLineAsync();
-    return message;
-});
-```
-
-#### Typescript client
-
-```typescript
-hubConnection.on("GetMessage", async () => {
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve("message");
-        }, 100);
-    });
-    return promise;
-});
-```
-
-#### Java client
-
-```java
-hubConnection.onWithResult("GetMessage", () -> {
-    return Single.just("message");
-});
-```
-
 ## Change the name of a hub method
 
 By default, a server hub method name is the name of the .NET method. To change this default behavior for a specific method, use the [HubMethodName](xref:Microsoft.AspNetCore.SignalR.HubMethodNameAttribute) attribute. The client should use this name instead of the .NET method name when invoking the method:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_HubMethodName" highlight="1":::
-
-## Inject services into a hub
-
-Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method.
-
-When injecting multiple services for different hub methods or as an alternative way of writing code, hub methods can also accept services from DI.
-By default, hub method parameters are inspected and resolved from DI if possible.
-
-```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
-
-// ...
-
-public class ChatHub : Hub
-{
-    public Task SendMessage(string user, string message, IDatabaseService dbService)
-    {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
-    }
-}
-```
-
-If implicit resolution of parameters from services isn't desired, disable it with [DisableImplicitFromServicesParameters](xref:signalr/configuration#configure-server-options).
-To explicitly specify which parameters are resolved from DI in hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) option and use the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on the hub method parameters that should be resolved from DI.
-
-```csharp
-services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
-services.AddSignalR(options =>
-{
-    options.DisableImplicitFromServicesParameters = true;
-});
-
-// ...
-
-public class ChatHub : Hub
-{
-    public Task SendMessage(string user, string message,
-        [FromServices] IDatabaseService dbService)
-    {
-        var userName = dbService.GetUserName(user);
-        return Clients.All.SendAsync("ReceiveMessage", userName, message);
-    }
-}
-```
-
-> [!NOTE]
-> This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented by DI implementations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
-
-### Keyed services support in Dependency Injection
-
-*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/KeyedSvsHub/Program.cs" highlight="5-6,34,39":::
 
 ## Handle events for a connection
 
@@ -267,7 +118,8 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnDisconnectedAsync":::
 
-<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> doesn't need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
+<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
+
 ## Handle errors
 
 Exceptions thrown in hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Clients can attach a `catch` handler to the returned promise or use `try`/`catch` with `async`/`await` to handle exceptions:
@@ -295,13 +147,6 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 * <xref:signalr/introduction>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>
+* [SignalR Hub Protocol](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-7.md)]
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-6.md)]
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-3-5.md)]
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-2.1.md)]

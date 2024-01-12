@@ -1,17 +1,5 @@
----
-title: Use hubs in ASP.NET Core SignalR
-author: bradygaster
-description: Learn how to use hubs in ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 02/14/2023
-uid: signalr/hubs
----
 
-# Use hubs in SignalR for ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
@@ -251,12 +239,6 @@ public class ChatHub : Hub
 > [!NOTE]
 > This feature makes use of <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService>, which is optionally implemented by DI implementations. If the app's DI container doesn't support this feature, injecting services into hub methods isn't supported.
 
-### Keyed services support in Dependency Injection
-
-*Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/KeyedSvsHub/Program.cs" highlight="5-6,34,39":::
-
 ## Handle events for a connection
 
 The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync%2A> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the hub, such as adding it to a group:
@@ -267,7 +249,7 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnDisconnectedAsync":::
 
-<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> doesn't need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
+<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
 ## Handle errors
 
 Exceptions thrown in hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Clients can attach a `catch` handler to the returned promise or use `try`/`catch` with `async`/`await` to handle exceptions:
@@ -276,7 +258,7 @@ Exceptions thrown in hub methods are sent to the client that invoked the method.
 
 Connections aren't closed when a hub throws an exception. By default, SignalR returns a generic error message to the client, as shown in the following example:
 
-```output
+```text
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'SendMessage' on the server.
 ```
 
@@ -297,11 +279,3 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 * <xref:signalr/publish-to-azure-web-app>
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-7.md)]
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-6.md)]
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-3-5.md)]
-
-[!INCLUDE[](~/signalr/hubs/includes/hubs-2.1.md)]
