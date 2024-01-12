@@ -5,7 +5,7 @@ description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/05/2024
+ms.date: 01/12/2024
 uid: blazor/forms/input-components
 ---
 # ASP.NET Core Blazor input components
@@ -122,6 +122,8 @@ The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
 * Several of Blazor's built-in input components.
+
+When the model property for the ship's classification (`Classification`) is set, the option matching the model is checked. For example, `checked="@(Model!.Classification == "Exploration")"` for the classification of an exploration ship. The reason for this is that the value of a `<select>` element is only present in the browser. When the form is reloaded, for example after submitting the form, any state from the client is overridden with state from the server, which doesn't ordinarily mark an option as checked. By setting the checked option from the model property, the classification always reflects the model's state. This preserves the classification selection across form submissions.
 
 `Starship3.razor`:
 
