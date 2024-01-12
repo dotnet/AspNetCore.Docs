@@ -298,10 +298,10 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 
 :::moniker-end
 
-[!INCLUDE[](~/signalr/hubs//includes/hubs-7.md)]
+[!INCLUDE[](~/signalr/hubs/includes/hubs-7.md)]
 
-[!INCLUDE[](~/signalr/hubs//includes/hubs-6.md)]
+[!INCLUDE[](~/signalr/hubs/includes/hubs-6.md)]
 
-[!INCLUDE[](~/signalr/hubs//includes/hubs-3-5.md)]
+[!INCLUDE[](~/signalr/hubs/includes/hubs-3-5.md)]
 
-[!INCLUDE[](~/signalr/hubs//includes/hubs-2.1.md)]
+[!INCLUDE[](~/signalr/hubs/includes/hubs-2.1.md)]
