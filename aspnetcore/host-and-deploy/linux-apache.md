@@ -86,7 +86,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 In the app processing pipeline:
 
-```
+```csharp
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
