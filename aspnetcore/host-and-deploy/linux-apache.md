@@ -79,7 +79,7 @@ Any component that depends on the scheme, such as authentication, link generatio
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
-// using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.HttpOverrides;
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
