@@ -76,11 +76,17 @@ Any component that depends on the scheme, such as authentication, link generatio
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers.
+
+Add the <xref:Microsoft.AspNetCore.HttpOverrides?displayProperty=fullName> namespace to the top of the file:
 
 ```csharp
 using Microsoft.AspNetCore.HttpOverrides;
+```
 
+In the app processing pipeline:
+
+```
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -93,9 +99,15 @@ If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified 
 
 Proxies running on loopback addresses (`127.0.0.0/8, [::1]`), including the standard localhost address (127.0.0.1), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
 
-```csharp
-// using System.Net;
+Add the <xref:System.Net?displayProperty=fullName> namespace to the top of the file:
 
+```csharp
+using System.Net;
+```
+
+Use the following service registration:
+
+```csharp
 services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
