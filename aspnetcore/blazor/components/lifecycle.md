@@ -380,7 +380,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ## Base class lifecycle methods
 
-When overriding Blazor's lifecycle methods, it isn't necessary to call the base class lifecycle methods for <xref:Microsoft.AspNetCore.Components.ComponentBase>. However, a component should call an overridden base class method if the method contains logic that must be executed in the base class. In the following example, `base.OnInitialized();` is called to ensure that the base class's `OnInitialized` method is executed. Without the call, `BlazorRocksBase2.OnInitialized` doesn't execute.
+When overriding Blazor's lifecycle methods, it isn't necessary to call the base class lifecycle methods for <xref:Microsoft.AspNetCore.Components.ComponentBase>. However, a component should call an overridden base class lifecycle method if the method contains logic that must be executed in the base class. In the following example, `base.OnInitialized();` is called to ensure that the base class's `OnInitialized` method is executed. Without the call, `BlazorRocksBase2.OnInitialized` doesn't execute.
 
 `BlazorRocks2.razor`:
 
