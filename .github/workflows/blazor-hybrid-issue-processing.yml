@@ -1,0 +1,54 @@
+name: Blazor Hybrid issue processing
+on:
+  issues:
+    types:
+      - opened
+    paths:
+      - '**/blazor/hybrid/**/.md'
+jobs:
+  process-blazor-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### 🎉🥳 ***Happy New Year!*** 💃🕺
+
+            A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["aspnetcore/prod"]
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["aspnetcore-blazorhybrid/tech"]
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["Blazor Hybrid"]
+            })
+            await github.rest.issues.addAssignees({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              assignees: ["guardrex", "BethMassi"]
+            })
+            await github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: [":watch: Not Triaged"]
+            })
