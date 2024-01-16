@@ -3,15 +3,18 @@ title: Get started with Swashbuckle and ASP.NET Core
 author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.custom: mvc
 ms.date: 11/09/2021
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
+<!--
 :::moniker range=">= aspnetcore-8.0"
 Swashbuckle is not supported in current versions of .NET. For a supported alternative, see <xref:tutorials/web-api-help-pages-using-swagger>.
 :::moniker-end
+-->
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
