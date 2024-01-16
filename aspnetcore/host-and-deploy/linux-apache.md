@@ -253,7 +253,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-**Note:** Set the `local/bin` folder for your distribution. Some versions of Ubuntu require `ExecStart=/usr/bin/dotnet /var/www/helloapp/helloapp.dll`
+**Note:** Set the `local/bin` folder for your distribution. Some versions of Ubuntu require `ExecStart=/usr/bin/dotnet `
 
 In the preceding example, the user that manages the service is specified by the `User` option. The user (`apache`) must exist and have proper ownership of the app's files.
 
