@@ -10,11 +10,9 @@ uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
-<!--
 :::moniker range=">= aspnetcore-8.0 
 Swashbuckle is not supported in current versions of .NET. For a supported alternative, see <xref:tutorials/web-api-help-pages-using-swagger>.
 :::moniker-end
--->
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 There are three main components to Swashbuckle:
