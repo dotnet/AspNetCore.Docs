@@ -2,7 +2,6 @@
 title: Get started with Swashbuckle and ASP.NET Core
 author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/09/2021
