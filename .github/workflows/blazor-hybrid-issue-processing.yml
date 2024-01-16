@@ -4,7 +4,7 @@ on:
     types:
       - opened
     paths:
-      - '**/blazor/hybrid/**/.md'
+      - '**/blazor/hybrid/**/*.md'
 jobs:
   process-blazor-issue:
     runs-on: ubuntu-latest
