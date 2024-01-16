@@ -5,7 +5,7 @@ description: Learn about Blazor's event handling features, including event argum
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 01/16/2024
 uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
