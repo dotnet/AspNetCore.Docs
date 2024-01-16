@@ -13,6 +13,8 @@ uid: tutorials/get-started-with-swashbuckle
 > [!NOTE]
 > Swashbuckle is not supported in .NET 8 and later. For a supported alternative, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
+:::moniker range=">= aspnetcore-6.0"
+
 There are three main components to Swashbuckle:
 
 * [Swashbuckle.AspNetCore.Swagger](https://www.nuget.org/packages/Swashbuckle.AspNetCore.Swagger/): a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
