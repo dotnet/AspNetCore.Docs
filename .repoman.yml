@@ -32,7 +32,7 @@ issues:
               value: "(?i)blazor$"
           pass:
             - labels-add: ["Blazor"]
-            - projects-add: [35]
+            - projects-add: [312]
             - labels-remove: [":watch: Not Triaged"]
             - assignee-add: ["guardrex"]
 
