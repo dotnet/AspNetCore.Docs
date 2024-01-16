@@ -5,7 +5,7 @@ description: Learn about data binding features for Razor components and DOM elem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 01/16/2024
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
@@ -144,7 +144,7 @@ Razor attribute binding is case-sensitive:
 
 To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a DOM event for the `{EVENT}` placeholder. An assigned C# method isn't executed until the bound value is assigned synchronously.
 
-Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) with `@bind:after` isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:after`.
+Using an [event callback parameter (`EventCallback`/`EventCallback<T>`)](xref:blazor/components/event-handling#eventcallback) with `@bind:after` isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:after`.
 
 In the following example:
 

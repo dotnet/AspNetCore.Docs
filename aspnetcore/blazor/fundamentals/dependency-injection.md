@@ -271,7 +271,7 @@ public class ComponentBase : IComponent
 > [!NOTE]
 > Since injected services are expected to be available, the default literal with the null-forgiving operator (`default!`) is assigned in .NET 6 or later. For more information, see [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
-In components derived from the base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient:
+In components derived from the base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient, and all the component requires is the [`@inherits`](xref:mvc/views/razor#inherits) directive:
 
 ```razor
 @page "/demo"

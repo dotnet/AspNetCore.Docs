@@ -211,8 +211,6 @@ The Swagger UI now clearly documents the expected HTTP response codes (and the [
 
 Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
 
-To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annotations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response, schema, and parameter metadata.
-
 ### Redoc
 
 Redoc is an alternative to the Swagger UI.

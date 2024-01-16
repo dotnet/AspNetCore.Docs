@@ -160,6 +160,19 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
+If a custom [base class](xref:blazor/components/index#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the base class:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    await ...
+
+    await base.OnInitializedAsync();
+}
+```
+
+It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+
 Blazor apps that prerender their content on the server call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> *twice*:
 
 * Once when the component is initially rendered statically as part of the page.
@@ -253,9 +266,24 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
+If a custom [base class](xref:blazor/components/index#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> on the base class:
+
+```csharp
+protected override async Task OnParametersSetAsync()
+{
+    await ...
+
+    await base.OnParametersSetAsync();
+}
+```
+
+It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+
 If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
+
+For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance#implement-setparametersasync-manually>.
 
 ## After component render (`OnAfterRender{Async}`)
 
@@ -328,6 +356,19 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 }
 ```
 
+If a custom [base class](xref:blazor/components/index#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> on the base class:
+
+```csharp
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    ...
+
+    await base.OnAfterRenderAsync(firstRender);
+}
+```
+
+It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+
 Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. This is different from the other lifecycle methods, which schedule a further render cycle once a returned <xref:System.Threading.Tasks.Task> completes.
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering. When the app prerenders:
@@ -336,6 +377,76 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 1. When the Blazor script (`blazor.{server|webassembly|web}.js`) starts in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
 If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+
+## Base class lifecycle methods
+
+When overriding Blazor's lifecycle methods, it isn't necessary to call base class lifecycle methods for <xref:Microsoft.AspNetCore.Components.ComponentBase>. However, a component should call an overridden base class lifecycle method if the base class method contains logic that must be executed. Library consumers usually call base class lifecycle methods when inheriting a base class because library base classes often have custom lifecycle logic to execute. If the app uses a base class from a library, consult the library's documentation for guidance.
+
+In the following example, `base.OnInitialized();` is called to ensure that the base class's `OnInitialized` method is executed. Without the call, `BlazorRocksBase2.OnInitialized` doesn't execute.
+
+`BlazorRocks2.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/BlazorRocks2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks2.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/BlazorRocks2.razor":::
+
+:::moniker-end
+
+`BlazorRocksBase2.cs`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/BlazorRocksBase2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/BlazorRocksBase2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/BlazorRocksBase2.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/BlazorRocksBase2.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/BlazorRocksBase2.cs":::
+
+:::moniker-end
 
 ## State changes (`StateHasChanged`)
 

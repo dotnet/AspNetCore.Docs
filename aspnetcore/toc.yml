@@ -500,10 +500,10 @@ items:
                 uid: blazor/components/control-head-content
               - name: Cascading values and parameters
                 uid: blazor/components/cascading-values-and-parameters
-              - name: Data binding
-                uid: blazor/components/data-binding
               - name: Event handling
                 uid: blazor/components/event-handling
+              - name: Data binding
+                uid: blazor/components/data-binding
               - name: Lifecycle
                 uid: blazor/components/lifecycle
               - name: Virtualization
