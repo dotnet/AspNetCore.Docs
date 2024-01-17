@@ -1000,6 +1000,8 @@ items:
         uid: grpc/configuration
       - name: Authentication and authorization
         uid: grpc/authn-and-authz
+      - name: Error handling
+        uid: grpc/error-handling
       - name: gRPC interceptors
         uid: grpc/interceptors
       - name: Logging and diagnostics
