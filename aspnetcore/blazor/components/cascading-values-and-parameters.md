@@ -33,7 +33,7 @@ The following class is used in this section's examples.
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Dalek.cs":::
 
-The following registrations are made in the app's `Program` file:
+The following registrations are made in the app's `Program` file with <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A>:
 
 * `Dalek` with a property value for `Units` is registered as a fixed cascading value.
 * A second `Dalek` registration with a different property value for `Units` is named "`AlphaGroup`".
@@ -59,6 +59,13 @@ builder.Services.AddCascadingValue(sp =>
     return source;
 });
 ```
+
+> [!WARNING]
+> Registering a component type as a root-level cascading value doesn't register additional services for the type or permit service activation in the component.
+>
+> Treat required services separately from cascading values, registering them separately from the cascaded type.
+>
+> Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component registered as the cascading value and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
 
 :::moniker-end
 
@@ -468,3 +475,7 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
     private bool showThirdTab;
 }
 ```
+
+## Additional resources
+
+[State Management: Factor out the state preservation to a common location](xref:blazor/state-management?pivots=server#factor-out-the-state-preservation-to-a-common-location)
