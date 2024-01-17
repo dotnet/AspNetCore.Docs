@@ -495,7 +495,7 @@ The `CounterStateProvider` component handles the loading phase by not rendering 
 
 :::moniker range=">= aspnetcore-8.0"
 
-To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> (`<Router>...</Router>`) in the `Routes` component (`Components/Routes.razor`) with interactive server-side rendering (interactive SSR).
+To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> (`<Router>...</Router>`) in the `Routes` component with global interactive server-side rendering (interactive SSR).
 
 In the `App` component (`Components/App.razor`):
 
@@ -503,7 +503,7 @@ In the `App` component (`Components/App.razor`):
 <Routes @rendermode="InteractiveServer" />
 ```
 
-The following example wraps the Blazor router in the `Routes` component:
+In the `Routes` component (`Components/Routes.razor`):
 
 :::moniker-end
 
