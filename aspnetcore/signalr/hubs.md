@@ -123,45 +123,15 @@ In addition to making calls to clients, the server can request a result from a c
 
 There are two ways to use the API on the server, the first is to call `Client(...)` or `Caller` on the `Clients` property in a Hub method:
 
-```csharp
-public class ChatHub : Hub
-{
-    public async Task<string> WaitForMessage(string connectionId)
-    {
-        var message = await Clients.Client(connectionId).InvokeAsync<string>(
-            "GetMessage");
-        return message;
-    }
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/7.x/SignalRHubsSample/Snippets/Hubs/ChatHubClientResults.cs" id="snippet_HubClientReturn" highlight="8-10":::
 
 The second way is to call `Client(...)` on an instance of [`IHubContext<T>`](xref:signalr/hubcontext):
 
-```csharp
-async Task SomeMethod(IHubContext<MyHub> context)
-{
-    string result = await context.Clients.Client(connectionID).InvokeAsync<string>(
-        "GetMessage");
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/7.x/SignalRHubsSample/Snippets/Hubs/ChatHubClientResultsContext.cs" id="snippet_HubClientReturnContext":::
 
 Strongly-typed hubs can also return values from interface methods:
 
-```csharp
-public interface IClient
-{
-    Task<string> GetMessage();
-}
-
-public class ChatHub : Hub<IClient>
-{
-    public async Task<string> WaitForMessage(string connectionId)
-    {
-        string message = await Clients.Client(connectionId).GetMessage();
-        return message;
-    }
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/7.x/SignalRHubsSample/Snippets/Hubs/ChatHubClientResultsStronglyTyped.cs" id="snippet_HubClientResultsStronglyTyped":::
 
 Clients return results in their `.On(...)` handlers, as shown below:
 
