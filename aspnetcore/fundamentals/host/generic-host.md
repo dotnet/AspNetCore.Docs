@@ -295,7 +295,7 @@ Indicates whether the host should listen on the URLs configured with the `IWebHo
 
 **Key**: `preferHostingUrls`  
 **Type**: `bool` (`true`/`1` or `false`/`0`)  
-**Default**: `true`  
+**Default**: `false`  
 **Environment variable**: `{PREFIX_}PREFERHOSTINGURLS`
 
 To set this value, use the environment variable or call `PreferHostingUrls`:
@@ -768,13 +768,13 @@ Indicates whether the host should listen on the URLs configured with the `IWebHo
 
 **Key**: `preferHostingUrls`  
 **Type**: `bool` (`true`/`1` or `false`/`0`)  
-**Default**: `true`  
+**Default**: `false`  
 **Environment variable**: `{PREFIX_}PREFERHOSTINGURLS`
 
 To set this value, use the environment variable or call `PreferHostingUrls`:
 
 ```csharp
-webBuilder.PreferHostingUrls(false);
+webBuilder.PreferHostingUrls(true);
 ```
 
 ### PreventHostingStartup
@@ -1275,13 +1275,13 @@ Indicates whether the host should listen on the URLs configured with the `IWebHo
 
 **Key**: `preferHostingUrls`  
 **Type**: `bool` (`true`/`1` or `false`/`0`)  
-**Default**: `true`  
+**Default**: `false`  
 **Environment variable**: `{PREFIX_}PREFERHOSTINGURLS`
 
 To set this value, use the environment variable or call `PreferHostingUrls`:
 
 ```csharp
-webBuilder.PreferHostingUrls(false);
+webBuilder.PreferHostingUrls(true);
 ```
 
 ### PreventHostingStartup
