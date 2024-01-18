@@ -1,13 +1,13 @@
 Throughout this article, the terms **server**/**server-side** and **client**/**client-side** are used to distinguish locations where app code executes:
 
-* **Server**/**server-side**: Interactive server-side rendering (interactive SSR) of a Blazor Web App.
+* **Server**/**server-side**: In a Blazor Web App, interactive server-side rendering (interactive SSR), which operates over a SignalR connection with the client, or static server-side rendering (static SSR).
 * **Client**/**client-side**
   * Client-side rendering (CSR) of a Blazor Web App.
   * A Blazor WebAssembly app.
 
 Documentation component examples usually don't configure an interactive render mode with an `@rendermode` directive in the component's definition file (`.razor`):
 
-* In a Blazor Web App, the component must have an interactive render mode applied, either in the component's definition file or inherited from a parent component. For more information, see <xref:blazor/components/render-modes>.
+* In a Blazor Web App, a component must have an interactive render mode applied for interactivity over a SignalR connection with the client, either in the component's definition file or inherited from a parent component. Components that don't set or inherit a render mode, are rendered with static SSR on the server. No SignalR connection is established for statically-rendered components. For more information, see <xref:blazor/components/render-modes>.
 
 * In a standalone Blazor WebAssembly app, the components function as shown and don't require a render mode because components always run interactively on WebAssembly in a Blazor WebAssembly app.
 

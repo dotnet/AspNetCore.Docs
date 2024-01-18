@@ -21,7 +21,7 @@ Attribute evaluation occurs before data binding and before execution of the page
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to page handlers or actions.
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> service and is registered in the service collection at application startup. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to page handlers or actions.
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 
