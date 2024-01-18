@@ -270,9 +270,9 @@ The variable `AKVSecret` pulls its value from Azure Key Vault. The following pro
 | secretName   | Name of the secret to extract.                          |
 | resourceId   | Azure resource ID for the specific Key Vault to access. |
 
-The value for the `keyVaultName` and `resourceId` properties can be found in the Azure portal. Go to **Settings > Properties** to find the resource ID. For `secretName`, use the name of the secret that appears on the **Secrets** page in the Azure portal.
+The value for the `resourceId` property can be found in the Azure portal. Go to **Settings > Properties** to find it. For `secretName`, use the name of the secret that appears on the **Secrets** page in the Azure portal.
 
-For example, the following `.http` file has a  request that uses this secret value.
+For example, the following `.http` file has a request that uses this secret value.
 
 ```http
 GET {{HostAddress}}{{Path}}
