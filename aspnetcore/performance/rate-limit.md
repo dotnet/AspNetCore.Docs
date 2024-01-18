@@ -5,7 +5,7 @@ monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/30/2022
+ms.date: 10/29/2022
 uid: performance/rate-limit
 ---
 
@@ -158,7 +158,7 @@ In the preceding code, the `[EnableRateLimiting("sliding")]` is ***not*** applie
 
 Consider the following code which doesn't call `RequireRateLimiting` on `MapRazorPages` or `MapDefaultControllerRoute`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="52,51":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="51-52":::
 
 Consider the following controller:
 
