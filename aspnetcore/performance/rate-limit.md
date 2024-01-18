@@ -158,7 +158,7 @@ In the preceding code, the `[EnableRateLimiting("sliding")]` is ***not*** applie
 
 Consider the following code which doesn't call `RequireRateLimiting` on `MapRazorPages` or `MapDefaultControllerRoute`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="52,51":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="51-52":::
 
 Consider the following controller:
 
