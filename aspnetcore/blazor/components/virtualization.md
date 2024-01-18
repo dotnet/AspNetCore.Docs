@@ -288,9 +288,11 @@ The actual number of rows rendered and the size of the spacers vary according to
 > [!NOTE]
 > To learn how to control the spacer HTML element tag, see the [Control the spacer element tag name](#control-the-spacer-element-tag-name) section later in this article.
 
-The spacer elements internally use an [Intersection Observer](https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API) to receive notification when they're becoming visible. `Virtualize` depends on receiving these events. `Virtualize` works under the following conditions:
+The spacer elements internally use an [Intersection Observer](https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API) to receive notification when they're becoming visible. `Virtualize` depends on receiving these events.
 
-* **All content items are of identical height.** This makes it possible to calculate which content corresponds to a given scroll position without first fetching every data item and rendering the data into a DOM element.
+`Virtualize` works under the following conditions:
+
+* **All rendered content items, including [placeholder content](#placeholder), are of identical height.** This makes it possible to calculate which content corresponds to a given scroll position without first fetching every data item and rendering the data into a DOM element.
 
 * **Both the spacers and the content rows are rendered in a single vertical stack with every item filling the whole horizontal width.** This is generally the default. In typical cases with `div` elements, `Virtualize` works by default. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
 
