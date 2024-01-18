@@ -65,7 +65,7 @@ builder.Services.AddCascadingValue(sp =>
 >
 > Treat required services separately from cascading values, registering them separately from the cascaded type.
 >
-> Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component registered as the cascading value and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
+> Avoid using <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> to register a component type as a cascading value. Instead, wrap the `<Router>...</Router>` in the `Routes` component (`Components/Routes.razor`) with the component and adopt global interactive server-side rendering (interactive SSR). For an example, see the [`CascadingValue` component](#cascadingvalue-component) section.
 
 :::moniker-end
 
