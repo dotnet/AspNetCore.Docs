@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-8.0"
 
-This guidance applies to components that adopt interactive server-side rendering (interactive SSR) in a Blazor Web App.
+This guidance applies to components that adopt interactive server-side rendering (interactive SSR) in a Blazor Web App, which operates over a SignalR connection with the client.
 
 Documentation component examples usually don't configure an interactive render mode with an `@rendermode` directive in the component's definition file (`.razor`), but the component must have the Interactive Server render mode applied (`@rendermode InteractiveServer`), either in the component's definition file or inherited from a parent component. For more information, see <xref:blazor/components/render-modes>.
 
