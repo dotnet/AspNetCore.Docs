@@ -493,7 +493,25 @@ else
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
+:::moniker range=">= aspnetcore-8.0"
+
+To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> (`<Router>...</Router>`) in the `Routes` component with global interactive server-side rendering (interactive SSR).
+
+In the `App` component (`Components/App.razor`):
+
+```razor
+<Routes @rendermode="InteractiveServer" />
+```
+
+In the `Routes` component (`Components/Routes.razor`):
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):
+
+:::moniker-end
 
 ```razor
 <CounterStateProvider>
@@ -772,8 +790,6 @@ When implementing custom state storage, a useful approach is to adopt [cascading
 
 * To consume state across many components.
 * If there's just one top-level state object to persist.
-
-For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 ## Troubleshoot
 
