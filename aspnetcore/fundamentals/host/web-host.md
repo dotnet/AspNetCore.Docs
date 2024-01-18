@@ -249,13 +249,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: true  
+**Default**: false
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(false)
+    .PreferHostingUrls(true)
 ```
 
 ### Prevent Hosting Startup
