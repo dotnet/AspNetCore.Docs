@@ -165,6 +165,8 @@ When you choose the Interactive WebAssembly or Interactive Auto render modes, th
 
 In the main project of a Blazor Web App, the authentication state provider is named either [`IdentityRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) (Server interactivity solutions only) or [`PersistingRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingRevalidatingAuthenticationStateProvider.cs) (WebAssembly or Auto interactivity solutions).
 
+For a description on how global interactive render modes are applied to non-Identity components while at the same time enforcing static SSR for the Identity components, see <xref:blazor/components/render-modes#area-folder-of-static-ssr-components>.
+
 For more information on persisting prerendered state, see <xref:blazor/components/prerender#persist-prerendered-state>.
 
 <!-- UPDATE 9.0 Remove blog post cross-link -->
