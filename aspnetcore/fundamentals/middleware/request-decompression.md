@@ -33,7 +33,7 @@ If the middleware encounters a request with compressed content but is unable to 
 
 ## Configuration
 
-The following code shows how to enable request decompression for the [default](#default) `Content-Encoding` types:
+The following code uses <xref:Microsoft.Extensions.DependencyInjection.RequestDecompressionServiceExtensions.AddRequestDecompression(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.AspNetCore.Builder.RequestDecompressionBuilderExtensions.UseRequestDecompression%2A> to enable request decompression for the [default](#default) `Content-Encoding` types:
 
 [!code-csharp[](samples/request-decompression/7.x/Program.cs?name=snippet_WithDefaultProviders&highlight=3,7)]
 
