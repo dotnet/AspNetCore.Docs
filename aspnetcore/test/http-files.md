@@ -256,8 +256,7 @@ Define a variable in an environment file with the metadata to access the secret.
     "AKVSecret": {
       "provider": "AzureKeyVault",
       "secretName": "SecretInKeyVault",
-      "keyVaultName": "my-keyvault-01",
-      "resourceId": "/subscriptions/{4a87-523d-4a15-87e9-8c5eb2df7716}/resourceGroups/my-key-vault-rg"
+      "resourceId": "/subscriptions/3a914c59-8175a9e0e540/resourceGroups/my-key-vault-rg/providers/Microsoft.KeyVault/vaults/my-key-vault-01182024"
     }
   }
 }
@@ -269,10 +268,9 @@ The variable `AKVSecret` pulls its value from Azure Key Vault. The following pro
 |--------------|---------------------------------------------------------|
 | provider     | For Key Vault, always use `AzureKeyVault`.              |
 | secretName   | Name of the secret to extract.                          |
-| keyVaultName | The name of the Key Vault that contains the secret.     |
 | resourceId   | Azure resource ID for the specific Key Vault to access. |
 
-The value for the `keyVaultName` and `resourceId` properties can be found in the Azure portal. Go to **Settings > Properties** to find both the name and the resource ID to use. For `secretName`, use the name of the secret that appears on the **Secrets** page in the Azure portal.
+The value for the `keyVaultName` and `resourceId` properties can be found in the Azure portal. Go to **Settings > Properties** to find the resource ID. For `secretName`, use the name of the secret that appears on the **Secrets** page in the Azure portal.
 
 For example, the following `.http` file has a  request that uses this secret value.
 
@@ -280,16 +278,6 @@ For example, the following `.http` file has a  request that uses this secret val
 GET {{HostAddress}}{{Path}}
 X-AKV-SECRET: {{akvSecret}}
 ```
-
-**NOTE:** Starting in Visual Studio 2022 version 17.9, the format for accessing Azure Key Vault is different. The `keyVaultName` property is removed and the `resourceId` property contains the full `resourceId` URL from Azure, which contains the key vault name. For example:
-
-```json
-"AKVSecret": {
-  "provider": "AzureKeyVault",
-  "secretName": "SayedSecretValue1",
-  "resourceId": "/subscriptions/21e74a23d-4a15-87e9b2df5516/resourceGroups/sayed-api-demo1/providers/Microsoft.KeyVault/vaults/my-keyvault-01"
-}
-``` 
 
 ## DPAPI encryption
 
