@@ -791,8 +791,6 @@ When implementing custom state storage, a useful approach is to adopt [cascading
 * To consume state across many components.
 * If there's just one top-level state object to persist.
 
-For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
-
 ## Troubleshoot
 
 In a custom state management service, a callback invoked outside of Blazor's synchronization context must wrap the logic of the callback in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context.
