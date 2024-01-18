@@ -344,7 +344,7 @@ If you try to use `$processEnv` to access an environment variable that doesn’t
 
 ## `.env` files
 
-To get the value of a variable that is defined in a [`.env`](https://github.com/motdotla/dotenv) file, use `$dotenv`. The `.env` file must be in the same folder as the `.http` file. The format for `$dotenv` is the same as for `$processEnv`. For example, if the `.env` file has this content:
+To get the value of a variable that is defined in a [`.env`](https://github.com/motdotla/dotenv) file, use `$dotenv`. The `.env` file must be in the project folder. The format for `$dotenv` is the same as for `$processEnv`. For example, if the `.env` file has this content:
 
 ```
 USERNAME=userFromDotenv
@@ -378,7 +378,6 @@ The `[format]` option is one of `rfc1123`, `iso8601`, or a custom format in quot
 
 ```http
 GET https://httpbin.org/headers
-Accept: application/json
 X-CUSTOM: {{$datetime "dd-MM-yyyy"}}
 X-ISO8601: {{$datetime iso8601}}
 X-ISO8601L: {{$localDatetime iso8601}}
@@ -391,7 +390,6 @@ Here are some sample values that the preceding examples generate:
 ```json
 {
   "headers": {
-    "Accept": "application/json",
     "X-Custom": "17-01-2024",
     "X-Iso8601": "2024-01-17T22:59:55.5345770+00:00",
     "X-Iso8601L": "2024-01-17T14:59:55.5345770-08:00",
@@ -400,6 +398,7 @@ Here are some sample values that the preceding examples generate:
   }
 }
 ```
+
 
 The `[offset option]` syntax is in the form `number` `unit` where `number` is an integer and `unit` is one of the following values:
 
@@ -419,7 +418,6 @@ For example:
 
 ```http
 GET https://httpbin.org/headers
-Accept: application/json
 X-Custom-Minus-1-Year: {{$datetime "dd-MM-yyyy" -1 y}}
 X-RFC1123-Plus-1-Day: {{$datetime rfc1123 1 d}} 
 X-Timestamp-Plus-1-Year: {{$timestamp 1 y}}
@@ -429,13 +427,14 @@ Here are some sample values that the preceding examples generate:
 ```json
 {
   "headers": {
-    "Accept": "application/json",
     "X-Custom-Minus-1-Year": "17-01-2023",
     "X-Rfc1123-Plus-1-Day": "Thu, 18 Jan 2024 23:02:48 GMT",
     "X-Timestamp-Plus-1-Year": "1737154968"
   }
 }
 ```
+
+Some of the preceding examples use the free open-source website <httpbin.org>. This is a third-party website not affiliated with Microsoft. In these examples it returns a response body with the headers that were sent in the request. For information about other ways to use this resource for API testing, see the [httpbin.org site's home page](https://httpbin.org).
 
 ## Unsupported syntax
 
