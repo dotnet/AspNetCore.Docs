@@ -221,7 +221,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -249,7 +249,7 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: false
+**Default**: false  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
@@ -978,7 +978,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1735,7 +1735,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)

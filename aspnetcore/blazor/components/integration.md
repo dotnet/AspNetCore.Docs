@@ -58,11 +58,16 @@ Add the following `_Imports` file for namespaces used by Razor components.
 @using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
+@using {APP NAMESPACE}
+@using {APP NAMESPACE}.Components
+```
+
+Change the namespace placeholder (`{APP NAMESPACE}`) to the namespace of the app. For example:
+
+```razor
 @using BlazorSample
 @using BlazorSample.Components
 ```
-
-Change the namespace `BlazorSample` in the preceding example to match the app.
 
 Add the Blazor router (`<Router>`, <xref:Microsoft.AspNetCore.Components.Routing.Router>) to the app in a `Routes` component, which is placed in the app's `Components` folder.
 
@@ -141,10 +146,14 @@ In the ASP.NET Core project's `Program` file:
 * Add a `using` statement to the top of the file for the project's components:
 
   ```csharp
-  using BlazorSample.Components;
+  using {APP NAMESPACE}.Components;
   ```
 
-  In the preceding example, change `BlazorSample` in the namespace to match the app.
+  In the preceding line, change the `{APP NAMESPACE}` placeholder to the app's namespace. For example:
+
+  ```csharp
+  using BlazorSample.Components;
+  ```
 
 * Add Razor component services (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>). Add the following line before the line that calls `builder.Build()`):
 
@@ -177,7 +186,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
 
-Also in the `Program` file, add a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
+Add a call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> where Razor components are mapped with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -390,6 +399,7 @@ Add an imports file to the `Components` folder with the following content. Chang
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
 @using {APP NAMESPACE}
@@ -421,7 +431,27 @@ In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps 
 > [!NOTE]
 > Typically, the layout loads via a `_ViewStart.cshtml` file.
 
+Add an non-operational (no-op) `App` component to the project.
+
+`Components/App.razor`:
+
+```razor
+@* No-op App component *@
+```
+
 Where services are registered, add services for Razor components and services to support rendering Interactive Server components.
+
+At the top of the `Program` file, add a `using` statement to the top of the file for the project's components:
+
+```csharp
+using {APP NAMESPACE}.Components;
+```
+
+In the preceding line, change the `{APP NAMESPACE}` placeholder to the app's namespace. For example:
+
+```csharp
+using BlazorSample.Components;
+```
 
 In the `Program` file before the line that builds the app (`builder.Build()`):
 
@@ -432,7 +462,7 @@ builder.Services.AddRazorComponents()
 
 For more information on adding support for Interactive Server and WebAssembly components, see <xref:blazor/components/render-modes>.
 
-In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>), call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component (the first component loaded). By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure interactive server-side rendering (interactive SSR) for the app:
+In the `Program` file immediately after the call to map Razor Pages (<xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>) in a Razor Pages app or to map the default controller route (<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>) in an MVC app, call <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> to discover available components and specify the app's root component (the first component loaded). By default, the app's root component is the `App` component (`App.razor`). Chain a call to `AddInteractiveInteractiveServerRenderMode` to configure interactive server-side rendering (interactive SSR) for the app:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -522,6 +552,7 @@ Add an imports file to the `Components` folder with the following content.
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
 @using {APP NAMESPACE}
@@ -747,6 +778,18 @@ In the preceding code update the app title and stylesheet file name:
   ```
 
 Where services are registered, add services for Razor components and services to support rendering Interactive Server components.
+
+At the top of the `Program` file, add a `using` statement to the top of the file for the project's components:
+
+```csharp
+using {APP NAMESPACE}.Components;
+```
+
+In the preceding line, change the `{APP NAMESPACE}` placeholder to the app's namespace. For example:
+
+```csharp
+using BlazorSample.Components;
+```
 
 In the `Program` file before the line that builds the app (`builder.Build()`):
 
