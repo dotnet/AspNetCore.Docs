@@ -226,7 +226,7 @@ Additional assemblies are scanned in addition to the assembly specified to <xref
 
 ## Route parameters
 
-The router uses route parameters to populate the corresponding [component parameters](xref:blazor/components/index#component-parameters) with the same name. Route parameter names are case insensitive. In the following example, the `text` parameter assigns the value of the route segment to the component's `Text` property. When a request is made for `/route-parameter-1/amazing`, the `<h1>` tag content is rendered as `Blazor is amazing!`.
+The router uses route parameters to populate the corresponding [component parameters](xref:blazor/components/index#component-parameters) with the same name. Route parameter names are case insensitive. In the following example, the `text` parameter assigns the value of the route segment to the component's `Text` property. When a request is made for `/route-parameter-1/amazing`, the content is rendered as `Blazor is amazing!`.
 
 `RouteParameter1.razor`:
 
