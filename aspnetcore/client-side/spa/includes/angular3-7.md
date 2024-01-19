@@ -87,7 +87,7 @@ npm start
 
 When you start your ASP.NET Core app, it won't launch an Angular CLI server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for Angular CLI to rebuild your client app each time.
 
-When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORT`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
+When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORTS`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
@@ -201,7 +201,7 @@ There's a drawback to this default setup. Each time you modify your C# code and 
 
 When you start your ASP.NET Core app, it won't launch an Angular CLI server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for Angular CLI to rebuild your client app each time.
 
-When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORT`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
+When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORTS`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 ### Pass data from .NET code into TypeScript code
 
