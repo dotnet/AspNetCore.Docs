@@ -185,7 +185,7 @@ Properties and fields can assign a render mode.
 The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for either of the following scenarios:
 
 * You have an area (folder) of the app with components that must adopt static server-side rendering (static SSR) and only run on the server. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
-* You have components around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances and then using reflection in the `App` component to set the render mode on the `Routes` component.
+* You have components around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
 
 In both cases, the component that must adopt static SSR must also force a full-page reload.
 
@@ -210,7 +210,7 @@ A component definition can define a render mode via a private field:
 The following example applies interactive server-side rendering (interactive SSR) to any request.
 
 ```razor
-<Routes @rendermode="@RenderModeForPage" />
+<Routes @rendermode="RenderModeForPage" />
 
 ...
 
@@ -219,7 +219,7 @@ The following example applies interactive server-side rendering (interactive SSR
 }
 ```
 
-Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Fine control of render modes](#fine-control-of-render-modes) section shows how to use the preceding component instance approach to adopt static SSR in either specific areas of the app (folders) or to specific components spread around the app with per-component render mode assignments.
+Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Fine control of render modes](#fine-control-of-render-modes) section shows how to use the preceding approach to adopt static SSR in either specific areas of the app (folders) or for specific components spread around the app with per-component render mode assignments.
 
 ## Prerendering
 
@@ -524,19 +524,19 @@ There are two approaches that can be taken for fine control of render modes, eac
 
 * [Area (folder) of static SSR components](#area-folder-of-static-ssr-components): You have an area (folder) of the app with components that must adopt static SSR. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
 
-* [Static SSR components spread out across the app](#static-ssr-components-spread-out-across-the-app): You have components spread around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances and then using reflection in the `App` component to set the render mode on the `Routes` component.
+* [Static SSR components spread out across the app](#static-ssr-components-spread-out-across-the-app): You have components spread around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
 
 In both cases, the component that must adopt static SSR must also force a full-page reload.
 
-The following examples use <xref:Microsoft.AspNetCore.Http.HttpContext>, which is available in statically-rendered root components, such as the `App` component (`App.razor`). When a non-root component is rendered, <xref:Microsoft.AspNetCore.Http.HttpContext> returns `null`, which is useful for forcing a full-page reload.
+The following examples use <xref:Microsoft.AspNetCore.Http.HttpContext>, which is available in statically-rendered root components, such as the `App` component (`App.razor`). When a non-root component is rendered, <xref:Microsoft.AspNetCore.Http.HttpContext> returns `null`, which is useful as a signal in app code to trigger a full-page reload.
 
 ### Area (folder) of static SSR components
 
-The approach described in this subsection is used by the Blazor Web App project template with individual authentication and global interactivity, and the following description and examples are from the project template.
+The approach described in this subsection is used by the Blazor Web App project template with individual authentication and global interactivity.
 
-An area (folder) of the app contains the components that must adopt static SSR and only run on the server. The Identity Razor components are maintained in the `Components/Account/Pages` folder.
+An area (folder) of the app contains the components that must adopt static SSR and only run on the server. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder.
 
-The folder contains an `_Imports.razor` file that applies a custom account layout to all pages in the folder:
+The folder also contains an `_Imports.razor` file, which applies a custom account layout to the components in the folder:
 
 ```razor
 @using BlazorSample.Components.Account.Shared
@@ -576,14 +576,14 @@ else
 ```
 
 > [!NOTE]
-> There is a second layout file (`ManageLayout`) in a nested `Manage` folder that applies to the `Manage` folder of Identity components. In your own apps, this is a convenient approach for applying custom layouts to groups of pages.
+> In the Blazor Web App project template, there's a second layout file (`ManageLayout.razor` in the `Components/Account/Shared` folder) for Identity components in the `Components/Account/Pages/Manage` folder. The `Manage` folder has its own `_Imports.razor` file to apply to the `ManageLayout` to components in the folder. In your own apps, using nested `_Imports.razor` files is a useful approach for applying custom layouts to groups of pages.
 
 In the `App` component, any request for a component in the `Account` folder applies a `null` render mode, which enforces static SSR. Other component requests receive a global application of the interactive SSR render mode (`InteractiveServer`).
 
 `Components/App.razor`:
 
 ```razor
-<Routes @rendermode="@RenderModeForPage" />
+<Routes @rendermode="RenderModeForPage" />
 
 ...
 
@@ -601,7 +601,7 @@ The components that must adopt static SSR in the `Account` folder aren't require
 
 ### Static SSR components spread out across the app
 
-In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. The `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR.
+In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. Alternatively, the `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR. This subsection describes the approach.
 
 The app has a custom layout that can be applied to components around the app. Usually, a shared component for the app is placed in the `Components/Layout` folder. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component is rendering on the server. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This triggers a request to the server for the component.
 
@@ -635,12 +635,12 @@ else
 }
 ```
 
-In the `App` component, reflection is used to set the render mode. Whatever is applied to the individual component definition file is applied to the `Routes` component.
+In the `App` component, reflection is used to set the render mode. Whatever render mode is assigned to the individual component definition file is applied to the `Routes` component.
 
 `Components/App.razor`:
 
 ```razor
-<Routes @rendermode="@RenderModeForPage" />
+<Routes @rendermode="RenderModeForPage" />
 ```
 
 ```csharp
@@ -651,7 +651,7 @@ private IComponentRenderMode? RenderModeForPage =>
     HttpContext.GetEndpoint()?.Metadata.GetMetadata<RenderModeAttribute>()?.Mode;
 ```
 
-Each component that must adopt static SSR sets the custom layout and does ***not*** specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode for the `Routes` component instance and enforcement of static SSR. Nothing further must be done for the components to enforce static SSR than applying the custom layout:
+Each component that must adopt static SSR sets the custom layout and does ***not*** specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode assigned to the `Routes` component instance and enforcement of static SSR. Nothing further must be done for the components to enforce static SSR than applying the custom layout:
 
 ```razor
 @layout BlazorSample.Components.Layout.StaticSsrLayout
@@ -661,6 +661,14 @@ Other components around the app set an appropriate interactive render mode, whic
 
 ```razor
 @rendermode InteractiveServer
+```
+
+```razor
+@rendermode InteractiveWebAssembly
+```
+
+```razor
+@rendermode InteractiveAuto
 ```
 
 ## Client-side services fail to resolve during prerendering
