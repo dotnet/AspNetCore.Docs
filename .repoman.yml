@@ -28,21 +28,5 @@ issues:
     # technology types
 
     # Checks for specific files
-    - check:
-        - type: metadata-comment
-          name: content source
-          value: "(?i).*main\/aspnetcore\/blazor\/host-and-deploy\/index.md"
-      pass:
-        - labels-add: ["Blazor"]
-        - labels-remove: [":watch: Not Triaged"]
-        - assignee-add: ["guardrex"]
-    - check:
-        - type: metadata-comment
-          name: content source
-          value: "(?i).*main\/aspnetcore\/blazor\/hybrid\/**\/*.md"
-      pass:
-        - labels-remove: ["Blazor"]
-        - labels-add: ["Blazor Hybrid"]
-        - assignee-add: ["BethMassi"]
 
     # If the word appears anywhere in the file name path, add the label
