@@ -430,7 +430,6 @@ Some of the preceding examples use the free open-source website <httpbin.org>. T
 
 The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features available only in the Visual Studio Code extension:
 
-* Optional HTTP method
 * Request line that spans more than one line
 * Named requests
 * Specify file path as body of the request
