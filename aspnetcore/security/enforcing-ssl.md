@@ -79,7 +79,7 @@ Specify the HTTPS port using any of the following approaches:
 * Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
 
   * In host configuration.
-  * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
+  * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
   * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
@@ -728,7 +728,7 @@ Specify the HTTPS port using any of the following approaches:
 * Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
 
   * In host configuration.
-  * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
+  * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
   * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]

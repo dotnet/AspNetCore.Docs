@@ -221,7 +221,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -249,13 +249,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: false
+**Default**: true  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(true)
+    .PreferHostingUrls(false)
 ```
 
 ### Prevent Hosting Startup
@@ -978,7 +978,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1006,13 +1006,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: false  
+**Default**: true  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(true)
+    .PreferHostingUrls(false)
 ```
 
 ### Prevent Hosting Startup
@@ -1735,7 +1735,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
-**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+**Environment variable**: `ASPNETCORE_HTTPS_PORTS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1763,13 +1763,13 @@ Indicates whether the host should listen on the URLs configured with the `WebHos
 
 **Key**: preferHostingUrls  
 **Type**: *bool* (`true` or `1`)  
-**Default**: false  
+**Default**: true  
 **Set using**: `PreferHostingUrls`  
 **Environment variable**: `ASPNETCORE_PREFERHOSTINGURLS`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .PreferHostingUrls(true)
+    .PreferHostingUrls(false)
 ```
 
 ### Prevent Hosting Startup
