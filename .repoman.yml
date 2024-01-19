@@ -31,7 +31,7 @@ issues:
     - check:
         - type: metadata-comment
           name: content source
-          value: "(?i).*main\/aspnetcore\/blazor\/**\/*.md"
+          value: "(?i).*main\/aspnetcore\/blazor\/host-and-deploy\/index.md"
       pass:
         - labels-add: ["Blazor"]
         - labels-remove: [":watch: Not Triaged"]
