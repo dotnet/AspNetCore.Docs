@@ -5,7 +5,7 @@ description: Learn how to use .http files in Visual Studio 2022 to test ASPNET C
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: how-to
 ms.author: tdykstra
-ms.date: 01/16/2024
+ms.date: 01/19/2024
 uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
@@ -83,7 +83,7 @@ Age: 100
 ```
 
 > [!IMPORTANT]
-> When calling an API that authenticates with headers, do not commit any secrets to a source code repository.
+> When calling an API that authenticates with headers, do not commit any secrets to a source code repository. See the supported methods for storing secrets later in this article, such as [ASP.NET Core user secrets](#aspnet-core-user-secrets), [Azure Key Vault](#azure-key-vault) and [DPAPI encryption](#dpapi-encryption).
 
 ## Request body
 
@@ -218,14 +218,14 @@ In this scenario, the "dev" environment request is sent to `https://contoso.com/
 
 ## ASP.NET Core user secrets
 
-To get a value from [user secrets](xref:security/app-secrets), use an environment file that is located in the same folder as the ASP.NET Core project. In the environment file, define a variable that has `provider` and `secretName` properties. Set the `provider` value to `AspnetUserSecrets` and set `secretName` to the name of the desired user secret. For example, the following environment file defines a variable named `TemplatesApiKeyDev` that gets its value from the `config:TemplatesApiKeyDev` user secret:
+To get a value from [user secrets](xref:security/app-secrets), use an environment file that is located in the same folder as the ASP.NET Core project. In the environment file, define a variable that has `provider` and `secretName` properties. Set the `provider` value to `AspnetUserSecrets` and set `secretName` to the name of the desired user secret. For example, the following environment file defines a variable named `ApiKeyDev` that gets its value from the `config:ApiKeyDev` user secret:
 
 ```json
 {
   "dev": {
-    "TemplatesApiKeyDev": {
+    "ApiKeyDev": {
       "provider": "AspnetUserSecrets",
-      "secretName": "config:TemplatesApiKeyDev"
+      "secretName": "config:ApiKeyDev"
     }
   }
 }
@@ -235,10 +235,10 @@ To use this variable in the `.http` file, reference it like a standard variable.
 
 ```http
 GET {{HostAddress}}{{Path}}
-X-API-KEY: {{TemplatesApiKeyDev}}
+X-API-KEY: {{ApiKeyDev}}
 ```
 
-When the request is sent, the value of the `TemplatesApiKeyDev` secret is in the X-API-KEY header.
+When the request is sent, the value of the `ApiKeyDev` secret is in the X-API-KEY header.
 
 As you type in the `http` file, the editor shows a completion list for the variable name but doesn't show its value.
 
@@ -443,11 +443,7 @@ The Visual Studio 2022 `.http` file editor doesn't have all the features that th
 * Customize response preview
 * Per-request settings
 
-## Use the `.http` file editor
-
-Create an `.http` file by using the **Add New Item** dialog or by renaming the extension of any text file to `.http`. Send a request by selecting the `Send Request` or `Debug` link above the line that creates a request. The response appears in a separate pane.
-
-### Create an `.http` file
+## Create an `.http` file
 
 * In **Solution Explorer**, right-click an ASP.NET Core project.
 * In the context menu, select **Add** > **New Item**.
