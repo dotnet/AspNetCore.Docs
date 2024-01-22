@@ -239,20 +239,19 @@ To disable prerendering in a *component definition*:
 
 To disable prerendering for the entire app, indicate the render mode at the highest-level interactive component in the app's component hierarchy that isn't a root component.
 
-> [!NOTE]
-> Making a root component interactive, such as the `App` component, isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
-
 For apps based on the Blazor Web App project template, a render mode assigned to the entire app is specified where the `Routes` component is used in the `App` component (`Components/App.razor`). The following example sets the app's render mode to Interactive Server with prerendering disabled:
 
 ```razor
 <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component):
+Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component) in the `App` component:
 
 ```razor
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
+
+Making a root component, such as the `App` component, interactive with the `@rendermode` directive at the top of the root component's definition file (`.razor`) isn't supported. Therefore, prerendering can't be disabled directly by the `App` component.
 
 ## Static server-side rendering (static SSR)
 
