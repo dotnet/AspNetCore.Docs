@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 11/11/2021
+ms.date: 01/22/2024
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
@@ -33,10 +33,48 @@ Consider an ASP.NET Core web app in which **Individual User Accounts** security 
 
 ## Secret Manager
 
-The Secret Manager tool stores sensitive data during the development of an ASP.NET Core project. In this context, a piece of sensitive data is an app secret. App secrets are stored in a separate location from the project tree. The app secrets are associated with a specific project or shared across several projects. The app secrets aren't checked into source control.
+The Secret Manager tool stores sensitive data during application development. In this context, a piece of sensitive data is an app secret. App secrets are stored in a separate location from the project tree. The app secrets are associated with a specific project or shared across several projects. The app secrets aren't checked into source control.
 
 > [!WARNING]
 > The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store. It's for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
+
+## User secrets in non-web applications 
+
+Projects that target `Microsoft.NET.Sdk.Web` automatically include support for user secrets. For projects that target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
+
+Using PowerShell:
+
+```powershell
+Install-Package Microsoft.Extensions.Configuration
+Install-Package Microsoft.Extensions.Configuration.UserSecrets
+```
+
+Using the .NET CLI:
+
+```dotnetcli
+dotnet add package Microsoft.Extensions.Configuration
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+```
+
+Once the packages are installed, [initialize the project](#enable-secret-storage) and [set secrets](#set-a-secret) the same way as for a web app. The following example shows a console application that retrieves the value of a secret that was set with the key "AppSecret":
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+namespace ConsoleApp;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        IConfigurationRoot config = new ConfigurationBuilder()
+            .AddUserSecrets<Program>()
+            .Build();
+
+        Console.WriteLine(config["AppSecret"]);
+    }
+}
+```
 
 ## How the Secret Manager tool works
 
@@ -314,11 +352,9 @@ The Secret Manager tool stores sensitive data during application development. In
 > [!WARNING]
 > The Secret Manager tool doesn't encrypt the stored secrets and shouldn't be treated as a trusted store. It's for development purposes only. The keys and values are stored in a JSON configuration file in the user profile directory.
 
-Projects which target `Microsoft.NET.Sdk.Web` automatically include support for user secrets. 
-
 ## User secrets in non-web applications 
 
-For projects which target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
+Projects that target `Microsoft.NET.Sdk.Web` automatically include support for user secrets. For projects that target `Microsoft.NET.Sdk`, such as console applications, install the configuration extension and user secrets NuGet packages explicitly.
 
 Using PowerShell:
 
@@ -334,7 +370,7 @@ dotnet add package Microsoft.Extensions.Configuration
 dotnet add package Microsoft.Extensions.Configuration.UserSecrets
 ```
 
-Once the packages are installed, [initialize the project](#enable-secret-storage) and [set secrets](#set-a-secret) the same way as for a web app. The following example shows a console application that retrieves the value of a secret that was set with the key "Foo":
+Once the packages are installed, [initialize the project](#enable-secret-storage) and [set secrets](#set-a-secret) the same way as for a web app. The following example shows a console application that retrieves the value of a secret that was set with the key "AppSecret":
 
 ```csharp
 using Microsoft.Extensions.Configuration;
@@ -349,10 +385,11 @@ class Program
             .AddUserSecrets<Program>()
             .Build();
 
-        Console.WriteLine(config["Foo"]);
+        Console.WriteLine(config["AppSecret"]);
     }
 }
 ```
+
 ## How the Secret Manager tool works
 
 The Secret Manager tool hides implementation details, such as where and how the values are stored. You can use the tool without knowing these implementation details. The values are stored in a JSON file in the local machine's user profile folder:
