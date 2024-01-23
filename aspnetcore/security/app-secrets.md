@@ -112,7 +112,7 @@ dotnet user-secrets init
 
 The preceding command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project.
 
-[!code-xml[](app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+[!code-xml[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
 In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the project file.
 
@@ -188,7 +188,7 @@ The user secrets [configuration provider](/dotnet/core/extensions/configuration-
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet2&highlight=1)]
+[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet2&highlight=1)]
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration and calls <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>:
 
@@ -198,11 +198,11 @@ Consider the following examples of reading the `Movies:ServiceApiKey` key:
 
 **Program.cs file:**
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_s2&highlight=2)]
+[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_s2&highlight=2)]
 
 **Razor Pages page model:**
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
+[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
 For more information, see <xref:fundamentals/configuration/index>.
 
@@ -214,17 +214,17 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#boa) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
-[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+[!code-csharp[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
 The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to the respective properties in `MovieSettings`:
 
-[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
+[!code-csharp[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## String replacement with secrets
 
 Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` may include a password for the specified user:
 
-[!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
+[!code-json[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 A more secure approach is to store the password as a secret. For example:
 
@@ -234,11 +234,11 @@ dotnet user-secrets set "DbPassword" "pass123"
 
 Remove the `Password` key-value pair from the connection string in `appsettings.json`. For example:
 
-[!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
+[!code-json[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
 The secret's value can be set on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to complete the connection string:
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
+[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
 
 ## List the secrets
 
