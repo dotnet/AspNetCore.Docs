@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 01/22/2024
+ms.date: 01/23/2024
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
@@ -112,7 +112,7 @@ dotnet user-secrets init
 
 The preceding command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project.
 
-[!code-xml[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
+[!code-xml[](~/security/app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
 In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the project file.
 
@@ -214,17 +214,17 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#boa) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
-[!code-csharp[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
 The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to the respective properties in `MovieSettings`:
 
-[!code-csharp[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Models/MovieSettings.cs?name=snippet_MovieSettingsClass)]
 
 ## String replacement with secrets
 
 Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` may include a password for the specified user:
 
-[!code-json[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
+[!code-json[](~/security/app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
 A more secure approach is to store the password as a secret. For example:
 
@@ -234,7 +234,7 @@ dotnet user-secrets set "DbPassword" "pass123"
 
 Remove the `Password` key-value pair from the connection string in `appsettings.json`. For example:
 
-[!code-json[](~/security/~/security/app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
+[!code-json[](~/security/app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
 The secret's value can be set on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to complete the connection string:
 
