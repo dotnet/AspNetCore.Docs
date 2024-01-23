@@ -328,4 +328,4 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/27611).
 
 :::moniker-end
 
-[!INCLUDE[](~/security/app-secrets/includes/ap-secrets3-5.md)]
+[!INCLUDE[](~/security/app-secrets/includes/app-secrets3-5.md)]
