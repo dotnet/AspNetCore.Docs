@@ -299,7 +299,7 @@ No secrets configured for this application.
 
 To manage user secrets in Visual Studio, right click the project in solution explorer and select **Manage User Secrets**:
 
-![Visual Studio showing Manage User Secrets](app-secrets/_static/usvs.png)
+![Visual Studio showing Manage User Secrets](~/security/app-secrets/_static/usvs.png)
 
 ## Migrating User Secrets from ASP.NET Framework to ASP.NET Core
 
