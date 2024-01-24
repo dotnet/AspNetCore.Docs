@@ -100,7 +100,7 @@ Access the sample apps through the latest version folder from the repository's r
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## Backend web API app
+## Backend web API app packages and code
 
 The backend web API app maintains a user identity store for ASP.NET Core Identity.
 
@@ -153,7 +153,7 @@ To secure an endpoint, add the <xref:Microsoft.AspNetCore.Builder.AuthorizationE
 For more information on basic patterns for initialization and configuration of a <xref:Microsoft.EntityFrameworkCore.DbContext> instance, see
 [DbContext Lifetime, Configuration, and Initialization](/ef/core/dbcontext-configuration/) in the EF Core documentation.
 
-## Frontend standalone Blazor WebAssembly app
+## Frontend standalone Blazor WebAssembly app packages and code
 
 A standalone Blazor WebAssembly frontend app demonstrates user authentication and authorization to access a private webpage.
 

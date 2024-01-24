@@ -80,3 +80,11 @@ groups:
       title: Graph SDK v4
     - id: graph-sdk-5
       title: Graph SDK v5
+- id: blazor-web-app-oidc-specification
+  title: Specification
+  prompt: Choose the app specification
+  pivots:
+    - id: blazor-web-app
+      title: Blazor Web App
+    - id: blazor-web-app-bff
+      title: Blazor Web App (BFF pattern)

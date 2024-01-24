@@ -30,7 +30,7 @@ The subsections of the walkthrough explain how to:
 
 ### Register an app
 
-Register an app with an [OpenID Connect (OIDC)](https://openid.net/connect/) Identity Provider (IP) following the guidance provided by the maintainer of the IP.
+Register an app with an [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) Identity Provider (IP) following the guidance provided by the maintainer of the IP.
 
 Record the following information:
 

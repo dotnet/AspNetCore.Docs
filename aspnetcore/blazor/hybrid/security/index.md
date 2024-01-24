@@ -17,7 +17,7 @@ This article describes ASP.NET Core's support for the configuration and manageme
 
 ::: moniker range=">= aspnetcore-7.0"
 
-Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/connect/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
+Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
@@ -548,7 +548,7 @@ When implementing authentication:
 
 ::: moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/connect/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
+Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
