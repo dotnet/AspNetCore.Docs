@@ -1,26 +1,10 @@
----
-title: Safe storage of app secrets in development in ASP.NET Core
-author: tdykstra
-description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app.
-ms.author: riande
-monikerRange: '>= aspnetcore-3.0'
-ms.custom: mvc
-ms.date: 01/23/2024
-uid: security/app-secrets
----
-# Safe storage of app secrets in development in ASP.NET Core
+:::moniker range="< aspnetcore-6.0"
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-6.0"
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://github.com/scottaddie)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 This document explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Instead, production secrets should be accessed through a controlled means like environment variables or Azure Key Vault. You can store and protect Azure test and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
-
-To use user secrets in a .NET console app, see [this GitHub issue](https://github.com/dotnet/EntityFramework.Docs/issues/3939#issuecomment-1191978026).
 
 ## Environment variables
 
@@ -66,7 +50,7 @@ Don't write code that depends on the location or format of data saved with the S
 
 The Secret Manager tool operates on project-specific configuration settings stored in your user profile.
 
-The Secret Manager tool includes an `init` command. To use user secrets, run the following command in the project directory:
+The Secret Manager tool includes an `init` command in .NET Core SDK 3.0.100 or later. To use user secrets, run the following command in the project directory:
 
 ```dotnetcli
 dotnet user-secrets init
@@ -148,25 +132,27 @@ To access a secret, complete the following steps:
 
 The user secrets [configuration provider](/dotnet/core/extensions/configuration-providers) registers the appropriate configuration source with the .NET [Configuration API](xref:fundamentals/configuration/index).
 
-ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
+The user secrets configuration source is automatically added in Development mode when the project calls <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>. `CreateDefaultBuilder` calls <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>:
 
-[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet2&highlight=1)]
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Program.cs?name=snippet_CreateHostBuilder&highlight=2)]
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration and calls <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>:
+When `CreateDefaultBuilder` isn't called, add the user secrets configuration source explicitly by calling <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>. Call `AddUserSecrets` only when the app runs in the Development environment, as shown in the following example:
+
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Program&highlight=10-13)]
 
 ### Read the secret via the Configuration API
 
-Consider the following examples of reading the `Movies:ServiceApiKey` key:
+If the user secrets configuration source is registered, the .NET Configuration API can read the secrets. [Constructor injection](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) can be used to gain access to the .NET Configuration API. Consider the following examples of reading the `Movies:ServiceApiKey` key:
 
-**Program.cs file:**
+**Startup class:**
 
-[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_s2&highlight=2)]
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
 **Razor Pages page model:**
 
-[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
-For more information, see <xref:fundamentals/configuration/index>.
+For more information, see [Access configuration in Startup](xref:fundamentals/configuration/index#access-configuration-in-startup) and [Access configuration in Razor Pages](xref:fundamentals/configuration/index#access-configuration-in-razor-pages).
 
 ## Map secrets to a POCO
 
@@ -200,7 +186,7 @@ Remove the `Password` key-value pair from the connection string in `appsettings.
 
 The secret's value can be set on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to complete the connection string:
 
-[!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
+[!code-csharp[](~/security/app-secrets/samples/3.x/UserSecrets/Startup2.cs?name=snippet_StartupClass&highlight=14-17)]
 
 ## List the secrets
 
@@ -231,7 +217,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-The app's `secrets.json` file was modified to remove the key-value pair associated with the `Movies:ConnectionString` key:
+The app's `secrets.json` file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
 
 ```json
 {
@@ -321,11 +307,8 @@ class Program
 
 ## Additional resources
 
-
 * See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/30378) and [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
 :::moniker-end
-
-[!INCLUDE[](~/security/app-secrets/includes/app-secrets-3-5.md)]
