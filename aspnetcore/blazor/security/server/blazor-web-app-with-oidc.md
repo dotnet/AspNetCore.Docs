@@ -102,9 +102,9 @@ The `BlazorWebAppOidc.http` file can be used for testing the weather data reques
 > [!NOTE]
 > For Microsoft Entra ID and Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the preceding linked resources.
 
-The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions%2A> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
+The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
 
-* <xref:Microsoft.AspNetCore.Authentication.SignInScheme%2A> (Optional): Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value, which is already set to `Cookies`.
+* <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme%2A> (Optional): Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value, which is already set to `Cookies`.
 
   ```csharp
   oidcOptions.SignInScheme = "Cookies";
@@ -117,7 +117,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Scope.Add("profile");
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties%2A> after a successful authorization. The value is set to `true` to authenticate requests for weather data from the backend web API project (`MinimalApiJwt`).
+* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. The value is set to `true` to authenticate requests for weather data from the backend web API project (`MinimalApiJwt`).
 
   <!--
       Replace the last line of the paragraph for the non-BFF coverage ...
@@ -280,7 +280,7 @@ The `MinimalApiJwt` project is a backend web API for multiple frontend projects.
 
 ### Configuration
 
-Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer> call in the project's `Program` file:
+Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> call in the project's `Program` file:
 
 * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Audience%2A>: Sets the Audience for any received OpenID Connect token. Match the value to just the path of the Application ID URI configured when adding the `Weather.Get` scope under **Expose an API** in the Azure or Entra portal:
 
