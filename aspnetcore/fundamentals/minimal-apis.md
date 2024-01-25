@@ -230,7 +230,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 When `ValidateOnBuild` is `true`, the DI container validates the service configuration at build time. If the service configuration is invalid, the build fails at app startup, rather than at runtime when the service is requested.
 
-When `ValidateScopes` is `true`, the DI container validates that a scoped service isn't resolved from the root scope. Resolving a scoped service from the root scope can result in a memory leak because the services is retained in memory longer than the scope of the request.
+When `ValidateScopes` is `true`, the DI container validates that a scoped service isn't resolved from the root scope. Resolving a scoped service from the root scope can result in a memory leak because the service is retained in memory longer than the scope of the request.
 
 `ValidateScopes` and `ValidateOnBuild` are false by default in non-Development modes for performance reasons.
 
