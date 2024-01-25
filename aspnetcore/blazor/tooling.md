@@ -25,7 +25,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 * Create a new project using one of the available Blazor templates:
 
-  * **Blazor Web App** (*recommended*): Creates a Blazor web app that supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR).
+  * **Blazor Web App**: Creates a Blazor web app that supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR).
   * **Blazor WebAssembly Standalone App**: Creates a standalone client web app that can be deployed as a static site.
 
 Select **Next**.
@@ -487,7 +487,7 @@ The Blazor framework provides templates for creating new apps. The templates are
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Blazor Web App project template (*recommended*): `blazor`
+* Blazor Web App project template: `blazor`
 * Blazor WebAssembly Standalone app project template: `blazorwasm`
 
 :::moniker-end
