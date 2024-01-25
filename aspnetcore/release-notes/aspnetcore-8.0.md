@@ -329,6 +329,15 @@ The following articles document changes for Blazor Hybrid in .NET 8:
 * <xref:blazor/hybrid/index?view=aspnetcore-8.0&preserve-view=true#access-scoped-services-from-native-ui>: `BlazorWebView` gains a `TryDispatchAsync` method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as `NavigationManager`.
 * <xref:blazor/hybrid/routing?view=aspnetcore-8.0&preserve-view=true&pivots=maui#get-or-set-a-path-for-initial-navigation>: Use the `BlazorWebView.StartPath` property to get or set the path for initial navigation within the Blazor navigation context when the Razor component is finished loading.
 
+### `[Parameter]` attribute is no longer required when supplied from the query string
+
+The `[Parameter]` attribute is no longer required when supplying a parameter from the query string:
+
+```diff
+- [Parameter]
+  [SupplyParameterFromQuery]
+```
+
 ## SignalR
 
 ### New approach to set the server timeout and Keep-Alive interval
