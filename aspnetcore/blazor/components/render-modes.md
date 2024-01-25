@@ -178,7 +178,7 @@ To enable global interactivity when creating a Blazor Web App:
 
 For more information, see <xref:blazor/tooling>.
 
-## Apply a render mode in code
+## Apply a render mode programatically
 
 Properties and fields can assign a render mode.
 
