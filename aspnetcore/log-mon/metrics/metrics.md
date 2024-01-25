@@ -223,14 +223,14 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 ## Test metrics in ASP.NET Core apps
 
-It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1?view=dotnet-plat-ext-8.0)`.
+It's possible to test metrics in ASP.NET Core apps. One way to do that is collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) using <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1)`.
 
 :::code language="csharp" source="~/log-mon/metrics/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 
 The proceeding test:
 
 * Bootstraps a web app in memory with <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. `Program` in the factory's generic argument specifies the web app.
-* Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1?view=dotnet-plat-ext-8.0).
+* Collects metrics values with <xref:Microsoft.Extensions.Telemetry.Testing.Metering.MetricCollector%601>/[MetricCollector](/dotnet/api/microsoft.extensions.telemetry.testing.metering.metriccollector-1).
   * Requires a package reference to `Microsoft.Extensions.Telemetry.Testing`.
   * The `MetricCollector<T>` is created using the web app's <xref:System.Diagnostics.Metrics.IMeterFactory>. This allows the collector to only report metrics values recorded by test.
   * Includes the meter name, `Microsoft.AspNetCore.Hosting`, and counter name, `http.server.request.duration` to collect.
