@@ -135,6 +135,11 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Scope.Add("offline_access");
   ```
 
+<!--
+    Drop the next bullet for the Weather.Get scope, which isn't required in 
+    the non-proxy case.
+-->
+
 * Scopes for obtaining weather data from the web API (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>): The `Weather.Get` scope is configured in the Azure or Entra portal under **Expose an API**. This is necessary for backend web API project (`MinimalApiJwt`) to validate the access token with bearer JWT.
 
   ```csharp
@@ -224,17 +229,17 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.RemoteSignOutPath%2A> (**Front-channel logout URL**): Requests received on this path cause the handler to invoke sign-out using the sign-out scheme.
 
     ```csharp
-    oidcOptions.CallbackPath = "{PATH}";
-    oidcOptions.SignedOutCallbackPath = "{PATH}";
-    oidcOptions.RemoteSignOutPath = "{PATH}";
+    oidcOptions.CallbackPath = new PathString("{PATH}");
+    oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+    oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
     ```
 
     Examples (default values):
 
     ```csharp
-    oidcOptions.CallbackPath = "/signin-oidc";
-    oidcOptions.SignedOutCallbackPath = "/signout-callback-oidc";
-    oidcOptions.RemoteSignOutPath = "/signout-oidc";
+    oidcOptions.CallbackPath = new PathString("/signin-oidc");
+    oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
     ```
 
 * (*Microsoft Azure only*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
