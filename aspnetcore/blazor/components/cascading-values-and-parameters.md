@@ -411,7 +411,7 @@ Descendent `Tab` components capture the containing `TabSet` as a cascading param
 @implements ITab
 
 <li>
-    <a @onclick="ActivateTab" class="nav-link @TitleCssClass" role="button">
+    <a @onclick="ActivateTab" class="nav-link" @TitleCssClass" role="button">
         @Title
     </a>
 </li>
