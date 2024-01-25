@@ -24,7 +24,7 @@ The Blazor Web App project template provides a single starting point for using R
 
 If both client-side rendering (CSR) and interactive server-side rendering (interactive SSR) are selected on app creation, the project template uses the Interactive Auto render mode. The automatic rendering mode initially uses interactive SSR while the .NET app bundle and runtime are downloaded to the browser. After the .NET WebAssembly runtime is activated, rendering switches to CSR.
 
-By default, the Blazor Web App template enables both static and interactive server-side rendering using a single project. If you also enable Interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the Interactive WebAssembly or Interactive Auto render modes must be built from the client project.
+By default, the Blazor Web App template enables both static and interactive server-side rendering using a single project. If you also enable Interactive WebAssembly rendering, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Components using the Interactive WebAssembly or Interactive Auto render modes must be located in the `.Client` project.
 
 For more information, see <xref:blazor/components/render-modes>.
 
@@ -66,6 +66,10 @@ For more information, see <xref:blazor/components/render-modes>.
 * Client project (`.Client`):
 
   * `Pages` folder: Contains the app's routable client-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes `Counter` component (`Counter.razor`) that implements the *Counter* page.
+
+    The component folder structure of the `.Client` project differs from the Blazor Web App's main project folder structure because the main project is a standard ASP.NET Core project. The main project must take into account other assets for ASP.NET Core projects that are unrelated to Blazor.
+    
+    The `.Client` project is purely a Blazor project and isn't required to integrate as much with ASP.NET Core's non-Blazor features and specifications, so it uses a less complex component folder structure. However, you're welcome to use whatever component folder structure you wish in the `.Client` project. You're free to mirror the component folder layout of the main project in the `.Client` project if you wish. Note that namespaces might require adjustments for such assets as layout files if you move components into different folders than the project template uses. 
   
   * The [Web Root](xref:fundamentals/index#web-root) folder for the client-side project containing the app's public static assets, including app settings files (`appsettings.Development.json`, `appsettings.json`) that provide [configuration settings](xref:blazor/fundamentals/configuration) for the client-side project.
 
