@@ -90,18 +90,49 @@ To obtain static assets, use **one** of the following approaches:
   dotnet new blazorwasm -o MyBlazorPwa --pwa -f net5.0
   ```
 
+:::moniker range=">= aspnetcore-8.0"
+
 * Navigate to the ASP.NET Core GitHub repository at the following URL, which links to `main` branch reference source and assets. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
-  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot)
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
+  From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
-* `icon-512.png`
-* `manifest.json`
-* `service-worker.js`
-* `service-worker.published.js`
+  * `icon-192.png`
+  * `icon-512.png`
+  * `manifest.webmanifest`
+  * `service-worker.js`
+  * `service-worker.published.js`
+
+In the app's `wwwroot/index.html` file:
+
+* Add `<link>` elements for the manifest and app icon:
+
+  ```html
+  <link href="manifest.webmanifest" rel="manifest" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+  ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to `main` branch reference source and assets. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
+
+  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+  From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
+
+  * `favicon.png`
+  * `icon-512.png`
+  * `manifest.json`
+  * `service-worker.js`
+  * `service-worker.published.js`
 
 In the app's `wwwroot/index.html` file:
 
@@ -111,6 +142,8 @@ In the app's `wwwroot/index.html` file:
   <link href="manifest.json" rel="manifest" />
   <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
   ```
+
+:::moniker-end
 
 * Add the following `<script>` tag inside the closing `</body>` tag immediately after the `blazor.webassembly.js` script tag:
 
