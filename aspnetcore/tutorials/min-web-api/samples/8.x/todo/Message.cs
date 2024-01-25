@@ -1,6 +1,3 @@
-namespace TodoApi;
-
-
 public class Message
 {
     public Message()
