@@ -217,7 +217,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
-Also, a custom `IResult` type can provide its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation to the preceding `HtmlResult` type that describe the response produced by the endpoint.
+Also, a custom `IResult` type can provide its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation to the preceding `HtmlResult` type that describes the response produced by the endpoint.
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
 
