@@ -180,42 +180,46 @@ For more information, see <xref:blazor/tooling>.
 
 ## Apply a render mode programatically
 
-Properties and fields can assign a render mode to a component or a group of components via inheritance.
+Properties and fields can assign a render mode.
 
-### By component definition
+The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for either of the following scenarios:
+
+* You have an area (folder) of the app with components that must adopt static server-side rendering (static SSR) and only run on the server. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
+* You have components around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
+
+In both cases, the component that must adopt static SSR must also force a full-page reload.
+
+The preceding two scenarios are covered with examples in the [Fine control of render modes](#fine-control-of-render-modes) section later in this article. The following two subsections focus on basic approaches for setting the render mode.
+
+### Set the render mode by component definition
 
 A component definition can define a render mode via a private field:
 
 ```razor
-@rendermode componentRenderMode
+@rendermode renderModeForPage
 
 ...
 
 @code {
-    private static IComponentRenderMode componentRenderMode =
-        new InteractiveServerRenderMode();
+    private static IComponentRenderMode renderModeForPage = InteractiveServer;
 }
 ```
 
-### By component instance
+### Set the render mode by component instance
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> is available in statically-rendered root components, such as the `App` component (`App.razor`). You can use [`HttpContext.Request.Path`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A) to specify a render mode for a group of pages.
-
-The following example applies interactive server-side rendering (interactive SSR) to any request for a component in the app's `Admin` folder (`Components/Admin`), including subfolders. Components at any other path don't receive a render mode (`null`) from the `Routes` component, and they either render statically, inherit a render mode from a parent component, or set their own render mode.
+The following example applies interactive server-side rendering (interactive SSR) to any request.
 
 ```razor
-<Routes @rendermode="@RenderModeForPage" />
+<Routes @rendermode="RenderModeForPage" />
 
 ...
 
-[CascadingParameter]
-private HttpContext HttpContext { get; set; } = default!;
-
-private IComponentRenderMode? RenderModeForPage => 
-    HttpContext.Request.Path.StartsWithSegments("/Admin") ? InteractiveServer : null;
+@code {
+    private IComponentRenderMode? RenderModeForPage => InteractiveServer;
+}
 ```
 
-Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article.
+Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Fine control of render modes](#fine-control-of-render-modes) section shows how to use the preceding approach to adopt static SSR in either specific areas of the app (folders) or for specific components spread around the app with per-component render mode assignments.
 
 ## Prerendering
 
@@ -361,73 +365,6 @@ In the following example, the component is interactive throughout the process. T
 ```
 
 If using the preceding component locally in a Blazor Web App, place the component in the client project's `Pages` folder. The client project is the solution's project with a name that ends in `.Client`. When the app is running, navigate to `/render-mode-4` in the browser's address bar.
-
-## Client-side services fail to resolve during prerendering
-
-Assuming that prerendering isn't disabled for a component or for the app, a component in the `.Client` project is prerendered on the server. Because the server doesn't have access to registered client-side Blazor services, it isn't possible to inject these services into a component without receiving an error that the service can't be found during prerendering.
-
-For example, consider the following `Home` component in the `.Client` project in a Blazor Web App with [global Interactive WebAssembly or Interactive Auto rendering](#apply-a-render-mode-to-the-entire-app). The component attempts to inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> to obtain the environment's name.
-
-```razor
-@page "/"
-@inject IWebAssemblyHostEnvironment Environment
-
-<PageTitle>Home</PageTitle>
-
-<h1>Home</h1>
-
-<p>
-    Environment: @Environment.Environment
-</p>
-```
-
-No compile time error occurs, but a runtime error occurs during prerendering:
-
-> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorSample.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
-
-This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
-
-If the app doesn't require the value during prerendering, this problem can be solved by injecting <xref:System.IServiceProvider> to obtain the service instead of the service type itself:
-
-```razor
-@page "/"
-@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
-@inject IServiceProvider Services
-
-<PageTitle>Home</PageTitle>
-
-<h1>Home</h1>
-
-<p>
-    <b>Environment:</b> @environmentName
-</p>
-
-@code {
-    private string? environmentName;
-
-    protected override void OnInitialized()
-    {
-        if (Services.GetService<IWebAssemblyHostEnvironment>() is { } env)
-        {
-            environmentName = env.Environment;
-        }
-    }
-}
-```
-
-However, the preceding approach isn't useful if your logic requires a value during prerendering.
-
-You can also avoid the problem if you [disable prerendering](#prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
-
-There are a three approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
-
-* *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in <xref:blazor/call-web-api?pivots=webassembly#client-side-services-for-httpclient-fail-during-prerendering>.
-
-* *Recommended* for services outside of the shared framework: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
-
-* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
-
-* You might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
 
 ## Render mode propagation
 
@@ -577,6 +514,239 @@ The following component results in a runtime error when the component is rendere
 <span aria-hidden="true">❌</span> **Error**:
 
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
+
+## Fine control of render modes
+
+There are cases where the app's specification calls for components to adopt static server-side rendering (static SSR) and only run on the server, while the rest of the app uses an interactive render mode.
+
+There are two approaches that can be taken for fine control of render modes, each of which is described in the following subsections:
+
+* [Area (folder) of static SSR components](#area-folder-of-static-ssr-components): You have an area (folder) of the app with components that must adopt static SSR and share the same route path prefix. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
+
+* [Static SSR components spread out across the app](#static-ssr-components-spread-out-across-the-app): You have components spread around the app in various locations that must adopt static SSR and only run on the server. The static SSR-only components aren't in a single folder and don't share a common route path prefix. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
+
+In both cases, the component that must adopt static SSR must also force a full-page reload.
+
+The following examples use the <xref:Microsoft.AspNetCore.Http.HttpContext> cascading parameter to determine if the page is statically-rendered. A `null` <xref:Microsoft.AspNetCore.Http.HttpContext> indicates that the component is rendering interactively, which is useful as a signal in app code to trigger a full-page reload.
+
+### Area (folder) of static SSR components
+
+The approach described in this subsection is used by the Blazor Web App project template with individual authentication and global interactivity.
+
+An area (folder) of the app contains the components that must adopt static SSR and only run on the server. The components in the folder share the same route path prefix. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder and share the root path prefix `/Account`.
+
+The folder also contains an `_Imports.razor` file, which applies a custom account layout to the components in the folder:
+
+```razor
+@using BlazorSample.Components.Account.Shared
+@layout AccountLayout
+```
+
+The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component is rendering on the server. Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This forces a full rerender of the page using static SSR.
+
+`Components/Account/Shared/AccountLayout.razor`:
+
+```razor
+@inherits LayoutComponentBase
+@layout BlazorSample.Components.Layout.MainLayout
+@inject NavigationManager NavigationManager
+
+@if (HttpContext is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @Body
+}
+
+@code {
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (HttpContext is null)
+        {
+            NavigationManager.Refresh(forceReload: true);
+        }
+    }
+}
+```
+
+> [!NOTE]
+> In the Blazor Web App project template, there's a second layout file (`ManageLayout.razor` in the `Components/Account/Shared` folder) for Identity components in the `Components/Account/Pages/Manage` folder. The `Manage` folder has its own `_Imports.razor` file to apply to the `ManageLayout` to components in the folder. In your own apps, using nested `_Imports.razor` files is a useful approach for applying custom layouts to groups of pages.
+
+In the `App` component, any request for a component in the `Account` folder applies a `null` render mode, which enforces static SSR. Other component requests receive a global application of the interactive SSR render mode (`InteractiveServer`).
+
+> [!IMPORTANT]
+> Applying a `null` render mode doesn't always enforce static SSR. It just happens to behave that way using the approach shown in this section.
+>
+> A `null` render mode is effectively the same as not specifying a render mode, which results in the component inheriting its parent's render mode. In this case, the `App` component is rendered using static SSR, so a `null` render mode results in the `Routes` component inheriting static SSR from the `App` component. If a null render mode is specified for a child component whose parent uses an interactive render mode, the child inherits the same interactive render mode.
+
+`Components/App.razor`:
+
+```razor
+<Routes @rendermode="RenderModeForPage" />
+
+...
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    private IComponentRenderMode? RenderModeForPage => HttpContext.Request.Path.StartsWithSegments("/Account")
+        ? null
+        : {INTERACTIVE RENDER MODE};
+}
+```
+
+In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the rest of the application should adopt global <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
+
+The components that must adopt static SSR in the `Account` folder aren't required to set the layout because it's applied via the `_Imports.razor` file, and the components do ***not*** set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
+
+### Static SSR components spread out across the app
+
+In the [preceding subsection](#area-folder-of-static-ssr-components), the app controls the render mode of the components by setting the render mode globally in the `App` component. Alternatively, the `App` component can also adopt ***per-component*** render modes for setting the render mode, which permits components spread around the app to enforce adoption of static SSR. This subsection describes the approach.
+
+The app has a custom layout that can be applied to components around the app. Usually, a shared component for the app is placed in the `Components/Layout` folder. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component is rendering on the server. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This triggers a request to the server for the component.
+
+`Components/Layout/StaticSsrLayout.razor`:
+
+```razor
+@inherits LayoutComponentBase
+@layout MainLayout
+@inject NavigationManager NavigationManager
+
+@if (HttpContext is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @Body
+}
+
+@code {
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (HttpContext is null)
+        {
+            NavigationManager.Refresh(forceReload: true);
+        }
+    }
+}
+```
+
+In the `App` component, reflection is used to set the render mode. Whatever render mode is assigned to the individual component definition file is applied to the `Routes` component.
+
+`Components/App.razor`:
+
+```razor
+<Routes @rendermode="RenderModeForPage" />
+
+...
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    private IComponentRenderMode? RenderModeForPage =>
+        HttpContext.GetEndpoint()?.Metadata.GetMetadata<RenderModeAttribute>()?
+            .Mode;
+}
+```
+
+Each component that must adopt static SSR sets the custom layout and does ***not*** specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode assigned to the `Routes` component instance and enforcement of static SSR.
+
+> [!IMPORTANT]
+> Applying a `null` render mode doesn't always enforce static SSR. It just happens to behave that way using the approach shown in this section.
+>
+> A `null` render mode is effectively the same as not specifying a render mode, which results in the component inheriting its parent's render mode. In this case, the `App` component is rendered using static SSR, so a `null` render mode results in the `Routes` component inheriting static SSR from the `App` component. If a null render mode is specified for a child component whose parent uses an interactive render mode, the child inherits the same interactive render mode.
+
+Nothing further must be done for the components to enforce static SSR than applying the custom layout:
+
+```razor
+@layout BlazorSample.Components.Layout.StaticSsrLayout
+```
+
+Other components around the app set an appropriate interactive render mode, which upon reflection in the `App` component is applied to the `Routes` component. Interactive components ***avoid*** applying the custom static SSR layout:
+
+```razor
+@rendermode {INTERACTIVE RENDER MODE}
+```
+
+In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the component should adopt <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
+
+## Client-side services fail to resolve during prerendering
+
+Assuming that prerendering isn't disabled for a component or for the app, a component in the `.Client` project is prerendered on the server. Because the server doesn't have access to registered client-side Blazor services, it isn't possible to inject these services into a component without receiving an error that the service can't be found during prerendering.
+
+For example, consider the following `Home` component in the `.Client` project in a Blazor Web App with [global Interactive WebAssembly or Interactive Auto rendering](#apply-a-render-mode-to-the-entire-app). The component attempts to inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> to obtain the environment's name.
+
+```razor
+@page "/"
+@inject IWebAssemblyHostEnvironment Environment
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<p>
+    Environment: @Environment.Environment
+</p>
+```
+
+No compile time error occurs, but a runtime error occurs during prerendering:
+
+> :::no-loc text="Cannot provide a value for property 'Environment' on type 'BlazorSample.Client.Pages.Home'. There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
+
+This error occurs because the component must compile and execute on the server during prerendering, but <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> isn't a registered service on the server.
+
+If the app doesn't require the value during prerendering, this problem can be solved by injecting <xref:System.IServiceProvider> to obtain the service instead of the service type itself:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IServiceProvider Services
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<p>
+    <b>Environment:</b> @environmentName
+</p>
+
+@code {
+    private string? environmentName;
+
+    protected override void OnInitialized()
+    {
+        if (Services.GetService<IWebAssemblyHostEnvironment>() is { } env)
+        {
+            environmentName = env.Environment;
+        }
+    }
+}
+```
+
+However, the preceding approach isn't useful if your logic requires a value during prerendering.
+
+You can also avoid the problem if you [disable prerendering](#prerendering) for the component, but that's an extreme measure to take in many cases that may not meet your component's specifications.
+
+There are a three approaches that you can take to address this scenario. The following are listed from most recommended to least recommended:
+
+* *Recommended* for shared framework services: For shared framework services that merely aren't registered server-side in the main project, register the services in the main project, which makes them available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in <xref:blazor/call-web-api?pivots=webassembly#client-side-services-for-httpclient-fail-during-prerendering>.
+
+* *Recommended* for services outside of the shared framework: Create a custom service implementation for the service on the server. Use the service normally in interactive components of the `.Client` project. For a demonstration of this approach, see <xref:blazor/fundamentals/environments#read-the-environment-client-side-in-a-blazor-web-app>.
+
+* Create a service abstraction and create implementations for the service in the `.Client` and server projects. Register the services in each project. Inject the custom service in the component.
+
+* You might be able to add a `.Client` project package reference to a server-side package and fall back to using the server-side API when prerendering on the server.
 
 ## Discover components from additional assemblies
 
