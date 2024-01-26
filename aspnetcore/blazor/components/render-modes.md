@@ -522,19 +522,19 @@ There are cases where the app's specification calls for components to adopt stat
 
 There are two approaches that can be taken for fine control of render modes, each of which is described in the following subsections:
 
-* [Area (folder) of static SSR components](#area-folder-of-static-ssr-components): You have an area (folder) of the app with components that must adopt static SSR. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
+* [Area (folder) of static SSR components](#area-folder-of-static-ssr-components): You have an area (folder) of the app with components that must adopt static SSR and share the same route path prefix. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
 
-* [Static SSR components spread out across the app](#static-ssr-components-spread-out-across-the-app): You have components spread around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
+* [Static SSR components spread out across the app](#static-ssr-components-spread-out-across-the-app): You have components spread around the app in various locations that must adopt static SSR and only run on the server. The static SSR-only components aren't in a single folder and don't share a common route path prefix. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
 
 In both cases, the component that must adopt static SSR must also force a full-page reload.
 
-The following examples use <xref:Microsoft.AspNetCore.Http.HttpContext>, which is available in statically-rendered root components, such as the `App` component (`App.razor`). When a non-root component is rendered, <xref:Microsoft.AspNetCore.Http.HttpContext> returns `null`, which is useful as a signal in app code to trigger a full-page reload.
+The following examples use the <xref:Microsoft.AspNetCore.Http.HttpContext> cascading parameter to determine if the page is statically-rendered. A `null` <xref:Microsoft.AspNetCore.Http.HttpContext> indicates that the component is rendering interactively, which is useful as a signal in app code to trigger a full-page reload.
 
 ### Area (folder) of static SSR components
 
 The approach described in this subsection is used by the Blazor Web App project template with individual authentication and global interactivity.
 
-An area (folder) of the app contains the components that must adopt static SSR and only run on the server. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder.
+An area (folder) of the app contains the components that must adopt static SSR and only run on the server. The components in the folder share the same route path prefix. For example, the Identity Razor components of the Blazor Web App project template are in the `Components/Account/Pages` folder and share the root path prefix `/Account`.
 
 The folder also contains an `_Imports.razor` file, which applies a custom account layout to the components in the folder:
 
@@ -543,7 +543,7 @@ The folder also contains an `_Imports.razor` file, which applies a custom accoun
 @layout AccountLayout
 ```
 
-The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component is rendering on the server. Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This triggers a request to the server for the component.
+The `Shared` folder maintains the `AccountLayout` layout component. The component makes use of <xref:Microsoft.AspNetCore.Http.HttpContext> to determine if the component is rendering on the server. Identity components must render on the server with static SSR because they set Identity cookies. If the value of <xref:Microsoft.AspNetCore.Http.HttpContext> is `null`, the component is rendering interactively, and a full-page reload is performed by calling <xref:Microsoft.AspNetCore.Components.NavigationManager.Refresh%2A?displayProperty=nameWithType> with `forceLoad` set to `true`. This forces a full rerender of the page using static SSR.
 
 `Components/Account/Shared/AccountLayout.razor`:
 
@@ -580,6 +580,11 @@ else
 
 In the `App` component, any request for a component in the `Account` folder applies a `null` render mode, which enforces static SSR. Other component requests receive a global application of the interactive SSR render mode (`InteractiveServer`).
 
+> [!IMPORTANT]
+> Applying a `null` render mode doesn't always enforce static SSR. It just happens to behave that way using the approach shown in this section.
+>
+> A `null` render mode is effectively the same as not specifying a render mode, which results in the component inheriting its parent's render mode. In this case, the `App` component is rendered using static SSR, so a `null` render mode results in the `Routes` component inheriting static SSR from the `App` component. If a null render mode is specified for a child component whose parent uses an interactive render mode, the child inherits the same interactive render mode.
+
 `Components/App.razor`:
 
 ```razor
@@ -593,9 +598,11 @@ In the `App` component, any request for a component in the `Account` folder appl
 
     private IComponentRenderMode? RenderModeForPage => HttpContext.Request.Path.StartsWithSegments("/Account")
         ? null
-        : InteractiveServer;
+        : {INTERACTIVE RENDER MODE};
 }
 ```
+
+In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the rest of the application should adopt global <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
 
 The components that must adopt static SSR in the `Account` folder aren't required to set the layout because it's applied via the `_Imports.razor` file, and the components do ***not*** set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
 
@@ -641,35 +648,39 @@ In the `App` component, reflection is used to set the render mode. Whatever rend
 
 ```razor
 <Routes @rendermode="RenderModeForPage" />
+
+...
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    private IComponentRenderMode? RenderModeForPage =>
+        HttpContext.GetEndpoint()?.Metadata.GetMetadata<RenderModeAttribute>()?
+            .Mode;
+}
 ```
 
-```csharp
-[CascadingParameter]
-private HttpContext HttpContext { get; set; } = default!;
+Each component that must adopt static SSR sets the custom layout and does ***not*** specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode assigned to the `Routes` component instance and enforcement of static SSR.
 
-private IComponentRenderMode? RenderModeForPage =>
-    HttpContext.GetEndpoint()?.Metadata.GetMetadata<RenderModeAttribute>()?.Mode;
-```
+> [!IMPORTANT]
+> Applying a `null` render mode doesn't always enforce static SSR. It just happens to behave that way using the approach shown in this section.
+>
+> A `null` render mode is effectively the same as not specifying a render mode, which results in the component inheriting its parent's render mode. In this case, the `App` component is rendered using static SSR, so a `null` render mode results in the `Routes` component inheriting static SSR from the `App` component. If a null render mode is specified for a child component whose parent uses an interactive render mode, the child inherits the same interactive render mode.
 
-Each component that must adopt static SSR sets the custom layout and does ***not*** specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode assigned to the `Routes` component instance and enforcement of static SSR. Nothing further must be done for the components to enforce static SSR than applying the custom layout:
+Nothing further must be done for the components to enforce static SSR than applying the custom layout:
 
 ```razor
 @layout BlazorSample.Components.Layout.StaticSsrLayout
 ```
 
-Other components around the app set an appropriate interactive render mode, which upon reflection in the `App` component is applied to the `Routes` component. The interactive components ***avoid*** applying the custom static SSR layout:
+Other components around the app set an appropriate interactive render mode, which upon reflection in the `App` component is applied to the `Routes` component. Interactive components ***avoid*** applying the custom static SSR layout:
 
 ```razor
-@rendermode InteractiveServer
+@rendermode {INTERACTIVE RENDER MODE}
 ```
 
-```razor
-@rendermode InteractiveWebAssembly
-```
-
-```razor
-@rendermode InteractiveAuto
-```
+In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the component should adopt <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
 
 ## Client-side services fail to resolve during prerendering
 
