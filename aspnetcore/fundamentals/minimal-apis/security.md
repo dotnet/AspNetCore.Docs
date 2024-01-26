@@ -46,7 +46,7 @@ In some cases, such as controlling middleware order, it's necessary to explicitl
 
 ### Configuring authentication strategy
 
-Authentication strategies typically support a variety of configurations that are loaded via options. Minimal app's support loading options from configuration for the following authentication strategies:
+Authentication strategies typically support a variety of configurations that are loaded via options. Minimal apps support loading options from configuration for the following authentication strategies:
 
 - [JWT bearer-based](https://jwt.io/introduction)
 - [OpenID Connection-based](https://openid.net/developers/how-connect-works/)

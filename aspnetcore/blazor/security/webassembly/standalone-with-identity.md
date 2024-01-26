@@ -111,12 +111,8 @@ The app uses the following NuGet packages:
 * [`Microsoft.AspNetCore.Identity`](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity)
 * [`Microsoft.AspNetCore.Identity.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore)
 * [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)
-* [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi)
-* [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore)
 
 If your app is to use a different EF Core database provider than the in-memory provider, don't create a package reference in your app for `Microsoft.EntityFrameworkCore.InMemory`.
-
-If your app won't adopt [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), don't create package references for `Microsoft.AspNetCore.OpenApi` and `Swashbuckle.AspNetCore`.
 
 In the app's project file (`.csproj`), [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) is configured.
 
