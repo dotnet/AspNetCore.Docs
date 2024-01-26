@@ -664,143 +664,79 @@ The following example shows how to:
 * Preserve state before redirecting to the login page.
 * Recover the previous state after authentication using a query string parameter.
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 ...
+@using System.Text.Json
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IAccessTokenProvider TokenProvider
 @inject IJSRuntime JS
 @inject NavigationManager Navigation
 
-<EditForm Model="User" @onsubmit="OnSaveAsync">
-    <label>User
-        <InputText @bind-Value="User.Name" />
+<EditForm Model="@User" OnSubmit="@OnSaveAsync">
+    <label>
+        First Name: 
+        <InputText @bind-Value="User!.Name" />
     </label>
-    <label>Last name
-        <InputText @bind-Value="User.LastName" />
+    <label>
+        Last Name: 
+        <InputText @bind-Value="User!.LastName" />
     </label>
+    <button type="submit">Save User</button>
 </EditForm>
 
 @code {
+    public Profile User { get; set; } = new Profile();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var currentQuery = new Uri(Navigation.Uri).Query;
+
+        if (currentQuery.Contains("state=resumeSavingProfile"))
+        {
+            var user = await JS.InvokeAsync<string>("sessionStorage.getItem",
+                "resumeSavingProfile");
+
+            if (!string.IsNullOrEmpty(user))
+            {
+                User = JsonSerializer.Deserialize<Profile>(user);
+            }
+        }
+    }
+
+    public async Task OnSaveAsync()
+    {
+        var http = new HttpClient();
+        http.BaseAddress = new Uri(Navigation.BaseUri);
+
+        var resumeUri = Navigation.Uri + $"?state=resumeSavingProfile";
+
+        var tokenResult = await TokenProvider.RequestAccessToken(
+            new AccessTokenRequestOptions
+            {
+                ReturnUrl = resumeUri
+            });
+
+        if (tokenResult.TryGetToken(out var token))
+        {
+            http.DefaultRequestHeaders.Add("Authorization", 
+                $"Bearer {token.Value}");
+            await http.PostAsJsonAsync("Save", User);
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("sessionStorage.setItem", 
+                "resumeSavingProfile", JsonSerializer.Serialize(User));
+            Navigation.NavigateTo(tokenResult.InteractiveRequestUrl);
+        }
+    }
+
     public class Profile
     {
-        public string? Name { get; set; }
+        public string? FirstName { get; set; }
         public string? LastName { get; set; }
     }
-
-    public Profile User { get; set; } = new Profile();
-
-    protected override async Task OnInitializedAsync()
-    {
-        var currentQuery = new Uri(Navigation.Uri).Query;
-
-        if (currentQuery.Contains("state=resumeSavingProfile"))
-        {
-            User = await JS.InvokeAsync<Profile>("sessionStorage.getItem", 
-                "resumeSavingProfile");
-        }
-    }
-
-    public async Task OnSaveAsync()
-    {
-        var http = new HttpClient();
-        http.BaseAddress = new Uri(Navigation.BaseUri);
-
-        var resumeUri = Navigation.Uri + $"?state=resumeSavingProfile";
-
-        var tokenResult = await TokenProvider.RequestAccessToken(
-            new AccessTokenRequestOptions
-            {
-                ReturnUrl = resumeUri
-            });
-
-        if (tokenResult.TryGetToken(out var token))
-        {
-            http.DefaultRequestHeaders.Add("Authorization", 
-                $"Bearer {token.Value}");
-            await http.PostAsJsonAsync("Save", User);
-        }
-        else
-        {
-            await JS.InvokeVoidAsync("sessionStorage.setItem", 
-                "resumeSavingProfile", User);
-            Navigation.NavigateTo(tokenResult.InteractiveRequestUrl);
-        }
-    }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-...
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject IAccessTokenProvider TokenProvider
-@inject IJSRuntime JS
-@inject NavigationManager Navigation
-
-<EditForm Model="User" @onsubmit="OnSaveAsync">
-    <label>User
-        <InputText @bind-Value="User.Name" />
-    </label>
-    <label>Last name
-        <InputText @bind-Value="User.LastName" />
-    </label>
-</EditForm>
-
-@code {
-    public class Profile
-    {
-        public string Name { get; set; }
-        public string LastName { get; set; }
-    }
-
-    public Profile User { get; set; } = new Profile();
-
-    protected override async Task OnInitializedAsync()
-    {
-        var currentQuery = new Uri(Navigation.Uri).Query;
-
-        if (currentQuery.Contains("state=resumeSavingProfile"))
-        {
-            User = await JS.InvokeAsync<Profile>("sessionStorage.getItem", 
-                "resumeSavingProfile");
-        }
-    }
-
-    public async Task OnSaveAsync()
-    {
-        var http = new HttpClient();
-        http.BaseAddress = new Uri(Navigation.BaseUri);
-
-        var resumeUri = Navigation.Uri + $"?state=resumeSavingProfile";
-
-        var tokenResult = await TokenProvider.RequestAccessToken(
-            new AccessTokenRequestOptions
-            {
-                ReturnUrl = resumeUri
-            });
-
-        if (tokenResult.TryGetToken(out var token))
-        {
-            http.DefaultRequestHeaders.Add("Authorization", 
-                $"Bearer {token.Value}");
-            await http.PostAsJsonAsync("Save", User);
-        }
-        else
-        {
-            await JS.InvokeVoidAsync("sessionStorage.setItem", 
-                "resumeSavingProfile", User);
-            Navigation.NavigateTo(tokenResult.InteractiveRequestUrl);
-        }
-    }
-}
-```
-
-:::moniker-end
 
 ## Save app state before an authentication operation with session storage and a state container
 
