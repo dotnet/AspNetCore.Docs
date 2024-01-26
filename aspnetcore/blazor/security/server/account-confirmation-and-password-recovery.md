@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 01/16/2024
+ms.date: 01/26/2024
 uid: blazor/security/server/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor
@@ -267,30 +267,6 @@ If you can't get email working:
 
 > [!WARNING]
 > Do **not** use production secrets in test and development. If you publish the app to Azure, set secrets as application settings in the Azure Web App portal. The configuration system is set up to read keys from environment variables.
-
-<!--
-
-    Not sure if we'll be addressing this in the Blazor version of the article.
-
-## Combine social and local login accounts
-
-To complete this section, you must first enable an external authentication provider. See [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
-
-You can combine local and social accounts by clicking on your email link. In the following sequence, "RickAndMSFT@gmail.com" is first created as a local login; however, you can create the account as a social login first, then add a local login.
-
-![Web application: RickAndMSFT@gmail.com user authenticated](accconfirm/_static/rick.png)
-
-Click on the **Manage** link. Note the 0 external (social logins) associated with this account.
-
-![Manage view](accconfirm/_static/manage.png)
-
-Click the link to another login service and accept the app requests. In the following image, Facebook is the external authentication provider:
-
-![Manage your external logins view listing Facebook](accconfirm/_static/fb.png)
-
-The two accounts have been combined. You are able to sign in with either account. You might want your users to add local accounts in case their social login authentication service is down, or more likely they've lost access to their social account.
-
--->
 
 ## Enable account confirmation after a site has users
 
