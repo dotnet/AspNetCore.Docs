@@ -711,8 +711,6 @@ TLS certificates [configured](dotnet/core/extensions/configuration) by path are 
 
 Note that file deletions are specifically not tracked since they arise transiently and would crash the server if non-transient.
 
-The former behavior or `reloadOnChange` can be restored by setting the app context switch `Microsoft.AspNetCore.Server.Kestrel.DisableCertificateFileWatching`.  If you find this is necessary, please [file an issue](https://github.com/dotnet/aspnetcore/issues/new/choose) to let us know why.
-
 ### Warning when specified HTTP protocols won't be used
 
 If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled, even if they've been specified. This can cause some nasty surprises, so we've added warning output to let you know when it happens.
