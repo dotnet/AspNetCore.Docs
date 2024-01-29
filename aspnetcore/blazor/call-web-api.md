@@ -83,6 +83,13 @@ The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json
 
 ## Add the `HttpClient` service
 
+This section covers implementation of the <xref:System.Net.Http.HttpClient> service to make web API calls.
+
+The configuration examples in this section are only useful when a single web API is called for a single <xref:System.Net.Http.HttpClient> instance in the app. When the app must call multiple web APIs, each with its own base address and configuration, you can adopt the following approaches, which are covered later in this article:
+
+* [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory): Each web API is provided a unique name. When app code or a Razor component calls a web API, it uses a named <xref:System.Net.Http.HttpClient> instance to make the call.
+* [Typed `HttpClient`](#typed-httpclient): Each web API is typed. When app code or a Razor component calls a web API, it uses a typed <xref:System.Net.Http.HttpClient> instance to make the call.
+
 In the `Program` file, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
 
 ```csharp
@@ -175,11 +182,6 @@ builder.Services.AddScoped(sp =>
                 "http://0.0.0.0")
     });
 ```
-
-The preceding configuration examples are only useful when a single web API is called for a single <xref:System.Net.Http.HttpClient> instance in the app. When the app must call multiple web APIs, each with its own base address and configuration, you can adopt the following approaches. These approaches are covered later in this article:
-
-* [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory): Each web API is provided a unique name. When app code or a Razor component calls a web API, it uses the named <xref:System.Net.Http.HttpClient> instance to make the call.
-* [Typed `HttpClient`](#typed-httpclient): Each web API is typed. When app code or a Razor component calls a web API, it uses the typed <xref:System.Net.Http.HttpClient> instance to make the call.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -655,6 +657,8 @@ else
     }
 }
 ```
+
+For an additional example based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
 
 ## Typed `HttpClient`
 
