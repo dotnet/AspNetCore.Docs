@@ -933,7 +933,7 @@ It is unlikely for an app to run into a situation where this is a problem unless
 
 #### How to address this issue
 
-There are several techniques and optimizations which can be applied to routes that will largely improve this scenario:
+There are several techniques and optimizations that can be applied to routes that largely improve this scenario:
 * Apply route constraints to your parameters, for example `{parameter:int}`, `{parameter:guid}`, `{parameter:regex(\\d+)}`, etc. where possible.
   * This allows the routing algorithm to internally optimize the structures used for matching and drastically reduce the memory used.
   * In the vast majority of cases this will suffice to get back to an acceptable behavior.
