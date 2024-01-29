@@ -60,11 +60,13 @@ The Graph SDK examples require the following package references in the standalon
 After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
-  "Scopes": [
-    "user.read"
-  ]
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    "Scopes": [
+      "user.read"
+    ]
+  }
 }
 ```
 
@@ -387,11 +389,13 @@ The Graph SDK examples require the following package references in the standalon
 After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
-  "Scopes": [
-    "user.read"
-  ]
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    "Scopes": [
+      "user.read"
+    ]
+  }
 }
 ```
 
@@ -732,11 +736,13 @@ The examples require a package reference for [`Microsoft.Extensions.Http`](https
 After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
-  "Scopes": [
-    "user.read"
-  ]
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    "Scopes": [
+      "user.read"
+    ]
+  }
 }
 ```
 

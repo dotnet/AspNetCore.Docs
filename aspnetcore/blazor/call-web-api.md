@@ -93,6 +93,81 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. The most common use case for the preceding base address is in the client project (`.Client`) of a Blazor Web App (.NET 8 or later) or a hosted Blazor WebAssembly app (.NET 7.0 or earlier). If you're calling an external web API (not in the same URL space as the client app), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running:
+
+```csharp
+builder.Services.AddScoped(sp => 
+    new HttpClient
+    {
+        BaseAddress = new Uri("https://localhost:5001")
+    });
+```
+
+In most professional production apps, such URIs are managed via app settings:
+
+For local development, a `localhost` address is typically used in `appsettings.Development.json` for a separate web API app also running locally. The following example applies to a web API available at port 5001:
+
+```json
+{
+  "ApiServer": "https://localhost:5001",
+}
+```
+
+If a staging server is used, the staging API base address is set in a `appsettings.Staging.json` file. The following example includes a version segment, which is a typical approach used for versioning web APIs:
+
+```json
+{
+  "ApiServer": "https://staging-api.contoso.com/v1.0",
+}
+```
+
+The production URI is set in the `Production` environment app settings file, `appsettings.Production.json`:
+
+```json
+{
+  "ApiServer": "https://api.contoso.com/v1.0",
+}
+```
+
+In the service registration, the appropriate app settings file is read automatically depending on the app's environment:
+
+```csharp
+builder.Services.AddScoped(sp => 
+    new HttpClient
+    {
+        BaseAddress = new Uri(builder.Configuration["ApiServer"] ?? "http://0.0.0.0")
+    });
+```
+
+Nested configuration settings are also common in professional settings because the web API configuration usually has additional configuration settings that are managed together in the app settings files:
+
+`appsettings.Production.json`:
+
+```json
+"ApiServer": {
+  "BaseUri": "https://api.contoso.com/v1.0",
+  "AdditionalSetting1": "Value",
+  "AdditionalSetting2": "Value",
+}
+```
+
+```csharp
+builder.Services.AddScoped(sp => 
+    new HttpClient
+    {
+        BaseAddress = new Uri(
+            builder.Configuration.GetSection("ApiServer")["BaseUri"] ?? 
+                "http://0.0.0.0")
+    });
+```
+
+The preceding configurations apply to public web APIs. For guidance on using <xref:System.Net.Http.HttpClient> to make secure web API requests, see <xref:blazor/security/webassembly/additional-scenarios>.
+
+The preceding configuration examples are only useful when a single web API is called for a single <xref:System.Net.Http.HttpClient> instance in the app. When the app must call multiple web APIs, each with its own base address and configuration, you can adopt the following approaches. These approaches are covered later in this article:
+
+* [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory): Each web API is provided a unique name. When app code or a Razor component calls a web API, it uses the named <xref:System.Net.Http.HttpClient> instance to make the call.
+* [Typed `HttpClient`](#typed-httpclient): Each web API is typed. When app code or a Razor component calls a web API, it uses the typed <xref:System.Net.Http.HttpClient> instance to make the call.
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## Client-side services for `HttpClient` fail during prerendering
@@ -504,6 +579,8 @@ builder.Services.AddHttpClient("WebAPI", client =>
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. The most common use case for the preceding base address is in the client project (`.Client`) of a Blazor Web App (.NET 8 or later) or a hosted Blazor WebAssembly app (.NET 7.0 or earlier). If you're calling an external web API, set the URI to the web API's base address.
+
 In the following component code:
 
 * An instance of <xref:System.Net.Http.IHttpClientFactory> creates a named <xref:System.Net.Http.HttpClient>.
@@ -567,9 +644,34 @@ Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.E
 
 `WeatherForecastHttpClient.cs`:
 
+:::moniker range=">= aspnetcore-8.0"
+
 ```csharp
 using System.Net.Http.Json;
-using {PROJECT NAME}.Shared;
+
+namespace BlazorSample.Client;
+
+public class WeatherForecastHttpClient(HttpClient http)
+{
+    private readonly HttpClient http = http;
+    private WeatherForecast[]? forecasts;
+
+    public async Task<WeatherForecast[]> GetForecastAsync()
+    {
+        forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecast");
+
+        return forecasts ?? [];
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```csharp
+using System.Net.Http.Json;
 
 public class WeatherForecastHttpClient
 {
@@ -591,12 +693,16 @@ public class WeatherForecastHttpClient
 }
 ```
 
+:::moniker-end
+
 In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
+
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. The most common use case for the preceding base address is in the client project (`.Client`) of a Blazor Web App (.NET 8 or later) or a hosted Blazor WebAssembly app (.NET 7.0 or earlier). If you're calling an external web API, set the URI to the web API's base address.
 
 Components inject the typed <xref:System.Net.Http.HttpClient> to call the web API.
 
