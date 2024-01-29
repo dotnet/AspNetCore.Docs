@@ -707,7 +707,7 @@ Time to create 100,000 connections:
 
 ### Certificate file watching in Kestrel
 
-TLS certificates [configured](dotnet/core/extensions/configuration) by path are now monitored for changes when `reloadOnChange` is passed to [KestrelServerOptions.Configure](dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.configure).  A change to the certificate file is treated the same way as a change to the configured path (i.e. endpoints are reloaded).
+TLS certificates [configured](xref:fundamentals/configuration/index) by path are now monitored for changes when `reloadOnChange` is passed to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure?displayProperty=nameWithType>.  A change to the certificate file is treated the same way as a change to the configured path (that is, endpoints are reloaded).
 
 Note that file deletions are specifically not tracked since they arise transiently and would crash the server if non-transient.
 
