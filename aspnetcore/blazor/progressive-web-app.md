@@ -283,7 +283,7 @@ const shouldServeIndexHtml = event.request.mode === 'navigate'
   && !event.request.url.includes('/signin-google');
 ```
 
-No action is required for the Development environment, where content is always fetched from the network.
+No action is required for the `Development` environment, where content is always fetched from the network.
 
 ### Control asset caching
 
@@ -340,7 +340,7 @@ Additionally, offline-capable PWAs must deal with a range of additional complica
 
 During development you typically want to see each change reflected immediately in the browser without going through a background update process. Therefore, Blazor's PWA template enables offline support only when published.
 
-When building an offline-capable app, it's not enough to test the app in the Development environment. You must test the app in its published state to understand how it responds to different network conditions.
+When building an offline-capable app, it's not enough to test the app in the `Development` environment. You must test the app in its published state to understand how it responds to different network conditions.
 
 ### Update completion after user navigation away from app
 

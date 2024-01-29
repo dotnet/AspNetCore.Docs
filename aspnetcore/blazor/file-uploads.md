@@ -472,12 +472,14 @@ The `HttpClient` services must be added to the main project because the client-s
 
 For more information on adding `HttpClient` services to an ASP.NET Core app, see <xref:fundamentals/http-requests>.
 
-The client project of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
+The client project (`.Client`) of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
 
 ```csharp
 builder.Services.AddScoped(sp => 
     new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 ```
+
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. If you're calling an external web API, set the URI to the web API's base address.
 
 Specify the Interactive WebAssembly render mode attribute at the top of the following component in a Blazor Web App:
 
