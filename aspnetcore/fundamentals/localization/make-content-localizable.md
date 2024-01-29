@@ -131,6 +131,8 @@ Localizing an app also involves the following tasks:
 
 ## Additional resources
 
+* [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
+* [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
 * <xref:fundamentals/localization>
 * <xref:fundamentals/localization/provide-resources>
 * <xref:fundamentals/localization/select-language-culture>
