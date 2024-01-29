@@ -281,7 +281,7 @@ When a routing middleware executes, it sets an `Endpoint` and route values to a 
 * Calling [HttpContext.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
-[Middleware](xref:fundamentals/middleware/index) runs after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+[Middleware](xref:fundamentals/middleware/index) that runs after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Because the middleware applies policies based on the selected endpoint, it's important that:
 
@@ -933,7 +933,7 @@ It is unlikely for an app to run into a situation where this is a problem unless
 
 #### How to address this issue
 
-There are several techniques and optimizations can be applied to routes that will largely improve this scenario:
+There are several techniques and optimizations that can be applied to routes that largely improve this scenario:
 * Apply route constraints to your parameters, for example `{parameter:int}`, `{parameter:guid}`, `{parameter:regex(\\d+)}`, etc. where possible.
   * This allows the routing algorithm to internally optimize the structures used for matching and drastically reduce the memory used.
   * In the vast majority of cases this will suffice to get back to an acceptable behavior.

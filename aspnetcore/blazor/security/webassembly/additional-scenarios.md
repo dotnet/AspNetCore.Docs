@@ -40,7 +40,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ...
 
 builder.Services.AddHttpClient("WebAPI", 
-        client => client.BaseAddress = new Uri("https://www.example.com/base"))
+        client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
@@ -264,7 +264,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
         : base(provider, navigation)
     {
         ConfigureHandler(
-            authorizedUrls: new[] { "https://www.example.com/base" },
+            authorizedUrls: new[] { "https://api.contoso.com/v1.0" },
             scopes: new[] { "example.read", "example.write" });
     }
 }
@@ -282,7 +282,7 @@ In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpCli
 builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("WebAPI",
-        client => client.BaseAddress = new Uri("https://www.example.com/base"))
+        client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
 
@@ -340,10 +340,10 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 builder.Services.AddScoped(sp => new HttpClient(
     sp.GetRequiredService<AuthorizationMessageHandler>()
     .ConfigureHandler(
-        authorizedUrls: new[] { "https://www.example.com/base" },
+        authorizedUrls: new[] { "https://api.contoso.com/v1.0" },
         scopes: new[] { "example.read", "example.write" }))
     {
-        BaseAddress = new Uri("https://www.example.com/base")
+        BaseAddress = new Uri("https://api.contoso.com/v1.0")
     });
 ```
 
@@ -453,7 +453,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ...
 
 builder.Services.AddHttpClient<WeatherForecastClient>(
-        client => client.BaseAddress = new Uri("https://www.example.com/base"))
+        client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
@@ -488,10 +488,10 @@ In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
-        client => client.BaseAddress = new Uri("https://www.example.com/base"))
+        client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"))
     .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
     .ConfigureHandler(
-        authorizedUrls: new [] { "https://www.example.com/base" },
+        authorizedUrls: new [] { "https://api.contoso.com/v1.0" },
         scopes: new[] { "example.read", "example.write" }));
 ```
 
@@ -518,7 +518,7 @@ In the `Program` file:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
-    client => client.BaseAddress = new Uri("https://www.example.com/base"));
+    client => client.BaseAddress = new Uri("https://api.contoso.com/v1.0"));
 ```
 
 :::moniker range="< aspnetcore-8.0"

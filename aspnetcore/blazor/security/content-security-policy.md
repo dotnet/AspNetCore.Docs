@@ -307,9 +307,9 @@ The particular script associated with the error is displayed in the console next
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Apply a CSP in non-Development environments
+## Apply a CSP in non-`Development` environments
 
-When a CSP is applied to a Blazor app's `<head>` content, it interferes with local testing in the Development environment. For example, [Browser Link](xref:client-side/using-browserlink) and the browser refresh script fail to load. The following examples demonstrate how to apply the CSP's `<meta>` tag in non-Development environments.
+When a CSP is applied to a Blazor app's `<head>` content, it interferes with local testing in the `Development` environment. For example, [Browser Link](xref:client-side/using-browserlink) and the browser refresh script fail to load. The following examples demonstrate how to apply the CSP's `<meta>` tag in non-`Development` environments.
 
 > [!NOTE]
 > The examples in this section don't show the full `<meta>` tag for the CSPs. The complete `<meta>` tags are found in the subsections of the [Apply the policy](#apply-the-policy) section earlier in this article.
@@ -328,7 +328,7 @@ In the `App` component (`Components/App.razor`), inject <xref:Microsoft.Extensio
 @inject IHostEnvironment Env
 ```
 
-In the `App` component's `<head>` content, apply the CSP when not in the Development environment:
+In the `App` component's `<head>` content, apply the CSP when not in the `Development` environment:
 
 ```razor
 @if (!Env.IsDevelopment())
@@ -359,7 +359,7 @@ In the `App` component (`App.razor`), inject <xref:Microsoft.AspNetCore.Componen
 @inject IWebAssemblyHostEnvironment Env
 ```
 
-In the `App` component's `<head>` content, apply the CSP when not in the Development environment:
+In the `App` component's `<head>` content, apply the CSP when not in the `Development` environment:
 
 ```razor
 @if (!Env.IsDevelopment())
