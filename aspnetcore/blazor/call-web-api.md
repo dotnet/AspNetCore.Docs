@@ -93,7 +93,14 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page. The most common use case for the preceding base address is in the client project (`.Client`) of a Blazor Web App (.NET 8 or later) that makes web API calls from WebAssembly components or the **:::no-loc text="Client":::** project a hosted Blazor WebAssembly app (.NET 7.0 or earlier). If you're calling an external web API (not in the same URL space as the client app), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running:
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+
+The most common use cases for using the client's own base address is in the following situations:
+
+* The client project (`.Client`) of a Blazor Web App (.NET 8 or later) makes web API calls from WebAssembly components or code that runs on the client in WebAssembly to APIs in the server app.
+* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+If you're calling an external web API (not in the same URL space as the client app), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -103,9 +110,11 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
-In most professional production apps, web API base address URIs are managed via app settings, as the following examples demonstrate.
+In most production apps, web API base addresses are managed via app settings, as the following examples demonstrate.
 
-For local development, a separate web API app is running at a `localhost` address. The base address of the web API is assigned to a configuration key in `appsettings.Development.json`:
+For local development, a separate web API app is running at a `localhost` address. The base address of the web API is assigned to a configuration key in the `Development` environment app settings file. The following examples use a key name of "`ApiServer`".
+
+`wwwroot/appsettings.Development.json`:
 
 ```json
 {
@@ -113,7 +122,7 @@ For local development, a separate web API app is running at a `localhost` addres
 }
 ```
 
-If a staging server is used, the staging web API base address is set in a `appsettings.Staging.json` file. The following example includes a version segment, which is a typical approach used for versioning web APIs:
+If a staging server is used, the staging web API base address is set in `wwwroot/appsettings.Staging.json`. The following example includes a version segment, which is a typical approach used for versioning web APIs:
 
 ```json
 {
@@ -121,7 +130,7 @@ If a staging server is used, the staging web API base address is set in a `appse
 }
 ```
 
-The production URI is set in the `Production` environment app settings file, `appsettings.Production.json`:
+The production URI is set in the `Production` environment app settings file, `wwwroot/appsettings.Production.json`:
 
 ```json
 {
@@ -139,15 +148,15 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
-Nested configuration settings are also common in professional settings because the web API configuration usually has additional configuration settings that are managed together in app settings files.
+Nested configuration settings are also commonly used in production apps because web API configuration usually requires additional configuration settings.
 
-`appsettings.Production.json`:
+`wwwroot/appsettings.Production.json`:
 
 ```json
 "ApiServer": {
   "BaseUri": "https://api.contoso.com/v1.0",
   "AdditionalSetting1": "Value",
-  "AdditionalSetting2": "Value",
+  "AdditionalSetting2": "Value"
 }
 ```
 
