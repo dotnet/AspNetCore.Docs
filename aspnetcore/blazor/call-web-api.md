@@ -148,17 +148,23 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
-Nested configuration settings are also commonly used in production apps because web API configuration usually requires additional configuration settings.
+Nested configuration settings are also commonly used in production apps because web API configuration usually requires additional configuration settings, such as configuring scopes for requests.
 
 `wwwroot/appsettings.Production.json`:
 
 ```json
 "ApiServer": {
   "BaseUri": "https://api.contoso.com/v1.0",
-  "AdditionalSetting1": "Value",
-  "AdditionalSetting2": "Value"
+  "Scopes": [
+    "user.read"
+  ]
 }
 ```
+
+> [!NOTE]
+> The configuration and web API calls described in this article only apply to public web APIs. For guidance on using <xref:System.Net.Http.HttpClient> to make authorized web API requests in clients that authenticate users, see <xref:blazor/security/webassembly/additional-scenarios> after you've read this article.
+
+In the service registration:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -169,8 +175,6 @@ builder.Services.AddScoped(sp =>
                 "http://0.0.0.0")
     });
 ```
-
-The preceding configurations apply to public web APIs. For guidance on using <xref:System.Net.Http.HttpClient> to make secure web API requests, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 The preceding configuration examples are only useful when a single web API is called for a single <xref:System.Net.Http.HttpClient> instance in the app. When the app must call multiple web APIs, each with its own base address and configuration, you can adopt the following approaches. These approaches are covered later in this article:
 
