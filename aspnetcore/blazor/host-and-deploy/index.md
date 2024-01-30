@@ -150,10 +150,6 @@ For the second option, which is the usual approach taken, the app sets the base 
 
 ### Server-side Blazor
 
-<!-- UPDATE 8.0 Check via PU questions or when the App Base Path issue
-                https://github.com/dotnet/AspNetCore.Docs/issues/30043
-                is worked. -->
-
 Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
 
 ```csharp

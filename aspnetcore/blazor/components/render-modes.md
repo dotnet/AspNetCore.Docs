@@ -227,8 +227,6 @@ Additional information on render mode propagation is provided in the [Render mod
 
 Prerendering is enabled by default for interactive components.
 
-<!-- UPDATE 8.0 Are there any simplifications for these at RTM? -->
-
 To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
 
 * `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`

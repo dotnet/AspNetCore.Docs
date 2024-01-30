@@ -24,9 +24,9 @@ To protect .NET/C# code and use [ASP.NET Core Data Protection](xref:security/dat
 
 ## Authentication library
 
-Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library using the [Microsoft Identity Platform](/azure/active-directory/develop/). The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
+Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library using the [Microsoft Identity Platform](/entra/identity-platform/). The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
 
-The authentication support in the Blazor WebAssembly Library (`Authentication.js`) is built on top of the [Microsoft Authentication Library (MSAL, `msal.js`)](/azure/active-directory/develop/msal-overview), which is used to handle the underlying authentication protocol details. The Blazor WebAssembly Library only supports the Proof Key for Code Exchange (PKCE) authorization code flow. Implicit grant isn't supported.
+The authentication support in the Blazor WebAssembly Library (`Authentication.js`) is built on top of the [Microsoft Authentication Library (MSAL, `msal.js`)](/entra/identity-platform/msal-overview), which is used to handle the underlying authentication protocol details. The Blazor WebAssembly Library only supports the Proof Key for Code Exchange (PKCE) authorization code flow. Implicit grant isn't supported.
 
 Other options for authenticating SPAs exist, such as the use of SameSite cookies. However, the engineering design of Blazor WebAssembly uses OAuth and OIDC as the best option for authentication in Blazor WebAssembly apps. [Token-based authentication](xref:security/anti-request-forgery#token-based-authentication) based on [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519) was chosen over [cookie-based authentication](xref:security/anti-request-forgery#cookie-based-authentication) for functional and security reasons:
 
@@ -196,7 +196,7 @@ For hosted Blazor WebAssembly solutions, refresh tokens can be maintained and us
 
 For more information, see the following resources:
 
-* [Microsoft identity platform refresh tokens: Refresh token lifetime](/azure/active-directory/develop/refresh-tokens#refresh-token-lifetime)
+* [Microsoft identity platform refresh tokens: Refresh token lifetime](/entra/identity-platform/refresh-tokens#refresh-token-lifetime)
 * [OAuth 2.0 for Browser-Based Apps (IETF specification)](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps-11#section-4)
 
 ## Establish claims for users
@@ -323,21 +323,21 @@ Further configuration guidance is found in the following articles:
 
 ## Use the Authorization Code flow with PKCE
 
-Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/azure/active-directory/develop/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [Cross-Origin Resource Sharing (CORS)](xref:security/cors) for single-page applications, including Blazor. 
+Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/entra/identity-platform/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/entra/identity-platform/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [Cross-Origin Resource Sharing (CORS)](xref:security/cors) for single-page applications, including Blazor. 
 
 **Microsoft doesn't recommend using Implicit grant.**
 
 For more information, see the following resources:
 
-* [Authentication flow support in MSAL: Implicit grant](/azure/active-directory/develop/msal-authentication-flows#implicit-grant)
-* [Microsoft identity platform and implicit grant flow: Prefer the auth code flow](/azure/active-directory/develop/v2-oauth2-implicit-grant-flow#prefer-the-auth-code-flow)
-* [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+* [Authentication flow support in MSAL: Implicit grant](/entra/identity-platform/msal-authentication-flows#implicit-grant)
+* [Microsoft identity platform and implicit grant flow: Prefer the auth code flow](/entra/identity-platform/v2-oauth2-implicit-grant-flow#prefer-the-auth-code-flow)
+* [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
 
 ## Additional resources
 
 * Microsoft identity platform documentation
-  * [General documentation](/azure/active-directory/develop/)
-  * [Access tokens](/azure/active-directory/develop/access-tokens)
+  * [General documentation](/entra/identity-platform/)
+  * [Access tokens](/entra/identity-platform/access-tokens)
 * <xref:host-and-deploy/proxy-load-balancer>
   * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
