@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 11/14/2023
+ms.date: 01/30/2024
 uid: blazor/security/webassembly/meid-groups-roles
 zone_pivot_groups: blazor-groups-and-roles
 ---
@@ -58,7 +58,7 @@ The article's guidance provides instructions for client and server apps:
 
 :::moniker-end
 
-The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
+The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
 ## Prerequisite
 
@@ -121,6 +121,8 @@ In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
+namespace BlazorSample;
+
 public class CustomUserAccount : RemoteUserAccount
 {
     [JsonPropertyName("roles")]
@@ -155,9 +157,11 @@ Add the following custom user account factory to the **CLIENT** app. The custom 
 The following example assumes that the project's app settings file includes an entry for the base URL:
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
-  ...
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    ...
+  }
 }
 ```
 
@@ -170,23 +174,18 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 using Microsoft.Kiota.Abstractions.Authentication;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IServiceProvider serviceProvider;
-    private readonly string? baseUrl;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider,
         ILogger<CustomAccountFactory> logger,
         IConfiguration config)
-        : base(accessor)
-    {
-        this.serviceProvider = serviceProvider;
-        this.logger = logger;
-        baseUrl = config.GetSection("MicrosoftGraph")["BaseUrl"];
-    }
+    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly string? baseUrl = 
+        config.GetSection("MicrosoftGraph")["BaseUrl"];
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -266,20 +265,15 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IServiceProvider serviceProvider;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider,
         ILogger<CustomAccountFactory> logger)
-        : base(accessor)
-    {
-        this.serviceProvider = serviceProvider;
-        this.logger = logger;
-    }
+    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -388,12 +382,14 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 `wwwroot/appsettings.json`:
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com",
-  "Version: "v1.0",
-  "Scopes": [
-    "user.read"
-  ]
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com",
+    "Version: "v1.0",
+    "Scopes": [
+      "user.read"
+    ]
+  }
 }
 ```
 
@@ -502,9 +498,10 @@ Access to a controller in the **SERVER** app can be based on using an [`[Authori
 The following example limits access to billing data from the `BillingDataController` to Azure Billing Administrators with a policy name of `BillingAdministrator`:
 
 ```csharp
-...
 using Microsoft.AspNetCore.Authorization;
+```
 
+```csharp
 [Authorize(Policy = "BillingAdministrator")]
 [ApiController]
 [Route("[controller]")]
