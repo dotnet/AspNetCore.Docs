@@ -105,10 +105,12 @@ When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:bla
 
 ### Inspect the user
 
-The following `User` component can be used directly in apps or serve as the basis for further customization:
+The following `User` component can be used directly in apps or serve as the basis for further customization.
+
+`User.razor`:
 
 ```razor
-@page "/User"
+@page "/user"
 @attribute [Authorize]
 @using System.Text.Json
 @using System.Security.Claims
