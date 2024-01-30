@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/30/2024
+ms.date: 1/29/2024
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -147,6 +147,8 @@ See [Extend Startup with startup filters](xref:fundamentals/startup#IStartupFilt
 ## Customize the client with WithWebHostBuilder
 
 When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
+
+For more information, see [Inject mock services](#inject-mock-services) in this article.
 
 The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) demonstrates the use of `WithWebHostBuilder`. This test performs a record delete in the database by triggering a form submission in the SUT.
 
