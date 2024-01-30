@@ -100,7 +100,7 @@ Configuring authorization requirements on a resource is a two-step process that 
 In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked which:
 
 - Adds authorization-related services to the DI container.
-- Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authentication policies.
+- Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authorization policies.
 
 The code creates a new authorization policy, named `admin_greetings`, that encapsulates two authorization requirements:
 
