@@ -864,7 +864,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 * Microsoft identity platform documentation
   * [Overview](/entra/identity-platform/)
-  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/entra/identity-platform/active-directory-v2-protocols)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/entra/identity-platform/v2-protocols)
   * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
   * [Microsoft identity platform ID tokens](/entra/identity-platform/id-tokens)
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)
@@ -880,7 +880,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 * Microsoft identity platform documentation
   * [Overview](/entra/identity-platform/)
-  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/entra/identity-platform/active-directory-v2-protocols)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/entra/identity-platform/v2-protocols)
   * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/v2-oauth2-auth-code-flow)
   * [Microsoft identity platform ID tokens](/entra/identity-platform/id-tokens)
   * [Microsoft identity platform access tokens](/entra/identity-platform/access-tokens)

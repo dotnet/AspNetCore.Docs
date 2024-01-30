@@ -344,7 +344,7 @@ public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
 
 The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
 
-The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are ME-ID Administrator Role **entity IDs** and not [**Role Template IDs**](/entra/identity-platform/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for ME-ID Administrator Roles **provided by `wids` claims**.
+The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are ME-ID Administrator Role **entity IDs** and not [**Role Template IDs**](/entra/identity/role-based-access-control/permissions-reference). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for ME-ID Administrator Roles **provided by `wids` claims**.
 
 In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
@@ -406,7 +406,7 @@ builder.Services.AddAuthorizationCore(options =>
 });
 ```
 
-For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity-platform/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Entra documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
 
 In the following examples, the **CLIENT** app uses the preceding policy to authorize the user.
 
@@ -491,7 +491,7 @@ builder.Services.AddAuthorization(options =>
 });
 ```
 
-For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity-platform/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
 
 Access to a controller in the **SERVER** app can be based on using an [`[Authorize]` attribute](xref:security/authorization/simple) with the name of the policy (API documentation: <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>).
 
@@ -515,7 +515,7 @@ For more information, see <xref:security/authorization/policies>.
 
 ## App Roles
 
-To configure the app in the Azure portal to provide App Roles membership claims, see [How to: Add app roles in your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
+To configure the app in the Azure portal to provide App Roles membership claims, see [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) in the Entra documentation.
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
@@ -538,7 +538,7 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 
 Although you can't assign roles to groups without an Microsoft Entra ID Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
-If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [How to: Add app roles in your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-azure-ad-apps) to configure the app's roles.
+If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) to configure the app's roles.
 
 If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Implementation](/azure/architecture/guide/multitenant/considerations/identity#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
 
@@ -776,9 +776,9 @@ Pascal case is typically used for role names (for example, `BillingAdministrator
 
 ## Additional resources
 
-* [Role template IDs (Azure documentation)](/entra/identity-platform/roles/permissions-reference#role-template-ids)
-* [`groupMembershipClaims` attribute (Azure documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)
-* [How to: Add app roles in your application and receive them in the token (Azure documentation)](/entra/identity-platform/howto-add-app-roles-in-azure-ad-apps)
+* [Role template IDs (Entra documentation)](/entra/identity/role-based-access-control/permissions-reference)
+* [`groupMembershipClaims` attribute (Entra documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)
+* [Add app roles to your application and receive them in the token (Entra documentation)](/entra/identity-platform/howto-add-app-roles-in-apps)
 * [Application roles (Azure documentation)](/azure/architecture/guide/multitenant/considerations/identity)
 * <xref:security/authorization/claims>
 * <xref:security/authorization/roles>

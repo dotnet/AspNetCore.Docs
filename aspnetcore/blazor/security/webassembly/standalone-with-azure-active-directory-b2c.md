@@ -43,7 +43,7 @@ Register an AAD B2C app:
 1. Select **Register**.
 
 > [!NOTE]
-> Supplying the port number for a `localhost` AAD B2C redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
+> Supplying the port number for a `localhost` AAD B2C redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Entra documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
 
 Record the following information:
 
