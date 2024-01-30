@@ -75,7 +75,7 @@ Register an AAD B2C app for the *Client app*:
 1. Select **Register**.
 
 > [!NOTE]
-> Supplying the port number for a `localhost` AAD B2C redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/entra/identity-platform/develop/reply-url#localhost-exceptions).
+> Supplying the port number for a `localhost` AAD B2C redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
 
 Record the *Client app* Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
@@ -283,7 +283,7 @@ Example:
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/entra/identity-platform/develop/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/entra/identity-platform/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
 
@@ -428,12 +428,12 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Additional resources
 
-* [Configure an app's publisher domain](/entra/identity-platform/develop/howto-configure-publisher-domain)
-* [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/develop/reference-app-manifest#identifieruris-attribute)
+* [Configure an app's publisher domain](/entra/identity-platform/howto-configure-publisher-domain)
+* [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/reference-app-manifest#identifieruris-attribute)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/authentication/azure-ad-b2c>
 * [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant)
 * [Tutorial: Register an application in Azure Active Directory B2C](/entra/identity-platform-b2c/tutorial-register-applications)
-* [Microsoft identity platform documentation](/entra/identity-platform/develop/)
+* [Microsoft identity platform documentation](/entra/identity-platform/)

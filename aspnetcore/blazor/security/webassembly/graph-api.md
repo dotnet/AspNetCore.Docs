@@ -1026,5 +1026,5 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
 * [Microsoft Graph auth overview](/graph/auth/)
 * [Overview of Microsoft Graph permissions](/graph/permissions-overview)
 * [Microsoft Graph permissions reference](/graph/permissions-reference)
-* [Enhance security with the principle of least privilege](/entra/identity-platform/develop/secure-least-privileged-access)
+* [Enhance security with the principle of least privilege](/entra/identity-platform/secure-least-privileged-access)
 * [Azure privilege escalation articles on the Internet (Google search result)](https://www.google.com/search?q=%22Azure+Privilege+Escalation%22)

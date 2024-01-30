@@ -92,7 +92,7 @@ For more information, see the [Microsoft Graph permissions reference](/graph/per
 
 ## Group Membership Claims attribute
 
-In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/entra/identity-platform/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security groups, distribution groups, and roles of the signed-in user in the [well-known IDs claim (`wids`)](/entra/identity-platform/develop/access-tokens#payload-claims):
+In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security groups, distribution groups, and roles of the signed-in user in the [well-known IDs claim (`wids`)](/entra/identity-platform/access-tokens#payload-claims):
 
 1. Open the app's Azure portal registration.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -112,8 +112,8 @@ The examples in this article:
 In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
 * `Roles`: ME-ID App Roles array (covered in the [App Roles](#app-roles) section)
-* `Wids`: ME-ID Administrator Roles in [well-known IDs claim (`wids`)](/entra/identity-platform/develop/access-tokens#payload-claims)
-* `Oid`: Immutable [object identifier claim (`oid`)](/entra/identity-platform/develop/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
+* `Wids`: ME-ID Administrator Roles in [well-known IDs claim (`wids`)](/entra/identity-platform/access-tokens#payload-claims)
+* `Oid`: Immutable [object identifier claim (`oid`)](/entra/identity-platform/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
 
 `CustomUserAccount.cs`:
 
@@ -515,7 +515,7 @@ For more information, see <xref:security/authorization/policies>.
 
 ## App Roles
 
-To configure the app in the Azure portal to provide App Roles membership claims, see [How to: Add app roles in your application and receive them in the token](/entra/identity-platform/develop/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
+To configure the app in the Azure portal to provide App Roles membership claims, see [How to: Add app roles in your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
@@ -538,7 +538,7 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 
 Although you can't assign roles to groups without an Microsoft Entra ID Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
-If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [How to: Add app roles in your application and receive them in the token](/entra/identity-platform/develop/howto-add-app-roles-in-azure-ad-apps) to configure the app's roles.
+If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [How to: Add app roles in your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-azure-ad-apps) to configure the app's roles.
 
 If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Implementation](/azure/architecture/guide/multitenant/considerations/identity#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
 
@@ -777,8 +777,8 @@ Pascal case is typically used for role names (for example, `BillingAdministrator
 ## Additional resources
 
 * [Role template IDs (Azure documentation)](/entra/identity-platform/roles/permissions-reference#role-template-ids)
-* [`groupMembershipClaims` attribute (Azure documentation)](/entra/identity-platform/develop/reference-app-manifest#groupmembershipclaims-attribute)
-* [How to: Add app roles in your application and receive them in the token (Azure documentation)](/entra/identity-platform/develop/howto-add-app-roles-in-azure-ad-apps)
+* [`groupMembershipClaims` attribute (Azure documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)
+* [How to: Add app roles in your application and receive them in the token (Azure documentation)](/entra/identity-platform/howto-add-app-roles-in-azure-ad-apps)
 * [Application roles (Azure documentation)](/azure/architecture/guide/multitenant/considerations/identity)
 * <xref:security/authorization/claims>
 * <xref:security/authorization/roles>
