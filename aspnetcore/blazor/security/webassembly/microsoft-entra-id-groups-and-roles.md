@@ -58,7 +58,7 @@ The article's guidance provides instructions for client and server apps:
 
 :::moniker-end
 
-The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
+The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
 ## Prerequisite
 

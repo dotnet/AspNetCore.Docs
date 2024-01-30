@@ -32,7 +32,7 @@ Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="
 
 :::moniker-end
 
-The examples in this article take advantage of recent .NET features and C# features. When using the examples in ASP.NET Core 7.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
+The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
 
 :::zone pivot="graph-sdk-5"
 
