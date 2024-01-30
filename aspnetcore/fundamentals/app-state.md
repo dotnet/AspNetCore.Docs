@@ -78,12 +78,7 @@ The in-memory cache provider stores session data in the memory of the server whe
 
 ### Configure session state
 
-The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package:
-
-* Is included implicitly by the framework.
-* Provides middleware for managing session state.
-
-To enable the session middleware, `Program.cs` must contain:
+Middleware for managing session state is included in the framework. To enable the session middleware, `Program.cs` must contain:
 
 * Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A>
