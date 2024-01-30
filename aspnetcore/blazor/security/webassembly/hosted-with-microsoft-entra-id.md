@@ -18,7 +18,7 @@ This article doesn't cover a *multi-tenant ME-ID registration*. For more informa
     match the rest of the MS Entra ID branding? 
     ANSWER: YES! It will be "Microsoft Entra tenant" now. -->
 
-This article focuses on the use of a **Microsoft Entra** tenant, as described in [Quickstart: Set up a tenant](/entra/identity-platform/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
+This article focuses on the use of a **Microsoft Entra** tenant, as described in [Quickstart: Set up a tenant](/entra/identity-platform/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -434,7 +434,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Use of an Azure Active Directory B2C tenant
 
-If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID.
+If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID.
 
 You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the ME-ID organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an **Azure Active Directory B2C** tenant.
 

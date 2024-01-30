@@ -12,7 +12,7 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/entra/identity-platform-b2c/overview) for authentication.
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -27,9 +27,9 @@ The subsections of the walkthrough explain how to:
 
 ### Create a tenant in Azure
 
-Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant) to create an AAD B2C tenant.
+Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant.
 
-Before proceeding with this article's guidance, confirm that you've [selected the correct directory for the AAD B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant#select-your-b2c-tenant-directory).
+Before proceeding with this article's guidance, confirm that you've [selected the correct directory for the AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant#select-your-b2c-tenant-directory).
 
 ### Register an app in Azure
 
@@ -60,7 +60,7 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 
 In **Home** > **Azure AD B2C** > **User flows**:
 
-[Create a sign-up and sign-in user flow](/entra/identity-platform-b2c/tutorial-create-user-flows)
+[Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
 
 At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity?.Name`/`context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).
 
@@ -223,6 +223,6 @@ For more information, see the following sections of the *Additional scenarios* a
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/authentication/azure-ad-b2c>
-* [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant)
-* [Tutorial: Register an application in Azure Active Directory B2C](/entra/identity-platform-b2c/tutorial-register-applications)
+* [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
+* [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications)
 * [Microsoft identity platform documentation](/entra/identity-platform/)

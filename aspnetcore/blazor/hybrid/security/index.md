@@ -53,8 +53,8 @@ WPF apps use the [Microsoft identity platform](/entra/identity-platform/) to int
 * [Add authentication to your Windows (WPF) app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/wpf/authentication)
 * [Tutorial: Sign in users and call Microsoft Graph in Windows Presentation Foundation (WPF) desktop app](/entra/identity-platform/tutorial-v2-windows-desktop)
 * [Quickstart: Acquire a token and call Microsoft Graph API from a desktop application](/entra/identity-platform/desktop-app-quickstart?pivots=devlang-windows-desktop)
-* [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/entra/identity-platform-b2c/quickstart-native-app-desktop)
-* [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/entra/identity-platform-b2c/configure-authentication-sample-wpf-desktop-app)
+* [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/azure/active-directory-b2c/quickstart-native-app-desktop)
+* [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/azure/active-directory-b2c/configure-authentication-sample-wpf-desktop-app)
 
 :::zone-end
 
@@ -584,8 +584,8 @@ WPF apps use the [Microsoft identity platform](/entra/identity-platform/) to int
 * [Add authentication to your Windows (WPF) app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/wpf/authentication)
 * [Tutorial: Sign in users and call Microsoft Graph in Windows Presentation Foundation (WPF) desktop app](/entra/identity-platform/tutorial-v2-windows-desktop)
 * [Quickstart: Acquire a token and call Microsoft Graph API from a desktop application](/entra/identity-platform/desktop-app-quickstart?pivots=devlang-windows-desktop)
-* [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/entra/identity-platform-b2c/quickstart-native-app-desktop)
-* [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/entra/identity-platform-b2c/configure-authentication-sample-wpf-desktop-app)
+* [Quickstart: Set up sign in for a desktop app using Azure Active Directory B2C](/azure/active-directory-b2c/quickstart-native-app-desktop)
+* [Configure authentication in a sample WPF desktop app by using Azure AD B2C](/azure/active-directory-b2c/configure-authentication-sample-wpf-desktop-app)
 
 :::zone-end
 
