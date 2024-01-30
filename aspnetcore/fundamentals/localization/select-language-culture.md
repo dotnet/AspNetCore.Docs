@@ -98,7 +98,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 
 ## Apply the RouteDataRequest CultureProvider
 
-The <xref:Microsoft.AspNetCore.Localization.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` route value. See [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) for information on:
+The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` route value. See [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) for information on:
 
 * Using the middleware as filters feature of ASP.NET Core.
 * How to use `RouteDataRequestCultureProvider` to set the culture of an app from the url.
