@@ -16,14 +16,21 @@ The following built-in Razor components are provided by the Blazor framework:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Confirm/update list -->
+<!-- Link for FormMappingValidator. Addition to docs tracked by 
+     https://github.com/dotnet/AspNetCore.Docs/issues/31621
+
+* [`FormMappingValidator`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
+-->
 
 * [`App`](xref:blazor/project-structure)
 * [`AntiforgeryToken`](xref:blazor/forms/index#antiforgery-support)
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
+* [`Editor<T>`](xref:blazor/forms/binding#nest-and-bind-forms)
+* [`EditForm`](xref:blazor/forms/binding#editformeditcontext-model)
 * [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
 * [`HeadContent`](xref:blazor/components/control-head-content)
@@ -47,6 +54,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`SectionContent`](xref:blazor/components/sections)
 * [`SectionOutlet`](xref:blazor/components/sections)
+* [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
 :::moniker-end
@@ -57,7 +65,9 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
+* [`EditForm`](xref:blazor/forms/binding#editformeditcontext-model)
 * [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
 * [`HeadContent`](xref:blazor/components/control-head-content)
@@ -79,6 +89,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`QuickGrid`](xref:blazor/components/quickgrid)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+* [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
 :::moniker-end
@@ -89,7 +100,9 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
+* [`EditForm`](xref:blazor/forms/binding#editformeditcontext-model)
 * [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
 * [`HeadContent`](xref:blazor/components/control-head-content)
@@ -110,6 +123,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+* [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
 :::moniker-end
@@ -120,6 +134,8 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
+* [`EditForm`](xref:blazor/forms/binding#editformeditcontext-model)
 * [`InputCheckbox`](xref:blazor/forms/input-components)
 * [`InputDate`](xref:blazor/forms/input-components)
 * [`InputFile`](xref:blazor/file-uploads)
@@ -135,6 +151,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+* [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
 :::moniker-end
@@ -145,6 +162,8 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
+* [`EditForm`](xref:blazor/forms/binding#editformeditcontext-model)
 * [`InputCheckbox`](xref:blazor/forms/input-components)
 * [`InputDate`](xref:blazor/forms/input-components)
 * [`InputNumber`](xref:blazor/forms/input-components)
@@ -159,5 +178,6 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+* [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
 
 :::moniker-end

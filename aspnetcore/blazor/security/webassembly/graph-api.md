@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 01/30/2024
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -32,7 +32,7 @@ Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="
 
 :::moniker-end
 
-The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
+The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
 
 :::zone pivot="graph-sdk-5"
 
@@ -52,6 +52,8 @@ The Graph SDK examples require the following package references in the standalon
 
 :::moniker-end
 
+* [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication)
+* [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
 
@@ -97,12 +99,14 @@ using Microsoft.Kiota.Abstractions.Authentication;
 using IAccessTokenProvider = 
     Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider;
 
+namespace BlazorSample;
+
 internal static class GraphClientExtensions
 {
     public static IServiceCollection AddGraphClient(
             this IServiceCollection services, string? baseUrl, List<string>? scopes)
     {
-        if (string.IsNullOrEmpty(baseUrl) || scopes.IsNullOrEmpty())
+        if (string.IsNullOrEmpty(baseUrl) || scopes?.Count == 0)
         {
             return services;
         }
@@ -129,18 +133,12 @@ internal static class GraphClientExtensions
         return services;
     }
 
-    private class GraphAuthenticationProvider : IAuthenticationProvider
+    private class GraphAuthenticationProvider(IAccessTokenProvider tokenProvider, 
+        IConfiguration config) : IAuthenticationProvider
     {
-        private readonly IConfiguration config;
+        private readonly IConfiguration config = config;
 
-        public GraphAuthenticationProvider(IAccessTokenProvider tokenProvider,
-            IConfiguration config)
-        {
-            TokenProvider = tokenProvider;
-            this.config = config;
-        }
-
-        public IAccessTokenProvider TokenProvider { get; }
+        public IAccessTokenProvider TokenProvider { get; } = tokenProvider;
 
         public async Task AuthenticateRequestAsync(RequestInformation request, 
             Dictionary<string, object>? additionalAuthenticationContext = null, 
@@ -224,23 +222,17 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 using Microsoft.Kiota.Abstractions.Authentication;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IServiceProvider serviceProvider;
-    private readonly string? baseUrl;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
-        IServiceProvider serviceProvider,
-        ILogger<CustomAccountFactory> logger,
-        IConfiguration config)
-        : base(accessor)
-    {
-        this.serviceProvider = serviceProvider;
-        this.logger = logger;
-        baseUrl = config.GetSection("MicrosoftGraph")["BaseUrl"];
-    }
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider, ILogger<CustomAccountFactory> logger,
+        IConfiguration config) 
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly string? baseUrl = 
+        config.GetSection("MicrosoftGraph")["BaseUrl"];
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
@@ -264,7 +256,7 @@ public class CustomAccountFactory
                         baseUrl);
 
                     var user = await client.Me.GetAsync();
-              
+
                     if (user is not null)
                     {
                         userIdentity.AddClaim(new Claim("mobilephone",
@@ -381,6 +373,8 @@ The Graph SDK examples require the following package references in the standalon
 
 :::moniker-end
 
+* [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication)
+* [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
 
@@ -423,12 +417,14 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Authentication.WebAssembly.Msal.Models;
 using Microsoft.Graph;
 
+namespace BlazorSample;
+
 internal static class GraphClientExtensions
 {
     public static IServiceCollection AddGraphClient(
         this IServiceCollection services, string? baseUrl, List<string>? scopes)
     {
-        if (string.IsNullOrEmpty(baseUrl) || scopes.IsNullOrEmpty())
+        if (string.IsNullOrEmpty(baseUrl) || scopes?.Count == 0)
         {
             return services;
         }
@@ -458,18 +454,12 @@ internal static class GraphClientExtensions
         return services;
     }
 
-    private class GraphAuthenticationProvider : IAuthenticationProvider
+    private class GraphAuthenticationProvider(IAccessTokenProvider tokenProvider, 
+        IConfiguration config) : IAuthenticationProvider
     {
-        private readonly IConfiguration config;
+        private readonly IConfiguration config = config;
 
-        public GraphAuthenticationProvider(IAccessTokenProvider tokenProvider, 
-            IConfiguration config)
-        {
-            TokenProvider = tokenProvider;
-            this.config = config;
-        }
-
-        public IAccessTokenProvider TokenProvider { get; }
+        public IAccessTokenProvider TokenProvider { get; } = tokenProvider;
 
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
@@ -487,14 +477,9 @@ internal static class GraphClientExtensions
         }
     }
 
-    private class HttpClientHttpProvider : IHttpProvider
+    private class HttpClientHttpProvider(HttpClient client) : IHttpProvider
     {
-        private readonly HttpClient client;
-
-        public HttpClientHttpProvider(HttpClient client)
-        {
-            this.client = client;
-        }
+        private readonly HttpClient client = client;
 
         public ISerializer Serializer { get; } = new Serializer();
 
@@ -581,20 +566,14 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IServiceProvider serviceProvider;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
-        IServiceProvider serviceProvider,
-        ILogger<CustomAccountFactory> logger)
-        : base(accessor)
-    {
-        this.serviceProvider = serviceProvider;
-        this.logger = logger;
-    }
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
+        IServiceProvider serviceProvider, ILogger<CustomAccountFactory> logger)
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
@@ -756,6 +735,8 @@ Create the following `GraphAuthorizationMessageHandler` class and project config
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
+namespace BlazorSample;
+
 public class GraphAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAuthorizationMessageHandler(IAccessTokenProvider provider,
@@ -763,7 +744,8 @@ public class GraphAuthorizationMessageHandler : AuthorizationMessageHandler
         : base(provider, navigation)
     {
         ConfigureHandler(
-            authorizedUrls: new[] { config.GetSection("MicrosoftGraph")["BaseUrl"] },
+            authorizedUrls: new[] { config.GetSection("MicrosoftGraph")["BaseUrl"] ?? 
+                string.Empty },
             scopes: config.GetSection("MicrosoftGraph:Scopes").Get<List<string>>());
     }
 }
@@ -793,6 +775,8 @@ The `UserInfo.cs` class designates the required user profile properties with the
 
 ```csharp
 using System.Text.Json.Serialization;
+
+namespace BlazorSample;
 
 public class UserInfo
 {
@@ -856,6 +840,8 @@ If you haven't already added the `UserInfo` class to the app by following the gu
 ```csharp
 using System.Text.Json.Serialization;
 
+namespace BlazorSample;
+
 public class UserInfo
 {
     [JsonPropertyName("mobilePhone")]
@@ -880,20 +866,15 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IHttpClientFactory clientFactory;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IHttpClientFactory clientFactory,
         ILogger<CustomAccountFactory> logger)
-        : base(accessor)
-    {
-        this.clientFactory = clientFactory;
-        this.logger = logger;
-    }
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IHttpClientFactory clientFactory = clientFactory;
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
@@ -1035,9 +1016,15 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
 
 ### Security guidance
 
+<!-- UPDATE 8.0 I had to remove the following link because the build
+                system says it's broken. It isn't. Reported to docs
+                team members for possible SiteHelp issue.
+                
+    * [Microsoft Security Best Practices: Securing privileged access](/security/privileged-access-workstations/overview)
+-->
+
 * [Microsoft Graph auth overview](/graph/auth/)
 * [Overview of Microsoft Graph permissions](/graph/permissions-overview)
 * [Microsoft Graph permissions reference](/graph/permissions-reference)
-* [Enhance security with the principle of least privilege](/azure/active-directory/develop/secure-least-privileged-access)
-* [Microsoft Security Best Practices: Securing privileged access](/security/privileged-access-workstations/overview)
+* [Enhance security with the principle of least privilege](/entra/identity-platform/secure-least-privileged-access)
 * [Azure privilege escalation articles on the Internet (Google search result)](https://www.google.com/search?q=%22Azure+Privilege+Escalation%22)

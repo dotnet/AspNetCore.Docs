@@ -331,7 +331,7 @@ The validation for the `Defense` ship classification only occurs on the server i
 > For more information on security, see:
 >
 > * <xref:blazor/security/index> (and the other articles in the Blazor *Security and Identity* node)
-> * [Microsoft identity platform documentation](/azure/active-directory/develop/)
+> * [Microsoft identity platform documentation](/entra/identity-platform/)
 
 `Controllers/StarshipValidation.cs`:
 
@@ -911,9 +911,7 @@ Control the style of validation messages in the app's stylesheet (`wwwroot/css/a
 
 ## Determine if a form field is valid
 
-<!-- UPDATE 8.0 Add API cross-link -->
-
-Use `EditContext.IsValid(fieldIdentifier)` to determine if a field is valid without obtaining validation messages.
+Use <xref:Microsoft.AspNetCore.Components.Forms.EditContext.IsValid%2A?displayProperty=nameWithType> to determine if a field is valid without obtaining validation messages.
 
 <span aria-hidden="true">❌</span> Supported, but not recommended:
 

@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 11/14/2023
+ms.date: 01/30/2024
 uid: blazor/security/webassembly/meid-groups-roles
 zone_pivot_groups: blazor-groups-and-roles
 ---
@@ -58,7 +58,7 @@ The article's guidance provides instructions for client and server apps:
 
 :::moniker-end
 
-The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
+The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
 ## Prerequisite
 
@@ -92,7 +92,7 @@ For more information, see the [Microsoft Graph permissions reference](/graph/per
 
 ## Group Membership Claims attribute
 
-In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security groups, distribution groups, and roles of the signed-in user in the [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims):
+In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security groups, distribution groups, and roles of the signed-in user in the [well-known IDs claim (`wids`)](/entra/identity-platform/access-tokens#payload-claims):
 
 1. Open the app's Azure portal registration.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -112,14 +112,16 @@ The examples in this article:
 In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
 * `Roles`: ME-ID App Roles array (covered in the [App Roles](#app-roles) section)
-* `Wids`: ME-ID Administrator Roles in [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims)
-* `Oid`: Immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
+* `Wids`: ME-ID Administrator Roles in [well-known IDs claim (`wids`)](/entra/identity-platform/access-tokens#payload-claims)
+* `Oid`: Immutable [object identifier claim (`oid`)](/entra/identity-platform/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
 
 `CustomUserAccount.cs`:
 
 ```csharp
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+namespace BlazorSample;
 
 public class CustomUserAccount : RemoteUserAccount
 {
@@ -155,9 +157,11 @@ Add the following custom user account factory to the **CLIENT** app. The custom 
 The following example assumes that the project's app settings file includes an entry for the base URL:
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
-  ...
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    ...
+  }
 }
 ```
 
@@ -170,23 +174,18 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 using Microsoft.Kiota.Abstractions.Authentication;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IServiceProvider serviceProvider;
-    private readonly string? baseUrl;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider,
         ILogger<CustomAccountFactory> logger,
         IConfiguration config)
-        : base(accessor)
-    {
-        this.serviceProvider = serviceProvider;
-        this.logger = logger;
-        baseUrl = config.GetSection("MicrosoftGraph")["BaseUrl"];
-    }
+    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly string? baseUrl = 
+        config.GetSection("MicrosoftGraph")["BaseUrl"];
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -266,20 +265,15 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 
-public class CustomAccountFactory
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
-{
-    private readonly ILogger<CustomAccountFactory> logger;
-    private readonly IServiceProvider serviceProvider;
+namespace BlazorSample;
 
-    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider,
         ILogger<CustomAccountFactory> logger)
-        : base(accessor)
-    {
-        this.serviceProvider = serviceProvider;
-        this.logger = logger;
-    }
+    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+{
+    private readonly ILogger<CustomAccountFactory> logger = logger;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -350,7 +344,7 @@ public class CustomAccountFactory
 
 The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
 
-The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are ME-ID Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for ME-ID Administrator Roles **provided by `wids` claims**.
+The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are ME-ID Administrator Role **entity IDs** and not [**Role Template IDs**](/entra/identity/role-based-access-control/permissions-reference). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for ME-ID Administrator Roles **provided by `wids` claims**.
 
 In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
@@ -388,12 +382,14 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 `wwwroot/appsettings.json`:
 
 ```json
-"MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com",
-  "Version: "v1.0",
-  "Scopes": [
-    "user.read"
-  ]
+{
+  "MicrosoftGraph": {
+    "BaseUrl": "https://graph.microsoft.com",
+    "Version: "v1.0",
+    "Scopes": [
+      "user.read"
+    ]
+  }
 }
 ```
 
@@ -410,7 +406,7 @@ builder.Services.AddAuthorizationCore(options =>
 });
 ```
 
-For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/azure/active-directory/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Entra documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
 
 In the following examples, the **CLIENT** app uses the preceding policy to authorize the user.
 
@@ -495,16 +491,17 @@ builder.Services.AddAuthorization(options =>
 });
 ```
 
-For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/azure/active-directory/roles/permissions-reference#role-template-ids) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
 
 Access to a controller in the **SERVER** app can be based on using an [`[Authorize]` attribute](xref:security/authorization/simple) with the name of the policy (API documentation: <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>).
 
 The following example limits access to billing data from the `BillingDataController` to Azure Billing Administrators with a policy name of `BillingAdministrator`:
 
 ```csharp
-...
 using Microsoft.AspNetCore.Authorization;
+```
 
+```csharp
 [Authorize(Policy = "BillingAdministrator")]
 [ApiController]
 [Route("[controller]")]
@@ -518,7 +515,7 @@ For more information, see <xref:security/authorization/policies>.
 
 ## App Roles
 
-To configure the app in the Azure portal to provide App Roles membership claims, see [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
+To configure the app in the Azure portal to provide App Roles membership claims, see [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) in the Entra documentation.
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
@@ -541,9 +538,9 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 
 Although you can't assign roles to groups without an Microsoft Entra ID Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
-If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) to configure the app's roles.
+If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) to configure the app's roles.
 
-If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Implementation](/azure/architecture/multitenant-identity/app-roles#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
+If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Implementation](/azure/architecture/guide/multitenant/considerations/identity#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
 
 The following is an example `appRoles` entry that creates `Admin` and `Developer` roles. These example roles are used later in this section's example at the component level to implement access restrictions:
 
@@ -779,10 +776,10 @@ Pascal case is typically used for role names (for example, `BillingAdministrator
 
 ## Additional resources
 
-* [Role template IDs (Azure documentation)](/azure/active-directory/roles/permissions-reference#role-template-ids)
-* [`groupMembershipClaims` attribute (Azure documentation)](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
-* [How to: Add app roles in your application and receive them in the token (Azure documentation)](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps)
-* [Application roles (Azure documentation)](/azure/architecture/multitenant-identity/app-roles)
+* [Role template IDs (Entra documentation)](/entra/identity/role-based-access-control/permissions-reference)
+* [`groupMembershipClaims` attribute (Entra documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)
+* [Add app roles to your application and receive them in the token (Entra documentation)](/entra/identity-platform/howto-add-app-roles-in-apps)
+* [Application roles (Azure documentation)](/azure/architecture/guide/multitenant/considerations/identity)
 * <xref:security/authorization/claims>
 * <xref:security/authorization/roles>
 * <xref:blazor/security/index>
