@@ -12,13 +12,13 @@ uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Entra ID (ME-ID)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
-This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
+This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/entra/identity-platform/develop/howto-convert-app-to-be-multi-tenant).
 
 <!--UPDATE 8.0 Is the tenant name going to change to 
     match the rest of the MS Entra ID branding? 
     ANSWER: YES! It will be "Microsoft Entra tenant" now. -->
 
-This article focuses on the use of a **Microsoft Entra** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
+This article focuses on the use of a **Microsoft Entra** tenant, as described in [Quickstart: Set up a tenant](/entra/identity-platform/develop/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -36,7 +36,7 @@ The subsections of the walkthrough explain how to:
 
 ### Create a tenant in Azure
 
-Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant) to create a tenant in ME-ID.
+Follow the guidance in [Quickstart: Set up a tenant](/entra/identity-platform/develop/quickstart-create-new-tenant) to create a tenant in ME-ID.
 
 ### Register a server API app in Azure
 
@@ -88,7 +88,7 @@ Register an ME-ID app for the *Client app*:
 1. Select **Register**.
 
 > [!NOTE]
-> Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/azure/active-directory/develop/reply-url#localhost-exceptions).
+> Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/entra/identity-platform/develop/reply-url#localhost-exceptions).
 
 Record the **:::no-loc text="Client":::** app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
@@ -295,7 +295,7 @@ Example:
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-When an app is created to use Work or School Accounts (`SingleOrg`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Work or School Accounts (`SingleOrg`), the app automatically receives a package reference for the [Microsoft Authentication Library](/entra/identity-platform/develop/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
 
@@ -434,7 +434,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Use of an Azure Active Directory B2C tenant
 
-If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID.
+If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/entra/identity-platform-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID.
 
 You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the ME-ID organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an **Azure Active Directory B2C** tenant.
 
@@ -498,13 +498,13 @@ Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`
 
 ## Additional resources
 
-* [Configure an app's publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain)
-* [Microsoft Entra ID app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
+* [Configure an app's publisher domain](/entra/identity-platform/develop/howto-configure-publisher-domain)
+* [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/develop/reference-app-manifest#identifieruris-attribute)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:blazor/security/webassembly/meid-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
-* [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
-* [Security best practices for application properties in Microsoft Entra ID](/azure/active-directory/develop/security-best-practices-for-app-registration)
+* [Microsoft identity platform documentation](/entra/identity-platform/develop/)
+* [Quickstart: Register an application with the Microsoft identity platform](/entra/identity-platform/develop/quickstart-register-app)
+* [Security best practices for application properties in Microsoft Entra ID](/entra/identity-platform/develop/security-best-practices-for-app-registration)

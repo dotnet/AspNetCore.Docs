@@ -298,14 +298,14 @@ Use the <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOp
 The following example enables detailed errors:
 
 ```csharp
-builder.Services.AddRazorComponents(options => options.DetailedErrors = true);
+builder.Services.AddRazorComponents(options => 
+    options.DetailedErrors = builder.Environment.IsDevelopment());
 ```
 
-<!-- UPDATE 8.0 We need to flesh out this warning with the consequences
-                of enabling detailed errors in production. -->
-
 > [!WARNING]
-> Only enable detailed errors in the `Development` environment.
+> **Only enable detailed errors in the `Development` environment.** Detailed errors may contain sensitive information about the app that malicious users can use in an attack.
+>
+> The preceding example provides a degree of safety by setting the value of <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.DetailedErrors> based on the value returned by <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsDevelopment%2A>. When the app is in the `Development` environment, <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.DetailedErrors> is set to `true`. This approach isn't foolproof because it's possible to host a production app on a public server in the `Development` environment.
 
 :::moniker-end
 

@@ -863,11 +863,11 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 :::moniker range=">= aspnetcore-6.0"
 
 * Microsoft identity platform documentation
-  * [Overview](/azure/active-directory/develop/)
-  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/azure/active-directory/develop/active-directory-v2-protocols)
-  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
-  * [Microsoft identity platform ID tokens](/azure/active-directory/develop/id-tokens)
-  * [Microsoft identity platform access tokens](/azure/active-directory/develop/access-tokens)
+  * [Overview](/entra/identity-platform/develop/)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/entra/identity-platform/develop/active-directory-v2-protocols)
+  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/develop/v2-oauth2-auth-code-flow)
+  * [Microsoft identity platform ID tokens](/entra/identity-platform/develop/id-tokens)
+  * [Microsoft identity platform access tokens](/entra/identity-platform/develop/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
@@ -879,11 +879,11 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 :::moniker range="< aspnetcore-6.0"
 
 * Microsoft identity platform documentation
-  * [Overview](/azure/active-directory/develop/)
-  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/azure/active-directory/develop/active-directory-v2-protocols)
-  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
-  * [Microsoft identity platform ID tokens](/azure/active-directory/develop/id-tokens)
-  * [Microsoft identity platform access tokens](/azure/active-directory/develop/access-tokens)
+  * [Overview](/entra/identity-platform/develop/)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/entra/identity-platform/develop/active-directory-v2-protocols)
+  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/entra/identity-platform/develop/v2-oauth2-auth-code-flow)
+  * [Microsoft identity platform ID tokens](/entra/identity-platform/develop/id-tokens)
+  * [Microsoft identity platform access tokens](/entra/identity-platform/develop/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)

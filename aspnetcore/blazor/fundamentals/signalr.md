@@ -283,10 +283,6 @@ Configure <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtens
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
 * <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.WebSockets> (*Read only*)
 
-<!-- UPDATE 8.0 Confirm with the PU because there's a report at
-                https://github.com/dotnet/AspNetCore.Docs/issues/31113
-                that this doesn't configure Blazor's hub options. -->
-
 Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file:
 
 ```csharp
