@@ -145,7 +145,9 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
   * [Startup: Control headers in C# code](xref:blazor/fundamentals/startup#control-headers-in-c-code)
   * [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
   * [SignalR: Prerendered state size and SignalR message size limit](xref:blazor/fundamentals/signalr#prerendered-state-size-and-signalr-message-size-limit)
+
 * [Render modes: Prerendering](xref:blazor/components/render-modes#prerendering)
+
 * Components
   * [Control `<head>` content during prerendering](xref:blazor/components/control-head-content#control-head-content-during-prerendering)
   * Razor component lifecycle subjects that pertain to prerendering
@@ -155,9 +157,10 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
     * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop): This section also appears in the two JS interop articles on calling JavaScript from .NET and calling .NET from JavaScript.
   * [QuickGrid component sample app](xref:blazor/components/quickgrid#sample-app): The [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/) is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
   * [Prerendering when integrating components into Razor Pages and MVC apps](xref:blazor/components/integration)
+
 * Authentication and authorization
   * [Server-side threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
-  * [Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/server/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
-  * [WebAssembly prerendering support](xref:blazor/security/webassembly/index#prerendering-support)
-<!-- UPDATE 8.0 HOLD LINK FOR WORK AT DESTINATION * [Blazor WebAssembly rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication) -->
+  * [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/server/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
+  * [Blazor WebAssembly rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering): Besides the *Handle prerendering* section, several of the article's other sections include remarks on prerendering.
