@@ -198,76 +198,8 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
-
-```json
-{
-  "Kestrel": {
-    "Limits": {
-      "MaxConcurrentConnections": 100,
-      "MaxConcurrentUpgradedConnections": 100
-    },
-    "DisableStringReuse": true
-  }
-}
-```
-
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
-
-Use **one** of the following approaches:
-
-* Configure Kestrel in `Startup.ConfigureServices`:
-
-  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
-  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
-
-     ```csharp
-     using Microsoft.Extensions.Configuration
-     
-     public class Startup
-     {
-         public Startup(IConfiguration configuration)
-         {
-             Configuration = configuration;
-         }
-
-         public IConfiguration Configuration { get; }
-
-         public void ConfigureServices(IServiceCollection services)
-         {
-             services.Configure<KestrelServerOptions>(
-                 Configuration.GetSection("Kestrel"));
-         }
-
-         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-         {
-             ...
-         }
-     }
-     ```
-
-* Configure Kestrel when building the host:
-
-  In `Program.cs`, load the `Kestrel` section of configuration into Kestrel's configuration:
-
-  ```csharp
-  // using Microsoft.Extensions.DependencyInjection;
-
-  public static IHostBuilder CreateHostBuilder(string[] args) =>
-      Host.CreateDefaultBuilder(args)
-          .ConfigureServices((context, services) =>
-          {
-              services.Configure<KestrelServerOptions>(
-                  context.Configuration.GetSection("Kestrel"));
-          })
-          .ConfigureWebHostDefaults(webBuilder =>
-          {
-              webBuilder.UseStartup<Startup>();
-          });
-  ```
-
-Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ## General limits
 
