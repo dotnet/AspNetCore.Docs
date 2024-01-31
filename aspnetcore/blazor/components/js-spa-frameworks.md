@@ -85,7 +85,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 Attach the initializer function with `name` and `parameters` function parameters to the `window` object. For demonstration purposes, the following `initializeComponent` function logs the name and parameters of the registered component.
 
-`wwwroot/js/jsComponentInitializers.js`:
+`wwwroot/jsComponentInitializers.js`:
 
 ```javascript
 window.initializeComponent = (name, parameters) => {
@@ -100,7 +100,7 @@ In the following example:
 * The `Quote` component (`quote` identifier) is rendered into the `quoteContainer` element when the `showQuote` function is called.
 * A quote string is passed to the component's `Text` parameter.
 
-`wwwroot/js/scripts.js`:
+`wwwroot/scripts.js`:
 
 ```javascript
 async function showQuote() {
@@ -113,15 +113,15 @@ async function showQuote() {
 }
 ```
 
-<!-- UPDATE 8.0 Check on blazor.web.js -->
-
-Load Blazor (`blazor.server.js` or `blazor.webassembly.js`) with the preceding scripts into the JS app:
+After the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
 
 ```html
-<script src="_framework/blazor.{server|webassembly}.js"></script>
-<script src="js/jsComponentInitializers.js"></script>
-<script src="js/scripts.js"></script>
+<script src="_framework/{BLAZOR SCRIPT}"></script>
+<script src="jsComponentInitializers.js"></script>
+<script src="scripts.js"></script>
 ```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script.
 
 In HTML, place the target container element (`quoteContainer`). For the demonstration in this section, a button triggers rendering the `Quote` component by calling the `showQuote` JS function:
 

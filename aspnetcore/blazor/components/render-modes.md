@@ -30,9 +30,9 @@ The following table shows the available render modes for rendering Razor compone
 Name | Description | Render location | Interactive
 ---- | ----------- | :-------------: | :---------:
 Static Server | Static server-side rendering (static SSR) |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
-Interactive Server | Interactive server-side rendering (interactive SSR) using Blazor Server | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
-Interactive WebAssembly | Client-side rendering (CSR) using Blazor WebAssembly&dagger; | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
-Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on subsequent visits after the Blazor bundle is downloaded | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive Server | Interactive server-side rendering (interactive SSR) using Blazor Server. | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive WebAssembly | Client-side rendering (CSR) using Blazor WebAssembly&dagger;. | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on subsequent visits after the Blazor bundle is downloaded. | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 
 &dagger;Client-side rendering (CSR) is assumed to be interactive. "*Interactive* client-side rendering" and "*interactive* CSR" aren't used by the industry or in the Blazor documentation.
 
@@ -593,9 +593,10 @@ In the `App` component, any request for a component in the `Account` folder appl
     [CascadingParameter]
     private HttpContext HttpContext { get; set; } = default!;
 
-    private IComponentRenderMode? RenderModeForPage => HttpContext.Request.Path.StartsWithSegments("/Account")
-        ? null
-        : {INTERACTIVE RENDER MODE};
+    private IComponentRenderMode? RenderModeForPage => 
+        HttpContext.Request.Path.StartsWithSegments("/Account")
+            ? null
+            : {INTERACTIVE RENDER MODE};
 }
 ```
 

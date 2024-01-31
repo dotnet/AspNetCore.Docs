@@ -476,20 +476,22 @@ In `Startup.Configure` of `Startup.cs`:
 ```csharp
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.Add("Content-Security-Policy", "{POLICY STRING}");
+    context.Response.Headers.Append("Content-Security-Policy", "{POLICY STRING}");
     await next();
 });
 ```
 
 The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see <xref:fundamentals/middleware/write>.
 
-<!-- UPDATE 8.0 MapFallbackToFile is present in the following bullet content -->
+:::moniker range="< aspnetcore-8.0"
 
 ### Client-side development without prerendering
 
 Pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 In the server-side `Program` file:
 
@@ -501,12 +503,14 @@ In `Startup.Configure` of `Startup.cs`:
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ```csharp
 var staticFileOptions = new StaticFileOptions
 {
     OnPrepareResponse = context =>
     {
-        context.Context.Response.Headers.Add("Content-Security-Policy", 
+        context.Context.Response.Headers.Append("Content-Security-Policy", 
             "{POLICY STRING}");
     }
 };
@@ -515,6 +519,8 @@ var staticFileOptions = new StaticFileOptions
 
 app.MapFallbackToFile("index.html", staticFileOptions);
 ```
+
+:::moniker-end
 
 For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
