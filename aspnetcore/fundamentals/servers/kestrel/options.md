@@ -18,25 +18,6 @@ The Kestrel web server has constraint configuration options that are especially 
 
 Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits%2A?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
-
-```json
-{
-  "Kestrel": {
-    "Limits": {
-      "MaxConcurrentConnections": 100,
-      "MaxConcurrentUpgradedConnections": 100
-    },
-    "DisableStringReuse": true
-  }
-}
-```
-
-By default, Kestrel configuration is loaded from the `Kestrel` section using a preconfigured set of configuration providers. For more information on the default set of configuration providers, see [Default configuration](xref:fundamentals/configuration/index#default-configuration).
-
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Set other Kestrel configuration in C# code.
-
 ## General limits
 
 ### Keep-alive timeout
