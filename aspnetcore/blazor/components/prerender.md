@@ -158,23 +158,9 @@ Prerendering guidance is organized in the Blazor documentation by subject matter
   * [QuickGrid component sample app](xref:blazor/components/quickgrid#sample-app): The [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/) is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
   * [Prerendering when integrating components into Razor Pages and MVC apps](xref:blazor/components/integration)
 
-:::moniker range=">= aspnetcore-8.0"
-
 * Authentication and authorization
   * [Server-side threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
   * [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/server/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
   * [Blazor WebAssembly rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* Authentication and authorization
-  * [Server-side threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss)
-  * [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/server/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
-  * [WebAssembly prerendering support](xref:blazor/security/webassembly/index#prerendering-support)
-  * [Blazor WebAssembly rendered component authentication with prerendering](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-
-:::moniker-end
 
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering): Besides the *Handle prerendering* section, several of the article's other sections include remarks on prerendering.
