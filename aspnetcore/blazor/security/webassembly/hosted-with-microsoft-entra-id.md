@@ -14,10 +14,6 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 
 This article doesn't cover a *multi-tenant ME-ID registration*. For more information, see [Making your application multi-tenant](/entra/identity-platform/howto-convert-app-to-be-multi-tenant).
 
-<!--UPDATE 8.0 Is the tenant name going to change to 
-    match the rest of the MS Entra ID branding? 
-    ANSWER: YES! It will be "Microsoft Entra tenant" now. -->
-
 This article focuses on the use of a **Microsoft Entra** tenant, as described in [Quickstart: Set up a tenant](/entra/identity-platform/quickstart-create-new-tenant). If the app is registered in an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by ME-ID. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.

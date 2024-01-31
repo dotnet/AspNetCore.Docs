@@ -745,11 +745,9 @@ In the following `InjectAuthStateProvider` component:
 
 For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.OwningComponentBase> in <xref:blazor/fundamentals/dependency-injection#owningcomponentbase>.
 
-<!-- UPDATE 8.0 This content will be discussed with the PU after .NET 8 releases. This is tracked by https://github.com/dotnet/AspNetCore.Docs/issues/28001. -->
-
 ## Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
 
-To avoid showing unauthorized content while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
+To avoid showing unauthorized content, for example content in an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component), while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
 
 * Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
 
@@ -773,6 +771,8 @@ To avoid showing unauthorized content while prerendering with a [custom `Authent
   ```razor
   <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
   ```
+
+  You can also selectively disable prerendering with fine control of the render mode applied to the `Routes` component instance. For more information, see <xref:blazor/components/render-modes#fine-control-of-render-modes>.
 
 :::moniker-end
 

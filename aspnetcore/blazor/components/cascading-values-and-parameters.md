@@ -148,7 +148,7 @@ The following [layout component](xref:blazor/components/layouts) specifies theme
 
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor Web Apps provide alternative approaches for cascading values that apply more broadly to the app than furnishing them via a layout:
+Blazor Web Apps provide alternative approaches for cascading values that apply more broadly to the app than furnishing them via a single layout file:
 
 * Wrap the markup of the `Routes` component in a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component to specify the data as a cascading value for all of the app's components.
 
@@ -159,9 +159,7 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
   ```razor
   <CascadingValue Value="@theme">
       <Router ...>
-          <Found ...>
-              ...
-          </Found>
+          ...
       </Router>
   </CascadingValue>
 
@@ -170,13 +168,8 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
   }
   ```
 
-  <!-- UPDATE 8.0 Check on this next instruction and confirm if it's required. -->
-
-  In the `App` component (`Components/App.razor`), adopt an interactive render mode for the entire app. The following example adopts interactive server-side rendering (interactive SSR):
-
-  ```razor
-  <Routes @rendermode="InteractiveServer" />
-  ```
+  > [!NOTE]
+  > Wrapping the `Routes` component instance in the `App` component (`Components/App.razor`) with a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component is ***not*** supported.
 
 * Specify a *root-level cascading value* as a service by calling the <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> extension method on the service collection builder.
 

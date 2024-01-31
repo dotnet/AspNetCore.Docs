@@ -483,6 +483,11 @@ The following `Error` component example merely logs errors, but methods of the c
     {
         Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
             ex.GetType(), ex.Message);
+
+        // Call StateHasChanged if ProcessError directly participates in 
+        // rendering. If ProcessError only logs or records the error,
+        // there's no need to call StateHasChanged.
+        //StateHasChanged();
     }
 }
 ```
@@ -494,16 +499,15 @@ The following `Error` component example merely logs errors, but methods of the c
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Confirm that we want to do this in the App component
-     and not in the Routes component wrapping the Router -->
+In the `Routes` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component (`<Router>...</Router>`) with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
-In the `App` component, wrap the `Routes` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
-
-In `App.razor`:
+In `Routes.razor`:
 
 ```razor
 <Error>
-    <Routes />
+    <Router ...>
+        ...
+    </Router>
 </Error>
 ```
 
@@ -511,7 +515,7 @@ In `App.razor`:
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component (`<Router>...</Router>`) with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 In `App.razor`:
 
@@ -567,7 +571,7 @@ To process errors in a component:
 Using the preceding `Error` component with the preceding changes made to a `Counter` component, the browser's developer tools console indicates the trapped, logged error:
 
 ```console
-fail: BlazorSample.Shared.Error[0]
+fail: {COMPONENT NAMESPACE}.Error[0]
 Error:ProcessError - Type: System.InvalidOperationException Message: Current count is over five!
 ```
 

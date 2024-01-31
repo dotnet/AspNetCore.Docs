@@ -1637,8 +1637,7 @@ A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundame
 app.MapRazorComponents<App>();
 ```
 
-<!-- UPDATE 8.0 Will need additional remarks for additional endpoint config
-     with AddInteractiveServerRenderMode and AddInteractiveWebAssemblyRenderMode -->
+<!-- UPDATE 8.0 Any additional remarks for BWAs? -->
 
 :::moniker-end
 
