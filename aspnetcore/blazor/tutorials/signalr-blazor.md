@@ -37,8 +37,8 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* Install [Visual Studio Code](https://code.visualstudio.com/download).
+* Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
 * [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.

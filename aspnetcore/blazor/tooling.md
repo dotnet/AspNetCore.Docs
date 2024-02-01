@@ -136,7 +136,7 @@ dotnet --version
 
 Install the latest version of [Visual Studio Code](https://code.visualstudio.com) for your platform.
 
-Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
+Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
 
 :::moniker range=">= aspnetcore-8.0"
 

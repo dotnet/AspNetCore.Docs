@@ -148,6 +148,9 @@ See [Extend Startup with startup filters](xref:fundamentals/startup#IStartupFilt
 
 When additional configuration is required within a test method, <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> creates a new `WebApplicationFactory` with an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> that is further customized by configuration.
 
+
+The [sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests) calls `WithWebHostBuilder` to replace configured services with test stubs. For more information and example usage, see [Inject mock services](#inject-mock-services) in this article.
+
 The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) demonstrates the use of `WithWebHostBuilder`. This test performs a record delete in the database by triggering a form submission in the SUT.
 
 Because another test in the `IndexPageTests` class performs an operation that deletes all of the records in the database and may run before the `Post_DeleteMessageHandler_ReturnsRedirectToRoot` method, the database is reseeded in this test method to ensure that a record is present for the SUT to delete. Selecting the first delete button of the `messages` form in the SUT is simulated in the request to the SUT:
@@ -166,7 +169,11 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 ## Inject mock services
 
-Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> on the host builder.
+Services can be overridden in a test with a call to xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A on the host builder. To scope the overridden services to the test itself, the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> method is used to retrieve a host builder. This can be seen in the following tests:
+
+* [Get_QuoteService_ProvidesQuoteInPage](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs#L166-L173)
+* [Get_GithubProfilePageCanGetAGithubUser](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs#L35-L38)
+* [Get_SecurePageIsReturnedForAnAuthenticatedUser](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs#L105-L117)
 
 The sample SUT includes a scoped service that returns a quote. The quote is embedded in a hidden field on the Index page when the Index page is requested.
 

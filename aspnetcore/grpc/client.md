@@ -52,6 +52,7 @@ To call unsecured gRPC services, ensure the server address starts with `http`. F
 Channel and client performance and usage:
 
 * Creating a channel can be an expensive operation. Reusing a channel for gRPC calls provides performance benefits.
+* A channel manages connections to the server. If the connection is closed or lost, the channel automatically reconnects the next time a gRPC call is made.
 * gRPC clients are created with channels. gRPC clients are lightweight objects and don't need to be cached or reused.
 * Multiple gRPC clients can be created from a channel, including different types of clients.
 * A channel and clients created from the channel can safely be used by multiple threads.
