@@ -52,10 +52,10 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 > [!NOTE]
 > The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
-
-* [This GitHub issue](https://github.com/dotnet/efcore/issues/11414)
-* [This GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
-* [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
+> 
+> * [How to use case-insensitive query with Sqlite provider? (dotnet/efcore #11414)](https://github.com/dotnet/efcore/issues/11414)
+> * [How to make a SQLite column case insensitive (dotnet/AspNetCore.Docs #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
+> * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
