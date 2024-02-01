@@ -260,6 +260,9 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
 * [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
+* Fluent validation
+  * [FluentValidation.AspNetCore.Http](https://github.com/Carl-Hugo/FluentValidation.AspNetCore.Http)
+  * [ValidatedModel.FluentValidation](https://github.com/lucasteles/ValidatedModel.FluentValidation) <!-- See https://github.com/dotnet/aspnetcore/issues/51834#issuecomment-1837180853 -->
 
 :::moniker-end
 
