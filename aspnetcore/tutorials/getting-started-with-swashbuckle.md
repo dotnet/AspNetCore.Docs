@@ -13,7 +13,7 @@ uid: tutorials/get-started-with-swashbuckle
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> Build-time OpenAPI document generation with Swashbuckle isn't supported in .NET 8 and later. For a supported build-time alternative, see <xref:tutorials/web-api-help-pages-using-swagger>. Swashbuckle still supports run-time document generation.
+> Build-time OpenAPI document generation with Swashbuckle isn't supported in .NET 8 and later. For a supported build-time alternative, see <xref:tutorials/web-api-help-pages-using-swagger>. Run-time document generation is still supported in .NET 8.
 
 :::moniker-end
 
