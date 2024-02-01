@@ -60,8 +60,8 @@ The following table shows the authentication options available for new web apps:
 | None            |  No authentication | | 
 | Individual      |  Individual authentication | <xref:security/authentication/identity>
 | IndividualB2C   |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
-| SingleOrg       |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| MultiOrg        |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| SingleOrg       |  Organizational authentication for a single tenant | [Entra ID](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| MultiOrg        |  Organizational authentication for multiple tenants | [Entra ID](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Visual Studio new webapp authentication options
