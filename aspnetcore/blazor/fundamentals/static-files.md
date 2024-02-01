@@ -16,6 +16,16 @@ This article describes Blazor app configuration for serving static files.
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Static Web Asset Project Mode
+
+*This section applies to the `.Client` project of a Blazor Web App.*
+
+The `<StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>` setting reverts Blazor WebAssembly specific behaviors with regards to static assets back to the defaults, so that the project behaves as part of the hosted project. The setting is required in the `.Client` project of a Blazor Web App. The Blazor WebAssembly SDK (`Microsoft.NET.Sdk.BlazorWebAssembly`) configures static web assets in a specific way to work in "standalone" mode with a server simply consuming the outputs from the library. This isn't appropriate for a Blazor Web App, where the WebAssembly portion of the app is a logical part of the host and must behave more like a library. For example, the project doesn't expose the styles bundle (for example, `BlazorSample.Client.styles.css`) and instead only provides the host with the project bundle, so that the host can include it in its own styles bundle.
+
+:::moniker-end
+
 ## Static File Middleware
 
 *This section applies to server-side Blazor apps.*
