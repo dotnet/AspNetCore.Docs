@@ -215,7 +215,6 @@ Use the following commands to add a migration for the new DataAnnotations:
 ```dotnetcli
 dotnet ef migrations add New_DataAnnotations
 dotnet ef database update
-
 ```
 `dotnet ef database update` runs the `Up` method of the `New_DataAnnotations` class.
 
