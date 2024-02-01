@@ -193,7 +193,6 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![72 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-72-green)
 - [ericmutta](https://github.com/ericmutta) - Eric Mutta ![7 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-7-green)
 - [PSCourtney](https://github.com/PSCourtney) - Piers Courtney ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [Elanis](https://github.com/Elanis) - Axel ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
