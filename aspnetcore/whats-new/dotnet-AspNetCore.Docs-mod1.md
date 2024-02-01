@@ -179,7 +179,6 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 
 ### Updated articles
 
-- <xref:test/integration-tests> - moniker prep
 - <xref:test/http-files> - Add secret handling and special variables to .http files doc
 - <xref:test/middleware> - Add example with endpoints to middleware testing doc
 
