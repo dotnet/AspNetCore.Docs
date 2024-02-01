@@ -46,8 +46,7 @@ The validation attributes specify behavior to enforce on the model properties th
 * The `[RegularExpression]` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
 
   * Must only use letters.
-  * The first letter is required to be uppercase. White spaces are allowed while numbers, and special
-   characters are not allowed.
+  * The first letter must be uppercase. White spaces are allowed, while numbers and special characters aren't allowed.
 
 * The `RegularExpression` `Rating`:
 
