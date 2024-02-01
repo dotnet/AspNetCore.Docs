@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 10/16/2023
 uid: tutorials/first-mvc-app/start-mvc
-ms.custom: contperf-fy21q3, engagement-fy23
+ms.custom: engagement-fy23
 ---
 # Get started with ASP.NET Core MVC
 

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to create an ASP.NET Core web app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: riande
 ms.date: 12/5/2021
-ms.custom: "mvc, seodec18"
+ms.custom: mvc
 uid: security/authorization/secure-data
 ---
 
