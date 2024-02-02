@@ -112,7 +112,7 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 * In the **Outputs** area, click the **CSharp Client** checkbox. Depending on your project, you can also choose **TypeScript Client** or **CSharp Web API Controller**. If you select **CSharp Web API Controller**, a service specification rebuilds the service, serving as a reverse generation.
 * Click **Generate Outputs** to produce a complete C# client implementation of the *TodoApi.NSwag* project. To see the generated client code, click the **CSharp Client** tab:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/_static/v6-nswag-generated-todoclient.cs" range="17-46":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/_static/v6-nswag-generated-todoclient.cs" range="19-55":::
 
 > [!TIP]
 > The C# client code is generated based on selections in the **Settings** tab. Modify the settings to perform tasks such as default namespace renaming and synchronous method generation.
