@@ -56,7 +56,7 @@ The ASP.NET Core 1.x **Web Application** project template has a package referenc
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0>"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 Call `UseBrowserLink` in the `Startup.Configure` method:
 
