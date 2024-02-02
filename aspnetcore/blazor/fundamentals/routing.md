@@ -153,7 +153,7 @@ Set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router> 
 </Router>
 ```
 
-Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
+Arbitrary items are supported as content of the `<NotFound>` template, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
 ## Route to components from multiple assemblies
 
@@ -1250,7 +1250,7 @@ At the top of the component that specifies the <xref:Microsoft.AspNetCore.Compon
 @using Microsoft.AspNetCore.Components.Routing
 ```
 
-Add a `<Navigating>` tag to the component with markup to display during page transition events. For more information, see <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> (API documentation).
+Add a `<Navigating>` template to the component with markup to display during page transition events. For more information, see <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> (API documentation).
 
 In the router element content (`<Router>...</Router>`):
 
