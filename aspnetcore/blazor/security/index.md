@@ -383,7 +383,7 @@ The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Co
 </AuthorizeView>
 ```
 
-You can also supply different content for display if the user isn't authorized:
+You can also supply different content for display if the user isn't authorized with a combination of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> parameters:
 
 ```razor
 <AuthorizeView>
@@ -406,7 +406,7 @@ A default event handler for an authorized element, such as the `SecureMethod` me
 > [!WARNING]
 > Client-side markup and methods associated with an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> are only protected from view and execution in the ***rendered UI*** in client-side Blazor apps. In order to protect authorized content and secure methods in client-side Blazor, the content is usually supplied by a secure, authorized web API call to a server API and never stored in the app. For more information, see <xref:blazor/call-web-api> and <xref:blazor/security/webassembly/additional-scenarios>.
 
-The content of `<Authorized>` and `<NotAuthorized>` templates can include arbitrary items, such as other interactive components.
+The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> can include arbitrary items, such as other interactive components.
 
 Authorization conditions, such as roles or policies that control UI options or access, are covered in the [Authorization](#authorization) section.
 
@@ -484,7 +484,7 @@ Pascal case is typically used for role and policy names (for example, `BillingAd
 
 Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in client-side Blazor apps that make a request to an external endpoint for authentication.
 
-While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> displays no content by default. To display content while authentication occurs, use the `<Authorizing>` template:
+While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> displays no content by default. To display content while authentication occurs, assign content to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing%2A> parameter:
 
 ```razor
 <AuthorizeView>
@@ -667,7 +667,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
 </Router>
 ```
 
-The content of `<NotAuthorized>` and `<Authorizing>` templates can include arbitrary items, such as other interactive components.
+The content of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A> and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> can include arbitrary items, such as other interactive components.
 
 > [!NOTE]
 > The preceding requires cascading authentication state services registration in the app's `Program` file:
@@ -697,11 +697,11 @@ The content of `<NotAuthorized>` and `<Authorizing>` templates can include arbit
 </CascadingAuthenticationState>
 ```
 
-The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` templates can include arbitrary items, such as other interactive components.
+The content of <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound%2A>, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorized%2A>, and <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> can include arbitrary items, such as other interactive components.
 
 :::moniker-end
 
-If the `<NotAuthorized>` template isn't specified, the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> uses the following fallback message:
+If <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.NotAuthorized%2A> content isn't specified, the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> uses the following fallback message:
 
 ```html
 Not authorized.
