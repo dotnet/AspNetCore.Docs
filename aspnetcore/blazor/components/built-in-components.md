@@ -12,7 +12,7 @@ uid: blazor/components/built-in-components
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The following built-in Razor components are provided by the Blazor framework:
+The following Razor components are built-in within the Blazor framework, or serve as structural elements of Blazor project templates:
 
 :::moniker range=">= aspnetcore-8.0"
 
