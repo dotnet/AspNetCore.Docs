@@ -4,7 +4,7 @@ author: ncarandini
 description: Explains how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 02/01/2024
+ms.date: 02/02/2024
 uid: client-side/using-browserlink
 ---
 # Browser Link in ASP.NET Core
@@ -26,7 +26,7 @@ For ASP.NET Core Razor Pages or MVC projects, enable runtime compilation of Razo
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 <aspnetcore-6.0>"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0>"
 
 Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
 
@@ -56,7 +56,7 @@ The ASP.NET Core 1.x **Web Application** project template has a package referenc
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 <aspnetcore-6.0>"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0>"
 
 Call `UseBrowserLink` in the `Startup.Configure` method:
 
