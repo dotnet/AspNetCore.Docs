@@ -3,15 +3,19 @@ title: Get started with Swashbuckle and ASP.NET Core
 author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 11/09/2021
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
+:::moniker range=">= aspnetcore-8.0"
+
 > [!NOTE]
-> Build-time OpenAPI document generation with Swashbuckle is not supported in .NET 8 and later. For a supported alternative, see <xref:tutorials/web-api-help-pages-using-swagger>.
+> Build-time OpenAPI document generation with Swashbuckle isn't supported in .NET 8 and later. For a supported build-time alternative, see <xref:tutorials/web-api-help-pages-using-swagger>. Run-time document generation is still supported in .NET 8.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 

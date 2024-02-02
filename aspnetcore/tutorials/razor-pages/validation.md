@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
 ms.custom: engagement-fy23
-ms.date: 08/16/2023
+ms.date: 02/01/2024
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -46,8 +46,7 @@ The validation attributes specify behavior to enforce on the model properties th
 * The `[RegularExpression]` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
 
   * Must only use letters.
-  * The first letter is required to be uppercase. White spaces are allowed while numbers, and special
-   characters are not allowed.
+  * The first letter must be uppercase. White spaces are allowed, while numbers and special characters aren't allowed.
 
 * The `RegularExpression` `Rating`:
 
@@ -208,6 +207,8 @@ Add-Migration New_DataAnnotations
 Update-Database
 ```
 
+`Update-Database` runs the `Up` method of the `New_DataAnnotations` class.
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use the following commands to add a migration for the new DataAnnotations:
@@ -215,12 +216,13 @@ Use the following commands to add a migration for the new DataAnnotations:
 ```dotnetcli
 dotnet ef migrations add New_DataAnnotations
 dotnet ef database update
-
 ```
+
+`dotnet ef database update` runs the `Up` method of the `New_DataAnnotations` class.
 
 ---
 
-`Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
+Examine the `Up` method:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
 

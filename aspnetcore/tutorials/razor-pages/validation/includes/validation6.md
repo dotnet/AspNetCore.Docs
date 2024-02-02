@@ -193,6 +193,8 @@ Add-Migration New_DataAnnotations
 Update-Database
 ```
 
+`Update-Database` runs the `Up` method of the `New_DataAnnotations` class.
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use the following commands to add a migration for the new DataAnnotations:
@@ -200,12 +202,13 @@ Use the following commands to add a migration for the new DataAnnotations:
 ```dotnetcli
 dotnet ef migrations add New_DataAnnotations
 dotnet ef database update
-
 ```
+
+`dotnet ef database update` runs the `Up` method of the `New_DataAnnotations` class.
 
 ---
 
-`Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
+Examine the `Up` method:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Migrations/20210830233901_New_DataAnnotations.cs?name=snippet)]
 

@@ -46,6 +46,8 @@ Move mini TOC from ## Additional resources to here
 -->
 ## Additional resources
 
+* [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
+* [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
 * [`IStringLocalizer`](xref:fundamentals/localization/make-content-localizable) : Uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings.
 * [`IHtmlLocalizer`](xref:fundamentals/localization/make-content-localizable#ihtmllocalizer): For resources that contain HTML.
 * [View and DataAnnotations](xref:fundamentals/localization/make-content-localizable#view-localization)

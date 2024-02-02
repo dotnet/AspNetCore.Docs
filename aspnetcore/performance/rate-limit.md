@@ -17,6 +17,8 @@ By [Arvin Kahbazi](https://github.com/Kahbazi), [Maarten Balliauw](https://githu
 
 The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. Apps using rate limiting should be carefully load tested and reviewed before deploying. See [Testing endpoints with rate limiting](#test7) in this article for more information.
 
+For an introduction to rate limiting, see [Rate limiting middleware](https://blog.maartenballiauw.be/post/2022/09/26/aspnet-core-rate-limiting-middleware.html).
+
 ## Rate limiter algorithms
 
 The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provides the following extension methods for rate limiting:
@@ -238,7 +240,7 @@ Creating partitions with user input makes the app vulnerable to [Denial of Servi
 
 ## Additional resources
 
-* [Rate limiting middleware](https://blog.maartenballiauw.be/post/2022/09/26/aspnet-core-rate-limiting-middleware.html) by Maarten Balliauw
+* [Rate limiting middleware](https://blog.maartenballiauw.be/post/2022/09/26/aspnet-core-rate-limiting-middleware.html) by Maarten Balliauw provides an excellent introduction and overview to rate limiting.
 * [Rate limit an HTTP handler in .NET](/dotnet/core/extensions/http-ratelimiter)
 
 :::moniker-end
