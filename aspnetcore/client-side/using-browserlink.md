@@ -26,7 +26,7 @@ For ASP.NET Core Razor Pages or MVC projects, enable runtime compilation of Razo
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0>"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
 
@@ -99,9 +99,9 @@ To choose a single web browser to launch when starting the project, use the drop
 
 To open multiple browsers at once, choose **Browse with...** from the same drop-down. Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:
 
-!['Browse with' menu option](using-browserlink/_static/browse-with-menu-option.png)
+!['Browse with' menu option](using-browserlink/_static/browse-with-menu.png)
 
-!['Browse with' dialog](using-browserlink/_static/browse-with-menu-option.png)
+!['Browse with' dialog](using-browserlink/_static/browse-with-dialog.png)
 
 The following screenshot shows Visual Studio with the Index view open and two open browsers:
 
