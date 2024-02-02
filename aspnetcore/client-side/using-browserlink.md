@@ -20,31 +20,11 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 * Refresh your web app in several browsers at once.
 * Test across multiple browsers with specific settings such as screen sizes.
 * Select UI elements in browsers in real-time, see what markup and source it's correlated to in Visual Studio.
-* Conduct real-time browser test automation. Browser Link is also extensible.
+* Conduct real-time browser test automation.
 
 ## Browser Link setup
 
-Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
-
-### Configuration
-
-Call `UseBrowserLink` in the `Startup.Configure` method:
-
-```csharp
-app.UseBrowserLink();
-```
-
-The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment. For example:
-
-```csharp
-if (env.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseBrowserLink();
-}
-```
-
-For more information, see <xref:fundamentals/environments>.
+For ASP.NET Core Razor Pages or MVC projects, enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
 
 ## How to use Browser Link
 
@@ -57,7 +37,7 @@ From the Browser Link toolbar control, you can:
 * Refresh the web app in several browsers at once.
 * Open the **Browser Link Dashboard**.
 * Enable or disable **Browser Link**. Note: Browser Link is disabled by default in Visual Studio.
-* Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).
+* Enable or disable [CSS Hot Reload](#enable-or-disable-css-hot-reload).
 
 ## Refresh the web app in several browsers at once
 
