@@ -4,7 +4,7 @@ author: ncarandini
 description: Explains how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 07/11/2022
+ms.date: 02/01/2024
 uid: client-side/using-browserlink
 ---
 # Browser Link in ASP.NET Core
@@ -16,11 +16,17 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 * Refresh your web app in several browsers at once.
 * Test across multiple browsers with specific settings such as screen sizes.
 * Select UI elements in browsers in real-time, see what markup and source it's correlated to in Visual Studio.
-* Conduct real-time browser test automation. Browser Link is also extensible.
+* Conduct real-time browser test automation.
 
 ## Browser Link setup
 
-:::moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-6.0"
+
+For ASP.NET Core Razor Pages or MVC projects, enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 <aspnetcore-6.0>"
 
 Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
 
@@ -44,7 +50,13 @@ The ASP.NET Core 1.x **Web Application** project template has a package referenc
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-6.0"
+
 ### Configuration
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 <aspnetcore-6.0>"
 
 Call `UseBrowserLink` in the `Startup.Configure` method:
 
@@ -64,6 +76,8 @@ if (env.IsDevelopment())
 
 For more information, see <xref:fundamentals/environments>.
 
+:::moniker-end
+
 ## How to use Browser Link
 
 When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:
@@ -75,7 +89,7 @@ From the Browser Link toolbar control, you can:
 * Refresh the web app in several browsers at once.
 * Open the **Browser Link Dashboard**.
 * Enable or disable **Browser Link**. Note: Browser Link is disabled by default in Visual Studio.
-* Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).
+* Enable or disable [CSS Hot Reload](#enable-or-disable-css-hot-reload).
 
 ## Refresh the web app in several browsers at once
 
@@ -85,7 +99,9 @@ To choose a single web browser to launch when starting the project, use the drop
 
 To open multiple browsers at once, choose **Browse with...** from the same drop-down. Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:
 
-![Open many browsers at once](using-browserlink/_static/open-many-browsers-at-once.png)
+!['Browse with' menu option](using-browserlink/_static/browse-with-menu-option.png)
+
+!['Browse with' dialog](using-browserlink/_static/browse-with-menu-option.png)
 
 The following screenshot shows Visual Studio with the Index view open and two open browsers:
 
@@ -121,9 +137,9 @@ You can also click on an individual browser name to refresh only that browser.
 
 When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.
 
-### Enable or disable CSS Auto-Sync
+### Enable or disable CSS Hot Reload
 
-When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
+When CSS Hot Reload is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
 
 ## How it works
 
