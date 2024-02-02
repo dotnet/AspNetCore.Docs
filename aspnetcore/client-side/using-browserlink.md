@@ -86,7 +86,7 @@ Browser Link also works with browsers that you launch from outside Visual Studio
 
 Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:
 
-![open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
+![how-to-open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
 
 If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:
 

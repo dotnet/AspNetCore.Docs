@@ -11,7 +11,9 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 
 ## Browser Link setup
 
-:::moniker range=">= aspnetcore-3.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
 
@@ -34,6 +36,8 @@ The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project tem
 The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-1.1 < aspnetcore-6.0"
 
 ### Configuration
 
@@ -133,4 +137,5 @@ Browser Link uses [SignalR](xref:signalr/introduction) to create a communication
 Your source files aren't modified. The middleware component injects the script references dynamically.
 
 Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.
+
 :::moniker-end
