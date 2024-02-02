@@ -1,16 +1,4 @@
----
-title: Browser Link in ASP.NET Core
-author: ncarandini
-description: Explains how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
-ms.author: riande
-ms.date: 07/11/2022
-uid: client-side/using-browserlink
----
-# Browser Link in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-1.1 < aspnetcore-6.0"
 
 By [Nicolò Carandini](https://github.com/ncarandini) and [Tom Dykstra](https://github.com/tdykstra)
 
@@ -23,7 +11,29 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 
 ## Browser Link setup
 
+:::moniker range=">= aspnetcore-3.0"
+
 Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+
+When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality. The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-2.0"
+
+The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
+
+:::moniker-end
+
+:::moniker range="<= aspnetcore-1.1"
+
+The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
+
+:::moniker-end
 
 ### Configuration
 
@@ -86,7 +96,7 @@ Browser Link also works with browsers that you launch from outside Visual Studio
 
 Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:
 
-![open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
+![open-browserslink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
 
 If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:
 
@@ -123,7 +133,4 @@ Browser Link uses [SignalR](xref:signalr/introduction) to create a communication
 Your source files aren't modified. The middleware component injects the script references dynamically.
 
 Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.
-
 :::moniker-end
-
-[!INCLUDE[](~/client-side/using-browserlink/includes/using-browserlink-1-5.md)]
