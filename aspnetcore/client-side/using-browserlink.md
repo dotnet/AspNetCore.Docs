@@ -43,23 +43,35 @@ From the Browser Link toolbar control, you can:
 
 To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:
 
-![F5 drop-down menu](~/client-side/using-browserlink/_static/debug-target-dropdown-menu.png)
+![F5 drop-down menu](~/client-side/using-browserlink/_static/debug-target-dropdown-menu-net8.png)
 
 To open multiple browsers at once, choose **Browse with...** from the same drop-down. Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:
 
-![Open many browsers at once](~/client-side/using-browserlink/_static/open-many-browsers-at-once.png)
+!['Browse with' menu option](using-browserlink/_static/browse-with-menu-net8.png)
 
-The following screenshot shows Visual Studio with the Index view open and two open browsers:
+!['Browse with' dialog](using-browserlink/_static/browse-with-dialog-net8.png)
 
-![Sync with two browsers example](~/client-side/using-browserlink/_static/sync-with-two-browsers-example.png)
+The following screenshots show Visual Studio with the Privacy view open and two open browsers:
+
+![Privacy view initial state](~/client-side/using-browserlink/_static/privacy-view-initial-state-net8.png)
+
+![Privacy view in Edge](~/client-side/using-browserlink/_static/privacy-page-edge-initial-state-net8.png)
+
+![Privacy view in Chrome](~/client-side/using-browserlink/_static/privacy-page-firefox-initial-state-net8.png)
 
 Hover over the Browser Link toolbar control to see the browsers that are connected to the project:
 
-![Hover tip](~/client-side/using-browserlink/_static/hoover-tip.png)
+![Hover over toolbar control, showing 2 browsers connected](~/client-side/using-browserlink/_static/hover-showing-2-browsers-connected-net8.png)
 
-Change the Index view, and all connected browsers are updated when you click the Browser Link refresh button:
+Change the Privacy view, and all connected browsers are updated when you select the Browser Link refresh button:
 
-![Browsers sync to changes](~/client-side/using-browserlink/_static/browsers-sync-to-changes.png)
+![Privacy view changed](~/client-side/using-browserlink/_static/privacy-view-changed-net8.png)
+
+![Select browser link control](~/client-side/using-browserlink/_static/browser-link-control-net8.png)
+
+![Privacy view changed in Edge](~/client-side/using-browserlink/_static/privacy-page-edge-changed-net8.png)
+
+![Privacy view changed in Chrome](~/client-side/using-browserlink/_static/privacy-page-firefox-changed-net8.png)
 
 Browser Link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.
 
@@ -83,9 +95,9 @@ You can also click on an individual browser name to refresh only that browser.
 
 When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.
 
-### Enable or disable CSS Auto-Sync
+### Enable or disable CSS Hot Reload
 
-When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
+When CSS Hot Reload is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
 
 ## How it works
 
