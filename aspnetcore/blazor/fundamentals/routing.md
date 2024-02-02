@@ -136,13 +136,13 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section only applies to Blazor WebAssembly apps.* Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`), but the template is supported for backward compatibility to avoid a breaking change in the framework. Blazor Web Apps typically process bad URL requests by either displaying the browser's built-in 404 UI or returning a custom 404 page from the ASP.NET Core server via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
+*This section only applies to Blazor WebAssembly apps.* Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported for backward compatibility to avoid a breaking change in the framework. Blazor Web Apps typically process bad URL requests by either displaying the browser's built-in 404 UI or returning a custom 404 page from the ASP.NET Core server via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
 
 :::moniker-end
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
 
-Set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template:
+Set custom content for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter:
 
 ```razor
 <Router ...>
@@ -153,7 +153,7 @@ Set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router> 
 </Router>
 ```
 
-Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
+Arbitrary items are supported as content of the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
 ## Route to components from multiple assemblies
 
@@ -1250,9 +1250,9 @@ At the top of the component that specifies the <xref:Microsoft.AspNetCore.Compon
 @using Microsoft.AspNetCore.Components.Routing
 ```
 
-Add a `<Navigating>` tag to the component with markup to display during page transition events. For more information, see <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> (API documentation).
+Provide content to the <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> parameter for display during page transition events.
 
-In the router element content (`<Router>...</Router>`):
+In the router element (`<Router>...</Router>`) content:
 
 ```razor
 <Navigating>
