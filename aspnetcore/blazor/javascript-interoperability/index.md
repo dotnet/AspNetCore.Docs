@@ -12,12 +12,6 @@ uid: blazor/js-interop/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains general concepts on how to interact with JavaScript in Blazor apps.
-
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
-## JavaScript interop
-
 A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
 Further JS interop guidance is provided in the following articles:

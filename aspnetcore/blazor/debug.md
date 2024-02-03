@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps, including debugging Blazor WebAssem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/03/2024
 uid: blazor/debug
 ---
 # Debug ASP.NET Core apps
@@ -230,12 +230,11 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The example in this section assumes that you've created a Blazor Web App with an interactive render mode of Auto (Server and WebAssembly) and per-component interactivity location.
+The example in this section assumes that you've created a Blazor Web App with an interactive Auto (Server and WebAssembly) render mode and per-component interactivity location.
 
-1. Open the app in Visual Studio Code by opening the solution folder, which is the folder that contains the server project and the `.Client` project.
+1. Open the app in Visual Studio Code by opening the solution folder, which is the folder that contains the server and `.Client` project folders.
 1. Set a breakpoint on the `currentCount++;` line in the `Counter` component (`Pages/Counter.razor`) of the client project (`.Client`).
-1. Open the **Run and Debug** pane and select the **Run and Debug** button. Alternatively, press <kbd>F5</kbd> (**Start Debugging**) to run the app in the debugger.
-1. Select the `C#` debugger in the command palette at the top of the UI. Select the default profile **for the server project** (for example, `C#:BlazorSample [Default Configuration]`).
+1. Open the **Run and Debug** pane and select the **Run and Debug** button. Alternatively, press <kbd>F5</kbd> (**Start Debugging**). Select the `C#` debugger in the command palette at the top of the UI. Select the default profile **for the server project** (for example, `C#:BlazorSample [Default Configuration]`).
 1. In the browser, navigate to `Counter` page at `/counter`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. Select the **Continue** button in the UI or press <kbd>F5</kbd> (**Continue**) to continue execution.
 
@@ -298,13 +297,9 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open the app.
-
-   When opening a new app in Visual Studio Code and the IDE requests that you add assets to build and debug the project, select **Yes**.
-
-   If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
-
+1. Open the app's folder in Visual Studio Code.
 1. Set a breakpoint on the `currentCount++;` line in the `Counter` component (`Pages/Counter.razor`).
+1. Open the **Run and Debug** pane and select the **Run and Debug** button. Alternatively, press <kbd>F5</kbd> (**Start Debugging**). Select the `C#` debugger in the command palette at the top of the UI. Select the default profile (for example, `C#:BlazorSample [Default Configuration]`).
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 1. In the browser, navigate to `Counter` page at `/counter`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -332,13 +327,9 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open the standalone Blazor WebAssembly app.
-
-   When opening a new app in Visual Studio Code and the IDE requests that you add assets to build and debug the project, select **Yes**.
-
-   If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
-
+1. Open the app's folder in Visual Studio Code.
 1. Set a breakpoint on the `currentCount++;` line in the `Counter` component (`Pages/Counter.razor`).
+1. Open the **Run and Debug** pane and select the **Run and Debug** button. Alternatively, press <kbd>F5</kbd> (**Start Debugging**). Select the `C#` debugger in the command palette at the top of the UI. Select the default profile (for example, `C#:BlazorSample [Default Configuration]`).
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 1. The standalone app is launched, and a debugging browser is opened.
 1. In the browser, navigate to `Counter` page at `/counter`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
@@ -382,12 +373,8 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-When opening a new app in Visual Studio Code and the IDE requests that you add assets to build and debug the project, select **Yes**.
-
-If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command for the **:::no-loc text="Server":::** project.
-
 > [!NOTE]
-> Only browser debugging is supported at this time.
+> Only browser debugging is supported.
 >
 > You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
@@ -464,14 +451,18 @@ The additional options in the following table only apply to **hosted Blazor WebA
 
    The browser must be running with remote debugging enabled, which isn't the default. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is rendered with instructions for launching the browser with the debugging port open. Follow the instructions for your browser.
 
-   After the app opens in a new browser tab, start remote debugging by pressing:
+   After following the instructions to enable remote debugging, the app opens in a new browser window. Start remote debugging by pressing the HotKey combination in the new browser window:
 
    * <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd> on Windows.
    * <kbd>Shift</kbd>+<kbd>&#8984;</kbd>+<kbd>d</kbd> on macOS.
 
-1. A new developer tools browser tab opens showing a ghosted image of the app.
+   A new window developer tools browser tab opens showing a ghosted image of the app.
+
+   > [!NOTE]
+   > If you followed the instructions to open a new browser tab with remote debugging enabled, you can close the original browser window, leaving the second window open with the first tab running the app and the second tab running the debugger.
+
 1. After a moment, the **Sources** tab shows a list of the app's .NET assemblies and pages.
-1. Open the `file://` node. In component code (`.razor` files) and C# code files (`.cs`), breakpoints that you set are hit when code executes in the app's browser tab (the initial tab opened after starting remote debugging). After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally.
+1. Open the `file://` node. In component code (`.razor` files) and C# code files (`.cs`), breakpoints that you set are hit when code executes in the app's browser tab (the initial tab opened after starting remote debugging). After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally in the debugging tab.
 
 For Chromium-based browser debugging, Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
 
@@ -480,8 +471,6 @@ For Chromium-based browser debugging, Blazor provides a debugging proxy that imp
 ## Debug a Blazor WebAssembly app with Firefox
 
 *The guidance in this section applies debugging Blazor WebAssembly apps in Firefox running on Windows.*
-
-<!-- UPDATE 8.0 Update this to include FF on macOS, if supported. -->
 
 Debugging a Blazor WebAssembly app with Firefox requires configuring the browser for remote debugging and connecting to the browser using the browser developer tools through the .NET WebAssembly debugging proxy.
 
@@ -500,9 +489,9 @@ To debug a Blazor WebAssembly app in Firefox during development:
 1. Relaunch the Firefox browser and navigate to the app.
 1. Open `about:debugging` in a new browser tab. **Leave this tab open**.
 1. Go back to the tab where the app is running. Start remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
-1. In the `Debugger` tab, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint in the `IncrementCount` method of the `Counter` component (`Pages/Counter.razor`).
-1. Navigate to the `Counter` component page (`/counter`) and select the counter button to hit the breakpoint.
-1. Press <kbd>F5</kbd> to continue execution.
+1. In the `Debugger` tab, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint on the `currentCount++;` line in the `IncrementCount` method of the `Counter` component (`Pages/Counter.razor`).
+1. Navigate to the `Counter` component page (`/counter`) in the app's browser tab and select the counter button to hit the breakpoint.
+1. Press <kbd>F5</kbd> to continue execution in the debugging tab.
 
 :::moniker-end
 
