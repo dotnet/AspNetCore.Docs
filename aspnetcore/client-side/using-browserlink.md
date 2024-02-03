@@ -30,7 +30,7 @@ For ASP.NET Core Razor Pages or MVC projects, enable runtime compilation of Razo
 
 When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:
 
-![Browser Link drop-down menu](~/client-side/using-browserlink/_static/browserLink-dropdown-menu.png)
+![Browser Link drop-down menu](~/client-side/using-browserlink/_static/browserLink-dropdown-menu-net8.png)
 
 From the Browser Link toolbar control, you can:
 
@@ -79,15 +79,15 @@ Browser Link also works with browsers that you launch from outside Visual Studio
 
 Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:
 
-![how-to-open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
+![how-to-open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard-net8.png)
 
 If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:
 
-![Browserlink dashboard no connections](~/client-side/using-browserlink/_static/browserlink-dashboard-no-connections.png)
+![Browserlink dashboard no connections](~/client-side/using-browserlink/_static/browserlink-dashboard-no-connections-net8.png)
 
 Otherwise, the connected browsers are shown with the path to the page that each browser is showing:
 
-![Browserlink dashboard two connections](~/client-side/using-browserlink/_static/browserlink-dashboard-two-connections.png)
+![Browserlink dashboard two connections](~/client-side/using-browserlink/_static/browserlink-dashboard-two-connections-net8.png)
 
 You can also click on an individual browser name to refresh only that browser.
 
