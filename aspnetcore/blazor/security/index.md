@@ -167,6 +167,11 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 }
 ```
 
+In the preceding example:
+
+* <xref:System.Security.Claims.ClaimsPrincipal.Claims%2A?displayProperty=nameWithType> returns the user's claims (`claims`) for display in the UI.
+* The line that obtains the user's surname (`surname`) calls <xref:System.Security.Claims.ClaimsPrincipal.FindAll%2A?displayProperty=nameWithType> with a predicate to filter the user's claims.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
