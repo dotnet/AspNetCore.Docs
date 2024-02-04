@@ -1592,8 +1592,8 @@ The following HTML markup is rendered:
 > @for (int c = 0; c < 10; c++)
 > {
 >     var current = c;
->     <li ...>
->         <NavLink ... href="@c">
+>     <li @key="@c" ...>
+>         <NavLink ...>
 >             <span ...></span> @current
 >         </NavLink>
 >     </li>
@@ -1607,8 +1607,8 @@ The following HTML markup is rendered:
 > ```razor
 > @foreach (var c in Enumerable.Range(0,10))
 > {
->     <li ...>
->         <NavLink ... href="@c">
+>     <li @key="@c" ...>
+>         <NavLink ...>
 >             <span ...></span> @c
 >         </NavLink>
 >     </li>
