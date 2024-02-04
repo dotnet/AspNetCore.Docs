@@ -260,7 +260,7 @@ Purely for demonstration purposes, style the buttons by placing the following CS
 </style>
 ```
 
-Create a sidebar navigation entry in the [`NavMenu` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (`Shared/NavMenu.razor`) with the following markup:
+Create a sidebar navigation entry in the `NavMenu` component (`Shared/NavMenu.razor`) with the following markup:
 
 ```razor
 <div class="nav-item px-3">
