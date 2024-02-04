@@ -1509,6 +1509,8 @@ For additional example code, see the [`NavigationManagerComponent` in the `Basic
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
+### `NavigationLock` component
+
 The [`NavigationLock` component](xref:Microsoft.AspNetCore.Components.Routing.NavigationLock) intercepts navigation events as long as it is rendered, effectively "locking" any given navigation until a decision is made to either proceed or cancel. Use `NavigationLock` when navigation interception can be scoped to the lifetime of a component.
 
 <xref:Microsoft.AspNetCore.Components.Routing.NavigationLock> parameters:
