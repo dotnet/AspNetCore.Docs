@@ -12,19 +12,11 @@ uid: blazor/components/built-in-components
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The following built-in Razor components are provided by the Blazor framework. For more information on built-in components that are used by the Blazor project templates, see <xref:blazor/project-structure>.
+The following built-in Razor components are provided by the Blazor framework. For information on non-security-related project template components, see <xref:blazor/project-structure>. For information on security-related project template components, see the [Security node articles](xref:blazor/security/index).
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- Link for FormMappingValidator. Addition to docs tracked by 
-     https://github.com/dotnet/AspNetCore.Docs/issues/31621
-
-* [`FormMappingValidator`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
--->
-
-* [`App`](xref:blazor/project-structure)
 * [`AntiforgeryToken`](xref:blazor/forms/index#antiforgery-support)
-* [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
 * [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
@@ -45,9 +37,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputText`](xref:blazor/forms/input-components)
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
-* [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`QuickGrid`](xref:blazor/components/quickgrid)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
@@ -61,8 +51,6 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-* [`App`](xref:blazor/project-structure)
-* [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
 * [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
@@ -82,9 +70,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputText`](xref:blazor/forms/input-components)
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
-* [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`QuickGrid`](xref:blazor/components/quickgrid)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
@@ -96,8 +82,6 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-* [`App`](xref:blazor/project-structure)
-* [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
 * [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
@@ -117,9 +101,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputText`](xref:blazor/forms/input-components)
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
-* [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
@@ -130,8 +112,6 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-* [`App`](xref:blazor/project-structure)
-* [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
 * [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
@@ -146,9 +126,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputText`](xref:blazor/forms/input-components)
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
-* [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
@@ -158,8 +136,6 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range="< aspnetcore-5.0"
 
-* [`App`](xref:blazor/project-structure)
-* [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
 * [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
@@ -173,9 +149,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`InputText`](xref:blazor/forms/input-components)
 * [`InputTextArea`](xref:blazor/forms/input-components)
 * [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
-* [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
-* [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
-* [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
