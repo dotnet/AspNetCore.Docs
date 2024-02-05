@@ -24,7 +24,6 @@ New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. 
 ## Minimal APIs
 
 This section describes new features for minimal APIs.
-## Native AOT
 
 ## Authentication and authorization
 
