@@ -21,6 +21,8 @@ New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. 
 
 ## SignalR
 
+This section describes new features for authentication and authorization.
+
 ## Minimal APIs
 
 This section describes new features for minimal APIs.
