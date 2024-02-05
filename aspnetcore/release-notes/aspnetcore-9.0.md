@@ -28,10 +28,10 @@ This section describes new features for minimal APIs.
 
 ## Authentication and authorization
 
-ASP.NET Core 8 adds new features to authentication and authorization.
+ASP.NET Core 9 adds new features to authentication and authorization.
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 8.
+The following sections describe miscellaneous new features in ASP.NET Core 9.
 
 ## Additional resources
