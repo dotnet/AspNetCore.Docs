@@ -17,6 +17,8 @@ This article will be updated as new preview releases are made available.
 
 ## Blazor
 
+This section describes new features for Blazor.
+
 ## SignalR
 
 This section describes new features for authentication and authorization.
