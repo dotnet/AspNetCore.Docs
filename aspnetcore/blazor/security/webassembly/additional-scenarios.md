@@ -1454,25 +1454,32 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
 
 The list of claims in the ID token changes for v2.0 endpoints. Microsoft documentation on the changes has been retired, but guidance on the claims in an ID token is available in the [ID token claims reference](/entra/identity-platform/id-token-claims-reference).
 
-:::moniker range="< aspnetcore-8.0"
-
-<!-- UPDATE 8.0 This section was written for hosted WASM.
-     Check with PU to see if we'll maintain it with mods
-     in the BWA/WebAssembly world. -->
-
 ## Configure and use gRPC in components
 
 To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
 
 * Enable gRPC-Web on the server. For more information, see <xref:grpc/grpcweb>.
-* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (the `Program` file):
+* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (the `Program` file).
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> Prerendering is enabled by default in Blazor Web Apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/components/prerender#persist-prerendered-state>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+> [!NOTE]
+> Prerendering is enabled by default in hosted Blazor WebAssembly apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/components/prerendering-and-integration?pivots=webassembly#persist-prerendered-state>.
+
+:::moniker-end
 
 ```csharp
 using System.Net.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using {ASSEMBLY NAME}.Shared;
 
 ...
 
@@ -1490,18 +1497,11 @@ builder.Services.AddScoped(sp =>
 });
 ```
 
-The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
-
 A component in the client app can make gRPC calls using the gRPC client (`Grpc.razor`):
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @page "/grpc"
 @using Microsoft.AspNetCore.Authorization
-@using {ASSEMBLY NAME}.Shared
 @attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
@@ -1536,57 +1536,9 @@ Server response: <strong>@serverResponse</strong>
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/grpc"
-@using Microsoft.AspNetCore.Authorization
-@using {ASSEMBLY NAME}.Shared
-@attribute [Authorize]
-@inject Greeter.GreeterClient GreeterClient
-
-<h1>Invoke gRPC service</h1>
-
-<p>
-    <input @bind="name" placeholder="Type your name" />
-    <button @onclick="GetGreeting" class="btn btn-primary">Call gRPC service</button>
-</p>
-
-Server response: <strong>@serverResponse</strong>
-
-@code {
-    private string name = "Bert";
-    private string serverResponse;
-
-    private async Task GetGreeting()
-    {
-        try
-        {
-            var request = new HelloRequest { Name = name };
-            var reply = await GreeterClient.SayHelloAsync(request);
-            serverResponse = reply.Message;
-        }
-        catch (Grpc.Core.RpcException ex)
-            when (ex.Status.DebugException is 
-                AccessTokenNotAvailableException tokenEx)
-        {
-            tokenEx.Redirect();
-        }
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
+To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
 For more information, see <xref:grpc/grpcweb>.
-
-:::moniker-end
 
 ## Replace the `AuthenticationService` implementation
 

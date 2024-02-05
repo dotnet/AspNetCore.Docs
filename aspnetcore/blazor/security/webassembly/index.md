@@ -238,20 +238,13 @@ If Windows Authentication is used with Blazor Webassembly or with any other SPA 
 
 For more information, see <xref:security/anti-request-forgery>.
 
-:::moniker range="< aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Versioning out because this applies
-     directly to hosted WASM. Check with the PU
-     to confirm no replacement guidance in the 
-     BWA/WebAssembly world -->
-
 ## Secure a SignalR hub
 
 To secure a SignalR hub:
 
-* In the **:::no-loc text="Server":::** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
+* In the server project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
 
-* In the **:::no-loc text="Client":::** project's component, supply an access token to the hub connection:
+* In the client project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -274,8 +267,6 @@ To secure a SignalR hub:
   ```
 
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
-
-:::moniker-end
 
 ## Logging
 

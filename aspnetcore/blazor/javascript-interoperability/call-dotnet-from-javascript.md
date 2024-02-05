@@ -1422,10 +1422,19 @@ Using JS modules to load JS is described in this article in the [JavaScript isol
 
 :::moniker-end
 
-<!-- UPDATE 8.0 Confirm for >=8.0 now that the warning is being removed. -->
+:::moniker range=">= aspnetcore-8.0"
+
+> [!WARNING]
+> Only place a `<script>` tag in a component file (`.razor`) if the component is guaranteed to adopt [static server-side rendering (static SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts) because the `<script>` tag can't be updated dynamically.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 

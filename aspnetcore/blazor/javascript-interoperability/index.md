@@ -251,10 +251,19 @@ Load JavaScript (JS) code using any of the following approaches:
 
 :::moniker-end
 
-<!-- UPDATE 8.0 Confirm for >=8.0 now that the warning is being removed. -->
+:::moniker range=">= aspnetcore-8.0"
 
 > [!WARNING]
-> Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
+> Only place a `<script>` tag in a component file (`.razor`) if the component is guaranteed to adopt [static server-side rendering (static SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts) because the `<script>` tag can't be updated dynamically.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+> [!WARNING]
+> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 
