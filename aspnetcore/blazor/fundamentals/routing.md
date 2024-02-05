@@ -1593,8 +1593,8 @@ The following HTML markup is rendered:
 > {
 >     var current = c;
 >     <li ...>
->         <NavLink ... href="@c">
->             <span ...></span> @current
+>         <NavLink ... href="product-number/@c">
+>             <span ...></span> Product #@current
 >         </NavLink>
 >     </li>
 > }
@@ -1608,8 +1608,8 @@ The following HTML markup is rendered:
 > @foreach (var c in Enumerable.Range(0,10))
 > {
 >     <li ...>
->         <NavLink ... href="@c">
->             <span ...></span> @c
+>         <NavLink ... href="product-number/@c">
+>             <span ...></span> Product #@c
 >         </NavLink>
 >     </li>
 > }
