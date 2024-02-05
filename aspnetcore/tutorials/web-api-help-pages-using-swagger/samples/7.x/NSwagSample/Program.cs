@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
 
     // Add web UIs to interact with the document
     // Available at: http://localhost:<port>/swagger
-    app.UseSwaggerUi3();
+    app.UseSwaggerUi();
     
     // Add ReDoc UI to interact with the document
     // Available at: http://localhost:<port>/redoc
