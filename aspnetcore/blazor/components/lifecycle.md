@@ -31,8 +31,8 @@ Component lifecycle events:
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
    * Perform property injection. Run [`SetParametersAsync`](#when-parameters-are-set-setparametersasync).
-   * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
-1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
+   * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
+1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
 > [!NOTE]
@@ -57,7 +57,7 @@ The `Render` lifecycle:
    * When [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) is `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
-1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync).
+1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync). The synchronous method is called prior to the asychronous method.
 
 ![Render lifecycle](~/blazor/components/lifecycle/_static/lifecycle3.png)
 
@@ -113,7 +113,7 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 ## Component initialization (`OnInitialized{Async}`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. The synchronous method is called prior to the asychronous method.
 
 If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
@@ -213,6 +213,8 @@ Use *streaming rendering* with Interactive Server components to improve the user
   
   For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
+The synchronous method is called prior to the asychronous method.
+
 For the following example component, navigate to the component's page at a URL:
 
 * With a start date that's received by `StartDate`: `/on-parameters-set/2021-03-19`
@@ -289,7 +291,7 @@ For an example of implementing `SetParametersAsync` manually to improve performa
 
 :::moniker range=">= aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asychronous method.
 
 These methods aren't invoked during prerendering or rendering on the server because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
 
@@ -299,7 +301,7 @@ For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, 
 
 :::moniker range="< aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asychronous method.
 
 These methods aren't invoked during prerendering because prerendering isn't attached to a live browser DOM and is already complete before the DOM is updated.
 

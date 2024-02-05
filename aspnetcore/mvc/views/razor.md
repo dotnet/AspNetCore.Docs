@@ -862,6 +862,8 @@ Component references (`@ref`) provide a way to reference a component instance so
 
 ## Templated Razor delegates
 
+*This scenario only applies to MVC views and Razor Pages (`.cshtml`).*
+
 Razor templates allow you to define a UI snippet with the following format:
 
 ```cshtml
