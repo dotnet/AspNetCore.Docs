@@ -1,0 +1,1 @@
+To prevent merge conflicts in ~/aspnetcore-9.md, new features should be documented in this include folder. Content in the include folder is not published unless explictily referenced in a topic.

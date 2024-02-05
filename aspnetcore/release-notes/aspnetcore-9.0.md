@@ -1,0 +1,35 @@
+---
+title: What's new in ASP.NET Core 9.0
+author: rick-anderson
+description: Learn about the new features in ASP.NET Core 9.0.
+ms.author: riande
+ms.custom: mvc
+ms.date: 2/5/2024
+uid: aspnetcore-9
+---
+# What's new in ASP.NET Core 9.0
+
+This article highlights the most significant changes in ASP.NET Core 9.0 with links to relevant documentation.
+
+This article will be updated as new preview releases are made available.
+
+## Blazor
+
+### Full-stack web UI
+
+## SignalR
+
+## Minimal APIs
+
+This section describes new features for minimal APIs.
+## Native AOT
+
+## Authentication and authorization
+
+ASP.NET Core 8 adds new features to authentication and authorization.
+
+## Miscellaneous
+
+The following sections describe miscellaneous new features in ASP.NET Core 8.
+
+## Additional resources
