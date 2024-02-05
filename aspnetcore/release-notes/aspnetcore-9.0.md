@@ -18,7 +18,6 @@ New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. 
 ## Blazor
 
 ### Full-stack web UI
-
 ## SignalR
 
 This section describes new features for authentication and authorization.
