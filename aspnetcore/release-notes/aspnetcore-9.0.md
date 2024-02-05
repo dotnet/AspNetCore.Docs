@@ -13,7 +13,7 @@ This article highlights the most significant changes in ASP.NET Core 9.0 with li
 
 This article will be updated as new preview releases are made available.
 
-New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file.
+<!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
 ## Blazor
 
