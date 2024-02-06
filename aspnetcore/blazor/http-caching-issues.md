@@ -28,7 +28,7 @@ Upgrade issues typically appear as a failure to start the app in the browser. No
 
 * First, check if the app loads successfully within a clean browser instance. Use a private browser mode to load the app, such as Microsoft Edge InPrivate mode or Google Chrome Incognito mode. If the app fails to load, it likely means that one or more packages or the framework wasn't correctly updated.
 * If the app loads correctly in a clean browser instance, then it's likely that the app is being served from a stale cache. In most cases, a hard browser refresh with <kbd>Ctrl</kbd>+<kbd>F5</kbd> flushes the cache, which permits the app to load and run with the latest assets.
-* If the app continues to fail, then it's likely that a stale CDN cache is serving the app. Try to flushing the DNS cache via whatever mechanism your CDN provider offers.
+* If the app continues to fail, then it's likely that a stale CDN cache is serving the app. Try to flush the DNS cache via whatever mechanism your CDN provider offers.
 
 ## Recommended actions before an upgrade
 
