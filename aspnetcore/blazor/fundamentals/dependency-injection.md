@@ -520,25 +520,25 @@ The following service doesn't require implementing any service features merely t
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Services/TransientDisposableService.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Services/TransientDisposableService.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Services/TransientDisposableService.cs":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Services/TransientDisposableService.cs":::
 
 :::moniker-end
 
