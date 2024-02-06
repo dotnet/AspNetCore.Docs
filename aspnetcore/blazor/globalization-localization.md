@@ -873,15 +873,19 @@ If the app should localize resources based on storing a user's culture setting, 
 
 The example of localized resources in this section works with the prior examples in this article where the app's supported cultures are English (`en`) as a default locale and Spanish (`es`) as a user-selectable or browser-specified alternate locale.
 
-Create resources for each locale. In the following example, resources are created for a default `Greeting` string:
+Create a resource file for each locale. In the following example, resources are created for a `Greeting` string in English and Spanish:
 
-* English: `Hello, World!`
+* English (`en`): `Hello, World!`
 * Spanish (`es`): `¡Hola, Mundo!`
 
 > [!NOTE]
-> The following resource file can be added in Visual Studio by right-clicking and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `Hello, World!`. Save the file.
+> The following resource file can be added in Visual Studio by right-clicking the `Pages` folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `Hello, World!`. Save the file.
+>
+> If using Visual Studio Code, we recommend installing [Tim Heuer's ResX Viewer and Editor](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor). Add an empty `CultureExample2.resx` file to the `Pages` folder. The extension automatically takes over managing the file in the UI. Select the **Add New Resource** button. Follow the instructions to add an entry for `Greeting` (key), `Hello, World!` (value), and `None` (comment). Save the file. If you close and re-open the file, you can see the `Greeting` resource.
 
-`CultureExample2.resx`:
+The following demonstrates a typical resource file. You can manually place resource files into the app's `Pages` folder if you prefer not to use built-in tooling with an integrated development environment (IDE), such as Visual Studio's built-in resource file editor or Visual Studio Code with an extension for creating and editing resource files.
+
+`Pages/CultureExample2.resx`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -951,9 +955,13 @@ Create resources for each locale. In the following example, resources are create
 ```
 
 > [!NOTE]
-> The following resource file can be added in Visual Studio by right-clicking and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.es.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `¡Hola, Mundo!`. Save the file.
+> The following resource file can be added in Visual Studio by right-clicking the `Pages` folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.es.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `¡Hola, Mundo!`. Save the file.
+>
+> If using Visual Studio Code, we recommend installing [Tim Heuer's ResX Viewer and Editor](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor). Add an empty `CultureExample2.resx` file to the `Pages` folder. The extension automatically takes over managing the file in the UI. Select the **Add New Resource** button. Follow the instructions to add an entry for `Greeting` (key), `¡Hola, Mundo!` (value), and `None` (comment). Save the file. If you close and re-open the file, you can see the `Greeting` resource.
 
-`CultureExample2.es.resx`:
+The following demonstrates a typical resource file. You can manually place resource files into the app's `Pages` folder if you prefer not to use built-in tooling with an integrated development environment (IDE), such as Visual Studio's built-in resource file editor or Visual Studio Code with an extension for creating and editing resource files.
+
+`Pages/CultureExample2.es.resx`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
