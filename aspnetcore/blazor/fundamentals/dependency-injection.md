@@ -326,8 +326,8 @@ Even in client-side Blazor apps that don't operate over a circuit, services regi
 > [!NOTE]
 > To detect disposable transient services in an app, see the following sections later in this article:
 >
-> [Detect client-side transient disposables](#detect-client-side-transient-disposables)
-> [Detect server-side transient disposables](#detect-server-side-transient-disposables)
+> * [Detect client-side transient disposables](#detect-client-side-transient-disposables)
+> * [Detect server-side transient disposables](#detect-server-side-transient-disposables)
 
 An approach that limits a service lifetime is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the *lifetime of the component*. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
