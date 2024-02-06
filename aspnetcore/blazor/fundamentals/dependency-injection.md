@@ -510,9 +510,9 @@ The following Blazor WebAssembly example shows how to detect client-side disposa
 
 The following service doesn't require implementing any service features merely to demonstrate how transient services are detected with the approach in this section.
 
-:::moniker range=">= aspnetcore-8.0"
-
 `Services/TransientDisposableService.cs`:
+
+:::moniker range=">= aspnetcore-8.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Services/TransientDisposableService.cs":::
 
@@ -520,33 +520,25 @@ The following service doesn't require implementing any service features merely t
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-`TransientDisposableService.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-`TransientDisposableService.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-`TransientDisposableService.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-`TransientDisposableService.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/dependency-injection/TransientDisposableService.cs":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Services/dependency-injection/TransientDisposableService.cs":::
 
 :::moniker-end
 
@@ -588,7 +580,7 @@ In the `Program` file of the Blazor WebAssembly app:
 
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-`TransientService.razor`:
+`Pages/TransientService.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
