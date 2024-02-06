@@ -21,6 +21,8 @@ ASP.NET Core has two collections of culture values, `SupportedCultures` and `Sup
 
 ## Resource files
 
+***NOTE:*** [ResX Viewer and Editor](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor) provides an alternate mechanism to work with resource files using Visual Studio Code.
+
 A resource file is a useful mechanism for separating localizable strings from code. Translated strings for the non-default language are isolated in *.resx* resource files. For example, you might want to create a Spanish resource file named *Welcome.es.resx* containing translated strings. "es" is the language code for Spanish. To create this resource file in Visual Studio:
 
 1. In **Solution Explorer**, right click on the folder that will contain the resource file, and then select **Add** > **New Item**.
