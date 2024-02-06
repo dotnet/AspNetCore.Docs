@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-5.0 <= aspnetcore-2.1"
+:::moniker range="> aspnetcore-2.0 <= aspnetcore-5.0"
 
 This article explains SignalR-specific aspects of setting up a [Redis](https://redis.io/) server to use for scaling out an ASP.NET Core SignalR app.
 
