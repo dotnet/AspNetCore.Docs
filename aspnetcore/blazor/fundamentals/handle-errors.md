@@ -215,6 +215,16 @@ In `MainLayout.razor`:
 </article>
 ```
 
+In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during the static server-side rendering (static SSR) phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactive rendering for the `HeadOutlet` and `Routes` component instances in the `App` component (`Components/App.razor`). The following example adopts the Interactive Server (`InteractiveServer`) render mode:
+
+```razor
+<HeadOutlet @rendermode="InteractiveServer" />
+
+...
+
+<Routes @rendermode="InteractiveServer" />
+```
+
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
 Change the `OnNotify` method of the `ReceiveNotification` component (`ReceiveNotification.razor`):
@@ -377,10 +387,14 @@ In `MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during the static server-side rendering (static SSR) phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactive server-side rendering (interactive SSR) at the top of the `Routes` component (`Components/Routes.razor`):
+In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during the static server-side rendering (static SSR) phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactive rendering for the `HeadOutlet` and `Routes` component instances in the `App` component (`Components/App.razor`). The following example adopts the Interactive Server (`InteractiveServer`) render mode:
 
 ```razor
-@rendermode InteractiveServer
+<HeadOutlet @rendermode="InteractiveServer" />
+
+...
+
+<Routes @rendermode="InteractiveServer" />
 ```
 
 If you prefer not to enable server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable interactivity, not in the app's main layout. The important concepts to keep in mind are that wherever the error boundary is placed:
