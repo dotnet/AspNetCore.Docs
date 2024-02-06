@@ -6,7 +6,7 @@ ms.author: wpickett
 ms.date: 10/16/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
-ms.custom: contperf-fy21q3, engagement-fy23
+ms.custom: engagement-fy23
 ---
 
 # Part 3, add a view to an ASP.NET Core MVC app

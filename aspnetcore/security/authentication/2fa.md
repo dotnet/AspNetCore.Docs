@@ -5,7 +5,7 @@ description: Learn how to set up two-factor authentication (2FA) with an ASP.NET
 monikerRange: '< aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/22/2018
-ms.custom: "mvc, seodec18"
+ms.custom: mvc
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core

@@ -6,7 +6,7 @@ ms.author: wpickett
 ms.date: 10/19/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/working-with-sql
-ms.custom: contperf-fy21q3, engagement-fy23
+ms.custom: engagement-fy23
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app

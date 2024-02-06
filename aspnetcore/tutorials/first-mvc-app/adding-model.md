@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 01/05/2024
 uid: tutorials/first-mvc-app/adding-model
-ms.custom: contperf-fy21q3, engagement-fy23
+ms.custom: engagement-fy23
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app
