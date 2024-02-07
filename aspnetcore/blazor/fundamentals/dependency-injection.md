@@ -462,22 +462,22 @@ In spite of the scoped service registration in the `Program` file and the longev
 </ul>
 ```
 
+:::moniker range=">= aspnetcore-6.0"
+
 ### Detect client-side transient disposables
 
 Custom code can be added to a client-side Blazor app to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you have any concern that developers working on a Blazor app in the future consume one or more transient disposable services in the app, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
 
-Inspect the following in any version of the `BlazorSample_WebAssembly` sample:
+Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssembly` sample:
 
 * `DetectIncorrectUsagesOfTransientDisposables.cs`
 * `Services/TransientDisposableService.cs`
-* `Program.cs`:
+* In `Program.cs`:
   * The app's `Services` namespace is provided at the top of the file (`using BlazorSample.Services;`).
   * `DetectIncorrectUsageOfTransients` is called immediately after the `builder` is assigned from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>.
-  * Where services are registered: `builder.Services.AddTransient<TransientDisposableService>();`
+  * The `TransientDisposableService` is registered (`builder.Services.AddTransient<TransientDisposableService>();`).
   * `EnableTransientDisposableDetection` is called on the built host in the processing pipeline of the app (`host.EnableTransientDisposableDetection();`).
-* The `TransientDisposableService` in `TransientService.razor` is detected. An <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposableService`:
-
-  > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposableService in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+* The `TransientDisposableService` in `TransientService.razor` is detected. An <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposableService`.
 
 > [!NOTE]
 > Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are recommended. If the app contains <xref:System.Net.Http.IHttpClientFactory> handlers and uses the <xref:Microsoft.Extensions.DependencyInjection.IRemoteAuthenticationBuilder%602> to add support for authentication, the following transient disposables for client-side authentication are also discovered, which is expected and can be ignored:
@@ -489,15 +489,17 @@ Inspect the following in any version of the `BlazorSample_WebAssembly` sample:
 
 Custom code can be added to a server-side Blazor app to detect server-side disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you have any concern that developers working on a Blazor app in the future register and consume one or more transient disposable services in the app, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
-Inspect the following in any version of the `BlazorSample_BlazorWebApp` sample:
+Inspect the following in .NET 8 or later versions of the `BlazorSample_BlazorWebApp` sample:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Inspect the following in any version of the `BlazorSample_Server` sample:
+Inspect the following in .NET 6 or .NET 7 versions of the `BlazorSample_Server` sample:
 
 :::moniker-end
 
@@ -505,34 +507,14 @@ Inspect the following in any version of the `BlazorSample_Server` sample:
 
 * `DetectIncorrectUsagesOfTransientDisposables.cs`
 * `Services/TransitiveTransientDisposableDependency.cs`:
-* `Program.cs`:
-
-  ```csharp
-  builder.DetectIncorrectUsageOfTransients();
-  builder.Services.AddTransient<TransientDependency>();
-  builder.Services.AddTransient<ITransitiveTransientDisposableDependency, 
-      TransitiveTransientDisposableDependency>();
-  ```
+* In `Program.cs`:
+  * The app's `Services` namespace is provided at the top of the file (`using BlazorSample.Services;`).
+  * `DetectIncorrectUsageOfTransients` is called on the host builder (`builder.DetectIncorrectUsageOfTransients();`).
+  * The `TransientDependency` service is registered (`builder.Services.AddTransient<TransientDependency>();`).
+  * The `TransitiveTransientDisposableDependency` is registered for `ITransitiveTransientDisposableDependency` (`builder.Services.AddTransient<ITransitiveTransientDisposableDependency, TransitiveTransientDisposableDependency>();`).
+* The app registers a transient disposable service without throwing an exception. However, attempting to resolve a transient disposable in `TransientService.razor` results in an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDependency`.
 
 :::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-* `DetectIncorrectUsagesOfTransientDisposables.cs`
-* `Services/TransitiveTransientDisposableDependency.cs`:
-* `Startup.cs` (`Startup.ConfigureServices`):
-
-  ```csharp
-  services.AddTransient<TransientDependency>();
-  services.AddTransient<ITransitiveTransientDisposableDependency, 
-      TransitiveTransientDisposableDependency>();
-  ```
-
-:::moniker-end
-
-* The app registers a transient disposable service without throwing an exception. However, attempting to resolve a transient disposable in `TransientService.razor` results in an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDependency`:
-
-  > System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
