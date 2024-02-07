@@ -466,7 +466,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 
 ### Detect client-side transient disposables
 
-Custom code can be added to a client-side Blazor app to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you have any concern that developers working on a Blazor app in the future consume one or more transient disposable services in the app, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
+Custom code can be added to a client-side Blazor app to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you're concerned that code added to the app in the future consumes one or more transient disposable services, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
 
 Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssembly` sample:
 
@@ -487,7 +487,7 @@ Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssemb
 
 ### Detect server-side transient disposables
 
-Custom code can be added to a server-side Blazor app to detect server-side disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you have any concern that developers working on a Blazor app in the future register and consume one or more transient disposable services in the app, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
+Custom code can be added to a server-side Blazor app to detect server-side disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you're concerned that code added to the app in the future consumes one or more transient disposable services, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
 
 :::moniker-end
 
