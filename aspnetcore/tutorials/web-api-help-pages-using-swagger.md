@@ -155,13 +155,7 @@ For more information on testing with JWT tokens, see <xref:security/authenticati
 
 ## Generate an XML documentation file at compile time.
 
-```xml
-<PropertyGroup>
-  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-</PropertyGroup>
-``
-
-See [PublishDocumentationFile](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#publishdocumentationfile) for more information.
+See [GenerateDocumentationFile](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#generatedocumentationfile) for more information.
 
 ## Next steps
 
