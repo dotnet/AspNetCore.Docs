@@ -125,11 +125,14 @@ The following code:
 
 Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> and <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. The Brotli and Gzip compression providers default to the fastest compression level, [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel), which might not produce the most efficient compression. If the most efficient compression is desired, configure the response compression middleware for optimal compression.
 
-| Compression Level | Description |
-| ----------------- | ----------- |
-| [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. |
-| [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | No compression should be performed. |
-| [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | Responses should be optimally compressed, even if the compression takes more time to complete. |
+| Compression Level | Description | Gzip level | Brotli level |
+| ----------------- | ----------- | ---------- | ------------ |
+| [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. | 1 | 1 |
+| [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | No compression should be performed. | 0 | 0 |
+| [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | Compression should optimally balance compression speed and output size. | -1 (6) | 4 |
+| [CompressionLevel.SmallestSize](xref:System.IO.Compression.CompressionLevel) | Compression should create output as small as possible, even if the operation takes a longer time to complete. | 9 | 11 |
+
+*The Gzip and Brotli levels corresponds to the compression levels being passed to the underlying compression library* 
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
 
