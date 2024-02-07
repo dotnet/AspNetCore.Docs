@@ -477,7 +477,7 @@ Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssemb
   * `DetectIncorrectUsageOfTransients` is called immediately after the `builder` is assigned from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>.
   * The `TransientDisposableService` is registered (`builder.Services.AddTransient<TransientDisposableService>();`).
   * `EnableTransientDisposableDetection` is called on the built host in the processing pipeline of the app (`host.EnableTransientDisposableDetection();`).
-* The `TransientDisposableService` in `TransientService.razor` is detected. An <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposableService`.
+* The app registers the `TransientDisposableService` service without throwing an exception. However, attempting to resolve the service in `TransientService.razor` throws an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDisposableService`.
 
 > [!NOTE]
 > Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are recommended. If the app contains <xref:System.Net.Http.IHttpClientFactory> handlers and uses the <xref:Microsoft.Extensions.DependencyInjection.IRemoteAuthenticationBuilder%602> to add support for authentication, the following transient disposables for client-side authentication are also discovered, which is expected and can be ignored:
@@ -512,7 +512,7 @@ Inspect the following in .NET 6 or .NET 7 versions of the `BlazorSample_Server` 
   * `DetectIncorrectUsageOfTransients` is called on the host builder (`builder.DetectIncorrectUsageOfTransients();`).
   * The `TransientDependency` service is registered (`builder.Services.AddTransient<TransientDependency>();`).
   * The `TransitiveTransientDisposableDependency` is registered for `ITransitiveTransientDisposableDependency` (`builder.Services.AddTransient<ITransitiveTransientDisposableDependency, TransitiveTransientDisposableDependency>();`).
-* The app registers a transient disposable service without throwing an exception. However, attempting to resolve a transient disposable in `TransientService.razor` results in an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDependency`.
+* The app registers the `TransientDependency` service without throwing an exception. However, attempting to resolve the service in `TransientService.razor` throws an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDependency`.
 
 :::moniker-end
 
