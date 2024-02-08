@@ -31,7 +31,7 @@ jobs:
           ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
           ImportOptions__ApiKeys__SequesterPrivateKey: ${{ secrets.SEQUESTER_PRIVATEKEY }}
           ImportOptions__ApiKeys__SequesterAppID: ${{ secrets.SEQUESTER_APPID }}
-     with:
+        with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           issue: '-1'
