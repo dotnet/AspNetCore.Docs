@@ -23,18 +23,16 @@ This topic describes logging in .NET as it applies to ASP.NET Core apps. For det
 
 Logging providers store logs, except for the `Console` provider which displays logs. For example, the Azure Application Insights provider stores logs in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview). Multiple providers can be enabled.
 
-The default ASP.NET Core web app templates:
+The default ASP.NET Core web app templates call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>, which adds the following logging providers:
 
-* Use the [Generic Host](xref:fundamentals/host/generic-host).
-* Call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>, which adds the following logging providers:
-  * [Console](#console)
-  * [Debug](#debug)
-  * [EventSource](#event-source)
-  * [EventLog](#welog): Windows only
+* [Console](#console)
+* [Debug](#debug)
+* [EventSource](#event-source)
+* [EventLog](#welog): Windows only
 
 [!code-csharp[](~/fundamentals/logging/index/samples/6.x/WebApp/Program.cs?name=snippet1&highlight=1)]
 
-The preceding code shows the `Program.cs` file created with the ASP.NET Core web app templates. The next several sections provide samples based on the ASP.NET Core web app templates, which use the Generic Host.
+The preceding code shows the `Program.cs` file created with the ASP.NET Core web app templates. The next several sections provide samples based on the ASP.NET Core web app templates.
 
 The following code overrides the default set of logging providers added by `WebApplication.CreateBuilder`:
 
@@ -758,87 +756,6 @@ Using a third-party framework is similar to using one of the built-in providers:
 1. Call an `ILoggerFactory` extension method provided by the logging framework.
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
-
-<!-- 
-## Log during host construction
-
-Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
-
-```csharp
-using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        var builtConfig = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .AddCommandLine(args)
-            .Build();
-
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File(builtConfig["Logging:FilePath"])
-            .CreateLogger();
-
-        try
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddRazorPages();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.AddConfiguration(builtConfig);
-                })
-                .ConfigureLogging(logging =>
-                {   
-                    logging.AddSerilog();
-                })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "Host builder error");
-
-            throw;
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-    }
-}
-```
--->
-
-<!-- 
-<a name="csdi"></a>
-
-## Configure a service that depends on ILogger
-
-Constructor injection of a logger into `Startup` works in earlier versions of ASP.NET Core because a separate dependency injection (DI) container is created for the Web Host. For information about why only one container is created for the Generic Host, see the [breaking change announcement](https://github.com/aspnet/Announcements/issues/353).
-
-To configure a service that depends on `ILogger<T>`, use constructor injection or provide a factory method. The factory method approach is recommended only if there is no other option. For example, consider a service that needs an `ILogger<T>` instance provided by DI:
-
-[!code-csharp[](~/fundamentals/logging/index/samples/3.x/TodoApiSample/Startup2.cs?name=snippet_ConfigureServices&highlight=6-10)]
-
-The preceding highlighted code is a <xref:System.Func%602> that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
--->
 
 ### No asynchronous logger methods
 
