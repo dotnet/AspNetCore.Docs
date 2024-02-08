@@ -277,8 +277,6 @@ To set the environment in code, use <xref:Microsoft.AspNetCore.Builder.WebApplic
 
 :::code language="csharp" source="environments/samples/6.x/EnvironmentsSample/Program.cs" id="SetInCode" highlight="1-4":::
 
-For more information, see <xref:fundamentals/host/generic-host#environmentname>.
-
 ## Configuration by environment
 
 To load configuration by environment, see <xref:fundamentals/configuration/index#json-configuration-provider>.
