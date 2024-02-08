@@ -58,7 +58,7 @@ Default value: `X509ChainTrustMode.System`
 
 The certificate presented by the client must chain to a trusted root certificate. This check allows you to control which trust store contains these root certificates.
 
-By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate which doesn't appear in the system trust store, (such as in a cloud environment) this option needs to be set to `X509ChainTrustMode.CustomRootTrust`.
+By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate which doesn't appear in the system trust store, this option can be set to `X509ChainTrustMode.CustomRootTrust` to make the handler use the `CustomTrustStore` instead.
 
 ### CustomTrustStore
 
