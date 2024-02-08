@@ -52,6 +52,22 @@ Default value: `CertificateTypes.Chained`
 
 This check validates that only the appropriate certificate type is allowed. If the app is using self-signed certificates, this option needs to be set to `CertificateTypes.All` or `CertificateTypes.SelfSigned`.
 
+### ChainTrustValidationMode
+
+Default value: [X509ChainTrustMode.System](xref:System.Security.Cryptography.X509Certificates.X509ChainTrustMode.System)
+
+The certificate presented by the client must chain to a trusted root certificate. This check controls which trust store contains these root certificates.
+
+By default, the handler uses the system trust store. If the presented client certificate needs to chain to a root certificate which doesn't appear in the system trust store, this option can be set to [X509ChainTrustMode.CustomRootTrust](xref:System.Security.Cryptography.X509Certificates.X509ChainTrustMode.CustomRootTrust) to make the handler use the `CustomTrustStore`.
+
+### CustomTrustStore
+
+Default value: Empty <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection>
+
+If the handler's <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions.ChainTrustValidationMode> property is set to `X509ChainTrustMode.CustomRootTrust`, this <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection> contains every certificate which will be used to validate the client certificate up to a trusted root, including the trusted root.
+
+When the client presents a certificate which is part of a multi-level certificate chain, `CustomTrustStore` must contain every issuing certificate in the chain.
+
 ### ValidateCertificateUse
 
 Default value: `true`
