@@ -15,7 +15,7 @@ uid: fundamentals/logging/index
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This topic describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging). For more information on logging in Blazor apps, see <xref:blazor/fundamentals/logging>.
+This article describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging). For more information on logging in Blazor apps, see <xref:blazor/fundamentals/logging>.
 
 <a name="lp"></a>
 
@@ -112,7 +112,7 @@ The following `appsettings.json` file contains all the providers enabled by defa
 
 In the preceding sample:
 
-* The categories and levels are not suggested values. The sample is provided to show all the default providers.
+* The categories and levels aren't suggested values. The sample is provided to show all the default providers.
 * Settings in `Logging.{PROVIDER NAME}.LogLevel` override settings in `Logging.LogLevel`, where the `{PROVIDER NAME}` placeholder is the provider name. For example, the level in `Debug.LogLevel.Default` overrides the level in `LogLevel.Default`.
 * Each default provider *alias* is used. Each provider defines an *alias* that can be used in configuration in place of the fully qualified type name. The built-in providers aliases are:
   * `Console`
@@ -190,7 +190,7 @@ On [Azure App Service](https://azure.microsoft.com/services/app-service/), selec
 * Encrypted at rest and transmitted over an encrypted channel.
 * Exposed as environment variables.
 
-For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+For more information, see [Azure Apps: Override app configuration using the Azure portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 For more information on setting ASP.NET Core configuration values using environment variables, see [environment variables](xref:fundamentals/configuration/index#environment-variables). For information on using other configuration sources, including the command line, Azure Key Vault, Azure App Configuration, other file formats, and more, see <xref:fundamentals/configuration/index>.
 
