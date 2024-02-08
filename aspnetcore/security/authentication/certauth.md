@@ -64,7 +64,7 @@ By default, the handler uses the system trust store. If the presented client cer
 
 Default value: Empty <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection>
 
-If the handler's `ChainTrustValidationMode` property is set to `X509ChainTrustMode.CustomRootTrust`, this `X509Certificate2Collection` contains every certificate which will be used to validate the client certificate up to a trusted root (including the trusted root itself.)
+If the handler's <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions.ChainTrustValidationMode> property is set to `X509ChainTrustMode.CustomRootTrust`, this <xref:System.Security.Cryptography.X509Certificates.X509Certificate2Collection> contains every certificate which will be used to validate the client certificate up to a trusted root (including the trusted root itself.)
 
 When the client presents a certificate which is part of a multi-level certificate chain, `CustomTrustStore` must contain every issuing certificate in the chain.
 
