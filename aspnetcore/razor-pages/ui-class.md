@@ -102,6 +102,10 @@ When packing an RCL, all companion assets in the `wwwroot` folder are automatica
 
 Use the `dotnet pack` command rather than the NuGet.exe version `nuget pack`.
 
+### Add client web assets to the build process
+
+Integrating client web assets into the build pipeline is nontrivial. See [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/) for more information.
+
 ### Exclude static assets
 
 To exclude static assets, add the desired exclusion path to the `$(DefaultItemExcludes)` property group in the project file. Separate entries with a semicolon (`;`).
