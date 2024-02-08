@@ -112,7 +112,7 @@ The following `appsettings.json` file contains all the providers enabled by defa
 
 In the preceding sample:
 
-* The categories and levels aren't suggested values. The sample is provided to show all the default providers.
+* The categories and levels aren't suggested values. The sample is provided to show all of the default providers.
 * Settings in `Logging.{PROVIDER NAME}.LogLevel` override settings in `Logging.LogLevel`, where the `{PROVIDER NAME}` placeholder is the provider name. For example, the level in `Debug.LogLevel.Default` overrides the level in `LogLevel.Default`.
 * Each default provider *alias* is used. Each provider defines an *alias* that can be used in configuration in place of the fully qualified type name. The built-in providers aliases are:
   * `Console`
