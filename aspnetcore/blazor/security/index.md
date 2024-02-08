@@ -313,8 +313,8 @@ When you create a Blazor app from one of the Blazor project templates with authe
 ```razor
 <Router ...>
     <Found ...>
-        <AuthorizeRouteView RouteData="@routeData" 
-            DefaultLayout="@typeof(Layout.MainLayout)" />
+        <AuthorizeRouteView RouteData="routeData" 
+            DefaultLayout="typeof(Layout.MainLayout)" />
         ...
     </Found>
 </Router>
@@ -338,8 +338,8 @@ When you create a Blazor app from one of the Blazor project templates with authe
 <CascadingAuthenticationState>
     <Router ...>
         <Found ...>
-            <AuthorizeRouteView RouteData="@routeData" 
-                DefaultLayout="@typeof(MainLayout)" />
+            <AuthorizeRouteView RouteData="routeData" 
+                DefaultLayout="typeof(MainLayout)" />
             ...
         </Found>
     </Router>
@@ -556,8 +556,8 @@ To authorize users for resources, pass the request's route data to the <xref:Mic
 In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route:
 
 ```razor
-<AuthorizeRouteView Resource="@routeData" RouteData="@routeData" 
-    DefaultLayout="@typeof(MainLayout)" />
+<AuthorizeRouteView Resource="routeData" RouteData="routeData" 
+    DefaultLayout="typeof(MainLayout)" />
 ```
 
 For more information on how authorization state data is passed and used in procedural logic, see the [Expose the authentication state as a cascading parameter](#expose-the-authentication-state-as-a-cascading-parameter) section.

@@ -97,11 +97,11 @@ Reusable Razor components may include forms (either `<form @onsubmit=...>` or `<
 Consider the following example:
 
 ```razor
-<EditForm Enhance FormName="NewProduct" Model="@Model" OnValidSubmit="SaveProduct">
+<EditForm Enhance FormName="NewProduct" Model="Model" OnValidSubmit="SaveProduct">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <p>Name: <InputText @bind-Value="@Item.Name" /></p>
+    <p>Name: <InputText @bind-Value="Item.Name" /></p>
 
     <button type="submit">Submit</button>
 </EditForm>

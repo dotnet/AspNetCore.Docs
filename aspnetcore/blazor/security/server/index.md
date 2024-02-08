@@ -316,8 +316,8 @@ In the `Routes` component (`Components/Routes.razor`):
 ```razor
 <Router ...>
     <Found ...>
-        <AuthorizeRouteView RouteData="@routeData" 
-            DefaultLayout="@typeof(Layout.MainLayout)" />
+        <AuthorizeRouteView RouteData="routeData" 
+            DefaultLayout="typeof(Layout.MainLayout)" />
         ...
     </Found>
 </Router>
@@ -342,8 +342,8 @@ Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeR
 <CascadingAuthenticationState>
     <Router ...>
         <Found ...>
-            <AuthorizeRouteView RouteData="@routeData" 
-                DefaultLayout="@typeof(MainLayout)" />
+            <AuthorizeRouteView RouteData="routeData" 
+                DefaultLayout="typeof(MainLayout)" />
             ...
         </Found>
     </Router>

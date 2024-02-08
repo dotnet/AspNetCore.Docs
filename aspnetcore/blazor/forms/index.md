@@ -108,7 +108,7 @@ Blazor enhances page navigation and form handling for <xref:Microsoft.AspNetCore
 @page "/starship-1"
 @inject ILogger<Starship1> Logger
 
-<EditForm Model="@Model" OnSubmit="@Submit">
+<EditForm Model="Model" OnSubmit="Submit">
     <InputText @bind-Value="Model!.Id" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -167,7 +167,7 @@ In the next example, the preceding component is modified to create the form in t
 @using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship2> Logger
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />

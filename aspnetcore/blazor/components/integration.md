@@ -74,10 +74,10 @@ Add the Blazor router (`<Router>`, <xref:Microsoft.AspNetCore.Components.Routing
 `Components/Routes.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <RouteView RouteData="routeData" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
 </Router>
 ```
@@ -85,7 +85,7 @@ Add the Blazor router (`<Router>`, <xref:Microsoft.AspNetCore.Components.Routing
 You can supply a default layout with the <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout?displayProperty=nameWithType> parameter of the `RouteView` component:
 
 ```razor
-<RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+<RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
 ```
 
 For more information, see <xref:blazor/components/layouts#apply-a-default-layout-to-an-app>.
@@ -729,10 +729,10 @@ Add a `Routes` component to the `Components` folder with the following content.
 `Components/Routes.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
 </Router>
 ```

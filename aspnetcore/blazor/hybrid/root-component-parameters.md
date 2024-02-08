@@ -175,9 +175,9 @@ In the `Main` component (`Main.razor`):
 
   ```xaml
   <Found Context="routeData">
-      <CascadingValue Value="@KeypadViewModel">
-          <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-          <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+      <CascadingValue Value="KeypadViewModel">
+          <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+          <FocusOnNavigate RouteData="routeData" Selector="h1"/>
       </CascadingValue>
   </Found>
   ```

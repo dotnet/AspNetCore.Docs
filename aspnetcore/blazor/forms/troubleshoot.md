@@ -58,7 +58,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 <h1>Stream form data with JS interop</h1>
 
-<EditForm Model="@this" OnSubmit="@Submit" FormName="StreamFormData">
+<EditForm Model="this" OnSubmit="Submit" FormName="StreamFormData">
     <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to
@@ -130,7 +130,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 <h1>Stream form data with JS interop</h1>
 
-<EditForm Model="@this" OnSubmit="@Submit">
+<EditForm Model="this" OnSubmit="Submit">
     <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to

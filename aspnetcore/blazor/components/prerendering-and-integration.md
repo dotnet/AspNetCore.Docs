@@ -541,9 +541,9 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(App).Assembly">
+   <Router AppAssembly="typeof(App).Assembly">
        <Found Context="routeData">
-           <RouteView RouteData="@routeData" />
+           <RouteView RouteData="routeData" />
        </Found>
        <NotFound>
            <PageTitle>Not found</PageTitle>
@@ -623,9 +623,9 @@ To support routable Razor components in MVC apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(App).Assembly">
+   <Router AppAssembly="typeof(App).Assembly">
        <Found Context="routeData">
-           <RouteView RouteData="@routeData" />
+           <RouteView RouteData="routeData" />
        </Found>
        <NotFound>
            <PageTitle>Not found</PageTitle>
@@ -1515,9 +1515,9 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(App).Assembly">
+   <Router AppAssembly="typeof(App).Assembly">
        <Found Context="routeData">
-           <RouteView RouteData="@routeData" />
+           <RouteView RouteData="routeData" />
        </Found>
        <NotFound>
            <PageTitle>Not found</PageTitle>
@@ -1603,9 +1603,9 @@ To support routable Razor components in MVC apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(App).Assembly">
+   <Router AppAssembly="typeof(App).Assembly">
        <Found Context="routeData">
-           <RouteView RouteData="@routeData" />
+           <RouteView RouteData="routeData" />
        </Found>
        <NotFound>
            <PageTitle>Not found</PageTitle>
@@ -2310,7 +2310,7 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(Program).Assembly">
+   <Router AppAssembly="typeof(Program).Assembly">
        <Found Context="routeData">
            <RouteView RouteData="routeData" />
        </Found>
@@ -2406,7 +2406,7 @@ To support routable Razor components in MVC apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(Program).Assembly">
+   <Router AppAssembly="typeof(Program).Assembly">
        <Found Context="routeData">
            <RouteView RouteData="routeData" />
        </Found>
@@ -2776,7 +2776,7 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(Program).Assembly">
+   <Router AppAssembly="typeof(Program).Assembly">
        <Found Context="routeData">
            <RouteView RouteData="routeData" />
        </Found>
@@ -2870,7 +2870,7 @@ To support routable Razor components in MVC apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(Program).Assembly">
+   <Router AppAssembly="typeof(Program).Assembly">
        <Found Context="routeData">
            <RouteView RouteData="routeData" />
        </Found>

@@ -28,7 +28,7 @@ In the following example:
 * `parameters` specifies component parameters to pass to the `componentType` component.
 
 ```razor
-<DynamicComponent Type="@componentType" Parameters="@parameters" />
+<DynamicComponent Type="componentType" Parameters="parameters" />
 
 @code {
     private Type componentType = ...;
@@ -41,7 +41,7 @@ For more information on passing parameter values, see the [Pass parameters](#pas
 Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance:
 
 ```razor
-<DynamicComponent Type="@typeof({COMPONENT})" @ref="dc" />
+<DynamicComponent Type="typeof({COMPONENT})" @ref="dc" />
 
 <button @onclick="Refresh">Refresh</button>
 

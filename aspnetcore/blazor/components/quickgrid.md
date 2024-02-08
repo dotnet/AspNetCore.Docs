@@ -105,7 +105,7 @@ Add the following component to render a grid.
 @page "/promotion-grid"
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid Items="@people">
+<QuickGrid Items="people">
     <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
     <PropertyColumn Property="@(p => p.PromotionDate)" Format="yyyy-MM-dd" Sortable="true" />

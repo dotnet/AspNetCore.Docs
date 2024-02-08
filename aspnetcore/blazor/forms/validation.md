@@ -41,7 +41,7 @@ In the following component, the `HandleValidationRequested` handler method clear
 
 <h2>Holodeck Configuration</h2>
 
-<EditForm EditContext="editContext" OnValidSubmit="@Submit">
+<EditForm EditContext="editContext" OnValidSubmit="Submit">
     <div>
         <label>
             <InputCheckbox @bind-Value="Model!.Subsystem1" />
@@ -201,7 +201,7 @@ When validation messages are set in the component, they're added to the validato
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm Model="Model" OnValidSubmit="Submit">
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
     <div>
@@ -537,7 +537,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit" FormName="Starship10">
+<EditForm Model="Model" OnValidSubmit="Submit" FormName="Starship10">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
@@ -682,7 +682,7 @@ The preceding example sets the base address with `builder.HostEnvironment.BaseAd
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />
@@ -841,7 +841,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 @using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship11> Logger
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <CustomInputText @bind-Value="Model!.Id" />
@@ -888,7 +888,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component sum
 Output validation messages for a specific model with the `Model` parameter:
   
 ```razor
-<ValidationSummary Model="@Model" />
+<ValidationSummary Model="Model" />
 ```
 
 The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> component displays validation messages for a specific field, which is similar to the [Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specify the field for validation with the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601.For%2A> attribute and a lambda expression naming the model property:
@@ -986,7 +986,7 @@ The following component validates user input by applying the `SaladChefValidator
 @page "/starship-12"
 @inject SaladChef SaladChef
 
-<EditForm Model="@this" autocomplete="off">
+<EditForm Model="this" autocomplete="off">
     <DataAnnotationsValidator />
     <p>
         <label>
@@ -1105,7 +1105,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 @using System.ComponentModel.DataAnnotations
 @inject ILogger<Starship13> Logger
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm EditContext="editContext" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <InputText @bind-Value="Model!.Id" />
@@ -1433,7 +1433,7 @@ To enable and disable the submit button based on form validation, the following 
 @implements IDisposable
 @inject ILogger<Starship14> Logger
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm EditContext="editContext" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -1506,7 +1506,7 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 * Make the <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component visible when the submit button is selected (for example, in a `Submit` method).
 
 ```razor
-<EditForm ... EditContext="@editContext" OnValidSubmit="@Submit" ...>
+<EditForm ... EditContext="editContext" OnValidSubmit="Submit" ...>
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 

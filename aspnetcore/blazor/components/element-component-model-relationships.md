@@ -111,7 +111,7 @@ The mapping process of elements or components to a collection can be controlled 
 To modify the parent component to use the [`@key`](xref:mvc/views/razor#key) directive attribute with the `people` collection, update the `<Details>` element to the following:
 
 ```razor
-<Details @key="person" Data="@person.Data" />
+<Details @key="person" Data="person.Data" />
 ```
 
 When the `people` collection changes, the association between `Details` instances and `person` instances is retained. When a `Person` is inserted at the beginning of the collection, one new `Details` instance is inserted at that corresponding position. Other instances are left unchanged. Therefore, the user's focus isn't lost as people are added to the collection.
@@ -134,7 +134,7 @@ Example 1:
 
 ```razor
 <li @key="person">
-    <input value="@person.Data" />
+    <input value="person.Data" />
 </li>
 ```
 
@@ -183,7 +183,7 @@ For the `Details` component shown earlier, the following examples render `person
 <div>
     @foreach (var person in people)
     {
-        <Details @key="person" Data="@person.Data" />
+        <Details @key="person" Data="person.Data" />
     }
 </div>
 ```
@@ -192,7 +192,7 @@ For the `Details` component shown earlier, the following examples render `person
 @foreach (var person in people)
 {
     <div @key="person">
-        <Details Data="@person.Data" />
+        <Details Data="person.Data" />
     </div>
 }
 ```
@@ -202,7 +202,7 @@ For the `Details` component shown earlier, the following examples render `person
     @foreach (var person in people)
     {
         <li @key="person">
-            <Details Data="@person.Data" />
+            <Details Data="person.Data" />
         </li>
     }
 </ol>
@@ -214,7 +214,7 @@ The following examples only scope [`@key`](xref:mvc/views/razor#key) to the `<di
 @foreach (var person in people)
 {
     <div>
-        <Details @key="person" Data="@person.Data" />
+        <Details @key="person" Data="person.Data" />
     </div>
 }
 ```
@@ -224,7 +224,7 @@ The following examples only scope [`@key`](xref:mvc/views/razor#key) to the `<di
     @foreach (var person in people)
     {
         <li>
-            <Details @key="person" Data="@person.Data" />
+            <Details @key="person" Data="person.Data" />
         </li>
     }
 </ol>

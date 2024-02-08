@@ -415,7 +415,7 @@ In the following example of a `CounterStateProvider` component, counter data is 
 
 @if (isLoaded)
 {
-    <CascadingValue Value="@this">
+    <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>
 }
@@ -456,7 +456,7 @@ else
 
 @if (isLoaded)
 {
-    <CascadingValue Value="@this">
+    <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>
 }

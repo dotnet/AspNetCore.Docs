@@ -129,7 +129,7 @@ To use SkiaSharp in a Blazor WebAssembly app:
 
    <h1>Native dependency example with SkiaSharp</h1>
 
-   <SKCanvasView OnPaintSurface="@OnPaintSurface" />
+   <SKCanvasView OnPaintSurface="OnPaintSurface" />
 
    @code {
        private void OnPaintSurface(SKPaintSurfaceEventArgs e)

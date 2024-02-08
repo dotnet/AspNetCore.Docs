@@ -121,7 +121,7 @@ Consider the following portion of a parent component that renders child componen
 <div class="chat">
     @foreach (var message in messages)
     {
-        <ChatMessageDisplay Message="@message" />
+        <ChatMessageDisplay Message="message" />
     }
 </div>
 ```
@@ -246,7 +246,7 @@ For more information on generic type parameters (`@typeparam`), see the followin
 The [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) has an optional `IsFixed` parameter:
 
 * If `IsFixed` is `false` (the default), every recipient of the cascaded value sets up a subscription to receive change notifications. Each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If `IsFixed` is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), recipients receive the initial value but don't set up a subscription to receive updates. Each `[CascadingParameter]` is lightweight and no more expensive than a regular `[Parameter]`.
+* If `IsFixed` is `true` (for example, `<CascadingValue Value="someValue" IsFixed="true">`), recipients receive the initial value but don't set up a subscription to receive updates. Each `[CascadingParameter]` is lightweight and no more expensive than a regular `[Parameter]`.
 
 Setting `IsFixed` to `true` improves performance if there are a large number of other components that receive the cascaded value. Wherever possible, set `IsFixed` to `true` on cascaded values. You can set `IsFixed` to `true` when the supplied value doesn't change over time.
 
