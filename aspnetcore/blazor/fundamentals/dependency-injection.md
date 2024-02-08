@@ -327,7 +327,7 @@ Even in client-side Blazor apps that don't operate over a circuit, services regi
 
 An approach that limits a service lifetime is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the *lifetime of the component*. Using this scope for a scoped service, a component can inject services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
-* Should be reused within a component, as the transient lifetime is inappropriate.
+* Should be reused within a component, as the transient lifetime is inappropriate with disposable transient services.
 * Shouldn't be shared across components, as the singleton lifetime is inappropriate.
 
 Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available and described in the next two sections:
