@@ -734,7 +734,11 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 To configure the .NET WebAssembly runtime, use the `configureRuntime` function with the `dotnet` runtime host builder.
 
-In the following examples, the `{NAME}` placeholder is the environment variable's name, and the `{VALUE}` placeholder is the environment variable's value.
+In the following examples:
+
+* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+* The `{NAME}` placeholder is the environment variable's name.
+* The `{VALUE}` placeholder is the environment variable's value.
 
 Blazor Web App:
 
@@ -764,9 +768,8 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
-
-The .NET runtime instance can be accessed from `Blazor.runtime`.
+> [!NOTE]
+> The .NET runtime instance can be accessed using the Blazor WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
 
 :::moniker-end
 
