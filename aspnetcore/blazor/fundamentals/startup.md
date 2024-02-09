@@ -72,18 +72,21 @@ Blazor Web App:
 </script>
 ```
 
-Blazor Server:
+Standalone Blazor WebAssembly and Blazor Server:
 
 :::moniker-end
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+* You can provide additional options in the `Blazor.start()` parameter.
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   ...
-  Blazor.start();
+  Blazor.start({
+    ...
+  });
   ...
 </script>
 ```
