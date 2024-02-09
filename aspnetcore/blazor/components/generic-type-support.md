@@ -5,7 +5,7 @@ description: Learn about generic type support in ASP.NET Core Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/generic-type-support
 ---
 # ASP.NET Core Razor component generic type support

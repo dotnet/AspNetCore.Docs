@@ -5,7 +5,7 @@ description: Learn how to enable hosted Blazor WebAssembly deployments in enviro
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/host-and-deploy/webassembly-deployment-layout
 ---
 # Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps

@@ -5,7 +5,7 @@ description: Learn about data binding features for Razor components and DOM elem
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/16/2024
+ms.date: 02/09/2024
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
