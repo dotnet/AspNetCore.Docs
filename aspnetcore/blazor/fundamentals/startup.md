@@ -737,7 +737,7 @@ In advanced programming scenarios, the `configureRuntime` function with the `dot
 In the following examples that set an environment variable for runtime configuration:
 
 * The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
-* The `{NAME}` placeholder is the environment variable's name. Runtime environment variables are usually prefixed with `DOTNET_`, `MONO_`, or `COMPlus_`.
+* The `{NAME}` placeholder is the environment variable's name. Runtime environment variables are usually prefixed with `DOTNET_`, `MONO_`, or `COMPlus_`. No list or documentation describing all of the runtime environment variables exists at this time.
 * The `{VALUE}` placeholder is the environment variable's value.
 
 Blazor Web App:
