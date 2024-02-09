@@ -5,7 +5,7 @@ description: Learn how to manage Blazor app request routing and how to use the N
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
@@ -125,7 +125,7 @@ In the following example, the `@page` directive in a component is replaced with 
 The <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the UI focus to an element based on a CSS selector after navigating from one page to another.
 
 ```razor
-<FocusOnNavigate RouteData="@routeData" Selector="h1" />
+<FocusOnNavigate RouteData="routeData" Selector="h1" />
 ```
 
 When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigates to a new page, the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that a page navigation is announced when using a screen reader.
@@ -1278,8 +1278,8 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an 
 :::moniker range=">= aspnetcore-6.0"
 
 ```razor
-<Router AppAssembly="@typeof(App).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(App).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -1296,8 +1296,8 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(Program).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -1355,8 +1355,8 @@ In the following example:
 @inject HttpClient Http
 @inject ProductCatalog Products
 
-<Router AppAssembly="@typeof(App).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(App).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -1391,8 +1391,8 @@ In the following example:
 @inject HttpClient Http
 @inject ProductCatalog Products
 
-<Router AppAssembly="@typeof(Program).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(Program).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 

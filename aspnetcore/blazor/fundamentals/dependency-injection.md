@@ -5,7 +5,7 @@ description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/fundamentals/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
@@ -465,7 +465,7 @@ In spite of the scoped service registration in the `Program` file and the longev
 
 ### Detect client-side transient disposables
 
-Custom code can be added to a client-side Blazor app to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you're concerned that code added to the app in the future consumes one or more transient disposable services, including services added by libraries. Demonstration code is availble in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
+Custom code can be added to a client-side Blazor app to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. This approach is useful if you're concerned that code added to the app in the future consumes one or more transient disposable services, including services added by libraries. Demonstration code is available in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main).
 
 Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssembly` sample:
 
@@ -477,12 +477,6 @@ Inspect the following in .NET 6 or later versions of the `BlazorSample_WebAssemb
   * The `TransientDisposableService` is registered (`builder.Services.AddTransient<TransientDisposableService>();`).
   * `EnableTransientDisposableDetection` is called on the built host in the processing pipeline of the app (`host.EnableTransientDisposableDetection();`).
 * The app registers the `TransientDisposableService` service without throwing an exception. However, attempting to resolve the service in `TransientService.razor` throws an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDisposableService`.
-
-> [!NOTE]
-> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are recommended. If the app contains <xref:System.Net.Http.IHttpClientFactory> handlers and uses the <xref:Microsoft.Extensions.DependencyInjection.IRemoteAuthenticationBuilder%602> to add support for authentication, the following transient disposables for client-side authentication are also discovered, which is expected and can be ignored:
->
-> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
-> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
 
 ### Detect server-side transient disposables
 
@@ -512,6 +506,30 @@ Inspect the following in .NET 6 or .NET 7 versions of the `BlazorSample_Server` 
   * The `TransientDependency` service is registered (`builder.Services.AddTransient<TransientDependency>();`).
   * The `TransitiveTransientDisposableDependency` is registered for `ITransitiveTransientDisposableDependency` (`builder.Services.AddTransient<ITransitiveTransientDisposableDependency, TransitiveTransientDisposableDependency>();`).
 * The app registers the `TransientDependency` service without throwing an exception. However, attempting to resolve the service in `TransientService.razor` throws an <xref:System.InvalidOperationException> when the framework attempts to construct an instance of `TransientDependency`.
+
+### Transient service registrations for `IHttpClientFactory`/`HttpClient` handlers
+
+Transient service registrations for <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers are recommended. If the app contains <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers and uses the <xref:Microsoft.Extensions.DependencyInjection.IRemoteAuthenticationBuilder%602> to add support for authentication, the following transient disposables for client-side authentication are also discovered, which is expected and can be ignored:
+
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
+
+Other instances of <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> are also discovered. These instances can also be ignored.
+
+The Blazor sample apps in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main) demonstrate the code to detect transient disposables. However, the code is deactivated because the sample apps include <xref:System.Net.Http.IHttpClientFactory>/<xref:System.Net.Http.HttpClient> handlers.
+
+To activate the demonstration code and witness its operation:
+
+* Uncomment the transient disposable lines in `Program.cs`.
+
+* Remove the conditional check in `NavLink.razor` that prevents the `TransientService` component from displaying in the app's navigation sidebar:
+
+  ```diff
+  - else if (name != "TransientService")
+  + else
+  ```
+
+* Run the sample app and navigate to to the `TransientService` component at `/transient-service`.
 
 :::moniker-end
 

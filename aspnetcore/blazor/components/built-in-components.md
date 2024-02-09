@@ -5,7 +5,7 @@ description: Find information on Razor components provided by the Blazor framewo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components

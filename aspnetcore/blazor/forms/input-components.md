@@ -5,7 +5,7 @@ description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2024
+ms.date: 02/09/2024
 uid: blazor/forms/input-components
 ---
 # ASP.NET Core Blazor input components
@@ -143,7 +143,7 @@ When the model property for the ship's classification (`Classification`) is set,
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@Model" OnValidSubmit="@Submit">
+<EditForm Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>
@@ -245,7 +245,7 @@ In the following example:
 @page "/starship-4"
 @inject ILogger<Starship4> Logger
 
-<EditForm EditContext="@editContext" OnSubmit="@Submit">
+<EditForm EditContext="editContext" OnSubmit="Submit">
     <DataAnnotationsValidator />
     <div>
         <label>
@@ -329,7 +329,7 @@ In the following example, the user must select at least two starship classificat
 
 <h1>Bind Multiple <code>InputSelect</code> Example</h1>
 
-<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+<EditForm EditContext="editContext" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div>

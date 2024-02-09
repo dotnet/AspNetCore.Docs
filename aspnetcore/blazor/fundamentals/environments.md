@@ -5,7 +5,7 @@ description: Learn about environments in Blazor, including how to set the enviro
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments

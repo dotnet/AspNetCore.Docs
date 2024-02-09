@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -672,7 +672,7 @@ The following example shows how to:
 @inject IJSRuntime JS
 @inject NavigationManager Navigation
 
-<EditForm Model="@User" OnSubmit="@OnSaveAsync">
+<EditForm Model="User" OnSubmit="OnSaveAsync">
     <label>
         First Name: 
         <InputText @bind-Value="User!.Name" />
@@ -837,7 +837,7 @@ The `Authentication` component (`Authentication.razor`) saves and restores the a
 @inject IJSRuntime JS
 @inject StateContainer State
 
-<RemoteAuthenticatorViewCore Action="@Action"
+<RemoteAuthenticatorViewCore Action="Action"
                              TAuthenticationState="ApplicationAuthenticationState"
                              AuthenticationState="AuthenticationState"
                              OnLogInSucceeded="RestoreState"
@@ -891,7 +891,7 @@ The `Authentication` component (`Authentication.razor`) saves and restores the a
 @inject IJSRuntime JS
 @inject StateContainer State
 
-<RemoteAuthenticatorViewCore Action="@Action"
+<RemoteAuthenticatorViewCore Action="Action"
                              TAuthenticationState="ApplicationAuthenticationState"
                              AuthenticationState="AuthenticationState"
                              OnLogInSucceeded="RestoreState"
@@ -979,7 +979,7 @@ In the following example, all of the paths are prefixed with `/security`.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="@Action" />
+<RemoteAuthenticatorView Action="Action" />
 
 @code{
     [Parameter]
@@ -995,7 +995,7 @@ In the following example, all of the paths are prefixed with `/security`.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="@Action" />
+<RemoteAuthenticatorView Action="Action" />
 
 @code{
     [Parameter]
@@ -1026,7 +1026,7 @@ If the requirement calls for completely different paths, set the routes as descr
 ```razor
 @page "/register"
 
-<RemoteAuthenticatorView Action="@RemoteAuthenticationActions.Register" />
+<RemoteAuthenticatorView Action="RemoteAuthenticationActions.Register" />
 ```
 
 You're allowed to break the UI into different pages if you choose to do so.
@@ -1043,7 +1043,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="@Action">
+<RemoteAuthenticatorView Action="Action">
     <LoggingIn>
         You are about to be redirected to https://login.microsoftonline.com.
     </LoggingIn>
@@ -1063,7 +1063,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="@Action">
+<RemoteAuthenticatorView Action="Action">
     <LoggingIn>
         You are about to be redirected to https://login.microsoftonline.com.
     </LoggingIn>

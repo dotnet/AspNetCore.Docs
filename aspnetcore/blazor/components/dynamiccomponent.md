@@ -5,7 +5,7 @@ description: Learn how to use dynamically-rendered Razor components in Blazor ap
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/dynamiccomponent
 ---
 # Dynamically-rendered ASP.NET Core Razor components
@@ -28,7 +28,7 @@ In the following example:
 * `parameters` specifies component parameters to pass to the `componentType` component.
 
 ```razor
-<DynamicComponent Type="@componentType" Parameters="@parameters" />
+<DynamicComponent Type="componentType" Parameters="parameters" />
 
 @code {
     private Type componentType = ...;
@@ -41,7 +41,7 @@ For more information on passing parameter values, see the [Pass parameters](#pas
 Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance:
 
 ```razor
-<DynamicComponent Type="@typeof({COMPONENT})" @ref="dc" />
+<DynamicComponent Type="typeof({COMPONENT})" @ref="dc" />
 
 <button @onclick="Refresh">Refresh</button>
 

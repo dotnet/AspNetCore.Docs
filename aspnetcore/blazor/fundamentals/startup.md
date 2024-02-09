@@ -5,7 +5,7 @@ description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/fundamentals/startup
 ---
 # ASP.NET Core Blazor startup
@@ -72,18 +72,21 @@ Blazor Web App:
 </script>
 ```
 
-Blazor Server:
+Standalone Blazor WebAssembly and Blazor Server:
 
 :::moniker-end
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+* You can provide additional options in the `Blazor.start()` parameter.
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   ...
-  Blazor.start();
+  Blazor.start({
+    ...
+  });
   ...
 </script>
 ```

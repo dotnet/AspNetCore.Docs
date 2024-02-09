@@ -5,7 +5,7 @@ description: Learn how to secure server-side Blazor apps as ASP.NET Core applica
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core server-side Blazor apps
@@ -316,8 +316,8 @@ In the `Routes` component (`Components/Routes.razor`):
 ```razor
 <Router ...>
     <Found ...>
-        <AuthorizeRouteView RouteData="@routeData" 
-            DefaultLayout="@typeof(Layout.MainLayout)" />
+        <AuthorizeRouteView RouteData="routeData" 
+            DefaultLayout="typeof(Layout.MainLayout)" />
         ...
     </Found>
 </Router>
@@ -342,8 +342,8 @@ Confirm or add an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeR
 <CascadingAuthenticationState>
     <Router ...>
         <Found ...>
-            <AuthorizeRouteView RouteData="@routeData" 
-                DefaultLayout="@typeof(MainLayout)" />
+            <AuthorizeRouteView RouteData="routeData" 
+                DefaultLayout="typeof(MainLayout)" />
             ...
         </Found>
     </Router>

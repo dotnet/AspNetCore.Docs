@@ -5,7 +5,7 @@ description: Learn how to use component virtualization in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
@@ -52,7 +52,7 @@ Instead of rendering the entire list of flights at once, replace the [`foreach`]
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
-    <Virtualize Items="@allFlights" Context="flight">
+    <Virtualize Items="allFlights" Context="flight">
         <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
     </Virtualize>
 </div>
@@ -62,7 +62,7 @@ If a context isn't specified with the `Context` parameter, use the value of `con
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
-    <Virtualize Items="@allFlights">
+    <Virtualize Items="allFlights">
         <FlightSummary @key="context.FlightId" Details="@context.Summary" />
     </Virtualize>
 </div>
@@ -86,7 +86,7 @@ The item content for the <xref:Microsoft.AspNetCore.Components.Web.Virtualizatio
 If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection%601>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
 ```razor
-<Virtualize Context="employee" ItemsProvider="@LoadEmployees">
+<Virtualize Context="employee" ItemsProvider="LoadEmployees">
     <p>
         @employee.FirstName @employee.LastName has the 
         job title of @employee.JobTitle.
@@ -115,7 +115,7 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
 
 ```razor
-<Virtualize Context="row" ItemsProvider="@GetRows">
+<Virtualize Context="row" ItemsProvider="GetRows">
     ...
 </Virtualize>
 
@@ -174,7 +174,7 @@ Because requesting items from a remote data source might take some time, you hav
 * Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemContent%2A?displayProperty=nameWithType> to set the item template for the list.
 
 ```razor
-<Virtualize Context="employee" ItemsProvider="@LoadEmployees">
+<Virtualize Context="employee" ItemsProvider="LoadEmployees">
     <ItemContent>
         <p>
             @employee.FirstName @employee.LastName has the 
@@ -213,7 +213,7 @@ protected override void OnInitialized() =>
 The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:
 
 ```razor
-<Virtualize Context="employee" Items="@employees" ItemSize="25">
+<Virtualize Context="employee" Items="employees" ItemSize="25">
     ...
 </Virtualize>
 ```
@@ -225,7 +225,7 @@ By default, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtual
 <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3). The following example changes the overscan count from the default of three items to four items:
 
 ```razor
-<Virtualize Context="employee" Items="@employees" OverscanCount="4">
+<Virtualize Context="employee" Items="employees" OverscanCount="4">
     ...
 </Virtualize>
 ```
@@ -244,7 +244,7 @@ For example, you can use a `tabindex` attribute on the scroll container:
 
 ```razor
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
-    <Virtualize Items="@allFlights">
+    <Virtualize Items="allFlights">
         <div class="flight-info">...</div>
     </Virtualize>
 </div>
@@ -260,7 +260,7 @@ If your source code looks like the following:
 
 ```razor
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
-    <Virtualize Items="@allFlights" ItemSize="100">
+    <Virtualize Items="allFlights" ItemSize="100">
         <div class="flight-info">Flight @context.Id</div>
     </Virtualize>
 </div>

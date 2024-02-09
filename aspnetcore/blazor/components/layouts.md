@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/layouts
 ---
 # ASP.NET Core Blazor layouts
@@ -210,7 +210,7 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.RouteView> component. Use the <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout%2A> parameter to set the layout type:
 
 ```razor
-<RouteView RouteData="@routeData" DefaultLayout="@typeof({LAYOUT})" />
+<RouteView RouteData="routeData" DefaultLayout="typeof({LAYOUT})" />
 ```
 
 In the preceding example, the `{LAYOUT}` placeholder is the layout (for example, `DoctorWhoLayout` if the layout file name is `DoctorWhoLayout.razor`). You may need to idenfity the layout's namespace depending on the .NET version and type of Blazor app. For more information, see the [Make the layout namespace available](#make-the-layout-namespace-available) section.
@@ -234,7 +234,7 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
         ...
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(ErrorLayout)">
+        <LayoutView Layout="typeof(ErrorLayout)">
             <h1>Page not found</h1>
             <p>Sorry, there's nothing at this address.</p>
         </LayoutView>

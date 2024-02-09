@@ -5,7 +5,7 @@ description: Learn how component authors can support static server-side renderin
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2023
+ms.date: 02/09/2024
 uid: blazor/components/class-libraries-with-static-ssr
 ---
 # ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)
@@ -97,11 +97,11 @@ Reusable Razor components may include forms (either `<form @onsubmit=...>` or `<
 Consider the following example:
 
 ```razor
-<EditForm Enhance FormName="NewProduct" Model="@Model" OnValidSubmit="SaveProduct">
+<EditForm Enhance FormName="NewProduct" Model="Model" OnValidSubmit="SaveProduct">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <p>Name: <InputText @bind-Value="@Item.Name" /></p>
+    <p>Name: <InputText @bind-Value="Item.Name" /></p>
 
     <button type="submit">Submit</button>
 </EditForm>

@@ -5,7 +5,7 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/file-uploads
 ---
 # ASP.NET Core Blazor file uploads
@@ -28,7 +28,7 @@ File selection isn't cumulative when using an <xref:Microsoft.AspNetCore.Compone
 The following <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component executes the `LoadFiles` method when the <xref:Microsoft.AspNetCore.Components.Forms.InputFile.OnChange> ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)) event occurs. An <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> provides access to the selected file list and details about each file:
 
 ```razor
-<InputFile OnChange="@LoadFiles" multiple />
+<InputFile OnChange="LoadFiles" multiple />
 
 @code {
     private void LoadFiles(InputFileChangeEventArgs e)
@@ -723,7 +723,7 @@ For a WebAssembly-rendered component, file data is streamed directly into the .N
 For an image preview of uploading images, start by adding an `InputFile` component with a component reference and an `OnChange` handler:
 
 ```razor
-<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+<InputFile @ref="inputFile" OnChange="ShowPreview" />
 ```
 
 Add an image element with an [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), which serves as the placeholder for the image preview:
@@ -787,7 +787,7 @@ The following `FileUpload4` component shows the complete example.
 
 <h1>File Upload Example</h1>
 
-<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+<InputFile @ref="inputFile" OnChange="ShowPreview" />
 
 <img style="max-width:200px;max-height:200px" @ref="previewImageElem" />
 
@@ -810,7 +810,7 @@ The following `FileUpload4` component shows the complete example.
 
 <h1>File Upload Example</h1>
 
-<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+<InputFile @ref="inputFile" OnChange="ShowPreview" />
 
 <img style="max-width:200px;max-height:200px" @ref="previewImageElem" />
 
