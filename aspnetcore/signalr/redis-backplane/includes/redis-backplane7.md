@@ -7,7 +7,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 * Deploy a Redis server.
 
   > [!IMPORTANT]
-  > For production use, a Redis backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. 
+  > For production use, a Redis backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane.
 
   For more information, see the following resources:
 
@@ -19,7 +19,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
-* Call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> by adding the following line before the line that calls `builder.Build()`) in `Program.cs` file.
+* Call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> by adding the following line before the line that calls `builder.Build()`) in the `Program.cs` file.
 
   ```csharp
   builder.Services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
