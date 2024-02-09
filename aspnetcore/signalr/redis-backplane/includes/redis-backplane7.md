@@ -19,10 +19,10 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
-* In the `Startup.ConfigureServices` method, call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+* Call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> by adding the following line before the line that calls `builder.Build()`) in `Program.cs` file.
 
   ```csharp
-  services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
+  builder.Services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
   
 * Configure options as needed:
