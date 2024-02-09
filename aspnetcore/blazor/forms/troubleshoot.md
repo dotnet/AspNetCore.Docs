@@ -5,7 +5,7 @@ description: Learn how to troubleshoot forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/05/2024
+ms.date: 02/09/2024
 uid: blazor/forms/troubleshoot
 ---
 # Troubleshoot ASP.NET Core Blazor forms
@@ -58,7 +58,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 <h1>Stream form data with JS interop</h1>
 
-<EditForm Model="@this" OnSubmit="@Submit" FormName="StreamFormData">
+<EditForm Model="this" OnSubmit="Submit" FormName="StreamFormData">
     <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to
@@ -130,7 +130,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 <h1>Stream form data with JS interop</h1>
 
-<EditForm Model="@this" OnSubmit="@Submit">
+<EditForm Model="this" OnSubmit="Submit">
     <div>
         <label>
             &lt;textarea&gt; value streamed for assignment to

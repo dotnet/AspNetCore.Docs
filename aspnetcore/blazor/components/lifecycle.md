@@ -5,7 +5,7 @@ description: Learn about the ASP.NET Core Razor component lifecycle and how to u
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle
@@ -761,7 +761,7 @@ Always unsubscribe event handlers from .NET events. The following [Blazor form](
   ```razor
   @implements IDisposable
 
-  <EditForm EditContext="@editContext">
+  <EditForm EditContext="editContext">
       ...
       <button type="submit" disabled="@formInvalid">Submit</button>
   </EditForm>
@@ -795,7 +795,7 @@ Always unsubscribe event handlers from .NET events. The following [Blazor form](
   ```razor
   @implements IDisposable
 
-  <EditForm EditContext="@editContext">
+  <EditForm EditContext="editContext">
       ...
       <button type="submit" disabled="@formInvalid">Submit</button>
   </EditForm>

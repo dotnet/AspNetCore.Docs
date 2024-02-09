@@ -5,7 +5,7 @@ description: Learn how to incorporate manual logic for building Blazor render tr
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/advanced-scenarios
 ---
 # ASP.NET Core Blazor advanced scenarios (render tree construction)

@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
@@ -91,8 +91,8 @@ In the following example:
 @inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
 
-<Router AppAssembly="@typeof(App).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(App).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -126,8 +126,8 @@ In the following example:
 @inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
 
-<Router AppAssembly="@typeof(Program).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(Program).Assembly" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -183,9 +183,9 @@ In the following example:
 @inject ILogger<App> Logger
 @inject LazyAssemblyLoader AssemblyLoader
 
-<Router AppAssembly="@typeof(App).Assembly" 
-    AdditionalAssemblies="@lazyLoadedAssemblies" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(App).Assembly" 
+    AdditionalAssemblies="lazyLoadedAssemblies" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -223,9 +223,9 @@ In the following example:
 @inject ILogger<App> Logger
 @inject LazyAssemblyLoader AssemblyLoader
 
-<Router AppAssembly="@typeof(Program).Assembly" 
-    AdditionalAssemblies="@lazyLoadedAssemblies" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(Program).Assembly" 
+    AdditionalAssemblies="lazyLoadedAssemblies" 
+    OnNavigateAsync="OnNavigateAsync">
     ...
 </Router>
 
@@ -410,12 +410,12 @@ Add the following component to the root of the RCL project. The component permit
 
 <h1>Robot</h1>
 
-<EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="robotModel" OnValidSubmit="HandleValidSubmit">
     <InputRadioGroup @bind-Value="robotModel.AxisSelection">
         @foreach (var entry in (Axis[])Enum
             .GetValues(typeof(Axis)))
         {
-            <InputRadio Value="@entry" />
+            <InputRadio Value="entry" />
             <text>&nbsp;</text>@entry<br>
         }
     </InputRadioGroup>
@@ -459,12 +459,12 @@ Add the following component to the root of the RCL project. The component permit
 
 <h1>Robot</h1>
 
-<EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="robotModel" OnValidSubmit="HandleValidSubmit">
     <InputRadioGroup @bind-Value="robotModel.AxisSelection">
         @foreach (var entry in (Axis[])Enum
             .GetValues(typeof(Axis)))
         {
-            <InputRadio Value="@entry" />
+            <InputRadio Value="entry" />
             <text>&nbsp;</text>@entry<br>
         }
     </InputRadioGroup>
@@ -529,19 +529,19 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 @inject ILogger<App> Logger
 @inject LazyAssemblyLoader AssemblyLoader
 
-<Router AppAssembly="@typeof(App).Assembly"
-        AdditionalAssemblies="@lazyLoadedAssemblies" 
-        OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(App).Assembly"
+        AdditionalAssemblies="lazyLoadedAssemblies" 
+        OnNavigateAsync="OnNavigateAsync">
     <Navigating>
         <div style="padding:20px;background-color:blue;color:white">
             <p>Loading the requested page&hellip;</p>
         </div>
     </Navigating>
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
+        <LayoutView Layout="typeof(MainLayout)">
             <p>Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>
@@ -581,19 +581,19 @@ The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router
 @inject ILogger<App> Logger
 @inject LazyAssemblyLoader AssemblyLoader
 
-<Router AppAssembly="@typeof(Program).Assembly"
-        AdditionalAssemblies="@lazyLoadedAssemblies" 
-        OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="typeof(Program).Assembly"
+        AdditionalAssemblies="lazyLoadedAssemblies" 
+        OnNavigateAsync="OnNavigateAsync">
     <Navigating>
         <div style="padding:20px;background-color:blue;color:white">
             <p>Loading the requested page&hellip;</p>
         </div>
     </Navigating>
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
     </Found>
     <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
+        <LayoutView Layout="typeof(MainLayout)">
             <p>Sorry, there's nothing at this address.</p>
         </LayoutView>
     </NotFound>

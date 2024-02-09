@@ -5,7 +5,7 @@ description: Learn about publishing ASP.NET Core Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/hybrid/publish/index
 ---
 # Publish ASP.NET Core Blazor Hybrid apps

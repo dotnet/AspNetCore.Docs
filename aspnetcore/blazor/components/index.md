@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -805,15 +805,13 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
-
 Quotes around parameter attribute values are optional in most cases per the HTML5 specification. For example, `Value=this` is supported, instead of `Value="this"`. However, we recommend using quotes because it's easier to remember and widely adopted across web-based technologies.
 
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Use the `@` prefix with nonliterals, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
-* Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`.
+* Don't use the `@` prefix with nonliterals unless required. Example: `Count="ct"`, where `ct` is a number-typed variable. `Count="@ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
+* Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`. This includes keywords (for example, `this`) and `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -853,21 +851,21 @@ Throughout the documentation, code examples:
 > Correct (`Title` is a string parameter, `Count` is a number-typed parameter):
 >
 > ```razor
-> <ParameterChild Title="@title" Count="@ct" />
+> <ParameterChild Title="@title" Count="ct" />
 > ```
 >
 > ```razor
-> <ParameterChild Title="@title" Count="ct" />
+> <ParameterChild Title="@title" Count="@ct" />
 > ```
 >
 > Incorrect:
 >
 > ```razor
-> <ParameterChild @Title="@title" @Count="@ct" />
+> <ParameterChild @Title="@title" @Count="ct" />
 > ```
 >
 > ```razor
-> <ParameterChild @Title="@title" @Count="ct" />
+> <ParameterChild @Title="@title" @Count="@ct" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:

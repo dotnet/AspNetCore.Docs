@@ -5,7 +5,7 @@ description: Learn about generic type support in ASP.NET Core Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/generic-type-support
 ---
 # ASP.NET Core Razor component generic type support
@@ -307,14 +307,14 @@ When cascading the data in the following example, the type must be provided to t
 
 <h1>Generic Type Example 3</h1>
 
-<CascadingValue Value="@stringData">
+<CascadingValue Value="stringData">
     <ListGenericTypeItems3 TExample="string">
         <ListDisplay3 />
         <ListDisplay4 />
     </ListGenericTypeItems3>
 </CascadingValue>
 
-<CascadingValue Value="@integerData">
+<CascadingValue Value="integerData">
     <ListGenericTypeItems3 TExample="int">
         <ListDisplay3 />
         <ListDisplay4 />
@@ -330,13 +330,13 @@ When cascading the data in the following example, the type must be provided to t
 When multiple generic types are cascaded, values for all generic types in the set must be passed. In the following example, `TItem`, `TValue`, and `TEdit` are `GridColumn` generic types, but the parent component that places `GridColumn` doesn't specify the `TItem` type:
 
 ```razor
-<GridColumn TValue="string" TEdit="@TextEdit" />
+<GridColumn TValue="string" TEdit="TextEdit" />
 ```
 
 The preceding example generates a compile-time error that the `GridColumn` component is missing the `TItem` type parameter. Valid code specifies all of the types:
 
 ```razor
-<GridColumn TValue="string" TEdit="@TextEdit" TItem="@User" />
+<GridColumn TValue="string" TEdit="TextEdit" TItem="User" />
 ```
 
 ### Infer generic types based on ancestor components
@@ -408,14 +408,14 @@ The following component with inferred cascaded types provides the same data for 
 
 <h1>Generic Type Example 5</h1>
 
-<ListGenericTypeItems4 ExampleList="@stringData">
-    <ListDisplay1 ExampleList="@stringData" />
-    <ListDisplay2 ExampleList="@stringData" />
+<ListGenericTypeItems4 ExampleList="stringData">
+    <ListDisplay1 ExampleList="stringData" />
+    <ListDisplay2 ExampleList="stringData" />
 </ListGenericTypeItems4>
 
-<ListGenericTypeItems4 ExampleList="@integerData">
-    <ListDisplay1 ExampleList="@integerData" />
-    <ListDisplay2 ExampleList="@integerData" />
+<ListGenericTypeItems4 ExampleList="integerData">
+    <ListDisplay1 ExampleList="integerData" />
+    <ListDisplay2 ExampleList="integerData" />
 </ListGenericTypeItems4>
 
 @code {

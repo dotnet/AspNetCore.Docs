@@ -5,7 +5,7 @@ description: Learn how to use binding in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/05/2024
+ms.date: 02/09/2024
 uid: blazor/forms/binding
 ---
 # ASP.NET Core Blazor forms binding
@@ -27,7 +27,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-<EditForm ... Model="@Model" ...>
+<EditForm ... Model="Model" ...>
     ...
 </EditForm>
 
@@ -44,7 +44,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-<EditForm Model="@Model" ...>
+<EditForm Model="Model" ...>
     ...
 </EditForm>
 
@@ -67,7 +67,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-<EditForm ... EditContext="@editContext" ...>
+<EditForm ... EditContext="editContext" ...>
     ...
 </EditForm>
 
@@ -90,7 +90,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-<EditForm EditContext="@editContext" ...>
+<EditForm EditContext="editContext" ...>
     ...
 </EditForm>
 
@@ -172,7 +172,7 @@ In the following example, the `HelloFormFromLibrary` component has a form named 
 `HelloFormFromLibrary.razor`:
 
 ```razor
-<EditForm Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm Model="this" OnSubmit="Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -207,7 +207,7 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
 
 <div>Hello form using the same form name</div>
 
-<EditForm Model="@this" OnSubmit="@Submit" FormName="Hello">
+<EditForm Model="this" OnSubmit="Submit" FormName="Hello">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -339,7 +339,7 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
         {
             <div>
                 <label>
-                    <InputRadio Value="@manufacturer" />
+                    <InputRadio Value="manufacturer" />
                     @manufacturer
                 </label>
             </div>
@@ -358,13 +358,13 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
             <div style="margin-bottom:5px">
                 <div>
                     <label>
-                        <InputRadio Name="engine" Value="@Engine.Ion" />
+                        <InputRadio Name="engine" Value="Engine.Ion" />
                         Ion
                     </label>
                 </div>
                 <div>
                     <label>
-                        <InputRadio Name="color" Value="@Color.ImperialRed" />
+                        <InputRadio Name="color" Value="Color.ImperialRed" />
                         Imperial Red
                     </label>
                 </div>
@@ -372,13 +372,13 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
             <div style="margin-bottom:5px">
                 <div>
                     <label>
-                        <InputRadio Name="engine" Value="@Engine.Plasma" />
+                        <InputRadio Name="engine" Value="Engine.Plasma" />
                         Plasma
                     </label>
                 </div>
                 <div>
                     <label>
-                        <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
+                        <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
                         Spacecruiser Green
                     </label>
                 </div>
@@ -386,13 +386,13 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
             <div style="margin-bottom:5px">
                 <div>
                     <label>
-                        <InputRadio Name="engine" Value="@Engine.Fusion" />
+                        <InputRadio Name="engine" Value="Engine.Fusion" />
                         Fusion
                     </label>
                 </div>
                 <div>
                     <label>
-                        <InputRadio Name="color" Value="@Color.StarshipBlue" />
+                        <InputRadio Name="color" Value="Color.StarshipBlue" />
                         Starship Blue
                     </label>
                 </div>
@@ -400,13 +400,13 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
             <div style="margin-bottom:5px">
                 <div>
                     <label>
-                        <InputRadio Name="engine" Value="@Engine.Warp" />
+                        <InputRadio Name="engine" Value="Engine.Warp" />
                         Warp
                     </label>
                 </div>
                 <div>
                     <label>
-                        <InputRadio Name="color" Value="@Color.VoyagerOrange" />
+                        <InputRadio Name="color" Value="Color.VoyagerOrange" />
                         Voyager Orange
                     </label>
                 </div>
@@ -477,7 +477,7 @@ When working with radio buttons in a form, data binding is handled differently t
         else
         {
             result = default;
-            errorMessage = $"{FieldId.FieldName} field isn't valid.";
+            errorMessage = "The field isn't valid.";
 
             return false;
         }
@@ -491,6 +491,23 @@ For more information on generic type parameters (`@typeparam`), see the followin
 * <xref:blazor/components/index#generic-type-parameter-support>
 * <xref:blazor/components/templated-components>
 
+Use the following example model.
+
+`StarshipModel.cs`:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+namespace BlazorServer80
+{
+    public class Model
+    {
+        [Range(1, 5)]
+        public int Rating { get; set; }
+    }
+}
+```
+
 The following `RadioButtonExample` component uses the preceding `InputRadio` component to obtain and validate a rating from the user:
 
 `RadioButtonExample.razor`:
@@ -503,7 +520,7 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
 
 <h1>Radio Button Example</h1>
 
-<EditForm Model="@Model" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -511,7 +528,7 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
     {
         <div>
             <label>
-                <InputRadio name="rate" SelectedValue="@i" 
+                <InputRadio name="rate" SelectedValue="i" 
                     @bind-Value="Model.Rating" />
                 @i
             </label>
@@ -526,19 +543,13 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
 <div>@Model.Rating</div>
 
 @code {
-    public Starship Model { get; set; }
+    public StarshipModel Model { get; set; }
 
     protected override void OnInitialized() => Model ??= new();
 
     private void HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
-    }
-
-    public class Model
-    {
-        [Range(1, 5)]
-        public int Rating { get; set; }
     }
 }
 ```

@@ -5,7 +5,7 @@ description: Learn how to flow data from an ancestor Razor component to descende
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/components/cascading-values-and-parameters
 ---
 # ASP.NET Core Blazor cascading values and parameters
@@ -157,7 +157,7 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
   `Routes.razor`:
 
   ```razor
-  <CascadingValue Value="@theme">
+  <CascadingValue Value="theme">
       <Router ...>
           ...
       </Router>
@@ -239,7 +239,7 @@ Similar to a regular component parameter, components accepting a cascading param
         <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
     </div>
 
-    <CascadingValue Value="@theme">
+    <CascadingValue Value="theme">
         <article class="content px-4">
             @Body
         </article>
@@ -296,8 +296,8 @@ To cascade multiple values of the same type within the same subtree, provide a u
 In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) components cascade different instances of `CascadingType`:
 
 ```razor
-<CascadingValue Value="@parentCascadeParameter1" Name="CascadeParam1">
-    <CascadingValue Value="@ParentCascadeParameter2" Name="CascadeParam2">
+<CascadingValue Value="parentCascadeParameter1" Name="CascadeParam1">
+    <CascadingValue Value="ParentCascadeParameter2" Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>

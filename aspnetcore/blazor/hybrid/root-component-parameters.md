@@ -5,7 +5,7 @@ description: Learn how to pass an optional dictionary of parameters to the root 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 11/14/2023
+ms.date: 02/09/2024
 uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid
@@ -175,9 +175,9 @@ In the `Main` component (`Main.razor`):
 
   ```xaml
   <Found Context="routeData">
-      <CascadingValue Value="@KeypadViewModel">
-          <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-          <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+      <CascadingValue Value="KeypadViewModel">
+          <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+          <FocusOnNavigate RouteData="routeData" Selector="h1"/>
       </CascadingValue>
   </Found>
   ```
