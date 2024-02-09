@@ -153,6 +153,10 @@ curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/swagger/v1/s
 
 For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
 
+## Generate an XML documentation file at compile time.
+
+See [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generatedocumentationfile) for more information.
+
 ## Next steps
 
 * [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)

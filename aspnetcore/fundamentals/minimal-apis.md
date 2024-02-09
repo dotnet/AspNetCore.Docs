@@ -9,6 +9,8 @@ ms.date: 10/23/2023
 uid: fundamentals/minimal-apis
 ---
 
+<!-- When working on this file, open all the LATEST VERSION MD files in ~/fundamentals/minimal-apis/includes/ and search for the target text -->
+
 # Minimal APIs quick reference
 
 :::moniker range=">= aspnetcore-8.0"
@@ -23,7 +25,7 @@ The minimal APIs consist of:
 * [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
 * [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
-[!INCLUDE [WebApplication](~/fundamentals/minimal-apis/includes/webapplication8.md)]
+[!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication8.md)]
 
 ## ASP.NET Core Middleware
 
@@ -190,7 +192,10 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 ## Filters
 
-See <xref:fundamentals/minimal-apis/min-api-filters>
+See:
+
+* <xref:fundamentals/minimal-apis/min-api-filters>
+* [A deep dive into endpoint filters](https://blog.safia.rocks/endpoint-filters-exploration.html)
 
 ## Authorization
 
