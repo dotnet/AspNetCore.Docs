@@ -21,7 +21,7 @@ This section describes new features for Blazor.
 
 ## SignalR
 
-This section describes new features for authentication and authorization.
+This section describes new features for SignalR.
 
 ## Minimal APIs
 
@@ -29,7 +29,7 @@ This section describes new features for minimal APIs.
 
 ## Authentication and authorization
 
-ASP.NET Core 9 adds new features to authentication and authorization.
+This section describes new features for authentication and authorization.
 
 ## Miscellaneous
 
