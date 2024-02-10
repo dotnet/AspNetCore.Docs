@@ -5,7 +5,7 @@ description: Learn how to set up a Redis backplane to enable scale-out for an AS
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 02/06/2024
 uid: signalr/redis-backplane
 ---
 
@@ -22,7 +22,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 * Deploy a Redis server.
 
   > [!IMPORTANT]
-  > For production use, a Redis backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. 
+  > For production use, a Redis backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane.
 
   For more information, see the following resources:
 
@@ -34,10 +34,10 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
-* In the `Startup.ConfigureServices` method, call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
+* Call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> by adding the following line before the line that calls `builder.Build()`) in the `Program.cs` file.
 
   ```csharp
-  services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
+  builder.Services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
   
 * Configure options as needed:
@@ -47,9 +47,9 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
   ```csharp
-  services.AddSignalR()
+  builder.Services.AddSignalR()
     .AddStackExchangeRedis(connectionString, options => {
-        options.Configuration.ChannelPrefix = "MyApp";
+        options.Configuration.ChannelPrefix = RedisChannel.Literal("MyApp");
     });
   ```
 
