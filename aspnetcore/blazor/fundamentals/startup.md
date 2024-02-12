@@ -735,7 +735,7 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 In advanced programming scenarios, the `configureRuntime` function with the `dotnet` runtime host builder is used to configure the .NET WebAssembly runtime. For example, `dotnet.withEnvironmentVariable` sets an environment variable that:
 
 * Configures the .NET WebAssembly runtime.
-* Changes the behavior of a C library if the app is built with a [`NativeFileReference`](xref:blazor/webassembly-native-dependencies).
+* Changes the behavior of a C library.
 
 The `configureRuntime` function can also be used to [enable integration with a browser profiler](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#profiling).
 
