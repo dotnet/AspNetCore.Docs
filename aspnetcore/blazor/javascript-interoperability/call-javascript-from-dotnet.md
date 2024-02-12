@@ -1578,7 +1578,7 @@ For more information, see <xref:blazor/js-interop/index#javascript-interop-calls
 ## Additional resources
 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
-* [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
+* [`InteropComponent.razor` example (`dotnet/AspNetCore` GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors#javascript-interop> (*JavaScript interop* section)
 * [Threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/server/interactive-server-side-rendering#javascript-functions-invoked-from-net)

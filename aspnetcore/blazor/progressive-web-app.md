@@ -94,7 +94,7 @@ To obtain static assets, use **one** of the following approaches:
 
 * Navigate to the ASP.NET Core GitHub repository at the following URL, which links to `main` branch reference source and assets. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
-  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot)
+  [Blazor WebAssembly project template `wwwroot` folder (`dotnet/aspnetcore` GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot)
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -122,7 +122,7 @@ In the app's `wwwroot/index.html` file:
 
 * Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `release/7.0` branch reference source and assets. If you're using a version of ASP.NET Core later than 7.0, change the document version selector to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
-  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `release/7.0` branch)](https://github.com/dotnet/aspnetcore/tree/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  [Blazor WebAssembly project template `wwwroot` folder (`dotnet/aspnetcore` GitHub repository `release/7.0` branch)](https://github.com/dotnet/aspnetcore/tree/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

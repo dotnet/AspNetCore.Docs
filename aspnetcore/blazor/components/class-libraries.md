@@ -419,7 +419,7 @@ private static string GetLoggingDirectory()
 }
 ```
 
-For more information, see [Annotating APIs as unsupported on specific platforms (dotnet/designs GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
+For more information, see [Annotating APIs as unsupported on specific platforms (`dotnet/designs` GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
 
 :::moniker-end
 
