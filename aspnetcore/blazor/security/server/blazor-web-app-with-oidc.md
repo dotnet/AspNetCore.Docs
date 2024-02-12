@@ -21,11 +21,11 @@ This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC
 
 :::zone pivot="blazor-web-app"
 
-This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Blazor Web App (BFF pattern)** if the app's specification calls for adopting the BFF pattern.
+This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **Blazor Web App (BFF pattern)** if the app's specification calls for adopting the BFF pattern.
 
 The following specification is covered:
 
-* The Blazor Web App adopts [global Auto interactivity](xref:blazor/components/render-modes).
+* The Blazor Web App uses [the Auto render mode with global interactivity](xref:blazor/components/render-modes).
 * Custom auth state provider services are used by the server and client apps to capture the user's authentication state and flow it between the server and client.
 * This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can used with Entra, Microsoft Identity Web, and hosted in Azure.
 * Automatic non-interactive token refresh.
@@ -56,7 +56,7 @@ This version of the article covers implementing OIDC with the [Backend for Front
 
 The following specification is covered:
 
-* The Blazor Web App adopts [global Auto interactivity](xref:blazor/components/render-modes).
+* The Blazor Web App uses [the Auto render mode with global interactivity](xref:blazor/components/render-modes).
 * Custom auth state provider services are used by the server and client apps to capture the user's authentication state and flow it between the server and client.
 * This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can used with Entra, Microsoft Identity Web, and hosted in Azure.
 * Automatic non-interactive token refresh.
