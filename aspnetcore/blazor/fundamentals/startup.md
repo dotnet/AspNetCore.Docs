@@ -737,6 +737,8 @@ In advanced programming scenarios, the `configureRuntime` function with the `dot
 * Configures the .NET WebAssembly runtime.
 * Changes the behavior of a C library if the app is built with a [`NativeFileReference`](xref:blazor/webassembly-native-dependencies).
 
+The `configureRuntime` function can also be used to [enable integration with a browser profiler](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#profiling).
+
 In the following examples that set an environment variable:
 
 * The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
