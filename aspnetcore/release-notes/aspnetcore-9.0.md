@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/5/2024
+ms.date: 2/11/2024
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core 9.0
@@ -18,6 +18,8 @@ This article will be updated as new preview releases are made available.
 ## Blazor
 
 This section describes new features for Blazor.
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor.md)]
 
 ## SignalR
 
@@ -33,6 +35,6 @@ This section describes new features for authentication and authorization.
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 9.
+The following sections describe miscellaneous new features in ASP.NET Core 9.0.
 
 ## Additional resources
