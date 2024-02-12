@@ -183,7 +183,7 @@ For a working demonstration, implement the timer notification example in [Invoke
 
 * `TimerService.cs`
 * `NotifierService.cs`
-* `ReceiveNotifications.razor`
+* `Notifications.razor`
 
 The example uses a timer outside of a Razor component's lifecycle, where an unhandled exception normally isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 
@@ -227,7 +227,7 @@ In Blazor Web Apps with the error boundary only applied to a static `MainLayout`
 
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
-Change the `OnNotify` method of the `ReceiveNotification` component (`ReceiveNotification.razor`):
+Change the `OnNotify` method of the `Notifications` component (`Notifications.razor`):
 
 * Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
 * Pass any <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and await the result.
