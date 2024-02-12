@@ -239,7 +239,7 @@ To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutori
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for Blazor WebAssembly are limited to a subset of .NET APIs. When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
+Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for Blazor WebAssembly are limited to a [subset of .NET APIs](xref:blazor/fundamentals/index#subset-of-net-apis-for-blazor-webassembly-apps). When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
 
 :::moniker-end
 

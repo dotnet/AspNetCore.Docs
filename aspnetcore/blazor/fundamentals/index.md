@@ -144,6 +144,17 @@ For more information, see the following resources:
 * [Introduction to the DOM (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)
 * [Level 1 Document Object Model Specification (W3C)](https://www.w3.org/TR/WD-DOM/)
 
+## Subset of .NET APIs for Blazor WebAssembly apps
+
+A curated list of specific .NET APIs that are supported on the browser for Blazor WebAssembly isn't available. However, you can manually [search for a list of .NET APIs annotated with `[UnsupportedOSPlatform("browser")]`](https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/Runtime/Versioning/PlatformAttributes.cs,34041602e232c616,references) to discover .NET APIs that aren't supported in WebAssembly.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+For more information, see the following resources:
+
+* [Class libraries: Client-side browser compatibility analyzer](xref:blazor/components/class-libraries#client-side-browser-compatibility-analyzer)
+* [Annotating APIs as unsupported on specific platforms (`dotnet/designs` GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms)
+
 ## Sample apps
 
 Documentation sample apps are available for inspection and download:
