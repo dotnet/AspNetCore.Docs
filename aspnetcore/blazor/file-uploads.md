@@ -69,7 +69,7 @@ var reader =
 
 ```csharp
 var memoryStream = new MemoryStream();
-browserFile.OpenReadStream().CopyToAsync(memoryStream);
+await browserFile.OpenReadStream().CopyToAsync(memoryStream);
 await blobContainerClient.UploadBlobAsync(
     trustedFileName, memoryStream));
 ```
