@@ -84,7 +84,7 @@ groups:
   title: Specification
   prompt: Choose the app specification
   pivots:
-    - id: blazor-web-app
-      title: Blazor Web App
-    - id: blazor-web-app-bff
-      title: Blazor Web App (BFF pattern)
+    - id: without-bff-pattern
+      title: OIDC without BFF pattern
+    - id: with-bff-pattern
+      title: OIDC with BFF pattern

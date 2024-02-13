@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor WebAssembly App with OpenID Connect (O
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/26/2024
+ms.date: 02/13/2024
 uid: blazor/security/server/blazor-web-app-oidc
 zone_pivot_groups: blazor-web-app-oidc-specification
 ---
@@ -19,9 +19,9 @@ zone_pivot_groups: blazor-web-app-oidc-specification
 
 This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples).
 
-:::zone pivot="blazor-web-app"
+:::zone pivot="without-bff-pattern"
 
-This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **Blazor Web App (BFF pattern)** if the app's specification calls for adopting the BFF pattern.
+This version of the article covers implementing OIDC without adopting the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). The BFF pattern is useful for making authenticated requests to external services. Change the article version selector to **OIDC with BFF pattern** if the app's specification calls for adopting the BFF pattern.
 
 The following specification is covered:
 
@@ -41,18 +41,192 @@ Access the sample apps through the latest version folder from the repository's r
 
 [View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
 
-<!-- 
-    The non-BFF sections for the BWA will appear here after 
-    the first round of review. I'll modify the sections 
-    accordingly for the changes made for the non-BFF sample 
-    app.
--->
+## Server-side Blazor Web App project (`BlazorWebAppOidc`)
+
+The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App. The project uses [YARP](https://microsoft.github.io/reverse-proxy/) to proxy requests to a weather forecast endpoint in the backend web API project (`MinimalApiJwt`) with the `access_token` stored in the authentication cookie.
+
+The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+
+### Configuration
+
+This section explains how to configure the sample app.
+
+> [!NOTE]
+> For Microsoft Entra ID and Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the preceding linked resources.
+
+The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
+
+* <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.SignInScheme%2A>: Sets the authentication scheme corresponding to the middleware responsible of persisting user's identity after a successful authentication. The OIDC handler needs to use a sign-in scheme that's capable of persisting user credentials across requests. The following line is present merely for demonstration purposes. If omitted, <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultSignInScheme%2A> is used as a fallback value.
+
+  ```csharp
+  oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+  ```
+
+* Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see <xref:fundamentals/configuration/index> and <xref:blazor/fundamentals/configuration>.
+
+  ```csharp
+  oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `false` by default to reduce the size of the final authentication cookie.
+
+  ```csharp
+  oidcOptions.SaveTokens = false;
+  ```
+
+* Scope for offline access (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>): The `offline_access` scope is required for the refresh token.
+
+  ```csharp
+  oidcOptions.Scope.Add(OpenIdConnectScope.OfflineAccess);
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority%2A> and <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId%2A>: Sets the Authority and Client ID for OIDC calls.
+
+  ```csharp
+  oidcOptions.Authority = "{AUTHORITY}";
+  oidcOptions.ClientId = "{CLIENT ID}";
+  ```
+
+  Example:
+
+  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
+  * Client Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+
+  ```csharp
+  oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
+  oidcOptions.ClientId = "4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  ```
+
+  Example for Microsoft Azure "common" authority:
+  
+  The "common" authority should be used for multi-tenant apps. You can also use the "common" authority for single-tenant apps, but a custom <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A> is required, as shown later in this section.
+
+  ```csharp
+  oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A>: The OIDC client secret.
+
+  **The following example is only for testing and demonstration purposes. Don't store the client secret in the app's assembly or check the secret into source control.**  Store the client secret in [User Secrets](xref:security/app-secrets), [Azure Key Vault](xref:security/key-vault-configuration), or an [environment variable](xref:fundamentals/configuration/index#non-prefixed-environment-variables).
+  
+  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc` by default. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
+
+  ```dotnetcli
+  set Authentication__Schemes__MicrosoftOidc__ClientSecret={CLIENT SECRET}
+  ```
+  
+  **For demonstration and testing only**, the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A> can be set directly. Don't set the value directly for deployed production apps. For slightly improved security, [conditionally compile](/dotnet/csharp/language-reference/preprocessor-directives#conditional-compilation) the line with the `DEBUG` symbol:
+
+  ```csharp
+  #if DEBUG
+  oidcOptions.ClientSecret = "{CLIENT SECRET}";
+  #endif
+  ```
+
+  Example:
+
+  Client secret (`{CLIENT SECRET}`): `463471c8c4...f90d674bc9` (shortened for display)
+
+  ```csharp
+  #if DEBUG
+  oidcOptions.ClientSecret = "463471c8c4...137f90d674bc9";
+  #endif
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
+
+  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do ***not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+
+  ```csharp
+  oidcOptions.ResponseType = OpenIdConnectResponseType.Code;
+  ```
+
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example manually maps the name and role claims:
+
+  ```csharp
+  oidcOptions.MapInboundClaims = false;
+  oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+  oidcOptions.TokenValidationParameters.RoleClaimType = "role";
+  ```
+
+* Path configuration: Paths must match the redirect URI (login callback path) and post logout redirect (signed-out callback path) paths configured when registering the application with the OIDC provider. In the Azure portal, paths are configured in the **Authentication** blade of the app's registration. Both the sign-in and sign-out paths must be registered as redirect URIs. The default values are `/signin-oidc` and `/signout-callback-oidc` which could be used instead.
+
+  * <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions.CallbackPath>: The request path within the app's base path where the user-agent is returned.
+  
+    In the Entra or Azure portal, set the path in the **Web** platform configuration's **Redirect URI**:
+
+    > :::no-loc text="https://localhost/signin-oidc":::
+
+    > [!NOTE]
+    > A port isn't required for `localhost` addresses.
+
+  * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A>: The request path within the app's base path where the user agent is returned after sign out from the identity provider.
+
+    In the Entra or Azure portal, set the path in the **Web** platform configuration's **Redirect URI**:
+
+    > :::no-loc text="https://localhost/signout-callback-oidc":::
+
+    > [!NOTE]
+    > A port isn't required for `localhost` addresses.
+  
+    > [!NOTE]
+    > If using Microsoft Identity Web, the provider currently only redirects back to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> if the `microsoftonline.com` Authority (`https://login.microsoftonline.com/{TENANT ID}/v2.0/`) is used. This limitation doesn't exist if you can use the "common" Authority with Microsoft Identity Web. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783).
+  
+  * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.RemoteSignOutPath%2A>: Requests received on this path cause the handler to invoke sign-out using the sign-out scheme.
+
+    In the Entra or Azure portal, set the **Front-channel logout URL**:
+
+    > :::no-loc text="https://localhost/signout-oidc":::
+
+    > [!NOTE]
+    > A port isn't required for `localhost` addresses.
+
+  ```csharp
+  oidcOptions.CallbackPath = new PathString("{PATH}");
+  oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+  oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
+  ```
+
+  Examples (default values):
+
+  ```csharp
+  oidcOptions.CallbackPath = new PathString("/signin-oidc");
+  oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+  oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+  ```
+
+* (*Microsoft Azure only*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
+
+  For apps using Microsoft Entra ID or Azure AD B2C:
+
+  ```csharp
+  var microsoftIssuerValidator = AadIssuerValidator.GetAadIssuerValidator(oidcOptions.Authority);
+  oidcOptions.TokenValidationParameters.IssuerValidator = microsoftIssuerValidator.Validate;
+  ```
+
+### Sample app code
+
+Inspect the sample app for the following features:
+
+* Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
+* The `PersistingAuthenticationStateProvider` class (`PersistingAuthenticationStateProvider.cs`) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client, which is then fixed for the lifetime of the WebAssembly application.
+* An example requests to the Blazor Web App for weather data is handled by a Minimal API endpoint (`/weatherforecast`) in the `Program` file (`Program.cs`). The endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
+
+## Client-side Blazor Web App project (`BlazorWebAppOidc.Client`)
+
+The `BlazorWebAppOidc.Client` project is the client-side project of the Blazor Web App.
+
+The `PersistentAuthenticationStateProvider` class (`PersistentAuthenticationStateProvider.cs`) is a client-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that determines the user's authentication state by looking for data persisted in the page when it was rendered on the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+
+If the user needs to log in or out, a full page reload is required.
+
+The sample app only provides a user name and email for display purposes. It doesn't include tokens that authenticate to the server when making subsequent requests, which works separately using a cookie that's included on <xref:System.Net.Http.HttpClient> requests to the server.
 
 :::zone-end
 
-:::zone pivot="blazor-web-app-bff"
+:::zone pivot="with-bff-pattern"
 
-This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **Blazor Web App** if the app's specification doesn't call for adopting the BFF pattern.
+This version of the article covers implementing OIDC with the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends). Change the article version selector to **OIDC without BFF pattern** if the app's specification doesn't call for adopting the BFF pattern.
 
 The following specification is covered:
 
