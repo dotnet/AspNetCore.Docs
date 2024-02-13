@@ -9,6 +9,7 @@ ms.author: midenn
 ms.custom: mvc
 ms.date: 08/10/2023
 uid: fundamentals/native-aot-tutorial
+ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using native AOT
 

@@ -8,6 +8,7 @@ content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
 ms.date: 1/11/2024
 uid: fundamentals/native-aot
+ai-usage: ai-assisted
 ---
 # ASP.NET Core support for native AOT
 
