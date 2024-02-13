@@ -289,7 +289,7 @@ Two-way data binding isn't possible to implement with an event handler. Use `@bi
 
 The `OnInput` event handler updates the value of `inputValue` to `Long!` after a fourth character is provided. However, the user can continue adding characters to the element value in the UI. The value of `inputValue` isn't bound back to the element's value with each keystroke. The preceding example is only capable of one-way data binding.
 
-The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force DOM element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core 7.0 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
+The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force DOM element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core in .NET 7 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
 
 <span aria-hidden="true">✔️</span> Consider the following ***correct approach*** using `@bind:get`/`@bind:set` for two-way data binding:
 
@@ -364,7 +364,7 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 :::moniker range="< aspnetcore-7.0"
 
 > [!NOTE]
-> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For two-way data binding in ASP.NET Core 7.0 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in 7.0 or later versions of this article.
+> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For two-way data binding in ASP.NET Core in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in 7.0 or later versions of this article.
 
 :::moniker-end
 

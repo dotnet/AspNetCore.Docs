@@ -15,7 +15,7 @@ uid: blazor/performance
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later.
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
@@ -736,7 +736,7 @@ function jsInteropCall() {
 
 ### Use JavaScript `[JSImport]`/`[JSExport]` interop
 
-JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core 7.0.
+JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core in .NET 7.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>.
 

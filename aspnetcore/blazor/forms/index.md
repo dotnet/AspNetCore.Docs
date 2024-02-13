@@ -310,7 +310,7 @@ Examples use the [target-typed `new` operator](/dotnet/csharp/language-reference
 public ShipDescription ShipDescription { get; set; } = new();
 ```
 
-If using C# 8.0 or earlier (.NET 3.1), modify the example code to state the type to the `new` operator:
+If using C# 8.0 or earlier (ASP.NET Core 3.1), modify the example code to state the type to the `new` operator:
 
 ```csharp
 public ShipDescription ShipDescription { get; set; } = new ShipDescription();

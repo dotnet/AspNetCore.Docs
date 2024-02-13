@@ -8,6 +8,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 6/14/2023
 uid: fundamentals/routing
+ai-usage: ai-assisted
 ---
 # Routing in ASP.NET Core
 

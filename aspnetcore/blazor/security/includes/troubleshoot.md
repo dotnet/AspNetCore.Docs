@@ -1,6 +1,6 @@
 ### Logging
 
-*This section applies to ASP.NET Core 7.0 or later.*
+*This section applies to ASP.NET Core in .NET 7 or later.*
 
 To enable debug or trace logging for Blazor WebAssembly authentication, see <xref:blazor/fundamentals/logging>.
 

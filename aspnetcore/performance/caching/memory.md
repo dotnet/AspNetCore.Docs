@@ -8,6 +8,7 @@ ms.custom: mvc
 ms.date: 11/07/2023
 content_well_notification: AI-contribution
 uid: performance/caching/memory
+ai-usage: ai-assisted
 ---
 # Cache in-memory in ASP.NET Core
 
