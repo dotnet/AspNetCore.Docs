@@ -13,13 +13,15 @@ items:
     uid: getting-started
   - name: What's new
     items:
-      - name: What's new in 8.0
+      - name: What's new in 9
+        uid: aspnetcore-9
+      - name: What's new in 8
         uid: aspnetcore-8
-      - name: What's new in 7.0
+      - name: What's new in 7
         uid: aspnetcore-7
-      - name: What's new in 6.0
+      - name: What's new in 6
         uid: aspnetcore-6.0
-      - name: What's new in 5.0
+      - name: What's new in 5
         uid: aspnetcore-5.0
       - name: What's new in 3.1
         uid: aspnetcore-3.1
