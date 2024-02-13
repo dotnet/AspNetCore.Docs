@@ -4,7 +4,7 @@ author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/13/2023
+ms.date: 02/12/2024
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -134,7 +134,9 @@ Visual Studio:
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**.
+In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET 5+ and .NET Core**.
+
+![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/_static/vsc-select-debugger.png)
 
 The default browser launched with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
 
