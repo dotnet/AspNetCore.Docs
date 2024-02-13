@@ -511,7 +511,7 @@ For more information, see [Configure stateful reconnect](xref:signalr/configurat
 
 ## Minimal APIs
 
-This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
+This section describes new features for minimal APIs. See also [the section on Native AOT](#native-aot) for more information relevant to minimal APIs.
 
 ### User override culture
 
@@ -572,17 +572,17 @@ For more information, see the [ObjectPool sample](xref:performance/ObjectPool##o
 
 ## Native AOT
 
-Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
+Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and Native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
 
 [!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
 
 ### New project template
 
-The new **ASP.NET Core Web API (native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (native AOT) template](xref:fundamentals/native-aot#the-web-api-native-aot-template).
+The new **ASP.NET Core Web API (Native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (Native AOT) template](xref:fundamentals/native-aot#the-web-api-native-aot-template).
 
 ### New `CreateSlimBuilder` method
 
-The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the Web API (native AOT) template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. The `CreateSlimBuilder` method includes the following features that are typically needed for an efficient development experience:
+The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the Web API (Native AOT) template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. The `CreateSlimBuilder` method includes the following features that are typically needed for an efficient development experience:
 
 * JSON file configuration for `appsettings.json` and `appsettings.{EnvironmentName}.json`.
 * User secrets configuration.
@@ -599,17 +599,17 @@ Here’s an example of using this API to create a small web application:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-8.0/samples/EmptyBuilderExample/Program.cs":::
 
-Publishing this code with native AOT using .NET 8 Preview 7 on a linux-x64 machine results in a self-contained native executable of about 8.5 MB.
+Publishing this code with Native AOT using .NET 8 Preview 7 on a linux-x64 machine results in a self-contained native executable of about 8.5 MB.
 
 ### Reduced app size with configurable HTTPS support
 
-We've further reduced native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+We've further reduced Native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
 
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
-New features were added to <xref:System.Text.Json> to better support native AOT. These new features add capabilities for the source generation mode of `System.Text.Json`, because reflection isn't supported by AOT.
+New features were added to <xref:System.Text.Json> to better support Native AOT. These new features add capabilities for the source generation mode of `System.Text.Json`, because reflection isn't supported by AOT.
 
-One of the new features is support for JSON serialization of <xref:System.Collections.Generic.IAsyncEnumerable%601> implementations implemented by the C# compiler. This support opens up their use in ASP.NET Core projects configured to publish native AOT.
+One of the new features is support for JSON serialization of <xref:System.Collections.Generic.IAsyncEnumerable%601> implementations implemented by the C# compiler. This support opens up their use in ASP.NET Core projects configured to publish Native AOT.
 
 This API is useful in scenarios where a route handler uses `yield return` to asynchronously return an enumeration. For example, to materialize rows from a database query. For more information, see [Unspeakable type support](https://devblogs.microsoft.com/dotnet/announcing-dotnet-8-preview-4/#unspeakable-type-support) in the .NET 8 Preview 4 announcement.
 
@@ -617,21 +617,21 @@ For information abut other improvements in `System.Text.Json` source generation,
 
 ### Top-level APIs annotated for trim warnings
 
-The main entry points to subsystems that don't work reliably with native AOT are now annotated. When these methods are called from an application with native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API isn't trim-safe and isn't supported by native AOT.
+The main entry points to subsystems that don't work reliably with Native AOT are now annotated. When these methods are called from an application with Native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API isn't trim-safe and isn't supported by Native AOT.
 
-:::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
+:::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support Native AOT.":::
 
 ### Request delegate generator
 
-In order to make Minimal APIs compatible with native AOT, we're introducing the Request Delegate Generator (RDG). The RDG is a source generator that does what the <xref:Microsoft.AspNetCore.Http.RequestDelegateFactory> (RDF) does. That is, it turns the various `MapGet()`, `MapPost()`, and calls like them into <xref:Microsoft.AspNetCore.Http.RequestDelegate> instances associated with the specified routes. But rather than doing it in-memory in an application when it starts, the RDG does it at compile time and generates C# code directly into the project. The RDG:
+In order to make Minimal APIs compatible with Native AOT, we're introducing the Request Delegate Generator (RDG). The RDG is a source generator that does what the <xref:Microsoft.AspNetCore.Http.RequestDelegateFactory> (RDF) does. That is, it turns the various `MapGet()`, `MapPost()`, and calls like them into <xref:Microsoft.AspNetCore.Http.RequestDelegate> instances associated with the specified routes. But rather than doing it in-memory in an application when it starts, the RDG does it at compile time and generates C# code directly into the project. The RDG:
 
 * Removes the runtime generation of this code.
-* Ensures that the types used in APIs are statically analyzable by the native AOT tool-chain.
+* Ensures that the types used in APIs are statically analyzable by the Native AOT tool-chain.
 * Ensures that required code isn't trimmed away.
 
-We're working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
+We're working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with Native AOT.
 
-The RDG is enabled automatically in a project when publishing with native AOT is enabled. RDG can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project's readiness for native AOT, or to reduce the startup time of an app.
+The RDG is enabled automatically in a project when publishing with Native AOT is enabled. RDG can be manually enabled even when not using Native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project's readiness for Native AOT, or to reduce the startup time of an app.
 
 ### Improved performance using Interceptors
 
@@ -643,7 +643,7 @@ Minimal APIs generated at run time support automatically logging (or throwing ex
 
 ### AOT and System.Text.Json
 
-Minimal APIs are optimized for receiving and returning JSON payloads using `System.Text.Json`, so the compatibility requirements for JSON and native AOT apply too. Native AOT compatibility requires the use of the `System.Text.Json` source generator. All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a `JsonSerializerContext` that is registered via ASP.NET Core's dependency injection, for example:
+Minimal APIs are optimized for receiving and returning JSON payloads using `System.Text.Json`, so the compatibility requirements for JSON and Native AOT apply too. Native AOT compatibility requires the use of the `System.Text.Json` source generator. All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a `JsonSerializerContext` that is registered via ASP.NET Core's dependency injection, for example:
 
 ```csharp
 // Register the JSON serializer context with DI
@@ -668,11 +668,11 @@ For more information about the <xref:System.Text.Json.JsonSerializerOptions.Type
 * [Chain source generators](/dotnet/core/whats-new/dotnet-8#chain-source-generators)
 * [Changes to support source generation](xref:fundamentals/native-aot#changes-to-support-source-generation)
 
-### Libraries and native AOT
+### Libraries and Native AOT
 
-Many of the common libraries available for ASP.NET Core projects today have some compatibility issues if used in a project targeting native AOT. Popular libraries often rely on the dynamic capabilities of .NET reflection to inspect and discover types, conditionally load libraries at runtime, and generate code on the fly to implement their functionality. These libraries need to be updated in order to work with native AOT by using tools like [Roslyn source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview).
+Many of the common libraries available for ASP.NET Core projects today have some compatibility issues if used in a project targeting Native AOT. Popular libraries often rely on the dynamic capabilities of .NET reflection to inspect and discover types, conditionally load libraries at runtime, and generate code on the fly to implement their functionality. These libraries need to be updated in order to work with Native AOT by using tools like [Roslyn source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
-Library authors wishing to learn more about preparing their libraries for native AOT are encouraged to start by [preparing their library for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming) and learning more about the [native AOT compatibility requirements](/dotnet/core/deploying/native-aot/).
+Library authors wishing to learn more about preparing their libraries for Native AOT are encouraged to start by [preparing their library for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming) and learning more about the [Native AOT compatibility requirements](/dotnet/core/deploying/native-aot/).
 
 ## Kestrel and HTTP.sys servers
 

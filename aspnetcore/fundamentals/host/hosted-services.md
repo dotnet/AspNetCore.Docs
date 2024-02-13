@@ -166,7 +166,7 @@ The Worker Service templates support [.NET native ahead-of-time (AOT)](/dotnet/c
 1. Provide a project name in the **Project name** field or accept the default project name.  Select **Next**.
 1. In the **Additional information** dialog:
   1. Choose a **Framework**.
-  1. Check the **Enable native AOT publish** checkbox.
+  1. Check the **Enable Native AOT publish** checkbox.
   1. Select **Create**.
 
 <!--
