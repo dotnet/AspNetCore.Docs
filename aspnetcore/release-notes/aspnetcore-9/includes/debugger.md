@@ -8,7 +8,7 @@ Before:
 
 After:
 
-:::image type="content" source="~/release-notes/aspnetcore-9/_static/debugger-before.png" alt-text="The new debugger experience":::
+:::image type="content" source="~/release-notes/aspnetcore-9/_static/debugger-after.png" alt-text="The new debugger experience":::
 
 ASP.NET Core has many key-value collections. This improved debugging experience applies to:
 
