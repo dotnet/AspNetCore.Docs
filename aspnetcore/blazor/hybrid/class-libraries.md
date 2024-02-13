@@ -19,9 +19,9 @@ This article builds on the general concepts found in the following articles:
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
 
-The examples in this article share assets between a Blazor Server app and a .NET MAUI Blazor Hybrid app in the same solution:
+The examples in this article share assets between a server-side Blazor app and a .NET MAUI Blazor Hybrid app in the same solution:
 
-* Although a Blazor Server app is used, the guidance applies equally to Blazor WebAssembly apps sharing assets with a Blazor Hybrid app.
+* Although a server-side Blazor app is used, the guidance applies equally to Blazor WebAssembly apps sharing assets with a Blazor Hybrid app.
 * Projects are in the same [solution](/visualstudio/ide/solutions-and-projects-in-visual-studio#solutions), but an RCL can supply shared assets to projects outside of a solution.
 * The RCL is added as a project to the solution, but any RCL can be published as a NuGet package. A NuGet package can supply shared assets to web and native client projects.
 * The order that the projects are created isn't important. However, projects that rely on an RCL for assets must create a project reference to the RCL *after* the RCL is created.
@@ -99,7 +99,7 @@ For additional information on how to share static assets across projects, see th
 
 The root `index.html` file is usually specific to the app and should remain in the Blazor Hybrid app or the Blazor WebAssembly app. The `index.html` file typically isn't shared.
 
-The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often might need to be specific to the hosting app. For example, `App.razor` is different in the Blazor Server and Blazor WebAssembly project templates when authentication is enabled. You can add the [`AdditionalAssemblies` parameter](xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies) to specify the location of any shared routable components, and you can specify a [shared default layout component for the router](xref:blazor/fundamentals/routing#route-templates) by type name.
+The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often might need to be specific to the hosting app. For example, `App.razor` is different in the server-side Blazor and Blazor WebAssembly project templates when authentication is enabled. You can add the [`AdditionalAssemblies` parameter](xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies) to specify the location of any shared routable components, and you can specify a [shared default layout component for the router](xref:blazor/fundamentals/routing#route-templates) by type name.
 
 ## Provide code and services independent of hosting model
 
@@ -108,7 +108,7 @@ When code must differ across hosting models or target platforms, abstract the co
 The following weather data example abstracts different weather forecast service implementations:
 
 * Using an HTTP request for Blazor Hybrid and Blazor WebAssembly.
-* Requesting data directly for Blazor Server.
+* Requesting data directly for a server-side Blazor app.
 
 The example uses the following specifications and conventions:
 
@@ -177,7 +177,7 @@ public class WeatherForecastService : IWeatherForecastService
 
 In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
 
-`Services/WeatherForecastService.cs` in the Blazor Server app:
+`Services/WeatherForecastService.cs` in the server-side Blazor app:
 
 ```csharp
 using SharedLibrary.Data;
@@ -205,7 +205,7 @@ public class WeatherForecastService : IWeatherForecastService
 
 In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
 
-The Blazor Hybrid, Blazor WebAssembly, and Blazor Server apps register their weather forecast service implementations (`Services.WeatherForecastService`) for `IWeatherForecastService`.
+The Blazor Hybrid, Blazor WebAssembly, and server-side Blazor apps register their weather forecast service implementations (`Services.WeatherForecastService`) for `IWeatherForecastService`.
 
 The Blazor WebAssembly project also registers an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
 
@@ -266,7 +266,7 @@ HELD PER https://github.com/dotnet/AspNetCore.Docs/pull/26331#discussion_r927174
 
 The following example:
 
-* Assumes that a `CustomService` class must be implemented for each hosting model, including the platforms of a .NET MAUI Blazor Hybrid app, because the code for the service differs for each platform (Android, macOS, Windows, iOS) and a Blazor Server/Blazor WebAssembly app.
+* Assumes that a `CustomService` class must be implemented for each hosting model, including the platforms of a .NET MAUI Blazor Hybrid app, because the code for the service differs for each platform (Android, macOS, Windows, iOS) and a server-side Blazor/Blazor WebAssembly app.
 * Places an interface for the service in the Razor class library (RCL). The RCL is named `SharedLibrary`. The interface defines a method that returns a message.
 
 `Interfaces/ICustomService.cs` in the RCL:
@@ -346,7 +346,7 @@ public class CustomService : ICustomService
 }
 ```
 
-In the following example, the RCL implements the `ICustomService` interface for the web (Blazor Server or Blazor WebAssembly) in a `Web` folder at the root of the RCL:
+In the following example, the RCL implements the `ICustomService` interface for the web (server-side Blazor or Blazor WebAssembly) in a `Web` folder at the root of the RCL:
 
 `Web/CustomService.cs`:
 
@@ -394,7 +394,7 @@ using SharedLibrary.Interfaces;
 > [!NOTE]
 > Windows Forms Blazor projects register services in `Form1`'s constructor (`Form1.cs`). WPF Blazor projects register services in `MainWindow`'s constructor (`MainWindow.xaml`).
 
-The following example for a Blazor Server or Blazor WebAssembly project:
+The following example for a server-side Blazor or Blazor WebAssembly project:
 
 * Has a project reference for the `SharedLibrary` project.
 * Registers the appropriate `CustomService` implementation for web-based clients.
