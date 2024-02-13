@@ -25,6 +25,8 @@ This section describes new features for Blazor.
 
 This section describes new features for SignalR.
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalr.md)]
+
 ## Minimal APIs
 
 This section describes new features for minimal APIs.
@@ -36,5 +38,7 @@ This section describes new features for authentication and authorization.
 ## Miscellaneous
 
 The following sections describe miscellaneous new features in ASP.NET Core 9.0.
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/debugger.md)]
 
 ## Additional resources
