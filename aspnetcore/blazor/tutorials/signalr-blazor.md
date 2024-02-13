@@ -72,7 +72,7 @@ Select the **Blazor Web App** template. Select **Next**.
 
 Type `BlazorSignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
-Confirm the **Framework** is .NET 8.0 or later. Select **Create**.
+Confirm the **Framework** is .NET 8 or later. Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

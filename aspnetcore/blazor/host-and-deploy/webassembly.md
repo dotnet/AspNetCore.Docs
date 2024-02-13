@@ -1070,7 +1070,7 @@ To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files,
 
 The preceding guidance for the compressed `blazor.boot.json` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
 
-The following Windows example for .NET 6.0 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file.
+The following Windows example for .NET 6 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file.
 
 `ChangeDLLExtensions.ps1:`:
 
