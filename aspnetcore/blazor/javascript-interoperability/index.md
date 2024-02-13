@@ -22,7 +22,7 @@ Further JS interop guidance is provided in the following articles:
 :::moniker range=">= aspnetcore-7.0"
 
 > [!NOTE]
-> JavaScript `[JSImport]`/`[JSExport]` interop API is available for client-side components in ASP.NET Core 7.0 or later.
+> JavaScript `[JSImport]`/`[JSExport]` interop API is available for client-side components in ASP.NET Core in .NET 7 or later.
 >
 > For more information, see <xref:blazor/js-interop/import-export-interop>.
 

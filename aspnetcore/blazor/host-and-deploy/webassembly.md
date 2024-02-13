@@ -985,7 +985,7 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 ## Change the file name extension of DLL files
 
-*This section applies to ASP.NET Core 6.x and 7.x. In ASP.NET Core 8.0 or later, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format. In ASP.NET Core 8.0 or later, this section only applies if the Webcil file format has been disabled in the app's project file.*
+*This section applies to ASP.NET Core 6.x and 7.x. In ASP.NET Core in .NET 8 or later, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format. In ASP.NET Core in .NET 8 or later, this section only applies if the Webcil file format has been disabled in the app's project file.*
 
 If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
@@ -996,7 +996,7 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 > [!NOTE]
 > Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
 >
-> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core 8.0 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core in .NET 8 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
@@ -1009,8 +1009,8 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 >
 > For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 >
-> * Use ASP.NET Core 8.0 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
-> * In ASP.NET Core 6.0 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
+> * Use ASP.NET Core in .NET 8 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+> * In ASP.NET Core in .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 

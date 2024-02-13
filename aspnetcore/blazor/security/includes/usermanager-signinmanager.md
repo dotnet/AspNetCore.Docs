@@ -5,7 +5,7 @@ Set the user identifier claim type when a Server app requires:
 * <xref:Microsoft.AspNetCore.Identity.UserManager%601> or <xref:Microsoft.AspNetCore.Identity.SignInManager%601> in an API endpoint.
 * <xref:Microsoft.AspNetCore.Identity.IdentityUser> details, such as the user's name, email address, or lockout end time.
 
-In `Program.cs` for ASP.NET Core 6.0 or later:
+In `Program.cs` for ASP.NET Core in .NET 6 or later:
 
 ```csharp
 using System.Security.Claims;

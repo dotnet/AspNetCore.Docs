@@ -181,7 +181,7 @@ When these scenarios are implemented in documentation examples, ***two*** identi
 
 Although refresh tokens can't be secured in Blazor WebAssembly apps, they can be used if you implement them with appropriate security strategies.
 
-For standalone Blazor WebAssembly apps in ASP.NET Core 6.0 or later, we recommend using:
+For standalone Blazor WebAssembly apps in ASP.NET Core in .NET 6 or later, we recommend using:
 
 * The [OAuth 2.0 Authorization Code flow (Code) with Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/).
 * A refresh token that has a short expiration.
@@ -279,7 +279,7 @@ For more information, see <xref:signalr/authn-and-authz#bearer-token-authenticat
 
 ## Logging
 
-*This section applies to Blazor WebAssembly apps in ASP.NET Core 7.0 or later.*
+*This section applies to Blazor WebAssembly apps in ASP.NET Core in .NET 7 or later.*
 
 To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a 7.0 or later version of the <xref:blazor/fundamentals/logging> article.
 

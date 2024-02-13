@@ -28,7 +28,7 @@ This article describes an alternative JS interop approach specific to client-sid
 
 ## Obsolete JavaScript interop API
 
-Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core 7.0 or later. Follow the guidance in this article to replace the obsolete API.
+Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core in .NET 7 or later. Follow the guidance in this article to replace the obsolete API.
 
 ## Prerequisites
 
