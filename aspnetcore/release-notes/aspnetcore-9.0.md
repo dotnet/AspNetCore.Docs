@@ -37,7 +37,7 @@ This section describes new features for authentication and authorization.
 
 ## Miscellaneous
 
-The following sections describe miscellaneous new features in ASP.NET Core 9.0.
+The following sections describe miscellaneous new features.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/debugger.md)]
 

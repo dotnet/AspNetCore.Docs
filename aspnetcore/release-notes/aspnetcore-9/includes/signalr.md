@@ -1,6 +1,6 @@
 ### Polymorphic type support in SignalR Hubs
 
-Hub methods can now accept a base class instead of the derived class to enable polymorphic scenarios. The base type needs to be [annotated to allow polymorphism](https://learn.microsoft.com/dotnet/standard/serialization/system-text-json/polymorphism).
+Hub methods can now accept a base class instead of the derived class to enable polymorphic scenarios. The base type needs to be [annotated to allow polymorphism](/dotnet/standard/serialization/system-text-json/polymorphism).
 
 ```csharp
 public class MyHub : Hub

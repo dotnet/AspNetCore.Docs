@@ -4,11 +4,11 @@ The debugging display of dictionaries and other key-value collections has an imp
 
 Before:
 
-<img width="353" alt="image" src="https://github.com/dotnet/AspNetCore.Docs/assets/3605364/680a5979-42b2-48fc-9ba7-693888912cc0">
+:::image type="content" source="~/release-notes/aspnetcore-9/_static/debugger-before.png" alt-text="The previous debugger experience":::
 
-after
+After:
 
-<img width="368" alt="image" src="https://github.com/dotnet/AspNetCore.Docs/assets/3605364/9b38e416-e820-43c6-ac76-aec90e6a5d5e">
+:::image type="content" source="~/release-notes/aspnetcore-9/_static/debugger-before.png" alt-text="The new debugger experience":::
 
 ASP.NET Core has many key-value collections. This improved debugging experience applies to:
 
