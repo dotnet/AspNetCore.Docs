@@ -13,8 +13,8 @@ If the request was successful, the token variable is populated with the access t
 
 If the request failed because the token couldn't be provisioned without user interaction:
 
-* ASP.NET Core 7.0 or later: The app navigates to `AccessTokenResult.InteractiveRequestUrl` using the given `AccessTokenResult.InteractionOptions` to allow refreshing the access token.
-* ASP.NET Core 6.0 or earlier: The token result contains a redirect URL. Navigating to this URL takes the user to the login page and back to the current page after a successful authentication.
+* ASP.NET Core in .NET 7 or later: The app navigates to `AccessTokenResult.InteractiveRequestUrl` using the given `AccessTokenResult.InteractionOptions` to allow refreshing the access token.
+* ASP.NET Core in .NET 6 or earlier: The token result contains a redirect URL. Navigating to this URL takes the user to the login page and back to the current page after a successful authentication.
 
 ```razor
 @page "/fetchdata"

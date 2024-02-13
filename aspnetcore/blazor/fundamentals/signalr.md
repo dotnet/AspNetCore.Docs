@@ -733,7 +733,7 @@ Blazor Web App:
 </script>
 ```
 
-The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0).
+The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core in .NET 6) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core in .NET 6).
 
 Blazor Server:
 
@@ -777,7 +777,7 @@ Configure the following values for the client:
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0):
+The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core in .NET 6) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core in .NET 6):
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>

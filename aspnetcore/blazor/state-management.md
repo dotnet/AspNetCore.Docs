@@ -16,7 +16,7 @@ zone_pivot_groups: blazor-app-models
 This article describes common approaches for maintaining a user's data (state) while they use an app and across browser sessions.
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from types in the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from types in the article's examples.
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
@@ -697,7 +697,7 @@ Client-side apps (`Program` file):
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-Server-side apps (`Program` file, ASP.NET Core 6.0 or later):
+Server-side apps (`Program` file, ASP.NET Core in .NET 6 or later):
 
 ```csharp
 builder.Services.AddScoped<StateContainer>();
