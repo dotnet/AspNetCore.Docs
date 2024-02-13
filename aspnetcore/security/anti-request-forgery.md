@@ -8,6 +8,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 11/16/2023
 uid: security/anti-request-forgery
+ai-usage: ai-assisted
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 

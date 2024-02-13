@@ -7,6 +7,7 @@ content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/23/2023
 uid: fundamentals/minimal-apis
+ai-usage: ai-assisted
 ---
 
 <!-- When working on this file, open all the LATEST VERSION MD files in ~/fundamentals/minimal-apis/includes/ and search for the target text -->

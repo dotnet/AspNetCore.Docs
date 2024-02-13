@@ -9,6 +9,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.topic: article
 ms.date: 9/21/2023
 uid: fundamentals/aot/rdg
+ai-usage: ai-assisted
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
 
