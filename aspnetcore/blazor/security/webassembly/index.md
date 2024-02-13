@@ -240,33 +240,31 @@ For more information, see <xref:security/anti-request-forgery>.
 
 ## Secure a SignalR hub
 
-To secure a SignalR hub:
+To secure a SignalR hub in the server API project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
 
-* In the server project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
+In a client project with prerendering, such as hosted Blazor WebAssembly (ASP.NET Core in .NET 7 or earlier) or a Blazor Web App (ASP.NET Core in .NET 8 or later), see the guidance in <xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication>.
 
-* In the client project's component, supply an access token to the hub connection:
+In a client project component without prerendering, such as standalone Blazor WebAssembly, or non-browser apps, supply an access token to the hub connection, as the following example demonstrates. For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
-  ```razor
-  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-  @inject IAccessTokenProvider TokenProvider
-  @inject NavigationManager Navigation
+```razor
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider TokenProvider
+@inject NavigationManager Navigation
+
+...
+
+var tokenResult = await TokenProvider.RequestAccessToken();
+
+if (tokenResult.TryGetToken(out var token))
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
+            options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
+        .Build();
 
   ...
-
-  var tokenResult = await TokenProvider.RequestAccessToken();
-
-  if (tokenResult.TryGetToken(out var token))
-  {
-      hubConnection = new HubConnectionBuilder()
-          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
-              options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
-          .Build();
-
-    ...
-  }
-  ```
-
-For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
+}
+```
 
 ## Logging
 
