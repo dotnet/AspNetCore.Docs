@@ -12,7 +12,7 @@ uid: blazor/security/webassembly/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor WebAssembly apps are secured in the same manner as single-page applications (SPAs). There are several approaches for authenticating users to SPAs, but the most common and comprehensive approach is to use an implementation based on the [OAuth 2.0 protocol](https://oauth.net/), such as [OpenID Connect (OIDC)](https://openid.net/connect/).
+Blazor WebAssembly apps are secured in the same manner as single-page applications (SPAs). There are several approaches for authenticating users to SPAs, but the most common and comprehensive approach is to use an implementation based on the [OAuth 2.0 protocol](https://oauth.net/), such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/).
 
 The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Additional resources* section](xref:blazor/security/index#additional-resources).
 
@@ -238,44 +238,33 @@ If Windows Authentication is used with Blazor Webassembly or with any other SPA 
 
 For more information, see <xref:security/anti-request-forgery>.
 
-:::moniker range="< aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Versioning out because this applies
-     directly to hosted WASM. Check with the PU
-     to confirm no replacement guidance in the 
-     BWA/WebAssembly world -->
-
 ## Secure a SignalR hub
 
-To secure a SignalR hub:
+To secure a SignalR hub in the server API project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
 
-* In the **:::no-loc text="Server":::** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
+In a client project with prerendering, such as hosted Blazor WebAssembly (ASP.NET Core in .NET 7 or earlier) or a Blazor Web App (ASP.NET Core in .NET 8 or later), see the guidance in <xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication>.
 
-* In the **:::no-loc text="Client":::** project's component, supply an access token to the hub connection:
+In a client project component without prerendering, such as standalone Blazor WebAssembly, or non-browser apps, supply an access token to the hub connection, as the following example demonstrates. For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
-  ```razor
-  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-  @inject IAccessTokenProvider TokenProvider
-  @inject NavigationManager Navigation
+```razor
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider TokenProvider
+@inject NavigationManager Navigation
+
+...
+
+var tokenResult = await TokenProvider.RequestAccessToken();
+
+if (tokenResult.TryGetToken(out var token))
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
+            options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
+        .Build();
 
   ...
-
-  var tokenResult = await TokenProvider.RequestAccessToken();
-
-  if (tokenResult.TryGetToken(out var token))
-  {
-      hubConnection = new HubConnectionBuilder()
-          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
-              options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
-          .Build();
-
-    ...
-  }
-  ```
-
-For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
-
-:::moniker-end
+}
+```
 
 ## Logging
 

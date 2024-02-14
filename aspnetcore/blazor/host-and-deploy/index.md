@@ -398,11 +398,9 @@ The examples in this section focus on supplying the app base path from app setti
 * <xref:blazor/fundamentals/configuration>
 * <xref:fundamentals/configuration/index>
 
-:::moniker range="< aspnetcore-8.0"
-
 ## Blazor Server `MapFallbackToPage` configuration
 
-<!-- UPDATE 8.0 Update for BWAs -->
+*This section only applies to Blazor Server apps. <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> isn't supported in Blazor Web Apps and Blazor WebAssembly apps.*
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
@@ -427,8 +425,6 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
   app.Run();
   ```
-
-:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 

@@ -28,7 +28,7 @@ Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx
 
 ## Folder structure conventions
 
-For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
+For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [`fundamentals/configuration/index.md`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/configuration/index.md), the images are in [`fundamentals/configuration/index/_static`](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/_static), and the sample app project files are in [`fundamentals/configuration/index/samples`](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples). An image in the `fundamentals/configuration/index.md` file is rendered by the following Markdown:
 
 ```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
@@ -69,7 +69,7 @@ As an optional step, ensure that any images and screenshots used in the document
 
 Articles frequently contain code snippets to illustrate points. DFM allows you to copy code into the Markdown file or refer to a separate code file. We prefer to use separate code files whenever possible to minimize the chance of errors in the code. The code files are stored in the repo using the folder structure described earlier for sample projects. 
 
-The following examples illustrate [DFM code snippet syntax](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) for use in a *configuration/index.md* file.
+The following examples illustrate [DFM code snippet syntax](https://dotnet.github.io/docfx/spec/docfx_flavored_markdown.html#code-snippet) for use in a `configuration/index.md` file.
 
 To render an entire code file as a snippet:
 
@@ -151,9 +151,9 @@ DocFX requires:
 
 ### Windows instructions
 
-* Download and unzip *docfx.zip* from [DocFX releases](https://github.com/dotnet/docfx/releases).
+* Download and unzip `docfx.zip` from [DocFX releases](https://github.com/dotnet/docfx/releases).
 * Add DocFX to your PATH.
-* In a command shell, navigate to the folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command:
+* In a command shell, navigate to the folder that contains the `docfx.json` file (`aspnet` for ASP.NET content or `aspnetcore` for ASP.NET Core content) and run the following command:
 
   ```console
   docfx --serve
@@ -170,15 +170,15 @@ DocFX requires:
   ```
 
 * Download the [latest version of DocFX](https://github.com/dotnet/docfx/releases).
-* Extract the archive to *$HOME/bin/docfx*.
-* Create a pair of aliases for **docfx** in a bash shell. The first alias is used to build the documentation. The second alias is used to build and serve the documentation.
+* Extract the archive to `$HOME/bin/docfx`.
+* Create a pair of aliases for `docfx` in a bash shell. The first alias is used to build the documentation. The second alias is used to build and serve the documentation.
 
   ```console
   alias docfx='mono $HOME/bin/docfx/docfx.exe'
   alias docfx-serve='mono $HOME/bin/docfx/docfx.exe --serve'
   ```
 
-* In a command shell, navigate to the folder that contains the *docfx.json* file (*aspnet* for ASP.NET content or *aspnetcore* for ASP.NET Core content) and run the following command to build and serve the docs via its alias:
+* In a command shell, navigate to the folder that contains the `docfx.json` file (`aspnet` for ASP.NET content or `aspnetcore` for ASP.NET Core content) and run the following command to build and serve the docs via its alias:
 
   ```console
   docfx-serve
