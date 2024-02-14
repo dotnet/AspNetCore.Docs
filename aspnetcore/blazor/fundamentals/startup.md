@@ -775,6 +775,10 @@ Standalone Blazor WebAssembly:
 
 > [!NOTE]
 > The .NET runtime instance can be accessed using the Blazor WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
+>
+> For more information on the .NET WebAssembly runtime configuration, see the [runtime's TypeScript definition file (`dotnet.d.ts`) in the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts).
+>
+> [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
