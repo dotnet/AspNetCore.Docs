@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 10/13/2023
+ms.date: 02/13/2024
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/model
@@ -37,6 +37,10 @@ The `Movie` class contains:
   * Only the date is displayed, not time information.
 * The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
+Build the project to verify there are no compilation errors.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named `Models`.
@@ -61,6 +65,12 @@ The `Movie` class contains:
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
 
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
+In Visual Studio Code, from the *Run* menu, select *Start Debugging* or press <kbd>F5</kbd> to build and run the the project with debugging. 
+
+In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
@@ -82,11 +92,10 @@ The `Movie` class contains:
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
----
-
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
+---
 
 ## Scaffold the movie model
 
