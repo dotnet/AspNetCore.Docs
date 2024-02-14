@@ -340,3 +340,4 @@ To troubleshoot problems with user claims, the following `UserClaims` component 
 
 * [What's new with identity in .NET 8](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/)
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
+* [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
