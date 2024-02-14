@@ -120,7 +120,7 @@ Errors are represented by `RpcException` with an error status code and optional 
 
 Rich error handling allows complex, structured information to be sent with error messages. For example, validation of incoming message fields that returns a list of invalid field names and descriptions. The [`google.rpc.Status` error model](https://cloud.google.com/apis/design/errors#error_model) is often used to send complex error information between gRPC apps.
 
-gRPC on .NET supports a rich error model using the `Grpc.StatusProto` package. This package has methods for creating rich error models on the server and reading them by a client. The rich error model builds on top of gRPC's built-in handling capabilities and they can be used side-by-side.
+gRPC on .NET supports a rich error model using the [`Grpc.StatusProto`](https://www.nuget.org/packages/Grpc.StatusProto/) package. This package has methods for creating rich error models on the server and reading them by a client. The rich error model builds on top of gRPC's built-in handling capabilities and they can be used side-by-side.
 
 > [!IMPORTANT]
 > Errors are included in headers, and total headers in responses are often limited to 8 KB (8,192 bytes). Ensure that the headers containing errors do not exceed 8 KB.
@@ -139,7 +139,7 @@ Although any message type can be used as a payload, it's recommended to use one 
 * `ResourceInfo`
 * `QuotaFailure`
 
-`Grpc.StatusProto` includes the `ToRpcException` a helper method to convert `Google.Rpc.Status` to an error. Throw the error from the gRPC server method:
+[`Grpc.StatusProto`](https://www.nuget.org/packages/Grpc.StatusProto/) includes the `ToRpcException` a helper method to convert `Google.Rpc.Status` to an error. Throw the error from the gRPC server method:
 
 ```cs
 public class GreeterService : Greeter.GreeterBase
