@@ -28,7 +28,7 @@ Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx
 
 ## Folder structure conventions
 
-For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
+For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/samples](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
 
 ```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
