@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 02/13/2024
+ms.date: 02/14/2024
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/model
@@ -95,6 +95,7 @@ The `Movie` class contains:
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
+
 ---
 
 ## Scaffold the movie model
