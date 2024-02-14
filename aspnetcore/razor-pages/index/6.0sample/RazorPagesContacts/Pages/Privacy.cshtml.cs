@@ -14,5 +14,11 @@ namespace RazorPagesContacts.Pages
         public void OnGet()
         {
         }
+        // <snippet>
+        public void OnHead()
+        {
+            HttpContext.Response.Headers.Add("Head Test", "Handled by OnHead!");
+        }
+        // </snippet>
     }
 }
