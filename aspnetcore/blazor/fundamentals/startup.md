@@ -735,9 +735,18 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 ## Configure the .NET WebAssembly runtime
 
-To configure the .NET WebAssembly runtime, use the `configureRuntime` function with the `dotnet` runtime host builder.
+In advanced programming scenarios, the `configureRuntime` function with the `dotnet` runtime host builder is used to configure the .NET WebAssembly runtime. For example, `dotnet.withEnvironmentVariable` sets an environment variable that:
 
-The following example sets an environment variable, `CONFIGURE_RUNTIME`, to `true`:
+* Configures the .NET WebAssembly runtime.
+* Changes the behavior of a C library.
+
+The `configureRuntime` function can also be used to [enable integration with a browser profiler](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#profiling).
+
+In the following examples that set an environment variable:
+
+* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+* The `{NAME}` placeholder is the environment variable's name.
+* The `{VALUE}` placeholder is the environment variable's value.
 
 Blazor Web App:
 
@@ -747,7 +756,7 @@ Blazor Web App:
   Blazor.start({
     webAssembly: {
       configureRuntime: dotnet => {
-        dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
+        dotnet.withEnvironmentVariable("{NAME}", "{VALUE}");
       }
     }
   });
@@ -761,15 +770,18 @@ Standalone Blazor WebAssembly:
 <script>
   Blazor.start({
     configureRuntime: dotnet => {
-      dotnet.withEnvironmentVariable("CONFIGURE_RUNTIME", "true");
+      dotnet.withEnvironmentVariable("{NAME}", "{VALUE}");
     }
   });
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
-
-The .NET runtime instance can be accessed from `Blazor.runtime`.
+> [!NOTE]
+> The .NET runtime instance can be accessed using the Blazor WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
+>
+> For more information on the .NET WebAssembly runtime configuration, see the [runtime's TypeScript definition file (`dotnet.d.ts`) in the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts).
+>
+> [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker-end
 
