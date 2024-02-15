@@ -525,6 +525,41 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 :::zone-end
 
+## Redirect to the home page
+
+When a user navigates around the app, the `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the value of the current URL (`currentURL`). When the user signs out of the app, the identity provider returns them to the page from which they signed out.
+
+If the user signs out from a secure page, they're returned back to the same secure page after signing out only to be sent back through the authentication process. This behavior is fine when users need to switch accounts frequently. However, a alternative app specification may call for the user to be returned to the app's home page or some other page after signout. The following example shows how to set the app's home page as the return URL for signout operations.
+
+The important changes to the `LogInOrOut` component are demonstrated in the following example. The `value` of the hidden field for the `ReturnUrl` is set to the home page at `/`. <xref:System.IDisposable> is no longer implemented. The <xref:Microsoft.AspNetCore.Components.NavigationManager> is no longer injected. The entire `@code` block is removed.
+
+`Layout/LogInOrOut.razor`:
+
+```razor
+@using Microsoft.AspNetCore.Authorization
+
+<div class="nav-item px-3">
+    <AuthorizeView>
+        <Authorized>
+            <form action="authentication/logout" method="post">
+                <AntiforgeryToken />
+                <input type="hidden" name="ReturnUrl" value="/" />
+                <button type="submit" class="nav-link">
+                    <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true">
+                    </span> Logout @context.User.Identity?.Name
+                </button>
+            </form>
+        </Authorized>
+        <NotAuthorized>
+            <a class="nav-link" href="authentication/login">
+                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> 
+                Login
+            </a>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+```
+
 ## Additional resources
 
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID and Azure Active Directory B2C for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
