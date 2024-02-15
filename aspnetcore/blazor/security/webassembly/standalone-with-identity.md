@@ -144,7 +144,7 @@ Services and endpoints for [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-u
 
 -->
 
-User role claims are sent from a [Minimal API](fundamentals/minimal-apis/overview) at the `/roles` endpoint.
+User role claims are sent from a [Minimal API](xref:fundamentals/minimal-apis/overview) at the `/roles` endpoint.
 
 Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.
 
