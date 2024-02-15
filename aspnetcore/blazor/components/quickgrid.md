@@ -132,14 +132,9 @@ Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
 
-## `QuickGrid` scaffolder (Preview)
+## `QuickGrid` scaffolder
 
-<!-- UPDATE 9.0 Remove when out of preview -->
-
-> [!IMPORTANT]
-> The `QuickGrid` scaffolder is in ***preview***. The scaffolder is unsupported for use in production apps. Features of the scaffolder are subject to change without notice.
-
-The preview `QuickGrid` scaffolder offered in [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) scaffolds Razor components with `QuickGrid` to display data from a database.
+The `QuickGrid` scaffolder in [Visual Studio](https://visualstudio.microsoft.com/vs/) scaffolds Razor components with `QuickGrid` to display data from a database.
 
 To use the scaffolder, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**.
 
