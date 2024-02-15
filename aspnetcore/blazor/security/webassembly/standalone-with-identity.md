@@ -231,7 +231,7 @@ The `SeedData` class ([`SeedData.cs`](https://github.com/dotnet/blazor-samples/b
 
 ## Roles
 
-For security reasons, role claims aren't sent back from the `manage/info` endpoint to create user claims for users of the `BlazorWasmAuth` app. Role claims are managed independently via a separate request in the `GetAuthenticationStateAsync` method of the [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) after the user is authenticated in the `Backend` project. 
+Due to a [framework design issue (`dotnet/aspnetcore` #50037)](https://github.com/dotnet/aspnetcore/issues/50037), role claims aren't sent back from the `manage/info` endpoint to create user claims for users of the `BlazorWasmAuth` app. Role claims are managed independently via a separate request in the `GetAuthenticationStateAsync` method of the [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) after the user is authenticated in the `Backend` project. 
 
 In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize%2A?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
 
