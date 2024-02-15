@@ -129,7 +129,7 @@ The following setup and configuration is found in the app's [`Program` file](htt
 
 User identity with cookie authentication is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.AspNetCore.Identity.IdentityCookieAuthenticationBuilderExtensions.AddIdentityCookies%2A>. Services for authorization checks are added by a call to <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A>.
 
-Only recommended for demonstrations, the app uses the [EF Core in-memory database provider](/ef/core/providers/in-memory/) for the database context registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>). The in-memory database provider makes it easy to restart the app and test the registration and login user flows. However, each run starts with a fresh database. If the database is changed to SQLite, users are saved between sessions, but the database must be created through [migrations](/ef/core/managing-schemas/migrations/),as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app). You can use other relational providers such as SQL Server for your production code.
+Only recommended for demonstrations, the app uses the [EF Core in-memory database provider](/ef/core/providers/in-memory/) for the database context registration (<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>). The in-memory database provider makes it easy to restart the app and test the registration and login user flows. Each run starts with a fresh database, but the app includes [test user seeding demonstration code](#test-user-seeding-demonstration), which is described later in this article. If the database is changed to SQLite, users are saved between sessions, but the database must be created through [migrations](/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app). You can use other relational providers such as SQL Server for your production code.
 
 Configure Identity to use the EF Core database and expose the Identity endpoints via the calls to <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A>, <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%2A>, and <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddApiEndpoints%2A>.
 
@@ -138,7 +138,13 @@ A [Cross-Origin Resource Sharing (CORS)](xref:security/cors) policy is establish
 * `Backend` app (`BackendUrl`): `https://localhost:5001`
 * `BlazorWasmAuth` app (`FrontendUrl`): `https://localhost:5002`
 
+<!-- HOLD 
+
 Services and endpoints for [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-using-swagger) are included for web API documentation and development testing.
+
+-->
+
+User role claims are sent from a [Minimal API](fundamentals/minimal-apis/overview) at the `/roles` endpoint.
 
 Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.
 
@@ -172,7 +178,7 @@ The `Models` folder contains the app's models:
 
 The [`IAccountManagement` interface (`Identity/CookieHandler.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/IAccountManagement.cs) provides account management services.
 
-The [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) handles state for cookie-based authentication and provides account management service implementations described by the `IAccountManagement` interface. The `LoginAsync` method explicitly enables cookie authentication via the `useCookies` query string value of `true`.
+The [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) handles state for cookie-based authentication and provides account management service implementations described by the `IAccountManagement` interface. The `LoginAsync` method explicitly enables cookie authentication via the `useCookies` query string value of `true`. The class also manages creating role claims for authenticated users.
 
 The [`CookieHandler` class (`Identity/CookieHandler.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieHandler.cs) ensures cookie credentials are sent with each request to the backend web API, which handles Identity and maintains the Identity data store.
 
@@ -208,11 +214,30 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 > * <xref:blazor/call-web-api>
 > * <xref:blazor/security/webassembly/additional-scenarios>
 
+## Test user seeding demonstration
+
+The `SeedData` class ([`SeedData.cs`](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/Backend/SeedData.cs)) demonstrates how to create test users for development. The test user, named Leela, signs into the app with the email address `leela@contoso.com`. The user's password is set to `Passw0rd!`. Leela is given `Administrator` and `Manager` roles for authorization, which enables the user to access the manager page at `/private-manager-page` but not the editor page at `/private-editor-page`.
+
+> [!WARNING]
+> Never allow test user code to run in a production environment. `SeedData.InitializeAsync` is only called in the `Development` environment in the `Program` file:
+>
+> ```csharp
+> if (builder.Environment.IsDevelopment())
+> {
+>     await using var scope = app.Services.CreateAsyncScope();
+>     await SeedData.InitializeAsync(scope.ServiceProvider);
+> }
+> ```
+
 ## Roles
 
-For security reasons, role claims aren't sent back from the `manage/info` endpoint to create `UserInfo.Claims` for users of the `BlazorWasmAuth` app.
+For security reasons, role claims aren't sent back from the `manage/info` endpoint to create user claims for users of the `BlazorWasmAuth` app. Role claims are managed independently via a separate request in the `GetAuthenticationStateAsync` method of the [`CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`)](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs) after the user is authenticated in the `Backend` project. 
 
-To create role claims on your own, make a separate request in the `GetAuthenticationStateAsync` method of the `CookieAuthenticationStateProvider` after the user is authenticated to a custom web API in the `Backend` project that provides user roles from the user data store. We plan to provide guidance on this subject. The work is tracked by [Role claims guidance in standalone WASM w/Identity article (dotnet/AspNetCore.Docs #31045)](https://github.com/dotnet/AspNetCore.Docs/issues/31045).
+In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize%2A?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
+
+In the `Backend` server API's `Program` file, a [Minimal API](fundamentals/minimal-apis/overview) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A> are [selected](xref:System.Linq.Enumerable.Select%2A) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json%2A?displayProperty=nameWithType>.
+
+The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
 
 ## Troubleshoot
 
