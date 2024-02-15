@@ -235,9 +235,9 @@ For security reasons, role claims aren't sent back from the `manage/info` endpoi
 
 In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize%2A?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
 
-In the `Backend` server API's `Program` file, a [Minimal API](fundamentals/minimal-apis/overview) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A> are [selected](xref:System.Linq.Enumerable.Select%2A) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json%2A?displayProperty=nameWithType>.
+In the `Backend` server API's `Program` file, a [Minimal API](xref:fundamentals/minimal-apis/overview) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType%2A> are [selected](xref:System.Linq.Enumerable.Select%2A) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json%2A?displayProperty=nameWithType>.
 
-The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
+The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
 
 ## Troubleshoot
 
