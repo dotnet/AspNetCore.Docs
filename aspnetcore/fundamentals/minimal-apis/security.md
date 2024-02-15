@@ -7,6 +7,7 @@ content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 9/17/2023
 uid: fundamentals/minimal-apis/security
+ai-usage: ai-assisted
 ---
 
 # Authentication and authorization in minimal APIs
