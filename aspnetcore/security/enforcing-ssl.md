@@ -29,7 +29,7 @@ No API can prevent a client from sending sensitive data on the first request.
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
 >
-> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see <xref:fundamentals/environments> and [5 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/5-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
+> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see <xref:fundamentals/environments> and [8 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/8-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
 >
 > ## HSTS and API projects
 >
