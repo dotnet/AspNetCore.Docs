@@ -126,9 +126,6 @@ The following code:
 Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> and <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. The Brotli and Gzip compression providers default to the fastest compression level, [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel), which might not produce the most efficient compression. If the most efficient compression is desired, configure the response compression middleware for optimal compression.
 
 See [CompressionLevel Enum](/dotnet/api/system.io.compression.compressionlevel) for values that indicate whether a compression operation emphasizes speed or compression size.
-| [CompressionLevel.SmallestSize](xref:System.IO.Compression.CompressionLevel) | Compression should create output as small as possible, even if the operation takes a longer time to complete. | 9 | 11 |
-
-The Gzip and Brotli levels correspond to the compression levels being passed to the underlying compression library. 
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
 
