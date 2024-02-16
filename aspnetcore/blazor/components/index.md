@@ -1070,59 +1070,49 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 Components can specify route parameters in the route template of the [`@page`][9] directive. The [Blazor router](xref:blazor/fundamentals/routing) uses route parameters to populate corresponding component parameters.
 
-:::moniker range=">= aspnetcore-5.0"
-
-Optional route parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to "`fantastic`" in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-Optional route parameters aren't supported, so two [`@page`][9] directives are applied in the following example. The first [`@page`][9] directive permits navigation to the component without a route parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
-
-:::moniker-end
+`RouteParameter1.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-`OptionalParameter.razor`:
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/OptionalParameter.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/RouteParameter1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-`RouteParameter.razor`:
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-`RouteParameter.razor`:
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-`RouteParameter.razor`:
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-`RouteParameter.razor`:
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="2,7-8":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
 
 :::moniker-end
 
-For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
+:::moniker range=">= aspnetcore-5.0"
+
+For more information, see the *Route parameters* section of <xref:blazor/fundamentals/routing#route-parameters>. Optional route parameters are also supported and covered in the same section. For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see the *Catch-all route parameters* section of <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+For more information, see the *Route parameters* section of <xref:blazor/fundamentals/routing#route-parameters>. Optional route parameters aren't supported, so two [`@page`][9] directives are required (see the *Route parameters* section for more information). For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see the *Catch-all route parameters* section of <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
+
+:::moniker-end
 
 ## Child content render fragments
 
