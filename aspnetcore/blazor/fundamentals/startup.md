@@ -141,6 +141,42 @@ For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
   * In a [`BlazorWebView`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted(blazor)`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor`).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Additional .NET WebAssembly runtime callbacks:
+
+* `onRuntimeConfigLoaded(config)`: Called when the boot configuration is downloaded. Allows the app to modify parameters (config) before the runtime starts (the parameter is `MonoConfig` from [`dotnet.d.ts`](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts)):
+
+  ```javascript
+  export function onRuntimeConfigLoaded(config) {
+    // Sample: Enable startup diagnostic logging when the URL contains 
+    // parameter debug=1
+    const params = new URLSearchParams(location.search);
+    if (params.get("debug") == "1") {
+      config.diagnosticTracing = true;
+    }
+  }
+  ```
+
+* `onRuntimeReady({ getAssemblyExports, getConfig })`: Called after the .NET WebAssembly runtime has started (the parameter is `RuntimeAPI` from [`dotnet.d.ts`](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts)):
+
+  ```javascript
+  export function onRuntimeReady({ getAssemblyExports, getConfig }) {
+    // Sample: After the runtime starts, but before Main method is called, 
+    // call [JSExport]ed method.
+    const config = getConfig();
+    const exports = await getAssemblyExports(config.mainAssemblyName);
+    exports.Sample.Greet();
+  }
+  ```
+Both callbacks can return a `Promise`, and the promise is awaited before the startup continues.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 For the file name:
 
 * If the JS initializers are consumed as a static asset in the project, use the format `{ASSEMBLY NAME}.lib.module.js`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, name the file `BlazorSample.lib.module.js` for a project with an assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
