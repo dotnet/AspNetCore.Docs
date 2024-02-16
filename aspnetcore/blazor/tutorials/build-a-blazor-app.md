@@ -419,31 +419,31 @@ The completed `Todo` component:
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/Pages/Todo.razor":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo8.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo8.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo8.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
+:::code language="razor" source="build-a-blazor-app/5.0/Todo8.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
+:::code language="razor" source="build-a-blazor-app/3.1/Todo8.razor":::
 
 :::moniker-end
 
