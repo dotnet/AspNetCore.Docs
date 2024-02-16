@@ -23,6 +23,10 @@ The `Movie` class contains:
   * Only the date is displayed, not time information.
 * The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
+Build the project to verify there are no compilation errors.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named `Models`.
@@ -41,11 +45,17 @@ The `Movie` class contains:
   * Only the date is displayed, not time information.
 * The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
 <a name="dc7"></a>
 
 ### Add NuGet packages and EF tools
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+
+In Visual Studio Code, from the *Run* menu, select *Start Debugging* or press <kbd>F5</kbd> to build and run the the project with debugging. 
+
+In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -68,11 +78,11 @@ The `Movie` class contains:
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
----
-
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
+
+---
 
 ## Scaffold the movie model
 

@@ -130,6 +130,8 @@ Visual Studio:
 * Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
 * Launches the default browser at `https://localhost:<port>`, which displays the apps UI. `<port>` is the random port that is assigned when the app was created.
 
+Close the browser window.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
@@ -142,6 +144,10 @@ At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
 
 The default browser launched with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
 
+Close the browser window.
+
+In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app.
@@ -149,8 +155,6 @@ Select **Debug** > **Start Debugging** to launch the app.
 Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
 
 Close the browser window.
-
-In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
 ---
 

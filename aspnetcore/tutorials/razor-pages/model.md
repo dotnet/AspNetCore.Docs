@@ -59,13 +59,13 @@ The `Movie` class contains:
   * Only the date is displayed, not time information.
 * The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
 <a name="dc7"></a>
 
 ### Add NuGet packages and EF tools
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
-
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 In Visual Studio Code, from the *Run* menu, select *Start Debugging* or press <kbd>F5</kbd> to build and run the the project with debugging. 
 
