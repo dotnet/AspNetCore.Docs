@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 01/05/2024
+ms.date: 02/15/2024
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: engagement-fy23
 ---
@@ -62,9 +62,15 @@ The question mark after `string` indicates that the property is nullable. For mo
 
 Visual Studio automatically installs the required packages.
 
+Build the project as a check for compiler errors.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+
+In Visual Studio Code, from the *Run* menu, select *Start Debugging* or press <kbd>F5</kbd> to build and run the the project with debugging. 
+
+In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -111,9 +117,9 @@ The preceding commands add:
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
 * The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
----
-
 Build the project as a check for compiler errors.
+
+---
 
 ## Scaffold movie pages
 

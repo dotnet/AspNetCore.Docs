@@ -93,15 +93,14 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-* Select Ctrl+F5 to run the app without the debugger.
-
+* Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without the debugger.
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
 Visual Studio runs the app and opens the default browser.
 
 The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
-Launching the app without debugging by selecting Ctrl+F5 allows you to:
+Launching the app without debugging by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> allows you to:
 
 * Make code changes.
 * Save the file.
@@ -119,11 +118,13 @@ The following image shows the app:
 
 ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-vs.png)
 
+* Close the browser window.  Visual Studio will stop the application.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Select F5 to run the app.
+[!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
+* In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app quickly without debugging.
 
   Visual Studio Code:
 
@@ -140,6 +141,10 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Quickly refresh the browser and see the code changes.
 
   ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-port5001.png)
+
+* Close the browser window.
+
+* In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -160,6 +165,8 @@ You can launch the app in debug or non-debug mode from the **Debug** menu.
 The following image shows the app:
 
 ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos_VS22.png)
+
+* Close the browser window.  Visual Studio for Mac will stop the application.
 
 ---
 

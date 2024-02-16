@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 7 of tutorial series on Razor Pages.
 ms.author: wpickett
 ms.custom: engagement-fy23
-ms.date: 10/13/2023
+ms.date: 02/15/2024
 uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
@@ -62,7 +62,23 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/SeedDataRating.cs).
 
-Build the solution.
+Build the app
+
+### [Visual Studio](#tab/visual-studio)
+
+ Ctrl+Shift+B
+
+### [Visual Studio Code](#tab/visual-studio-code)
+
+```dotnetcli
+dotnet build
+```
+
+### [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Command ⌘ + B
+
+---
 
 # [Visual Studio](#tab/visual-studio)
 
