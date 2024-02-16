@@ -164,11 +164,11 @@ Additional .NET WebAssembly runtime callbacks:
 
   ```javascript
   export function onRuntimeReady({ getAssemblyExports, getConfig }) {
-        // Sample: After the runtime starts, but before Main method is called, 
-        // call [JSExport]ed method.
-        const config = getConfig();
-        const exports = await getAssemblyExports(config.mainAssemblyName);
-        exports.Sample.Greet();
+    // Sample: After the runtime starts, but before Main method is called, 
+    // call [JSExport]ed method.
+    const config = getConfig();
+    const exports = await getAssemblyExports(config.mainAssemblyName);
+    exports.Sample.Greet();
   }
   ```
 Both callbacks can return a `Promise`, and the promise is awaited before the startup continues.
