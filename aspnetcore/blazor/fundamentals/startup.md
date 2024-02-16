@@ -161,7 +161,7 @@ Additional .NET WebAssembly runtime callbacks:
   }
   ```
 
-* `onRuntimeReady({ getAssemblyExports, getConfig })`: Called after the .NET WebAssembly runtime has started and passed in the .NET runtime API ():
+* `onRuntimeReady({ getAssemblyExports, getConfig })`: Called after the .NET WebAssembly runtime has started:
 
   ```javascript
   export async function onRuntimeReady({ getAssemblyExports, getConfig }) {
