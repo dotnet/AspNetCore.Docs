@@ -172,6 +172,7 @@ Additional .NET WebAssembly runtime callbacks:
   }
   ```
 Both callbacks can return a `Promise`, and the promise is awaited before the startup continues.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
