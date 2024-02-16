@@ -131,7 +131,7 @@ Using the [default](#default) configuration, the `appsettings.json` and `appsett
 
 ### Comments in appsettings.json
 
-Comments in `appsettings.json` and `appsettings.{Environment}.json`files are supported using JavaScript or [C# style comments](/dotnet/csharp/language-reference/tokens/comments).
+Comments in `appsettings.json` and `appsettings.{Environment}.json` files are supported using JavaScript or [C# style comments](/dotnet/csharp/language-reference/tokens/comments).
 
 <a name="optpat"></a>
 
