@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 10/16/2023
+ms.date: 02/15/2024
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: engagement-fy23
@@ -91,7 +91,7 @@ The first comment states this is an [HTTP GET](https://developer.mozilla.org/doc
 
 The second comment specifies an [HTTP GET](https://developer.mozilla.org/docs/Web/HTTP/Methods) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial, the scaffolding engine is used to generate `HTTP POST` methods, which update data.
 
-Run the app without the debugger.
+Run the app without the debugger by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS).
 
 Append `/HelloWorld` to the path in the address bar. The `Index` method returns a string.
 

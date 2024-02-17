@@ -20,9 +20,11 @@ Build the app
 
 ### [Visual Studio](#tab/visual-studio)
 
- Ctrl+Shift+B
+Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>
 
 ### [Visual Studio Code](#tab/visual-studio-code)
+
+From the *View* menu, select *Terminal* and enter the following command:
 
 ```dotnetcli
 dotnet build
@@ -30,7 +32,7 @@ dotnet build
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Command ⌘ + B
+Press <kbd>⌘</kbd>+<kbd>B</kbd>
 
 ---
 
