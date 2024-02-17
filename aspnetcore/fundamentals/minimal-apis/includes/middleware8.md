@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-8.0"
 
-`WebApplication` automatically adds the following middleware depending on certain conditions:
+[`WebApplication`](xref:fundamentals/minimal-apis/webapplication) automatically adds the following middleware in [`Minimal API applications`](xref:fundamentals/minimal-apis/overview) depending on certain conditions:
 * [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [`HostingEnvironment`](xref:fundamentals/environments) is `"Development"`.
 * [`UseRouting`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.userouting) is added second if user code didn't already call `UseRouting` and if there are endpoints configured, for example `app.MapGet`.
 * [`UseEndpoints`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.useendpoints) is added at the end of the middleware pipeline if any endpoints are configured.
