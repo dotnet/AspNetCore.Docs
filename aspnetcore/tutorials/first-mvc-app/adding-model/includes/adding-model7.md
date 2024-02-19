@@ -45,9 +45,15 @@ The question mark after `string` indicates that the property is nullable. For mo
 
 Visual Studio automatically installs the required packages.
 
+Build the project as a check for compiler errors.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+
+In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -86,16 +92,16 @@ dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 The preceding commands add:
 
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
 * The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
-[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+Build the project as a check for compiler errors.
 
 ---
-
-Build the project as a check for compiler errors.
 
 ## Scaffold movie pages
 

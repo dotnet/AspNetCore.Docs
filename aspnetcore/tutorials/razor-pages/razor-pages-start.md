@@ -4,7 +4,7 @@ author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/13/2023
+ms.date: 02/12/2024
 ms.custom: engagement-fy23
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -109,7 +109,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 <!-- replace all of this with updated includes  -->
 
-Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to run without the debugger.
+Select **RazorPagesMovie** in **Solution Explorer**, and then press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without the debugger.
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 
@@ -130,19 +130,31 @@ Visual Studio:
 * Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
 * Launches the default browser at `https://localhost:<port>`, which displays the apps UI. `<port>` is the random port that is assigned when the app was created.
 
+Close the browser window.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**.
+In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
+
+![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/_static/vsc-select-debugger.png)
 
 The default browser launched with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
+
+Close the browser window.
+
+In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app.
 
 Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
+
+Close the browser window.
 
 ---
 
