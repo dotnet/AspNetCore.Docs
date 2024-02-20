@@ -1302,7 +1302,7 @@ A component reference is only populated after the component is rendered and its 
 
 To manipulate component references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
 
-The following lambda approach uses the preceding `ReferenceChild` component. The [`!` (null-forgiving) operator](/dotnet/csharp/language-reference/operators/null-forgiving) results in a clear error if `childComponent` isn't populated when `ChildMethod` is called, but `childComponent` is populated in all normal Blazor framework rendering scenarios. Don't attempt to call a referenced component method without a lambda expression (for example, `@onclick="childComponent!.ChildMethod(5)"`) because the reference variable may not be assigned by the time click event is assigned.
+The following lambda approach uses the preceding `ReferenceChild` component. The [`!` (null-forgiving) operator](/dotnet/csharp/language-reference/operators/null-forgiving) results in a clear error if `childComponent` isn't populated when `ChildMethod` is called, but `childComponent` is populated in all normal Blazor framework rendering scenarios. Don't attempt to call a referenced component method without a lambda expression (for example, `@onclick="childComponent!.ChildMethod(5)"`) because the reference variable may not be assigned at the time click event is assigned.
 
 `ReferenceParent1.razor`:
 
