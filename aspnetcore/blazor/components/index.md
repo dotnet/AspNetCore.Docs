@@ -1302,7 +1302,7 @@ A component reference is only populated after the component is rendered and its 
 
 To manipulate component references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). 
 
-The following examples use the preceding `ReferenceChild` component. 
+The following examples use the preceding `ReferenceChild` component.
 
 `ReferenceParent1.razor`:
 
