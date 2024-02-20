@@ -1298,11 +1298,11 @@ Consider the following `ReferenceChild` component that logs a message when its `
 
 :::moniker-end
 
-A component reference is only populated after the component is rendered and its output includes `ReferenceChild`'s element. Until the component is rendered, there's nothing to reference.
+A component reference is only populated after the component is rendered and its output includes `ReferenceChild`'s element. Until the component is rendered, there's nothing to reference. Don't attempt to call a referenced component method to an event handler directly (for example, `@onclick="childComponent!.ChildMethod(5)"`) because the reference variable may not be assigned at the time click event is assigned.
 
-To manipulate component references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
+To manipulate component references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). 
 
-The following lambda approach uses the preceding `ReferenceChild` component. The [`!` (null-forgiving) operator](/dotnet/csharp/language-reference/operators/null-forgiving) results in a clear error if `childComponent` isn't populated when `ChildMethod` is called, but `childComponent` is populated in all normal Blazor framework rendering scenarios. Don't attempt to call a referenced component method without a lambda expression (for example, `@onclick="childComponent!.ChildMethod(5)"`) because the reference variable may not be assigned at the time click event is assigned.
+The following examples use the preceding `ReferenceChild` component. 
 
 `ReferenceParent1.razor`:
 
@@ -1335,8 +1335,6 @@ The following lambda approach uses the preceding `ReferenceChild` component. The
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
 
 :::moniker-end
-
-The following approach uses the preceding `ReferenceChild` component.
 
 `ReferenceParent2.razor`:
 
