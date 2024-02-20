@@ -753,6 +753,19 @@ services.AddScoped<BlazorServiceAccessor>();
 
 ## Additional resources
 
+:::moniker range=">= aspnetcore-8.0"
+
+* [Service injection via a top-level imports file (`_Imports.razor`) in Blazor Web Apps](xref:blazor/components/render-modes#service-injection-via-a-top-level-imports-file-_importsrazor)
 * <xref:fundamentals/dependency-injection>
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* <xref:fundamentals/dependency-injection>
+* [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* <xref:mvc/views/dependency-injection>
+
+:::moniker-end

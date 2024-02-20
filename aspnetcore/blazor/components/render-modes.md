@@ -793,6 +793,14 @@ Alternatively, a single component instance can define a custom render mode via a
 
 At the moment, the shorthand render mode approach is probably only useful for reducing the verbosity of specifying the `prerender` flag. The shorthand approach might be more useful in the future if additional flags become available for interactive rendering and you would like to create shorthand render modes with different combinations of flags.
 
+## Service injection via a top-level imports file (`_Imports.razor`)
+
+*This section only applies to Blazor Web Apps.*
+
+A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering](#prerendering) of a page component is disabled. Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
+
+To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved once in page components.
+
 ## Additional resources
 
 * <xref:blazor/js-interop/ssr>
