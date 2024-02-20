@@ -304,7 +304,7 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 
 :::moniker-end
 
-When the [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) method is used instead of [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the default assignment of the `Text` property to `fantastic` does not occur if the user navigates within the same component. For example, this situation arises when the user navigates from `route-parameter-2/amazing` to `route-parameter-2`. In this case, as the component instance persists and accepts new parameters, the `OnInitialized` method is not invoked again.
+When the [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) method is used instead of [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the default assignment of the `Text` property to `fantastic` doesn't occur if the user navigates within the same component. For example, this situation arises when the user navigates from `/route-parameter-2/amazing` to `/route-parameter-2`. As the component instance persists and accepts new parameters, the `OnInitialized` method isn't invoked again.
 
 :::moniker range="< aspnetcore-6.0"
 
