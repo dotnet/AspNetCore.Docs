@@ -797,9 +797,9 @@ At the moment, the shorthand render mode approach is probably only useful for re
 
 *This section only applies to Blazor Web Apps.*
 
-A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if prerendering of a page component is disabled. Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
+A top-level imports file in the `Components` folder (`Components/_Imports.razor`) injects its references into all of the components in the folder hierarchy, which includes the `App` component (`App.razor`). The `App` component is always rendered statically even if [prerendering](#prerendering) of a page component is disabled. Therefore, injecting services via the top-level imports file results in resolving *two instances* of the service in page components.
 
-To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved in page components, not the `App` component.
+To address this scenario, inject the service in a new imports file placed in the `Pages` folder (`Components/Pages/_Imports.razor`). From that location, the service is only resolved once in page components.
 
 ## Additional resources
 
