@@ -1302,69 +1302,37 @@ A component reference is only populated after the component is rendered and its 
 
 To manipulate component references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
 
-The following examples use the preceding `ReferenceChild` component.
+The following example uses the preceding `ReferenceChild` component.
 
-`ReferenceParent1.razor`:
+`ReferenceParent.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ReferenceParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ReferenceParent.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
-
-:::moniker-end
-
-`ReferenceParent2.razor`:
-
-:::moniker range=">= aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ReferenceParent2.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent.razor":::
 
 :::moniker-end
 
