@@ -1302,9 +1302,7 @@ A component reference is only populated after the component is rendered and its 
 
 To manipulate component references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
 
-To use a reference variable with an event handler, use a lambda expression or assign the event handler delegate in the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). This ensures that the reference variable is assigned before the event handler is assigned.
-
-The following lambda approach uses the preceding `ReferenceChild` component.
+The following lambda approach uses the preceding `ReferenceChild` component. The [`!` (null-forgiving) operator](/dotnet/csharp/language-reference/operators/null-forgiving) results in a clear error if `childComponent` isn't populated when `ChildMethod` is called, but `childComponent` is populated in all normal Blazor framework rendering scenarios.
 
 `ReferenceParent1.razor`:
 
@@ -1338,7 +1336,7 @@ The following lambda approach uses the preceding `ReferenceChild` component.
 
 :::moniker-end
 
-The following delegate approach uses the preceding `ReferenceChild` component.
+The following approach uses the preceding `ReferenceChild` component.
 
 `ReferenceParent2.razor`:
 
