@@ -695,13 +695,13 @@ If the destination is a non-Blazor endpoint, enhanced navigation doesn't apply, 
 To enable enhanced form handling, add the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter to <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute to HTML forms (`<form>`):
 
 ```razor
-<EditForm Enhance ...>
+<EditForm ... Enhance ...>
     ...
 </EditForm>
 ```
 
 ```html
-<form ... data-enhance>
+<form ... data-enhance ...>
     ...
 </form>
 ```
@@ -711,7 +711,7 @@ Enhanced form handling isn't hierarchical and doesn't flow to child forms:
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced navigation for the form.
 
 ```html
-<div data-enhance>
+<div ... data-enhance ...>
     <form ...>
         <!-- NOT enhanced -->
     </form>
