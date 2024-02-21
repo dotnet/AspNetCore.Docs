@@ -227,26 +227,28 @@ In Blazor Web Apps with the error boundary only applied to a static `MainLayout`
 
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
-Change the `OnNotify` method of the `Notifications` component (`Notifications.razor`):
+In the `@code` block of the `Notifications` component (`Notifications.razor`):
 
-* Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
-* Pass any <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and await the result.
+* Add an asynchronous method named `StartTimerFireAndForgetAsync` that starts the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement).
+* In the `catch` clause of the `try-catch` block, dispatch any exceptions back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
+* Instead of calling `Timer.Start` from `StartTimer`, call the `StartTimerFireAndForgetAsync` method and intentionally discard the `Task`, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the `Task`, is *forgotten* (thrown away).
 
 ```csharp
-public async Task OnNotify(string key, int value)
+private async Task StartTimerFireAndForgetAsync()
 {
     try
     {
-        await InvokeAsync(() =>
-        {
-            lastNotification = (key, value);
-            StateHasChanged();
-        });
+        await Timer.Start();
     }
     catch (Exception ex)
     {
         await DispatchExceptionAsync(ex);
     }
+}
+
+private void StartTimer()
+{
+    _ = StartTimerFireAndForgetAsync();
 }
 ```
 
