@@ -92,7 +92,7 @@ Reusable Razor components may use links and enhanced navigation. HTML `<a>` tags
 
 ## Using forms across render modes
 
-Reusable Razor components may include forms (either `<form @onsubmit=...>` or `<EditForm OnValidSubmit=...>`), as these can be implemented to work equivalently across both static and interactive render modes.
+Reusable Razor components may include forms (either `<form>` or `<EditForm>`), as these can be implemented to work equivalently across both static and interactive render modes.
 
 Consider the following example:
 
