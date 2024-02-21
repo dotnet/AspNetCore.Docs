@@ -227,11 +227,19 @@ In Blazor Web Apps with the error boundary only applied to a static `MainLayout`
 
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
-In the `@code` block of the `Notifications` component (`Notifications.razor`):
+To dispatch exceptions back to the component, the timer example is updated in the following way:
 
-* Add an asynchronous method named `StartTimerFireAndForgetAsync` that starts the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement).
-* In the `catch` clause of the `try-catch` block, dispatch any exceptions back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
-* Instead of calling `Timer.Start` from `StartTimer`, call the `StartTimerFireAndForgetAsync` method and intentionally discard the `Task`, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the `Task`, is *forgotten* (thrown away).
+* An asynchronous method is added that starts the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
+* Instead of calling `Timer.Start` from `StartTimer`, the asynchronous method is called and the `Task` is intentionally discarded, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the `Task`, is *forgotten* (thrown away).
+
+Note the following change in the `StartTimer` method's signature in the following example:
+
+```diff
+- private async Task StartTimer()
++ private void StartTimer()
+```
+
+In the `@code` block of the `Notifications` component (`Notifications.razor`):
 
 ```csharp
 private async Task StartTimerFireAndForgetAsync()
