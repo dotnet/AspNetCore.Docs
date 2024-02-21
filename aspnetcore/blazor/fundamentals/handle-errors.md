@@ -135,13 +135,13 @@ catch (Exception ex)
 }
 ```
 
-A common scenario for the preceding approach is when a component starts an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>, often called the *fire and forget* pattern. If the operation fails, you may want the component to treat the failure as a component lifecycle exception for any of the following goals:
+A common scenario for the preceding approach is when a component starts an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>, often called the *fire and forget* pattern because the method is *fired* (started) and the result of the method is *forgotten* (thrown away). If the operation fails, you may want the component to treat the failure as a component lifecycle exception for any of the following goals:
 
 * Put the component into a faulted state, for example, to trigger an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 * Terminate the circuit if there's no error boundary.
 * Trigger the same logging that occurs for lifecycle exceptions.
 
-In the following example, the user selects the **Send report** button to trigger a background method, `ReportSender.SendAsync`, that sends a report. In most cases, a component awaits the <xref:System.Threading.Tasks.Task> of an asynchronous call and updates the UI to indicate the operation completed. In the following example, the `SendReport` method doesn't await a <xref:System.Threading.Tasks.Task> and doesn't report the result to the user, which is often called *fire and forget* because the method is *fired* (started) and the result of the method is *forgotten* (thrown away). Because the component intentionally discards the <xref:System.Threading.Tasks.Task> in `SendReport`, any asynchronous failures occur off of the normal lifecycle call stack, hence aren't seen by Blazor:
+In the following example, the user selects the **Send report** button to trigger a background method, `ReportSender.SendAsync`, that sends a report. In most cases, a component awaits the <xref:System.Threading.Tasks.Task> of an asynchronous call and updates the UI to indicate the operation completed. In the following example, the `SendReport` method doesn't await a <xref:System.Threading.Tasks.Task> and doesn't report the result to the user. Because the component intentionally discards the <xref:System.Threading.Tasks.Task> in `SendReport`, any asynchronous failures occur off of the normal lifecycle call stack, hence aren't seen by Blazor:
 
 ```razor
 <button @onclick="SendReport">Send report</button>
