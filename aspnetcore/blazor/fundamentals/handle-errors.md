@@ -179,7 +179,7 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
 }
 ```
 
-An alternative approach for sending the report and discarding the <xref:System.Threading.Tasks.Task> is to leverage <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>:
+An alternative approach for sending the report and discarding the <xref:System.Threading.Tasks.Task> is to leverage <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>. This pattern is often called *fire and forget* because the method (<xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>) is *fired* (started) and the result of the method (the <xref:System.Threading.Tasks.Task> returned by the <xref:System.Action> delegate) is *forgotten* (thrown away).
 
 ```csharp
 private void SendReport()
@@ -248,15 +248,10 @@ If you run the app at this point, the exception is thrown when the elapsed count
 
 To dispatch exceptions from the timer service back to the `Notifications` component, the following changes are made to the component:
 
-* An asynchronous method is added that starts the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
-* Instead of calling `Timer.Start` from `StartTimer`, the asynchronous method is called and the <xref:System.Threading.Tasks.Task> is intentionally discarded, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the <xref:System.Threading.Tasks.Task>, is *forgotten* (thrown away). The `StartTimer` method's signature changes to adopt the fire and forget pattern:
+* Start the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
+* In the `StartTimer` method, start the asynchronous timer service in the <xref:System.Action> delegate of <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> and intentionally discard the returned <xref:System.Threading.Tasks.Task>.
 
-  ```diff
-  - Task StartTimer();
-  + void StartTimer();
-  ```
-
-In the `StartTimer` method of the `Notifications` component (`Notifications.razor`):
+The `StartTimer` method of the `Notifications` component (`Notifications.razor`):
 
 ```csharp
 private void StartTimer()
