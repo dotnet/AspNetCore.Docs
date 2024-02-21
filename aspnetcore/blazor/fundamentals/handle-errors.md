@@ -233,7 +233,7 @@ To dispatch exceptions from the timer service back to the `Notifications` compon
 * Instead of calling `Timer.Start` from `StartTimer`, the asynchronous method is called and the `Task` is intentionally discarded, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the `Task`, is *forgotten* (thrown away). The `StartTimer` method's signature changes to adopt the fire and forget pattern:
 
   ```diff
-  - async Task StartTimer()
+  - Task StartTimer()
   + void StartTimer()
   ```
 
