@@ -179,7 +179,7 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
 }
 ```
 
-An alternative approach for sending the report and discarding the <xref:System.Threading.Tasks.Task> is to leverage <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>:
+An alternative approach leverages <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>:
 
 ```csharp
 private void SendReport()
