@@ -135,7 +135,7 @@ catch (Exception ex)
 }
 ```
 
-A common scenario is if a component wants to start an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>. If the operation fails, you may still want the component to treat the failure as a component lifecycle exception for the following example goals:
+A common scenario for the preceding approach is when a component starts an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>, often called the *fire and forget* pattern. If the operation fails, you may want the component to treat the failure as a component lifecycle exception for any of the following goals:
 
 * Put the component into a faulted state, for example, to trigger an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 * Terminate the circuit if there's no error boundary.
