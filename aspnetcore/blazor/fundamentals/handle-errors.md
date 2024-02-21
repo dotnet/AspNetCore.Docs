@@ -230,14 +230,12 @@ If you run the app at this point, the exception is thrown when the elapsed count
 To dispatch exceptions from the timer service back to the `Notifications` component, the following changes are made to the component:
 
 * An asynchronous method is added that starts the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
-* Instead of calling `Timer.Start` from `StartTimer`, the asynchronous method is called and the `Task` is intentionally discarded, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the `Task`, is *forgotten* (thrown away).
+* Instead of calling `Timer.Start` from `StartTimer`, the asynchronous method is called and the `Task` is intentionally discarded, which is often called *fire and forget* because the method is *fired* (started) and the result of the method, the `Task`, is *forgotten* (thrown away). The `StartTimer` method's signature changes to adopt the fire and forget pattern:
 
-Note the following change in the `StartTimer` method's signature in the following example:
-
-```diff
-- private async Task StartTimer()
-+ private void StartTimer()
-```
+  ```diff
+  - async Task StartTimer()
+  + void StartTimer()
+  ```
 
 In the `@code` block of the `Notifications` component (`Notifications.razor`):
 
