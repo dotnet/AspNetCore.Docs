@@ -250,13 +250,13 @@ For more information, see <xref:blazor/security/index#antiforgery-support>.
 [Enhance navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) for form POST requests with the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> parameter for <xref:Microsoft.AspNetCore.Components.Forms.EditForm> forms or the `data-enhance` attribute for HTML forms (`<form>`):
 
 ```razor
-<EditForm Enhance ...>
+<EditForm ... Enhance ...>
     ...
 </EditForm>
 ```
 
 ```html
-<form data-enhance ...>
+<form ... data-enhance ...>
     ...
 </form>
 ```
@@ -264,7 +264,7 @@ For more information, see <xref:blazor/security/index#antiforgery-support>.
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> You can't set enhanced navigation on a form's ancestor element to enable enhanced form handling.
 
 ```html
-<div data-enhance>
+<div ... data-enhance ...>
     <form ...>
         <!-- NOT enhanced -->
     </form>

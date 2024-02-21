@@ -23,6 +23,8 @@ For example, the following highlighted CORS policy allows a SignalR browser clie
 
 [!code-csharp[Main](~/signalr/security/sample/SignalR_CORS6-8/Program.cs?name=snippet_AddCors&highlight=7-16)]
 
+In the previous example, the CORS policy is customized to allow specific origins, methods, and credentials. For more information on customizing CORS policies and middleware in ASP.NET Core, see [CORS middleware: CORS with named policy and middleware](xref:security/cors#cors-with-named-policy-and-middleware).
+
 ## WebSocket Origin Restriction
 
 The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).

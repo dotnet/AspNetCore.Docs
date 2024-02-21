@@ -761,7 +761,7 @@ Always unsubscribe event handlers from .NET events. The following [Blazor form](
   ```razor
   @implements IDisposable
 
-  <EditForm EditContext="editContext">
+  <EditForm ... EditContext="editContext" ...>
       ...
       <button type="submit" disabled="@formInvalid">Submit</button>
   </EditForm>
@@ -795,7 +795,7 @@ Always unsubscribe event handlers from .NET events. The following [Blazor form](
   ```razor
   @implements IDisposable
 
-  <EditForm EditContext="editContext">
+  <EditForm ... EditContext="editContext" ...>
       ...
       <button type="submit" disabled="@formInvalid">Submit</button>
   </EditForm>

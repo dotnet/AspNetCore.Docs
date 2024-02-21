@@ -537,7 +537,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="Model" OnValidSubmit="Submit" FormName="Starship10">
+<EditForm FormName="Starship10" Model="Model" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
     <CustomValidation @ref="customValidation" />
     <ValidationSummary />

@@ -400,7 +400,56 @@ Add the following component to the root of the RCL project. The component permit
 
 `Robot.razor`:
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```razor
+@page "/robot"
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Extensions.Logging
+@inject ILogger<Robot> Logger
+
+<h1>Robot</h1>
+
+<EditForm FormName="RobotForm" Model="robotModel" OnValidSubmit="HandleValidSubmit">
+    <InputRadioGroup @bind-Value="robotModel.AxisSelection">
+        @foreach (var entry in (Axis[])Enum
+            .GetValues(typeof(Axis)))
+        {
+            <InputRadio Value="entry" />
+            <text>&nbsp;</text>@entry<br>
+        }
+    </InputRadioGroup>
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>
+    @message
+</p>
+
+@code {
+    private RobotModel robotModel = new() { AxisSelection = Axis.Left };
+    private string? message;
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+
+        var result = HandGesture.ThumbUp(robotModel.AxisSelection, Logger);
+
+        message = $"ThumbUp returned {result} at {DateTime.Now}.";
+    }
+
+    public class RobotModel
+    {
+        public Axis AxisSelection { get; set; }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```razor
 @page "/robot"

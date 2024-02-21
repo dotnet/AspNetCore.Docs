@@ -135,7 +135,7 @@ catch (Exception ex)
 }
 ```
 
-A common scenario is if a component wants to start an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>. If the operation fails, you may still want the component to treat the failure as a component lifecycle exception for the following example goals:
+A common scenario for the preceding approach is when a component starts an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>, often called the *fire and forget* pattern because the method is *fired* (started) and the result of the method is *forgotten* (thrown away). If the operation fails, you may want the component to treat the failure as a component lifecycle exception for any of the following goals:
 
 * Put the component into a faulted state, for example, to trigger an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 * Terminate the circuit if there's no error boundary.
@@ -176,6 +176,25 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
             await DispatchExceptionAsync(ex);
         }
     }
+}
+```
+
+An alternative approach leverages <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType>:
+
+```csharp
+private void SendReport()
+{
+    _ = Task.Run(async () =>
+    {
+        try
+        {
+            await ReportSender.SendAsync();
+        }
+        catch (Exception ex)
+        {
+            await DispatchExceptionAsync(ex);
+        }
+    });
 }
 ```
 
@@ -227,26 +246,27 @@ In Blazor Web Apps with the error boundary only applied to a static `MainLayout`
 
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
-Change the `OnNotify` method of the `Notifications` component (`Notifications.razor`):
+To dispatch exceptions from the timer service back to the `Notifications` component, the following changes are made to the component:
 
-* Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
-* Pass any <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and await the result.
+* Start the timer in a [`try-catch` statement](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-try-catch-statement). In the `catch` clause of the `try-catch` block, exceptions are dispatched back to the component by passing the <xref:System.Exception> to <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A> and awaiting the result.
+* In the `StartTimer` method, start the asynchronous timer service in the <xref:System.Action> delegate of <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> and intentionally discard the returned <xref:System.Threading.Tasks.Task>.
+
+The `StartTimer` method of the `Notifications` component (`Notifications.razor`):
 
 ```csharp
-public async Task OnNotify(string key, int value)
+private void StartTimer()
 {
-    try
+    _ = Task.Run(async () =>
     {
-        await InvokeAsync(() =>
+        try
         {
-            lastNotification = (key, value);
-            StateHasChanged();
-        });
-    }
-    catch (Exception ex)
-    {
-        await DispatchExceptionAsync(ex);
-    }
+            await Timer.Start();
+        }
+        catch (Exception ex)
+        {
+            await DispatchExceptionAsync(ex);
+        }
+    });
 }
 ```
 

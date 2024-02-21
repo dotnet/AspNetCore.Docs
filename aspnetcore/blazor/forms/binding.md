@@ -44,7 +44,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-<EditForm Model="Model" ...>
+<EditForm ... Model="Model" ...>
     ...
 </EditForm>
 
@@ -90,7 +90,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-<EditForm EditContext="editContext" ...>
+<EditForm ... EditContext="editContext" ...>
     ...
 </EditForm>
 
@@ -153,7 +153,7 @@ builder.Services.AddRazorComponents(options =>
 Use the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> parameter to assign a form name. Form names must be unique to bind model data. The following form is named `RomulanAle`:
 
 ```razor
-<EditForm ... FormName="RomulanAle">
+<EditForm ... FormName="RomulanAle" ...>
     ...
 </EditForm>
 ```
@@ -172,7 +172,7 @@ In the following example, the `HelloFormFromLibrary` component has a form named 
 `HelloFormFromLibrary.razor`:
 
 ```razor
-<EditForm Model="this" OnSubmit="Submit" FormName="Hello">
+<EditForm FormName="Hello" Model="this" OnSubmit="Submit">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
@@ -207,7 +207,7 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
 
 <div>Hello form using the same form name</div>
 
-<EditForm Model="this" OnSubmit="Submit" FormName="Hello">
+<EditForm FormName="Hello" Model="this" OnSubmit="Submit">
     <InputText @bind-Value="Name" />
     <button type="submit">Submit</button>
 </EditForm>
