@@ -334,8 +334,7 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
 <fieldset>
     <legend>Manufacturer</legend>
     <InputRadioGroup @bind-Value="Model!.Manufacturer">
-        @foreach (var manufacturer in (Manufacturer[])Enum
-            .GetValues(typeof(Manufacturer)))
+        @foreach (var manufacturer in Enum.GetValues<Manufacturer>())
         {
             <div>
                 <label>
