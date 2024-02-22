@@ -412,8 +412,7 @@ Add the following component to the root of the RCL project. The component permit
 
 <EditForm FormName="RobotForm" Model="robotModel" OnValidSubmit="HandleValidSubmit">
     <InputRadioGroup @bind-Value="robotModel.AxisSelection">
-        @foreach (var entry in (Axis[])Enum
-            .GetValues(typeof(Axis)))
+        @foreach (var entry in Enum.GetValues<Axis>())
         {
             <InputRadio Value="entry" />
             <text>&nbsp;</text>@entry<br>
@@ -461,8 +460,7 @@ Add the following component to the root of the RCL project. The component permit
 
 <EditForm Model="robotModel" OnValidSubmit="HandleValidSubmit">
     <InputRadioGroup @bind-Value="robotModel.AxisSelection">
-        @foreach (var entry in (Axis[])Enum
-            .GetValues(typeof(Axis)))
+        @foreach (var entry in Enum.GetValues<Axis>())
         {
             <InputRadio Value="entry" />
             <text>&nbsp;</text>@entry<br>
