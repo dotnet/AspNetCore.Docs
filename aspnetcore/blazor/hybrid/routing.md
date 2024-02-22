@@ -281,7 +281,7 @@ For more information, see the following resources:
 
 ## App linking (deep linking)
 
-It's often desirable to connect a website and a mobile app so that links on a website launch the mobile app and display content in the mobile app. App linking, which is also known as *deep linking*, is a technique that enables a mobile device to respond to a URI and launch content in a mobile app that's represented by the URI.
+It's often desirable to connect a website and a mobile app so that links on a website launch the mobile app and display content in the mobile app. App linking, also known as *deep linking*, is a technique that enables a mobile device to respond to a URI and launch content in a mobile app that's represented by the URI.
 
 For more information, see the following articles in the .NET MAUI documentation:
 
