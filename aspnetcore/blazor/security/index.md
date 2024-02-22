@@ -50,13 +50,18 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 
 ## Antiforgery support
 
-Blazor adds Antiforgery Middleware and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) by default. 
+Blazor adds Antiforgery Middleware and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) by default to mitigate the threats of Cross-Site Request Forgery (CSRF/XSRF).
 
 The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component renders an antiforgery token as a hidden field, and this component is automatically added to form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>) instances. For more information, see <xref:blazor/forms/index#antiforgery-support>.
 
 The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider> service provides access to an antiforgery token associated with the current session. Inject the service and call its <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryStateProvider.GetAntiforgeryToken> method to obtain the current <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryRequestToken>. For more information, see <xref:blazor/call-web-api#antiforgery-support>.
 
 Blazor stores request tokens in component state, which guarantees that antiforgery tokens are available to interactive components, even when they don't have access to the request.
+
+> [!NOTE]
+> [Antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. For more information, see <xref:blazor/forms/index#antiforgery-support>.
+>
+> Requests to server API endpoints (web API) with `application/json`-encoded content and [CORS](xref:security/cors) enabled doesn't require CSRF protection.
 
 :::moniker-end
 
