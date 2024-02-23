@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 11/09/2023
+ms.date: 02/22/2024
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -20,7 +20,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://gi
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -92,8 +92,8 @@ This tutorial creates the following API:
 * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
-  * Select **Web and Console** > **App** > **Empty**.
-  * Select **Continue**.
+  * Select **Web and Console** > **App** > **Empty**
+  * Select **Continue**
 
   ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
 
@@ -101,14 +101,14 @@ This tutorial creates the following API:
   * **Target framework:** .NET 8.0
   * **Configure for HTTPS**: Check
   * **Do not use top-level statements**: Uncheck
-  * Select **Continue**.
+  * Select **Continue**
 
   ![Additional information](~/tutorials/min-web-api/_static/add-info8-vsmac-2022.png)
 
 * Enter the following:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
-  * Select **Create**.
+  * Select **Create**
 
 ---
 
@@ -157,7 +157,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
-* Select **Include prerelease**.  <!--todo: remove this when .NET 8 is released. -->
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -167,14 +166,13 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Run the following commands:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
+  dotnet add package Microsoft.EntityFrameworkCore.InMemory
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
-* Select **Include prerelease**.  <!--todo: remove this when .NET 8 is released. -->
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**.
@@ -239,7 +237,7 @@ The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` th
 
 [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_post)]
 
-Run the app. The browser displays a 404 error because there is no longer a `/` endpoint.
+Run the app. The browser displays a 404 error because there's no longer a `/` endpoint.
 
 Use the POST endpoint to add data to the app.
 
@@ -260,9 +258,9 @@ Use the POST endpoint to add data to the app.
   ###
   ```
 
-  * The first line creates a variable that will be used for all of the endpoints.
+  * The first line creates a variable that is used for all of the endpoints.
   * The next line defines a POST request.
-  * The triple hashtag (`###`) line is a request delimiter: what comes after it will be for a different request.
+  * The triple hashtag (`###`) line is a request delimiter: what comes after it is for a different request.
 
 * The POST request needs headers and a body. To define those parts of the request, add the following lines immediately after the POST request line:
 
@@ -597,10 +595,10 @@ public async Task GetAllTodos_ReturnsOkOfTodosResult()
 
 Currently the sample app exposes the entire `Todo` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
 
-A DTO may be used to:
+A DTO can be used to:
 
 * Prevent over-posting.
-* Hide properties that clients are not supposed to view.
+* Hide properties that clients aren't supposed to view.
 * Omit some properties in order to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
