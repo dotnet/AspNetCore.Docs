@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 01/23/2024
+ms.date: 02/22/2024
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
@@ -66,6 +66,8 @@ Don't write code that depends on the location or format of data saved with the S
 
 The Secret Manager tool operates on project-specific configuration settings stored in your user profile.
 
+### Use the CLI
+
 The Secret Manager tool includes an `init` command. To use user secrets, run the following command in the project directory:
 
 ```dotnetcli
@@ -76,7 +78,17 @@ The preceding command adds a `UserSecretsId` element within a `PropertyGroup` of
 
 [!code-xml[](~/security/app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
+### Use Visual Studio
+
 In Visual Studio, right-click the project in Solution Explorer, and select **Manage User Secrets** from the context menu. This gesture adds a `UserSecretsId` element, populated with a GUID, to the project file.
+
+### If `GenerateAssemblyInfo` is `false`
+
+If the  generation of assembly info attributes is disabled, manually add the <xref:Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute> in `AssemblyInfo.cs`. For example:
+
+```csharp
+[assembly: UserSecretsId("your_user_secrets_id")]
+```
 
 ## Set a secret
 
