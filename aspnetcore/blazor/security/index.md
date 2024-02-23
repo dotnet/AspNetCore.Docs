@@ -80,7 +80,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 ### Client-side Blazor authentication
 
-In client-side Blazor apps, authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks and native apps for any operating system.
+In client-side Blazor apps, client-side authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks and native apps for any operating system.
 
 Add the following:
 
