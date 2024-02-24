@@ -73,8 +73,8 @@ builder.Services
 In `BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs`, remove the `useCookies` query string parameter in the `LoginAsync` method of the `CookieAuthenticationStateProvider`:
 
 ```diff
-- /login?useCookies=true
-+ /login
+- login?useCookies=true
++ login
 ```
 
 At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see <xref:security/authentication/identity/spa>.
@@ -108,9 +108,9 @@ The backend web API app maintains a user identity store for ASP.NET Core Identit
 
 The app uses the following NuGet packages:
 
-* [`Microsoft.AspNetCore.Identity`](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity)
 * [`Microsoft.AspNetCore.Identity.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore)
 * [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)
+* [`NSwag.AspNetCore`](https://www.nuget.org/packages/NSwag.AspNetCore)
 
 If your app is to use a different EF Core database provider than the in-memory provider, don't create a package reference in your app for `Microsoft.EntityFrameworkCore.InMemory`.
 
