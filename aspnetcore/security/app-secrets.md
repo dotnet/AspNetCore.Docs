@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 02/22/2024
+ms.date: 02/23/2024
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
@@ -89,6 +89,8 @@ If the  generation of assembly info attributes is disabled, manually add the <xr
 ```csharp
 [assembly: UserSecretsId("your_user_secrets_id")]
 ```
+
+When manually adding the `UserSecretsId` attribute to `AssemblyInfo.cs`, the `UserSecretsId` value must match the value in the project file.
 
 ## Set a secret
 
