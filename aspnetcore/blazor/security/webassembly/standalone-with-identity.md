@@ -73,8 +73,8 @@ builder.Services
 In `BlazorWasmAuth/Identity/CookieAuthenticationStateProvider.cs`, remove the `useCookies` query string parameter in the `LoginAsync` method of the `CookieAuthenticationStateProvider`:
 
 ```diff
-- /login?useCookies=true
-+ /login
+- login?useCookies=true
++ login
 ```
 
 At this point, you must provide custom code to parse the <xref:Microsoft.AspNetCore.Authentication.BearerToken.AccessTokenResponse> on the client and manage the access and refresh tokens. For more information, see <xref:security/authentication/identity/spa>.
