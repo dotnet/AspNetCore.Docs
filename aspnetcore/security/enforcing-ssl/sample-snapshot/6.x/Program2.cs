@@ -1,4 +1,4 @@
-using System.Net;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,7 @@ builder.Services.AddHsts(options =>
 
 builder.Services.AddHttpsRedirection(options =>
 {
-    options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
+    options.RedirectStatusCode = Status307TemporaryRedirect;
     options.HttpsPort = 5001;
 });
 
