@@ -65,7 +65,7 @@ conceptualContent:
         - url: web-api/action-return-types.md
           itemType: concept
           text: "Controller action return types"
-        - url: /fundamentals/api.md
+        - url: fundamentals/api.md
           itemType: overview
           text: "See more"
     # Card
@@ -97,7 +97,7 @@ conceptualContent:
         - url: mvc/views/razor.md
           itemType: concept
           text: "Razor syntax"
-        - url: razor-pages.md
+        - url: razor-pages/index.md
           itemType: overview
           text: "See more"
     # Card
