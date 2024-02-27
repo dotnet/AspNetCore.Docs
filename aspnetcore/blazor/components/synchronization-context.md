@@ -5,7 +5,7 @@ description: Learn about Blazor's synchronization context, how to avoid thread-b
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 02/27/2024
 uid: blazor/components/sync-context
 ---
 # ASP.NET Core Blazor synchronization context
@@ -158,8 +158,20 @@ Use the `NotifierService` to update a component.
 
 In the preceding example:
 
+:::moniker range=">= aspnetcore-6.0"
+
+* The timer is initiated outside of Blazor's synchronization context with `_ = Task.Run(Timer.Start)`.
+* `NotifierService` invokes the component's `OnNotify` method. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
+* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 * `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 * The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+:::moniker-end
 
 > [!IMPORTANT]
 > If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (<xref:System.Threading.ExecutionContext>) at the time the handler is registered. For more information, see [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521).
