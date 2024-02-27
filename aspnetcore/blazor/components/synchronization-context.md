@@ -160,7 +160,7 @@ In the preceding example:
 
 :::moniker range=">= aspnetcore-6.0"
 
-* The timer is initiated outside of Blazor's synchronization context with `_ = Task.Run(() => Timer.Start()`.
+* The timer is initiated outside of Blazor's synchronization context with `_ = Task.Run(Timer.Start)`.
 * `NotifierService` invokes the component's `OnNotify` method. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 * The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
