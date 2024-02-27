@@ -53,6 +53,9 @@ conceptualContent:
     - title: "HTTP API apps"
       summary: Develop HTTP services with ASP.NET Core
       links:
+        - url: fundamentals/apis.md
+          itemType: overview
+          text: "Overview"
         - url: tutorials/min-web-api.md
           itemType: get-started
           text: "Create a minimal web API with ASP.NET Core"
@@ -62,12 +65,6 @@ conceptualContent:
         - url: tutorials/web-api-help-pages-using-swagger.md
           itemType: tutorial
           text: "Generate web API help pages with Swagger / OpenAPI"
-        - url: web-api/action-return-types.md
-          itemType: concept
-          text: "Controller action return types"
-        - url: fundamentals/apis.md
-          itemType: overview
-          text: "See more"
     # Card
     - title: "Interactive client-side Blazor apps"
       summary: Develop with reusable UI components that can take advantage of WebAssembly for near-native performance
@@ -75,15 +72,15 @@ conceptualContent:
         - url: blazor/index.md
           itemType: overview
           text: "Overview"
+        - url: blazor/hosting-models.md
+          itemType: concept
+          text: "Blazor hosting models"
         - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
           itemType: get-started
           text: "Build your first Blazor app"
         - url: blazor/tutorials/build-a-blazor-app.md
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
-        - url: blazor/hosting-models.md
-          itemType: concept
-          text: "Blazor hosting models"
     # Card
     - title: "Page-focused web UI with Razor Pages"
       summary: "Develop page-focused web apps with a clean separation of concerns"
@@ -123,9 +120,6 @@ conceptualContent:
     - title: Data-driven web apps
       summary: "Create data-driven web apps in ASP.NET Core"
       links:
-        - url: tutorials/first-mvc-app/start-mvc.md
-          itemType: tutorial
-          text: "SQL with ASP.NET Core"
         - url: blazor/components/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
@@ -138,6 +132,9 @@ conceptualContent:
         - url: data/ef-mvc/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
+        - url: tutorials/first-mvc-app/start-mvc.md
+          itemType: tutorial
+          text: "Get started with ASP.NET Core MVC (SQL Server Express and SQLite)"
       # Card
     - title: Real-time web apps with SignalR
       summary: "Add real-time functionality to your web app, enable server-side code to push content instantly"
@@ -176,15 +173,6 @@ conceptualContent:
         - url: grpc/comparison.md
           itemType: concept
           text: "Compare gRPC services with HTTP APIs"
-        - url: grpc/aspnetcore.md
-          itemType: tutorial
-          text: "Add a gRPC service to an ASP.NET Core app"
-        - url: grpc/client.md
-          itemType: tutorial
-          text: "Call gRPC services with the .NET client"
-        - url: grpc/browser.md
-          itemType: tutorial
-          text: "Use gRPC in browser apps"
       # Card
     - title: Previous ASP.NET framework versions
       summary: "Explore overviews, tutorials, fundamental concepts, architecture and API reference for previous ASP.NET framework versions"
