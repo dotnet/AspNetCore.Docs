@@ -181,7 +181,7 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
 
 Specifying the layout directly in a component overrides a *default layout*:
 
-* Set by an `@layout` directive imported from an `_Imports` component (`_Imports.razor`), as described in the following [Apply a layout to a folder of components](#apply-a-layout-to-a-folder-of-components) section.
+* Set by an `@layout` directive imported from an `_Imports.razor` file, as described in the following [Apply a layout to a folder of components](#apply-a-layout-to-a-folder-of-components) section.
 * Set as the app's default layout, as described in the [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section later in this article.
 
 ### Apply a layout to a folder of components
