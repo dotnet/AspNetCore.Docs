@@ -28,29 +28,29 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 By default, Interactive Server components:
 
-* Enable compression for [WebSocket connections](xref:fundamentals/websockets). `ConfigureWebsocketOptions` gets or sets a value that determines if WebSocket compression should be disabled.
+* Enable compression for [WebSocket connections](xref:fundamentals/websockets). `ConfigureWebsocketOptions` controls WebSocket compression.
 
-* Adopt a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) directive with value reflecting the origin from which the protected document is served (`'self'`), which blocks embedding the app inside an external `<iframe>` when compression is enabled or when a configuration for the WebSocket context is provided. `ContentSecurityFrameAncestorPolicy` gets or sets the `frame-ancestors` CSP.
+* Adopt a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) directive set to `'self'`, which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided. `ContentSecurityFrameAncestorPolicy` controls the `frame-ancestors` CSP.
 
 The `frame-ancestors` CSP can be removed manually by setting the value of `ConfigureWebSocketOptions` to `null`, as you may want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy). When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it might make the app vulnerable to attack.
 
 Usage examples:
 
-Disable compression by setting `ConfigureWebSocketOptions` to `null`, which reduces the vulnerability of the app but may result in reduced performance.
+Disable compression by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 builder.MapRazorComponents<App>()
     .AddServerRenderMode(o => o.ConfigureWebSocketOptions = null)
 ```
 
-Configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`.
+When compression is enabled, configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`:
 
 ```csharp
 builder.MapRazorComponents<App>()
     .AddServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
-Remove the `frame-ancestors` CSP by setting `ContentSecurityFrameAncestorsPolicy` to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy).
+When compression is enabled, remove the `frame-ancestors` CSP by setting `ContentSecurityFrameAncestorsPolicy` to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -62,9 +62,9 @@ builder.MapRazorComponents<App>()
 >
 > Single quotes are required on the string value passed to `ContentSecurityFrameAncestorsPolicy`:
 >
-> <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> `none`, `self`
+> <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported values:</span> `none`, `self`
 >
-> <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `'none'`, `'self'`
+> <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported values:</span> `'none'`, `'self'`
 >
 > Additional options include specifying one or more host sources and scheme sources.
 
