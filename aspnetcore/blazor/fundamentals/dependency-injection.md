@@ -213,7 +213,110 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components using the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
+:::moniker range=">= aspnetcore-9.0"
+
+For injecting services into components, Blazor supports [constructor injection](#constructor-injection) and [property injection](#property-injection).
+
+### Constructor injection
+
+After services are added to the service collection, inject one or more services into components with constructor injection. The following example injects the `IDataAccess` service to obtain a list of actors for display by a component.
+
+`TheSunmakersCtorInjection.razor`:
+
+```razor
+@page "/the-sunmakers-ctor-injection"
+
+<PageTitle>The Sunmakers Ctor Injection</PageTitle>
+
+<h1>Doctor Who&reg;: The Sunmakers Actors (Villains)</h1>
+
+@if (actors != null)
+{
+    <ul>
+        @foreach (var actor in actors)
+        {
+            <li>@actor.FirstName @actor.LastName</li>
+        }
+    </ul>
+}
+
+<a href="https://www.doctorwho.tv">Doctor Who</a> is a
+    registered trademark of the <a href="https://www.bbc.com/">BBC</a>. 
+<a href="https://www.doctorwho.tv/stories/the-sunmakers">The Sunmakers</a>
+```
+
+`TheSunmakersCtorInjection.razor.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public partial class TheSunmakersCtorInjection(IDataAccess dataAccess) : IComponent
+{
+    private IReadOnlyList<Actor>? actors;
+
+    protected IDataAccess DataRepository { get; } = dataAccess;
+
+    protected override async Task OnInitializedAsync()
+    {
+        actors = await DataRepository.GetAllActorsAsync();
+    }
+
+    public class Actor
+    {
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+    }
+
+    public interface IDataAccess
+    {
+        public Task<IReadOnlyList<Actor>> GetAllActorsAsync();
+    }
+
+    public class DataAccess : IDataAccess
+    {
+        public Task<IReadOnlyList<Actor>> GetAllActorsAsync() => 
+            Task.FromResult(GetActors());
+    }
+
+    public static IReadOnlyList<Actor> GetActors()
+    {
+        return new Actor[]
+        {
+           new() { FirstName = "Henry", LastName = "Woolf" },
+           new() { FirstName = "Jonina", LastName = "Scott" },
+           new() { FirstName = "Richard", LastName = "Leech" }
+        };
+    }
+}
+```
+
+The service registration for `IDataAccess` is made in the app's `Program` file.
+
+<!-- UPDATE 9.0 When the preceding example is added to the
+                sample apps, the naming is TBD. If this stays
+                TheSunmakersCtorInjection.razor, the name of the 
+                existing injection example component might be 
+                changed to TheSunmakersPropInjection.razor.
+-->
+
+For components implemented from the <xref:Microsoft.AspNetCore.Components.IComponent> interface:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public class TheSunmakersCtorInjection2(IDataAccess dataAccess) : IComponent
+{
+    protected IDataAccess DataRepository { get; } = dataAccess;
+
+    ...
+}
+```
+
+### Property injection
+
+:::moniker-end
+
+After services are added to the service collection, inject one or more services into components with the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
 
 * Type: The type of the service to inject.
 * Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
