@@ -274,8 +274,8 @@ public partial class TheSunmakersCtorInjection(IDataAccess dataAccess) : ICompon
 
     public class DataAccess : IDataAccess
     {
-        public Task<IReadOnlyList<Actor>> GetAllActorsAsync() => 
-            Task.FromResult(GetActors());
+        public async Task<IReadOnlyList<Actor>> GetAllActorsAsync() => 
+            await Task.FromResult(GetActors());
     }
 
     public static IReadOnlyList<Actor> GetActors()
