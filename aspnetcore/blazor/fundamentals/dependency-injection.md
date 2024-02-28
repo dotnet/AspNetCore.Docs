@@ -250,7 +250,7 @@ After services are added to the service collection, inject one or more services 
 ```csharp
 using Microsoft.AspNetCore.Components;
 
-public partial class TheSunmakersCtorInjection(IDataAccess dataAccess) : IComponent
+public partial class TheSunmakersCtorInjection(IDataAccess dataAccess)
 {
     private IReadOnlyList<Actor>? actors;
 
