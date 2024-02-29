@@ -1243,7 +1243,7 @@ Placeholders:
 > 
 > If you have any cause for concern that checksum validation isn't secure enough in your environment, consult your organization's security leadership for guidance.
 >
-> For more information, see [Understanding malware & other threats](/windows/security/threat-protection/intelligence/understanding-malware).
+> For more information, see [Overview of threat protection by Microsoft Defender Antivirus](/microsoft-365/business-premium/m365bp-threats-detected-defender-av).
 
 ### Disable integrity checking for non-PWA apps
 
