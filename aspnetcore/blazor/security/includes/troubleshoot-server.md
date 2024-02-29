@@ -1,8 +1,8 @@
 ### Logging
 
-*This section applies to ASP.NET Core in .NET 7 or later.*
+The server app is a standard ASP.NET Core app. See the [ASP.NET Core logging guidance](xref:fundamentals/logging/index) to enable a lower logging level in the server app.
 
-To enable debug or trace logging for Blazor WebAssembly authentication, see <xref:blazor/fundamentals/logging>.
+To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of <xref:blazor/fundamentals/logging> with the article version selector set to ASP.NET Core 7.0 or later.
 
 ### Common errors
 
@@ -11,11 +11,11 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see <xre
   The most common errors are caused by incorrect configuration. The following are a few examples:
   
   * Depending on the requirements of the scenario, a missing or incorrect Authority, Instance, Tenant ID, Tenant domain, Client ID, or Redirect URI prevents an app from authenticating clients.
-  * An incorrect access token scope prevents clients from accessing server web API endpoints.
+  * Incorrect request scopes prevent clients from accessing server web API endpoints.
   * Incorrect or missing server API permissions prevent clients from accessing server web API endpoints.
-  * Running the app at a different port than is configured in the Redirect URI of the Identity Provider's app registration.
+  * Running the app at a different port than is configured in the Redirect URI of the IP's app registration. Note that a port isn't required for Microsoft Entra ID and an app running at a `localhost` development testing address, but the app's port configuration and the port where the app is running must match for non-`localhost` addresses.
   
-  Configuration sections of this article's guidance show examples of the correct configuration. Carefully check each section of the article looking for app and IP misconfiguration.
+  Configuration coverage in this article shows examples of the correct configuration. Carefully check the configuration looking for app and IP misconfiguration.
   
   If the configuration appears correct:
   
@@ -25,8 +25,6 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see <xre
     * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
     * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
     * [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
-
-  * Decode the contents of a JSON Web Token (JWT) used for authenticating a client or accessing a server web API, depending on where the problem is occurring. For more information, see [Inspect the content of a JSON Web Token (JWT)](#inspect-the-content-of-a-json-web-token-jwt).
   
   The documentation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
   
@@ -95,130 +93,51 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 > [!NOTE]
 > Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org) or [FuGet Package Explorer](https://www.fuget.org).
 
-:::moniker range="< aspnetcore-8.0"
+### Run the server app
 
-### Run the `Server` app
-
-When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project.
-
-:::moniker-end
+When testing and troubleshooting Blazor Web App, make sure that you're running the app from the server project.
 
 ### Inspect the user
 
-The following `User` component can be used directly in apps or serve as the basis for further customization.
+The following `UserClaims` component can be used directly in apps or serve as the basis for further customization.
 
-`User.razor`:
+`UserClaims.razor`:
 
 ```razor
-@page "/user"
-@attribute [Authorize]
-@using System.Text.Json
+@page "/user-claims"
 @using System.Security.Claims
-@inject IAccessTokenProvider AuthorizationService
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
 
-<h1>@AuthenticatedUser?.Identity?.Name</h1>
+<PageTitle>User Claims</PageTitle>
 
-<h2>Claims</h2>
+<h1>User Claims</h1>
 
-@foreach (var claim in AuthenticatedUser?.Claims ?? Array.Empty<Claim>())
+@if (claims.Count() > 0)
 {
-    <p class="claim">@(claim.Type): @claim.Value</p>
-}
-
-<h2>Access token</h2>
-
-<p id="access-token">@AccessToken?.Value</p>
-
-<h2>Access token claims</h2>
-
-@foreach (var claim in GetAccessTokenClaims())
-{
-    <p>@(claim.Key): @claim.Value.ToString()</p>
-}
-
-@if (AccessToken != null)
-{
-    <h2>Access token expires</h2>
-
-    <p>Current time: <span id="current-time">@DateTimeOffset.Now</span></p>
-    <p id="access-token-expires">@AccessToken.Expires</p>
-
-    <h2>Access token granted scopes (as reported by the API)</h2>
-
-    @foreach (var scope in AccessToken.GrantedScopes)
-    {
-        <p>Scope: @scope</p>
-    }
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li><b>@claim.Type:</b> @claim.Value</li>
+        }
+    </ul>
 }
 
 @code {
-    [CascadingParameter]
-    private Task<AuthenticationState> AuthenticationState { get; set; }
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
-    public ClaimsPrincipal AuthenticatedUser { get; set; }
-    public AccessToken AccessToken { get; set; }
+    [CascadingParameter]
+    private Task<AuthenticationState>? AuthState { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
-        var state = await AuthenticationState;
-        var accessTokenResult = await AuthorizationService.RequestAccessToken();
-
-        if (!accessTokenResult.TryGetToken(out var token))
+        if (AuthState == null)
         {
-            throw new InvalidOperationException(
-                "Failed to provision the access token.");
+            return;
         }
 
-        AccessToken = token;
-
-        AuthenticatedUser = state.User;
-    }
-
-    protected IDictionary<string, object> GetAccessTokenClaims()
-    {
-        if (AccessToken == null)
-        {
-            return new Dictionary<string, object>();
-        }
-
-        // header.payload.signature
-        var payload = AccessToken.Value.Split(".")[1];
-        var base64Payload = payload.Replace('-', '+').Replace('_', '/')
-            .PadRight(payload.Length + (4 - payload.Length % 4) % 4, '=');
-
-        return JsonSerializer.Deserialize<IDictionary<string, object>>(
-            Convert.FromBase64String(base64Payload));
+        var authState = await AuthState;
+        claims = authState.User.Claims;
     }
 }
-```
-
-### Inspect the content of a JSON Web Token (JWT)
-
-To decode a JSON Web Token (JWT), use Microsoft's [jwt.ms](https://jwt.ms/) tool. Values in the UI never leave your browser.
-
-Example encoded JWT (shortened for display):
-
-> eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ilg1ZVhrNHh5b2pORnVtMWtsMll0djhkbE5QNC1j ... bQdHBHGcQQRbW7Wmo6SWYG4V_bU55Ug_PW4pLPr20tTS8Ct7_uwy9DWrzCMzpD-EiwT5IjXwlGX3IXVjHIlX50IVIydBoPQtadvT7saKo1G5Jmutgq41o-dmz6-yBMKV2_nXA25Q
-
-Example JWT decoded by the tool for an app that authenticates against Azure AAD B2C:
-
-```json
-{
-  "typ": "JWT",
-  "alg": "RS256",
-  "kid": "X5eXk4xyojNFum1kl2Ytv8dlNP4-c57dO6QGTVBwaNk"
-}.{
-  "exp": 1610059429,
-  "nbf": 1610055829,
-  "ver": "1.0",
-  "iss": "https://mysiteb2c.b2clogin.com/5cc15ea8-a296-4aa3-97e4-226dcc9ad298/v2.0/",
-  "sub": "5ee963fb-24d6-4d72-a1b6-889c6e2c7438",
-  "aud": "70bde375-fce3-4b82-984a-b247d823a03f",
-  "nonce": "b2641f54-8dc4-42ca-97ea-7f12ff4af871",
-  "iat": 1610055829,
-  "auth_time": 1610055822,
-  "idp": "idp.com",
-  "tfp": "B2C_1_signupsignin"
-}.[Signature]
 ```
