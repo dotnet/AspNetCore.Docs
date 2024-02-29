@@ -818,7 +818,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
 ## Additional resources
 

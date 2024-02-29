@@ -193,7 +193,7 @@ For more information, see the following resources:
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
 ## Additional resources
 
