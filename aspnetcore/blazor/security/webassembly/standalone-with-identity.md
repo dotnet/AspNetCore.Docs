@@ -265,7 +265,7 @@ For more information on same-site cookie settings, see the following resources:
 
 Only the logout endpoint (`/logout`) in the `Backend` app requires attention to mitigate the threat of [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery).
 
-The logout endpoint checks for an empty body to prevent CSRF attacks. By requiring a body, the request must be made from JavaScript, which is the only way to access the authentication cookie. The cookie can't be accessed by a form-based POST. This prevents a malicious site from logging the user out.
+The logout endpoint checks for an empty body to prevent CSRF attacks. By requiring a body, the request must be made from JavaScript, which is the only way to access the authentication cookie. The logout endpoint can't be accessed by a form-based POST. This prevents a malicious site from logging the user out.
 
 Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>) to prevent anonymous access.
 
@@ -273,7 +273,7 @@ The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` 
 
 Outside of the logout endpoint, [antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/forms/index#antiforgery-support>.
 
-Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](xref:security/cors) enabled doesn't require CSRF protection. No CSRF protection is required for the `Backend` app's roles (`/roles`) and data processing (`/data-processing`) endpoints.
+Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](xref:security/cors) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
 
 ## Troubleshoot
 
