@@ -219,96 +219,26 @@ For injecting services into components, Blazor supports [constructor injection](
 
 ### Constructor injection
 
-After services are added to the service collection, inject one or more services into components with constructor injection. The following example injects the `IDataAccess` service to obtain a list of actors for display by a component.
+After services are added to the service collection, inject one or more services into components with constructor injection. The following example injects the `NavigationManager` service.
 
-`TheSunmakersCtorInjection.razor`:
+`ConstructorInjection.razor`:
 
 ```razor
-@page "/the-sunmakers-ctor-injection"
+@page "/constructor-injection"
 
-<PageTitle>The Sunmakers Ctor Injection</PageTitle>
-
-<h1>Doctor Who&reg;: The Sunmakers Actors (Villains)</h1>
-
-@if (actors != null)
-{
-    <ul>
-        @foreach (var actor in actors)
-        {
-            <li>@actor.FirstName @actor.LastName</li>
-        }
-    </ul>
-}
-
-<a href="https://www.doctorwho.tv">Doctor Who</a> is a
-    registered trademark of the <a href="https://www.bbc.com/">BBC</a>. 
-<a href="https://www.doctorwho.tv/stories/the-sunmakers">The Sunmakers</a>
+<button @onclick="@(() => Navigation.NavigateTo("/counter"))">
+    Take me to the Counter component
+</button>
 ```
 
-`TheSunmakersCtorInjection.razor.cs`:
+`ConstructorInjection.razor.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components;
 
-public partial class TheSunmakersCtorInjection(IDataAccess dataAccess)
+public partial class ConstructorInjection(NavigationManager navigation)
 {
-    private IReadOnlyList<Actor>? actors;
-
-    protected IDataAccess DataRepository { get; } = dataAccess;
-
-    protected override async Task OnInitializedAsync()
-    {
-        actors = await DataRepository.GetAllActorsAsync();
-    }
-
-    public class Actor
-    {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-    }
-
-    public interface IDataAccess
-    {
-        public Task<IReadOnlyList<Actor>> GetAllActorsAsync();
-    }
-
-    public class DataAccess : IDataAccess
-    {
-        public async Task<IReadOnlyList<Actor>> GetAllActorsAsync() => 
-            await Task.FromResult(GetActors());
-    }
-
-    public static IReadOnlyList<Actor> GetActors()
-    {
-        return new Actor[]
-        {
-           new() { FirstName = "Henry", LastName = "Woolf" },
-           new() { FirstName = "Jonina", LastName = "Scott" },
-           new() { FirstName = "Richard", LastName = "Leech" }
-        };
-    }
-}
-```
-
-The service registration for `IDataAccess` is made in the app's `Program` file.
-
-<!-- UPDATE 9.0 When the preceding example is added to the
-                sample apps, the naming is TBD. If this stays
-                TheSunmakersCtorInjection.razor, the name of the 
-                existing injection example component might be 
-                changed to TheSunmakersPropInjection.razor.
--->
-
-For components implemented from the <xref:Microsoft.AspNetCore.Components.IComponent> interface:
-
-```csharp
-using Microsoft.AspNetCore.Components;
-
-public class TheSunmakersCtorInjection2(IDataAccess dataAccess) : IComponent
-{
-    protected IDataAccess DataRepository { get; } = dataAccess;
-
-    ...
+    protected NavigationManager Navigation { get; } = navigation;
 }
 ```
 
@@ -325,39 +255,20 @@ For more information, see <xref:mvc/views/dependency-injection>.
 
 Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject different services.
 
-The following example shows how to use [`@inject`](xref:mvc/views/razor#inject). The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
+The following example demonstrates shows how to use the [`@inject`](xref:mvc/views/razor#inject) directive. The service implementing `Services.NavigationManager` is injected into the component's property `Navigation`. Note how the code is only using the `NavigationManager` abstraction.
 
-:::moniker range=">= aspnetcore-8.0"
+`PropertyInjection.razor`:
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/TheSunmakers.razor":::
+```razor
+@page "/property-injection"
+@inject NavigationManager Navigation
 
-:::moniker-end
+<button @onclick="@(() => Navigation.NavigateTo("/counter"))">
+    Take me to the Counter component
+</button>
+```
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-Internally, the generated property (`DataRepository`) uses the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute). Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute):
+Internally, the generated property (`Navigation`) uses the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute). Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute):
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -365,7 +276,7 @@ using Microsoft.AspNetCore.Components;
 public class ComponentBase : IComponent
 {
     [Inject]
-    protected IDataAccess DataRepository { get; set; } = default!;
+    protected NavigationManager Navigation { get; set; } = default!;
 
     ...
 }
@@ -374,13 +285,11 @@ public class ComponentBase : IComponent
 > [!NOTE]
 > Since injected services are expected to be available, the default literal with the null-forgiving operator (`default!`) is assigned in .NET 6 or later. For more information, see [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
-In components derived from the base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient, and all the component requires is the [`@inherits`](xref:mvc/views/razor#inherits) directive:
+In components derived from a base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient. The component only requires the [`@inherits`](xref:mvc/views/razor#inherits) directive. In the following example, any injected services of `CustomComponentBase` are available to the `Demo` component:
 
 ```razor
 @page "/demo"
-@inherits ComponentBase
-
-<h1>Demo Component</h1>
+@inherits CustomComponentBase
 ```
 
 ## Use DI in services
