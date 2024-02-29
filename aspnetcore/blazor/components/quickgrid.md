@@ -14,9 +14,7 @@ uid: blazor/components/quickgrid
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 No API doc for Quickgrid and Microsoft.AspNetCore.Components.QuickGrid -->
-
-The `QuickGrid` component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
+The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
 [!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
 
@@ -36,21 +34,21 @@ To implement a `QuickGrid` component:
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
-  * `Items`: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
-  * `ItemsProvider`: A callback that supplies data for the grid.
-* `Class`: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
-* `Theme`: A theme name (default value: `default`). This affects which styling rules match the table.
-* `Virtualize`: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use `Virtualize`, you should supply a value for `ItemSize` and must ensure that every row renders with a constant height. Generally, it's preferable not to use `Virtualize` if the amount of data rendered is small or if you're using pagination.
-* `ItemSize`: Only applicable when using `Virtualize`. `ItemSize` defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
-* `ItemKey`: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
-* `Pagination`: Optionally links this `TGridItem` instance with a `PaginationState` model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a `Paginator` component or some other UI logic that displays and updates the supplied `PaginationState` instance.
-* In the `QuickGrid` child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify `PropertyColumn`s, which represent `TGridItem` columns whose cells display values:
-  * `Property`: Defines the value to be displayed in this column's cells.
-  * `Format`: Optionally specifies a format string for the value. Using `Format` requires the `TProp` type to implement `IFormattable`.
-  * `Sortable`: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a `TemplateColumn<TGridItem>` is sortable by default if any `TemplateColumn<TGridItem>.SortBy` parameter is specified.
-  * `InitialSortDirection`: Indicates the sort direction if `IsDefaultSortColumn` is `true`.
-  * `IsDefaultSortColumn`: Indicates whether this column should be sorted by default.
-  * `PlaceholderTemplate`: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
+  * <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
+* <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
+* <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
+* <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>: If true, the grid is rendered with virtualization. This is normally used in conjunction with scrolling and causes the grid to fetch and render only the data around the current scroll viewport. This can greatly improve the performance when scrolling through large data sets. If you use <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>, you should supply a value for <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> and must ensure that every row renders with a constant height. Generally, it's preferable not to use <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A> if the amount of data rendered is small or if you're using pagination.
+* <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A>: Only applicable when using <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Virtualize%2A>. <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemSize%2A> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
+* <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemKey%2A>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
+* <xref:<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Pagination%2A>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance.
+* In the `QuickGrid` child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property%2A>: Defines the value to be displayed in this column's cells.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A>: Optionally specifies a format string for the value. Using <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Format%2A> requires the `TProp` type to implement <xref:System.IFormattable>.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>: Indicates whether the data should be sortable by this column. The default value may vary according to the column type. For example, a <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> is sortable by default if any <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601.SortBy%2A> parameter is specified.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
 
 For example, add the following component to render a grid.
 
@@ -66,11 +64,11 @@ For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework 
 
 To use Entity Framework (EF) Core as the data source:
 
-* Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+* Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) package.
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in the `Program` file to register an EF-aware implementation of `IAsyncQueryExecutor`:
+* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
 
   ```csharp
   builder.Services.AddQuickGridEntityFrameworkAdapter();
