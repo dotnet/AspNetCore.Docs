@@ -185,9 +185,9 @@ Optionally, add a menu item to the navigation in the `NavMenu` component (`NavMe
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Chilean Spanish with a preference for United States English or English:
+The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Costa Rican Spanish with a preference for United States English or English:
 
-**Accept-Language**: en-US,en;q=0.9,es-CL;q=0.8
+**Accept-Language**: en-US,en;q=0.9,es-CR;q=0.8
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
 
@@ -220,17 +220,17 @@ Add the following line to the `Program` file where services are registered:
 builder.Services.AddLocalization();
 ```
 
-In ***server-side development***, you can specify the app's supported cultures immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Chilean Spanish:
+In ***server-side development***, you can specify the app's supported cultures immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish:
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
-    .AddSupportedCultures(new[] { "en-US", "es-CL" })
-    .AddSupportedUICultures(new[] { "en-US", "es-CL" }));
+    .AddSupportedCultures(new[] { "en-US", "es-CR" })
+    .AddSupportedUICultures(new[] { "en-US", "es-CR" }));
 ```
 
 For information on ordering the Localization Middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again.
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again.
 
 > [!NOTE]
 > Some browsers force you to use the default language setting for both requests and the browser's own UI settings. This can make changing the language back to one that you understand difficult because all of the setting UI screens might end up in a language that you can't read. A browser such as [Opera](https://www.opera.com/download) is a good choice for testing because it permits you to set a default language for webpage requests but leave the browser's settings UI in your language.
@@ -240,7 +240,7 @@ When the culture is United States English (`en-US`), the rendered component uses
 * **Date**: 6/7/2021 6:45:22 AM
 * **Number**: 1,999.69
 
-When the culture is Chilean Spanish (`es-CL`), the rendered component uses day/month date formatting (`7/6`), 24-hour time, and period separators in numbers with a comma for the decimal value (`1.999,69`):
+When the culture is Costa Rican Spanish (`es-CR`), the rendered component uses day/month date formatting (`7/6`), 24-hour time, and period separators in numbers with a comma for the decimal value (`1.999,69`):
 
 * **Date**: 7/6/2021 6:49:38
 * **Number**: 1.999,69
@@ -323,7 +323,7 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 > [!IMPORTANT]
 > Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again. When the requested language is Costa Rican Spanish, the app's culture remains United States English (`en-US`).
 
 ## Statically set the server-side culture
 
@@ -371,7 +371,7 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 :::moniker-end
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again. When the requested language is Costa Rican Spanish, the app's culture remains United States English (`en-US`).
 
 ## Dynamically set the client-side culture by user preference
 
@@ -482,7 +482,7 @@ The following `CultureSelector` component shows how to perform the following act
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-US"),
-        new CultureInfo("es-CL"),
+        new CultureInfo("es-CR"),
     };
 
     private CultureInfo Culture
@@ -559,7 +559,7 @@ After the call to `app.UseRouting` in the request processing pipeline, place the
 :::moniker-end
 
 ```csharp
-var supportedCultures = new[] { "en-US", "es-CL" };
+var supportedCultures = new[] { "en-US", "es-CR" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -701,7 +701,7 @@ The following `CultureSelector` component shows how to call the `Set` method of 
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-US"),
-        new CultureInfo("es-CL"),
+        new CultureInfo("es-CR"),
     };
 
     protected override void OnInitialized()
@@ -870,13 +870,13 @@ The component adopts the following approaches to work for either SSR or CSR comp
         new()
         {
             { "en-US", "English (United States)" },
-            { "es-CL", "Spanish (Chile)" }
+            { "es-CR", "Spanish (Costa Rica)" }
         };
 
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-US"),
-        new CultureInfo("es-CL"),
+        new CultureInfo("es-CR"),
     };
 
     private CultureInfo Culture
@@ -996,7 +996,7 @@ Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Bui
 Before the call to `app.MapRazorComponents` in the request processing pipeline, place the following code:
 
 ```csharp
-var supportedCultures = new[] { "en-US", "es-CL" };
+var supportedCultures = new[] { "en-US", "es-CR" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -1228,7 +1228,7 @@ If the app doesn't already support dynamic culture selection:
 :::moniker range=">= aspnetcore-6.0"
 
 * Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
-* Specify the app's default and supported cultures in the `Program` file. The following example configures supported cultures for United States English and Chilean Spanish.
+* Specify the app's default and supported cultures in the `Program` file. The following example configures supported cultures for United States English and Costa Rican Spanish.
 
 ```csharp
 builder.Services.AddLocalization();
@@ -1237,7 +1237,7 @@ builder.Services.AddLocalization();
 Immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
-var supportedCultures = new[] { "en-US", "es-CL" };
+var supportedCultures = new[] { "en-US", "es-CR" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -1253,7 +1253,7 @@ For information on ordering the Localization Middleware in the middleware pipeli
 :::moniker range="< aspnetcore-6.0"
 
 * Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
-* Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Chilean Spanish.
+* Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Costa Rican Spanish.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
 
@@ -1264,7 +1264,7 @@ services.AddLocalization();
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
-var supportedCultures = new[] { "en-US", "es-CL" };
+var supportedCultures = new[] { "en-US", "es-CR" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
