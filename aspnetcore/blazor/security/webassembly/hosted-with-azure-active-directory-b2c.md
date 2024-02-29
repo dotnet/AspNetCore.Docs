@@ -424,7 +424,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
 ## Additional resources
 
