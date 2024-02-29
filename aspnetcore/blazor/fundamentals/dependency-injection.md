@@ -213,7 +213,40 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components using the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
+:::moniker range=">= aspnetcore-9.0"
+
+For injecting services into components, Blazor supports [constructor injection](#constructor-injection) and [property injection](#property-injection).
+
+### Constructor injection
+
+After services are added to the service collection, inject one or more services into components with constructor injection. The following example injects the `NavigationManager` service.
+
+`ConstructorInjection.razor`:
+
+```razor
+@page "/constructor-injection"
+
+<button @onclick="@(() => Navigation.NavigateTo("/counter"))">
+    Take me to the Counter component
+</button>
+```
+
+`ConstructorInjection.razor.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public partial class ConstructorInjection(NavigationManager navigation)
+{
+    protected NavigationManager Navigation { get; } = navigation;
+}
+```
+
+### Property injection
+
+:::moniker-end
+
+After services are added to the service collection, inject one or more services into components with the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
 
 * Type: The type of the service to inject.
 * Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
@@ -222,39 +255,20 @@ For more information, see <xref:mvc/views/dependency-injection>.
 
 Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject different services.
 
-The following example shows how to use [`@inject`](xref:mvc/views/razor#inject). The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
+The following example demonstrates shows how to use the [`@inject`](xref:mvc/views/razor#inject) directive. The service implementing `Services.NavigationManager` is injected into the component's property `Navigation`. Note how the code is only using the `NavigationManager` abstraction.
 
-:::moniker range=">= aspnetcore-8.0"
+`PropertyInjection.razor`:
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/TheSunmakers.razor":::
+```razor
+@page "/property-injection"
+@inject NavigationManager Navigation
 
-:::moniker-end
+<button @onclick="@(() => Navigation.NavigateTo("/counter"))">
+    Take me to the Counter component
+</button>
+```
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
-
-:::moniker-end
-
-Internally, the generated property (`DataRepository`) uses the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute). Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute):
+Internally, the generated property (`Navigation`) uses the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute). Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute):
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -262,7 +276,7 @@ using Microsoft.AspNetCore.Components;
 public class ComponentBase : IComponent
 {
     [Inject]
-    protected IDataAccess DataRepository { get; set; } = default!;
+    protected NavigationManager Navigation { get; set; } = default!;
 
     ...
 }
@@ -271,13 +285,11 @@ public class ComponentBase : IComponent
 > [!NOTE]
 > Since injected services are expected to be available, the default literal with the null-forgiving operator (`default!`) is assigned in .NET 6 or later. For more information, see [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
-In components derived from the base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient, and all the component requires is the [`@inherits`](xref:mvc/views/razor#inherits) directive:
+In components derived from a base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient. The component only requires the [`@inherits`](xref:mvc/views/razor#inherits) directive. In the following example, any injected services of `CustomComponentBase` are available to the `Demo` component:
 
 ```razor
 @page "/demo"
-@inherits ComponentBase
-
-<h1>Demo Component</h1>
+@inherits CustomComponentBase
 ```
 
 ## Use DI in services
