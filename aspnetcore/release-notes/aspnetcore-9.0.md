@@ -21,6 +21,7 @@ This section describes new features for Blazor.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor.md)]
 
+
 ## SignalR
 
 This section describes new features for SignalR.
