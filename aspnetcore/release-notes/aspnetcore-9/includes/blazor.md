@@ -20,13 +20,13 @@ By default, Interactive Server components enable compression for [WebSocket conn
 Compression can be disabled by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/server/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
-.AddServerRenderMode(o => o.ConfigureWebSocketOptions = null)
+.AddInteractiveServerRenderMode(o => o.ConfigureWebSocketOptions = null)
 ```
 
 Configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`:
 
 ```csharp
-.AddServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
+.AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
 For more information, see the following resources:
