@@ -14,8 +14,6 @@ uid: blazor/forms/index
 
 This article explains how to use forms in Blazor.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## Input components and forms
 
 The Blazor framework supports forms and provides built-in input components:

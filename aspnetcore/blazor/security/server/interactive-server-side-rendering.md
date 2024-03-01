@@ -14,8 +14,6 @@ uid: blazor/security/server/interactive-server-side-rendering
 
 This article explains how to mitigate security threats in interactive server-side Blazor.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 Apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
 When a user visits a site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/js-interop/call-javascript-from-dotnet).
@@ -26,6 +24,37 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 * Doesn't apply in the constrained environment.
 * Isn't worth the cost to implement because the security risk is low in a constrained environment.
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Interactive Server Components with WebSocket compression enabled
+
+Compression can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the attacker:
+
+* Force a browser to issue requests with a payload the attacker controls to a vulnerable site via cross-site form posting or by embedding the site inside an iframe of another site.
+* Observe the length of the compressed and encrypted response over the network.
+
+For the app to be vulnerable, it must reflect the payload from the attacker in the response, for example, by writing out the path or the query string into the response. Using the length of the response, the attacker can "guess" any information on the response, bypassing the encryption of the connection.
+
+Generally speaking, Blazor apps can enable compression over the WebSocket connection with appropriate security measures:
+
+* The app can be vulnerable when it takes content from the request (for example, the path or query string) that can be influenced by an attacker and reproduces it into the HTML of the page or otherwise makes it part of the response.
+
+* Blazor applies the following security measures automatically:
+
+  * When compression is configured, Blazor automatically blocks embedding the app into an iframe, which blocks the initial (uncompressed) response from the server from rendering and precludes the WebSocket connection from ever starting.
+
+  * The restriction on embedding the app into an iframe can be relaxed. However, relaxing the restriction exposes the app to attack if the embedding document becomes compromised via a cross-site scripting vulnerability, as that gives the attacker a way to execute the attack.
+
+* Normally for this type of attack to take place, the app must repeatedly reproduce the content in the responses so that the attacker can guess the response. Given how Blazor renders (it renders once and then produces diffs of the content only for the elements that changed) this is hard for an attacker to accomplish. However, it isn't impossible for an attacker, so care must be taken to avoid rendering sensitive information alongside external information that can be manipulated by an attacker. Some examples of this are:
+
+  * Render [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) on the page at the same time as rendering database data that was added by another user.
+
+  * Rendering PII information on to the page at the same time as data coming from another user via JS interop or a local singleton service on the server.
+
+In general, we recommend that you avoid rendering components that contain sensitive information alongside components that can render data from untrusted sources as part of the same render batch.
+
+:::moniker-end
 
 ## Shared state
 

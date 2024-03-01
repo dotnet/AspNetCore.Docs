@@ -237,6 +237,44 @@ In the `Backend` server API's `Program` file, a [Minimal API](xref:fundamentals/
 
 The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
 
+## Cross-domain hosting (same-site configuration)
+
+The [sample apps](#sample-apps) are configured for hosting both apps at the same domain. If you host the `Backend` app at a different domain than the `BlazorWasmAuth` app, uncomment the code that configures the cookie (<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie%2A>) in the `Backend` app's `Program` file. The default values are:
+
+* Same-site mode: <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType>
+* Secure policy: <xref:Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest?displayProperty=nameWithType>
+
+Change the values to:
+
+* Same-site mode: <xref:Microsoft.AspNetCore.Http.SameSiteMode.None?displayProperty=nameWithType>
+* Secure policy: <xref:Microsoft.AspNetCore.Http.CookieSecurePolicy.Always?displayProperty=nameWithType>
+
+```diff
+- options.Cookie.SameSite = SameSiteMode.Lax;
+- options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
++ options.Cookie.SameSite = SameSiteMode.None;
++ options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+```
+
+For more information on same-site cookie settings, see the following resources:
+
+* [Set-Cookie: `SameSite=<samesite-value>` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value)
+* [Cookies: HTTP State Management Mechanism (RFC Draft 6265, Section 4.1)](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-03#section-4.1)
+
+## Antiforgery support
+
+Only the logout endpoint (`/logout`) in the `Backend` app requires attention to mitigate the threat of [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery).
+
+The logout endpoint checks for an empty body to prevent CSRF attacks. By requiring a body, the request must be made from JavaScript, which is the only way to access the authentication cookie. The logout endpoint can't be accessed by a form-based POST. This prevents a malicious site from logging the user out.
+
+Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>) to prevent anonymous access.
+
+The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
+
+Outside of the logout endpoint, [antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/forms/index#antiforgery-support>.
+
+Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](xref:security/cors) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
+
 ## Troubleshoot
 
 ### Logging

@@ -14,8 +14,6 @@ uid: blazor/file-downloads
 
 This article explains how to download files in Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## File downloads
 
 Files can be downloaded from the app's own static assets or from any other location:

@@ -19,7 +19,17 @@ Server-side Blazor is a stateful app framework. The app maintains an ongoing con
 > [!NOTE]
 > This article addresses EF Core in server-side Blazor apps. Blazor WebAssembly apps run in a WebAssembly sandbox that prevents most direct database connections. Running EF Core in Blazor WebAssembly is beyond the scope of this article.
 
-[!INCLUDE[](~/blazor/includes/location-server.md)]
+:::moniker range=">= aspnetcore-8.0"
+
+This guidance applies to components that adopt interactive server-side rendering (interactive SSR) in a Blazor Web App.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly solution or a Blazor Server app.
+
+:::moniker-end
 
 ## Sample app
 
@@ -308,7 +318,7 @@ In the preceding example:
 
 ## Enable sensitive data logging
 
-<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) when it logs SQL statements executed against the database.
 
 We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> for development and testing:
 
