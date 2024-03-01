@@ -18,7 +18,7 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 :::moniker range=">= aspnetcore-9.0"
 
-## Websocket compression for Interactive Server components
+## WebSocket compression for Interactive Server components
 
 <!-- UPDATE 9.0 Add API doc cross-links -->
 
