@@ -14,8 +14,6 @@ uid: blazor/images
 
 This article describes common scenarios for working with images in Blazor apps. 
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## Dynamically set an image source
 
 The following example demonstrates how to dynamically set an image's source with a C# field.

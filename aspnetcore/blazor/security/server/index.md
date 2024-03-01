@@ -14,8 +14,6 @@ uid: blazor/security/server/index
 
 This article explains how to secure server-side Blazor apps as ASP.NET Core applications.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 Server-side Blazor apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>.
 
 The authentication context is only established when the app starts, which is when the app first connects to the WebSocket. The authentication context is maintained for the lifetime of the circuit. Apps periodically revalidate the user's authentication state, currently every 30 minutes by default.
