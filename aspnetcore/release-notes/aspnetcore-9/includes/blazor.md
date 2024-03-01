@@ -1,3 +1,6 @@
+New Blazor features will appear with the release of Preview 2 in March, 2024.
+
+<!--
 ### Constructor injection (Preview 2, mid-March)
 
 Razor components support constructor injection.
@@ -33,3 +36,4 @@ For more information, see the following resources:
 
 * <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#websocket-compression-for-interactive-server-components>
 * <xref:blazor/security/server/interactive-server-side-rendering?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled>
+-->
