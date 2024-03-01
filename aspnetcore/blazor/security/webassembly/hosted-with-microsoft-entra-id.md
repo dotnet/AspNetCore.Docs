@@ -490,7 +490,7 @@ Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot-wasm.md)]
 
 ## Additional resources
 

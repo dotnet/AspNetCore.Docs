@@ -19,7 +19,17 @@ Server-side Blazor is a stateful app framework. The app maintains an ongoing con
 > [!NOTE]
 > This article addresses EF Core in server-side Blazor apps. Blazor WebAssembly apps run in a WebAssembly sandbox that prevents most direct database connections. Running EF Core in Blazor WebAssembly is beyond the scope of this article.
 
-[!INCLUDE[](~/blazor/includes/location-server.md)]
+:::moniker range=">= aspnetcore-8.0"
+
+This guidance applies to components that adopt interactive server-side rendering (interactive SSR) in a Blazor Web App.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly solution or a Blazor Server app.
+
+:::moniker-end
 
 ## Sample app
 

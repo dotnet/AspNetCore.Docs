@@ -560,6 +560,10 @@ The important changes to the `LogInOrOut` component are demonstrated in the foll
 </div>
 ```
 
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
+
 ## Additional resources
 
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID and Azure Active Directory B2C for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.

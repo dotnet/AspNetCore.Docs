@@ -14,8 +14,6 @@ uid: blazor/file-uploads
 
 This article explains how to upload files in Blazor with the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## File uploads
 
 > [!WARNING]

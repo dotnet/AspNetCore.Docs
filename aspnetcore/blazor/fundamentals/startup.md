@@ -16,8 +16,6 @@ This article explains Blazor app startup configuration.
 
 For general guidance on ASP.NET Core app configuration for server-side development, see <xref:fundamentals/configuration/index>.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## Startup process and configuration
 
 :::moniker range=">= aspnetcore-8.0"

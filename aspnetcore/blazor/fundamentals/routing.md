@@ -14,8 +14,6 @@ uid: blazor/fundamentals/routing
 
 This article explains how to manage Blazor app request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 > [!IMPORTANT]
 > Code examples throughout this article show methods called on `Navigation`, which is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> in classes and components.
 

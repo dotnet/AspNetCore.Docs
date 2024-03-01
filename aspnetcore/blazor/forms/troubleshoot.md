@@ -14,8 +14,6 @@ uid: blazor/forms/troubleshoot
 
 This article provides troubleshooting guidance for Blazor forms.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## Large form payloads and the SignalR message size limit
 
 *This section only applies to Blazor Web Apps, Blazor Server apps, and hosted Blazor WebAssembly solutions that implement SignalR.*

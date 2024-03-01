@@ -14,8 +14,6 @@ uid: blazor/components/layouts
 
 This article explains how to create reusable layout components for Blazor apps.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## Usefulness of Blazor layouts
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation. Placing a copy of the markup for these elements into all of the components of an app isn't efficient. Every time that one of these elements is updated, every component that uses the element must be updated. This approach is costly to maintain and can lead to inconsistent content if an update is missed. *Layouts* solve these problems.
@@ -28,7 +26,7 @@ A Blazor layout is a Razor component that shares markup with components that ref
 
 To create a layout component:
 
-* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's shared or layout folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
+* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` or `Layout` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
 * Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (<xref:Microsoft.AspNetCore.Components.RenderFragment> type) for the rendered content inside the layout.
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
@@ -181,7 +179,7 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
 
 Specifying the layout directly in a component overrides a *default layout*:
 
-* Set by an `@layout` directive imported from an `_Imports` component (`_Imports.razor`), as described in the following [Apply a layout to a folder of components](#apply-a-layout-to-a-folder-of-components) section.
+* Set by an `@layout` directive imported from an `_Imports.razor` file, as described in the following [Apply a layout to a folder of components](#apply-a-layout-to-a-folder-of-components) section.
 * Set as the app's default layout, as described in the [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section later in this article.
 
 ### Apply a layout to a folder of components

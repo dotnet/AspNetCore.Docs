@@ -14,8 +14,6 @@ uid: blazor/fundamentals/environments
 
 This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
 <!-- UPDATE 9.0 The underlying problem with app settings filename 

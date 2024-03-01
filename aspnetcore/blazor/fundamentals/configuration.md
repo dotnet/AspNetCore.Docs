@@ -14,7 +14,17 @@ uid: blazor/fundamentals/configuration
 
 This article explains how to configure Blazor apps, including app settings, authentication, and logging configuration.
 
-[!INCLUDE[](~/blazor/includes/location-client.md)]
+:::moniker range=">= aspnetcore-8.0"
+
+This guidance applies to Interactive WebAssembly rendering in a Blazor Web App or a Blazor WebAssembly app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+This guidance applies to the **`Client`** project of a hosted Blazor WebAssembly solution or a Blazor WebAssembly app.
+
+:::moniker-end
 
 For server-side ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
 
