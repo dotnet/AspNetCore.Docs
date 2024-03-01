@@ -670,7 +670,7 @@ To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppS
 
 [!code-csharp[](~/fundamentals/logging/index/samples/3.x/MyMain/Program.cs?name=snippet_AzLogOptions)]
 
-When deployed to Azure App Service, the app uses the settings in the [App Service logs](/azure/app-service/web-sites-enable-diagnostic-log/#enable-application-logging-windows) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
+When deployed to Azure App Service, the app uses the settings in the [App Service logs](/azure/app-service/troubleshoot-diagnostic-logs) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
 * **Application Logging (Filesystem)**
 * **Application Logging (Blob)**
