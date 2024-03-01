@@ -864,6 +864,25 @@ builder.Services.AddCascadingAuthenticationState();
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component (.NET 7 or earlier) or services provided by <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> (.NET 8 or later) supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> dependency injection service.
 
+## Personally Identifiable Information (PII)
+
+Microsoft uses the [GDPR definition for 'personal data' (GDPR 4.1)](https://gdpr-text.com/read/article-4/) when documentation discusses Personally Identifiable Information (PII).
+
+PII refers any information relating to an identified or identifiable natural person. An identifiable natural person is one who can be identified, directly or indirectly, with any of the following:
+
+* Name
+* Identification number
+* Location coordinates
+* Online identifier
+* Other specific factors
+  * Physical
+  * Physiological
+  * Genetic
+  * Mental (psychological)
+  * Economic
+  * Cultural
+  * Social identity
+
 ## Additional resources
 
 :::moniker range=">= aspnetcore-6.0"
