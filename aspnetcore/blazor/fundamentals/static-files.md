@@ -14,8 +14,6 @@ uid: blazor/fundamentals/static-files
 
 This article describes Blazor app configuration for serving static files.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 :::moniker range=">= aspnetcore-8.0"
 
 ## Static Web Asset Project Mode

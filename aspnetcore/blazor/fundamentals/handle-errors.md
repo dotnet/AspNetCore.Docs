@@ -14,8 +14,6 @@ uid: blazor/fundamentals/handle-errors
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-pre-net8.md)]
-
 ## Detailed errors during development
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:

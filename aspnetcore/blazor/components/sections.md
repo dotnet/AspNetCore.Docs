@@ -18,8 +18,6 @@ uid: blazor/components/sections
 
 This article explains how to control the content in a Razor component from a child Razor component.
 
-[!INCLUDE[](~/blazor/includes/location-client-and-server-net8-or-later.md)]
-
 ## Blazor sections
 
 To control the content in a Razor component from a child Razor component, Blazor supports *sections* using the following built-in components:
