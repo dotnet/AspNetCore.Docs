@@ -36,21 +36,21 @@ Disable compression by setting `ConfigureWebSocketOptions` to `null`, which redu
 
 ```csharp
 builder.MapRazorComponents<App>()
-    .AddServerRenderMode(o => o.ConfigureWebSocketOptions = null)
+    .AddInteractiveServerRenderMode(o => o.ConfigureWebSocketOptions = null)
 ```
 
 When compression is enabled, configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quotes required), which allows WebSocket compression but prevents browsers from embedding the app into any `<iframe>`:
 
 ```csharp
 builder.MapRazorComponents<App>()
-    .AddServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
+    .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
 When compression is enabled, remove the `frame-ancestors` CSP by setting `ContentSecurityFrameAncestorsPolicy` to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
 
 ```csharp
 builder.MapRazorComponents<App>()
-    .AddServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = null)
+    .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = null)
 ```
 
 > [!IMPORTANT]
