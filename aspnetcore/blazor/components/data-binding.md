@@ -147,13 +147,13 @@ Using an [event callback parameter (`EventCallback`/`EventCallback<T>`)](xref:bl
 In the following example:
 
 * The `<input>` element's `value` is bound to the value of `searchText` synchronously.
-* After each keystroke (`onchange` event) in the field, the `PerformSearch` method executes asynchronously.
+* After each keystroke (`oninput` event) in the field, the `PerformSearch` method executes asynchronously.
 * `PerformSearch` calls a service with an asynchronous method (`FetchAsync`) to return search results.
 
 ```razor
 @inject ISearchService SearchService
 
-<input @bind="searchText" @bind:after="PerformSearch" />
+<input @bind="searchText" @bind:event="oninput" @bind:after="PerformSearch" />
 
 @code {
     private string? searchText;
