@@ -156,7 +156,6 @@ In the following example:
 @inject ISearchService SearchService
 
 <input @bind="searchText" @bind:after="PerformSearch" />
-
 <input @bind="searchText" @bind:event="oninput" @bind:after="PerformSearch" />
 
 @code {
