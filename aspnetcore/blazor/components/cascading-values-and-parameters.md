@@ -283,7 +283,7 @@ Recommendations:
   builder.Services.AddLibraryCascadingParameters();
   ```
 
-  Instruct developers to call your extension method. This is a sound alternative to instructed them to add a `<RootComponent>` component in their `MainLayout` component.
+  Instruct developers to call your extension method. This is a sound alternative to instructing them to add a `<RootComponent>` component in their `MainLayout` component.
 
 :::moniker-end
 
