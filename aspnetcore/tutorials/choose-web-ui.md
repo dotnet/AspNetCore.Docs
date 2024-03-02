@@ -81,11 +81,11 @@ To get started, see:
 
 ## Choose a hybrid solution: ASP.NET Core MVC or Razor Pages plus Blazor
 
-MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps. When a view or page is rendered, components can be prerendered at the same time.
+MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are designed to be used together. Blazor components can be integrated into Razor Pages and MVC apps. When a view or page is rendered, components can be prerendered at the same time.
 
 Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages benefits:
 
-* Prerendering executes Razor components on the server and renders them into a view or page, which improves the perceived load time of the app.
+* Prerendering executes Blazor components on the server and renders them into a view or page, which improves the perceived load time of the app.
 * Add interactivity to existing views or pages with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/integration>.
