@@ -210,7 +210,7 @@ protected RenderFragment DisplayTitle =>
 
 If a component repeats extremely often, for example, hundreds or thousands of times, the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `TableCell` component that renders 4,000 times within a grid, each parameter passed to the component adds around 15 ms to the total rendering cost. Parameter passing for ten parameters would take around 150 ms in total and cause a UI rendering lag.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `TableCell` component that renders 4,000 times within a grid, each parameter passed to the component adds around 15 ms to the total rendering cost. Passing ten parameters requires around 150 ms and causes a UI rendering lag.
 
 To reduce parameter load, bundle multiple parameters in a custom class. For example, a table cell component might accept a common object. In the following example, `Data` is different for every cell, but `Options` is common across all cell instances:
 
