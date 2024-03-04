@@ -122,7 +122,7 @@ To see vCard output, run the app and send a Get request with Accept header `text
 
 To add a vCard to the in-memory collection of contacts:
 
-* Send a `Post` request to `/api/contacts` with a tool like Postman.
+* Send a `Post` request to `/api/contacts` with a tool like [http-repl](xref:web-api/http-repl).
 * Set the `Content-Type` header to `text/vcard`.
 * Set `vCard` text in the body, formatted like the preceding example.
 
