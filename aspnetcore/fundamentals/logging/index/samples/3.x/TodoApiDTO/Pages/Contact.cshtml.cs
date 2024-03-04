@@ -10,7 +10,7 @@ namespace TodoApi.Pages
 
         public ContactModel(ILoggerFactory logger)
         {
-            _logger = logger.CreateLogger("MyCategory");
+            _logger = logger.CreateLogger("TodoApi.Pages.ContactModel.MyCategory");
         }
 
         public void OnGet()
