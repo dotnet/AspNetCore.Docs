@@ -222,11 +222,11 @@ Logs that begin with "Microsoft" categories are from ASP.NET Core framework code
 
 ## Log category
 
-When an `ILogger` object is created, a *category* is specified. That category is included with each log message created by that instance of `ILogger`. The category string is arbitrary, but the convention is to use the class name. For example, in a controller the name might be `"TodoApi.Controllers.TodoController"`. The ASP.NET Core web apps use `ILogger<T>` to automatically get an `ILogger` instance that uses the fully qualified type name of `T` as the category:
+When an `ILogger` object is created, a *category* is specified. That category is included with each log message created by that instance of `ILogger`. The category string is arbitrary, but the convention is to use the fully qualified class name. For example, in a controller the name might be `"TodoApi.Controllers.TodoController"`. The ASP.NET Core web apps use `ILogger<T>` to automatically get an `ILogger` instance that uses the fully qualified type name of `T` as the category:
 
 [!code-csharp[](~/fundamentals/logging/index/samples/3.x/TodoApiDTO/Pages/Privacy.cshtml.cs?name=snippet)]
 
-To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
+If further categorization is desired, the convention is to use a hierarchical name by appending a subcategory to the fully qualified class name, and explicitly specify the category using `ILoggerFactory.CreateLogger`:
 
 [!code-csharp[](~/fundamentals/logging/index/samples/3.x/TodoApiDTO/Pages/Contact.cshtml.cs?name=snippet)]
 
