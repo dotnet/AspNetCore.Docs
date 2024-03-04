@@ -11,10 +11,6 @@ Welcome to what's new in the ASP.NET Core docs for February 2024. This article l
 
 ## Miscellaneous
 
-### Updated articles
-
-- [Title not found in: #31913](index.yml) - Hub page update per data and OKR
-- [Title not found in: #31555](zone-pivot-groups.yml) - Blazor Web App with OIDC article
 
 ## Blazor
 
@@ -203,7 +199,6 @@ Welcome to what's new in the ASP.NET Core docs for February 2024. This article l
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![49 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-49-green)
 - [hakenr](https://github.com/hakenr) - Robert Haken ![17 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-17-green)
 - [stanimirovv](https://github.com/stanimirovv) - Zlatin Stanimirov ![6 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-6-green)
 - [yogyogi](https://github.com/yogyogi) - Yogi ![4 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
