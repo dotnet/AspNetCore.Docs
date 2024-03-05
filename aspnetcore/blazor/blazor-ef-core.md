@@ -35,7 +35,17 @@ This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly
 
 The sample app was built as a reference for server-side Blazor apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
+:::moniker range=">= aspnetcore-8.0"
+
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample)): Select the folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `BlazorWebAppEFCore`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample)): Select the folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `BlazorServerEFCoreSample`.
+
+:::moniker-end
 
 The sample uses a local [SQLite](https://www.sqlite.org/index.html) database so that it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`:
 
