@@ -135,7 +135,7 @@ app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
 #endregion
 
 // Bind to headers
-// Use Postman or another tool to post Todo item. In the headers tab, set header key: X-Todo-Id and
+// Use [`HttpRepl`](xref:web-api/http-repl) or another tool to post Todo item. In the headers tab, set header key: X-Todo-Id and
 // Value the ID to fetch
 // See https://user-images.githubusercontent.com/3605364/178612632-140db6de-1b4d-453b-aa5a-b3a3475ab3de.png
 // https://user-images.githubusercontent.com/6568968/177691682-f74ce81d-dbbe-4691-a643-a87f23e0f186.png

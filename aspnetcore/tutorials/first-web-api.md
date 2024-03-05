@@ -460,14 +460,12 @@ There are many other tools that can be used to test web APIs, for example:
 
 * [Visual Studio Endpoints Explorer and .http files](xref:test/http-files)
 * [http-repl](xref:web-api/http-repl)
-* [Postman](https://www.postman.com/)
 * [curl](https://terminalcheatsheet.com/guides/curl-rest-api). Swagger uses `curl` and shows the `curl` commands it submits.
 * [Fiddler](https://www.telerik.com/fiddler)
 
 For more information, see:
 
 * [Minimal API tutorial: test with .http files and Endpoints Explorer](xref:tutorials/min-web-api)
-* [Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
 * [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
 
 <!-- Verify https://go.microsoft.com/fwlink/?linkid=2123754 goes to this H2. Verify the latest released version is on top so this anchor works -->

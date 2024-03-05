@@ -54,7 +54,7 @@ To preserve prerendered state, decide what state to persist using the <xref:Micr
 The following example demonstrates the general pattern:
 
 * The `{TYPE}` placeholder represents the type of data to persist.
-* The `{TOKEN}` placeholder is a state identifier string.
+* The `{TOKEN}` placeholder is a state identifier string. Consider using `nameof({VARIABLE})`, where the `{VARIABLE}` placeholder is the name of the variable that holds the state. Using [`nameof()`](/dotnet/csharp/language-reference/operators/nameof) for the state identifier avoids the use of a quoted string.
 
 ```razor
 @implements IDisposable
