@@ -16,84 +16,89 @@ This article describes how to call a web API from a Blazor app.
 
 ## Package
 
-The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json). The package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json). The `System.Net.Http.Json` package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Sample app
+## Sample apps
 
 See the sample apps in the [`dotnet/blazor-samples`](https://github.com/dotnet/blazor-samples/) GitHub repository.
 
 ### `BlazorWebAppCallWebApi`
 
-Call an "external" todo list web API from a Blazor Web App, where the web API is a separate app on an external server:
+Call an "external" todo list web API from a Blazor Web App:
 
-* `Backend` server web API for maintaining the todo list.
-* The Blazor Web App calls the web API with an `HttpClient` for todo list operations.
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
+* `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
 
-For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured `HttpClient` registered in the `Program` file of the client project (`BlazorApp.Client`):
+For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
 
 ```csharp
 builder.Services.AddScoped(sp => new HttpClient { ... });
 ```
 
-For server-side rendering (SSR), which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made with an `HttpClient` registered in the `Program` file of the server project (`BlazorApp`):
+For server-side rendering (SSR), which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made with an <xref:System.Net.Http.HttpClient> registered in the `Program` file of the server project (`BlazorApp`):
 
 ```csharp
 builder.Services.AddHttpClient();
 ```
 
-"Internal" movie list web API, where the web API resides in the server project of the Blazor Web App:
+Call an "internal" movie list API, where the API resides in the server project of the Blazor Web App:
 
-* For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the web API are made via a client-based service (`ClientMovieService`) that uses an `HttpClient` registered in the `Program` file of the client project (`BlazorApp.Client`).
+* `BlazorApp`: A Blazor Web App that maintains a movie list:
+  * When operations are performed on the movie list within the app on the server, ordinary API calls are used.
+  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+* `BlazorApp.Client`: The client project of the Blazor Web App, which contains Interactive WebAssembly and Auto components for user management of the movie list.
 
-  The following example obtains a list of movies:
+For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the API are made via a client-based service (`ClientMovieService`) that uses a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Because these calls are made over a public or private web, the movie list API is a *web API*.
 
-  ```csharp
-  public class ClientMovieService(IConfiguration config, HttpClient httpClient) 
-      : IMovieService
-  {
-      private readonly string serviceEndpoint = 
-          $"{config.GetValue<string>("FrontendUrl")}/movies";
+The following example obtains a list of movies:
 
-      private HttpClient Http { get; set; } = httpClient;
+```csharp
+public class ClientMovieService(IConfiguration config, HttpClient httpClient) 
+    : IMovieService
+{
+    private readonly string serviceEndpoint = 
+        $"{config.GetValue<string>("FrontendUrl")}/movies";
 
-      public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
-      {
-          var requestUri = watchedMovies ? $"{serviceEndpoint}/watched" : 
-              serviceEndpoint;
+    private HttpClient Http { get; set; } = httpClient;
 
-          return await Http.GetFromJsonAsync<Movie[]>(requestUri) ?? [];
-      }
-  }
-  ```
+    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
+    {
+        var requestUri = watchedMovies ? $"{serviceEndpoint}/watched" : 
+            serviceEndpoint;
 
-* For SSR, which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made directly via a server-based service (`ServerMovieService`).
+        return await Http.GetFromJsonAsync<Movie[]>(requestUri) ?? [];
+    }
+}
+```
 
-  The following example obtains a list of movies:
+For SSR, which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made directly via a server-based service (`ServerMovieService`). The API doesn't rely on a network, so it's a standard API for movie list CRUD operations.
 
-  ```csharp
-  public class ServerMovieService(MovieContext db) : IMovieService
-  {
-      public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
-      {
-          return watchedMovies ? 
-              await db.Movies.Where(t => t.IsWatched).ToArrayAsync() : 
-              await db.Movies.ToArrayAsync();
-      }
-  }
-  ```
+The following example obtains a list of movies:
+
+```csharp
+public class ServerMovieService(MovieContext db) : IMovieService
+{
+    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
+    {
+        return watchedMovies ? 
+            await db.Movies.Where(t => t.IsWatched).ToArrayAsync() : 
+            await db.Movies.ToArrayAsync();
+    }
+}
+```
+
+### `BlazorWebAppCallWebApi_Weather`
+
+A weather data sample app that uses streaming rendering for weather data.
 
 ### `BlazorWebAssemblyCallWebApi`
 
 Calls a todo list web API from a Blazor WebAssembly app:
 
-* `Backend` server web API for maintaining a todo list.
-* `BlazorTodo` Blazor WebAssembly app that calls the `Backend` server web API with an `HttpClient` for todo list operations.
-
-### Additional sample app
-
-For an additional sample app that uses streaming rendering for weather data, see [Blazor Web App with an API call (`danroth27/BlazorWebAppApiCall`)](https://github.com/danroth27/BlazorWebAppApiCall).
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+* `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
 
 :::moniker-end
 
@@ -185,14 +190,14 @@ For an additional working example, see the server-side file upload example that 
 
 When using the interactive WebAssembly and Auto render modes, components are prerendered by default. Auto components are also initially rendered interactively from the server before the Blazor bundle downloads to the client and the client-side runtime activates. This means that components using these render modes should be designed so that they run successfully from both the client and the server. If the component needs to call a server project-based API when running on the client, the recommended approach is to abstract that API call behind a service interface, and then implement a client and server version of the service:
 
-* The client version calls the API with a preconfigured `HttpClient`.
-* The server version can typically access the server-side resources directly. Injecting an `HttpClient` on the server that makes calls back to the server isn't recommended, as the network request is typically unnecessary.
+* The client version calls the API with a preconfigured <xref:System.Net.Http.HttpClient>.
+* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server isn't recommended, as the network request is typically unnecessary.
 
 When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see <xref:blazor/components/render-modes#prerendering>.
 
 Examples:
 
-* Movie list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-app)
+* Movie list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
 * [Blazor Web App with an API call (`danroth27/BlazorWebAppApiCall`)](https://github.com/danroth27/BlazorWebAppApiCall)
 
 ## Blazor Web App external web APIs
@@ -213,21 +218,24 @@ Use ***either*** of the following approaches to resolve this problem:
 
   No explicit package reference is required for the main project because <xref:System.Net.Http.HttpClient> services are provided by the shared framework.
 
-  Example: Todo list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-app)
+  Example: Todo list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
 
 * If prerendering isn't required for a WebAssembly component, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App.
 
 For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering).
 
-## Prerendering data
+## Prerendered data
 
 When prerendering, components render twice: first statically, then interactively. State doesn't automatically flow from the prerendered component to the interactive one. If a component performs asynchronous initialization operations and renders different content for different states during initialization, such as a "Loading..." progress indicator, you may see a flicker when the component renders twice.
 
 <!-- UPDATE 9.0 Keep an eye on the status of the enhanced nav fix
                 currently scheduled for Pre4. Remove the cross-link
-                to the PU issue when 9.0 releases. -->
+                to the PU issue when 9.0 releases. 
+                Note that the README of the "weather" call web API
+                sample makes a cross-link to the PU issue that will
+                need to be removed. -->
 
-You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` [sample app](#sample-app) demonstrates. When the component renders interactively, it can render the same way using the same state. However, the API doesn't currently work with enhanced navigation, which you can work around by disabling enhanced navigation on links to the page (`data-enhanced-nav=false`). For more information, see the following resources:
+You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates. When the component renders interactively, it can render the same way using the same state. However, the API doesn't currently work with enhanced navigation, which you can work around by disabling enhanced navigation on links to the page (`data-enhanced-nav=false`). For more information, see the following resources:
 
 * <xref:blazor/components/prerender#persist-prerendered-state>
 * <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>
