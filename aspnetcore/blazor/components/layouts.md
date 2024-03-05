@@ -389,4 +389,4 @@ To control the content in a layout from a child Razor component, see <xref:blazo
 ## Additional resources
 
 * <xref:mvc/views/layout>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

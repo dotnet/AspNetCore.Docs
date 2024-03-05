@@ -142,7 +142,7 @@ In Blazor apps created from a Blazor project template, the `NotFound` component 
 ## Additional resources
 
 * [Control headers in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 Mozilla MDN Web Docs documentation:
 

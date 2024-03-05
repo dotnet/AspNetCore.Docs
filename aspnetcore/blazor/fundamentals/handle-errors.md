@@ -799,7 +799,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 * <xref:web-api/index>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 :::moniker-end
 
@@ -808,7 +808,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 * <xref:web-api/index>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 :::moniker-end
 
