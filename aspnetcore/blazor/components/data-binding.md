@@ -492,7 +492,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and either use `@bind:get`/`@bind:set` modifiers (described earlier in this article) or [bind to a property with custom `get` and `set` accessor logic](#binding-to-a-property-with-c-get-and-set-accessors) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms/validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use an [input component](xref:blazor/forms/input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, with [form validation](xref:blazor/forms/validation). Input components together with form validation components provide built-in support to manage invalid inputs:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
