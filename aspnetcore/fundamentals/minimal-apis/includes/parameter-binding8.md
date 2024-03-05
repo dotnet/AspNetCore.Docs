@@ -255,7 +255,7 @@ To test the preceding code, add the following endpoint to populate the database 
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_batch)]
 
-Use a tool like Postman to pass the following data to the previous endpoint:
+Use a tool like [`HttpRepl`](xref:web-api/http-repl) to pass the following data to the previous endpoint:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
 
