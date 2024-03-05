@@ -186,41 +186,41 @@ For an additional working example, see the server-side file upload example that 
 
 ## Blazor Web App server project-based (internal) web APIs
 
-*This section applies to Blazor Web Apps that have a web API in the server project of the app.*
+*This section applies to Blazor Web Apps that maintain a web API in the server project of the app (internal).*
 
-When using the interactive WebAssembly and Auto render modes, components are prerendered by default. Auto components are also initially rendered interactively from the server before the Blazor bundle downloads to the client and the client-side runtime activates. This means that components using these render modes should be designed so that they run successfully from both the client and the server. If the component needs to call a server project-based API when running on the client, the recommended approach is to abstract that API call behind a service interface, and then implement a client and server version of the service:
+When using the interactive WebAssembly and Auto render modes, components are prerendered by default. Auto components are also initially rendered interactively from the server before the Blazor bundle downloads to the client and the client-side runtime activates. This means that components using these render modes should be designed so that they run successfully from both the client and the server. If the component must call a server project-based API when running on the client, the recommended approach is to abstract that API call behind a service interface and implement client and server versions of the service:
 
-* The client version calls the API with a preconfigured <xref:System.Net.Http.HttpClient>.
-* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server isn't recommended, as the network request is typically unnecessary.
+* The client version calls the web API with a preconfigured <xref:System.Net.Http.HttpClient>.
+* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server is ***not*** recommended, as the network request is typically unnecessary.
 
 When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see <xref:blazor/components/render-modes#prerendering>.
 
-Examples:
+Examples ([sample apps](#sample-apps)):
 
-* Movie list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
-* [Blazor Web App with an API call (`danroth27/BlazorWebAppApiCall`)](https://github.com/danroth27/BlazorWebAppApiCall)
+* Movie list web API in the `BlazorWebAppCallWebApi` sample app.
+* Streaming rendering weather data web API in the `BlazorWebAppCallWebApi_Weather` sample app.
 
 ## Blazor Web App external web APIs
 
-*This section applies to Blazor Web Apps that call a web API in a separate (external) project, which is hosted separately from the Blazor Web App.*
+*This section applies to Blazor Web Apps that call a web API maintained by a separate (external) project, possibly hosted on a different server.*
 
 Blazor Web Apps normally prerender client-side WebAssembly components, and Auto components render on the server during static or interactive server-side rendering (SSR). <xref:System.Net.Http.HttpClient> services aren't registered by default in a Blazor Web App's main project. If the app is run with only the <xref:System.Net.Http.HttpClient> services registered in the `.Client` project, as described in the [Add the `HttpClient` service](#add-the-httpclient-service) section, executing the app results in a runtime error:
 
 > :::no-loc text="InvalidOperationException: Cannot provide a value for property 'Http' on type '...{COMPONENT}'. There is no registered service of type 'System.Net.Http.HttpClient'.":::
 
-Use ***either*** of the following approaches to resolve this problem:
+Use ***either*** of the following approaches:
 
-* Add the <xref:System.Net.Http.HttpClient> services to the main project to make them available during SSR. Use the following service registration in the main project's `Program` file:
+* Add the <xref:System.Net.Http.HttpClient> services to the server project to make the <xref:System.Net.Http.HttpClient> available during SSR. Use the following service registration in the server project's `Program` file:
 
   ```csharp
   builder.Services.AddHttpClient();
   ```
 
-  No explicit package reference is required for the main project because <xref:System.Net.Http.HttpClient> services are provided by the shared framework.
+  No explicit package reference is required because <xref:System.Net.Http.HttpClient> services are provided by the shared framework.
 
   Example: Todo list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
 
-* If prerendering isn't required for a WebAssembly component, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App.
+* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component won't be prerendered on the server.
 
 For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering).
 
@@ -232,10 +232,11 @@ When prerendering, components render twice: first statically, then interactively
                 currently scheduled for Pre4. Remove the cross-link
                 to the PU issue when 9.0 releases. 
                 Note that the README of the "weather" call web API
-                sample makes a cross-link to the PU issue that will
-                need to be removed. -->
+                sample has a cross-link and remark on this, and the
+                sample app disabled enhanced nav on the weather
+                component link. -->
 
-You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates. When the component renders interactively, it can render the same way using the same state. However, the API doesn't currently work with enhanced navigation, which you can work around by disabling enhanced navigation on links to the page (`data-enhanced-nav=false`). For more information, see the following resources:
+You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. However, the API doesn't currently work with enhanced navigation, which you can work around by disabling enhanced navigation on links to the page (`data-enhanced-nav=false`). For more information, see the following resources:
 
 * <xref:blazor/components/prerender#persist-prerendered-state>
 * <xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling>
