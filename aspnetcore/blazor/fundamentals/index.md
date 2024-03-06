@@ -161,17 +161,17 @@ Documentation sample apps are available for inspection and download:
 
 [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
+Locate a sample app by first selecting the version folder that matches the version of .NET that you're working with.
+
 :::moniker range=">= aspnetcore-8.0"
 
 Samples apps in the repository:
-
-<!-- UPDATE 8.0 Uncomment link when article is live -->
 
 * Blazor Web App
 * Blazor WebAssembly
 * Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
 * Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
-* Blazor Web App with OIDC and Aspire <!-- (<xref:blazor/security/server/blazor-web-app-with-oidc-and-aspire>) -->
+* Blazor Web App with OIDC and Aspire (<xref:blazor/security/server/blazor-web-app-oidc>)
 * Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
 * Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity>)
 
@@ -196,6 +196,11 @@ The ASP.NET Core repository's Basic Test App is also a helpful set of samples fo
 [`BasicTestApp` in ASP.NET Core reference source (`dotnet/aspnetcore`)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+To download the sample apps:
+
+* Download the [Blazor samples repository](https://github.com/dotnet/blazor-samples) ZIP file.
+* Unzip the file.
 
 ## Byte multiples
 

@@ -17,7 +17,7 @@ zone_pivot_groups: blazor-web-app-oidc-specification
 
 -->
 
-This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples).
+This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
 
 :::zone pivot="without-bff-pattern"
 
@@ -39,7 +39,7 @@ The sample app consists of two projects:
 
 Access the sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppOidc` folder for .NET 8 or later.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## Server-side Blazor Web App project (`BlazorWebAppOidc`)
 
@@ -257,7 +257,7 @@ The sample app consists of five projects:
 
 Access the sample apps through the latest version folder from the repository's root with the following link. The projects are in the `BlazorWebAppOidcBff` folder for .NET 8 or later.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 ## .NET Aspire projects
 

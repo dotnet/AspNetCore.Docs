@@ -201,4 +201,4 @@ When using generic-typed components, the type parameter is inferred if possible.
 ## Additional resources
 
 * <xref:blazor/performance#define-reusable-renderfragments-in-code>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

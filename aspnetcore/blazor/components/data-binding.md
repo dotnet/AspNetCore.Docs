@@ -905,4 +905,4 @@ For an alternative approach suited to sharing data in memory and across componen
 * [Binding to radio buttons in a form](xref:blazor/forms/binding#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms/binding#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

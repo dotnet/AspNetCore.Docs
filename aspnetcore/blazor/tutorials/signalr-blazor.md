@@ -53,7 +53,7 @@ The Visual Studio Code instructions use the .NET CLI for ASP.NET Core developmen
 
 Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples)
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -874,4 +874,4 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 * <xref:blazor/debug>
 * <xref:blazor/security/server/static-server-side-rendering>
 * <xref:blazor/security/server/interactive-server-side-rendering>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
