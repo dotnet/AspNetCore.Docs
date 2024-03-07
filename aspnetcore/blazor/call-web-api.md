@@ -619,21 +619,37 @@ Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.E
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-In the `Program` file:
+In the `Program` file of a client project:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+:::moniker range=">= aspnetcore-8.0"
+
+If the named client is to be used by prerendered client-side components of a Blazor Web App, the preceding service registration should appear in both the server project and the `.Client` project. On the server, `builder.HostEnvironment.BaseAddress` is replaced by the web API's base address, which is described further below.
+
+:::monkier-end
+
+The preceding client-side example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+
+:::moniker range=">= aspnetcore-8.0"
 
 The most common use cases for using the client's own base address are:
 
-* The client project (`.Client`) of a Blazor Web App (.NET 8 or later) makes web API calls from WebAssembly components or code that runs on the client in WebAssembly to APIs in the server app.
-* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app makes web API calls to the server project (**:::no-loc text="Server":::**).
+* The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
+* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
 
-If you're calling an external web API (not in the same URL space as the client app), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+:::moniker-end
+
+If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -648,33 +664,10 @@ In the following component code:
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-`FetchDataViaFactory.razor`:
-
 ```razor
-@page "/fetch-data-via-factory"
 @inject IHttpClientFactory ClientFactory
 
-<h1>Fetch data via <code>IHttpClientFactory</code></h1>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <h2>Temperatures by Date</h2>
-
-    <ul>
-        @foreach (var forecast in forecasts)
-        {
-            <li>
-                @forecast.Date.ToShortDateString():
-                @forecast.TemperatureC &#8451;
-                @forecast.TemperatureF &#8457;
-            </li>
-        }
-    </ul>
-}
+...
 
 @code {
     private WeatherForecast[]? forecasts;
@@ -689,7 +682,17 @@ else
 }
 ```
 
-For an additional example based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+:::moniker range=">= aspnetcore-8.0"
+
+The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+
+:::moniker-end
 
 ## Typed `HttpClient`
 
@@ -704,8 +707,6 @@ Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.E
 
 `WeatherForecastHttpClient.cs`:
 
-:::moniker range=">= aspnetcore-8.0"
-
 ```csharp
 using System.Net.Http.Json;
 
@@ -714,62 +715,45 @@ namespace BlazorSample.Client;
 public class WeatherForecastHttpClient(HttpClient http)
 {
     private readonly HttpClient http = http;
-    private WeatherForecast[]? forecasts;
 
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
-            "WeatherForecast");
-
-        return forecasts ?? [];
+        return await http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast") ?? [];
     }
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```csharp
-using System.Net.Http.Json;
-
-public class WeatherForecastHttpClient
-{
-    private readonly HttpClient http;
-    private WeatherForecast[]? forecasts;
-
-    public WeatherForecastHttpClient(HttpClient http)
-    {
-        this.http = http;
-    }
-
-    public async Task<WeatherForecast[]> GetForecastAsync()
-    {
-        forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
-            "WeatherForecast");
-
-        return forecasts ?? Array.Empty<WeatherForecast>();
-    }
-}
-```
-
-:::moniker-end
-
-In the `Program` file:
+In the `Program` file of a client project:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+:::moniker range=">= aspnetcore-8.0"
+
+If the typed client is to be used by prerendered client-side components of a Blazor Web App, the preceding service registration should appear in both the server project and the `.Client` project. On the server, `builder.HostEnvironment.BaseAddress` is replaced by the web API's base address, which is described further below.
+
+:::monkier-end
+
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the client-side app and is typically derived from the `<base>` tag's `href` value in the host page.
+
+:::moniker range=">= aspnetcore-8.0"
 
 The most common use cases for using the client's own base address are:
 
-* The client project (`.Client`) of a Blazor Web App (.NET 8 or later) makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app.
-* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app makes web API calls to the server project (**:::no-loc text="Server":::**).
+* The client project (`.Client`) of a Blazor Web App that makes web API calls from WebAssembly/Auto components or code that runs on the client in WebAssembly to APIs in the server app at the same host address.
+* The client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
 
-If you're calling an external web API (not in the same URL space as the client app), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The most common use case for using the client's own base address is in the client project (**:::no-loc text="Client":::**) of a hosted Blazor WebAssembly app that makes web API calls to the server project (**:::no-loc text="Server":::**).
+
+:::moniker-end
+
+If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
@@ -786,33 +770,10 @@ In the following component code:
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add an `@using` directive to the following component for <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-`FetchDataViaTypedHttpClient.razor`:
-
 ```razor
-@page "/fetch-data-via-typed-httpclient"
 @inject WeatherForecastHttpClient Http
 
-<h1>Fetch data via typed <code>HttpClient</code></h1>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <h2>Temperatures by Date</h2>
-
-    <ul>
-        @foreach (var forecast in forecasts)
-        {
-            <li>
-                @forecast.Date.ToShortDateString():
-                @forecast.TemperatureC &#8451;
-                @forecast.TemperatureF &#8457;
-            </li>
-        }
-    </ul>
-}
+...
 
 @code {
     private WeatherForecast[]? forecasts;
@@ -823,6 +784,12 @@ else
     }
 }
 ```
+
+:::moniker range=">= aspnetcore-8.0"
+
+The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a typed <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrTypedClient` component. Note that the component adopts and client-side rendering (CSR) (`InteractiveWebAssembly` render mode) ***with prerendering***, so the typed client service registration appears in the `Program` file of both the server project and the `.Client` project.
+
+:::moniker-end
 
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
