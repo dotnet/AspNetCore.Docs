@@ -34,8 +34,6 @@ Call an external (not in the Blazor Web App) todo list web API from a Blazor Web
 For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
 
 ```csharp
-builder.Services.AddScoped(sp => new HttpClient { ... });
-
 builder.Services.AddScoped(sp =>
     new HttpClient
     {
