@@ -38,7 +38,7 @@ Consider the following `ShowMoreExpander` component that:
 
 After the following `ShowMoreExpander` component demonstrates an overwritten parameter, a modified `ShowMoreExpander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
 
-`Expander.razor`:
+`ShowMoreExpander.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
