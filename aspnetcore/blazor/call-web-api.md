@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 03/07/2024
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -26,7 +26,7 @@ See the sample apps in the [`dotnet/blazor-samples`](https://github.com/dotnet/b
 
 ### `BlazorWebAppCallWebApi`
 
-Call an "external" todo list web API from a Blazor Web App:
+Call an external (not in the Blazor Web App) todo list web API from a Blazor Web App:
 
 * `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
 * `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
@@ -43,7 +43,7 @@ For server-side rendering (SSR), which includes prerendered and interactive Serv
 builder.Services.AddHttpClient();
 ```
 
-Call an "internal" movie list API, where the API resides in the server project of the Blazor Web App:
+Call an internal (inside the Blazor Web App) movie list API, where the API resides in the server project of the Blazor Web App:
 
 * `BlazorApp`: A Blazor Web App that maintains a movie list:
   * When operations are performed on the movie list within the app on the server, ordinary API calls are used.
@@ -184,14 +184,14 @@ For an additional working example, see the server-side file upload example that 
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Blazor Web App server project-based (internal) web APIs
+## Service abstractions for web API calls
 
-*This section applies to Blazor Web Apps that maintain a web API in the server project of the app (internal).*
+*This section applies to Blazor Web Apps that maintain a web API in the server project or transform web API calls to an external web API.*
 
-When using the interactive WebAssembly and Auto render modes, components are prerendered by default. Auto components are also initially rendered interactively from the server before the Blazor bundle downloads to the client and the client-side runtime activates. This means that components using these render modes should be designed so that they run successfully from both the client and the server. If the component must call a server project-based API when running on the client, the recommended approach is to abstract that API call behind a service interface and implement client and server versions of the service:
+When using the interactive WebAssembly and Auto render modes, components are prerendered by default. Auto components are also initially rendered interactively from the server before the Blazor bundle downloads to the client and the client-side runtime activates. This means that components using these render modes should be designed so that they run successfully from both the client and the server. If the component must call a server project-based API or transform a request to an external web API (one that's outside of the Blazor Web App) when running on the client, the recommended approach is to abstract that API call behind a service interface and implement client and server versions of the service:
 
 * The client version calls the web API with a preconfigured <xref:System.Net.Http.HttpClient>.
-* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server is ***not*** recommended, as the network request is typically unnecessary.
+* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server is ***not*** recommended, as the network request is typically unnecessary. Alternatively, the API might be external to the server project, but a service abstraction for the server is required to transform the request in some way, for example to add an access token to a proxied request.
 
 When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see <xref:blazor/components/render-modes#prerendering>.
 
@@ -199,6 +199,7 @@ Examples ([sample apps](#sample-apps)):
 
 * Movie list web API in the `BlazorWebAppCallWebApi` sample app.
 * Streaming rendering weather data web API in the `BlazorWebAppCallWebApi_Weather` sample app.
+* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see <xref:blazor/security/server/blazor-web-app-oidc>.
 
 ## Blazor Web App external web APIs
 
@@ -329,24 +330,11 @@ await Http.PostAsJsonAsync("todoitems", addItem);
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
-    Array.Empty<WeatherForecast>();
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? [];
 ```
 
-In the preceding example, an empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
-```
-
-:::moniker-end
+In the preceding example for C# 12 or later, an empty array (`[]`) is created if no weather data is returned by the method, so `content` isn't null after the statement executes but returns. In earlier versions of C#, create an empty array (`Array.Empty<WeatherForecast>()`).
 
 ### PUT as JSON (`PutAsJsonAsync`)
 
@@ -363,24 +351,11 @@ await Http.PutAsJsonAsync($"todoitems/{editItem.Id}", editItem);
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
-    Array.Empty<WeatherForecast>();
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ?? [];
 ```
 
-In the preceding example, an empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
-```
-
-:::moniker-end
+In the preceding example for C# 12 or later, an empty array (`[]`) is created if no weather data is returned by the method, so `content` isn't null after the statement executes but returns. In earlier versions of C#, create an empty array (`Array.Empty<WeatherForecast>()`).
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -659,7 +634,7 @@ builder.Services.AddHttpClient("WebAPI", client =>
 In the following component code:
 
 * An instance of <xref:System.Net.Http.IHttpClientFactory> creates a named <xref:System.Net.Http.HttpClient>.
-* The named <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
+* The named <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API at `/forecast`.
 
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
@@ -670,14 +645,13 @@ In the following component code:
 ...
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private Forecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
         var client = ClientFactory.CreateClient("WebAPI");
 
-        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
-            "WeatherForecast");
+        forecasts = await client.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
     }
 }
 ```
@@ -705,20 +679,22 @@ Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.E
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-`WeatherForecastHttpClient.cs`:
+The following example issues a GET request for JSON weather forecast data from the web API at `/forecast`.
+
+`ForecastHttpClient.cs`:
 
 ```csharp
 using System.Net.Http.Json;
 
 namespace BlazorSample.Client;
 
-public class WeatherForecastHttpClient(HttpClient http)
+public class ForecastHttpClient(HttpClient http)
 {
     private readonly HttpClient http = http;
 
-    public async Task<WeatherForecast[]> GetForecastAsync()
+    public async Task<Forecast[]> GetForecastAsync()
     {
-        return await http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast") ?? [];
+        return await http.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
     }
 }
 ```
@@ -726,7 +702,7 @@ public class WeatherForecastHttpClient(HttpClient http)
 In the `Program` file of a client project:
 
 ```csharp
-builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
+builder.Services.AddHttpClient<ForecastHttpClient>(client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
@@ -756,7 +732,7 @@ The most common use case for using the client's own base address is in the clien
 If you're calling an external web API (not in the same URL space as the client app) or you're configuring the services in a server-side app (for example to deal with prerendering of client-side components on the server), set the URI to the web API's base address. The following example sets the base address of the web API to `https://localhost:5001`, where a separate web API app is running and ready to respond to requests from the client app:
 
 ```csharp
-builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
+builder.Services.AddHttpClient<ForecastHttpClient>(client => 
     client.BaseAddress = new Uri(https://localhost:5001));
 ```
 
@@ -764,19 +740,19 @@ Components inject the typed <xref:System.Net.Http.HttpClient> to call the web AP
 
 In the following component code:
 
-* An instance of the preceding `WeatherForecastHttpClient` is injected, which creates a typed <xref:System.Net.Http.HttpClient>.
+* An instance of the preceding `ForecastHttpClient` is injected, which creates a typed <xref:System.Net.Http.HttpClient>.
 * The typed <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
 
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add an `@using` directive to the following component for <xref:System.Threading.Tasks?displayProperty=fullName>.
 
 ```razor
-@inject WeatherForecastHttpClient Http
+@inject ForecastHttpClient Http
 
 ...
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private Forecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
