@@ -31,10 +31,12 @@ Call an external (not in the Blazor Web App) todo list web API from a Blazor Web
 * `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
 * `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
 
-For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
+For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Although not shown in the following example, the options passed to `HttpClient` set the `BaseAddress`
 
 ```csharp
 builder.Services.AddScoped(sp => new HttpClient { ... });
+
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? "https://localhost:5002") });
 ```
 
 For server-side rendering (SSR), which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made with an <xref:System.Net.Http.HttpClient> registered in the `Program` file of the server project (`BlazorApp`):
@@ -52,23 +54,14 @@ Call an internal (inside the Blazor Web App) movie list API, where the API resid
 
 For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the API are made via a client-based service (`ClientMovieService`) that uses a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Because these calls are made over a public or private web, the movie list API is a *web API*.
 
-The following example obtains a list of movies:
+The following example obtains a list of movies from the `/movies` endpoint:
 
 ```csharp
-public class ClientMovieService(IConfiguration config, HttpClient httpClient) 
-    : IMovieService
+public class ClientMovieService(HttpClient http) : IMovieService
 {
-    private readonly string serviceEndpoint = 
-        $"{config.GetValue<string>("FrontendUrl")}/movies";
-
-    private HttpClient Http { get; set; } = httpClient;
-
     public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
     {
-        var requestUri = watchedMovies ? $"{serviceEndpoint}/watched" : 
-            serviceEndpoint;
-
-        return await Http.GetFromJsonAsync<Movie[]>(requestUri) ?? [];
+        return await http.GetFromJsonAsync<Movie[]>("movies") ?? [];
     }
 }
 ```
@@ -690,8 +683,6 @@ namespace BlazorSample.Client;
 
 public class ForecastHttpClient(HttpClient http)
 {
-    private readonly HttpClient http = http;
-
     public async Task<Forecast[]> GetForecastAsync()
     {
         return await http.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
