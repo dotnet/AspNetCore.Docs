@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 12/15/2023
+ms.date: 03/06/2024
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -23,7 +23,6 @@ The steps shown in this article add authentication and authorization to an ASP.N
 
 * Isn't already configured for authentication.
 * Targets `net8.0` or later.
-* Includes OpenAPI support.
 * Can be either minimal API or controller-based API.
 
 Some of the testing instructions in this article use the [Swagger UI](/aspnet/core/tutorials/web-api-help-pages-using-swagger) that's included with the project template. The Swagger UI isn't required to use Identity with a Web API backend.
@@ -41,20 +40,14 @@ Install the following NuGet packages:
 For the quickest way to get started, use the in-memory database.
 
 Change the database later to SQLite or SQL Server to save user data between sessions when testing or for production use. That introduces some complexity compared to in-memory, as it requires the database to be created through [migrations](/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app).
-
+:::code language="csharp" source="intro/samples/cu/Controllers/StudentsController.cs":::
 Install these packages by using the [NuGet package manager in Visual Studio](/nuget/consume-packages/install-use-packages-visual-studio) or the [dotnet add package](/dotnet/core/tools/dotnet-add-package) CLI command.
 
 ## Create an `IdentityDbContext`
 
 Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
 
-```csharp
-public class ApplicationDbContext : IdentityDbContext<IdentityUser>
-{
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
-        base(options) { }
-}
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\ApplicationDbContext.cs":::
 
 The code shown provides a special constructor that makes it possible to configure the database for different environments.
 
@@ -70,10 +63,7 @@ using Microsoft.EntityFrameworkCore;
 
 As noted earlier, the simplest way to get started is to use the in-memory database. With in-memory each run starts with a fresh database, and there's no need to use migrations. After the call to `WebApplication.CreateBuilder(args)`, add the following code to configure Identity to use an in-memory database:
 
-```csharp
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseInMemoryDatabase("AppDb"));
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetAppDbContext":::
 
 To save user data between sessions when testing or for production use, change the database later to SQLite or SQL Server.
     
@@ -81,18 +71,13 @@ To save user data between sessions when testing or for production use, change th
 
 After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> to add services to the dependency injection (DI) container:
 
-```csharp
-builder.Services.AddAuthorization();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetAddAuthorization":::
 
 ## Activate Identity APIs
 
 After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
 
-```csharp
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetActivateAPIs":::
 
 By default, both cookies and proprietary tokens are activated. Cookies and tokens are issued at login if the `useCookies` query string parameter in the login endpoint is `true`.
 
@@ -100,9 +85,7 @@ By default, both cookies and proprietary tokens are activated. Cookies and token
 
 After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
 
-```csharp
-app.MapIdentityApi<IdentityUser>();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetMapEndpoints":::
 
 ## Secure selected endpoints
 
@@ -278,16 +261,16 @@ public signOut() {
 
 The call to `MapIdentityApi<TUser>` adds the following endpoints to the app:
 
-* [Use the `POST /register`](#use-the-post-register-endpoint)
-* [Use the `POST /login`](#use-the-post-login-endpoint)
-* [Use the `POST /refresh`](#use-the-post-refresh-endpoint)
-* [Use the `GET /confirmEmail`](#use-the-get-confirmemail-endpoint)
-* [Use the `POST /resendConfirmationEmail`](#use-the-post-resendconfirmationemail-endpoint)
-* [Use the `POST /forgotPassword`](#use-the-post-forgotpassword-endpoint)
-* [Use the `POST /reset Password`](#use-the-post-resetpassword-endpoint)
-* [Use the `POST /manage/2fa`](#use-the-post-manage2fa-endpoint)
-* [Use the `GET /manage/info`](#use-the-get-manageinfo-endpoint)
-* [Use the `POST /manage/info`](#use-the-post-manageinfo-endpoint)
+* [`POST /register`](#use-the-post-register-endpoint)
+* [`POST /login`](#use-the-post-login-endpoint)
+* [`POST /refresh`](#use-the-post-refresh-endpoint)
+* [`GET /confirmEmail`](#use-the-get-confirmemail-endpoint)
+* [`POST /resendConfirmationEmail`](#use-the-post-resendconfirmationemail-endpoint)
+* [`POST /forgotPassword`](#use-the-post-forgotpassword-endpoint)
+* [`POST /reset Password`](#use-the-post-resetpassword-endpoint)
+* [`POST /manage/2fa`](#use-the-post-manage2fa-endpoint)
+* [`GET /manage/info`](#use-the-get-manageinfo-endpoint)
+* [`POST /manage/info`](#use-the-post-manageinfo-endpoint)
 
 ## Use the `POST /register` endpoint
 
