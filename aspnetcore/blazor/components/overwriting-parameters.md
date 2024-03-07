@@ -167,8 +167,8 @@ The following revised `ShowMoreExpander` component:
 
 Consider following `ToggleExpander` component that:
 
-* Allows you to change the state from both from inside and outside.
-* It will handle new parameter values even if the same component instance is reused.
+* Allows you to change the state both from inside and outside.
+* Handles new parameter values even if the same component instance is reused.
 
 `ShowMoreExpander.razor`:
 
