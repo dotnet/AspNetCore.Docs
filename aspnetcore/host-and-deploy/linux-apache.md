@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
-ms.custom: mvc
+ms.custom: mvc, linux-related-content
 ms.date: 04/10/2020
 uid: host-and-deploy/linux-apache
 ---

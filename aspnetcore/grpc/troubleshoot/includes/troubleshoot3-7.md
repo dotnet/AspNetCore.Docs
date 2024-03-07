@@ -1,3 +1,6 @@
+---
+ms.custom: linux-related-content
+---
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 
 This document discusses commonly encountered problems when developing gRPC apps on .NET.

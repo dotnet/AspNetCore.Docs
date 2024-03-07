@@ -4,7 +4,7 @@ author: jamesnk
 description: Troubleshoot errors when using gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.custom: mvc
+ms.custom: mvc, linux-related-content
 ms.date: 08/08/2023
 uid: grpc/troubleshoot
 ---
@@ -210,4 +210,3 @@ For more information about using `Grpc.Tools` with unsupported architectures, se
 :::moniker-end
 
 [!INCLUDE[](~/grpc/troubleshoot/includes/troubleshoot3-7.md)]
-
