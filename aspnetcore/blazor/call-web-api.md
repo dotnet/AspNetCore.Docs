@@ -36,7 +36,11 @@ For client-side rendering (CSR), which includes Interactive WebAssembly componen
 ```csharp
 builder.Services.AddScoped(sp => new HttpClient { ... });
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? "https://localhost:5002") });
+builder.Services.AddScoped(sp =>
+    new HttpClient
+    {
+        BaseAddress = new Uri(builder.Configuration["FrontendUrl"] ?? "https://localhost:5002")
+    });
 ```
 
 For server-side rendering (SSR), which includes prerendered and interactive Server components, prerendered WebAssembly components, and Auto components that are prerendered or have adopted SSR, calls are made with an <xref:System.Net.Http.HttpClient> registered in the `Program` file of the server project (`BlazorApp`):
