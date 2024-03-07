@@ -778,7 +778,7 @@ If the app adopts ***per-page/component*** interactivity, make the following cha
 
 ## Dynamically set the culture in a Blazor Web App by user preference
 
-*This section applies to Blazor Web Apps that adopt Auto (Server and WebAssembly) interactivity with per-component interactivity location.*
+*This section applies to Blazor Web Apps that adopt Auto (Server and WebAssembly) interactivity.*
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), both local storage and a localization cookie (Blazor Web Apps with server and WebAssembly components), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage for client-side rendered (CSR) components and a localization cookie for server-side rendered (SSR) components.
 
@@ -885,16 +885,16 @@ The component adopts the following approaches to work for either SSR or CSR comp
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                    JS.InvokeVoidAsync("blazorCulture.set", value.Name);
+                JS.InvokeVoidAsync("blazorCulture.set", value.Name);
 
-                    var uri = new Uri(Navigation.Uri)
-                        .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
-                    var cultureEscaped = Uri.EscapeDataString(value.Name);
-                    var uriEscaped = Uri.EscapeDataString(uri);
+                var uri = new Uri(Navigation.Uri)
+                    .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+                var cultureEscaped = Uri.EscapeDataString(value.Name);
+                var uriEscaped = Uri.EscapeDataString(uri);
 
-                    Navigation.NavigateTo(
-                        $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
-                        forceLoad: true);
+                Navigation.NavigateTo(
+                    $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
+                    forceLoad: true);
             }
         }
     }
@@ -1150,7 +1150,6 @@ Add both the `CultureClient` and `CultureServer` components to the sidebar navig
         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Server)
     </NavLink>
 </div>
-
 <div class="nav-item px-3">
     <NavLink class="nav-link" href="culture-client">
         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Culture (Client)
