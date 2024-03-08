@@ -359,7 +359,7 @@ If the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> 
 
 To set up Identity for email confirmation, add code in `Program.cs` to set `RequireConfirmedEmail` to `true` and add a class that implements `IEmailSender` to the DI container. For example:
 
-:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetConfigureEmail":::
+:::code language="csharp" source="~/security/authentication/identity-api-authorization/8samples/APIforSPA/Program.cs" id="snippetConfigureEmail":::
 
 In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
 
