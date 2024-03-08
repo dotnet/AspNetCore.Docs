@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 03/06/2024
+ms.date: 03/08/2024
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -196,9 +196,9 @@ Some web clients might not include cookies in the header by default:
 * The JavaScript `fetch` API doesn't include cookies by default. Enable them by setting `credentials` to the value `include` in the options.
 * An `HttpClient` running in a Blazor WebAssembly app needs the `HttpRequestMessage` to include credentials, like the following example:
 
-```csharp
-request.SetBrowserRequestCredential(BrowserRequestCredentials.Include);
-```
+  ```csharp
+  request.SetBrowserRequestCredential(BrowserRequestCredentials.Include);
+  ```
 
 ## Use token-based authentication
 
