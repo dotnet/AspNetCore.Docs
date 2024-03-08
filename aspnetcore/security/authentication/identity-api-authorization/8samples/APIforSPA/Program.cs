@@ -43,8 +43,7 @@ public class Program
 #endif
 
         var app = builder.Build();
-        // <snippetConfigureEmail>
-
+      
         // <snippetMapEndpoints>
         app.MapIdentityApi<IdentityUser>();
         // </snippetMapEndpoints>
