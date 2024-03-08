@@ -12,7 +12,7 @@ uid: blazor/test
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-By: [Egil Hansen](https://egilhansen.com/)
+By [Egil Hansen](https://egilhansen.com/)
 
 Testing Razor components is an important aspect of releasing stable and maintainable Blazor apps.
 
