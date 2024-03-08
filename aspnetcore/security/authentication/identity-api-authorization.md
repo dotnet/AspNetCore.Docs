@@ -40,7 +40,7 @@ Install the following NuGet packages:
 For the quickest way to get started, use the in-memory database.
 
 Change the database later to SQLite or SQL Server to save user data between sessions when testing or for production use. That introduces some complexity compared to in-memory, as it requires the database to be created through [migrations](/ef/core/managing-schemas/migrations/), as shown in the [EF Core getting started tutorial](/ef/core/get-started/overview/first-app).
-:::code language="csharp" source="intro/samples/cu/Controllers/StudentsController.cs":::
+
 Install these packages by using the [NuGet package manager in Visual Studio](/nuget/consume-packages/install-use-packages-visual-studio) or the [dotnet add package](/dotnet/core/tools/dotnet-add-package) CLI command.
 
 ## Create an `IdentityDbContext`
@@ -91,37 +91,17 @@ After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.Ide
 
 To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method on the `Map{Method}` call that defines the route. For example:
 
-```csharp
-app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        })
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi()
-.RequireAuthorization();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetRequireAuthorization" highlight="15":::
 
 The `RequireAuthorization` method can also be used to:
 
 * Secure Swagger UI endpoints, as shown in the following example:
     
-  ```csharp
-  app.MapSwagger().RequireAuthorization();
-  ```
-
+   :::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetSwaggerAuth":::
+ 
 * Secure with a specific claim or permission, as shown in the following example:
 
-```csharp
-RequiresAuthorization("Admin")
-```
+  :::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetRequireAdmin":::
 
 In a controller-based web API project, secure endpoints by applying the [[`Authorize`]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action.
 
@@ -232,20 +212,7 @@ To use token-based authentication, set the `useCookies` query string parameter t
 
 To provide a way for the user to log out, define a `/logout` endpoint like the following example:
 
-```csharp
-app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
-    [FromBody]object empty) =>
-{
-    if (empty != null)
-    {
-        await signInManager.SignOutAsync();
-        return Results.Ok();
-    }
-    return Results.Unauthorized();
-})
-.WithOpenApi()
-.RequireAuthorization();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetLogout":::
 
 Provide an empty JSON object (`{}`) in the request body when calling this endpoint. The following code is an example of a call to the logout endpoint:
 
@@ -392,14 +359,7 @@ If the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> 
 
 To set up Identity for email confirmation, add code in `Program.cs` to set `RequireConfirmedEmail` to `true` and add a class that implements `IEmailSender` to the DI container. For example:
 
-```csharp
-builder.Services.Configure<IdentityOptions>(options =>
-{
-    options.SignIn.RequireConfirmedEmail = true;
-});
-
-builder.Services.AddTransient<IEmailSender, EmailSender>();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetConfigureEmail":::
 
 In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
 
