@@ -39,6 +39,7 @@ public class Program
         });
 
         builder.Services.AddTransient<IEmailSender, EmailSender>();
+        // </snippetConfigureEmail>
 #endif
 
         var app = builder.Build();
@@ -81,7 +82,7 @@ public class Program
         .WithName("GetWeatherForecast")
         .WithOpenApi()
         .RequireAuthorization();
-        // <snippetRequireAuthorization>
+        // </snippetRequireAuthorization>
 #endif
 #if Version3
         app.MapGet("/weatherforecast", (HttpContext httpContext) =>
