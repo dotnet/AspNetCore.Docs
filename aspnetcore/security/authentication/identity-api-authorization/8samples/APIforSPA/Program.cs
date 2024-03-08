@@ -1,4 +1,4 @@
-#define Version1 // Version1 / Version2 / Verson3 / Version4
+#define Version1 // Version1 / Version2 / Version3 / Version4
 // Version2 = require email confirmation
 // Version3 = require admin role
 // Version4 = require authorization for Swagger
