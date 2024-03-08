@@ -486,29 +486,29 @@ On Linux, the `Debug` provider log location is distribution-dependent and may be
 
 The `EventSource` provider writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
 
-#### dotnet trace tooling
+#### dotnet-trace tooling
 
 The [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace) tool is a cross-platform CLI global tool that enables the collection of .NET Core traces of a running process. The tool collects <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
 
 For installation instructions, see [`dotnet-trace`](/dotnet/core/diagnostics/dotnet-trace).
 
-Use the `dotnet trace` tooling to collect a trace from an app:
+Use the `dotnet-trace` tooling to collect a trace from an app:
 
 1. Run the app with the `dotnet run` command.
 1. Determine the process identifier (PID) of the .NET Core app:
 
     ```dotnetcli
-    dotnet trace ps
+    dotnet-trace ps
     ```
 
    Find the PID for the process that has the same name as the app's assembly.
 
-1. Execute the `dotnet trace` command.
+1. Execute the `dotnet-trace` command.
 
    General command syntax:
 
    ```dotnetcli
-   dotnet trace collect -p {PID} 
+   dotnet-trace collect -p {PID} 
        --providers Microsoft-Extensions-Logging:{Keyword}:{Provider Level}
            :FilterSpecs=\"
                {Logger Category 1}:{Category Level 1};
@@ -520,7 +520,7 @@ Use the `dotnet trace` tooling to collect a trace from an app:
    When using a PowerShell command shell, enclose the `--providers` value in single quotes (`'`):
 
    ```dotnetcli
-   dotnet trace collect -p {PID} 
+   dotnet-trace collect -p {PID} 
        --providers 'Microsoft-Extensions-Logging:{Keyword}:{Provider Level}
            :FilterSpecs=\"
                {Logger Category 1}:{Category Level 1};
@@ -587,7 +587,7 @@ Use the `dotnet trace` tooling to collect a trace from an app:
    Consider the following command:
 
    ```dotnetcli
-   dotnet trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:5
+   dotnet-trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:5
    ```
 
    The preceding command:
@@ -599,7 +599,7 @@ Use the `dotnet trace` tooling to collect a trace from an app:
    Consider the following command:
 
    ```dotnetcli
-   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:5\"
+   dotnet-trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:5\"
    ```
 
    The preceding command:
@@ -610,13 +610,13 @@ Use the `dotnet trace` tooling to collect a trace from an app:
    The following command captures debug messages because category level 1 specifies `Debug`.
 
    ```dotnetcli
-   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:1\"
+   dotnet-trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:1\"
    ```
 
    The following command captures debug messages because category specifies `Debug`.
 
    ```dotnetcli
-   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:Debug\"
+   dotnet-trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:Debug\"
    ```
 
    `FilterSpecs` entries for `{Logger Category}` and `{Category Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with the `;` semicolon character.
@@ -624,7 +624,7 @@ Use the `dotnet trace` tooling to collect a trace from an app:
    Example using a Windows command shell:
 
    ```dotnetcli
-   dotnet trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
+   dotnet-trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
    ```
 
    The preceding command activates:
@@ -632,9 +632,9 @@ Use the `dotnet trace` tooling to collect a trace from an app:
    * The Event Source logger to produce formatted strings (`4`) for errors (`2`).
    * `Microsoft.AspNetCore.Hosting` logging at the `Informational` logging level (`4`).
 
-1. Stop the dotnet trace tooling by pressing the Enter key or <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+1. Stop the `dotnet-trace` tooling by pressing the Enter key or <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
-   The trace is saved with the name `trace.nettrace` in the folder where the `dotnet trace` command is executed.
+   The trace is saved with the name `trace.nettrace` in the folder where the `dotnet-trace` command is executed.
 
 1. Open the trace with [Perfview](#perfview). Open the `trace.nettrace` file and explore the trace events.
 
