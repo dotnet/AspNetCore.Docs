@@ -97,7 +97,7 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
         string toEmail)
     {
         var api = new MandrillApi(apiKey);
-        var mandrillMessage = new MandrillMessage("luke@guardrex.com", toEmail, 
+        var mandrillMessage = new MandrillMessage("sarah@contoso.com", toEmail, 
             subject, message);
         await api.Messages.SendAsync(mandrillMessage);
 
