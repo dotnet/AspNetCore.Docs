@@ -181,6 +181,8 @@ a, .btn-link {
     }
 ```
 
+Inside the `wwwroot/css` folder, create a `bootstrap` folder. Inside the `bootstrap` folder, place a copy of `bootstrap.min.css`. You can obtain the latest version of `bootstrap.min.css` from the [Bootstrap website](https://getbootstrap.com/). Follow navigation bar links to **Docs** > **Download**. A direct link can't be provided here because all of the content at the site is versioned in the URL.
+
 Add the following `Counter` component to the root of the project, which is the default `Counter` component found in Blazor project templates.
 
 `Counter.razor`:
