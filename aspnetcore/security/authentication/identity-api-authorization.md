@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 12/15/2023
+ms.date: 03/08/2024
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -23,7 +23,6 @@ The steps shown in this article add authentication and authorization to an ASP.N
 
 * Isn't already configured for authentication.
 * Targets `net8.0` or later.
-* Includes OpenAPI support.
 * Can be either minimal API or controller-based API.
 
 Some of the testing instructions in this article use the [Swagger UI](/aspnet/core/tutorials/web-api-help-pages-using-swagger) that's included with the project template. The Swagger UI isn't required to use Identity with a Web API backend.
@@ -48,13 +47,7 @@ Install these packages by using the [NuGet package manager in Visual Studio](/nu
 
 Add a class named `ApplicationDbContext` that inherits from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%601>:
 
-```csharp
-public class ApplicationDbContext : IdentityDbContext<IdentityUser>
-{
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
-        base(options) { }
-}
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\ApplicationDbContext.cs":::
 
 The code shown provides a special constructor that makes it possible to configure the database for different environments.
 
@@ -70,10 +63,7 @@ using Microsoft.EntityFrameworkCore;
 
 As noted earlier, the simplest way to get started is to use the in-memory database. With in-memory each run starts with a fresh database, and there's no need to use migrations. After the call to `WebApplication.CreateBuilder(args)`, add the following code to configure Identity to use an in-memory database:
 
-```csharp
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseInMemoryDatabase("AppDb"));
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetAppDbContext":::
 
 To save user data between sessions when testing or for production use, change the database later to SQLite or SQL Server.
     
@@ -81,18 +71,13 @@ To save user data between sessions when testing or for production use, change th
 
 After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorization%2A> to add services to the dependency injection (DI) container:
 
-```csharp
-builder.Services.AddAuthorization();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetAddAuthorization":::
 
 ## Activate Identity APIs
 
 After the call to `WebApplication.CreateBuilder(args)`, call <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityApiEndpoints%60%601(Microsoft.Extensions.DependencyInjection.IServiceCollection)> and <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores%60%601(Microsoft.AspNetCore.Identity.IdentityBuilder)>.
 
-```csharp
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetActivateAPIs":::
 
 By default, both cookies and proprietary tokens are activated. Cookies and tokens are issued at login if the `useCookies` query string parameter in the login endpoint is `true`.
 
@@ -100,45 +85,23 @@ By default, both cookies and proprietary tokens are activated. Cookies and token
 
 After the call to `builder.Build()`, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%60%601(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)> to map the Identity endpoints:
 
-```csharp
-app.MapIdentityApi<IdentityUser>();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetMapEndpoints":::
 
 ## Secure selected endpoints
 
 To secure an endpoint, use the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method on the `Map{Method}` call that defines the route. For example:
 
-```csharp
-app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        })
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi()
-.RequireAuthorization();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetRequireAuthorization" highlight="15":::
 
 The `RequireAuthorization` method can also be used to:
 
 * Secure Swagger UI endpoints, as shown in the following example:
     
-  ```csharp
-  app.MapSwagger().RequireAuthorization();
-  ```
-
+   :::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetSwaggerAuth":::
+ 
 * Secure with a specific claim or permission, as shown in the following example:
 
-```csharp
-RequiresAuthorization("Admin")
-```
+  :::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetRequireAdmin":::
 
 In a controller-based web API project, secure endpoints by applying the [[`Authorize`]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller or action.
 
@@ -233,9 +196,9 @@ Some web clients might not include cookies in the header by default:
 * The JavaScript `fetch` API doesn't include cookies by default. Enable them by setting `credentials` to the value `include` in the options.
 * An `HttpClient` running in a Blazor WebAssembly app needs the `HttpRequestMessage` to include credentials, like the following example:
 
-```csharp
-request.SetBrowserRequestCredential(BrowserRequestCredentials.Include);
-```
+  ```csharp
+  request.SetBrowserRequestCredential(BrowserRequestCredentials.Include);
+  ```
 
 ## Use token-based authentication
 
@@ -249,20 +212,7 @@ To use token-based authentication, set the `useCookies` query string parameter t
 
 To provide a way for the user to log out, define a `/logout` endpoint like the following example:
 
-```csharp
-app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
-    [FromBody]object empty) =>
-{
-    if (empty != null)
-    {
-        await signInManager.SignOutAsync();
-        return Results.Ok();
-    }
-    return Results.Unauthorized();
-})
-.WithOpenApi()
-.RequireAuthorization();
-```
+:::code language="csharp" source="~\security\authentication\identity-api-authorization\8samples\APIforSPA\Program.cs" id="snippetLogout":::
 
 Provide an empty JSON object (`{}`) in the request body when calling this endpoint. The following code is an example of a call to the logout endpoint:
 
@@ -278,16 +228,16 @@ public signOut() {
 
 The call to `MapIdentityApi<TUser>` adds the following endpoints to the app:
 
-* [Use the `POST /register`](#use-the-post-register-endpoint)
-* [Use the `POST /login`](#use-the-post-login-endpoint)
-* [Use the `POST /refresh`](#use-the-post-refresh-endpoint)
-* [Use the `GET /confirmEmail`](#use-the-get-confirmemail-endpoint)
-* [Use the `POST /resendConfirmationEmail`](#use-the-post-resendconfirmationemail-endpoint)
-* [Use the `POST /forgotPassword`](#use-the-post-forgotpassword-endpoint)
-* [Use the `POST /reset Password`](#use-the-post-resetpassword-endpoint)
-* [Use the `POST /manage/2fa`](#use-the-post-manage2fa-endpoint)
-* [Use the `GET /manage/info`](#use-the-get-manageinfo-endpoint)
-* [Use the `POST /manage/info`](#use-the-post-manageinfo-endpoint)
+* [`POST /register`](#use-the-post-register-endpoint)
+* [`POST /login`](#use-the-post-login-endpoint)
+* [`POST /refresh`](#use-the-post-refresh-endpoint)
+* [`GET /confirmEmail`](#use-the-get-confirmemail-endpoint)
+* [`POST /resendConfirmationEmail`](#use-the-post-resendconfirmationemail-endpoint)
+* [`POST /forgotPassword`](#use-the-post-forgotpassword-endpoint)
+* [`POST /reset Password`](#use-the-post-resetpassword-endpoint)
+* [`POST /manage/2fa`](#use-the-post-manage2fa-endpoint)
+* [`GET /manage/info`](#use-the-get-manageinfo-endpoint)
+* [`POST /manage/info`](#use-the-post-manageinfo-endpoint)
 
 ## Use the `POST /register` endpoint
 
@@ -409,14 +359,7 @@ If the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> 
 
 To set up Identity for email confirmation, add code in `Program.cs` to set `RequireConfirmedEmail` to `true` and add a class that implements `IEmailSender` to the DI container. For example:
 
-```csharp
-builder.Services.Configure<IdentityOptions>(options =>
-{
-    options.SignIn.RequireConfirmedEmail = true;
-});
-
-builder.Services.AddTransient<IEmailSender, EmailSender>();
-```
+:::code language="csharp" source="~/security/authentication/identity-api-authorization/8samples/APIforSPA/Program.cs" id="snippetConfigureEmail":::
 
 In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
 
