@@ -1272,6 +1272,11 @@
             "source_path": "aspnetcore/blazor/security/server/threat-mitigation.md",
             "redirect_url": "/aspnet/core/blazor/security/server/interactive-server-side-rendering",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/security/server/blazor-web-app-with-oidc.md",
+            "redirect_url": "/aspnet/core/blazor/security/blazor-web-app-with-oidc",
+            "redirect_document_id": false
         }
     ]
 }

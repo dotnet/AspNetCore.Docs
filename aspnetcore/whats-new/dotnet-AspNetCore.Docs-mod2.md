@@ -16,11 +16,11 @@ Welcome to what's new in the ASP.NET Core docs for February 2024. This article l
 
 ### New articles
 
-- <xref:blazor/security/server/blazor-web-app-oidc>
+- <xref:blazor/security/blazor-web-app-oidc>
 
 ### Updated articles
 
-- <xref:blazor/security/server/blazor-web-app-oidc>
+- <xref:blazor/security/blazor-web-app-oidc>
   - Blazor troubleshooting guidance updates
   - Redirect to the home page
   - Blazor Web App with OIDC article

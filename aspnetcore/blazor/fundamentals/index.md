@@ -171,7 +171,7 @@ Samples apps in the repository:
 * Blazor WebAssembly
 * Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
 * Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
-* Blazor Web App with OIDC and Aspire (<xref:blazor/security/server/blazor-web-app-oidc>)
+* Blazor Web App with OIDC (<xref:blazor/security/blazor-web-app-oidc>)
 * Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
 * Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity>)
 
