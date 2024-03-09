@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/07/2024
-uid: blazor/security/server/blazor-web-app-oidc
+uid: blazor/security/blazor-web-app-oidc
 zone_pivot_groups: blazor-web-app-oidc-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)

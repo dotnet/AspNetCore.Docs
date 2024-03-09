@@ -196,7 +196,7 @@ Examples ([sample apps](#sample-apps)):
 
 * Movie list web API in the `BlazorWebAppCallWebApi` sample app.
 * Streaming rendering weather data web API in the `BlazorWebAppCallWebApi_Weather` sample app.
-* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see <xref:blazor/security/server/blazor-web-app-oidc>.
+* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see <xref:blazor/security/blazor-web-app-oidc>.
 
 ## Blazor Web App external web APIs
 
