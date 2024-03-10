@@ -211,7 +211,7 @@ Components support two-way data binding by defining a pair of parameters:
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Using an event callback parameter with `@bind:set` (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:set`.
+Using appropriate event callback parameter (such as `[Parameter] public EventCallback<string> ValueChanged { get; set; }`) with `@bind:set` is supported.
 
 Examples
 
