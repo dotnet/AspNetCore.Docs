@@ -211,8 +211,6 @@ Components support two-way data binding by defining a pair of parameters:
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Using appropriate event callback parameter (such as `[Parameter] public EventCallback<string> ValueChanged { get; set; }`) with `@bind:set` is supported.
-
 Examples
 
 `BindGetSet.razor`:
