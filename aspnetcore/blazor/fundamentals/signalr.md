@@ -685,6 +685,7 @@ public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
         CancellationToken cancellationToken)
     {
         currentCircuit = circuit;
+
         return base.OnCircuitOpenedAsync(circuit, cancellationToken);
     }
 
@@ -695,6 +696,7 @@ public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
         {
             timer.Stop();
             timer.Start();
+
             return next(context);
         };
     }
@@ -715,6 +717,7 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
     {
         services.Configure(configureOptions);
         services.AddIdleCircuitHandler();
+
         return services;
     }
 
@@ -722,6 +725,7 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddScoped<CircuitHandler, IdleCircuitHandler>();
+
         return services;
     }
 }
