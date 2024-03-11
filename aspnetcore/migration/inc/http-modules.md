@@ -20,7 +20,6 @@ In order to support modules, an instance of <xref:System.Web.HttpApplication> mu
 ```csharp
 using System.Web;
 using Microsoft.AspNetCore.OutputCaching;
-using ModulesLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
 
