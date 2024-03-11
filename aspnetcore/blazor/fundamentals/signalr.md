@@ -650,27 +650,43 @@ By default, components are prerendered on the server before the client connectio
 
 Monitor inbound circuit activity using the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.CreateInboundActivityHandler%2A> method on <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
 
-For example, you can use a circuit activity handler to detect if the client is idle:
+For example, you can use a circuit activity handler to detect if the client is idle and log its circuit ID (<xref:Microsoft.AspNetCore.Components.Server.Circuits.Circuit.Id?displayProperty=nameWithType>):
 
 ```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.Extensions.Options;
+using Timer = System.Timers.Timer;
+
 public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
 {
-    readonly Timer timer;
-    readonly ILogger logger;
+    private Circuit? currentCircuit;
+    private readonly ILogger logger;
+    private readonly Timer timer;
 
-    public IdleCircuitHandler(IOptions<IdleCircuitOptions> options, 
-        ILogger<IdleCircuitHandler> logger)
+    public IdleCircuitHandler(ILogger<IdleCircuitHandler> logger, 
+        IOptions<IdleCircuitOptions> options)
     {
-        timer = new Timer();
-        timer.Interval = options.Value.IdleTimeout.TotalMilliseconds;
-        timer.AutoReset = false;
+        timer = new Timer
+        {
+            Interval = options.Value.IdleTimeout.TotalMilliseconds,
+            AutoReset = false
+        };
+
         timer.Elapsed += CircuitIdle;
         this.logger = logger;
     }
 
     private void CircuitIdle(object? sender, System.Timers.ElapsedEventArgs e)
     {
-        logger.LogInformation("{Circuit} is idle", nameof(CircuitIdle));
+        logger.LogInformation("{CircuitId} is idle", currentCircuit?.Id);
+    }
+
+    public override Task OnCircuitOpenedAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        currentCircuit = circuit;
+
+        return Task.CompletedTask;
     }
 
     public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
@@ -680,14 +696,12 @@ public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
         {
             timer.Stop();
             timer.Start();
+
             return next(context);
         };
     }
 
-    public void Dispose()
-    {
-        timer.Dispose();
-    }
+    public void Dispose() => timer.Dispose();
 }
 
 public class IdleCircuitOptions
@@ -703,6 +717,7 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
     {
         services.Configure(configureOptions);
         services.AddIdleCircuitHandler();
+
         return services;
     }
 
@@ -710,9 +725,17 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddScoped<CircuitHandler, IdleCircuitHandler>();
+
         return services;
     }
 }
+```
+
+Register the service in the `Program` file. The following example configures the default idle timeout of five minutes to five seconds in order to test the preceding `IdleCircuitHandler` implementation:
+
+```csharp
+builder.Services.AddIdleCircuitHandler(options => 
+    options.IdleTimeout = TimeSpan.FromSeconds(5));
 ```
 
 Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information and examples, see:
