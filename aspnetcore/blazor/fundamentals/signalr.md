@@ -685,6 +685,8 @@ public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
         CancellationToken cancellationToken)
     {
         currentCircuit = circuit;
+
+        return Task.CompletedTask;
     }
 
     public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
