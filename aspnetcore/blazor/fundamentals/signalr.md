@@ -659,12 +659,12 @@ using Timer = System.Timers.Timer;
 
 public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
 {
-    private readonly Timer timer;
-    private readonly ILogger logger;
     private Circuit? currentCircuit;
+    private readonly ILogger logger;
+    private readonly Timer timer;
 
-    public IdleCircuitHandler(IOptions<IdleCircuitOptions> options, 
-        ILogger<IdleCircuitHandler> logger)
+    public IdleCircuitHandler(ILogger<IdleCircuitHandler> logger, 
+        IOptions<IdleCircuitOptions> options)
     {
         timer = new Timer
         {
