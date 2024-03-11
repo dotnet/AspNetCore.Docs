@@ -6,7 +6,7 @@ ms.author: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 3/11/2024
 ms.topic: article
-uid: migration/inc/http_modules
+uid: migration/inc/http-modules
 ---
 
 # ASP.NET to ASP.NET Core incremental IHttpModule migration
