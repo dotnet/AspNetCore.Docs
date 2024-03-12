@@ -1,6 +1,6 @@
 ### OIDC and OAuth Parameter Customization
 
-The OAuth and OIDC authentication handlers now have a new `AdditionalAuthorizationParameters` option to make it easy to customize authorization message parameters that are usually included as part of the redirect query string. Previously this would have required a custom `OnRedirectToIdentityProvider` callback or overridden `BuildChallengeUrl` method in a custom hander. For example:
+The OAuth and OIDC authentication handlers now have a new `AdditionalAuthorizationParameters` option to make it easy to customize authorization message parameters that are usually included as part of the redirect query string. In .NET 8 and earlier, this requires a custom <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationEvents.OnRedirectToIdentityProvider> callback or overridden <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthHandler%601.BuildChallengeUrl%2A> method in a custom handler. For example, the following code in .NET 8:
 
 ```csharp
 builder.Services.AddAuthentication().AddOpenIdConnect(options =>
@@ -14,7 +14,7 @@ builder.Services.AddAuthentication().AddOpenIdConnect(options =>
 });
 ```
 
-Now becomes:
+Can now be simplified to the following code in .NET 9:
 
 ```csharp
 builder.Services.AddAuthentication().AddOpenIdConnect(options =>
