@@ -21,12 +21,12 @@ This article explains how to configure server-side Blazor for additional securit
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Halter touched on this at ...
-     https://github.com/dotnet/aspnetcore/issues/52390#issuecomment-1856949854
-     Let's get a review of this section.
--->
+Updating this section for Blazor Web Apps is pending [Update section on passing tokens in Blazor Web Apps (`dotnet/AspNetCore.Docs` #31691)](https://github.com/dotnet/AspNetCore.Docs/issues/31691). For more information, see [Problem providing Access Token to HttpClient in Interactive Server mode (`dotnet/aspnetcore` #52390)](https://github.com/dotnet/aspnetcore/issues/52390).
 
-Tokens available outside of the Razor components in a server-side Blazor app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
+For Blazor Server, view the [7.0 version of this article section](xref:blazor/security/server/additional-scenarios?view=aspnetcore-7.0#pass-tokens-to-a-server-side-blazor-app).
+
+<!--
+Tokens available outside of the Razor components in a Blazor Web App can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens, but the approach is valid for other HTTP context state provided by <xref:Microsoft.AspNetCore.Http.HttpContext>.
 
 > [!NOTE]
 > Passing the [anti-request forgery (CSRF/XSRF) token](xref:security/anti-request-forgery) to Razor components is useful in scenarios where components POST to Identity or other endpoints that require validation. However, don't follow the guidance in this section for processing form POST requests or web API requests with XSRF support. The Blazor framework provides built-in antiforgery support for forms and calling web APIs. For more information, see the following resources:
@@ -50,15 +50,13 @@ builder.Services.Configure<OpenIdConnectOptions>(
 {
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
-
-    options.Scope.Add("offline_access");
+    options.Scope.Add(OpenIdConnectScope.OfflineAccess);
 });
 ```
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect?displayProperty=fullName> and <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect?displayProperty=fullName> API is provided by the [`Microsoft.AspNetCore.Authentication.OpenIdConnect`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) NuGet package.
->
-> [!INCLUDE[](~/includes/package-reference.md)]
+<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect?displayProperty=fullName> and <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect?displayProperty=fullName> API is provided by the [`Microsoft.AspNetCore.Authentication.OpenIdConnect`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Optionally, additional scopes are added with `options.Scope.Add("{SCOPE}");`, where the placeholder `{SCOPE}` is the additional scope to add.
 
@@ -141,6 +139,8 @@ public class WeatherForecastService
 }
 ```
 
+-->
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
@@ -169,8 +169,7 @@ builder.Services.Configure<OpenIdConnectOptions>(
 {
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
-
-    options.Scope.Add("offline_access");
+    options.Scope.Add(OpenIdConnectScope.OfflineAccess);
 });
 ```
 
@@ -191,8 +190,7 @@ services.Configure<OpenIdConnectOptions>(
 {
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
-
-    options.Scope.Add("offline_access");
+    options.Scope.Add(OpenIdConnectScope.OfflineAccess);
 });
 ```
 
@@ -212,8 +210,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 {
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
-
-    options.Scope.Add("offline_access");
+    options.Scope.Add(OpenIdConnectScope.OfflineAccess);
 });
 ```
 
