@@ -36,6 +36,10 @@ This section describes new features for minimal APIs.
 
 This section describes new features for authentication and authorization.
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/oidccustomparms.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/httpsysextendedauth.md)]
+
 ## Miscellaneous
 
 The following sections describe miscellaneous new features.
