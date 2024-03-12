@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to host and deploy Blazor WebAssembly using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, linux-related-content
 ms.date: 02/09/2024
 uid: blazor/host-and-deploy/webassembly
 ---

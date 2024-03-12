@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about the tools available to build Blazor apps on various platforms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, linux-related-content
 ms.date: 02/09/2024
 uid: blazor/tooling
 zone_pivot_groups: operating-systems

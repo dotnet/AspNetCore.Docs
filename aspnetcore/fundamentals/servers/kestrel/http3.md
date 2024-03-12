@@ -4,7 +4,7 @@ author: wtgodbe
 description: Learn about using HTTP/3 with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
-ms.custom: mvc
+ms.custom: mvc, linux-related-content
 ms.date: 08/24/2023
 uid: fundamentals/servers/kestrel/http3
 ---
