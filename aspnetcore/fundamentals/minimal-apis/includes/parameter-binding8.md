@@ -212,27 +212,6 @@ For more information, see [Form binding in minimal APIs](https://andrewlock.net/
 
 <a name="bindcc"></a>
 
-### Bind to collections and complex types from forms
-
-Binding is supported for:
-
-* Collections, for example [List](/dotnet/api/system.collections.generic.list-1) and [Dictionary](/dotnet/api/system.collections.generic.dictionary-2)
-* Complex types, for example, `Todo` or `Project`
-
-The following code shows:
-
-* A minimal endpoint that binds a multi-part form input to a complex object.
-* How to use the anti-forgery services to support the generation and validation of anti-forgery tokens.
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/ComplexBinding/Program.cs":::
-
-In the preceding code:
-
-* The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
-* Binding from complex or collection types is ***not*** supported for minimal APIs that are compiled with the Request Delegate Generator.
-
-<a name="bindar"></a>
-
 ### Bind arrays and string values from headers and query strings
 
 The following code demonstrates binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues):
