@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 02/15/2024
+ms.date: 03/13/2024
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: engagement-fy23
 ---
@@ -141,7 +141,7 @@ The following image shows the app:
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+* In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>^</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
   Visual Studio Code:
 
