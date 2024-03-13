@@ -259,7 +259,7 @@ Making a root component, such as the `App` component, interactive with the `@ren
 
 By default, components use static server-side rendering (static SSR). The component renders to the response stream and interactivity isn't enabled.
 
-In the following example, there's no designation for the component's render mode, so the component inherits its render mode from its parent. The parent is the `Routes` component, which doesn't set a render mode for this example, so static SSR is passed down from the root component, which is the `App` component. Therefore, the following component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
+In the following example, there's no designation for the component's render mode, so the component inherits its render mode from its parent. Since no ancestor component specifies a render mode, the following component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
 
 `RenderMode1.razor`:
 
@@ -286,7 +286,7 @@ During static SSR, Razor component page requests behave like Razor Pages and par
 
 * [Not found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects%2A)).
 
-If the app becomes interactive for either interactive SSR or CSR components after static SSR, the server-side ASP.NET Core request processing is no longer acting on requests, which means that the preceding Blazor features work as expected.
+If the app exhibits root-level interactivity, server-side ASP.NET Core request processing isn't involved after the initial static SSR, which means that the preceding Blazor features work as expected.
 
 [Enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
 
