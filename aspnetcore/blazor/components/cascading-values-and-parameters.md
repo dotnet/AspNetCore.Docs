@@ -250,7 +250,7 @@ Similar to a regular component parameter, components accepting a cascading param
     
     private void ChangeToDarkTheme()
     {
-        theme = new() { ButtonClass = "btn-darkmode-success" };
+        theme = new() { ButtonClass = "btn-secondary" };
     }
 }
 ```

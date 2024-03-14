@@ -1,3 +1,6 @@
+---
+ms.custom: linux-related-content
+---
 :::moniker range="= aspnetcore-7.0"
 
 ## ASP.NET Core Docker images

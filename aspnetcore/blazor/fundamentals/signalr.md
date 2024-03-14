@@ -183,30 +183,20 @@ Sticky sessions are enabled for the Azure SignalR Service by setting the service
 
 ## Server-side circuit handler options
 
-Configure the circuit with the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> shown in the following table.
+Configure the circuit with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>. View default values in the [reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/CircuitOptions.cs).
 
-| Option | Default | Description |
-| --- | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors> | `false` | Send detailed exception messages to JavaScript when an unhandled exception occurs on the circuit or when a .NET method invocation through JS interop results in an exception. |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | 100 | Maximum number of disconnected circuits that the server holds in memory at a time. |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | 3 minutes | Maximum amount of time a disconnected circuit is held in memory before being torn down. |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout> | 1 minute | Maximum amount of time the server waits before timing out an asynchronous JavaScript function invocation. |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches> | 10 | Maximum number of unacknowledged render batches the server keeps in memory per circuit at a given time to support robust reconnection. After reaching the limit, the server stops producing new render batches until one or more batches are acknowledged by the client. |
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>. The following example assigns the default option values shown in the preceding table.
+Read or set the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>. The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
 
 In the `Program` file:
 
 ```csharp
 builder.Services.AddRazorComponents().AddInteractiveServerComponents(options =>
 {
-    options.DetailedErrors = false;
-    options.DisconnectedCircuitMaxRetained = 100;
-    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(3);
-    options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(1);
-    options.MaxBufferedUnacknowledgedRenderBatches = 10;
+    options.{OPTION} = {VALUE};
 });
 ```
 
@@ -214,18 +204,14 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents(options =>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table.
+Read or set the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
 
 In the `Program` file:
 
 ```csharp
 builder.Services.AddServerSideBlazor(options =>
 {
-    options.DetailedErrors = false;
-    options.DisconnectedCircuitMaxRetained = 100;
-    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(3);
-    options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(1);
-    options.MaxBufferedUnacknowledgedRenderBatches = 10;
+    options.{OPTION} = {VALUE};
 });
 ```
 
@@ -233,24 +219,22 @@ builder.Services.AddServerSideBlazor(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-Configure the options in `Startup.ConfigureServices` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table.
+Read or set the options in `Startup.ConfigureServices` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
 
 In `Startup.ConfigureServices` of `Startup.cs`:
 
 ```csharp
 services.AddServerSideBlazor(options =>
 {
-    options.DetailedErrors = false;
-    options.DisconnectedCircuitMaxRetained = 100;
-    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(3);
-    options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(1);
-    options.MaxBufferedUnacknowledgedRenderBatches = 10;
+    options.{OPTION} = {VALUE};
 });
 ```
 
 :::moniker-end
 
-To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values.
+To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. View the defaults for the hub connection context options in [reference source](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/server/Core/src/HubConnectionContextOptions.cs). For option descriptions in the SignalR documentation, see <xref:signalr/configuration#configure-server-options>. The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -259,13 +243,7 @@ In the `Program` file:
 ```csharp
 builder.Services.AddRazorComponents().AddInteractiveServerComponents().AddHubOptions(options =>
 {
-    options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
-    options.EnableDetailedErrors = false;
-    options.HandshakeTimeout = TimeSpan.FromSeconds(15);
-    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
-    options.MaximumParallelInvocationsPerClient = 1;
-    options.MaximumReceiveMessageSize = 32 * 1024;
-    options.StreamBufferCapacity = 10;
+    options.{OPTION} = {VALUE};
 });
 ```
 
@@ -278,13 +256,7 @@ In the `Program` file:
 ```csharp
 builder.Services.AddServerSideBlazor().AddHubOptions(options =>
 {
-    options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
-    options.EnableDetailedErrors = false;
-    options.HandshakeTimeout = TimeSpan.FromSeconds(15);
-    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
-    options.MaximumParallelInvocationsPerClient = 1;
-    options.MaximumReceiveMessageSize = 32 * 1024;
-    options.StreamBufferCapacity = 10;
+    options.{OPTION} = {VALUE};
 });
 ```
 
@@ -297,13 +269,7 @@ In `Startup.ConfigureServices` of `Startup.cs`:
 ```csharp
 services.AddServerSideBlazor().AddHubOptions(options =>
 {
-    options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
-    options.EnableDetailedErrors = false;
-    options.HandshakeTimeout = TimeSpan.FromSeconds(15);
-    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
-    options.MaximumParallelInvocationsPerClient = 1;
-    options.MaximumReceiveMessageSize = 32 * 1024;
-    options.StreamBufferCapacity = 10;
+    options.{OPTION} = {VALUE};
 });
 ```
 
@@ -316,20 +282,11 @@ For information on memory management, see <xref:blazor/host-and-deploy/server#me
 
 ## Blazor hub options
 
-Configure <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> options to control <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions> of the Blazor hub:
+Configure <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> options to control <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions> of the Blazor hub. View the defaults for the hub connection dispatcher options in [reference source](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/common/Http.Connections/src/HttpConnectionDispatcherOptions.cs). The `{OPTION}` placeholder represents the option, and the `{VALUE}` placeholder is the value.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 :::moniker range=">= aspnetcore-8.0"
-
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AllowStatefulReconnects>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.MinimumProtocolVersion>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.Transports>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.WebSockets> (*Read only*)
 
 Place the call to `app.MapBlazorHub` after the call to `app.MapRazorComponents` in the app's `Program` file:
 
@@ -344,13 +301,6 @@ app.MapBlazorHub(options =>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.CloseOnAuthenticationExpiration>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportSendTimeout>
-
 Supply the options to `app.MapBlazorHub` in the app's `Program` file:
 
 ```csharp
@@ -363,11 +313,6 @@ app.MapBlazorHub(options =>
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
-
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.ApplicationMaxBufferSize>
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.AuthorizationData> (*Read only*)
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.LongPolling> (*Read only*)
-* <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions.TransportMaxBufferSize>
 
 Supply the options to `app.MapBlazorHub` in endpoint routing configuration:
 
@@ -382,8 +327,6 @@ app.UseEndpoints(endpoints =>
 });
 
 :::moniker-end
-
-In the preceding example, the `{OPTION}` placeholder is the option, and the `{VALUE}` placeholder is the value.
 
 ## Maximum receive message size
 
