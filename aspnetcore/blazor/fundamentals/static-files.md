@@ -18,7 +18,7 @@ This article describes Blazor app configuration for serving static files.
 
 ## Blazor framework static files
 
-In releases prior to .NET 8, Blazor framework static files, such as the styles bundle and the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
 
 ## Static Web Asset Project Mode
 
