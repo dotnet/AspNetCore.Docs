@@ -16,11 +16,17 @@ This article describes Blazor app configuration for serving static files.
 
 :::moniker range=">= aspnetcore-8.0"
 
+## Blazor framework static files
+
+In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+
 ## Static Web Asset Project Mode
 
 *This section applies to the `.Client` project of a Blazor Web App.*
 
 The required `<StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>` setting in the `.Client` project of a Blazor Web App reverts Blazor WebAssembly static asset behaviors back to the defaults, so that the project behaves as part of the hosted project. The Blazor WebAssembly SDK (`Microsoft.NET.Sdk.BlazorWebAssembly`) configures static web assets in a specific way to work in "standalone" mode with a server simply consuming the outputs from the library. This isn't appropriate for a Blazor Web App, where the WebAssembly portion of the app is a logical part of the host and must behave more like a library. For example, the project doesn't expose the styles bundle (for example, `BlazorSample.Client.styles.css`) and instead only provides the host with the project bundle, so that the host can include it in its own styles bundle.
+
+Changing the value (`Default`) of `<StaticWebAssetProjectMode>` or removing the property from the `.Client` project is ***not*** supported.
 
 :::moniker-end
 
@@ -152,6 +158,37 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 *This section applies to server-side static files.*
 
+:::moniker range=">= aspnetcore-8.0"
+
+To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type. The namespace for the following API is <xref:Microsoft.AspNetCore.StaticFiles>.
+
+* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in the `Program` file using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
+
+  ```csharp
+  var provider = new FileExtensionContentTypeProvider();
+  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
+
+  builder.Services.Configure<StaticFileOptions>(options =>
+  {
+      options.ContentTypeProvider = provider;
+  });
+
+  app.UseStaticFiles();
+  ```
+
+* Pass the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> directly to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the `Program` file:
+
+  ```csharp
+  var provider = new FileExtensionContentTypeProvider();
+  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
+
+  app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
+  ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
 
 * Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in the `Program` file using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
@@ -187,20 +224,6 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
   app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
   app.UseStaticFiles();
   ```
-
-:::moniker range=">= aspnetcore-8.0"
-
-* You can avoid interfering with serving `_framework/blazor.web.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:
-
-  ```csharp
-  app.MapWhen(ctx => !ctx.Request.Path
-      .StartsWithSegments("/_framework/blazor.web.js"),
-          subApp => subApp.UseStaticFiles(new StaticFileOptions() { ... }));
-  ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
 
 * You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:
 
