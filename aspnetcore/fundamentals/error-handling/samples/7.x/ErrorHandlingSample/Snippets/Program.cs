@@ -155,11 +155,11 @@ public static class Program
     public static void AddProblemDetails_Custom(WebApplicationBuilder builder)
     {
         // <snippet_CustomizeProblemDetails>
-        var app = builder.Build();        
-
         builder.Services.AddProblemDetails(options =>
             options.CustomizeProblemDetails = ctx =>
                     ctx.ProblemDetails.Extensions.Add("nodeId", Environment.MachineName));
+
+        var app = builder.Build();        
 
         if (!app.Environment.IsDevelopment())
         {
