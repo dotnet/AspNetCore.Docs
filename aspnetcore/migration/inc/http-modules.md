@@ -1,6 +1,6 @@
 ---
 title: Incremental migration of IHttpModules
-description: Describes how to use the System.Web adapters to incrementally migrate IHttpModules
+description: Describes how to use the System.Web adapters to incrementally migrate HTTP modules.
 author: twsouthwick
 ms.author: tasou
 monikerRange: '>= aspnetcore-6.0'
