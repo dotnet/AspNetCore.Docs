@@ -92,7 +92,7 @@ class MyModule : IHttpModule
 
 ## Global.asax migration
 
-This infrastructure can be used to migrate usage of `Global.asax` if needed. The source from `Global.asax` is a custom <xref:System.Web.HttpApplication> and the file can be included in you ASP.NET Core application. Since it is named `Global`, the following can be used to register it:
+This infrastructure can be used to migrate usage of `Global.asax` if needed. The source from `Global.asax` is a custom <xref:System.Web.HttpApplication> and the file can be included in an ASP.NET Core application. Since it is named `Global`, the following code can be used to register it:
 
 ```csharp
 builder.Services.AddSystemWebAdapters()
