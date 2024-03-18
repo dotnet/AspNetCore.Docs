@@ -99,7 +99,7 @@ builder.Services.AddSystemWebAdapters()
     .AddHttpApplication<Global>()
 ```
 
-As long as the logic within it is available in ASP.NET Core, this can be used to incremental migrate reliance on `Global.asax` to ASP.NET Core.
+As long as the logic within it is available in ASP.NET Core, this approach can be used to incrementally migrate reliance on `Global.asax` to ASP.NET Core.
 
 ## Authentication/Authorization events
 
