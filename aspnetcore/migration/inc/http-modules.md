@@ -11,7 +11,7 @@ uid: migration/inc/http-modules
 
 # ASP.NET to ASP.NET Core incremental IHttpModule migration
 
-Modules are types that implement <xref:System.Web.IHttpModule> and are used in ASP.NET Framework to hook into the request pipeline at various events. In an ASP.NET Core application, these should ideally be [migrated](../http-modules.md) to middleware. However, there are times when this cannot be done. In order to support migration scenarios in which modules are required and cannot be moved to middleware, System.Web adapters supports adding them to ASP.NET Core.
+[Modules](../http-modules.md) are types that implement <xref:System.Web.IHttpModule> and are used in ASP.NET Framework to hook into the request pipeline at various events. In an ASP.NET Core application, these should ideally be migrated to middleware. However, there are times when this cannot be done. In order to support migration scenarios in which modules are required and cannot be moved to middleware, System.Web adapters support adding them to ASP.NET Core.
 
 ## IHttpModule Example
 
