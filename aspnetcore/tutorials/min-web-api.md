@@ -145,8 +145,6 @@ Close the browser window.
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>control</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
-
 The default browser launches with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
 
 Close the browser window.
