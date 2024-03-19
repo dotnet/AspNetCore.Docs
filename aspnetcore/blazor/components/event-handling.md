@@ -635,7 +635,7 @@ Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%60
 Invoke an <xref:Microsoft.AspNetCore.Components.EventCallback> or <xref:Microsoft.AspNetCore.Components.EventCallback%601> with <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A> and await the <xref:System.Threading.Tasks.Task>:
 
 ```csharp
-await OnClickCallback.InvokeAsync();
+await OnClickCallback.InvokeAsync(arg);
 ```
 
 The following parent-child example demonstrates the technique.
