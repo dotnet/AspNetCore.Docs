@@ -645,7 +645,7 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 * The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling).
 * The destination URL is within the internal base URI space (the app's base path).
 
-If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigation initiated from an interactive runtime. In future releases, additional types of navigation, such as link clicks, may also invoke location changing handlers.
+If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigation initiated from an interactive runtime. In future releases, additional types of navigation, such as following a link, may also invoke location changing handlers.
 
 When an enhanced navigation occurs, [`LocationChanged` event handlers](#location-changes) registered with Interactive Server and WebAssembly runtimes are typically invoked. There are cases when location changing handlers might not intercept an enhanced navigation. For example, the user might switch to another page before an interactive runtime becomes available. Therefore, it's important that app logic not rely on invoking a location changing handler, as there's no guarantee of the handler executing.
 

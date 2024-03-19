@@ -35,7 +35,7 @@ The potential for overwriting parameter values extends into the child component'
 Consider the following `ShowMoreExpander` component that:
 
 * Renders the title.
-* Shows the child content when clicked.
+* Shows the child content when selected.
 * Allows you to set initial state with a component parameter (`InitiallyExpanded`).
 
 After the following `ShowMoreExpander` component demonstrates an overwritten parameter, a modified `ShowMoreExpander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.

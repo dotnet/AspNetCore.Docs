@@ -269,11 +269,11 @@ In the following example, there's no designation for the component's render mode
 <button @onclick="UpdateMessage">Click me</button> @message
 
 @code {
-    private string message = "Not clicked yet.";
+    private string message = "Not updated yet.";
 
     private void UpdateMessage()
     {
-        message = "Somebody clicked me!";
+        message = "Somebody updated me!";
     }
 }
 ```
@@ -305,11 +305,11 @@ In the following example, the render mode is set interactive SSR by adding `@ren
 <button @onclick="UpdateMessage">Click me</button> @message
 
 @code {
-    private string message = "Not clicked yet.";
+    private string message = "Not updated yet.";
 
     private void UpdateMessage()
     {
-        message = "Somebody clicked me!";
+        message = "Somebody updated me!";
     }
 }
 ```
@@ -331,11 +331,11 @@ In the following example, the render mode is set to CSR with `@rendermode Intera
 <button @onclick="UpdateMessage">Click me</button> @message
 
 @code {
-    private string message = "Not clicked yet.";
+    private string message = "Not updated yet.";
 
     private void UpdateMessage()
     {
-        message = "Somebody clicked me!";
+        message = "Somebody updated me!";
     }
 }
 ```
@@ -361,11 +361,11 @@ In the following example, the component is interactive throughout the process. T
 <button @onclick="UpdateMessage">Click me</button> @message
 
 @code {
-    private string message = "Not clicked yet.";
+    private string message = "Not updated yet.";
 
     private void UpdateMessage()
     {
-        message = "Somebody clicked me!";
+        message = "Somebody updated me!";
     }
 }
 ```
@@ -395,7 +395,7 @@ The following examples use a non-routable, non-page `SharedMessage` component. T
 <p>@ChildContent</p>
 
 @code {
-    private string message = "Not clicked yet.";
+    private string message = "Not updated yet.";
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
@@ -405,7 +405,7 @@ The following examples use a non-routable, non-page `SharedMessage` component. T
 
     private void UpdateMessage()
     {
-        message = "Somebody clicked me!";
+        message = "Somebody updated me!";
     }
 }
 ```
