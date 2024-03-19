@@ -210,15 +210,15 @@ The DI container provides access to the database context and other services.
 
 # [Visual Studio](#tab/visual-studio)
 
-## Create API testing UI with Swagger
-
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
+## Create API testing UI with Swagger
+
 To test the API, this tutorial utilizes the .NET package [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
 
-* Swashbuckle: A .NET library that inegrates Swagger directly into ASP.NET Core applications, providing middlewhare and configuration options.
+* Swashbuckle: A .NET library that inegrates Swagger directly into ASP.NET Core applications, providing middlewhare and configu
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specificaiton: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
