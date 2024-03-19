@@ -668,7 +668,7 @@ Create a file named `TodoItemDTO.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/TodoItemDTO.cs":::
 
-Update the code in `Program.cs` to use this DTO model:
+Replace the contents of the `Program.cs` file with the following code to use this DTO model:
 
 # [Visual Studio](#tab/visual-studio)
 
