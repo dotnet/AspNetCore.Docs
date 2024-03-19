@@ -254,7 +254,7 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 
 * Add the the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=9-14)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=9-13)]
 
 In the previous code:
 
