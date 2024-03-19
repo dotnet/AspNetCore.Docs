@@ -363,7 +363,11 @@ Swagger OpenAPI document generation occurs at runtime.
 
   ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
 
-Swagger provides a **Responses** pane below the **Execute** button. Note a few of the useful details:
+Swagger provides a **Responses** pane below the **Execute** button. 
+
+  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
+
+Note a few of the useful details:
 
 * cURL: Swagger provides an example cURL command in Unix/Linux syntax which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
 * Request URL: A simplified represenation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests may include details such as headers and query parameters and a request body.
@@ -540,11 +544,13 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 Use Swagger to send a PUT request:
 
 * Select **Put /todoitems/{id}** > **Try it out**.
+
+* Set the **id** field to `1`.
+
 * Set the request body to the following JSON:
 
   ```json
   {
-    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
@@ -580,10 +586,12 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
   
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Use Swagger to send a PUT request:
+Use Swagger to send a DELETE request:
 
 * Select **DELETE /todoitems/{id}** > **Try it out**.
 * Set the **ID** field to `1` and select **Execute**.
+
+  The DELETE request is sent to the app and the response is displayed in the **Responses** pane. The response body is empty, and the **Server response** status code is 204.
 
 ---
 
