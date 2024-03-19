@@ -237,11 +237,11 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 
 * In Program.cs add the following `using` statements at the top:
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todoSwaggerVersion/todoSwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
 
 * Add the the following before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todoSwaggerVersion/todoSwaggerVersion/Program.cs?name=snippet_swagger_add_service)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service)]
 
 In the previous code:
 
@@ -251,7 +251,7 @@ In the previous code:
 
 * Add the the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todoSwaggerVersion/todo/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-6)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-6)]
 
   The previous code enables the Swagger middleware for serving the generated JSON document and the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production enviroment could expose potentially sensitive details about the API's structure and implemenation.
 
@@ -586,7 +586,7 @@ Replace the contents of `Program.cs` with the following code:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroupSwaggerVersion/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup_SwaggerVersion/Program.cs" id="snippet_all":::
 
 ---
 
@@ -610,7 +610,7 @@ The `Map<HttpVerb>` methods can call route handler methods instead of using lamb
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResultsSwaggerVersion/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
 
 ---
 
@@ -675,7 +675,7 @@ Update the code in `Program.cs` to use this DTO model:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTOSwaggerVersion/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
 
 ---
 

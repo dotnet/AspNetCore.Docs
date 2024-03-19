@@ -1,4 +1,4 @@
-#define TYPEDR // MINIMAL FINAL TYPEDR
+#define FINAL // MINIMAL FINAL TYPEDR
 #if MINIMAL
 // <snippet_min>
 var builder = WebApplication.CreateBuilder(args);
