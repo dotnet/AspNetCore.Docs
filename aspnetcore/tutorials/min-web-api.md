@@ -135,19 +135,33 @@ Press Ctrl+F5 to run without the debugger.
 
 Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and opens a browser window.
 
+`Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
+
+Close the browser window.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. A browser window is opened.
+In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>control</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
+
+The default browser launches with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
+
+Close the browser window.
+
+In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
 
----
-
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
+
+Close the browser window.
+
+---
 
 ## Add NuGet packages
 
