@@ -258,9 +258,9 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 
 In the previous code:
 
-  * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about your HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddSwaggerGen(config => {...});`: Adds and configures the Swagger generator to your application services.
-  * `config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });`: Inside the `AddSwaggerGen method`, this line creates a new Swagger document and specifies the OpenAPI details for your API. The `new OpenApiInfo { Title = "TodoAPI", Version = "v1" }` argument provides more information about your API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-swashbuckle#api-info-and-description>
+  * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
+  * `builder.Services.AddSwaggerGen(config => {...});`: Adds and configures the Swagger generator to the application services.
+  * `config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });`: Inside the `AddSwaggerGen method`, this line creates a new Swagger document and specifies the OpenAPI details for the API. The `new OpenApiInfo { Title = "TodoAPI", Version = "v1" }` argument provides more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-swashbuckle#api-info-and-description>
 
 * Add the the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
@@ -363,9 +363,9 @@ Swagger OpenAPI document generation occurs at runtime.
 
   ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
 
-Swagger provides a **Responses** pane below the **Execute** button. Note a few of useful details:
+Swagger provides a **Responses** pane below the **Execute** button. Note a few of the useful details:
 
-* cURL: Swagger provides an example cURL command in Unix/Linux syntax which can be run at the command line which any bash shell that uses Unix/Linux syntax, including Git Bash from Git for Windows.
+* cURL: Swagger provides an example cURL command in Unix/Linux syntax which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
 * Request URL: A simplified represenation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests may include details such as headers and query parameters and a request body.
 * Server response: Includes the response body and headers. The response body shows the `id` was set to `1`.
 * Response Code: A 200 `HTTP` status code was returned indicating the request was successfully processed.
@@ -410,7 +410,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     {
       "id": 1,
       "name": "walk dog",
-      "isComplete": false
+      "isComplete": true
     }
   ]
   ```
@@ -436,7 +436,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   {
     "id": 1,
     "name": "walk dog",
-    "isComplete": false
+    "isComplete": true
   }
   ```
   
@@ -455,7 +455,7 @@ The call to `GET /todoitems` produces a response similar to the following:
   {
     "id": 1,
     "name": "walk dog",
-    "isComplete": false
+    "isComplete": true
   }
 ]
 ```
@@ -472,7 +472,7 @@ The call to `GET /todoitems` produces a response similar to the following:
   {
     "id": 1,
     "name": "walk dog",
-    "isComplete": false
+    "isComplete": true
   }
   ```
 
