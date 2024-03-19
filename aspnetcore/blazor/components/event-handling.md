@@ -663,7 +663,7 @@ The following parent-child example demonstrates the technique.
 ```razor
 @page "/parent-child-2"
 
-<Child2 OnClickCallback="@(async (value) => { await Task.Yield(); messageText = value; })" />
+<Child2 OnClickCallback="@((value) => { messageText = value; })" />
 
 <p>
     @messageText
