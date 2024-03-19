@@ -259,7 +259,7 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about your HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddSwaggerGen(config => {...});`: Adds and configures the Swagger generator to your application services. The Swagger generator uses the API Explorer to generate a Swagger document.
+  * `builder.Services.AddSwaggerGen(config => {...});`: Adds and configures the Swagger generator to your application services.
   * `config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });`: Inside the `AddSwaggerGen method`, this line creates a new Swagger document and specifies the OpenAPI details for your API. The `new OpenApiInfo { Title = "TodoAPI", Version = "v1" }` argument provides more information about your API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-swashbuckle#api-info-and-description>
 
 * Add the the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
