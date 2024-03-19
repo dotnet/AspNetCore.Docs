@@ -107,7 +107,7 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 ```
 
 > [!NOTE]
-> Body content for messages might require special encoding for the email service provider. If the link in the message body isn't clickable in the email message, consult the service provider's documentation. 
+> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed, consult the service provider's documentation. 
 
 ## Configure app to support email
 
