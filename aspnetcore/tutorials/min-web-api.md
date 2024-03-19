@@ -239,9 +239,9 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 
   [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
 
-* Add the the following before `app` is defined in line `var app = builder.Build();`
+* Add the the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=9-14)]
 
 In the previous code:
 
