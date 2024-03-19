@@ -196,7 +196,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 
 **Key**: `shutdownTimeoutSeconds`  
 **Type**: `int`  
-**Default**: 5 seconds  
+**Default**: 30 seconds  
 **Environment variable**: `{PREFIX_}SHUTDOWNTIMEOUTSECONDS`
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
