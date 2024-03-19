@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(config =>
 
 var app = builder.Build();
 
-pp.UseSwagger();
+app.UseSwagger();
 app.UseSwaggerUI(config =>
 {
     config.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAPI v1");
