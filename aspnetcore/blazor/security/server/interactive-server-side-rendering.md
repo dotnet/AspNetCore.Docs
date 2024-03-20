@@ -29,7 +29,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Interactive Server Components with WebSocket compression enabled
 
-Compression can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the attacker:
+[Compression](xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components) can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the attacker:
 
 * Force a browser to issue requests with a payload the attacker controls to a vulnerable site via cross-site form posting or by embedding the site inside an iframe of another site.
 * Observe the length of the compressed and encrypted response over the network.
@@ -52,7 +52,7 @@ Generally speaking, Blazor apps can enable compression over the WebSocket connec
 
   * Rendering PII information on to the page at the same time as data coming from another user via JS interop or a local singleton service on the server.
 
-In general, we recommend that you avoid rendering components that contain sensitive information alongside components that can render data from untrusted sources as part of the same render batch.
+In general, we recommend that you avoid rendering components that contain sensitive information alongside components that can render data from untrusted sources as part of the same render batch. Untrusted sources include route parameters, query strings, data from JS interop, and any other source of data that a third-party user can control (databases, external services).
 
 :::moniker-end
 
