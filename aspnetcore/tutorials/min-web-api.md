@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://gi
 
 :::moniker range=">= aspnetcore-8.0"
 
-Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
+Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
 This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
@@ -196,13 +196,13 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 ## The model and database context classes
 
-In the project folder, create a file named `Todo.cs` with the following code:
+* In the project folder, create a file named `Todo.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Todo.cs":::
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
-Create a file named `TodoDb.cs` with the following code:
+* Create a file named `TodoDb.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/TodoDb.cs":::
 
@@ -210,7 +210,7 @@ The preceding code defines the *database context*, which is the main class that 
 
 ## Add the API code
 
-Replace the contents of the `Program.cs` file with the following code:
+* Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_all)]
 
@@ -230,11 +230,11 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 To test the API, this tutorial utilizes the .NET package [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
 
-* Swashbuckle: A .NET library that inegrates Swagger directly into ASP.NET Core applications, providing middlewhare and configuration.
+* Swashbuckle: A .NET library that integrates Swagger directly into ASP.NET Core applications, providing middleware and configuration.
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
-* OpenAPI specificaiton: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
+* OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For additional information on OpenAPI and Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on OpenAPI and Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
 ### Install Swagger tooling
 
@@ -252,7 +252,7 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 
   [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
 
-* Add the the following highlighted code before `app` is defined in line `var app = builder.Build();`
+* Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
   [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=9-13)]
 
@@ -262,11 +262,11 @@ In the previous code:
   * `builder.Services.AddSwaggerGen(config => {...});`: Adds and configures the Swagger generator to the application services.
   * `config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });`: Inside the `AddSwaggerGen method`, this line creates a new Swagger document and specifies the OpenAPI details for the API. The `new OpenApiInfo { Title = "TodoAPI", Version = "v1" }` argument provides more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-swashbuckle#api-info-and-description>
 
-* Add the the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
+* Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
   [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-6)]
 
-  The previous code enables the Swagger middleware for serving the generated JSON document and the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production enviroment could expose potentially sensitive details about the API's structure and implemenation.
+  The previous code enables the Swagger middleware for serving the generated JSON document and the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production environment could expose potentially sensitive details about the API's structure and implementation.
 
 <a name="post"></a>
 
@@ -369,8 +369,8 @@ Swagger provides a **Responses** pane below the **Execute** button.
 
 Note a few of the useful details:
 
-* cURL: Swagger provides an example cURL command in Unix/Linux syntax which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
-* Request URL: A simplified represenation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests may include details such as headers and query parameters and a request body.
+* cURL: Swagger provides an example cURL command in Unix/Linux syntax, which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
+* Request URL: A simplified representation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests can include details such as headers and query parameters and a request body.
 * Server response: Includes the response body and headers. The response body shows the `id` was set to `1`.
 * Response Code: A 200 `HTTP` status code was returned indicating the request was successfully processed.
 ---
@@ -450,7 +450,7 @@ Test the app by calling the endpoints from a browser or Swagger.
 
 * In Swagger select **GET /todoitems** > **Try it out** > **Execute**.
 
-* Alternatively, call **GET /todoitems** from a browser by entering the URI `http://localhost:<port>/todoitems`. For example, For example, `http://localhost:5001/todoitems`
+* Alternatively, call **GET /todoitems** from a browser by entering the URI `http://localhost:<port>/todoitems`. For example, `http://localhost:5001/todoitems`
 
 The call to `GET /todoitems` produces a response similar to the following:
 
@@ -505,7 +505,7 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
+Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -673,7 +673,7 @@ A DTO can be used to:
 
 * Prevent over-posting.
 * Hide properties that clients aren't supposed to view.
-* Omit some properties in order to reduce payload size.
+* Omit some properties to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
@@ -715,7 +715,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 * For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
 * [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
-* [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
+* [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
 ### Learn more
 
