@@ -34,7 +34,7 @@ Further JS interop guidance is provided in the following articles:
 
 :::moniker-end
 
-[!INCLUDE[](~/includes/compression-with-untrusted-data.md)]
+[!INCLUDE[](~/blazor/includes/compression-with-untrusted-data.md)]
 
 ## JavaScript interop abstractions and features package
 

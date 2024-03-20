@@ -1112,7 +1112,7 @@ For more information, see the *Route parameters* section of <xref:blazor/fundame
 
 :::moniker-end
 
-[!INCLUDE[](~/includes/compression-with-untrusted-data.md)]
+[!INCLUDE[](~/blazor/includes/compression-with-untrusted-data.md)]
 
 ## Child content render fragments
 
