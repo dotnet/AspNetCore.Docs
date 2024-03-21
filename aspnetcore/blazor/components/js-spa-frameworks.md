@@ -14,6 +14,13 @@ uid: blazor/components/js-spa-frameworks
 
 This article covers how to render Razor components from JavaScript, use Blazor custom elements, and generate Angular and React components.
 
+## Angular sample apps
+
+<!-- UPDATE 9.0 Add migration instructions cross-link to .NET 9 -->
+
+* [CustomElementsBlazorSample (Blazor Server) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-server`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-server): Blazor Server is supported in .NET 8. To migrate this .NET 7 sample to .NET 8, see <xref:migration/70-to-80#update-a-blazor-server-app>.
+* [CustomElementsBlazorSample (Blazor WebAssembly) (`javiercn/CustomElementsBlazorSample`, branch: `blazor-wasm`)](https://github.com/javiercn/CustomElementsBlazorSample/tree/blazor-wasm): To migrate this .NET 7 sample to .NET 8, see <xref:migration/70-to-80#update-a-blazor-webassembly-app>.
+
 ## Render Razor components from JavaScript
 
 Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
