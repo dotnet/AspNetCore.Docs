@@ -252,7 +252,7 @@ The following specification is covered:
 
 ## Prerequisite
 
-Aspire requires Visual Studio version 17.10 or later.
+[.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
 
 ## Sample app
 
