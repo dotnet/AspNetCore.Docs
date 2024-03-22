@@ -13,7 +13,7 @@ zone_pivot_groups: blazor-graph-api
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to use [Microsoft Graph API](/graph/use-the-api) in Blazor WebAssembly apps, which is a RESTful web API that enables apps to access Microsoft Cloud service resources.
+This article explains how to use [Microsoft (MS) Graph API](/graph/use-the-api) in Blazor WebAssembly apps, which is a RESTful web API that enables apps to access Microsoft Cloud service resources.
 
 Two approaches are available for directly interacting with Microsoft Graph in Blazor apps:
 
@@ -42,13 +42,13 @@ The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .N
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app:
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution:
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.
 
 :::moniker-end
 
@@ -59,12 +59,32 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+In the Azure portal, grant delegated permissions (scopes) for whatever Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign-in to the app, allows the app to read the profile of signed-in users, and allows the app to read basic company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
+
+After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+  "Scopes": [
+    "user.read"
+  ]
+}
+```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`).
+
+The following is an example of a complete `wwwroot/appsettings.json` configuration file for an app that uses ME-ID as its identity provider, where reading user data (`user.read` scope) is specified for Microsoft Graph:
 
 ```json
 {
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/{TENANT ID}",
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
+  },
   "MicrosoftGraph": {
-    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    "BaseUrl": "https://graph.microsoft.com/v1.0",
     "Scopes": [
       "user.read"
     ]
@@ -72,7 +92,7 @@ After adding the Microsoft Graph API scopes in the ME-ID area of the Azure porta
 }
 ```
 
-In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
+In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -161,6 +181,9 @@ internal static class GraphClientExtensions
 }
 ```
 
+> [!IMPORTANT]
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code example uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>.
+
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
 ```csharp
@@ -173,18 +196,18 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Call Graph API from a component using the Graph SDK
 
-The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's ME-ID profile data and display their mobile phone number. For any test user that you create in ME-ID, make sure that you give the user's ME-ID profile a mobile phone number in the Azure portal.
+The following `GraphUserData` component uses an injected `GraphServiceClient` to obtain the user's ME-ID profile data and display their mobile phone number. For any test user that you create in ME-ID, make sure that you give the user's ME-ID profile a mobile phone number in the Azure portal.
 
-`GraphExample.razor`:
+`GraphUserData.razor`:
 
 ```razor
-@page "/graph-example"
+@page "/graph-user-data"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.Graph
 @attribute [Authorize]
 @inject GraphServiceClient Client
 
-<h1>Microsoft Graph Component Example</h1>
+<h1>Microsoft Graph User Data</h1>
 
 @if (!string.IsNullOrEmpty(user?.MobilePhone))
 {
@@ -201,7 +224,35 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+Add a link to the component's page in the `NavMenu` component (`Layout/NavMenu.razor`):
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="graph-user-data">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> User Data
+    </NavLink>
+</div>
+```
+
+> [!TIP]
+> To add roles to an app registration in the Azure portal, see <xref:blazor/security/webassembly/meid-groups-roles#app-roles>.
+>
+> After roles are established, you can add users to an app registration with the following steps:
+>
+> 1. To add a user, select **Users** from the ME-ID area of the Azure portal.
+>    1. Select **New user** > **Create new user**.
+>    1. Use the **Create user** template.
+>    1. Supply the user's Identity information in the **Identity** area.
+>    1. You can auto-generate an initial password or assign an initial password that the user changes when they sign-in for the first time.
+>    1. Select **Create** to create the user. When the users list reloads, select **Refresh** to update the list and show the new user.
+>    1. For the examples in this article, assign a mobile phone number to the new user by selecting their name from the users list, selecting **Properties**, and editing the contact information to provide a mobile phone number.
+> 1. In the ME-ID area of the Azure portal, open **Enterprise applications**.
+> 1. Select the app from the list.
+> 1. Select **Users and groups**.
+> 1. Select **Add user/group**.
+> 1. Select a user and select their role for accessing the app. Multiple roles are assigned by repeating the process of adding the user to the app, and users with multiple roles are listed once for each assigned role in the **Users and groups** list of users for the app.
+
+When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
 ## Customize user claims using the Graph SDK
 
@@ -353,6 +404,14 @@ else
 
 When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
+## `DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`
+
+The examples in this article that add scopes to the app for Microsoft Graph permissions use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A>, not <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>. 
+
+<xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> isn't used because it's unable to spawn the ME-ID consent UI when a user first attempts to sign-in to the app in such a way that Graph API permission is granted to the user. A new user can sign-in to the app, but accessing Graph API after sign-in results in an exception stating that an access token for Graph API isn't present.
+
+After a user consents with Graph scopes provided via <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A>, then the app could use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> for subsequent user sign-ins. However, changing app code makes no sense for a production app that requires the periodic addition of new users with delegated Graph permissions.
+
 :::zone-end
 
 :::zone pivot="graph-sdk-4"
@@ -363,13 +422,13 @@ The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .N
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app:
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution:
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.
 
 :::moniker-end
 
@@ -380,12 +439,32 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+In the Azure portal, grant delegated permissions (scopes) for whatever Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign-in to the app, allows the app to read the profile of signed-in users, and allows the app to read basic company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
+
+After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+  "Scopes": [
+    "user.read"
+  ]
+}
+```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`).
+
+The following is an example of a complete `wwwroot/appsettings.json` configuration file for an app that uses ME-ID as its identity provider, where reading user data (`user.read` scope) is specified for Microsoft Graph:
 
 ```json
 {
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/{TENANT ID}",
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
+  },
   "MicrosoftGraph": {
-    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    "BaseUrl": "https://graph.microsoft.com/v1.0",
     "Scopes": [
       "user.read"
     ]
@@ -393,7 +472,7 @@ After adding the Microsoft Graph API scopes in the ME-ID area of the Azure porta
 }
 ```
 
-In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
+In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -503,6 +582,9 @@ internal static class GraphClientExtensions
     }
 }
 ```
+
+> [!IMPORTANT]
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code example uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>.
 
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
@@ -692,6 +774,14 @@ else
 
 When testing with the Graph SDK locally, we recommend using a new InPrivate/Incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
 
+## `DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`
+
+The examples in this article that add scopes to the app for Microsoft Graph permissions use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A>, not <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>. 
+
+<xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> isn't used because it's unable to spawn the ME-ID consent UI when a user first attempts to sign-in to the app in such a way that Graph API permission is granted to the user. A new user can sign-in to the app, but accessing Graph API after sign-in results in an exception stating that an access token for Graph API isn't present.
+
+After a user consents with Graph scopes provided via <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A>, then the app could use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> for subsequent user sign-ins. However, changing app code makes no sense for a production app that requires the periodic addition of new users with delegated Graph permissions.
+
 :::zone-end
 
 :::zone pivot="named-client-graph-api"
@@ -712,12 +802,32 @@ The examples require a package reference for [`Microsoft.Extensions.Http`](https
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the ME-ID area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
+In the Azure portal, grant delegated permissions (scopes) for whatever Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign-in to the app, allows the app to read the profile of signed-in users, and allows the app to read basic company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
+
+After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+  "Scopes": [
+    "user.read"
+  ]
+}
+```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`).
+
+The following is an example of a complete `wwwroot/appsettings.json` configuration file for an app that uses ME-ID as its identity provider, where reading user data (`user.read` scope) is specified for Microsoft Graph:
 
 ```json
 {
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/{TENANT ID}",
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
+  },
   "MicrosoftGraph": {
-    "BaseUrl": "https://graph.microsoft.com/{VERSION}",
+    "BaseUrl": "https://graph.microsoft.com/v1.0",
     "Scopes": [
       "user.read"
     ]
@@ -725,7 +835,7 @@ After adding the Microsoft Graph API scopes in the ME-ID area of the Azure porta
 }
 ```
 
-In the preceding example, the `{VERSION}` placeholder is the version of the MS Graph API (for example: `v1.0`).
+In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
 
 Create the following `GraphAuthorizationMessageHandler` class and project configuration in the `Program` file for working with Graph API. The base URL and scopes are provided to the handler from configuration.
 
@@ -1020,11 +1130,13 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
                 system says it's broken. It isn't. Reported to docs
                 team members for possible SiteHelp issue.
                 
-    * [Microsoft Security Best Practices: Securing privileged access](/security/privileged-access-workstations/overview)
+    Trying to add the link back to the list now.
 -->
 
 * [Microsoft Graph auth overview](/graph/auth/)
 * [Overview of Microsoft Graph permissions](/graph/permissions-overview)
 * [Microsoft Graph permissions reference](/graph/permissions-reference)
+* [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview)
 * [Enhance security with the principle of least privilege](/entra/identity-platform/secure-least-privileged-access)
 * [Azure privilege escalation articles on the Internet (Google search result)](https://www.google.com/search?q=%22Azure+Privilege+Escalation%22)
+* [Microsoft Security Best Practices: Securing privileged access](/security/privileged-access-workstations/overview)
