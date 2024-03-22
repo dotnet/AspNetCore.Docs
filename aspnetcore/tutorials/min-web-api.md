@@ -228,7 +228,9 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 ## Create API testing UI with Swagger
 
-To test the API, this tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
+There are many available web API testing tools to choose from, and you can follow this tutorial's introdctory API test steps with your own preffered tool.
+
+This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
 
 * NSwag: A .NET library that integrates Swagger directly into ASP.NET Core applications, providing middleware and configuration.
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
