@@ -12,8 +12,7 @@ app.Run();
 // <snippet_all>
 // <snippet_swagger_add_service>
 // <snippet_swagger_using_statements>
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
+using NSwag.AspNetCore;
 // </snippet_swagger_using_statements>
 using Microsoft.EntityFrameworkCore;
 
@@ -22,18 +21,26 @@ builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList")
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(config =>
+builder.Services.AddOpenApiDocument(config =>
 {
-    config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });
+    config.DocumentName = "TodoAPI";
+    config.Title = "TodoAPI v1";
+    config.Version = "v1";
 });
 // <snippet_swagger_enable_middleware>
 var app = builder.Build();
 // </snippet_swagger_add_service>
-app.UseSwagger();
-app.UseSwaggerUI(config =>
+if (app.Environment.IsDevelopment())
 {
-    config.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAPI v1");
-});
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.DocumentTitle = "TodoAPI";
+        config.Path = "/swagger";
+        config.DocumentPath = "/swagger/{documentName}/swagger.json";
+        config.DocExpansion = "list";
+    });
+}
 // </snippet_swagger_enable_middleware>
 // <snippet_get>
 app.MapGet("/todoitems", async (TodoDb db) =>

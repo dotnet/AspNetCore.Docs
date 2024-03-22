@@ -228,23 +228,23 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 ## Create API testing UI with Swagger
 
-To test the API, this tutorial utilizes the .NET package [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
+To test the API, this tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
 
-* Swashbuckle: A .NET library that integrates Swagger directly into ASP.NET Core applications, providing middleware and configuration.
+* NSwag: A .NET library that integrates Swagger directly into ASP.NET Core applications, providing middleware and configuration.
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on OpenAPI and Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on OpenAPI and NSwag, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
 ### Install Swagger tooling
 
 * Run the following command:
 
   ```dotnetcli
-  dotnet add package Swashbuckle.AspNetCore
+  dotnet add package NSwag.AspNetCore
   ```
 
-The previous command adds the Swashbuckle.AspNetCore package, which contains tools to generate Swagger documents and UI.
+The previous command adds the NSwag.AspNetCore package, which contains tools to generate Swagger documents and UI.
 
 ### Configure Swagger middleware
 
@@ -259,8 +259,7 @@ The previous command adds the Swashbuckle.AspNetCore package, which contains too
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddSwaggerGen(config => {...});`: Adds and configures the Swagger generator to the application services.
-  * `config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });`: Inside the `AddSwaggerGen method`, this line creates a new Swagger document and specifies the OpenAPI details for the API. The `new OpenApiInfo { Title = "TodoAPI", Version = "v1" }` argument provides more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-swashbuckle#api-info-and-description>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provides more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
