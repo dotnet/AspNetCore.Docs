@@ -1767,4 +1767,5 @@ The preceding example sets redirect URIs with regular string literals. The follo
 ## Additional resources
 
 * <xref:blazor/security/webassembly/graph-api>
-* [`HttpClient` and `HttpRequestMessage` with Fetch API request options](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
+* [Cookie-based request credentials (*Call web API* article)](xref:blazor/call-web-api#cookie-based-request-credentials)
+* [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
