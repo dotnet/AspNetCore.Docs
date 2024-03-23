@@ -655,6 +655,56 @@ The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a w
 
 :::moniker-end
 
+## Cookie-based request credentials
+
+*The guidance in this section applies to client-side scenarios that rely upon an authentication cookie.*
+
+For cookie-based authentication, which is considered more secure than bearer token authentication, cookie credentials can be sent with each web API request by calling <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> with a <xref:System.Net.Http.DelegatingHandler> on a preconfigured <xref:System.Net.Http.HttpClient>. The handler configures <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> with <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include?displayProperty=nameWithType>, which advises the browser to send credentials with each request, such as cookies or HTTP authentication headers, including for cross-origin requests.
+
+`CookieHandler.cs`:
+
+```csharp
+public class CookieHandler : DelegatingHandler
+{
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+        request.Headers.Add("X-Requested-With", ["XMLHttpRequest"]);
+
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+The `CookieHandler` is registered in the `Program` file:
+
+```csharp
+builder.Services.AddScoped<CookieHandler>();
+```
+
+The message handler is added to any preconfigured <xref:System.Net.Http.HttpClient> that requires cookie authentication:
+
+```csharp
+builder.Services.AddHttpClient(...)
+    .AddHttpMessageHandler<CookieHandler>();
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+For a demonstration, see <xref:blazor/security/webassembly/standalone-with-identity>.
+
+:::moniker-end
+
+When composing an <xref:System.Net.Http.HttpRequestMessage>, set the browser request credentials and header directly:
+
+```csharp
+var requestMessage = new HttpRequestMessage() { ... };
+
+requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+requestMessage.Headers.Add("X-Requested-With", ["XMLHttpRequest"]);
+```
+
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
 *The guidance in this section applies to client-side scenarios that rely upon bearer token authentication.*

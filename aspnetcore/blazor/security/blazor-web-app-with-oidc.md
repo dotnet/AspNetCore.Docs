@@ -250,6 +250,10 @@ The following specification is covered:
 > [!WARNING]
 > Technologies and packages used by the `BlazorWebAppOidcBff` sample app and described in this article are in ***preview*** release at this time. The article's content, the API, and the sample app aren't supported at this time and aren't currently recommended for production use. The sample app and guidance are subject to change without notice.
 
+## Prerequisite
+
+[.NET Aspire](/dotnet/aspire/get-started/aspire-overview) requires [Visual Studio](https://visualstudio.microsoft.com/) version 17.10 or later.
+
 ## Sample app
 
 The sample app consists of five projects:
