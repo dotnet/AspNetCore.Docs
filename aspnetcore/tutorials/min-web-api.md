@@ -228,7 +228,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 ## Create API testing UI with Swagger
 
-There are many available web API testing tools to choose from, and you can follow this tutorial's introdctory API test steps with your own preffered tool.
+There are many available web API testing tools to choose from, and you can follow this tutorial's introductory API test steps with your own preferred tool.
 
 This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
 
@@ -236,7 +236,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on OpenAPI and NSwag, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
 ### Install Swagger tooling
 
@@ -246,7 +246,7 @@ For more information on OpenAPI and NSwag, see <xref:tutorials/web-api-help-page
   dotnet add package NSwag.AspNetCore
   ```
 
-The previous command adds the NSwag.AspNetCore package, which contains tools to generate Swagger documents and UI.
+The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) package, which contains tools to generate Swagger documents and UI.
 
 ### Configure Swagger middleware
 
@@ -261,7 +261,7 @@ The previous command adds the NSwag.AspNetCore package, which contains tools to 
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provides more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
@@ -350,7 +350,7 @@ Swagger OpenAPI document generation occurs at runtime.
   ![Swagger generated API testing page](~/tutorials/min-web-api/_static/8.x/swagger.png)
 
 * On the Swagger API testing page, select **Post /todoitems** > **Try it out**.
-* Note that the Request body field contains a generated example format reflecting the parameters for the API.
+* Note that the **Request body** field contains a generated example format reflecting the parameters for the API.
 * In the request body enter JSON for a to-do item, without specifying the optional `id`:
 
   ```json
@@ -668,7 +668,7 @@ public async Task GetAllTodos_ReturnsOkOfTodosResult()
 
 ## Prevent over-posting
 
-Currently the sample app exposes the entire `Todo` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently the sample app exposes the entire `Todo` object. In production applications, a subset of the model is often used to restrict the data that can be input and returned. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
 
 A DTO can be used to:
 
