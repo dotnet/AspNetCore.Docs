@@ -6,7 +6,7 @@ class HttpModulePoolingSnippet
 {
     void Snippet(WebApplicationBuilder builder)
     {
-        #region snippet_ObjectPool
+// <snippet_ObjectPool>
         builder.Services.TryAddSingleton<ObjectPool<HttpApplication>>(sp =>
         {
             // Recommended to use the in-built policy as that will ensure everything is initialized correctly and is not intended to be replaced
@@ -18,6 +18,6 @@ class HttpModulePoolingSnippet
             // Use the provider to create a custom pool that will then be used for the application.
             return provider.Create(policy);
         });
-        #endregion
+// </snippet_ObjectPool>
     }
 }
