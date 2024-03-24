@@ -344,6 +344,11 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 
 :::moniker-end
 
+The `AfterRender.razor` sample produces following output to console when the page is loaded and the button is selected:
+> OnAfterRender: firstRender = True
+> HandleClick called
+> OnAfterRender: firstRender = False
+
 Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event:
 
 ```csharp
