@@ -1,6 +1,5 @@
 // <snippet_all>
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
+using NSwag.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,18 +7,26 @@ builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList")
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(config =>
+builder.Services.AddOpenApiDocument(config =>
 {
-    config.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAPI", Version = "v1" });
+    config.DocumentName = "TodoAPI";
+    config.Title = "TodoAPI v1";
+    config.Version = "v1";
 });
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI(config =>
+if (app.Environment.IsDevelopment())
 {
-    config.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAPI v1");
-});
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.DocumentTitle = "TodoAPI";
+        config.Path = "/swagger";
+        config.DocumentPath = "/swagger/{documentName}/swagger.json";
+        config.DocExpansion = "list";
+    });
+}
 
 // <snippet_group>
 var todoItems = app.MapGroup("/todoitems");
