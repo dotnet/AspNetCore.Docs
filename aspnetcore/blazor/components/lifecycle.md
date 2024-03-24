@@ -291,7 +291,7 @@ For an example of implementing `SetParametersAsync` manually to improve performa
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asychronous method.
 
-These methods aren't invoked during prerendering or rendering on the server because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
+These methods aren't invoked during prerendering or static server-side rendering (static SSR) on the server because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
 
 For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
 
