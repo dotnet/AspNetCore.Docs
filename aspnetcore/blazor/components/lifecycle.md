@@ -355,10 +355,7 @@ Asynchronous work immediately after rendering must occur during the <xref:Micros
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
 {
-    if (firstRender)
-    {
-        await ...
-    }
+    ...
 }
 ```
 
