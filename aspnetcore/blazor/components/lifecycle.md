@@ -28,7 +28,7 @@ Component lifecycle events:
 
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
-   * Perform property injection. Run [`SetParametersAsync`](#when-parameters-are-set-setparametersasync).
+   * Perform property injection.
    * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
@@ -50,9 +50,9 @@ DOM event processing:
 
 The `Render` lifecycle:
 
-1. Avoid further rendering operations on the component:
-   * After the first render.
-   * When [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) is `false`.
+1. Avoid further rendering operations on the component when both of the following conditions are met:
+   * It is not the first render.
+   * [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) returns `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
 1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync). The synchronous method is called prior to the asychronous method.
@@ -751,7 +751,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 ### `StateHasChanged`
 
 > [!NOTE]
-> Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
+> Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` and `DisposeAsync` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
 
 ### Event handlers
 

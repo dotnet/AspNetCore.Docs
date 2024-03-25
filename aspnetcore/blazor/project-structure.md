@@ -277,13 +277,13 @@ Additional files and folders may appear in an app produced from a Blazor Server 
 
 :::moniker-end
 
-## Blazor WebAssembly
-
 :::moniker range=">= aspnetcore-8.0"
 
-Blazor WebAssembly project templates: `blazorwasm`
+## Standalone Blazor WebAssembly
 
-The Blazor WebAssembly templates create the initial files and directory structure for a standalone Blazor WebAssembly app:
+Standalone Blazor WebAssembly project template: `blazorwasm`
+
+The Blazor WebAssembly template creates the initial files and directory structure for a standalone Blazor WebAssembly app:
 
 * If the `blazorwasm` template is used, the app is populated with the following:
   * Demonstration code for a `Weather` component that loads data from a static asset (`weather.json`) and user interaction with a `Counter` component.
@@ -326,6 +326,8 @@ Additional files and folders may appear in an app produced from a Blazor WebAsse
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+## Blazor WebAssembly
 
 Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
 
@@ -388,6 +390,8 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
+## Blazor WebAssembly
+
 Blazor WebAssembly project template: `blazorwasm`
 
 The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
@@ -438,6 +442,8 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
+## Blazor WebAssembly
+
 Blazor WebAssembly project template: `blazorwasm`
 
 The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
@@ -487,6 +493,8 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
+
+## Blazor WebAssembly
 
 Blazor WebAssembly project template: `blazorwasm`
 
