@@ -50,9 +50,9 @@ DOM event processing:
 
 The `Render` lifecycle:
 
-1. Avoid further rendering operations on the component:
-   * After the first render.
-   * When [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) is `false`.
+1. Avoid further rendering operations on the component when both of the following conditions are met:
+   * It is not the first render.
+   * [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) returns `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
 1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync). The synchronous method is called prior to the asychronous method.
