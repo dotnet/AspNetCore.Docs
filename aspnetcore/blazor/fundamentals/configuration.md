@@ -16,7 +16,7 @@ This article explains how to configure Blazor apps, including app settings, auth
 
 :::moniker range=">= aspnetcore-8.0"
 
-This guidance applies to Interactive WebAssembly rendering in a Blazor Web App or a standalone Blazor WebAssembly app.
+This guidance applies to client-side project configuration in a Blazor Web App or a standalone Blazor WebAssembly app.
 
 In Blazor Web Apps:
 
