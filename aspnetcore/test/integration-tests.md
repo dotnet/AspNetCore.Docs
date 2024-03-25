@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/29/2024
+ms.date: 2/29/2024
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -169,7 +169,7 @@ Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:M
 
 ## Inject mock services
 
-Services can be overridden in a test with a call to xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A on the host builder. To scope the overridden services to the test itself, the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> method is used to retrieve a host builder. This can be seen in the following tests:
+Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> on the host builder. To scope the overridden services to the test itself, the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.WithWebHostBuilder%2A> method is used to retrieve a host builder. This can be seen in the following tests:
 
 * [Get_QuoteService_ProvidesQuoteInPage](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs#L166-L173)
 * [Get_GithubProfilePageCanGetAGithubUser](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs#L35-L38)
