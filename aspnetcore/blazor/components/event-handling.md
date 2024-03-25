@@ -681,7 +681,8 @@ The following parent-child example demonstrates the technique.
 @code {
     private string message1 = string.Empty;
     private string message2 = string.Empty;
-}```
+}
+```
 
 The second occurrence of `Child2` component demonstrates an asynchronous callback and the new `message2` value will be assigned and rendered with a delay of two seconds.
 
