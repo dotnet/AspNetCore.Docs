@@ -663,16 +663,27 @@ The following parent-child example demonstrates the technique.
 ```razor
 @page "/parent-child-2"
 
-<Child2 OnClickCallback="@((value) => { messageText = value; })" />
+<PageTitle>Parent Child 2</PageTitle>
 
-<p>
-    @messageText
-</p>
+<h1>Parent Child 2 Example</h1>
+
+<div>
+    <Child2 OnClickCallback="(value) => { message1 = value; }" />
+    @message1
+</div>
+
+<div>
+    <Child2 OnClickCallback=
+        "async (value) => { await Task.Delay(2000); message2 = value; }" /> 
+    @message2
+</div>
 
 @code {
-    private string messageText = string.Empty;
-}
-```
+    private string message1 = string.Empty;
+    private string message2 = string.Empty;
+}```
+
+The second occurrence of `Child2` component demonstrates an asynchronous callback and the new `message2` value will be assigned and rendered with a delay of two seconds.
 
 ## Prevent default actions
 
