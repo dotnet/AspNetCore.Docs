@@ -684,7 +684,7 @@ The following parent-child example demonstrates the technique.
 }
 ```
 
-The second occurrence of `Child2` component demonstrates an asynchronous callback and the new `message2` value will be assigned and rendered with a delay of two seconds.
+The second occurrence of the `Child2` component demonstrates an asynchronous callback, and the new `message2` value is assigned and rendered with a delay of two seconds.
 
 ## Prevent default actions
 
