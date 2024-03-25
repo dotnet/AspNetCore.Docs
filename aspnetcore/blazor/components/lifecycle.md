@@ -28,7 +28,7 @@ Component lifecycle events:
 
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
-   * Perform property injection. Run [`SetParametersAsync`](#when-parameters-are-set-setparametersasync).
+   * Perform property injection.
    * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
