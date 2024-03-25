@@ -1010,6 +1010,8 @@ Supported types include:
 * Nullable variants of the preceding types.
 * Arrays of the preceding types, whether they're nullable or not nullable.
 
+[!INCLUDE[](~/blazor/includes/compression-with-untrusted-data.md)]
+
 ### Replace a query parameter value when the parameter exists
 
 ```csharp

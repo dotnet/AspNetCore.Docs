@@ -28,6 +28,14 @@ Further JS interop guidance is provided in the following articles:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-9.0"
+
+## Compression for interactive server components with untrusted data
+
+:::moniker-end
+
+[!INCLUDE[](~/blazor/includes/compression-with-untrusted-data.md)]
+
 ## JavaScript interop abstractions and features package
 
 The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) ([`Microsoft.JSInterop` NuGet package](https://www.nuget.org/packages/Microsoft.JSInterop)) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
