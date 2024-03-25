@@ -1112,6 +1112,8 @@ For more information, see the *Route parameters* section of <xref:blazor/fundame
 
 :::moniker-end
 
+[!INCLUDE[](~/blazor/includes/compression-with-untrusted-data.md)]
+
 ## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
