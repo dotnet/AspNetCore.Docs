@@ -506,9 +506,10 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
 
   Example:
 
-  * App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
-    * Directory Name (`{DIRECTORY NAME}`): `contoso`
-    * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`:
+  
+  * Directory Name (`{DIRECTORY NAME}`): `contoso`
+  * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
 
   ```csharp
   jwtOptions.Audience = "https://contoso.onmicrosoft.com/4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
