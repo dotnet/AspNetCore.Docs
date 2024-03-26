@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 02/22/2024
+ms.date: 03/11/2024
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://gi
 
 :::moniker range=">= aspnetcore-8.0"
 
-Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
+Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
 This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
@@ -55,7 +55,7 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 Preview and select **Create a new project**.
+* Start Visual Studio 2022 and select **Create a new project**.
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
@@ -135,19 +135,31 @@ Press Ctrl+F5 to run without the debugger.
 
 Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and opens a browser window.
 
+`Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
+
+Close the browser window.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. A browser window is opened.
+In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>control</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+The default browser launches with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
+
+Close the browser window.
+
+In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
 
----
-
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
+
+Close the browser window.
+
+---
 
 ## Add NuGet packages
 
@@ -184,13 +196,13 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 ## The model and database context classes
 
-In the project folder, create a file named `Todo.cs` with the following code:
+* In the project folder, create a file named `Todo.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Todo.cs":::
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
-Create a file named `TodoDb.cs` with the following code:
+* Create a file named `TodoDb.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/TodoDb.cs":::
 
@@ -198,7 +210,7 @@ The preceding code defines the *database context*, which is the main class that 
 
 ## Add the API code
 
-Replace the contents of the `Program.cs` file with the following code:
+* Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_all)]
 
@@ -214,18 +226,48 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-This tutorial uses Postman to test the API.
+## Create API testing UI with Swagger
 
-## Install Postman to test the app
+There are many available web API testing tools to choose from, and you can follow this tutorial's introductory API test steps with your own preferred tool.
 
-* Install [Postman](https://www.getpostman.com/downloads/)
-* Start the web app.
-* Start Postman.
-* Select **Workspaces** > **Create Workspace** and then select **Next**.
-* Name the workspace *TodoApi* and select **Create**.
-* Select the settings gear icon > **Settings** (**General** tab) and disable **SSL certificate verification**.
-    > [!WARNING]
-    > Re-enable SSL certificate verification after testing the sample app.
+This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/), which integrates Swagger tools for generating a testing UI adhering to the OpenAPI specification:
+
+* NSwag: A .NET library that integrates Swagger directly into ASP.NET Core applications, providing middleware and configuration.
+* Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
+* OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
+
+For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+
+### Install Swagger tooling
+
+* Run the following command:
+
+  ```dotnetcli
+  dotnet add package NSwag.AspNetCore
+  ```
+
+The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) package, which contains tools to generate Swagger documents and UI.
+
+### Configure Swagger middleware
+
+* In Program.cs add the following `using` statements at the top:
+
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
+
+* Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
+
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
+
+In the previous code:
+
+  * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+
+* Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
+
+  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-12)]
+
+  The previous code enables the Swagger middleware for serving the generated JSON document and the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production environment could expose potentially sensitive details about the API's structure and implementation.
 
 <a name="post"></a>
 
@@ -239,7 +281,7 @@ The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` th
 
 Run the app. The browser displays a 404 error because there's no longer a `/` endpoint.
 
-Use the POST endpoint to add data to the app.
+The POST endpoint will be used to add data to the app.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -301,13 +343,13 @@ Use the POST endpoint to add data to the app.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* In Postman, create a new HTTP request by selecting **New** > **HTTP**.
-* Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
-* Select the **Body** tab.
-* Select **raw**.
-* Set the type to **JSON**.
-* In the request body enter JSON for a to-do item:
+* With the app still running, in the browser, navigate to `https://localhost:<port>/swagger` to display the API testing page generated by Swagger.
+
+  ![Swagger generated API testing page](~/tutorials/min-web-api/_static/8.x/swagger.png)
+
+* On the Swagger API testing page, select **Post /todoitems** > **Try it out**.
+* Note that the **Request body** field contains a generated example format reflecting the parameters for the API.
+* In the request body enter JSON for a to-do item, without specifying the optional `id`:
 
   ```json
   {
@@ -316,10 +358,20 @@ Use the POST endpoint to add data to the app.
   }
   ```
 
-* Select **Send**.
+* Select **Execute**.
 
-  ![Postman with Post request details](~/tutorials/min-web-api/_static/post2.png)
+  ![Swagger with Post request](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
 
+Swagger provides a **Responses** pane below the **Execute** button. 
+
+  ![Swagger with Post resonse](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
+
+Note a few of the useful details:
+
+* cURL: Swagger provides an example cURL command in Unix/Linux syntax, which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
+* Request URL: A simplified representation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests can include details such as headers and query parameters and a request body.
+* Server response: Includes the response body and headers. The response body shows the `id` was set to `1`.
+* Response Code: A 200 `HTTP` status code was returned indicating the request was successfully processed.
 ---
 
 ## Examine the GET endpoints
@@ -361,12 +413,12 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     {
       "id": 1,
       "name": "walk dog",
-      "isComplete": false
+      "isComplete": true
     }
   ]
   ```
 
-* In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
+* In **Endpoints Explorer**, right-click the `/todoitems/{id}` **GET** endpoint and select **Generate request**.
   The following content is added to the `TodoApi.http` file:
 
   ```
@@ -387,18 +439,17 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   {
     "id": 1,
     "name": "walk dog",
-    "isComplete": false
+    "isComplete": true
   }
   ```
   
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
+Test the app by calling the endpoints from a browser or Swagger.
 
-* Create a new HTTP request.
-* Set the HTTP method to **GET**.
-* Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
-* Select **Send**.
+* In Swagger select **GET /todoitems** > **Try it out** > **Execute**.
+
+* Alternatively, call **GET /todoitems** from a browser by entering the URI `http://localhost:<port>/todoitems`. For example, `http://localhost:5001/todoitems`
 
 The call to `GET /todoitems` produces a response similar to the following:
 
@@ -407,20 +458,24 @@ The call to `GET /todoitems` produces a response similar to the following:
   {
     "id": 1,
     "name": "walk dog",
-    "isComplete": false
+    "isComplete": true
   }
 ]
 ```
 
-* Set the request URI to `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`.
-* Select **Send**.
+* Call **GET /todoitems/{id}** in Swagger to return data from a specific id:
+  * Select **GET /todoitems** > **Try it out**.
+  * Set the **id** field to `1` and select **Execute**.
+
+* Alternatively, call **GET /todoitems** from a browser by entering the URI `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`
+
 * The response is similar to the following:
 
   ```json
   {
     "id": 1,
     "name": "walk dog",
-    "isComplete": false
+    "isComplete": true
   }
   ```
 
@@ -449,7 +504,7 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
+Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -479,27 +534,28 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
   The preceding code adds a Content-Type header and a JSON request body.
 
-* Select the **Send request** link that is above the new GET request line.
+* Select the **Send request** link that is above the new PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Use Postman to send a PUT request:
+Use Swagger to send a PUT request:
 
-* Set the method to PUT.
-* Set the URI of the object to update (for example `https://localhost:5001/todoitems/1`).
-* Set the body to the following JSON:
+* Select **Put /todoitems/{id}** > **Try it out**.
+
+* Set the **id** field to `1`.
+
+* Set the request body to the following JSON:
 
   ```json
   {
-    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
   ```
 
-* Select **Send**.
+* Select **Execute**.
 
 ---
 
@@ -529,11 +585,12 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
   
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Use Postman to delete a to-do item:
+Use Swagger to send a DELETE request:
 
-* Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
-* Select **Send**.
+* Select **DELETE /todoitems/{id}** > **Try it out**.
+* Set the **ID** field to `1` and select **Execute**.
+
+  The DELETE request is sent to the app and the response is displayed in the **Responses** pane. The response body is empty, and the **Server response** status code is 204.
 
 ---
 
@@ -543,7 +600,15 @@ The sample app code repeats the `todoitems` URL prefix each time it sets up an e
 
 Replace the contents of `Program.cs` with the following code:
 
+# [Visual Studio](#tab/visual-studio)
+
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Program.cs" id="snippet_all":::
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup_SwaggerVersion/Program.cs" id="snippet_all":::
+
+---
 
 The preceding code has the following changes:
 
@@ -559,7 +624,15 @@ Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Micros
 
 The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
+# [Visual Studio](#tab/visual-studio)
+
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_all":::
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
+
+---
 
 The `Map<HttpVerb>` code now calls methods instead of lambdas:
 
@@ -593,13 +666,13 @@ public async Task GetAllTodos_ReturnsOkOfTodosResult()
 
 ## Prevent over-posting
 
-Currently the sample app exposes the entire `Todo` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently the sample app exposes the entire `Todo` object. Production apps In production applications, a subset of the model is often used to restrict the data that can be input and returned. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
 
 A DTO can be used to:
 
 * Prevent over-posting.
 * Hide properties that clients aren't supposed to view.
-* Omit some properties in order to reduce payload size.
+* Omit some properties to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
@@ -614,9 +687,17 @@ Create a file named `TodoItemDTO.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/TodoItemDTO.cs":::
 
-Update the code in `Program.cs` to use this DTO model:
+Replace the contents of the `Program.cs` file with the following code to use this DTO model:
+
+# [Visual Studio](#tab/visual-studio)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/Program.cs" id="snippet_all":::
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
+
+---
 
 Verify you can post and get all fields except the secret field.
 
@@ -633,7 +714,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 * For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
 * [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
-* [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
+* [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
 ### Learn more
 
