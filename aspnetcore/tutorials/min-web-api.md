@@ -55,7 +55,7 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 Preview and select **Create a new project**.
+* Start Visual Studio 2022 and select **Create a new project**.
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
