@@ -663,13 +663,13 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 In the project folder, create a file named `Todo.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo/Todo.cs":::
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages. 
 
 Create a file named `TodoDb.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/TodoDb.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo/TodoDb.cs":::
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
@@ -724,7 +724,7 @@ In the previous code:
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-12)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=4-14)]
 
   The previous code enables the Swagger middleware for serving the generated JSON document and the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production environment could expose potentially sensitive details about the API's structure and implementation.
 
