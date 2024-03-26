@@ -138,27 +138,28 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
-* Select the **Project** checkbox in the right pane and then select **Install**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+* Select the **Project** checkbox in the right pane.
+* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**. 
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-     ```
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 7.0.17
+   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 7.0.17
+   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
-* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
-* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
+* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**.
 * In the **Select Projects** window, select **Ok**.
-* In the **License Agreement** window, select **Agree**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+* Select the **Project** checkbox in the right pane.
+* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**.
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 ---
 
@@ -545,11 +546,9 @@ This tutorial creates the following API:
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 7.0**
+  * Select **.NET 6.0**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
-
-  ![Additional information](~/tutorials/min-web-api/_static/add-info7.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -579,12 +578,10 @@ This tutorial creates the following API:
   ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
 
 * Make the following selections:
-  * **Target framework:** .NET 7.0 (or later)
+  * **Target framework:** .NET 6.0
   * **Configure for HTTPS**: Check
   * **Do not use top-level statements**: Uncheck
   * Select **Continue**.
-
-  ![Additional information](~/tutorials/min-web-api/_static/add-info7-vsmac-2022.png)
 
 * Enter the following:
   * **Project name:** TodoApi
@@ -637,27 +634,28 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
-* Select the **Project** checkbox in the right pane and then select **Install**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+* Select the **Project** checkbox in the right pane.
+* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**. 
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-     ```
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0.28
+   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 6.0.28
+   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
-* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
-* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
+* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**.
 * In the **Select Projects** window, select **Ok**.
-* In the **License Agreement** window, select **Agree**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+* Select the **Project** checkbox in the right pane.
+* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**.
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 ---
 
