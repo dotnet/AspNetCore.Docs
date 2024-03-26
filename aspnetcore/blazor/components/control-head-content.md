@@ -66,6 +66,20 @@ In a **required**, shared `_Layout.cshtml` file of a prerendered hosted Blazor W
 
 :::moniker-end
 
+## Set a page title for components via a layout
+
+Set the page title in a [layout component](xref:blazor/components/layouts):
+
+```razor
+@inherits LayoutComponentBase
+
+<PageTitle>Page Title</PageTitle>
+
+<div class="page">
+    ...  
+</div>
+```
+
 ## `HeadOutlet` component
 
 The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component renders content provided by <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components.
@@ -117,11 +131,25 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing the content. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat the content in the app's Razor components.
 
-## Not found page title
-
 :::moniker range=">= aspnetcore-8.0"
 
-*This section only applies to Blazor WebAssembly apps.*
+## Set a default page title in a Blazor Web App
+
+Set the page title in the `App` component (`App.razor`):
+
+```razor
+<head>
+    ...
+    <HeadOutlet />
+    <PageTitle>Page Title</PageTitle>
+</head>
+```
+
+:::moniker-end
+
+## Not found page title in a Blazor WebAssembly app
+
+:::moniker range=">= aspnetcore-8.0"
 
 In Blazor apps created from the Blazor WebAssembly Standalone App project template, the `NotFound` component template in the `App` component (`App.razor`) sets the page title to `Not found`.
 
@@ -136,7 +164,10 @@ In Blazor apps created from a Blazor project template, the `NotFound` component 
 `App.razor`:
 
 ```razor
-<PageTitle>Not found</PageTitle>
+<NotFound>
+    <PageTitle>Not found</PageTitle>
+    ...
+</NotFound>
 ```
 
 ## Additional resources
