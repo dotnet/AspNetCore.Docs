@@ -1,3 +1,4 @@
+// <snippet_all>
 using NSwag.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -81,3 +82,4 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 });
 
 app.Run();
+// </snippet_all>

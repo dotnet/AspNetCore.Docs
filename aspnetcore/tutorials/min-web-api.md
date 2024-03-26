@@ -360,11 +360,11 @@ The POST endpoint will be used to add data to the app.
 
 * Select **Execute**.
 
-  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
+  ![Swagger with Post request](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
+  ![Swagger with Post resonse](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 

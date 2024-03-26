@@ -260,11 +260,11 @@ The POST endpoint will be used to add data to the app.
 
 * Select **Execute**.
 
-  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
+  ![Swagger with Post](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
+  ![Swagger with Post response](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
@@ -665,13 +665,13 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 In the project folder, create a file named `Todo.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoGroup/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/Todo.cs":::
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages. 
 
 Create a file named `TodoDb.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoGroup/TodoDb.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/TodoDb.cs":::
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
@@ -759,11 +759,11 @@ The POST endpoint will be used to add data to the app.
 
 * Select **Execute**.
 
-  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
+  ![Swagger with Post data](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post request details](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
+  ![Swagger with Post resonse pane](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
@@ -891,7 +891,7 @@ A DTO can be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO_SwaggerVersion/Todo.cs":::
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -899,7 +899,7 @@ Verify you can post and get the secret field.
 
 Create a file named `TodoItemDTO.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO/TodoItemDTO.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO_SwaggerVersion/TodoItemDTO.cs":::
 
 Replace the contents of the `Program.cs` file with the following code to use this DTO model:
 
