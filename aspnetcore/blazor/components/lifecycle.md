@@ -565,7 +565,7 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 ## Component disposal with `IDisposable` and `IAsyncDisposable`
 
-If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for unmanaged resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
+If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
 
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
@@ -596,7 +596,7 @@ For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayP
 The following component:
 
 * Implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
-* Disposes of `obj`, which is an unmanaged type that implements <xref:System.IDisposable>.
+* Disposes of `obj`, which is a type that implements <xref:System.IDisposable>.
 * A null check is performed because `obj` is created in a lifecycle method (not shown).
 
 ```razor
