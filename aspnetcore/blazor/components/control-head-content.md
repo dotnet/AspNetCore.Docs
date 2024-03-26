@@ -66,22 +66,6 @@ In a **required**, shared `_Layout.cshtml` file of a prerendered hosted Blazor W
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-## Set a default page title in a Blazor Web App
-
-Set the page title in the `App` component (`App.razor`):
-
-```razor
-<head>
-    ...
-    <HeadOutlet />
-    <PageTitle>Page Title</PageTitle>
-</head>
-```
-
-:::moniker-end
-
 ## Set a page title for components via a layout
 
 Set the page title in a [layout component](xref:blazor/components/layouts):
@@ -146,6 +130,22 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 ```
 
 When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing the content. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat the content in the app's Razor components.
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Set a default page title in a Blazor Web App
+
+Set the page title in the `App` component (`App.razor`):
+
+```razor
+<head>
+    ...
+    <HeadOutlet />
+    <PageTitle>Page Title</PageTitle>
+</head>
+```
+
+:::moniker-end
 
 ## Not found page title in a Blazor WebAssembly app
 
