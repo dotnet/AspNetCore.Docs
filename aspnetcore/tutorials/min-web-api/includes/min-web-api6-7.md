@@ -109,8 +109,6 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-<!-- replace all of this with an include -->
-
 Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS22.md)]
@@ -401,9 +399,15 @@ Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Micros
 
 The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
+# [Visual Studio](#tab/visual-studio)
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
+
+---
 
 The `Map<HttpVerb>` code now calls methods instead of lambdas:
 
