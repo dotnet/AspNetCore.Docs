@@ -317,20 +317,30 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 * Scopes for obtaining weather data from the web API (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope%2A>): The `Weather.Get` scope is configured in the Azure or Entra portal under **Expose an API**. This is necessary for backend web API project (`MinimalApiJwt`) to validate the access token with bearer JWT.
 
   ```csharp
-  oidcOptions.Scope.Add("{SCOPE}");
+  oidcOptions.Scope.Add("{APP ID URI}/{API NAME}");
   ```
 
-  Example (`{SCOPE}`):
+  Example:
+
+  * App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
+    * Directory Name (`{DIRECTORY NAME}`): `contoso`
+    * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
 
   ```csharp
   oidcOptions.Scope.Add("https://contoso.onmicrosoft.com/4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f/Weather.Get");
   ```
 
-  The preceding example uses:
+  The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the App ID URI is different, thus the scope is different.
 
-  * Directory name: `contoso`
-  * Client Id: `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
-  * Scope configured for weather data from `MinimalApiJwt`: `Weather.Get`
+  Example:
+
+  * App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
+
+  ```csharp
+  oidcOptions.Scope.Add("api://4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f/Weather.Get");
+  ```
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority%2A> and <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId%2A>: Sets the Authority and Client ID for OIDC calls.
 
@@ -491,15 +501,28 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   In the Azure or Entra portal: Match the value to just the path of the **Application ID URI** configured when adding the `Weather.Get` scope under **Expose an API**:
 
   ```csharp
-  jwtOptions.Audience = "{CLIENT ID}";
+  jwtOptions.Audience = "{APP ID URI}";
   ```
 
   Example:
 
-  Client Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`:
+  
+  * Directory Name (`{DIRECTORY NAME}`): `contoso`
+  * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
 
   ```csharp
-  jwtOptions.Audience = "4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  jwtOptions.Audience = "https://contoso.onmicrosoft.com/4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  ```
+
+  The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the App ID URI is different, thus the audience is different.
+
+  Example:
+
+  App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+
+  ```csharp
+  jwtOptions.Audience = "api://4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
   ```
 
 * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority%2A>: Sets the Authority for making OpenID Connect calls. Match the value to the Authority configured for the OIDC handler in `BlazorWebAppOidc/Program.cs`:
