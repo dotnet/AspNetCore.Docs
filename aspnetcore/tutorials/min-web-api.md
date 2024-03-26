@@ -418,7 +418,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   ]
   ```
 
-* In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
+* In **Endpoints Explorer**, right-click the `/todoitems/{id}` **GET** endpoint and select **Generate request**.
   The following content is added to the `TodoApi.http` file:
 
   ```
@@ -467,7 +467,7 @@ The call to `GET /todoitems` produces a response similar to the following:
   * Select **GET /todoitems** > **Try it out**.
   * Set the **id** field to `1` and select **Execute**.
 
-* Alternatively, call **GET /todoitems** from a browser by entering the URI `https://localhost:<port>/todoitems/1`. For example, For example, `https://localhost:5001/todoitems/1`
+* Alternatively, call **GET /todoitems** from a browser by entering the URI `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`
 
 * The response is similar to the following:
 
@@ -534,7 +534,7 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 
   The preceding code adds a Content-Type header and a JSON request body.
 
-* Select the **Send request** link that is above the new GET request line.
+* Select the **Send request** link that is above the new PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   

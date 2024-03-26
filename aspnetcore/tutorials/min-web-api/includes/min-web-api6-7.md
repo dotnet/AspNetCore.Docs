@@ -311,7 +311,7 @@ The call to `GET /todoitems` produces a response similar to the following:
   * Select **GET /todoitems** > **Try it out**.
   * Set the **id** field to `1` and select **Execute**.
 
-* Alternatively, call **GET /todoitems** from a browser by entering the URI `https://localhost:<port>/todoitems/1`. For example, For example, `https://localhost:5001/todoitems/1`
+* Alternatively, call **GET /todoitems** from a browser by entering the URI `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`
 
 * The response is similar to the following:
 
