@@ -21,7 +21,7 @@ Files can be downloaded from the app's own static assets or from any other locat
 * ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of server-side apps.
 * The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
 
-This article covers approaches for the following scenarios:
+This article covers approaches for the following scenarios, where a file shouldn't be opened by a browser but downloaded and saved on the client:
 
 * [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
 * [Download a file via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
