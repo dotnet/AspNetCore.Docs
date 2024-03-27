@@ -1,7 +1,7 @@
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> This isn't the latest version of this article. For the current release, see the [ASP.NET Core 8.0 version of this article](?view=aspnetcore-8.0&preserve-view=true).
+> This isn't the latest version of this article. For the current release, see the [.NET 8 version of this article](?view=aspnetcore-8.0&preserve-view=true).
 
 :::moniker-end
 
