@@ -539,6 +539,12 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   jwtOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
   ```
 
+  The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
+
+  ```csharp
+  jwtOptions.Authority = "https://sts.windows.net/a3942615-d115-4eb7-bc84-9974abcf5064/";
+  ```
+
 ### Minimal API for weather data
 
 Secure weather forecast data endpoint in the project's `Program` file:
