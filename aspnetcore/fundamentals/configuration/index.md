@@ -947,7 +947,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Configuration-binding source generator
 
-The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator) provides AOT and trim-friendly configuration. For more information, see [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator).
+The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8/runtime#configuration-binding-source-generator) provides AOT and trim-friendly configuration. For more information, see [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8/runtime#configuration-binding-source-generator).
 
 ## Additional resources
 
