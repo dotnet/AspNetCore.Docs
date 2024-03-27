@@ -10,15 +10,38 @@ app.Run();
 // </snippet_min>
 #elif FINAL
 // <snippet_all>
+// <snippet_swagger_add_service>
+// <snippet_swagger_using_statements>
+using NSwag.AspNetCore;
+// </snippet_swagger_using_statements>
 using Microsoft.EntityFrameworkCore;
 
-// <snippet_DI>
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-var app = builder.Build();
-// </snippet_DI>
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument(config =>
+{
+    config.DocumentName = "TodoAPI";
+    config.Title = "TodoAPI v1";
+    config.Version = "v1";
+});
+// <snippet_swagger_enable_middleware>
+var app = builder.Build();
+// </snippet_swagger_add_service>
+if (app.Environment.IsDevelopment())
+{
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.DocumentTitle = "TodoAPI";
+        config.Path = "/swagger";
+        config.DocumentPath = "/swagger/{documentName}/swagger.json";
+        config.DocExpansion = "list";
+    });
+}
+// </snippet_swagger_enable_middleware>
 // <snippet_get>
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.ToListAsync());
@@ -127,4 +150,3 @@ app.MapGet("/hello2", () => TypedResults.Ok(new Message() { Text = "Hello World!
 
 app.Run();
 #endif
-

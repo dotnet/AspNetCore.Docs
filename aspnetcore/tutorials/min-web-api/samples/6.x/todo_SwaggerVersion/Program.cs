@@ -1,91 +1,67 @@
-#define FINAL // DEFAULT MINIMAL FINAL
-#if DEFAULT
-#region snippet_default
-#region snippet_swagger
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-#endregion
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-       new WeatherForecast
-       (
-           DateTime.Now.AddDays(index),
-           Random.Shared.Next(-20, 55),
-           summaries[Random.Shared.Next(summaries.Length)]
-       ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
-app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
-#endregion
-#elif MINIMAL
-#region snippet_min
+#define FINAL // MINIMAL SWAGGER
+#if MINIMAL
+// <snippet_min>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_min>
 #elif FINAL
-#region snippet_all
+// <snippet_all>
+// <snippet_swagger_add_service>
+// <snippet_swagger_using_statements>
+using NSwag.AspNetCore;
+// </snippet_swagger_using_statements>
 using Microsoft.EntityFrameworkCore;
 
-#region snippet_DI
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument(config =>
+{
+    config.DocumentName = "TodoAPI";
+    config.Title = "TodoAPI v1";
+    config.Version = "v1";
+});
+// <snippet_swagger_enable_middleware>
+
 var app = builder.Build();
-#endregion
+// </snippet_swagger_add_service>
 
-#region snippet_get
-app.MapGet("/", () => "Hello World!");
+if (app.Environment.IsDevelopment())
+{
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.DocumentTitle = "TodoAPI";
+        config.Path = "/swagger";
+        config.DocumentPath = "/swagger/{documentName}/swagger.json";
+        config.DocExpansion = "list";
+    });
+}
 
+// </snippet_swagger_enable_middleware>
+// <snippet_get>
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.ToListAsync());
 
 app.MapGet("/todoitems/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
 
-#region snippet_getCustom
+// <snippet_getCustom>
 app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
         is Todo todo
             ? Results.Ok(todo)
             : Results.NotFound());
-#endregion
-#endregion
+// </snippet_getCustom>
+// </snippet_get>
 
-#region snippet_post
+// <snippet_post>
 app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
@@ -93,9 +69,9 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });
-#endregion
+// </snippet_post>
 
-#region snippet_put
+// <snippet_put>
 app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);
@@ -109,9 +85,9 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 
     return Results.NoContent();
 });
-#endregion
+// </snippet_put>
 
-#region snippet_delete
+// <snippet_delete>
 app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 {
     if (await db.Todos.FindAsync(id) is Todo todo)
@@ -123,8 +99,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
     return Results.NotFound();
 });
-#endregion
+// </snippet_delete>
 
 app.Run();
-#endregion
-#endif
+// </snippet_all>
