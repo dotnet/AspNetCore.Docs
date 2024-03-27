@@ -271,7 +271,7 @@ Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetC
 
 The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
 
-Outside of the logout endpoint, [antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/forms/index#antiforgery-support>.
+Outside of the logout endpoint, [antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
 
 Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](xref:security/cors) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
 
