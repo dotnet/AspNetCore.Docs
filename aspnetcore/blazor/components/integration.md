@@ -153,13 +153,13 @@ In the ASP.NET Core project's `Program` file:
   using BlazorSample.Components;
   ```
 
-* Add Razor component services (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>). Add the following line before the line that calls `builder.Build()`):
+* Add Razor component services (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>), which also automatically adds  antiforgery services (<xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery%2A>). Add the following line before the line that calls `builder.Build()`):
 
   ```csharp
   builder.Services.AddRazorComponents();
   ```
 
-* Add [Antiforgery Middleware](xref:blazor/security/index#antiforgery-support) to the request processing pipeline after the call to `UseRouting`. If there are calls to `UseRouting` and `UseEndpoints`, the call to `UseAntiforgery` must go between them. A call to `UseAntiforgery` must be placed after calls to `UseAuthentication` and `UseAuthorization`.
+* Add [Antiforgery Middleware](xref:blazor/security/index#antiforgery-support) to the request processing pipeline with <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>. <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> is called after the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. If there are calls to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, the call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must go between them. A call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A> must be placed after calls to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>.
 
   ```csharp
   app.UseAntiforgery();
