@@ -62,7 +62,10 @@ Blazor stores request tokens in component state, which guarantees that antiforge
 > [!NOTE]
 > [Antiforgery mitigation](xref:security/anti-request-forgery) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain` since these are the [only valid form enctypes](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#attr-fs-enctype).
 
-For more information, see <xref:blazor/forms/index#antiforgery-support>.
+For more information, see the following resources:
+
+* <xref:security/anti-request-forgery>: This article is the primary ASP.NET Core article on the subject, which applies to server-side Blazor Server, the server project of Blazor Web Apps, and Blazor integration with MVC/Razor Pages.
+* <xref:blazor/forms/index#antiforgery-support>: The *Antiforgery support* section of the article pertains to Blazor forms antiforgery support.
 
 :::moniker-end
 
