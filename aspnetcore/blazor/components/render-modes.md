@@ -18,8 +18,7 @@ uid: blazor/components/render-modes
 
 This article explains control of Razor component rendering in Blazor Web Apps, either at compile time or runtime.
 
-> [!NOTE]
-> This guidance doesn't apply to standalone Blazor WebAssembly apps.
+This guidance doesn't apply to standalone Blazor WebAssembly apps. Blazor WebAssembly apps only render on the client via a client-side WebAssembly-based runtime and have no concept of a *render mode*. If a render mode is applied to a component in a Blazor WebAssembly app, the render mode designation has no influence on rendering the component. 
 
 ## Render modes
 
