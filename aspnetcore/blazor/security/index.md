@@ -14,20 +14,29 @@ uid: blazor/security/index
 
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
-Security scenarios differ between server-side and client-side Blazor apps. Because a server-side app runs on the server, authorization checks are able to determine:
+Security scenarios differ between server-side and client-side Blazor apps.
 
-* The UI options presented to a user (for example, which menu entries are available to a user).
-* Access rules for areas of the app and components.
+Because a server-side app runs on the server:
 
-For a client-side app, authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a client-side app can't enforce authorization access rules.
+* Authorization checks are able to enforce access rules for areas of the app and components.
+* Sensitive data and executing code is secure because it never leaves the server without authorization.
+
+Because a client-side app runs on the client:
+
+* Authorization is only used to determine which UI options to show.
+* No data or executing code in the app can be secured.
 
 :::moniker range=">= aspnetcore-8.0"
+
+If authorization rule enforcement and the security of data and code must be guaranteed, don't develop a client-side app. Build a Blazor Web App that only adopts server-side rendering (SSR) for authorization.
 
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+If authorization rule enforcement and the security of data and code must be guaranteed, don't develop a client-side app. Build a Blazor Server app.
 
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
