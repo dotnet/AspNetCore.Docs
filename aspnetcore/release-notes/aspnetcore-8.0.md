@@ -42,7 +42,7 @@ For more information, see <xref:blazor/components/class-libraries-with-static-ss
 
 We've added a new article that discusses some of the common HTTP caching issues that can occur when upgrading Blazor apps across major versions and how to address HTTP caching issues.
 
-For more information, see <xref:blazor/http-caching-issues>.
+For more information, see <xref:blazor/host-and-deploy/webassembly-caching/http-caching-issues>.
 
 ### New Blazor Web App template
 
