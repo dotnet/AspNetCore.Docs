@@ -14,11 +14,11 @@ uid: blazor/security/index
 
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
-Security scenarios differ between authorization code running server-side and client-side in Blazor apps. For authorization code that runs on the server, authorization checks are able to enforce access rules for areas of the app and components. Because client-side code execution can be tampered with, authorization code is only relied upon to determine which UI options to show.
+Security scenarios differ between authorization code running server-side and client-side in Blazor apps. For authorization code that runs on the server, authorization checks are able to enforce access rules for areas of the app and components. Because client-side code execution can be tampered with, authorization code executing on the client can't be trusted to absolutely enforce access rules or control the display of client-side content.
 
 :::moniker range=">= aspnetcore-8.0"
 
-If authorization rule enforcement must be guaranteed, don't implement authorization checks in client-side code. Build a Blazor Web App that only adopts server-side rendering (SSR) for authorization checks.
+If authorization rule enforcement must be guaranteed, don't implement authorization checks in client-side code. Build a Blazor Web App that only relies on server-side rendering (SSR) for authorization checks and rule enforcement.
 
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page of a Razor Pages app](xref:blazor/components/integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
