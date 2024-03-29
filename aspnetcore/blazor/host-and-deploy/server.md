@@ -250,7 +250,17 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 
 ## Azure SignalR Service
 
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for server-side Blazor apps. The service works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+:::moniker range=">= aspnetcore-8.0"
+
+Consider using the [Azure SignalR Service](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-8.0#azure-signalr-service) when using interactive server-side rendering. The service works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Consider using the [Azure SignalR Service](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-8.0#azure-signalr-service), which works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
+
+:::moniker-end
 
 > [!IMPORTANT]
 > When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection. In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`), which defines the maximum poll interval allowed for Long Polling connections in [Azure SignalR Service](#azure-signalr-service) if the service ever falls back from WebSockets to Long Polling. If the next poll request does not come in within `MaxPollIntervalInSeconds`, Azure SignalR Service cleans up the client connection. Note that Azure SignalR Service also cleans up connections when cached waiting to write buffer size is greater than 1 MB to ensure service performance. Default value for `MaxPollIntervalInSeconds` is 5 seconds. The setting is limited to 1-300 seconds.
@@ -347,7 +357,17 @@ Scaling server-side Blazor apps on Azure Container Apps requires specific consid
 
 ## Azure App Service without the Azure SignalR Service
 
-When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+:::moniker range=">= aspnetcore-8.0"
+
+Hosting a Blazor app that uses interactive server-side rendering on Azure App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. The App Service should also be appropriately globally distributed to reduce UI latency. Using the Azure SignalR Service when hosting on Azure App Service isn't required.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Hosting a Blazor Server app on Azure App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. The App Service should also be appropriately globally distributed to reduce UI latency. Using the Azure SignalR Service when hosting on Azure App Service isn't required.
+
+:::moniker-end
 
 Use the following guidance to configure the app:
 
