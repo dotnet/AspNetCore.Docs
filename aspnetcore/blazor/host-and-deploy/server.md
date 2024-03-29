@@ -252,13 +252,13 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 
 :::moniker range=">= aspnetcore-8.0"
 
-Consider using the [Azure SignalR Service](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-8.0#azure-signalr-service) when using interactive server-side rendering. The service works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
+Consider using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) when using interactive server-side rendering. The service works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-Consider using the [Azure SignalR Service](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-8.0#azure-signalr-service), which works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
+Consider using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service), which works in conjunction with the app's Blazor Hub for scaling up a server-side Blazor app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
 
 :::moniker-end
 
