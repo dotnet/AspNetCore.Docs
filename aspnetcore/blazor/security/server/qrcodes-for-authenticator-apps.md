@@ -128,9 +128,9 @@ export function afterWebStarted(blazor) {
 }
 ```
 
-Add the following `PageScript` component to the server app.
+Add the following shared `PageScript` component to the server app.
 
-`Components/Account/Shared/PageScript.razor`:
+`Components/PageScript.razor`:
 
 ```razor
 <page-script src="@Src"></page-script>
