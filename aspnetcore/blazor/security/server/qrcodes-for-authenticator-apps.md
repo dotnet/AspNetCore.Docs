@@ -37,39 +37,139 @@ In the `App` component (`Components/App.razor`), place a script reference after 
 <script src="qrcode.min.js"></script>
 ```
 
-Immediately after the added `<script>` file reference for `qrcode.min.js`, add the following JavaScript function. The following code generates a QR code at the position of the `qrCodeData` element:
+The `EnableAuthenticator` component, which is part of the QR code system in the app and displays the QR code to users, adopts static server-side rendering (static SSR) with enhanced navigation. Therefore, normal scripts can't execute when the component loads or updates under enhanced navigation. Extra steps are required to trigger the QR code to load in the UI. To accomplish loading the QR code, the approach explained in <xref:blazor/js-interop/ssr> is adopted.
 
-```razor
-<script>
-  window.createCode = (uri) => 
-  {
-    var qrcode = document.getElementById('qrCode');
-    qrcode.innerHTML = '';
-    new QRCode(qrcode, uri);
+Add the following [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers) to the server project's `wwwroot` folder. The `{NAME}` placeholder must be the name of the app's assembly in order for Blazor to locate and load the file automatically. If the server app's assembly name is `BlazorSample`, the file is named `BlazorSample.lib.module.js`.
+
+`wwwroot/{NAME}.lib.module.js`:
+
+```javascript
+const pageScriptInfoBySrc = new Map();
+
+function registerPageScriptElement(src) {
+
+  if (!src) {
+    throw new Error('Must provide a non-empty value for the "src" attribute.');
   }
-</script>
+
+  let pageScriptInfo = pageScriptInfoBySrc.get(src);
+
+  if (pageScriptInfo) {
+    pageScriptInfo.referenceCount++;
+  } else {
+    pageScriptInfo = { referenceCount: 1, module: null };
+    pageScriptInfoBySrc.set(src, pageScriptInfo);
+    initializePageScriptModule(src, pageScriptInfo);
+  }
+}
+
+function unregisterPageScriptElement(src) {
+  if (!src) {
+    return;
+  }
+
+  const pageScriptInfo = pageScriptInfoBySrc.get(src);
+  if (!pageScriptInfo) {
+    return;
+  }
+
+  pageScriptInfo.referenceCount--;
+}
+
+async function initializePageScriptModule(src, pageScriptInfo) {
+  if (src.startsWith("./")) {
+    src = new URL(src.substr(2), document.baseURI).toString();
+  }
+
+  const module = await import(src);
+
+  if (pageScriptInfo.referenceCount <= 0) {
+    return;
+  }
+
+  pageScriptInfo.module = module;
+  module.onLoad?.();
+  module.onUpdate?.();
+}
+
+function onEnhancedLoad() {
+  for (const [src, { module, referenceCount }] of pageScriptInfoBySrc) {
+    if (referenceCount <= 0) {
+      module?.onDispose?.();
+      pageScriptInfoBySrc.delete(src);
+    }
+  }
+
+  for (const { module } of pageScriptInfoBySrc.values()) {
+    module?.onUpdate?.();
+  }
+}
+
+export function afterWebStarted(blazor) {
+  customElements.define('page-script', class extends HTMLElement {
+    static observedAttributes = ['src'];
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (name !== 'src') {
+        return;
+      }
+
+      this.src = newValue;
+      unregisterPageScriptElement(oldValue);
+      registerPageScriptElement(newValue);
+    }
+
+    disconnectedCallback() {
+      unregisterPageScriptElement(this.src);
+    }
+  });
+
+  blazor.addEventListener('enhancedload', onEnhancedLoad);
+}
 ```
 
-> [!NOTE]
-> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
+Add the following `PageScript` component to the server app.
 
-In the `EnableAuthenticator` component (`Components/Account/Pages/Manage/EnableAuthenticator.razor`), delete the `<div>` element that contains the QR code instructions:
+`Components/Account/Shared/PageScript.razor`:
+
+```razor
+<page-script src="@Src"></page-script>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string Src { get; set; } = default!;
+}
+```
+
+Add the following [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) for the `EnableAuthenticator` component, which is located at `Components/Account/Pages/Manage/EnableAuthenticator.razor`. The `onLoad` function creates the QR code with Sangmin's `qrcode.js` library using the QR code URI produced by the `GenerateQrCodeUri` method in the component's `@code` block.
+
+`Components/Account/Pages/Manage/EnableAuthenticator.razor.js`:
+
+```javascript
+export function onLoad() {
+  const uri = document.getElementById('qrCodeData').getAttribute('data-url');
+  new QRCode(document.getElementById('qrCode'), uri);
+}
+
+export function onUpdate() { }
+
+export function onDispose() { }
+```
+
+Under the `<PageTitle>` component in the `EnableAuthenticator` component, add the `PageScript` component with the path to the collocated JS file:
+
+```razor
+<PageScript Src="./Components/Account/Pages/Manage/EnableAuthenticator.razor.js" />
+```
+
+Delete the `<div>` element that contains the QR code instructions:
 
 ```diff
 - <div class="alert alert-info">
 -     Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable 
 -     QR code generation</a>.
 - </div>
-```
-
-Locate the instructions to the user on scanning a QR code or providing the shared key and replace it with the following instruction:
-
-```razor
-<button class="btn btn-link p-0 border-0" onclick="createCode('@authenticatorUri')">
-    Load and scan a QR code
-</button>
-with your authenticator app or enter this key <kbd>@sharedKey</kbd> into your two 
-factor authenticator app. Spaces are optional, and the value is case insensitive.
 ```
 
 Locate the two `<div>` elements where the QR code should appear and where the QR code data is stored in the page and make the following changes:
@@ -84,13 +184,7 @@ Locate the two `<div>` elements where the QR code should appear and where the QR
 + <div id="qrCodeData" data-url="@authenticatorUri"></div>
 ```
 
-Run the app and ensure that you can scan the QR code and validate the code the authenticator proves.
-
-## Change the site name in the QR code
-
-Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component.
-
-The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app alongside other QR codes for other apps. Leave the value URL encoded. Developers usually set a site name that matches the company's name. Examples: Yahoo, Amazon, Etsy, Microsoft, Zoho.
+Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component. The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app alongside other QR codes for other apps. Leave the value URL encoded. Developers usually set a site name that matches the company's name. Examples: Yahoo, Amazon, Etsy, Microsoft, Zoho.
 
 In the following example, the `{SITE NAME}` placeholder is where the site name is provided:
 
@@ -106,6 +200,8 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
         unformattedKey);
 }
 ```
+
+Run the app and ensure that you can scan the QR code and validate the code the authenticator proves. If you haven't alr
 
 ## `EnableAuthenticator` component in reference source
 

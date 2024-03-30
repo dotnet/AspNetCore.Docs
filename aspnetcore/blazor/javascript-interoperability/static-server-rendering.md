@@ -24,7 +24,7 @@ To avoid this problem, we don't recommended relying on page-specific `<script>` 
 
 The following example demonstrates one way to configure JS code to run when a statically-rendered page with enhanced navigation is initially loaded or updated.
 
-Add the following `PageWithScript` component.
+The following `PageWithScript` component example is a component in the app that requires scripts to run with static SSR and enhanced navigation. The following component example includes a `PageScript` component from a Razor class library (RCL) that is added to the solution later in this article.
 
 `Components/Pages/PageWithScript.razor`:
 
@@ -165,7 +165,11 @@ In the RCL, add the following `PageScript` component.
 
 The `PageScript` component functions normally on the top-level of a page.
 
-If you place the `PageScript` component in the app's layout (for example, `Components/Layout/MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation.
+If you place the `PageScript` component in the app's layout (for example, `Components/Layout/MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation:
+
+```razor
+<PageScript Src="./Components/Pages/PageWithScript.razor.js" />
+```
 
 To reuse the same module among pages, but have the `onLoad` and `onDispose` callbacks invoked on each page change, append a query string to the end of the script so that it's recognized as a different module. An app could adopt the convention of using the component's name as the query string value. In the following example, the query string is "`counter`" because this `PageScript` component reference is placed in a `Counter` component. This is merely a suggestion, and you can use whatever query string scheme that you prefer.
 
@@ -174,3 +178,7 @@ To reuse the same module among pages, but have the `onLoad` and `onDispose` call
 ```
 
 To monitor changes in specific DOM elements, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
+
+## Example implementation without using an RCL
+
+The approach described in this article can be implemented directly in a Blazor Web App without using a Razor class library (RCL). For an example, see <xref:blazor/security/server/qrcodes-for-authenticator-apps>.
