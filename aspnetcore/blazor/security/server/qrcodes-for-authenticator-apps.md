@@ -4,7 +4,7 @@ author: guardrex
 description: Discover how to enable QR code generation for TOTP authenticator apps that work with ASP.NET Core Blazor Web App two-factor authentication.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 03/29/2024
+ms.date: 04/01/2024
 uid: blazor/security/server/qrcodes-for-authenticator-apps
 ---
 # Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App
@@ -21,6 +21,11 @@ If you haven't already scaffolded the `EnableAuthenticator` component into the a
 1. Select **Identity** > **Blazor Identity**. Select the **Add** button.
 1. On the **Add Blazor Identity** step, override the file for **Pages\Manage\EnableAuthenticator** in the list of pages. Select the app's DBContext class. Select the **Add** button.
 
+<!-- UPDATE 9.0 Update NOTE per followup on the issue -->
+
+> [!NOTE]
+> Although only the `EnableAuthenticator` component is selected for scaffolding in this example, scaffolding currently adds all of the Identity components to the app. Additionally, exceptions may be thrown during the process of scaffolding into the app. If exceptions occur when database migrations occur, stop the app and restart it on each exception. For more information, see [Scaffolding exceptions for Blazor Web App (`dotnet/Scaffolding` #2694)](https://github.com/dotnet/Scaffolding/issues/2694).
+
 Be patient while migrations are executed. Depending on the speed of the system, it can take up to a minute or two for database migrations to finish.
 
 For more information, see <xref:security/authentication/scaffold-identity>. For guidance on using the .NET CLI instead of Visual Studio, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
@@ -29,15 +34,15 @@ For more information, see <xref:security/authentication/scaffold-identity>. For 
 
 These instructions use [Shim Sangmin](https://hogangnono.com)'s [qrcode.js: Cross-browser QRCode generator for JavaScript](https://davidshimjs.github.io/qrcodejs/) ([`davidshimjs/qrcodejs` GitHub repository](https://github.com/davidshimjs/qrcodejs)).
 
-Download the [`qrcode.min.js`](https://davidshimjs.github.io/qrcodejs/) library to the `wwwroot` folder in your project. The JavaScript library has no dependencies.
+Download the [`qrcode.min.js`](https://davidshimjs.github.io/qrcodejs/) library to the `wwwroot` folder of the solution's server project. The library has no dependencies.
 
-In the `App` component (`Components/App.razor`), place a script reference after [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script):
+In the `App` component (`Components/App.razor`), place a library script reference after [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script):
 
 ```razor
 <script src="qrcode.min.js"></script>
 ```
 
-The `EnableAuthenticator` component, which is part of the QR code system in the app and displays the QR code to users, adopts static server-side rendering (static SSR) with enhanced navigation. Therefore, normal scripts can't execute when the component loads or updates under enhanced navigation. Extra steps are required to trigger the QR code to load in the UI. To accomplish loading the QR code, the approach explained in <xref:blazor/js-interop/ssr> is adopted.
+The `EnableAuthenticator` component, which is part of the QR code system in the app and displays the QR code to users, adopts static server-side rendering (static SSR) with enhanced navigation. Therefore, normal scripts can't execute when the component loads or updates under enhanced navigation. Extra steps are required to trigger the QR code to load in the UI when the page is loaded. To accomplish loading the QR code, the approach explained in <xref:blazor/js-interop/ssr> is adopted.
 
 Add the following [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers) to the server project's `wwwroot` folder. The `{NAME}` placeholder must be the name of the app's assembly in order for Blazor to locate and load the file automatically. If the server app's assembly name is `BlazorSample`, the file is named `BlazorSample.lib.module.js`.
 
@@ -172,7 +177,9 @@ Delete the `<div>` element that contains the QR code instructions:
 - </div>
 ```
 
-Locate the two `<div>` elements where the QR code should appear and where the QR code data is stored in the page and make the following changes:
+Locate the two `<div>` elements where the QR code should appear and where the QR code data is stored in the page.
+
+Make the following changes:
 
 * For the empty `<div>`, give the element an `id` of `qrCode`.
 * For the `<div>` with the `data-url` attribute, give the element an `id` of `qrCodeData`.
@@ -180,13 +187,13 @@ Locate the two `<div>` elements where the QR code should appear and where the QR
 ```diff
 - <div></div>
 - <div data-url="@authenticatorUri"></div>
-+ <div id="qrcode"></div>
++ <div id="qrCode"></div>
 + <div id="qrCodeData" data-url="@authenticatorUri"></div>
 ```
 
 Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component. The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app alongside other QR codes for other apps. Leave the value URL encoded. Developers usually set a site name that matches the company's name. Examples: Yahoo, Amazon, Etsy, Microsoft, Zoho.
 
-In the following example, the `{SITE NAME}` placeholder is where the site name is provided:
+In the following example, the `{SITE NAME}` placeholder is where the site (company) name:
 
 ```diff
 private string GenerateQrCodeUri(string email, string unformattedKey)
@@ -201,7 +208,7 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
 }
 ```
 
-Run the app and ensure that you can scan the QR code and validate the code the authenticator proves. If you haven't alr
+Run the app and ensure that the QR code is scannable and that the code validates.
 
 ## `EnableAuthenticator` component in reference source
 

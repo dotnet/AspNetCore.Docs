@@ -231,7 +231,7 @@ The preceding `beforeStart` example only guarantees that the custom script loads
 > [!NOTE]
 > MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
 
-For an examples of JS initializers, see the following resources:
+For examples of JS initializers, see the following resources:
 
 :::moniker-end
 

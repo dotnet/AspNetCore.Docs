@@ -24,7 +24,7 @@ To avoid this problem, we don't recommended relying on page-specific `<script>` 
 
 The following example demonstrates one way to configure JS code to run when a statically-rendered page with enhanced navigation is initially loaded or updated.
 
-The following `PageWithScript` component example is a component in the app that requires scripts to run with static SSR and enhanced navigation. The following component example includes a `PageScript` component from a Razor class library (RCL) that is added to the solution later in this article.
+The following `PageWithScript` component example is a component in the app that requires scripts to run with static SSR and enhanced navigation. The following component example includes a `PageScript` component from a Razor class library (RCL) that's added to the solution later in this article.
 
 `Components/Pages/PageWithScript.razor`:
 
@@ -165,7 +165,7 @@ In the RCL, add the following `PageScript` component.
 
 The `PageScript` component functions normally on the top-level of a page.
 
-If you place the `PageScript` component in the app's layout (for example, `Components/Layout/MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation:
+If you place the `PageScript` component in an app's layout (for example, `MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation:
 
 ```razor
 <PageScript Src="./Components/Pages/PageWithScript.razor.js" />
