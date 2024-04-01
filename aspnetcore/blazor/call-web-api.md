@@ -680,7 +680,7 @@ public class CookieHandler : DelegatingHandler
 The `CookieHandler` is registered in the `Program` file:
 
 ```csharp
-builder.Services.AddScoped<CookieHandler>();
+builder.Services.AddTransient<CookieHandler>();
 ```
 
 The message handler is added to any preconfigured <xref:System.Net.Http.HttpClient> that requires cookie authentication:
