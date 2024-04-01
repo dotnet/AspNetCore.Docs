@@ -144,22 +144,14 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![52 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-52-green)
 - [hakenr](https://github.com/hakenr) - Robert Haken ![21 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-21-green)
-- [tdykstra](https://github.com/tdykstra) - Tom Dykstra ![4 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
-- [wadepickett](https://github.com/wadepickett) - Wade Pickett ![4 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
-- [Rick-Anderson](https://github.com/Rick-Anderson) - Rick Anderson ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
-- [BillWagner](https://github.com/BillWagner) - Bill Wagner ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [BusHero](https://github.com/BusHero) - Cervac Petru ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [danespinosa](https://github.com/danespinosa) - Dan Espinosa ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [dbradish-microsoft](https://github.com/dbradish-microsoft) - Delora Bradish ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [drewnoakes](https://github.com/drewnoakes) - Drew Noakes ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [fbaptista](https://github.com/fbaptista) - Fabian ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [fredrikcarlbom](https://github.com/fredrikcarlbom) - Fredrik C ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [JamesNK](https://github.com/JamesNK) - James Newton-King ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [Jessuhh](https://github.com/Jessuhh) - Jesse Brand ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [markharwood101](https://github.com/markharwood101) - Mark Harwood ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [reyang](https://github.com/reyang) - Reiley Yang ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [StefanOssendorf](https://github.com/StefanOssendorf) - Stefan Ossendorf ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [twsouthwick](https://github.com/twsouthwick) - Taylor Southwick ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
