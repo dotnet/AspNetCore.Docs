@@ -490,7 +490,6 @@ var app = builder.Build();
 app.MapPost("/products", (Product? product) => { });
 
 app.Run();
-
 // </snippet_op3>
 internal class Product
 {

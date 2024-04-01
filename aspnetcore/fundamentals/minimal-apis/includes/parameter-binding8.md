@@ -57,9 +57,9 @@ The [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute bi
 
 An alternative is to use the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute with a custom type that has properties annotated with `[FromForm]`. For example, the following code binds from form values to properties of the `NewTodoRequest` record struct:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete_as_parameters&highlight=1)]
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete_as_parameters)]
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_argumentlist_record&highlight=1-2)]
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_argumentlist_record)]
 
 For more information, see the section on [AsParameters](#parameter-binding-for-argument-lists-with-asparameters) later in this article.
 
@@ -81,7 +81,7 @@ The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tre
 
 Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
-[!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
+[!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min&highlight=8-9)]
 
 ### Optional parameters
 
@@ -90,7 +90,7 @@ Parameters declared in route handlers are treated as required:
 * If a request matches the route, the route handler only runs if all required parameters are provided in the request.
 * Failure to provide all required parameters results in an error.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1&highlight=4)]
 
 | URI | result |
 | --------- | -------------- |
@@ -100,7 +100,7 @@ Parameters declared in route handlers are treated as required:
 
 To make `pageNumber` optional, define the type as optional or provide a default value:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2&highlight=4,6-8)]
 
 | URI | result |
 | --------- | -------------- |
@@ -110,13 +110,13 @@ To make `pageNumber` optional, define the type as optional or provide a default 
 
 The preceding nullable and default value applies to all sources:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3&highlight=4)]
 
 The preceding code calls the method with a null product if no request body is sent.
 
 **NOTE**: If invalid data is provided and the parameter is nullable, the route handler is ***not*** run.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4&highlight=4)]
 
 | URI | result |
 | --------- | -------------- |
@@ -200,11 +200,11 @@ Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCo
 
 The following code uploads files using inferred binding from the `IFormFile` type:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="17-22,43-57":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="18-23,44-50":::
 
 ***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an anti-forgery token:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="25,45":::
 
 For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
 
