@@ -14,7 +14,7 @@ Supported binding sources:
 
 The following `GET` route handler uses some of these parameter binding sources:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_pbg" highlight="8-11":::
 
 The following table shows the relationship between the parameters used in the preceding example and the associated binding sources.
 
@@ -29,18 +29,18 @@ The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind fr
 
 The following example POST route handler uses a binding source of body (as JSON) for the `person` parameter:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_pbp" highlight="5":::
 
 The parameters in the preceding examples are all bound from request data automatically. To demonstrate the convenience that parameter binding provides, the following route handlers show how to read request data directly from the request:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs" id="snippet_ManualRequestBinding" highlight="3-5,12":::
 
 ### Explicit Parameter Binding
 
 Attributes can be used to explicitly declare where parameters are bound from.
 
 <!-- TODO - finish Service  -->
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_epb)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_epb":::
 
 | Parameter | Binding Source |
 | --------- | -------------- |
@@ -53,13 +53,13 @@ Attributes can be used to explicitly declare where parameters are bound from.
 
 The [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute binds form values:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete&highlight=1-2)]
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs" id="snippet_post_put_delete" highlight="1-2":::
 
 An alternative is to use the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute with a custom type that has properties annotated with `[FromForm]`. For example, the following code binds from form values to properties of the `NewTodoRequest` record struct:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete_as_parameters&highlight=1)]
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs" id="snippet_post_put_delete_as_parameters" highlight="1":::
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_argumentlist_record&highlight=1-2)]
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs" id="snippet_argumentlist_record":::
 
 For more information, see the section on [AsParameters](#parameter-binding-for-argument-lists-with-asparameters) later in this article.
 
@@ -81,7 +81,7 @@ The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tre
 
 Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
-[!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
+:::code language="csharp" source="~/release-notes/aspnetcore-7/samples/ApiController/Program.cs" id="snippet_min" highlight="8-9":::
 
 ### Optional parameters
 
@@ -90,7 +90,7 @@ Parameters declared in route handlers are treated as required:
 * If a request matches the route, the route handler only runs if all required parameters are provided in the request.
 * Failure to provide all required parameters results in an error.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_op1" highlight="4":::
 
 | URI | result |
 | --------- | -------------- |
@@ -100,7 +100,7 @@ Parameters declared in route handlers are treated as required:
 
 To make `pageNumber` optional, define the type as optional or provide a default value:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_op2" highlight="4,6-8":::
 
 | URI | result |
 | --------- | -------------- |
@@ -110,13 +110,13 @@ To make `pageNumber` optional, define the type as optional or provide a default 
 
 The preceding nullable and default value applies to all sources:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_op3" highlight="4":::
 
 The preceding code calls the method with a null product if no request body is sent.
 
 **NOTE**: If invalid data is provided and the parameter is nullable, the route handler is ***not*** run.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_op4" highlight="4":::
 
 | URI | result |
 | --------- | -------------- |
@@ -170,15 +170,15 @@ For example, the data might be enqueued to [Azure Queue storage](/azure/storage/
 
 The following code implements a background queue:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs" :::
 
 The following code binds the request body to a `Stream`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs" id="snippet_1":::
 
 The following code shows the complete `Program.cs` file:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs" id="snippet":::
 
 * When reading data, the `Stream` is the same object as `HttpRequest.Body`.
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
@@ -200,11 +200,11 @@ Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCo
 
 The following code uploads files using inferred binding from the `IFormFile` type:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="17-22,43-57":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="18-23,44-50":::
 
 ***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an anti-forgery token:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="25,45":::
 
 For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
 
@@ -237,31 +237,31 @@ In the preceding code:
 
 The following code demonstrates binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues):
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bqs2pa)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="snippet_bqs2pa":::
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. The following code binds to a string array and returns all the items with the specified tags:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bind_str_array)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="snippet_bind_str_array":::
 
 The following code shows the model and the required `TryParse` implementation:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_model)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="snippet_model":::
 
 The following code binds to an `int` array:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_iaray)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="snippet_iaray":::
 
 To test the preceding code, add the following endpoint to populate the database with `Todo` items:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_batch)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="snippet_batch":::
 
 Use a tool like [`HttpRepl`](xref:web-api/http-repl) to pass the following data to the previous endpoint:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="batch_post_payload":::
 
 The following code binds to the header key `X-Todo-Id` and returns the `Todo` items with matching `Id` values:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_getHeader)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs" id="snippet_getHeader":::
 
 > [!NOTE]
 > When binding a `string[]` from a query string, the absence of any matching query string value will result in an empty array instead of a null value.
@@ -326,7 +326,7 @@ public static bool TryParse(string value, IFormatProvider provider, out T result
 
 The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10.1`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cb)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_cb":::
 
 #### BindAsync
 
@@ -339,7 +339,7 @@ public static ValueTask<T?> BindAsync(HttpContext context);
 
 The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ba)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_ba":::
 
 <a name="bf"></a>
 
@@ -409,7 +409,7 @@ Since the preceding code applies the customized options only to deserialization,
 
 Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs" id="snippet_fileupload":::
 
 The preceding code:
 
