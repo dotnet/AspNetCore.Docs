@@ -73,9 +73,6 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
   - Drop pivots and sample code
 - <xref:blazor/hybrid/tutorials/windows-forms> - Add Bootstrap to Blazor Hybrid tutorials
 - <xref:blazor/components/overwriting-parameters> - [Blazor] OverridingParameters - ShowMoreExpander, ToggleExpander
-- <xref:blazor/security/blazor-web-app-with-oidc>
-  - Call (web) API security updates
-  - Blazor-specific 'how to download' guidance
 - <xref:blazor/blazor-ef-core>
   - Blazor-specific 'how to download' guidance
   - Clarify sample location
