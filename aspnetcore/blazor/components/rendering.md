@@ -33,7 +33,7 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
   
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-* The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
+* The override of the component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false` (the default `ComponentBase` implementation always returns `true`).
 
 ## Control the rendering flow
 
