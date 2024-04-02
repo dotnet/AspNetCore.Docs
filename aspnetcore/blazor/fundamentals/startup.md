@@ -231,7 +231,7 @@ The preceding `beforeStart` example only guarantees that the custom script loads
 > [!NOTE]
 > MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
 
-For an examples of JS initializers, see the following resources:
+For examples of JS initializers, see the following resources:
 
 :::moniker-end
 
@@ -240,6 +240,7 @@ For an examples of JS initializers, see the following resources:
 * <xref:blazor/js-interop/ssr>
 * <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
 * <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
+* <xref:blazor/security/server/qrcodes-for-authenticator-apps>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 :::moniker-end
