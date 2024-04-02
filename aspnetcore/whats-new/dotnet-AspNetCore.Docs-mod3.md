@@ -1,88 +1,154 @@
 ---
-title: "ASP.NET Core docs: What's new for September 2023"
-description: "What's new in the ASP.NET Core docs for September 2023."
-ms.custom: September-2023
-ms.date: 10/01/2023
+title: "ASP.NET Core docs: What's new for March 2024"
+description: "What's new in the ASP.NET Core docs for March 2024."
+ms.custom: March-2024
+ms.date: 04/01/2024
 ---
 
-# ASP.NET Core docs: What's new for September 2023
+# ASP.NET Core docs: What's new for March 2024
 
-Welcome to what's new in the ASP.NET Core docs for September 2023. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the ASP.NET Core docs for March 2024. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
-### New articles
-
-- <xref:blazor/components/integration>
-- <xref:blazor/components/prerender>
-- <xref:blazor/components/render-modes>
-
 ### Updated articles
 
-- <xref:blazor/components/prerendering-and-integration> - Prerender and Integrate work (Round 1)
-- <xref:blazor/debug> - Blazor Debug article updates 8.0
-- <xref:blazor/blazor-ef-core> - Blazor with EF Core article updates 8.0
-- <xref:blazor/host-and-deploy/index> - Host and Deploy node updates 8.0
-- <xref:blazor/host-and-deploy/server> - Host and Deploy node updates 8.0
-- <xref:blazor/tutorials/signalr-blazor> - Merge versions of Blazor-SignalR tutorial
-- <xref:blazor/forms/index> - EditContext with IsValid examples update
-- <xref:blazor/fundamentals/routing> - Enhanced navigation & form handling 8.0
-- <xref:blazor/tutorials/build-a-blazor-app> - Blazor RC1 updates
-- <xref:blazor/hosting-models> - Hosting models/render modes & What's New 8.0
-- <xref:blazor/performance> - Performance article updates 8.0
-- <xref:blazor/fundamentals/static-files> - Version hosted WASM <8.0
-- <xref:blazor/host-and-deploy/webassembly> - Version hosted WASM <8.0
-- <xref:blazor/state-management> - State Management article updates 8.0
-- <xref:blazor/security/index> - Security node article updates 8.0
-- <xref:blazor/security/server/index> - Security node article updates 8.0
-- <xref:blazor/security/webassembly/additional-scenarios> - Security node article updates 8.0
-- <xref:blazor/security/webassembly/graph-api> - Security node article updates 8.0
-- <xref:blazor/index> - Blazor Overview updates
+- <xref:blazor/host-and-deploy/server> - Update Azure SignalR Service remarks
+- <xref:blazor/security/index>
+  - Improve authorization opening remarks
+  - Add coverage on antiforgery services and middleware
+  - Server-side behaviors during static SSR
+  - WebSocket compression/CSP and security guidance
+  - WASM+Identity same-site & antiforgery updates
+- <xref:blazor/js-interop/index>
+  - Updates to compression warning content
+  - Surface warning on compression for interactive SSR
+- <xref:blazor/security/blazor-web-app-oidc>
+  - Add remark on ME-ID authority in server API config
+  - Update scope/authority guidance in BWA+OIDC article
+  - Add VS prerequisite version
+  - Nonce update for token refresh
+- <xref:blazor/forms/index> - Add coverage on antiforgery services and middleware
+- <xref:blazor/components/control-head-content> - Control <head> content and migration updates
+- <xref:blazor/fundamentals/configuration>
+  - Clarify app settings file locations
+  - Remove article front matter
+- <xref:blazor/project-structure> - Improved Project Structure article WASM headings
+- <xref:blazor/components/lifecycle>
+  - [Blazor] Lifecycle - AfterRender.razor sample update + console output added
+  - Graph scopes clarification and addl updates
+  - [Blazor] Lifecycle - clear formulation for conditions when rendering is avoided
+- <xref:blazor/security/webassembly/additional-scenarios> - Graph scopes clarification and addl updates
+- <xref:blazor/security/webassembly/graph-api> - Graph scopes clarification and addl updates
+- <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c> - Graph scopes clarification and addl updates
+- <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id> - Graph scopes clarification and addl updates
+- <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c> - Graph scopes clarification and addl updates
+- <xref:blazor/security/webassembly/standalone-with-microsoft-accounts> - Graph scopes clarification and addl updates
+- <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> - Graph scopes clarification and addl updates
+- <xref:blazor/components/js-spa-frameworks> - Add sample app cross-links to JS/SPA article
+- <xref:blazor/components/event-handling>
+  - [Blazor] Event handling - ParentChild2.razor without Task.Yield()
+  - [Blazor] Event handling - first InvokeAsync example with args
+- <xref:blazor/security/server/index> - Dependency on DBContext for Blazor Identity UI
+- <xref:blazor/components/render-modes>
+  - Updates to 'click'-based remarks
+  - Server-side behaviors during static SSR
+  - WebSocket compression/CSP and security guidance
+- <xref:blazor/fundamentals/static-files> - Static files article updates
+- <xref:blazor/fundamentals/signalr>
+  - Harden API options
+  - Improve SignalR idle timeout example
+  - Update Blazor release notes for Preview 2
+  - WebSocket compression/CSP and security guidance
+- <xref:blazor/components/layouts> - Server-side behaviors during static SSR
+- <xref:blazor/fundamentals/routing> - Server-side behaviors during static SSR
+- <xref:blazor/security/server/additional-scenarios> - Temporarily surface PU issue for access tokens
+- <xref:blazor/call-web-api>
+  - Blazor WASM cookie security for web APIs
+  - PATCH section and other updates
+  - Drop prop and field in examples
+  - Call (web) API security updates
+  - Additional Call web API article updates
+  - Call web API article updates
+  - Drop pivots and sample code
+- <xref:blazor/hybrid/tutorials/windows-forms> - Add Bootstrap to Blazor Hybrid tutorials
+- <xref:blazor/components/overwriting-parameters> - [Blazor] OverridingParameters - ShowMoreExpander, ToggleExpander
+- <xref:blazor/blazor-ef-core>
+  - Blazor-specific 'how to download' guidance
+  - Clarify sample location
+  - Remove article front matter
+- <xref:blazor/fundamentals/dependency-injection> - Blazor-specific 'how to download' guidance
+- <xref:blazor/fundamentals/index> - Blazor-specific 'how to download' guidance
+- <xref:blazor/components/data-binding> - Blazor - data-binding - event fix
+- <xref:blazor/security/server/interactive-server-side-rendering> - WebSocket compression/CSP and security guidance
+- <xref:blazor/globalization-localization> - Add BWA global Auto approach
+- <xref:blazor/security/webassembly/standalone-with-identity> - WASM+Identity same-site & antiforgery updates
 
 ## Fundamentals
 
-### New articles
-
-- <xref:fundamentals/aot/request-delegate-generator/rdg-ids>
-- <xref:fundamentals/aot/rdg>
-
-## gRPC
-
 ### Updated articles
 
-- <xref:grpc/interprocess> - Add IPC security section
+- <xref:fundamentals/middleware/index> - Fix typo
+- <xref:fundamentals/logging/index> - Update index.md
 
 ## Migration
 
 ### New articles
 
-- <xref:migration/70-to-80>
-
-## MVC
+- <xref:migration/inc/http-modules>
 
 ### Updated articles
 
-- <xref:mvc/views/view-components> - Prerender and Integrate work (Round 1)
+- <xref:migration/70-to-80>
+  - Add coverage on antiforgery services and middleware
+  - Control <head> content and migration updates
+  - Blazor Server script fallback policy authorization
+- <xref:migration/inc/http-modules>
+  - move snippets to code sample
+  - Add doc for incrementally migration IHttpModule implementations
+
+## Performance
+
+### Updated articles
+
+- <xref:performance/response-compression> - Update API Testing tool references
 
 ## Release notes
 
 ### Updated articles
 
-- <xref:aspnetcore-8> - Hosting models/render modes & What's New 8.0
+- <xref:aspnetcore-9> - Add preview 2 features
+
+## Security
+
+### Updated articles
+
+- <xref:security/authentication/identity/spa> - Convert inline code to snippet references
+
+## Tutorials
+
+### Updated articles
+
+- <xref:tutorials/min-web-api> - Min API tutorial: rewrite to Swagger
+
+## Web API
+
+### Updated articles
+
+- <xref:web-api/advanced/formatting> - Update API Testing tool references
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![5 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
-- [WeihanLi](https://github.com/WeihanLi) - Weihan Li ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
-- [ardalis](https://github.com/ardalis) - Steve Smith ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [arturek](https://github.com/arturek) - Artur Zgodziński ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [damienbod](https://github.com/damienbod) - damienbod ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [dsdante](https://github.com/dsdante) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [Erik-McKelvey](https://github.com/Erik-McKelvey) - Erik McKelvey ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [fiyazbinhasan](https://github.com/fiyazbinhasan) - Fiyaz Bin Hasan ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [JCOlofsson](https://github.com/JCOlofsson) - Christofer Olofsson ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [jkrajcir](https://github.com/jkrajcir) - Joe Krajcir ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [LostBeard](https://github.com/LostBeard) - Todd T ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [SamueleFurnari](https://github.com/SamueleFurnari) - Samuele Furnari ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [hakenr](https://github.com/hakenr) - Robert Haken ![21 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-21-green)
+- [BusHero](https://github.com/BusHero) - Cervac Petru ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [danespinosa](https://github.com/danespinosa) - Dan Espinosa ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [drewnoakes](https://github.com/drewnoakes) - Drew Noakes ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [fbaptista](https://github.com/fbaptista) - Fabian ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [fredrikcarlbom](https://github.com/fredrikcarlbom) - Fredrik C ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [Jessuhh](https://github.com/Jessuhh) - Jesse Brand ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [markharwood101](https://github.com/markharwood101) - Mark Harwood ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [reyang](https://github.com/reyang) - Reiley Yang ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [StefanOssendorf](https://github.com/StefanOssendorf) - Stefan Ossendorf ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
