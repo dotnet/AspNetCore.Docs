@@ -282,14 +282,7 @@ build.Services.AddAuthentication(options =>
 	options.Scope.Add("profile");
 	options.Scope.Add("offline_access");
 	options.SaveTokens = true;
-	options.Events = new OpenIdConnectEvents
-	{
-		OnRedirectToIdentityProvider = context =>
-		{
-			context.ProtocolMessage.SetParameter("acr_values", "mfa");
-			return Task.FromResult(0);
-		}
-	};
+    options.AdditionalAuthorizationParameters.Add("acr_values", "mfa");
 });
 ```
 
