@@ -1,19 +1,4 @@
----
-title: Multi-factor authentication in ASP.NET Core
-author: damienbod
-description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 04/02/2024
-uid: security/authentication/mfa
----
-# Multi-factor authentication in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-[!INCLUDE[](~/includes/not-current-version.md)]
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
 
 By [Damien Bowden](https://github.com/damienbod)
 
@@ -1056,5 +1041,3 @@ Alternatively, logging in using OTP with Identity:
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
 
 :::moniker-end
-
-[!INCLUDE[](~/security/authentication/mfa/includes/mfa-5-8.md)]
