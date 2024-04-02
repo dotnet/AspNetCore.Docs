@@ -15,16 +15,12 @@ For an introduction to two-factor authentication (2FA) with authenticator apps u
 
 ## Scaffold the Enable Authenticator component into the app
 
-If you haven't already scaffolded the `EnableAuthenticator` component into the app, use the following steps in Visual Studio to surface the component in the app:
-
-1. In **Solution Explorer**, right-click **Add** > **New Scaffolded Item**.
-1. Select **Identity** > **Blazor Identity**. Select the **Add** button.
-1. On the **Add Blazor Identity** step, override the file for **Pages\Manage\EnableAuthenticator** in the list of pages. Select the app's DBContext class. Select the **Add** button.
+Follow the guidance in <xref:security/authentication/scaffold-identity#client-side-blazor-apps> to scaffold `Pages\Manage\EnableAuthenticator` into the app.
 
 <!-- UPDATE 9.0 Update NOTE per followup on the issue -->
 
 > [!NOTE]
-> Although only the `EnableAuthenticator` component is selected for scaffolding in this example, scaffolding currently adds all of the Identity components to the app. Additionally, exceptions may be thrown during the process of scaffolding into the app. If exceptions occur when database migrations occur, stop the app and restart it on each exception. For more information, see [Scaffolding exceptions for Blazor Web App (`dotnet/Scaffolding` #2694)](https://github.com/dotnet/Scaffolding/issues/2694).
+> Although only the `EnableAuthenticator` component is selected for scaffolding in this example, scaffolding currently adds all of the Identity components to the app. Additionally, exceptions may be thrown during the process of scaffolding into the app. If exceptions occur when database migrations occur, stop the app and restart the app on each exception. For more information, see [Scaffolding exceptions for Blazor Web App (`dotnet/Scaffolding` #2694)](https://github.com/dotnet/Scaffolding/issues/2694).
 
 Be patient while migrations are executed. Depending on the speed of the system, it can take up to a minute or two for database migrations to finish.
 
@@ -48,90 +44,7 @@ Add the following [JavaScript initializer](xref:blazor/fundamentals/startup#java
 
 `wwwroot/{NAME}.lib.module.js`:
 
-```javascript
-const pageScriptInfoBySrc = new Map();
-
-function registerPageScriptElement(src) {
-
-  if (!src) {
-    throw new Error('Must provide a non-empty value for the "src" attribute.');
-  }
-
-  let pageScriptInfo = pageScriptInfoBySrc.get(src);
-
-  if (pageScriptInfo) {
-    pageScriptInfo.referenceCount++;
-  } else {
-    pageScriptInfo = { referenceCount: 1, module: null };
-    pageScriptInfoBySrc.set(src, pageScriptInfo);
-    initializePageScriptModule(src, pageScriptInfo);
-  }
-}
-
-function unregisterPageScriptElement(src) {
-  if (!src) {
-    return;
-  }
-
-  const pageScriptInfo = pageScriptInfoBySrc.get(src);
-  if (!pageScriptInfo) {
-    return;
-  }
-
-  pageScriptInfo.referenceCount--;
-}
-
-async function initializePageScriptModule(src, pageScriptInfo) {
-  if (src.startsWith("./")) {
-    src = new URL(src.substr(2), document.baseURI).toString();
-  }
-
-  const module = await import(src);
-
-  if (pageScriptInfo.referenceCount <= 0) {
-    return;
-  }
-
-  pageScriptInfo.module = module;
-  module.onLoad?.();
-  module.onUpdate?.();
-}
-
-function onEnhancedLoad() {
-  for (const [src, { module, referenceCount }] of pageScriptInfoBySrc) {
-    if (referenceCount <= 0) {
-      module?.onDispose?.();
-      pageScriptInfoBySrc.delete(src);
-    }
-  }
-
-  for (const { module } of pageScriptInfoBySrc.values()) {
-    module?.onUpdate?.();
-  }
-}
-
-export function afterWebStarted(blazor) {
-  customElements.define('page-script', class extends HTMLElement {
-    static observedAttributes = ['src'];
-
-    attributeChangedCallback(name, oldValue, newValue) {
-      if (name !== 'src') {
-        return;
-      }
-
-      this.src = newValue;
-      unregisterPageScriptElement(oldValue);
-      registerPageScriptElement(newValue);
-    }
-
-    disconnectedCallback() {
-      unregisterPageScriptElement(this.src);
-    }
-  });
-
-  blazor.addEventListener('enhancedload', onEnhancedLoad);
-}
-```
+[!INCLUDE[](~/blazor/includes/js-interop/blazor-page-script.md)]
 
 Add the following shared `PageScript` component to the server app.
 
@@ -167,6 +80,12 @@ Under the `<PageTitle>` component in the `EnableAuthenticator` component, add th
 ```razor
 <PageScript Src="./Components/Account/Pages/Manage/EnableAuthenticator.razor.js" />
 ```
+
+> [!NOTE]
+> An alternative to using the approach with the `PageScript` component is to use an event listener (`Blazor.addEventListener("enhancedload", {CALLBACK})`) registered in an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to listen for page updates caused by enhanced navigation. The callback (`{CALLBACK}` placeholder) performs the QR code initialization logic.
+>
+> Using the callback approach with `enhancedload`, the code executes for every enhanced navigation, even when the QR code `<div>` isn't rendered. Therefore, additional code must be added to check for the presence of the `<div>` before executing the code that adds a QR code.
+
 
 Delete the `<div>` element that contains the QR code instructions:
 
