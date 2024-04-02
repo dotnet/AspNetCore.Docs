@@ -82,7 +82,7 @@ Under the `<PageTitle>` component in the `EnableAuthenticator` component, add th
 ```
 
 > [!NOTE]
-> An alternative to using the approach with the `PageScript` component is to use an event listener (`Blazor.addEventListener("enhancedload", {CALLBACK})`) registered in an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to listen for page updates caused by enhanced navigation. The callback (`{CALLBACK}` placeholder) performs the QR code initialization logic.
+> An alternative to using the approach with the `PageScript` component is to use an event listener (`blazor.addEventListener("enhancedload", {CALLBACK})`) registered in an [`afterWebStarted` JS initializer](xref:blazor/fundamentals/startup#javascript-initializers) to listen for page updates caused by enhanced navigation. The callback (`{CALLBACK}` placeholder) performs the QR code initialization logic.
 >
 > Using the callback approach with `enhancedload`, the code executes for every enhanced navigation, even when the QR code `<div>` isn't rendered. Therefore, additional code must be added to check for the presence of the `<div>` before executing the code that adds a QR code.
 
