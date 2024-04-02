@@ -241,11 +241,11 @@ If the identity has logged in using MFA, the **Admin** menu is displayed without
 
 If the user logs in without MFA, the warning is displayed:
 
-![Administrator MFA authentication](mfa/_static/identitystandalonemfa_01.png)
+![Administrator MFA authentication](~/security/authentication/mfa/_static/identitystandalonemfa_01.png)
 
 The user is redirected to the MFA enable view when clicking the **Admin** link:
 
-![Administrator activates MFA authentication](mfa/_static/identitystandalonemfa_02.png)
+![Administrator activates MFA authentication](~/security/authentication/mfa/_static/identitystandalonemfa_02.png)
 
 ## Send MFA sign-in requirement to OpenID Connect server 
 
@@ -372,7 +372,7 @@ If the user is already logged in, the client app:
 * Still validates the `amr` claim.
 * Can set up the MFA with a link to the ASP.NET Core Identity view.
 
-![acr_values-1 image](mfa/_static/acr_values-1.png)
+![acr_values-1 image](~/security/authentication/mfa/_static/acr_values-1.png)
 
 ## Force ASP.NET Core OpenID Connect client to require MFA
 
@@ -498,15 +498,15 @@ When logging in without MFA (for example, using just a password):
 
 * The `amr` has the `pwd` value:
 
-  ![amr has the pwd value](mfa/_static/require_mfa_oidc_02.png)
+  ![amr has the pwd value](~/security/authentication/mfa/_static/require_mfa_oidc_02.png)
 
 * Access is denied:
 
-  ![Access is denied](mfa/_static/require_mfa_oidc_03.png)
+  ![Access is denied](~/security/authentication/mfa/_static/require_mfa_oidc_03.png)
 
 Alternatively, logging in using OTP with Identity:
 
-![Logging in using OTP with Identity](mfa/_static/require_mfa_oidc_01.png)
+![Logging in using OTP with Identity](~/security/authentication/mfa/_static/require_mfa_oidc_01.png)
 
 ## Additional resources
 
