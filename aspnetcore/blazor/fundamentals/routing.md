@@ -1613,13 +1613,13 @@ The following HTML markup is rendered:
 
 For the following demonstration, a consistent, standard naming convention is used for the app's components:
 
-* Routable component file names use Pascal case&dagger;.
+* Routable component file names use Pascal case&dagger;, for example `Pages/ProductDetail.razor`.
 * Routable component file paths match their URLs in kebab case&Dagger; with hyphens appearing between words in a component's route template. For example, a `ProductDetail` component with a route template of `/product-detail` (`@page "/product-detail"`) is requested in a browser at the relative URL `/product-detail`.
 
 &dagger;Pascal case (upper camel case) is a naming convention without spaces and punctuation and with the first letter of each word capitalized, including the first word.  
 &Dagger;Kebab case is a naming convention without spaces and punctuation that uses lowercase letters and dashes between words.
 
-In the Razor markup of the component under the default `Home` page, <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components are added from a collection:
+In the Razor markup of the `NavMenu` component (`NavMenu.razor`) under the default `Home` page, <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components are added from a collection:
 
 ```diff
 <div class="nav-scrollable" 
@@ -1646,7 +1646,7 @@ In the Razor markup of the component under the default `Home` page, <xref:Micros
 </div>
 ```
 
-The `GetRoutableComponents` method placed in the `NavMenu`'s `@code` block:
+The `GetRoutableComponents` method in the `@code` block:
 
 ```csharp
 public IEnumerable<string> GetRoutableComponents()
@@ -1671,7 +1671,7 @@ The preceding example doesn't include the following pages in the rendered list o
 
 :::moniker range=">= aspnetcore-8.0"
 
-For an example of the preceding code in a sample app that you can run locally, obtain the [**Blazor Web App** and **Blazor WebAssembly** sample apps](xref:blazor/fundamentals/index#sample-apps).
+For an example of the preceding code in a sample app that you can run locally, obtain the [**Blazor Web App** or **Blazor WebAssembly** sample app](xref:blazor/fundamentals/index#sample-apps).
 
 :::moniker-end
 
