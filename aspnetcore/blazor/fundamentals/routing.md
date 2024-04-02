@@ -1609,7 +1609,7 @@ The following HTML markup is rendered:
 > }
 > ```
 
-<xref:Microsoft.AspNetCore.Components.Routing.NavLink> component entries can be dynamically created from the app's components via reflection. The following example demonstrates the general approach that can be customized further.
+<xref:Microsoft.AspNetCore.Components.Routing.NavLink> component entries can be dynamically created from the app's components via reflection. The following example demonstrates the general approach for further customization.
 
 For the following demonstration, a consistent, standard naming convention is used for the app's components:
 
