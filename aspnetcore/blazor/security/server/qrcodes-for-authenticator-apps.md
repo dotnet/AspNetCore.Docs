@@ -69,10 +69,6 @@ export function onLoad() {
   const uri = document.getElementById('qrCodeData').getAttribute('data-url');
   new QRCode(document.getElementById('qrCode'), uri);
 }
-
-export function onUpdate() { }
-
-export function onDispose() { }
 ```
 
 Under the `<PageTitle>` component in the `EnableAuthenticator` component, add the `PageScript` component with the path to the collocated JS file:
