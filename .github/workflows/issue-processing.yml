@@ -77,7 +77,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 😎 **March!** ***The gateway to spring!*** 🌞
+              body: `### 😎 **Welcome April!** ***Summertime is almost here!*** 🌞
 
             A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
             })
