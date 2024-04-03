@@ -835,7 +835,7 @@ protected override async Task OnInitializedAsync()
 
 :::moniker-end
 
-When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>):
 
 * The server timeout should be at least double the value assigned to the Keep-Alive interval.
 * The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
@@ -1284,7 +1284,7 @@ protected override async Task OnInitializedAsync()
 
 :::moniker range=">= aspnetcore-6.0"
 
-When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>):
 
 * The server timeout should be at least double the value assigned to the Keep-Alive interval.
 * The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
