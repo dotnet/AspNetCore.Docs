@@ -72,7 +72,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
-* Only fetches the slice of records from an external API that correspond to the currently visible region (+ overscan) when `ItemsProvider` is used instead of `Items` (see [Item provider delegate](#item-provider-delegate) section).
+* Only fetches the slice of records from an external API that correspond to the currently visible region, including overscan, when `ItemsProvider` is used instead of `Items` (see the [Item provider delegate](#item-provider-delegate) section).
 
 The item content for the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component can include:
 
