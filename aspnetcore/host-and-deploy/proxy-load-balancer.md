@@ -38,6 +38,8 @@ The [Forwarded Headers Middleware](https://github.com/dotnet/aspnetcore/blob/mai
 The middleware updates:
 
 * [`HttpContext.Connection.RemoteIpAddress`](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress): Set using the `X-Forwarded-For` header value. Additional settings influence how the middleware sets `RemoteIpAddress`. For details, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options). The consumed values are removed from `X-Forwarded-For`, and the old value of [`HttpContext.Connection.RemoteIpAddress`](xref:Microsoft.AspNetCore.Http.ConnectionInfo.RemoteIpAddress) is persisted in `X-Original-For`.
+
+Note: This process may be repeated several times if there are multiple values in `X-Forwarded-For/Proto/Host`, resulting in several values moved to `X-Original-*`, including the original `RemoteIpAddress/Host/Scheme`.
 * [`HttpContext.Request.Scheme`](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme): Set using the [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value. The consumed value is removed from `X-Forwarded-Proto`, and the old value of [`HttpContext.Request.Scheme`](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme) is persisted in `X-Original-Proto`.
 * [`HttpContext.Request.Host`](xref:Microsoft.AspNetCore.Http.HttpRequest.Host): Set using the `X-Forwarded-Host` header value. The consumed value is removed from `X-Forwarded-Host`, and the old value of [`HttpContext.Request.Host`](xref:Microsoft.AspNetCore.Http.HttpRequest.Host) is persisted in `X-Original-Host`.
 
