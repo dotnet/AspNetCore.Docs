@@ -45,7 +45,9 @@ If the collection contains thousands of flights, rendering the flights takes a l
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
-* Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component. (If a non-generic collection supplies the items, for example a collection of <xref:System.Data.DataRow>, follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.)
+* Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
+
+  If a non-generic collection supplies the items, for example a collection of <xref:System.Data.DataRow>, follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 * Specify a context for each flight with the `Context` parameter. In the following example, `flight` is used as the context, which provides access to each flight's members.
 
 ```razor
