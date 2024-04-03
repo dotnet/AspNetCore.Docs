@@ -24,9 +24,9 @@ For information on how to integrate npm and webpack into the build process for a
 * From Visual Studio select **Create new a new project**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
+* Select **Support pages and views** if you need the library to contain pages and/or views. By default, only Razor components are supported. Select **Create**.
 
-The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
+The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see <xref:blazor/components/class-libraries>.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
