@@ -40,7 +40,7 @@ The Developer Exception Page can include the following information about the exc
 
 The following image shows a sample developer exception page with **Routing** selected and endpoint metadata displayed:
 
-:::image type="content" source="~/fundamentals/error-handling/media/developer-exception-page.png" alt-text="Developer exception page with Routing selected and endpoint metadata displayed":::
+:::image type="content" source="~/fundamentals/error-handling/_static/endpoint-metadata.png" alt-text="Developer exception page with Routing selected and endpoint metadata displayed":::
 
 The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
 
