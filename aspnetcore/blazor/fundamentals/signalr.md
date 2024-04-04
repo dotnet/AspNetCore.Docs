@@ -1117,27 +1117,27 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 Controlling when the reconnection UI appears can be useful in the following situations:
 
-* If a deployed app frequently displays the reconnection UI due to ping timeouts caused by internal network latency or Internet latency, server and client timeouts can be lengthened to delay the appearance of the reconnection UI.
-* If an app should report to users that the connection has dropped sooner, server and client timeouts can be reduced.
+* A deployed app frequently displays the reconnection UI due to ping timeouts caused by internal network latency or Internet latency, so you would like to increase the delay.
+* An app should report to users that the connection has dropped sooner, so you would like to shorten the delay.
 
-As a general recommendation for the guidance that follows for changing the values of the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> or the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+The reconnection UI is controlled directly by the Keep-Alive interval on the client. However, setting the Keep-Alive on the client must be performed in relation to other server and client settings. The complete configuration usually involves adjusting server and client timeouts as well.
 
-* The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> should be at least double the value assigned to the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>.
-* The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> should be less than or equal to half the value assigned to the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>.
+As general recommendations for the guidance that follows:
+
+* The Keep-Alive interval should match between client and server configurations.
+* Timeouts should be at least double the value assigned to the Keep-Alive internal.
 
 ### Server configuration
 
-To lengthen the delay on the reconnection UI appearing, increase the maximum roundtrip time expected between the client and the server. To shorten the delay, reduce the values. Test, monitor, and revise the timeouts as needed.
-
 For the SignalR hub, set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> (default: 15 seconds).
 
-The <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> can be increased and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can remain the same. The important consideration is that if you change the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>, make sure that the client timeout value is at least double the value of the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
+The <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> can be increased and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can remain the same. The important consideration is that if you change the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>, make sure that the timeouts are at least double the value of the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> and that the Keep-Alive interval matches between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
 In the following example:
 
 * The <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> is increased to 60 seconds (default value: 30 seconds).
 * The <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> is increased to 30 seconds (default value: 15 seconds).
-* The <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> isn't set and uses its default value of 15 seconds.
+* The Keep-Alive interval isn't set and uses its default value of 15 seconds.
 
 **Blazor Web App** (.NET 8 or later) in the server project's `Program` file:
 
@@ -1161,7 +1161,7 @@ builder.Services.AddServerSideBlazor()
     });
 ```
 
-The values of <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval>, <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout>, and <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can be decreased to spawn the reconnection UI sooner. However, decreasing the value of the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> increases the frequency of communication pings, which increases the load on the app, server, and network. Care must be taken to avoid introducing poor performance when lowering the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>.
+The values of <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval>, <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout>, and Keep-Alive interval can be decreased to spawn the reconnection UI sooner. However, decreasing the value of the Keep-Alive interval increases the frequency of communication pings, which increases the load on the app, server, and network. Care must be taken to avoid introducing poor performance when lowering the Keep-Alive interval.
 
 For more information, see the [Server-side circuit handler options](#server-side-circuit-handler-options) section.
 
@@ -1171,11 +1171,11 @@ For more information, see the [Server-side circuit handler options](#server-side
 
 :::moniker range=">= aspnetcore-8.0"
 
-Set the timeout for the client's server timeout (`withServerTimeout` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, default: 30 seconds).
+Set the timeout for the client's server timeout (`withServerTimeout`, default: 30 seconds).
 
-The server timeout can be increased and the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can remain the same. The important consideration is that if you change the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>, make sure that the server timeout value is at least double the value of the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
+The server timeout can be increased and the Keep-Alive interval (`keepAliveIntervalInMilliseconds`, default: 15 seconds) can remain the same. The important consideration is that if you change the Keep-Alive interval, make sure that the server timeout is at least double the value of the Keep-Alive interval and that the Keep-Alive interval values match between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
-In the following example [startup configuration](xref:blazor/fundamentals/startup) ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout.
+In the following example [startup configuration](xref:blazor/fundamentals/startup) ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`withKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
 
 Blazor Web App:
 
@@ -1205,9 +1205,9 @@ Blazor Server:
 </script>
 ```
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
+When creating a hub connection in a component, set the server timeout (`WithServerTimeout`, default: 30 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. Confirm that the timeouts are at least double the Keep-Alive interval (`WithKeepAliveInterval`/<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>).
 
-The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds:
+The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds. The Keep-Alive interval (`WithKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -1229,11 +1229,9 @@ protected override async Task OnInitializedAsync()
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Set the value for the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> to set the timeout for the client's server timeout (`serverTimeoutInMilliseconds` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, default: 30 seconds).
+The server timeout can be increased and the Keep-Alive interval (`keepAliveIntervalInMilliseconds`, default: 15 seconds) can remain the same. The important consideration is that if you change the Keep-Alive interval, make sure that the server timeout is at least double the value of the Keep-Alive interval and that the Keep-Alive interval values match between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
-The server timeout can be increased and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can remain the same. The important consideration is that if you change the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>, make sure that the timeout value is at least double the value of the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
-
-In the following example, a custom value of 60 seconds is used for the server timeout.
+In the following example [startup configuration](xref:blazor/fundamentals/startup) ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`keepAliveIntervalInMilliseconds`) isn't set and uses its default value of 15 seconds.
 
 In `Pages/_Host.cshtml`:
 
@@ -1252,7 +1250,7 @@ In `Pages/_Host.cshtml`:
 </script>
 ```
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. Confirm that the timeouts are at least double the Keep-Alive interval.
 
 The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> is increased to 60 seconds, and the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> is increased to 30 seconds:
 
