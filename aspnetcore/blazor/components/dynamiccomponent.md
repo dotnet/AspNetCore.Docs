@@ -143,7 +143,7 @@ In the following example, a Razor component renders a component based on the use
 
 In the preceding example:
 
-* A `Dictionary<string, Type>` is used to manage components to be displayed.
+* An <xref:System.Collections.Generic.Dictionary%602> is used to manage components to be displayed.
 * Names serve as the dictionary keys (and are provided as selection options).
 * Component types are stored as dictionary values (by using the [`typeof` operator](/dotnet/csharp/language-reference/operators/typeof)).
 
