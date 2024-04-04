@@ -143,8 +143,10 @@ In the following example, a Razor component renders a component based on the use
 
 In the preceding example:
 
-* Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
-* The namespace of the app is `BlazorSample`. ***Change the namespace to match your app's namespace.***
+* A `Dictionary<string, Type>` is used to manage components to be displayed.
+* Names serve as the dictionary keys (and are provided as selection options).
+* Component types are stored as dictionary values (by using the [`typeof` operator](/dotnet/csharp/language-reference/operators/typeof)).
+
 
 ## Pass parameters
 
@@ -197,7 +199,7 @@ The following `RocketLabWithWindowSeat` component (`RocketLabWithWindowSeat.razo
 In the following example:
 
 * Only the `RocketLabWithWindowSeat` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
-* The namespace of the app is `BlazorSample`. ***Change the namespace to match your app's namespace.***
+* Component names are used as dictionary keys using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
 * The dynamically-rendered components are shared components:
   * Shown in this article section: `RocketLabWithWindowSeat` (`RocketLabWithWindowSeat.razor`)
   * Components shown in the [Example](#example) section earlier in this article:
@@ -340,10 +342,7 @@ In the following parent component example, the `ShowDTMessage` method assigns a 
 The parent component passes the callback method, `ShowDTMessage` in the parameter dictionary:
 
 * The `string` key is the callback method's name, `OnClickCallback`.
-* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# fields, so a C# property is used for the parameter dictionary.
-
-> [!IMPORTANT]
-> For the following component, modify the code in the `OnDropdownChange` method. Change the namespace name of "`BlazorSample`" in the `Type.GetType()` argument to match your app's namespace.
+* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# field initialization, so a C# property is used for the parameter dictionary.
 
 :::moniker range=">= aspnetcore-8.0"
 
