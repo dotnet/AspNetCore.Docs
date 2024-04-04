@@ -32,8 +32,6 @@ Send a message to a specific user by passing the user identifier to the `User` f
 
 ## Groups in SignalR
 
-### What are groups in SignalR and why use them
-
 A group is a collection of connections associated with a name. Messages can be sent to all connections in a group. Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application. A connection can be a member of multiple groups. Groups are ideal for something like a chat application, where each room can be represented as a group. 
 
 ### Add or remove connections from a group
@@ -44,11 +42,11 @@ Connections are added to or removed from groups via the `AddToGroupAsync` and `R
 
 It's safe to add a user to a group multiple times, no exception is thrown in the case that the user already exists in the group.
 
-Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information is not available if the application is scaled to multiple servers.
+Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information isn't available if the application is scaled to multiple servers. 
 
-Groups are kept in-memory, so they will not persist through a server restart.  Consider the Azure SignalR service for scenarios requiring group membership to be persisted.  For more inforamtion see [Azure SignalR](https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
+Groups are kept in-memory, so they won't persist through a server restart. Consider the Azure SignalR service for scenarios requiring group membership to be persisted. For more information, see [Azure SignalR](https://learn.microsoft.com/azure/azure-signalr/signalr-overview)
 
-To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group, messages sent to that group will only go to authorized users. However, groups are not a security feature. Authentication claims have features that groups do not, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
+To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group. This way, messages dispatched to the group are guaranteed to reach only those users who are authorized. However, groups aren't a security feature. Authentication claims have features that groups don't, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
 
 > [!NOTE]
 > Group names are case-sensitive.
