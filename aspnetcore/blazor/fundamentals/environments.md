@@ -186,7 +186,7 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 <h1>Environment example</h1>
 
-<p>Environment: @HostEnvironment.Environment</p>
+<p>Environment: @Env.Environment</p>
 ```
 
 :::moniker range=">= aspnetcore-8.0"
