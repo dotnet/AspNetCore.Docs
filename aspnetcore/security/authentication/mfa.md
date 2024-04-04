@@ -282,7 +282,7 @@ build.Services.AddAuthentication(options =>
 	options.Scope.Add("profile");
 	options.Scope.Add("offline_access");
 	options.SaveTokens = true;
-    options.AdditionalAuthorizationParameters.Add("acr_values", "mfa");
+	options.AdditionalAuthorizationParameters.Add("acr_values", "mfa");
 });
 ```
 
