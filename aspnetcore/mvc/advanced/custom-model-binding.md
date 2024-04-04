@@ -181,7 +181,7 @@ The following example shows how to use `ByteArrayModelBinder` to convert a base6
 
 [!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Controllers/ImageController.cs?name=post1)]
 
-You can POST a base64-encoded string to this api method using a tool like [curl](https://curl.haxx.se/).
+You can POST a base64-encoded string to the previous api method using a tool like [curl](https://curl.haxx.se/).
 
 As long as the binder can bind request data to appropriately named properties or arguments, model binding will succeed. The following example shows how to use `ByteArrayModelBinder` with a view model:
 
