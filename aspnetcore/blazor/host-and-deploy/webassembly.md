@@ -136,13 +136,13 @@ Disable the trimming property if it prevents your app from running normally:
 
 :::moniker range=">= aspnetcore-8.0"
 
-When building a Blazor app that runs on the client (`.Client` project of a Blazor Web App or standalone Blazor WebAssembly app) and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` might be required. The default value is 2,147,483,648 bytes, which may be too large and result in the app failing to run. The following example sets the value to 268,435,456 bytes in the `Program` file:
+When building a Blazor app that runs on the client (`.Client` project of a Blazor Web App or standalone Blazor WebAssembly app) and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. The default value is 2,147,483,648 bytes, which may be too large and result in the app failing to run. The following example sets the value to 268,435,456 bytes in the `Program` file:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-When building a Blazor WebAssembly app that targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` might be required. The default value is 2,147,483,648 bytes, which may be too large and result in the app failing to run. The following example sets the value to 268,435,456 bytes in the `Program` file:
+When building a Blazor WebAssembly app that targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. The default value is 2,147,483,648 bytes, which may be too large and result in the app failing to run. The following example sets the value to 268,435,456 bytes in the `Program` file:
 
 :::moniker-end
 
