@@ -5,7 +5,7 @@ The <xref:Microsoft.AspNetCore.Http.TypedResults> class is a helpful vehicle for
 ```csharp
 var app = WebApplication.Create();
 
-app.MapGet("/", () => TypedResults.InternalServerError("Something went wrong!"));
+app.MapGet("/", () => TypedResults.InternalServerError("Something went wrong!");
 
 app.Run();
 ```
