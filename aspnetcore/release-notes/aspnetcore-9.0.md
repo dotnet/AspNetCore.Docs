@@ -32,6 +32,8 @@ This section describes new features for SignalR.
 
 This section describes new features for minimal APIs.
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/status500.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
