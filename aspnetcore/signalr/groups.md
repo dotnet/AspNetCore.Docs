@@ -44,7 +44,7 @@ It's safe to add a user to a group multiple times, no exception is thrown in the
 
 Group membership isn't preserved when a connection reconnects. The connection needs to rejoin the group when it's re-established. It's not possible to count the members of a group, since this information isn't available if the application is scaled to multiple servers. 
 
-Groups are kept in-memory, so they won't persist through a server restart. Consider the Azure SignalR service for scenarios requiring group membership to be persisted. For more information, see [Azure SignalR](https://learn.microsoft.com/azure/azure-signalr/signalr-overview)
+Groups are kept in memory, so they won't persist through a server restart. Consider the Azure SignalR service for scenarios requiring group membership to be persisted. For more information, see [Azure SignalR](/azure/azure-signalr/signalr-overview)
 
 To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group. This way, messages dispatched to the group are guaranteed to reach only those users who are authorized. However, groups aren't a security feature. Authentication claims have features that groups don't, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
 
