@@ -34,7 +34,6 @@ If the web server returns responses that don't match the expected SHA-256 hashes
 
 In most cases, the warning doesn't indicate a problem with integrity checking. Instead, the warning usually means that some other problem exists.
 
-
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Diagnosing integrity problems
