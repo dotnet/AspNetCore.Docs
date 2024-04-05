@@ -171,7 +171,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > :::no-loc text="https://localhost/signout-callback-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most OIDC providers require a correct port.
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
   
     > [!NOTE]
     > If using Microsoft Identity Web, the provider currently only redirects back to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> if the `microsoftonline.com` Authority (`https://login.microsoftonline.com/{TENANT ID}/v2.0/`) is used. This limitation doesn't exist if you can use the "common" Authority with Microsoft Identity Web. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783).
@@ -183,7 +183,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > :::no-loc text="https://localhost/signout-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses.
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
 
   ```csharp
   oidcOptions.CallbackPath = new PathString("{PATH}");
