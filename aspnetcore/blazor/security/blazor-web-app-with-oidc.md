@@ -163,7 +163,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > :::no-loc text="https://localhost/signin-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most OIDC require a correct port.
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most OIDC providers require a correct port.
 
   * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A>: The request path within the app's base path where the user agent is returned after sign out from the identity provider.
 
