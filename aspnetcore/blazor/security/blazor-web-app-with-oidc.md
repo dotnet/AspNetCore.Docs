@@ -48,6 +48,9 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
+> [!NOTE]
+> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
+
 ### Configuration
 
 This section explains how to configure the sample app.
@@ -144,6 +147,9 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example manually maps the name and role claims:
 
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+
   ```csharp
   oidcOptions.MapInboundClaims = false;
   oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
@@ -159,7 +165,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > :::no-loc text="https://localhost/signin-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses.
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
 
   * <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A>: The request path within the app's base path where the user agent is returned after sign out from the identity provider.
 
@@ -168,7 +174,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > :::no-loc text="https://localhost/signout-callback-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses.
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
   
     > [!NOTE]
     > If using Microsoft Identity Web, the provider currently only redirects back to the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.SignedOutCallbackPath%2A> if the `microsoftonline.com` Authority (`https://login.microsoftonline.com/{TENANT ID}/v2.0/`) is used. This limitation doesn't exist if you can use the "common" Authority with Microsoft Identity Web. For more information, see [postLogoutRedirectUri not working when authority url contains a tenant ID (`AzureAD/microsoft-authentication-library-for-js` #5783)](https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/5783).
@@ -180,7 +186,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > :::no-loc text="https://localhost/signout-oidc":::
 
     > [!NOTE]
-    > A port isn't required for `localhost` addresses.
+    > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
 
   ```csharp
   oidcOptions.CallbackPath = new PathString("{PATH}");
@@ -280,6 +286,9 @@ Confirm that you've met the prerequisites for .NET Aspire. For more information,
 The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App. The project uses [YARP](https://microsoft.github.io/reverse-proxy/) to proxy requests to a weather forecast endpoint in the backend web API project (`MinimalApiJwt`) with the `access_token` stored in the authentication cookie.
 
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+
+> [!NOTE]
+> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
 
 ### Configuration
 
@@ -405,6 +414,9 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example manually maps the name and role claims:
 
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+  
   ```csharp
   oidcOptions.MapInboundClaims = false;
   oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;

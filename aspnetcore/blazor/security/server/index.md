@@ -231,14 +231,14 @@ If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Comp
 
 In the following example, all users are authenticated with the username `mrfibuli`.
 
-`CustomAuthenticationStateProvider.cs`:
+`CustomAuthStateProvider.cs`:
 
 ```csharp
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 
-public class CustomAuthenticationStateProvider : AuthenticationStateProvider
+public class CustomAuthStateProvider : AuthenticationStateProvider
 {
     public override Task<AuthenticationState> GetAuthenticationStateAsync()
     {
@@ -256,22 +256,21 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `CustomAuthenticationStateProvider` service is registered in the `Program` file:
+The `CustomAuthStateProvider` service is registered in the `Program` file:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
 
 ...
 
-builder.Services.AddScoped<AuthenticationStateProvider, 
-    CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-The `CustomAuthenticationStateProvider` service is registered in the `Program` file ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+The `CustomAuthStateProvider` service is registered in the `Program` file ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -282,15 +281,14 @@ builder.Services.AddServerSideBlazor();
 
 ...
 
-builder.Services.AddScoped<AuthenticationStateProvider, 
-    CustomAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-The `CustomAuthenticationStateProvider` service is registered in `Startup.ConfigureServices` of `Startup.cs` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+The `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices` of `Startup.cs` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -301,8 +299,7 @@ services.AddServerSideBlazor();
 
 ...
 
-services.AddScoped<AuthenticationStateProvider, 
-    CustomAuthenticationStateProvider>();
+services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 :::moniker-end
@@ -376,16 +373,16 @@ A [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstate
 
 The following example is based on implementing a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> by following the guidance in the [Implement a custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) section.
 
-The following `CustomAuthenticationStateProvider` implementation exposes a custom method, `AuthenticateUser`, to sign in a user and notify consumers of the authentication state change.
+The following `CustomAuthStateProvider` implementation exposes a custom method, `AuthenticateUser`, to sign in a user and notify consumers of the authentication state change.
 
-`CustomAuthenticationStateProvider.cs`:
+`CustomAuthStateProvider.cs`:
 
 ```csharp
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 
-public class CustomAuthenticationStateProvider : AuthenticationStateProvider
+public class CustomAuthStateProvider : AuthenticationStateProvider
 {
     public override Task<AuthenticationState> GetAuthenticationStateAsync()
     {
@@ -414,7 +411,7 @@ In a component:
 
 * Inject <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
 * Add a field to hold the user's identifier.
-* Add a button and a method to cast the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to `CustomAuthenticationStateProvider` and call `AuthenticateUser` with the user's identifier.
+* Add a button and a method to cast the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to `CustomAuthStateProvider` and call `AuthenticateUser` with the user's identifier.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -438,7 +435,7 @@ In a component:
 
     private void SignIn()
     {
-        ((CustomAuthenticationStateProvider)AuthenticationStateProvider)
+        ((CustomAuthStateProvider)AuthenticationStateProvider)
             .AuthenticateUser(userIdentifier);
     }
 }
@@ -468,7 +465,7 @@ In a component:
 
     private void SignIn()
     {
-        ((CustomAuthenticationStateProvider)AuthenticationStateProvider)
+        ((CustomAuthStateProvider)AuthenticationStateProvider)
             .AuthenticateUser(userIdentifier);
     }
 }
@@ -522,18 +519,18 @@ services.AddScoped<AuthenticationService>();
 
 :::moniker-end
 
-The following `CustomAuthenticationStateProvider` subscribes to the `AuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `AuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
+The following `CustomAuthStateProvider` subscribes to the `AuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `AuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
 
 ```csharp
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 
-public class CustomAuthenticationStateProvider : AuthenticationStateProvider
+public class CustomAuthStateProvider : AuthenticationStateProvider
 {
     private AuthenticationState authenticationState;
 
-    public CustomAuthenticationStateProvider(AuthenticationService service)
+    public CustomAuthStateProvider(AuthenticationService service)
     {
         authenticationState = new AuthenticationState(service.CurrentUser);
 
