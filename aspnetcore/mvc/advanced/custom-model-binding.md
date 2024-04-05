@@ -3,7 +3,7 @@ title: Custom Model Binding in ASP.NET Core
 author: ardalis
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
 ms.author: riande
-ms.date: 01/06/2020
+ms.date: 04/03/2024
 uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding in ASP.NET Core
@@ -60,9 +60,7 @@ The following example shows how to use `ByteArrayModelBinder` to convert a base6
 [!code-csharp[](custom-model-binding/samples/3.x/CustomModelBindingSample/Controllers/ImageController.cs?name=snippet_Post)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
-You can POST a base64-encoded string to this api method using a tool like [Postman](https://www.getpostman.com/):
-
-![Postman tool](custom-model-binding/images/postman.png "postman")
+You can POST a base64-encoded string to the previous api method using a tool like [curl](https://curl.haxx.se/).
 
 As long as the binder can bind request data to appropriately named properties or arguments, model binding will succeed. The following example shows how to use `ByteArrayModelBinder` with a view model:
 
@@ -183,9 +181,7 @@ The following example shows how to use `ByteArrayModelBinder` to convert a base6
 
 [!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Controllers/ImageController.cs?name=post1)]
 
-You can POST a base64-encoded string to this api method using a tool like [Postman](https://www.getpostman.com/):
-
-![Postman tool output](custom-model-binding/images/postman.png "postman")
+You can POST a base64-encoded string to the previous api method using a tool like [curl](https://curl.haxx.se/).
 
 As long as the binder can bind request data to appropriately named properties or arguments, model binding will succeed. The following example shows how to use `ByteArrayModelBinder` with a view model:
 

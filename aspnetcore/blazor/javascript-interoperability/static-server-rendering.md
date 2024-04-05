@@ -24,7 +24,7 @@ To avoid this problem, we don't recommended relying on page-specific `<script>` 
 
 The following example demonstrates one way to configure JS code to run when a statically-rendered page with enhanced navigation is initially loaded or updated.
 
-Add the following `PageWithScript` component.
+The following `PageWithScript` component example is a component in the app that requires scripts to run with static SSR and enhanced navigation. The following component example includes a `PageScript` component from a Razor class library (RCL) that's added to the solution later in this article.
 
 `Components/Pages/PageWithScript.razor`:
 
@@ -65,89 +65,7 @@ In a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) (the ex
 
 `wwwroot/BlazorPageScript.lib.module.js`:
 
-```javascript
-const pageScriptInfoBySrc = new Map();
-
-function registerPageScriptElement(src) {
-  if (!src) {
-    throw new Error('Must provide a non-empty value for the "src" attribute.');
-  }
-
-  let pageScriptInfo = pageScriptInfoBySrc.get(src);
-
-  if (pageScriptInfo) {
-    pageScriptInfo.referenceCount++;
-  } else {
-    pageScriptInfo = { referenceCount: 1, module: null };
-    pageScriptInfoBySrc.set(src, pageScriptInfo);
-    initializePageScriptModule(src, pageScriptInfo);
-  }
-}
-
-function unregisterPageScriptElement(src) {
-    if (!src) {
-        return;
-    }
-
-    const pageScriptInfo = pageScriptInfoBySrc.get(src);
-    if (!pageScriptInfo) {
-        return;
-    }
-
-    pageScriptInfo.referenceCount--;
-}
-
-async function initializePageScriptModule(src, pageScriptInfo) {
-  if (src.startsWith("./")) {
-    src = new URL(src.substr(2), document.baseURI).toString();
-  }
-
-  const module = await import(src);
-
-  if (pageScriptInfo.referenceCount <= 0) {
-    return;
-  }
-
-  pageScriptInfo.module = module;
-  module.onLoad?.();
-  module.onUpdate?.();
-}
-
-function onEnhancedLoad() {
-  for (const [src, { module, referenceCount }] of pageScriptInfoBySrc) {
-    if (referenceCount <= 0) {
-      module?.onDispose?.();
-      pageScriptInfoBySrc.delete(src);
-    }
-  }
-
-  for (const { module } of pageScriptInfoBySrc.values()) {
-    module?.onUpdate?.();
-  }
-}
-
-export function afterWebStarted(blazor) {
-  customElements.define('page-script', class extends HTMLElement {
-    static observedAttributes = ['src'];
-
-    attributeChangedCallback(name, oldValue, newValue) {
-      if (name !== 'src') {
-        return;
-      }
-
-      this.src = newValue;
-      unregisterPageScriptElement(oldValue);
-      registerPageScriptElement(newValue);
-    }
-
-    disconnectedCallback() {
-      unregisterPageScriptElement(this.src);
-    }
-  });
-
-  blazor.addEventListener('enhancedload', onEnhancedLoad);
-}
-```
+[!INCLUDE[](~/blazor/includes/js-interop/blazor-page-script.md)]
 
 In the RCL, add the following `PageScript` component.
 
@@ -165,7 +83,7 @@ In the RCL, add the following `PageScript` component.
 
 The `PageScript` component functions normally on the top-level of a page.
 
-If you place the `PageScript` component in the app's layout (for example, `Components/Layout/MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation.
+If you place the `PageScript` component in an app's layout (for example, `MainLayout.razor`), which results in a shared `PageScript` among pages that use the layout, then the component only runs `onLoad` after a full page reload and `onUpdate` when any enhanced page update occurs, including enhanced navigation.
 
 To reuse the same module among pages, but have the `onLoad` and `onDispose` callbacks invoked on each page change, append a query string to the end of the script so that it's recognized as a different module. An app could adopt the convention of using the component's name as the query string value. In the following example, the query string is "`counter`" because this `PageScript` component reference is placed in a `Counter` component. This is merely a suggestion, and you can use whatever query string scheme that you prefer.
 
@@ -174,3 +92,7 @@ To reuse the same module among pages, but have the `onLoad` and `onDispose` call
 ```
 
 To monitor changes in specific DOM elements, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
+
+## Example implementation without using an RCL
+
+The approach described in this article can be implemented directly in a Blazor Web App without using a Razor class library (RCL). For an example, see <xref:blazor/security/server/qrcodes-for-authenticator-apps>.

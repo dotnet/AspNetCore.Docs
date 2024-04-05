@@ -1609,6 +1609,71 @@ The following HTML markup is rendered:
 > }
 > ```
 
+<xref:Microsoft.AspNetCore.Components.Routing.NavLink> component entries can be dynamically created from the app's components via reflection. The following example demonstrates the general approach for further customization.
+
+For the following demonstration, a consistent, standard naming convention is used for the app's components:
+
+* Routable component file names use Pascal case&dagger;, for example `Pages/ProductDetail.razor`.
+* Routable component file paths match their URLs in kebab case&Dagger; with hyphens appearing between words in a component's route template. For example, a `ProductDetail` component with a route template of `/product-detail` (`@page "/product-detail"`) is requested in a browser at the relative URL `/product-detail`.
+
+&dagger;Pascal case (upper camel case) is a naming convention without spaces and punctuation and with the first letter of each word capitalized, including the first word.  
+&Dagger;Kebab case is a naming convention without spaces and punctuation that uses lowercase letters and dashes between words.
+
+In the Razor markup of the `NavMenu` component (`NavMenu.razor`) under the default `Home` page, <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components are added from a collection:
+
+```diff
+<div class="nav-scrollable" 
+    onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" 
+                    aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
++       @foreach (var name in GetRoutableComponents())
++       {
++           <div class="nav-item px-3">
++               <NavLink class="nav-link" 
++                       href="@Regex.Replace(name, @"(\B[A-Z]|\d+)", "-$1").ToLower()">
++                   @Regex.Replace(name, @"(\B[A-Z]|\d+)", " $1")
++               </NavLink>
++           </div>
++       }
+
+    </nav>
+</div>
+```
+
+The `GetRoutableComponents` method in the `@code` block:
+
+```csharp
+public IEnumerable<string> GetRoutableComponents()
+{
+    return Assembly.GetExecutingAssembly()
+        .ExportedTypes
+        .Where(t => t.IsSubclassOf(typeof(ComponentBase)))
+        .Where(c => c.GetCustomAttributes(inherit: true)
+                     .OfType<RouteAttribute>()
+                     .Any())
+        .Where(c => c.Name != "Home" && c.Name != "Error")
+        .OrderBy(o => o.Name)
+        .Select(c => c.Name);
+}
+```
+
+The preceding example doesn't include the following pages in the rendered list of components:
+
+* `Home` page: The page is listed separately from the automatically generated links because it should appear at the top of the list and set the `Match` parameter.
+* `Error` page: The error page is only navigated to by the framework and shouldn't be listed.
+
+:::moniker range=">= aspnetcore-8.0"
+
+For an example of the preceding code in a sample app that you can run locally, obtain the [**Blazor Web App** or **Blazor WebAssembly** sample app](xref:blazor/fundamentals/index#sample-apps).
+
+:::moniker-end
+
 ## ASP.NET Core endpoint routing integration
 
 :::moniker range=">= aspnetcore-8.0"

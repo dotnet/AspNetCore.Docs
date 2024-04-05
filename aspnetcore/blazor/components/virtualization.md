@@ -46,6 +46,8 @@ If the collection contains thousands of flights, rendering the flights takes a l
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
 * Specify `allFlights` as a fixed item source to <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the currently visible flights are rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
+
+  If a non-generic collection supplies the items, for example a collection of <xref:System.Data.DataRow>, follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 * Specify a context for each flight with the `Context` parameter. In the following example, `flight` is used as the context, which provides access to each flight's members.
 
 ```razor
@@ -70,8 +72,7 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> com
 
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
-* Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
-* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
+* Only fetches the slice of records from an external API that correspond to the currently visible region, including overscan, when `ItemsProvider` is used instead of `Items` (see the [Item provider delegate](#item-provider-delegate) section).
 
 The item content for the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component can include:
 
