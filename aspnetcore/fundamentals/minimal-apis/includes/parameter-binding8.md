@@ -230,6 +230,17 @@ In the preceding code:
 
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
 * Binding from complex or collection types is ***not*** supported for minimal APIs that are compiled with the Request Delegate Generator.
+* The markup shows an additional hidden input with a name of `isCompleted` and a value of `false`. If the `isCompleted` checkbox is checked when the form is submitted, both values `true` and `false` are submitted as values. If the checkbox is unchecked, only the hidden input value `false` is submitted. The ASP.NET Core model-binding process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
+  
+An example of the form data submitted to the preceding endpoint looks as follows:
+
+```txt
+__RequestVerificationToken: CfDJ8Bveip67DklJm5vI2PF2VOUZ594RC8kcGWpTnVV17zCLZi1yrs-CSz426ZRRrQnEJ0gybB0AD7hTU-0EGJXDU-OaJaktgAtWLIaaEWMOWCkoxYYm-9U9eLV7INSUrQ6yBHqdMEE_aJpD4AI72gYiCqc
+name: Walk the dog
+dueDate: 2024-04-06
+isCompleted: true
+isCompleted: false
+```
 
 <a name="bindar"></a>
 
