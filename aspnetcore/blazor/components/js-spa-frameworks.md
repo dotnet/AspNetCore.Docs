@@ -357,7 +357,7 @@ For a complete example of how to create custom elements with Blazor, see the [`C
 
 ### Pass parameters
 
-Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
+Pass parameters to your Razor component either as HTML attributes or as JavaScript properties on the DOM element.
 
 The following `Counter` component uses an `IncrementAmount` parameter to set the increment amount of the **:::no-loc text="Click me":::** button.
 
