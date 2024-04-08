@@ -61,7 +61,7 @@ Other configuration providers registered by the app can also provide configurati
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
 > [!WARNING]
-> Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
+> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
 
 ## App settings configuration
 
@@ -246,7 +246,7 @@ builder.Services.AddOidcAuthentication(options =>
 ```
 
 > [!WARNING]
-> Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
+> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
 
 ## Logging configuration
 
