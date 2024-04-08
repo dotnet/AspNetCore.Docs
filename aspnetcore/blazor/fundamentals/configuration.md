@@ -225,7 +225,7 @@ Obtain a section of the configuration in C# code with <xref:Microsoft.Extensions
 
 ## Authentication configuration
 
-Provide authentication configuration in an app settings file.
+Provide ***public*** authentication configuration in an app settings file.
 
 `wwwroot/appsettings.json`:
 
@@ -244,6 +244,9 @@ Load the configuration for an Identity provider with <xref:Microsoft.Extensions.
 builder.Services.AddOidcAuthentication(options =>
     builder.Configuration.Bind("Local", options.ProviderOptions));
 ```
+
+> [!WARNING]
+> Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
 
 ## Logging configuration
 
