@@ -61,7 +61,7 @@ Other configuration providers registered by the app can also provide configurati
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
 > [!WARNING]
-> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
+> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in any web root file.**
 
 ## App settings configuration
 
@@ -112,7 +112,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 Client security restrictions prevent direct access to files via user code, including settings files for app configuration. To read configuration files in addition to `appsettings.json`/`appsettings.{ENVIRONMENT}.json` from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient>.
 
 > [!WARNING]
-> Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
+> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in any web root file.**
 
 The following example reads a configuration file (`cars.json`) into the app's configuration.
 
@@ -246,7 +246,7 @@ builder.Services.AddOidcAuthentication(options =>
 ```
 
 > [!WARNING]
-> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
+> Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in any web root file.**
 
 ## Logging configuration
 
