@@ -830,6 +830,21 @@ Data binding in components is accomplished with the `@bind` attribute. For more 
 
 Use the `@bind:culture` attribute with the [`@bind`](#bind) attribute to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. For more information, see <xref:blazor/globalization-localization#globalization>.
 
+:::moniker range=">= aspnetcore-8.0"
+
+### `@formname`
+
+*This scenario only applies to Razor components (`.razor`).*
+
+`@formname` assigns a form name to a Razor component's plain HTML form or a form based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm> ([`Editform` documentation](xref:blazor/forms/binding#editformeditcontext-model)). The value of `@formname` should be unique, which prevents form collisions in the following situations:
+
+* A form is placed in a component with multiple forms.
+* A form is sourced from an external class library, commonly a NuGet package, for a component with multiple forms, and the app author doesn't control the source code of the library to set a different external form name than a name used by another form in the component.
+
+For more information and examples, see <xref:blazor/forms/index>.
+
+:::moniker-end
+
 ### `@on{EVENT}`
 
 *This scenario only applies to Razor components (`.razor`).*
