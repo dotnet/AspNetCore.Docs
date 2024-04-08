@@ -3,7 +3,7 @@ title: Response caching in ASP.NET Core
 author: tdykstra
 description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 1/11/2022
 uid: performance/caching/response
 ---

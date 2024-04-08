@@ -3,7 +3,7 @@ title: Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment
 author: tdykstra
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 07/28/2020
 uid: host-and-deploy/visual-studio-publish-profiles

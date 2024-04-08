@@ -3,7 +3,7 @@ title: Share authentication cookies among ASP.NET apps
 author: rick-anderson
 description: Learn how to share authentication cookies among ASP.NET 4.x and ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 6/6/2022
 uid: security/cookie-sharing

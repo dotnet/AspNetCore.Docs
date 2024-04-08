@@ -2,7 +2,7 @@
 title: Troubleshoot and debug ASP.NET Core projects
 author: tdykstra
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: test/troubleshoot

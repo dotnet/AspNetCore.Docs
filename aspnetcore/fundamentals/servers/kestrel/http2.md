@@ -3,7 +3,7 @@ title: Use HTTP/2 with the ASP.NET Core Kestrel web server
 author: tdykstra
 description: Learn about using HTTP/2 with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc, linux-related-content
 ms.date: 08/15/2022
 uid: fundamentals/servers/kestrel/http2
