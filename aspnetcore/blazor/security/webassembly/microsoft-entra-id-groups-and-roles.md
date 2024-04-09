@@ -70,8 +70,8 @@ When testing with the Graph SDK locally, we recommend using a new in-private/inc
 
 To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role assignment, and group membership data:
 
-* A **CLIENT** app is configured with the `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal.
-* A **SERVER** app is configured with the `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal.
+* A **CLIENT** app is configured with the delegated `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal.
+* A **SERVER** app is configured with the application `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal.
 
 :::moniker range=">= aspnetcore-8.0"
 
