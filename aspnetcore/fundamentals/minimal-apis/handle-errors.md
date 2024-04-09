@@ -9,7 +9,6 @@ uid: fundamentals/minimal-apis/handle-errors
 ---
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-[!INCLUDE[](~/includes/not-current-version.md)]
 
 # How to handle errors in Minimal API apps
 
