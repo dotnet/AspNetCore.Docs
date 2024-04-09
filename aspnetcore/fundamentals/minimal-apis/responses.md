@@ -152,6 +152,14 @@ app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
+#### Internal Server Error
+
+```csharp
+app.MapGet("/500", () => Results.InternalServerError("Something went wrong!"));
+```
+
+The preceding example returns a 500 status code.
+
 #### Text
 
 ```csharp
