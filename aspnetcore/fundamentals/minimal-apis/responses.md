@@ -10,6 +10,9 @@ uid: fundamentals/minimal-apis/responses
 
 # How to create responses in Minimal API apps
 
+[!INCLUDE[](~/includes/not-current-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Minimal endpoints support the following types of return values:
 
 1. `string` - This includes `Task<string>` and `ValueTask<string>`.

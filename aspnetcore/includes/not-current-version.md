@@ -6,3 +6,10 @@
 > For the current release, see the [.NET 8 version of this article](?view=aspnetcore-8.0&preserve-view=true).
 
 :::moniker-end
+
+<!--
+Include this file at the top of articles that have a preview version available.
+When the preview is released, update the moniker range in this file.
+The include can remain in the article. Markdown to include this file:
+[!INCLUDE[](~/includes/not-current-version.md)]
+-->
