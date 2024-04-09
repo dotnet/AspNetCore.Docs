@@ -85,7 +85,7 @@ The preceding scopes are required in addition to the scopes required in ME-ID de
 
 :::moniker-end
 
-For more information, see the [Microsoft Graph permissions reference](/graph/permissions-reference).
+For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
 > [!NOTE]
 > The words "permission" and "scope" are used interchangeably in the Azure portal and in various Microsoft and external documentation sets. This article uses the word "scope" throughout for the permissions assigned to an app in the Azure portal.
