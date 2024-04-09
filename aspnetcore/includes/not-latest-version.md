@@ -5,11 +5,19 @@
 
 :::moniker-end
 
+:::moniker range="> aspnetcore-8.0"
+
+> [!IMPORTANT]
+> This information relates to a pre-release product that may be substantially modified before it's commercially released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
+>
+> For the current release, see the [.NET 8 version of this article](?view=aspnetcore-8.0&preserve-view=true).
+
+:::moniker-end
+
 <!--
-Include this file at the top of articles that have at least one version earlier
-than the current one available. When the next version is released, change the moniker
-range in this file to earlier than the new current version, and add this include file
-to articles that didn't have an earlier version available before the new release but
-do now. Markdown to include this file:
+Include this file at the top of articles. When a new version is released,
+it might be necessary to temporarily comment out the  current version
+moniker range section until the new moniker is created.
+Markdown to include this file:
 [!INCLUDE[](~/includes/not-latest-version.md)]
 -->
