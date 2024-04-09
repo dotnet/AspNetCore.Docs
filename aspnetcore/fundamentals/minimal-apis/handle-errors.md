@@ -8,9 +8,9 @@ ms.date: 04/09/2024
 uid: fundamentals/minimal-apis/handle-errors
 ---
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 # How to handle errors in Minimal API apps
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 With contributions by [David Acker](https://github.com/david-acker)
 
