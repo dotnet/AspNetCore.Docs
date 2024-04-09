@@ -2,7 +2,7 @@
 title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
 author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/02/2024
 uid: security/cors

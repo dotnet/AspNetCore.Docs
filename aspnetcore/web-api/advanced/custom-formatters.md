@@ -3,7 +3,7 @@ title: Custom formatters in ASP.NET Core Web API
 author: tdykstra
 description: Learn how to create and use custom formatters for web APIs in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 01/26/2022
 uid: web-api/advanced/custom-formatters
 ---

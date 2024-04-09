@@ -3,7 +3,7 @@ title: Overview of caching in ASP.NET Core
 author: tdykstra
 description: Overview of caching in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 11/07/2022
 uid: performance/caching/overview
 ---

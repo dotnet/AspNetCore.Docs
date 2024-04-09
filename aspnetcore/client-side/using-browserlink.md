@@ -3,7 +3,7 @@ title: Browser Link in ASP.NET Core
 author: ncarandini
 description: Explains how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
 monikerRange: '>= aspnetcore-1.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 07/11/2022
 uid: client-side/using-browserlink
 ---

@@ -3,7 +3,7 @@ title: ASP.NET Core fundamentals overview
 author: tdykstra
 description: Learn the fundamental concepts for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/09/2022
 uid: fundamentals/index

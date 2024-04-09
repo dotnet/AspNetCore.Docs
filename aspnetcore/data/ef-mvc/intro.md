@@ -2,7 +2,7 @@
 title: "Tutorial: Get started with EF Core in an ASP.NET MVC web app"
 description: "This page is the first in a series of tutorials that explain how to build the Contoso University sample EF/MVC app"
 author: tdykstra
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 11/06/2020
 ms.topic: tutorial

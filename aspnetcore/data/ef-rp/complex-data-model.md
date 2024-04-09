@@ -2,7 +2,7 @@
 title: Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 author: tdykstra
 description: Part 5 of Razor Pages and Entity Framework tutorial series.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 3/3/2021
 uid: data/ef-rp/complex-data-model

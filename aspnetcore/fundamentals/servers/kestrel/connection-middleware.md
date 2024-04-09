@@ -3,7 +3,7 @@ title: Use connection middleware with the ASP.NET Core Kestrel web server
 author: tdykstra
 description: Learn about using connection middleware with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 06/21/2023
 uid: fundamentals/servers/kestrel/connection-middleware
