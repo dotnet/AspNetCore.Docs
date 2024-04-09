@@ -78,7 +78,7 @@ If you choose not to call the base class method, you must call your own [compone
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-If you want to rely on the initialization and rendering API of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base method:
+If you want to rely on the initialization and rendering API of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base class method:
 
 ```csharp
 base.SetParametersAsync(ParameterView.Empty);
