@@ -12,7 +12,7 @@ uid: fundamentals/minimal-apis/responses
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 Minimal endpoints support the following types of return values:
 
