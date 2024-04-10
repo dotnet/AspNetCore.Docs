@@ -92,7 +92,7 @@ You can test the API method using a variety of tools. For this tutorial the foll
 
 ### Install curl and jq on macOS
 
-On macOS, curl is preinstalled and can be used directly in the Terminal application. jq can be installed from Homebrew from the terminal:
+On macOS, curl is preinstalled and used directly in the Terminal application. jq can be installed from Homebrew from the terminal:
 
 Install Homebrew, if not already installed, with the following command:
 
