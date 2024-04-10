@@ -70,8 +70,8 @@ When testing with the Graph SDK locally, we recommend using a new in-private/inc
 
 To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role assignment, and group membership data:
 
-* A **CLIENT** app is configured with the `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal.
-* A **SERVER** app is configured with the `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal.
+* A **CLIENT** app is configured with the ***delegated*** `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal because access to read user data is determined by the scopes granted (delegated) to individual users.
+* A **SERVER** app is configured with the ***application*** `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal because access is for the app to obtain information about group membership, not based on individual user authorization to access data about group members.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -85,7 +85,7 @@ The preceding scopes are required in addition to the scopes required in ME-ID de
 
 :::moniker-end
 
-For more information, see the [Microsoft Graph permissions reference](/graph/permissions-reference).
+For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
 > [!NOTE]
 > The words "permission" and "scope" are used interchangeably in the Azure portal and in various Microsoft and external documentation sets. This article uses the word "scope" throughout for the permissions assigned to an app in the Azure portal.

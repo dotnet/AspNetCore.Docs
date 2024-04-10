@@ -1277,6 +1277,11 @@
             "source_path": "aspnetcore/blazor/security/server/blazor-web-app-with-oidc.md",
             "redirect_url": "/aspnet/core/blazor/security/blazor-web-app-with-oidc",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/http-caching-issues.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly-caching/http-caching-issues",
+            "redirect_document_id": false
         }
     ]
 }
