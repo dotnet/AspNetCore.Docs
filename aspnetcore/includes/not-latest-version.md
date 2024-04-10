@@ -5,7 +5,6 @@
 
 :::moniker-end
 
-<!--
 :::moniker range="> aspnetcore-8.0"
 
 > [!IMPORTANT]
@@ -14,4 +13,11 @@
 > For the current release, see the [.NET 8 version of this article](?view=aspnetcore-8.0&preserve-view=true).
 
 :::moniker-end
+
+<!--
+Include this file at the top of articles. When a new version is released,
+it might be necessary to temporarily comment out the  current version
+moniker range section until the new moniker is created.
+Markdown to include this file:
+[!INCLUDE[](~/includes/not-latest-version.md)]
 -->

@@ -2,7 +2,7 @@
 title: ASP.NET Core MVC with EF Core - tutorial series
 author: tdykstra
 description: List of topics in ASP.NET Core MVC with EF Core
-ms.author: riande
+ms.author: tdykstra
 ms.date: 03/27/2017
 uid: data/ef-mvc/index
 ---

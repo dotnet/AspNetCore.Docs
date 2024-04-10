@@ -2,7 +2,7 @@
 title: ASP.NET Core Web SDK
 author: tdykstra
 description: Overview of Microsoft.NET.Sdk.Web.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 01/25/2023
 uid: razor-pages/web-sdk
 ---

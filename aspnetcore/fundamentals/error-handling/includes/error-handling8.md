@@ -1,18 +1,5 @@
----
-title: Handle errors in ASP.NET Core
-author: tdykstra
-description: Discover how to handle errors in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 04/03/2024
-uid: fundamentals/error-handling
----
-# Handle errors in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
@@ -35,11 +22,6 @@ The Developer Exception Page can include the following information about the exc
 * Query string parameters, if any
 * Cookies, if any
 * Headers
-* Endpoint metadata, if any
-
-The following image shows a sample developer exception page with **Routing** selected and endpoint metadata displayed:
-
-:::image type="content" source="~/fundamentals/error-handling/_static/endpoint-metadata.png" alt-text="Developer exception page with Routing selected and endpoint metadata displayed":::
 
 The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
 
@@ -363,6 +345,3 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:fundamentals/minimal-apis/handle-errors>.
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling8.md)]
-[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling3-7.md)]

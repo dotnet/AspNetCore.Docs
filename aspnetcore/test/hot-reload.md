@@ -3,7 +3,7 @@ title: .NET Hot Reload support for ASP.NET Core
 author: tdykstra
 description: Use .NET Hot Reload to apply code changes to a running app without restarting the app and without losing app state.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 11/10/2022
 uid: test/hot-reload

@@ -3,7 +3,7 @@ title: Host and deploy ASP.NET Core
 author: tdykstra
 description: Learn how to set up hosting environments and deploy ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/index
