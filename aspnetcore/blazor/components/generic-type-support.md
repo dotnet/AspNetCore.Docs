@@ -5,7 +5,7 @@ description: Learn about generic type support in ASP.NET Core Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 04/10/2024
 uid: blazor/components/generic-type-support
 ---
 # ASP.NET Core Razor component generic type support
@@ -13,6 +13,10 @@ uid: blazor/components/generic-type-support
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes generic type support in Razor components.
+
+If you're new to generic types, see [Generic classes and methods (C# Guide)](/dotnet/csharp/fundamentals/types/generics) for general guidance on the use of generics before reading this article.
+
+The example code in this article is only available for the latest .NET release in the [Blazor sample apps](xref:blazor/fundamentals/index#sample-apps).
 
 ## Generic type parameter support
 
@@ -28,84 +32,20 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
-In the following example, the `ListGenericTypeItems1` component is generically typed as `TExample`.
+In the following example, the `ListItems1` component is generically typed as `TExample`, which represents the type of the `ExampleList` collection.
 
-`ListGenericTypeItems1.razor`:
+`ListItems1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems1.razor":::
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListGenericTypeItems1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/generic-type-support/ListGenericTypeItems1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/generic-type-support/ListGenericTypeItems1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/generic-type-support/ListGenericTypeItems1.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/generic-type-support/ListGenericTypeItems1.razor":::
-
-:::moniker-end
-
-The following component renders two `ListGenericTypeItems1` components:
+The following component renders two `ListItems1` components:
 
 * String or integer data is assigned to the `ExampleList` parameter of each component.
 * Type `string` or `int` that matches the type of the assigned data is set for the type parameter (`TExample`) of each component.
 
-:::moniker range=">= aspnetcore-8.0"
+`Generics1.razor`:
 
-`GenericType1.razor`:
-
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/GenericType1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-`GenericTypeExample1.razor`:
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-`GenericTypeExample1.razor`:
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-`GenericTypeExample1.razor`:
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-`GenericTypeExample1.razor`:
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/generic-type-support/GenericTypeExample1.razor":::
-
-:::moniker-end
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics1.razor":::
 
 For more information, see <xref:mvc/views/razor#typeparam>. For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
 
@@ -125,205 +65,51 @@ When receiving a cascaded type parameter, components obtain the parameter value 
 
 Matching is only performed by name. Therefore, we recommend avoiding a cascaded generic type parameter with a generic name, for example `T` or `TItem`. If a developer opts into cascading a type parameter, they're implicitly promising that its name is unique enough not to clash with other cascaded type parameters from unrelated components.
 
-Generic types can be cascaded to child components in either of the following approaches with ancestor (parent) components, which are demonstrated in the following two sub-sections:
+Generic types can be cascaded to child components with either of the following approaches for ancestor (parent) components, which are demonstrated in the following two sub-sections:
 
 * Explicitly set the cascaded generic type.
 * Infer the cascaded generic type.
 
-The following subsections provide examples of the preceding approaches using the following two `ListDisplay` components. The components receive and render list data and are generically typed as `TExample`. These components are for demonstration purposes and only differ in the color of text that the list is rendered. If you wish to experiment with the components in the following sub-sections in a local test app, add the following two components to the app first.
+The following subsections provide examples of the preceding approaches using the following `ListDisplay1` component. The component receives and renders list data generically typed as `TExample`. To make each instance of `ListDisplay1` stand out, an additional component parameter controls the color of the list.
 
 `ListDisplay1.razor`:
 
-```razor
-@typeparam TExample
-
-@if (ExampleList is not null)
-{
-    <ul style="color:blue">
-        @foreach (var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-}
-
-@code {
-    [Parameter]
-    public IEnumerable<TExample>? ExampleList { get; set; }
-}
-```
-
-`ListDisplay2.razor`:
-
-```razor
-@typeparam TExample
-
-@if (ExampleList is not null)
-{
-    <ul style="color:red">
-        @foreach (var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-}
-
-@code {
-    [Parameter]
-    public IEnumerable<TExample>? ExampleList { get; set; }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListDisplay1.razor":::
 
 ### Explicit generic types based on ancestor components
 
 The demonstration in this section cascades a type explicitly for `TExample`.
 
 > [!NOTE]
-> This section uses the two `ListDisplay` components in the [Cascaded generic type support](#cascaded-generic-type-support) section.
+> This section uses the preceding `ListDisplay1` component in the [Cascaded generic type support](#cascaded-generic-type-support) section.
 
-The following `ListGenericTypeItems2` component receives data and cascades a generic type parameter named `TExample` to its descendent components. In the upcoming parent component, the `ListGenericTypeItems2` component is used to display list data with the preceding `ListDisplay` component.
+The following `ListItems2` component receives data and cascades a generic type parameter named `TExample` to its descendent components. In the upcoming parent component, the `ListItems2` component is used to display list data with the preceding `ListDisplay1` component.
 
-`ListGenericTypeItems2.razor`:
+`ListItems2.razor`:
 
-```razor
-@attribute [CascadingTypeParameter(nameof(TExample))]
-@typeparam TExample
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems2.razor":::
 
-<h2>List Generic Type Items 2</h2>
+The following parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListItems2` components specifying the `ListItems2` types (`TExample`), which are cascaded to child components. `ListDisplay1` components are rendered with the list item data shown in the example. String data is used with the first `ListItems2` component, and integer data is used with the second `ListItems2` component.
 
-@ChildContent
+`Generics2.razor`:
 
-@code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-}
-```
-
-The following parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListGenericTypeItems2` components specifying the `ListGenericTypeItems2` types (`TExample`), which are cascaded to child components. `ListDisplay` components are rendered with the list item data shown in the example. String data is used with the first `ListGenericTypeItems2` component, and integer data is used with the second `ListGenericTypeItems2` component.
-
-`GenericType2.razor`:
-
-```razor
-@page "/generic-type-2"
-
-<h1>Generic Type Example 2</h1>
-
-<ListGenericTypeItems2 TExample="string">
-    <ListDisplay1 ExampleList="@(new List<string> { "Item 1", "Item 2" })" />
-    <ListDisplay2 ExampleList="@(new List<string> { "Item 3", "Item 4" })" />
-</ListGenericTypeItems2>
-
-<ListGenericTypeItems2 TExample="int">
-    <ListDisplay1 ExampleList="@(new List<int> { 1, 2, 3 })" />
-    <ListDisplay2 ExampleList="@(new List<int> { 4, 5, 6 })" />
-</ListGenericTypeItems2>
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics2.razor":::
 
 Specifying the type explicitly also allows the use of [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters) to provide data to child components, as the following demonstration shows.
 
-`ListDisplay3.razor`:
+`ListDisplay2.razor`:
 
-```razor
-@typeparam TExample
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListDisplay2.razor":::
 
-@if (ExampleList is not null)
-{
-    <ul style="color:blue">
-        @foreach (var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-}
+`ListItems3.razor`:
 
-@code {
-    [CascadingParameter]
-    protected IEnumerable<TExample>? ExampleList { get; set; }
-}
-```
-
-`ListDisplay4.razor`:
-
-```razor
-@typeparam TExample
-
-@if (ExampleList is not null)
-{
-    <ul style="color:red">
-        @foreach (var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-}
-
-@code {
-    [CascadingParameter]
-    protected IEnumerable<TExample>? ExampleList { get; set; }
-}
-```
-
-`ListGenericTypeItems3.razor`:
-
-```razor
-@attribute [CascadingTypeParameter(nameof(TExample))]
-@typeparam TExample
-
-<h2>List Generic Type Items 3</h2>
-
-@ChildContent
-
-@if (ExampleList is not null)
-{
-    <ul style="color:green">
-        @foreach(var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-
-    <p>
-        Type of <code>TExample</code>: @typeof(TExample)
-    </p>
-}
-
-@code {
-    [CascadingParameter]
-    protected IEnumerable<TExample>? ExampleList { get; set; }
-
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems3.razor":::
 
 When cascading the data in the following example, the type must be provided to the component.
 
-`GenericType3.razor`:
+`Generics3.razor`:
 
-```razor
-@page "/generic-type-3"
-
-<h1>Generic Type Example 3</h1>
-
-<CascadingValue Value="stringData">
-    <ListGenericTypeItems3 TExample="string">
-        <ListDisplay3 />
-        <ListDisplay4 />
-    </ListGenericTypeItems3>
-</CascadingValue>
-
-<CascadingValue Value="integerData">
-    <ListGenericTypeItems3 TExample="int">
-        <ListDisplay3 />
-        <ListDisplay4 />
-    </ListGenericTypeItems3>
-</CascadingValue>
-
-@code {
-    private List<string> stringData = new() { "Item 1", "Item 2" };
-    private List<int> integerData = new() { 1, 2, 3 };
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics3.razor":::
 
 When multiple generic types are cascaded, values for all generic types in the set must be passed. In the following example, `TItem`, `TValue`, and `TEdit` are `GridColumn` generic types, but the parent component that places `GridColumn` doesn't specify the `TItem` type:
 
@@ -342,84 +128,22 @@ The preceding example generates a compile-time error that the `GridColumn` compo
 The demonstration in this section cascades a type inferred for `TExample`.
 
 > [!NOTE]
-> This section uses the two `ListDisplay` components in the [Cascaded generic type support](#cascaded-generic-type-support) section.
+> This section uses the `ListDisplay` component in the [Cascaded generic type support](#cascaded-generic-type-support) section.
 
-`ListGenericTypeItems4.razor`:
+`ListItems4.razor`:
 
-```razor
-@attribute [CascadingTypeParameter(nameof(TExample))]
-@typeparam TExample
-
-<h2>List Generic Type Items 4</h2>
-
-@ChildContent
-
-@if (ExampleList is not null)
-{
-    <ul style="color:green">
-        @foreach(var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-
-    <p>
-        Type of <code>TExample</code>: @typeof(TExample)
-    </p>
-}
-
-@code {
-    [Parameter]
-    public IEnumerable<TExample>? ExampleList { get; set; }
-
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems4.razor":::
 
 The following component with inferred cascaded types provides different data for display.
 
-`GenericType4.razor`:
+`Generics4.razor`:
 
-```razor
-@page "/generic-type-4"
-
-<h1>Generic Type Example 4</h1>
-
-<ListGenericTypeItems4 ExampleList="@(new List<string> { "Item 5", "Item 6" })">
-    <ListDisplay1 ExampleList="@(new List<string> { "Item 1", "Item 2" })" />
-    <ListDisplay2 ExampleList="@(new List<string> { "Item 3", "Item 4" })" />
-</ListGenericTypeItems4>
-
-<ListGenericTypeItems4 ExampleList="@(new List<int> { 7, 8, 9 })">
-    <ListDisplay1 ExampleList="@(new List<int> { 1, 2, 3 })" />
-    <ListDisplay2 ExampleList="@(new List<int> { 4, 5, 6 })" />
-</ListGenericTypeItems4>
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics4.razor":::
 
 The following component with inferred cascaded types provides the same data for display. The following example directly assigns the data to the components.
 
-`GenericType5.razor`:
+`Generics5.razor`:
 
-```razor
-@page "/generic-type-5"
-
-<h1>Generic Type Example 5</h1>
-
-<ListGenericTypeItems4 ExampleList="stringData">
-    <ListDisplay1 ExampleList="stringData" />
-    <ListDisplay2 ExampleList="stringData" />
-</ListGenericTypeItems4>
-
-<ListGenericTypeItems4 ExampleList="integerData">
-    <ListDisplay1 ExampleList="integerData" />
-    <ListDisplay2 ExampleList="integerData" />
-</ListGenericTypeItems4>
-
-@code {
-    private List<string> stringData = new() { "Item 1", "Item 2" };
-    private List<int> integerData = new() { 1, 2, 3 };
-}
-```
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics5.razor":::
 
 :::moniker-end
