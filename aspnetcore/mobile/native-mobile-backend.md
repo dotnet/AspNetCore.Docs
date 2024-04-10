@@ -94,17 +94,17 @@ You can test the API method using a variety of tools.  For this tutorial the fol
 
 On macOS, curl is preinstalled and can be used directly in the Terminal application. jq can be installed from Homebrew from the terminal:
 
-* Install Homebrew, if not already installed:
+Install Homebrew, if not already installed:
 
-  ```cli
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  ```
+```Bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-* Install jq with the following command:
+Install jq with the following command:
 
-  ```cli
-  brew install jq
-  ```
+```Bash
+brew install jq
+```
 
 For more details on Homebrew and jq installation, see [Homebrew](https://brew.sh) and [jq](https://jqlang.github.io/jq/download/.)
 
@@ -116,7 +116,7 @@ Once Git Bash is installed, right click on the Git Bash application and select *
 
 In the Git Bash window, run the following command to install jq:
 
-```cli
+```Bash
 curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
 ```
 
