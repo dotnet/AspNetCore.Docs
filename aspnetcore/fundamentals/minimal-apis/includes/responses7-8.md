@@ -122,7 +122,7 @@ app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId)
 
 ### Built-in results
 
-[!INCLUDE [results-helpers](includes/results-helpers.md)]
+[!INCLUDE [results-helpers](results-helpers.md)]
 
 The following sections demonstrate the usage of the common result helpers.
 
@@ -152,19 +152,19 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 #### Stream
 
-[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
 [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
 
 The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
-[!code-csharp[](resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
 The following example streams a video from an Azure Blob:
 
-[!code-csharp[](resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
 #### Redirect
 
@@ -201,19 +201,19 @@ For more information, see [Filters in Minimal API apps](xref:fundamentals/minima
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
-[!code-csharp[](7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
 
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
-[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
 Also, a custom `IResult` type can provide its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation to the preceding `HtmlResult` type that describes the response produced by the endpoint.
 
-[!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
 
 The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that defines the produced response content type `text/html` and the status code `200 OK`.
 
-[!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
 
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
