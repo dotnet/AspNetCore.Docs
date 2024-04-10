@@ -110,20 +110,15 @@ For more details on Homebrew and jq installation, see [Homebrew](https://brew.sh
 
 ### Install curl and jq on Windows
 
-Git Bash provides a Unix-style environment on Windows, includes curl and is open-source. Follow the install steps for [Git for Windows from their official site](https://gitforwindows.org). Git for Windows includes Git Bash, which comes with curl preinstalled.
+Git Bash provides a Unix-style environment on Windows, includes curl and is open-source. Follow the install steps for [Git for Windows from the official site](https://gitforwindows.org). Git for Windows includes Git Bash, which comes with curl preinstalled.
 
-Once Git Bash is installed, right click on the Git Bash application and select "Run as administrator".
+Once Git Bash is installed, right click on the Git Bash application and select **Run as administrator**.
 
 In the Git Bash window, run the following command to install jq:
 
 ```cli
 curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
 ```
-
-
-Download the jq binary for Windows from the [jq official website](https://jqlang.github.io/jq/download).
-
-Rename the resulting `.exe` file to `jq.exe` and move `jq.exe` to a directory that’s on your system’s PATH. If you’re not sure what directories are on your PATH, you can check by running the command `echo $PATH` in Git Bash.
 
 For more details on Git Bash and jq installation, see [Git fro Windows](https://gitforwindows.org) and [jq](https://jqlang.github.io/jq/download.)
 
