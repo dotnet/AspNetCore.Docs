@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core
 author: tdykstra
 description: A short tutorial using the .NET CLI to create and run a basic Hello World app using ASP.NET Core.
 monikerRange: ">= aspnetcore-3.1"
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/07/2022
 uid: getting-started

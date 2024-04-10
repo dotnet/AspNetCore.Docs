@@ -3,7 +3,7 @@ title: Background tasks with hosted services in ASP.NET Core
 author: tdykstra
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 5/17/2023
 uid: fundamentals/host/hosted-services

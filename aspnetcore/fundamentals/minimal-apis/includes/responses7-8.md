@@ -1,18 +1,10 @@
 ---
-title: Create responses in Minimal API applications
-author: brunolins16
-description: Learn how to create responses for minimal APIs in ASP.NET Core.
-ms.author: brolivei
-monikerRange: '>= aspnetcore-7.0'
+author: tdykstra
+ms.author: tdykstra
 ms.date: 04/10/2024
-uid: fundamentals/minimal-apis/responses
 ---
 
-# How to create responses in Minimal API apps
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 <= aspnetcore-8.0"
 
 Minimal endpoints support the following types of return values:
 
@@ -136,7 +128,7 @@ app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId)
 
 ### Built-in results
 
-[!INCLUDE [results-helpers](includes/results-helpers.md)]
+[!INCLUDE [results-helpers](results-helpers.md)]
 
 The following sections demonstrate the usage of the common result helpers.
 
@@ -155,14 +147,6 @@ app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
-
-#### Internal Server Error
-
-```csharp
-app.MapGet("/500", () => Results.InternalServerError("Something went wrong!"));
-```
-
-The preceding example returns a 500 status code.
 
 #### Text
 
@@ -273,5 +257,3 @@ As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpRespon
 * <xref:fundamentals/minimal-apis/security>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/responses7-8.md)]

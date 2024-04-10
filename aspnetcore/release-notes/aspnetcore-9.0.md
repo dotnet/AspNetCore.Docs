@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/1/2024
+ms.date: 04/03/2024
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core 9.0
@@ -32,6 +32,8 @@ This section describes new features for SignalR.
 
 This section describes new features for minimal APIs.
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/status500.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
@@ -43,6 +45,8 @@ This section describes new features for authentication and authorization.
 ## Miscellaneous
 
 The following sections describe miscellaneous new features.
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/endpoint-metadata.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/debugger.md)]
 
