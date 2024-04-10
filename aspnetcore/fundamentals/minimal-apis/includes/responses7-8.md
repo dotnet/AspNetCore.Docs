@@ -1,4 +1,10 @@
-:::moniker range='>= aspnetcore-7.0 <= aspnetcore-8.0':::
+---
+author: tdykstra
+ms.author: tdykstra
+ms.date: 04/10/2024
+---
+
+:::moniker range=">= aspnetcore-7.0 <= aspnetcore-8.0"
 
 Minimal endpoints support the following types of return values:
 

@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 04/09/2024
+ms.date: 04/10/2024
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -12,7 +12,7 @@ uid: fundamentals/minimal-apis/responses
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="> aspnetcore-8.0"
 
 Minimal endpoints support the following types of return values:
 
