@@ -1529,8 +1529,6 @@ items:
             uid: security/authentication/jwt
           - name: Map, customize, and transform claims
             uid: security/authentication/claims
-          - name: Authentication samples
-            uid: security/authentication/samples
           - name: Community OSS authentication options
             uid: security/authentication/community
           - name: Identity management solutions

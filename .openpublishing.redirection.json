@@ -1,5 +1,10 @@
-{
+{ 
     "redirections": [
+        {
+            "source_path": "aspnetcore/security/authentication/samples.md",
+            "redirect_url": "/aspnet/core/security/authorization/introduction",
+            "redirect_document_id": false
+        },
         {
             "source_path": "aspnetcore/fundamentals/aot/request-delegate-generator/rgd_ids.md",
             "redirect_url": "/aspnet/core/fundamentals/aot/request-delegate-generator/rdg_ids",
