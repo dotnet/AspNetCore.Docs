@@ -85,7 +85,7 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 
 ## Test the API using curl
 
-You can test the API method using a variety of tools.  For this tutorial the following open source command-line tools are used:
+You can test the API method using a variety of tools. For this tutorial the following open source command-line tools are used:
 
 * [curl](https://curl.se/): Transfers data using various protocols including HTTP and HTTPS. curl is used in this tutorial to call the API using HTTP methods `GET`, `POST`, `PUT` and `DELETE`.
 * [jq](https://jqlang.github.io/jq/download/): A JSON processor used in this tutorial to format JSON data so that it's easy to read from the API response.
@@ -94,13 +94,15 @@ You can test the API method using a variety of tools.  For this tutorial the fol
 
 On macOS, curl is preinstalled and can be used directly in the Terminal application. jq can be installed from Homebrew from the terminal:
 
-Install Homebrew, if not already installed:
+Install Homebrew, if not already installed, with the following command:
 
 ```Bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Install jq with the following command:
+Follow the instructions presented by the installer.
+
+Install jq using Homebrew with the following command:
 
 ```Bash
 brew install jq
