@@ -11,7 +11,6 @@ uid: security/authentication/mfa
 # Multi-factor authentication in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-[!INCLUDE[](~/includes/not-current-version.md)]
 
 :::moniker range=">= aspnetcore-9.0"
 
