@@ -1,7 +1,7 @@
 { 
     "redirections": [ 
         {
-            "source_path": "aspnetcore/security/authentication/samples",
+            "source_path": "aspnetcore/security/authentication/samples.md",
             "redirect_url": "/aspnet/core/security/authorization/introduction",
             "redirect_document_id": false
         },
