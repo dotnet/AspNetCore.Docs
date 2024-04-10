@@ -108,7 +108,7 @@ Install jq using Homebrew with the following command:
 brew install jq
 ```
 
-For more details on Homebrew and jq installation, see [Homebrew](https://brew.sh) and [jq](https://jqlang.github.io/jq/download/.)
+For more details on Homebrew and jq installation, see [Homebrew](https://brew.sh) and [jq](https://jqlang.github.io/jq/download/).
 
 ### Install curl and jq on Windows
 
@@ -122,9 +122,9 @@ In the Git Bash window, run the following command to install jq:
 curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
 ```
 
-For more details on Git Bash and jq installation, see [Git fro Windows](https://gitforwindows.org) and [jq](https://jqlang.github.io/jq/download.)
+For more details on Git Bash and jq installation, see [Git for Windows](https://gitforwindows.org) and [jq](https://jqlang.github.io/jq/download.)
 
-### Reading Items with an HTTP `GET` request
+### Reading Items
 
 Requesting a list of items is done with a GET request to the `List` method. The `[HttpGet]` attribute on the `List` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
 
@@ -138,7 +138,7 @@ In a Git Bash terminal, call the following curl command:
 
 In the previous curl command is the following:
 
-* `-v`: This option provides verbose HTTP response details, which can be useful for testing and trouble shooting the API.
+* `-v`: This option provides verbose HTTP response details, which is useful for testing and trouble shooting the API.
 * `-X GET`: This option explicitly specifies the HTTP `GET` method to be used for the request, although curl can automatically assume the HTTP method intended.
 * `'http://localhost:5000/api/todoitems/'`: The URL to which the request is sent, in this case, an REST API endpoint.
 * `| jq`: This part of the command isn’t related to curl directly. The pipe `|` is a shell operator that takes the output from the command on its left and “pipes” it to the command on its right. `jq` is a command-line JSON processor. Although not required, this part of the command is taking the JSON output from the curl command and formatting it with `jq` to make the returned JSON data easier to read.
