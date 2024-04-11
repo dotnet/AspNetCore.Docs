@@ -136,12 +136,12 @@ In a Git Bash terminal, call the following curl command:
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
   ```
 
-In the previous curl command is the following:
+The previous curl command includes the following components:
 
-* `-v`: This option provides verbose HTTP response details, which is useful for testing and trouble shooting the API.
-* `-X GET`: This option explicitly specifies the HTTP `GET` method to be used for the request, although curl can automatically assume the HTTP method intended.
-* `'http://localhost:5000/api/todoitems/'`: The URL to which the request is sent, in this case, an REST API endpoint.
-* `| jq`: This part of the command isn’t related to curl directly. The pipe `|` is a shell operator that takes the output from the command on its left and “pipes” it to the command on its right. `jq` is a command-line JSON processor. Although not required, this part of the command is taking the JSON output from the curl command and formatting it with `jq` to make the returned JSON data easier to read.
+* `-v`: Activates verbose mode, providing detailed information about the HTTP response. This is particularly useful for API testing and troubleshooting.
+* `-X GET`: Specifies the use of the HTTP `GET` method for the request. While curl can often infer the intended HTTP method, this option makes it explicit.
+* `'http://localhost:5000/api/todoitems/'`: This is the request’s target URL. In this instance, it’s a REST API endpoint.
+* `| jq`: This segment isn’t related to curl directly. The pipe `|` is a shell operator that takes the output from the command on its left and “pipes” it to the command on its right. `jq` is a command-line JSON processor. While not required, `jq` makes the returned JSON data easier to read.
 
 
 The `List` method returns a 200 OK response code and all of the Todo items, serialized as JSON:
@@ -195,10 +195,10 @@ curl -v -X POST 'http://localhost:5000/api/todoitems/' \
 }' | jq
 ```
 
-In the previous curl command is the following:
+The previous curl command includes the following options:
 
-* `--header 'Content-Type: application/json'`: This option sets the `Content-Type` header to `application/json`, indicating that the request body contains JSON data.
-* `--data '{...}'`: This option sends the specified data in the request body.
+* `--header 'Content-Type: application/json'`: Sets the `Content-Type` header to `application/json`, indicating that the request body contains JSON data.
+* `--data '{...}'`: Sends the specified data in the request body.
 
 The method returns the newly created item in the response.
 
@@ -229,7 +229,7 @@ Deleting records is accomplished by making DELETE requests to the service, and p
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
 
-Test with curl by changing the* verb to DELETE and specifying the ID of the data object to delete at the end of the URL. Nothing is required in the Body of the request.
+Test with curl by changing the HTTP verb to DELETE and appending the ID of the data object to delete at the end of the URL. Nothing is required in the Body of the request.
 
 ```Bash
 curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
