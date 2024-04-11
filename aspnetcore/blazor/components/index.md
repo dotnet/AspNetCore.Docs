@@ -20,6 +20,11 @@ Blazor apps are built using *Razor components*, informally known as *Blazor comp
 
 Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
+Although "Razor components" shares some naming with other ASP.NET Core content-rendering technologies, Razor components must be distinguished from the following different features in ASP.NET Core:
+
+* [Razor views](xref:tutorials/first-mvc-app/adding-view), which are [Razor-based](xref:mvc/views/razor) markup pages for MVC apps.
+* [View components](xref:mvc/views/view-components), which are for rendering chunks of content rather than whole responses in Razor Pages and MVC apps.
+
 ## Component classes
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.

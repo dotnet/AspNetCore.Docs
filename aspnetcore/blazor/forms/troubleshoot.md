@@ -39,7 +39,7 @@ window.getText = (elem) => {
 };
 ```
 
-For information on where to place JS in a Blazor app, see <xref:blazor/js-interop/index#javaScript-location>.
+For information on where to place JS in a Blazor app, see <xref:blazor/js-interop/javascript-location>.
 
 Due to security considerations, zero-length streams aren't permitted for streaming JS Interop. Therefore, the following `StreamFormData` component traps a <xref:Microsoft.JSInterop.JSException> and returns an empty string if the text area is blank when the form is submitted.
 
