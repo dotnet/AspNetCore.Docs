@@ -60,7 +60,7 @@ Add the following shared `PageScript` component to the server app.
 }
 ```
 
-Add the following [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) for the `EnableAuthenticator` component, which is located at `Components/Account/Pages/Manage/EnableAuthenticator.razor`. The `onLoad` function creates the QR code with Sangmin's `qrcode.js` library using the QR code URI produced by the `GenerateQrCodeUri` method in the component's `@code` block.
+Add the following [collocated JS file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) for the `EnableAuthenticator` component, which is located at `Components/Account/Pages/Manage/EnableAuthenticator.razor`. The `onLoad` function creates the QR code with Sangmin's `qrcode.js` library using the QR code URI produced by the `GenerateQrCodeUri` method in the component's `@code` block.
 
 `Components/Account/Pages/Manage/EnableAuthenticator.razor.js`:
 

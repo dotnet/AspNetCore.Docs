@@ -101,7 +101,7 @@ The example in this section streams image source data using [JavaScript (JS) int
 ```
 
 > [!NOTE]
-> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
+> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
 
 The following `ShowImage2` component:
 
