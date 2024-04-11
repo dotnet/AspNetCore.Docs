@@ -130,7 +130,7 @@ Requesting a list of items is done with a GET request to the `List` method. The 
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
 
-In a Git Bash terminal, call the following curl command:
+In a Git Bash (Windows) or macOS terminal, call the following curl command:
 
   ```Bash
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
@@ -182,7 +182,7 @@ The sample uses an `enum` containing error codes that are passed to the mobile c
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetErrorCode":::
 
 
-In a Git Bash terminal, test adding new items by calling the following curl command using the `POST` verb and providing the new object in JSON format in the Body of the request.
+In the terminal, test adding new items by calling the following curl command using the `POST` verb and providing the new object in JSON format in the Body of the request.
 
 ```Bash
 curl -v -X POST 'http://localhost:5000/api/todoitems/' \
