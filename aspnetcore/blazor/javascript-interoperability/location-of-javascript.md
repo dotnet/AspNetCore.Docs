@@ -1,7 +1,7 @@
 ---
 title: JavaScript location in ASP.NET Core Blazor apps
 author: guardrex
-description: Learn how to interact with JavaScript in Blazor apps.
+description: Learn where to place and how to load JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
