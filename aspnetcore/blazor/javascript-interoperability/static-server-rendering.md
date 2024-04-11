@@ -39,7 +39,7 @@ The following `PageWithScript` component example is a component in the app that 
 Welcome to my page.
 ```
 
-In the Blazor Web App, add the following [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component):
+In the Blazor Web App, add the following [collocated JS file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component):
 
 * `onLoad` is called when the script is added to the page.
 * `onUpdate` is called when the script still exists on the page after an enhanced update.

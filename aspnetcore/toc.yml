@@ -556,6 +556,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/js-interop/index
+              - name: JavaScript location
+                uid: blazor/js-interop/javascript-location
               - name: Call JS from .NET
                 uid: blazor/js-interop/call-javascript-from-dotnet
               - name: Call .NET from JS
