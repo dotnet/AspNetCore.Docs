@@ -385,10 +385,19 @@ Adopt any of the following strategies to reduce an app's memory usage:
 * Trigger a garbage collection manually to perform a collection during downtime periods.
 * Configure the garbage collection in Workstation mode, which aggressively triggers garbage collection, instead of Server mode.
 
-###  Additional actions
+###  Additional actions and considerations
 
 * Capture a memory dump of the process when memory demands are high and identify the objects are taking the most memory and where are those objects are rooted (what holds a reference to them).
-* .NET in Server mode doesn't release the memory to the OS immediately unless it must do so. For more information on project file (`.csproj`) settings to control this behavior, see [Runtime configuration options for garbage collection](/dotnet/core/runtime-config/garbage-collector).
-* Server GC assumes that your app is the only one running on the system and can use all the system's resources. If the system has 50 GB, the garbage collector seeks to use the full 50 GB of available memory before it triggers a Gen 2 collection.
+* You can examine the statistics on how memory in your app is behaving using `dotnet-counters`. For more information see [Investigate performance counters (dotnet-counters)](/dotnet/core/diagnostics/dotnet-counters).
+* Even when a GC is triggered, .NET holds on to the memory instead of returning it to the OS immediately, as it's likely that it will reuse the memory the near future. This avoids committing and decommitting memory constantly, which is expensive. You'll see this reflected if you use `dotnet-counters` because you'll see the GCs happen and the amount of used memory go down to 0 (zero), but you won't see the working set counter decrease, which is the sign that .NET is holding on to the memory to reuse it. For more information on project file (`.csproj`) settings to control this behavior, see [Runtime configuration options for garbage collection](/dotnet/core/runtime-config/garbage-collector).
+* Server GC doesn't trigger garbage collections until it determines it's absolutely necessary to do so to avoid freezing your app and considers that your app is the only thing running on the machine, so it can use all the memory in the system. If the system has 50 GB, the garbage collector seeks to use the full 50 GB of available memory before it triggers a Gen 2 collection.
+* For information on disconnected circuit retention configuration, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
 
-For information on disconnected circuit retention configuration, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
+### Measuring memory
+
+* Publish the app in Release configuration.
+* Run a published version of the app.
+* Don't attach a debugger to the running app.
+* Does triggering a Gen 2 forced, compacting collection (`GC.Collect(2, GCCollectionMode.Aggressive | GCCollectionMode.Forced, blocking: true, compacting: true))` free the memory?
+* Consider if your app is allocating objects on the large object heap.
+* Are you testing the memory growth after the app is warmed up with requests and processing? Typically, there are caches that are populated when code executes for the first time that add a constant amount of memory to the footprint of the app.
