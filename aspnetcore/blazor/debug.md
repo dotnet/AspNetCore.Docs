@@ -341,6 +341,9 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 ---
 
+<!-- UPDATE 9.0 Remove the following versioning on the Debugger
+                support section at 9.0 GA -->
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## Debugger support
