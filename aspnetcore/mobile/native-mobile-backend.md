@@ -225,11 +225,11 @@ This method returns a `NoContent` (204) response when successful, for consistenc
 
 ### Deleting Items
 
-Deleting records is accomplished by making DELETE requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist recieve `NotFound` responses. Otherwise, a successful request returns a `NoContent` (204) response.
+Deleting records is accomplished by making `DELETE` requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist recieve `NotFound` responses. Otherwise, a successful request returns a `NoContent` (204) response.
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
 
-Test with curl by changing the HTTP verb to DELETE and appending the ID of the data object to delete at the end of the URL. Nothing is required in the Body of the request.
+Test with curl by changing the HTTP verb to `DELETE` and appending the ID of the data object to delete at the end of the URL. Nothing is required in the Body of the request.
 
 ```Bash
 curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
