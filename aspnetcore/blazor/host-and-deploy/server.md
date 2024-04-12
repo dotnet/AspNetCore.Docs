@@ -59,7 +59,7 @@ A console warning appears if Long Polling is utilized:
 Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
-* Take into consideration the increased latency for traffic across continents. To delay the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#delay-the-appearance-of-the-reconnection-ui>.
+* Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#control-when-the-reconnection-ui-appears>.
 * For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
 
 :::moniker-end
@@ -384,6 +384,10 @@ Adopt any of the following strategies to reduce an app's memory usage:
 * Reduce the time a circuit is allowed to be in the disconnected state.
 * Trigger a garbage collection manually to perform a collection during downtime periods.
 * Configure the garbage collection in Workstation mode, which aggressively triggers garbage collection, instead of Server mode.
+
+### Heap size for some mobile device browsers
+
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
 
 ###  Additional actions and considerations
 
