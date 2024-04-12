@@ -59,7 +59,7 @@ A console warning appears if Long Polling is utilized:
 Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
-* Take into consideration the increased latency for traffic across continents. To delay the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#delay-the-appearance-of-the-reconnection-ui>.
+* Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#control-when-the-reconnection-ui-appears>.
 * For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
 
 :::moniker-end
