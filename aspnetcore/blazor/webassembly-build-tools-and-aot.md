@@ -14,7 +14,7 @@ uid: blazor/tooling/webassembly
 
 This article describes the build tools for standalone Blazor WebAssembly apps and how to compile an app ahead of deployment with ahead-of-time (AOT) compilation.
 
-Although the article primarily focuses on standalone Blazor WebAssembly apps, the section on [decreasing the maximum heap size for some mobile device browsers](#decrease-maximum-heap-size-for-some-mobile-device-browsers) also applies to the client-side project (`.Client`) of a Blazor Web App.
+Although the article primarily focuses on standalone Blazor WebAssembly apps, the section on [heap size for some mobile device browsers](#heap-size-for-some-mobile-device-browsers) also applies to the client-side project (`.Client`) of a Blazor Web App.
 
 ## .NET WebAssembly build tools
 
