@@ -549,6 +549,7 @@ For more information on template options, see the following resources:
 
 :::moniker range=">= aspnetcore-6.0"
 
+* <xref:blazor/tooling/webassembly>
 * [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * <xref:test/hot-reload>
 * <xref:blazor/hosting-models>
