@@ -128,9 +128,9 @@ The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter 
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
+Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation>. 
 
-The same [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
+The same [.NET WebAssembly build tools](xref:blazor/tooling/webassembly) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/tooling/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
 
 WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
 
@@ -207,7 +207,7 @@ Blazor Hybrid apps include .NET MAUI, WPF, and Windows Forms framework apps.
 | [Web-based deployment](#web-based-deployment) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 
 &dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access server/network resources and access private and secure app code.  
-&Dagger;Blazor WebAssembly only reaches near-native performance with [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation).
+&Dagger;Blazor WebAssembly only reaches near-native performance with [ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation).
 
 :::moniker-end
 
@@ -310,7 +310,7 @@ Blazor Server apps have relatively small payload sizes with faster initial load 
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform. Consider using [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) to improve runtime performance when using Blazor WebAssembly.
+Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform. Consider using [ahead-of-time (AOT) compiled](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation) to improve runtime performance when using Blazor WebAssembly.
 
 :::moniker-end
 
@@ -318,7 +318,7 @@ Components rendered for the Blazor WebAssembly hosting model, including Progress
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
+Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
 
 :::moniker-end
 
