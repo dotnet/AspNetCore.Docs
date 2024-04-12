@@ -72,7 +72,17 @@ The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter cont
 
 The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
 
-If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties of the class.
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> isn't invoked with `base.SetParametersAsync();`, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties of the class.
+
+If you choose not to call the base class method, you must call your own [component initialization methods (`OnInitialized`/`OnInitializedAsync`)](#component-initialization-oninitializedasync). Otherwise, they won't be called because calling <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> is what invokes them. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> must also be called after initialization. Refer to the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) when structuring your code if you don't plan on calling <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType>.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+If you want to rely on the initialization and rendering API of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base class method:
+
+```csharp
+base.SetParametersAsync(ParameterView.Empty);
+```
 
 If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
