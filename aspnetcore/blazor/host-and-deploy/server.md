@@ -385,6 +385,10 @@ Adopt any of the following strategies to reduce an app's memory usage:
 * Trigger a garbage collection manually to perform a collection during downtime periods.
 * Configure the garbage collection in Workstation mode, which aggressively triggers garbage collection, instead of Server mode.
 
+### Heap size for some mobile device browsers
+
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
+
 ###  Additional actions and considerations
 
 * Capture a memory dump of the process when memory demands are high and identify the objects are taking the most memory and where are those objects are rooted (what holds a reference to them).

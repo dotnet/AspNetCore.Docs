@@ -38,103 +38,6 @@ The following deployment strategies are supported:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
-## Webcil packaging format for .NET assemblies
-
-[Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) is a web-friendly packaging format for .NET assemblies designed to enable using Blazor WebAssembly in restrictive network environments. Webcil files use a standard WebAssembly wrapper, where the assemblies are deployed as WebAssembly files that use the standard `.wasm` file extension.
-
-Webcil is the default packaging format when you publish a Blazor WebAssembly app. To disable the use of Webcil, set the following MS Build property in the app's project file:
-
-```xml
-<PropertyGroup>
-  <WasmEnableWebcil>false</WasmEnableWebcil>
-</PropertyGroup>
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-## Ahead-of-time (AOT) compilation
-
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter implemented in WebAssembly with partial [just-in-time (JIT)](/dotnet/standard/glossary#jit) runtime support, informally referred to as the *Jiterpreter*. Because the .NET IL code is interpreted, apps typically run slower than they would on a server-side .NET JIT runtime without any IL interpretation. AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU-intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter implemented in WebAssembly. Because the .NET code is interpreted, apps typically run slower than they would on a server-side .NET [just-in-time (JIT)](/dotnet/standard/glossary#jit) runtime. AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU-intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-For guidance on installing the .NET WebAssembly build tools, see <xref:blazor/tooling#net-webassembly-build-tools>.
-
-To enable WebAssembly AOT compilation, add the `<RunAOTCompilation>` property set to `true` to the Blazor WebAssembly app's project file:
-
-```xml
-<PropertyGroup>
-  <RunAOTCompilation>true</RunAOTCompilation>
-</PropertyGroup>
-```
-
-To compile the app to WebAssembly, publish the app. Publishing the `Release` configuration ensures the .NET Intermediate Language (IL) linking is also run to reduce the size of the published app:
-
-```dotnetcli
-dotnet publish -c Release
-```
-
-WebAssembly AOT compilation is only performed when the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Reducing the build time for AOT compilation is under development for future releases of ASP.NET Core.
-
-The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL:
-
-* Although the size difference depends on the app, most AOT-compiled apps are about twice the size of their IL-compiled versions. This means that using AOT compilation trades off load-time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
-
-* The larger size of an AOT-compiled app is due to two conditions:
-
-  * More code is required to represent high-level .NET IL instructions in native WebAssembly.
-  * AOT does ***not*** trim out managed DLLs when the app is published. Blazor requires the DLLs for [reflection metadata](/dotnet/csharp/advanced-topics/reflection-and-attributes/) and to support certain .NET runtime features. Requiring the DLLs on the client increases the download size but provides a more compatible .NET experience.
-
-> [!NOTE]
-> For [Mono](https://github.com/mono/mono)/WebAssembly MSBuild properties and targets, see [`WasmApp.Common.targets` (`dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.Common.targets). Official documentation for common MSBuild properties is planned per [Document blazor msbuild configuration options (`dotnet/docs` #27395)](https://github.com/dotnet/docs/issues/27395).
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Trim .NET IL after ahead-of-time (AOT) compilation
-
-The `WasmStripILAfterAOT` MSBuild option enables removing the .NET Intermediate Language (IL) for compiled methods after performing AOT compilation to WebAssembly, which reduces the size of the `_framework` folder.
-
-In the app's project file:
-
-```xml
-<PropertyGroup>
-  <RunAOTCompilation>true</RunAOTCompilation>
-  <WasmStripILAfterAOT>true</WasmStripILAfterAOT>
-</PropertyGroup>
-```
-
-This setting trims away the IL code for most compiled methods, including methods from libraries and methods in the app. Not all compiled methods can be trimmed, as some are still required by the .NET interpreter at runtime.
-
-To report a problem with the trimming option, [open an issue on the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/issues).
-
-Disable the trimming property if it prevents your app from running normally:
-
-```xml
-<WasmStripILAfterAOT>false</WasmStripILAfterAOT>
-```
-
-:::moniker-end
-
 ## Decrease maximum heap size for some mobile device browsers
 
 :::moniker range=">= aspnetcore-8.0"
@@ -155,18 +58,19 @@ When building a Blazor WebAssembly app that targets mobile device browsers, espe
 
 For more information on [Mono](https://github.com/mono/mono)/WebAssembly MSBuild properties and targets, see [`WasmApp.Common.targets` (`dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.Common.targets).
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
 
-## Runtime relinking
+## Webcil packaging format for .NET assemblies
 
-One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
+[Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) is a web-friendly packaging format for .NET assemblies designed to enable using Blazor WebAssembly in restrictive network environments. Webcil files use a standard WebAssembly wrapper, where the assemblies are deployed as WebAssembly files that use the standard `.wasm` file extension.
 
-Runtime relinking requires installation of the .NET WebAssembly build tools. For more information, see <xref:blazor/tooling#net-webassembly-build-tools>.
+Webcil is the default packaging format when you publish a Blazor WebAssembly app. To disable the use of Webcil, set the following MS Build property in the app's project file:
 
-With the .NET WebAssembly build tools installed, runtime relinking is performed automatically when an app is **published** in the `Release` configuration. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization#invariant-globalization>.
-
-> [!IMPORTANT]
-> Runtime relinking trims class instance JavaScript-invokable .NET methods unless they're protected. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
+```xml
+<PropertyGroup>
+  <WasmEnableWebcil>false</WasmEnableWebcil>
+</PropertyGroup>
+```
 
 :::moniker-end
 

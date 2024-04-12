@@ -520,7 +520,7 @@ New features in the `wasm-tools` workload for .NET 7 that help improve performan
 * [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) support (only with AOT, not supported by Apple Safari)
 * WebAssembly exception handling support
 
-For more information, see <xref:blazor/tooling?view=aspnetcore-7.0#net-webassembly-build-tools>.
+For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-7.0>.
 
 ## Blazor Hybrid
 

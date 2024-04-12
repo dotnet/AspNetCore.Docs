@@ -744,7 +744,7 @@ For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 ## Ahead-of-time (AOT) compilation
 
-Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
+Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation>.
 
 :::moniker-end
 
@@ -754,7 +754,7 @@ Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into 
 
 ### Runtime relinking
 
-For information on how runtime relinking minimizes an app's download size, see <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
+For information on how runtime relinking minimizes an app's download size, see <xref:blazor/tooling/webassembly#runtime-relinking>.
 
 :::moniker-end
 
