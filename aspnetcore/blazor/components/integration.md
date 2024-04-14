@@ -223,7 +223,7 @@ When the app is run, the `Counter` component is accessed at `/counter`.
 
 Follow the guidance in the [Add static server-side rendering (static SSR)](#add-static-server-side-rendering-static-ssr) section.
 
-Components using the Interactive Auto render mode initially use interactive SSR, but then switch to render on the client after the Blazor bundle has been downloaded and the Blazor runtime activates. Components using the Interactive WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Interactive Auto or Interactive WebAssembly render modes, component code downloaded to the client is ***not*** private. For more information, see <xref:blazor/components/render-modes>.
+Components using the Interactive Auto render mode initially use interactive SSR, the .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the Interactive WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Interactive Auto or Interactive WebAssembly render modes, component code downloaded to the client is ***not*** private. For more information, see <xref:blazor/components/render-modes>.
 
 After deciding which render mode to adopt:
 
