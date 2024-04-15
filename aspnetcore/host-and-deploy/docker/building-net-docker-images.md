@@ -34,6 +34,8 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Prerequisites
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-9.0"
 
 * [.NET SDK 8.0](https://dotnet.microsoft.com/download)
@@ -50,7 +52,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 * [.NET SDK 8.0](https://dotnet.microsoft.com/download)
 * Docker client 18.03 or later
@@ -68,6 +70,8 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 * [Git](https://git-scm.com/download)
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Download the sample app
 
@@ -211,5 +215,6 @@ The Git repository that contains the sample app also includes documentation. For
 
 :::moniker-end
 
+[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images9.md)]
 [!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images7.md)]
 [!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images5.md)]
