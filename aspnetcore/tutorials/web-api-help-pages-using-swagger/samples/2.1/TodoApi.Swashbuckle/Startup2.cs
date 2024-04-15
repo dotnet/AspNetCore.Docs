@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Xml;
 using Microsoft.OpenApi.Models;
 using TodoApi.Models;
 using Microsoft.AspNetCore.Hosting;
