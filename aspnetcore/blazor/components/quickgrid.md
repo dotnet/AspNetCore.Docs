@@ -168,9 +168,16 @@ The following example obtains data from the public [OpenFDA Food Enforcement dat
 
 The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> converts the <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProviderRequest%601> into a query against the OpenFDA database. Query parameters are translated into the particular URL format supported by the external JSON API. It's only possible to perform sorting and filtering via sorting and filtering that's supported by the external API. The OpenFDA endpoint doesn't support sorting, so none of the columns are marked as sortable. However, it does support skipping records (`skip` parameter) and limiting the return of records (`limit` parameter), so the component can enable virtualization and scroll quickly through tens of thousands of records.
 
+`FoodRecalls.razor`:
+
 ```razor
+@page "/food-recalls"
 @inject HttpClient Http
 @inject NavigationManager NavManager
+
+<PageTitle>Food Recalls</PageTitle>
+
+<h1>OpenFDA Food Recalls</h1>
 
 <div class="grid" tabindex="-1">
     <QuickGrid ItemsProvider="@foodRecallProvider" Virtualize="true">
@@ -213,6 +220,8 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
     }
 }
 ```
+
+For more information on calling web APIs, see <xref:blazor/call-web-api>.
 
 ## `QuickGrid` scaffolder
 
