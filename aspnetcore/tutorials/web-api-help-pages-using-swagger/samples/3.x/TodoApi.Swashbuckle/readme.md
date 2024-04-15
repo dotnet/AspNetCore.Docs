@@ -189,7 +189,7 @@ namespace TodoApi
 }
 ```
 
-Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not Ubuntu.
 
 ```csharp
 /// NOTE LAST 3 LINES IN THIS SNIPPET
