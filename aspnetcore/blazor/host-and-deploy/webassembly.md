@@ -580,7 +580,7 @@ For more information on production Nginx web server configuration, see [Creating
                 Currently, this is tracked by
                 the UE issue. -->
 
-On June 30, 2024, CentOS reaches End Of Life (EOL) status and will no longer be supported for Blazor WebAssembly hosting. For more information, see the following resources:
+On June 30, 2024, CentOS reaches End Of Life (EOL) status and will no longer be supported with web servers for Blazor WebAssembly hosting. For more information, see the following resources:
 
 * [CentOS Stream: Building an innovative future for enterprise Linux](https://www.redhat.com/blog/centos-stream-building-innovative-future-enterprise-linux)
 * [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life)
