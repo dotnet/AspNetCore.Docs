@@ -1,7 +1,7 @@
 ---
 ms.custom: linux-related-content
 ---
-:::moniker range="= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-9.0"
 
 ## ASP.NET Core Docker images
 
@@ -23,12 +23,14 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 * Docker client 18.03 or later
 
   * Linux distributions
-    * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+    * [CentOS&dagger;](https://docs.docker.com/install/linux/docker-ce/centos/)
     * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
     * [Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
     * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
   * [macOS](https://docs.docker.com/desktop/mac/install/)
   * [Windows](https://docs.docker.com/desktop/windows/install/)
+
+  &dagger;CentOS has reached End Of Life (EOL) status. For more information, see [CentOS Stream: Building an innovative future for enterprise Linux](https://www.redhat.com/blog/centos-stream-building-innovative-future-enterprise-linux) and [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 * [Git](https://git-scm.com/download)
 
