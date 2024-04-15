@@ -102,15 +102,17 @@ Add the following component to render a grid.
 
 :::moniker-end
 
-QuickGrid also supports passing custom attributes to the rendered table element:
-
-```razor
-<QuickGrid Items="..." custom-attribute="somevalue" class="custom-class">
-```
-
 Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
+
+## Custom attributes and styles
+
+QuickGrid also supports passing custom attributes and style classes to the rendered table element:
+
+```razor
+<QuickGrid Items="..." custom-attribute="value" class="custom-class">
+```
 
 :::moniker range=">= aspnetcore-8.0"
 
