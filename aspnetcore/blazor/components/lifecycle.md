@@ -124,7 +124,9 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 ## Component initialization (`OnInitialized{Async}`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. The synchronous method is called prior to the asychronous method.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are used exclusively to initialize a component for the entire lifetime of the component instance. Parameter values and parameter value changes shouldn't affect the initialization performed in these methods. For example, loading static options for dropdown list that doesn't change for the lifetime of the component and that isn't dependent on parameter values is performed in one of these lifecycle methods. If parameter values or changes in parameter values affect component state, use the [`OnParametersSet{Async}`](#when-parameters-are-set-setparametersasync) method instead.
+
+These methods are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. The synchronous method is called prior to the asynchronous method.
 
 If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
@@ -225,6 +227,8 @@ Use *streaming rendering* with static server-side rendering (static SSR) or prer
   For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 The synchronous method is called prior to the asychronous method.
+
+The methods can be invoked even if the parameter values haven't changed. This behavior underscores the need for developers to implement additional logic within the methods to check whether parameter values have indeed changed before re-initializing data or state dependent on those parameters.
 
 For the following example component, navigate to the component's page at a URL:
 
