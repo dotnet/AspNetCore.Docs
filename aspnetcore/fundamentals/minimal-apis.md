@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 content_well_notification: AI-contribution
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: ">= aspnetcore-6.0"
 ms.date: 10/23/2023
 uid: fundamentals/minimal-apis
 ai-usage: ai-assisted
@@ -18,13 +18,13 @@ ai-usage: ai-assisted
 
 This document:
 
-* Provides a quick reference for minimal APIs.
-* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
+- Provides a quick reference for minimal APIs.
+- Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>.
 
 The minimal APIs consist of:
 
-* [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
-* [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
+- [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
+- [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication8.md)]
 
@@ -32,23 +32,23 @@ The minimal APIs consist of:
 
 The following table lists some of the middleware frequently used with minimal APIs.
 
-| Middleware | Description | API |
-|--|--|--|
-| [Authentication](xref:security/authentication/index?view=aspnetcore-6.0) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> |
-| [Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> |
-| [CORS](xref:security/cors?view=aspnetcore-6.0) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> |
-| [Exception Handler](xref:web-api/handle-errors?view=aspnetcore-6.0) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> |
-| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
-| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
-| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
-| [Request Logging](xref:fundamentals/logging/index?view=aspnetcore-6.0) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> |
-| [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | `UseRequestTimeouts` |
-| [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A> |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A> |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
+| Middleware                                                                                                       | Description                                                                                                          | API                                                                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Authentication](xref:security/authentication/index?view=aspnetcore-6.0)                                         | Provides authentication support.                                                                                     | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>                                                                     |
+| [Authorization](xref:security/authorization/introduction)                                                        | Provides authorization support.                                                                                      | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>                                                             |
+| [CORS](xref:security/cors?view=aspnetcore-6.0)                                                                   | Configures Cross-Origin Resource Sharing.                                                                            | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>                                                                               |
+| [Exception Handler](xref:web-api/handle-errors?view=aspnetcore-6.0)                                              | Globally handles exceptions thrown by the middleware pipeline.                                                       | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>                                                                 |
+| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order)   | Forwards proxied headers onto the current request.                                                                   | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A>                                                                 |
+| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0)                                             | Redirects all HTTP requests to HTTPS.                                                                                | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>                                                               |
+| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header.                                                 | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A>                                                                                  |
+| [Request Logging](xref:fundamentals/logging/index?view=aspnetcore-6.0)                                           | Provides support for logging HTTP requests and responses.                                                            | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>                                                                    |
+| [Request Timeouts](xref:performance/timeouts)                                                                    | Provides support for configuring request timeouts, global default and per endpoint.                                  | `UseRequestTimeouts`                                                                                                                                  |
+| [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html)                                                     | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A>                                                                     |
+| [Response Caching](xref:performance/caching/middleware)                                                          | Provides support for caching responses.                                                                              | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>                                                                   |
+| [Response Compression](xref:performance/response-compression)                                                    | Provides support for compressing responses.                                                                          | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A>                                                    |
+| [Session](xref:fundamentals/app-state)                                                                           | Provides support for managing user sessions.                                                                         | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>                                                                         |
+| [Static Files](xref:fundamentals/static-files)                                                                   | Provides support for serving static files and directory browsing.                                                    | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
+| [WebSockets](xref:fundamentals/websockets)                                                                       | Enables the WebSockets protocol.                                                                                     | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A>                                                                    |
 
 The following sections cover request handling: routing, parameter binding, and responses.
 
@@ -76,11 +76,11 @@ Route handlers support the following types of return values:
 1. `string` - This includes `Task<string>` and `ValueTask<string>`
 1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`
 
-|Return value|Behavior|Content-Type|
-|--|--|--|
-|`IResult` | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
-|`string` | The framework writes the string directly to the response | `text/plain`
-| `T` (Any other type) | The framework JSON-serializes the response| `application/json`
+| Return value         | Behavior                                                                                           | Content-Type                            |
+| -------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `IResult`            | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A) | Decided by the `IResult` implementation |
+| `string`             | The framework writes the string directly to the response                                           | `text/plain`                            |
+| `T` (Any other type) | The framework JSON-serializes the response                                                         | `application/json`                      |
 
 For a more in-depth guide to route handler return values see <xref:fundamentals/minimal-apis/responses>
 
@@ -135,15 +135,16 @@ app.MapGet("/405", () => Results.StatusCode(405));
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
+
 <a name="stream7"></a>
 
 #### Stream
 
 ```csharp
 var proxyClient = new HttpClient();
-app.MapGet("/pokemon", async () => 
+app.MapGet("/pokemon", async () =>
 {
-    var stream = await proxyClient.GetStreamAsync("http://consoto/pokedex.json");
+    var stream = await proxyClient.GetStreamAsync("http://contoso/pokedex.json");
     // Proxy the response as JSON
     return Results.Stream(stream, "application/json");
 });
@@ -195,8 +196,8 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 See:
 
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* [A deep dive into endpoint filters](https://blog.safia.rocks/endpoint-filters-exploration.html)
+- <xref:fundamentals/minimal-apis/min-api-filters>
+- [A deep dive into endpoint filters](https://blog.safia.rocks/endpoint-filters-exploration.html)
 
 ## Authorization
 
@@ -254,19 +255,19 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 
 ## See also
 
-* <xref:fundamentals/minimal-apis>
-* <xref:fundamentals/minimal-apis/openapi>
-* <xref:fundamentals/minimal-apis/responses>
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* <xref:fundamentals/minimal-apis/handle-errors>
-* <xref:fundamentals/minimal-apis/security>
-* <xref:fundamentals/minimal-apis/test-min-api>
-* [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)
-* [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
-* [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
-* [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
-* [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
-* [Fluent validation discussion on GitHub](https://github.com/dotnet/aspnetcore/issues/51834#issuecomment-1837180853)
+- <xref:fundamentals/minimal-apis>
+- <xref:fundamentals/minimal-apis/openapi>
+- <xref:fundamentals/minimal-apis/responses>
+- <xref:fundamentals/minimal-apis/min-api-filters>
+- <xref:fundamentals/minimal-apis/handle-errors>
+- <xref:fundamentals/minimal-apis/security>
+- <xref:fundamentals/minimal-apis/test-min-api>
+- [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)
+- [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
+- [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
+- [A look behind the scenes of minimal API endpoints](https://andrewlock.net/behind-the-scenes-of-minimal-apis-1-a-first-look-behind-the-scenes-of-minimal-api-endpoints/)
+- [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html)
+- [Fluent validation discussion on GitHub](https://github.com/dotnet/aspnetcore/issues/51834#issuecomment-1837180853)
 
 :::moniker-end
 
