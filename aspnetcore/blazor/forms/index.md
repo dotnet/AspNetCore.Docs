@@ -216,6 +216,12 @@ Reset a form by clearing its model back its default state, which can be performe
 private void ClearForm() => Model = new();
 ```
 
+Alternatively, use an explicit Razor expression:
+
+```razor
+<button @onclick="@(() => Model = new())">Clear form</button>
+```
+
 Reset a field by clearing its model value back to its default state:
 
 ```razor
@@ -224,6 +230,12 @@ Reset a field by clearing its model value back to its default state:
 ...
 
 private void ResetId() => Model!.Id = string.Empty;
+```
+
+Alternatively, use an explicit Razor expression:
+
+```razor
+<button @onclick="@(() => Model!.Id = string.Empty)">Reset Identifier</button>
 ```
 
 There's no need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the preceding examples because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is automatically called by the Blazor framework to rerender the component after an event handler is invoked. If an event handler isn't used to invoke the methods that clear a form or field, then developer code should call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to rerender the component.
