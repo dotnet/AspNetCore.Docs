@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 01/03/2024
+ms.date: 4/3/2024
 uid: tutorials/first-web-api
 ---
 
