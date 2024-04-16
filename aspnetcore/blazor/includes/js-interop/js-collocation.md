@@ -8,7 +8,7 @@ Razor components of Blazor apps collocate JS files using the `.razor.js` extensi
 * The `{COMPONENT}` placeholder is the component.
 * The `{EXTENSION}` placeholder matches the extension of the component (`razor`).
 
-When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/{PATH}/Pages/{COMPONENT}.razor.js`, where the placeholders are:
+When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/{PATH}/{COMPONENT}.razor.js`, where the placeholders are:
 
 * `{TARGET FRAMEWORK MONIKER}` is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks).
 * `{PATH}` is the path to the component.
