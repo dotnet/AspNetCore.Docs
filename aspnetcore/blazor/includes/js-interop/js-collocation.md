@@ -2,13 +2,12 @@ Collocation of JavaScript (JS) files for Razor components is a convenient way to
 
 Razor components of Blazor apps collocate JS files using the `.razor.js` extension and are publicly addressable using the path to the file in the project:
 
-`{PATH}/{COMPONENT}.{EXTENSION}.js`
+`{PATH}/{COMPONENT}.razor.js`
 
 * The `{PATH}` placeholder is the path to the component.
 * The `{COMPONENT}` placeholder is the component.
-* The `{EXTENSION}` placeholder matches the extension of the component (`razor`).
 
-When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/{PATH}/Pages/{COMPONENT}.razor.js`, where the placeholders are:
+When the app is published, the framework automatically moves the script to the web root. Scripts are moved to `bin/Release/{TARGET FRAMEWORK MONIKER}/publish/wwwroot/{PATH}/{COMPONENT}.razor.js`, where the placeholders are:
 
 * `{TARGET FRAMEWORK MONIKER}` is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks).
 * `{PATH}` is the path to the component.

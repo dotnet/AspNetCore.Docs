@@ -63,7 +63,7 @@ namespace TodoApi.Controllers
             _context.TodoItems.Add(item);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
+            return CreatedAtAction(nameof(PostTodoItem), new { id = item.Id }, item);
         }
         #endregion
 

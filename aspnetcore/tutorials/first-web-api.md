@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 01/03/2024
+ms.date: 4/3/2024
 uid: tutorials/first-web-api
 ---
 
@@ -361,7 +361,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. `HTTP 201` is the standard response for an `HTTP POST` method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
-* References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+* References the `PostTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
 <a name="post7"></a>
 
