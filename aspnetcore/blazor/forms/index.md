@@ -204,7 +204,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
 
-## Clearing forms and fields
+## Clear a form or field
 
 Reset a form by clearing its model back its default state, which can be performed inside or outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s markup:
 
@@ -226,7 +226,7 @@ Reset a field by clearing its model value back to its default state:
 private void ResetId() => Model!.Id = string.Empty;
 ```
 
-There's no need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the preceding examples because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is automatically called by the Blazor framework to rerender the component after an event handler is invoked. If an event handler isn't used to invoke the methods, then developer code should call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to rerender the component.
+There's no need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the preceding examples because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is automatically called by the Blazor framework to rerender the component after an event handler is invoked. If an event handler isn't used to invoke the methods that clear a form or field, then developer code should call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to rerender the component.
 
 :::moniker range=">= aspnetcore-8.0"
 
