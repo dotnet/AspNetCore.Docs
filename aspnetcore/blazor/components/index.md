@@ -88,6 +88,8 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
   <input @bind="episodeId" />
   ```
 
+  You can prefix directive attribute values with the at symbol (`@`) for non-explicit Razor expressions (`@bind="@episodeId"`), but we don't recommend it, and the docs don't adopt the approach in examples. 
+
 Directives and directive attributes used in components are explained further in this article and other articles of the Blazor documentation set. For general information on Razor syntax, see <xref:mvc/views/razor>.
 
 ### Component name, class name, and namespace
