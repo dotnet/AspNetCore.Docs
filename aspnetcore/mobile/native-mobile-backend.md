@@ -120,7 +120,7 @@ curl is installed with Windows 10, version 1802 or higher. For more information 
 
 Install jq with the following command in PowerShell or the Command Prompt:
 
-```Powershell
+```PowerShell
 winget install jqlang.jq
 ```
 
@@ -147,14 +147,14 @@ In the terminal, call the following curl command:
 # [Windows](#tab/windows)
 
 > [!NOTE]
-> Windows Powershell 5.1 recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  type the `&` operator followed by the the full path to `curl.exe`. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
+> Windows PowerShell 5.1 recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  type the `&` operator followed by the the full path to `curl.exe`. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
 >For example, if the full path to `curl.exe` is `C:\Windows\System32\curl.exe`.  Then instead of typing the command `curl --help`, use `& 'C:\Windows\System32\curl.exe' --help`.
 >PowerShell 7 uses `curl` as the command for `curl.exe` and so a full path is not required.
 
 
 In PowerShell, call the following curl command:
 
-  ```Powershell
+  ```PowerShell
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
   ```
 
@@ -223,7 +223,7 @@ curl -v -X POST 'http://localhost:5000/api/todoitems/' \
 
 # [Windows](#tab/windows)
 
-```Powershell
+```PowerShell
 curl -v -X POST 'http://localhost:5000/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
@@ -265,7 +265,7 @@ curl -v -X PUT 'http://localhost:5000/api/todoitems/' \
 ```
 # [Windows](#tab/windows)
 
-```Powershell
+```PowerShell
 curl -v -X PUT 'http://localhost:5000/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
@@ -294,7 +294,7 @@ curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-2
 ```
 # [Windows](#tab/windows)
 
-```Powershell
+```PowerShell
 curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
 ```
 
