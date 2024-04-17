@@ -90,9 +90,13 @@ You can test the API method using a variety of tools. For this tutorial the foll
 * [curl](https://curl.se/): Transfers data using various protocols including HTTP and HTTPS. curl is used in this tutorial to call the API using HTTP methods `GET`, `POST`, `PUT` and `DELETE`.
 * [jq](https://jqlang.github.io/jq/download/): A JSON processor used in this tutorial to format JSON data so that it's easy to read from the API response.
 
-### Install curl and jq on macOS
+### Install curl and jq
 
-On macOS, curl is preinstalled and used directly in the Terminal application. jq can be installed from Homebrew from the terminal:
+# [macOS](#tab/macos)
+
+curl is available preinstalled on macOS and is used directly within the macOS Terminal application. For more information on installing curl see [the Official curl website](https://curl.se/download.html).
+
+jq can be installed from Homebrew from the terminal:
 
 Install Homebrew, if not already installed, with the following command:
 
@@ -110,19 +114,21 @@ brew install jq
 
 For more details on Homebrew and jq installation, see [Homebrew](https://brew.sh) and [jq](https://jqlang.github.io/jq/download/).
 
-### Install curl and jq on Windows
+# [Windows](#tab/windows)
 
-Git Bash provides a Unix-style environment on Windows, includes curl and is open-source. Follow the install steps for [Git for Windows from the official site](https://gitforwindows.org). Git for Windows includes Git Bash, which comes with curl preinstalled.
+curl is installed with Windows 10, version 1802 or higher. For more information on installing curl see [the Official curl website](https://curl.se/download.html).
 
-Once Git Bash is installed, right click on the Git Bash application and select **Run as administrator**.
+Install jq with the following command in PowerShell or the Command Prompt:
 
-In the Git Bash window, run the following command to install jq:
-
-```Bash
-curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
+```powershell
+winget install jqlang.jq
 ```
 
-For more details on Git Bash and jq installation, see [Git for Windows](https://gitforwindows.org) and [jq](https://jqlang.github.io/jq/download.)
+The `jq` command is available once the PowerShell or Command Prompt is closed and restarted.
+
+For more details on jq installation, see [jq](https://jqlang.github.io/jq/download).
+
+---
 
 ### Reading Items
 
@@ -130,11 +136,29 @@ Requesting a list of items is done with a GET request to the `List` method. The 
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
 
+# [macOS](#tab/macos)
+
 In a Git Bash (Windows) or macOS terminal, call the following curl command:
 
   ```Bash
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
   ```
+
+# [Windows](#tab/windows)
+
+> [!NOTE]
+> Windows Powershell 5.1 which is the default version provided with Windows, recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  the `&` operator followed by the the full path to `curl.exe` is provided. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
+>For example, if the full path to `curl.exe` is `C:\Windows\System32\curl.exe`.  Then instead of typing the command `curl --help`, use `& 'C:\Windows\System32\curl.exe' --help`.
+>PowerShell 7 simply uses `curl` as the command for `curl.exe` and so a full path is not required.
+
+
+In Windows Powershell, call the following curl command:
+
+  ```powershell
+  curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
+  ```
+
+---
 
 The previous curl command includes the following components:
 
@@ -184,6 +208,8 @@ The sample uses an `enum` containing error codes that are passed to the mobile c
 
 In the terminal, test adding new items by calling the following curl command using the `POST` verb and providing the new object in JSON format in the Body of the request.
 
+# [macOS](#tab/macos)
+
 ```Bash
 curl -v -X POST 'http://localhost:5000/api/todoitems/' \
 --header 'Content-Type: application/json' \
@@ -194,6 +220,21 @@ curl -v -X POST 'http://localhost:5000/api/todoitems/' \
   "done": false
 }' | jq
 ```
+
+# [Windows](#tab/windows)
+
+```powershell
+curl -v -X POST 'http://localhost:5000/api/todoitems/' `
+--header 'Content-Type: application/json' `
+--data '{
+  "id": "6bb8b868-dba1-4f1a-93b7-24ebce87e243",
+  "name": "A Test Item",
+  "notes": "asdf",
+  "done": false
+}' | jq
+```
+
+---
 
 The previous curl command includes the following options:
 
@@ -210,6 +251,8 @@ Modifying records is done using HTTP `PUT` requests. Other than this change, the
 
 To test with curl, change the verb to `PUT`. Specify the updated object data in the Body of the request.
 
+# [macOS](#tab/macos)
+
 ```Bash
 curl -v -X PUT 'http://localhost:5000/api/todoitems/' \
 --header 'Content-Type: application/json' \
@@ -220,7 +263,18 @@ curl -v -X PUT 'http://localhost:5000/api/todoitems/' \
   "done": true
 }' | jq
 ```
+# [Windows](#tab/windows)
 
+curl -v -X PUT 'http://localhost:5000/api/todoitems/' `
+--header 'Content-Type: application/json' `
+--data '{
+  "id": "6bb8b868-dba1-4f1a-93b7-24ebce87e243",
+  "name": "A Test Item",
+  "notes": "asdf",
+  "done": true
+}' | jq
+
+---
 This method returns a `NoContent` (204) response when successful, for consistency with the pre-existing API.
 
 ### Deleting Items
@@ -231,9 +285,18 @@ Deleting records is accomplished by making `DELETE` requests to the service, and
 
 Test with curl by changing the HTTP verb to `DELETE` and appending the ID of the data object to delete at the end of the URL. Nothing is required in the Body of the request.
 
+# [macOS](#tab/macos)
+
 ```Bash
 curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
 ```
+# [Windows](#tab/windows)
+
+```powershell
+curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
+```
+
+---
 
 ## Prevent over-posting
 
