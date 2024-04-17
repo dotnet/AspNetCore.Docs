@@ -34,6 +34,6 @@ For more information, see the following resources:
 * <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#websocket-compression-for-interactive-server-components>
 * <xref:blazor/security/server/interactive-server-side-rendering?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled>
 
-## Handle keyboard composition events in Blazor
+### Handle keyboard composition events in Blazor
 
 The new `KeyboardEventArgs.IsComposing` property indicates if the keyboard event [is part of a composition session](https://w3c.github.io/uievents/#dom-keyboardevent-iscomposing). This is useful for tracking the composition state of keyboard events, which is crucial for handling international character input methods.
