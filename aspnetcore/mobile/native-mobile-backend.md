@@ -147,12 +147,12 @@ In a Git Bash (Windows) or macOS terminal, call the following curl command:
 # [Windows](#tab/windows)
 
 > [!NOTE]
-> Windows Powershell 5.1 which is the default version provided with Windows, recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  the `&` operator followed by the the full path to `curl.exe` is provided. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
+> Windows Powershell 5.1 recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  type the `&` operator followed by the the full path to `curl.exe`. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
 >For example, if the full path to `curl.exe` is `C:\Windows\System32\curl.exe`.  Then instead of typing the command `curl --help`, use `& 'C:\Windows\System32\curl.exe' --help`.
->PowerShell 7 simply uses `curl` as the command for `curl.exe` and so a full path is not required.
+>PowerShell 7 uses `curl` as the command for `curl.exe` and so a full path is not required.
 
 
-In Windows Powershell, call the following curl command:
+In Powershell, call the following curl command:
 
   ```Powershell
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
