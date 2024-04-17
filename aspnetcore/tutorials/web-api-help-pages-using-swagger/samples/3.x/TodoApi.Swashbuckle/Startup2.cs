@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using TodoApi.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting; 
 
 namespace TodoApi
 {
@@ -21,13 +23,16 @@ namespace TodoApi
         // </snippet_ConfigureServices>
 
         // <snippet_Configure>
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            if (env.IsDevelopment())
+            {
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
-            app.UseSwaggerUI();
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
+                app.UseSwaggerUI();
+            }
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>

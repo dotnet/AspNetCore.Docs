@@ -5,7 +5,7 @@ description: Learn how to add Swashbuckle to your ASP.NET Core web API project t
 ms.author: scaddie
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 04/15/2024
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
@@ -339,7 +339,7 @@ Add the Swagger generator to the services collection in the `Startup.ConfigureSe
 
 In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup2.cs" id="snippet_Configure" highlight="4,7":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup2.cs" id="snippet_Configure" highlight="6,9":::
 
 > [!NOTE]
 > Swashbuckle relies on MVC's <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> to discover the routes and endpoints. If the project calls <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>, routes and endpoints are discovered automatically. When calling <xref:Microsoft.Extensions.DependencyInjection.MvcCoreServiceCollectionExtensions.AddMvcCore%2A>, the <xref:Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions.AddApiExplorer%2A> method must be explicitly called. For more information, see [Swashbuckle, ApiExplorer, and Routing](https://github.com/domaindrivendev/Swashbuckle.AspNetCore#swashbuckle-apiexplorer-and-routing).
@@ -361,7 +361,7 @@ If using directories with IIS or a reverse proxy, set the Swagger endpoint to a 
 > [!NOTE]
 > By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, you can opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in `Startup.Configure`:
 >
-> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup3.cs" id="snippet_Configure" highlight="4-7":::
+> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup3.cs" id="snippet_Configure" highlight="6-9":::
 
 ## Customize and extend
 
