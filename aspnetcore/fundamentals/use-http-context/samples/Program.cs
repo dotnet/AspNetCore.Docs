@@ -106,7 +106,7 @@ var httpClient = new HttpClient();
 app.MapPost("/books/{bookId}", async (int bookId, HttpContext context) =>
 {
     var stream = await httpClient.GetStreamAsync(
-        $"http://consoto/books/{bookId}.json", context.RequestAborted);
+        $"http://contoso/books/{bookId}.json", context.RequestAborted);
 
     // Proxy the response as JSON
     return Results.Stream(stream, "application/json");
