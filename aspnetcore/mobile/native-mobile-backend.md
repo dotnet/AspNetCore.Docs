@@ -87,14 +87,14 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 
 You can test the API method using a variety of tools. For this tutorial the following open source command-line tools are used:
 
-* [curl](https://curl.se/): Transfers data using various protocols including HTTP and HTTPS. curl is used in this tutorial to call the API using HTTP methods `GET`, `POST`, `PUT` and `DELETE`.
+* [curl](https://curl.se/): Transfers data using various protocols including HTTP and HTTPS. curl is used in this tutorial to call the API using HTTP methods `GET`, `POST`, `PUT`, and `DELETE`.
 * [jq](https://jqlang.github.io/jq/download/): A JSON processor used in this tutorial to format JSON data so that it's easy to read from the API response.
 
 ### Install curl and jq
 
 # [macOS](#tab/macos)
 
-curl is available preinstalled on macOS and is used directly within the macOS Terminal application. For more information on installing curl see [the Official curl website](https://curl.se/download.html).
+curl is preinstalled on macOS and is used directly within the macOS Terminal application. For more information on installing curl, see [the Official curl website](https://curl.se/download.html).
 
 jq can be installed from Homebrew from the terminal:
 
@@ -112,11 +112,11 @@ Install jq using Homebrew with the following command:
 brew install jq
 ```
 
-For more details on Homebrew and jq installation, see [Homebrew](https://brew.sh) and [jq](https://jqlang.github.io/jq/download/).
+For more information on Homebrew and jq installation, see [Homebrew](https://brew.sh) and [jq](https://jqlang.github.io/jq/download/).
 
 # [Windows](#tab/windows)
 
-curl is installed with Windows 10, version 1802 or higher. For more information on installing curl see [the Official curl website](https://curl.se/download.html).
+curl is installed with Windows 10, version 1802 or higher. For more information on installing curl, see [the Official curl website](https://curl.se/download.html).
 
 Install jq with the following command in PowerShell or the Command Prompt:
 
@@ -138,7 +138,7 @@ Requesting a list of items is done with a GET request to the `List` method. The 
 
 # [macOS](#tab/macos)
 
-In a Git Bash (Windows) or macOS terminal, call the following curl command:
+In the terminal, call the following curl command:
 
   ```Bash
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
@@ -152,7 +152,7 @@ In a Git Bash (Windows) or macOS terminal, call the following curl command:
 >PowerShell 7 uses `curl` as the command for `curl.exe` and so a full path is not required.
 
 
-In Powershell, call the following curl command:
+In PowerShell, call the following curl command:
 
   ```Powershell
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
@@ -162,7 +162,7 @@ In Powershell, call the following curl command:
 
 The previous curl command includes the following components:
 
-* `-v`: Activates verbose mode, providing detailed information about the HTTP response. This is particularly useful for API testing and troubleshooting.
+* `-v`: Activates verbose mode, providing detailed information about the HTTP response and is useful for API testing and troubleshooting.
 * `-X GET`: Specifies the use of the HTTP `GET` method for the request. While curl can often infer the intended HTTP method, this option makes it explicit.
 * `'http://localhost:5000/api/todoitems/'`: This is the request’s target URL. In this instance, it’s a REST API endpoint.
 * `| jq`: This segment isn’t related to curl directly. The pipe `|` is a shell operator that takes the output from the command on its left and “pipes” it to the command on its right. `jq` is a command-line JSON processor. While not required, `jq` makes the returned JSON data easier to read.
@@ -245,7 +245,7 @@ The method returns the newly created item in the response.
 
 ### Updating Items
 
-Modifying records is done using HTTP `PUT` requests. Other than this change, the `Edit` method is almost identical to `Create`. Note that if the record isn't found, the `Edit` action returns a `NotFound` (404) response.
+Modifying records is done using HTTP `PUT` requests. Other than this change, the `Edit` method is almost identical to `Create`. If the record isn't found, the `Edit` action returns a `NotFound` (404) response.
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetEdit":::
 
@@ -281,7 +281,7 @@ This method returns a `NoContent` (204) response when successful, for consistenc
 
 ### Deleting Items
 
-Deleting records is accomplished by making `DELETE` requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist recieve `NotFound` responses. Otherwise, a successful request returns a `NoContent` (204) response.
+Deleting records is accomplished by making `DELETE` requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist receive `NotFound` responses. Otherwise, a successful request returns a `NoContent` (204) response.
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
 
