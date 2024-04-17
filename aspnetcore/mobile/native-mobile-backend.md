@@ -120,7 +120,7 @@ curl is installed with Windows 10, version 1802 or higher. For more information 
 
 Install jq with the following command in PowerShell or the Command Prompt:
 
-```powershell
+```Powershell
 winget install jqlang.jq
 ```
 
@@ -154,7 +154,7 @@ In a Git Bash (Windows) or macOS terminal, call the following curl command:
 
 In Windows Powershell, call the following curl command:
 
-  ```powershell
+  ```Powershell
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
   ```
 
@@ -223,7 +223,7 @@ curl -v -X POST 'http://localhost:5000/api/todoitems/' \
 
 # [Windows](#tab/windows)
 
-```powershell
+```Powershell
 curl -v -X POST 'http://localhost:5000/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
@@ -265,6 +265,7 @@ curl -v -X PUT 'http://localhost:5000/api/todoitems/' \
 ```
 # [Windows](#tab/windows)
 
+```Powershell
 curl -v -X PUT 'http://localhost:5000/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
@@ -273,6 +274,7 @@ curl -v -X PUT 'http://localhost:5000/api/todoitems/' `
   "notes": "asdf",
   "done": true
 }' | jq
+```
 
 ---
 This method returns a `NoContent` (204) response when successful, for consistency with the pre-existing API.
@@ -292,7 +294,7 @@ curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-2
 ```
 # [Windows](#tab/windows)
 
-```powershell
+```Powershell
 curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
 ```
 
