@@ -36,4 +36,4 @@ For more information, see the following resources:
 
 ### Handle keyboard composition events in Blazor
 
-The new `KeyboardEventArgs.IsComposing` property indicates if the keyboard event [is part of a composition session](https://w3c.github.io/uievents/#dom-keyboardevent-iscomposing). This is useful for tracking the composition state of keyboard events, which is crucial for handling international character input methods.
+The new `KeyboardEventArgs.IsComposing` property indicates if the keyboard event [is part of a composition session](https://w3c.github.io/uievents/#dom-keyboardevent-iscomposing). Tracking the composition state of keyboard events is crucial for handling international character input methods.
