@@ -166,7 +166,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
    The preceding commands generate a new ASP.NET Core web API project and then open the project in Visual Studio Code.
 
-1. Once the OmniSharp server starts up , a dialog asks **Required assets to build and debug are missing from 'BookStoreApi'. Add them?**. Select **Yes**.
+1. Once the OmniSharp server starts up, a dialog asks **Required assets to build and debug are missing from 'BookStoreApi'. Add them?**. Select **Yes**.
 1. Open the **Integrated Terminal** and run the following command to install the .NET driver for MongoDB:
 
    ```dotnetcli
