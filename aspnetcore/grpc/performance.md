@@ -42,7 +42,7 @@ A gRPC channel uses a single HTTP/2 connection, and concurrent calls are multipl
 
 :::moniker range=">= aspnetcore-5.0"
 
-.NET 5 introduces the `SocketsHttpHandler.EnableMultipleHttp2Connections` property. When set to `true`, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to `true`:
+.NET 5 introduces the <xref:System.Net.Http.SocketsHttpHandler.EnableMultipleHttp2Connections?displayProperty=nameWithType> property. When set to `true`, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to `true`:
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
@@ -55,6 +55,8 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
     }
 });
 ```
+
+.NET Framework apps that make gRPC calls [must be configured to use `WinHttpHandler`](xref:grpc/netstandard#net-framework). .NET Framework apps can set the <xref:System.Net.Http.WinHttpHandler.EnableMultipleHttp2Connections?displayProperty=nameWithType> property to `true` to create additional connections.
 
 :::moniker-end
 
