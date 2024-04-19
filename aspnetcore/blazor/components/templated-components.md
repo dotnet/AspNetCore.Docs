@@ -105,31 +105,31 @@ Alternatively, you can change the parameter name using the `Context` attribute o
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Pets2.razor" highlight="11":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Pets2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor" highlight="11":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor" highlight="11":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor":::
 
 :::moniker-end
 
@@ -139,31 +139,31 @@ Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Pets3.razor" highlight="12-13":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Pets3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor" highlight="12-13":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor" highlight="12-13":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor" highlight="10-11":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor" highlight="10-11":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor":::
 
 :::moniker-end
 
@@ -173,31 +173,31 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Pets4.razor" highlight="7":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Pets4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor" highlight="7":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor" highlight="7":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor" highlight="5":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor" highlight="5":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor":::
 
 :::moniker-end
 
@@ -216,31 +216,31 @@ The following `TableTemplate` component (`TableTemplate.razor`) demonstrates a t
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/TableTemplate.razor" highlight="10":::
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/TableTemplate.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor" highlight="10":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor" highlight="10":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor" highlight="10":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor" highlight="10":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor":::
 
 :::moniker-end
 
