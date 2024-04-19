@@ -31,7 +31,7 @@ A templated component is defined by specifying one or more component parameters 
 
 Often, templated components are generically typed, as the following `TemplatedNavBar` component demonstrates. The generic type (`<T>`) in the following example is used to render <xref:System.Collections.Generic.IReadOnlyList%601> values, which in this case is a list of pets for a component that displays a navigation bar with links to a pet detail component.
 
-`TableTemplate.razor`:
+`TemplatedNavBar.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
