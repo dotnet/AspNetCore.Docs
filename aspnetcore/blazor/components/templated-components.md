@@ -283,7 +283,7 @@ This demonstration allows you to:
 * Select an `<input>` from among several rendered table rows.
 * Study the behavior of the page's focus as the pets collection automatically grows.
 
-Without using the `@key` directive attribute in `TableTemplate.razor`, the page's focus remains on the same index position of table row, causing the focus to shift each time a pet is added.
+Without using the `@key` directive attribute in the `TableTemplate` component, the page's focus remains on the same index position (row) of the table, causing the focus to shift each time a pet is added. To demonstrate this, remove the `@key` directive attribute and value, restart the app, and attempt to modify a field value as items are added.
 
 ## Additional resources
 
