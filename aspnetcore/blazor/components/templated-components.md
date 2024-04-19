@@ -288,5 +288,5 @@ Without using the `@key` directive attribute in the `TableTemplate` component, t
 ## Additional resources
 
 * <xref:blazor/performance#define-reusable-renderfragments-in-code>
-* <xref:blazor/components/element-component-model-relationships>
+* <xref:blazor/components/key>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
