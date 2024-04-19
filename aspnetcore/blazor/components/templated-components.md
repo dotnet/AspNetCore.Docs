@@ -18,7 +18,7 @@ This article explains how templated components can accept one or more UI templat
 
 ## Templated components
 
-Templated components are components that receive one or more UI templates as parameters, which can be utilized in the rendering logic of the component. By using templated components, you can create higher-level components that are more reusable. A couple of examples include:
+Templated components are components that receive one or more UI templates as parameters, which can be utilized in the rendering logic of the component. By using templated components, you can create higher-level components that are more reusable. Examples include:
 
 * A table component that allows a user to specify templates for the table's header, rows, and footer.
 * A list component that allows a user to specify a template for rendering items in a list.
