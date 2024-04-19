@@ -22,7 +22,7 @@ Templated components are components that receive one or more UI templates as par
 
 * A table component that allows a user to specify templates for the table's header, rows, and footer.
 * A list component that allows a user to specify a template for rendering items in a list.
-* A nav-bar component that allows a user to specify a template for start content, and items.
+* A navigation bar component that allows a user to specify a template for start content and navigation links.
 
 A templated component is defined by specifying one or more component parameters of type <xref:Microsoft.AspNetCore.Components.RenderFragment> or <xref:Microsoft.AspNetCore.Components.RenderFragment%601>. A render fragment represents a segment of UI to render. <xref:Microsoft.AspNetCore.Components.RenderFragment%601> takes a type parameter that can be specified when the render fragment is invoked.
 
