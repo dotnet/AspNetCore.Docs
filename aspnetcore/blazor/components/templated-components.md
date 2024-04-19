@@ -208,7 +208,7 @@ The example provided in the `TemplatedNavBar` component (`TemplatedNavBar.razor`
 Templated components are often used to render collections of items, such as tables or lists. In such general scenarios, we can't assume that the user will avoid stateful components/elements in the item template definition or that there won't be additional changes to the `Items` collection. For such templated components, it's necessary to preserve the relationships with the `@key` directive attribute.
 
 > [!NOTE]
-> For more information on `@key` directive attribute, see <xref:blazor/components/element-component-model-relationships>.
+> For more information on the `@key` directive attribute, see <xref:blazor/components/key>.
 
 The following `TableTemplate.razor` demonstrates a templated component where releationship are preserved with `@key`:
 
