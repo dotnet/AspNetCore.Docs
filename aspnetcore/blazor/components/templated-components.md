@@ -29,7 +29,7 @@ A templated component is defined by specifying one or more component parameters 
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
-Often, templated components are generically typed, as the following `TemplatedNavBar` component demonstrates. The generic type (`<T>`) in the following example is used to render <xref:System.Collections.Generic.IReadOnlyList%601> values, which in this case is a list of pets for a component that displays a navigation bar with links to a pet detail component.
+Often, templated components are generically typed, as the following `TemplatedNavBar` component (`TemplatedNavBar.razor`) demonstrates. The generic type (`<T>`) in the following example is used to render <xref:System.Collections.Generic.IReadOnlyList%601> values, which in this case is a list of pets for a component that displays a navigation bar with links to a pet detail component.
 
 `TemplatedNavBar.razor`:
 
@@ -99,7 +99,7 @@ Specify the `Context` attribute on the component element when you want to specif
 
 :::moniker-end
 
-Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `ItemTemplate` rather than `TemplatedNavBar`:
+Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `ItemTemplate` rather than `TemplatedNavBar`.
 
 `Pets2.razor`:
 
@@ -210,7 +210,7 @@ Templated components are often used to render collections of items, such as tabl
 > [!NOTE]
 > For more information on the `@key` directive attribute, see <xref:blazor/components/key>.
 
-The following `TableTemplate` component (`TableTemplate.razor`) demonstrates a templated component that preserves relationships with `@key`:
+The following `TableTemplate` component (`TableTemplate.razor`) demonstrates a templated component that preserves relationships with `@key`.
 
 `TableTemplate.razor`:
 
