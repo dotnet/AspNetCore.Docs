@@ -210,7 +210,7 @@ Templated components are often used to render collections of items, such as tabl
 > [!NOTE]
 > For more information on the `@key` directive attribute, see <xref:blazor/components/key>.
 
-The following `TableTemplate.razor` demonstrates a templated component where releationship are preserved with `@key`:
+The following `TableTemplate` component (`TableTemplate.razor`) demonstrates a templated component that preserves relationships with `@key`:
 
 `TableTemplate.razor`:
 
