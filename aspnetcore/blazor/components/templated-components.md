@@ -201,7 +201,7 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 :::moniker-end
 
-The example provided in `TemplatedNavBar.razor` assumes that the `Items` collection does not change after the initial render, or that if it does change, maintaining the state of components/elements used in `ItemTemplate` is not necessary. For templated components where such usage cannot be anticipated, see the following section.
+The example provided in the `TemplatedNavBar` component (`TemplatedNavBar.razor`) assumes that the `Items` collection doesn't change after the initial render; or that if it does change, maintaining the state of components/elements used in `ItemTemplate` isn't necessary. For templated components where such usage can't be anticipated, see the [Preserve relationships with `@key`](#preserve-relationships-with-key) section.
 
 ## Preserve relationships with `@key`
 
