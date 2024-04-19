@@ -244,7 +244,7 @@ The following `TableTemplate` component (`TableTemplate.razor`) demonstrates a t
 
 :::moniker-end
 
-Consider the `Pets5.razor` example below, which demonstrates the issue. In the component, each iteration of adding a pet in `OnAfterRenderAsync` results in Blazor rerendering the `TableTemplate.razor`.
+Consider the following `Pets5` component (`Pets5.razor`), which demonstrates the importance of keying data to preserve model relationships. In the component, each iteration of adding a pet in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) results in Blazor rerendering the `TableTemplate` component.
 
 `Pets5.razor`:
 
