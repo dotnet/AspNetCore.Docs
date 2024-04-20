@@ -59,7 +59,7 @@ Add the following `RenderMessage` component to the project.
 Update the `Program` file:
 
 * Set up dependency injection (<xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>/<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>) and logging (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A>/<xref:Microsoft.Extensions.Logging.ILoggerFactory>).
-* Create an <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer> and render the `RenderMessage` component by calling <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A>.
+* Get a <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer> and render the `RenderMessage` component by calling <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A>.
 
 Any calls to <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.RenderComponentAsync%2A> must be made in the context of calling `InvokeAsync` on a component dispatcher. A component dispatcher is available from the <xref:Microsoft.AspNetCore.Components.Web.HtmlRenderer.Dispatcher?displayProperty=nameWithType> property.
 
@@ -72,11 +72,10 @@ using ConsoleApp1;
 
 IServiceCollection services = new ServiceCollection();
 services.AddLogging();
+services.AddTransient<HtmlRenderer, HtmlRenderer>();
 
 IServiceProvider serviceProvider = services.BuildServiceProvider();
-ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-
-await using var htmlRenderer = new HtmlRenderer(serviceProvider, loggerFactory);
+await using var htmlRenderer = serviceProvider.GetRequiredService<HtmlRenderer>();
 
 var html = await htmlRenderer.Dispatcher.InvokeAsync(async () =>
 {
