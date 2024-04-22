@@ -637,9 +637,9 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 Blazor Web Apps are capable of two types of routing for page navigation and form handling requests:
 
 * Normal navigation (cross-document navigation): a full-page reload is triggered for the request URL.
-* Enhanced navigation (same-document navigation)&dagger;: Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
+* Enhanced navigation (same-document navigation): Blazor intercepts the request and performs a `fetch` request instead. Blazor then patches the response content into the page's DOM. Blazor's enhanced navigation and form handling avoid the need for a full-page reload and preserves more of the page state, so pages load faster, usually without losing the user's scroll position on the page.
 
-&dagger;Enhanced navigation is available when:
+Enhanced navigation is available when:
 
 * The Blazor Web App script (`blazor.web.js`) is used, not the Blazor Server script (`blazor.server.js`) or Blazor WebAssembly script (`blazor.webassembly.js`).
 * The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling).
