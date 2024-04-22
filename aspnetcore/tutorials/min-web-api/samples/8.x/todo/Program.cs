@@ -100,17 +100,19 @@ app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
             : Results.NotFound());
 // </snippet_1a>
 
+/*
 // <snippet_1b>
- app.MapGet("/todos/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, TodoDb db) =>
+ app.MapGet("/todoitems/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
      is Todo todo
         ? TypedResults.Ok(todo)
         : TypedResults.NotFound());
 // </snippet_1b>
+*/
 
 /*
 // <snippet_111>
-app.MapGet("/todos/{id}", async (int id, TodoDb db) =>
+app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
      await db.Todos.FindAsync(id)
      is Todo todo
         ? TypedResults.Ok(todo)
