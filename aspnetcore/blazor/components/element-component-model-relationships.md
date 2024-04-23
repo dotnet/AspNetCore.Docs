@@ -10,6 +10,8 @@ uid: blazor/components/key
 ---
 # Retain element, component, and model relationships in ASP.NET Core Blazor
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to use the `@key` directive attribute to retain element, component, and model relationships when rendering and the elements or components subsequently change.
 
 ## Use of the `@key` directive attribute

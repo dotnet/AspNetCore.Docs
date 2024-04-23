@@ -10,9 +10,9 @@ uid: blazor/components/templated-components
 ---
 # ASP.NET Core Blazor templated components
 
-By [Robert Haken](https://havit.blazor.eu)
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+By [Robert Haken](https://havit.blazor.eu)
 
 This article explains how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
 
