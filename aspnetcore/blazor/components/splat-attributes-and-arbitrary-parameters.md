@@ -10,6 +10,8 @@ uid: blazor/components/attribute-splatting
 ---
 # ASP.NET Core Blazor attribute splatting and arbitrary parameters
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
 
 ## Attribute splatting

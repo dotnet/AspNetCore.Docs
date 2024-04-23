@@ -10,6 +10,8 @@ uid: blazor/components/sync-context
 ---
 # ASP.NET Core Blazor synchronization context
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Blazor uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/components/lifecycle) and event callbacks raised by Blazor are executed on the synchronization context.
 
 Blazor's server-side synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. This emulation is scoped only to an individual circuit, meaning two different circuits can run in parallel. At any given point in time within a circuit, work is performed on exactly one thread, which yields the impression of a single logical thread. No two operations execute concurrently within the same circuit.
