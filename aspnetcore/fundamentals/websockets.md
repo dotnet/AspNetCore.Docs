@@ -231,6 +231,6 @@ Select **Connect** to send a WebSocket request to the URL shown. Enter a test me
 
 :::moniker-end
 
-[!INCLUDE[](~/fundamentals/websockes/includes/websockets7.md)]
-[!INCLUDE[](~/fundamentals/websockes/includes/websockets6.md)]
-[!INCLUDE[](~/fundamentals/websockes/includes/websockets3-5.md)]
+[!INCLUDE[](~/fundamentals/websockets/includes/websockets7.md)]
+[!INCLUDE[](~/fundamentals/websockets/includes/websockets6.md)]
+[!INCLUDE[](~/fundamentals/websockets/includes/websockets3-5.md)]
