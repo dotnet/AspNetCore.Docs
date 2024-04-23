@@ -28,7 +28,10 @@ namespace TodoApi
 
             // Register the Swagger generator and the Swagger UI middlewares
             app.UseOpenApi();
-            app.UseSwaggerUi3();
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwaggerUi3();
+            }
 
             app.UseMvc();
         }
