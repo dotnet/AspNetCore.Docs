@@ -57,11 +57,14 @@ namespace WebApiSample.Api._31
 
             app.UseHttpsRedirection();
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            if (env.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My ASP.NET Core 3.0 web API v1");
-                c.RoutePrefix = string.Empty;
-            });
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My ASP.NET Core 3.0 web API v1");
+                    c.RoutePrefix = string.Empty;
+                });
+            }
 
             app.UseRouting();
             app.UseAuthorization();
