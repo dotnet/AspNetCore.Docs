@@ -583,7 +583,7 @@ Enable Static File Middleware:
 To inject additional CSS stylesheets, add them to the project's *wwwroot* folder and specify the relative path in the middleware options:
 
 ```csharp
-if (app.Environment.IsDevelopment())
+if (env.IsDevelopment())
 {
     app.UseSwaggerUI(c =>
     {
