@@ -10,6 +10,8 @@ uid: blazor/components/overwriting-parameters
 ---
 # Avoid overwriting parameters in ASP.NET Core Blazor
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Robert Haken](https://havit.blazor.eu)
 
 This article explains how to avoid overwriting parameters in Blazor apps during rerendering.
