@@ -132,7 +132,7 @@ The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket con
 
 The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method. The code receives a message and immediately sends back the same message. Messages are sent and received in a loop until the client closes the connection:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_Echo":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/7.x/WebSocketsSample/Snippets/Program.cs" id="snippet_Echo":::
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
@@ -153,7 +153,7 @@ However, browsers do send the `Origin` header when issuing WebSocket requests. A
 
 If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> list for WebSockets to verify.
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/7.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. Do **not** use these headers as an authentication mechanism.
