@@ -6,7 +6,7 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 04/11/2023
+ms.date: 04/17/2024
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -49,11 +49,18 @@ In this tutorial, you learn how to:
 
 ## Configure MongoDB
 
-Enable MongoDB and Mongo DB Shell access from anywhere on the development machine:
 
-1. On Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
-1. Download the MongoDB Shell and choose a directory to extract it to. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
-1. Choose a directory on the development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
+Enable MongoDB and MongoDB Shell access from anywhere on the development machine (Windows/Linux/macOS):
+
+1. Download and Install MongoDB Shell:
+   * macOS/Linux: Choose a directory to extract the MongoDB Shell to. Add the resulting path for `mongosh` to the `PATH` environment variable.
+   * Windows: MongoDB Shell (mongosh.exe) is installed at *C:\Users\<user>\AppData\Local\Programs\mongosh*. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
+1. Download and Install MongoDB:
+   * macOS/Linux: Verify the directory that MongoDB was installed at, usually in */usr/local/mongodb*. Add the resulting path for `mongodb` to the `PATH` environment variable.
+   * Windows: MongoDB is installed at *C:\\Program Files\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
+1. Choose a Data Storage Directory: Select a directory on your development machine for storing data. Create the directory if it doesn't exist. The MongoDB Shell doesn't create new directories:
+   * macOS/Linux: For example, `/usr/local/var/mongodb`.
+   * Windows: For example, `C:\\BooksData`.
 1. In the OS command shell (not the MongoDB Shell), use the following command to connect to MongoDB on default port 27017. Replace `<data_directory_path>` with the directory chosen in the previous step.
 
    ```console
@@ -63,7 +70,7 @@ Enable MongoDB and Mongo DB Shell access from anywhere on the development machin
 Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
 1. Open a MongoDB command shell instance by launching `mongosh.exe`.
-1. In the command shell connect to the default test database by running the following command:
+1. In the command shell, connect to the default test database by running the following command:
 
    ```console
    mongosh
@@ -162,7 +169,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
    The preceding commands generate a new ASP.NET Core web API project and then open the project in Visual Studio Code.
 
-1. Once the OmniSharp server starts up , a dialog asks **Required assets to build and debug are missing from 'BookStoreApi'. Add them?**. Select **Yes**.
+1. Once the OmniSharp server starts up, a dialog asks **Required assets to build and debug are missing from 'BookStoreApi'. Add them?**. Select **Yes**.
 1. Open the **Integrated Terminal** and run the following command to install the .NET driver for MongoDB:
 
    ```dotnetcli
@@ -171,15 +178,12 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Select **Visual Studio** > **Preferences**.
-1. Select **Preview Features** from the sidebar, enable **Use previews of the .NET SDK**, and select **OK**.
-1. Restart Visual Studio.
 1. Select **File** > **New Project...**.
 1. Select **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
 1. Select **.NET 8.0** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
-1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
+1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Manage NuGet Packages**.
 1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
 1. Select the **Accept** button in the **License Acceptance** dialog.
 
@@ -275,7 +279,7 @@ The preceding web API controller:
 
 1. Build and run the app.
 
-1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
+1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method, select **Try it out** > **Execute**. A JSON response similar to the following is displayed:
 
    ```json
    [
