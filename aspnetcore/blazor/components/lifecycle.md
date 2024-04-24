@@ -82,7 +82,7 @@ If you want to rely on the initialization and rendering logic of <xref:Microsoft
 await base.SetParametersAsync(ParameterView.Empty);
 ```
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
