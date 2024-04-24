@@ -58,7 +58,7 @@ Enable MongoDB and MongoDB Shell access from anywhere on the development machine
 1. Download and Install MongoDB:
    * macOS/Linux: Verify the directory that MongoDB was installed at, usually in */usr/local/mongodb*. Add the resulting path for `mongodb` to the `PATH` environment variable.
    * Windows: MongoDB is installed at *C:\\Program Files\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
-1. Choose a Data Storage Directory: Select a directory on your development machine for storing data. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories:
+1. Choose a Data Storage Directory: Select a directory on your development machine for storing data. Create the directory if it doesn't exist. The MongoDB Shell doesn't create new directories:
    * macOS/Linux: For example, `/usr/local/var/mongodb`.
    * Windows: For example, `C:\\BooksData`.
 1. In the OS command shell (not the MongoDB Shell), use the following command to connect to MongoDB on default port 27017. Replace `<data_directory_path>` with the directory chosen in the previous step.
