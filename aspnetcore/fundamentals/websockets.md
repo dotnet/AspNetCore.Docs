@@ -223,11 +223,11 @@ Run the app:
 
 The webpage shows the connection status:
 
-:::image source="websockets/_static/start.png" alt-text="Initial state of webpage before WebSockets connection":::
+:::image source="~/fundamentals/websockets/_static/start.png" alt-text="Initial state of webpage before WebSockets connection":::
 
 Select **Connect** to send a WebSocket request to the URL shown. Enter a test message and select **Send**. When done, select **Close Socket**. The **Communication Log** section reports each open, send, and close action as it happens.
 
-:::image source="websockets/_static/end.png" alt-text="Final state of webpage after WebSockets connection and test messages are sent and received":::
+:::image source="~/fundamentals/websockets/_static/end.png" alt-text="Final state of webpage after WebSockets connection and test messages are sent and received":::
 
 :::moniker-end
 
