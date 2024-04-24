@@ -50,7 +50,7 @@ In this tutorial, you learn how to:
 ## Configure MongoDB
 
 
-Enable MongoDB and Mongo DB Shell access from anywhere on the development machine (Windows/Linux/macOS):
+Enable MongoDB and MongoDB Shell access from anywhere on the development machine (Windows/Linux/macOS):
 
 1. Download and Install MongoDB Shell:
    * macOS/Linux: Choose a directory to extract the MongoDB Shell to. Add the resulting path for `mongosh` to the `PATH` environment variable.
