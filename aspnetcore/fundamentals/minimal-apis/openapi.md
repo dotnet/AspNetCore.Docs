@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use OpenAPI (Swagger and Swashbuckle) features of minimal APIs in ASP.NET Core.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 4/24/2024
+ms.date: 4/25/2024
 uid: fundamentals/minimal-apis/openapi
 ---
 
