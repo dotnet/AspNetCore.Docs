@@ -27,6 +27,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>( ... )
     ...
 ```
 
+The preceding code requires the [Microsoft.AspNetCore.Identity.UI](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.UI) package and a `using` directive for `Microsoft.AspNetCore.Identity`.
+
 ## Adding role checks
 
 Role based authorization checks:
