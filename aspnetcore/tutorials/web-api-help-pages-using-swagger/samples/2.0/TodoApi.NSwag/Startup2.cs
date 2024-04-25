@@ -46,10 +46,10 @@ namespace TodoApi
             app.UseStaticFiles();
 
             app.UseOpenApi();
-            if (env.IsDevelopment()) 
-                {
-                    app.UseSwaggerUi3();
-                }
+            app.UseOpenApi();
+            if (env.IsDevelopment())
+            {
+                app.UseSwaggerUi3();
             }
 
             app.UseMvc();
