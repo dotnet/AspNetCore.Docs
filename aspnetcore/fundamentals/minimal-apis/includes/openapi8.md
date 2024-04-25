@@ -1,16 +1,4 @@
----
-title: How to use OpenAPI in Minimal API apps
-author: rick-anderson
-description: Learn how to use OpenAPI (Swagger and Swashbuckle) features of minimal APIs in ASP.NET Core.
-ms.author: riande
-monikerRange: '>= aspnetcore-6.0'
-ms.date: 4/24/2024
-uid: fundamentals/minimal-apis/openapi
----
-
-# OpenAPI support in minimal API apps
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="> aspnetcore-6.0 < aspnetcore-9.0"
 
 The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in minimal APIs through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
 
@@ -220,6 +208,3 @@ Minimal APIs support API versioning via the [Asp.Versioning.Http package](https:
 * <xref:fundamentals/minimal-apis/security>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi8.md)]
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi6.md)]
