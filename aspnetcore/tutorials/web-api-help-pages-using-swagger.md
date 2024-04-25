@@ -4,7 +4,7 @@ author: RicoSuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/29/2020
+ms.date: 4/25/2024
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI
@@ -15,7 +15,7 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://blog.rsuter.com/)
 
-Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:
+[Swagger](https://swagger.io/) ([OpenAPI](https://www.openapis.org/)) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:
 
 * Minimize the amount of work needed to connect decoupled services.
 * Reduce the amount of time needed to accurately document a service.
