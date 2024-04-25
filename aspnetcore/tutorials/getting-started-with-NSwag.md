@@ -81,11 +81,11 @@ Add and configure Swagger in your ASP.NET Core app by performing the following s
 
 * Add the OpenApi generator to the services collection in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/8.x/NSwagSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
+:::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/8.x/NSwagSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
 
 * Enable the middleware for serving the generated OpenApi specification, the Swagger UI, and the Redoc UI, also in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/8.x/NSwagSample/Snippets/Program.cs" id="snippet_Middleware" highlight="5,9":::
+:::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/8.x/NSwagSample/Snippets/Program.cs" id="snippet_Middleware" highlight="5,9":::
 
 * Launch the app. Navigate to:
   * `http://localhost:<port>/swagger` to view the Swagger UI.
