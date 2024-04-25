@@ -23,11 +23,14 @@ public static class Program
         // </snippet_MiddlewareJsonV2>
 
         // <snippet_MiddlewareRoutePrefix>
-        app.UseSwaggerUI(options =>
+        if (builder.Environment.IsDevelopment())
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            options.RoutePrefix = string.Empty;
-        });
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
+        }
         // </snippet_MiddlewareRoutePrefix>
     }
 
