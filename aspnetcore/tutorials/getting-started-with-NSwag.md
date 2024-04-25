@@ -227,4 +227,4 @@ Run the application and navigate to `http://localhost:<port>/redoc` to view the 
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/getting-started-with-NSwag/includes/getting-started-withNSwag2-7.md)]
+[!INCLUDE[](~/tutorials/getting-started-with-NSwag/includes/getting-started-with-NSwag2-7.md)]
