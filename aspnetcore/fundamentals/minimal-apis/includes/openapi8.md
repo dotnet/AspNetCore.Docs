@@ -40,13 +40,13 @@ Calling [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpoint
 * Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 * Displayed in the Swagger user interface or in YAML or JSON generated to define the API.
 
-[!code-csharp[] (~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs/?name=snippet_withopenapi&highlight=9)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs/?name=snippet_withopenapi&highlight=9)]
 
 ### Modify the OpenAPI annotation in `WithOpenApi`
 
 The [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
 
-[!code-csharp[] (~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs/?name=snippet_withopenapi2&highlight=9-99)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs/?name=snippet_withopenapi2&highlight=9-99)]
 
 ## Add operation IDs to OpenAPI
 
