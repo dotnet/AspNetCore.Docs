@@ -29,7 +29,7 @@ Install NSwag to:
 * Serve the Swagger UI to browse and test the web API.
 * Serve the Redoc to add API documentation for the Web API.
 
-To use the [NSwag](https://github.com/RicoSuter/NSwag) ASP.NET Core middleware, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middleware to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc). NSwag 14 supports only v3 of the Swagger UI.
+To use the [NSwag](https://github.com/RicoSuter/NSwag) ASP.NET Core middleware, install the [NSwag.AspNetCore](https://www.nuget.org/packages/NSwag.AspNetCore/) NuGet package. This package contains the middleware to generate and serve the Swagger specification, Swagger UI (v2 and v3), and [ReDoc UI](https://github.com/Rebilly/ReDoc). NSwag 14 supports only v3 of the Swagger UI spec.
 
 Use one of the following approaches to install the NSwag NuGet package:
 
