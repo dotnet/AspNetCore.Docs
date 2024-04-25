@@ -41,7 +41,7 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 `Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
 
-[!code-xml[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/projectFile.xml?highlight=10)]
+[!code-xml[](~/fundamentals/minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
 When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.4.0 or later must be used. [`Microsoft.OpenApi`](https://www.nuget.org/packages/Microsoft.OpenApi/) 1.4.3 or later must be used to leverage copy constructors in `WithOpenApi` invocations.
 
@@ -52,13 +52,13 @@ Calling [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpoint
 * Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 * Displayed in the Swagger user interface or in YAML or JSON generated to define the API.
 
-[!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
+[!code-csharp[] (~/fundamentals/minimal-apis/7.0-samples/?name=snippet_withopenapi&highlight=9)]
 
 ### Modify the OpenAPI annotation in `WithOpenApi`
 
 The [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
 
-[!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
+[!code-csharp[] (~/fundamentals/minimal-apis/7.0-samples/?name=snippet_withopenapi2&highlight=9-99)]
 
 ## Add operation IDs to OpenAPI
 
