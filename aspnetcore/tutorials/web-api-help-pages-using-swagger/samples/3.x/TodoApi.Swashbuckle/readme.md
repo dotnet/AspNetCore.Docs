@@ -62,16 +62,19 @@ Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json
 
 The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the API via Swagger UI and incorporate it in other programs.
 
-> [!TIP]
-> To serve the Swagger UI at the app's root (`http://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
->
-> ```csharp
->app.UseSwaggerUI(c =>
->{
->    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
->    c.RoutePrefix = string.Empty;
->});
->```
+**TIP:** 
+To server the Swagger UI at the app's root (`http://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
+
+ ```csharp
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.RoutePrefix = string.Empty;
+    });
+}
+```
 
 If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
