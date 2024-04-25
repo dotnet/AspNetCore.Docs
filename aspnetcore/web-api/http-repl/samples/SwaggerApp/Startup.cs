@@ -32,11 +32,11 @@ namespace SwaggerApp
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseOpenApi();
-            app.UseSwaggerUi3();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwaggerUi3();
             }
             else
             {
