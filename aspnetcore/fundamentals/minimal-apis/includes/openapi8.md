@@ -46,7 +46,6 @@ Calling [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpoint
 
 The [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
 
-              
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
 ## Add operation IDs to OpenAPI
@@ -176,7 +175,7 @@ app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
   .Accepts<Todo>("application/xml");
 ```
 
-In addition to the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, A parameter type can describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type. 
+In addition to the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, A parameter type can describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
