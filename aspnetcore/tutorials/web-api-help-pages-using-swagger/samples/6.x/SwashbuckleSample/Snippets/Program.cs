@@ -62,17 +62,19 @@ public static class Program
 
     private static void Snippet3(WebApplication app)
     {
-        // <snippet_MiddlewareInjectStylesheet>
-        app.UseSwaggerUI(options =>
+        if (builder.Environment.IsDevelopment())
         {
-            options.InjectStylesheet("/swagger-ui/custom.css");
-        });
-        // </snippet_MiddlewareInjectStylesheet>
+            // <snippet_MiddlewareInjectStylesheet>
+            app.UseSwaggerUI(options =>
+            {
+                options.InjectStylesheet("/swagger-ui/custom.css");
+            });
+            // </snippet_MiddlewareInjectStylesheet>
 
-        // <snippet_MiddlewareStaticFiles>
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
-        app.MapControllers();
-        // </snippet_MiddlewareStaticFiles>
+            // <snippet_MiddlewareStaticFiles>
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.MapControllers();
+        }
     }
 }
