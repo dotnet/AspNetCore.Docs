@@ -151,9 +151,62 @@ If you receive a build error that the RCL's assembly can't be resolved, build th
 
 ## Use Blazor render modes
 
-Follow the guidance in this section and either of the following two subsections to apply Blazor [render modes](xref:blazor/components/render-modes) in the Blazor Web App but ignore them in the MAUI project. 
+Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](xref:blazor/components/render-modes) for a given interactivity location in the Blazor Web App but ignore the render mode assignments in the MAUI project.
+
+Render mode and interactivity specification subsections:
+
+* [Global Server interactivity](#global-server-interactivity)
+* [Global Auto or WebAssembly interactivity](#global-auto-or-webassembly-interactivity)
+* [Per-page/component Server interactivity](#per-pagecomponent-server-interactivity)
+* [Per-page/component Auto interactivity](#per-pagecomponent-auto-interactivity)
+* [Per-page/component WebAssembly interactivity](#per-pagecomponent-webassembly-interactivity)
+
+### Global Server interactivity
+
+* Interactive render mode: **Server**
+* Interactivity location: **Global**
+* Solution projects
+  * MAUI (`MauiBlazorWeb.Maui`)
+  * Blazor Web App (`MauiBlazorWeb.Web`)
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components without setting render modes in each component.
+
+Project references:
+
+* The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
+* Blazor Web Apps have project references to the `.Web.Client` and `.Shared.Client` projects (if present).
+* The `.Web.Client` has a project reference to the `.Shared.Client` RCL (if present). The `.Shared` RCL has a project reference to the `.Shared.Client` RCL (if present).
+
+### Global Auto or WebAssembly interactivity
+
+* Interactive render mode: **Auto** or **WebAssembly**
+* Interactivity location: **Global**
+* Solution projects
+  * MAUI (`MauiBlazorWeb.Maui`)
+  * Blazor Web App
+    * Server project: `MauiBlazorWeb.Web`
+    * Client project: `MauiBlazorWeb.Web.Client`
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components without setting render modes in each component.
+
+Project references:
+
+* The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
+* Blazor Web Apps have project references to the `.Web.Client` and `.Shared.Client` projects (if present).
+* The `.Web.Client` has a project reference to the `.Shared.Client` RCL (if present). The `.Shared` RCL has a project reference to the `.Shared.Client` RCL (if present).
+
+### Per-page/component Server interactivity
+
+* Interactive render mode: **Server**
+* Interactivity location: **Per-page/component**
+* Solution projects
+  * MAUI (`MauiBlazorWeb.Maui`): Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
+  * Blazor Web App (`MauiBlazorWeb.Web`)
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveServer` render mode in each component.
+
+The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
 
 Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
+
+The MAUI project is interactive by default, so no action is taken at the project level in the MAUI project other than calling `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes`.
 
 For the Blazor Web App on the web client, the property values are assigned from <xref:Microsoft.AspNetCore.Components.Web.RenderMode>. When the components are loaded into a <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> for the MAUI project's native client, the render modes are unassigned (`null`) because the MAUI project explicitly sets the render mode properties to `null` when `ConfigureBlazorHybridRenderModes` is called.
 
@@ -173,81 +226,93 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 @using static InteractiveRenderSettings
 ```
 
-At this point, you can adopt either:
+> [!NOTE]
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
 
-* [Global interactive rendering](#global-interactive-rendering)
-* [Per-page/component rendering](#per-pagecomponent-rendering)
+### Per-page/component Auto interactivity
 
-### Global interactive rendering
+* Interactive render mode: **Auto**
+* Interactivity location: **Per-page/component**
+* Solution projects
+  * MAUI (`MauiBlazorWeb.Maui`)
+  * Blazor Web App
+    * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
+    * Client project: `MauiBlazorWeb.Web.Client`
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveAuto` render mode in each component.
 
-The MAUI project is interactive by default, so no action is taken at the project level in the MAUI project other than calling `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes`.
+Project references:
 
-The Blazor Web App sets a global interactive render mode normally in the `App` component (`Components/App.razor`). In the following example, the `HeadOutlet` and `Routes` components assign `InteractiveServer` from <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the Blazor Web App's `@using static Microsoft.AspNetCore.Components.Web.RenderMode` directive in the project's `_Imports` file:
+* The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
+* The Blazor Web App has a project reference to the `.Web.Client` RCL project.
 
-```razor
-<HeadOutlet @rendermode="InteractiveServer" />
-
-...
-
-<Routes @rendermode="InteractiveServer" />
-```
-
-At this point, no component in the RCL sets a render mode. A component's render mode is inherited from the global setting.
-
-In summary:
-
-* For components rendered by MAUI for the native client, RCL component render modes are `null`. The components are interactive by default.
-* For components rendered by the Blazor Web App for the web client, RCL component render modes are inherited from the global setting in the `App` component.
-
-### Per-page/component rendering
+Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
 
 The MAUI project is interactive by default, so no action is taken at the project level in the MAUI project other than calling `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes`.
 
-When Auto or WebAssembly global interactivity is used, the solution also receives a `.Client` project:
+For the Blazor Web App on the web client, the property values are assigned from <xref:Microsoft.AspNetCore.Components.Web.RenderMode>. When the components are loaded into a <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> for the MAUI project's native client, the render modes are unassigned (`null`) because the MAUI project explicitly sets the render mode properties to `null` when `ConfigureBlazorHybridRenderModes` is called.
 
-* Add a project reference to the `.Client` project for the RCL.
-* Add an `@using` statement to the `.Client` project's `_Imports.razor` file for the RCL: `@using MauiBlazorWeb.Shared`.
-* Create a second RCL to maintain the Auto or WebAssembly components (for example: `MauiBlazorWeb.Shared.Client`). Move the `Components` folder of the `.Client` project into the second RCL. Create a project reference in the first RCL (`MauiBlazorWeb.Shared`) to the second RCL that maintains the components (`MauiBlazorWeb.Shared.Client`). Add `@using static InteractiveRenderSettings` to the second RCL's `_Imports.razor` file.
+`InteractiveRenderSettings.cs`:
 
-Don't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the Blazor Web App's `App` component (`Components/App.razor`):
+:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
 
-```razor
-<HeadOutlet />
+In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridRenderModes`:
 
-...
-
-<Routes />
+```csharp 
+InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-Apply render modes to individual components in the RCLs.
-
-The RCLs contain a global static `@using` directive (`@using static InteractiveRenderSettings`) to reference `InteractiveRenderSettings` class properties in the RCLs' components. A component adopts a given render mode by assigning the render mode from `InteractiveRenderSettings` at the top of its component definition file (`.razor`) under its `@page` directive:
-
-Interactive Server:
+In the RCL's `_Imports.razor` file, add the following global static `@using` directive to make the properties of the class available to components:
 
 ```razor
-@rendermode InteractiveServer
+@using static InteractiveRenderSettings
 ```
-
-Interactive Auto:
-
-```razor
-@rendermode InteractiveAuto
-```
-
-Interactive WebAssembly:
-
-```razor
-@rendermode InteractiveWebAssembly
-```
-
-In summary:
-
-* For components rendered by MAUI for the native client, RCL component render modes are `null`. The components are interactive by default.
-* For components rendered by the Blazor Web App for the web client, RCL component render modes are set on a per-component basis from `InteractiveRenderSettings`.
 
 > [!NOTE]
-> The assignment of render modes via the `InteractiveRenderSettings` class properties in the RCLs differ from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+
+### Per-page/component WebAssembly interactivity
+
+* Interactive render mode: **WebAssembly**
+* Interactivity location: **Per-page/component**
+* Solution projects
+  * MAUI (`MauiBlazorWeb.Maui`)
+  * Blazor Web App
+    * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
+    * Client project: `MauiBlazorWeb.Web.Client`: Has a project reference to 
+  * RCLs
+    * `MauiBlazorWeb.Shared`
+    * `MauiBlazorWeb.Shared.Client`: Contains the shared Razor components that set the `InteractiveWebAssembly` render mode in each component.
+
+Project references:
+
+* The MAUI and Blazor Web App each have project references to the `.Shared` and `.Shared.Client` RCLs.
+* The Blazor Web App has a project reference to the `.Web.Client` project.
+* The `.Web.Client` has a project reference to the `.Shared.Client` RCL. The `.Shared` RCL has a project reference to the `.Shared.Client` RCL.
+
+Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
+
+The MAUI project is interactive by default, so no action is taken at the project level in the MAUI project other than calling `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes`.
+
+For the Blazor Web App on the web client, the property values are assigned from <xref:Microsoft.AspNetCore.Components.Web.RenderMode>. When the components are loaded into a <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> for the MAUI project's native client, the render modes are unassigned (`null`) because the MAUI project explicitly sets the render mode properties to `null` when `ConfigureBlazorHybridRenderModes` is called.
+
+`InteractiveRenderSettings.cs`:
+
+:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
+
+In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridRenderModes`:
+
+```csharp 
+InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
+```
+
+In the `_Imports.razor` file of the `.Shared.Client` RCL, add `@using static InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
+
+```razor
+@using static InteractiveRenderSettings
+```
+
+> [!NOTE]
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
 
 ## Using interfaces to support different device implementations
 
