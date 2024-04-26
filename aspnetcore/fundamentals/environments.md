@@ -5,7 +5,7 @@ description: Learn how to control app behavior across multiple environments in A
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/13/2022
+ms.date: 04/26/2024
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
