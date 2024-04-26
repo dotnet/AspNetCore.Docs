@@ -257,11 +257,11 @@ The default UI is both functional and presentable. However, API documentation pa
 
 Enable Static File Middleware:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareStaticFiles" highlight="2":::
+[!code-csharp[](~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs?name=snippet_MiddlewareStaticFiles&highlight=2)]
 
 To inject additional CSS stylesheets, add them to the project's *wwwroot* folder and specify the relative path in the middleware options:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareInjectStylesheet" highlight="5":::
+[!code-csharp[](~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs?name=snippet_MiddlewareInjectStylesheet&highlight=5)]
 
 ## Additional resources
 
