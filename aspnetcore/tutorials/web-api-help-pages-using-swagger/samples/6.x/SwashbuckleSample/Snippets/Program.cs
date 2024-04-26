@@ -63,10 +63,13 @@ public static class Program
     private static void Snippet3(WebApplication app)
     {
         // <snippet_MiddlewareInjectStylesheet>
-        app.UseSwaggerUI(options =>
+        if (app.Environment.IsDevelopment())
         {
-            options.InjectStylesheet("/swagger-ui/custom.css");
-        });
+            app.UseSwaggerUI(options =>
+            {
+                options.InjectStylesheet("/swagger-ui/custom.css");
+            });
+        }
         // </snippet_MiddlewareInjectStylesheet>
 
         // <snippet_MiddlewareStaticFiles>

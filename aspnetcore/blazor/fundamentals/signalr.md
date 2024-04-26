@@ -1120,7 +1120,7 @@ Controlling when the reconnection UI appears can be useful in the following situ
 * A deployed app frequently displays the reconnection UI due to ping timeouts caused by internal network or Internet latency, and you would like to increase the delay.
 * An app should report to users that the connection has dropped sooner, and you would like to shorten the delay.
 
-The timing of the appearance of the reconnection UI is influenced by adjusting the Keep-Alive interval and timeouts on the client. However, changing a setting may require changes to other Keep-Alive, timeout, and handshake settings.
+The timing of the appearance of the reconnection UI is influenced by adjusting the Keep-Alive interval and timeouts on the client. The reconnection UI appears when the server timeout is reached on the client (`withServerTimeout`, [Client configuration](#client-configuration) section). However, changing the value of `withServerTimeout` requires changes to other Keep-Alive, timeout, and handshake settings described in the following guidance.
 
 As general recommendations for the guidance that follows:
 

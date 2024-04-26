@@ -72,19 +72,17 @@ The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter cont
 
 The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
 
-If <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> isn't invoked with `base.SetParametersAsync();`, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties of the class.
-
-If you choose not to call the base class method, you must call your own [component initialization methods (`OnInitialized`/`OnInitializedAsync`)](#component-initialization-oninitializedasync). Otherwise, they won't be called because calling <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> is what invokes them. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> must also be called after initialization. Refer to the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) when structuring your code if you don't plan on calling <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType>.
+Generally, your code should call the base class method (`await base.SetParametersAsync(parameters);`) when overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. In advanced scenarios, developer code can interpret the incoming parameters' values in any way required by not invoking the base class method. For example, there's no requirement to assign the incoming parameters to the properties of the class. However, you must refer to the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) when structuring your code without calling the base class method because it calls other lifecycle methods and triggers rendering in a complex fashion.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-If you want to rely on the initialization and rendering API of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base class method:
+If you want to rely on the initialization and rendering logic of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base class method:
 
 ```csharp
-base.SetParametersAsync(ParameterView.Empty);
+await base.SetParametersAsync(ParameterView.Empty);
 ```
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
@@ -400,7 +398,10 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ## Base class lifecycle methods
 
-When overriding Blazor's lifecycle methods, it isn't necessary to call base class lifecycle methods for <xref:Microsoft.AspNetCore.Components.ComponentBase>. However, a component should call an overridden base class lifecycle method if the base class method contains logic that must be executed. Library consumers usually call base class lifecycle methods when inheriting a base class because library base classes often have custom lifecycle logic to execute. If the app uses a base class from a library, consult the library's documentation for guidance.
+When overriding Blazor's lifecycle methods, it isn't necessary to call base class lifecycle methods for <xref:Microsoft.AspNetCore.Components.ComponentBase>. However, a component should call an overridden base class lifecycle method in the following situations:
+
+* When overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType>, `await base.SetParametersAsync(parameters);` is usually invoked because the base class method calls other lifecycle methods and triggers rendering in a complex fashion. For more information, see the [When parameters are set (`SetParametersAsync`)](#when-parameters-are-set-setparametersasync) section.
+* If the base class method contains logic that must be executed. Library consumers usually call base class lifecycle methods when inheriting a base class because library base classes often have custom lifecycle logic to execute. If the app uses a base class from a library, consult the library's documentation for guidance.
 
 In the following example, `base.OnInitialized();` is called to ensure that the base class's `OnInitialized` method is executed. Without the call, `BlazorRocksBase2.OnInitialized` doesn't execute.
 
