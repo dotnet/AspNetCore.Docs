@@ -76,5 +76,6 @@ public static class Program
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.MapControllers();
+        // </snippet_MiddlewareStaticFiles>
     }
 }
