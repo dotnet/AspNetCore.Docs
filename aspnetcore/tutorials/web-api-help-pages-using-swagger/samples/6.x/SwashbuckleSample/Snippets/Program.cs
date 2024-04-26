@@ -63,7 +63,7 @@ public static class Program
     private static void Snippet3(WebApplication app)
     {
         // <snippet_MiddlewareInjectStylesheet>
-        if (builder.Environment.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.UseSwaggerUI(options =>
             {
