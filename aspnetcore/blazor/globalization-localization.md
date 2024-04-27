@@ -898,8 +898,6 @@ The component adopts the following approaches to work for either SSR or CSR comp
 
 `Pages/CultureSelector.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
 ```razor
 @using System.Globalization
 @inject IJSRuntime JS
@@ -957,71 +955,6 @@ The component adopts the following approaches to work for either SSR or CSR comp
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-7.0"
-
-```razor
-@using System.Globalization
-@inject IJSRuntime JS
-@inject NavigationManager Navigation
-
-<p>
-    <label>
-        Select your locale:
-        <select value="@selectedCulture" @onchange="HandleSelectedCultureChanged">
-            @foreach (var culture in supportedCultures)
-            {
-                <option value="@culture">@cultureDict[culture.Name]</option>
-            }
-        </select>
-    </label>
-</p>
-
-@code
-{
-    private Dictionary<string, string> cultureDict = 
-        new()
-        {
-            { "en-US", "English (United States)" },
-            { "es-CR", "Spanish (Costa Rica)" }
-        };
-
-    private CultureInfo[] supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("es-CR"),
-    };
-
-    private CultureInfo? selectedCulture;
-
-    protected override void OnInitialized()
-    {
-        selectedCulture = CultureInfo.CurrentCulture;
-    }
-
-    private async Task HandleSelectedCultureChanged(ChangeEventArgs args)
-    {
-        selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
-        if (CultureInfo.CurrentCulture != selectedCulture)
-        {
-            await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture.Name);
-
-            var uri = new Uri(Navigation.Uri)
-                .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
-            var cultureEscaped = Uri.EscapeDataString(selectedCulture.Name);
-            var uriEscaped = Uri.EscapeDataString(uri);
-
-            Navigation.NavigateTo(
-                $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
-                forceLoad: true);
-        }
-    }
-}
-```
-
-:::moniker-end
 
 > [!NOTE]
 > For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
