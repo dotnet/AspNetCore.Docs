@@ -276,10 +276,10 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
   * MAUI (`MauiBlazorWeb.Maui`)
   * Blazor Web App
     * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
-    * Client project: `MauiBlazorWeb.Web.Client`: Has a project reference to 
+    * Client project: `MauiBlazorWeb.Web.Client` 
   * RCLs
     * `MauiBlazorWeb.Shared`
-    * `MauiBlazorWeb.Shared.Client`: Contains the shared Razor components that set the `InteractiveWebAssembly` render mode in each component.
+    * `MauiBlazorWeb.Shared.Client`: Contains the shared Razor components that set the `InteractiveWebAssembly` render mode in each component. The `.Shared.Client` RCL is maintained separately from the `.Shared` RCL because the app should maintain the components that are required to run on WebAssembly separately from the components that run on server and that stay on the server.
 
 Project references:
 
@@ -287,15 +287,46 @@ Project references:
 * The Blazor Web App has a project reference to the `.Web.Client` project.
 * The `.Web.Client` has a project reference to the `.Shared.Client` RCL. The `.Shared` RCL has a project reference to the `.Shared.Client` RCL.
 
-Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
+Add the following `InteractiveRenderSettings` class is added to the `.Shared.Client` RCL. The class properties are used to set component render modes for server-based components.
 
 The MAUI project is interactive by default, so no action is taken at the project level in the MAUI project other than calling `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes`.
 
 For the Blazor Web App on the web client, the property values are assigned from <xref:Microsoft.AspNetCore.Components.Web.RenderMode>. When the components are loaded into a <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> for the MAUI project's native client, the render modes are unassigned (`null`) because the MAUI project explicitly sets the render mode properties to `null` when `ConfigureBlazorHybridRenderModes` is called.
 
-`InteractiveRenderSettings.cs`:
+`InteractiveRenderSettings.cs` (`.Shared.Client` RCL):
 
 :::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
+
+A slightly different version of the `InteractiveRenderSettings` class is added to the `.Shared` RCL. In the class added to the `.Shared` RCL, `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` of the the `.Shared.Client` RCL is called. This ensures that the render mode of WebAssembly components rendered on the MAUI client are unassigned (`null`) because they're interactive by default on the native client.
+
+`InteractiveRenderSettings.cs` (`.Shared` RCL):
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+
+namespace MauiBlazorWeb.Shared
+{
+    public static class InteractiveRenderSettings
+    {
+        public static IComponentRenderMode? InteractiveServer { get; set; } = 
+            RenderMode.InteractiveServer;
+        public static IComponentRenderMode? InteractiveAuto { get; set; } = 
+            RenderMode.InteractiveAuto;
+        public static IComponentRenderMode? InteractiveWebAssembly { get; set; } = 
+            RenderMode.InteractiveWebAssembly;
+
+        public static void ConfigureBlazorHybridRenderModes()
+        {
+            InteractiveServer = null;
+            InteractiveAuto = null;
+            InteractiveWebAssembly = null;
+            MauiBlazorWeb.Shared.Client.InteractiveRenderSettings
+                .ConfigureBlazorHybridRenderModes();
+        }
+    }
+}
+```
 
 In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridRenderModes`:
 
@@ -381,6 +412,8 @@ Immediately before the call to `builder.Build()`, add the following code to add 
 ```csharp
 builder.Services.AddScoped<IFormFactor, FormFactor>();
 ```
+
+If the solution also targets WebAssembly via a `.Web.Client` project, an implementation of the preceding API is also required in the `.Web.Client` project.
 
 You can also use compiler preprocessor directives in your RCL to implement different UI depending on the device the app is running on. For this scenario, the app must multi-target the RCL just like the MAUI app does. For an example, see the [`BethMassi/BethTimeUntil` GitHub repository](https://github.com/BethMassi/BethTimeUntil). 
 
