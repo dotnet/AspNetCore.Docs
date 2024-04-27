@@ -704,7 +704,7 @@ Blazor Web App:
   Blazor.start({
     circuit: {
       configureSignalR: function (builder) {
-        builder.configureLogging("information");
+        builder.configureLogging(2);
       }
     }
   });
