@@ -25,7 +25,7 @@ public static class Program
         // <snippet_MiddlewareRoutePrefix>
         if (builder.Environment.IsDevelopment())
         {
-            app.UseSwaggerUI(options =>
+            app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 options.RoutePrefix = string.Empty;
@@ -65,7 +65,7 @@ public static class Program
         // <snippet_MiddlewareInjectStylesheet>
         if (app.Environment.IsDevelopment())
         {
-            app.UseSwaggerUI(options =>
+            app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
             {
                 options.InjectStylesheet("/swagger-ui/custom.css");
             });
