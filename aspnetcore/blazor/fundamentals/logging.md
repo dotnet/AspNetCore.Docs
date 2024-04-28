@@ -704,7 +704,7 @@ Blazor Web App:
   Blazor.start({
     circuit: {
       configureSignalR: function (builder) {
-        builder.configureLogging(2);
+        builder.configureLogging(2); // LogLevel.Information
       }
     }
   });
@@ -720,7 +720,7 @@ Blazor Server:
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.configureLogging(2);
+      builder.configureLogging(2); // LogLevel.Information
     }
   });
 </script>
