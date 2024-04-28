@@ -48,7 +48,7 @@ builder.Services.AddSwaggerGen();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(); // Protected by if (env.IsDevelopment())
 }
 
 ...
