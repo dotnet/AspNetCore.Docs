@@ -42,7 +42,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     
         // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
         // specifying the Swagger JSON endpoint.
-        app.UseSwaggerUI(c =>
+        app.UseSwaggerUI(c => // UseSwaggerUI Protected by if (env.IsDevelopment())
         {
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); 
         });

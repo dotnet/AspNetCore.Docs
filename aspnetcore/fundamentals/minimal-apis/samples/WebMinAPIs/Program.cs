@@ -766,7 +766,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(); // UseSwaggerUI Protected by if (env.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                                     $"{builder.Environment.ApplicationName} v1"));
 }
@@ -787,7 +787,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(); // UseSwaggerUI Protected by if (env.IsDevelopment())
 }
 
 app.MapGet("/swag", () => "Hello Swagger!");
