@@ -733,14 +733,17 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 
 `CultureSelector.razor`:
 
+:::moniker range=">= aspnetcore-7.0"
+
 ```razor
 @using System.Globalization
+@inject IJSRuntime JS
 @inject NavigationManager Navigation
 
 <p>
     <label>
         Select your locale:
-        <select @bind="Culture">
+        <select @bind="selectedCulture" @bind:after="ApplySelectedCultureAsync">
             @foreach (var culture in supportedCultures)
             {
                 <option value="@culture">@culture.DisplayName</option>
@@ -757,31 +760,85 @@ The following `CultureSelector` component shows how to call the `Set` method of 
         new CultureInfo("es-CR"),
     };
 
+    private CultureInfo? selectedCulture;
+
     protected override void OnInitialized()
     {
-        Culture = CultureInfo.CurrentCulture;
+        selectedCulture = CultureInfo.CurrentCulture;
     }
 
-    private CultureInfo Culture
+    private async Task ApplySelectedCultureAsync()
     {
-        get => CultureInfo.CurrentCulture;
-        set
+        if (CultureInfo.CurrentCulture != selectedCulture)
         {
-            if (CultureInfo.CurrentCulture != value)
-            {
-                var uri = new Uri(Navigation.Uri)
-                    .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
-                var cultureEscaped = Uri.EscapeDataString(value.Name);
-                var uriEscaped = Uri.EscapeDataString(uri);
-
-                Navigation.NavigateTo(
-                    $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
-                    forceLoad: true);
-            }
+            var uri = new Uri(Navigation.Uri)
+                .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+            var cultureEscaped = Uri.EscapeDataString(selectedCulture.Name);
+            var uriEscaped = Uri.EscapeDataString(uri);
+    
+            Navigation.NavigateTo(
+                $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
+                forceLoad: true);
         }
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+```razor
+@using System.Globalization
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<p>
+    <label>
+        Select your locale:
+        <select value="@selectedCulture" @onchange="HandleSelectedCultureChanged">
+            @foreach (var culture in supportedCultures)
+            {
+                <option value="@culture">@culture.DisplayName</option>
+            }
+        </select>
+    </label>
+</p>
+
+@code
+{
+    private CultureInfo[] supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CR"),
+    };
+
+    private CultureInfo? selectedCulture;
+
+    protected override void OnInitialized()
+    {
+        selectedCulture = CultureInfo.CurrentCulture;
+    }
+
+    private async Task HandleSelectedCultureChanged(ChangeEventArgs args)
+    {
+        selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
+        if (CultureInfo.CurrentCulture != selectedCulture)
+        {
+            var uri = new Uri(Navigation.Uri)
+                .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+            var cultureEscaped = Uri.EscapeDataString(selectedCulture.Name);
+            var uriEscaped = Uri.EscapeDataString(uri);
+    
+            Navigation.NavigateTo(
+                $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
+                forceLoad: true);
+        }
+    }
+}
+```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
