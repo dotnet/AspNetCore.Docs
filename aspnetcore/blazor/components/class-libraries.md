@@ -47,13 +47,36 @@ If the **Support pages and views** checkbox is selected to support pages and vie
   @using Microsoft.AspNetCore.Components.Web
   ```
 
-* Add the following `SupportedPlatform` item to the project file (`.csproj`):
+* Add the following `SupportedPlatform` item and package reference for [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) to the project file (`.csproj`):
 
   ```xml
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
   ```
+
+  In the preceding example, the `{VERSION}` placeholder is the package version.
+
+  > [!IMPORTANT]
+  > When a Razor class library is added to a solution with the **Support pages and views** checkbox selected, the library also references the [`Microsoft.AspNetCore.App` ASP.NET Core shared framework](xref:fundamentals/metapackage-app):
+  >
+  > ```xml
+  > <ItemGroup>
+  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  > </ItemGroup>
+  > ```
+  >
+  > The shared framework isn't supported on Blazor WebAssembly, so libraries that target client-side apps should remove the framework reference. When the library targets both server-side and client-side apps, control the dependency with an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions):
+  >
+  > ```xml
+  > <ItemGroup Condition="'$(IsWasmProject)' != 'true'">
+  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  > </ItemGroup>
+  > ```
 
   For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
 
@@ -93,13 +116,36 @@ If the `-s|--support-pages-and-views` option is used to support pages and views 
   @using Microsoft.AspNetCore.Components.Web
   ```
 
-* Add the following `SupportedPlatform` item to the project file (`.csproj`):
+* Add the following `SupportedPlatform` item and package reference for [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) to the project file (`.csproj`):
 
   ```xml
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
   ```
+
+  In the preceding example, the `{VERSION}` placeholder is the package version.
+
+  > [!IMPORTANT]
+  > When a Razor class library is added to a solution with the **Support pages and views** checkbox selected, the library also references the [`Microsoft.AspNetCore.App` ASP.NET Core shared framework](xref:fundamentals/metapackage-app):
+  >
+  > ```xml
+  > <ItemGroup>
+  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  > </ItemGroup>
+  > ```
+  >
+  > The shared framework isn't supported on Blazor WebAssembly, so libraries that target client-side apps should remove the framework reference. When the library targets both server-side and client-side apps, control the dependency with an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions):
+  >
+  > ```xml
+  > <ItemGroup Condition="'$(IsWasmProject)' != 'true'">
+  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  > </ItemGroup>
+  > ```
 
   For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
 
