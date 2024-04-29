@@ -30,6 +30,7 @@ There are several ways `IHttpClientFactory` can be used in an app:
 * [Basic usage](#basic-usage)
 * [Named clients](#named-clients)
 * [Typed clients](#typed-clients)
+* [Named and typed clients](#named-and-typed-clients)
 * [Generated clients](#generated-clients)
 
 The best approach depends upon the app's requirements.
@@ -113,6 +114,38 @@ The typed client can be injected and consumed directly:
 The configuration for a typed client can also be specified during its registration in `Program.cs`, rather than in the typed client's constructor:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientTypedInline":::
+
+### Named and typed clients
+
+Named clients and typed clients have their own strengths and weaknesses. There is a way to combine these two client types to get the best of both worlds.
+
+The primary use case is the following: You want to register the exact same type client multiple times but with different settings (different base address, timeout, and credentials for example).
+
+The registration of the named and typed clients:
+
+:::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientTypedInline":::
+
+In the preceding code: 
+
+* Two `GitHubService` typed clients were registered with different timeouts. 
+* The `Timeout` was used as an example for the sake of simplicity, in a real-world scenario the two underlying `HttpClient` could be setup in a very different way.
+
+The usage of the named and typed clients:
+
+:::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Pages/Consumption/NamedAndTypedClient.cshtml.cs" id="snippet_Class" highlight="4,6-7,19-20,23,25-26":::
+
+In the preceding code: 
+
+* The `NamedAndTypedClientModel`'s constructor received two parameters: an `IHttpClientFactory` and an `ITypedHttpClientFactory<GitHubService>`.
+  * The former type resides inside the `System.Net.Http` namespaces whereas the latter type inside the `Microsoft.Extensions.Http`.
+  * The `ITypedHttpClientFactory`'s type parameter was the implementation class (in the preceding example the `GitHubService`). 
+    * Even if you have an abstraction (like `IGitHubService` interface) as well, the type parameter must be the implementation type. 
+    * If you accidentally use the abstraction (`GitHubService`) then it will throw an `InvalidOperationException` when you call its `CreateClient`.
+* Inside the `OnGet` a `Quick` named and typed client will be created for the happy path. 
+  * First the `IHttpClientFactory` is used to create a `Quick` named client.
+  * Then the `ITypedHttpClientFactory`'s `CreateClient` is called with the previous named client to wrap it into a named and typed client.
+* If the request times out (takes longer than 1 second) then the `HttpClient` throws a `TaskCanceledException` with a `TimeoutException` inner.
+  * In this case, a `LatencyTolerant` named and typed client will be created.
 
 ### Generated clients
 

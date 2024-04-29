@@ -75,6 +75,17 @@ builder.Services.AddHttpClient("Operation")
 builder.Services.AddHttpClient<GitHubService>();
 // </snippet_AddHttpClientTyped>
 
+// <snippet_AddHttpClientNamedAndTyped>
+builder.Services.AddHttpClient<GitHubService>("Quick", httpClient =>
+{
+    httpClient.Timeout = TimeSpan.FromSeconds(1);
+});
+builder.Services.AddHttpClient<GitHubService>("LatencyTolerant", httpClient =>
+{
+    httpClient.Timeout = TimeSpan.FromSeconds(10);
+});
+// </snippet_AddHttpClientNamedAndTyped>
+
 // <snippet_AddHttpClientPollyWaitAndRetry>
 builder.Services.AddHttpClient("PollyWaitAndRetry")
     .AddTransientHttpErrorPolicy(policyBuilder =>
