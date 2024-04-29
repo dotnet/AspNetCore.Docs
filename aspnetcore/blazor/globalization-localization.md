@@ -543,6 +543,7 @@ The following `CultureSelector` component shows how to perform the following act
     private async Task HandleSelectedCultureChanged(ChangeEventArgs args)
     {
         selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
+
         if (CultureInfo.CurrentCulture != selectedCulture)
         {
             await JS.InvokeVoidAsync("blazorCulture.set", selectedCulture!.Name);
@@ -823,6 +824,7 @@ The following `CultureSelector` component shows how to call the `Set` method of 
     private async Task HandleSelectedCultureChanged(ChangeEventArgs args)
     {
         selectedCulture = CultureInfo.GetCultureInfo((string)args.Value!);
+
         if (CultureInfo.CurrentCulture != selectedCulture)
         {
             var uri = new Uri(Navigation.Uri)
