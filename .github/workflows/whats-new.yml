@@ -23,7 +23,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    if: ${{ github.repository == 'dotnet/AspNetCore.Docs' }}
+    if: ${{ github.repository_owner == 'dotnet' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
