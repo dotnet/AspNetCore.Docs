@@ -704,7 +704,7 @@ Blazor Web App:
   Blazor.start({
     circuit: {
       configureSignalR: function (builder) {
-        builder.configureLogging(2);
+        builder.configureLogging(2); // LogLevel.Information
       }
     }
   });
@@ -720,13 +720,16 @@ Blazor Server:
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.configureLogging(2);
+      builder.configureLogging(2); // LogLevel.Information
     }
   });
 </script>
 ```
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+> [!NOTE]
+> Using an integer to specify the logging level in Example 2, often referred to as a *magic number* or *magic constant*, is considered a poor coding practice because the integer doesn't clearly identify the logging level when viewing the source code. If minimizing the bytes transferred to the browser is a priority, using an integer might be justified (consider removing the comment in such cases).
 
 For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
