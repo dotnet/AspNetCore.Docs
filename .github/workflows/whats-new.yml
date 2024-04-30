@@ -23,13 +23,14 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    if: ${{ github.repository_owner == 'dotnet' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
 
       - name: "Print manual run reason"
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: github.event_name == 'workflow_dispatch'
         run: |
           echo "Reason: ${{ github.event.inputs.reason }}"
 
