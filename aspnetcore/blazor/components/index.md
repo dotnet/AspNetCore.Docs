@@ -1367,7 +1367,7 @@ Blazor adopts the following general behaviors:
 Which Razor syntax attributes correspond to HTML attributes and which ones correspond to DOM properties remains undocumented because it's an implementation detail that might change without notice.
 
 > [!WARNING]
-> Some HTML attributes, such as [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
+> Some HTML attributes, such as [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), must have a string value of either "true" or "false". Since they require a string value and not a boolean, you must use a .NET `string` and not a `bool` for their value. This is a requirement set by browser DOM APIs.
 
 ## Raw HTML
 
