@@ -12,7 +12,7 @@ uid: blazor/host-and-deploy/server
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to host and deploy server-side Blazor apps using ASP.NET Core.
+This article explains how to host and deploy server-side Blazor apps (Blazor Web Apps and Blazor Server apps) using ASP.NET Core.
 
 ## Host configuration values
 
@@ -23,6 +23,8 @@ Server-side Blazor apps can accept [Generic Host configuration values](xref:fund
 Using a server-side hosting model, Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
 A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes a server-side app project template. For more information on Blazor project templates, see <xref:blazor/project-structure>.
+
+Publish an app in Release configuration and deploy the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
 ## Scalability
 
@@ -196,6 +198,8 @@ When using IIS, enable:
 
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
 * [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
+
+For more information, see the guidance and external IIS resource cross-links in <xref:tutorials/publish-to-iis>.
 
 ## Kubernetes
 
