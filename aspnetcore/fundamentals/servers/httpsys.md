@@ -292,6 +292,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 * The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
 * The index of the timing can be cast to [HttpSysRequestTimingType](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysRequestTimingType.cs,e62e7bcd02f8589e) to know what the timing represents.
 * The value may be 0 if the timing isn't available for the current request.
+* Requires Windows 10 version 2004, Windows Server 2022, or later.
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
