@@ -23,7 +23,6 @@ jobs:
         run: |
           echo "Reason: ${{ github.event.inputs.reason }}"
 
-
       - name: Azure OpenID Connect
         uses: azure/login@v2
         with:
