@@ -126,6 +126,7 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 * <xref:host-and-deploy/directory-structure>
 * <xref:test/troubleshoot-azure-iis>
 * <xref:security/enforcing-ssl>
+* [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis)
 
 ### Articles pertaining to ASP.NET Core app deployment
 
@@ -153,3 +154,4 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 * <xref:host-and-deploy/iis/modules>
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
+* [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing)

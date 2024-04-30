@@ -638,7 +638,7 @@ items:
             items:
               - name: Overview
                 uid: blazor/host-and-deploy/index
-              - name: Blazor Server
+              - name: Server
                 uid: blazor/host-and-deploy/server
               - name: Blazor WebAssembly
                 uid: blazor/host-and-deploy/webassembly
