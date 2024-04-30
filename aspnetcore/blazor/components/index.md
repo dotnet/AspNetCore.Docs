@@ -1366,7 +1366,7 @@ Blazor adopts the following general behaviors:
 * For HTML attributes, Blazor sets or removes the attribute conditionally based on the .NET value. If the .NET value is `false` or `null`, the attribute isn't set or is removed if it was previously set.
 * For DOM properties, such as `checked` or `value`, Blazor sets the DOM property based on the .NET value. If the .NET value is `false` or `null`, the DOM property is reset to a default value.
 
-Which Razor syntax attributes correspond to HTML attributes and which ones correspond to DOM properties remains undocumented because it's an implementation detail and might change without notice.
+Which Razor syntax attributes correspond to HTML attributes and which ones correspond to DOM properties remains undocumented because it's an implementation detail that might change without notice.
 
 > [!WARNING]
 > Some HTML attributes, such as [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
