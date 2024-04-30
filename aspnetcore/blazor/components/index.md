@@ -1359,9 +1359,9 @@ Attributes can be applied to components with the [`@attribute`][7] directive. Th
 
 ## Conditional HTML element attributes
 
-HTML element attribute properties are conditionally set based on the .NET value. If the value is `false` or `null`, the property isn't set. If the value is `true`, the property is set.
+HTML element attribute properties are conditionally set based on the .NET field or property value. If the value is `false` or `null`, the property isn't set. If the value is `true`, the property is set.
 
-In the following example, `IsCompleted` determines if the `<input>` element's `checked` property is set.
+In the following example, `isCompleted` determines if the `<input>` element's `checked` property is set.
 
 `ConditionalAttribute.razor`:
 
