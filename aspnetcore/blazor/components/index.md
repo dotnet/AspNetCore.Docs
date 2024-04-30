@@ -1359,8 +1359,6 @@ Attributes can be applied to components with the [`@attribute`][7] directive. Th
 
 ## Conditional HTML element attributes and DOM properties
 
-The distinction between HTML element attributes and DOM properties is subtle, and complicated rules determine how attributes and properties are related and updated. In some cases, updating an attribute updates the property automatically, while in other cases it doesn't.
-
 Blazor adopts the following general behaviors:
 
 * For HTML attributes, Blazor sets or removes the attribute conditionally based on the .NET value. If the .NET value is `false` or `null`, the attribute isn't set or is removed if it was previously set.
