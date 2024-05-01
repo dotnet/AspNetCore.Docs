@@ -67,7 +67,7 @@ For more information on [Mono](https://github.com/mono/mono)/WebAssembly MSBuild
 
 [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) is a web-friendly packaging format for .NET assemblies designed to enable using Blazor WebAssembly in restrictive network environments. Webcil files use a standard WebAssembly wrapper, where the assemblies are deployed as WebAssembly files that use the standard `.wasm` file extension.
 
-Webcil is the default packaging format when you publish a Blazor WebAssembly app. To disable the use of Webcil, set the following MS Build property in the app's project file:
+Webcil is the default packaging format when you publish a Blazor WebAssembly app. To disable the use of Webcil, set the following MSBuild property in the app's project file:
 
 ```xml
 <PropertyGroup>
@@ -333,7 +333,7 @@ For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassemb
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
-Standalone deployment assets are published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder.
+Standalone deployment assets are published into either the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish\` folder (depending on the version of the .NET SDK in use), where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
 ### Azure App Service
 

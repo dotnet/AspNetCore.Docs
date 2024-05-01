@@ -23,6 +23,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      id-token: write
     if: ${{ github.repository_owner == 'dotnet' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -34,10 +35,23 @@ jobs:
         run: |
           echo "Reason: ${{ github.event.inputs.reason }}"
 
+      - name: Azure OpenID Connect
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.CLIENT_ID }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          audience: ${{ secrets.OSMP_API_AUDIENCE }}
+          allow-no-subscriptions: true
+
+      - name: OSMP API access
+        run: |
+          TOKEN=$(az account get-access-token --query 'accessToken' -o tsv --resource ${{ secrets.OSMP_API_AUDIENCE }})
+          echo "AZURE_ACCESS_TOKEN=$TOKEN" >> $GITHUB_ENV
+     
       - uses: dotnet/docs-tools/WhatsNew.Cli@main
         env:
           GitHubKey: ${{ secrets.GITHUB_TOKEN }}
-          OspoKey: ${{ secrets.OSPO_KEY }}
+          AZURE_ACCESS_TOKEN: ${{ env.AZURE_ACCESS_TOKEN }}
         with:
           owner: dotnet
           repo: AspNetCore.Docs

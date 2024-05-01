@@ -1,93 +1,153 @@
 ---
-title: "ASP.NET Core docs: What's new for October 2023"
-description: "What's new in the ASP.NET Core docs for October 2023."
-ms.custom: October-2023
-ms.date: 11/01/2023
+title: "ASP.NET Core docs: What's new for April 2024"
+description: "What's new in the ASP.NET Core docs for April 2024."
+ms.custom: April-2024
+ms.date: 05/01/2024
 ---
 
-# ASP.NET Core docs: What's new for October 2023
+# ASP.NET Core docs: What's new for April 2024
 
-Welcome to what's new in the ASP.NET Core docs for October 2023. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the ASP.NET Core docs for April 2024. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
 ### New articles
 
-- <xref:blazor/hybrid/troubleshoot>
+- <xref:blazor/host-and-deploy/webassembly-caching/index>
+- <xref:blazor/tooling/webassembly>
+- <xref:blazor/security/server/qrcodes-for-authenticator-apps>
+- <xref:blazor/js-interop/javascript-location>
 
 ### Updated articles
 
-- <xref:blazor/globalization-localization> - Dynamic server-side culture selection (BWA) 8.0
-- <xref:blazor/fundamentals/signalr> - Manual Blazor start updates 8.0
-- <xref:blazor/fundamentals/startup> - Manual Blazor start updates 8.0
-- <xref:blazor/host-and-deploy/webassembly> - Manual Blazor start updates 8.0
-- <xref:blazor/project-structure>
-  - Manual Blazor start updates 8.0
-  - Blazor RC2 Updates 8.0
-- <xref:blazor/components/integration>
-  - Blazor support to an ASP.NET Core app (Part 2)
-  - Add Blazor support to an ASP.NET Core app
-  - Blazor migration guidance 8.0
-  - Prerender and Integrate work (Round 2)
-- <xref:blazor/security/webassembly/meid-groups-roles> - Graph SDK v5 update
-- <xref:blazor/components/render-modes> - Blazor RC2 Updates 8.0
-- <xref:blazor/fundamentals/routing> - Blazor RC2 Updates 8.0
-- <xref:blazor/security/server/additional-scenarios> - Blazor RC2 Updates 8.0
-- <xref:blazor/tooling> - Blazor RC2 Updates 8.0
+- <xref:blazor/components/quickgrid> - Update QuickGrid guidance
+- <xref:blazor/fundamentals/configuration> - Improve guidance on security config with app settings files
+- <xref:blazor/forms/index>
+  - Clear forms and fields
+  - Improve @formname coverage
+- <xref:blazor/globalization-localization> - [Blazor] Globalization & localization - correct async JS interop
+- <xref:blazor/hosting-models> - Blazor WASM build tools + AOT article
+- <xref:blazor/js-interop/ssr> - QR code generation article for BWAs
+- <xref:blazor/fundamentals/logging> - [Blazor] Logging - comments for "magic numbers"
+- <xref:blazor/fundamentals/routing> - Guidance on dynamic NavLink generation
+- <xref:blazor/fundamentals/signalr>
+  - Revise content on the reconnection UI delay
+  - Improve SignalR connection guidance
+- <xref:blazor/components/templated-components> - [Blazor] Templated components - TemplatedNavBar + keyed TableTemplate
+- <xref:blazor/webassembly-native-dependencies> - Blazor WASM build tools + AOT article
+- <xref:blazor/components/generic-type-support> - Generic type article improvements
+- <xref:blazor/components/lifecycle>
+  - Improve lifecycle method remarks
+  - Revise setting parameters lifecycle remarks
+  - Improve `SetParametersAsync` base method coverage
+- <xref:blazor/components/virtualization> - [Blazor] Virtualization - data slicing clarification
+- <xref:blazor/components/index>
+  - Clarify conditional HTML element attributes
+  - Distinguish Razor components
+- <xref:blazor/js-interop/call-dotnet-from-javascript> - Dedicated article on JS location
+- <xref:blazor/js-interop/call-javascript-from-dotnet> - Dedicated article on JS location
+- <xref:blazor/debug> - Add Debugger support section
+- <xref:blazor/components/dynamiccomponent> - [Blazor] DynamicComponents - fixes samples vulnerability + related adjustments
+- <xref:blazor/host-and-deploy/webassembly>
+  - Address CentOS EOL in Blazor
+  - Blazor WASM build tools + AOT article
+  - Adding CentOS EOL caution
+  - WASM runtime max heap size
+- <xref:blazor/host-and-deploy/server>
+  - Improve IIS crosslinking and additional deployment updates
+  - Blazor WASM build tools + AOT article
+  - Memory management updates
+  - Improve SignalR connection guidance
+- <xref:blazor/security/webassembly/meid-groups-roles> - Add additional scope guidance
+- <xref:blazor/security/blazor-web-app-oidc>
+  - OIDC Blazor authentication text improvements
+  - Clarify use of IHttpContextAccessor/HttpContext
+- <xref:blazor/security/server/index> - Shorten class name
 
 ## Fundamentals
 
 ### Updated articles
 
-- <xref:fundamentals/http-logging/index> - HTTP logging middleware in .NET 8
+- <xref:fundamentals/error-handling> - .NET 9 endpoint metadata on error handling page
+- <xref:fundamentals/minimal-apis/responses>
+  - .NET 9 moniker prep for 500 status code TypedResults
+  - Update not-latest and not-current include files
+  - .NET 9 new feature - Internal Server Error TypedResults on Responses page
+- <xref:fundamentals/minimal-apis/handle-errors> - Update not-latest and not-current include files
+- <xref:fundamentals/minimal-apis/openapi>
+  - No swag
+  - Mon prep
+- <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg013> - fix RDG highlights after code samples update
+- <xref:fundamentals/websockets> - Refresh my top 10 topics: WebSockets
 
-## Migration
-
-### New articles
-
-- <xref:migration/inc/unit-testing>
+## gRPC
 
 ### Updated articles
 
-- <xref:migration/70-to-80> - Blazor migration guidance 8.0
+- <xref:grpc/performance> - Add docs for WinHttpHandler and multiple connections
+- <xref:grpc/test-tools> - Test gRPC: Update API test Tooling: Remove Postman
+
+## Hosting and deployment
+
+### Updated articles
+
+- <xref:host-and-deploy/proxy-load-balancer> - Fix documentation about how X-Original-* headers are populated
+- <xref:host-and-deploy/linux-apache> - Adding CentOS EOL caution
+
+## Mobile development
+
+### Updated articles
+
+- <xref:mobile/native-mobile-backend> - Native Mobile Backend: Replaced Postman with curl and jq
 
 ## MVC
 
 ### Updated articles
 
-- <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> - Prerender and Integrate work (Round 2)
+- <xref:mvc/advanced/custom-model-binding> - Update API test tool: Custom Model Binding
+- <xref:mvc/views/razor> - Improve @formname coverage
+- <xref:mvc/views/working-with-forms> - fix highlight and style in snippets
 
 ## Release notes
 
 ### Updated articles
 
-- <xref:aspnetcore-8> - Blazor Release Notes updates 8.0 RC2
+- <xref:aspnetcore-9> - .NET 9 - endpoint metadata on what's new
+
+## Security
+
+### Updated articles
+
+- <xref:security/authentication/identity-enable-qrcodes> - QR code generation article for BWAs
+- <xref:security/authentication/mfa> - Moniker prep for .NET 9 content
 
 ## SignalR
 
 ### Updated articles
 
-- <xref:signalr/configuration> - 8.0 Update: SignalR Config: stateful reconnect (try 2)
+- <xref:signalr/groups> - SignalR: Clarify groups
+
+## Tutorials
+
+### Updated articles
+
+- <xref:tutorials/first-mongo-app> - WebAPI MongoDB: Clarify steps
+- <xref:tutorials/get-started-with-swashbuckle>
+  - Swagger Update: web-api-help-pages: Sample fix
+  - fix Swag
+  - Doc With Swagger: Enable only in dev env
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [damienbod](https://github.com/damienbod) - damienbod ![10 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-10-green)
-- [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![3 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
-- [AddisonRogers](https://github.com/AddisonRogers) - Addison ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [bdukes](https://github.com/bdukes) - Brian Dukes ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [connordoner](https://github.com/connordoner) - Connor Gurney ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [david-acker](https://github.com/david-acker) - David Acker ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [DavideDunne](https://github.com/DavideDunne) - Davide Dunne Sanchez ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [Denifia](https://github.com/Denifia) - Luke Wale ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [ericmutta](https://github.com/ericmutta) - Eric Mutta ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [evschein](https://github.com/evschein) - Eric Schein ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [frjol](https://github.com/frjol) - Francis Jo ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [gfoidl](https://github.com/gfoidl) - Günther Foidl ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [j3parker](https://github.com/j3parker) - Jacob Parker ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [janmarques](https://github.com/janmarques) - Jan Marques ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [naeemaei](https://github.com/naeemaei) - Hamed Naeemaei ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [sivaji55](https://github.com/sivaji55) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [thabaum](https://github.com/thabaum) - Cody ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [hakenr](https://github.com/hakenr) - Robert Haken ![10 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-10-green)
+- [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![5 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
+- [damienbod](https://github.com/damienbod) - damienbod ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [sousadiego11](https://github.com/sousadiego11) - Diego Sousa ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [andriibratanin](https://github.com/andriibratanin) - Andrii Bratanin ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ceddy4395](https://github.com/ceddy4395) - Cedric  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [joegoldman2](https://github.com/joegoldman2) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ndc](https://github.com/ndc) - Endy Tjahjono ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [PawelAdamczuk](https://github.com/PawelAdamczuk) - Paweł Adamczuk ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [plasmarocker](https://github.com/plasmarocker) - Jonathan Carter ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
