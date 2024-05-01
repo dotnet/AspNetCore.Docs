@@ -19,7 +19,7 @@ This article assumes that you have a basic understanding of ASP.NET Core Razor P
 * <xref:razor-pages/index>
 * <xref:mvc/overview>
 * <xref:tutorials/razor-pages/razor-pages-start>
-* [Build web apps with ASP.NET Core for beginners](/training/paths/aspnet-core-web-app/)
+* <xref:security/authentication/identity>
 
 ## Use the `[Authorize]` attribute
 
