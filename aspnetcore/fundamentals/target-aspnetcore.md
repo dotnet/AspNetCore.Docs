@@ -90,7 +90,7 @@ Class libraries are rarely built to only support server-side apps. If the class 
   dotnet new razorclasslib -s
   ```
 
-* Only provide a framework reference to ASP.NET Core in the library's project file in addition to any other required MS Build properties:
+* Only provide a framework reference to ASP.NET Core in the library's project file in addition to any other required MSBuild properties:
 
   ```xml
   <ItemGroup>
