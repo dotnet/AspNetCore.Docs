@@ -357,7 +357,7 @@ If the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> 
 * Confirms the email address and enables the user to log in.
 * Returns the text "Thank you for confirming your email." in the response body.
 
-To set up Identity for email confirmation, add code in `Program.cs` to set `RequireConfirmedEmail` to `true` and add a class that implements `IEmailSender` to the DI container. For example:
+To set up Identity for email confirmation, add code in `Program.cs` to set `RequireConfirmedEmail` to `true` and add a class that implements <xref:Microsoft.AspNetCore.Identity.UI.Services.IEmailSender> to the DI container. For example:
 
 :::code language="csharp" source="~/security/authentication/identity-api-authorization/8samples/APIforSPA/Program.cs" id="snippetConfigureEmail":::
 
