@@ -26,7 +26,7 @@ The sample app is a starter solution that contains a .NET MAUI Blazor Hybrid (na
 
 Instead of [using the sample app](#net-maui-blazor-web-app-sample-app), you can migrate an existing .NET MAUI Blazor Hybrid app with the guidance in this section using Visual Studio.
 
-Add new project to the solution with the **Blazor Web App** project template. Select the following options:    
+Add new project to the solution with the **Blazor Web App** project template. Select the following options:
 
 * **Project name**: Use the solution's name with `.Web` appended. The examples in this article assume the following naming:
   * Solution: `MauiBlazorWeb`
@@ -170,9 +170,7 @@ Render mode and interactivity specification subsections:
   * Blazor Web App (`MauiBlazorWeb.Web`)
   * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components without setting render modes in each component.
 
-Project references:
-
-* The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
+Project references: `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
 
 ### Global Auto or WebAssembly interactivity
 
@@ -187,19 +185,19 @@ Project references:
 
 Project references:
 
-* The MAUI and Blazor Web App server and `.Client` projects each have a project reference to the `.Shared` RCL.
-* Blazor Web App server project has a project reference to the `.Web.Client`.
+* `MauiBlazorWeb.Maui`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` projects have a project reference to `MauiBlazorWeb.Shared`.
+* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 
 ### Per-page/component Server interactivity
 
 * Interactive render mode: **Server**
 * Interactivity location: **Per-page/component**
 * Solution projects
-  * MAUI (`MauiBlazorWeb.Maui`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`. 
+  * MAUI (`MauiBlazorWeb.Maui`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`.
   * Blazor Web App (`MauiBlazorWeb.Web`): Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
   * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveServer` render mode in each component.
 
-The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
+`MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
 
 Add the following `InteractiveRenderSettings` class to the RCL. The class properties are used to set component render modes.
 
@@ -231,7 +229,7 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 * Interactive render mode: **Auto**
 * Interactivity location: **Per-page/component**
 * Solution projects
-  * MAUI (`MauiBlazorWeb.Maui`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`. 
+  * MAUI (`MauiBlazorWeb.Maui`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`.
   * Blazor Web App
     * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
     * Client project: `MauiBlazorWeb.Web.Client`
@@ -239,8 +237,8 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 
 Project references:
 
-* The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
-* The Blazor Web App has a project reference to the `.Web.Client` RCL project.
+* `MauiBlazorWeb.Maui`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` have a project reference to `MauiBlazorWeb.Shared`.
+* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 
 Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
 
@@ -275,17 +273,16 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
   * MAUI (`MauiBlazorWeb.Maui`)
   * Blazor Web App
     * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
-    * Client project: `MauiBlazorWeb.Web.Client` 
+    * Client project: `MauiBlazorWeb.Web.Client`
   * RCLs
     * `MauiBlazorWeb.Shared`
     * `MauiBlazorWeb.Shared.Client`: Contains the shared Razor components that set the `InteractiveWebAssembly` render mode in each component. The `.Shared.Client` RCL is maintained separately from the `.Shared` RCL because the app should maintain the components that are required to run on WebAssembly separately from the components that run on server and that stay on the server.
 
 Project references:
 
-* The MAUI and Blazor Web App server project each have project references to the `.Shared` RCL.
-* The Blazor Web App server project has a project reference to the `.Web.Client` project.
-* The `.Web.Client` has a project reference to the `.Shared.Client` RCL. 
-* The `.Shared` RCL has a project reference to the `.Shared.Client` RCL.
+* `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have project references to `MauiBlazorWeb.Shared`.
+* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
+* `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
 
 Add the following `InteractiveRenderSettings` class is added to the `.Shared.Client` RCL. The class properties are used to set component render modes for server-based components.
 
@@ -415,7 +412,7 @@ builder.Services.AddScoped<IFormFactor, FormFactor>();
 
 If the solution also targets WebAssembly via a `.Web.Client` project, an implementation of the preceding API is also required in the `.Web.Client` project.
 
-You can also use compiler preprocessor directives in your RCL to implement different UI depending on the device the app is running on. For this scenario, the app must multi-target the RCL just like the MAUI app does. For an example, see the [`BethMassi/BethTimeUntil` GitHub repository](https://github.com/BethMassi/BethTimeUntil). 
+You can also use compiler preprocessor directives in your RCL to implement different UI depending on the device the app is running on. For this scenario, the app must multi-target the RCL just like the MAUI app does. For an example, see the [`BethMassi/BethTimeUntil` GitHub repository](https://github.com/BethMassi/BethTimeUntil).
 
 ## Additional resources
 
