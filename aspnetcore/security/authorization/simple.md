@@ -14,7 +14,7 @@ Authorization in ASP.NET Core is controlled with the [`[Authorize]`](xref:Micros
 
 ## Prerequisites
 
-This article assumes that you have a basic understanding of ASP.NET Core Razor Pages. If you're new to ASP.NET Core, see the following resources:
+This article assumes that you have a basic understanding of ASP.NET Core Razor Pages and MVC. If you're new to ASP.NET Core, see the following resources:
 
 * <xref:razor-pages/index>
 * <xref:mvc/overview>
