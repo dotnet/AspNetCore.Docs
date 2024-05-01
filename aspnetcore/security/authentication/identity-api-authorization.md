@@ -4,7 +4,7 @@ author: JeremyLikness
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra
-ms.date: 03/08/2024
+ms.date: 05/01/2024
 uid: security/authentication/identity/spa
 ---
 # How to use Identity to secure a Web API backend for SPAs
@@ -346,7 +346,7 @@ If Identity is set up for email confirmation, a successful call to the `/registe
 * `code`
 * `changedEmail` - Included only if the user changed the email address during registration. 
 
-By default, the email subject is "Confirm your email" and the email body looks like the following example:
+Identity provides default text for the confirmation email. By default, the email subject is "Confirm your email" and the email body looks like the following example:
 
 ```http
  Please confirm your account by <a href='https://contoso.com/confirmEmail?userId={user ID}&code={generated code}&changedEmail={new email address}'>clicking here</a>.
@@ -361,7 +361,9 @@ To set up Identity for email confirmation, add code in `Program.cs` to set `Requ
 
 :::code language="csharp" source="~/security/authentication/identity-api-authorization/8samples/APIforSPA/Program.cs" id="snippetConfigureEmail":::
 
-In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
+For more information, see <xref:security/authentication/accconfirm>.
+
+Identity provides default text for the other emails that need to be sent as well, such as for 2FA and password reset. To customize these emails, provide a custom implementation of the `IEmailSender` interface. In the preceding example, `EmailSender` is a class that implements `IEmailSender`. For more information, including an example of a class that implements `IEmailSender`, see <xref:security/authentication/accconfirm>.
 
 ## Use the `POST /resendConfirmationEmail` endpoint
 
