@@ -23,6 +23,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      id-token: write
     if: ${{ github.repository_owner == 'dotnet' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
