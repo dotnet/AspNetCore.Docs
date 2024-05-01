@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 03/11/2024
+ms.date: 05/02/2024
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -526,7 +526,6 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
   Content-Type: application/json
 
   {
-    "id": 1,
     "name": "feed fish",
     "isComplete": false
   }
