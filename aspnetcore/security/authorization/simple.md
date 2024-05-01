@@ -3,14 +3,25 @@ title: Simple authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to use the Authorize attribute to restrict access to ASP.NET Core controllers and actions.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 05/01/2024
 uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
 
 <a name="security-authorization-simple"></a>
 
-Authorization in ASP.NET Core is controlled with <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a controller, action, or Razor Page, limits access to that component to authenticated users.
+Authorization in ASP.NET Core is controlled with the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a controller, action, or Razor Page, limits access to that component to authenticated users.
+
+## Prerequisites
+
+This article assumes that you have a basic understanding of ASP.NET Core Razor Pages and MVC. If you're new to ASP.NET Core, see the following resources:
+
+* <xref:razor-pages/index>
+* <xref:mvc/overview>
+* <xref:tutorials/razor-pages/razor-pages-start>
+* <xref:security/authentication/identity>
+
+## Use the `[Authorize]` attribute
 
 The following code limits access to the `AccountController` to authenticated users:
 
