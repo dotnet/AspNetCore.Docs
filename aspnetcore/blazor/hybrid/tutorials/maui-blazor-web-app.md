@@ -173,7 +173,6 @@ Render mode and interactivity specification subsections:
 Project references:
 
 * The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
-* Blazor Web App has a project reference to the `.Shared.Client` project.
 
 ### Global Auto or WebAssembly interactivity
 
@@ -188,8 +187,8 @@ Project references:
 
 Project references:
 
-* The MAUI and Blazor Web App each have a project reference to the `.Shared` RCL.
-* Blazor Web Apps have project references to the `.Web.Client` and `.Shared.Client` projects.
+* The MAUI and Blazor Web App server and `.Client` projects each have a project reference to the `.Shared` RCL.
+* Blazor Web App server project has a project reference to the `.Web.Client`.
 
 ### Per-page/component Server interactivity
 
@@ -232,7 +231,7 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 * Interactive render mode: **Auto**
 * Interactivity location: **Per-page/component**
 * Solution projects
-  * MAUI (`MauiBlazorWeb.Maui`)
+  * MAUI (`MauiBlazorWeb.Maui`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`. 
   * Blazor Web App
     * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
     * Client project: `MauiBlazorWeb.Web.Client`
@@ -283,9 +282,10 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 
 Project references:
 
-* The MAUI and Blazor Web App each have project references to the `.Shared` RCL.
-* The Blazor Web App has a project reference to the `.Web.Client` project.
-* The `.Web.Client` has a project reference to the `.Shared.Client` RCL. The `.Shared` RCL has a project reference to the `.Shared.Client` RCL.
+* The MAUI and Blazor Web App server project each have project references to the `.Shared` RCL.
+* The Blazor Web App server project has a project reference to the `.Web.Client` project.
+* The `.Web.Client` has a project reference to the `.Shared.Client` RCL. 
+* The `.Shared` RCL has a project reference to the `.Shared.Client` RCL.
 
 Add the following `InteractiveRenderSettings` class is added to the `.Shared.Client` RCL. The class properties are used to set component render modes for server-based components.
 
