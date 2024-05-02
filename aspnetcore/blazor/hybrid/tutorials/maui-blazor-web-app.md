@@ -88,8 +88,8 @@ xmlns:shared="clr-namespace:MauiBlazorWeb.Shared;assembly=MauiBlazorWeb.Shared"
 Also in the `MainPage.xaml` file, update the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> root component <xref:Microsoft.AspNetCore.Components.WebView.Maui.RootComponent.ComponentType> from `local` to `shared`:
 
 ```diff
-- <RootComponent Selector="#app" ComponentType="{x:Type local:Routes}" />
-+ <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
+- <RootComponent Selector="#app" ComponentType="{x:Type local:Components.Routes}" />
++ <RootComponent Selector="#app" ComponentType="{x:Type shared:Components.Routes}" />
 ```
 
 In the MAUI project, open the `wwwroot/index.html` file and change stylesheets to point to the RCL's static asset path.
