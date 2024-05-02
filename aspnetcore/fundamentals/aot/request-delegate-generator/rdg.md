@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
 
-The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source generator that compiles route handlers provided to a minimal API to request delegates that can be processed by ASP.NET Core's routing infrastructure. The RDG is implicitly enabled when applications are published with AoT enabled and generated trim and native AoT-friendly code.
+The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source generator that compiles route handlers provided to a minimal API to request delegates that can be processed by ASP.NET Core's routing infrastructure. The RDG is implicitly enabled when applications are published with AoT enabled or when [trimming is enabled](/dotnet/core/deploying/trimming/trimming-options#enable-trimming). The RDG generates trim and native AoT-friendly code.
 
 > [!NOTE]
 > * The Native AOT feature is currently in preview.
@@ -21,8 +21,8 @@ The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source gener
 
 The RDG:
 
-* Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview)
-* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions> such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
+* Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview).
+* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions>, such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
 
 When publishing and Native AOT is ***not*** enabled:
 
@@ -39,7 +39,7 @@ When publishing with Native AOT enabled:
 
 The RDG:
 
-* Is enabled automatically in projects when publishing with Native AOT is enabled.
+* Is enabled automatically in projects when publishing with Native AOT is enabled or when trimming is enabled.
 * Can be manually enabled even when not using Native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file:
 
 :::code language="xml" source="~/fundamentals/aot/samples/rdg/RDG.csproj" highlight="7":::
@@ -47,14 +47,12 @@ The RDG:
 Manually enabling RDG can be useful for:
 
 * Evaluating a project's compatibility with Native AOT.
-* To reduce the app's startup time by pregenerating the request delegates.
+* Reducing the app's startup time by pregenerating the request delegates.
 
-Minimal APIs are optimized for using <xref:System.Text.Json?displayProperty=fullName>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
+Minimal APIs are optimized for using <xref:System.Text.Json>, which requires using the [System.Text.Json source generator](/dotnet/standard/serialization/system-text-json/source-generation). All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that's registered via ASP.NET Core's dependency injection:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/rdg/Program.cs" highlight="5-9,32-99":::
 
-## Diagnostics emitted for unsupported RDG scenarios
+## Diagnostics for unsupported RDG scenarios
 
-The RDG emits [diagnostics](xref:fundamentals/aot/request-delegate-generator/rdg-ids) for scenarios that aren't supported by Native AOT. The diagnostics are emitted when the app is built. The diagnostics are emitted as warnings and don't prevent the app from building. <!-- tempory stub https://github.com/dotnet/aspnetcore/pull/49417  Once this API is published, replace with <xref> link --> The [DiagnosticDescriptors](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) class contains the diagnostics emitted by the RDG.
-
-See <xref:fundamentals/aot/request-delegate-generator/rdg-ids> for a list of diagnostics emitted by the RDG.
+When the app is built, the RDG emits diagnostics for scenarios that aren't supported by Native AOT. The diagnostics are emitted as warnings and don't prevent the app from building. For the list of diagnostics, see [ASP.NET Core Request Delegate Generator diagnostics](xref:fundamentals/aot/request-delegate-generator/rdg-ids).
