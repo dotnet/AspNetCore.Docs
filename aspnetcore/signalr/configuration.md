@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/26/2023
+ms.date: 05/02/2024
 uid: signalr/configuration
 ---
 
@@ -302,16 +302,16 @@ await builder.StartAsync();
 
 | Option | Default value | Description |
 | ------ | ------------- | ----------- |
-| `withServerTimeoutInMilliseconds` | 30 seconds (30,000 milliseconds) | Timeout for server activity and is set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onclose` event. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's keep-alive interval (`withKeepAliveInterval`) value to allow time for pings to arrive. |
-| `withKeepAliveIntervalInMilliseconds` | 15 seconds (15,000 milliseconds) | Determines the interval at which the client sends ping messages and is set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the `ClientTimeoutInterval` set on the server, the server considers the client disconnected. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The keep-alive interval should be less than or equal to half the value assigned to the server timeout (`withServerTimeout`). |
+| `withServerTimeout` | 30 seconds (30,000 milliseconds) | Timeout for server activity and is set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onclose` event. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's keep-alive interval (`withKeepAliveInterval`) value to allow time for pings to arrive. |
+| `withKeepAliveInterval` | 15 seconds (15,000 milliseconds) | Determines the interval at which the client sends ping messages and is set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the `ClientTimeoutInterval` set on the server, the server considers the client disconnected. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The keep-alive interval should be less than or equal to half the value assigned to the server timeout (`withServerTimeout`). |
 
 The following example shows values that are double the default values:
 
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
   .withUrl("/chatHub")
-  .withServerTimeoutInMilliseconds(60000)
-  .withKeepAliveIntervalInMilliseconds(30000)
+  .withServerTimeout(60000)
+  .withKeepAliveInterval(30000)
   .build();
 ```
 
