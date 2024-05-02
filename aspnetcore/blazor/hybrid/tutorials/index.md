@@ -16,6 +16,12 @@ The following tutorials provide a basic working experience for building a Blazor
 
 * <xref:blazor/hybrid/tutorials/maui>
 
+:::moniker range=">= aspnetcore-8.0"
+
+* <xref:blazor/hybrid/tutorials/maui-blazor-web-app>
+
+:::moniker-end
+
 * <xref:blazor/hybrid/tutorials/windows-forms>
 
 * <xref:blazor/hybrid/tutorials/wpf>
