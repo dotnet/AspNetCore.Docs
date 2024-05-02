@@ -286,7 +286,7 @@ Project references:
 
 Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies%2A> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its `_Imports` file) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
-```csharp
+```razor
 <Router AppAssembly="@typeof(Routes).Assembly" 
         AdditionalAssemblies="new [] { typeof(MauiBlazorWeb.Shared.Client._Imports).Assembly}">
     <Found Context="routeData">
