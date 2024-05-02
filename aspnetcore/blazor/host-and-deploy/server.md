@@ -72,6 +72,11 @@ Recommendations for global deployments to geographical data centers:
 
 For Blazor Web Apps that adopt interactive server-side rendering, consider using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service). The service works in conjunction with the app's Blazor Hub for scaling up to a large number of concurrent SignalR connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
 
+<!-- UPDATE 9.0 Remove when support is present -->
+
+> [!NOTE]
+> [Stateful reconnect](xref:signalr/configuration#configure-stateful-reconnect) (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderHttpExtensions.WithStatefulReconnect%2A>) was released with .NET 8 but isn't currently supported for the Azure SignalR Service. For more information, see [Stateful Reconnect Support? (`Azure/azure-signalr` #1878)](https://github.com/Azure/azure-signalr/issues/1878).
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"

@@ -293,7 +293,7 @@ public class ComponentEnums
 }
 ```
 
-Make the `enums` class accessible to the:
+Make the `ComponentEnums` class accessible to the:
 
 * `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;`).
 * `Starfleet Starship Database` form (`Starship3.razor`) (for example, `@using static ComponentEnums`).

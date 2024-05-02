@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/7/2023
+ms.date: 05/02/2024
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -364,8 +364,8 @@ The following example shows the ***new approach*** for assigning values that are
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
   .withUrl("/chatHub")
-  .withServerTimeoutInMilliseconds(60000)
-  .withKeepAliveIntervalInMilliseconds(30000)
+  .withServerTimeout(60000)
+  .withKeepAlive(30000)
   .build();
 ```
 
