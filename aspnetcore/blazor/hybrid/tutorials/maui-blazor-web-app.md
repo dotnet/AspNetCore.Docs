@@ -288,7 +288,7 @@ Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.Additiona
 
 ```razor
 <Router AppAssembly="@typeof(Routes).Assembly" 
-        AdditionalAssemblies="new [] { typeof(MauiBlazorWeb.Shared.Client._Imports).Assembly}">
+        AdditionalAssemblies="new [] { typeof(MauiBlazorWeb.Shared.Client._Imports).Assembly }">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(Components.Layout.MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
