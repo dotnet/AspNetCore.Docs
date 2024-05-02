@@ -428,6 +428,8 @@ items:
                     uid: blazor/hybrid/tutorials/index
                   - name: .NET MAUI
                     uid: blazor/hybrid/tutorials/maui
+                  - name: .NET MAUI with Blazor Web App
+                    uid: blazor/hybrid/tutorials/maui-blazor-web-app
                   - name: Windows Forms
                     uid: blazor/hybrid/tutorials/windows-forms
                   - name: WPF
