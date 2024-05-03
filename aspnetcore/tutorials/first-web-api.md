@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 4/3/2024
+ms.date: 05/03/2024
 uid: tutorials/first-web-api
 ---
 
@@ -288,8 +288,8 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
+* Right-click the `Controllers` folder.
+* Select **Add** > **:::no-loc text="New Scaffolded Item":::**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
