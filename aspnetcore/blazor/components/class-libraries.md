@@ -26,8 +26,8 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 1. Create a new project.
 1. In the **Create a new project** dialog, select **Razor Class Library** from the list of ASP.NET Core project templates. Select **Next**.
-1. In the **Configure your new project** dialog, provide a project name in the **Project name** field or accept the default project name. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
-1. In the **Create a new Razor class library** dialog, select **Create**.
+1. In the **Configure your new project** dialog, provide a project name in the **Project name** field or accept the default project name. Examples in this topic use the project name `ComponentLibrary`. Select **Next**.
+1. In the **Additional information** dialog, do ***not*** select **Support pages and views**. Select **Create**.
 1. Add the RCL to a solution:
    1. Open the solution.
    1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.
@@ -36,61 +36,6 @@ Just as components are regular .NET types, components provided by an RCL are nor
 1. Add a reference to the RCL from the app:
    1. Right-click the app project. Select **Add** > **Project Reference**.
    1. Select the RCL project. Select **OK**.
-
-:::moniker range=">= aspnetcore-5.0"
-
-If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
-
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
-
-  ```razor
-  @using Microsoft.AspNetCore.Components.Web
-  ```
-
-* Add the following `SupportedPlatform` item and package reference for [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) to the project file (`.csproj`):
-
-  ```xml
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
-  </ItemGroup>
-  ```
-
-  In the preceding example, the `{VERSION}` placeholder is the package version.
-
-  > [!IMPORTANT]
-  > When a Razor class library is added to a solution with the **Support pages and views** checkbox selected, the library also references the [`Microsoft.AspNetCore.App` ASP.NET Core shared framework](xref:fundamentals/metapackage-app):
-  >
-  > ```xml
-  > <ItemGroup>
-  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  > </ItemGroup>
-  > ```
-  >
-  > The shared framework isn't supported on Blazor WebAssembly, so libraries that target client-side apps should remove the framework reference. When the library targets both server-side and client-side apps, control the dependency with an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions):
-  >
-  > ```xml
-  > <ItemGroup Condition="'$(IsWasmProject)' != 'true'">
-  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  > </ItemGroup>
-  > ```
-
-  For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
-
-```razor
-@using Microsoft.AspNetCore.Components.Web
-```
-
-:::moniker-end
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -106,61 +51,6 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    dotnet add reference {PATH TO LIBRARY}
    ```
 
-:::moniker range=">= aspnetcore-5.0"
-
-If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template:
-
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
-
-  ```razor
-  @using Microsoft.AspNetCore.Components.Web
-  ```
-
-* Add the following `SupportedPlatform` item and package reference for [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) to the project file (`.csproj`):
-
-  ```xml
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
-  </ItemGroup>
-  ```
-
-  In the preceding example, the `{VERSION}` placeholder is the package version.
-
-  > [!IMPORTANT]
-  > When a Razor class library is added to a solution with the **Support pages and views** checkbox selected, the library also references the [`Microsoft.AspNetCore.App` ASP.NET Core shared framework](xref:fundamentals/metapackage-app):
-  >
-  > ```xml
-  > <ItemGroup>
-  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  > </ItemGroup>
-  > ```
-  >
-  > The shared framework isn't supported on Blazor WebAssembly, so libraries that target client-side apps should remove the framework reference. When the library targets both server-side and client-side apps, control the dependency with an [MSBuild condition](/visualstudio/msbuild/msbuild-conditions):
-  >
-  > ```xml
-  > <ItemGroup Condition="'$(IsWasmProject)' != 'true'">
-  >   <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  > </ItemGroup>
-  > ```
-
-  For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
-
-```razor
-@using Microsoft.AspNetCore.Components.Web
-```
-
-:::moniker-end
-
 ---
 
 ## Consume a Razor component from an RCL
@@ -173,9 +63,6 @@ To consume components from an RCL in another project, use either of the followin
   * include the `@using` directive in the top-level `_Imports.razor` file to make the library's components available to an entire project. Add the directive to an `_Imports.razor` file at any level to apply the namespace to a single component or set of components within a folder. When an `_Imports.razor` file is used, individual components don't require an `@using` directive for the RCL's namespace.
 
 In the following examples, `ComponentLibrary` is an RCL containing the `Component1` component. The `Component1` component is an example component automatically added to an RCL created from the RCL project template that isn't created to support pages and views.
-
-> [!NOTE]
-> If the RCL is created to support pages and views, manually add the `Component1` component and its static assets to the RCL if you plan to follow the examples in this article. The component and static assets are shown in this section.
 
 `Component1.razor` in the `ComponentLibrary` RCL:
 
