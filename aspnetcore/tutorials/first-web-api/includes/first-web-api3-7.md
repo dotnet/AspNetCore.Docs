@@ -271,8 +271,8 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
+* Right-click the `Controllers` folder.
+* Select **Add** > **:::no-loc text="New Scaffolded Item":::**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
@@ -827,8 +827,8 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
+* Right-click the `Controllers` folder.
+* Select **Add** > **:::no-loc text="New Scaffolded Item":::**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
@@ -1428,8 +1428,8 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
+* Right-click the `Controllers` folder.
+* Select **Add** > **:::no-loc text="New Scaffolded Item":::**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
@@ -1951,8 +1951,8 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
+* Right-click the `Controllers` folder.
+* Select **Add** > **:::no-loc text="New Scaffolded Item":::**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
