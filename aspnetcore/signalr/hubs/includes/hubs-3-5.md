@@ -7,7 +7,7 @@ By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://t
 
 ## What is a SignalR hub
 
-The SignalR Hubs API enables you to call methods on connected clients from the server. In the server code, you define methods that are called by client. In the client code, you define methods that are called from the server. SignalR takes care of everything behind the scenes that makes real-time client-to-server and server-to-client communications possible.
+The SignalR Hubs API enables connected clients to call methods on the server and facilitates real-time communcation between clients. The server defines methods that are called from the client and the client defines methods that are called from the server. SignalR takes care of everything required to make real-time client-to-server, server-to-client and client-to-client communication possible.
 
 ## Configure SignalR hubs
 
