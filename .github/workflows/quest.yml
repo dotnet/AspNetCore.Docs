@@ -76,4 +76,4 @@ jobs:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           issue: ${{ github.event.issue.number }}
-          
+          duration: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.duration || 5 }}
