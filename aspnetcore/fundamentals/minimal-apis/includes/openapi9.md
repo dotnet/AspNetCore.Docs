@@ -21,7 +21,7 @@ In the preceding highlighted code:
 
 ## `Microsoft.AspNetCore.OpenApi` NuGet package
 
-ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package provides functionality that encompasses the following features:
+The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package provides functionality that encompasses the following features:
 
 * Support for generating OpenAPI documents at runtime and accessing them via an endpoint on the application
 * Support for "transformer" APIs that allow modifying the generated document
@@ -35,9 +35,9 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 OpenAPI supports providing a description of the responses returned from an API. Minimal APIs support three strategies for setting the response type of an endpoint:
 
-* Via the [`Produces`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.produces) extension method on the endpoint
-* Via the [`ProducesResponseType`](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute) attribute on the route handler
-* By returning [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) from the route handler
+* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method on the endpoint.
+* Via the [`ProducesResponseType`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute on the route handler.
+* By returning<xref:Microsoft.AspNetCore.Http.TypedResults> from the route handler.
 
 The `Produces` extension method can be used to add `Produces` metadata to an endpoint. When no parameters are provided, the extension method populates metadata for the targeted type under a `200` status code and an `application/json` content type.
 
@@ -47,7 +47,7 @@ app
     .Produces<IList<Todo>>();
 ```
 
-Using [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
+Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) =>
@@ -59,9 +59,9 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 ### Set responses for `ProblemDetails`
 
-When setting the response type for endpoints that may return a ProblemDetails response, the [`ProducesProblem`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesproblem) extension method or [`TypedResults.Problem`](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata.
+When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
 
-When there are no explicit annotations provided by one of the strategies above, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
+When there are no explicit annotations provided by one of these strategies, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
 ### Multiple response types
 
@@ -71,7 +71,7 @@ If an endpoint can return different response types in different scenarios, you c
 
   [!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
-* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the body of the handler, as shown in the following example:
+* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and <xref:Microsoft.AspNetCore.Http.TypedResults> in the body of the handler, as shown in the following example:
 
   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
 
@@ -83,19 +83,19 @@ If an endpoint can return different response types in different scenarios, you c
 
 In addition to describing the types that are returned by an endpoint, OpenAPI also supports annotating the inputs that are consumed by an API. These inputs fall into two categories:
 
-* Parameters that appear in the path, query string, headers, or cookies
-* Data transmitted as part of the request body
+* Parameters that appear in the path, query string, headers, or cookies.
+* Data transmitted as part of the request body.
 
 The framework infers the types for request parameters in the path, query, and header string automatically based on the signature of the route handler.
 
-To define the type of inputs transmitted as the request body, configure the properties by using the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method to define the object type and content type that are expected by the request handler. In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
+To define the type of inputs transmitted as the request body, configure the properties by using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method to define the object type and content type that are expected by the request handler. In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
 
 ```csharp
 app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
   .Accepts<Todo>("application/xml");
 ```
 
-In addition to the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, A parameter type can describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
+In addition to the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A>extension method, a parameter type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
@@ -109,9 +109,9 @@ public class Todo : IEndpointParameterMetadataProvider
 
 When no explicit annotation is provided, the framework attempts to determine the default request type if there's a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
 
-* Request body parameters that are read from a form via the [`[FromForm]`](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute are described with the `multipart/form-data` content-type.
+* Request body parameters that are read from a form via the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute are described with the `multipart/form-data` content-type.
 * All other request body parameters are described with the `application/json` content-type.
-* The request body is treated as optional if it's nullable or if the [`AllowEmpty`](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute.microsoft-aspnetcore-http-metadata-ifrombodymetadata-allowempty) property is set on the [`FromBody`](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute.
+* The request body is treated as optional if it's nullable or if the <xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty> property is set on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
 
 ## ASP.NET Core OpenAPI source code on GitHub
 
