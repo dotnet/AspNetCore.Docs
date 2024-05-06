@@ -69,6 +69,12 @@ The following example demonstrates the concepts for images in an app that organi
 
 ![A .NET MAUI Blazor Hybrid app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4.png)
 
+:::moniker range=">= aspnetcore-8.0"
+
+For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-interfaces-to-support-different-device-implementations>.
+
+:::moniker-end
+
 ## Additional resources
 
 * .NET MAUI Blazor podcast sample app
