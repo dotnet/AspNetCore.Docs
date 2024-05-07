@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/14/2023
+ms.date: 05/03/2024
 uid: signalr/hubs
 ---
 
@@ -15,7 +15,7 @@ uid: signalr/hubs
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
-The SignalR Hubs API enables connected clients to call methods on the server. The server defines methods that are called from the client and the client defines methods that are called from the server. SignalR takes care of everything required to make real-time client-to-server and server-to-client communication possible.
+The SignalR Hubs API enables connected clients to call methods on the server, facilitating real-time communication. The server defines methods that are called by the client, and the client defines methods that are called by the server. SignalR also enables indirect client-to-client communication, always mediated by the SignalR Hub, allowing messages to be sent between individual clients, groups, or to all connected clients. SignalR takes care of everything required to make real-time client-to-server and server-to-client communication possible.
 
 ## Configure SignalR hubs
 

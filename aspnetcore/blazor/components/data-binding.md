@@ -894,7 +894,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Bound field or property expression tree
 
-A bound field or property's [expression tree](/dotnet/csharp/advanced-topics/expression-trees/) is obtained by adding a property named for the field or property (`{PARAMETER OR FIELD NAME}Expression`).
+To facilitate deeper interactions with a binding, Blazor allows you to capture of the [expression tree](/dotnet/csharp/advanced-topics/expression-trees/) of a bound field or property. This is achieved by defining a property with the field or property name suffixed with `Expression`. For any given field or property named `{FIELD OR PROPERTY NAME}`, the corresponding expression tree property is named `{FIELD OR PROPERTY NAME}Expression`.
 
 The following `ChildParameterExpression` component identifies the `Year` expression's model and field name. A <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier>, which is used to obtain the model and field name, uniquely identifies a single field that can be edited. This may correspond to a property on a model object or can be any other named value. Use of a parameter's expression is useful when creating custom validation components, which isn't covered by the Microsoft Blazor documentation but is addressed by numerous third-party resources.
 
