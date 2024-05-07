@@ -13,7 +13,7 @@ The ASP.NET Core data protection provides a cryptographic API to protect data, i
 
 Web applications often need to store security-sensitive data. Windows provides a data protection API, [DPAPI](/dotnet/standard/security/how-to-use-data-protection), but Windows DPAPI isn't intended for use in web applications.
 
-The ASP.NET Core data protection stack is designed to serve as the long-term replacement for the &lt;machineKey&gt; element in ASP.NET 1.x - 4.x. It was designed to address many of the deficiencies of the previous encryption system while providing a ready-to-use solution for most scenarios that modern apps.
+The ASP.NET Core data protection stack is designed to serve as the long-term replacement for the &lt;machineKey&gt; element in ASP.NET 1.x - 4.x. It was designed to address many of the deficiencies of the previous encryption system while providing a built in solution for most scenarios that modern apps require.
 
 ## Problem statement
 
@@ -21,14 +21,14 @@ I need to persist trusted information for later retrieval, but I don't trust the
 
 The canonical example of this is an authentication cookie or bearer token. The server generates an ***I am Groot and have xyz permissions*** token and sends it to the client. The client presents that token back to the server, but the server needs some kind of assurance that the client hasn't forged the token. Authenticity, that is, integrity, tamper-proofing is a requirement.
 
-Since the persisted state is trusted by the server, we anticipate that this state might contain information that's specific to the operating environment. This could be:
+Since the persisted state is trusted by the server, this state might contain information that's specific to the operating environment. The information might be:
 
 * A file path
-* A Permission
+* A permission
 * A handle or other indirect reference.
 * Some server-specific data.
 
-Such information shouldn't typically be disclosed to an untrusted client. That is, confidentiality is a requirement:
+Such information shouldn't typically be disclosed to an untrusted client. Confidentiality is a requirement:
 
 Since modern apps are componentized, individual components want to take advantage of this system without regard to other components in the system. For instance, if a bearer token component is using this stack, it should operate without interference from an anti-CSRF mechanism that might also be using the same stack. Isolation is a requirement.
 
@@ -37,27 +37,29 @@ We can provide further constraints in order to narrow the scope of our requireme
 * All services operating within the cryptosystem are equally trusted.
 * The data doesn't need to be generated or consumed outside of the services under our direct control.
 
-Operations must be fast since each request to the web service might go through the cryptosystem one or more times. This makes symmetric cryptography ideal for our scenario. Asymmetric cryptography isn't used until such a time that it's required.
+Operations must be fast since each request to the web service might go through the cryptosystem one or more times. This makes symmetric cryptography ideal for our scenario. Asymmetric cryptography isn't used until it's required.
 
 ## Design philosophy
 
 We then engineered a solution based on several guiding principles.
 
-* The system offers simplicity of configuration. The system strives to be zero-configuration. In situations where developers need to configure a specific aspect, such as the key repository, those specific configurations aren't difficult.
+* Ease of configuration. The system strives to be zero-configuration. In situations where developers need to configure a specific aspect, such as the key repository, those specific configurations aren't difficult.
+* Offer a basic consumer-facing API. The APIs are straight forward to use correctly and difficult to use incorrectly.
+* Developers don't have to learn key management principles. The system handles algorithm selection and key lifetime on the developer's behalf. The developer doesn't have access to the raw key material.
+* Keys are protected at rest when possible. The system figures out an appropriate default protection mechanism and applies it automatically.
 
-* Offer a basic consumer-facing API. The APIs should be easy to use correctly and difficult to use incorrectly.
+We developed an [easy to use](xref:security/data-protection/using-data-protection) data protection stack.
 
-* Developers shouldn't have to learn key management principles. The system should handle algorithm selection and key lifetime on the developer's behalf. The developer shouldn't have access to the raw key material.
+The ASP.NET Core data protection APIs aren't primarily intended for indefinite persistence of confidential payloads. [Windows CNG DPAPI](/windows/win32/seccng/cng-dpapi) and [Azure Rights Management](/rights-management/):
 
-* Keys should be protected at rest when possible. The system should figure out an appropriate default protection mechanism and apply it automatically.
+* Are recommended for indefinite storage.
+* Have correspondingly strong key management capabilities.
 
-We developed a simple, [easy to use](xref:security/data-protection/using-data-protection) data protection stack.
-
-The ASP.NET Core data protection APIs aren't primarily intended for indefinite persistence of confidential payloads. Other technologies like [Windows CNG DPAPI](/windows/win32/seccng/cng-dpapi) and [Azure Rights Management](/rights-management/) are more suited to the scenario of indefinite storage, and they have correspondingly strong key management capabilities. There's nothing prohibiting a developer from using the ASP.NET Core data protection APIs for long-term protection of confidential data.
+There's nothing prohibiting a developer from using the ASP.NET Core data protection APIs for long-term protection of confidential data.
 
 ## Audience
 
-The data protection system is divided into five main packages. Various aspects of these APIs target three main audiences;
+The data protection system is divided into the following packages. Various aspects of these APIs target three main audiences:
 
 1. The [Consumer APIs Overview](xref:security/data-protection/consumer-apis/overview) target application and framework developers.
 
