@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Data Protection Overview
+title: ASP.NET Core Data Protection temp
 author: rick-anderson
-description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
+description: Temp APIs.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/07/2022
@@ -14,8 +14,10 @@ The ASP.NET Core data protection provides a cryptographic API to protect data, i
 Web apps often need to store security-sensitive data. [DPAPI](/dotnet/standard/security/how-to-use-data-protection), the Windows data protection API isn't intended for use in web apps.
 ------------ Start of new content ---------------
 
-If the developer has not configured data protection, ASP.NET Core sets an environment variable that makes the data protection keys read only. Setting the data configuration keys to read only is designed to maintain data consistency in web farms and and [Azure Container Apps](/azure/container-apps/overview).
+:::moniker range=">= aspnetcore-8.0"
 
+If the developer has not configured data protection, ASP.NET Core sets an environment variable that makes the data protection keys read only. Setting the data configuration keys to read only is designed to maintain data consistency in web farms and [Azure Container Apps](/azure/container-apps/overview).
 
+:::moniker-end
 
 ----------------------------------------------
