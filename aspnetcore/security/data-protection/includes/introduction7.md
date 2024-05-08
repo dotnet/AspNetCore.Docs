@@ -1,16 +1,4 @@
----
-title: ASP.NET Core Data Protection Overview
-author: rick-anderson
-description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/07/2022
-uid: security/data-protection/introduction
----
-
-# ASP.NET Core Data Protection Overview
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
 
@@ -107,5 +95,3 @@ The data protection stack consists of five packages:
 * <xref:host-and-deploy/web-farm>
 
 :::moniker-end
-
-[!INCLUDE[](~/security/data-protection/includes/introduction7.md)]
