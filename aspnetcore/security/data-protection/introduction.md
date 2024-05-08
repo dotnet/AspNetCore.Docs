@@ -8,9 +8,9 @@ ms.date: 03/07/2022
 uid: security/data-protection/introduction
 ---
 
-:::moniker range=">= aspnetcore-8.0"
-
 # ASP.NET Core Data Protection Overview
+
+:::moniker range=">= aspnetcore-8.0"
 
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
 
@@ -109,4 +109,3 @@ The data protection stack consists of five packages:
 :::moniker-end
 
 [!INCLUDE[](~/security/data-protection/includes/introduction7.md)]
-
