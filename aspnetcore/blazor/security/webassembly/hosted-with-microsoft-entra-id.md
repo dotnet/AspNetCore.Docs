@@ -51,6 +51,9 @@ Record the following information:
 * Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
 * ME-ID Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
+> [!IMPORTANT]
+> Add yourself as an owner of the *Server API app* registration. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
+
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the server API app doesn't require additional API access for merely signing in users and calling server API endpoints.
 
 In **Expose an API**:
@@ -82,9 +85,6 @@ Register an ME-ID app for the *Client app*:
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
 1. This article assumes the app is registered in a **Microsoft Entra** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
-
-> [!IMPORTANT]
-> Add yourself as an owner of the service API registration. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
 
 > [!NOTE]
 > Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Entra documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
