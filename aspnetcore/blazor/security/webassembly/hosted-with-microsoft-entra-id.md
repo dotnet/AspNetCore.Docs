@@ -83,6 +83,9 @@ Register an ME-ID app for the *Client app*:
 1. This article assumes the app is registered in a **Microsoft Entra** tenant. If the app is registered in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
+> [!IMPORTANT]
+> Add yourself as an owner of the service API registration. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
+
 > [!NOTE]
 > Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Entra documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
 
