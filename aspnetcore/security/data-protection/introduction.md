@@ -15,7 +15,7 @@ Web apps often need to store security-sensitive data. [DPAPI](/dotnet/standard/s
 
 The ASP.NET Core data protection stack was designed to:
 
-* Serve as the replacement for the &lt;machineKey&gt; element in ASP.NET 1.x - 4.x.
+* Serve as the replacement for the `<machineKey>` element in ASP.NET 1.x - 4.x.
 * Address many of the deficiencies of the previous encryption system while providing a built in solution for most Web scenarios.
 
 ## Problem statement
