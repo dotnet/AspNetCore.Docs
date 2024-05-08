@@ -52,7 +52,7 @@ Record the following information:
 * ME-ID Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 > [!IMPORTANT]
-> Add yourself as an owner of the *Server API app* registration. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
+> For later in the *Register a client app in Azure* section when API permissions are added, you must add yourself as an owner of the *Server API app* registration in order to see the *Server API app* in the **My APIs** area of the Azure portal. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
 
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the server API app doesn't require additional API access for merely signing in users and calling server API endpoints.
 
@@ -99,6 +99,9 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 1. Select the **Save** button if you made changes.
 
 In **API permissions**:
+
+> [!IMPORTANT]
+> For the next set of steps, you must be an **Owner** of the *Server API app* registration in order to see the *Server API app* in the **My APIs** area of the Azure portal. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
 
 1. Confirm that the app has **Microsoft Graph** > **User.Read** permission.
 1. Select **Add a permission** followed by **My APIs**.
