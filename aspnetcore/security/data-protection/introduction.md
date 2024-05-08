@@ -25,18 +25,16 @@ The ASP.NET Core data protection stack was designed to:
 
 Authenticity, integrity, and tamper-proofing is a requirement. The canonical example of this is an authentication cookie or bearer token. The server generates an ***I am Groot and have xyz permissions*** token and sends it to the client. The client presents that token back to the server, but the server needs some kind of assurance that the client hasn't forged the token. 
 
-Confidentiality is a requirement. Since the persisted state is trusted by the server, this state might contain information that's specific to the operating environment. The information might be:
+Confidentiality is a requirement. Since the persisted state is trusted by the server, this state could contain information that shouldn't be disclosed to an untrusted client. For example:
 
 * A file path.
 * A permission.
 * A handle or other indirect reference.
 * Some server-specific data.
 
- Such information typically shouldn't be disclosed to an untrusted client. 
-
 Isolation is a requirement. Since modern apps are componentized, individual components want to take advantage of this system without regard to other components in the system. For instance, consider a bearer token component using this stack. It should operate without any interference, for example, from an anti-CSRF mechanism also using the same stack.
 
-Some common constraints can narrow the scope of requirements. Consider the following assumptions:
+Some common assumptions can narrow the scope of requirements:
 
 * All services operating within the cryptosystem are equally trusted.
 * The data doesn't need to be generated or consumed outside of the services under our direct control.
