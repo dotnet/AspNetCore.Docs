@@ -107,3 +107,6 @@ The data protection stack consists of five packages:
 * <xref:host-and-deploy/web-farm>
 
 :::moniker-end
+
+[!INCLUDE[](~/security/data-protection/includes/introduction7.md)]
+
