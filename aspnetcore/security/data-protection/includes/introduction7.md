@@ -1,6 +1,11 @@
 :::moniker range="< aspnetcore-8.0"
 
+> [!WARNING]
+> Data configuration keys to in this version of .NET can ***NOT*** maintain data consistency in web farms and [Azure Container Apps](/azure/container-apps/overview). See the the [.NET 8 version of later of this document](/aspnet/core/security/data-protection/introduction?view=aspnetcore-80.0) for information on how to maintain data consistency in web farms and Azure Container Apps.
+
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
+
+
 
 Web apps often need to store sensitive data. The Windows data protection API ([DPAPI](/dotnet/standard/security/how-to-use-data-protection)) isn't intended for use in web apps.
 
