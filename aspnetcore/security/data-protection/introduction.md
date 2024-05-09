@@ -23,7 +23,7 @@ The ASP.NET Core data protection stack was designed to:
 
 ## Key consistency in web farms and Azure Container Apps
 
-If the developer has not configured data protection, ASP.NET Core sets an environment variable that makes the data protection keys read only. Setting the data configuration keys to read only is designed to maintain data consistency in web farms and [Azure Container Apps](/azure/container-apps/overview).
+If the developer has not configured data protection in ASP.NET Core, the environment variable `autoConfigureDataProtection` is set to `true`.  When `autoConfigureDataProtection` is set to `true`, the data protection keys are read only. Setting the data configuration keys to read only is designed to maintain data consistency in web farms and [Azure Container Apps](/azure/container-apps/overview).
 
 The `ReadOnlyDataProtectionKeyDirectory`, `DOTNET_ReadOnlyDataProtectionKeyDirectory` and `DataProtectionKeyDirectory` configuration values:
 
