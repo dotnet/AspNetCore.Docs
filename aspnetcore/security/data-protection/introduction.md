@@ -18,9 +18,18 @@ Web apps often need to store sensitive data. The Windows data protection API ([D
 
 The ASP.NET Core data protection stack was designed to:
 
-* Provide a built in solution for most Web scenarios.
-* Address many of the deficiencies of the previous encryption system. 
-* Serve as the replacement for the `<machineKey>` element in ASP.NET 1.x - 4.x.
+* Provide a built in solution for most Web scenarios, including web farms and Azure Container Apps.
+* Address many of the deficiencies of the previous encryption system.
+
+## Key consistency in web farms and Azure Container Apps
+
+If the developer has not configured data protection, ASP.NET Core sets an environment variable that makes the data protection keys read only. Setting the data configuration keys to read only is designed to maintain data consistency in web farms and [Azure Container Apps](/azure/container-apps/overview).
+
+The `ReadOnlyDataProtectionKeyDirectory`, `DOTNET_ReadOnlyDataProtectionKeyDirectory` and `DataProtectionKeyDirectory` configuration values:
+
+* Can be set to specify the key path.
+* Have descending order of precedence. `ReadOnlyDataProtectionKeyDirectory` is the highest precedence and `DataProtectionKeyDirectory` is the  lowest precedence.
+* Are set to a read-only path to prevent key rotation.
 
 ## Problem statement
 
@@ -103,6 +112,8 @@ The data protection stack consists of five packages:
 
 ## Additional resources
 
+* [An introduction to the Data Protection system by Andrew Lock](https://andrewlock.net/an-introduction-to-the-data-protection-system-in-asp-net-core/)
+* Data protection serves as the replacement for the `<machineKey>` element in ASP.NET 1.x - 4.x.
 * <xref:security/data-protection/using-data-protection>
 * <xref:host-and-deploy/web-farm>
 

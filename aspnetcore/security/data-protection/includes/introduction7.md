@@ -5,8 +5,6 @@
 
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
 
-
-
 Web apps often need to store sensitive data. The Windows data protection API ([DPAPI](/dotnet/standard/security/how-to-use-data-protection)) isn't intended for use in web apps.
 
 The ASP.NET Core data protection stack was designed to:
