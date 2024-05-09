@@ -1,19 +1,4 @@
----
-title: Overview of caching in ASP.NET Core
-author: tdykstra
-description: Overview of caching in ASP.NET Core
-monikerRange: '>= aspnetcore-3.1'
-ms.author: tdykstra
-ms.date: 11/07/2022
-uid: performance/caching/overview
----
-# Overview of caching in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://twitter.com/tdykstra)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-7.0 <= aspnetcore-8.0"
 
 ## In-memory caching
 
@@ -70,6 +55,3 @@ The output caching middleware enables caching of HTTP responses. Output caching 
   *Cache revalidation* means the server can return a `304 Not Modified` HTTP status code instead of a cached response body. This status code informs the client that the response to the request is unchanged from what was previously received. Response caching doesn't do cache revalidation.
 
 :::moniker-end
-
-[!INCLUDE[](~/performance/caching/overview/includes/overview7-8.md)]
-[!INCLUDE[](~/performance/caching/overview/includes/overview6.md)]
