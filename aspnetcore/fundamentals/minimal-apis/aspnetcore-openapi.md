@@ -10,7 +10,7 @@ uid: fundamentals/minimal-apis/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
-The Microsoft.AspNetCore.OpenApi provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
+The Microsoft.AspNetCore.OpenApi package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
 
 * Compatible with native AoT
 * Takes advantage of JSON schema support provided by System.Text.Json
@@ -75,7 +75,7 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 
 ## Options for customizing OpenAPI document generation
 
-### Customizing OpenAPI version of generated document
+### Customizing the OpenAPI version of a generated document
 
 By default, OpenAPI document generation will generate a document that is compliant with v3.0 of the OpenAPI spec. To modify this version, customize the options that are provided to the document generation services.
 
@@ -149,7 +149,7 @@ The snippet below shows the three strategies for registering transformers onto t
 
 ### Execution order for transformers
 
-Transformers execute in first-in first-out ordered based on registration. In the snippet below, the document transformer will have access to the modifications made by the operation transformer. 
+Transformers execute in first-in first-out order based on registration. In the snippet below, the document transformer will have access to the modifications made by the operation transformer. 
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -168,7 +168,7 @@ Document transformers have access to a context object that includes:
 * The list of ApiDescriptionGroups associated with that document
 * The IServiceProvider used in document generation
 
-Document transformers also have access to the mutate the OpenAPI document that has been generated. The following example demonstrates a document transformer that adds some information about the API author to the OpenAPI document.
+Document transformers also have mutate access to the OpenAPI document that has been generated. The following example demonstrates a document transformer that adds some information about the API author to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
@@ -176,7 +176,7 @@ Service-activated document transformers can also be used to implement transforme
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
-Document transformers are unique to the document instance they are associated with. In the example below, a transformer register authentication-related requirements to the `internal` document but leaves the `public` document unmodified.
+Document transformers are unique to the document instance they are associated with. In the example below, a transformer registers authentication-related requirements to the `internal` document but leaves the `public` document unmodified.
 
 ### Using operation transformers
 
@@ -188,7 +188,7 @@ Operation transformers have access to a context object which contains:
 * The ApiDescription associated with the operation
 * The IServiceProvider used in document generation
 
-For example, the operation transformer adds 500 as a response status code supported by all operations in the document.
+For example, this operation transformer adds 500 as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
@@ -200,7 +200,7 @@ OpenAPI documents can plug into a wide ecosystem of existing tools for testing, 
 
 By default, the `Microsoft.AspNetCore.OpenApi` package does not ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for achieving this kind of thing include Swagger UI and ReDoc and can be integrated in your application in a variety of ways. Editors like Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
 
-The `Swashbuckle.AspNetCore.SwaggerUi` provides a bundle of Swagger UI's web assets for us in applications. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.ASpNetCore.SwaggerUi` package.
+The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in applications. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.ASpNetCore.SwaggerUi` package.
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -238,7 +238,7 @@ dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.5.0
 
 ---
 
-Then, enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, it's recommend to only enable Swagger UI in development environments.
+Then, enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, it's recommended to only enable Swagger UI in development environments.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_swaggerui)]
 
@@ -284,7 +284,7 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server -v 9.0.0
 
 ---
 
-Then, enable document generation at build-time by setting the following properties in your applications `.csproj` file.
+Then, enable document generation at build-time by setting the following properties in your application's `.csproj` file.
 
 ```xml
 <PropertyGroup>
