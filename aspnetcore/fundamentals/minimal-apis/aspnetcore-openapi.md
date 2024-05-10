@@ -75,27 +75,6 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 
 ## Options for customizing OpenAPI document generation
 
-### Customizing the OpenAPI version of a generated document
-
-By default, OpenAPI document generation will generate a document that is compliant with v3.0 of the OpenAPI spec. To modify this version, customize the options that are provided to the document generation services.
-
-```csharp
-builder.Services.AddOpenApi(options =>
-{
-    options.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
-});
-```
-
-### Customizing the OpenAPI endpoint route
-
-By default, the OpenAPI endpoint registered via a call to `MapOpenApi` will expose the document at the `/openapi/{documentName}.json` endpoint. To customize the route the OpenAPI document is registered at, pass the route template as a parameter to the `MapOpenApi` call.
-
-```csharp
-app.MapOpenApi("/openapi/{documentName}/openapi.json");
-```
-
-> Note: It's possible, but not recommended, to remove the `documentName` route parameter from the endpoint route. In this case, the framework will attempt to resolve the document name from the query parameter. Not providing the `documentName` in either the route or query can result in unexpected behavior. 
-
 ### The importance of document names
 
 Each OpenAPI document in an application has a unique name. The default document name that is registered is `v1`.
@@ -118,6 +97,27 @@ When fetching the generated OpenAPI document, the document name is provided as t
 GET http://localhost:5000/openapi/v1.json
 GET http://localhost:5000/openapi/internal.json
 ```
+
+### Customizing the OpenAPI version of a generated document
+
+By default, OpenAPI document generation will generate a document that is compliant with v3.0 of the OpenAPI spec. To modify this version, customize the options that are provided to the document generation services.
+
+```csharp
+builder.Services.AddOpenApi(options =>
+{
+    options.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
+});
+```
+
+### Customizing the OpenAPI endpoint route
+
+By default, the OpenAPI endpoint registered via a call to `MapOpenApi` will expose the document at the `/openapi/{documentName}.json` endpoint. To customize the route the OpenAPI document is registered at, pass the route template as a parameter to the `MapOpenApi` call.
+
+```csharp
+app.MapOpenApi("/openapi/{documentName}/openapi.json");
+```
+
+> Note: It's possible, but not recommended, to remove the `documentName` route parameter from the endpoint route. In this case, the framework will attempt to resolve the document name from the query parameter. Not providing the `documentName` in either the route or query can result in unexpected behavior. 
 
 ## Customizing OpenAPI documents with transformers
 
@@ -302,7 +302,7 @@ dotnet build
 Create a `.spectral.yml` file with the following contents.
 
 ```text
-extends: ["spectral:oas", "spectral:asyncapi"]
+extends: ["spectral:oas"]
 ```
 
 
