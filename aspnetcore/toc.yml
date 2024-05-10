@@ -840,7 +840,13 @@ items:
         - name: Create responses
           uid: fundamentals/minimal-apis/responses
         - name: OpenAPI
-          uid: fundamentals/minimal-apis/openapi
+          items:
+            - name: Overview
+              uid: fundamentals/minimal-apis/openapi
+            - name: Get started with Microsoft.AspNetCore.OpenApi
+              uid: fundamentals/minimal-apis/aspnetcore-openapi
+            - name: OpenAPI tools
+              uid: web-api/Microsoft.dotnet-openapi
         - name: Filters
           uid: fundamentals/minimal-apis/min-api-filters
         - name: Unit and integration tests
