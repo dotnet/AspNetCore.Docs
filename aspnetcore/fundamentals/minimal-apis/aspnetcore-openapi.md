@@ -1,25 +1,25 @@
 ---
 title: Get started with Microsoft.AspNetCore.OpenApi
 author: captainsafia
-description: Learn how to generate and customize OpenAPI documents in ASP.NET Core application
+description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core application
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 05/06/2024
+ms.date: 05/10/2024
 uid: fundamentals/minimal-apis/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
-The Microsoft.AspNetCore.OpenApi package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
+The `Microsoft.AspNetCore.OpenApi` package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
 
-* Compatible with native AoT
-* Takes advantage of JSON schema support provided by System.Text.Json
-* Provides a transformers API for modifying generated documents
-* Supports managing multiple OpenAPI documents within a single application
+* Compatible with native AoT.
+* Takes advantage of JSON schema support provided by System.Text.Json.
+* Provides a transformers API for modifying generated documents.
+* Supports managing multiple OpenAPI documents within a single application.
 
 ## Package installation
 
-`Microsoft.AspNetCore.OpenApi` can be added with the following approaches:
+The `Microsoft.AspNetCore.OpenApi` package can be added with the following approaches:
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -29,7 +29,7 @@ The Microsoft.AspNetCore.OpenApi package provides built-in support for OpenAPI d
   * Execute the following command:
 
     ```powershell
-    Install-Package Microsoft.AspNetCore.OpenApi -Version 9.0.0
+    Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
     ```
 
 * From the **Manage NuGet Packages** dialog:
@@ -44,7 +44,7 @@ The Microsoft.AspNetCore.OpenApi package provides built-in support for OpenAPI d
 Run the following command from the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi -v 9.0.0
+dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
@@ -52,7 +52,7 @@ dotnet add package Microsoft.AspNetCore.OpenApi -v 9.0.0
 Run the following command:
 
 ```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi -v 9.0.0
+dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
 
 ---
@@ -65,7 +65,7 @@ To get started generating OpenAPI documents for ASP.NET Core applications, add t
 builder.Services.AddOpenApi();
 ```
 
-Then, enable the endpoint for viewing the OpenAPI document in JSON format.
+Enable the endpoint for viewing the OpenAPI document in JSON format.
 
 ```csharp
 app.MapOpenApi();
@@ -128,7 +128,12 @@ Transformers fall into two categories:
 * Document transformers have access to the entire OpenAPI document and can be used to make global modifications to the document.
 * Operation transformers apply to each individual operation (combination of path + HTTP method) and can be used to modify parameters or responses on endpoints.
 
-Transformers can be registered onto the document via the `UseTransformers` call on the `OpenApiOptions` object.
+Transformers can be registered onto the document via the `UseTransformers` call on the `OpenApiOptions` object. The following snippet shows different ways to register transformers onto the document:
+
+* Register a document transformer using a delegate.
+* Register a document transformer using an instance of `IOpenApiDocumentTransformer`.
+* Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
+* Register an operation transformer using a delegate.
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -140,16 +145,9 @@ builder.Services.AddOpenApi(options =>
 })
 ```
 
-The snippet below shows the three strategies for registering transformers onto the document:
-
-* Registering a document transformer using a delegate
-* Registering a document transformer using an instance of `IOpenApiDocumentTransformer`
-* Registering a document transformer using a DI-activated `IOpenApiDocumentTransformer`
-* Register an operation transformer using a delegate
-
 ### Execution order for transformers
 
-Transformers execute in first-in first-out order based on registration. In the snippet below, the document transformer will have access to the modifications made by the operation transformer. 
+Transformers execute in first-in first-out order based on registration. In the following snippet, the document transformer will have access to the modifications made by the operation transformer. 
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -159,24 +157,23 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
-
 ### Using document transformers
 
 Document transformers have access to a context object that includes:
 
-* The name of the document being modified
-* The list of ApiDescriptionGroups associated with that document
-* The IServiceProvider used in document generation
+* The name of the document being modified.
+* The list of ApiDescriptionGroups associated with that document.
+* The IServiceProvider used in document generation.
 
-Document transformers also have mutate access to the OpenAPI document that has been generated. The following example demonstrates a document transformer that adds some information about the API author to the OpenAPI document.
+Document transformers also have mutate access to the OpenAPI document that has been generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
-Service-activated document transformers can also be used to implement transformers that rely on instances from DI to modify the application. The sample below demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer to check if any JWT bearer-related schemes are registered in the application and add them to the OpenAPI document's top-level. 
+Service-activated document transformers can also be used to implement transformers that rely on instances from DI to modify the application. The sample below demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer to check if any JWT bearer-related schemes are registered in the application and add them to the OpenAPI document's top level.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
-Document transformers are unique to the document instance they are associated with. In the example below, a transformer registers authentication-related requirements to the `internal` document but leaves the `public` document unmodified.
+Document transformers are unique to the document instance they are associated with. In the example below, a transformer registers authentication-related requirements to the `internal` document but leaves the `public` document unmodified.<!-- "example below" this is the end of the section, there is no following snippet. need to find snippet or delete reference to it -->
 
 ### Using operation transformers
 
@@ -184,11 +181,11 @@ Operations are unique combinations of HTTP paths and methods in an OpenAPI docum
 
 Operation transformers have access to a context object which contains:
 
-* The name of the document the operation belongs to
-* The ApiDescription associated with the operation
-* The IServiceProvider used in document generation
+* The name of the document the operation belongs to.
+* The ApiDescription associated with the operation.
+* The IServiceProvider used in document generation.
 
-For example, this operation transformer adds 500 as a response status code supported by all operations in the document.
+For example, the following operation transformer adds 500 as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
@@ -200,7 +197,7 @@ OpenAPI documents can plug into a wide ecosystem of existing tools for testing, 
 
 By default, the `Microsoft.AspNetCore.OpenApi` package does not ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for achieving this kind of thing include Swagger UI and ReDoc and can be integrated in your application in a variety of ways. Editors like Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
 
-The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in applications. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.ASpNetCore.SwaggerUi` package.
+The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in applications. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.AspNetCore.SwaggerUi` package.
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -238,15 +235,15 @@ dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.5.0
 
 ---
 
-Then, enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, it's recommended to only enable Swagger UI in development environments.
+Enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, it's recommended to only enable Swagger UI in development environments.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_swaggerui)]
 
 ### Linting generated OpenAPI documents with Spectral
 
-Spectral is an open-source OpenAPI document linter. Spectral can be incorporated into your application build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions]https://github.com/stoplightio/spectral#-installation).
+Spectral is an open-source OpenAPI document linter. Spectral can be incorporated into your application build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
 
-To take advantage of Spectral, you must enable build-time OpenAPI document generation. To do so, install the `Microsoft.Extensions.ApiDescription.Server` package to enable build-time OpenAPI document generation.
+To take advantage of Spectral, install the `Microsoft.Extensions.ApiDescription.Server` package to enable build-time OpenAPI document generation.
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -256,7 +253,7 @@ To take advantage of Spectral, you must enable build-time OpenAPI document gener
   * Execute the following command:
 
     ```powershell
-    Install-Package Microsoft.Extensions.ApiDescription.Server -v 9.0.0
+    Install-Package Microsoft.Extensions.ApiDescription.Server -IncludePrerelease
     ```
 
 * From the **Manage NuGet Packages** dialog:
@@ -271,7 +268,7 @@ To take advantage of Spectral, you must enable build-time OpenAPI document gener
 Run the following command from the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server -v 9.0.0
+dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
@@ -279,12 +276,12 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server -v 9.0.0
 Run the following command:
 
 ```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server -v 9.0.0
+dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 ```
 
 ---
 
-Then, enable document generation at build-time by setting the following properties in your application's `.csproj` file.
+Enable document generation at build time by setting the following properties in your application's `.csproj` file":
 
 ```xml
 <PropertyGroup>
@@ -305,12 +302,15 @@ Create a `.spectral.yml` file with the following contents.
 extends: ["spectral:oas"]
 ```
 
-
-Then, run `spectral lint` on the generated file.
+Run `spectral lint` on the generated file.
 
 ```dotnetcli
 spectral lint WebMinOpenApi.json
 ...
+
+The output will show any issues with the OpenAPI document.
+
+```output
 1:1  warning  oas3-api-servers       OpenAPI "servers" must be present and non-empty array.
 3:10  warning  info-contact           Info object must have "contact" object.                        info
 3:10  warning  info-description       Info "description" must be present and non-empty string.       info
@@ -319,4 +319,3 @@ spectral lint WebMinOpenApi.json
 
 ✖ 5 problems (0 errors, 5 warnings, 0 infos, 0 hints)
 ```
-
