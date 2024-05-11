@@ -13,7 +13,7 @@ uid: fundamentals/minimal-apis/aspnetcore-openapi
 The `Microsoft.AspNetCore.OpenApi` package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
 
 * Compatible with native AoT.
-* Takes advantage of JSON schema support provided by System.Text.Json.
+* Takes advantage of JSON schema support provided by `System.Text.Json`.
 * Provides a transformers API for modifying generated documents.
 * Supports managing multiple OpenAPI documents within a single application.
 
