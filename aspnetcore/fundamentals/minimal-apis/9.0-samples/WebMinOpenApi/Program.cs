@@ -216,8 +216,7 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
         }
     }
 }
-
-// </snippet_multidoc_operationtransformer2>
+// </snippet_multidoc_operationtransformer1>
 #endif
 
 #if SWAGGERUI
