@@ -173,7 +173,9 @@ Service-activated document transformers can also be used to implement transforme
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
-Document transformers are unique to the document instance they are associated with. In the example below, a transformer registers authentication-related requirements to the `internal` document but leaves the `public` document unmodified.<!-- "example below" this is the end of the section, there is no following snippet. need to find snippet or delete reference to it -->
+Document transformers are unique to the document instance they are associated with. In the example below, a transformer registers authentication-related requirements to the `internal` document but leaves the `public` document unmodified.
+
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_multidoc_operationtransformer1)]
 
 ### Using operation transformers
 
