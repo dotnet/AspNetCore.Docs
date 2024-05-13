@@ -1,4 +1,4 @@
-#define SWAGGERUI
+#define OPENAPIWITHSCALAR
 
 #if DEFAULT
 using Microsoft.AspNetCore.OpenApi;
@@ -248,4 +248,119 @@ app.MapGet("/", () => "Hello world!");
 
 app.Run();
 // </snippet_swaggerui>
+#endif
+
+#if MAPOPENAPIWITHAUTH
+// <snippet_mapopenapiwithauth>
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization(o =>
+{
+    o.AddPolicy("ApiTesterPolicy", b => b.RequireRole("tester"));
+});
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+app.MapOpenApi()
+    .RequireAuthorization("ApiTesterPolicy");
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_mapopenapiwithauth>
+#endif
+
+#if MAPOPENAPIWITHCACHING
+// <snippet_mapopenapiwithcaching>
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOutputCache(options =>
+{
+    options.AddBasePolicy(policy => policy.Expire(TimeSpan.FromMinutes(10)));
+});
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+app.UseOutputCache();
+
+app.MapOpenApi()
+    .CacheOutput();
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_mapopenapiwithcaching>
+#endif
+
+#if OPENAPIWITHSCALAR
+// <snippet_openapiwithscalar>
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapScalarUi();
+}
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+
+static class OpenApiEndpointRouteBuilderExtensions
+{
+    public static IEndpointConventionBuilder MapScalarUi(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapGet("/scalar/{documentName}", (string documentName) => Results.Content($$"""
+        <!doctype html>
+        <html>
+        <head>
+            <title>Scalar API Reference -- {{documentName}}</title>
+            <meta charset="utf-8" />
+            <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1" />
+        </head>
+        <body>
+            <script
+            id="api-reference"
+            data-url="/openapi/{{documentName}}.json"></script>
+            <script>
+            var configuration = {
+                theme: 'purple',
+            }
+
+            document.getElementById('api-reference').dataset.configuration =
+                JSON.stringify(configuration)
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+        </body>
+        </html>
+        """, "text/html")).ExcludeFromDescription();
+    }
+}   
+// </snippet_openapiwithscalar>
 #endif
