@@ -5,17 +5,10 @@ description: Learn how to add Swashbuckle to your ASP.NET Core web API project t
 ms.author: scaddie
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 04/25/2024
+ms.date: 05/14/2024
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
-
-:::moniker range=">= aspnetcore-8.0"
-
-> [!NOTE]
-> Build-time OpenAPI document generation with Swashbuckle isn't supported in .NET 8 and later. For a supported build-time alternative, see <xref:tutorials/web-api-help-pages-using-swagger>. Run-time document generation is still supported in .NET 8.
-
-:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -39,7 +32,7 @@ Swashbuckle can be added with the following approaches:
   * Execute the following command:
 
     ```powershell
-    Install-Package Swashbuckle.AspNetCore -Version 6.5.0
+    Install-Package Swashbuckle.AspNetCore -Version 6.6.1
     ```
 
 * From the **Manage NuGet Packages** dialog:
@@ -62,7 +55,7 @@ Swashbuckle can be added with the following approaches:
 Run the following command from the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.6.1
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
@@ -70,7 +63,7 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0
 Run the following command:
 
 ```dotnetcli
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.6.1
 ```
 
 ---
@@ -266,7 +259,6 @@ To inject additional CSS stylesheets, add them to the project's *wwwroot* folder
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
-* [Swagger doesn't recognize comments or attributes on records](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1920)
 * [Improve the developer experience of an API with Swagger documentation](/training/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
@@ -571,7 +563,7 @@ The default UI is both functional and presentable. However, API documentation pa
 If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles) NuGet package to the project:
 
 ```xml
-<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
 ```
 
 The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](xref:fundamentals/metapackage).
