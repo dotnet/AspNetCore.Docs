@@ -41,7 +41,9 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 
 * Start Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
-* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
+* In the **Configure your new project** dialog:
+  * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
+  * Enter a directory for the project in **Location**. The project can be located anywhere.
 * Select **Next**.
 * In the **Additional information** dialog:
   * Select **.NET 7.0**.
@@ -62,7 +64,7 @@ Visual Studio uses the default project template for the created MVC project. The
 The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
 * Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change to the directory (`cd`) that will contain the project.
+* Change to the directory (`cd`) that will contain the project. The project can be located anywhere.
 * Run the following commands:
 
    ```dotnetcli
@@ -85,6 +87,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Continue**.
 * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
+* Enter a directory for the project in **Location**. The project can be located anywhere.
 * Select **Create**.
 
 ---
