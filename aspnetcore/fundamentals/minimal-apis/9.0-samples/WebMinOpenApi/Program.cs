@@ -1,6 +1,7 @@
 #define OPENAPIWITHSCALAR
 
 #if DEFAULT
+// <snippet_default>
 using Microsoft.AspNetCore.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +42,7 @@ internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+// </snippet_default>
 #endif
 
 #if DOCUMENTtransformer1
