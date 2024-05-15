@@ -59,7 +59,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
 * In the **Configure your new project** dialog:
   * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
-  * Enter a directory for the project in **Location**. The project can be located anywhere.
+  * The **Location** for the project can be set to anywhere.
 * Select **Next**.
 * In the **Additional information** dialog:
   * Select **.NET 8.0 (Long Term Support)**.
@@ -103,7 +103,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Continue**.
 * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
-* Enter a directory for the project in **Location**. The project can be located anywhere.
+* The **Location** for the project can be set to anywhere.
 * Select **Create**.
 
 ---
