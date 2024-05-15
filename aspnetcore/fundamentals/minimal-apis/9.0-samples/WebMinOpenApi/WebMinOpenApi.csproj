@@ -18,6 +18,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Scalar.AspNetCore" Version="1.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="6.5.0" />
   </ItemGroup>
 

@@ -259,7 +259,43 @@ Enable the swagger-ui middleware with a reference to the OpenAPI route registere
 
 ### Using Scalar for interactive API documentation
 
-[Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core.
+[Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core. To configure this, install the `Scalar.AspNetCore` package.
+
+### [Visual Studio](#tab/visual-studio)
+
+* From the **Package Manager Console** window:
+  * Go to **View** > **Other Windows** > **Package Manager Console**
+  * Navigate to the directory in which the `.csproj` file exists
+  * Execute the following command:
+
+    ```powershell
+    Install-Package Scalar.AspNetCore -v 1.0.1
+    ```
+
+* From the **Manage NuGet Packages** dialog:
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
+  * Set the **Package source** to "nuget.org"
+  * Ensure the "Include prerelease" option is enabled
+  * Enter "Scalar.AspNetCore" in the search box
+  * Select the latest "Scalar.AspNetCore" package from the **Browse** tab and click **Install**
+
+### [Visual Studio Code](#tab/visual-studio-code)
+
+Run the following command from the **Integrated Terminal**:
+
+```dotnetcli
+dotnet add package Scalar.AspNetCore -v 1.0.1
+```
+
+### [.NET Core CLI](#tab/netcore-cli)
+
+Run the following command:
+
+```dotnetcli
+dotnet add package Scalar.AspNetCore -v 1.0.1
+```
+
+---
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
