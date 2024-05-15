@@ -264,8 +264,8 @@ Enable the swagger-ui middleware with a reference to the OpenAPI route registere
 ### [Visual Studio](#tab/visual-studio)
 
 * From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the `.csproj` file exists
+  * Go to **View** > **Other Windows** > **Package Manager Console**.
+  * Navigate to the directory in which the `.csproj` file exists.
   * Execute the following command:
 
     ```powershell
@@ -273,11 +273,11 @@ Enable the swagger-ui middleware with a reference to the OpenAPI route registere
     ```
 
 * From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-  * Set the **Package source** to "nuget.org"
-  * Ensure the "Include prerelease" option is enabled
-  * Enter "Scalar.AspNetCore" in the search box
-  * Select the latest "Scalar.AspNetCore" package from the **Browse** tab and click **Install**
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**.
+  * Set the **Package source** to "nuget.org".
+  * Ensure the "Include prerelease" option is enabled.
+  * Enter "Scalar.AspNetCore" in the search box.
+  * Select the latest "Scalar.AspNetCore" package from the **Browse** tab and click **Install**.
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
