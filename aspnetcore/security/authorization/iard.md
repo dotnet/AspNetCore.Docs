@@ -13,32 +13,13 @@ Consider the following sample that implements a custom `MinimumAgeAuthorizationH
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Program.cs" highlight="9":::
 
-The `MinimumAgeAuthorizationHandler` class:
+The `MinimumAgeAuthorizationHandler` class handles the single IAuthorizationRequirement provided by the MinimumAgeAuthorizeAttribute implementation of IAuthorizationRequirementData, as specified by the generic parameter MinimumAgeAuthorizeAttribute.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
-The custom `MinimumAgePolicyProvider`:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_all":::
-
-ASP.NET Core only uses one authorization policy provider. If the custom implementation
-doesn't handle all policies, including default policies, etc., it should fall back to an
-alternate provider. In the preceding sample, a default authorization policy provider is:
-
-* Constructed with options from the [dependency injection container](xref:fundamentals/dependency-injection).
-* Used if this custom provider isn't able to handle a given policy name.
-
-If a custom policy provider is able to handle all expected policy names, setting the fallback policy with <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync> isn't required.
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_1":::
-
-Policies are looked up by string name, therefore parameters, for example, `age`, are embedded in the policy names. This is abstracted away from developers by the more strongly-typed attributes derived from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. For example, the `[MinimumAgeAuthorize()]` attribute in this sample looks up policies by string name.
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_2":::
-
 The `MinimumAgeAuthorizeAttribute` uses the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface that allows the attribute definition to specify the requirements associated with the authorization policy:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizeAttribute.cs" highlight="6":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizeAttribute.cs" highlight="6,11":::
 
 The `GreetingsController` displays the user's name when they satisfy the minimum age policy:
 
