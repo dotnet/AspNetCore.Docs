@@ -98,6 +98,24 @@ Consider using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-serv
 
 The app must support *session affinity*, also called *sticky sessions*, where clients are redirected back to the same server. To support session affinity, an application setting in the Azure portal is automatically configured (**Configuration** > **Application settings**: **Name**: `Azure__SignalR__ServerStickyMode`, **Value**: `Required`). Therefore, you don't need to manually configure the app for session affinity.
 
+If you prefer not to use the app setting in Azure (and delete it in the Azure portal), two other approaches for configuring session affinity are (**use either approach, not both**):
+
+* Set the option in `Program.cs`:
+
+  ```csharp
+  builder.Services.AddSignalR().AddAzureSignalR(options =>
+  {
+      options.ServerStickyMode = 
+          Microsoft.Azure.SignalR.ServerStickyMode.Required;
+  });
+  ```
+
+* Configure the option in `appsettings.json`:
+
+  ```json
+  "Azure:SignalR:ServerStickyMode": "Required"
+  ```
+
 > [!NOTE]
 > The following error is thrown by an app that hasn't enabled session affinity:
 >
