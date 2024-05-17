@@ -4,14 +4,14 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/17/2024
+ms.date: 05/17/2024
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core 9.0
 
 This article highlights the most significant changes in ASP.NET Core 9.0 with links to relevant documentation.
 
-This article has been updated for .NET 9 Preview 3.
+This article has been updated for .NET 9 Preview 4.
 
 <!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
@@ -20,7 +20,6 @@ This article has been updated for .NET 9 Preview 3.
 This section describes new features for Blazor.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor.md)]
-
 
 ## SignalR
 
