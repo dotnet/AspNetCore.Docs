@@ -125,31 +125,6 @@ Hosting a Blazor Server app on Azure App Service requires configuration for Appl
 
 :::moniker-end
 
-1. Configure the app for session affinity by setting the Azure SignalR `ServerStickyMode` option to `Required`. Typically, an app creates the configuration using **one** of the following approaches:
-
-   * Set the option in `Program.cs`:
-
-     ```csharp
-     builder.Services.AddSignalR().AddAzureSignalR(options =>
-     {
-         options.ServerStickyMode = 
-             Microsoft.Azure.SignalR.ServerStickyMode.Required;
-     });
-     ```
-
-   * Configure the option in `appsettings.json`:
-
-       ```json
-       "Azure:SignalR:ServerStickyMode": "Required"
-       ```
-
-   * Configure the option with an application setting in the Azure portal (**Configuration** > **Application settings**: **Name**: `Azure__SignalR__ServerStickyMode`, **Value**: `Required`).
-  
-  > [!NOTE]
-  > The following error is thrown by an app that hasn't enabled session affinity:
-  >
-  > > :::no-loc text="blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
-
 1. Use the following guidance to configure the service:
 
   * [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
@@ -160,26 +135,6 @@ Hosting a Blazor Server app on Azure App Service requires configuration for Appl
 ## Azure Container Apps
 
 For a deeper exploration of scaling server-side Blazor apps on the Azure Container Apps service, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
-
-1. Configure *session affinity*, also known as *sticky sessions*, where clients are redirected back to the same server. Session affinity is configured by setting the Azure SignalR `ServerStickyMode` option to `Required`. Typically, an app creates the configuration using **one** of the following approaches:
-
-   * Set the option in `Program.cs`:
-
-     ```csharp
-     builder.Services.AddSignalR().AddAzureSignalR(options =>
-     {
-         options.ServerStickyMode = 
-             Microsoft.Azure.SignalR.ServerStickyMode.Required;
-     });
-     ```
-
-   * Configure the option in `appsettings.json`:
-
-       ```json
-       "Azure:SignalR:ServerStickyMode": "Required"
-       ```
-
-   * Configure the option with an application setting in the Azure portal (**Configuration** > **Application settings**: **Name**: `Azure__SignalR__ServerStickyMode`, **Value**: `Required`).
 
 1. Configure Azure Container Apps service for session affinity by following the guidance in [Session Affinity in Azure Container Apps (Azure documentation)](/azure/container-apps/sticky-sessions).
 
