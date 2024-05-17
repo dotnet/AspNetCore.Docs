@@ -129,7 +129,7 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 
 Provisioning the Azure SignalR Service in Visual Studio automatically adds the SignalR connection string to the app service's configuration.
 
-## Azure App Service without the Azure SignalR Service
+## Azure App Service
 
 :::moniker range=">= aspnetcore-8.0"
 
