@@ -154,7 +154,7 @@ Use the following guidance to configure the app:
 
 ## Azure Container Apps
 
-Scaling server-side Blazor apps on Azure Container Apps requires specific considerations:
+Scaling server-side Blazor apps on Azure Container Apps requires the following:
 
 * Configure *session affinity*, also known as *sticky sessions*, where clients are redirected back to the same server.
 * Due to the way request routing is handled, the ASP.NET Core Data Protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
