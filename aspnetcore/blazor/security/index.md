@@ -362,12 +362,26 @@ When you create a Blazor app from one of the Blazor project templates with authe
 
 :::moniker-end
 
-In a client-side Blazor app, add services for options and authorization to the `Program` file:
+:::moniker range=">= aspnetcore-5.0"
+
+In a client-side Blazor app, add authorization services to the `Program` file:
+
+```csharp
+builder.Services.AddAuthorizationCore();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+In a client-side Blazor app, add options and authorization services to the `Program` file:
 
 ```csharp
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 ```
+
+:::moniker-end
 
 In a server-side Blazor app, services for options and authorization are already present, so no further steps are required.
 
