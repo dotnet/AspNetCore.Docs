@@ -14,4 +14,4 @@ While testing the developer exception page, small quality of life improvements w
 
 The following animated image shows the new developer exception page:
 
-:::image type="content" source="~/release-notes/aspnetcore-9/aspnetcore-9/_static/aspnetcore-developer-page-improvements.gif" alt-text="The new developer exception page":::
+:::image type="content" source="~/release-notes/aspnetcore-9/_static/aspnetcore-developer-page-improvements.gif" alt-text="The new developer exception page":::
