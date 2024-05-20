@@ -517,6 +517,8 @@ The following component results in a runtime error when the component is rendere
 
 There are cases where the app's specification calls for components to adopt static server-side rendering (static SSR) and only run on the server, while the rest of the app uses an interactive render mode.
 
+This approach is only useful when the app has specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that depend on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering. For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
+
 :::moniker range=">= aspnetcore-9.0"
 
 Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribute assigned with the `@attribute` Razor directive:
@@ -525,9 +527,14 @@ Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribu
 @attribute [ExcludeFromInteractiveRouting]
 ```
 
-This approach is only useful when you have specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering.
+Applying the attribute causes navigation to the page to exit from interactive routing. That is, inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
-In the `App` component, use the following pattern, where all pages default to the `InteractiveServer` render mode, retaining global interactivity, except for pages annotated with `[ExcludeFromInteractiveRouting]`, which only render with static SSR. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
+The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page.
+
+In the `App` component, use the pattern in the following example:
+
+* Pages that aren't annotated with `[ExcludeFromInteractiveRouting]` default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
+* Pages annotated with `[ExcludeFromInteractiveRouting]` adopt static SSR (`PageRenderMode` is `null`).
 
 ```razor
 <!DOCTYPE html>
@@ -551,11 +558,7 @@ In the `App` component, use the following pattern, where all pages default to th
 }
 ```
 
-The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page. Alternatively, you can read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
-
-This approach is useful only if you have specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle. Forcing those pages to use static SSR mode forces them into this traditional request/response cycle instead of interactive rendering.
-
-For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
+An alternative to using the `HttpContext.AcceptsInteractiveRouting` extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
 :::moniker-end
 
