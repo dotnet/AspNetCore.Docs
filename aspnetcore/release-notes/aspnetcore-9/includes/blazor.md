@@ -37,3 +37,15 @@ For more information, see the following resources:
 ### Handle keyboard composition events in Blazor
 
 The new `KeyboardEventArgs.IsComposing` property indicates if the keyboard event [is part of a composition session](https://w3c.github.io/uievents/#dom-keyboardevent-iscomposing). Tracking the composition state of keyboard events is crucial for handling international character input methods.
+
+### Added `OverscanCount` parameter to `QuickGrid`
+
+The Blazor `QuickGrid` component now exposes an `OverscanCount` property that specifies how many additional rows are rendered before and after the visible region when virtualization is enabled.
+
+The default `OverscanCount` is 3. The following example increases the `OverscanCount` to 4:
+
+```razor
+<QuickGrid ItemsProvider="itemsProvider" Virtualize="true" OverscanCount="4">
+    ...
+</QuickGrid>
+```
