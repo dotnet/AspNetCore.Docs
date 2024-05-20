@@ -5,7 +5,7 @@ description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
 ms.date: 05/17/2024
-uid: performance/caching/output
+uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
@@ -30,7 +30,7 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid --prerelease
 
 Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling [`AddHybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheServiceExtensions.cs,2c4a0de52ec7387c) as shown in the following example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_noconfig" highlight="7":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
 This example registers the `HybridCache` service with default options. The registration API can also configure [options](#options) and [serialization](#serialization).
 
@@ -49,13 +49,13 @@ The `HybridCache` service ensures that only one concurrent caller for a given ke
 
 The stateless overload of `GetOrCreateAsync` is recommended for most scenarios. The code to call it is relatively simple. Here's an example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_getorcreate" highlight="5-12":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreate" highlight="5-12":::
 
 ### The alternative `GetOrCreateAsync` overload
 
 The alternative overload might reduce some overhead from [captured variables](/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions) and per-instance callbacks, but at the expense of more complex code. For most scenarios the performance increase doesn't outweigh the code complexity. Here's an example that uses the alternative overload:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_getorcreatestate" highlight="5-14":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreatestate" highlight="5-14":::
 
 ### The `SetAsync` method
 
@@ -82,7 +82,7 @@ The following methods support removal of cache entries by key:
 
 Tags can be used to group cache entries and invalidate them together. You can set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
 For example, if the key is composed of first name and last name, set a tag with the value of last name when calling `GetOrCreateAsync`. Then, when the last name changes, call one of the following methods to remove all cache entries with that tag:
 
@@ -100,11 +100,11 @@ Uncomment when tags are implemented.
 
 The `AddHybridCache` method can be used to configure global defaults. The following example shows how to configure some of the available options:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_globaloptions" highlight = "6-15":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_globaloptions" highlight = "6-15":::
 
 The `GetOrCreateAsync` method can also take a `HybridCacheEntryOptions` object to override the global defaults for a specific cache entry. Here's an example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_getorcreateoptions" highlight = "8-12,16":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight = "8-12,16":::
 
 For more information about the options, see the source code:
 
