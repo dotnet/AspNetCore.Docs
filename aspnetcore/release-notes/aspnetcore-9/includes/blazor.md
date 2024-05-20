@@ -1,5 +1,3 @@
-<!-- ENABLE at Pre4 release ...
-
 ### Add static server-side rendering (SSR) pages to a globally-interactive Blazor Web App
 
 The Blazor Web App template includes an option to enable *global interactivity*, which means that all pages run on Server, WebAssembly, or Auto (Server and WebAssembly) interactivity mode. Until the release of .NET 9, it wasn't possible to add static SSR pages to apps that adopt global interactivity.
@@ -10,20 +8,20 @@ Now, you can mark any Razor component page with the new `[ExcludeFromInteractive
 @attribute [ExcludeFromInteractiveRouting]
 ```
 
-Applying the attribute causes navigation to the page to exit from interactive routing. That is, inbound navigation is forced to perform a full-page reload instead resolving the page via SPA-style interactive routing. This means that your top-level root component, typically the `App` component (`App.razor`), re-runs, allowing you to switch to a different top-level render mode.
+Applying the attribute causes navigation to the page to exit from interactive routing. That is, inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing you to switch to a different top-level render mode.
 
-In your `App` component, you can use the following pattern, where all pages default to the `InteractiveServer` render mode, retaining global interactivity, except for pages annotated with `[ExcludeFromInteractiveRouting]`, which only render with static SSR. Of course, you can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global mode.
+In the `App` component, use the following pattern, where all pages default to the `InteractiveServer` render mode, retaining global interactivity, except for pages annotated with `[ExcludeFromInteractiveRouting]`, which only render with static SSR. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
 
 ```razor
 <!DOCTYPE html>
 <html>
 <head>
-    ... other head content here ...
+    ...
     <HeadOutlet @rendermode="@PageRenderMode" />
 </head>
 <body>
     <Routes @rendermode="@PageRenderMode" />
-    <script src="_framework/blazor.web.js"></script>
+    ...
 </body>
 </html>
 
@@ -38,12 +36,11 @@ In your `App` component, you can use the following pattern, where all pages defa
 
 The new `HttpContext.AcceptsInteractiveRouting` extension method is a helper that makes it easy to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page. Alternatively, you can read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
-This approach is useful only if you have certain pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle. Forcing those pages to use static SSR mode forces them into this traditional request/response cycle instead of interactive SPA-style rendering.
+This approach is only useful when you have specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering.
 
-For pages that work with interactive SPA-style rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
+For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
 
 This feature is covered by the reference documentation in <xref:blazor/components/render-modes#static-ssr-pages-in-a-globally-interactive-app>.
--->
 
 ### Constructor injection
 

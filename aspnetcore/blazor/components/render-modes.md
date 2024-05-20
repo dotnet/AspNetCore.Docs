@@ -181,7 +181,7 @@ For more information, see <xref:blazor/tooling>.
 
 Properties and fields can assign a render mode.
 
-The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for one or more components to adopt static SSR in a globally-interactive app. This scenario is covered in the [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section later in this article. The following two subsections focus on basic approaches for setting the render mode.
+The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for one or more components to adopt static SSR in a globally-interactive app. This scenario is covered in the [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section later in this article.
 
 ### Set the render mode by component definition
 
@@ -525,20 +525,20 @@ Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribu
 @attribute [ExcludeFromInteractiveRouting]
 ```
 
-Applying the attribute causes navigation to the page to exit from interactive routing. That is, inbound navigation is forced to perform a full-page reload instead resolving the page via SPA-style interactive routing. This means that your top-level root component, typically the `App` component (`App.razor`), re-runs, allowing you to switch to a different top-level render mode.
+This approach is only useful when you have specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering.
 
-In your `App` component, you can use the following pattern, where all pages default to the `InteractiveServer` render mode, retaining global interactivity, except for pages annotated with `[ExcludeFromInteractiveRouting]`, which only render with static SSR. Of course, you can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global mode.
+In the `App` component, use the following pattern, where all pages default to the `InteractiveServer` render mode, retaining global interactivity, except for pages annotated with `[ExcludeFromInteractiveRouting]`, which only render with static SSR. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
 
 ```razor
 <!DOCTYPE html>
 <html>
 <head>
-    ... other head content here ...
+    ...
     <HeadOutlet @rendermode="@PageRenderMode" />
 </head>
 <body>
     <Routes @rendermode="@PageRenderMode" />
-    <script src="_framework/blazor.web.js"></script>
+    ...
 </body>
 </html>
 
@@ -553,9 +553,9 @@ In your `App` component, you can use the following pattern, where all pages defa
 
 The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page. Alternatively, you can read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
-This approach is useful only if you have certain pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle. Forcing those pages to use static SSR mode forces them into this traditional request/response cycle instead of interactive SPA-style rendering.
+This approach is useful only if you have specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that include code that depends on reading/writing HTTP cookies and can only work in a request/response cycle. Forcing those pages to use static SSR mode forces them into this traditional request/response cycle instead of interactive rendering.
 
-For pages that work with interactive SPA-style rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
+For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
 
 :::moniker-end
 
