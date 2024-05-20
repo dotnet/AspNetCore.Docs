@@ -20,7 +20,7 @@ This article explains how to configure and use the `HybridCache` library in an A
 
 ## Get the library
 
-To use the `HybridCache` library, first install the `Microsoft.Extensions.Caching.Hybrid` package in your project. Here's the .NET CLI command to do that:
+Install the `Microsoft.Extensions.Caching.Hybrid` package.
 
 ```dotnetcli
 dotnet add package Microsoft.Extensions.Caching.Hybrid --prerelease
@@ -28,18 +28,18 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid --prerelease
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling [`AddHybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheServiceExtensions.cs,2c4a0de52ec7387c) as shown in the following example:
+Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling [`AddHybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheServiceExtensions.cs,2c4a0de52ec7387c):
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
-This example registers the `HybridCache` service with default options. The registration API can also configure [options](#options) and [serialization](#serialization).
+The preceding code registers the `HybridCache` service with default options. The registration API can also configure [options](#options) and [serialization](#serialization).
 
 ## Get and store cache entries
 
-The `HybridCache` service provides a [`GetOrCreateAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,990ceb8b6f2999f7) method with two overloads:
+The `HybridCache` service provides a [`GetOrCreateAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,990ceb8b6f2999f7) method with two overloads, taking a key and:
 
-* One takes a key and a factory method.
-* One takes a key, state, and a factory method.
+* A factory method.
+* State, and a factory method.
 
 The method uses the key to try to retrieve the object from the primary cache. If the item is not found in the primary cache (a cache miss), it then checks the secondary cache if one is configured. If it doesn't find the data there (another cache miss), it calls the factory method to get the object from the data source. It then stores the object in both primary and secondary caches. The factory method is never called if the object is found in the primary or secondary cache (a cache hit).
 
