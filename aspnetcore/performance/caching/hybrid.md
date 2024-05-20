@@ -34,12 +34,12 @@ Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamenta
 
 This example registers the `HybridCache` service with default options. The registration API can also configure [options](#options) and [serialization](#serialization).
 
-## Get from cache and store in cache
+## Get and store cache entries
 
 The `HybridCache` service provides a [`GetOrCreateAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,990ceb8b6f2999f7) method with two overloads:
 
 * One takes a key and a factory method.
-* One that takes a key, state, and a factory method.
+* One takes a key, state, and a factory method.
 
 The method uses the key to try to retrieve the object from the primary cache. If the item is not found in the primary cache (a cache miss), it then checks the secondary cache if one is configured. If it doesn't find the data there (another cache miss), it calls the factory method to get the object from the data source. It then stores the object in both primary and secondary caches. The factory method is never called if the object is found in the primary or secondary cache (a cache hit).
 
@@ -66,7 +66,7 @@ Add GetAsync when it's implemented.
 
 ## Remove unexpired cache entries
 
-When the underlying data for cache entries changes before they expire, you can explicitly remove the entries. The entries to remove can be specified by key or by tag. When an entry is removed, it's removed from both the primary and secondary caches.
+When the underlying data for cache entries changes before they expire, you can explicitly remove the entries. The entries to remove can be specified by key. When an entry is removed, it's removed from both the primary and secondary caches.
 
 ### Remove by key
 
@@ -106,10 +106,10 @@ The `GetOrCreateAsync` method can also take a `HybridCacheEntryOptions` object t
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/Program.cs" id="snippet_getorcreateoptions" highlight = "8-12,16":::
 
-For more information about the options, see the following resources:
+For more information about the options, see the source code:
 
-* [HybridCacheOptions](https://docs.microsoft.com/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheoptions) class.
-* [HybridCacheEntryOptions](https://docs.microsoft.com/dotnet/api/microsoft.extensions.caching.hybrid.hybridcacheentryoptions) class.
+* [HybridCacheOptions](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheOptions.cs,8736f7c41cee28f4) class.
+* [HybridCacheEntryOptions](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCacheEntryOptions.cs,fe35dea42677e2f8) class.
 
 ## Limits
 
@@ -165,7 +165,7 @@ dotnet add package Microsoft.Extensions.Caching.SqlServer --prerelease
 
 ## Custom HybridCache implementations
 
-We provide a concrete implementation of the `HybridCache` abstract class via dependency injection. But developers are welcome to provide custom implementations of the API.
+A concrete implementation of the `HybridCache` abstract class is included in the shared framework and is provided via dependency injection. But developers are welcome to provide custom implementations of the API.
 
 ## Compatibility
 
