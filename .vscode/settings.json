@@ -34,5 +34,6 @@
     },
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
-    ]
+    ],
+    "dotnet.defaultSolution": "disable"
 }

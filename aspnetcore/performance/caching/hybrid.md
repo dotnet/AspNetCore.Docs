@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
-ms.date: 05/17/2024
+ms.date: 05/28/2024
 uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
@@ -120,11 +120,39 @@ The following properties of `HybridCacheOptions` let you configure limits that a
  
 ## Serialization
 
-Serialization is configured as part of registering the service, with support for type-specific and generalized serializers via the
-`WithSerializer` and `.WithSerializerFactory` methods, chained from the `AddHybridCache` call. By default, the library
-handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else, but you can configure `HybridCache` to use protobuf, xml, or anything else.
+Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the `WithSerializer` and `WithSerializerFactory` methods, chained from the `AddHybridCache` call. By default, the library
+handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML
 
-An example that configures the service to use a protobuf serializer is [here](https://github.com/dotnet/aspnetcore/commit/ac0dbd8c96caa704e39a080b8db59183b6dd3e13).
+The following example configures the service to use a type-specific protobuf serializer:
+
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializer" highlight="14-15":::
+
+The following example configures the service to use a general-purpose protobuf serializer that can handle many protobuf types:
+
+:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializerfactory" highlight="14":::
+
+The secondary cache requires a data store, such as Redis or SqlServer. To use [Azure Cache for Redis](https://azure.microsoft.com/en-us/products/cache), for example:
+
+* Install the `Microsoft.Extensions.Caching.StackExchangeRedis` package.
+* Create an instance of Azure Cache for Redis.
+* Get a connection string that connects to the Redis instance. Find the connection string by selecting **Show access keys** on the **Overview** page in the Azure portal.
+* Store the connection string in the app's configuration. For example, use a [user secrets file](xref:security/app-secrets) that looks like the following JSON, with the connection string in the `ConnectionStrings` section. Replace `<the connection string>` with the actual connection string:
+
+  ```json
+  {
+    "ConnectionStrings": {
+      "MyRedisConString": "<the connection string>"
+    }
+  }
+  ```
+
+* Register in DI the `IDistributedCache` implementation that the Redis package provides. To do that, call `AddStackExchangeRedisCache`, and pass in the connection string. For example:
+
+  :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_redis":::
+
+* The Redis `IDistributedCache` implementation is now available from the app's DI container. `HybridCache` uses it as the secondary cache and uses the serializer configured for it.
+
+For more information, see the [HybridCache serialization sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/hybrid/samples/9.x/HCMinimal2).
 
 ## Cache storage
 
