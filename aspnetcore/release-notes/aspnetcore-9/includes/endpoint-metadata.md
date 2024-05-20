@@ -6,7 +6,7 @@ Preview 3 added endpoint metadata to the developer exception page. ASP.NET Core 
 
 :::image type="content" source="~/release-notes/aspnetcore-9/_static/endpoint-metadata.png" alt-text="The new metadata information on the developer exception page":::
 
-While testing the developer exception page, small quality of life improvements were identified. They shipped in preview 4:
+While testing the developer exception page, small quality of life improvements were identified. They shipped in Preview 4:
 
 * Better text wrapping. Long cookies, query string values and method names no longer add horizontal browser scroll bars.
 * Bigger text. This page has a long history (10+ years) and web design has changed over time. The text felt a little small compared to modern designs.
