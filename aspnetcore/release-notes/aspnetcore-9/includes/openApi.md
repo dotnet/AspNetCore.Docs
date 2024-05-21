@@ -1,4 +1,4 @@
-## Built-in support for OpenAPI document generation
+### Built-in support for OpenAPI document generation
 
 The [OpenAPI specification](https://www.openapis.org/) is a standard for describing HTTP APIs. The standard allows developers to define the shape of APIs that can be plugged into client generators, server generators, testing tools, documentation, and more. In .NET 9 Preview, ASP.NET Core provides built-in support for generating OpenAPI documents representing controller-based or minimal APIs via the [Microsoft.AspNetCore.OpenApi](https://nuget.org/packages/Microsoft.AspNetCore.OpenApi) package.
 
