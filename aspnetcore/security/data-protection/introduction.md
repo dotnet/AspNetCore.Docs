@@ -28,7 +28,7 @@ If the developer has not configured data protection in ASP.NET Core, the environ
 The `ReadOnlyDataProtectionKeyDirectory` configuration value:
 
 * Can be set to specify the key path.
-* Are set to a read-only path to prevent key rotation.
+* Disable generation of new keys so write access to the directory is not required.
 
 ## Problem statement
 
