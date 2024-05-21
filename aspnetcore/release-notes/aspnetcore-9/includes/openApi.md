@@ -1,23 +1,23 @@
 ## Built-in support for OpenAPI document generation
 
-## Built-in support for OpenAPI document generation
+The [OpenAPI specification](https://www.openapis.org/) is a standard for describing HTTP APIs. The standard allows developers to define the shape of APIs that can be plugged into client generators, server generators, testing tools, documentation, and more. In .NET 9 Preview, ASP.NET Core provides built-in support for generating OpenAPI documents representing controller-based or minimal APIs via the [Microsoft.AspNetCore.OpenApi](https://nuget.org/packages/Microsoft.AspNetCore.OpenApi) package.
 
-The [OpenAPI specification](https://www.openapis.org/) is a standard for describing HTTP APIs. The standard allows developers to define the shape of APIs that can be plugged into client generators, server generators, testing tools, documentation, and more. In .NET 9 Preview 4, ASP.NET Core provides built-in support for generating OpenAPI documents representing controller-based or minimal APIs via the [Microsoft.AspNetCore.OpenApi](https://nuget.org/packages/Microsoft.AspNetCore.OpenApi) package.
-
-To take advantage of this feature, install the `Microsoft.AspNetCore.OpenApi` package in your web project of choice.
+Install the `Microsoft.AspNetCore.OpenApi` package in your web project using the following command:
 
 ```console
 dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
 
-In your app's `Program.cs`:
-
-- Call `AddOpenApi` to register the required dependencies into your app's DI container.
-- Call `MapOpenApi` to register the required OpenAPI endpoints in your app's routes.
-
 :::code language="csharp" source="~release-notes/aspnetcore-9/samples/OpenApiExample/Program.cs" highlight="3,7":::
 
-Run your application and navigate to `openapi/v1.json` to view the generated OpenAPI document:
+
+The preceding highlighted code calls:
+
+- `AddOpenApi` to register the required dependencies into the app's DI container.
+- `MapOpenApi` to register the required OpenAPI endpoints in the app's routes.
+
+ Run the app and navigate to `openapi/v1.json` to view the generated OpenAPI document:
+
 
 ![OpenAPI document](~/release-notes/aspnetcore-9/_static/OpenApiDoc.png)
 
