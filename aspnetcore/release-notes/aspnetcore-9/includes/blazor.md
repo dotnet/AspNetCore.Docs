@@ -10,14 +10,14 @@ Mark any Razor component page with the new `[ExcludeFromInteractiveRouting]` att
 @attribute [ExcludeFromInteractiveRouting]
 ```
 
-Applying the attribute causes navigation to the page to exit from interactive routing. That is, inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the to switch to a different top-level render mode.
+Applying the attribute causes navigation to the page to exit from interactive routing. Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
 The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page.
 
 In the `App` component, use the pattern in the following example:
 
 * Pages that aren't annotated with `[ExcludeFromInteractiveRouting]` default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
-* Pages annotated with `[ExcludeFromInteractiveRouting]` adopt static SSR (`PageRenderMode` is `null`).
+* Pages annotated with `[ExcludeFromInteractiveRouting]` adopt static SSR (`PageRenderMode` is assigned `null`).
 
 ```razor
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ The new `KeyboardEventArgs.IsComposing` property indicates if the keyboard event
 
 ### Added `OverscanCount` parameter to `QuickGrid`
 
-The Blazor `QuickGrid` component now exposes an `OverscanCount` property that specifies how many additional rows are rendered before and after the visible region when virtualization is enabled.
+The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component now exposes an `OverscanCount` property that specifies how many additional rows are rendered before and after the visible region when virtualization is enabled.
 
 The default `OverscanCount` is 3. The following example increases the `OverscanCount` to 4:
 

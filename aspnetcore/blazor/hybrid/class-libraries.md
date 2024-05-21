@@ -48,6 +48,8 @@ For more information, see the following articles:
 
 :::moniker-end
 
+<!-- UPDATE 9.0 Ask Beth on a replacement for this
+
 ## Sample app
 
 For an example of the scenarios described in this article, see the .NET Podcasts sample app:
@@ -63,6 +65,8 @@ The .NET Podcasts app showcases the following technologies:
 * [.NET MAUI](https://dotnet.microsoft.com/apps/maui)
 * [Azure Container Apps](https://azure.microsoft.com/services/container-apps/)
 * [Orleans](/dotnet/orleans/overview)
+
+-->
 
 ## Share web UI Razor components, code, and static assets
 
