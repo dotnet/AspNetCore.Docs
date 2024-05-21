@@ -225,7 +225,7 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
   * Execute the following command:
 
     ```powershell
-    Install-Package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.1
+    Install-Package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.2
     ```
 
 * From the **Manage NuGet Packages** dialog:
@@ -240,7 +240,7 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
 Run the following command from the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.1
+dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.2
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
@@ -248,7 +248,7 @@ dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.1
 Run the following command:
 
 ```dotnetcli
-dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.1
+dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.2
 ```
 
 ---
