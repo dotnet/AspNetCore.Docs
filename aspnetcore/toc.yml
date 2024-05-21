@@ -1706,6 +1706,9 @@ items:
           - name: Distributed caching
             displayName: cache
             uid: performance/caching/distributed
+          - name: Hybrid cache
+            displayName: caching
+            uid: performance/caching/hybrid
           - name: Output caching
             displayName: cache
             uid: performance/caching/output

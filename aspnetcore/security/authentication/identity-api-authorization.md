@@ -234,7 +234,7 @@ The call to `MapIdentityApi<TUser>` adds the following endpoints to the app:
 * [`GET /confirmEmail`](#use-the-get-confirmemail-endpoint)
 * [`POST /resendConfirmationEmail`](#use-the-post-resendconfirmationemail-endpoint)
 * [`POST /forgotPassword`](#use-the-post-forgotpassword-endpoint)
-* [`POST /reset Password`](#use-the-post-resetpassword-endpoint)
+* [`POST /resetPassword`](#use-the-post-resetpassword-endpoint)
 * [`POST /manage/2fa`](#use-the-post-manage2fa-endpoint)
 * [`GET /manage/info`](#use-the-get-manageinfo-endpoint)
 * [`POST /manage/info`](#use-the-post-manageinfo-endpoint)

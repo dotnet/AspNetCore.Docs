@@ -129,7 +129,7 @@ Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.c
 
 Add `MapRazorPages` to `Program.cs` as shown in the following highlighted code:
 
-[!code-cshtml[](scaffold-identity/6.0sample/ProgramMRP.cs?highlight=39)]
+[!code-csharp[](scaffold-identity/6.0sample/ProgramMRP.cs?highlight=39)]
 
 ## Scaffold Identity into an MVC project with authorization
 
