@@ -8,8 +8,8 @@ Preview 3 added endpoint metadata to the developer exception page. ASP.NET Core 
 
 While testing the developer exception page, small quality of life improvements were identified. They shipped in Preview 4:
 
-* Better text wrapping. Long cookies, query string values and method names no longer add horizontal browser scroll bars.
-* Bigger text. This page has a long history (10+ years) and web design has changed over time. The text felt a little small compared to modern designs.
+* Better text wrapping. Long cookies, query string values, and method names no longer add horizontal browser scroll bars.
+* Bigger text which is found in modern designs.
 * More consistent table sizes.
 
 The following animated image shows the new developer exception page:
