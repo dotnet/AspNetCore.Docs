@@ -1,5 +1,5 @@
 ---
-title: Build a Blazor movie database app (Part 9 - Add interactivity)
+title: Build a Blazor movie database app (Part 8 - Add interactivity)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains ...
 monikerRange: '>= aspnetcore-8.0'
@@ -16,7 +16,7 @@ uid: blazor/tutorials/movie-database/interactivity
 
 -->
 
-This article is the ninth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
+This article is the eighth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
 This part of the series
 

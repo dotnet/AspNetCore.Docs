@@ -129,5 +129,5 @@ Test the app by searching by genre, by movie title, and by both.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Apply data annotations](xref:blazor/tutorials/movie-database/data-annotations)
+> [Previous: Add validation](xref:blazor/tutorials/movie-database/validation)
 > [Next: Add a new field](xref:blazor/tutorials/movie-database/new-field)

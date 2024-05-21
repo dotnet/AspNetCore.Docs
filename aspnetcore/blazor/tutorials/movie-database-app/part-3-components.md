@@ -507,6 +507,14 @@ If there's a concurrency exception and the movie entity no longer exists at the 
 > [!WARNING]
 > The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
 
+<!-- DO WE WANT TO COVER ROUTE TEMPLATES?
+
+     e.g. ... @page "/movies/edit/{id:int?}"
+
+## Use a route template instead of a query string
+
+-->
+
 ## Mitigate overposting attacks
 
 Statically-rendered server-side forms, such as those in the `Create` and `Edit` components, can be vulnerable to an *overposting* attack, also known as a *mass assignment* attack. An overposting attack occurs when a malicious user issues an HTML form POST to the server that processes data for properties that aren't part of the rendered form and that the developer doesn't wish to allow users to modify. The term "overposting" literally means that the malicious user has *over*-POSTed with the form.

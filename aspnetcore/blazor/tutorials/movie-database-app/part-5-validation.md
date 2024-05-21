@@ -1,5 +1,5 @@
 ---
-title: Build a Blazor movie database app (Part 8 - Add validation)
+title: Build a Blazor movie database app (Part 5 - Add validation)
 author: guardrex
 description: This part of the Blazor movie database app tutorial explains ...
 monikerRange: '>= aspnetcore-8.0'
@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 05/06/2024
 uid: blazor/tutorials/movie-database/validation
 ---
-# Build a Blazor movie database app (Part 8 - Add validation)
+# Build a Blazor movie database app (Part 5 - Add validation)
 
 <!-- UPDATE 9.0 Activate after release
 
@@ -16,11 +16,19 @@ uid: blazor/tutorials/movie-database/validation
 
 -->
 
-This article is the eighth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
+This article is the fifth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
 This part of the series
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
+
+## Data annotations
+
+In the previous code:
+
+* The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
+* The [[Display]](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies the display name of a field. In the preceding code, `Release Date` instead of `ReleaseDate`.
+* The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). The time information stored in the field isn't displayed.
 
 ## Validation
 
@@ -265,5 +273,10 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 ## Next steps
 
 > [!div class="step-by-step"]
+> [Previous: Work with a database](xref:blazor/tutorials/movie-database/database)
+> [Next: Add search](xref:blazor/tutorials/movie-database/search)
+
+
+
 > [Previous: Add a new field](xref:blazor/tutorials/movie-database/new-field)
 > [Next: Add interactivity](xref:blazor/tutorials/movie-database/interactivity)

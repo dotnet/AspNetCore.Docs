@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
 uid: blazor/tutorials/movie-database/database
+zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 4 - Work with a database)
 
@@ -180,8 +181,6 @@ using (var scope = app.Services.CreateScope())
 }
 ```
 
-## Test the app
-
 Run the app and delete any entities that you created in the database.
 
 Stop and restart the app to seed the database.
@@ -189,6 +188,88 @@ Stop and restart the app to seed the database.
 Navigate to the movies `Index` page:
 
 ![Movies Index page showing Mad Max movie list after seeding the database](~/blazor/tutorials/movie-database-app/part-4-database/_static/index-page.png)
+
+## Binding a form to a model
+
+Review the the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
+
+When an HTTP GET request is made for the `Edit` component page (for example at the relative URL: `/movies/edit?id=6`):
+
+* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method fetches the movie from the database and assigns it to the `Movie` property.
+* The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter specifies the top-level model object for the form. An edit context is constructed for the form using the assigned model.
+* The form is displayed with the values from the movie.
+
+When the `Edit` page is posted to the server, the form values on the page are bound to the `Movie` property because the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute) is annotated on the `Movie` property:
+
+```csharp
+[SupplyParameterFromForm]
+public Movie? Movie { get; set; }
+```
+
+If the model state has errors when the form is posted, for example, `ReleaseDate` can't be converted into a date, the form is redisplayed with the submitted values. If no model errors exist, the movie is saved using the form's posted values.
+
+## Concurrency exception handling
+
+Review the `UpdateMovie` method of the `Edit` component (`Components/Pages/MoviePages/Edit.razor`):
+
+```csharp
+public async Task UpdateMovie()
+{
+    DB.Attach(Movie!).State = EntityState.Modified;
+
+    try
+    {
+        await DB.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException)
+    {
+        if (!MovieExists(Movie!.Id))
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+        else
+        {
+            throw;
+        }
+    }
+
+    NavigationManager.NavigateTo("/movies");
+}
+```
+
+Concurrency exceptions are detected when one client deletes the movie and a different client posts changes to the movie.
+
+To test the `catch` block:
+
+:::zone pivot="vs"
+
+1. Set a breakpoint on `catch (DbUpdateConcurrencyException)`.
+1. Select **Edit** for a movie, make changes, but don't select **Save**.
+1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie, and then delete the movie.
+1. In the previous browser window, post changes to the movie by selecting the **Save** button.
+1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+1. Select **Edit** for a movie, make changes, but don't select **Save**.
+1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie, and then delete the movie.
+1. In the previous browser window, post changes to the movie by selecting the **Save** button.
+1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+1. Select **Edit** for a movie, make changes, but don't select **Save**.
+1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie, and then delete the movie.
+1. In the previous browser window, post changes to the movie by selecting the **Save** button.
+1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+
+:::zone-end
+
+Production code may want to detect concurrency conflicts. For more information, see [Handle concurrency conflicts](xref:data/ef-rp/concurrency).
 
 ## Troubleshoot with the completed sample
 
@@ -205,4 +286,4 @@ Configuration articles:
 
 > [!div class="step-by-step"]
 > [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database/components)
-> [Next: Apply data annotations](xref:blazor/tutorials/movie-database/data-annotations)
+> [Next: Add Validation](xref:blazor/tutorials/movie-database/validation)

@@ -189,4 +189,4 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 
 > [!div class="step-by-step"]
 > [Previous: Add Search](xref:blazor/tutorials/movie-database/search)
-> [Next: Add Validation](xref:blazor/tutorials/movie-database/validation)
+> [Next: Add interactivity](xref:blazor/tutorials/movie-database/interactivity)
