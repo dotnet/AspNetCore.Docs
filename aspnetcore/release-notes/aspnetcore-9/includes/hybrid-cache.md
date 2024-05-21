@@ -2,7 +2,7 @@
 ms.topic: include
 author: mgravell
 ms.author: marcgravell
-ms.date: 05/17/2024
+ms.date: 05/21/2024
 ---
 ### New `HybridCache` library
 
@@ -132,4 +132,4 @@ else.
 
 `HybridCache` supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
 
-For more information about `HybridCache`, including planned features, see GitHub issue [dotnet/aspnetcore #54647](https://github.com/dotnet/aspnetcore/issues/54647).
+For more information about `HybridCache`, see <xref:performance/caching/hybrid>

@@ -9,9 +9,9 @@ The following highlighted code calls:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/OpenApiExample/Program.cs" highlight="3,7":::
 
-Install the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/9.0.0) package in the project using the following command:
+Install the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package in the project using the following command:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
 
@@ -21,7 +21,7 @@ Run the app and navigate to `openapi/v1.json` to view the generated OpenAPI docu
 
 OpenAPI documents can also be generated at build-time by adding the [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) package:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 ```
 
@@ -33,6 +33,6 @@ Run `dotnet build` and inspect the generated JSON file in the project directory.
 
 ![OpenAPI document generation at build-time](~/release-notes/aspnetcore-9/_static/openapidoc2.png)
 
-ASP.NET Core's built-in OpenAPI document generation provides support for various customizations and options, including document and operation transformers and the ability to manage multiple OpenAPI documents for the same application.
+ASP.NET Core's built-in OpenAPI document generation provides support for various customizations and options. It provides document and operation transformers and has the ability to manage multiple OpenAPI documents for the same application.
 
 To learn more about ASP.NET Core's new OpenAPI document capabilities, see [the new Microsoft.AspNetCore.OpenApi docs](https://aka.ms/aspnet/openapi).
