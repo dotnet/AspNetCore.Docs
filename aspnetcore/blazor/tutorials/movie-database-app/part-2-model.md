@@ -195,22 +195,33 @@ In the integrated terminal opened to the project's root directory, execute the f
            results in an auto-generated 'MoviePages' folder. -->
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorcomponent -m Movie -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -udl -outDir Components/Pages --databaseProvider sqlite
+dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
 ```
+
+The template name is one of the following values:
+
+* `create`: Produces a component to create an entity.
+* **`crud`**: Produces create, edit, delete, details, and index components.
+* `delete`: Produces a component to delete an entity.
+* `details`: Produces a component to show the details of an entity.
+* `edit`: Produces a component to edit an entity.
+* `empty`: Scaffolds the database context without creating components.
+* `index`: Produces a component to list all of the entities.
 
 The following table details the ASP.NET Core code generator options.
 
-| Option                       | Description |
-| ---------------------------- | ----------- |
-| `-m`                         | The name of the model. |
-| `-dc`                        | The `DbContext` class to use, including the namespace. |
-| `-udl`                       | Use the default layout. |
-| `-outDir`                    | The relative output folder path for the generated components. |
+| Option                           | Description |
+| -------------------------------- | ----------- |
+| `-databaseProvider|--dbProvider` | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`. |
+| `-dc|--dbContext`                | The `DbContext` class to use, including the namespace. |
+| `-m|--model`                     | The name of the model. |
+| `-namespace|--namespaceName`     | The name of the namespace to use for the generated Razor components. |
+| `-outDir|--relativeFolderPath`   | The relative output folder path for the generated components. |
 
 Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorcomponent` command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorcomponent -h
+dotnet aspnet-codegenerator crud -h
 ```
 
 For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
