@@ -30,6 +30,8 @@ For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** sample
 
 To implement a `QuickGrid` component:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-9.0"
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
@@ -53,7 +55,7 @@ To implement a `QuickGrid` component:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
@@ -74,6 +76,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 For example, add the following component to render a grid.
 
