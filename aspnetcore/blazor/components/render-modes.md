@@ -181,26 +181,19 @@ For more information, see <xref:blazor/tooling>.
 
 Properties and fields can assign a render mode.
 
-The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for either of the following scenarios:
-
-* You have an area (folder) of the app with components that must adopt static server-side rendering (static SSR) and only run on the server. The app controls the render mode globally by setting the render mode on the `Routes` component in the `App` component based on the path to the folder.
-* You have components around the app in various locations (not in a single folder) that must adopt static SSR and only run on the server. The app controls the render mode on a per-component basis by setting the render mode with the `@rendermode` directive in component instances. Reflection is used in the `App` component to set the render mode on the `Routes` component.
-
-In both cases, the component that must adopt static SSR must also force a full-page reload.
-
-The preceding two scenarios are covered with examples in the [Fine control of render modes](#fine-control-of-render-modes) section later in this article. The following two subsections focus on basic approaches for setting the render mode.
+The second approach described in this section, setting the render mode by component instance, is especially useful when your app specification calls for one or more components to adopt static SSR in a globally-interactive app. This scenario is covered in the [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section later in this article.
 
 ### Set the render mode by component definition
 
 A component definition can define a render mode via a private field:
 
 ```razor
-@rendermode renderModeForPage
+@rendermode pageRenderMode
 
 ...
 
 @code {
-    private static IComponentRenderMode renderModeForPage = InteractiveServer;
+    private static IComponentRenderMode pageRenderMode = InteractiveServer;
 }
 ```
 
@@ -209,16 +202,16 @@ A component definition can define a render mode via a private field:
 The following example applies interactive server-side rendering (interactive SSR) to any request.
 
 ```razor
-<Routes @rendermode="RenderModeForPage" />
+<Routes @rendermode="PageRenderMode" />
 
 ...
 
 @code {
-    private IComponentRenderMode? RenderModeForPage => InteractiveServer;
+    private IComponentRenderMode? PageRenderMode => InteractiveServer;
 }
 ```
 
-Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Fine control of render modes](#fine-control-of-render-modes) section shows how to use the preceding approach to adopt static SSR in either specific areas of the app (folders) or for specific components spread around the app with per-component render mode assignments.
+Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section shows how to use the preceding approach to adopt static SSR in a globally-interactive app.
 
 ## Prerendering
 
@@ -520,9 +513,56 @@ The following component results in a runtime error when the component is rendere
 
 > :::no-loc text="Cannot create a component of type 'BlazorSample.Components.SharedMessage' because its render mode 'Microsoft.AspNetCore.Components.Web.InteractiveWebAssemblyRenderMode' is not supported by Interactive Server rendering.":::
 
-## Fine control of render modes
+## Static SSR pages in a globally-interactive app
 
 There are cases where the app's specification calls for components to adopt static server-side rendering (static SSR) and only run on the server, while the rest of the app uses an interactive render mode.
+
+This approach is only useful when the app has specific pages that can't work with interactive Server or WebAssembly rendering. For example, adopt this approach for pages that depend on reading/writing HTTP cookies and can only work in a request/response cycle instead of interactive rendering. For pages that work with interactive rendering, you shouldn't force them to use static SSR rendering, as it's less efficient and less responsive for the end user.
+
+:::moniker range=">= aspnetcore-9.0"
+
+Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribute assigned with the `@attribute` Razor directive:
+
+```razor
+@attribute [ExcludeFromInteractiveRouting]
+```
+
+Applying the attribute causes navigation to the page to exit from interactive routing. That is, inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
+
+The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page.
+
+In the `App` component, use the pattern in the following example:
+
+* Pages that aren't annotated with `[ExcludeFromInteractiveRouting]` default to the `InteractiveServer` render mode with global interactivity. You can replace `InteractiveServer` with `InteractiveWebAssembly` or `InteractiveAuto` to specify a different default global render mode.
+* Pages annotated with `[ExcludeFromInteractiveRouting]` adopt static SSR (`PageRenderMode` is `null`).
+
+```razor
+<!DOCTYPE html>
+<html>
+<head>
+    ...
+    <HeadOutlet @rendermode="@PageRenderMode" />
+</head>
+<body>
+    <Routes @rendermode="@PageRenderMode" />
+    ...
+</body>
+</html>
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    private IComponentRenderMode? PageRenderMode
+        => HttpContext.AcceptsInteractiveRouting() ? InteractiveServer : null;
+}
+```
+
+An alternative to using the `HttpContext.AcceptsInteractiveRouting` extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 There are two approaches that can be taken for fine control of render modes, each of which is described in the following subsections:
 
@@ -686,6 +726,8 @@ Interactive components around the app ***avoid*** applying the custom static SSR
 ```
 
 In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the component should adopt <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
+
+:::moniker-end
 
 ## Client-side services fail to resolve during prerendering
 
