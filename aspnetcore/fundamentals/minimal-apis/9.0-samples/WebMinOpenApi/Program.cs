@@ -1,4 +1,4 @@
-#define FIRST
+#define DOCUMENTtransformerUse
 
 #if DEFAULT
 // <snippet_default>
@@ -348,4 +348,37 @@ app.MapGet("/", () => "Hello world!");
 
 app.Run();
 // </snippet_first>
+#endif
+
+#if DOCUMENTtransformerUse
+// <snippet_transUse>
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi.Models;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi(options =>
+{
+    options.UseTransformer((document, context, cancellationToken) => { });
+    options.UseTransformer(new MyDocumentTransformer());
+    options.UseTransformer<MyDocumentTransformer>();
+    options.UseOperationTransformer((operation, context, cancellationToken) => { });
+});
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_transUse>
+
+internal class MyDocumentTransformer : IOpenApiDocumentTransformer
+{
+    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+}
 #endif
