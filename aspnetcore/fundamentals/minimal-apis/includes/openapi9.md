@@ -31,16 +31,16 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 
 [!code-xml[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
-To learn more about the `Microsoft.AspNetCore.OpenApi` package, please review the docs <xref:fundamentals/minimal-apis/aspnetcore-openapi>.
+To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundamentals/minimal-apis/aspnetcore-openapi>.
 
 ## Describe endpoints
 
-OpenAPI supports providing summaries and descriptions of routes that are registered in an application. Minimal APIs supports two strategies for setting these properties on a given endpoint:
+OpenAPI supports providing summaries and descriptions of routes that are registered in an app. Minimal APIs support two strategies for setting these properties on a given endpoint, using the following extension methods and attributes:
 
-* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> extension method on the endpoint for summaries
-* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> extension method on the endpoint for descriptions
-* Via the <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute> on the endpoint
-* Via the <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute> on the endpoint
+* Summaries: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
+* Descriptions: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
+* Summaries: <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute>
+* Descriptions: <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>
 
 The following sample demonstrates the different strategies for setting summaries and descriptions.
 
@@ -57,10 +57,10 @@ app.MapGet("/attributes",
 
 ## Set OpenAPI tags
 
-OpenAPI supports specifying tags on each endpoint as a form of categorization. Minimal APIs supports two strategies for setting OpenAPI tags on a given endpoint:
+OpenAPI supports specifying tags on each endpoint as a form of categorization. Minimal APIs supports two strategies for setting OpenAPI tags on a given endpoint, using:
 
-* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> extension method
-* Via the <xref:Microsoft.AspNetCore.Http.TagsAttribute>
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
+* <xref:Microsoft.AspNetCore.Http.TagsAttribute>
 
 The follow sample demonstrates the different strategies for setting tags.
 
@@ -75,10 +75,10 @@ app.MapGet("/attributes",
 
 ## Excluding endpoints from the generated document
 
-By default, all endpoints that are defined in an application are documented in the generated OpenAPI file. Minimal APIs supports two strategies for excluding a given endpoint from the OpenAPI document:
+By default, all endpoints that are defined in an app are documented in the generated OpenAPI file. Minimal APIs supports two strategies for excluding a given endpoint from the OpenAPI document, using:
 
-* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A> extension method.
-* Via the <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A>
+* <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>
 
 The following sample demonstrates the different strategies for excluding a given endpoint from the generated OpenAPI document.
 

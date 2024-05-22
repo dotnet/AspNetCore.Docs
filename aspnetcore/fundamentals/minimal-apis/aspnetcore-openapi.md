@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
-ms.date: 05/10/2024
+ms.date: 05/21/2024
 uid: fundamentals/minimal-apis/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
@@ -163,14 +163,16 @@ builder.Services.AddOpenApi(options =>
 
 ## Customizing OpenAPI endpoints with endpoint metadata
 
-The OpenAPI document generator derives various information from endpoint metadata on the available document:
+The following list shows the endpoint metadata that can be used to customize the generated OpenAPI document:
 
-* Summaries and descriptions on endpoints are derived from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata> and <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata> respectively
-* Request body and response information is derived from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata> and <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
-* Operation IDs are derived from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
-* OpenAPI tags are derived from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
+* Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
+* Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
+* Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
+* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
+* Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
+* OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
 
-To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, please [view the overview documentation](<xref:fundamentals/minimal-apis/openapi>).
+To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
 
 ### Execution order for transformers
 
