@@ -57,7 +57,7 @@ app.MapGet("/attributes",
 
 ## Set OpenAPI tags
 
-OpenAPI supports specifying tags on each endpoint as a form of categorization. Minimal APIs supports two strategies for setting OpenAPI tags on a given endpoint, using the:
+OpenAPI supports specifying tags on each endpoint as a form of categorization. Minimal APIs supports two strategies for setting OpenAPI tags on a given endpoint, using:
 
 * <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
 * <xref:Microsoft.AspNetCore.Http.TagsAttribute>
