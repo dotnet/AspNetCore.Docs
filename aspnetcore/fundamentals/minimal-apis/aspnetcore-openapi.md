@@ -24,12 +24,11 @@ The following code:
 * Adds OpenAPI services.
 * Enables the endpoint for viewing the OpenAPI document in JSON format.
 
-
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,7)]
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
-## Options for customizing OpenAPI document generation
+## Options to Customize OpenAPI document generation
 
 ### The importance of document names
 
@@ -47,16 +46,16 @@ builder.Services.AddOpenApi("internal"); // Document name is internal
 
 The document name surfaces in several places in the OpenAPI implementation.
 
-When fetching the generated OpenAPI document, the document name is provided as the `documentName` parameter argument in the request. The requests below will resolve the `v1` and `internal` documents respectively.
+When fetching the generated OpenAPI document, the document name is provided as the `documentName` parameter argument in the request. The following requests resolve the `v1` and `internal` documents respectively.
 
 ```bash
 GET http://localhost:5000/openapi/v1.json
 GET http://localhost:5000/openapi/internal.json
 ```
 
-## Customizing OpenAPI endpoints with endpoint metadata
+## Customize OpenAPI endpoints with endpoint metadata
 
-The following list shows the endpoint metadata that can be used to customize the generated OpenAPI document:
+The following list shows the endpoint metadata that are used to customize the generated OpenAPI document:
 
 * Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
 * Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
@@ -67,9 +66,9 @@ The following list shows the endpoint metadata that can be used to customize the
 
 To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
 
-### Customizing the OpenAPI version of a generated document
+### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation will generate a document that is compliant with v3.0 of the OpenAPI spec. To modify this version, customize the options that are provided to the document generation services.
+By default, OpenAPI document generation creates a document that is compliant with the [v3.0 of the OpenAPI specification](https://spec.openapis.org/oas/v3.0.0). The following code demonstrates how to modify the default version of the OpenAPI document:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -78,42 +77,46 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
-### Customizing the OpenAPI endpoint route
+### Customize the OpenAPI endpoint route
 
-By default, the OpenAPI endpoint registered via a call to `MapOpenApi` will expose the document at the `/openapi/{documentName}.json` endpoint. To customize the route the OpenAPI document is registered at, pass the route template as a parameter to the `MapOpenApi` call.
+By default, the OpenAPI endpoint registered via a call to `MapOpenApi` exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
 ```
 
-> Note: It's possible, but not recommended, to remove the `documentName` route parameter from the endpoint route. In this case, the framework will attempt to resolve the document name from the query parameter. Not providing the `documentName` in either the route or query can result in unexpected behavior. 
+***Note:*** It's possible, but not recommended, to remove the `documentName` route parameter from the endpoint route. When the `documentName` route parameter is removed from the endpoint route, the framework attempts to resolve the document name from the query parameter. Not providing the `documentName` in either the route or query can result in unexpected behavior.
 
-### Customizing the OpenAPI endpoint
+### Customize the OpenAPI endpoint
 
 Because the OpenAPI document is served via a route handler endpoint, any customization that is available to standard minimal endpoints is available to the OpenAPI endpoint.
 
 #### Limiting access to OpenAPI document to authorized users
 
-The OpenAPI endpoint is not does not enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document to those with the `tester` scope using the following configuration:
+The OpenAPI endpoint  doesn't enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document. For example, in the following code, access to the OpenAPI document is limited to those with the `tester` scope:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithauth)]
 
-#### Caching generated OpenAPI document
+#### Cache generated OpenAPI document
 
-The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration allows transformers to incorporate dynamic application state directly into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
+The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration allows transformers to incorporate dynamic application state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
 
 <a name="transformers"></a>
 
-## Customizing OpenAPI documents with transformers
+## Customize OpenAPI documents with transformers
 
-Transformers provide an API for modifying the OpenAPI document that is generated by the framework with user-defined customizations. Transformers are useful for scenarios like adding parameters to all operations in a document, modifying descriptions for parameters or operations, and adding top-level information to the OpenAPI document.
+Transformers provide an API for modifying the OpenAPI document with user-defined customizations. Transformers are useful for scenarios like:
+
+* Adding parameters to all operations in a document.
+* Modifying descriptions for parameters or operations.
+* Adding top-level information to the OpenAPI document.
 
 Transformers fall into two categories:
 
-* Document transformers have access to the entire OpenAPI document and can be used to make global modifications to the document.
-* Operation transformers apply to each individual operation (combination of path + HTTP method) and can be used to modify parameters or responses on endpoints.
+* Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
+* Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints. <!-- PU review required -->
 
 Transformers can be registered onto the document via the `UseTransformer` call on the `OpenApiOptions` object. The following snippet shows different ways to register transformers onto the document:
 
@@ -121,6 +124,8 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 * Register a document transformer using an instance of `IOpenApiDocumentTransformer`.
 * Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
 * Register an operation transformer using a delegate.
+
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=DOCUMENTtransformerUse&highlight=6-12)]
 
 ```csharp
 builder.Services.AddOpenApi(options =>
