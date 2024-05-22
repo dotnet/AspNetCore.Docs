@@ -18,48 +18,133 @@ uid: blazor/tutorials/movie-database/validation
 
 This article is the fifth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series
+This part of the series covers annotating the movie model 
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
 ## Data annotations
 
-In the previous code:
+*Data annotations* are attribute classes that are used to define metadata about a model's properties that then can be used to implement additional features or functionality. Data annotations use the following format, where the `{ANNOTATION}` placeholder is the annotation:
 
-* The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
-* The [[Display]](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies the display name of a field. In the preceding code, `Release Date` instead of `ReleaseDate`.
-* The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). The time information stored in the field isn't displayed.
+```csharp
+[{ANNOTATION}]
+```
+
+Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
+
+```csharp
+[{ANNOTATION_1}]
+[{ANNOTATION_2}]
+[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
+```
+
+Open the app's `Movie` model (`Models/Movie.cs`) and inspect the `ReleaseDate` property:
+
+```csharp
+[DataType(DataType.Date)]
+public DateTime ReleaseDate { get; set; }
+```
+
+The [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) specifies the name of an additional type to associate with `ReleaseDate`. In this case, the type of data is a date (<xref:System.ComponentModel.DataAnnotations.DataType.Date?displayProperty=nameWithType>).
+
+<!-- HOLD for a later version of the tutorial
+     when QuickGrid has display name support
+     Dan's issue: https://github.com/dotnet/aspnetcore/issues/49147
+
+* Add the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute to the `ReleaseDate` property with a display name to present the name of the property as `Release Date`, which includes a space. You have a choice how the attribute is declared, and either approach is reasonable. Select one of the approaches and use it consistently throughout the app. The following examples place attributes in alphabetical order.
+
+  * Place attributes on separate lines:
+
+    ```csharp
+    [DataType(DataType.Date)]
+    [Display(Name = "Release Date")]
+    public DateTime ReleaseDate { get; set; }
+    ```  
+  
+  * Place attributes on the same line separated by commas:
+
+    ```csharp
+    [DataType(DataType.Date), Display(Name = "Release Date")]
+    public DateTime ReleaseDate { get; set; }
+    ```
+-->
+
+For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
 ## Validation
 
-A key tenet of software development is called [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("**D**on't **R**epeat **Y**ourself"). Razor Pages encourages development where functionality is specified once, and it's reflected throughout the app. DRY can help:
+A key tenet of software development is known by the acronym [*DRY*](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). Blazor encourages development where functionality is specified once and reflected throughout the app. DRY can help:
 
 * Reduce the amount of code in an app.
-* Make the code less error prone, and easier to test and maintain.
+* Make the code less error prone and easier to test and maintain.
 
-The validation support provided by Razor Pages and Entity Framework is a good example of the DRY principle:
+The validation support provided by Blazor and EF Core is an example of adopting the DRY principle:
 
-* Validation rules are declaratively specified in one place, in the model class.
+* Validation rules are specified in one place, the model class.
 * Rules are enforced everywhere in the app.
-
-## Add validation rules to the movie model
 
 The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
-* A set of built-in validation attributes that are applied declaratively to a class or property.
-* Formatting attributes like `[DataType]` that help with formatting and don't provide any validation.
+* A set of built-in validation attributes that are applied to a class or property.
+* Formatting attributes, such as the [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) described in the preceding section, that help with formatting and don't participate in validation.
 
-Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
+The `Movie` class can use the following data annotations for validation:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet1)]
+* [`[Required]`](): Require that the user provide a value.
+* [`[StringLength]`](): Specify the maximum string length.
+* [`[RegularExpression]`](): Specify a regular expression for the user's input. In the following example, `Genre` must:
+  * Only use letters.
+  * Use an uppercase first letter. White spaces are allowed, while numbers and special characters aren't allowed.
+* [`[Range]`](): Specify the minimum and maximum values.
+
+```diff
++ [Required]
++ [StringLength(60, MinimumLength = 3)]
+public string? Title { get; set; }
+
++ [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
++ [Required]
++ [StringLength(30)]
+public string? Genre { get; set; }
+
++ [Range(1, 100)]
+public decimal Price { get; set; }
+```
+
+To update the class, you can copy and paste the following file contents into `Models/Movie.cs`. The following code uses a C# feature called [file scoped namespaces](/dotnet/csharp/language-reference/proposals/csharp-10.0/file-scoped-namespaces) to reduce the level of indentation by placing the namespace on one line and dropping the braces around the properties:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+namespace BlazorWebAppMovies.Models;
+
+public class Movie
+{
+   public int Id { get; set; }
+
+   [Required]
+   [StringLength(60, MinimumLength = 3)]
+   public string? Title { get; set; }
+
+   [DataType(DataType.Date)]
+   public DateTime ReleaseDate { get; set; }
+
+   [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+   [Required]
+   [StringLength(30)]
+   public string? Genre { get; set; }
+
+   [Range(1, 100)]
+   public decimal Price { get; set; }
+}
+```
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
 * The `[Required]` and `[MinimumLength]` attributes indicate that a property must have a value. Nothing prevents a user from entering white space to satisfy this validation.
 * The `[RegularExpression]` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
 
-  * Must only use letters.
-  * The first letter must be uppercase. White spaces are allowed, while numbers and special characters aren't allowed.
+  
 
 * The `RegularExpression` `Rating`:
 

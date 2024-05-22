@@ -285,6 +285,14 @@ For the movie example from the last part of the tutorial series, *The Matrix*&co
 </table>
 ```
 
+The column names are taken from the `Movie` model properties, so the release date doesn't have a space between the words. Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title> to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> with a value that includes a space between the words:
+
+```razor
+<PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+```
+
+Run the app to see that the column now displays two words for the release date.
+
 ### `Details` component
 
 Open the `Details` component file (`Components/Pages/Movies/Details.razor`) definition file.
