@@ -1,4 +1,4 @@
-#define DOCUMENTtransformerUse
+#define DOCUMENTtransformerUse999 //DOCUMENTtransformerUse
 
 #if DEFAULT
 // <snippet_default>
@@ -350,7 +350,7 @@ app.Run();
 // </snippet_first>
 #endif
 
-#if DOCUMENTtransformerUse
+#if DOCUMENTtransformerUse999
 // <snippet_transUse>
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi.Models;
@@ -359,10 +359,10 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer((document, context, cancellationToken) => { });
+    options.UseTransformer((document, context, cancellationToken) => Task.CompletedTask);
     options.UseTransformer(new MyDocumentTransformer());
     options.UseTransformer<MyDocumentTransformer>();
-    options.UseOperationTransformer((operation, context, cancellationToken) => { });
+    options.UseOperationTransformer((operation, context, cancellationToken) => Task.CompletedTask);
 });
 
 var app = builder.Build();
@@ -378,7 +378,20 @@ internal class MyDocumentTransformer : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        // Example transformation: Add a custom tag to all paths in the document
+        foreach (var path in document.Paths)
+        {
+            foreach (var operation in path.Value.Operations)
+            {
+                if (operation.Value.Tags == null)
+                {
+                    operation.Value.Tags = new List<OpenApiTag>();
+                }
+                operation.Value.Tags.Add(new OpenApiTag { Name = "CustomTag" });
+            }
+        }
+
+        return Task.CompletedTask;
     }
 }
 #endif
