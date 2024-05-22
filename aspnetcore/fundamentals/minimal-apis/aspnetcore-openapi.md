@@ -1,7 +1,7 @@
 ---
 title: Get started with Microsoft.AspNetCore.OpenApi
 author: captainsafia
-description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core application
+description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
@@ -15,7 +15,7 @@ The `Microsoft.AspNetCore.OpenApi` package provides built-in support for OpenAPI
 * Compatible with native AoT.
 * Takes advantage of JSON schema support provided by `System.Text.Json`.
 * Provides a transformers API for modifying generated documents.
-* Supports managing multiple OpenAPI documents within a single application.
+* Supports managing multiple OpenAPI documents within a single app.
 
 ## Package installation
 
@@ -59,13 +59,13 @@ dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 
 ## Add and configure OpenAPI document generation
 
-To get started generating OpenAPI documents for ASP.NET Core applications, add the OpenAPI-related services to `Program.cs`.
+Add the OpenAPI-related services to `Program.cs`:
 
 ```csharp
 builder.Services.AddOpenApi();
 ```
 
-Enable the endpoint for viewing the OpenAPI document in JSON format.
+Enable the endpoint for viewing the OpenAPI document in JSON format:
 
 ```csharp
 app.MapOpenApi();
@@ -77,7 +77,7 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 
 ### The importance of document names
 
-Each OpenAPI document in an application has a unique name. The default document name that is registered is `v1`.
+Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
 
 ```csharp
 builder.Services.AddOpenApi(); // Document name is v1
@@ -144,7 +144,7 @@ The OpenAPI endpoint is not does not enable any authorization checks by default.
 
 #### Caching generated OpenAPI document
 
-The OpenAPI document is re-generated every time a request to the OpenAPI endpoint is sent. This behavior enables the use of transformers that dynamically access application state, like information in the HTTP context, as part of their implementation. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
+The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration allows transformers to incorporate dynamic application state directly into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
 
@@ -198,7 +198,7 @@ Document transformers also have mutate access to the OpenAPI document that has b
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
-Service-activated document transformers can also be used to implement transformers that rely on instances from DI to modify the application. The sample below demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer to check if any JWT bearer-related schemes are registered in the application and add them to the OpenAPI document's top level.
+Service-activated document transformers can also be used to implement transformers that rely on instances from DI to modify the application. The following sample demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the application and adds them to the OpenAPI document's top level.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
@@ -208,7 +208,7 @@ Document transformers are unique to the document instance they are associated wi
 
 ### Using operation transformers
 
-Operations are unique combinations of HTTP paths and methods in an OpenAPI document. Operation transformers are helpful when a modification should be made to each endpoint in an application or conditionally applied to certain routes.
+Operations are unique combinations of HTTP paths and methods in an OpenAPI document. Operation transformers are helpful when a modification should be made to each endpoint in an app or conditionally applied to certain routes.
 
 Operation transformers have access to a context object which contains:
 
@@ -226,9 +226,9 @@ OpenAPI documents can plug into a wide ecosystem of existing tools for testing, 
 
 ### Using Swagger UI for local ad-hoc testing
 
-By default, the `Microsoft.AspNetCore.OpenApi` package does not ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for achieving this kind of thing include Swagger UI and ReDoc and can be integrated in your application in a variety of ways. Editors like Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
+By default, the `Microsoft.AspNetCore.OpenApi` package does not ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://appsumo.com/products/redoc/). Swagger UI and ReDoc can be integrated in your app in a variety of ways. Editors like Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
 
-The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in applications. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.AspNetCore.SwaggerUi` package.
+The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in apps. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.AspNetCore.SwaggerUi` package.
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -314,7 +314,7 @@ dotnet add package Scalar.AspNetCore -v 1.0.1
 
 ### Linting generated OpenAPI documents with Spectral
 
-Spectral is an open-source OpenAPI document linter. Spectral can be incorporated into your application build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
+[Spectral](https://stoplight.io/open-source/spectral) is an open-source OpenAPI document linter. Spectral can be incorporated into your app build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
 
 To take advantage of Spectral, install the `Microsoft.Extensions.ApiDescription.Server` package to enable build-time OpenAPI document generation.
 
@@ -354,7 +354,7 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 
 ---
 
-Enable document generation at build time by setting the following properties in your application's `.csproj` file":
+Enable document generation at build time by setting the following properties in your app's `.csproj` file":
 
 ```xml
 <PropertyGroup>
