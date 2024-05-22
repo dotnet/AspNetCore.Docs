@@ -168,7 +168,7 @@ The following list shows the endpoint metadata that can be used to customize the
 * Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
 * Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
 * Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
-* Response information from <xref:Microsoft.AspNetCore.Http.MetadataIProducesResponseTypeMetadata>
+* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
 * Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
 * OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
 
