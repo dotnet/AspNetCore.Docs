@@ -10,58 +10,20 @@ uid: fundamentals/minimal-apis/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
-The `Microsoft.AspNetCore.OpenApi` package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
+The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
 
 * Compatible with native AoT.
-* Takes advantage of JSON schema support provided by `System.Text.Json`.
-* Provides a transformers API for modifying generated documents.
+* Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
+* Provides a [transformers](#transformers) API for modifying generated documents.
 * Supports managing multiple OpenAPI documents within a single app.
 
-## Package installation
+## Configure OpenAPI document generation
 
-The `Microsoft.AspNetCore.OpenApi` package can be added with the following approaches:
+The following code:
 
-### [Visual Studio](#tab/visual-studio)
+* Adds OpenAPI services.
+* Enables the endpoint for viewing the OpenAPI document in JSON format.
 
-* From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the `.csproj` file exists
-  * Execute the following command:
-
-    ```powershell
-    Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
-    ```
-
-* From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-  * Set the **Package source** to "nuget.org"
-  * Ensure the "Include prerelease" option is enabled
-  * Enter "Microsoft.AspNetCore.OpenApi" in the search box
-  * Select the latest "Microsoft.AspNetCore.OpenApi" package from the **Browse** tab and click **Install**
-
-### [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
-```
-
-### [.NET Core CLI](#tab/netcore-cli)
-
-Run the following command:
-
-```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
-```
-
----
-
-## Add and configure OpenAPI document generation
-
-Add the OpenAPI services to the app and enable the endpoint for viewing the OpenAPI document in JSON format:
-
-```csharp
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,7)]
 
@@ -141,6 +103,8 @@ The OpenAPI endpoint is not does not enable any authorization checks by default.
 The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration allows transformers to incorporate dynamic application state directly into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
+
+<a name="transformers"></a>
 
 ## Customizing OpenAPI documents with transformers
 
