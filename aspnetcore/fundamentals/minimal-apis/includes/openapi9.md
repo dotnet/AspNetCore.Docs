@@ -35,7 +35,7 @@ To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundam
 
 ## Describe endpoints
 
-OpenAPI supports providing summaries and descriptions of routes that are registered in an app. Minimal APIs supports two strategies for setting these properties on a given endpoint, using the following extension methods and attributes:
+OpenAPI supports providing summaries and descriptions of routes that are registered in an app. Minimal APIs support two strategies for setting these properties on a given endpoint, using the following extension methods and attributes:
 
 * Summaries: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
 * Descriptions: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
