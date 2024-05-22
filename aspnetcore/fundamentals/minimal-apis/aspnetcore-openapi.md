@@ -73,6 +73,19 @@ app.MapOpenApi();
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
+## Customizing OpenAPI endpoints with endpoint metadata
+
+The following list shows the endpoint metadata that can be used to customize the generated OpenAPI document:
+
+* Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
+* Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
+* Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
+* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
+* Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
+* OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
+
+To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
+
 ## Options for customizing OpenAPI document generation
 
 ### The importance of document names
@@ -160,19 +173,6 @@ builder.Services.AddOpenApi(options =>
     options.UseOperationTransformer((operation, context, cancellationToken) => {});
 })
 ```
-
-## Customizing OpenAPI endpoints with endpoint metadata
-
-The following list shows the endpoint metadata that can be used to customize the generated OpenAPI document:
-
-* Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
-* Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
-* Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
-* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
-* Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
-* OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
-
-To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
 
 ### Execution order for transformers
 
