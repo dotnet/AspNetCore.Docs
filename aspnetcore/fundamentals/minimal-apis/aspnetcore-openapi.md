@@ -161,6 +161,17 @@ builder.Services.AddOpenApi(options =>
 })
 ```
 
+## Customizing OpenAPI endpoints with endpoint metadata
+
+The OpenAPI document generator derives various information from endpoint metadata on the available document:
+
+* Summaries and descriptions on endpoints are derived from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata> and <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata> respectively
+* Request body and response information is derived from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata> and <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
+* Operation IDs are derived from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
+* OpenAPI tags are derived from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
+
+To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, please [view the overview documentation](<xref:fundamentals/minimal-apis/openapi>).
+
 ### Execution order for transformers
 
 Transformers execute in first-in first-out order based on registration. In the following snippet, the document transformer will have access to the modifications made by the operation transformer. 
