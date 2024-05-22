@@ -1,4 +1,4 @@
-#define OPENAPIWITHSCALAR
+#define FIRST
 
 #if DEFAULT
 // <snippet_default>
@@ -330,6 +330,22 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => "Hello world!");
 
-app.Run();   
+app.Run();
 // </snippet_openapiwithscalar>
+#endif
+
+#if FIRST
+// <snippet_first>
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_first>
 #endif

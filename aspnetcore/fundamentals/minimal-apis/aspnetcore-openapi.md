@@ -59,17 +59,11 @@ dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 
 ## Add and configure OpenAPI document generation
 
-Add the OpenAPI-related services to `Program.cs`:
+Add the OpenAPI services to the app and enable the endpoint for viewing the OpenAPI document in JSON format:
 
 ```csharp
-builder.Services.AddOpenApi();
-```
 
-Enable the endpoint for viewing the OpenAPI document in JSON format:
-
-```csharp
-app.MapOpenApi();
-```
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_first&highlight=3,7)]
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
