@@ -12,7 +12,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.5.24270.27" />
+<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-preview.5" />
   </ItemGroup>
 
 </Project>
