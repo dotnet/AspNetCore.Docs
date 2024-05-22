@@ -31,6 +31,66 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 
 [!code-xml[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
+To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundamentals/minimal-apis/aspnetcore-openapi>.
+
+## Describe endpoints
+
+OpenAPI supports providing summaries and descriptions of routes that are registered in an app. Minimal APIs support two strategies for setting these properties on a given endpoint, using the following extension methods and attributes:
+
+* Summaries: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
+* Descriptions: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
+* Summaries: <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute>
+* Descriptions: <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>
+
+The following sample demonstrates the different strategies for setting summaries and descriptions.
+
+```csharp
+app.MapGet("/extension-methods", () => "Hello world!")
+  .WithSummary("This is a summary.")
+  .WithDescription("This is a description.");
+
+app.MapGet("/attributes",
+  [EndpointSummary("This is a summary.")]
+  [EndpointDescription("This is a description.")]
+  () => "Hello world!");
+```
+
+## Set OpenAPI tags
+
+OpenAPI supports specifying tags on each endpoint as a form of categorization. Minimal APIs supports two strategies for setting OpenAPI tags on a given endpoint, using:
+
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
+* <xref:Microsoft.AspNetCore.Http.TagsAttribute>
+
+The follow sample demonstrates the different strategies for setting tags.
+
+```csharp
+app.MapGet("/extension-methods", () => "Hello world!")
+  .WithTags("todos", "projects");
+
+app.MapGet("/attributes",
+  [Tags("todos", "projects")]
+  () => "Hello world!");
+```
+
+## Excluding endpoints from the generated document
+
+By default, all endpoints that are defined in an app are documented in the generated OpenAPI file. Minimal APIs supports two strategies for excluding a given endpoint from the OpenAPI document, using:
+
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A>
+* <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>
+
+The following sample demonstrates the different strategies for excluding a given endpoint from the generated OpenAPI document.
+
+```csharp
+app.MapGet("/extension-method", () => "Hello world!")
+  .ExcludeFromDescription();
+
+app.MapGet("/attributes",
+  [ExcludeFromDescription]
+  () => "Hello world!");
+```
+
 ## Describe response types
 
 OpenAPI supports providing a description of the responses returned from an API. Minimal APIs support three strategies for setting the response type of an endpoint:
@@ -42,9 +102,8 @@ OpenAPI supports providing a description of the responses returned from an API. 
 The `Produces` extension method can be used to add `Produces` metadata to an endpoint. When no parameters are provided, the extension method populates metadata for the targeted type under a `200` status code and an `application/json` content type.
 
 ```csharp
-app
-    .MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
-    .Produces<IList<Todo>>();
+app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
+  .Produces<IList<Todo>>();
 ```
 
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
