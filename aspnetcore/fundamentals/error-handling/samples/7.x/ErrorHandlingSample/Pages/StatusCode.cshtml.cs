@@ -21,9 +21,10 @@ public class StatusCodeModel : PageModel
 
         if (statusCodeReExecuteFeature is not null)
         {
-            OriginalPathAndQuery = $"{statusCodeReExecuteFeature.OriginalPathBase}"
-                                    + "{statusCodeReExecuteFeature.OriginalPath}" 
-                                    + "{statusCodeReExecuteFeature.OriginalQueryString}";
+OriginalPathAndQuery = $"{statusCodeReExecuteFeature.OriginalPathBase}"
+                      + $"{statusCodeReExecuteFeature.OriginalPath}"
+                      + $"{statusCodeReExecuteFeature.OriginalQueryString}";
+
         }
     }
 }
