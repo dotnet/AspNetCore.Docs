@@ -66,7 +66,7 @@ The following example sets the delay to 5 seconds:
     stdoutLogFile="\\?\%home%\LogFiles\stdout"
     hostingModel="inprocess">
   <handlerSettings>
-    <handlerSetting name="ShutdownDelay" value="5000" />
+    <handlerSetting name="shutdownDelay" value="5000" />
   </handlerSettings>
 </aspNetCore>
 ```
