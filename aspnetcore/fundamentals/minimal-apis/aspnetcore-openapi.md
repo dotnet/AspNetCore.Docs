@@ -28,8 +28,6 @@ The following code:
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
-## Options to Customize OpenAPI document generation
-
 ### The importance of document names
 
 Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
@@ -53,6 +51,10 @@ GET http://localhost:5000/openapi/v1.json
 GET http://localhost:5000/openapi/internal.json
 ```
 
+## Options to Customize OpenAPI document generation
+
+The following sections demonstrate how to customize OpenAPI document generation.
+
 ### Customize the OpenAPI version of a generated document
 
 By default, OpenAPI document generation creates a document that is compliant with [v3.0 of the OpenAPI specification](https://spec.openapis.org/oas/v3.0.0). The following code demonstrates how to modify the default version of the OpenAPI document:
@@ -63,10 +65,6 @@ builder.Services.AddOpenApi(options =>
     options.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
 });
 ```
-
-## Customize the OpenAPI endpoint route and endpoints
-
-This section demonstrates how to customize the OpenAPI endpoint route and endpoints.
 
 ### Customize the OpenAPI endpoint route
 
