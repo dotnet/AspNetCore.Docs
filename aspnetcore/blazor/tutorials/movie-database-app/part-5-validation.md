@@ -18,25 +18,9 @@ uid: blazor/tutorials/movie-database/validation
 
 This article is the fifth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series covers annotating the movie model 
+This part of the series covers adding metadata (data annotations) to the `Movie` model to validate user input in the forms that create and edit movies.
 
-In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
-## Data annotations
-
-*Data annotations* are attribute classes that are used to define metadata about a model's properties that are used to implement additional features or functionality. Data annotations above a model's property use the following format, where the `{ANNOTATION}` placeholder is the annotation:
-
-```csharp
-[{ANNOTATION}]
-```
-
-Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
-
-```csharp
-[{ANNOTATION_1}]
-[{ANNOTATION_2}]
-[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
-```
 
 <!-- HOLD becuase I think DataType no-ops in Blazor
      Also, I'm not sure if remark on cultureinfo is correct
@@ -75,23 +59,47 @@ Add the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.Displ
   ```
 -->
 
-## Validation
+Validation rules are specified on a model class using *data annotations*.
 
-Validation rules are specified on the model class to enforce them for forms in the app.
+<xref:System.ComponentModel.DataAnnotations> are a broad set of attribute classes that define metadata about a model's properties that are used to implement additional features or functionality. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
 
-The following <xref:System.ComponentModel.DataAnnotations> attributes are applied to class properties to supply metadata for validation:
+```csharp
+[{ANNOTATION}]
+```
 
+Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
+
+```csharp
+[{ANNOTATION_1}]
+[{ANNOTATION_2}]
+[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
+```
+
+The following list includes commonly used <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a form's model:
+
+<!-- 
+     I'm concerned about telling readers that they can just look at 
+     the DA API to see all of them because I know that they don't all 
+     work OOB (e.g., [Display(Name="xxx")]). I've opened an issue to 
+     work on this further in the Blazor forms validation article: 
+     https://github.com/dotnet/AspNetCore.Docs/issues/32639
+-->
+
+* [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
+* [`[CreditCard]`](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format according to the [Luhn algorithm](https://wikipedia.org/wiki/Luhn_algorithm).
+* [`[EmailAddress]`](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
 * [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Require that the user provide a value.
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Specify the maximum string length.
+* [`[Phone]`](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
 * [`[RegularExpression]`](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute): Specify a pattern to match for the user's input. In the following example, `Genre` must:
   * start with an uppercase letter.
   * Only consist of letters, parentheses, spaces, and dashes.
 * [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute): Specify the minimum and maximum values.
+* [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 
-> [!NOTE]
-> Value types, such as `decimal`, `int`, `float`, and `DateTime`, are inherently required and don't require the [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute).
+Value types, such as `decimal`, `int`, `float`, and `DateTime`, are inherently required, so placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
 
-Add the following annotations to the `Movie` class properties:
+Add the following data annotations to the `Movie` class properties:
 
 ```diff
 + [Required, StringLength(60, MinimumLength = 3)]
@@ -129,22 +137,30 @@ public class Movie
 }
 ```
 
-The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only two characters, doesn't allow additional special characters in `Genre`, and requires that movies cost at least 1 unit of currency.
+The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only two characters, doesn't allow additional special characters in `Genre`, and requires that movies cost at least 1 full unit of a particular currency, such as one dollar, euro, or yen.
 
-## Server-side validation
-
-Submitting the form with errors posts the form to the server without any client-side indication that there are errors in the user's entries.
+Because the app only processes validation server-side, submitting the form with errors posts the form to the server without any client-side indication that there are errors in the user's entries.
 
 ## Apply migrations
 
-The Data Annotations applied to the `Movie` class change the schema. For example, the annotations applied to the `Title` field limit the length to 60 characters with a minimum of three characters:
+A data model schema defines how data is organized and connected within a relational database.
+
+The data annotations applied to the `Movie` class in the preceding section change the model's *schema*, but they don't automatically make matching changes to the database's schema.
+
+For example, the annotations applied to the `Title` field limit the length to 60 characters with a minimum of three characters:
 
 ```csharp
 [Required, StringLength(60, MinimumLength = 3)]
 public string? Title { get; set; }
 ```
 
-However, the `Movie` table in the database currently has the following schema:
+The `Movie` table's `CREATE TABLE` statement indicates the table's schema:
+
+* The column (field) names are in brackets. Example: `[Title]` for the title column.
+* The database type follows the column name. Example: `INT` for an integer.
+* An `IDENTITY` property indicates an automatically-numbered column, typically used to key the data in the table with a unique value for each row (entity). Example: `IDENTITY (1, 1)` starts numbering rows at 1 and increments by 1 for each added row.
+* The nullability of the column is indicated. Example: `NULL` permits a field of a row to have no value.
+* Other keywords are indicated, such as constraints (`CONSTRAINT`) on the keys of the table.
 
 ```sql
 CREATE TABLE [dbo].[Movie] (
@@ -158,20 +174,19 @@ CREATE TABLE [dbo].[Movie] (
 );
 ```
 
-You can see that the `Title` field is a nullable `NVARCHAR(MAX)` type, which differs from the model's schema. The schema difference doesn't cause EF Core to throw an exception. However, create a migration to make the schema consistent between the model and the database.
+The `Title` column is a nullable value much larger than 60 characters, as indicated by [`NVARCHAR (MAX) NULL`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql), which differs from the model's schema.
+
+To match the `Movie` model's schema in the app, it should indicate `NVARCHAR (60)` and `NOT NULL` for the `Title` column. The schema difference doesn't cause EF Core to throw an exception when the app is used. However, you should always keep the schemas aligned because a misaligned schema can cause errors and data anomalies. To align the schemas, create and apply an EF Core *database migration*.
 
 :::zone pivot="vs"
 
-From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-In the console, enter the following commands:
+In the console, enter the following command:
 
 ```powershell
 Add-Migration New_DataAnnotations
-Update-Database
 ```
-
-`Update-Database` runs the `Up` method of the `New_DataAnnotations` class.
 
 :::zone-end
 
@@ -181,10 +196,7 @@ Use the following commands to add a migration for the new Data Annotations:
 
 ```dotnetcli
 dotnet ef migrations add New_DataAnnotations
-dotnet ef database update
 ```
-
-`dotnet ef database update` runs the `Up` method of the `New_DataAnnotations` class.
 
 :::zone-end
 
@@ -194,59 +206,56 @@ Use the following commands to add a migration for the new Data Annotations:
 
 ```dotnetcli
 dotnet ef migrations add New_DataAnnotations
-dotnet ef database update
 ```
-
-`dotnet ef database update` runs the `Up` method of the `New_DataAnnotations` class.
 
 :::zone-end
 
-Examine the following part of the `Up` method:
+The name `New_DataAnnotations` is a freeform descriptor that you can use to specify what the migration is changing. In this case, new data annotations are applied.
 
-```csharp
-migrationBuilder.AlterColumn<string>(
-    name: "Title",
-    table: "Movie",
-    type: "nvarchar(60)",
-    maxLength: 60,
-    nullable: false,
-    oldClrType: typeof(string),
-    oldType: "nvarchar(max)");
+:::zone pivot="vs"
 
-migrationBuilder.AlterColumn<string>(
-    name: "Rating",
-    table: "Movie",
-    type: "nvarchar(5)",
-    maxLength: 5,
-    nullable: false,
-    oldClrType: typeof(string),
-    oldType: "nvarchar(max)");
+To apply the migration to the database, execute the following command in the **Package Manager Console**:
 
-migrationBuilder.AlterColumn<string>(
-    name: "Genre",
-    table: "Movie",
-    type: "nvarchar(30)",
-    maxLength: 30,
-    nullable: false,
-    oldClrType: typeof(string),
-    oldType: "nvarchar(max)");
+```
+Update-Database
 ```
 
-The updated `Movie` table has the following schema:
+:::zone-end
+
+:::zone pivot="vsc"
+
+To apply the migration to the database, execute the following command in a command shell:
+
+```dotnetcli
+dotnet ef database update
+```
+
+:::zone-end
+
+:::zone pivot="cli"
+
+To apply the migration to the database, execute the following command in a command shell:
+
+```dotnetcli
+dotnet ef database update
+```
+
+:::zone-end
+
+The updated `CREATE TABLE` statement indicates the revised schema:
 
 ```sql
 CREATE TABLE [dbo].[Movie] (
-    [ID]          INT             IDENTITY (1, 1) NOT NULL,
-    [Title]       NVARCHAR (60)   NOT NULL,
+    [Id]          INT             IDENTITY (1, 1) NOT NULL,
+    [Title]       NVARCHAR (60)   DEFAULT (N'') NOT NULL,
     [ReleaseDate] DATETIME2 (7)   NOT NULL,
-    [Genre]       NVARCHAR (30)   NOT NULL,
+    [Genre]       NVARCHAR (30)   DEFAULT (N'') NOT NULL,
     [Price]       DECIMAL (18, 2) NOT NULL,
-    [Rating]      NVARCHAR (5)    NOT NULL,
-    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
+    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 ```
 
-Now, the database's schema reflects the `Title` field as a non-nullable `NVARCHAR(60)`.
+The `Title` column is now a non-nullable, 60 character field (`NVARCHAR (60)` with `NOT NULL`), which matches the database (`[Required, StringLength(60, MinimumLength = 3)]`). The `DEFAULT` constraint indicates a default value with `N''` representing a Unicode empty string. Not all EF Core releases include the `DEFAULT` constraint when generating a `CREATE TABLE` statement.
 
 ## Troubleshoot with the completed sample
 
