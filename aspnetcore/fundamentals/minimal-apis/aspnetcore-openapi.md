@@ -64,6 +64,10 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
+## Customize the OpenAPI endpoint route and endpoints
+
+This section demonstrates how to customize the OpenAPI endpoint route and endpoints.
+
 ### Customize the OpenAPI endpoint route
 
 By default, the OpenAPI endpoint registered via a call to `MapOpenApi` exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
@@ -78,7 +82,7 @@ app.MapOpenApi("/openapi/{documentName}/openapi.json");
 
 Because the OpenAPI document is served via a route handler endpoint, any customization that is available to standard minimal endpoints is available to the OpenAPI endpoint.
 
-## Customize OpenAPI endpoints with endpoint metadata
+### Customize OpenAPI endpoints with endpoint metadata
 
 The following list shows the endpoint metadata that is used to customize the generated OpenAPI document:
 
