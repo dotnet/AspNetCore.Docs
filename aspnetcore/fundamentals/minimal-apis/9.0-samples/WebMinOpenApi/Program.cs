@@ -396,10 +396,11 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseOperationTransformer((operation, context, cancellationToken) => Task.CompletedTask);
-    options.UseTransformer((document, context, cancellationToken) => Task.CompletedTask);
+    options.UseOperationTransformer((operation, context, cancellationToken)
+                                     => Task.CompletedTask);
+    options.UseTransformer((document, context, cancellationToken)
+                                     => Task.CompletedTask);
 });
-
 
 var app = builder.Build();
 
@@ -409,16 +410,5 @@ app.MapGet("/", () => "Hello world!");
 
 app.Run();
 // </snippet_transInOut>
-
-//internal class MyDocumentTransformer : IOpenApiDocumentTransformer
-//{
-//    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
-//    {
-//        // Simple transformation logic (e.g., adding a comment to the document)
-//        //document.Info.Description = "Transformed OpenAPI document";
-
-//        return Task.CompletedTask;
-//    }
-//}
 
 #endif
