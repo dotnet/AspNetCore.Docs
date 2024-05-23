@@ -103,7 +103,8 @@ Transformers provide an API for modifying the OpenAPI document with user-defined
 Transformers fall into two categories:
 
 * Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
-* Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints. <!-- PU review required -->
+<!-- PU review required -->
+* Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 
 Transformers can be registered onto the document via the `UseTransformer` call on the `OpenApiOptions` object. The following snippet shows different ways to register transformers onto the document:
 
@@ -112,7 +113,7 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 * Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
 * Register an operation transformer using a delegate.
 
-<!-- PU review required -->
+<!-- PU review replacement code. Original Snippet did not compile. -->
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=DOCUMENTtransformerUse&highlight=6-12)]
 
 ## Customize OpenAPI endpoints with endpoint metadata
