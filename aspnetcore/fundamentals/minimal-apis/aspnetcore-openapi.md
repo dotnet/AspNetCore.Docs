@@ -10,9 +10,9 @@ uid: fundamentals/minimal-apis/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
-The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package is:
+The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package:
 
-* Compatible with native AoT.
+* Is compatible with native AoT.
 * Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
 * Provides a [transformers](#transformers) API for modifying generated documents.
 * Supports managing multiple OpenAPI documents within a single app.
@@ -46,7 +46,7 @@ builder.Services.AddOpenApi("internal"); // Document name is internal
 
 The document name surfaces in several places in the OpenAPI implementation.
 
-When fetching the generated OpenAPI document, the document name is provided as the `documentName` parameter argument in the request. The following requests resolve the `v1` and `internal` documents respectively.
+When fetching the generated OpenAPI document, the document name is provided as the `documentName` parameter argument in the request. The following requests resolve the `v1` and `internal` documents.
 
 ```bash
 GET http://localhost:5000/openapi/v1.json
@@ -55,7 +55,7 @@ GET http://localhost:5000/openapi/internal.json
 
 ### Customize the OpenAPI version of a generated document
 
-By default, OpenAPI document generation creates a document that is compliant with the [v3.0 of the OpenAPI specification](https://spec.openapis.org/oas/v3.0.0). The following code demonstrates how to modify the default version of the OpenAPI document:
+By default, OpenAPI document generation creates a document that is compliant with [v3.0 of the OpenAPI specification](https://spec.openapis.org/oas/v3.0.0). The following code demonstrates how to modify the default version of the OpenAPI document:
 
 ```csharp
 builder.Services.AddOpenApi(options =>
@@ -78,7 +78,7 @@ app.MapOpenApi("/openapi/{documentName}/openapi.json");
 
 Because the OpenAPI document is served via a route handler endpoint, any customization that is available to standard minimal endpoints is available to the OpenAPI endpoint.
 
-#### Limiting access to OpenAPI document to authorized users
+#### Limit OpenAPI document access to authorized users
 
 The OpenAPI endpoint  doesn't enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document. For example, in the following code, access to the OpenAPI document is limited to those with the `tester` scope:
 
@@ -86,7 +86,7 @@ The OpenAPI endpoint  doesn't enable any authorization checks by default. Howeve
 
 #### Cache generated OpenAPI document
 
-The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration allows transformers to incorporate dynamic application state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
+The OpenAPI document is regenerated every time a request to the OpenAPI endpoint is sent. Regeneration enables transformers to incorporate dynamic application state into their operation. For example, regenerating a request with details of the HTTP context. When applicable, the OpenAPI document can be cached to avoid executing the document generation pipeline on each HTTP request.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithcaching)]
 
@@ -118,7 +118,7 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 
 ## Customize OpenAPI endpoints with endpoint metadata
 
-The following list shows the endpoint metadata that are used to customize the generated OpenAPI document:
+The following list shows the endpoint metadata that is used to customize the generated OpenAPI document:
 
 * Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
 * Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
@@ -135,7 +135,7 @@ Transformers execute in first-in first-out order based on registration. In the f
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=3-9)]
 
-### Use the document transformers
+### Use document transformers
 
 Document transformers have access to a context object that includes:
 
@@ -143,11 +143,11 @@ Document transformers have access to a context object that includes:
 * The list of `ApiDescriptionGroups` associated with that document.
 * The `IServiceProvider` used in document generation.
 
-Document transformers also have mutated access to the OpenAPI document generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
+Document transformers also can mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
-Service-activated document transformers can utilize DI instances to modify the app. The following sample demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
+Service-activated document transformers can utilize instances from DI to modify the app. The following sample demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
@@ -185,7 +185,7 @@ By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-i
 
 The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in apps. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.AspNetCore.SwaggerUi` package.
 
-Enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, ***only enable Swagger UI in development environments.***
+Enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability, ***only enable Swagger UI in development environments.***
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_swaggerui)]
 
