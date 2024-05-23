@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/03/2024
+ms.date: 05/20/2024
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -37,9 +37,9 @@ The Developer Exception Page can include the following information about the exc
 * Headers
 * Endpoint metadata, if any
 
-The following image shows a sample developer exception page with **Routing** selected and endpoint metadata displayed:
+The following image shows a sample developer exception page with animation to show the tabs and the information displayed:
 
-:::image type="content" source="~/fundamentals/error-handling/_static/endpoint-metadata.png" alt-text="Developer exception page with Routing selected and endpoint metadata displayed":::
+:::image type="content" source="~/fundamentals/error-handling/_static/aspnetcore-developer-page-improvements.gif" alt-text="Developer exception page animated to show each tab selected.":::
 
 The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
 

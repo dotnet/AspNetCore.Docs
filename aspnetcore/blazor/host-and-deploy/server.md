@@ -96,11 +96,11 @@ Consider using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-serv
 > * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
-### Configuration
+The app must support *session affinity*, also called *sticky sessions*, where clients are redirected back to the same server. To support session affinity, an application setting in the Azure portal is automatically configured (**Configuration** > **Application settings**: **Name**: `Azure__SignalR__ServerStickyMode`, **Value**: `Required`). Therefore, you don't need to manually configure the app for session affinity.
 
-To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are redirected back to the same server when prerendering. The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **one** of the following approaches:
+If you prefer not to use the app setting in Azure (and delete it in the Azure portal), two other approaches for configuring session affinity are (**use either approach, not both**):
 
-* `Program.cs`:
+* Set the option in `Program.cs`:
 
   ```csharp
   builder.Services.AddSignalR().AddAzureSignalR(options =>
@@ -110,22 +110,16 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
   });
   ```
 
-* Configuration (use **one** of the following approaches):
+* Configure the option in `appsettings.json`:
 
-  * In `appsettings.json`:
-
-    ```json
-    "Azure:SignalR:ServerStickyMode": "Required"
-    ```
-
-  * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__ServerStickyMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
+  ```json
+  "Azure:SignalR:ServerStickyMode": "Required"
+  ```
 
 > [!NOTE]
-> The following error is thrown by an app that hasn't enabled sticky sessions for Azure SignalR Service:
+> The following error is thrown by an app that hasn't enabled session affinity:
 >
-> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
-
-### Provision the Azure SignalR Service
+> > :::no-loc text="blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
 
 To provision the Azure SignalR Service for an app in Visual Studio:
 
@@ -133,18 +127,36 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 1. Add the **Azure SignalR Service** dependency to the profile. If the Azure subscription doesn't have a pre-existing Azure SignalR Service instance to assign to the app, select **Create a new Azure SignalR Service instance** to provision a new service instance.
 1. Publish the app to Azure.
 
-Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
+Provisioning the Azure SignalR Service in Visual Studio automatically adds the SignalR connection string to the app service's configuration.
+
+## Azure App Service
+
+:::moniker range=">= aspnetcore-8.0"
+
+Hosting a Blazor Web App that uses interactive server-side rendering on Azure App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. The App Service should also be appropriately globally distributed to reduce UI latency. Using the Azure SignalR Service when hosting on Azure App Service isn't required.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Hosting a Blazor Server app on Azure App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. The App Service should also be appropriately globally distributed to reduce UI latency. Using the Azure SignalR Service when hosting on Azure App Service isn't required.
+
+:::moniker-end
+
+1. Use the following guidance to configure the service:
+
+  * [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+  * [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 :::moniker range=">= aspnetcore-6.0"
 
-### Scalability on Azure Container Apps
+## Azure Container Apps
 
-Scaling server-side Blazor apps on Azure Container Apps requires specific considerations in addition to using the [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
+For a deeper exploration of scaling server-side Blazor apps on the Azure Container Apps service, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
 
-> [!NOTE]
-> For a deeper exploration of this scenario and scaling container apps, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
+1. Configure Azure Container Apps service for session affinity by following the guidance in [Session Affinity in Azure Container Apps (Azure documentation)](/azure/container-apps/sticky-sessions).
 
-1. To configure the data protection service to use Azure Blob Storage and Azure Key Vault, reference the following NuGet packages:
+1. The ASP.NET Core Data Protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components. To configure the data protection service to use Azure Blob Storage and Azure Key Vault, reference the following NuGet packages:
 
    * [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity): Provides classes to work with the Azure identity and access management services.
    * [`Microsoft.Extensions.Azure`](https://www.nuget.org/packages/Microsoft.Extensions.Azure): Provides helpful extension methods to perform core Azure configurations.
@@ -177,25 +189,6 @@ Scaling server-side Blazor apps on Azure Container Apps requires specific consid
    Repeat the preceding settings for the key vault. Select the appropriate key vault service and key in the **Basics** tab.
 
 :::moniker-end
-
-## Azure App Service without the Azure SignalR Service
-
-:::moniker range=">= aspnetcore-8.0"
-
-Hosting a Blazor Web App that uses interactive server-side rendering on Azure App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. The App Service should also be appropriately globally distributed to reduce UI latency. Using the Azure SignalR Service when hosting on Azure App Service isn't required.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-Hosting a Blazor Server app on Azure App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. The App Service should also be appropriately globally distributed to reduce UI latency. Using the Azure SignalR Service when hosting on Azure App Service isn't required.
-
-:::moniker-end
-
-Use the following guidance to configure the app:
-
-* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
-* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 ## IIS
 

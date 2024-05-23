@@ -16,6 +16,7 @@ concurrency:
 jobs:
   default:
     runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
     steps:
       - uses: actions/checkout@v2
       - run: |
