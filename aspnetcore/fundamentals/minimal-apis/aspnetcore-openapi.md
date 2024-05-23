@@ -109,7 +109,11 @@ The OpenAPI document is regenerated every time a request to the OpenAPI endpoint
 
 <a name="transformers"></a>
 
-## Customize OpenAPI documents with transformers
+## OpenAPI document transformers
+
+This section demonstrates how to customize OpenAPI documents with transformers.
+
+### Customize OpenAPI documents with transformers
 
 Transformers provide an API for modifying the OpenAPI document with user-defined customizations. Transformers are useful for scenarios like:
 
