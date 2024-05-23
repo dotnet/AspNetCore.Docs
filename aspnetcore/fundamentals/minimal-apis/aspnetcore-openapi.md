@@ -128,59 +128,49 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 <!-- PU review required -->
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=DOCUMENTtransformerUse&highlight=6-12)]
 
-```csharp
-builder.Services.AddOpenApi(options =>
-{
-    options.UseTransformer((document, context, cancellationToken) => {});
-    options.UseTransformer(new MyDocumentTransformer());
-    options.UseTransformer<MyDocumentTransformer>();
-    options.UseOperationTransformer((operation, context, cancellationToken) => {});
-})
-```
-
 ### Execution order for transformers
 
-Transformers execute in first-in first-out order based on registration. In the following snippet, the document transformer will have access to the modifications made by the operation transformer. 
+Transformers execute in first-in first-out order based on registration. In the following snippet, the document transformer has access to the modifications made by the operation transformer:
 
-```csharp
-builder.Services.AddOpenApi(options =>
-{
-    options.UseOperationTransformer((operation, context, cancellationToken) => {});
-    options.UseTransformer((document, context, cancellationToken) => {});
-});
-```
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transInOut&highlight=3-9)]
 
-### Using document transformers
+### Use the document transformers
 
 Document transformers have access to a context object that includes:
 
 * The name of the document being modified.
-* The list of ApiDescriptionGroups associated with that document.
-* The IServiceProvider used in document generation.
+* The list of `ApiDescriptionGroups` associated with that document.
+* The `IServiceProvider` used in document generation.
 
-Document transformers also have mutate access to the OpenAPI document that has been generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
+Document transformers also have mutated access to the OpenAPI document generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
-Service-activated document transformers can also be used to implement transformers that rely on instances from DI to modify the application. The following sample demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the application and adds them to the OpenAPI document's top level.
+Service-activated document transformers can utilize DI instances to modify the app. The following sample demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
-Document transformers are unique to the document instance they are associated with. In the example below, a transformer registers authentication-related requirements to the `internal` document but leaves the `public` document unmodified.
+Document transformers are unique to the document instance they're associated with. In the following example, a transformer:
+
+* Registers authentication-related requirements to the `internal` document.
+* Leaves the `public` document unmodified.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_multidoc_operationtransformer1)]
 
-### Using operation transformers
+### Use operation transformers
 
-Operations are unique combinations of HTTP paths and methods in an OpenAPI document. Operation transformers are helpful when a modification should be made to each endpoint in an app or conditionally applied to certain routes.
+Operations are unique combinations of HTTP paths and methods in an OpenAPI document. Operation transformers are helpful when a modification:
+
+* Should be made to each endpoint in an app, or
+* Conditionally applied to certain routes.
 
 Operation transformers have access to a context object which contains:
 
 * The name of the document the operation belongs to.
-* The ApiDescription associated with the operation.
-* The IServiceProvider used in document generation.
+* The `ApiDescription` associated with the operation.
+* The `IServiceProvider` used in document generation.
 
-For example, the following operation transformer adds 500 as a response status code supported by all operations in the document.
+For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
@@ -190,133 +180,25 @@ OpenAPI documents can plug into a wide ecosystem of existing tools for testing, 
 
 ### Using Swagger UI for local ad-hoc testing
 
-By default, the `Microsoft.AspNetCore.OpenApi` package does not ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://appsumo.com/products/redoc/). Swagger UI and ReDoc can be integrated in your app in a variety of ways. Editors like Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
+By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://appsumo.com/products/redoc/). Swagger UI and ReDoc can be integrated in an app in several ways. Editors such as Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
 
 The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in apps. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.AspNetCore.SwaggerUi` package.
 
-### [Visual Studio](#tab/visual-studio)
-
-* From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the `.csproj` file exists
-  * Execute the following command:
-
-    ```powershell
-    Install-Package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.2
-    ```
-
-* From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-  * Set the **Package source** to "nuget.org"
-  * Ensure the "Include prerelease" option is enabled
-  * Enter "Swashbuckle.AspNetCore.SwaggerUi" in the search box
-  * Select the latest "Swashbuckle.AspNetCore.SwaggerUi" package from the **Browse** tab and click **Install**
-
-### [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```dotnetcli
-dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.2
-```
-
-### [.NET Core CLI](#tab/netcore-cli)
-
-Run the following command:
-
-```dotnetcli
-dotnet add package Swashbuckle.AspNetCore.SwaggerUi -v 6.6.2
-```
-
----
-
-Enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, it's recommended to only enable Swagger UI in development environments.
+Enable the swagger-ui middleware with a reference to the OpenAPI route registered earlier. To limit information disclosure and security vulnerability concerns, ***only enable Swagger UI in development environments.***
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_swaggerui)]
 
 ### Using Scalar for interactive API documentation
 
-[Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core. To configure this, install the `Scalar.AspNetCore` package.
-
-### [Visual Studio](#tab/visual-studio)
-
-* From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**.
-  * Navigate to the directory in which the `.csproj` file exists.
-  * Execute the following command:
-
-    ```powershell
-    Install-Package Scalar.AspNetCore -v 1.0.1
-    ```
-
-* From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**.
-  * Set the **Package source** to "nuget.org".
-  * Ensure the "Include prerelease" option is enabled.
-  * Enter "Scalar.AspNetCore" in the search box.
-  * Select the latest "Scalar.AspNetCore" package from the **Browse** tab and click **Install**.
-
-### [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```dotnetcli
-dotnet add package Scalar.AspNetCore -v 1.0.1
-```
-
-### [.NET Core CLI](#tab/netcore-cli)
-
-Run the following command:
-
-```dotnetcli
-dotnet add package Scalar.AspNetCore -v 1.0.1
-```
-
----
+[Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core. To configure Scalar, install the `Scalar.AspNetCore` package.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
-### Linting generated OpenAPI documents with Spectral
+### Lint generated OpenAPI documents with Spectral
 
-[Spectral](https://stoplight.io/open-source/spectral) is an open-source OpenAPI document linter. Spectral can be incorporated into your app build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
+[Spectral](https://stoplight.io/open-source/spectral) is an open-source OpenAPI document linter. Spectral can be incorporated into an app build to verify the quality of generated OpenAPI documents. Install Spectral according to the [package installation directions](https://github.com/stoplightio/spectral#-installation).
 
 To take advantage of Spectral, install the `Microsoft.Extensions.ApiDescription.Server` package to enable build-time OpenAPI document generation.
-
-### [Visual Studio](#tab/visual-studio)
-
-* From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the `.csproj` file exists
-  * Execute the following command:
-
-    ```powershell
-    Install-Package Microsoft.Extensions.ApiDescription.Server -IncludePrerelease
-    ```
-
-* From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-  * Set the **Package source** to "nuget.org"
-  * Ensure the "Include prerelease" option is enabled
-  * Enter "Microsoft.Extensions.ApiDescription.Server" in the search box
-  * Select the latest "Microsoft.Extensions.ApiDescription.Server" package from the **Browse** tab and click **Install**
-
-### [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
-```
-
-### [.NET Core CLI](#tab/netcore-cli)
-
-Run the following command:
-
-```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
-```
-
----
 
 Enable document generation at build time by setting the following properties in your app's `.csproj` file":
 
@@ -345,7 +227,7 @@ Run `spectral lint` on the generated file.
 spectral lint WebMinOpenApi.json
 ...
 
-The output will show any issues with the OpenAPI document.
+The output shows any issues with the OpenAPI document.
 
 ```output
 1:1  warning  oas3-api-servers       OpenAPI "servers" must be present and non-empty array.

@@ -8,9 +8,7 @@
     "/": {
       "get": {
         "tags": [
-          "GetDocument.Insider",
-          "CustomTag",
-          "CustomTag"
+          "GetDocument.Insider"
         ],
         "responses": {
           "200": {
@@ -24,7 +22,7 @@
             }
           }
         },
-        "x-aspnetcore-id": "f30c41d5-8172-4108-8e84-cf444ecb4063"
+        "x-aspnetcore-id": "a72225ce-5c95-4128-823e-d97251e6c5ed"
       }
     }
   },
