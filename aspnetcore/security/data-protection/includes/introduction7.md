@@ -1,8 +1,5 @@
 :::moniker range="< aspnetcore-8.0"
 
-> [!WARNING]
-> Data configuration keys in this version of .NET do ***NOT*** maintain data consistency by default in web farms and [Azure Container Apps](/azure/container-apps/overview). See the the [.NET 8 version or later of this document](/aspnet/core/security/data-protection/introduction?view=aspnetcore-800.0&preserve-view=true) for information on how to maintain data consistency in web farms and Azure Container Apps.
-
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
 
 Web apps often need to store sensitive data. The Windows data protection API ([DPAPI](/dotnet/standard/security/how-to-use-data-protection)) isn't intended for use in web apps.
@@ -91,6 +88,10 @@ The data protection stack consists of five packages:
 * [Microsoft.AspNetCore.DataProtection.SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) can be installed into an existing ASP.NET 4.x app to redirect its `<machineKey>` operations to use the new ASP.NET Core data protection stack. For more information, see <xref:security/data-protection/compatibility/replacing-machinekey>.
 
 * [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine and can be used by systems that must handle user passwords securely. For more information, see <xref:security/data-protection/consumer-apis/password-hashing>.
+
+## Data consistency in Azure Container Apps
+> [!WARNING]
+> New functionality was introduced in AspNetCore 8.0 to automatically keep Data Protection keys synchronized across instances in Azure Container Apps. That functionality is not present in .NET 7 and previous, but information about how to configure it manually can be found in <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>.
 
 ## Additional resources
 
