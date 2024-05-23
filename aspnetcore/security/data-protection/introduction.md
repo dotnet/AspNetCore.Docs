@@ -18,7 +18,7 @@ Web apps often need to store sensitive data. The Windows data protection API ([D
 
 The ASP.NET Core data protection stack was designed to:
 
-* Provide a built in solution for most Web scenarios, including web farms and Azure Container Apps.
+* Provide a built in solution for most Web scenarios, including web farms and [Azure Container Apps](/azure/container-apps/overview).
 * Address many of the deficiencies of the previous encryption system.
 
 ## Key consistency in web farms and Azure Container Apps

@@ -91,7 +91,7 @@ The data protection stack consists of five packages:
 
 ## Data consistency in Azure Container Apps
 > [!WARNING]
-> New functionality was introduced in AspNetCore 8.0 to automatically keep Data Protection keys synchronized across instances in Azure Container Apps. That functionality is not present in .NET 7 and previous, but information about how to configure it manually can be found in <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>.
+> New functionality was introduced in AspNetCore 8.0 to automatically keep Data Protection keys synchronized across instances in [Azure Container Apps](/azure/container-apps/overview). That functionality is not present in .NET 7 and previous, but information about how to configure it manually can be found in <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>.
 
 ## Additional resources
 
