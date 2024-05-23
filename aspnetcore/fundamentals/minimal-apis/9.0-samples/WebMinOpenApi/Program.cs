@@ -1,4 +1,5 @@
-#define OPENAPIWITHSCALAR
+#define DOCUMENTtransformerInOut //DOCUMENTtransformerInOut DOCUMENTtransformerUse 
+// DOCUMENTtransformerUse999
 
 #if DEFAULT
 // <snippet_default>
@@ -330,6 +331,84 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => "Hello world!");
 
-app.Run();   
+app.Run();
 // </snippet_openapiwithscalar>
+#endif
+
+#if FIRST
+// <snippet_first>
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_first>
+#endif
+
+#if DOCUMENTtransformerUse999
+// <snippet_transUse>
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi.Models;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi(options =>
+{
+    options.UseTransformer((document, context, cancellationToken) 
+                             => Task.CompletedTask);
+    options.UseTransformer(new MyDocumentTransformer());
+    options.UseTransformer<MyDocumentTransformer>();
+    options.UseOperationTransformer((operation, context, cancellationToken)
+                            => Task.CompletedTask);
+});
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_transUse>
+
+internal class MyDocumentTransformer : IOpenApiDocumentTransformer
+{
+    public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
+    {
+        // Simple transformation logic (e.g., adding a comment to the document)
+        document.Info.Description = "Transformed OpenAPI document";
+
+        return Task.CompletedTask;
+    }
+}
+
+#endif
+
+#if DOCUMENTtransformerInOut
+// <snippet_transInOut>
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi(options =>
+{
+    options.UseOperationTransformer((operation, context, cancellationToken)
+                                     => Task.CompletedTask);
+    options.UseTransformer((document, context, cancellationToken)
+                                     => Task.CompletedTask);
+});
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+app.MapGet("/", () => "Hello world!");
+
+app.Run();
+// </snippet_transInOut>
+
 #endif
