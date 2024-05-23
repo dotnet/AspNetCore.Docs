@@ -80,6 +80,7 @@ Because the OpenAPI document is served via a route handler endpoint, any customi
 
 #### Limit OpenAPI document access to authorized users
 
+
 The OpenAPI endpoint  doesn't enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document. For example, in the following code, access to the OpenAPI document is limited to those with the `tester` scope:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithauth)]
