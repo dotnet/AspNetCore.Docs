@@ -28,8 +28,6 @@ The following code:
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
-## Options to Customize OpenAPI document generation
-
 ### The importance of document names
 
 Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
@@ -52,6 +50,10 @@ When fetching the generated OpenAPI document, the document name is provided as t
 GET http://localhost:5000/openapi/v1.json
 GET http://localhost:5000/openapi/internal.json
 ```
+
+## Options to Customize OpenAPI document generation
+
+The following sections demonstrate how to customize OpenAPI document generation.
 
 ### Customize the OpenAPI version of a generated document
 
@@ -78,6 +80,19 @@ app.MapOpenApi("/openapi/{documentName}/openapi.json");
 
 Because the OpenAPI document is served via a route handler endpoint, any customization that is available to standard minimal endpoints is available to the OpenAPI endpoint.
 
+### Customize OpenAPI endpoints with endpoint metadata
+
+The following list shows the endpoint metadata that is used to customize the generated OpenAPI document:
+
+* Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
+* Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
+* Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
+* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
+* Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
+* OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
+
+To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
+
 #### Limit OpenAPI document access to authorized users
 
 The OpenAPI endpoint  doesn't enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document. For example, in the following code, access to the OpenAPI document is limited to those with the `tester` role:
@@ -92,7 +107,11 @@ The OpenAPI document is regenerated every time a request to the OpenAPI endpoint
 
 <a name="transformers"></a>
 
-## Customize OpenAPI documents with transformers
+## OpenAPI document transformers
+
+This section demonstrates how to customize OpenAPI documents with transformers.
+
+### Customize OpenAPI documents with transformers
 
 Transformers provide an API for modifying the OpenAPI document with user-defined customizations. Transformers are useful for scenarios like:
 
@@ -103,7 +122,6 @@ Transformers provide an API for modifying the OpenAPI document with user-defined
 Transformers fall into two categories:
 
 * Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
-<!-- PU review required -->
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 
 Transformers can be registered onto the document via the `UseTransformer` call on the `OpenApiOptions` object. The following snippet shows different ways to register transformers onto the document:
@@ -113,21 +131,7 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 * Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
 * Register an operation transformer using a delegate.
 
-<!-- PU review replacement code. Original Snippet did not compile. -->
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=DOCUMENTtransformerUse&highlight=6-12)]
-
-## Customize OpenAPI endpoints with endpoint metadata
-
-The following list shows the endpoint metadata that is used to customize the generated OpenAPI document:
-
-* Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
-* Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
-* Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
-* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
-* Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
-* OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
-
-To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
 
 ### Execution order for transformers
 
