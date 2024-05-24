@@ -25,7 +25,7 @@ For these scenarios, the Data Protection system offers a rich configuration API.
 > The extension method <xref:Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection%2A> returns an <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder>. `IDataProtectionBuilder` exposes extension methods that you can chain together to configure Data Protection options.
 
 > [!NOTE]
-> This article was written for an app that runs within a docker container, where it will always have the same path and, therefore, the same application discriminator. If you need to run an app in multiple environments (e.g. local and deployed), set the default application discriminator for the environment.
+> This article was written for an app that runs within a docker container. In a docker container the app always has the same path and, therefore, the same application discriminator. Apps that need to run in multiple environments (e.g. local and deployed), must set the default application discriminator for the environment.
 > Running an app in multiple environments is beyond the scope of this article.
 
 The following NuGet packages are required for the Data Protection extensions used in this article:
