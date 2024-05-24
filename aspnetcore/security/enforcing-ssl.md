@@ -304,7 +304,7 @@ The path in the preceding command is specific for Ubuntu. For other distribution
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
-[linux-dev-certs](https://github.com/tmds/linux-dev-certs) is an open-source, community-supported .NET global tool that provides a convenient way to create and trust a developer certificate on Linux. The tool is not maintained or supported by Microsoft.
+[linux-dev-certs](https://github.com/tmds/linux-dev-certs) is an open-source, community-supported, .NET global tool that provides a convenient way to create and trust a developer certificate on Linux. The tool is not maintained or supported by Microsoft.
 
 The following commands install the tool and create a trusted developer certificate:
 
