@@ -769,7 +769,7 @@ Blazor Server:
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-        builder.withServerTimeout(30000).withKeepAliveInterval(15000);
+      builder.withServerTimeout(30000).withKeepAliveInterval(15000);
     }
   });
 </script>
