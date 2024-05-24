@@ -313,7 +313,7 @@ dotnet tool update -g linux-dev-certs
 dotnet linux-dev-certs install
 ```
 
-You can find additional information about the tool on the [tmds/linux-dev-certs](https://github.com/tmds/linux-dev-certs) source repository. Issues can be reported through the GitHub repository.
+For more information or to report issues, see the [linux-dev-certs GitHub repository](https://github.com/tmds/linux-dev-certs).
 
 <a name="ssl-linux"></a>
 
