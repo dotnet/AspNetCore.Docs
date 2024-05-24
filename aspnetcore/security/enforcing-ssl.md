@@ -302,6 +302,10 @@ The preceding commands:
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
+### Trust HTTPS certificate on Linux with linux-dev-certs
+
+The [tmds/linux-dev-certs](https://github.com/tmds/linux-dev-certs) repository contains a .NET global tool that creates and installs a developer certificate on Linux. The tool is unsupported and not maintained by Microsoft. It provides a more convenient way to create and install a developer certificate on Linux.
+
 <a name="ssl-linux"></a>
 
 ### Trust HTTPS certificate on Linux using Edge or Chrome
