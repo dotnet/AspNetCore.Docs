@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor WebAssembly App with OpenID Connect (O
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/07/2024
+ms.date: 05/28/2024
 uid: blazor/security/blazor-web-app-oidc
 zone_pivot_groups: blazor-web-app-oidc-specification
 ---
@@ -251,10 +251,9 @@ The following specification is covered:
   * Aspire improves the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns for building and running distributed apps.
   * YARP (Yet Another Reverse Proxy) is a library used to create a reverse proxy server.
 
-## Preview package warning
+<!-- UPDATE 9.0 Remove the following line at either 9.0 or 10.0 ... -->
 
-> [!WARNING]
-> Technologies and packages used by the `BlazorWebAppOidcBff` sample app and described in this article are in ***preview*** release at this time. The article's content, the API, and the sample app aren't supported at this time and aren't currently recommended for production use. The sample app and guidance are subject to change without notice.
+For more information on .NET Aspire, see [General Availability of .NET Aspire: Simplifying .NET Cloud-Native Development (May, 2024)](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
 
 ## Prerequisite
 
@@ -280,6 +279,8 @@ Access the sample apps through the latest version folder from the repository's r
 For more information on using .NET Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [.NET Aspire documentation](/dotnet/aspire/).
 
 Confirm that you've met the prerequisites for .NET Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in .NET Aspire (.NET Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
 
 ## Server-side Blazor Web App project (`BlazorWebAppOidc`)
 
