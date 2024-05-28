@@ -411,7 +411,7 @@ The previous section showed an example of the `/api/todoitems/{id}` route.
 
 Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
 
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request don't return any data. If no data is returned, [POST](#post7) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request doesn't return any data. If no data is returned, [POST](#post7) data to the app.
 
 ## Routing and URL paths
 
