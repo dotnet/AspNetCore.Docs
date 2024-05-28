@@ -56,15 +56,15 @@ public class Program
                 LocalCacheExpiration = TimeSpan.FromSeconds(5)
             };
         }).WithSerializerFactory<GoogleProtobufSerializerFactory>();
+        // </snippet_withserializerfactory>
 #endif
-        // /</snippet_withserializerfactory>
-        // <snippet_redis
+        // <snippet_redis>
         builder.Services.AddStackExchangeRedisCache(options =>
         {
             options.Configuration = 
                 builder.Configuration.GetConnectionString("RedisConnectionString");
         });
-        // </snippet_redis
+        // </snippet_redis>
 
         builder.Services.AddSingleton<SomeService>();
 
