@@ -131,7 +131,7 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 * Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
 * Register an operation transformer using a delegate.
 
-[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=DOCUMENTtransformerUse&highlight=6-12)]
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=6-12)]
 
 ### Execution order for transformers
 
