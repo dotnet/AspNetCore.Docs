@@ -39,6 +39,9 @@ Razor components are either *statically* rendered or *interactively* rendered.
 
 *Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
 
+> [!IMPORTANT]
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
+
 More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article later in the Blazor documentation.
 
 :::moniker-end
