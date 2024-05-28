@@ -49,7 +49,7 @@ When health checks is set up:
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
 [!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet2&highlight=4-7)]
-bui
+
 The preceding code overrides the default service (`""`) to only use health results with the "public" tag.
 
 gRPC health checks supports the client specifying a service name argument when checking health. Multiple services are supported by providing a service name to `MapService`:
@@ -77,9 +77,22 @@ builder.Services.Configure<HealthCheckPublisherOptions>(options =>
 
 ## Call gRPC health checks service
 
-The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) package includes a client for gRPC health checks. The client factory approach can be utilized to configure the client and make health check calls.
+The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) package includes a client for gRPC health checks:
 
-The client factory is configured in the `Program.cs` file:
+```csharp
+var channel = GrpcChannel.ForAddress("https://localhost:5001");
+var client = new Health.HealthClient(channel);
+
+var response = await client.CheckAsync(new HealthCheckRequest());
+var status = response.Status;
+```
+
+There are two methods on the `Health` service:
+
+* `Check` is a unary method for getting the current health status. Health checks are executed immediately when `Check` is called. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
+* `Watch` is a streaming method that reports changes in health status over time. <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is periodically executed to gather health results. The server returns an `Unknown` status if the client requests an unknown service name.
+
+The `Grpc.HealthCheck` client can be used in a client factory approach.
 
 ```csharp
 builder.Services
@@ -89,21 +102,6 @@ builder.Services
     });
 ```
 In the previous example, a client factory for `Health.HealthClient` instances is registered with the dependency injection system. Then, these instances are injected into services for executing health check calls.
-
-There are two methods on the `Health` service:
-
-* `Check` is a unary method for getting the current health status. Health checks are executed immediately when `Check` is called. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
-* `Watch` is a streaming method that reports changes in health status over time. <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is periodically executed to gather health results. The server returns an `Unknown` status if the client requests an unknown service name.
-
-The following is an example of how to call the `Check` method:
-
-```csharp
-var channel = GrpcChannel.ForAddress("https://localhost:5001");
-var client = new Health.HealthClient(channel);
-
-var response = await client.CheckAsync(new HealthCheckRequest());
-var status = response.Status;
-```
 
 ## Additional resources
 
