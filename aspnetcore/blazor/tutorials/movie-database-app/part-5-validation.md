@@ -22,8 +22,26 @@ This part of the series covers adding metadata (data annotations) to the `Movie`
 
 
 
-<!-- HOLD becuase I think DataType no-ops in Blazor
-     Also, I'm not sure if remark on cultureinfo is correct
+
+
+Validation rules are specified on a model class using *data annotations*.
+
+<xref:System.ComponentModel.DataAnnotations> are a broad set of attribute classes that define metadata about a model's properties that are used to implement additional features or functionality. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
+
+```csharp
+[{ANNOTATION}]
+```
+
+Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
+
+```csharp
+[{ANNOTATION_1}]
+[{ANNOTATION_2}]
+[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
+```
+
+<!-- HOLD ... becuase I think DataType no-ops in Blazor.
+     Also, I'm not sure if remark on cultureinfo is correct.
 
 Open the app's `Movie` model (`Models/Movie.cs`) and inspect the `ReleaseDate` property:
 
@@ -59,23 +77,7 @@ Add the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.Displ
   ```
 -->
 
-Validation rules are specified on a model class using *data annotations*.
-
-<xref:System.ComponentModel.DataAnnotations> are a broad set of attribute classes that define metadata about a model's properties that are used to implement additional features or functionality. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
-
-```csharp
-[{ANNOTATION}]
-```
-
-Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
-
-```csharp
-[{ANNOTATION_1}]
-[{ANNOTATION_2}]
-[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
-```
-
-The following list includes commonly used <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a form's model:
+The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
 
 <!-- 
      I'm concerned about telling readers that they can just look at 
@@ -257,8 +259,3 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 > [!div class="step-by-step"]
 > [Previous: Work with a database](xref:blazor/tutorials/movie-database/database)
 > [Next: Add search](xref:blazor/tutorials/movie-database/search)
-
-
-
-> [Previous: Add a new field](xref:blazor/tutorials/movie-database/new-field)
-> [Next: Add interactivity](xref:blazor/tutorials/movie-database/interactivity)
