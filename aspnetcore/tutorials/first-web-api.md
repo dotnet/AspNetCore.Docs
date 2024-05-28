@@ -328,7 +328,6 @@ echo 'export PATH=$HOME/.dotnet/tools:$PATH' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Build the project.
