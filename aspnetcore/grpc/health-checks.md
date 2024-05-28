@@ -49,7 +49,7 @@ When health checks is set up:
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
 [!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet2&highlight=4-7)]
-
+bui
 The preceding code overrides the default service (`""`) to only use health results with the "public" tag.
 
 gRPC health checks supports the client specifying a service name argument when checking health. Multiple services are supported by providing a service name to `MapService`:
@@ -95,7 +95,7 @@ There are two methods on the `Health` service:
 * `Check` is a unary method for getting the current health status. Health checks are executed immediately when `Check` is called. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
 * `Watch` is a streaming method that reports changes in health status over time. <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is periodically executed to gather health results. The server returns an `Unknown` status if the client requests an unknown service name.
 
-The following in an example of how to call the `Check` method:
+The following is an example of how to call the `Check` method:
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
