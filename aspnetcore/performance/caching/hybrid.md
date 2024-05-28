@@ -141,7 +141,7 @@ The secondary cache requires a data store, such as Redis or SqlServer. To use [A
   ```json
   {
     "ConnectionStrings": {
-      "MyRedisConString": "<the connection string>"
+      "RedisConnectionString": "<the connection string>"
     }
   }
   ```
