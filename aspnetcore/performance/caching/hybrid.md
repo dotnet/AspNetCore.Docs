@@ -121,7 +121,7 @@ The following properties of `HybridCacheOptions` let you configure limits that a
 ## Serialization
 
 Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the `WithSerializer` and `WithSerializerFactory` methods, chained from the `AddHybridCache` call. By default, the library
-handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML
+handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML.
 
 The following example configures the service to use a type-specific protobuf serializer:
 
@@ -131,7 +131,7 @@ The following example configures the service to use a general-purpose protobuf s
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializerfactory" highlight="14":::
 
-The secondary cache requires a data store, such as Redis or SqlServer. To use [Azure Cache for Redis](https://azure.microsoft.com/en-us/products/cache), for example:
+The secondary cache requires a data store, such as Redis or SqlServer. To use [Azure Cache for Redis](https://azure.microsoft.com/products/cache), for example:
 
 * Install the `Microsoft.Extensions.Caching.StackExchangeRedis` package.
 * Create an instance of Azure Cache for Redis.
