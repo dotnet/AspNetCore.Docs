@@ -6,13 +6,13 @@ using System.Reflection;
 using global::Microsoft.Extensions.Caching.Hybrid;
 using Google.Protobuf;
 /// <summary>
-/// HybridCache serialization implementation for a single Google.Protobuf message type
+/// HybridCache serialization implementation for a single Google.Protobuf message type.
 /// </summary>
-/// <typeparam name="T">The type of message to be handled</typeparam>
+/// <typeparam name="T">The type of message to be handled</typeparam>.
 public class GoogleProtobufSerializer<T> : IHybridCacheSerializer<T> where T : IMessage<T>
 {
-    // serialization: via IMessage<T> instance methods
-    // deserialization: via the parser API on the static .Parser property
+    // Serialization: via IMessage<T> instance methods.
+    // Deserialization: via the parser API on the static .Parser property.
     private static readonly MessageParser<T> _parser = typeof(T)
         .GetProperty("Parser", BindingFlags.Public | BindingFlags.Static)?.GetValue(null)
             as MessageParser<T> ?? throw new InvalidOperationException(
@@ -25,15 +25,15 @@ public class GoogleProtobufSerializer<T> : IHybridCacheSerializer<T> where T : I
           => value.WriteTo(target);
 
     /// <summary>
-    /// HybridCache serialization factory implementation for Google.Protobuf message types
+    /// HybridCache serialization factory implementation for Google.Protobuf message types.
     /// </summary>
 }
 public class GoogleProtobufSerializerFactory : IHybridCacheSerializerFactory
 {
     public bool TryCreateSerializer<T>([NotNullWhen(true)] out IHybridCacheSerializer<T>? serializer)
     {
-        // all Google.Protobuf types implement IMessage<T> : IMessage; check for IMessage first,
-        // since we can do that without needing to use MakeGenericType for that; note that
+        // All Google.Protobuf types implement IMessage<T> : IMessage; check for IMessage first,
+        // since we can do that without needing to use MakeGenericType for that. Note that
         // IMessage<T> and GoogleProtobufSerializer<T> both have the T : IMessage<T> constraint,
         // which means we're going to need to use reflection here
         try
@@ -48,11 +48,11 @@ public class GoogleProtobufSerializerFactory : IHybridCacheSerializerFactory
         }
         catch (Exception ex)
         {
-            // unexpected; maybe manually implemented and missing .Parser property?
-            // log it and ignore the type
+            // Unexpected; maybe manually implemented and missing .Parser property?
+            // Log it and ignore the type.
             Debug.WriteLine(ex.Message);
         }
-        // this does not appear to be a Google.Protobuf type
+        // This does not appear to be a Google.Protobuf type.
         serializer = null;
         return false;
     }
