@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 05/03/2024
+ms.date: 05/28/2024
 uid: tutorials/first-web-api
 ---
 
@@ -320,6 +320,14 @@ The preceding commands:
 
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
+
+For Linux, depending on your configuration, the .NET tools directory may need to be added to the sysetm PATH. For common configurations, the .NET tools directory is automatically added to the system PATH during installation. The .NET tools directory can be added to the system path with the following command:
+
+```Bash
+echo 'export PATH=$HOME/.dotnet/tools:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
