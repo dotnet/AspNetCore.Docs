@@ -321,7 +321,7 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 
-For Linux, depending on your configuration, the .NET tools directory may need to be added to the system PATH. For common configurations, the .NET tools directory is automatically added to the system PATH during installation. The .NET tools directory can be added to the system path with the following command:
+For Linux, add the .NET tools directory to the system path with the following command:
 
 ```Bash
 echo 'export PATH=$HOME/.dotnet/tools:$PATH' >> ~/.bashrc
@@ -411,7 +411,7 @@ The previous section showed an example of the `/api/todoitems/{id}` route.
 
 Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
 
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request won't return any data. If no data is returned, [POST](#post7) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request don't return any data. If no data is returned, [POST](#post7) data to the app.
 
 ## Routing and URL paths
 
