@@ -25,6 +25,13 @@ Although "Razor components" shares some naming with other ASP.NET Core content-r
 * [Razor views](xref:tutorials/first-mvc-app/adding-view), which are [Razor-based](xref:mvc/views/razor) markup pages for MVC apps.
 * [View components](xref:mvc/views/view-components), which are for rendering chunks of content rather than whole responses in Razor Pages and MVC apps.
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!IMPORTANT]
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by <xref:blazor/components/render-modes>, which is the next article in the table of contents after this article.
+
+:::moniker-end
+
 ## Component classes
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
