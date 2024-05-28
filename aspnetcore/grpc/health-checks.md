@@ -88,7 +88,7 @@ builder.Services
         o.Address = new Uri("https://localhost:5001");
     });
 ```
-In the previous example, a client factory for Health.HealthClient instances is registered with the dependency injection system. Then, these instances are injected into services for executing health check calls.
+In the previous example, a client factory for `Health.HealthClient` instances is registered with the dependency injection system. Then, these instances are injected into services for executing health check calls.
 
 There are two methods on the `Health` service:
 
