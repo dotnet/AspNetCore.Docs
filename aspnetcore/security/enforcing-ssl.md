@@ -281,6 +281,19 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome) and for Firefox.
 
+### Trust HTTPS certificate on Linux with linux-dev-certs
+
+[linux-dev-certs](https://github.com/tmds/linux-dev-certs) is an open-source, community-supported, .NET global tool that provides a convenient way to create and trust a developer certificate on Linux. The tool is not maintained or supported by Microsoft.
+
+The following commands install the tool and create a trusted developer certificate:
+
+```cli
+dotnet tool update -g linux-dev-certs
+dotnet linux-dev-certs install
+```
+
+For more information or to report issues, see the [linux-dev-certs GitHub repository](https://github.com/tmds/linux-dev-certs).
+
 ### Ubuntu trust the certificate for service-to-service communication
 
 The following instructions don't work for some Ubuntu versions, such as 20.04. For more information, see GitHub issue [dotnet/AspNetCore.Docs #23686](https://github.com/dotnet/AspNetCore.Docs/issues/23686).
@@ -301,19 +314,6 @@ The preceding commands:
 * Removing the `-E`  flag exports the root user certificate, generating it if necessary. Each newly generated certificate has a different thumbprint. When running as root, `sudo`  and  `-E` are not needed.
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
-
-### Trust HTTPS certificate on Linux with linux-dev-certs
-
-[linux-dev-certs](https://github.com/tmds/linux-dev-certs) is an open-source, community-supported, .NET global tool that provides a convenient way to create and trust a developer certificate on Linux. The tool is not maintained or supported by Microsoft.
-
-The following commands install the tool and create a trusted developer certificate:
-
-```cli
-dotnet tool update -g linux-dev-certs
-dotnet linux-dev-certs install
-```
-
-For more information or to report issues, see the [linux-dev-certs GitHub repository](https://github.com/tmds/linux-dev-certs).
 
 <a name="ssl-linux"></a>
 
