@@ -25,9 +25,8 @@ Install the `Microsoft.AspNetCore.OpenApi` package:
 
 Run the following command from the **Package Manager Console**:
 
-    ```powershell
-    Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
-    ```
+ ```powershell
+ Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
 ### [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command from the **Integrated Terminal**:
