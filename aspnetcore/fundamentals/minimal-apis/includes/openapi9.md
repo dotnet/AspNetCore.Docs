@@ -26,10 +26,11 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 * Support for generating OpenAPI documents at runtime and accessing them via an endpoint on the application
 * Support for "transformer" APIs that allow modifying the generated document
 * Support for generating OpenAPI documents at buildtime and serializing them to disk
-
+<!-->
 `Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
 
 [!code-xml[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
+-->
 
 To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundamentals/minimal-apis/aspnetcore-openapi>.
 
