@@ -19,26 +19,15 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 
 ## Package installation
 
-The `Microsoft.AspNetCore.OpenApi` package can be added with the following approaches:
+Install the `Microsoft.AspNetCore.OpenApi` package:
 
 ### [Visual Studio](#tab/visual-studio)
 
-* From the **Package Manager Console** window:
-  * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the `.csproj` file exists
-  * Execute the following command:
+Run the following command from the **Package Manager Console**:
 
     ```powershell
     Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
     ```
-
-* From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
-  * Set the **Package source** to "nuget.org"
-  * Ensure the "Include prerelease" option is enabled
-  * Enter "Microsoft.AspNetCore.OpenApi" in the search box
-  * Select the latest "Microsoft.AspNetCore.OpenApi" package from the **Browse** tab and click **Install**
-
 ### [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following command from the **Integrated Terminal**:
@@ -54,7 +43,6 @@ Run the following command:
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
-
 ---
 
 ## Configure OpenAPI document generation
