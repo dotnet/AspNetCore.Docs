@@ -1,3 +1,7 @@
+#define TEMPLATE
+
+#if TEMPLATE
+// <snippet_1>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthorization();
@@ -35,3 +39,5 @@ app.MapGet("/weatherforecast", (HttpContext httpContext) =>
 .WithName("GetWeatherForecast");
 
 app.Run();
+// </snippet_1>
+#endif
