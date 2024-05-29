@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
 ms.author: riande
 ms.custom: mvc, linux-related-content
-ms.date: 10/15/2023
+ms.date: 5/15/2024
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
@@ -65,7 +65,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   dotnet run
   ```
 
-* Go to `http://localhost:5000` in a browser to test the app.
+* Go to `http://localhost:<port>` in a browser to test the app.
 
 * Press Ctrl+C at the command prompt to stop the app.
 
@@ -80,7 +80,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
   ```console
   docker build -t aspnetapp .
-  docker run -it --rm -p 5000:8080 --name aspnetcore_sample aspnetapp
+  docker run -it --rm -p <port>:8080 --name aspnetcore_sample aspnetapp
   ```
 
   The `build` command arguments:
@@ -90,11 +90,11 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   The run command arguments:
   * Allocate a pseudo-TTY and keep it open even if not attached. (Same effect as `--interactive --tty`.)
   * Automatically remove the container when it exits.
-  * Map port 5000 on the local machine to port 8080 in the container.
+  * Map `<port>` on the local machine to port 8080 in the container.
   * Name the container aspnetcore_sample.
   * Specify the aspnetapp image.
 
-* Go to `http://localhost:5000` in a browser to test the app.
+* Go to `http://localhost:<port>` in a browser to test the app.
 
 ## Build and deploy manually
 
@@ -126,7 +126,7 @@ In some scenarios, you might want to deploy an app to a container by copying its
     dotnet published/aspnetapp.dll
     ```
 
-* Browse to `http://localhost:5000` to see the home page.
+* Browse to `http://localhost:<port>` to see the home page.
 
 To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build an image.
 

@@ -17,6 +17,46 @@ The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.As
 * Provides a [transformers](#transformers) API for modifying generated documents.
 * Supports managing multiple OpenAPI documents within a single app.
 
+## Package installation
+
+The `Microsoft.AspNetCore.OpenApi` package can be added with the following approaches:
+
+### [Visual Studio](#tab/visual-studio)
+
+* From the **Package Manager Console** window:
+  * Go to **View** > **Other Windows** > **Package Manager Console**
+  * Navigate to the directory in which the `.csproj` file exists
+  * Execute the following command:
+
+    ```powershell
+    Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
+    ```
+
+* From the **Manage NuGet Packages** dialog:
+  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
+  * Set the **Package source** to "nuget.org"
+  * Ensure the "Include prerelease" option is enabled
+  * Enter "Microsoft.AspNetCore.OpenApi" in the search box
+  * Select the latest "Microsoft.AspNetCore.OpenApi" package from the **Browse** tab and click **Install**
+
+### [Visual Studio Code](#tab/visual-studio-code)
+
+Run the following command from the **Integrated Terminal**:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+```
+
+### [.NET Core CLI](#tab/netcore-cli)
+
+Run the following command:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
+```
+
+---
+
 ## Configure OpenAPI document generation
 
 The following code:
@@ -131,7 +171,7 @@ Transformers can be registered onto the document via the `UseTransformer` call o
 * Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
 * Register an operation transformer using a delegate.
 
-[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=DOCUMENTtransformerUse&highlight=6-12)]
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-13)]
 
 ### Execution order for transformers
 
@@ -185,7 +225,7 @@ OpenAPI documents can plug into a wide ecosystem of existing tools for testing, 
 
 ### Using Swagger UI for local ad-hoc testing
 
-By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://appsumo.com/products/redoc/). Swagger UI and ReDoc can be integrated in an app in several ways. Editors such as Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
+By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-in support for visualizing or interacting with the OpenAPI document. Popular tools for visualizing or interacting with the OpenAPI document include [Swagger UI](https://swagger.io/tools/swaggerhub/) and [ReDoc](https://github.com/Redocly/redoc). Swagger UI and ReDoc can be integrated in an app in several ways. Editors such as Visual Studio and VS Code offer extensions and built-in experiences for testing against an OpenAPI document.
 
 The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in apps. This package can be used to render a UI for the generated document. To configure this, install the `Swashbuckle.AspNetCore.SwaggerUi` package.
 
