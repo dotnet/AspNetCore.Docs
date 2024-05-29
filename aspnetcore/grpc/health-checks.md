@@ -102,6 +102,8 @@ builder.Services
 ```
 In the previous example, a client factory for `Health.HealthClient` instances is registered with the dependency injection system. Then, these instances are injected into services for executing health check calls.
 
+For more information, see <xref:grpc/clientfactory>.
+
 ## Additional resources
 
 * <xref:host-and-deploy/health-checks>
