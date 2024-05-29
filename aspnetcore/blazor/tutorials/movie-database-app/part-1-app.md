@@ -28,7 +28,7 @@ Before getting started, review the following articles to familiarize yourself wi
 
 It isn't necessary to read <xref:blazor/tooling> because this part of the tutorial series covers how to create a Blazor Web App in the tooling of your choice. However, you can access the *Tooling* article for additional information. 
 
-The first step is to create a Blazor Web App with the correct configuration for static server-side rendering (static SSR). Static SSR means that Razor components are rendered on the server and sent to the client for static display. For static SSR, users can't interact with the UI via Blazor event processing. Components can only receive and post data back to the server for database record create, read, update, and delete ("CRUD") operations via ordinary HTML form processing. Although UI interactions written in pure JavaScript (JS) still function, Blazor's built-in JS interoperability ("JS interop") support isn't available. The movie database app of this tutorial series doesn't include pure JS to permit user interaction with the UI, and Blazor *interactivity* for event processing over a SignalR connection between the browser and the server isn't instituted until the last part of this tutorial series.
+The first step is to create a Blazor Web App with the correct configuration for static server-side rendering (static SSR). Static SSR means that Razor components are rendered on the server and sent to the client for static display. For static SSR, users can't interact with the UI via transparent Blazor event processing over a SignalR connection. Components can only receive and post data back to the server for database record create, read, update, and delete ("CRUD") operations via ordinary HTML form processing. Although UI interactions written in pure JavaScript (JS) still function, Blazor's built-in JS interoperability ("JS interop") support isn't available. The movie database app of this tutorial series doesn't include pure JS to permit user interaction with the UI, and Blazor *interactivity* for event processing over a SignalR connection between the browser and the server isn't instituted until the last part of this tutorial series.
 
 At the end of this tutorial, you'll have a Blazor Web App that manages a database of movies.
 
@@ -92,7 +92,7 @@ Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/downloa
 
 In VS Code:
 
-* Select **New Terminal** from the **Terminal** menu to open the [terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu to open the [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory using the `cd` command to where you want to create the project folder.
 * Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named "`BlazorWebAppMovies`" at the current terminal directory location.
 

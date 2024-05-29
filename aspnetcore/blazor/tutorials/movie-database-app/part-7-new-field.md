@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains ...
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2024
+ms.date: 05/29/2024
 uid: blazor/tutorials/movie-database/new-field
 ---
 # Build a Blazor movie database app (Part 7 - Add a new field)
@@ -18,118 +18,160 @@ uid: blazor/tutorials/movie-database/new-field
 
 This article is the seventh part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series
+This part of the series covers adding a new field to the movie class, CRUD pages, and database.
 
-In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
+The database update is handled by EF Core code-first migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't in sync with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
 
-* Add a new field to the model.
-* Migrate the new field schema change to the database.
+## Add a movie rating to the app's model
 
-When using EF Code First to automatically create and track a database, Code First:
+Open the `Models/Movie.cs` file and add a `Rating` property with a regular expression that limits the value of `Rating` to the exact [Motion Picture Association](https://www.motionpictures.org/) film rating designations:
 
-* Adds an [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
-* Throws an exception if the model classes aren't in sync with the database.
-
-Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
-
-## Adding a Rating Property to the Movie Model
-<!-- Update Index in working project then copy to snap7 folder -->
-
-1. Open the `Models/Movie.cs` file and add a `Rating` property:
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRating.cs?highlight=13&name=snippet)]
-1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
-   <a name="addrat7"></a>
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
-
-1. Update the following pages with a `Rating` field:
-   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Create.cshtml)*.
-   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Delete.cshtml)*.
-   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Details.cshtml)*.
-   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Edit.cshtml)*.
-
-The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
-
-`SqlException: Invalid column name 'Rating'.`
-
-The `SqlException` exception is caused by the updated Movie model class being different than the schema of the Movie table of the database. There's no `Rating` column in the database table.
-
-There are a few approaches to resolving the error:
-
-1. Have the Entity Framework automatically drop and re-create the database using the new model class schema. This approach is convenient early in the development cycle, it allows developers to quickly evolve the model and database schema together. The downside is that existing data in the database is lost. Don't use this approach on a production database! Dropping the database on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.
-2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is to keep the data. Make this change either manually or by creating a database change script.
-3. Use Code First Migrations to update the database schema.
-
-For this tutorial, use Code First Migrations.
-
-Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but make this change for each `new Movie` block.
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
-
-See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/SeedDataRating.cs).
-
-Build the app
-
-### [Visual Studio](#tab/visual-studio)
-
-Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>
-
-### [Visual Studio Code](#tab/visual-studio-code)
-
-From the *View* menu, select *Terminal* and enter the following command:
-
-```dotnetcli
-dotnet build
+```csharp
+[RegularExpression(@"^(G|PG|PG-13|R|NC-17)$"), Required]
+public string? Rating { get; set; }
 ```
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+## Add the movie rating to the app's CRUD components
 
-Press <kbd>⌘</kbd>+<kbd>B</kbd>
+Open the `Index` component (`Components/Pages/MoviePages/Index.razor`).
 
----
+Update the `QuickGrid` to include the movie rating. Add the following `PropertyColumn` immediately after the `PropertyColumn` for `Price`:
 
-# [Visual Studio](#tab/visual-studio)
+```razor
+<PropertyColumn Property="movie => movie.Rating" />
+```
 
-<a name="pmc"></a>
+Open the `Create` component (`Components/Pages/MoviePages/Create.razor`).
 
-### Add a migration for the rating field
+Add the following `<div>` block after the markup for `Price`:
 
-1. From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
-2. In the PMC, enter the following commands:
+```razor
+<div class="mb-3">
+    <label for="rating" class="form-label">Rating:</label> 
+    <InputText id="rating" @bind-Value="Movie.Rating" class="form-control" /> 
+    <ValidationMessage For="() => Movie.Rating" class="text-danger" /> 
+</div>
+```
 
-   ```powershell
-   Add-Migration Rating
-   Update-Database
-   ```
+Open the `Delete` component (`Components/Pages/MoviePages/Delete.razor`).
 
-The `Add-Migration` command tells the framework to:
+Add the following description list (`<dl>`) block after the description list block for `Price`:
 
-* Compare the `Movie` model with the `Movie` database schema.
-* Create code to migrate the database schema to the new model.
+```razor
+<dl class="row">
+    <dt class="col-sm-2">Rating</dt>
+    <dd class="col-sm-10">@movie.Rating</dd>
+</dl>
+```
 
-The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+Open the `Details` component (`Components/Pages/MoviePages/Details.razor`).
 
-The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
+Add the following description list term (`<dt>`) and description list element (`<dl>`) after the term and element for `Price`:
 
-<a name="ssox"></a>
+```razor
+<dt class="col-sm-2">Rating</dt>
+<dd class="col-sm-10">@movie.Rating</dd>
+```
 
-Delete all the records in the database, the initializer will seed the database and include the `Rating` field. Deleting can be done with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+Open the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 
-Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
+Add the following `<div>` block after the markup for `Price`:
 
-1. Select the database in SSOX.
-1. Right-click on the database, and select **Delete**.
-1. Check **Close existing connections**.
-1. Select **OK**.
-1. In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
+```razor
+<div class="mb-3">
+    <label for="rating" class="form-label">Rating:</label>
+    <InputText id="rating" @bind-Value="Movie.Rating" class="form-control" />
+    <ValidationMessage For="() => Movie.Rating" class="text-danger" />
+</div>
+```
 
-   ```powershell
-   Update-Database
-   ```
+## Update the database
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+If you try to run the app at this point, the app fails with a SQL exception because the database doesn't include a `Rating` column in the `Movie` table. The database schema doesn't match the model's schema.
 
-### Add a migration for rating
-Use the following commands to add a migration for the rating field:
+There are three approaches to resolve the discrepancy between schemas:
+
+* Use EF Core to automatically drop and recreate the database using the new model class schema, shedding any data stored in the database. The database is reseeded with fresh data when the app is run. This approach allows you to quickly evolve the model and database schema together. Don't use this approach on a production database with data that must be preserved! *This tutorial only uses this approach for Visual Studio Code and .NET CLI tooling and only when the provider doesn't support EF Core migrations.*
+* Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that it maintains the database's data. Adopt this approach either manually using database tooling or by creating a database change script. The downside to this approach is that it requires more time and is more prone to error. *This tutorial doesn't adopt this approach.*
+* Use an EF Core migration to update the database schema after the model is changed in the app. This approach is efficient and preserves the database's data. ***This tutorial adopts this approach.***
+
+Update the `SeedData` class (`Data/SeedData.cs`) so that it provides a value for the new `Rating` property in the event that you ever reseed the database.
+
+The following change is for the *Mad Max* `new Movie` block:
+
+```diff
+new Movie
+{
+    Title = "Mad Max",
+    ReleaseDate = DateTime.Parse("1979-4-12"),
+    Genre = "Sci-fi (Cyberpunk)",
+    Price = 2.51M,
++   Rating = "R",
+},
+```
+
+Add the `Rating` property to each of the other `new Movie` blocks in the same fashion. Here are the ratings of the remaining *Mad Max* series movies:
+
+* *The Road Warrior*: R
+* *Mad Max: Beyond Thunderdome*: PG-13
+* *Mad Max: Fury Road*: R
+* *Furiosa: A Mad Max Saga*: R
+
+:::zone pivot="vs"
+
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
+
+In the PMC, enter the following command to add a migration for the movie rating field:
+
+```powershell
+Add-Migration AddRatingField
+```
+
+The migration name `AddRatingField` is an arbitrary description of the migration.
+
+The `Add-Migration` command:
+
+* Compares the `Movie` model with the `Movie` database schema.
+* Creates code to migrate the database schema to the new model.
+
+Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require such a value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of `R` for the `Rating` column is appropriate.
+
+Open the XXXX file and find the line that adds the column to the `Movie` table in the database. Modify the line to add a default value:
+
+```diff
+- AddColumn("dbo.movie", "newProperty", c => c.String(nullable: true));
++ AddColumn("dbo.movie", "newProperty", c => c.String(nullable: true, defaultValue: "R"));
+```
+
+Save the migration file.
+
+In the PMC, enter the following command to update the database, which preserves the existing data while it adds the movie rating column:
+
+```powershell
+Update-Database
+```
+
+At this point, modify the one movie that isn't rated *R*:
+
+1. Run the app.
+1. Edit the **Mad Max: Beyond Thunderdome* movie.
+1. Update the movie rating from `R` to `PG-13`. Save the change.
+
+> [!NOTE]
+> An alternative to modifying the migration file is to delete the records in the database and rerun the app to reseed the database. The seeding code was modified earlier to supply default values. This approach is useful in cases where the assignment of values to fields is better controlled with C# code when seeding occurs.
+>
+> To delete all of the records in the database, use one of the following approaches:
+>
+> * Run the app and use the delete links in the browser. This approach is reasonably fast when there are only a few records to delete.
+> * In Visual Studio from **SQL Server Object Explorer** (SSOX), delete the database records. With the database table visible, right-click the table and select **View Data**. When the table opens to show the movie records, select the first record. Hold the <kbd>Shift</kbd> key and select the last record to select all of the records in the database. With all of the records selected, press the <kbd>Delete</kbd> key to delete the records. This approach is fast when there are many records to delete.
+>
+> After deleting all of the records, run the app. The initializer reseeds the database and includes the correct movie ratings for the `Rating` field based on the seeding code.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+In the **Terminal** (opened with **New Terminal** from the **Terminal** menu if not onscreen), use the following commands to add a migration for the rating field:
 
 ```dotnetcli
 dotnet ef migrations add rating
@@ -145,13 +187,13 @@ The name `rating` is arbitrary and is used to name the migration file. It's help
 
 The `dotnet-ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
-Delete all the records in the database, the initializer will seed the database and include the `Rating` field. 
+Delete all the records in the database, the initializer will seed the database and include the `Rating` field.
 
-### Optional: Drop and re-create the database for other providers
+## Drop and recreate the database for other non-SQL Server providers
 
-Skip this section if you successfully migrated the database.
+**Skip this section if you successfully migrated the database.**
 
-In this tutorial, Entity Framework Core *migrations* features are used when possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and some provider's capabilities are limited. For example, adding a column may be supported, but removing or changing a column is not. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, you can drop and re-create the database.
+In this tutorial, Entity Framework Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
 
 The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
 
@@ -169,21 +211,76 @@ For more information, see the following resources:
 
 1. Delete the migration folder.  
 
-1. Use the following commands to recreate the database.
+1. Use the following command to drop the database:
 
    ```dotnetcli
    dotnet ef database drop
+   ```
+
+1. Use the following command to create a migration:
+
+   ```dotnetcli
    dotnet ef migrations add InitialCreate
+   ```
+
+1. Use the following command to update the database:
+
+   ```dotnetcli
    dotnet ef database update
    ```
 
----
+:::zone-end
 
-Run the app and verify you can create, edit, and display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
+:::zone pivot="cli"
+
+<!-- COPY OVER FROM VSC GUIDANCE -->
+
+:::zone-end
+
+Run the app and verify you can create, edit, and display movies with a `Rating` field.
+
+## Troubleshoot 
+
+Another option is to delete the database and use migrations to re-create the database.
+
+:::zone pivot="vs"
+
+To delete the database in SSOX:
+
+1. Select the database in SSOX.
+1. Right-click on the database, and select **Delete**.
+1. Check **Close existing connections**.
+1. Select **OK**.
+1. In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
+
+   ```powershell
+   Update-Database
+   ```
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+
+
+:::zone-end
+
+:::zone pivot="cli"
+
+
+
+:::zone-end
+
+
 
 ## Troubleshoot with the completed sample
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
+
+## Additional resources
+
+* [Migrations (EF Core documentation)](/ef/core/managing-schemas/migrations/)
+
 
 ## Next steps
 

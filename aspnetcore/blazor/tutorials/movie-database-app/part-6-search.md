@@ -113,7 +113,7 @@ Select the **Search** button to filter the movies:
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
-## Additonal resources
+## Additional resources
 
 * [LINQ documentation](/dotnet/csharp/programming-guide/concepts/linq/)
 * [Write C# LINQ queries to query data (C# documentation)](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq)

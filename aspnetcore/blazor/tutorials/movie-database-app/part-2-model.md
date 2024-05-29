@@ -22,13 +22,11 @@ This article is the second part of the Blazor movie database app tutorial that t
 
 In this part of the series, classes are added for managing movies in a database. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write the model classes first, and EF Core creates the database.
 
-The model classes are known as POCO classes, an acronym of **P**lain-**O**ld **C**LR **O**bjects, because they don't have a dependency on EF Core. POCO classes define the properties of the data that are stored in the database.
-
 ## Add a data model
 
 :::zone pivot="vs"
 
-In **Solution Explorer**, right-click the *BlazorWebAppMovies* project and select **Add** > **New Folder**. Name the folder `Models`.
+In **Solution Explorer**, right-click the `BlazorWebAppMovies` project and select **Add** > **New Folder**. Name the folder `Models`.
 
 Right-click the `Models` folder. Select **Add** > **Class**. Name the file `Movie.cs`, which creates a public class `Movie` in the file with the namespace `BlazorWebAppMovies.Models`.
 
@@ -338,7 +336,7 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
 
-The Interactive Server render mode is configured. However, the API only sets the app up for interactive SSR. The API on its own doesn't make the app's components interactive. Interactivity is covered in the last part of this tutorial series, where the `Index` component is made interactive to permit sorting.
+Static server-side rendering (static SSR) is enabled by calling the service collection extension method `AddRazorComponents`. The chained call to `AddInteractiveServerComponents` enables interactive server-side rendering (interactive SSR), which only make the app capable of adopting interactive SSR. The API on its own doesn't make the app's components interactive. Adding interactivity to the app is covered in the last part of this tutorial series.
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -352,12 +350,19 @@ app.MapRazorComponents<App>()
 
 The preceding `Program` file changes are explained later in this article.
 
-## Create the initial database schema using EF's migration feature
+## Create the initial database schema using EF Core's migration feature
 
-The migrations feature in EF Core provides a way to:
+The migrations feature in EF Core:
 
-* Create the initial database schema.
-* Incrementally update the database schema to keep it in sync with the app's data model. Existing data in the database is preserved.
+* Creates the initial database schema.
+* Incrementally updates the database schema to keep it in sync with the app's data model. Existing data in the database is preserved.
+
+EF Core adopts the *code-first* approach for database design and maintenance:
+
+* Entity classes are created and updated first in the app.
+* The database is created and updated from the app's entity classes.
+
+This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach speeds up the process of app development because most of the difficult and time-consuming database creation and management is handled transparently by the EF Core tooling, so you can focus on app development.
 
 :::zone pivot="vs"
 
@@ -366,7 +371,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 * Add an initial migration.
 * Update the database with the initial migration.
 
-To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
 In the PMC, execute the following command to add an initial migration. The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
@@ -473,6 +478,11 @@ Test the **`Edit`**, **`Details`**, and **`Delete`** links.
 ## Troubleshoot with the completed sample
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
+
+## Additional resources
+
+* [Entity Framework Core](/ef/core/)
+* [Entity Framework Core tools reference - .NET Core CLI (EF Core documentation)](/ef/core/cli/dotnet)
 
 ## Next steps
 

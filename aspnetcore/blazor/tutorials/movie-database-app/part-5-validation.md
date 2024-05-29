@@ -20,10 +20,6 @@ This article is the fifth part of the Blazor movie database app tutorial that te
 
 This part of the series covers adding metadata (data annotations) to the `Movie` model to validate user input in the forms that create and edit movies.
 
-
-
-
-
 Validation rules are specified on a model class using *data annotations*.
 
 <xref:System.ComponentModel.DataAnnotations> are a broad set of attribute classes that define metadata about a model's properties that are used to implement additional features or functionality. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
@@ -40,7 +36,7 @@ Multiple annotations can appear on multiple lines, or they can appear on the sam
 [{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
 ```
 
-<!-- HOLD ... becuase I think DataType no-ops in Blazor.
+<!-- HOLD ... because I think DataType no-ops in Blazor.
      Also, I'm not sure if remark on cultureinfo is correct.
 
 Open the app's `Movie` model (`Models/Movie.cs`) and inspect the `ReleaseDate` property:
@@ -172,39 +168,15 @@ To align the model and the database schema, create and apply an EF Core *databas
 
 :::zone pivot="vs"
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-In the console, enter the following command:
+In the PMC, enter the following command:
 
 ```powershell
 Add-Migration NewMovieDataAnnotations
 ```
 
-:::zone-end
-
-:::zone pivot="vsc"
-
-Use the following command in a command shell to add a migration for the new Data Annotations:
-
-```dotnetcli
-dotnet ef migrations add NewMovieDataAnnotations
-```
-
-:::zone-end
-
-:::zone pivot="cli"
-
-Use the following command in a command shell to add a migration for the new Data Annotations:
-
-```dotnetcli
-dotnet ef migrations add NewMovieDataAnnotations
-```
-
-:::zone-end
-
-:::zone pivot="vs"
-
-To apply the migration to the database, execute the following command in the **Package Manager Console**:
+To apply the migration to the database, execute the following command in the PMC:
 
 ```
 Update-Database
@@ -213,6 +185,12 @@ Update-Database
 :::zone-end
 
 :::zone pivot="vsc"
+
+Use the following command in the **Terminal** (opened with **New Terminal** from the **Terminal** menu if not onscreen) to add a migration for the new Data Annotations:
+
+```dotnetcli
+dotnet ef migrations add NewMovieDataAnnotations
+```
 
 To apply the migration to the database, execute the following command in a command shell:
 
@@ -223,6 +201,12 @@ dotnet ef database update
 :::zone-end
 
 :::zone pivot="cli"
+
+Use the following command in a command shell to add a migration for the new Data Annotations:
+
+```dotnetcli
+dotnet ef migrations add NewMovieDataAnnotations
+```
 
 To apply the migration to the database, execute the following command in a command shell:
 

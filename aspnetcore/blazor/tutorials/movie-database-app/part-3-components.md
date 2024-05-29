@@ -316,7 +316,7 @@ Details for a movie entity are only shown if the movie, located by its identifie
 }
 ```
 
-When the movie is loaded, it's displayed as a [description list (MDN documenation)](https://developer.mozilla.org/docs/Web/HTML/Element/dl) along with two links:
+When the movie is loaded, it's displayed as a [description list (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/dl) along with two links:
 
 * The first link provides the user an opportunity to edit the entity.
 * The second link allows the user to return to the movies `Index` page.
@@ -510,7 +510,7 @@ bool MovieExists(int id)
 
 The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Modified>, which signifies that the entity is tracked by the context, exists in the database, and that some or all of its property values are modified.
 
-If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existant endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code for a production app to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement).
+If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code for a production app to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement).
 
 > [!WARNING]
 > The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
