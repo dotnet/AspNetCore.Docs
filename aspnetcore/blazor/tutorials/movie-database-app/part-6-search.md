@@ -123,6 +123,10 @@ Select the **Search** button to filter the movies:
   * [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
   * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
+## Legal
+
+[*Max Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
+
 ## Next steps
 
 > [!div class="step-by-step"]

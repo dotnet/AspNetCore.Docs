@@ -79,27 +79,30 @@ There are many third-party tools you can download to manage and view a SQLite da
 
 ![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4-database/_static/dbb.png)
 
-For this tutorial, the EF Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only perform changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column isn't supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds, but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and recreated.
+In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
 
-The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
+The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
 
-* Creating a new table.
+* Creating a new table with a temporary table name.
 * Copying data from the old table to the new table.
 * Dropping the old table.
-* Renaming the new table.
+* Renaming the new table to match the old table's name.
+
+In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database/new-field#drop-and-recreate-the-database-for-non-sql-server-providers>.
 
 For more information, see the following resources:
 
-* [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-* [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-* [Data seeding](/ef/core/modeling/data-seeding)
-* [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
+* EF Core documentation
+  * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+  * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+  * [Data seeding](/ef/core/modeling/data-seeding)
+* [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 
 ## Seed the database
 
 Create a new class named `SeedData` in the `Data` folder with the following code.
 
-A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the *Max Max* franchise (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
+A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the [*Max Max* franchise](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -281,6 +284,11 @@ Configuration articles:
 
 * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
 * <xref:blazor/fundamentals/configuration> (Blazor documentation)
+* [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
+
+## Legal
+
+[*Max Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
 
 ## Next steps
 

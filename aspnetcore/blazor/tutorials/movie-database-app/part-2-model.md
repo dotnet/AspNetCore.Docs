@@ -484,6 +484,10 @@ Test the **`Edit`**, **`Details`**, and **`Delete`** links.
 * [Entity Framework Core](/ef/core/)
 * [Entity Framework Core tools reference - .NET Core CLI (EF Core documentation)](/ef/core/cli/dotnet)
 
+## Legal
+
+[*The Matrix*](https://www.warnerbros.com/movies/matrix) is a trademark and copyright of [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/).
+
 ## Next steps
 
 > [!div class="step-by-step"]

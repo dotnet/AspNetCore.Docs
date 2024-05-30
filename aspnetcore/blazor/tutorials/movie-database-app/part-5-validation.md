@@ -170,7 +170,7 @@ To align the model and the database schema, create and apply an EF Core *databas
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-In the PMC, enter the following command:
+In the PMC, execute the following command:
 
 ```powershell
 Add-Migration NewMovieDataAnnotations

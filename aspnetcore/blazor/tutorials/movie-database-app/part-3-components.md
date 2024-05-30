@@ -239,7 +239,9 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 </p>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. `Movie` from the injected database context (`DB`) is the item provider. For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity. Notice how the context (`Context`) parameter specifies a parameter name (`movie`) for each content expression of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. `Movie` class properties are read from the parameter. For example, the movie identifier (`Id`) is available in `movie.Id`. The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`).
+The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. `Movie` from the injected database context (`DB`) is the item provider. For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
+
+In the following Razor markup, notice how the context (`Context`) parameter specifies a parameter name (`movie`) for each content expression of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. `Movie` class properties are read from the parameter. For example, the movie identifier (`Id`) is available in `movie.Id`. The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
 ```razor
 <QuickGrid Class="table" Items="DB.Movie">
@@ -291,6 +293,13 @@ The column names are taken from the `Movie` model properties, so the release dat
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
 ```
 
+The column for the movie's release date also shows the time. To remove the time and only display the date, modify `movie.ReleaseDate` in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property?displayProperty=nameWithType> value. Add the <xref:System.DateTime.ToShortDateString%2A> extension method to the `movie.ReleaseDate` property:
+
+```diff
+- movie.ReleaseDate
++ movie.ReleaseDate.ToShortDateString()
+```
+
 Run the app to see that the column now displays two words for the release date.
 
 ### `Details` component
@@ -339,6 +348,13 @@ CSS classes aren't present to simplify display in the following example:
     <a href="@($"/movies")">Back to List</a>
 </div>
 </div>
+```
+
+The data list description for the movie's release date also shows the time. To remove the time and only display the date, modify `@movie.ReleaseDate`. Add the <xref:System.DateTime.ToShortDateString%2A> extension method:
+
+```diff
+- @movie.ReleaseDate
++ @movie.ReleaseDate.ToShortDateString()
 ```
 
 Examine the C# of the component's `@code` block:
@@ -444,6 +460,13 @@ The `AddMovie` method:
 ### `Delete` component
 
 Open the `Delete` component file (`Components/Pages/Movies/Delete.razor`) definition file.
+
+As you saw in the `Index` and `Details` components, the data list description for the movie's release date also shows the time. To remove the time and only display the date, modify `@movie.ReleaseDate`. Add the <xref:System.DateTime.ToShortDateString%2A> extension method:
+
+```diff
+- @movie.ReleaseDate
++ @movie.ReleaseDate.ToShortDateString()
+```
 
 Examine the Razor markup for the submit button of the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (CSS class removed for simplicity):
 
