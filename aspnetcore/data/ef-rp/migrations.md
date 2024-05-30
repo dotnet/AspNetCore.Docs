@@ -314,7 +314,7 @@ Solution: Run `dotnet ef database update`
 ### Additional resources
 
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
-* [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
+* [.NET CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 

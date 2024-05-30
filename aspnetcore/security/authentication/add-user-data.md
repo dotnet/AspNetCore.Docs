@@ -35,7 +35,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 * Select **Web Application** > **OK**
 * Build and run the project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet new webapp -o WebApp1
@@ -58,7 +58,7 @@ dotnet new webapp -o WebApp1
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **Add**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
@@ -151,7 +151,7 @@ Add-Migration CustomUserData
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData
@@ -182,7 +182,7 @@ Test the app:
 * Select **Web Application** > **OK**
 * Build and run the project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet new webapp -o WebApp1
@@ -205,7 +205,7 @@ dotnet new webapp -o WebApp1
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **Add**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
@@ -294,7 +294,7 @@ Add-Migration CustomUserData
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData
@@ -404,7 +404,7 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 * Select **Web Application** > **OK**
 * Build and run the project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet new webapp -o WebApp1
@@ -427,7 +427,7 @@ dotnet new webapp -o WebApp1
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
 * Select **Add**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 If you have not previously installed the ASP.NET Core scaffolder, install it now:
 
@@ -517,7 +517,7 @@ Add-Migration CustomUserData
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CustomUserData

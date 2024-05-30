@@ -10,7 +10,7 @@ Add-Migration CreateIdentitySchema
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CreateIdentitySchema
@@ -31,7 +31,7 @@ In the Visual Studio **Package Manager Console**, execute [`Update-Database`](/e
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 In a command shell, execute [`dotnet ef database update`](/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#command-line-tools):
 
@@ -53,7 +53,7 @@ Get-Migration
 
 If more than one database context exists, specify the context with the `-Context` parameter.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 In a command shell, execute [`dotnet ef migrations list`](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#listing-migrations):
 

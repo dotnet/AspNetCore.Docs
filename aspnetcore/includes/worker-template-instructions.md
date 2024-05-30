@@ -13,7 +13,7 @@
 1. Select **.NET Core 3.0** or later for the **Target Framework**. Select **Next**.
 1. Provide a name in the **Project Name** field. Select **Create**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorker`. A folder for the `ContosoWorker` app is created automatically when the command is executed.
 

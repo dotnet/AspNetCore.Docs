@@ -34,7 +34,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 ```
 
-The .NET Core client must use `https` in the server address to make calls with a secured connection:
+The .NET CLIent must use `https` in the server address to make calls with a secured connection:
 
 [!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
 
@@ -60,7 +60,7 @@ The [gRPC client factory](xref:grpc/clientfactory) allows calls without a truste
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
 
-## Call insecure gRPC services with .NET Core client
+## Call insecure gRPC services with .NET CLIent
 
 The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 

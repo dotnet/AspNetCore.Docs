@@ -29,7 +29,7 @@ To install the client library, run the following command in the **Package Manage
 Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 To install the client library, run the following command in a command shell:
 

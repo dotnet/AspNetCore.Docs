@@ -215,13 +215,13 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 ### Add EF tools
 
-Run the following .NET Core CLI command:
+Run the following .NET CLI command:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef
 ```
 
-The preceding command adds the Entity Framework Core Tools for the .NET Core CLI. For more information, see [Entity Framework Core tools reference - .NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
+The preceding command adds the Entity Framework Core Tools for the .NET CLI. For more information, see [Entity Framework Core tools reference - .NET CLI](/ef/core/miscellaneous/cli/dotnet).
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
@@ -297,7 +297,7 @@ Update-Database
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
-Run the following .NET Core CLI commands:
+Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate

@@ -24,13 +24,13 @@ This article covers the following areas:
 
 ## Mapping claims using OpenID Connect authentication
 
-The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
+The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET CLIent app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
 
 [!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet1&highlight=8-26)]
 
 The preceding code requires the [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) NuGet package.
 
-Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client app uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client app. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
+Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET CLIent app uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client app. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
 
 [!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=26-29)]
 
@@ -107,7 +107,7 @@ This article covers the following areas:
 
 ## Mapping claims using OpenID Connect authentication
 
-The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
+The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET CLIent app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -132,7 +132,7 @@ public void ConfigureServices(IServiceCollection services)
    });
 ```
 
-Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client application uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client application. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
+Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET CLIent application uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client application. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

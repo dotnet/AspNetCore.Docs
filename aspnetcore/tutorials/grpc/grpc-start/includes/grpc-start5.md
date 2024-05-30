@@ -132,7 +132,7 @@ Follow the instructions in [Building a complete .NET Core solution on macOS usin
 
 The gRPC client project requires the following packages:
 
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET CLIent.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 

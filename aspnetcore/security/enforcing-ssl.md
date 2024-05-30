@@ -187,7 +187,7 @@ Uncheck the **Configure for HTTPS** checkbox.
 
 ![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 Use the `--no-https` option. For example
 
@@ -863,7 +863,7 @@ Uncheck the **Configure for HTTPS** checkbox.
 
 ![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 Use the `--no-https` option. For example
 
