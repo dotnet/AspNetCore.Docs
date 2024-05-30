@@ -239,7 +239,7 @@ The `acr_values` parameter can be used to pass the `mfa` required value from the
 > [!NOTE]
 > The `acr_values` parameter needs to be handled on the OpenID Connect server for this to work.
 
-### OpenID Connect ASP.NET CLIent
+### OpenID Connect ASP.NET Core client
 
 The ASP.NET Core Razor Pages OpenID Connect client app uses the `AddOpenIdConnect` method to login to the OpenID Connect server. The `acr_values` parameter is set with the `mfa` value and sent with the authentication request. The `OpenIdConnectEvents` is used to add this.
 
@@ -745,7 +745,7 @@ The `acr_values` parameter can be used to pass the `mfa` required value from the
 > [!NOTE]
 > The `acr_values` parameter needs to be handled on the OpenID Connect server for this to work.
 
-### OpenID Connect ASP.NET CLIent
+### OpenID Connect ASP.NET Core client
 
 The ASP.NET Core Razor Pages OpenID Connect client app uses the `AddOpenIdConnect` method to login to the OpenID Connect server. The `acr_values` parameter is set with the `mfa` value and sent with the authentication request. The `OpenIdConnectEvents` is used to add this.
 
