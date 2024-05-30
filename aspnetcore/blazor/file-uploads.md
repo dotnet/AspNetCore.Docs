@@ -857,6 +857,16 @@ When uploading files, reaching the message size limit on the first message is ra
 
 For more information on SignalR configuration and how to set <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
 
+## Maximum parallel invocations per client hub setting
+
+<!-- UPDATE 9.0 Check on a fix for this per
+                https://github.com/dotnet/aspnetcore/issues/53951 
+                and version if fixed. -->
+
+Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value.
+
+Increasing the value leads to a high probability that `CopyTo` operations throw `System.InvalidOperationException: 'Reading is not allowed after reader was completed.'`. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
+
 ## Additional resources
 
 :::moniker range=">= aspnetcore-6.0"

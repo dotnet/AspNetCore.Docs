@@ -288,8 +288,15 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 
 :::moniker-end
 
+<!-- UPDATE 9.0 Check on a fix for the added 
+                MaximumParallelInvocationsPerClient warning
+                per https://github.com/dotnet/aspnetcore/issues/53951 
+                and version if fixed. -->
+
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks).
+>
+> Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient%2A> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
 For information on memory management, see <xref:blazor/host-and-deploy/server#memory-management>.
 
