@@ -77,7 +77,7 @@ This tutorial creates the following API:
 * Run the following commands:
 
   ```dotnetcli
-  dotnet new web -o TodoApi
+  dotnet new webapi -o TodoApi
   cd TodoApi
   code -r ../TodoApi
   ```
