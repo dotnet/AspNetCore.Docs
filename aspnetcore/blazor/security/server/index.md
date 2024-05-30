@@ -89,7 +89,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/netcore-cli/)
 
 When issuing the .NET CLI command to create and configure the server-side Blazor app, indicate the authentication mechanism with the `-au|--auth` option:
 
