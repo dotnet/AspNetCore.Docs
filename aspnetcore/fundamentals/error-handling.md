@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/20/2024
+ms.date: 05/30/2024
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -20,28 +20,7 @@ This article covers common approaches to handling errors in ASP.NET Core web app
 
 ## Developer exception page
 
-The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when both:
-
-* Running in the [Development environment](xref:fundamentals/environments).
-* App created with the current templates, that is, using [WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder).  Apps created using the [`WebHost.CreateDefaultBuilder`](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder) must enable the developer exception page by calling `app.UseDeveloperExceptionPage` in `Configure`.
-
-The developer exception page runs early in the middleware pipeline, so that it can catch unhandled exceptions thrown in middleware that follows.
-
-Detailed exception information shouldn't be displayed publicly when the app runs in the Production environment. For more information on configuring environments, see <xref:fundamentals/environments>.
-
-The Developer Exception Page can include the following information about the exception and the request:
-
-* Stack trace
-* Query string parameters, if any
-* Cookies, if any
-* Headers
-* Endpoint metadata, if any
-
-The following image shows a sample developer exception page with animation to show the tabs and the information displayed:
-
-:::image type="content" source="~/fundamentals/error-handling/_static/aspnetcore-developer-page-improvements.gif" alt-text="Developer exception page animated to show each tab selected.":::
-
-The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
+[!INCLUDE [](../includes/developer-exception-page.md)]
 
 ## Exception handler page
 
@@ -264,7 +243,7 @@ For information about how to handle model state errors, see [Model binding](xref
 
 [!INCLUDE[](~/includes/problem-details-service.md)]
 
-The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
+The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have body content yet***:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_AddProblemDetails" highlight="1":::
 

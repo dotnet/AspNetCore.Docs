@@ -1,79 +1,35 @@
 ---
-title: Handle errors in ASP.NET Core web APIs
+title: Handle errors in ASP.NET Core controller-based web APIs
 author: tdykstra
-description: Learn about error handling with ASP.NET Core web APIs.
+description: Learn about error handling with ASP.NET Core controller-based web APIs.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/14/2022
+ms.date: 05/30/2024
 uid: web-api/handle-errors
 ---
-# Handle errors in ASP.NET Core web APIs
+# Handle errors in ASP.NET Core controller-based web APIs
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-7.0"
 
-This article describes how to handle errors and customize error handling with ASP.NET Core web APIs.
+This article describes how to handle errors and customize error handling in controller-based ASP.NET Core web APIs. For information about error handling in minimal APIs, see <xref:fundamentals/error-handling> and <xref:fundamentals/minimal-apis/handle-errors>.
 
 <a name="dep7"></a>
 
 ## Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. For example, consider the following controller action, which throws an exception:
+[!INCLUDE [](../includes/developer-exception-page.md)]
 
-:::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
+To see the Developer Exception Page:
 
-When the Developer Exception Page detects an unhandled exception, it generates a default plain-text response similar to the following example:
+* Add the following controller action to a controller-based API. The action throws an exception when the endpoint is requested.
 
-```console
-HTTP/1.1 500 Internal Server Error
-Content-Type: text/plain; charset=utf-8
-Server: Kestrel
-Transfer-Encoding: chunked
+  :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
 
-System.Exception: Sample exception.
-   at HandleErrorsSample.Controllers.ErrorsController.Get() in ...
-   at lambda_method1(Closure , Object , Object[] )
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
-
-...
-```
-
-If the client requests an HTML-formatted response, the Developer Exception Page generates a response similar to the following example:
-
-```console
-HTTP/1.1 500 Internal Server Error
-Content-Type: text/html; charset=utf-8
-Server: Kestrel
-Transfer-Encoding: chunked
-
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8" />
-        <title>Internal Server Error</title>
-        <style>
-            body {
-    font-family: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
-    font-size: .813em;
-    color: #222;
-    background-color: #fff;
-}
-
-h1 {
-    color: #44525e;
-    margin: 15px 0 15px 0;
-}
-
-...
-```
-
-To request an HTML-formatted response, set the `Accept` HTTP request header to `text/html`.
-
-> [!WARNING]
-> Don't enable the Developer Exception Page **unless the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
+* Run the app in the [development environment](xref:fundamentals/environments).
+* Go to the endpoint defined by the controller action.
 
 ## Exception handler
 
@@ -160,7 +116,7 @@ Consider the following controller, which returns <xref:Microsoft.AspNetCore.Http
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
-A problem details response is generated with the previous code when any of the following conditions apply:
+A problem details response is generated with the preceding code when any of the following conditions apply:
 
 * The `/api/values2/divide` endpoint is called with a zero denominator.
 * The `/api/values2/squareroot` endpoint is called with a radicand less than zero.
@@ -182,15 +138,15 @@ The default problem details response body has the following `type`, `title`, and
 
 ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details service](/aspnet/core/fundamentals/error-handling#pds7).
 
-The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
+The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have body content yet***:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8-9,13":::
 
-Consider the API controller from the previous section, which returns <xref:Microsoft.AspNetCore.Http.HttpResults.BadRequest> when the input is invalid:
+Consider the API controller from the preceding section, which returns <xref:Microsoft.AspNetCore.Http.HttpResults.BadRequest> when the input is invalid:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
-A problem details response is generated with the previous code when any of the following conditions apply:
+A problem details response is generated with the preceding code when any of the following conditions apply:
 
 * An invalid input is supplied.
 * The URI has no matching endpoint.
@@ -218,7 +174,7 @@ The following code contains the `MathErrorFeature` and `MathErrorType`, which ar
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
 
-A problem details response is generated with the previous code when any of the following conditions apply:
+A problem details response is generated with the preceding code when any of the following conditions apply:
 
 * The `/divide` endpoint is called with a zero denominator.
 * The `/squareroot` endpoint is called with a radicand less than zero.
