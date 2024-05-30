@@ -16,7 +16,6 @@ You'll learn how to:
 
 > [!div class="checklist"]
 > * Create a web app project.
-> * Trust the development certificate.
 > * Run the app.
 > * Edit a Razor page.
 
@@ -41,10 +40,10 @@ At the end, you'll have a working web app running on your local machine.
 Open a command shell, and enter the following command:
 
 ```dotnetcli
-dotnet new webapp -o aspnetcoreapp --no-https
+dotnet new webapp --output aspnetcoreapp --no-https
 ```
 
-The preceding command creates a new web app project in a directory named `aspnetcoreapp`. The `--no-https` option specifies that the project doesn't use HTTPS.
+The preceding command creates a new web app project in a directory named `aspnetcoreapp`. The project doesn't use HTTPS.
 
 ## Run the app
 
