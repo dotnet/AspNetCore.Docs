@@ -58,7 +58,7 @@ Run the following command from the **Integrated Terminal**:
 dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.6.2
 ```
 
-### [.NET Core CLI](#tab/netcore-cli)
+### [.NET CLI](#tab/net-cli)
 
 Run the following command:
 
@@ -154,7 +154,7 @@ Add [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generated
 </PropertyGroup>
 ```
 
-#### [.NET Core CLI](#tab/netcore-cli)
+#### [.NET CLI](#tab/net-cli)
 
 Add [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generatedocumentationfile)  to the `.csproj` file:
 
@@ -313,7 +313,7 @@ Run the following command from the **Integrated Terminal**:
 dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.6.3
 ```
 
-### [.NET Core CLI](#tab/netcore-cli)
+### [.NET CLI](#tab/net-cli)
 
 Run the following command:
 
@@ -407,7 +407,7 @@ Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
-#### [.NET Core CLI](#tab/netcore-cli)
+#### [.NET CLI](#tab/net-cli)
 
 Manually add the highlighted lines to the `.csproj` file:
 

@@ -179,7 +179,7 @@ The Worker Service templates support [.NET native ahead-of-time (AOT)](/dotnet/c
 1. Provide a name in the **Project Name** field. Select **Create**.
 -->
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell with the AOT option:
 

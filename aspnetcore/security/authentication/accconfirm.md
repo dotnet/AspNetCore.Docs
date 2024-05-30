@@ -103,7 +103,7 @@ From the Package Manager Console, enter the following command:
 Install-Package SendGrid
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the console, enter the following command:
 
@@ -293,7 +293,7 @@ From the Package Manager Console, enter the following command:
 Install-Package SendGrid
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the console, enter the following command:
 

@@ -1,4 +1,4 @@
-Run the following .NET Core CLI commands:
+Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef --version 3.1.9
@@ -14,7 +14,7 @@ dotnet add package Microsoft.Extensions.Logging.Debug --version 3.1.9
 The preceding commands add:
 
 * The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-* The Entity Framework Core Tools for the .NET Core CLI.
+* The Entity Framework Core Tools for the .NET CLI.
 * The EF Core SQLite provider, which installs the EF Core package as a dependency.
 * Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
 

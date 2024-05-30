@@ -278,7 +278,7 @@ For a 64-bit deployment:
    * Select **Save**.
    * Select **Publish**.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 1. In the project file, don't specify a [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
@@ -294,7 +294,7 @@ For a 64-bit deployment:
 
 ### Deploy the app self-contained
 
-Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+Use Visual Studio or the .NET CLI for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -313,7 +313,7 @@ Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/
    * Select **Save**.
    * Select **Publish**.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` for a single RID, or use `<RuntimeIdentifiers>` to provide a semicolon-delimited list of multiple RIDs. In the following example, the `win-x86` RID is specified:
 

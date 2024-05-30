@@ -37,7 +37,7 @@ Run the following command from the **Integrated Terminal**:
 dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
 
-### [.NET Core CLI](#tab/netcore-cli)
+### [.NET CLI](#tab/net-cli)
 
 Run the following command:
 

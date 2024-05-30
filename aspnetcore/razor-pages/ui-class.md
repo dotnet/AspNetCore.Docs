@@ -28,7 +28,7 @@ For information on how to integrate npm and webpack into the build process for a
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see <xref:blazor/components/class-libraries>.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 

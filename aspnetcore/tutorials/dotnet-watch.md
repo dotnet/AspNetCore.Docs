@@ -1,7 +1,7 @@
 ---
 title: Develop ASP.NET Core apps using a file watcher
 author: tdykstra
-description: This tutorial demonstrates how to install and use the .NET Core CLI's file watcher (dotnet watch) tool in an ASP.NET Core app.
+description: This tutorial demonstrates how to install and use the .NET CLI's file watcher (dotnet watch) tool in an ASP.NET Core app.
 ms.author: tdykstra
 ms.date: 05/31/2018
 uid: tutorials/dotnet-watch
@@ -10,7 +10,7 @@ uid: tutorials/dotnet-watch
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https://twitter.com/victorhurdugaci)
 
-`dotnet watch` is a tool that runs a [.NET Core CLI](/dotnet/core/tools) command when source files change. For example, a file change can trigger compilation, test execution, or deployment.
+`dotnet watch` is a tool that runs a [.NET CLI](/dotnet/core/tools) command when source files change. For example, a file change can trigger compilation, test execution, or deployment.
 
 This tutorial uses an existing web API with two endpoints: one that returns a sum and one that returns a product. The product method has a bug, which is fixed in this tutorial.
 
@@ -61,9 +61,9 @@ The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NE
 
 :::moniker-end
 
-## Run .NET Core CLI commands using `dotnet watch`
+## Run .NET CLI commands using `dotnet watch`
 
-Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `dotnet watch`. For example:
+Any [.NET CLI command](/dotnet/core/tools#cli-commands) can be run with `dotnet watch`. For example:
 
 | Command | Command with watch |
 | ---- | ----- |

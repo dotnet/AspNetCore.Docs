@@ -68,7 +68,7 @@ The package `Microsoft.Extensions.CommandLineUtils` has been [retired](https://g
 
 <a name="dot-net-cli-tool-reference"></a>
 
-## Update .NET Core CLI tools
+## Update .NET CLI tools
 
 In the `.csproj` file, update the `Version` attribute of each `<DotNetCliToolReference />` node to 2.0.0.
 

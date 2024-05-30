@@ -68,7 +68,7 @@ code -r SignalRWebPack
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
-Run the following .NET Core CLI command in the **Integrated Terminal**:
+Run the following .NET CLI command in the **Integrated Terminal**:
 
 ```dotnetcli
 dotnet add package Microsoft.TypeScript.MSBuild
@@ -121,7 +121,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. Only use `build` in development.
     * `release`: Bundles the client-side resources in production mode.
-    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
+    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
 1. Create a file named `webpack.config.js`, in the project root, with the following code:
 
@@ -379,7 +379,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. Only use `build` in development.
     * `release`: Bundles the client-side resources in production mode.
-    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
+    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
 1. Create a file named`*webpack.config.js` in the project root, with the following code:
 
