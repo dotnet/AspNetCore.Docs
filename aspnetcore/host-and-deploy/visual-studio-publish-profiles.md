@@ -64,7 +64,7 @@ When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project f
 
 ## Basic command-line publishing
 
-Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET Core CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the `.csproj` file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
+Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the `.csproj` file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
 
 ```dotnetcli
 dotnet publish C:\Webs\Web1
@@ -216,7 +216,7 @@ dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 msbuild /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 ```
 
-The .NET Core CLI's [dotnet build](/dotnet/core/tools/dotnet-build) command calls `msbuild` to run the build and publish process. The `dotnet build` and `msbuild` commands are equivalent when passing in a folder profile. When calling `msbuild` directly on Windows, the .NET Framework version of MSBuild is used. Calling `dotnet build` on a non-folder profile:
+The .NET CLI's [dotnet build](/dotnet/core/tools/dotnet-build) command calls `msbuild` to run the build and publish process. The `dotnet build` and `msbuild` commands are equivalent when passing in a folder profile. When calling `msbuild` directly on Windows, the .NET Framework version of MSBuild is used. Calling `dotnet build` on a non-folder profile:
 
 * Invokes `msbuild`, which uses MSDeploy.
 * Results in a failure (even when running on Windows). To publish with a non-folder profile, call `msbuild` directly.
@@ -251,7 +251,7 @@ In the preceding example:
 
 * The `<ExcludeApp_Data>` property is present merely to satisfy an XML schema requirement. The `<ExcludeApp_Data>` property has no effect on the publish process, even if there's an *App_Data* folder in the project root. The *App_Data* folder doesn't receive special treatment as it does in ASP.NET 4.x projects.
 * The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
-  * Using the .NET Core CLI:
+  * Using the .NET CLI:
 
     ```dotnetcli
     dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile
@@ -300,7 +300,7 @@ msbuild "AzureWebApp.csproj"
     /p:Password=".........."
 ```
 
-A publish profile can also be used with the .NET Core CLI's [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command shell:
+A publish profile can also be used with the .NET CLI's [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command shell:
 
 ```dotnetcli
 dotnet msbuild "AzureWebApp.csproj"

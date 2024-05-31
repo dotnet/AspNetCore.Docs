@@ -16,7 +16,7 @@ For information on how to integrate npm and webpack into the build process for a
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
@@ -182,7 +182,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
@@ -368,7 +368,7 @@ An RCL has the following project file:
 
 [!code-xml[](~/razor-pages/ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
@@ -403,7 +403,7 @@ If you haven't downloaded the completed app and would rather create the walkthro
 
 Open the `.sln` file in Visual Studio. Run the app.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From a command prompt in the `cli` directory, build the RCL and web app.
 
@@ -436,7 +436,7 @@ Create the RCL project:
 * Select **Razor Class Library** > **OK**.
 * Add a Razor partial view file named `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml`.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run the following:
 
@@ -502,7 +502,7 @@ Create the Razor Pages web app:
 
 Run the app.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 Create a Razor Pages web app and a solution file containing the Razor Pages app and the RCL:
 
@@ -571,7 +571,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 

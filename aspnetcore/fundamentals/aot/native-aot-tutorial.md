@@ -18,13 +18,13 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 > [!NOTE]
 > * The Native AOT feature is currently in preview.
 > * In .NET 8, not all ASP.NET Core features are compatible with Native AOT.
-> * Tabs are provided for the [.NET Core CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions:
+> * Tabs are provided for the [.NET CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions:
 >   * Visual Studio is a prerequisite even if the CLI tab is selected.
 >   * The CLI must be used to publish even if the Visual Studio tab is selected.
 
 ## Prerequisites
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 * On Linux, see [Prerequisites for Native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
@@ -51,7 +51,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
 Create an ASP.NET Core API app that is configured to work with Native AOT:
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 Run the following commands:
 
@@ -83,7 +83,7 @@ Restore succeeded.
 
 Verify the app can be published using Native AOT:
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 ```dotnetcli
 dotnet publish

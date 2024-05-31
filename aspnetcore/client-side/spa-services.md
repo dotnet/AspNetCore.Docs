@@ -211,7 +211,7 @@ Routes are evaluated in the order in which they're configured. Consequently, the
 
 JavaScript Services provide pre-configured application templates. SpaServices is used in these templates in conjunction with different frameworks and libraries such as Angular, React, and Redux.
 
-These templates can be installed via the .NET Core CLI by running the following command:
+These templates can be installed via the .NET CLI by running the following command:
 
 ```dotnetcli
 dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
@@ -244,7 +244,7 @@ Two primary runtime configuration modes exist:
 
 ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. For more information, see [Set the environment](xref:fundamentals/environments#set-the-environment).
 
-### Run with .NET Core CLI
+### Run with .NET CLI
 
 Restore the required NuGet and npm packages by running the following command at the project root:
 

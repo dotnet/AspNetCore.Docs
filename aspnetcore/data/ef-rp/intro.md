@@ -250,7 +250,7 @@ The following packages are automatically installed:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following .NET Core CLI commands to install required NuGet packages:
+* Run the following .NET CLI commands to install required NuGet packages:
 
   ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.SQLite
@@ -766,7 +766,7 @@ The following packages are automatically installed:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following .NET Core CLI commands to install required NuGet packages:
+* Run the following .NET CLI commands to install required NuGet packages:
 
   ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.SQLite -v 5.0.0-*
@@ -1268,7 +1268,7 @@ The following packages are automatically installed:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following .NET Core CLI commands to install required NuGet packages:
+* Run the following .NET CLI commands to install required NuGet packages:
 <!-- TO DO  After testing, Replace with
 [!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
 remove dotnet tool install --global  below

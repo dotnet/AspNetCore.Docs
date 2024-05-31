@@ -187,7 +187,7 @@ To set this value, use the environment variable or call `UseEnvironment` on `IHo
 
 ### ShutdownTimeout
 
-<xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout%2A?displayProperty=nameWithType> sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync%2A>. The default value is five seconds.  During the timeout period, the host:
+<xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout%2A?displayProperty=nameWithType> sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync%2A>. The default value is 30 seconds.  During the timeout period, the host:
 
 * Triggers <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping%2A?displayProperty=nameWithType>.
 * Attempts to stop hosted services, logging errors for services that fail to stop.

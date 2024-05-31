@@ -43,7 +43,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
@@ -90,7 +90,7 @@ When Visual Studio Code requests that you add assets to build and debug the proj
 
 If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell, execute the following command:
 
@@ -128,7 +128,7 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the project's folder, execute the following command:
 
@@ -202,7 +202,7 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the project's folder, execute the following commands:
 
@@ -268,7 +268,7 @@ To configure Visual Studio Code debugging assets, see:
 * <xref:blazor/tooling?pivots=linux-macos> (use the guidance for the *Linux / macOS* operating system regardless of platform)
 * <xref:blazor/debug>
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 In a command shell, execute the following command:
 
@@ -310,7 +310,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
 
@@ -505,7 +505,7 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following commands:
 
@@ -565,7 +565,7 @@ In Visual Studio Code, open the app's project folder.
 
 When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell, execute the following command:
 
@@ -603,7 +603,7 @@ dotnet add package Microsoft.AspNetCore.SignalR.Client
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the project's folder, execute the following command:
 
@@ -651,7 +651,7 @@ dotnet add package System.Text.Encodings.Web
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the project's folder, execute the following command:
 
@@ -828,7 +828,7 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 In a command shell from the project's folder, execute the following commands:
 

@@ -25,7 +25,7 @@ In each of these cases, you can write a customized provider for your storage mec
 
 ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
 
-When using the .NET Core CLI, add `-au Individual`:
+When using the .NET CLI, add `-au Individual`:
 
 ```dotnetcli
 dotnet new mvc -au Individual
