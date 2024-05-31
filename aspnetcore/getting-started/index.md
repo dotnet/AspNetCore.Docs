@@ -54,7 +54,7 @@ cd aspnetcoreapp
 dotnet run
 ```
 
-The command produces output like the following example:
+The `run` command produces output like the following example:
 
 ```output
 Building...
