@@ -1,4 +1,4 @@
-#define TEMPLATE
+#define TEMPLATE // TEMPLATE
 
 #if TEMPLATE
 // <snippet_1>
