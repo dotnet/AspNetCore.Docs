@@ -16,7 +16,7 @@ With contributions by [David Acker](https://github.com/david-acker)
 
  :::moniker range=">= aspnetcore-8.0"
 
-This article describes how to handle errors in Minimal API apps. For information about error handling in controller-based APIs, see <xref:fundamentals/error-handling> and <xref:fundamentals/web-api/handle-errors>.
+This article describes how to handle errors in Minimal API apps. For information about error handling in controller-based APIs, see <xref:fundamentals/error-handling> and <xref:web-api/handle-errors>.
 
 ## Exceptions
 
@@ -31,7 +31,7 @@ This section refers to the following sample app to demonstrate ways to handle ex
 
 ### Developer Exception Page
 
-[!INCLUDE [](../includes/developer-exception-page.md)]
+[!INCLUDE [](~/includes/developer-exception-page.md)]
 
 To see the Developer Exception Page:
 
