@@ -5,7 +5,7 @@ description: A short tutorial using the .NET CLI to create and run a basic Hello
 monikerRange: ">= aspnetcore-3.1"
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/07/2022
+ms.date: 05/31/2024
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
@@ -56,7 +56,7 @@ dotnet run
 
 The command produces output like the following example:
 
-```dotnetcli
+```output
 Building...
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: http://localhost:5109
@@ -78,7 +78,7 @@ The browser shows the home page.
 
 Change the home page:
 
-* In the command shell, press Ctrl+C (Cmd+C in macOS).
+* In the command shell, press Ctrl+C (Cmd+C in macOS) to exit the program.
 * Open `Pages/Index.cshtml` in a text editor.
 * Replace the line that begins with "Learn about" with the following highlighted markup and code:
 

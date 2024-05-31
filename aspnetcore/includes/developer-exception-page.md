@@ -3,9 +3,9 @@ The *Developer Exception Page* displays detailed information about unhandled req
 ASP.NET Core apps enable the developer exception page by default when both:
 
 * Running in the [Development environment](xref:fundamentals/environments).
-* The app was created with the current templates, that is, by using [WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder).
+* The app was created with the current templates, that is, by using <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>.
 
-Apps created using earlier templates, that is, by using [`WebHost.CreateDefaultBuilder`](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder), can enable the developer exception page by calling [`app.UseDeveloperExceptionPage`](xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage(Microsoft.AspNetCore.Builder.IApplicationBuilder)).
+Apps created using earlier templates, that is, by using <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A?displayProperty=nameWithType>, can enable the developer exception page by calling [`app.UseDeveloperExceptionPage`](xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage(Microsoft.AspNetCore.Builder.IApplicationBuilder)).
 
 > [!WARNING]
 > Don't enable the Developer Exception Page **unless the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.

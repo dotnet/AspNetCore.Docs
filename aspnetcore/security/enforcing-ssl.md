@@ -214,13 +214,13 @@ For establishing trust on other platforms refer to the platform specific documen
 For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
 ```
 
-Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the dotnet `dev-certs` tool:
+Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --trust
 ```
 
-The following command provides help on the `dev-certs` tool:
+The following command provides help on the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --help
@@ -861,7 +861,7 @@ To opt-out of HTTPS/HSTS:
 
 Uncheck the **Configure for HTTPS** checkbox.
 
-![Additional information dialog for New ASP.NET Core Web App template, showing the Configure for HTTPS checkbox](enforcing-ssl/_static/out-vs2019.png)
+![Additional information dialog for New ASP.NET Core Web App template, showing the Configure for HTTPS checkbox](enforcing-ssl/_static/out-vs2022.png)
 
 # [.NET Core CLI](#tab/netcore-cli) 
 
@@ -887,13 +887,13 @@ To trust the certificate, run 'dotnet dev-certs https --trust'
 Learn about HTTPS: https://aka.ms/dotnet-https
 ```
 
-Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the .NET `dev-certs` tool:
+Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --trust
 ```
 
-The following command provides help on the `dev-certs` tool:
+The following command provides help on the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --help
