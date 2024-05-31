@@ -22,8 +22,6 @@ Up to this point in the tutorial, the entire app has been enabled for interactiv
 
 *Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR).
 
-
-
 Review the API in the `Program` file (`Program.cs`) that enables interactive SSR.
 
 Razor component services are added to the app to enable Razor components to render statically from the server (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) and execute code with interactive SSR (<xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>):
@@ -136,8 +134,131 @@ The component is *interactive*. The page doesn't reload for sorting to occur. Th
 
 ## Use C# code to search by title
 
+In Part 6 of the tutorial series, the `Index` component was modified to allow the user to filter movies by title. This was accomplished by:
 
+* Adding an HTML form that issues a GET request to the server with the user's title search string as a query string field-value pair (for example, `?titleFilter=road+warrior` if the user searches for "`road warrior`"):
 
+  ```html
+  <form action="/movies">
+      <input type="text" name="titleFilter" />
+      <input type="submit" value="Search" />
+  </form>
+  ```
+
+* Adding code to the component that obtains the title search string from the query string and uses it to filter the database's records:
+
+  ```csharp
+  [SupplyParameterFromQuery]
+  public string? TitleFilter { get; set; }
+
+  protected override void OnParametersSet()
+  {
+      if (!string.IsNullOrEmpty(TitleFilter))
+      {
+          movies = DB.Movie.Where(
+              s => !string.IsNullOrEmpty(s.Title) ? 
+                  s.Title.Contains(TitleFilter) : false);
+      }
+      else
+      {
+          movies = DB.Movie;
+      }
+  }
+  ```
+
+The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content for display transparently without a full page refresh.
+
+Now, the component is interactive, so it can provide a much improved user experience by adopting Blazor features for binding and event handling.
+
+Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value directly to a C# field or property. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case:
+
+```diff
+- [SupplyParameterFromQuery]
+- public string? TitleFilter { get; set; }
++ private string? titleFilter;
+```
+
+The `OnParametersSet` lifecycle method was used to conditionally filter the database based on `TitleFilter` (the property) having a value. We still want the `QuickGrid` to receive an unfiltered movie list on load, but we want that to happen just once when the component is initialized. Also, we'd like the filtering to occur when the user selects the **Search** button in the UI, which we can set up as a Blazor event.
+
+Remove the overridden `OnParametersSet` Blazor lifecycle method from the `@code` block:
+
+```diff
+- protected override void OnParametersSet()
+- {
+-     if (!string.IsNullOrEmpty(TitleFilter))
+-     {
+-         movies = DB.Movie.Where(
+-             s => !string.IsNullOrEmpty(s.Title) ? 
+-                 s.Title.Contains(TitleFilter) : false);
+-     }
+-     else
+-     {
+-         movies = DB.Movie;
+-     }
+- }
+```
+
+Add an overridden `OnInitialized` Blazor lifecycle method to provide the initial movie list when the component is rendered for the first time:
+
+```csharp
+protected override void OnInitialized()
+{
+    movies = DB.Movie;
+}
+```
+
+Add a delegate event handler (method) that the user can trigger to filter the database records. The method uses the value of the `titleFilter` field to perform the operation. If the user has cleared `titleFilter`, the method loads the entire movie list for display. Add the following method to the `@code` block:
+
+```csharp
+private void FilterMovies()
+{
+    if (!string.IsNullOrEmpty(titleFilter))
+    {
+        movies = DB.Movie.Where(
+            s => !string.IsNullOrEmpty(s.Title) ? 
+                s.Title.Contains(titleFilter) : false);
+    }
+    else
+    {
+        movies = DB.Movie;
+    }
+}
+```
+
+The component won't issue a GET request via an HTML form to trigger the `FilterMovies` method. The component should provide:
+
+* An input element (`<input>`) bound to the `titleFilter` field.
+* A button that triggers the `FilterMovies` method.
+
+Binding is achieved in Blazor with the `@bind` directive attribute, which can bind the value of an element to either a C# field or property.
+
+Event handling is achieved in Blazor by specifying a delegate event handler (method) to the `@onclick` directive attribute.
+
+Remove the HTML form from the component:
+
+```diff
+- <form action="/movies">
+-     <input type="text" name="titleFilter" />
+-     <input type="submit" value="Search" />
+- </form>
+```
+
+In its place, add the following Razor markup:
+
+```razor
+<input @bind="titleFilter" />
+<button @onclick="FilterMovies">Search</button>
+```
+
+The input element *binds* the value of the element to the `titleFilter` field. Selecting the button triggers the `FilterMovies` delegate.
+
+Run the app, type "road warrior" into the search field, and select **Search**:
+
+![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8-interactivity/_static/filtered-to-road-warrior.png)
+
+When the user selects the button, an HTTP request isn't issued. The event is transmitted to the server over the live SignalR connection in the background transparent to the user. The filtering operation is performed on the server, and the server sends back the HTML of the grid over the same SignalR connection transparently. The page doesn't reload.
+
+Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
 ## Next steps
 

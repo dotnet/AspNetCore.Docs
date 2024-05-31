@@ -49,7 +49,9 @@ Start by adding the following `@code` block of C# code to the `Index` component:
     {
         if (!string.IsNullOrEmpty(TitleFilter))
         {
-            movies = DB.Movie.Where(s => !string.IsNullOrEmpty(s.Title) ? s.Title.Contains(TitleFilter) : false);
+            movies = DB.Movie.Where(
+                s => !string.IsNullOrEmpty(s.Title) ? 
+                    s.Title.Contains(TitleFilter) : false);
         }
         else
         {
