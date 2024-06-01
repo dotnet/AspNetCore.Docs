@@ -4,7 +4,7 @@ author: tdykstra
 description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/22/2022
+ms.date: 05/29/2024
 uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
