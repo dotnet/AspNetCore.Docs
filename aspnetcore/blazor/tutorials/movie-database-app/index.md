@@ -18,6 +18,16 @@ uid: blazor/tutorials/movie-database/index
 
 This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
 
+<!-- REVIEWER NOTE
+
+To harden this series for future changes, I'd like to use "part-X"
+UID and file naming. This permits me to make significant changes
+to article content and only be concerned with titles, descriptions, 
+and heading changes ... no renaming of files and no need for repo
+redirects.
+
+-->
+
 Parts of this series include:
 
 1. [Create a Blazor Web App](xref:blazor/tutorials/movie-database/part-1)

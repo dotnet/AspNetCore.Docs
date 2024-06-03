@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 6 - Add search)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains ...
+description: This part of the Blazor movie database app tutorial explains how to add a search feature to filter movies by title.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc

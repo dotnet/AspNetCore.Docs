@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 8 - Add interactivity)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains ...
+description: This part of the Blazor movie database app tutorial explains how to adopt interactive SSR rendering in the app.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -110,7 +110,15 @@ To apply global server-side interactivity to these two components, add `@renderm
 
 Now, every component in the movie database app inherits interactive SSR via the `Routes` component.
 
-To see how making a component interactive enhances the user experience, let's provide two enhancements to the app in the next couple of sections:
+The first enhancement that interactivity yields is automatic client-side validation in the `Create` and `Edit` components via the `Movie` model's data annotations instantly activates.
+
+Run the app and navigate to the `Create` page or to the `Edit` page for a movie.
+
+Provide values that fail validation and see how client-side validation activates. The form can't be submitted to the server with the **Create** or **Save** buttons until the form is valid.
+
+![The letter 'V' is provided as a movie title in the Create page and the user has tabbed to the next control. Validation is triggered on the title field saying that the title must be a string of 3-60 characters in length.](~/blazor/tutorials/movie-database-app/part-8/_static/client-side-validation.png)
+
+To see how making a component interactive enhances the user experience further, let's provide two enhancements to the app in the next couple of sections:
 
 * Make the `QuickGrid` component in the movie `Index` page *sortable*.
 * Replace the HTML form for filtering movies by title text with C# code that runs on the server.
@@ -134,7 +142,7 @@ The component is *interactive*. The page doesn't reload for sorting to occur. Th
 
 ## Use C# code to search by title
 
-In Part 6 of the tutorial series, the `Index` component was modified to allow the user to filter movies by title. This was accomplished by:
+In part 6 of the tutorial series, the `Index` component was modified to allow the user to filter movies by title. This was accomplished by:
 
 * Adding an HTML form that issues a GET request to the server with the user's title search string as a query string field-value pair (for example, `?titleFilter=road+warrior` if the user searches for "`road warrior`"):
 

@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 4 - Work with a database)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains ...
+description: This part of the Blazor movie database app tutorial explains the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -19,11 +19,11 @@ zone_pivot_groups: tooling
 
 This article is the fourth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series focuses on the database, including the EF Core database context and seeding the database.
+This part of the series focuses on the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 
 ## Database context
 
-The `BlazorWebAppMoviesContext` object handles the task of connecting to the database and mapping `Movie` objects to database entities. The database context, which was created in the second part of this series on adding a model, is registered in the `Program` file:
+The database context, `BlazorWebAppMoviesContext`, connects to the database and maps model objects to database records. The database context was created in the second part of this series. The scaffolded context code appears in the `Program` file:
 
 ```csharp
 builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
@@ -35,17 +35,21 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 
 <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> registers the given context as a service in the app's service collection.
 
-<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database.
+<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional database technologies.
 
 <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString%2A> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
 
-For local development, configuration obtains the connection string from the app settings file (`appsettings.json`):
+For local development, configuration obtains the database connection string from the app settings file (`appsettings.json`). The `{CONNECTION STRING}` placeholder in the following example is the connection string:
 
 ```json
 "ConnectionStrings": {
-  "BlazorWebAppMoviesContext": "Server=(localdb)\\mssqllocaldb;Database=BlazorWebAppMoviesContext-56c369bd-6fdf-4730-a32e-e07f106593a3;Trusted_Connection=True;MultipleActiveResultSets=true"
+  "BlazorWebAppMoviesContext": "{CONNECTION STRING}"
 }
 ```
+
+The following is an example connection string:
+
+> :::no-loc text="Server=(localdb)\\mssqllocaldb;Database=BlazorWebAppMoviesContext-c347f669-bddf-56a3-a32e-7fe010306593;Trusted_Connection=True;MultipleActiveResultSets=true":::
 
 When the app is deployed to a test/staging or production server, an environment variable can be used to set the connection string to a test/staging or production database server.
 
@@ -104,9 +108,7 @@ For more information, see the following resources:
 
 ## Seed the database
 
-Create a new class named `SeedData` in the `Data` folder with the following code.
-
-A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the [*Max Max* franchise](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
+Create a new class named `SeedData` in the `Data` folder with the following code:
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -176,6 +178,8 @@ namespace BlazorWebAppMovies.Data
     }
 }
 ```
+
+A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the [*Max Max* franchise](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
 
 To add the seed initializer, add the following code to the `Program` file immediately after the line that builds the app (`var app = builder.Build();`). The [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures that the database context is disposed after the seeding operation completes.
 
@@ -276,7 +280,7 @@ To test the `catch` block:
 
 :::zone-end
 
-Production code may want to detect concurrency conflicts. For more information, see [Handle concurrency conflicts](xref:data/ef-rp/concurrency).
+You may want to detect concurrency conflicts for a production app. For more information, see [Handle concurrency conflicts](xref:data/ef-rp/concurrency).
 
 ## Troubleshoot with the completed sample
 

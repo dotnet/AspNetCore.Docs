@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 2 - Add and scaffold a model)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold 
+description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold the database and UI from the movie class.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -23,7 +23,7 @@ This article is the second part of the Blazor movie database app tutorial that t
 In this part of the series:
 
 * A class is added to the app representing a movie in a database.
-* [Entity Framework Core (EF Core)](/ef/core) services and tooling create and a database context and database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write model classes first, and EF Core creates the database from the model classes, which is called *scaffolding*.
+* [Entity Framework Core (EF Core)](/ef/core) services and tooling create a database context and database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write model classes first, and EF Core creates the database from the model classes, which is called *scaffolding*.
 * Tooling scaffolds a Razor component-based UI for interacting with the movie records in the database via the database context.
 
 ## Add a data model
@@ -70,10 +70,29 @@ public decimal Price { get; set; }
 The `Movie` class contains:
 
 * The `Id` field is required by the database for the primary key.
-* A [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) is used to specify the type of data in the `ReleaseDate` property with the following behaviors: 
-  * The user isn't required to enter time information in the date field.
-  * Only the date is displayed, not time information.
+* A [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) is used to specify the type of data, which is a date, in the `ReleaseDate` property.
 * The question mark after `string` indicates that the property is a [nullable reference type](/dotnet/csharp/nullable-references).
+
+The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by *data annotations*. <xref:System.ComponentModel.DataAnnotations> are a set of attribute classes that define metadata about a model's properties. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
+
+```csharp
+[{ANNOTATION}]
+```
+
+Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
+
+```csharp
+[{ANNOTATION_1}]
+[{ANNOTATION_2}]
+[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
+```
+
+In `Movie` model, the `ReleaseDate` property has a [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) to specify an additional type to associate with `ReleaseDate`. In this case, the type of data is a date (<xref:System.ComponentModel.DataAnnotations.DataType.Date?displayProperty=nameWithType>):
+
+```csharp
+[DataType(DataType.Date)]
+public DateTime ReleaseDate { get; set; }
+```
 
 :::zone pivot="vs"
 
@@ -83,7 +102,7 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (m
 
 :::zone pivot="vsc"
 
-Execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**) to add the required NuGet packages and tools:
+To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**):
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -120,7 +139,7 @@ In the panel below the editor region of the VS Code UI, select the **PROBLEMS** 
 
 :::zone pivot="cli"
 
-Execute the following .NET CLI commands in a command shell to add the required NuGet packages and tools:
+To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder:
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -149,7 +168,7 @@ For guidance on multiple environment configuration that permits an app to config
 > [!NOTE]
 > By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
-In a command shell, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command.
+In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command.
 
 :::zone-end
 
@@ -157,7 +176,7 @@ Verify that the app compiled without errors.
 
 ## Scaffold the model
 
-In this section, the `Movie` model is *scaffolded*. Scaffolding means that a .NET tool produces Razor components for CRUD operations on the `Movie` model.
+In this section, the `Movie` model is *scaffolded* into a database, database context, and a UI for managing movies in the database. .NET scaffolding is a code generation framework for .NET applications. You add scaffolding to your project when you want to quickly add code that interacts with data models. Using scaffolding can reduce the amount of time to develop standard data operations in your project. Scaffolding means that a .NET tool produces Razor components for CRUD operations on the `Movie` model.
 
 :::zone pivot="vs"
 
@@ -200,7 +219,7 @@ dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data
 The template name is one of the following values:
 
 * `create`: Produces a component to create an entity.
-* **`crud`**: Produces create, edit, delete, details, and index components.
+* **`crud`**: Produces create, edit, delete, details, and index components. The `crud` 
 * `delete`: Produces a component to delete an entity.
 * `details`: Produces a component to show the details of an entity.
 * `edit`: Produces a component to edit an entity.
@@ -253,7 +272,7 @@ else
 
 :::zone pivot="cli"
 
-In a command shell opened to the project's root directory, execute the following command:
+In a command shell opened to the project's root folder, execute the following command:
 
 ```dotnetcli
 dotnet aspnet-codegenerator razorcomponent -m Movie -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -udl -outDir Components/Pages --databaseProvider sqlite
@@ -479,8 +498,11 @@ Test the **`Edit`**, **`Details`**, and **`Delete`** links.
 
 ## Additional resources
 
+EF Core documentation:
+
 * [Entity Framework Core](/ef/core/)
-* [Entity Framework Core tools reference - .NET Core CLI (EF Core documentation)](/ef/core/cli/dotnet)
+* [Entity Framework Core tools reference - .NET Core CLI](/ef/core/cli/dotnet)
+* [Data Types](/ef/core/modeling/relational/data-types)
 
 ## Legal
 

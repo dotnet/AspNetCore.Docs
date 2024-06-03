@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 7 - Add a new field)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains ...
+description: This part of the Blazor movie database app tutorial explains how to add a new field to the movie class, CRUD pages, and database.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -117,7 +117,7 @@ Build the app to confirm that there are no errors. In Visual Studio, select **Bu
 
 :::zone pivot="vsc"
 
-Build the app to confirm that there are no errors. In the **Terminal**, execute the following command:
+Build the app to confirm that there are no errors. In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command:
 
 ```dotnetcli
 dotnet build
@@ -127,7 +127,7 @@ dotnet build
 
 :::zone pivot="cli"
 
-Build the app to confirm that there are no errors. In a command shell, execute the following command:
+Build the app to confirm that there are no errors. In a command shell opened to the project's root folder, execute the following command:
 
 ```dotnetcli
 dotnet build
@@ -307,7 +307,7 @@ For more information, see the following resources:
 
 :::zone pivot="cli"
 
-In a command shell, execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
+In a command shell opened to the project's root folder, execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
 
 ```dotnetcli
 dotnet ef migrations AddRatingField
@@ -336,7 +336,7 @@ migrationBuilder.AddColumn<string>(
 
 Save the migration file.
 
-In a command shell, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with a default value:
+Execute the following command to update the database, which preserves the existing data while it adds the movie rating column with a default value:
 
 ```dotnetcli
 dotnet ef database update
@@ -427,7 +427,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 :::zone pivot="vsc"
 
 1. Delete the database. If your database tooling has a connection to the database, close the tooling first or use the tool's features to close the database connection and delete the database. Consult your tool's documentation for guidance. *Make sure that you select the correct database in the list.*
-1. In the **Terminal**, execute the following command to run the existing migrations that recreate the database:
+1. In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to run the existing migrations that recreate the database:
 
    ```dotnetcli
    dotnet ef database update
@@ -438,7 +438,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 :::zone pivot="cli"
 
 1. Delete the database. If your database tooling has a connection to the database, close the tooling first or use the tool's features to close the database connection and delete the database. Consult your tool's documentation for guidance. *Make sure that you select the correct database in the list.*
-1. In a command shell, execute the following command to run the existing migrations that recreate the database:
+1. In a command shell opened to the project's root folder, execute the following command to run the existing migrations that recreate the database:
 
    ```dotnetcli
    dotnet ef database update

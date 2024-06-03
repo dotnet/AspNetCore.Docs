@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains how to create a Blazor Web App with static server-side rendering (static SSR), where components are only rendered on the server.
+description: This part of the Blazor movie database app tutorial explains how to create a Blazor Web App that adopts static server-side rendering (static SSR), where content is only rendered on the server.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -19,18 +19,9 @@ zone_pivot_groups: tooling
 
 This article is the first part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-Before getting started, review the following articles to familiarize yourself with Blazor concepts and definitions:
+This article, the first step of the tutorial series, shows you how to create a Blazor Web App that adopts static server-side rendering (static SSR). Static SSR means that content is rendered on the server and sent to the client for static display. The rendered UI can only receive and post data back to the server for database operations via ordinary HTML form processing. Blazor's built-in event processing support isn't available when adopting static SSR. In the last part of the tutorial series, *interactivity* is adopted, and Blazor's built-in event processing is demonstrated.
 
-* <xref:blazor/index>
-* <xref:blazor/supported-platforms>
-* <xref:blazor/tooling>: Don't follow the instructions in the article to create the app, as this part of the tutorial explains 
-* <xref:blazor/hosting-models>
-
-It isn't necessary to read <xref:blazor/tooling> because this part of the tutorial series covers how to create a Blazor Web App in the tooling of your choice. However, you can access the *Tooling* article for additional information. 
-
-The first step is to create a Blazor Web App with the correct configuration for static server-side rendering (static SSR). Static SSR means that Razor components are rendered on the server and sent to the client for static display. For static SSR, users can't interact with the UI via transparent Blazor event processing over a SignalR connection. Components can only receive and post data back to the server for database record create, read, update, and delete ("CRUD") operations via ordinary HTML form processing. Although UI interactions written in pure JavaScript (JS) still function, Blazor's built-in JS interoperability ("JS interop") support isn't available. The movie database app of this tutorial series doesn't include pure JS to permit user interaction with the UI, and Blazor *interactivity* for event processing over a SignalR connection between the browser and the server isn't instituted until the last part of this tutorial series.
-
-At the end of this tutorial, you'll have a Blazor Web App that manages a database of movies.
+At the end of this tutorial, you'll have an interactive Blazor Web App that manages a database of movies.
 
 ## Prerequisites
 
@@ -117,7 +108,7 @@ For more information, see <xref:blazor/tooling?pivots=linux-macos>.
 
 Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/download/dotnet) installed.
 
-In a command shell:
+In a command shell opened to the project's root folder:
 
 * Change to the directory using the `cd` command to where you want to create the project folder.
 * Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named "`BlazorWebAppMovies`" at the current shell directory location.
@@ -186,7 +177,7 @@ Stop the app from the **Run** menu by selecting **Stop Debugging** or press <kbd
 
 For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [Firefox certificate trust guidance](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
 
-In a command shell opened to the project's folder, execute the [`dotnet run`](/dotnet/core/tools/dotnet-run) command to compile and start the app:
+In a command shell opened to the project's root folder, execute the [`dotnet run`](/dotnet/core/tools/dotnet-run) command to compile and start the app:
 
 ```dotnetcli
 dotnet run

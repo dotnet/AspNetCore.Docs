@@ -1,7 +1,7 @@
 ---
 title: Build a Blazor movie database app (Part 5 - Add validation)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains ...
+description: This part of the Blazor movie database app tutorial explains how metadata (data annotations) of the movie model is used to validate user input in the forms that create and edit movies.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
@@ -18,62 +18,9 @@ uid: blazor/tutorials/movie-database/part-5
 
 This article is the fifth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series covers adding metadata (data annotations) to the `Movie` model to validate user input in the forms that create and edit movies.
+This part of the series explains how metadata of the `Movie` model is used to validate user input in the forms that create and edit movies.
 
-Validation rules are specified on a model class using *data annotations*.
-
-<xref:System.ComponentModel.DataAnnotations> are a broad set of attribute classes that define metadata about a model's properties that are used to implement additional features or functionality. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
-
-```csharp
-[{ANNOTATION}]
-```
-
-Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
-
-```csharp
-[{ANNOTATION_1}]
-[{ANNOTATION_2}]
-[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
-```
-
-<!-- HOLD ... because I think DataType no-ops in Blazor.
-     Also, I'm not sure if remark on cultureinfo is correct.
-
-Open the app's `Movie` model (`Models/Movie.cs`) and inspect the `ReleaseDate` property:
-
-```csharp
-[DataType(DataType.Date)]
-public DateTime ReleaseDate { get; set; }
-```
-
-The [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) specifies the name of an additional type to associate with `ReleaseDate`. In this case, the type of data is a date (<xref:System.ComponentModel.DataAnnotations.DataType.Date?displayProperty=nameWithType>). By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
-
-For more information, see [Data Types](/ef/core/modeling/relational/data-types).
--->
-
-<!-- HOLD for a later version of the tutorial
-     when QuickGrid has display name support
-     Dan's issue: https://github.com/dotnet/aspnetcore/issues/49147
-
-Add the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute to the `ReleaseDate` property with a <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name> to present the name of the property as `Release Date`, which includes a space. You have a choice on placing attributes on separate lines or on the same line. Select one of the approaches and use it consistently throughout the app. The following examples place attributes in alphabetical order.
-
-* Place attributes on separate lines:
-
-  ```csharp
-  [DataType(DataType.Date)]
-  [Display(Name = "Release Date")]
-  public DateTime ReleaseDate { get; set; }
-  ```
-  
-* Place attributes on the same line separated by commas:
-
-  ```csharp
-  [DataType(DataType.Date), Display(Name = "Release Date")]
-  public DateTime ReleaseDate { get; set; }
-  ```
--->
-
-The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
+Validation rules are specified on a model class using *data annotations*. The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
 
 <!-- 
      I'm concerned about telling readers that they can just look at 
@@ -108,6 +55,23 @@ Add the following data annotations to the `Movie` class properties. To update al
   public decimal Price { get; set; }
 ```
 
+<!-- HOLD for a later version of the tutorial
+     when QuickGrid has display name support
+     Dan's issue: https://github.com/dotnet/aspnetcore/issues/49147
+
+     Add to the diff:
+
+     - [DataType(DataType.Date)]
+     + [DataType(DataType.Date), Display(Name = "Release Date")]
+     public DateTime ReleaseDate { get; set; }
+
+     And the following text:
+     
+     The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) with a <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name> is used to present the name of the property as `Release Date`, which includes a space.
+
+     Update the following example to include the added attribute.
+-->
+
 `Models/Movie.cs` file after updates:
 
 ```csharp
@@ -134,9 +98,9 @@ namespace BlazorWebAppMovies.Models
 }
 ```
 
-The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only two characters, doesn't allow additional special characters in `Genre`, and requires that movies cost at least 1 full unit of a particular currency, such as one dollar, euro, or yen.
+The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters, doesn't allow additional special characters in `Genre`, and requires that movies cost at least 1 full unit of a particular currency, such as one dollar, euro, or yen.
 
-Because the app only processes validation server-side, submitting the form with errors posts the form to the server without any client-side indication that there are errors in the user's entries.
+Because the app only processes validation server-side, submitting the form with errors posts the form to the server without any client-side indication that there are errors in the user's form fields. After the app is made *interactive* in the last part of the tutorial series, client-side validation is instantly activated without adding or modifying code.
 
 ## Apply migrations
 
@@ -154,7 +118,7 @@ public string? Title { get; set; }
 The difference between the model property and the database's schema are summarized in the following table. Neither constraint matches after the data annotation is applied to the `Movie` model.
 
 Constraint | Model `Title` property | Database `Title` column
-::: | ::: | :::
+--- | --- | ---
 Maximum length | 60 characters | Byte pairs up to ~2 GB&dagger;<br>[`NVARCHAR (MAX)`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql)
 Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>[`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span><br>`NULL` is permitted in the column.
 
@@ -186,13 +150,13 @@ Update-Database
 
 :::zone pivot="vsc"
 
-Use the following command in the **Terminal** (**Terminal** menu > **New Terminal**) to add a migration for the new Data Annotations:
+Use the following command in the **Terminal** (**Terminal** menu > **New Terminal**) to add a migration for the new data annotations:
 
 ```dotnetcli
 dotnet ef migrations add NewMovieDataAnnotations
 ```
 
-To apply the migration to the database, execute the following command in a command shell:
+To apply the migration to the database, execute the following command:
 
 ```dotnetcli
 dotnet ef database update
@@ -202,13 +166,13 @@ dotnet ef database update
 
 :::zone pivot="cli"
 
-Use the following command in a command shell to add a migration for the new Data Annotations:
+To add a migration for the new data annotations, execute the following command in a command shell opened to the project's root folder:
 
 ```dotnetcli
 dotnet ef migrations add NewMovieDataAnnotations
 ```
 
-To apply the migration to the database, execute the following command in a command shell:
+To apply the migration to the database, execute the following command:
 
 ```dotnetcli
 dotnet ef database update
@@ -219,7 +183,7 @@ dotnet ef database update
 After applying the migration, the model property and the database's schema match, as summarized in the following table.
 
 Constraint | Model `Title` property | Database `Title` column
-::: | ::: | :::
+--- | --- | ---
 Maximum length | 60 characters | Sixty (60) byte pairs are permitted&dagger;.<br>[`NVARCHAR (60)`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql)
 Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>[`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>`NOT NULL` is indicated for the column.
 
