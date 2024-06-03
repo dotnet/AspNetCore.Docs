@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/database
+uid: blazor/tutorials/movie-database/part-4
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 4 - Work with a database)
@@ -23,7 +23,7 @@ This part of the series focuses on the database, including the EF Core database 
 
 ## Database context
 
-The `BlazorWebAppMoviesContext` object handles the task of connecting to the database and mapping `Movie` objects to database entities. The database context is registered in the `Program` file:
+The `BlazorWebAppMoviesContext` object handles the task of connecting to the database and mapping `Movie` objects to database entities. The database context, which was created in the second part of this series on adding a model, is registered in the `Program` file:
 
 ```csharp
 builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
@@ -33,7 +33,11 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
          "Connection string 'BlazorWebAppMoviesContext' not found.")));
 ```
 
-The ASP.NET Core Configuration system reads the `ConnectionStrings` key for the connection string name passed to <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString%2A>.
+<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> registers the given context as a service in the app's service collection.
+
+<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database.
+
+<xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString%2A> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
 
 For local development, configuration obtains the connection string from the app settings file (`appsettings.json`):
 
@@ -55,21 +59,21 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-![View menu](~/blazor/tutorials/movie-database-app/part-4-database/_static/view-ssox.png)
+![View menu](~/blazor/tutorials/movie-database-app/part-4/_static/view-ssox.png)
 
 Right-click on the `Movie` table and select **View Designer**:
 
-![Contextual menus to open the Movie table in Solution Explorer (SSOX)](~/blazor/tutorials/movie-database-app/part-4-database/_static/view-designer.png)
+![Contextual menus to open the Movie table in Solution Explorer (SSOX)](~/blazor/tutorials/movie-database-app/part-4/_static/view-designer.png)
 
-![Movie table open in the table designer](~/blazor/tutorials/movie-database-app/part-4-database/_static/movie-table.png)
+![Movie table open in the table designer](~/blazor/tutorials/movie-database-app/part-4/_static/movie-table.png)
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 Right-click on the `Movie` table and select **View Data**:
 
-![Contextual menus to open the Movie table data in Solution Explorer (SSOX)](~/blazor/tutorials/movie-database-app/part-4-database/_static/view-data.png)
+![Contextual menus to open the Movie table data in Solution Explorer (SSOX)](~/blazor/tutorials/movie-database-app/part-4/_static/view-data.png)
 
-![Movie table open showing table data](~/blazor/tutorials/movie-database-app/part-4-database/_static/movie-data.png)
+![Movie table open showing table data](~/blazor/tutorials/movie-database-app/part-4/_static/movie-data.png)
 
 ### SQLite
 
@@ -77,7 +81,7 @@ Right-click on the `Movie` table and select **View Data**:
 
 There are many third-party tools you can download to manage and view a SQLite database. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
 
-![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4-database/_static/dbb.png)
+![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4/_static/dbb.png)
 
 In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
 
@@ -190,7 +194,7 @@ Stop and restart the app to seed the database.
 
 Navigate to the movies `Index` page:
 
-![Movies Index page showing Mad Max movie list after seeding the database](~/blazor/tutorials/movie-database-app/part-4-database/_static/index-page.png)
+![Movies Index page showing Mad Max movie list after seeding the database](~/blazor/tutorials/movie-database-app/part-4/_static/index-page.png)
 
 ## Binding a form to a model
 
@@ -293,5 +297,5 @@ Configuration articles:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database/components)
-> [Next: Add Validation](xref:blazor/tutorials/movie-database/validation)
+> [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database/part-3)
+> [Next: Add Validation](xref:blazor/tutorials/movie-database/part-5)

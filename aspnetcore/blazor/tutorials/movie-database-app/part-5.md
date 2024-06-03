@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/validation
+uid: blazor/tutorials/movie-database/part-5
 ---
 # Build a Blazor movie database app (Part 5 - Add validation)
 
@@ -186,7 +186,7 @@ Update-Database
 
 :::zone pivot="vsc"
 
-Use the following command in the **Terminal** (opened with **New Terminal** from the **Terminal** menu if not onscreen) to add a migration for the new Data Annotations:
+Use the following command in the **Terminal** (**Terminal** menu > **New Terminal**) to add a migration for the new Data Annotations:
 
 ```dotnetcli
 dotnet ef migrations add NewMovieDataAnnotations
@@ -241,5 +241,5 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Work with a database](xref:blazor/tutorials/movie-database/database)
-> [Next: Add search](xref:blazor/tutorials/movie-database/search)
+> [Previous: Work with a database](xref:blazor/tutorials/movie-database/part-4)
+> [Next: Add search](xref:blazor/tutorials/movie-database/part-6)

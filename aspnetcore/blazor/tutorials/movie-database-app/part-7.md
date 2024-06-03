@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/29/2024
-uid: blazor/tutorials/movie-database/new-field
+uid: blazor/tutorials/movie-database/part-7
 ---
 # Build a Blazor movie database app (Part 7 - Add a new field)
 
@@ -209,7 +209,7 @@ Modify the one movie that isn't rated *R*:
 
 :::zone pivot="vsc"
 
-In the **Terminal** (opened with **New Terminal** from the **Terminal** menu if not onscreen), execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
+In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
 
 ```dotnetcli
 dotnet ef migrations AddRatingField
@@ -462,5 +462,5 @@ In the event that the database becomes corrupted, delete the database and use mi
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add Search](xref:blazor/tutorials/movie-database/search)
-> [Next: Add interactivity](xref:blazor/tutorials/movie-database/interactivity)
+> [Previous: Add Search](xref:blazor/tutorials/movie-database/part-6)
+> [Next: Add interactivity](xref:blazor/tutorials/movie-database/part-8)

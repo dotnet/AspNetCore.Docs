@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/28/2024
-uid: blazor/tutorials/movie-database/search
+uid: blazor/tutorials/movie-database/part-6
 ---
 # Build a Blazor movie database app (Part 6 - Add search)
 
@@ -86,11 +86,11 @@ The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> meth
 
 Run the app and navigate to the movies `Index` page at `/movies`. The movies in the database load:
 
-![Mad Max movies before filtering in the movies Index page](~/blazor/tutorials/movie-database-app/part-6-search/_static/before-filtering.png)
+![Mad Max movies before filtering in the movies Index page](~/blazor/tutorials/movie-database-app/part-6/_static/before-filtering.png)
 
 Append a query string to the URL in the address bar: `?titleSearch=road+warrior`. For example, the full URL appears as `https://localhost:5001/movies?titleSearch=road+warrior`, assuming the port number is `5001`. The filtered movie is displayed:
 
-![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6-search/_static/query-string-filter-result.png)
+![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
 
 Next, give users a way to provide the `titleSearch` filter string via the component's UI. Add the following HTML under the H1 heading (`<h1>Index</h1>`). The following HTML reloads the page with the contents of the textbox as a query string value:
 
@@ -105,11 +105,11 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 
 Run the app again and type `road warrior` into the textbox:
 
-![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6-search/_static/before-filtering.png)
+![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/before-filtering.png)
 
 Select the **Search** button to filter the movies:
 
-![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6-search/_static/query-string-filter-result.png)
+![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
 
 ## Troubleshoot with the completed sample
 
@@ -132,5 +132,5 @@ Select the **Search** button to filter the movies:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database/validation)
-> [Next: Add a new field](xref:blazor/tutorials/movie-database/new-field)
+> [Previous: Add validation](xref:blazor/tutorials/movie-database/part-5)
+> [Next: Add a new field](xref:blazor/tutorials/movie-database/part-7)

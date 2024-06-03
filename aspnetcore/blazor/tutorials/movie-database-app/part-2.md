@@ -1,16 +1,16 @@
 ---
-title: Build a Blazor movie database app (Part 2 - Add a model)
+title: Build a Blazor movie database app (Part 2 - Add and scaffold a model)
 author: guardrex
-description: This part of the Blazor movie database app tutorial explains ...
+description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2024
 ms.custom: mvc
-uid: blazor/tutorials/movie-database/model
+uid: blazor/tutorials/movie-database/part-2
 zone_pivot_groups: tooling
 ---
-# Build a Blazor movie database app (Part 2 - Add a model)
+# Build a Blazor movie database app (Part 2 - Add and scaffold a model)
 
 <!-- UPDATE 9.0 Activate after release
 
@@ -20,7 +20,11 @@ zone_pivot_groups: tooling
 
 This article is the second part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-In this part of the series, classes are added for managing movies in a database. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write the model classes first, and EF Core creates the database.
+In this part of the series:
+
+* A class is added to the app representing a movie in a database.
+* [Entity Framework Core (EF Core)](/ef/core) services and tooling create and a database context and database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write model classes first, and EF Core creates the database from the model classes, which is called *scaffolding*.
+* Tooling scaffolds a Razor component-based UI for interacting with the movie records in the database via the database context.
 
 ## Add a data model
 
@@ -79,7 +83,7 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (m
 
 :::zone pivot="vsc"
 
-Execute the following .NET CLI commands in the integrated terminal to add NuGet packages and EF tools:
+Execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**) to add the required NuGet packages and tools:
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -116,7 +120,7 @@ In the panel below the editor region of the VS Code UI, select the **PROBLEMS** 
 
 :::zone pivot="cli"
 
-Execute the following .NET CLI commands in in a command shell to add NuGet packages and EF Core tools:
+Execute the following .NET CLI commands in a command shell to add the required NuGet packages and tools:
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -159,11 +163,11 @@ In this section, the `Movie` model is *scaffolded*. Scaffolding means that a .NE
 
 Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**.
 
-![New Scaffolded Item](~/blazor/tutorials/movie-database-app/part-2-model/_static/new-scaffolded-item.png)
+![New Scaffolded Item](~/blazor/tutorials/movie-database-app/part-2/_static/new-scaffolded-item.png)
 
 In the **Add New Scaffold** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)** > **Add**.
 
-![Scaffold item](~/blazor/tutorials/movie-database-app/part-2-model/_static/install-common-razor-component.png)
+![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/install-common-razor-component.png)
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
@@ -173,7 +177,7 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 * After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. Use the default selected value.
 * Select **Add**.
 
-![Add Razor Pages](~/blazor/tutorials/movie-database-app/part-2-model/_static/add-razor-components-using-ef-crud.png)
+![Add Razor Pages](~/blazor/tutorials/movie-database-app/part-2/_static/add-razor-components-using-ef-crud.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database. In the following example, the `{CONNECTION STRING}` is the connection string generated automatically by the scaffolder:
 
@@ -187,10 +191,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 :::zone pivot="vsc"
 
-In the integrated terminal opened to the project's root directory, execute the following command:
-
-<!-- NOTE: Need to check here if using the 'Pages' directory
-           results in an auto-generated 'MoviePages' folder. -->
+In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command:
 
 ```dotnetcli
 dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
@@ -226,7 +227,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 When SQLite is selected, the template-generated code is ready for development, and this tutorial is based on locally running the app.
 
-If the code is for deployment to a server running SQL Server while you're working on the tutorial, the following code shows how to select the SQLite connection string in the Development environment and SQL Server in other environments, such as Staging and Production. You don't need to use the following code in the `Program` file if you merely intend to run the app locally on SQLite during the tutorial. The code is presented only for developers who are deploying the `BlazorWebAppMovies` app to a server running SQL Server.
+If the code is for deployment to a server running SQL Server while you're working on the tutorial, the following code shows how to select the SQLite connection string in the Development environment and SQL Server in other environments, such as Staging and Production. You don't need to use the following code in the `Program` file if you merely intend to run the app locally on SQLite while working through this tutorial. The code is presented only for developers who are deploying the `BlazorWebAppMovies` app to a server running SQL Server.
 
 In the `Program` file after the <xref:Microsoft.AspNetCore.Builder.WebApplication> is created and assigned to `builder`:
 
@@ -254,9 +255,6 @@ else
 
 In a command shell opened to the project's root directory, execute the following command:
 
-<!-- NOTE: Need to check here if using the 'Pages' directory
-           results in an auto-generated 'MoviePages' folder. -->
-
 ```dotnetcli
 dotnet aspnet-codegenerator razorcomponent -m Movie -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -udl -outDir Components/Pages --databaseProvider sqlite
 ```
@@ -280,7 +278,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 When SQLite is selected, the template-generated code is ready for development, and this tutorial is based on locally running the app.
 
-If the code is for deployment to a server running SQL Server while you're working on the tutorial, the following code shows how to select the SQLite connection string in the Development environment and SQL Server in other environments, such as Staging and Production. You don't need to use the following code in the `Program` file if you merely intend to run the app locally on SQLite during the tutorial. The code is presented only for developers who are deploying the `BlazorWebAppMovies` app to a server running SQL Server.
+If the code is for deployment to a server running SQL Server while you're working on the tutorial, the following code shows how to select the SQLite connection string in the Development environment and SQL Server in other environments, such as Staging and Production. You don't need to use the following code in the `Program` file if you merely intend to run the app locally on SQLite while working through this tutorial. The code is presented only for developers who are deploying the `BlazorWebAppMovies` app to a server running SQL Server.
 
 In the `Program` file after the <xref:Microsoft.AspNetCore.Builder.WebApplication> is created and assigned to `builder`:
 
@@ -464,11 +462,11 @@ After the `Index` page loads, select the **`Create New`** link.
 
 Add a movie to the database. In the following example, the classic sci-fi movie [*The Matrix*](https://www.warnerbros.com/movies/matrix) (&copy;1999 [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/)) is added as the first movie entry. Selecting the **`Create`** button adds the movie to the database:
 
-![Adding The Matrix movie to the database with the 'Create' component](~/blazor/tutorials/movie-database-app/part-2-model/_static/create-new.png)
+![Adding The Matrix movie to the database with the 'Create' component](~/blazor/tutorials/movie-database-app/part-2/_static/create-new.png)
 
 When the app returns to the `Index` page, the added entity appears:
 
-![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2-model/_static/movie-added.png)
+![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
 
 > [!NOTE]
 > For globalization instructions, see [Show support jQuery validation for non-English locales that use a comma (",") for a decimal point (`dotnet/AspNetCore.Docs` #4076)](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -491,5 +489,5 @@ Test the **`Edit`**, **`Details`**, and **`Delete`** links.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Create a Blazor Web App](xref:blazor/tutorials/movie-database/app)
-> [Next: Learn about Razor components](xref:blazor/tutorials/movie-database/components)
+> [Previous: Create a Blazor Web App](xref:blazor/tutorials/movie-database/part-1)
+> [Next: Learn about Razor components](xref:blazor/tutorials/movie-database/part-3)

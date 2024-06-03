@@ -6,9 +6,9 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/interactivity
+uid: blazor/tutorials/movie-database/part-8
 ---
-# Build a Blazor movie database app (Part 9 - Add interactivity)
+# Build a Blazor movie database app (Part 8 - Add interactivity)
 
 <!-- UPDATE 9.0 Activate after release
 
@@ -254,7 +254,7 @@ The input element *binds* the value of the element to the `titleFilter` field. S
 
 Run the app, type "road warrior" into the search field, and select **Search**:
 
-![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8-interactivity/_static/filtered-to-road-warrior.png)
+![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
 When the user selects the button, an HTTP request isn't issued. The event is transmitted to the server over the live SignalR connection in the background transparent to the user. The filtering operation is performed on the server, and the server sends back the HTML of the grid over the same SignalR connection transparently. The page doesn't reload.
 
@@ -283,4 +283,4 @@ Articles are laid out in the table of contents (TOC) by subject matter in roughl
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database/validation)
+> [Previous: Add validation](xref:blazor/tutorials/movie-database/part-7)

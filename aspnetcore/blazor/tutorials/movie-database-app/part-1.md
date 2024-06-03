@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/app
+uid: blazor/tutorials/movie-database/part-1
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
@@ -334,4 +334,4 @@ app.Run();
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Add a model](xref:blazor/tutorials/movie-database/model)
+> [Next: Add and scaffold a model](xref:blazor/tutorials/movie-database/part-2)
