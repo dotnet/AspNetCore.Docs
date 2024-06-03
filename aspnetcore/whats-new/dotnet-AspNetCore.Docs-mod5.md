@@ -168,7 +168,6 @@ Welcome to what's new in the ASP.NET Core docs for May 2024. This article lists 
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![25 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-25-green)
 - [martincostello](https://github.com/martincostello) - Martin Costello ![3 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
 - [hakenr](https://github.com/hakenr) - Robert Haken ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [joegoldman2](https://github.com/joegoldman2) -  ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
