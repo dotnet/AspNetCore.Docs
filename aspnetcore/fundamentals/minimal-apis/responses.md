@@ -216,7 +216,7 @@ The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Ht
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_11":::
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
+
 ## Configure JSON serialization options
 
 By default, minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
