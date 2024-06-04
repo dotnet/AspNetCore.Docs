@@ -143,10 +143,6 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-nginx>.
 
-### Apache with Kestrel
-
-For information on how to use Apache on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-apache>.
-
 ## HTTP.sys
 
 If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel. For more information, see <xref:fundamentals/servers/httpsys>.
@@ -275,5 +271,4 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:fundamentals/servers/httpsys>

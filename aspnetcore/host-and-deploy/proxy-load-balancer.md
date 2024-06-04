@@ -85,7 +85,7 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 ## Apache configuration
 
-`X-Forwarded-For` is added automatically. For more information, see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers). For information on how to forward the `X-Forwarded-Proto` header, see <xref:host-and-deploy/linux-apache#configure-apache>.
+`X-Forwarded-For` is added automatically. For more information, see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers).
 
 ## Forwarded Headers Middleware options
 
@@ -314,7 +314,7 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 ## Apache configuration
 
-`X-Forwarded-For` is added automatically (see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers)). For information on how to forward the `X-Forwarded-Proto` header, see <xref:host-and-deploy/linux-apache#configure-apache>.
+`X-Forwarded-For` is added automatically (see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers)).
 
 ## Forwarded Headers Middleware options
 

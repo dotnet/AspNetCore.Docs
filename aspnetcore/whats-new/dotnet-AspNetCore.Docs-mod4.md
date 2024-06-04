@@ -92,7 +92,6 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 ### Updated articles
 
 - <xref:host-and-deploy/proxy-load-balancer> - Fix documentation about how X-Original-* headers are populated
-- <xref:host-and-deploy/linux-apache> - Adding CentOS EOL caution
 
 ## Mobile development
 

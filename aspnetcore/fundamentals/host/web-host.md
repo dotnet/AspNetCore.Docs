@@ -760,7 +760,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
@@ -1517,7 +1516,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
@@ -2274,7 +2272,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
