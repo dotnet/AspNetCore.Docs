@@ -100,7 +100,7 @@ namespace BlazorWebAppMovies.Models
 
 The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters, doesn't allow additional special characters in `Genre`, and requires that movies cost at least 1 full unit of a particular currency, such as one dollar, euro, or yen.
 
-Because the app only processes validation server-side, submitting the form with errors posts the form to the server without any client-side indication that there are errors in the user's form fields. After the app is made *interactive* in the last part of the tutorial series, client-side validation is instantly activated without adding or modifying code.
+Because the app only processes validation server-side after the form is posted, validation requires a full page reload. After the app is made *interactive* in the last part of the tutorial series, server-side validation doesn't require a full-page reload. Interactive SSR validation provides instant feedback on the client when a field has invalid data over a SignalR connection between the server and the client. This subject is discussed further in the last part of the series.
 
 ## Apply migrations
 
@@ -129,6 +129,15 @@ To match the `Movie` model's `Title` property length in the app, the database sh
 Although the `Title` property is a [nullable reference type (NRT)](/dotnet/csharp/nullable-references#nullable-variable-annotations), as indicated by the `?` on the `string` type (`string?`), the database shouldn't store a `NULL` value in its `Title` column due to the model's `Required` constraint. When the database's schema is updated in the next step, the database's `Title` column should reflect `NOT NULL` for the `Title` column to match the property. The important concept is that just because a model property is an NRT and can hold a `null` value in code doesn't mean that the database column's schema should be nullable (`NULL` permitted). These are independent conditions used for different purposes: NRTs are used to prevent coding errors with nullable types, while the database schema reflects exactly the type and size of stored data.
 
 To align the model and the database schema, create and apply an EF Core *database migration* with a migration name that identifies the migration changes. The migration name is similar to a commit message in a version control system. In the following command examples, the migration name "`NewMovieDataAnnotations`" reflects that new data annotations are added to the `Movie` model.
+
+> [!IMPORTANT]
+> Make sure that the app isn't running for the next steps.
+>
+> Stopping the app when using Visual Studio only requires you to close the browser's window.
+>
+> When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+>
+> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 :::zone pivot="vs"
 

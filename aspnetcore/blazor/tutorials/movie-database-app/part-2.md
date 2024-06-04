@@ -102,6 +102,8 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (m
 
 :::zone pivot="vsc"
 
+Confirm that the app isn't running. If the app is running, stop the app from the **Run** menu by selecting **Stop Debugging** or press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. Close any open browser windows that display the app.
+
 To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
 
 <!-- REVIEWER NOTE
@@ -166,13 +168,19 @@ For guidance on multiple environment configuration that permits an app to config
 > [!NOTE]
 > By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
-Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without the debugger.
+In the **Terminal**, build the app:
+
+```powershell
+dotnet build
+```
 
 In the panel below the editor region of the VS Code UI, select the **PROBLEMS** tab. The panel isn't in view, select **View** > **Problems** from the menu bar or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> (macOS) on the keyboard.
 
 :::zone-end
 
 :::zone pivot="cli"
+
+Confirm that the app isn't running. If the app is running, stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Close any open browser windows that display the app.
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
 
@@ -205,7 +213,11 @@ For guidance on multiple environment configuration that permits an app to config
 > [!NOTE]
 > By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
-In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command.
+In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
+
+```dotnetcli
+dotnet build
+```
 
 :::zone-end
 
@@ -538,6 +550,39 @@ When the app returns to the `Index` page, the added entity appears:
 > For globalization instructions, see [Show support jQuery validation for non-English locales that use a comma (",") for a decimal point (`dotnet/AspNetCore.Docs` #4076)](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 Test the **`Edit`**, **`Details`**, and **`Delete`** links.
+
+## Stop the app
+
+:::zone pivot="vs"
+
+Stop the app using either of the following approaches:
+
+* Close the browser window.
+* In Visual Studio:
+  * Use the Stop button in Visual Studio's toolbar.
+  * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Stop the app using the following approach:
+
+1. Close the browser window.
+1. In Visual Studio Code:
+   * From the **Run** menu, select **Stop Debugging**.
+   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Stop the app using the following approach:
+
+1. Close the browser window.
+2. From the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+
+:::zone-end
 
 ## Troubleshoot with the completed sample
 

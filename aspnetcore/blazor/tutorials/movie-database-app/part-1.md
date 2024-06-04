@@ -149,8 +149,6 @@ Visual Studio:
 
 Navigate to the pages of the app to confirm that the app is working normally.
 
-Close the browser window.
-
 :::zone-end
 
 :::zone pivot="vsc"
@@ -159,17 +157,11 @@ For information on trusting the HTTPS certificate for browsers other than Firefo
 
 In VS Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
-
-![Select environment dialog](~/blazor/tutorials/movie-database-app/part-1-app/_static/vsc-select-debugger.png)
+At the **Select debugger** prompt, select **C#**. On the next prompt, select the HTTPS profile (`C#: BlazorWebAppMovies [https]`).
 
 The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created.
 
 Navigate to the pages of the app to confirm that the app is working normally.
-
-Close the browser window.
-
-Stop the app from the **Run** menu by selecting **Stop Debugging** or press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
 :::zone-end
 
@@ -186,13 +178,60 @@ dotnet run
 > [!NOTE]
 > In the app's launch settings file (`Properties/launchSettings.json`), the `http` profile precedes the `https` profile. When an app is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with HTTPS without having to pass the [`-lp https`|`--launch-profile https` option](/dotnet/core/tools/dotnet-run#options) to the `dotnet run` command, simply move the `https` profile above the `http` profile in the file.
 
-The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created.
+The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. You can find both the secure (HTTPS) and insecure (HTTP) localhost addresses for running the app locally in the app's `Properties/launchSettings.json` file.
 
 Navigate to the pages of the app to confirm that the app is working normally.
 
-Close the browser window.
+:::zone-end
 
-Stop the app from the **Run** menu by selecting **Stop Debugging** or press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+<!-- REVIEWER NOTE
+
+I don't assume devs understand their tooling for stopping
+an app or that a running app interferes with commands that 
+must be issued along the way while working on the app, so 
+there are explicit stop instructions at several points 
+throughout the series on stopping a running app before
+continuing.
+
+Part 1 and Part 2 have the following extended coverage. 
+Parts 4-6 have an abbreviated version of this guidance 
+in the form of a multiline NOTE. One of the NOTEs (Part 6)
+explains how to rerun an app. Part 7 uses a one-line stop
+app NOTE. The last article assumes that they know how to 
+stop an app.
+
+-->
+
+## Stop the app
+
+:::zone pivot="vs"
+
+Stop the app using either of the following approaches:
+
+* Close the browser window.
+* In Visual Studio:
+  * Use the Stop button in Visual Studio's toolbar.
+  * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Stop the app using the following approach:
+
+1. Close the browser window.
+1. In Visual Studio Code:
+   * From the **Run** menu, select **Stop Debugging**.
+   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Stop the app using the following approach:
+
+1. Close the browser window.
+2. From the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 :::zone-end
 

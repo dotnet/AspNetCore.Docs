@@ -196,6 +196,13 @@ Run the app and delete any entities that you created in the database.
 
 Stop and restart the app to seed the database.
 
+> [!IMPORTANT]
+> Stopping the app when using Visual Studio only requires you to close the browser's window.
+>
+> When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+>
+> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+
 Navigate to the movies `Index` page:
 
 ![Movies Index page showing Mad Max movie list after seeding the database](~/blazor/tutorials/movie-database-app/part-4/_static/index-page.png)
@@ -281,6 +288,13 @@ To test the `catch` block:
 :::zone-end
 
 You may want to detect concurrency conflicts for a production app. For more information, see [Handle concurrency conflicts](xref:data/ef-rp/concurrency).
+
+> [!IMPORTANT]
+> Stopping the app when using Visual Studio only requires you to close the browser's window.
+>
+> When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+>
+> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 ## Troubleshoot with the completed sample
 

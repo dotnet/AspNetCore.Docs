@@ -20,7 +20,10 @@ This article is the seventh part of the Blazor movie database app tutorial that 
 
 This part of the series covers adding a new field to the movie class, CRUD pages, and database.
 
-The database update is handled by EF Core code-first migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't in sync with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
+The database update is handled by EF Core migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't in sync with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
+
+> [!IMPORTANT]
+> Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 ## Add a movie rating to the app's model
 
@@ -365,7 +368,7 @@ Modify the one movie that isn't rated *R*:
 
 **Skip this section if you successfully migrated the database using the preceding guidance.**
 
-In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
+In this tutorial, EF Core migrations are used. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
 
 The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
 
@@ -381,6 +384,8 @@ For more information, see the following resources:
   * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
   * [Data seeding](/ef/core/modeling/data-seeding)
 * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
+
+1. Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 1. Delete the migration folder. This effectively removes all of the existing migrations, which shouldn't be executed again.
 

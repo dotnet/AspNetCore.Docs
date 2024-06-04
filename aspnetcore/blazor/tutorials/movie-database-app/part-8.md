@@ -114,13 +114,13 @@ To apply global server-side interactivity to these two components, add `@renderm
 
 Now, every component in the movie database app inherits interactive SSR via the `Routes` component.
 
-The first enhancement that interactivity yields is automatic client-side validation in the `Create` and `Edit` components via the `Movie` model's data annotations.
+The first enhancement that interactivity yields is validation in the `Create` and `Edit` components without requiring a full-page reload.
 
 Run the app and navigate to the `Create` page or to the `Edit` page for a movie.
 
-Provide values that fail validation and see how client-side validation activates. The form can't be submitted to the server with the **Create** or **Save** buttons until the form is valid.
+Provide values that fail validation and see how server-side validation executes without submitting the form and reloading the page. In fact, the form can't be submitted to the server with the **Create** or **Save** buttons until the form is valid.
 
-![The letter 'V' is provided as a movie title in the Create page and the user has tabbed to the next control. Validation is triggered on the title field saying that the title must be a string of 3-60 characters in length.](~/blazor/tutorials/movie-database-app/part-8/_static/client-side-validation.png)
+![The letter 'V' is provided as a movie title in the Create page and the user has tabbed to the next control. Validation is triggered on the title field saying that the title must be a string of 3-60 characters in length.](~/blazor/tutorials/movie-database-app/part-8/_static/validation-without-reload.png)
 
 To see how making a component interactive enhances the user experience further, let's provide two enhancements to the app in the next couple of sections:
 
@@ -182,9 +182,9 @@ In an earlier part of the tutorial series, the `Index` component was modified to
 
 The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content without a full page reload.
 
-Now, the component is interactive, so it can provide an improved user experience by adopting Blazor features for binding and event handling.
+Now, the component is interactive. The component can provide an improved user experience with Blazor features for binding and event handling, where full-page reloads aren't required to run C# on the server that interacts with the page's elements.
 
-Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value directly to a C# field or property. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
+Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value to a C# field or property transparently over the underlying SignalR connection. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
 
 ```diff
 - [SupplyParameterFromQuery]
@@ -268,7 +268,7 @@ Run the app, type "road warrior" into the search field, and select the **Search*
 
 ![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
-When the user selects the button, an HTTP request isn't issued. The event is transmitted to the server over the live SignalR connection in the background transparent to the user. The filtering operation is performed on the server, and the server transparently sends back the HTML of the grid over the same SignalR connection. The page doesn't reload.
+When the user selects the button, an HTTP request isn't issued. The event is transparently transmitted to the server over the live SignalR connection in the background. The filtering operation is performed on the server, and the server transparently sends back the HTML of the grid over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
