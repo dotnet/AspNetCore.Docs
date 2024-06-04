@@ -49,9 +49,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 - <xref:blazor/debug> - Add Debugger support section
 - <xref:blazor/components/dynamiccomponent> - [Blazor] DynamicComponents - fixes samples vulnerability + related adjustments
 - <xref:blazor/host-and-deploy/webassembly>
-  - Address CentOS EOL in Blazor
   - Blazor WASM build tools + AOT article
-  - Adding CentOS EOL caution
   - WASM runtime max heap size
 - <xref:blazor/host-and-deploy/server>
   - Improve IIS crosslinking and additional deployment updates
