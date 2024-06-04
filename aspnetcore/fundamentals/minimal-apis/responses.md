@@ -30,6 +30,8 @@ Consider the following route handler, which returns a `Hello world` text.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_01":::
 
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" :::
+
 The `200` status code is returned with `text/plain` Content-Type header and the following content.
 
 ```text
