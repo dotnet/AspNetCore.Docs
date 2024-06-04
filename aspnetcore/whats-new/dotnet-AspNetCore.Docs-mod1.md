@@ -132,7 +132,6 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 
 ### Updated articles
 
-- <xref:host-and-deploy/linux-apache> - Update linux-apache.md
 - <xref:host-and-deploy/azure-apps/index> - Update doc author note
 - <xref:host-and-deploy/health-checks>
   - DelegateHealthCheck /8

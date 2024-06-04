@@ -681,7 +681,6 @@ In some cases, group policy may prevent self-signed certificates from being trus
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * <xref:fundamentals/servers/kestrel/endpoints>
@@ -1193,7 +1192,6 @@ To fix problems with the IIS Express certificate, select **Repair** from the Vis
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)

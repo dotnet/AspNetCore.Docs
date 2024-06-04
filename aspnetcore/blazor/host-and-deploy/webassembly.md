@@ -906,7 +906,6 @@ For an app that responds to requests at `/blazor`:
 
 For more information and configuration guidance, consult the following resources:
 
-* <xref:host-and-deploy/linux-apache>
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
