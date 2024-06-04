@@ -1,4 +1,4 @@
-#define First
+#define writeasjsonasync
 // First Second writeasjsonasync autojsondeserialization
 // readfromjsonasync confighttpjsonoptions jsonoptions writeasjsonasyncwithoptions
 // readfromjsonasyncwithoptions resultsjsonwithoptions
