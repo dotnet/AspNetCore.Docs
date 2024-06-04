@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/28/2024
-uid: blazor/tutorials/movie-database/part-6
+uid: blazor/tutorials/movie-database-app/part-6
 ---
 # Build a Blazor movie database app (Part 6 - Add search)
 
@@ -132,5 +132,5 @@ Select the **Search** button to filter the movies:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database/part-5)
-> [Next: Add a new field](xref:blazor/tutorials/movie-database/part-7)
+> [Previous: Add validation](xref:blazor/tutorials/movie-database-app/part-5)
+> [Next: Add a new field](xref:blazor/tutorials/movie-database-app/part-7)

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/part-3
+uid: blazor/tutorials/movie-database-app/part-3
 ---
 # Build a Blazor movie database app (Part 3 - Learn about Razor components)
 
@@ -573,5 +573,5 @@ To support [jQuery validation](https://jqueryvalidation.org/) for non-English lo
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add and scaffold a model](xref:blazor/tutorials/movie-database/part-2)
-> [Next: Work with a database](xref:blazor/tutorials/movie-database/part-4)
+> [Previous: Add and scaffold a model](xref:blazor/tutorials/movie-database-app/part-2)
+> [Next: Work with a database](xref:blazor/tutorials/movie-database-app/part-4)

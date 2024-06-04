@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/part-5
+uid: blazor/tutorials/movie-database-app/part-5
 ---
 # Build a Blazor movie database app (Part 5 - Add validation)
 
@@ -152,13 +152,13 @@ Update-Database
 
 Use the following command in the **Terminal** (**Terminal** menu > **New Terminal**) to add a migration for the new data annotations:
 
-```dotnetcli
+```powershell
 dotnet ef migrations add NewMovieDataAnnotations
 ```
 
 To apply the migration to the database, execute the following command:
 
-```dotnetcli
+```powershell
 dotnet ef database update
 ```
 
@@ -205,5 +205,5 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Work with a database](xref:blazor/tutorials/movie-database/part-4)
-> [Next: Add search](xref:blazor/tutorials/movie-database/part-6)
+> [Previous: Work with a database](xref:blazor/tutorials/movie-database-app/part-4)
+> [Next: Add search](xref:blazor/tutorials/movie-database-app/part-6)

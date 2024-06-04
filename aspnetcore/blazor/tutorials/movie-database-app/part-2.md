@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2024
 ms.custom: mvc
-uid: blazor/tutorials/movie-database/part-2
+uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 2 - Add and scaffold a model)
@@ -102,9 +102,44 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (m
 
 :::zone pivot="vsc"
 
-To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**):
+To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
 
-```dotnetcli
+<!-- REVIEWER NOTE
+
+The following mirrors the RP/MVC tutorial approach for showing multiple
+commands by placing them all into one code block.
+
+Problem: The readers were copy-pasting all of them at once into
+a command prompt/PS prompt. The last command doesn't run but
+just sits on the prompt. Thinking they're done, the reader moves
+on. Later, they hit an unexpected error because the last command
+didn't execute.
+
+Side note: This behavior of not executing the last command when
+multiple commands are pasted is the same for both Powershell
+and command shell prompts (on Windows anyway; not sure about 
+macOS Terminal app).
+
+This happened so many times to the team for database migrations
+that they sprinkled in about eight or nine little messages in 
+later docs of each series telling devs the error language and 
+that they missed updating their database. IMO, that's not the
+best way to go with the guidance.
+
+I prefer to separate commands, and that's what I've done for 
+database migration steps in this series. However, I'm going to 
+leave the following block of commands here with a remark that 
+they should be executed one at a time. If devs still open issues
+because Microsoft.EntityFrameworkCore.Tools isn't getting 
+installed due to them not following my guidance, then I'll
+separate these commands to force the reader to run them one
+at a time.
+
+-->
+
+***The following commands must be executed one at a time***. Do ***not*** paste all of the commands into the **Terminal** at once.
+
+```powershell
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool uninstall --global dotnet-ef
@@ -139,7 +174,9 @@ In the panel below the editor region of the VS Code UI, select the **PROBLEMS** 
 
 :::zone pivot="cli"
 
-To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder:
+To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
+
+***The following commands must be executed one at a time***. Do ***not*** paste all of the commands into the command shell at once.
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -212,7 +249,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command:
 
-```dotnetcli
+```powershell
 dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
 ```
 
@@ -238,7 +275,7 @@ The following table details the ASP.NET Core code generator options.
 
 Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorcomponent` command:
 
-```dotnetcli
+```powershell
 dotnet aspnet-codegenerator crud -h
 ```
 
@@ -390,6 +427,16 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
+<!-- REVIEWER NOTE
+
+The following is an example delta between RP/MVC tutorials
+and my approach for dealing with PS/command shell multiple
+commands. I separate them to make sure the dev isn't pasting
+multiple commands into the prompt and failing to execute the 
+last command before they proceed.
+
+-->
+
 In the PMC, execute the following command to add an initial migration. The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
 ```powershell
@@ -412,13 +459,13 @@ The **Terminal** window opens with the command prompt at the project directory, 
 
 Execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but the convention is to use a name that describes the migration.
 
-```dotnetcli
+```powershell
 dotnet ef migrations add InitialCreate
 ```
 
 After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method in migrations that have not been applied. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
 
-```dotnetcli
+```powershell
 dotnet ef database update
 ```
 
@@ -511,5 +558,5 @@ EF Core documentation:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Create a Blazor Web App](xref:blazor/tutorials/movie-database/part-1)
-> [Next: Learn about Razor components](xref:blazor/tutorials/movie-database/part-3)
+> [Previous: Create a Blazor Web App](xref:blazor/tutorials/movie-database-app/part-1)
+> [Next: Learn about Razor components](xref:blazor/tutorials/movie-database-app/part-3)

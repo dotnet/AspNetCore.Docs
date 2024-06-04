@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/part-4
+uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 4 - Work with a database)
@@ -96,7 +96,7 @@ The workaround for the limitations is to manually write migrations code to perfo
 * Dropping the old table.
 * Renaming the new table to match the old table's name.
 
-In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database/new-field#drop-and-recreate-the-database-for-non-sql-server-providers>.
+In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/new-field#drop-and-recreate-the-database-for-non-sql-server-providers>.
 
 For more information, see the following resources:
 
@@ -301,5 +301,5 @@ Configuration articles:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database/part-3)
-> [Next: Add Validation](xref:blazor/tutorials/movie-database/part-5)
+> [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database-app/part-3)
+> [Next: Add Validation](xref:blazor/tutorials/movie-database-app/part-5)

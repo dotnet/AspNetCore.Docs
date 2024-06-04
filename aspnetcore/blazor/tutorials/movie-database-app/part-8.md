@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
-uid: blazor/tutorials/movie-database/part-8
+uid: blazor/tutorials/movie-database-app/part-8
 ---
 # Build a Blazor movie database app (Part 8 - Add interactivity)
 
@@ -21,6 +21,8 @@ This article is the eighth part of the Blazor movie database app tutorial that t
 Up to this point in the tutorial, the entire app has been enabled for interactivity, but the app hasn't adopted interactivity. This part of the series explains how to adopt interactivity.
 
 *Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR).
+
+UI interactions are handled from the server over a real-time SignalR connection with the browser. Interactive SSR enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources. Page content for interactive pages is prerendered, where content on the server is initially generated and sent to the client without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users.
 
 Review the API in the `Program` file (`Program.cs`) that enables interactive SSR.
 
@@ -38,7 +40,9 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
 
-At this point, the app is capable of interactive SSR, but none of the components in the app actually adopt it.
+Up to this point in the tutorial series, the calls to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> weren't required because the app only adopted static SSR. Because we'll adopt interactive SSR in this article, the app is now required to call these extension methods.
+
+At this point, the app is capable of interactive SSR, but none of the app's components adopt it.
 
 When Blazor sets the type of rendering for a component, the rendering is referred to as the component's *render mode*. The following table shows the available render modes for rendering Razor components in a Blazor Web App.
 
@@ -51,13 +55,13 @@ Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on
 
 To apply a render mode to a component, the developer either uses the `@rendermode` directive or directive attribute on the component instance or on the component definition:
 
-* On a component instance with the `@rendermode` directive attribute. For example, where a hypothetical dialog (`Dialog`) component is used in some other component:
+* The following example shows how to set the render mode on a component instance with the `@rendermode` directive attribute. For example, where a hypothetical dialog (`Dialog`) component is used in some other component:
 
   ```razor
   <Dialog @rendermode="InteractiveServer" />
   ```
 
-* In a component definition with the `@rendermode` directive. For example, at the top of a hypothetical sales forecast (`SalesForecast`) component:
+* The following example shows how to set the render mode on a component definition with the `@rendermode` directive. For example, at the top of a hypothetical sales forecast (`SalesForecast`) component:
 
   ```razor
   @page "/sales-forecast"
@@ -110,7 +114,7 @@ To apply global server-side interactivity to these two components, add `@renderm
 
 Now, every component in the movie database app inherits interactive SSR via the `Routes` component.
 
-The first enhancement that interactivity yields is automatic client-side validation in the `Create` and `Edit` components via the `Movie` model's data annotations instantly activates.
+The first enhancement that interactivity yields is automatic client-side validation in the `Create` and `Edit` components via the `Movie` model's data annotations.
 
 Run the app and navigate to the `Create` page or to the `Edit` page for a movie.
 
@@ -121,7 +125,9 @@ Provide values that fail validation and see how client-side validation activates
 To see how making a component interactive enhances the user experience further, let's provide two enhancements to the app in the next couple of sections:
 
 * Make the `QuickGrid` component in the movie `Index` page *sortable*.
-* Replace the HTML form for filtering movies by title text with C# code that runs on the server.
+* Replace the HTML form for filtering movies by title with C# code that:
+  * Runs on the server.
+  * Renders content transparently over the underlying SignalR connection.
 
 ## Sortable `QuickGrid`
 
@@ -142,7 +148,7 @@ The component is *interactive*. The page doesn't reload for sorting to occur. Th
 
 ## Use C# code to search by title
 
-In part 6 of the tutorial series, the `Index` component was modified to allow the user to filter movies by title. This was accomplished by:
+In an earlier part of the tutorial series, the `Index` component was modified to allow the user to filter movies by title. This was accomplished by:
 
 * Adding an HTML form that issues a GET request to the server with the user's title search string as a query string field-value pair (for example, `?titleFilter=road+warrior` if the user searches for "`road warrior`"):
 
@@ -174,11 +180,11 @@ In part 6 of the tutorial series, the `Index` component was modified to allow th
   }
   ```
 
-The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content for display transparently without a full page refresh.
+The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content without a full page reload.
 
-Now, the component is interactive, so it can provide a much improved user experience by adopting Blazor features for binding and event handling.
+Now, the component is interactive, so it can provide an improved user experience by adopting Blazor features for binding and event handling.
 
-Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value directly to a C# field or property. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case:
+Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value directly to a C# field or property. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
 
 ```diff
 - [SupplyParameterFromQuery]
@@ -215,7 +221,9 @@ protected override void OnInitialized()
 }
 ```
 
-Add a delegate event handler (method) that the user can trigger to filter the database records. The method uses the value of the `titleFilter` field to perform the operation. If the user has cleared `titleFilter`, the method loads the entire movie list for display. Add the following method to the `@code` block:
+Next, add a delegate event handler that the user can trigger to filter the database's movie records. The method uses the value of the `titleFilter` field to perform the operation. If the user clears `titleFilter` and searches, the method loads the entire movie list for display.
+
+Add the following method to the `@code` block:
 
 ```csharp
 private void FilterMovies()
@@ -235,12 +243,8 @@ private void FilterMovies()
 
 The component won't issue a GET request via an HTML form to trigger the `FilterMovies` method. The component should provide:
 
-* An input element (`<input>`) bound to the `titleFilter` field.
-* A button that triggers the `FilterMovies` method.
-
-Binding is achieved in Blazor with the `@bind` directive attribute, which can bind the value of an element to either a C# field or property.
-
-Event handling is achieved in Blazor by specifying a delegate event handler (method) to the `@onclick` directive attribute.
+* An input element (`<input>`) bound to the `titleFilter` field. Binding is achieved in Blazor with the `@bind` directive attribute, which can bind the value of an element to either a C# field or property.
+* A button that triggers the `FilterMovies` method. Event handling is achieved in Blazor by specifying a delegate event handler (method) to the `@onclick` directive attribute.
 
 Remove the HTML form from the component:
 
@@ -258,15 +262,19 @@ In its place, add the following Razor markup:
 <button @onclick="FilterMovies">Search</button>
 ```
 
-The input element *binds* the value of the element to the `titleFilter` field. Selecting the button triggers the `FilterMovies` delegate.
+The `<input>` element *binds* the value of the element to the `titleFilter` field. Selecting the button triggers the `FilterMovies` delegate via the `@onclick` directive attribute of the `<button>` element.
 
-Run the app, type "road warrior" into the search field, and select **Search**:
+Run the app, type "road warrior" into the search field, and select the **Search** button:
 
 ![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
-When the user selects the button, an HTTP request isn't issued. The event is transmitted to the server over the live SignalR connection in the background transparent to the user. The filtering operation is performed on the server, and the server sends back the HTML of the grid over the same SignalR connection transparently. The page doesn't reload.
+When the user selects the button, an HTTP request isn't issued. The event is transmitted to the server over the live SignalR connection in the background transparent to the user. The filtering operation is performed on the server, and the server transparently sends back the HTML of the grid over the same SignalR connection. The page doesn't reload.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
+
+## Congratulations!
+
+Congratulations on completing the tutorial series! We hope you enjoyed this tutorial on Blazor. Blazor offers many more features than we were able to cover in this series, and we invite you to explore the Blazor documentation, examples, and sample apps to learn more.
 
 ## Next steps
 
@@ -284,11 +292,11 @@ If you're new to Blazor, we recommend reading the following Blazor articles that
 * <xref:blazor/security/index>
 * <xref:blazor/host-and-deploy/index>
 
-Articles are laid out in the table of contents (TOC) by subject matter in roughly in a general-to-specific or general-to-complex order, so the best approach to consuming Blazor documentation is to read down the table of contents.
+Articles are laid out in the table of contents, found in the documentation website's sidebar navigation, by subject matter in roughly in a general-to-specific or general-to-complex order, so the best approach to consuming Blazor documentation is to read down the table of contents.
 
 ## Troubleshoot with the completed sample
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database/part-7)
+> [Previous: Add validation](xref:blazor/tutorials/movie-database-app/part-7)

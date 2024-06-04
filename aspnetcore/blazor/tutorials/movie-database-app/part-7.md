@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/29/2024
-uid: blazor/tutorials/movie-database/part-7
+uid: blazor/tutorials/movie-database-app/part-7
 ---
 # Build a Blazor movie database app (Part 7 - Add a new field)
 
@@ -119,7 +119,7 @@ Build the app to confirm that there are no errors. In Visual Studio, select **Bu
 
 Build the app to confirm that there are no errors. In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command:
 
-```dotnetcli
+```powershell
 dotnet build
 ```
 
@@ -211,7 +211,7 @@ Modify the one movie that isn't rated *R*:
 
 In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
 
-```dotnetcli
+```powershell
 dotnet ef migrations AddRatingField
 ```
 
@@ -240,7 +240,7 @@ Save the migration file.
 
 In the **Terminal**, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with a default value:
 
-```dotnetcli
+```powershell
 dotnet ef database update
 ```
 
@@ -287,19 +287,19 @@ For more information, see the following resources:
 
 1. Use the following command to drop the database:
 
-   ```dotnetcli
+   ```powershell
    dotnet ef database drop
    ```
 
 1. Use the following command to create an initial migration:
 
-   ```dotnetcli
+   ```powershell
    dotnet ef migrations add InitialCreate
    ```
 
 1. Use the following command to update the database:
 
-   ```dotnetcli
+   ```powershell
    dotnet ef database update
    ```
 
@@ -429,7 +429,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 1. Delete the database. If your database tooling has a connection to the database, close the tooling first or use the tool's features to close the database connection and delete the database. Consult your tool's documentation for guidance. *Make sure that you select the correct database in the list.*
 1. In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to run the existing migrations that recreate the database:
 
-   ```dotnetcli
+   ```powershell
    dotnet ef database update
    ```
 
@@ -462,5 +462,5 @@ In the event that the database becomes corrupted, delete the database and use mi
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add Search](xref:blazor/tutorials/movie-database/part-6)
-> [Next: Add interactivity](xref:blazor/tutorials/movie-database/part-8)
+> [Previous: Add Search](xref:blazor/tutorials/movie-database-app/part-6)
+> [Next: Add interactivity](xref:blazor/tutorials/movie-database-app/part-8)
