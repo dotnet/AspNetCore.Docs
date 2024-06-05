@@ -207,7 +207,7 @@ Server response stream:
 1. The server has finished writing messages to the response stream and the server method has exited.
 2. The client has read all messages from the response stream. Depending on how you're reading messages, either `call.ResponseStream.MoveNext()` returns `false` or `call.ResponseStream.ReadAllAsync()` has finished.
 
-For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](grpc/client#bi-directional-streaming-call).
+For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](xref:grpc/client#bi-directional-streaming-call).
 
 Server streaming calls don't have a request stream. Because there is no request stream, a client can only communicate the server stream should stop by canceling it. If the overhead from canceled calls is impacting the app then considering changing the server streaming call to a bi-directional streaming call. With a bi-directional streaming call the client completing the request stream can be a signal to the server to end the call.
 
