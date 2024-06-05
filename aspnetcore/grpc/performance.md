@@ -193,16 +193,16 @@ For more information about how flow control works, see [HTTP/2 Flow Control (blo
 
 ## Gracefully complete streaming calls
 
-Try to complete calls gracefully. Gracefully completed calls avoid unnecessary errors and allow servers to reuse internal data structures between requests.
+Try to complete streaming calls gracefully. Gracefully completing calls avoids unnecessary errors and allow servers to reuse internal data structures between requests.
 
-A call completes gracefully when the client and server have finished sending messages and the peer has read all the messages. Because streaming calls provide low-level control over how messages are sent and received, thought is required to ensure streaming calls complete gracefully.
+A call is completed gracefully when the client and server have finished sending messages and the peer has read all the messages.
 
-Request stream:
+Client request stream:
 
 1. The client has finished writing messages to the request stream and completes the stream with `call.RequestStream.CompleteAsync()`.
 2. The server has read all messages from the request stream. Depending on how you're reading messages, either `requestStream.MoveNext()` returns `false` or `requestStream.ReadAllAsync()` has finished.
 
-Response stream:
+Server response stream:
 
 1. The server has finished writing messages to the response stream and the server method has exited.
 2. The client has read all messages from the response stream. Depending on how you're reading messages, either `call.ResponseStream.MoveNext()` returns `false` or `call.ResponseStream.ReadAllAsync()` has finished.
@@ -219,7 +219,7 @@ In the following example, the [using declaration](/dotnet/csharp/language-refere
 
 [!code-csharp[](~/grpc/performance/dispose-streaming-call.cs?highlight=2)]
 
-Ideally streaming calls should be [#gracefully-complete-streaming-calls](completed gracefully). Also disposing the call ensures the HTTP request between the client and the server is canceled if an unexpected error occurs. Streaming calls that are accidently left running don't just leak memory and resources on the client, but are left running on the server as well. Many leaked streaming calls could impact the stability of the app.
+Ideally streaming calls should be [completed gracefully](#gracefully-complete-streaming-calls). Also disposing the call ensures the HTTP request between the client and the server is canceled if an unexpected error occurs. Streaming calls that are accidently left running don't just leak memory and resources on the client, but are left running on the server as well. Many leaked streaming calls could impact the stability of the app.
 
 There is no negative impact to disposing a streaming call that's already gracefully completed.
 
