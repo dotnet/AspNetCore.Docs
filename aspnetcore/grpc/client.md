@@ -119,7 +119,7 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 }
 ```
 
-The type returned from starting a server streaming call implements `IDisposable`. Disposing a call once it is no longer needed ensures it's stopped and all resources are cleaned up.
+The type returned from starting a server streaming call implements `IDisposable`. Always dispose a streaming call to ensure it's stopped and all resources are cleaned up.
 
 ### Client streaming call
 
@@ -140,7 +140,7 @@ Console.WriteLine($"Count: {response.Count}");
 // Count: 3
 ```
 
-The type returned from starting a client streaming call implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
+The type returned from starting a client streaming call implements `IDisposable`. Always dispose a streaming call to ensure it's stopped and all resources are cleaned up.
 
 ### Bi-directional streaming call
 
@@ -188,7 +188,7 @@ For best performance, and to avoid unnecessary errors in the client and service,
 
 During a bi-directional streaming call, the client and service can send messages to each other at any time. The best client logic for interacting with a bi-directional call varies depending upon the service logic.
 
-The type returned from starting a bi-directional streaming call implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
+The type returned from starting a bi-directional streaming call implements `IDisposable`. Always dispose a streaming call to ensure it's stopped and all resources are cleaned up.
 
 ## Access gRPC headers
 
