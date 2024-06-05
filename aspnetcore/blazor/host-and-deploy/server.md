@@ -268,7 +268,6 @@ Check the browser console for WebSockets errors. Example errors:
 
 For more information and configuration guidance, consult the following resources:
 
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/proxy-load-balancer>
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Consult developers on non-Microsoft support forums:

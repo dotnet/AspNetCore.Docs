@@ -23,7 +23,6 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 * Docker client 18.03 or later
 
   * Linux distributions
-    * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
     * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
     * [Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
     * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)

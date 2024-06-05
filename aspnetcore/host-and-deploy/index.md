@@ -51,14 +51,13 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 * Linux
   * [Nginx](xref:host-and-deploy/linux-nginx)
-  * [Apache](xref:host-and-deploy/linux-apache)
 * Windows
   * [IIS](xref:host-and-deploy/iis/index)
   * [Windows Service](xref:host-and-deploy/windows-service)
 
 ## Set up a reverse proxy
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](xref:host-and-deploy/linux-nginx), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
 :::moniker-end 
 
@@ -139,14 +138,13 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 * Linux
   * [Nginx](xref:host-and-deploy/linux-nginx)
-  * [Apache](xref:host-and-deploy/linux-apache)
 * Windows
   * [IIS](xref:host-and-deploy/iis/index)
   * [Windows Service](xref:host-and-deploy/windows-service)
 
 ## Set up a reverse proxy
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](xref:host-and-deploy/linux-nginx), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
 Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 

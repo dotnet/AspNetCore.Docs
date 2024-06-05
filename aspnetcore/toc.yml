@@ -1404,9 +1404,6 @@ items:
       - name: Linux with Nginx
         displayName: deploy, publish
         uid: host-and-deploy/linux-nginx
-      - name: Linux with Apache
-        displayName: deploy, publish
-        uid: host-and-deploy/linux-apache
       - name: Docker
         displayName: deploy, publish
         items:

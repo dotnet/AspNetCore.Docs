@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option csharp_namespace = "HCMinimal";
+
+message SomeProtobufMessage
+{
+    int32 id = 1;
+    string name = 2;
+    string time = 3;
+}
