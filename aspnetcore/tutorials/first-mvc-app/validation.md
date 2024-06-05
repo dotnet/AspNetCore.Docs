@@ -28,6 +28,10 @@ One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repe
 
 The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
+## Delete any previous movie data items to re-seed the data.
+
+In the next step validation rules are added that will no longer allow null values. Run the app, navigate to `/Movies/Index` and delete all listed movies and stop the app.  The app will use the seed data the next time it is run.
+
 [!INCLUDE[](~/includes/RP-MVC/validation-net7.md)]
 
 ## Validation Error UI
