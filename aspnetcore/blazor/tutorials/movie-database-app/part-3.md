@@ -421,7 +421,7 @@ For validation:
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component displays a list of validation messages.
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components hold validation messages for the form's fields.
 
-Blazor includes several form element components to assist you with creating forms. The following form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
+Blazor includes several form element components to assist you with creating forms. The following form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
 
 In the component's `@code` block, C# code includes a `Movie` component parameter tied to the form via the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute).
 

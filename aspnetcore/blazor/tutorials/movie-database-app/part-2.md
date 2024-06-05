@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2024
-ms.custom: mvc
 uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling
 ---

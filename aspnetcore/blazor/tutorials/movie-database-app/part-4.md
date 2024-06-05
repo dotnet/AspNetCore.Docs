@@ -126,7 +126,7 @@ The workaround for the limitations is to manually write migrations code to perfo
 * Dropping the old table.
 * Renaming the new table to match the old table's name.
 
-In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/new-field#drop-and-recreate-the-database-for-non-sql-server-providers>.
+In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/part-7#drop-and-recreate-the-database-for-non-sql-server-providers>.
 
 For more information, see the following resources:
 
@@ -155,7 +155,7 @@ The workaround for the limitations is to manually write migrations code to perfo
 * Dropping the old table.
 * Renaming the new table to match the old table's name.
 
-In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/new-field#drop-and-recreate-the-database-for-non-sql-server-providers>.
+In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/part-7#drop-and-recreate-the-database-for-non-sql-server-providers>.
 
 For more information, see the following resources:
 
