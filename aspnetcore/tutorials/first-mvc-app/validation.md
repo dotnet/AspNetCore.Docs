@@ -30,8 +30,8 @@ The validation support provided by MVC and Entity Framework Core Code First is a
 
 ## Delete the previously edited data
 
-In the next step validation rules are added that will no longer allow null values. 
-Run the app, navigate to `/Movies/Index`, delete all listed movies and stop the app.  The app will use the seed data the next time it is run.
+In the next step, validation rules are added that don't allow null values. 
+Run the app, navigate to `/Movies/Index`, delete all listed movies, and stop the app.  The app will use the seed data the next time it is run.
 
 [!INCLUDE[](~/includes/RP-MVC/validation-net7.md)]
 
