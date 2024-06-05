@@ -193,7 +193,7 @@ For more information about how flow control works, see [HTTP/2 Flow Control (blo
 
 ## Gracefully complete streaming calls
 
-Try to complete calls gracefully to improve performance. Gracefully completed calls avoid unnecessary errors and allow servers to reuse internal data structures between requests.
+Try to complete calls gracefully. Gracefully completed calls avoid unnecessary errors and allow servers to reuse internal data structures between requests.
 
 A call completes gracefully when the client and server have finished sending messages and the peer has read all the messages. Because streaming calls provide low-level control over how messages are sent and received, thought is required to ensure streaming calls complete gracefully.
 
@@ -213,7 +213,7 @@ Server streaming calls don't have a request stream. Because there is no request 
 
 ## Dispose streaming calls
 
-The type returned when starting streaming calls implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
+Always dispose streaming calls once they're no longer needed. The type returned when starting streaming calls implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
 
 In the following example, the [using declaration](/dotnet/csharp/language-reference/proposals/csharp-8.0/using#using-declaration) on the `AccumulateCount()` call ensures it's always disposed if an unexpected error occurs.
 
