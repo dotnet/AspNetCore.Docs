@@ -26,7 +26,27 @@ The ASP.NET Core web app templates support authenticators but don't provide supp
 
 Two-factor authentication does not happen using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External logins are protected by whatever mechanism the external login provider provides. Consider, for example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. If the default templates enforced "local" 2FA then users would be required to satisfy two 2FA approaches, which is not a commonly used scenario.
 
-## Adding QR codes to the 2FA configuration page
+## Adding QR codes to the 2FA configuration page using QR Code API
+
+For a simple and library-free method, consider using the API from [QR Plus](https://www.qrplus.com.br) for direct QR code generation:
+
+1. **Add the necessary using directive** at the top of your Razor page:
+```csharp
+ @using System.Text.Encodings.Web
+```
+
+2. **Embed the QR code using an image tag** within your Page. Ensure the TOTP URI is URL-encoded to handle special characters correctly:
+```html
+<div id="qrCode">
+    <img src="https://api.qrplus.com.br/generate/png?size=250&margin=5&totp=@(UrlEncoder.Default.Encode(Model.AuthenticatorUri))" />
+</div>
+```
+
+3. **Test your application** to confirm that the QR code is displayed correctly and can be scanned by authenticator apps.
+
+This method reduces the need for additional libraries and streamlines the process by using an external service to generate QR codes.
+
+## Adding QR codes to the 2FA configuration page using Javascript Library
 
 These instructions use `qrcode.js` from the https://davidshimjs.github.io/qrcodejs/ repo.
 
