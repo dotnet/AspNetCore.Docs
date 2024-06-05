@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/29/2024
 uid: blazor/tutorials/movie-database-app/part-7
+zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 7 - Add a new field)
 
@@ -20,7 +21,7 @@ This article is the seventh part of the Blazor movie database app tutorial that 
 
 This part of the series covers adding a new field to the movie class, CRUD pages, and database.
 
-The database update is handled by EF Core migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't in sync with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
+The database update is handled by EF Core migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't synchronized with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
 
 > [!IMPORTANT]
 > Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
@@ -36,7 +37,7 @@ public string? Rating { get; set; }
 
 ## Add the movie rating to the app's CRUD components
 
-Open the `Create` component file (`Components/Pages/MoviePages/Create.razor`).
+Open the `Create` component definition file (`Components/Pages/MoviePages/Create.razor`).
 
 Add the following `<div>` block after the markup for `Price`:
 
@@ -48,7 +49,7 @@ Add the following `<div>` block after the markup for `Price`:
 </div>
 ```
 
-Open the `Delete` component file (`Components/Pages/MoviePages/Delete.razor`).
+Open the `Delete` component definition file (`Components/Pages/MoviePages/Delete.razor`).
 
 Add the following description list (`<dl>`) block after the description list block for `Price`:
 
@@ -59,7 +60,7 @@ Add the following description list (`<dl>`) block after the description list blo
 </dl>
 ```
 
-Open the `Details` component file (`Components/Pages/MoviePages/Details.razor`).
+Open the `Details` component definition file (`Components/Pages/MoviePages/Details.razor`).
 
 Add the following description list term (`<dt>`) and description list element (`<dl>`) after the term and element for `Price`:
 
@@ -68,7 +69,7 @@ Add the following description list term (`<dt>`) and description list element (`
 <dd class="col-sm-10">@movie.Rating</dd>
 ```
 
-Open the `Edit` component file (`Components/Pages/MoviePages/Edit.razor`).
+Open the `Edit` component definition file (`Components/Pages/MoviePages/Edit.razor`).
 
 Add the following `<div>` block after the markup for `Price`:
 
@@ -80,7 +81,7 @@ Add the following `<div>` block after the markup for `Price`:
 </div>
 ```
 
-Open the `Index` component file (`Components/Pages/MoviePages/Index.razor`).
+Open the `Index` component definition file (`Components/Pages/MoviePages/Index.razor`).
 
 Update the `QuickGrid` component to include the movie rating. Add the following <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> immediately after the column for `Price`:
 
@@ -114,13 +115,17 @@ Add the `Rating` property to each of the other `new Movie` blocks in the same fa
 
 :::zone pivot="vs"
 
-Build the app to confirm that there are no errors. In Visual Studio, select **Build** > **Rebuild Solution** from the menu bar. 
+Don't run the app yet. Just build the app to confirm that there are no errors.
+
+In Visual Studio, select **Build** > **Rebuild Solution** from the menu bar. 
 
 :::zone-end
 
 :::zone pivot="vsc"
 
-Build the app to confirm that there are no errors. In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command:
+Don't run the app yet. Just build the app to confirm that there are no errors.
+
+In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command:
 
 ```powershell
 dotnet build
@@ -130,7 +135,9 @@ dotnet build
 
 :::zone pivot="cli"
 
-Build the app to confirm that there are no errors. In a command shell opened to the project's root folder, execute the following command:
+Don't run the app yet. Just build the app to confirm that there are no errors.
+
+In a command shell opened to the project's root folder, execute the following command:
 
 ```dotnetcli
 dotnet build
@@ -167,9 +174,9 @@ The `Add-Migration` command:
 * Compares the `Movie` model with the `Movie` database table schema.
 * Creates code to migrate the database schema to match the model.
 
-Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is appropriate.
+Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is appropriate. The one movie that doesn't have an *R* rating can be updated later in the running app.
 
-Examine the files in the `Migrations` folder of the project in Visual Studio's **Solution Explorer**. Open the migration file that adds the movie rating field, which has a file name of `{NUMBER}_AddRatingField.cs`, where the `{NUMBER}` placeholder is a number (for example, `20240530123755_AddRatingField.cs`).
+Examine the files in the `Migrations` folder of the project in Visual Studio's **Solution Explorer**. Open the migration file that adds the movie rating field, which has a file name of `{TIME STAMP}_AddRatingField.cs`, where the `{TIME STAMP}` placeholder is a time stamp (for example, `20240530123755_AddRatingField.cs`).
 
 Find the `AddColumn` block that adds the rating column to the `Movie` table in the database. Modify the last line that applies a default value (`defaultValue`). Change it from an empty string (`""`) to an *R* movie rating (`"R"`):
 
@@ -185,7 +192,7 @@ migrationBuilder.AddColumn<string>(
 
 Save the migration file.
 
-In the PMC, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with a default value:
+In the PMC, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with the default value:
 
 ```powershell
 Update-Database
@@ -223,9 +230,9 @@ The `dotnet-ef migrations` command:
 * Compares the `Movie` model with the `Movie` database table schema.
 * Creates code to migrate the database schema to match the model.
 
-Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is appropriate.
+Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is appropriate. The one movie that doesn't have an *R* rating can be updated later in the running app.
 
-Examine the files in the `Migrations` folder of the project. Open the migration file that adds the movie rating field, which has a file name of `{NUMBER}_AddRatingField.cs`, where the `{NUMBER}` placeholder is a number (for example, `20240530123755_AddRatingField.cs`).
+Examine the files in the `Migrations` folder of the project. Open the migration file that adds the movie rating field, which has a file name of `{TIME STAMP}_AddRatingField.cs`, where the `{TIME STAMP}` placeholder is a time stamp (for example, `20240530123755_AddRatingField.cs`).
 
 Find the `AddColumn` block that adds the rating column to the `Movie` table in the database. Modify the last line that applies a default value (`defaultValue`). Change it from an empty string (`""`) to an *R* movie rating (`"R"`):
 
@@ -321,9 +328,9 @@ The `dotnet-ef migrations` command:
 * Compares the `Movie` model with the `Movie` database table schema.
 * Creates code to migrate the database schema to match the model.
 
-Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is appropriate.
+Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is appropriate. The one movie that doesn't have an *R* rating can be updated later in the running app.
 
-Examine the files in the `Migrations` folder of the project. Open the migration file that adds the movie rating field, which has a file name of `{NUMBER}_AddRatingField.cs`, where the `{NUMBER}` placeholder is a number (for example, `20240530123755_AddRatingField.cs`).
+Examine the files in the `Migrations` folder of the project. Open the migration file that adds the movie rating field, which has a file name of `{TIME STAMP}_AddRatingField.cs`, where the `{TIME STAMP}` placeholder is a time stamp (for example, `20240530123755_AddRatingField.cs`).
 
 Find the `AddColumn` block that adds the rating column to the `Movie` table in the database. Modify the last line that applies a default value (`defaultValue`). Change it from an empty string (`""`) to an *R* movie rating (`"R"`):
 

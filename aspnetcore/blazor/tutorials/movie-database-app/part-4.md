@@ -25,6 +25,8 @@ This part of the series focuses on the database context and directly working wit
 
 The database context, `BlazorWebAppMoviesContext`, connects to the database and maps model objects to database records. The database context was created in the second part of this series. The scaffolded context code appears in the `Program` file:
 
+:::zone pivot="vs"
+
 ```csharp
 builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
     options.UseSqlServer(
@@ -32,6 +34,32 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
       throw new InvalidOperationException(
          "Connection string 'BlazorWebAppMoviesContext' not found.")));
 ```
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+```csharp
+builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
+    options.UseSqlite(
+      builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+      throw new InvalidOperationException(
+         "Connection string 'BlazorWebAppMoviesContext' not found.")));
+```
+
+:::zone-end
+
+:::zone pivot="cli"
+
+```csharp
+builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
+    options.UseSqlite(
+      builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+      throw new InvalidOperationException(
+         "Connection string 'BlazorWebAppMoviesContext' not found.")));
+```
+
+:::zone-end
 
 <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> registers the given context as a service in the app's service collection.
 
@@ -57,9 +85,9 @@ When the app is deployed to a test/staging or production server, an environment 
 
 SQL Server and SQLite databases are the most popular at this time. The Visual Studio version of this tutorial uses SQL Server, while the VS Code and .NET CLI versions of this tutorial use SQLite.
 
-### SQL Server Express LocalDB
+:::zone pivot="vs"
 
-LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:\Users\{USER}\` directory, where the `{USER}` placeholder is the system's user ID.
+SQL Server Express LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:\Users\{USER}\` directory, where the `{USER}` placeholder is the system's user ID.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
@@ -79,7 +107,9 @@ Right-click on the `Movie` table and select **View Data**:
 
 ![Movie table open showing table data](~/blazor/tutorials/movie-database-app/part-4/_static/movie-data.png)
 
-### SQLite
+:::zone-end
+
+:::zone pivot="vsc"
 
 [SQLite](https://www.sqlite.org/) is a public, self-contained, full-featured SQL database engine.
 
@@ -106,7 +136,40 @@ For more information, see the following resources:
   * [Data seeding](/ef/core/modeling/data-seeding)
 * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 
+:::zone-end
+
+:::zone pivot="cli"
+
+[SQLite](https://www.sqlite.org/) is a public, self-contained, full-featured SQL database engine.
+
+There are many third-party tools you can download to manage and view a SQLite database. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
+
+![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4/_static/dbb.png)
+
+In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
+
+The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
+
+* Creating a new table with a temporary table name.
+* Copying data from the old table to the new table.
+* Dropping the old table.
+* Renaming the new table to match the old table's name.
+
+In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/new-field#drop-and-recreate-the-database-for-non-sql-server-providers>.
+
+For more information, see the following resources:
+
+* EF Core documentation
+  * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+  * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+  * [Data seeding](/ef/core/modeling/data-seeding)
+* [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
+
+:::zone-end
+
 ## Seed the database
+
+Seeding code can provide a set of entities/records for development testing or even be used to create initial data for a new production database.
 
 Create a new class named `SeedData` in the `Data` folder with the following code:
 
@@ -192,9 +255,7 @@ using (var scope = app.Services.CreateScope())
 }
 ```
 
-Run the app and delete any entities that you created in the database.
-
-Stop and restart the app to seed the database.
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop and restart the app to seed the database.
 
 > [!IMPORTANT]
 > Stopping the app when using Visual Studio only requires you to close the browser's window.
@@ -203,7 +264,9 @@ Stop and restart the app to seed the database.
 >
 > When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
-Navigate to the movies `Index` page:
+If the database is empty, run the app.
+
+Navigate to the movies `Index` page to see the seeded movies:
 
 ![Movies Index page showing Mad Max movie list after seeding the database](~/blazor/tutorials/movie-database-app/part-4/_static/index-page.png)
 
@@ -224,7 +287,7 @@ When the `Edit` page is posted to the server, the form values on the page are bo
 public Movie? Movie { get; set; }
 ```
 
-If the model state has errors when the form is posted, for example, `ReleaseDate` can't be converted into a date, the form is redisplayed with the submitted values. If no model errors exist, the movie is saved using the form's posted values.
+If the model state has errors when the form is posted, for example if `ReleaseDate` can't be converted into a date, the form is redisplayed with the submitted values. If no model errors exist, the movie is saved using the form's posted values.
 
 ## Concurrency exception handling
 
@@ -263,7 +326,7 @@ To test the `catch` block:
 
 1. Set a breakpoint on `catch (DbUpdateConcurrencyException)`.
 1. Select **Edit** for a movie, make changes, but don't select **Save**.
-1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie, and then delete the movie.
+1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
 1. In the previous browser window, post changes to the movie by selecting the **Save** button.
 1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
 
@@ -272,7 +335,7 @@ To test the `catch` block:
 :::zone pivot="vsc"
 
 1. Select **Edit** for a movie, make changes, but don't select **Save**.
-1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie, and then delete the movie.
+1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
 1. In the previous browser window, post changes to the movie by selecting the **Save** button.
 1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
 
@@ -281,20 +344,15 @@ To test the `catch` block:
 :::zone pivot="cli"
 
 1. Select **Edit** for a movie, make changes, but don't select **Save**.
-1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie, and then delete the movie.
+1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
 1. In the previous browser window, post changes to the movie by selecting the **Save** button.
 1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
 
 :::zone-end
 
-You may want to detect concurrency conflicts for a production app. For more information, see [Handle concurrency conflicts](xref:data/ef-rp/concurrency).
+## Stop the app
 
-> [!IMPORTANT]
-> Stopping the app when using Visual Studio only requires you to close the browser's window.
->
-> When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
->
-> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+Stop the app before proceeding. Stopping the app when using Visual Studio only requires you to close the browser's window. When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 ## Troubleshoot with the completed sample
 
@@ -302,11 +360,11 @@ You may want to detect concurrency conflicts for a production app. For more info
 
 ## Additional resources
 
-Configuration articles:
-
-* <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
-* <xref:blazor/fundamentals/configuration> (Blazor documentation)
-* [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
+* Configuration articles:
+  * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
+  * <xref:blazor/fundamentals/configuration> (Blazor documentation)
+  * [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
+* [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
 
 ## Legal
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
 uid: blazor/tutorials/movie-database-app/part-5
+zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 5 - Add validation)
 
@@ -51,7 +52,9 @@ Add the following data annotations to the `Movie` class properties. To update al
 + [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$"), Required, StringLength(30)]
   public string? Genre { get; set; }
 
-+ [Range(1, 100)]
++ [Range(0, 100)]
+  [DataType(DataType.Currency)]
+  [Column(TypeName = "decimal(18, 2)")]
   public decimal Price { get; set; }
 ```
 
@@ -69,7 +72,8 @@ Add the following data annotations to the `Movie` class properties. To update al
      
      The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) with a <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name> is used to present the name of the property as `Release Date`, which includes a space.
 
-     Update the following example to include the added attribute.
+     Update the following example to include the added attribute. Setting the Title
+     on the QG component won't be necessary, so that instruction can be removed.
 -->
 
 `Models/Movie.cs` file after updates:
@@ -92,15 +96,17 @@ namespace BlazorWebAppMovies.Models
       [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$"), Required, StringLength(30)]
       public string? Genre { get; set; }
 
-      [Range(1, 100)]
+      [Range(0, 100)]
+      [DataType(DataType.Currency)]
+      [Column(TypeName = "decimal(18, 2)")]
       public decimal Price { get; set; }
     }
 }
 ```
 
-The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters, doesn't allow additional special characters in `Genre`, and requires that movies cost at least 1 full unit of a particular currency, such as one dollar, euro, or yen.
+The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters and doesn't allow additional special characters in `Genre`.
 
-Because the app only processes validation server-side after the form is posted, validation requires a full page reload. After the app is made *interactive* in the last part of the tutorial series, server-side validation doesn't require a full-page reload. Interactive SSR validation provides instant feedback on the client when a field has invalid data over a SignalR connection between the server and the client. This subject is discussed further in the last part of the series.
+Due to enhanced form processing, server-side validation doesn't require a full-page reload.
 
 ## Apply migrations
 
@@ -126,7 +132,7 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 
 To match the `Movie` model's `Title` property length in the app, the database should indicate `NVARCHAR (60)` for the size of the `Title` column. The schema difference doesn't cause EF Core to throw an exception when the app is used because a user posting a 60 character movie title fits within the database's ~2 GB byte-pair limit for a movie title. However, consider the reverse situation where a model property is given a constraint larger than what the database permits and the user posts a string too long for a database character column: An exception is thrown by the database or data is truncated when the user posts the value. You should always keep the app's models aligned with the database's schema because a misaligned schema can cause exceptions and the storage of incorrect data.
 
-Although the `Title` property is a [nullable reference type (NRT)](/dotnet/csharp/nullable-references#nullable-variable-annotations), as indicated by the `?` on the `string` type (`string?`), the database shouldn't store a `NULL` value in its `Title` column due to the model's `Required` constraint. When the database's schema is updated in the next step, the database's `Title` column should reflect `NOT NULL` for the `Title` column to match the property. The important concept is that just because a model property is an NRT and can hold a `null` value in code doesn't mean that the database column's schema should be nullable (`NULL` permitted). These are independent conditions used for different purposes: NRTs are used to prevent coding errors with nullable types, while the database schema reflects exactly the type and size of stored data.
+Although the `Title` property is a [nullable reference type (NRT)](/dotnet/csharp/nullable-references#nullable-variable-annotations), as indicated by the `?` on the `string` type (`string?`), the database shouldn't store a `NULL` value in its `Title` column due to the model's `Required` constraint. When the database's schema is updated in the next step, the database's `Title` column should reflect `NOT NULL` for the `Title` column to match the property. The important concept is that just because a model property is an NRT and can hold a `null` value in code doesn't mean that the database column's schema should be nullable (`NULL` permitted). These are independent conditions used for different purposes: NRTs are used to prevent coding errors with nullable types, while the database schema reflects the exact type and size of stored data.
 
 To align the model and the database schema, create and apply an EF Core *database migration* with a migration name that identifies the migration changes. The migration name is similar to a commit message in a version control system. In the following command examples, the migration name "`NewMovieDataAnnotations`" reflects that new data annotations are added to the `Movie` model.
 

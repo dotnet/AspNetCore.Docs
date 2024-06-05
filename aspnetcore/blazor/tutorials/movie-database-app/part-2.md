@@ -95,6 +95,28 @@ In the `Movie` model, the `ReleaseDate` property has a [`[DataType]` attribute](
 public DateTime ReleaseDate { get; set; }
 ```
 
+Add the following two data annotation attributes immediately above the `Price` property:
+
+```csharp
+[DataType(DataType.Currency)]
+[Column(TypeName = "decimal(18, 2)")]
+```
+
+The `Price` property in the `Movie` class file after adding the data annotations:
+
+```csharp
+[DataType(DataType.Currency)]
+[Column(TypeName = "decimal(18, 2)")]
+public decimal Price { get; set; }
+```
+
+These annotations:
+
+* Specify that the property holds a currency data type.
+* Specifies the database column as a decimal of 18 digits with two decimal places.
+
+More information on data annotations, including adding data annotations for validation, is covered in a later part of the tutorial series.
+
 :::zone pivot="vs"
 
 Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> on the keyboard. Confirm in the **Output** panel that the build succeeded.
@@ -222,6 +244,8 @@ Right-click on the `Components/Pages` folder and select **Add** > **New Scaffold
 
 In the **Add New Scaffold** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)** > **Add**.
 
+*CRUD* is an acronym for Create, Read, Update, and Delete. The template produces create, edit, delete, details, and index components for the app.
+
 ![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/install-common-razor-component.png)
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
@@ -232,7 +256,49 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 * After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. Use the default selected value.
 * Select **Add**.
 
-![Add Razor Pages](~/blazor/tutorials/movie-database-app/part-2/_static/add-razor-components-using-ef-crud.png)
+![Add Razor components using EF CRUD dialog](~/blazor/tutorials/movie-database-app/part-2/_static/add-razor-components-using-ef-crud.png)
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
+
+```powershell
+dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
+```
+
+*CRUD* is an acronym for Create, Read, Update, and Delete. The `crud` template produces create, edit, delete, details, and index components for the app.
+
+The following table details the ASP.NET Core code generator options used in the preceding command:
+
+* `--dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+* `-dc`: The `DbContext` class to use, including the namespace.
+* `-m`: The name of the model.
+* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages`).
+* `-udl`: Indicates that the default layout should be used.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+In a command shell opened to the project's root folder, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
+
+```dotnetcli
+dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
+```
+
+*CRUD* is an acronym for Create, Read, Update, and Delete. The `crud` template produces create, edit, delete, details, and index components for the app.
+
+The following table details the ASP.NET Core code generator options used in the preceding command:
+
+* `--dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+* `-dc`: The `DbContext` class to use, including the namespace.
+* `-m`: The name of the model.
+* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages`).
+* `-udl`: Indicates that the default layout should be used.
+
+:::zone-end
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database. In the following example, the `{CONNECTION STRING}` is the connection string generated automatically by the scaffolder:
 
@@ -242,140 +308,23 @@ The `appsettings.json` file is updated with the connection string used to connec
 }
 ```
 
-:::zone-end
-
-:::zone pivot="vsc"
-
-In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command:
-
-```powershell
-dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
-```
-
-The template name is one of the following values:
-
-* `create`: Produces a component to create an entity.
-* **`crud`**: Produces create, edit, delete, details, and index components. The `crud` 
-* `delete`: Produces a component to delete an entity.
-* `details`: Produces a component to show the details of an entity.
-* `edit`: Produces a component to edit an entity.
-* `empty`: Scaffolds the database context without creating components.
-* `index`: Produces a component to list all of the entities.
-
-The following table details the ASP.NET Core code generator options.
-
-| Option                           | Description |
-| -------------------------------- | ----------- |
-| `-databaseProvider|--dbProvider` | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`. |
-| `-dc|--dbContext`                | The `DbContext` class to use, including the namespace. |
-| `-m|--model`                     | The name of the model. |
-| `-namespace|--namespaceName`     | The name of the namespace to use for the generated Razor components. |
-| `-outDir|--relativeFolderPath`   | The relative output folder path for the generated components. |
-
-Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorcomponent` command:
-
-```powershell
-dotnet aspnet-codegenerator crud -h
-```
-
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-
-When SQLite is selected, the template-generated code is ready for development, and this tutorial is based on locally running the app.
-
-If the code is for deployment to a server running SQL Server while you're working on the tutorial, the following code shows how to select the SQLite connection string in the Development environment and SQL Server in other environments, such as Staging and Production. You don't need to use the following code in the `Program` file if you merely intend to run the app locally on SQLite while working through this tutorial. The code is presented only for developers who are deploying the `BlazorWebAppMovies` app to a server running SQL Server.
-
-In the `Program` file after the <xref:Microsoft.AspNetCore.Builder.WebApplication> is created and assigned to `builder`:
-
-```csharp
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-        options.UseSqlite(
-            builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
-}
-else
-{
-    builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString("ProductionMovieContext")));
-}
-```
-
-> [!NOTE]
-> The preceding code doesn't call <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> in development because <xref:Microsoft.AspNetCore.Builder.WebApplication> automatically adds the developer exception page in development mode.
-
-:::zone-end
-
-:::zone pivot="cli"
-
-In a command shell opened to the project's root folder, execute the following command:
-
-```dotnetcli
-dotnet aspnet-codegenerator razorcomponent -m Movie -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -udl -outDir Components/Pages --databaseProvider sqlite
-```
-
-The following table details the ASP.NET Core code generator options.
-
-| Option                       | Description |
-| ---------------------------- | ----------- |
-| `-m`                         | The name of the model. |
-| `-dc`                        | The `DbContext` class to use, including the namespace. |
-| `-udl`                       | Use the default layout. |
-| `-outDir`                    | The relative output folder path for the generated components. |
-
-Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorcomponent` command:
-
-```dotnetcli
-dotnet aspnet-codegenerator razorcomponent -h
-```
-
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-
-When SQLite is selected, the template-generated code is ready for development, and this tutorial is based on locally running the app.
-
-If the code is for deployment to a server running SQL Server while you're working on the tutorial, the following code shows how to select the SQLite connection string in the Development environment and SQL Server in other environments, such as Staging and Production. You don't need to use the following code in the `Program` file if you merely intend to run the app locally on SQLite while working through this tutorial. The code is presented only for developers who are deploying the `BlazorWebAppMovies` app to a server running SQL Server.
-
-In the `Program` file after the <xref:Microsoft.AspNetCore.Builder.WebApplication> is created and assigned to `builder`:
-
-```csharp
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-        options.UseSqlite(
-            builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
-}
-else
-{
-    builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString("ProductionMovieContext")));
-}
-```
-
-> [!NOTE]
-> The preceding code doesn't call <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> in development because <xref:Microsoft.AspNetCore.Builder.WebApplication> automatically adds the developer exception page in development mode.
-
-:::zone-end
-
 ## Files created and updated
 
-The scaffold process creates the following component files and movie database context class file:
+The scaffolding process creates the following component files and movie database context class file:
 
 * `Components/Pages/MoviePages`
   * `Create.razor`: Creates new movie entities.
   * `Delete.razor`: Deletes a movie entity.
   * `Details.razor`: Shows movie entity details.
-  * `Edit.razor`: Updates a movie.
-  * `Index.razor`: Lists movies in the database.
+  * `Edit.razor`: Updates a movie entity.
+  * `Index.razor`: Lists movie entities (records) in the database.
 * `Data/BlazorWebAppMovieContext.cs`: Database context file (<xref:Microsoft.EntityFrameworkCore.DbContext>).
 
 The component files in the `MoviePages` folder are described in greater detail the next part of this tutorial. The database context is described later in this article.
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. These services are injected into Razor components.
 
-The scaffolding tool automatically created a database context and registered it with the dependency injection container.
-
-The <xref:Microsoft.AspNetCore.Components.QuickGrid> component ([`QuickGrid` documentation](xref:blazor/components/quickgrid)) is a Razor component for quickly and efficiently displaying data in tabular form. The scaffolder places a <xref:Microsoft.AspNetCore.Components.QuickGrid> component in the `Index` component to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for <xref:Microsoft.AspNetCore.Components.QuickGrid> to recognize EF-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency. To supply this EF Core adapter, the scaffolder adds the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) NuGet package to the app's program file.
+The <xref:Microsoft.AspNetCore.Components.QuickGrid> component is a Razor component for efficiently displaying data in tabular form. The scaffolder places a <xref:Microsoft.AspNetCore.Components.QuickGrid> component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for <xref:Microsoft.AspNetCore.Components.QuickGrid> to recognize EF-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency. To supply this EF Core adapter, the scaffolder automatically adds the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) NuGet package to the app.
 
 The following code is added to the `Program` file by the scaffolder:
 
@@ -389,7 +338,10 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
 
-Static server-side rendering (static SSR) is enabled by calling the service collection extension method `AddRazorComponents`. The chained call to `AddInteractiveServerComponents` enables interactive server-side rendering (interactive SSR), which only make the app capable of adopting interactive SSR. The API on its own doesn't make the app's components interactive. Adding interactivity to the app is covered in the last part of this tutorial series.
+Static server-side rendering (static SSR) is enabled by calling:
+
+* The service collection extension method <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> to register services for server-side rendering (SSR) of Razor components.
+* The request pipeline extension method <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, which maps the page components defined in the `App` component to the given assembly and renders the `App` component when the route matches:
 
 ```csharp
 builder.Services.AddRazorComponents()
@@ -401,14 +353,18 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
 
-The preceding `Program` file changes are explained later in this article.
+To only adopt static SSR, <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is the only extension method required. As you can see in the preceding example, scaffolding enables interactive SSR. The app isn't required to adopt interactive SSR just because this extension method is called, and the tutorial doesn't require it for the next several articles, but the app is capable of adopting interactive SSR. In the last part of the tutorial series on interactivity, the app is modified to adopt interactive SSR, and that's when calling <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is required. For now, we'll leave the call in place.
+
+<xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures the app to support interactive SSR with the Blazor SignalR&dagger; hub. The call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> also isn't required for the next several articles. The call only enables interactive features for the app's SignalR hub. We'll also leave this call in place.
+
+&dagger;*SignalR* is a library that simplifies adding real-time web functionality to apps. Real-time web functionality enables server-side code to push content to clients instantly. An interactive Blazor app uses a SignalR "hub" to communicate with code running on client devices.
 
 ## Create the initial database schema using EF Core's migration feature
 
 The migrations feature in EF Core:
 
 * Creates the initial database schema.
-* Incrementally updates the database schema to keep it in sync with the app's data model. Existing data in the database is preserved.
+* Incrementally updates the database schema to keep it synchronized with the app's data model. Existing data in the database is preserved.
 
 EF Core adopts the *code-first* approach for database design and maintenance:
 
@@ -452,11 +408,11 @@ Update-Database
 
 :::zone pivot="vsc"
 
-Right-click the `BlazorWebAppMovies` project file (`BlazorWebAppMovies.csproj`), and then select **Open in Integrated Terminal**.
+Right-click the `BlazorWebAppMovies` project file (`BlazorWebAppMovies.csproj`) and select **Open in Integrated Terminal**.
 
-The **Terminal** window opens with the command prompt at the project directory, which contains the `Program` file and the `.csproj` file.
+The **Terminal** window opens with the command prompt at the project directory, which contains the `Program` file and the app's project file (`.csproj`).
 
-Execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but the convention is to use a name that describes the migration.
+Execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
 ```powershell
 dotnet ef migrations add InitialCreate
@@ -467,15 +423,12 @@ After the preceding command completes, update the database with the `update` com
 ```powershell
 dotnet ef database update
 ```
-
-> [!NOTE]
-> For SQLite, the column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
 :::zone-end
 
 :::zone pivot="cli"
 
-From the project's root folder, execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but the convention is to use a name that describes the migration.
+From the project's root folder, execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
@@ -487,14 +440,7 @@ After the preceding command completes, update the database with the `update` com
 dotnet ef database update
 ```
 
-> [!NOTE]
-> For SQLite, the column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
-
 :::zone-end
-
-The following warning is displayed, which is addressed in a later step:
-
-> :::no-loc text="No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.":::
 
 The database context `BlazorWebAppMovieContext`:
 
@@ -536,7 +482,7 @@ When the app returns to the `Index` page, the added entity appears:
 > [!NOTE]
 > For globalization instructions, see [Show support jQuery validation for non-English locales that use a comma (",") for a decimal point (`dotnet/AspNetCore.Docs` #4076)](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-Test the **`Edit`**, **`Details`**, and **`Delete`** links.
+Test the **`Edit`**, **`Details`** pages. Use the **`Delete`** page to delete the movie from the database. New movies are added to the database in a later part of the tutorial series.
 
 ## Stop the app
 
@@ -545,7 +491,7 @@ Test the **`Edit`**, **`Details`**, and **`Delete`** links.
 Stop the app using either of the following approaches:
 
 * Close the browser window.
-* In Visual Studio:
+* In Visual Studio, either:
   * Use the Stop button in Visual Studio's menu bar.
   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
@@ -556,7 +502,7 @@ Stop the app using either of the following approaches:
 Stop the app using the following approach:
 
 1. Close the browser window.
-1. In VS Code:
+1. In VS Code, either:
    * From the **Run** menu, select **Stop Debugging**.
    * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
@@ -583,6 +529,8 @@ EF Core documentation:
 * [Entity Framework Core tools reference - .NET Core CLI](/ef/core/cli/dotnet)
 * [Data Types](/ef/core/modeling/relational/data-types)
 * [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)
+* [`dotnet aspnet-codegenerator`](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* <xref:blazor/components/quickgrid>
 
 ## Legal
 

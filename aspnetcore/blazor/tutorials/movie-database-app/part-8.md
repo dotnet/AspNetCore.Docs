@@ -18,22 +18,20 @@ uid: blazor/tutorials/movie-database-app/part-8
 
 This article is the eighth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-Up to this point in the tutorial, the entire app has been enabled for interactivity, but the app hasn't adopted interactivity. This part of the series explains how to adopt interactivity.
+Up to this point in the tutorial, the entire app has been *enabled* for interactivity, but the app hasn't *adopted* interactivity. This part of the series explains how to adopt interactivity.
 
-*Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR).
+*Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts interactive server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR). Client-side rendering (CSR), which is inherently interactive by default, is covered in the Blazor reference documentation.
 
 UI interactions are handled from the server over a real-time SignalR connection with the browser. Interactive SSR enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources. Page content for interactive pages is prerendered, where content on the server is initially generated and sent to the client without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users.
 
-Review the API in the `Program` file (`Program.cs`) that enables interactive SSR.
-
-Razor component services are added to the app to enable Razor components to render statically from the server (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) and execute code with interactive SSR (<xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>):
+Review the API in the `Program` file (`Program.cs`) that enables interactive SSR. Razor component services are added to the app to enable Razor components to render statically from the server (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) and execute code with interactive SSR (<xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>):
 
 ```csharp
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
 
-<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> maps components defined in the root `App` component to the given .NET assembly and renders routable components, and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures the app to support interactive SSR:
+<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> maps components defined in the root `App` component to the given .NET assembly and renders routable components, and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures the app's SignalR hub to support interactive SSR:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -114,15 +112,7 @@ To apply global server-side interactivity to these two components, add `@renderm
 
 Now, every component in the movie database app inherits interactive SSR via the `Routes` component.
 
-The first enhancement that interactivity yields is validation in the `Create` and `Edit` components without requiring a full-page reload.
-
-Run the app and navigate to the `Create` page or to the `Edit` page for a movie.
-
-Provide values that fail validation and see how server-side validation executes without submitting the form and reloading the page. In fact, the form can't be submitted to the server with the **Create** or **Save** buttons until the form is valid.
-
-![The letter 'V' is provided as a movie title in the Create page and the user has tabbed to the next control. Validation is triggered on the title field saying that the title must be a string of 3-60 characters in length.](~/blazor/tutorials/movie-database-app/part-8/_static/validation-without-reload.png)
-
-To see how making a component interactive enhances the user experience further, let's provide two enhancements to the app in the next couple of sections:
+To see how making a component interactive enhances the user experience, let's provide two enhancements to the app in the next couple of sections:
 
 * Make the `QuickGrid` component in the movie `Index` page *sortable*.
 * Replace the HTML form for filtering movies by title with C# code that:
@@ -144,7 +134,7 @@ Run the app and navigate to the movies `Index` page.
 
 You can sort the `QuickGrid` by movie title by selecting the **Title** column.
 
-The component is *interactive*. The page doesn't reload for sorting to occur. The sorting is performed live over a SignalR connection between the browser and the server, where the sorting operation is performed on the server with the rendered result sent back to the client for the browser to display.
+The component is *interactive*. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection between the browser and the server, where the sorting operation is performed on the server with the rendered result sent back to the client for the browser to display.
 
 ## Use C# code to search by title
 
@@ -180,9 +170,9 @@ In an earlier part of the tutorial series, the `Index` component was modified to
   }
   ```
 
-The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content without a full page reload.
+The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content without a full-page reload.
 
-Now, the component is interactive. The component can provide an improved user experience with Blazor features for binding and event handling, where full-page reloads aren't required to run C# on the server that interacts with the page's elements.
+Now that the component is interactive, it can provide an improved user experience with Blazor features for binding and event handling, where full-page reloads aren't required to run C# on the server that interacts with the page's elements.
 
 Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value to a C# field or property transparently over the underlying SignalR connection. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
 
@@ -192,7 +182,7 @@ Convert the `TitleFilter` property into a C# field because an interactive compon
 + private string? titleFilter;
 ```
 
-The `OnParametersSet` lifecycle method was used to conditionally filter the database based on `TitleFilter` (the property) having a value. We still want the `QuickGrid` to receive an unfiltered movie list on load, but we want that to happen just once when the component is initialized. Also, we'd like the filtering to occur when the user selects the **Search** button in the UI, which we can set up as a Blazor event.
+The `OnParametersSet` lifecycle method was used to conditionally filter the database based on `TitleFilter` (the property) having a value. We still want the `QuickGrid` to receive an unfiltered movie list on load, but we want that to happen just once when the component is initialized. Also, we'd like the filtering to occur when the user selects the **Search** button in the UI, which we can set up with a Blazor event handler delegate.
 
 Remove the overridden `OnParametersSet` Blazor lifecycle method from the `@code` block:
 
@@ -268,13 +258,13 @@ Run the app, type "road warrior" into the search field, and select the **Search*
 
 ![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
-When the user selects the button, an HTTP request isn't issued. The event is transparently transmitted to the server over the live SignalR connection in the background. The filtering operation is performed on the server, and the server transparently sends back the HTML of the grid over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
+When the user selects the button, an HTTP request isn't issued. The event is transparently transmitted to the server over the SignalR connection in the background. The filtering operation is performed on the server, and the server transparently sends back the HTML of the grid over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
 ## Congratulations!
 
-Congratulations on completing the tutorial series! We hope you enjoyed this tutorial on Blazor. Blazor offers many more features than we were able to cover in this series, and we invite you to explore the Blazor documentation, examples, and sample apps to learn more.
+Congratulations on completing the tutorial series! We hope you enjoyed this tutorial on Blazor. Blazor offers many more features than we were able to cover in this series, and we invite you to explore the Blazor documentation, examples, and sample apps to learn more. *Happy coding with Blazor!*
 
 ## Next steps
 

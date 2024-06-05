@@ -18,7 +18,7 @@ uid: blazor/tutorials/movie-database-app/part-3
 
 This article is the third part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series examines the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
+This part of the series examines the Razor components in the project that were scaffolded into the app. Improvements are made for the display of movie data.
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
@@ -30,42 +30,33 @@ The anatomy of a Razor component follows the following general pattern:
 
 * At the top of the component definition (`.razor` file), razor markup specifies the way that component markup is parsed or functions.
 * Next, Razor markup specifies how HTML is rendered, which includes ordinary HTML elements.
-* Finally, an `@code` block contains C# code to execute during component lifecycle stages and when various events occur, such as when a user selects a rendered button on the page.
+* Finally, an `@code` block contains C# code to execute during component lifecycle events on the server.
 
-Consider the following `Counter` component example (`Counter.razor`), which is a basic component example that appears in Blazor project templates:
+Consider the following `Welcome` component example (`Welcome.razor`):
 
 ```razor
-@page "/counter"
+@page "/welcome"
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Welcome!</PageTitle>
 
-<h1>Counter</h1>
+<h1>Welcome!</h1>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p>@welcomeMessage</p>
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+    private string welcomeMessage = "Welcome to Blazor!";
 }
 ```
 
-The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is parsed or functions. In the preceding example, the Razor directive (`@page`) specifies the route template for the component. This component is reached in a browser at the relative URL `/counter`. By convention, a component's directives are placed at the top of the component definition file and are placed in a consistent order (component ordering is covered in the reference documentation on components).
+The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is parsed or functions. In the preceding example, the Razor directive (`@page`) specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are placed at the top of the component definition file and are placed in a consistent order (component ordering is covered in the reference documentation on components).
 
-The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title. In this case, the page title is `Counter`.
+The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title. In this case, the page title is `Welcome!`.
 
-`Counter` is also the first rendered markup of the component per the content of the H1 heading element (`<h1>`).
+`Welcome!` is also the first rendered markup of the component per the content of the H1 heading element (`<h1>`).
 
-A current count is displayed using Razor syntax by prefixing the at symbol (`@`) to a C# variable (`currentCount`).
+A welcome message is displayed using Razor syntax by prefixing the at symbol (`@`) to a C# variable (`welcomeMessage`).
 
-Next, the button element appears. Note the *Razor directive attribute*, `@onclick`, specifies an event handler that executes when the button is selected. The event handler is an ordinary C# method.
-
-The `@code` block contains the C# code of the component. `currentCount` is a private integer type variable initialized to a value of zero (0). The `IncrementCount` method is an ordinary C# method that increments `currentCount` by one each time the method executes.
+The `@code` block contains the C# code of the component. `welcomeMessage` is a private string type variable initialized with a value of `Welcome to Blazor!`.
 
 In the following sections of this article:
 
@@ -78,7 +69,7 @@ The `NavMenu` component implements sidebar navigation using <xref:Microsoft.AspN
 
 A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is built-into the Blazor framework and available for all Blazor apps to use. The `NavMenu` component is only part of Blazor project templates.
+The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is provided by the Blazor framework and for all Blazor apps to use, while the `NavMenu` component is only part of Blazor project templates.
 
 `Components/Layout/NavMenu.razor`:
 
@@ -189,8 +180,6 @@ The `MainLayout` component is only part of Blazor project templates.
 </div>
 ```
 
-The first line of the `MainLayout` component is the `@inherits` Razor directive that specifies this component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>.
-
 The `MainLayout` component adopts the following additional specifications:
 
 * The `NavMenu` component is rendered in the sidebar. Notice that you only need to place an HTML tag with the component name to render a component at that location in Razor markup. This allows you to nest components within each other and within whatever HTML layout you implement.
@@ -212,7 +201,7 @@ The following sections explain the composition of the movie CRUD components and 
 
 ### `Index` component
 
-Open the `Index` component file (`Components/Pages/Movies/Index.razor`) definition file.
+Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`).
 
 The Razor directives at the top of the file indicate the relative URL for the page is `/movies`. An `@using` directive makes the <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName> API available to the component. A `QuickGrid` component is used to display movie entities from the database. The database context (`BlazorWebAppMoviesContext`) is injected into the component with the `@inject` directive. Finally, an `@using` directive makes the project's models available (`BlazorWebAppMovies.Models`).
 
@@ -258,7 +247,7 @@ In the following Razor markup, notice how the context (`Context`) parameter spec
 </QuickGrid>
 ```
 
-For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the <xref:Microsoft.AspNetCore.Components.QuickGrid> component renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie entity's `Id` is `3`, which is composed in the query strings.
+For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the <xref:Microsoft.AspNetCore.Components.QuickGrid> component renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie entity's `Id` is `3`, which is composed in the query strings for the `Edit`, `Details`, and `Delete` pages.
 
 ```html
 <table>
@@ -304,7 +293,7 @@ Run the app to see that the column now displays two words for the release date.
 
 ### `Details` component
 
-Open the `Details` component file (`Components/Pages/Movies/Details.razor`) definition file.
+Open the `Details` component definition file (`Components/Pages/Movies/Details.razor`).
 
 The Razor directives at the top of the file indicate the relative URL for the page is `/movies/details`. As before, the database context is injected, and namespaces are provided to access API (`BlazorWebAppMovies.Models` and `Microsoft.EntityFrameworkCore`). The `Details` component also injects the app's <xref:Microsoft.AspNetCore.Components.NavigationManager>, which is used for a variety of navigation-related features in components.
 
@@ -386,21 +375,13 @@ The `Id` is a *component parameter* supplied from the component's query string d
                    for .NET 10 work on handling a 404 with static SSR without \
                    having to navigate to a non-existent endpoint. -->
 
-There isn't an actual `notfound` endpoint (component) in the app. When adopting server-side rendering (SSR), Blazor doesn't have a mechanism to return a 404 (Not Found) status code. As a temporary workaround, a 404 is generated by navigating to a non-existent endpoint. This scaffolded code is for your further implementation of a suitable result when not finding an entity. For example, you could have the component direct the user to a page where they can file an inquiry with your support team, or you could remove the injected <xref:Microsoft.AspNetCore.Components.NavigationManager> and <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> code and replace it with Razor markup and code that displays a message to the user that the entity wasn't found.
+There isn't an actual `notfound` endpoint (Razor component) in the app. When adopting server-side rendering (SSR), Blazor doesn't have a mechanism to return a 404 (Not Found) status code. As a temporary workaround, a 404 is generated by navigating to a non-existent endpoint. This scaffolded code is for your further implementation of a suitable result when not finding an entity. For example, you could have the component direct the user to a page where they can file an inquiry with your support team, or you could remove the injected <xref:Microsoft.AspNetCore.Components.NavigationManager> and <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> code and replace it with Razor markup and code that displays a message to the user that the entity wasn't found.
 
 ### `Create` component
 
-Open the `Create` component file (`Components/Pages/Movies/Create.razor`) definition file.
+Open the `Create` component definition file (`Components/Pages/Movies/Create.razor`).
 
-The component uses a built-in component called an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, which renders a form for user input and includes validation features. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> specifies a method to invoke (`AddMovie`) when the form is submitted and the form contains valid field entries. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
-
-For validation:
-
-* <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> adds data annotations validation support, which is covered in part 5 of this tutorial series.
-* The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component displays a list of validation messages.
-* <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components holds validation messages for the form's fields.
-
-Blazor includes several form element components to assist you in creating forms. The following form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
+The component uses a built-in component called an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, which renders a form for user input and includes validation features.
 
 CSS classes aren't present to simplify display in the following example:
 
@@ -432,6 +413,16 @@ CSS classes aren't present to simplify display in the following example:
 </EditForm>
 ```
 
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> specifies a method to invoke (`AddMovie`) when the form is submitted. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
+
+For validation:
+
+* The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> adds data annotations validation support, which is covered in a later part of this tutorial series.
+* The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component displays a list of validation messages.
+* The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components hold validation messages for the form's fields.
+
+Blazor includes several form element components to assist you with creating forms. The following form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
+
 In the component's `@code` block, C# code includes a `Movie` component parameter tied to the form via the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute).
 
 The `AddMovie` method:
@@ -442,6 +433,7 @@ The `AddMovie` method:
 * <xref:Microsoft.AspNetCore.Components.NavigationManager> is used to return the user to the movies `Index` page.
 
 ```csharp
+@code {
     [SupplyParameterFromForm]
     public Movie Movie { get; set; } = new();
 
@@ -459,7 +451,7 @@ The `AddMovie` method:
 
 ### `Delete` component
 
-Open the `Delete` component file (`Components/Pages/Movies/Delete.razor`) definition file.
+Open the `Delete` component definition file (`Components/Pages/Movies/Delete.razor`).
 
 As you saw in the `Index` and `Details` components, the data list description for the movie's release date also shows the time. To remove the time and only display the date, modify `@movie.ReleaseDate`. Add the <xref:System.DateTime.ToShortDateString%2A> extension method:
 
@@ -489,7 +481,7 @@ public async Task DeleteMovie()
 
 ### `Edit` component
 
-Open the `Edit` component file (`Components/Pages/Movies/Edit.razor`) definition file.
+Open the `Edit` component definition file (`Components/Pages/Movies/Edit.razor`).
 
 The component uses an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> similar to the `Create` component.
 
@@ -533,7 +525,7 @@ bool MovieExists(int id)
 
 The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Modified>, which signifies that the entity is tracked by the context, exists in the database, and that some or all of its property values are modified.
 
-If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code for a production app to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement).
+If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement).
 
 > [!WARNING]
 > The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
