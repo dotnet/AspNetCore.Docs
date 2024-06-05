@@ -364,7 +364,7 @@ Stop the app before proceeding. Stopping the app when using Visual Studio only r
   * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
   * <xref:blazor/fundamentals/configuration> (Blazor documentation)
   * [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
-* [Handle concurrency conflicts](xref:data/ef-rp/concurrency)
+* [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
 
 ## Legal
 
