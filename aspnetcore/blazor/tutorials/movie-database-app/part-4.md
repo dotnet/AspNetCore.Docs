@@ -55,7 +55,7 @@ When the app is deployed to a test/staging or production server, an environment 
 
 ## Database technology
 
-SQL Server and SQLite databases are the most popular at this time. The Visual Studio version of this tutorial uses SQL Server, while the Visual Studio Code and .NET CLI versions of this tutorial use SQLite.
+SQL Server and SQLite databases are the most popular at this time. The Visual Studio version of this tutorial uses SQL Server, while the VS Code and .NET CLI versions of this tutorial use SQLite.
 
 ### SQL Server Express LocalDB
 
@@ -199,7 +199,7 @@ Stop and restart the app to seed the database.
 > [!IMPORTANT]
 > Stopping the app when using Visual Studio only requires you to close the browser's window.
 >
-> When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+> When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 >
 > When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
@@ -292,7 +292,7 @@ You may want to detect concurrency conflicts for a production app. For more info
 > [!IMPORTANT]
 > Stopping the app when using Visual Studio only requires you to close the browser's window.
 >
-> When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+> When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 >
 > When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 

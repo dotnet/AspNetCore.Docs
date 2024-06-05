@@ -135,7 +135,7 @@ To align the model and the database schema, create and apply an EF Core *databas
 >
 > Stopping the app when using Visual Studio only requires you to close the browser's window.
 >
-> When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
+> When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 >
 > When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 

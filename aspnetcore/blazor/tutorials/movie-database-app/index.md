@@ -23,8 +23,8 @@ This tutorial explains the basics of building a Blazor Web App with a database, 
 To harden this series for future changes, I'd like to use "part-X"
 UID and file naming. This permits me to make significant changes
 to article content and only be concerned with titles, descriptions, 
-and heading changes ... no renaming of files and (probably) no need 
-for article redirects.
+and heading changes ... no renaming of files and no need for article 
+redirects. In file lists, the articles appear in reading order.
 
 -->
 
@@ -41,7 +41,7 @@ Parts of this series include:
 
 At the end of the tutorial, you'll have a Blazor Web App that can display and manage a movie database.
 
-To open a documentation issue for any article of the series, use the **Open a documentation issue** link at the bottom of any article. Using the link at the bottom of an article adds important metadata to your GitHub issue for tracking and automatically pings the author. Typical response time is same day and almost always within 24 hours outside of weekends and holidays.
+To open a documentation GitHub issue for an article of the series, use the **Open a documentation issue** link at the bottom of the article. Using the link to create your issue adds important tracking metadata to the issue and automatically pings the author.
 
 ## Next steps
 

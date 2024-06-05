@@ -19,11 +19,23 @@ zone_pivot_groups: tooling
 
 This article is the first part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This article, the first step of the tutorial series, shows you how to create a Blazor Web App that adopts static server-side rendering (static SSR). Static SSR means that content is rendered on the server and sent to the client for static display. The rendered UI can only receive and post data back to the server for database operations via ordinary HTML form processing. Blazor's built-in event processing support isn't available when adopting static SSR. In the last part of the tutorial series, *interactivity* is adopted, and Blazor's built-in event processing is demonstrated.
+This article shows you how to create a Blazor Web App that adopts static server-side rendering (static SSR). Static SSR means that content is rendered on the server and sent to the client for display without the capacity for interplay between the user and .NET/C# code. JavaScript and HTML DOM events remain unaffected, but user events on the client can't be processed by the .NET runtime running on the server. The rendered UI on the client can only receive and post database data via ordinary HTML requests. In the last part of the tutorial series, *interactivity* is adopted, and Blazor's built-in event processing is demonstrated.
 
 At the end of this tutorial, you'll have an interactive Blazor Web App that manages a database of movies.
 
 ## Prerequisites
+
+<!-- REVIEWER NOTE
+
+Let's not cross-link to specific tooling versions
+to avoid content versioning and save on doc 
+maintenance costs.
+
+As usual for tutorials, there's minimal
+cross-linking to external resources to avoid
+distracting the reader.
+
+-->
 
 :::zone pivot="vs"
 
@@ -39,7 +51,7 @@ Latest releases of:
 * [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [.NET SDK](https://dotnet.microsoft.com/download/dotnet)
 
-The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK.
+The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which is a PowerShell prompt.
 
 :::zone-end
 
@@ -59,7 +71,7 @@ In Visual Studio:
 
 * Select **Create a new project** from the **Start Window** or select **File** > **New** > **Project** from the menu bar.
 * In the **Create a new project** dialog, select **Blazor Web App** from the list of project templates. Select the **Next** button.
-* In the **Configure your new project** dialog, name the project "`BlazorWebAppMovies`" in the **Project name** field, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
+* In the **Configure your new project** dialog, name the project `BlazorWebAppMovies` in the **Project name** field, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
 * Confirm that the **Location** for the app is suitable. Leave the **Place solution and project in the same directory** checkbox selected. Select the **Next** button.
 * In the **Additional information** dialog, use the following settings:
   * **Framework**: Confirm that the [latest framework](https://dotnet.microsoft.com/download/dotnet) is selected. If Visual Studio's **Framework** dropdown list doesn't include the latest available .NET framework, [update Visual Studio](/visualstudio/install/update-visual-studio) and restart the tutorial.
@@ -71,21 +83,19 @@ In Visual Studio:
   * **Do not use top-level statements**: Not selected
   * Select **Create**.
 
-For more information, see <xref:blazor/tooling?pivots=windows>.
-
 :::zone-end
 
 :::zone pivot="vsc"
 
 This tutorial assumes that you have familiarity with VS Code. If you're new to VS Code, see the [VS Code documentation](https://code.visualstudio.com/docs). The videos listed on the [Introductory Videos page](https://code.visualstudio.com/docs/getstarted/introvideos) are designed to give you an overview of VS Code's features.
 
-Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/download/dotnet) installed.
+Confirm that you have the latest [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and [.NET SDK](https://dotnet.microsoft.com/download/dotnet) installed.
 
 In VS Code:
 
-* Select **New Terminal** from the **Terminal** menu to open the [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Select **New Terminal** from the **Terminal** menu.
 * Change to the directory using the `cd` command to where you want to create the project folder.
-* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named "`BlazorWebAppMovies`" at the current terminal directory location.
+* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorWebAppMovies` at the current terminal directory location.
 
   > [!IMPORTANT]
   > Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow this tutorial.
@@ -94,13 +104,11 @@ In VS Code:
   dotnet new blazor -o BlazorWebAppMovies
   ```
 
-* Use the [`code` command](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) to open the `BlazorWebAppMovies` folder in the current instance of Visual Studio Code:
+* Use the [`code` command](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) to open the `BlazorWebAppMovies` folder in the current instance of VS Code:
 
   ```powershell
   code -r BlazorWebAppMovies
   ```
-
-For more information, see <xref:blazor/tooling?pivots=linux-macos>.
 
 :::zone-end
 
@@ -108,10 +116,10 @@ For more information, see <xref:blazor/tooling?pivots=linux-macos>.
 
 Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/download/dotnet) installed.
 
-In a command shell opened to the project's root folder:
+In a command shell:
 
 * Change to the directory using the `cd` command to where you want to create the project folder.
-* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named "`BlazorWebAppMovies`" at the current shell directory location.
+* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorWebAppMovies` at the current shell directory location.
 
   > [!IMPORTANT]
   > Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow this tutorial.
@@ -119,8 +127,6 @@ In a command shell opened to the project's root folder:
   ```dotnetcli
   dotnet new blazor -o BlazorWebAppMovies
   ```
-
-For more information, see <xref:blazor/tooling?pivots=linux-macos>.
 
 :::zone-end
 
@@ -132,20 +138,22 @@ Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> on the keyboard to run the app without the d
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 
-![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/getting-started/_static/trustCertVS22.png)
+![Trust self-signed certificate dialog](~/blazor/tutorials/movie-database-app/part-1/_static/trust-certificate.png)
 
-Select **Yes** if you trust the IIS Express SSL certificate.
+Select **Yes** if you trust the ASP.NET Core SSL certificate.
 
 The following dialog is displayed:
 
-![Security warning dialog](~/getting-started/_static/cert.png)
+![Security warning dialog](~/blazor/tutorials/movie-database-app/part-1/_static/install-certificate.png)
 
-Select **Yes** if you agree to trust the development certificate.
+Select **Yes** to acknowledge the risk and install the certificate.
+
+For information on trusting the development certificate for the Firefox browser, see <xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error>.
 
 Visual Studio:
 
-* Runs the app, which launches the [Kestrel server](xref:fundamentals/servers/kestrel).
-* Launches the default browser at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created.
+* Compiles and runs the app.
+* Launches the default browser at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
 Navigate to the pages of the app to confirm that the app is working normally.
 
@@ -153,13 +161,13 @@ Navigate to the pages of the app to confirm that the app is working normally.
 
 :::zone pivot="vsc"
 
-For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [Firefox certificate trust guidance](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error).
+For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error).
 
 In VS Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-At the **Select debugger** prompt, select **C#**. On the next prompt, select the HTTPS profile (`C#: BlazorWebAppMovies [https]`).
+At the **Select debugger** prompt in the **Command Palette** at the top of the VS Code UI, select **C#**. At the next prompt, select the HTTPS profile (`C#: BlazorWebAppMovies [https]`).
 
-The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created.
+The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
 Navigate to the pages of the app to confirm that the app is working normally.
 
@@ -167,7 +175,7 @@ Navigate to the pages of the app to confirm that the app is working normally.
 
 :::zone pivot="cli"
 
-For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [Firefox certificate trust guidance](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
+For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
 
 In a command shell opened to the project's root folder, execute the [`dotnet run`](/dotnet/core/tools/dotnet-run) command to compile and start the app:
 
@@ -175,12 +183,12 @@ In a command shell opened to the project's root folder, execute the [`dotnet run
 dotnet run
 ```
 
-> [!NOTE]
-> In the app's launch settings file (`Properties/launchSettings.json`), the `http` profile precedes the `https` profile. When an app is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with HTTPS without having to pass the [`-lp https`|`--launch-profile https` option](/dotnet/core/tools/dotnet-run#options) to the `dotnet run` command, simply move the `https` profile above the `http` profile in the file.
-
-The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. You can find both the secure (HTTPS) and insecure (HTTP) localhost addresses for running the app locally in the app's `Properties/launchSettings.json` file.
+The default browser is launched at `http://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
 Navigate to the pages of the app to confirm that the app is working normally.
+
+> [!NOTE]
+> When an app is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting HTTPS security for Linux and macOS users. If you prefer to start the app with HTTPS without having to pass the [`-lp https`|`--launch-profile https` option](/dotnet/core/tools/dotnet-run#options) to the `dotnet run` command, simply move the `https` profile above the `http` profile in the file and save the change.
 
 :::zone-end
 
@@ -209,8 +217,8 @@ stop an app.
 Stop the app using either of the following approaches:
 
 * Close the browser window.
-* In Visual Studio:
-  * Use the Stop button in Visual Studio's toolbar.
+* In Visual Studio, either:
+  * Use the Stop button in Visual Studio's menu bar.
   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
 :::zone-end
@@ -220,7 +228,7 @@ Stop the app using either of the following approaches:
 Stop the app using the following approach:
 
 1. Close the browser window.
-1. In Visual Studio Code:
+1. In VS Code, either:
    * From the **Run** menu, select **Stop Debugging**.
    * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
@@ -231,15 +239,13 @@ Stop the app using the following approach:
 Stop the app using the following approach:
 
 1. Close the browser window.
-2. From the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+2. In the command shell, press <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 :::zone-end
 
 ## Examine the project files
 
-The following sections contain an overview of the project's folders and files.
-
-The following sections are merely describing parts of the app. You don't need to make any changes to the project files at this point.
+The following sections contain an overview of the project's folders and files. You don't need to make any changes to the project files in the following sections. As you read the descriptions of the folders and files, examine them in the project.
 
 ### `Properties` folder
 
@@ -247,9 +253,17 @@ The `Properties` folder holds development environment configuration in the `laun
 
 ### `wwwroot` folder
 
-The `wwwroot` folder contains static assets, such as images, JavaScript (`.js`), and stylesheet (`.css`) files.
+The `wwwroot` folder contains static assets, such as image, JavaScript (`.js`), and stylesheet (`.css`) files.
 
-### `Components/Layout` folder
+### `Components`, `Components/Pages`, and `Components/Layout` folders
+
+These folders contain *Razor components*, often referred to as "components," and supporting files. A component is a self-contained portion of user interface (UI) with optional processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and used in MVC and Razor Pages apps.
+
+Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
+
+Typically, components that are nested within other components and not directly reachable ("routable") at a URL are placed in the `Components` folder. Components that are routable via a URL are usually placed in the `Components/Pages` folder.
+
+Although the name "Razor components" shares some naming with other ASP.NET Core content-rendering technologies, Razor components must be distinguished from *Razor views*, which are [Razor-based](xref:mvc/views/razor) markup pages for MVC apps, and *View components*, which are for rendering chunks of content rather than whole responses in Razor Pages and MVC apps.
 
 The `Components/Layout` folder contains the following layout components and stylesheets:
 
@@ -258,23 +272,13 @@ The `Components/Layout` folder contains the following layout components and styl
 * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. This component uses several `NavLink` components to render navigation links to other Razor components.
 * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
 
-### `Components` and `Components/Pages` folder
-
-These folders contain *Razor components*, often referred to as "components," and supporting files. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and used in MVC and Razor Pages apps.
-
-Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
-
-Typically, components that are nested within other components and not directly reachable ("routable") at a URL are placed in the `Components` folder. Components that are routable via a URL are usually placed in the `Components/Pages` folder.
-
-Although the name "Razor components" shares some naming with other ASP.NET Core content-rendering technologies, Razor components must be distinguished from *Razor views*, which are [Razor-based](xref:mvc/views/razor) markup pages for MVC apps, and *View components*, which are for rendering chunks of content rather than whole responses in Razor Pages and MVC apps.
-
 ### `_Imports.razor` file
 
-The `_Imports` file (`_Imports.razor`) includes common *Razor directives* to include in the app's components (`.razor`). Razor directives are reserved keywords prefixed with `@` that appear in Razor markup and change the way component markup or component elements are parsed or function.
+The `_Imports` file (`_Imports.razor`) includes common *Razor directives* to include in the app's Razor components. Razor directives are reserved keywords prefixed with `@` that appear in Razor markup and change the way component markup or component elements are parsed or function.
 
 ### `App.razor` file
 
-The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor script (`<script>` tag for `blazor.web.js`). The root component is the first component that the app loads.
+The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component (covered in the next section), and the Blazor script (`<script>` tag for `blazor.web.js`). The root component is the first component that the app loads.
 
 ### `Routes.razor` file
 
@@ -327,7 +331,17 @@ if (!app.Environment.IsDevelopment())
 > [!WARNING]
 > Don't run a production app in development mode because the developer exception page can leak sensitive information.
 
-HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS:
+HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
+
+<!-- REVIEWER NOTE
+
+BTW ... Our main doc set guidance is a bit off
+on the description of the middleware in a few 
+spots where it uses the word "always" when discussing
+HTTPS redirection ... i.e., it doesn't qualify it
+with 'when there's an HTTPS port available.'
+
+-->
 
 ```csharp
 app.UseHttpsRedirection();
@@ -352,7 +366,9 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
 
-As we saw earlier for <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>, <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A>, which configures the app to support interactive SSR, is added automatically when the project is generated by the Blazor Web App project template. The call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> isn't required for the next several articles because the app only adopts static SSR. Just because the call is present doesn't mean that the app adopts interactive SSR. The call only enables interactive features for the app. In the last part of the tutorial series on interactivity, the call is required, so we'll leave this call in place as well.
+As we saw earlier for <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>, <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A>, which configures the app to support interactive SSR with the Blazor SignalR&dagger; hub, is added automatically when the project is generated by the Blazor Web App project template. The call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> isn't required for the next several articles because the app only adopts static SSR until the end of the tutorial series. Just because this call is present doesn't mean that the app adopts interactive SSR. The call only enables interactive features for the app's SignalR hub. In the last part of the tutorial series on interactivity, the call is required, so we'll leave this call in place along with the earlier call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>.
+
+&dagger;*SignalR* is a library that simplifies adding real-time web functionality to apps. Real-time web functionality enables server-side code to push content to clients instantly. An interactive Blazor app uses a SignalR "hub" to communicate with code running on client devices.
 
 The app is run by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.Run%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplication> (`app`):
 

@@ -69,9 +69,10 @@ public decimal Price { get; set; }
 
 The `Movie` class contains:
 
-* The `Id` field is required by the database for the primary key.
-* A [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) is used to specify the type of data, which is a date, in the `ReleaseDate` property.
-* The question mark after `string` indicates that the property is a [nullable reference type](/dotnet/csharp/nullable-references).
+* A record identifier property (`Id`), which is required by EF Core and the database to track records. In the database, the `Id` property is the database record's primary key.
+* Other properties that describe aspects of a movie: the movie's title (`Title`), release date (`ReleaseDate`), genre (`Genre`), and price (`Price`). 
+
+The question mark on a `string` type indicates that the property is nullable (it can hold a `null` value).
 
 The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by *data annotations*. <xref:System.ComponentModel.DataAnnotations> are a set of attribute classes that define metadata about a model's properties. They're placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
 
@@ -87,7 +88,7 @@ Multiple annotations can appear on multiple lines, or they can appear on the sam
 [{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
 ```
 
-In `Movie` model, the `ReleaseDate` property has a [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) to specify an additional type to associate with `ReleaseDate`. In this case, the type of data is a date (<xref:System.ComponentModel.DataAnnotations.DataType.Date?displayProperty=nameWithType>):
+In the `Movie` model, the `ReleaseDate` property has a [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) to specify an additional type to associate with `ReleaseDate`. In this case, the type of data is a date (<xref:System.ComponentModel.DataAnnotations.DataType.Date?displayProperty=nameWithType>):
 
 ```csharp
 [DataType(DataType.Date)]
@@ -96,13 +97,11 @@ public DateTime ReleaseDate { get; set; }
 
 :::zone pivot="vs"
 
-Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without the debugger.
+Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> on the keyboard. Confirm in the **Output** panel that the build succeeded.
 
 :::zone-end
 
 :::zone pivot="vsc"
-
-Confirm that the app isn't running. If the app is running, stop the app from the **Run** menu by selecting **Stop Debugging** or press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. Close any open browser windows that display the app.
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
 
@@ -117,7 +116,7 @@ just sits on the prompt. Thinking they're done, the reader moves
 on. Later, they hit an unexpected error because the last command
 didn't execute.
 
-Side note: This behavior of not executing the last command when
+This behavior of not executing the last command when
 multiple commands are pasted is the same for both Powershell
 and command shell prompts (on Windows anyway; not sure about 
 macOS Terminal app).
@@ -156,17 +155,12 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
 * Design time tools for EF Core
-* The EF Core SQLite provider (installs the EF Core package as a dependency)
-* Packages required for scaffolding
-  * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design)
-  * [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
 
-For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
-
-> [!NOTE]
-> By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
+By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
 In the **Terminal**, build the app:
 
@@ -174,13 +168,11 @@ In the **Terminal**, build the app:
 dotnet build
 ```
 
-In the panel below the editor region of the VS Code UI, select the **PROBLEMS** tab. The panel isn't in view, select **View** > **Problems** from the menu bar or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> (macOS) on the keyboard.
+Confirm that the app built successfully.
 
 :::zone-end
 
 :::zone pivot="cli"
-
-Confirm that the app isn't running. If the app is running, stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Close any open browser windows that display the app.
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
 
@@ -201,17 +193,12 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
 * Design time tools for EF Core
-* The EF Core SQLite provider (installs the EF Core package as a dependency)
-* Packages required for scaffolding
-  * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design)
-  * [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
 
-For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
-
-> [!NOTE]
-> By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
+By default, the .NET binaries architecture installed represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
 In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
@@ -219,13 +206,13 @@ In a command shell opened to the project's root folder, execute the [`dotnet bui
 dotnet build
 ```
 
-:::zone-end
+Confirm that the app built successfully.
 
-Verify that the app compiled without errors.
+:::zone-end
 
 ## Scaffold the model
 
-In this section, the `Movie` model is *scaffolded* into a database, database context, and a UI for managing movies in the database. .NET scaffolding is a code generation framework for .NET applications. You add scaffolding to your project when you want to quickly add code that interacts with data models. Using scaffolding can reduce the amount of time to develop standard data operations in your project. Scaffolding means that a .NET tool produces Razor components for CRUD operations on the `Movie` model.
+In this section, the `Movie` model is *scaffolded* into a database, database context, and a UI for managing movies in the database. .NET scaffolding is a code generation framework for .NET applications. You add scaffolding to your project when you want to quickly add code that interacts with data models.
 
 :::zone pivot="vs"
 
@@ -559,7 +546,7 @@ Stop the app using either of the following approaches:
 
 * Close the browser window.
 * In Visual Studio:
-  * Use the Stop button in Visual Studio's toolbar.
+  * Use the Stop button in Visual Studio's menu bar.
   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
 :::zone-end
@@ -569,7 +556,7 @@ Stop the app using either of the following approaches:
 Stop the app using the following approach:
 
 1. Close the browser window.
-1. In Visual Studio Code:
+1. In VS Code:
    * From the **Run** menu, select **Stop Debugging**.
    * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
@@ -595,6 +582,7 @@ EF Core documentation:
 * [Entity Framework Core](/ef/core/)
 * [Entity Framework Core tools reference - .NET Core CLI](/ef/core/cli/dotnet)
 * [Data Types](/ef/core/modeling/relational/data-types)
+* [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)
 
 ## Legal
 

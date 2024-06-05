@@ -106,7 +106,7 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 > [!IMPORTANT]
 > The next instruction is to run the app again. In Visual Studio, you merely need to save the file that you're working on. Visual Studio automatically recompiles and runs the app with your saved changes, so you can return to the existing browser window to see the result.
 >
-> When rerunning the app in Visual Studio Code, close the browser window and in Visual Studio Code select **Run** > **Restart Debugging** or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. Visual Studio Code recompiles and runs the app with your saved changes and spawns a new browser window for the app.
+> When rerunning the app in VS Code, close the browser window and in VS Code select **Run** > **Restart Debugging** or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. VS Code recompiles and runs the app with your saved changes and spawns a new browser window for the app.
 >
 > When using the .NET CLI, stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Rerun the app with `dotnet run`. Return to the existing browser window and refresh it to reload the app.
 

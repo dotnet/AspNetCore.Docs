@@ -23,7 +23,7 @@ This part of the series covers adding a new field to the movie class, CRUD pages
 The database update is handled by EF Core migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't in sync with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
 
 > [!IMPORTANT]
-> Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+> Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 ## Add a movie rating to the app's model
 
@@ -114,7 +114,7 @@ Add the `Rating` property to each of the other `new Movie` blocks in the same fa
 
 :::zone pivot="vs"
 
-Build the app to confirm that there are no errors. In Visual Studio, select **Build** > **Rebuild Solution** from the toolbar. 
+Build the app to confirm that there are no errors. In Visual Studio, select **Build** > **Rebuild Solution** from the menu bar. 
 
 :::zone-end
 
@@ -147,7 +147,7 @@ If you try to run the app at this point, the app fails with a SQL exception beca
 There are three approaches that you can take to resolve the discrepancy between the database's schema and the model's schema:
 
 * Modify the schema of the database so that it matches the model class. The advantage of this approach is that it maintains the database's data. Adopt this approach using either database tooling or by creating a database change script, which are approaches not covered by this tutorial but can be learned using other articles. The downside to this approach is that it requires more time and is more prone to error due to its increased complexity. *This tutorial doesn't adopt this approach.*
-* Use EF Core to automatically drop and recreate the database using the new model class schema, losing the data stored in the database in the process. The database is reseeded with fresh data when the app is run. This approach allows you to quickly evolve the model and database schema together. Don't use this approach on a production database with data that must be preserved. *This tutorial only uses this approach for Visual Studio Code and .NET CLI tooling and only when the provider doesn't support EF Core migrations.*
+* Use EF Core to automatically drop and recreate the database using the new model class schema, losing the data stored in the database in the process. The database is reseeded with fresh data when the app is run. This approach allows you to quickly evolve the model and database schema together. Don't use this approach on a production database with data that must be preserved. *This tutorial only uses this approach for VS Code and .NET CLI tooling and only when the provider doesn't support EF Core migrations.*
 * Use an EF Core migration to update the database schema after the model is changed in the app. This approach is efficient and preserves the database's data. ***This tutorial adopts this approach.***
 
 Create a migration to update the database's schema. The movie rating, as a `Rating` column, is added to the database's `Movie` table.
@@ -385,7 +385,7 @@ For more information, see the following resources:
   * [Data seeding](/ef/core/modeling/data-seeding)
 * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 
-1. Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using Visual Studio Code, close the browser's window and stop the app in Visual Studio Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+1. Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 1. Delete the migration folder. This effectively removes all of the existing migrations, which shouldn't be executed again.
 
