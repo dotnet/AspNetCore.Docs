@@ -50,7 +50,7 @@ This setting corresponds to the API <xref:Microsoft.Web.Administration.Applicati
 
 ## Reduce 503 likelihood during app recycle
 
-By default there is a one second delay between when IIS is notified of a recycle or shutdown and when ANCM tells the managed server to initiate shutdown. The delay is configurable via the `ANCM_shutdownDelay` environment variable or by setting the `shutdownDelay` handler setting. Both values are in milliseconds. The delay is primarily to reduce the likelihood of a race where:
+By default, there is a one second delay between when IIS is notified of a recycle or shutdown and when ANCM tells the managed server to initiate shutdown. The delay is configurable via the `ANCM_shutdownDelay` environment variable or by setting the `shutdownDelay` handler setting. Both values are in milliseconds. The delay is primarily to reduce the likelihood of a race where:
 
 * IIS hasn't started queuing requests to go to the new app.
 * ANCM starts rejecting new requests that come into the old app.
