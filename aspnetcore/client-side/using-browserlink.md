@@ -35,8 +35,8 @@ When you have an ASP.NET Core project open, Visual Studio shows the browser link
 From the browser link toolbar control, you can:
 
 * Refresh the web app in several browsers at once.
-* Open the **browser link Dashboard**.
-* Enable or disable **browser link**.
+* Open the **Browser Link Dashboard**.
+* Enable or disable **Browser Link**.
 * Enable or disable **CSS Hot Reload**.
 
 ## Refresh the web app in several browsers at once
@@ -63,15 +63,15 @@ Change the Index view, and all connected browsers are updated when you click the
 
 browser link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.
 
-## The browser link Dashboard
+## The browser link dashboard
 
-Open the **browser link Dashboard** window from the browser link drop down menu to manage the connection with open browsers:
+Open the **browser link dashboard** window from the browser link drop down menu to manage the connection with open browsers:
 
 ![how-to-open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
 
 The connected browsers are shown with the path to the page that each browser is showing:
 
-![Browserlink dashboard two connections](~/client-side/using-browserlink/_static/browserlink-dashboard-two-connections.png)
+![Browser link dashboard two connections](~/client-side/using-browserlink/_static/browserlink-dashboard-two-connections.png)
 
 You can also click on an individual browser name to refresh only that browser.
 
