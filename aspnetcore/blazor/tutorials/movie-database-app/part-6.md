@@ -118,6 +118,26 @@ Select the **Search** button to filter the movies:
 
 ![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
 
+## Stop the app
+
+:::zone pivot="vs"
+
+Stop the app by closing the browser's window.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+
+:::zone-end
+
 ## Troubleshoot with the completed sample
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]

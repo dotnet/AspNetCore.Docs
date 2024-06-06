@@ -97,6 +97,8 @@ Right-click on the `Movie` table and select **View Designer**:
 
 ![Contextual menus to open the Movie table in Solution Explorer (SSOX)](~/blazor/tutorials/movie-database-app/part-4/_static/view-designer.png)
 
+The **View Designer** opens:
+
 ![Movie table open in the table designer](~/blazor/tutorials/movie-database-app/part-4/_static/movie-table.png)
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
@@ -105,7 +107,9 @@ Right-click on the `Movie` table and select **View Data**:
 
 ![Contextual menus to open the Movie table data in Solution Explorer (SSOX)](~/blazor/tutorials/movie-database-app/part-4/_static/view-data.png)
 
-![Movie table open showing table data](~/blazor/tutorials/movie-database-app/part-4/_static/movie-data.png)
+The table's data opens in a new tab in Visual Studio:
+
+![Movie table open showing movie table data](~/blazor/tutorials/movie-database-app/part-4/_static/movie-data.png)
 
 :::zone-end
 
@@ -255,14 +259,23 @@ using (var scope = app.Services.CreateScope())
 }
 ```
 
-If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop and restart the app to seed the database.
+:::zone pivot="vs"
 
-> [!IMPORTANT]
-> Stopping the app when using Visual Studio only requires you to close the browser's window.
->
-> When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
->
-> When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window. Restart the app to seed the database.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code. Restart the app to seed the database.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell. Restart the app to seed the database.
+
+:::zone-end
 
 If the database is empty, run the app.
 
@@ -290,6 +303,15 @@ public Movie? Movie { get; set; }
 If the model state has errors when the form is posted, for example if `ReleaseDate` can't be converted into a date, the form is redisplayed with the submitted values. If no model errors exist, the movie is saved using the form's posted values.
 
 ## Concurrency exception handling
+
+<!-- REVIEWER NOTE
+
+Concurrency comes up here and in the preceding part of 
+the series. I'm managing it by saying for more information
+to see the EF Core article, which is cross-linked in the
+Additional Resources section.
+
+-->
 
 Review the `UpdateMovie` method of the `Edit` component (`Components/Pages/MoviePages/Edit.razor`):
 
@@ -320,39 +342,34 @@ public async Task UpdateMovie()
 
 Concurrency exceptions are detected when one client deletes the movie and a different client posts changes to the movie.
 
-To test the `catch` block:
+To test how concurrency is handled by the preceding code:
 
-:::zone pivot="vs"
-
-1. Set a breakpoint on `catch (DbUpdateConcurrencyException)`.
 1. Select **Edit** for a movie, make changes, but don't select **Save**.
 1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
 1. In the previous browser window, post changes to the movie by selecting the **Save** button.
 1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+
+Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
+
+## Stop the app
+
+:::zone pivot="vs"
+
+If the app is running, shut it down by closing the browser's window.
 
 :::zone-end
 
 :::zone pivot="vsc"
 
-1. Select **Edit** for a movie, make changes, but don't select **Save**.
-1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
-1. In the previous browser window, post changes to the movie by selecting the **Save** button.
-1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+If the app is running, shut it down by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
 
 :::zone-end
 
 :::zone pivot="cli"
 
-1. Select **Edit** for a movie, make changes, but don't select **Save**.
-1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
-1. In the previous browser window, post changes to the movie by selecting the **Save** button.
-1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
+If the app is running, shut it down by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
 
 :::zone-end
-
-## Stop the app
-
-Stop the app before proceeding. Stopping the app when using Visual Studio only requires you to close the browser's window. When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
 
 ## Troubleshoot with the completed sample
 

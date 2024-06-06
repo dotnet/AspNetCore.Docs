@@ -104,9 +104,9 @@ namespace BlazorWebAppMovies.Models
 }
 ```
 
-The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters and doesn't allow additional special characters in `Genre`.
+The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters and doesn't allow additional special characters in the genre property.
 
-Due to enhanced form processing, server-side validation doesn't require a full-page reload.
+Due to enhanced form processing, server-side validation doesn't require a full-page reload. Enhanced forms are described further in Blazor's reference documentation.
 
 ## Apply migrations
 
@@ -124,7 +124,7 @@ public string? Title { get; set; }
 The difference between the model property and the database's schema are summarized in the following table. Neither constraint matches after the data annotation is applied to the `Movie` model.
 
 Constraint | Model `Title` property | Database `Title` column
---- | --- | ---
+--- | :---: | :---:
 Maximum length | 60 characters | Byte pairs up to ~2 GB&dagger;<br>[`NVARCHAR (MAX)`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql)
 Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>[`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span><br>`NULL` is permitted in the column.
 
@@ -198,7 +198,7 @@ dotnet ef database update
 After applying the migration, the model property and the database's schema match, as summarized in the following table.
 
 Constraint | Model `Title` property | Database `Title` column
---- | --- | ---
+--- | :---: | :---:
 Maximum length | 60 characters | Sixty (60) byte pairs are permitted&dagger;.<br>[`NVARCHAR (60)`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql)
 Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>[`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>`NOT NULL` is indicated for the column.
 
@@ -216,6 +216,7 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 * <xref:mvc/views/tag-helpers/authoring>
 * [Migrations overview (EF Core documentation)](/ef/core/managing-schemas/migrations/)
 * [nchar and nvarchar (Transact-SQL) (SQL Server documentation)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql#remarks)
+* [Blazor enhanced forms](xref:blazor/forms/index#enhanced-form-handling)
 
 ## Next steps
 

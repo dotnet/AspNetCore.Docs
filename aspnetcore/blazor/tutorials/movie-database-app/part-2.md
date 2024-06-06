@@ -33,24 +33,6 @@ In **Solution Explorer**, right-click the `BlazorWebAppMovies` project and selec
 
 Right-click the `Models` folder. Select **Add** > **Class**. Name the file `Movie.cs`, which creates a public class `Movie` in the file with the namespace `BlazorWebAppMovies.Models`.
 
-:::zone-end
-
-:::zone pivot="vsc"
-
-Add a folder to the project named `Models`.
-
-Add a class file to the `Models` folder named `Movie.cs`.
-
-:::zone-end
-
-:::zone pivot="cli"
-
-Add a folder to the project named `Models`.
-
-Add a class file to the `Models` folder named `Movie.cs`.
-
-:::zone-end
-
 Add the following properties to the `Movie` class:
 
 ```csharp
@@ -64,6 +46,51 @@ public DateTime ReleaseDate { get; set; }
 public string? Genre { get; set; }
 
 public decimal Price { get; set; }
+```
+
+After you paste the preceding properties between the braces (`{...}`) of the `Movie` class, the file contains the following code:
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Add a folder to the project named `Models`.
+
+Add a class file to the `Models` folder named `Movie.cs`.
+
+Use the following contents for the `Movie.cs` file:
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Add a folder to the project named `Models`.
+
+Add a class file to the `Models` folder named `Movie.cs`.
+
+Use the following contents for the `Movie.cs` file:
+
+:::zone-end
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+namespace BlazorWebAppMovies.Models
+{
+    public class Movie
+    {
+        public int Id { get; set; }
+
+        public string? Title { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime ReleaseDate { get; set; }
+
+        public string? Genre { get; set; }
+
+        public decimal Price { get; set; }
+    }
+}
 ```
 
 The `Movie` class contains:
@@ -94,6 +121,12 @@ In the `Movie` model, the `ReleaseDate` property has a [`[DataType]` attribute](
 public DateTime ReleaseDate { get; set; }
 ```
 
+Add the following namespace to the top of the `Movie.cs` file:
+
+```csharp
+using System.ComponentModel.DataAnnotations.Schema;
+```
+
 Add the following two data annotation attributes immediately above the `Price` property:
 
 ```csharp
@@ -101,11 +134,18 @@ Add the following two data annotation attributes immediately above the `Price` p
 [Column(TypeName = "decimal(18, 2)")]
 ```
 
-The `Price` property in the `Movie` class file after adding the data annotations:
+The `Price` property in the `Movie` class file after adding the preceding data annotations:
 
 ```csharp
 [DataType(DataType.Currency)]
 [Column(TypeName = "decimal(18, 2)")]
+public decimal Price { get; set; }
+```
+
+If you decided that you prefer to place data annotations on the same line, your code should look like the following:
+
+```csharp
+[DataType(DataType.Currency), Column(TypeName = "decimal(18, 2)")]
 public decimal Price { get; set; }
 ```
 
@@ -124,42 +164,11 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 :::zone pivot="vsc"
 
-To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
+To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**). The **Terminal** console is a PowerShell console.
 
-<!-- REVIEWER NOTE
+Paste all of the following commands into the PowerShell prompt of the **Terminal** at once. When you paste multiple commands into the prompt, a warning appears telling you that multiple commands will execute. Select the **Paste anyway** button.
 
-The following mirrors the RP/MVC tutorial approach for showing multiple
-commands by placing them all into one code block.
-
-Problem: The readers were copy-pasting all of them at once into
-a command prompt/PS prompt. The last command doesn't run but
-just sits on the prompt. Thinking they're done, the reader moves
-on. Later, they hit an unexpected error because the last command
-didn't execute.
-
-This behavior of not executing the last command when
-multiple commands are pasted is the same for both Powershell
-and command shell prompts (on Windows anyway; not sure about 
-macOS Terminal app).
-
-This happened so many times to the team for database migrations
-that they sprinkled in about eight or nine little messages in 
-later docs of each series telling devs the error language and 
-that they missed updating their database. IMO, that's not the
-best way to go with the guidance.
-
-I prefer to separate commands, and that's what I've done for 
-database migration steps in this series. However, I'm going to 
-leave the following block of commands here with a remark that 
-they should be executed one at a time. If devs still open issues
-because Microsoft.EntityFrameworkCore.Tools isn't getting 
-installed due to them not following my guidance, then I'll
-separate these commands to force the reader to run them one
-at a time.
-
--->
-
-***The following commands must be executed one at a time***. Do ***not*** paste all of the commands into the **Terminal** at once.
+When you paste multiple commands into a PowerShell prompt, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
 
 ```powershell
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -171,7 +180,20 @@ dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 ```
+
+> [!CAUTION]
+> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the PowerShell console (**Terminal** tab).
+
+Ignore the following messages if they appear:
+
+> :::no-loc text="A tool with the package Id 'dotnet-aspnet-codegenerator' could not be found.":::
+
+> :::no-loc text="A tool with the package Id 'dotnet-ef' could not be found.":::
+
+These messages mean that these tools haven't been installed on the system. The reason that commands to uninstall the tools are executed even if they've never been installed is to make sure that the latest tools are present for the tutorial.
 
 The preceding commands add:
 
@@ -197,7 +219,9 @@ Confirm that the app built successfully.
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
 
-***The following commands must be executed one at a time***. Do ***not*** paste all of the commands into the command shell at once.
+Paste all of the following commands into the command shell prompt at once. When you paste multiple commands into a command shell prompt, a warning appears telling you that multiple commands will execute. Select the **Paste anyway** button.
+
+When you paste multiple commands into a command shell, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -209,7 +233,20 @@ dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 ```
+
+> [!CAUTION]
+> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the command shell.
+
+Ignore the following messages if they appear:
+
+> :::no-loc text="A tool with the package Id 'dotnet-aspnet-codegenerator' could not be found.":::
+
+> :::no-loc text="A tool with the package Id 'dotnet-ef' could not be found.":::
+
+These messages mean that these tools haven't been installed on the system. The reason that commands to uninstall the tools are executed even if they've never been installed is to make sure that the latest tools are present for the tutorial.
 
 The preceding commands add:
 
@@ -241,18 +278,19 @@ Right-click on the `Components/Pages` folder and select **Add** > **New Scaffold
 
 ![New Scaffolded Item](~/blazor/tutorials/movie-database-app/part-2/_static/new-scaffolded-item.png)
 
-In the **Add New Scaffold** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)** > **Add**.
+With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
 
-*CRUD* is an acronym for Create, Read, Update, and Delete. The template produces create, edit, delete, details, and index components for the app.
+*CRUD* is an acronym for Create, Read, Update, and Delete. The Blazor generator produces create, edit, delete, details, and index components for the app.
 
 ![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/install-common-razor-component.png)
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
+* The **Template** drop down list includes other templates for specifically creating create, edit, delete, details, and list components. This drop down list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** drop down list set to **CRUD** because we want to scaffold a full set of components.
 * In the **Model class** dropdown list, select **Movie (BlazorWebAppMovies.Models)**.
 * For **DbContext class**, select the **+** (plus sign) button.
 * In the **Add Data Context** modal dialog, the class name `BlazorWebAppMovies.Data.BlazorWebAppMoviesContext` is generated. Use the default generated value. Select the **Add** button.
-* After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. Use the default selected value.
+* After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. When you're building apps in the future, you can select the appropriate provider for the database that you're using. The options include SQLite, PostgreSQL, and Azure Cosmos DB. Leave the **Database provider** drop-down set to **SQL Server**.
 * Select **Add**.
 
 ![Add Razor components using EF CRUD dialog](~/blazor/tutorials/movie-database-app/part-2/_static/add-razor-components-using-ef-crud.png)
@@ -264,18 +302,17 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
 
 ```powershell
-dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
+dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
 ```
 
-*CRUD* is an acronym for Create, Read, Update, and Delete. The `crud` template produces create, edit, delete, details, and index components for the app.
+*CRUD* is an acronym for Create, Read, Update, and Delete. The `blazor` generator with the `CRUD` template produces create, edit, delete, details, and index components for the app.
 
 The following table details the ASP.NET Core code generator options used in the preceding command:
 
-* `--dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
 * `-dc`: The `DbContext` class to use, including the namespace.
 * `-m`: The name of the model.
 * `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages`).
-* `-udl`: Indicates that the default layout should be used.
 
 :::zone-end
 
@@ -284,18 +321,17 @@ The following table details the ASP.NET Core code generator options used in the 
 In a command shell opened to the project's root folder, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
 
 ```dotnetcli
-dotnet aspnet-codegenerator crud --dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMovies -m Movie -outDir Components/Pages -udl
+dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
 ```
 
-*CRUD* is an acronym for Create, Read, Update, and Delete. The `crud` template produces create, edit, delete, details, and index components for the app.
+*CRUD* is an acronym for Create, Read, Update, and Delete. The `blazor` generator with the `CRUD` template produces create, edit, delete, details, and index components for the app.
 
 The following table details the ASP.NET Core code generator options used in the preceding command:
 
-* `--dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
 * `-dc`: The `DbContext` class to use, including the namespace.
 * `-m`: The name of the model.
 * `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (for example, `MoviePages`).
-* `-udl`: Indicates that the default layout should be used.
 
 :::zone-end
 
@@ -381,16 +417,6 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-<!-- REVIEWER NOTE
-
-The following is an example delta between RP/MVC tutorials
-and my approach for dealing with PS/command shell multiple
-commands. I separate them to make sure the dev isn't pasting
-multiple commands into the prompt and failing to execute the 
-last command before they proceed.
-
--->
-
 In the PMC, execute the following command to add an initial migration. The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
 ```powershell
@@ -409,7 +435,7 @@ Update-Database
 
 Right-click the `BlazorWebAppMovies` project file (`BlazorWebAppMovies.csproj`) and select **Open in Integrated Terminal**.
 
-The **Terminal** window opens with the command prompt at the project directory, which contains the `Program` file and the app's project file (`.csproj`).
+The **Terminal** window opens with a PowerShell command prompt at the project directory, which contains the `Program` file and the app's project file (`.csproj`).
 
 Execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
@@ -474,7 +500,7 @@ Add a movie to the database. In the following example, the classic sci-fi movie 
 
 ![Adding The Matrix movie to the database with the 'Create' component](~/blazor/tutorials/movie-database-app/part-2/_static/create-new.png)
 
-When the app returns to the `Index` page, the added entity appears:
+When you select the **Create** button, the movie data is posted to the server and saved in the database. When the app returns to the `Index` page, the added entity appears:
 
 ![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
 
@@ -491,7 +517,10 @@ Stop the app using either of the following approaches:
 
 * Close the browser window.
 * In Visual Studio, either:
-  * Use the Stop button in Visual Studio's menu bar.
+  * Use the Stop button in Visual Studio's menu bar:
+
+    ![Stop button in Visual Studio's menu bar](~/blazor/tutorials/movie-database-app/part-1/_static/stop-button.png)
+
   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
 :::zone-end
@@ -527,6 +556,7 @@ EF Core documentation:
 * [Entity Framework Core](/ef/core/)
 * [Entity Framework Core tools reference - .NET Core CLI](/ef/core/cli/dotnet)
 * [Data Types](/ef/core/modeling/relational/data-types)
+* <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>: The API document includes basic information on how entities are saved and change detection.
 * [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)
 * [`dotnet aspnet-codegenerator`](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
 * <xref:blazor/components/quickgrid>

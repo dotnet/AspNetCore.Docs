@@ -199,14 +199,9 @@ an app or that a running app interferes with commands that
 must be issued along the way while working on the app, so 
 there are explicit stop instructions at several points 
 throughout the series on stopping a running app before
-continuing.
-
-Part 1 and Part 2 have the following extended coverage. 
-Parts 4-6 have an abbreviated version of this guidance 
-in the form of a multiline NOTE. One of the NOTEs (Part 6)
-explains how to rerun an app. Part 7 uses a one-line stop
-app NOTE. The last article assumes that they know how to 
-stop an app.
+continuing. The guidance on stopping an app is curtailed
+in later parts of the series as the dev gets used to the
+process.
 
 -->
 
@@ -218,7 +213,10 @@ Stop the app using either of the following approaches:
 
 * Close the browser window.
 * In Visual Studio, either:
-  * Use the Stop button in Visual Studio's menu bar.
+  * Use the Stop button in Visual Studio's menu bar:
+
+    ![Stop button in Visual Studio's menu bar](~/blazor/tutorials/movie-database-app/part-1/_static/stop-button.png)
+
   * Press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
 :::zone-end

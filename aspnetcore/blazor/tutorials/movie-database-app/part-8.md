@@ -20,6 +20,11 @@ This article is the eighth part of the Blazor movie database app tutorial that t
 
 Up to this point in the tutorial, the entire app has been *enabled* for interactivity, but the app hasn't *adopted* interactivity. This part of the series explains how to adopt interactivity.
 
+> [!IMPORTANT]
+> Confirm that the app isn't running for the next steps.
+
+## Adopt interactivity
+
 *Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts interactive server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR). Client-side rendering (CSR), which is inherently interactive by default, is covered in the Blazor reference documentation.
 
 UI interactions are handled from the server over a real-time SignalR connection with the browser. Interactive SSR enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources. Page content for interactive pages is prerendered, where content on the server is initially generated and sent to the client without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users.
@@ -48,7 +53,7 @@ Name | Description | Render location | Interactive
 ---- | ----------- | :-------------: | :---------:
 Static Server | Static server-side rendering (static SSR) |  Server  | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span>
 Interactive Server | Interactive server-side rendering (interactive SSR) using Blazor Server. | Server | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
-Interactive WebAssembly | Client-side rendering (CSR) using Blazor WebAssembly&dagger;. | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
+Interactive WebAssembly | Client-side rendering (CSR) using Blazor WebAssembly. | Client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on subsequent visits after the Blazor bundle is downloaded. | Server, then client | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span>
 
 To apply a render mode to a component, the developer either uses the `@rendermode` directive or directive attribute on the component instance or on the component definition:
@@ -67,6 +72,9 @@ To apply a render mode to a component, the developer either uses the `@rendermod
   ```
 
 Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. That's the approach that we'll take for the movie database app.
+
+> [!NOTE]
+> More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR. After the tutorial, you're free to use this app to study the other component render modes.
 
 Based on creating the app from the Blazor Web App project template, the root component of the app is the `App` component (`Components/Pages/App.razor`):
 
@@ -277,12 +285,13 @@ If you're new to Blazor, we recommend reading the following Blazor articles that
 * <xref:blazor/project-structure>
 * <xref:blazor/fundamentals/index> and the other *Fundamentals* node articles.
 * <xref:blazor/components/index> and the other *Components* node articles.
-* <xref:blazor/forms/index> if you intend to start using Blazor forms immediately.
-* <xref:blazor/js-interop/index> and the other *JavaScript interop* articles if you intend to start using JS interop immediately.
+* <xref:blazor/forms/index>
+* <xref:blazor/js-interop/index> and the other *JavaScript interop* articles.
 * <xref:blazor/security/index>
 * <xref:blazor/host-and-deploy/index>
+* <xref:blazor/blazor-ef-core> covers concurrency with EF Core in Blazor apps.
 
-Articles are laid out in the table of contents, found in the documentation website's sidebar navigation, by subject matter in roughly in a general-to-specific or general-to-complex order, so the best approach to consuming Blazor documentation is to read down the table of contents.
+In the documentation website's sidebar navigation, articles are organized by subject matter and laid out in roughly in a general-to-specific or general-to-complex order. The best approach to initially leaning about Blazor is to read down the table of contents from top to bottom.
 
 ## Troubleshoot with the completed sample
 

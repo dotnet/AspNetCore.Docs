@@ -48,7 +48,7 @@ Consider the following `Welcome` component example (`Welcome.razor`):
 }
 ```
 
-The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is parsed or functions. In the preceding example, the Razor directive (`@page`) specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are placed at the top of the component definition file and are placed in a consistent order (component ordering is covered in the reference documentation on components).
+The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is parsed or functions. The `@page` Razor directive specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are placed at the top of the component definition file.
 
 The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title. In this case, the page title is `Welcome!`.
 
@@ -65,7 +65,7 @@ In the following sections of this article:
 
 ## `NavMenu` component for navigation
 
-The `NavMenu` component implements sidebar navigation using <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components, which render navigation links to other Razor components.
+The `NavMenu` component (`Components/Layout/NavMenu.razor`) implements sidebar navigation using <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components, which render navigation links to other Razor components.
 
 A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
@@ -116,7 +116,7 @@ To allow users to reach the movies `Index` page, add a navigation menu entry to 
 </div>
 ```
 
-The final `NavMenu` component:
+The final `NavMenu` component after making the preceding changes:
 
 ```razor
 <div class="top-row ps-3 navbar navbar-dark">
@@ -151,6 +151,24 @@ The final `NavMenu` component:
 ```
 
 Run the app and note that the brand is displayed at the top of the sidebar navigation and a link to reach the movies page (**`Movies`**) appears in the sidebar navigation.
+
+:::zone pivot="vs"
+
+Stop the app by closing the browser's window.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+
+:::zone-end
 
 ## `MainLayout` component for layout
 
@@ -290,6 +308,24 @@ The column for the movie's release date also shows the time. To remove the time 
 ```
 
 Run the app to see that the column now displays two words for the release date.
+
+:::zone pivot="vs"
+
+Stop the app by closing the browser's window.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+
+:::zone-end
 
 ### `Details` component
 
@@ -525,7 +561,16 @@ bool MovieExists(int id)
 
 The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Modified>, which signifies that the entity is tracked by the context, exists in the database, and that some or all of its property values are modified.
 
-If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement).
+<!-- REVIEWER NOTE
+
+Concurrency comes up here and in the next part of the series.
+I'm managing it in the article by saying for more information
+to see the EF Core article, which is cross-linked in the
+Additional Resources section.
+
+-->
+
+If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
 
 > [!WARNING]
 > The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
@@ -553,6 +598,7 @@ To support [jQuery validation](https://jqueryvalidation.org/) for non-English lo
 * [Razor directives](xref:mvc/views/razor#directives) (Razor syntax article) / [Razor directives](xref:blazor/components/index#razor-syntax) (Blazor documentation)
 * <xref:blazor/components/quickgrid>
 * <xref:blazor/forms/index>
+* [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
 
 ## Next steps
 
