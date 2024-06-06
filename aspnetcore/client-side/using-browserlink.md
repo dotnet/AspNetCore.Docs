@@ -24,7 +24,7 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 
 ## Runtime compilation vs. Hot reload
 
-Use browser Link with [runtime compilation](xref:mvc/views/) or [hot reload](xref:test/hot-reload) to see the effect of changes in Razor (`.cshtml`) files. We recommend hot Reload.
+Use browser Link with [runtime compilation](xref:mvc/views/view-compilation) or [hot reload](xref:test/hot-reload) to see the effect of changes in Razor (`.cshtml`) files. We recommend hot Reload.
 
 ## How to use Browser Link
 
