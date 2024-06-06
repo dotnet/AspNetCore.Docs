@@ -283,7 +283,7 @@ Navigate to the movies `Index` page to see the seeded movies:
 
 ![Movies Index page showing Mad Max movie list after seeding the database](~/blazor/tutorials/movie-database-app/part-4/_static/index-page.png)
 
-## Binding a form to a model
+## Bind a form to a model
 
 Review the the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 

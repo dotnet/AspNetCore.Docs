@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/28/2024
 uid: blazor/tutorials/movie-database-app/part-6
+zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 6 - Add search)
 
@@ -19,6 +20,8 @@ uid: blazor/tutorials/movie-database-app/part-6
 This article is the sixth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
 This part of the series covers adding a search feature to the movies `Index` component to filter movies by title.
+
+## Implement a filter feature for the `QuickGrid` component
 
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is used by the movie `Index` component (`Components/MoviePages/Index.razor`) to display movies from the database:
 

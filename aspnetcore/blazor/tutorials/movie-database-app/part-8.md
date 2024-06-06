@@ -144,7 +144,7 @@ You can sort the `QuickGrid` by movie title by selecting the **Title** column.
 
 The component is *interactive*. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection between the browser and the server, where the sorting operation is performed on the server with the rendered result sent back to the client for the browser to display.
 
-## Use C# code to search by title
+## Use C# code and interactivity to search by title
 
 In an earlier part of the tutorial series, the `Index` component was modified to allow the user to filter movies by title. This was accomplished by:
 

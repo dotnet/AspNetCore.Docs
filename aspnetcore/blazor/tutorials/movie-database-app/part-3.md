@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/06/2024
 uid: blazor/tutorials/movie-database-app/part-3
+zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 3 - Learn about Razor components)
 
@@ -19,6 +20,8 @@ uid: blazor/tutorials/movie-database-app/part-3
 This article is the third part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
 This part of the series examines the Razor components in the project that were scaffolded into the app. Improvements are made for the display of movie data.
+
+## Razor components
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 

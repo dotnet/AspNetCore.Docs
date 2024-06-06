@@ -21,6 +21,8 @@ This article is the fifth part of the Blazor movie database app tutorial that te
 
 This part of the series explains how metadata of the `Movie` model is used to validate user input in the forms that create and edit movies.
 
+## Validation using data annotations
+
 Validation rules are specified on a model class using *data annotations*. The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
 
 <!-- 
@@ -42,6 +44,8 @@ Validation rules are specified on a model class using *data annotations*. The fo
 * [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 
 Value types, such as `decimal`, `int`, `float`, and `DateTime`, are inherently required, so placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
+
+## Add validation to the `Movie` model
 
 Add the following data annotations to the `Movie` class properties. To update all of the properties at once, you can copy and paste the entire `Models/Movie.cs` file.
 
@@ -108,7 +112,7 @@ The preceding validation rules are merely for demonstration and aren't optimal f
 
 Due to enhanced form processing, server-side validation doesn't require a full-page reload. Enhanced forms are described further in Blazor's reference documentation.
 
-## Apply migrations
+## Create an EF Core migration and update the database
 
 A data model schema defines how data is organized and connected within a relational database.
 

@@ -164,6 +164,8 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 :::zone pivot="vsc"
 
+## Add Nuget packages and tools
+
 To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**). The **Terminal** console is a PowerShell console.
 
 Paste all of the following commands into the PowerShell prompt of the **Terminal** at once. When you paste multiple commands into the prompt, a warning appears telling you that multiple commands will execute. Select the **Paste anyway** button.
@@ -216,6 +218,8 @@ Confirm that the app built successfully.
 :::zone-end
 
 :::zone pivot="cli"
+
+## Add Nuget packages and tools
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
 
@@ -343,7 +347,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 }
 ```
 
-## Files created and updated
+## Files created and updated by scaffolding
 
 The scaffolding process creates the following component files and movie database context class file:
 
