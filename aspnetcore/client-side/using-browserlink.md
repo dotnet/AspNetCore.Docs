@@ -63,7 +63,7 @@ Change the Index view, and all connected browsers are updated when you click the
 
 browser link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.
 
-### The browser link Dashboard
+## The browser link Dashboard
 
 Open the **browser link Dashboard** window from the browser link drop down menu to manage the connection with open browsers:
 
@@ -75,11 +75,11 @@ The connected browsers are shown with the path to the page that each browser is 
 
 You can also click on an individual browser name to refresh only that browser.
 
-### Enable or disable browser link
+## Enable or disable browser link
 
 When you re-enable browser link after disabling it, you must refresh the browsers to reconnect them.
 
-### Enable or disable CSS hot reload
+## Enable or disable CSS hot reload
 
 When CSS hot reload is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
 
