@@ -44,7 +44,7 @@ Alternatively, the preceding logging code can be written as follows:
 
 For additional providers, see:
 
-* [Built-in logging providers](#bilp)
+* [Built-in logging providers](#built-in-logging-providers)
 * [Third-party logging providers](#third-party-logging-providers).
 
 ## Create logs
