@@ -36,7 +36,7 @@ To implement a `QuickGrid` component:
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A>: A nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid. `TGridItem` must be a class and not a record type.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.ItemsProvider%2A>: A callback that supplies data for the grid.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>: An optional CSS class name. If provided, the class name is included in the `class` attribute of the rendered table.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Theme%2A>: A theme name (default value: `default`). This affects which styling rules match the table.
