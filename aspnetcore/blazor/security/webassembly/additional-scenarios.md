@@ -982,7 +982,7 @@ In the following example, all of the paths are prefixed with `/security`.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action" />
+<RemoteAuthenticatorView Action="@Action" />
 
 @code{
     [Parameter]
@@ -998,7 +998,7 @@ In the following example, all of the paths are prefixed with `/security`.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action" />
+<RemoteAuthenticatorView Action="@Action" />
 
 @code{
     [Parameter]
@@ -1046,7 +1046,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action">
+<RemoteAuthenticatorView Action="@Action">
     <LoggingIn>
         You are about to be redirected to https://login.microsoftonline.com.
     </LoggingIn>
@@ -1066,7 +1066,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action">
+<RemoteAuthenticatorView Action="@Action">
     <LoggingIn>
         You are about to be redirected to https://login.microsoftonline.com.
     </LoggingIn>
