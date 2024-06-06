@@ -9,6 +9,20 @@ uid: data/entity-framework-6
 ---
 # ASP.NET Core and Entity Framework 6
 
+## Configuration
+
+You can add default `<binding>` elements within the `<bindings>` element in the `<siteDefaults>` section of the ApplicationHost.config file.
+
+| Attribute | Description |
+| --- | --- |
+| `bindingInformation` | Required string attribute.<br><br>Specifies information to communicate with a site. For example, a Web site binding includes the IP address (or unspecified IP addresses), the port number, and an optional host header used to communicate with the site. |
+| `protocol` | Required string attribute.<br><br>Specifies the protocol for communicating with a site. |
+| `sslFlags` | Optional uint attribute but works like flags type, with the following possible flags. <table> <tbody> <tr> <th>Value</th> <th>Description</th></tr> <tr> <th><code>0</code></th> <td>The secure connection be made using an IP/Port combination. Only one certificate can be bound to a combination of IP address and the port.</td></tr> <tr> <th><code>1</code></th> <td>The secure connection be made using the port number and the host name obtained by using Server Name Indication (SNI).</td></tr> <tr> <th><code>2</code></th> <td>The secure connection be made using the centralized SSL certificate store.</td></tr> <tr> <th><code>4</code></th> <td>Disable HTTP/2.</td></tr> <tr> <th><code>8</code></th> <td>Disable OCSP Stapling.</td></tr> <tr> <th><code>16</code></th> <td>Disable QUIC.</td></tr> <tr> <th><code>32</code></th> <td>Disable TLS 1.3 over TCP.</td></tr> <tr> <th><code>64</code></th> <td>Disable Legacy TLS.</td></tr> </tbody></table> Centralized SSL certificate support enables you to create a centralized certificate store that can contain multiple certificate files. You can name the certificate files to correspond to the host names that they contain. This enables you to create a binding that only requires a port, rather than an IP/port or a host name/port combination. When a request comes in, IIS matches the port, determines the host name from the request, and searches the centralized certificate store for a certificate file with a matching name. It uses that certificate. <br><br> With a Server Name Indicator (SNI), the host name is exchanged as part of the SSL handshake. SNI is enabled in the Add Site Binding dialog box when you add a binding with a type of HTTPS. This is especially useful for SSL connections that host multiple servers on a single network address. <br><br> Values greater than 4 are only supported in IIS 10 version 1809 and above. The default value is `0`. |
+
+### Child Elements
+
+None.
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-3.0"
