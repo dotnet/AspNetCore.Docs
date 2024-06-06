@@ -1,7 +1,7 @@
 ---
-title: Kestrel web server in ASP.NET Core
+title: Kestrel máy chủ web trong ASP.NET Core
 author: tdykstra
-description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
+description: Giới thiệu về Kestrel, máy chủ web đa nền tảng cho ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
