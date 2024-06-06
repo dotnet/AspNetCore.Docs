@@ -209,7 +209,7 @@ Server response stream:
 
 For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](xref:grpc/client#bi-directional-streaming-call).
 
-Server streaming calls don't have a request stream. Because there is no request stream, a client can only communicate the server stream should stop by canceling it. If the overhead from canceled calls is impacting the app then considering changing the server streaming call to a bi-directional streaming call. With a bi-directional streaming call the client completing the request stream can be a signal to the server to end the call.
+Server streaming calls don't have a request stream. This means that the only way a client can communicate to the server that the stream should stop is by canceling it. If the overhead from canceled calls is impacting the app then consider changing the server streaming call to a bi-directional streaming call. In a bi-directional streaming call the client completing the request stream can be a signal to the server to end the call.
 
 ## Dispose streaming calls
 
@@ -219,9 +219,9 @@ In the following example, the [using declaration](/dotnet/csharp/language-refere
 
 [!code-csharp[](~/grpc/performance/dispose-streaming-call.cs?highlight=2)]
 
-Ideally streaming calls should be [completed gracefully](#gracefully-complete-streaming-calls). Also disposing the call ensures the HTTP request between the client and the server is canceled if an unexpected error occurs. Streaming calls that are accidently left running don't just leak memory and resources on the client, but are left running on the server as well. Many leaked streaming calls could impact the stability of the app.
+Ideally streaming calls should be [completed gracefully](#gracefully-complete-streaming-calls). Disposing the call ensures the HTTP request between the client and the server is canceled if an unexpected error occurs. Streaming calls that are accidentally left running don't just leak memory and resources on the client, but are left running on the server as well. Many leaked streaming calls could impact the stability of the app.
 
-There is no negative impact to disposing a streaming call that's already gracefully completed.
+Disposing of a streaming call that has already completed gracefully doesn't have any negative impact.
 
 ## Replace unary calls with streaming
 
