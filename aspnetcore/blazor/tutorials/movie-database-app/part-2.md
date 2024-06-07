@@ -166,7 +166,7 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 ## Add Nuget packages and tools
 
-To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**). The **Terminal** console is a PowerShell console.
+To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**). The **Terminal** tab is a PowerShell command shell.
 
 Paste all of the following commands into the PowerShell prompt of the **Terminal** at once. When you paste multiple commands into the prompt, a warning appears telling you that multiple commands will execute. Select the **Paste anyway** button.
 
@@ -187,7 +187,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 ```
 
 > [!CAUTION]
-> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the PowerShell console (**Terminal** tab).
+> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the PowerShell command shell (**Terminal** tab).
 
 Ignore the following messages if they appear:
 

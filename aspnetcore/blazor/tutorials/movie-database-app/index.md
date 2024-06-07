@@ -41,6 +41,8 @@ Parts of this series include:
 
 At the end of the tutorial, you'll have a Blazor Web App that can display and manage a movie database.
 
+As you work through the tutorial (or if you're only reading the articles and not building the app), you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.
+
 To open a documentation GitHub issue for an article of the series, use the **Open a documentation issue** link at the bottom of the article. Using the link to create your issue adds important tracking metadata to the issue and automatically pings the author.
 
 ## Next steps
