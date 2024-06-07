@@ -23,7 +23,7 @@ This part of the series focuses on the database context and directly working wit
 
 ## Database context
 
-The database context, `BlazorWebAppMoviesContext`, connects to the database and maps model objects to database records. The database context was created in the second part of this series. The scaffolded context code appears in the `Program` file:
+The database context, `BlazorWebAppMoviesContext`, connects to the database and maps model objects to database records. The database context was created in the second part of this series. The scaffolded database context code appears in the `Program` file:
 
 :::zone pivot="vs"
 
@@ -63,7 +63,7 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 
 <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> registers the given context as a service in the app's service collection.
 
-<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional database technologies.
+<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional types of databases.
 
 <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString%2A> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
 
@@ -87,7 +87,7 @@ SQL Server and SQLite databases are the most popular at this time. The Visual St
 
 :::zone pivot="vs"
 
-SQL Server Express LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:\Users\{USER}\` directory, where the `{USER}` placeholder is the system's user ID.
+SQL Server Express LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, master database files (`*.mdf`) are placed in the `C:/Users/{USER}` directory, where the `{USER}` placeholder is the system's user ID.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
@@ -117,13 +117,13 @@ The table's data opens in a new tab in Visual Studio:
 
 [SQLite](https://www.sqlite.org/) is a public, self-contained, full-featured SQL database engine.
 
-There are many third-party tools you can download to manage and view a SQLite database. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
+There are many third-party tools you can use to manage and view SQLite databases. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
 
 ![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4/_static/dbb.png)
 
 In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
 
-The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
+The workaround for the limitations is to manually write migrations code to perform a table rebuild when the table changes. A table rebuild involves:
 
 * Creating a new table with a temporary table name.
 * Copying data from the old table to the new table.
@@ -146,13 +146,13 @@ For more information, see the following resources:
 
 [SQLite](https://www.sqlite.org/) is a public, self-contained, full-featured SQL database engine.
 
-There are many third-party tools you can download to manage and view a SQLite database. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
+There are many third-party tools you can use to manage and view SQLite databases. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
 
 ![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4/_static/dbb.png)
 
 In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
 
-The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
+The workaround for the limitations is to manually write migrations code to perform a table rebuild when the table changes. A table rebuild involves:
 
 * Creating a new table with a temporary table name.
 * Copying data from the old table to the new table.
@@ -173,9 +173,14 @@ For more information, see the following resources:
 
 ## Seed the database
 
-Seeding code can provide a set of entities/records for development testing or even be used to create initial data for a new production database.
+Seeding code can provide a set of entities/records for development testing or even be used to create the initial data for a new production database.
 
-Create a new class named `SeedData` in the `Data` folder with the following code:
+> [!WARNING]
+> The technique shown in this section isn't acceptable for modifying a live database with active users.
+
+Create a new class named `SeedData` in the `Data` folder with the following code.
+
+`Data/SeedData.cs`:
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -248,7 +253,7 @@ namespace BlazorWebAppMovies.Data
 
 A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the [*Max Max* franchise](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
 
-To add the seed initializer, add the following code to the `Program` file immediately after the line that builds the app (`var app = builder.Build();`). The [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures that the database context is disposed after the seeding operation completes.
+To execute the seed initializer, add the following code to the `Program` file immediately after the line that builds the app (`var app = builder.Build();`). The [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures that the database context is disposed after the seeding operation completes.
 
 ```csharp
 using (var scope = app.Services.CreateScope())
@@ -261,23 +266,23 @@ using (var scope = app.Services.CreateScope())
 
 :::zone pivot="vs"
 
-If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window. Restart the app to seed the database.
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window.
 
 :::zone-end
 
 :::zone pivot="vsc"
 
-If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code. Restart the app to seed the database.
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
 
 :::zone-end
 
 :::zone pivot="cli"
 
-If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell. Restart the app to seed the database.
+If the database contains records from earlier testing, run the app and delete the entities that you created in the database. Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
 
 :::zone-end
 
-If the database is empty, run the app.
+When the database is empty, run the app.
 
 Navigate to the movies `Index` page to see the seeded movies:
 

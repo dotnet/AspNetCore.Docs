@@ -26,10 +26,16 @@ This part of the series explains how metadata of the `Movie` model is used to va
 Validation rules are specified on a model class using *data annotations*. The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
 
 <!-- 
-     I'm concerned about telling readers that they can just look at 
-     the DA API to see all of them because I know that they don't all 
-     work OOB (e.g., [Display(Name="xxx")]). I've opened an issue to 
-     work on this further in the Blazor forms validation article: 
+     Now, we'll get into validation DA. I think the decision on 
+     keeping that early, general coverage on DA is a good one.
+     Now, we can dive right into applying the additional DA
+     without having to re-explain the concept.
+
+     BTW ... I'm concerned about telling readers that they can 
+     just look at the DA API to see all of them because I know 
+     that they don't all work OOB (e.g., [Display(Name="xxx")]). 
+     I've opened an issue to work on this subject further in the 
+     Blazor forms validation article: 
      https://github.com/dotnet/AspNetCore.Docs/issues/32639
 -->
 
@@ -47,7 +53,7 @@ Value types, such as `decimal`, `int`, `float`, and `DateTime`, are inherently r
 
 ## Add validation to the `Movie` model
 
-Add the following data annotations to the `Movie` class properties. To update all of the properties at once, you can copy and paste the entire `Models/Movie.cs` file.
+Add the following data annotations to the `Movie` class properties. To update all of the properties at once, you can copy and paste the entire `Models/Movie.cs` file, which appears after the following code example.
 
 ```diff
 + [Required, StringLength(60, MinimumLength = 3)]
@@ -64,7 +70,8 @@ Add the following data annotations to the `Movie` class properties. To update al
 
 <!-- HOLD for a later version of the tutorial
      when QuickGrid has display name support
-     Dan's issue: https://github.com/dotnet/aspnetcore/issues/49147
+
+     Dan, your issue: https://github.com/dotnet/aspnetcore/issues/49147
 
      Add to the diff:
 
@@ -80,7 +87,7 @@ Add the following data annotations to the `Movie` class properties. To update al
      on the QG component won't be necessary, so that instruction can be removed.
 -->
 
-`Models/Movie.cs` file after updates:
+`Models/Movie.cs` file after the preceding data annotations are applied to the properties:
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -110,8 +117,6 @@ namespace BlazorWebAppMovies.Models
 
 The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters and doesn't allow additional special characters in the genre property.
 
-Due to enhanced form processing, server-side validation doesn't require a full-page reload. Enhanced forms are described further in Blazor's reference documentation.
-
 ## Create an EF Core migration and update the database
 
 A data model schema defines how data is organized and connected within a relational database.
@@ -131,6 +136,18 @@ Constraint | Model `Title` property | Database `Title` column
 --- | :---: | :---:
 Maximum length | 60 characters | Byte pairs up to ~2 GB&dagger;<br>[`NVARCHAR (MAX)`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql)
 Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>[`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span><br>`NULL` is permitted in the column.
+
+<!-- REVIEWER NOTE
+
+You might be thinking overkill here, but I don't think so.
+I think this is great basic info to provide on the delta
+between the code and the dB schema. This concept on NVARCHAR
+will be with them forever if they're coming into the subject 
+new to these concepts. I present this info as a 
+before-and-after to make it easy to see the difference after 
+the migration is applied. 
+
+-->
 
 &dagger;Database character columns are defined by *size* (byte pairs). One byte-pair per character is used for characters defined in the Unicode range 0 to 65,535. However, individual characters outside of that Unicode range take multiple byte-pairs to store, so the actual number of characters that a column can store is arbitrary. The important concept for our purposes in comparing the `Title` property of the `Movie` model and the database schema for the `Title` column is that ~2 GB of stored byte-pairs in the database far exceeds the 60 character limit set for the property. The database schema *should be adjusted downward* to match the app's constraint.
 
