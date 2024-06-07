@@ -45,8 +45,6 @@ app.MapRazorComponents<App>()
 
 Up to this point in the tutorial series, the calls to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> weren't required because the app only adopted static SSR. Because we'll adopt interactive SSR in this article, the app is now required to call these extension methods.
 
-At this point, the app is capable of interactive SSR, but none of the app's components adopt it.
-
 When Blazor sets the type of rendering for a component, the rendering is referred to as the component's *render mode*. The following table shows the available render modes for rendering Razor components in a Blazor Web App.
 
 Name | Description | Render location | Interactive
@@ -71,12 +69,14 @@ To apply a render mode to a component, the developer either uses the `@rendermod
   @rendermode="InteractiveServer"
   ```
 
-Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. That's the approach that we'll take for the movie database app.
+Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. Global interactivity is the approach that we'll take for the movie database app.
 
 > [!NOTE]
 > More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR. After the tutorial, you're free to use this app to study the other component render modes.
 
-Based on creating the app from the Blazor Web App project template, the root component of the app is the `App` component (`Components/Pages/App.razor`):
+Based on creating the app from the Blazor Web App project template, the root component of the app is the `App` component.
+
+`Components/Pages/App.razor`:
 
 ```razor
 <!DOCTYPE html>
@@ -118,7 +118,7 @@ To apply global server-side interactivity to these two components, add `@renderm
 + <Routes @rendermode="InteractiveServer" />
 ```
 
-Now, every component in the movie database app inherits interactive SSR via the `Routes` component.
+Now, every component in the movie database app inherits interactive SSR via the `Routes` component. It's not necessary for each component to specify the Interactive Server (`InteractiveServer`) render mode.
 
 To see how making a component interactive enhances the user experience, let's provide two enhancements to the app in the next couple of sections:
 
@@ -182,7 +182,7 @@ The preceding approach is effective for a component that adopts static SSR, wher
 
 Now that the component is interactive, it can provide an improved user experience with Blazor features for binding and event handling, where full-page reloads aren't required to run C# on the server that interacts with the page's elements.
 
-Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string. Blazor can bind an HTML element's value to a C# field or property transparently over the underlying SignalR connection. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
+Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string and a GET request. Blazor can bind an HTML element's value to a C# field or property transparently over the underlying SignalR connection. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
 
 ```diff
 - [SupplyParameterFromQuery]
@@ -197,16 +197,7 @@ Remove the overridden `OnParametersSet` Blazor lifecycle method from the `@code`
 ```diff
 - protected override void OnParametersSet()
 - {
--     if (!string.IsNullOrEmpty(TitleFilter))
--     {
--         movies = DB.Movie.Where(
--             s => !string.IsNullOrEmpty(s.Title) ? 
--                 s.Title.Contains(TitleFilter) : false);
--     }
--     else
--     {
--         movies = DB.Movie;
--     }
+-     ...
 - }
 ```
 
@@ -219,7 +210,7 @@ protected override void OnInitialized()
 }
 ```
 
-Next, add a delegate event handler that the user can trigger to filter the database's movie records. The method uses the value of the `titleFilter` field to perform the operation. If the user clears `titleFilter` and searches, the method loads the entire movie list for display.
+Add a delegate event handler that the user can trigger to filter the database's movie records. The method uses the value of the `titleFilter` field to perform the operation. If the user clears `titleFilter` and searches, the method loads the entire movie list for display.
 
 Add the following method to the `@code` block:
 
@@ -262,11 +253,11 @@ In its place, add the following Razor markup:
 
 The `<input>` element *binds* the value of the element to the `titleFilter` field. Selecting the button triggers the `FilterMovies` delegate via the `@onclick` directive attribute of the `<button>` element.
 
-Run the app, type "road warrior" into the search field, and select the **Search** button:
+Run the app, type "`road warrior`" into the search field, and select the **Search** button:
 
 ![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
-When the user selects the button, an HTTP request isn't issued. The event is transparently transmitted to the server over the SignalR connection in the background. The filtering operation is performed on the server, and the server transparently sends back the HTML of the grid over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
+When the user selects the button, an HTTP request isn't issued. The event is transparently transmitted to the server over the SignalR connection in the background. The filtering operation is performed on the server, and the server transparently sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
@@ -291,7 +282,7 @@ If you're new to Blazor, we recommend reading the following Blazor articles that
 * <xref:blazor/host-and-deploy/index>
 * <xref:blazor/blazor-ef-core> covers concurrency with EF Core in Blazor apps.
 
-In the documentation website's sidebar navigation, articles are organized by subject matter and laid out in roughly in a general-to-specific or general-to-complex order. The best approach to initially leaning about Blazor is to read down the table of contents from top to bottom.
+In the documentation website's sidebar navigation, articles are organized by subject matter and laid out in roughly in a general-to-specific or general-to-complex order. The best approach when starting to learn about Blazor is to read down the table of contents from top to bottom.
 
 ## Troubleshoot with the completed sample
 

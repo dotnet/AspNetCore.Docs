@@ -71,7 +71,7 @@ The `movies` collection is an `IQueryable<Movie>`, which is the type for assignm
 The `OnParametersSet` Blazor component lifecycle method executes after parameters are set. The method checks if `TitleFilter` has a value and either:
 
 * Filters the database for movies with a title that contains the filter string.
-* Returns all of the movies if the filter string (`TitleFilter`) is `null` (`titleFilter` isn't present in the query string) or an empty string (no value is supplied for the field in the query string, `?titleFilter=`).
+* Returns all of the movies if the filter string (`TitleFilter`) is `null`, which happens if `titleFilter` isn't present in the query string or no value is supplied for the field in the query string (`?titleFilter=`).
 
 Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
 
@@ -85,13 +85,13 @@ Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGr
 
 The `s => s.Title.Contains()` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the `Where` or `Contains` methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
-The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case sensitive and case ***insensitive*** filtering, depending on the query. For information on making case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
+The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, `Contains` maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case sensitive and case insensitive filtering, depending on the query. For information on making case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
 
 Run the app and navigate to the movies `Index` page at `/movies`. The movies in the database load:
 
 ![Mad Max movies before filtering in the movies Index page](~/blazor/tutorials/movie-database-app/part-6/_static/before-filtering.png)
 
-Append a query string to the URL in the address bar: `?titleSearch=road+warrior`. For example, the full URL appears as `https://localhost:5001/movies?titleSearch=road+warrior`, assuming the port number is `5001`. The filtered movie is displayed:
+Append a query string to the URL in the address bar: `?titleSearch=road+warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleSearch=road+warrior`, assuming the port number is `7073`. The filtered movie is displayed:
 
 ![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
 
@@ -106,20 +106,31 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 </p>
 ```
 
-> [!IMPORTANT]
-> The next instruction is to run the app again. In Visual Studio, you merely need to save the file that you're working on. Visual Studio automatically recompiles and runs the app with your saved changes, so you can return to the existing browser window to see the result.
->
-> When rerunning the app in VS Code, close the browser window and in VS Code select **Run** > **Restart Debugging** or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. VS Code recompiles and runs the app with your saved changes and spawns a new browser window for the app.
->
-> When using the .NET CLI, stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Rerun the app with `dotnet run`. Return to the existing browser window and refresh it to reload the app.
+:::zone pivot="vs"
 
-Run the app again and type `road warrior` into the textbox:
+The next instruction is to run the app again. Save the file that you're working on. Visual Studio automatically recompiles and runs the app with your saved changes, so you can return to the existing browser window to see the result. You don't need to stop and restart the app for many types of code changes when using Visual Studio.
 
-![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/before-filtering.png)
+:::zone-end
 
-Select the **Search** button to filter the movies:
+:::zone pivot="vsc"
 
-![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
+The next instruction is to run the app again. Close the browser window and in VS Code select **Run** > **Restart Debugging** or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. VS Code recompiles and runs the app with your saved changes and spawns a new browser window for the app.
+
+:::zone-end
+
+:::zone pivot="cli"
+
+The next instruction is to run the app again. Stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Rerun the app with `dotnet run`. Return to the existing browser window and refresh it to reload the app.
+
+:::zone-end
+
+Run the app again and type `road warrior` into the search box and select the **Search** button to filter the movies:
+
+![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter.png)
+
+The result after searching on `road warrior`:
+
+![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result.png)
 
 ## Stop the app
 
