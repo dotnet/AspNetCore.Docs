@@ -9,7 +9,7 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthe
 @page "/authentication/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="@aiAction" />
+<RemoteAuthenticatorView Action="@Action" />
 
 @code {
     [Parameter]
