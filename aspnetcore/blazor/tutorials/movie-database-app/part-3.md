@@ -33,7 +33,7 @@ The anatomy of a Razor component follows the following general pattern:
 
 * At the top of the component definition (`.razor` file), razor markup specifies the way that component markup is parsed or functions.
 * Next, Razor markup specifies how HTML is rendered, which includes ordinary HTML elements.
-* Finally, an `@code` block contains C# code to execute during component lifecycle events on the server.
+* Finally, an `@code` block contains C# code to execute during component lifecycle events on the server. Note that since the app adopts static SSR, any code in the `@code` block can only execute on the server when the component is rendered. In the last part of the tutorial series, components adopt interactive SSR and are able to execute C# code on the server that interacts directly with the UI rendered in the browser. For now, only static pages are rendered by the server.
 
 Consider the following `Welcome` component example (`Welcome.razor`):
 
@@ -42,12 +42,13 @@ Consider the following `Welcome` component example (`Welcome.razor`):
 
 <PageTitle>Welcome!</PageTitle>
 
-<h1>Welcome!</h1>
+<h1>Welcome to Blazor!</h1>
 
 <p>@welcomeMessage</p>
 
 @code {
-    private string welcomeMessage = "Welcome to Blazor!";
+    private string welcomeMessage = 
+        "You're going to ❤️ Blazor!";
 }
 ```
 
@@ -55,11 +56,11 @@ The first line represents an important Razor construct in Razor components, the 
 
 The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title. In this case, the page title is `Welcome!`.
 
-`Welcome!` is also the first rendered markup of the component per the content of the H1 heading element (`<h1>`).
+`Welcome to Blazor!` is the first rendered body markup of the component per the content of the H1 heading element (`<h1>`).
 
-A welcome message is displayed using Razor syntax by prefixing the at symbol (`@`) to a C# variable (`welcomeMessage`).
+Next, a welcome message is displayed using Razor syntax by prefixing the at symbol (`@`) to a C# variable (`welcomeMessage`).
 
-The `@code` block contains the C# code of the component. `welcomeMessage` is a private string type variable initialized with a value of `Welcome to Blazor!`.
+The `@code` block contains the C# code of the component. `welcomeMessage` is a private string type variable initialized with a value.
 
 In the following sections of this article:
 
@@ -251,7 +252,9 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 
 The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. `Movie` from the injected database context (`DB`) is the item provider. For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
 
-In the following Razor markup, notice how the context (`Context`) parameter specifies a parameter name (`movie`) for each content expression of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. `Movie` class properties are read from the parameter. For example, the movie identifier (`Id`) is available in `movie.Id`. The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
+In the following Razor markup, notice how the context (`Context`) parameter specifies a parameter name (`movie`) for each content expression of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. `Movie` class properties are read from the parameter.
+
+For example, the movie identifier (`Id`) is available in `movie.Id`. The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
 ```razor
 <QuickGrid Class="table" Items="DB.Movie">
@@ -358,7 +361,7 @@ When the movie is loaded, it's displayed as a [description list (MDN documentati
 * The first link provides the user an opportunity to edit the entity.
 * The second link allows the user to return to the movies `Index` page.
 
-CSS classes aren't present to simplify display in the following example:
+CSS classes aren't shown in the following example to simplify the Razor markup for display:
 
 ```razor
 <dl>
@@ -422,7 +425,7 @@ Open the `Create` component definition file (`Components/Pages/Movies/Create.raz
 
 The component uses a built-in component called an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, which renders a form for user input and includes validation features.
 
-CSS classes aren't present to simplify display in the following example:
+CSS classes aren't present in the following example to simplify the display:
 
 ```razor
 <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" FormName="create" Enhance>
@@ -456,11 +459,11 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is 
 
 For validation:
 
-* The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> adds data annotations validation support, which is covered in a later part of this tutorial series.
+* The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> adds data annotations validation support, which is covered later in this tutorial series.
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component displays a list of validation messages.
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components hold validation messages for the form's fields.
 
-Blazor includes several form element components to assist you with creating forms. The following form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
+Blazor includes several form element components to assist you with creating forms. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
 
 In the component's `@code` block, C# code includes a `Movie` component parameter tied to the form via the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute).
 
@@ -486,7 +489,7 @@ The `AddMovie` method:
 ```
 
 > [!WARNING]
-> The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
+> The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section later in this article.
 
 ### `Delete` component
 
@@ -505,9 +508,9 @@ Examine the Razor markup for the submit button of the <xref:Microsoft.AspNetCore
 <button type="submit" disabled="@(movie is null)">Delete</button>
 ```
 
-The `**Delete**` button sets its [`disabled` HTML attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/disabled) based on the presence of the movie (not `null`) using an explicit Razor expression (`@(...)`).
+The **`Delete`** button sets its [`disabled` HTML attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/disabled) based on the presence of the movie (not `null`) using an explicit Razor expression (`@(...)`).
 
-In the C# code of the `@code` block, the `DeleteMovie` method removes the movie, saves the changes to the data database, and navigates the user to the movies `Index` page. The exclamation point on the movie field (`movie!`) is the [null-forgiving operator (C# Language Reference)](/dotnet/csharp/language-reference/operators/null-forgiving), which suppresses all nullable warnings for `movie`.
+In the C# code of the `@code` block, the `DeleteMovie` method removes the movie, saves the changes to the database, and navigates the user to the movies `Index` page. The exclamation point on the movie field (`movie!`) is the [null-forgiving operator (C# Language Reference)](/dotnet/csharp/language-reference/operators/null-forgiving), which suppresses nullable warnings for `movie`.
 
 ```csharp
 public async Task DeleteMovie()
@@ -584,7 +587,7 @@ Statically-rendered server-side forms, such as those in the `Create` and `Edit` 
 
 In the example `Create` and `Edit` components of this tutorial, overposting isn't a concern because the `Movie` model doesn't include restricted properties for create and update operations. However, it's important to keep overposting in mind when working with static SSR-based Blazor forms that you create and modify in the future in other apps.
 
-To mitigate overposting, we recommend using a separate view model/data transfer object (DTO) for the form and database with create (insert) and update operations. When the form is submitted, only properties of the view model/DTO are used by the component. Any extra data included by a malicious user is discarded, so the malicious user is prevented from conducting an overposting attack.
+To mitigate overposting, we recommend using a separate view model/data transfer object (DTO) for the form and database with create (insert) and update operations. When the form is submitted, only properties of the view model/DTO are used by the component and C# code to modify the database. Any extra data included by a malicious user is discarded, so the malicious user is prevented from conducting an overposting attack.
 
 ## Globalization
 
