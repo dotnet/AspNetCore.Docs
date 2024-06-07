@@ -23,9 +23,22 @@ Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}=
 
 For event handling:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Delegate event handlers in Blazor Web Apps are only called in components that adopt an interactive render mode. The examples throughout this article assume that the app adopts an interactive render mode globally in the app's root component, typically the `App` component. For more information, see <xref:blazor/components/render-modes#apply-a-render-mode-to-the-entire-app>.
 * Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
 * Delegate event handlers automatically trigger a UI render, so there's no need to manually call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged).
 * Exceptions are logged.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
+* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged).
+* Exceptions are logged.
+
+:::moniker-end
 
 The following code:
 
