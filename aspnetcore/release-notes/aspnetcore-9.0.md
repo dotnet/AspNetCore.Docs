@@ -23,7 +23,7 @@ This section describes new features for Blazor.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor-maui-web-template.md)]
 
-!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor-simplified-auth-state.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor-simplified-auth-state.md)]
 
 ## SignalR
 

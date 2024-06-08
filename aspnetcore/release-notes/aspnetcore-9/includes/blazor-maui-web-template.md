@@ -1,4 +1,4 @@
-## .NET MAUI Blazor hybrid and web solution template
+### .NET MAUI Blazor hybrid and web solution template
 
 A new solution template makes it easier to create .NET MAUI native and Blazor web client apps that share the same UI. This template shows how to create client apps that can target Android, iOS, Mac, Windows, and Web while maximizing code reuse. 
 
