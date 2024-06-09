@@ -64,3 +64,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/fix-for-503s.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/current_component.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]

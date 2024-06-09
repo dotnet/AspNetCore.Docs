@@ -12,8 +12,6 @@ We've introduced an API to make easier to query components at runtime:
 * `Platform.IsInteractive`: indicates whether the platform supports interactivity. This is `true` for all implementations except `Static`.
 * `AssignedRenderMode`: Exposes the render mode value defined in the component hierarchy, if any, via the `render-mode` attribute on a root component or the `[RenderMode]` attribute. The values can be `InteractiveServer`, `InteractiveAuto` or `InteractiveWebassembly`.
 
-These values are most useful during prerendering as they show where the component will transition to after prerendering. Knowing where the component will transition to after prerendering is often useful for rendering different content.
+These values are most useful during prerendering as they show where the component will transition to after prerendering. Knowing where the component will transition to after prerendering is often useful for rendering different content. For example, consider a create a Form component that is rendered interactively. You might choose to disable the inputs during prerendering. Once the component becomes interactive, the inputs are enabled.
 
-For example, consider a create a Form component that is rendered interactively. You might choose to disable the inputs during prerendering. Once the component becomes interactive, the inputs are enabled.
-
-Alternatively, if the component is not going to be rendered in an interactive context, you might render markup to support performing any action through regular web mechanics.
+Alternatively, if the component is not going to be rendered in an interactive context, consider rendering markup to support performing any action through regular web mechanics.
