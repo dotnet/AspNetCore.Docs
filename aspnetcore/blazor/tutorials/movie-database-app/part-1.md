@@ -42,7 +42,9 @@ the bottoms of the articles.
 
 :::zone pivot="vs"
 
-[Visual Studio (latest release)](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload
+<!-- NOTE TO SELF: Confirm this is the link for continued use -->
+
+[Visual Studio (latest release)](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 
 :::zone-end
 
