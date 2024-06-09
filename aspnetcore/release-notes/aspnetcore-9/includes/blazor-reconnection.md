@@ -1,6 +1,6 @@
 ### Improved Blazor Server reconnection experience:
 
-The following changes have been made to the default Blazor Server reconnection experience:
+The following enhancements have been made to the default Blazor Server reconnection experience:
 
 * Reconnect timing now uses an exponential backoff strategy. The first several reconnection attempts happen in rapid succession, and then a delay gradually gets introduced between attempts.
 
