@@ -4,7 +4,7 @@ New APIs make it easier to add authentication to an existing Blazor web app. Whe
 
 New APIs that can be called in the server and client projects make it easier to add this functionality:
 
-* Use []`AddAuthenticationStateSerialization`](https://source.dot.net/#Microsoft.AspNetCore.Components.WebAssembly.Server/WebAssemblyRazorComponentsBuilderExtensions.cs,5557151694ca7c07) in Program.cs in the Server project to add the necessary services to serialize the authentication state on the server.
+* Use [`AddAuthenticationStateSerialization`](https://source.dot.net/#Microsoft.AspNetCore.Components.WebAssembly.Server/WebAssemblyRazorComponentsBuilderExtensions.cs,5557151694ca7c07) in Program.cs in the Server project to add the necessary services to serialize the authentication state on the server.
 
   ```csharp
   builder.Services.AddRazorComponents()
@@ -12,7 +12,7 @@ New APIs that can be called in the server and client projects make it easier to 
       .AddAuthenticationStateSerialization();
   ```
 
-* Use []`AddAuthenticationStateDeserialization`](https://apisof.net/catalog/4a296157ae3e0f6f0c352bfb4a0c5d5a?) in Program.cs in the Client project to add the necessary services to deserialize the authentication state in the browser.
+* Use [`AddAuthenticationStateDeserialization`](https://apisof.net/catalog/4a296157ae3e0f6f0c352bfb4a0c5d5a?) in Program.cs in the Client project to add the necessary services to deserialize the authentication state in the browser.
 
   ```csharp
   builder.Services.AddAuthorizationCore();
