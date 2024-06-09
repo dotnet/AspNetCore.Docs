@@ -139,7 +139,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
-  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do ***not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do **not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
 
   ```csharp
   oidcOptions.ResponseType = OpenIdConnectResponseType.Code;
