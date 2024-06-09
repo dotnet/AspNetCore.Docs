@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/09/2024
 uid: blazor/tutorials/signalr-blazor
 ---
 # Use ASP.NET Core SignalR with Blazor
@@ -37,15 +37,19 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Install [Visual Studio Code](https://code.visualstudio.com/download).
-* Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
-* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+Install the latest releases of the following:
 
-The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+* [.NET SDK](https://dotnet.microsoft.com/download/dotnet)
+
+For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
+
+The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use an integrated development environment (IDE) other than Visual Studio Code.
 
 # [.NET CLI](#tab/net-cli/)
 
-[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+[.NET SDK (latest release)](https://dotnet.microsoft.com/download/dotnet)
 
 ---
 
@@ -66,25 +70,44 @@ Follow the guidance for your choice of tooling:
 > [!NOTE]
 > Visual Studio 2022 or later and .NET Core SDK 8.0.0 or later are required.
 
-Create a new project.
+In Visual Studio:
 
-Select the **Blazor Web App** template. Select **Next**.
-
-Type `BlazorSignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
-
-Confirm the **Framework** is .NET 8 or later. Select **Create**.
+* Select **Create a new project** from the **Start Window** or select **File** > **New** > **Project** from the menu bar.
+* In the **Create a new project** dialog, select **Blazor Web App** from the list of project templates. Select the **Next** button.
+* In the **Configure your new project** dialog, name the project `BlazorSignalRApp` in the **Project name** field, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
+* Confirm that the **Location** for the app is suitable. Leave the **Place solution and project in the same directory** checkbox selected. Select the **Next** button.
+* In the **Additional information** dialog, use the following settings:
+  * **Framework**: Confirm that the [latest framework](https://dotnet.microsoft.com/download/dotnet) is selected. If Visual Studio's **Framework** dropdown list doesn't include the latest available .NET framework, [update Visual Studio](/visualstudio/install/update-visual-studio) and restart the tutorial.
+  * **Authentication type**: **None**
+  * **Configure for HTTPS**: Selected
+  * **Interactive render mode**: **WebAssembly**
+  * **Interactivity location**: **Per page/component**
+  * **Include sample pages**: Selected
+  * **Do not use top-level statements**: Not selected
+  * Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In a command shell, execute the following command:
+This tutorial assumes that you have familiarity with VS Code. If you're new to VS Code, see the [VS Code documentation](https://code.visualstudio.com/docs). The videos listed by the [Introductory Videos page](https://code.visualstudio.com/docs/getstarted/introvideos) are designed to give you an overview of VS Code's features.
 
-```dotnetcli
-dotnet new blazor -o BlazorSignalRApp
-```
+In VS Code:
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
+* Select **New Terminal** from **Terminal** in the menu bar.
+* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
+* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorSignalRApp` at the current directory location. Pass the `-int|--interactivity` option with `WebAssembly` to adopt client-side rendering (CSR). Pass the `-ai|--all-interactive` option with `False` to adopt per-page/component interactivity location.
 
-In Visual Studio Code, open the app's project folder.
+  > [!IMPORTANT]
+  > Name the project `BlazorSignalRApp`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow the tutorial.
+
+  ```powershell
+  dotnet new blazor -o BlazorSignalRApp -int WebAssembly -ai False
+  ```
+
+* Use the [`code` command](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) to open the `BlazorSignalRApp` folder in the current instance of VS Code:
+
+  ```powershell
+  code -r BlazorSignalRApp
+  ```
 
 When Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
 
@@ -92,13 +115,17 @@ If Visual Studio Code doesn't automatically offer to add build and debug assets 
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell, execute the following command:
+In a command shell:
 
-```dotnetcli
-dotnet new blazor -o BlazorSignalRApp
-```
+* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
+* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorSignalRApp` at the current directory location. Pass the `-int|--interactivity` option with `WebAssembly` to adopt client-side rendering (CSR). Pass the `-ai|--all-interactive` option with `False` to adopt per-page/component interactivity location.
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
+  > [!IMPORTANT]
+  > Name the project `BlazorSignalRApp`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow the tutorial.
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorSignalRApp -int WebAssembly -ai False
+  ```
 
 ---
 
@@ -106,7 +133,7 @@ The `-o|--output` option creates a folder for the project. If you've created a f
 
 # [Visual Studio](#tab/visual-studio/)
 
-In **Solution Explorer**, right-click the `BlazorSignalRApp` project and select **Manage NuGet Packages**.
+In **Solution Explorer**, right-click the `BlazorSignalRApp.Client` project and select **Manage NuGet Packages**.
 
 In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to `nuget.org`.
 
@@ -120,9 +147,9 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorSignalRApp.Client` project using `cd BlazorSignalRApp.Client`), execute the following command:
 
-```dotnetcli
+```powershell
 dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 
@@ -130,7 +157,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the project's folder, execute the following command:
+In a command shell opened to the `BlazorSignalRApp.Client` project, execute the following command:
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.SignalR.Client
@@ -142,13 +169,13 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ## Add a SignalR hub
 
-Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`) to the root of the app:
+In the server `BlazorSignalRApp` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSignalRApp/Hubs/ChatHub.cs":::
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSignalRApp/BlazorSignalRApp/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
-Open the `Program` file.
+Open the `Program` file of the server `BlazorSignalRApp` project.
 
 Add the namespaces for <xref:Microsoft.AspNetCore.ResponseCompression?displayProperty=fullName> and the `ChatHub` class to the top of the file:
 
@@ -157,23 +184,25 @@ using Microsoft.AspNetCore.ResponseCompression;
 using BlazorSignalRApp.Hubs;
 ```
 
-Add Response Compression Middleware services:
+Add SignalR and Response Compression Middleware services:
 
 ```csharp
+builder.Services.AddSignalR();
+
 builder.Services.AddResponseCompression(opts =>
 {
    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-         new[] { "application/octet-stream" });
+       ["application/octet-stream"]);
 });
 ```
 
-Use Response Compression Middleware at the top of the processing pipeline's configuration:
+Use Response Compression Middleware at the top of the processing pipeline's configuration. Place the following line of code immediately after the line that builds the app (`var app = builder.Build();`):
    
 ```csharp
 app.UseResponseCompression();
 ```
 
-Add an endpoint for the hub immediately after the line that maps Razor components (`app.MapRazorComponents<T>()`):
+Add an endpoint for the hub immediately before the line that runs the app (`app.Run();`):
 
 ```csharp
 app.MapHub<ChatHub>("/chathub");
@@ -181,11 +210,19 @@ app.MapHub<ChatHub>("/chathub");
 
 ## Add Razor component code for chat
 
-Open the `Components/Pages/Home.razor` file.
+Add the following `Pages/Chat.razor` file to the `BlazorSignalRApp.Client` project:
 
-Replace the markup with the following code:
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSignalRApp/BlazorSignalRApp.Client/Pages/Chat.razor":::
 
-:::code language="razor" source="~/../blazor-samples/8.0/BlazorSignalRApp/Components/Pages/Home.razor":::
+Add an entry to the `NavMenu` component to reach the chat page. In `Components/Layout/NavMenu.razor` immediately after the `<div>` block for the `Weather` component, add the following `<div>` block:
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="chat">
+        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Chat
+    </NavLink>
+</div>
+```
 
 > [!NOTE]
 > Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
@@ -196,7 +233,7 @@ Follow the guidance for your tooling:
 
 # [Visual Studio](#tab/visual-studio)
 
-Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+With the server `BlazorSignalRApp` project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -204,7 +241,7 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the project's folder, execute the following commands:
+In a command shell opened to the root folder of the server `BlazorSignalRApp` project, execute the following command:
 
 ```dotnetcli
 dotnet run
@@ -216,7 +253,7 @@ Copy the URL from the address bar, open another browser instance or tab, and pas
 
 Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
+![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished-net-8-or-later.png)
 
 Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -302,7 +339,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorWebAssemblySignalRApp.Client` project using `cd BlazorWebAssemblySignalRApp.Client`), execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -528,7 +565,7 @@ Copy the URL from the address bar, open another browser instance or tab, and pas
 
 Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
+![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished-net-7-or-earlier.png)
 
 Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -595,7 +632,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar), execute the following command:
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.SignalR.Client
@@ -643,7 +680,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar), execute the following commands:
 
 ```dotnetcli
 dotnet add package System.Text.Encodings.Web
@@ -842,7 +879,7 @@ Copy the URL from the address bar, open another browser instance or tab, and pas
 
 Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
+![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished-net-7-or-earlier.png)
 
 Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
