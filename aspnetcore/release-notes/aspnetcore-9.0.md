@@ -19,6 +19,8 @@ This article has been updated for .NET 9 Preview 5.
 
 This section describes new features for Blazor.
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor-reconnection.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/blazor-maui-web-template.md)]
