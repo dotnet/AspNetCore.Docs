@@ -147,7 +147,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorSignalRApp.Client` project using `cd BlazorSignalRApp.Client`), execute the following command:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorSignalRApp.Client` project using `cd BlazorSignalRApp.Client`), execute the following command:
 
 ```powershell
 dotnet add package Microsoft.AspNetCore.SignalR.Client
@@ -339,7 +339,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorWebAssemblySignalRApp.Client` project using `cd BlazorWebAssemblySignalRApp.Client`), execute the following command:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorWebAssemblySignalRApp.Client` project using `cd BlazorWebAssemblySignalRApp.Client`), execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -632,7 +632,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**Terminal** > **New Terminal** from the menu bar), execute the following command:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar), execute the following command:
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.SignalR.Client
@@ -680,7 +680,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**Terminal** > **New Terminal** from the menu bar), execute the following commands:
+In the **Terminal** (**Terminal** > **New Terminal** from the menu bar), execute the following commands:
 
 ```dotnetcli
 dotnet add package System.Text.Encodings.Web
