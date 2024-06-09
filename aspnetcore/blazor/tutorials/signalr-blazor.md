@@ -169,7 +169,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ## Add a SignalR hub
 
-In the server `BlazorSignalRApp` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`) to the root of the app:
+In the server `BlazorSignalRApp` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSignalRApp/BlazorSignalRApp/Hubs/ChatHub.cs":::
 
@@ -210,11 +210,11 @@ app.MapHub<ChatHub>("/chathub");
 
 ## Add Razor component code for chat
 
-Add the following `Pages/Chat.razor` file to the `BlazorSignalRApp.Client` project.
+Add the following `Pages/Chat.razor` file to the `BlazorSignalRApp.Client` project:
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSignalRApp/BlazorSignalRApp.Client/Pages/Chat.razor":::
 
-Add an entry to the `NavMenu` component to reach the chat page. In `Components/Layout/NavMenu.razor` immediately after the `<div>` block for the `Weather` component:
+Add an entry to the `NavMenu` component to reach the chat page. In `Components/Layout/NavMenu.razor` immediately after the `<div>` block for the `Weather` component, add the following `<div>` block:
 
 ```razor
 <div class="nav-item px-3">
