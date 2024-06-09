@@ -21,6 +21,6 @@ Then create the template from the command line like this:
 dotnet new maui-blazor-web
 ```
 
-The template is also available in Visual Studio.S
+The template is also available in Visual Studio.
 > [!NOTE]
 > Currently Blazor hybrid apps throw an exception if the Blazor rendering modes are defined at the page/component level. For more information, see [#51235](https://github.com/dotnet/aspnetcore/issues/51235).
