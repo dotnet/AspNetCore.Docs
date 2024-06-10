@@ -1129,7 +1129,7 @@ Blazor Server:
 
 :::moniker range=">= aspnetcore-9.0"
 
-When the user navigates back to an app with a disconnected circuit, reconnection is attempted immediately rather than waiting for the duration of the next reconnect interval to resume  the connection as quickly as possible for the user.
+When the user navigates back to an app with a disconnected circuit, reconnection is attempted immediately rather than waiting for the duration of the next reconnect interval. This behavior seeks to resume the connection as quickly as possible for the user.
 
 The default reconnect timing uses a computed backoff strategy. The first several reconnection attempts occur in rapid succession before computed delays are introduced between attempts. The default logic for computing the retry interval is an implementation detail subject to change without notice, but you can find the default logic that the Blazor framework uses [in the `computeDefaultRetryInterval` function (reference source)](https://github.com/search?q=repo%3Adotnet%2Faspnetcore%20computeDefaultRetryInterval&type=code).
 
