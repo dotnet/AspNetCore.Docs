@@ -25,39 +25,52 @@ Creating performant web apps includes optimizing asset delivery to the browser. 
   * All assets are compressed with the goal of reducing the size of the assets to the minimum.
 * Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0) hash of the content. This ensures ensure that the browser only re-downloads a file if its contents have changed.
 
-What are some of the gains that we can expect:
-
-This is the default Razor Pages template (did we mention that this works for all UI flavors, Blazor, MVC, Razor Pages or your own custom framework?)
+The following table shows the original and compressed sizes of the CSS and JS files in the default Razor Pages template:
 
 File | Original | Compressed | % Reduction
 -- | -- | -- | --
 bootstrap.min.css | 163 | 17.5 | 89.26%
 jquery.js | 89.6 | 28 | 68.75%
 bootstrap.min.js | 78.5 | 20 | 74.52%
+**Total** | 331.1 | 65.5 | 80.20%
 
-For a total of 331.1 KB uncompressed vs 65.5 KB compressed.
-
-This is the reduction that you get if you use the [Fluent UI Blazor components library](https://www.fluentui-blazor.net/):
+The following table shows the original and compressed sizes using the [Fluent UI Blazor components library](https://www.fluentui-blazor.net/):
 
 File | Original | Compressed | % Reduction
 -- | -- | -- | --
 fluent.js | 384 | 73 | 80.99%
 fluent.css | 94 | 11 | 88.30%
+**Total** | 478 | 84 | 82.43%
 
 For a total of 478 KB uncompressed to 84 KB compressed.
 
-Or, if you use other popular Blazor component libraries like [MudBlazor](https://mudblazor.com):
+The following table shows the original and compressed sizes using the [MudBlazor](https://mudblazor.com) Blazor components library:
 
 File | Original | Compressed | Reduction
 -- | -- | -- | --
 MudBlazor.min.css | 541 | 37.5 | 93.07%
 MudBlazor.min.js | 47.4 | 9.2 | 80.59%
+**Total** | 588.4 | 46.7 | 92.07%
 
-For a total of 588.4 KB to 46.7 KB
+Optimization happens automatically when using `MapStaticAssets`. When a library is added or updated, for example with new JavaScript or CSS, the assets are optimized as part of the build. Optimization is especially beneficial to mobile environments that can have a lower bandwidth or an unreliable connections.
 
-The best part is that all of this happens automatically for the app after using `MapStaticAssets`. When you decide to bring in a new library or copy some new JS/CSS library to your project, you don't have to do anything. It'll get optimized as part of the build and served to the browser faster, which is especially important for mobile environments with lower bandwidth or spotty connections.
+### Enabling dynamic compression on the server vs using `MapStaticAssets`
 
-You might be wondering, if I have turn on dynamic compression on the server, how do I benefit from this? To begin, this approach is simpler, because there is no server specific configuration for you to figure out.
+`MapStaticAssets` has the following advantages over dynamic compression on the server:
 
-Then, even in this situation, you still benefit from leveraging MapStaticAssets instead of letting your IIS or other server do the compression for you. This is for two reasons:
-* You are able to spend extra time during the build process to ensure that the assets are as small as they can be. How much smaller? If we take MudBlazor as an example, IIS will compress the CSS bundle at around 90Kb, while brotli with max settings will result in 37Kb. That is still a whopping 59% size reduction or 41% of its dynamically compressed size.
+<!-- 
+I'm confused about the following:
+If we take MudBlazor as an example, IIS will compress the CSS bundle at around 90Kb, while brotli with max settings will result in 37Kb. That is still a whopping 59% size reduction or 41% of its dynamically compressed size -->
+
+* Is simpler because there is no server specific configuration.
+* Is more performant because the assets are compressed at build time. <!-- IIS can do static compression -->
+* Allows the developer to spend extra time during the build process to ensure that the assets are the minimum size.
+
+Consider the following table comparing MudBlazor compression with IIS dynamic compression and `MapStaticAssets`:
+<!-- MapStaticAssets uses brotli max so it's the same as IIS brotli max is the same as -->
+
+IIS gzip | MapStaticAssets | MapStaticAssets Reduction
+-- | -- | --
+ &#8773; 90 | 37.5 | 59%
+
+<!--  “always flush” does not work with IIS Brotli AND might degrade Zlib compression ratio. See https://microsoft.sharepoint.com/:p:/r/teams/GlobalDAS/WebApps/_layouts/15/Doc.aspx?sourcedoc=%7BDC4A0B9B-6A27-498F-BC7D-6B6647AAC39F%7D&file=IIS_Compression_new_API.pptx -->
