@@ -18,9 +18,9 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 
 :::moniker range=">= aspnetcore-9.0"
 
-## .NET MAUI Blazor Web App project template
+## .NET MAUI Blazor Hybrid and Web App solution template
 
-The .NET MAUI Blazor Web App project template allows you to choose a Blazor interactive render mode for the web app and creates the appropriate projects for the app, including a Blazor Web App and a .NET MAUI Blazor Hybrid app. A shared Razor class library (RCL) maintains the Razor components for the app's UI. The template also provides sample code to shows you how to use dependency injection to provide different interface implementations for the Blazor Hybrid and Blazor Web App, which is covered in the [Using interfaces to support different device implementations](#using-interfaces-to-support-different-device-implementations) section of this article.
+The .NET MAUI Blazor Hybrid and Web App solution template sets up a solution that targets Android, iOS, Mac, Windows and Web that reuses UI. You can choose a Blazor interactive render mode for the web app and it creates the appropriate projects for the app, including a Blazor Web App and a .NET MAUI Blazor Hybrid app. A shared Razor class library (RCL) maintains the Razor components for the app's UI. The template also provides sample code to show you how to use dependency injection to provide different interface implementations for the Blazor Hybrid and Blazor Web App, which is covered in the [Using interfaces to support different device implementations](#using-interfaces-to-support-different-device-implementations) section of this article.
 
 Create an app from the project template with the following .NET CLI command:
 
@@ -41,7 +41,7 @@ In the preceding command:
 
 :::moniker range="< aspnetcore-9.0"
 
-## .NET MAUI Blazor Web App sample app
+## .NET MAUI Blazor Hybrid and Web App sample app
 
 [Obtain the sample app](xref:blazor/fundamentals/index#sample-apps) named `MauiBlazorWeb` from the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (.NET 8 or later).
 
@@ -435,7 +435,7 @@ Dependency injection is used to obtain the implementations of these services.
 In the MAUI project, the `MauiProgram.cs` file has following `using` statements at the top of the file:
 
 ```csharp
-using MauiBlazorWeb.Maui.Services;
+using MauiBlazorWeb.Services;
 using MauiBlazorWeb.Shared.Interfaces;
 ```
 
