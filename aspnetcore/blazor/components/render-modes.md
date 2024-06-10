@@ -215,7 +215,7 @@ Additional information on render mode propagation is provided in the [Render mod
 
 :::moniker range=">= aspnetcore-9.0"
 
-## Detect the current render mode at runtime
+## Detect rendering location, interactivity, and assigned render mode at runtime
 
 <!-- UPDATE 9.0 Renaming of API for Pre6: 
                 Update the content and remove the NOTE -->
