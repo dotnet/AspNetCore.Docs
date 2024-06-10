@@ -225,7 +225,7 @@ builder.Services.AddRazorComponents()
     .AddAuthenticationStateSerialization();
 ```
 
-By default, these APIs only serialize the server-side name and role claims for access in the browser. To include all claims, set `SerializeAllClaims` to `true` in the server-side call to `AddAuthenticationStateSerialization`:
+By default, the API only serializes the server-side name and role claims for access in the browser. To include all claims, set `SerializeAllClaims` to `true` in the server-side call to `AddAuthenticationStateSerialization`:
 
 ```csharp
 builder.Services.AddRazorComponents()
