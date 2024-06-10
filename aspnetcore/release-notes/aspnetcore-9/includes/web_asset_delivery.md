@@ -1,14 +1,11 @@
 ## Optimizing static web asset delivery
 
-/en-US
-?view=aspnetcore-8.0
-
 Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as:
 
-* Setting the [ETag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified) headers.
-* Setting up proper [caching headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control).
+* Setting the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
+* Setting up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
 * Using [caching middleware](xref:performance/caching/middleware).
-* Serving [compressed](/aspnet/core/performance/response-compression?view=aspnetcore-8.0) versions of the assets when possible.
+* Serving [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
 * Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide) to serve the assets closer to the user.
 * Minifying the assets.
 
@@ -16,19 +13,18 @@ Creating performant web apps includes optimizing asset delivery to the browser. 
 
 `MapStaticAssets` operates by combining build and publish-time processes to collect information about all the static resources in an app. This information is then utilized by the runtime library to efficiently serve these files to the browser.
 
-`MapStaticAssets` can replace `UseStaticFiles` in most situations, however, its optimized for serving the assets that the app has knowledge of at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, `UseStaticFiles` should be used.
+`MapStaticAssets` can replace `UseStaticFiles` in most situations, however, it's optimized for serving the assets that the app has knowledge of at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, `UseStaticFiles` should be used.
 
 `MapStaticAssets` provides the following benefits not found with `UseStaticFiles`:
 
 * Build time compression for all the assets in the app:
   * `gzip` during development and `gzip + brotli` during publish.
   * All assets are compressed with the goal of reducing the size of the assets to the minimum.
-* Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0) hash of the content. This ensures ensure that the browser only re-downloads a file if its contents have changed.
+* Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0) hash of the content. This ensures that the browser only redownloads a file if its contents have changed.
 
 The following table shows the original and compressed sizes of the CSS and JS files in the default Razor Pages template:
 
-File | Original | Compressed | % Reduction
--- | -- | -- | --
+File | Original | Compressed | % Reduction--|
 bootstrap.min.css | 163 | 17.5 | 89.26%
 jquery.js | 89.6 | 28 | 68.75%
 bootstrap.min.js | 78.5 | 20 | 74.52%
