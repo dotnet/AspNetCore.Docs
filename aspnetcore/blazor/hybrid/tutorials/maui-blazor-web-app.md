@@ -53,6 +53,23 @@ Instead of [using the sample app](#net-maui-blazor-web-app-sample-app), you can 
 
 Add new project to the solution with the **Blazor Web App** project template. Select the following options:
 
+:::moniker range=">= aspnetcore-9.0"
+
+* **Project name**: Use the solution's name with `.Web` appended. The examples in this article assume the following naming:
+  * Solution: `MauiBlazorWeb`
+  * MAUI project: `MauiBlazorWeb`
+  * Blazor Web App: `MauiBlazorWeb.Web`
+  * Razor class library (RCL) (added in a later step): `MauiBlazorWeb.Shared`
+* **Authentication type**: **None**
+* **Configure for HTTPS**: Selected (enabled)
+* **Interactive render mode**: **Server**
+* **Interactivity location**: **Global**
+* **Sample pages**: Unselected (disabled)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * **Project name**: Use the solution's name with `.Web` appended. The examples in this article assume the following naming:
   * Solution: `MauiBlazorWeb`
   * MAUI project: `MauiBlazorWeb.Maui`
@@ -63,6 +80,8 @@ Add new project to the solution with the **Blazor Web App** project template. Se
 * **Interactive render mode**: **Server**
 * **Interactivity location**: **Global**
 * **Sample pages**: Unselected (disabled)
+
+:::moniker-end
 
 <!-- UPDATE 9.0 Check on PU issue mentioned below and 
                 revise accordingly. -->
@@ -190,6 +209,21 @@ Render mode and interactivity specification subsections:
 
 ### Global Server interactivity
 
+:::moniker range=">= aspnetcore-9.0"
+
+* Interactive render mode: **Server**
+* Interactivity location: **Global**
+* Solution projects
+  * MAUI (`MauiBlazorWeb`)
+  * Blazor Web App (`MauiBlazorWeb.Web`)
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components without setting render modes in each component.
+
+Project references: `MauiBlazorWeb` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * Interactive render mode: **Server**
 * Interactivity location: **Global**
 * Solution projects
@@ -199,7 +233,29 @@ Render mode and interactivity specification subsections:
 
 Project references: `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
 
+:::moniker-end
+
 ### Global Auto or WebAssembly interactivity
+
+:::moniker range=">= aspnetcore-9.0"
+
+* Interactive render mode: **Auto** or **WebAssembly**
+* Interactivity location: **Global**
+* Solution projects
+  * MAUI (`MauiBlazorWeb`)
+  * Blazor Web App
+    * Server project: `MauiBlazorWeb.Web`
+    * Client project: `MauiBlazorWeb.Web.Client`
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components without setting render modes in each component.
+
+Project references:
+
+* `MauiBlazorWeb`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` projects have a project reference to `MauiBlazorWeb.Shared`.
+* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 * Interactive render mode: **Auto** or **WebAssembly**
 * Interactivity location: **Global**
@@ -215,7 +271,24 @@ Project references:
 * `MauiBlazorWeb.Maui`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` projects have a project reference to `MauiBlazorWeb.Shared`.
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 
+:::moniker-end
+
 ### Per-page/component Server interactivity
+
+:::moniker range=">= aspnetcore-9.0"
+
+* Interactive render mode: **Server**
+* Interactivity location: **Per-page/component**
+* Solution projects
+  * MAUI (`MauiBlazorWeb`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`.
+  * Blazor Web App (`MauiBlazorWeb.Web`): Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveServer` render mode in each component.
+
+`MauiBlazorWeb` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 * Interactive render mode: **Server**
 * Interactivity location: **Per-page/component**
@@ -225,6 +298,8 @@ Project references:
   * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveServer` render mode in each component.
 
 `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
+
+:::moniker-end
 
 Add the following `InteractiveRenderSettings` class to the RCL. The class properties are used to set component render modes.
 
@@ -253,6 +328,26 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 
 ### Per-page/component Auto interactivity
 
+:::moniker range=">= aspnetcore-9.0"
+
+* Interactive render mode: **Auto**
+* Interactivity location: **Per-page/component**
+* Solution projects
+  * MAUI (`MauiBlazorWeb`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`.
+  * Blazor Web App
+    * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
+    * Client project: `MauiBlazorWeb.Web.Client`
+  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveAuto` render mode in each component.
+
+Project references:
+
+* `MauiBlazorWeb`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` have a project reference to `MauiBlazorWeb.Shared`.
+* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * Interactive render mode: **Auto**
 * Interactivity location: **Per-page/component**
 * Solution projects
@@ -266,6 +361,8 @@ Project references:
 
 * `MauiBlazorWeb.Maui`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` have a project reference to `MauiBlazorWeb.Shared`.
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
+
+:::moniker-end
 
 Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
 
@@ -294,6 +391,29 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 
 ### Per-page/component WebAssembly interactivity
 
+:::moniker range=">= aspnetcore-9.0"
+
+* Interactive render mode: **WebAssembly**
+* Interactivity location: **Per-page/component**
+* Solution projects
+  * MAUI (`MauiBlazorWeb`)
+  * Blazor Web App
+    * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
+    * Client project: `MauiBlazorWeb.Web.Client`
+  * RCLs
+    * `MauiBlazorWeb.Shared`
+    * `MauiBlazorWeb.Shared.Client`: Contains the shared Razor components that set the `InteractiveWebAssembly` render mode in each component. The `.Shared.Client` RCL is maintained separately from the `.Shared` RCL because the app should maintain the components that are required to run on WebAssembly separately from the components that run on server and that stay on the server.
+
+Project references:
+
+* `MauiBlazorWeb` and `MauiBlazorWeb.Web` have project references to `MauiBlazorWeb.Shared`.
+* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
+* `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * Interactive render mode: **WebAssembly**
 * Interactivity location: **Per-page/component**
 * Solution projects
@@ -310,6 +430,8 @@ Project references:
 * `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have project references to `MauiBlazorWeb.Shared`.
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 * `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
+
+:::moniker-end
 
 Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies%2A> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its `_Imports` file) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
@@ -398,7 +520,34 @@ In the Razor class library (RCL), an `Interfaces` folder contains an `IFormFacto
 
 :::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/Interfaces/IFormFactor.cs":::
 
-The following `DeviceFormFactor` component is present in the RCL's `Components` folder:
+:::moniker range=">= aspnetcore-9.0"
+
+The `Home` component (`Components/Pages/Home.razor`) of the RCL displays the form factor and platform.
+
+`Components/Pages/Home.razor`:
+
+```razor
+@page "/"
+@using MyApp.Shared.Services
+@inject IFormFactor FormFactor
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app running on <em>@factor</em> using <em>@platform</em>.
+
+@code {
+    private string factor => FormFactor.GetFormFactor();
+    private string platform => FormFactor.GetPlatform();
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+The following `DeviceFormFactor` component is present in the RCL's `Components` folder.
 
 `Components/Pages/DeviceFormFactor.razor`:
 
@@ -416,6 +565,8 @@ In `Components/Layout/NavMenu.razor`:
 </div>
 ```
 
+:::moniker-end
+
 The web and native apps contain the implementations for `IFormFactor`.
 
 In the Blazor Web App, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for web app use.
@@ -427,7 +578,13 @@ In the Blazor Web App, a folder named `Services` contains the following `FormFac
 In the MAUI project, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for native use. The MAUI abstractions layer is used to write code that works on all native device platforms.
 
 `Services/FormFactor.cs` (MAUI project):
- 
+
+<!-- NOTE: The following link points to the 8.0 
+           sample but we don't need to update it 
+           for 9.0 or later coverage as long as
+           the code in the project template
+           doesn't change. -->
+
 :::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Maui/Services/FormFactor.cs":::
 
 Dependency injection is used to obtain the implementations of these services.
