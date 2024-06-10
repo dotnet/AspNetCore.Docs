@@ -1,18 +1,4 @@
----
-title: Static files in ASP.NET Core
-author: rick-anderson
-description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 4/4/2023
-uid: fundamentals/static-files
----
-# Static files in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -307,7 +293,3 @@ The following code updates `IWebHostEnvironment.WebRootPath` to a non developmen
 * [Introduction to ASP.NET Core](xref:index)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/static-files/includes/static-files8.md)]
-
-[!INCLUDE[](~/fundamentals/static-files/includes/static-files6.md)]
