@@ -5,7 +5,7 @@ description: Learn about Blazor render modes and how to apply them in Blazor Web
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/10/2024
 uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
@@ -212,6 +212,109 @@ The following example applies interactive server-side rendering (interactive SSR
 ```
 
 Additional information on render mode propagation is provided in the [Render mode propagation](#render-mode-propagation) section later in this article. The [Static SSR pages in a globally-interactive app](#static-ssr-pages-in-a-globally-interactive-app) section shows how to use the preceding approach to adopt static SSR in a globally-interactive app.
+
+:::moniker range=">= aspnetcore-9.0"
+
+## Detect the current render mode at runtime
+
+<!-- UPDATE 9.0 Renaming of API for Pre6: 
+                Update the content and remove the NOTE -->
+
+The `ComponentBase.Platform` and `ComponentBase.AssignedRenderMode` properties permit the app to detect details about the location, interactivity, and assigned render mode of a component:
+
+* `Platform.Name` returns the location where the component is executing:
+  * `Static`: On the server (SSR) and incapable of interactivity.
+  * `Server`: On the server (SSR) and capable of interactivity after prerendering.
+  * `WebAssembly`: On the client (CSR) and capable of interactivity after prerendering.
+  * `WebView`: On the native device and capable of interactivity after prerendering.
+* `Platform.IsInteractive` indicates if the component supports interactivity at the time of rendering. The value is `true` when rendering interactively or `false` when prerendering or for static SSR (`Platform.Name` of `Static`).
+* `ComponentBase.AssignedRenderMode` exposes the component's assigned render mode:
+  * `InteractiveServer` for Interactive Server.
+  * `InteractiveAuto` for Interactive Auto.
+  * `InteractiveWebassembly` for Interactive WebAssembly.
+
+<!-- REVIEWER NOTE
+
+The preceding line based on the pre5 issue was ...
+
+`ComponentBase.AssignedRenderMode` exposes the render mode value defined in the component hierarchy (if any) via the `@rendermode` attribute on a root component or the `[RenderMode]` attribute.
+
+... but we never covered "the `[RenderMode]` attribute," 
+so that had to be removed at least temporarily until we
+document it. Also, it's more complicated to get into 
+the details on where/how the render mode is applied 
+(by definition or by inheritance). I phrased it more 
+generally as you see above until review can sort out 
+if it should say something more specific.
+
+-->
+
+> [!NOTE]
+> `ComponentBase.Platform` will be renamed to `ComponentBase.RendererInfo` in a future preview release.
+
+Components use these properties to render content depending on their location or interactivity status. For example, a form can be disabled during prerendering and enabled when the component becomes interactive:
+
+<!-- REVIEWER NOTE
+
+     In the next example, I'm supplying just a bit of
+     "Movie" property context to make it clear why
+     the init is async.
+     
+-->
+
+```razor
+<EditForm Model="Movie" ...>
+    <fieldset disabled="@disabled">
+        
+        ...
+
+        <button type="submit" >Save</button>
+    </fieldset>
+</EditForm>
+
+@code {
+    private bool disabled = true;
+
+    [SupplyParameterFromForm]
+    public Movie? Movie { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Movie ??= await ...;
+
+        if (Platform.IsInteractive)
+        {
+            disabled = false;
+        }
+    }
+}
+```
+
+The next example shows how to render markup to support performing a regular HTML action if the component is statically rendered:
+
+```razor
+@if (AssignedRenderMode is null)
+{
+    // The render mode is Static Server
+    <form action="/movies">
+        <input type="text" name="titleFilter" />
+        <input type="submit" value="Search" />
+    </form>
+}
+else
+{
+    // The render mode is Interactive Server, WebAssembly, or Auto.
+    <input @bind="titleFilter" />
+    <button @onclick="FilterMovies">Search</button>
+}
+```
+
+In the preceding example:
+
+* When the value of `AssignedRenderMode` is null, the component adopts static SSR. Blazor event handling isn't functional in a browser with static SSR, so the component submits a form (GET request) with a `titleFilter` query string set to the user's `<input>` value. The `Movie` component (`/movie`) can read the query string and process the value of `titleFilter` to render the component with the filtered results.
+* Otherwise, the render mode is any of `InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`. The component is capable of using an event handler delegate (`FilterMovies`) and the value bound to the `<input>` element (`titleFilter`) to filter movies interactively over the background SignalR connection.
+
+:::moniker-end
 
 ## Blazor documentation examples for Blazor Web Apps
 
