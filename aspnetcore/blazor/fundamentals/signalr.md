@@ -1148,7 +1148,7 @@ Blazor.start({
 });
 ```
 
-Specify the exact milliseconds of each interval for precise retry interval control. After the last specified retry interval, retries stop because the function returns `undefined`:
+An alternative is to specify the exact sequence of retry intervals. After the last specified retry interval, retries stop because the `retryIntervalMilliseconds` function returns `undefined`:
 
 ```javascript
 Blazor.start({
