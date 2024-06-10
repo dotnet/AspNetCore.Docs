@@ -25,6 +25,7 @@ Creating performant web apps includes optimizing asset delivery to the browser. 
 The following table shows the original and compressed sizes of the CSS and JS files in the default Razor Pages template:
 
 File | Original | Compressed | % Reduction
+-- | -- | --
 bootstrap.min.css | 163 | 17.5 | 89.26%
 jquery.js | 89.6 | 28 | 68.75%
 bootstrap.min.js | 78.5 | 20 | 74.52%
