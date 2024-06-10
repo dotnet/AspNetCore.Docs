@@ -1,18 +1,29 @@
-# Optimizing static web asset delivery
+## Optimizing static web asset delivery
 
-A big part of delivering performant web applications involves optimizing asset delivery to the browser. This process entails many aspects, among some of them are:
-* Using ETags and Last-Modified.
-* Setting up proper caching headers.
-* Serving compressed versions of the assets when possible.
-* Etc.
+/en-US
+?view=aspnetcore-8.0
 
-To this effect, we are introducing a new functionality called `MapStaticAssets`. `MapStaticAssets` works by combining work done at build/publish time to gather information about all the static resources in your application with a runtime library that is capable of processing that information and using it to better serve the files to the browser.
+Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as:
 
-`MapStaticAssets` can replace `UseStaticFiles` in most situations, however, its optimized for serving the assets that your app has knowledge off at build and publish time. This means that if your app serves assets from other locations on disk, or embedded resources, etc. then using `UseStaticFiles` is still the right choice.
+* Setting the [ETag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified) headers.
+* Setting up proper [caching headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control).
+* Using [caching middleware](xref:performance/caching/middleware).
+* Serving [compressed](/aspnet/core/performance/response-compression?view=aspnetcore-8.0) versions of the assets when possible.
+* Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide) to serve the assets closer to the user.
+* Minifying the assets.
 
-What are the things that MapStaticAssets does that UseStaticFiles doesn't?
-* Build time compression for all the assets in the app, gzip during development and gzip + brotli during publish. All assets are compressed trying to reduce the size to the minimum.
-* Content based ETags: The Etags for each resource are the Base64 encoded string of the SHA-256 hash of the content. This ensures that the browser doesn't have to download the file again unless its contents change.
+[`MapStaticAssets`](https://source.dot.net/#Microsoft.AspNetCore.StaticAssets/StaticAssetsEndpointRouteBuilderExtensions.cs,18) is a new middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC. It's typically a drop-in replacement for `UseStaticFiles`.
+
+`MapStaticAssets` operates by combining build and publish-time processes to collect information about all the static resources in an app. This information is then utilized by the runtime library to efficiently serve these files to the browser.
+
+`MapStaticAssets` can replace `UseStaticFiles` in most situations, however, its optimized for serving the assets that the app has knowledge of at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, `UseStaticFiles` should be used.
+
+`MapStaticAssets` provides the following benefits not found with `UseStaticFiles`:
+
+* Build time compression for all the assets in the app:
+  * `gzip` during development and `gzip + brotli` during publish.
+  * All assets are compressed with the goal of reducing the size of the assets to the minimum.
+* Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0) hash of the content. This ensures ensure that the browser only re-downloads a file if its contents have changed.
 
 What are some of the gains that we can expect:
 
