@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2024
+ms.date: 06/10/2024
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
@@ -15,6 +15,31 @@ This article shows you how to build a .NET MAUI Blazor Hybrid app with a Blazor 
 ## Prerequisites and preliminary steps
 
 For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>. We recommend using the .NET MAUI Blazor Hybrid tutorial to set up your local system for .NET MAUI development before using the guidance in this article.
+
+:::moniker range=">= aspnetcore-9.0"
+
+## .NET MAUI Blazor Web App project template
+
+The .NET MAUI Blazor Web App project template allows you to choose a Blazor interactive render mode for the web app and creates the appropriate projects for the app, including a Blazor Web App and a .NET MAUI Blazor Hybrid app. A shared Razor class library (RCL) maintains the Razor components for the app's UI. The template also provides sample code to shows you how to use dependency injection to provide different interface implementations for the Blazor Hybrid and Blazor Web App, which is covered in the [Using interfaces to support different device implementations](#using-interfaces-to-support-different-device-implementations) section of this article.
+
+Create an app from the project template with the following .NET CLI command:
+
+```dotnetcli
+dotnet new maui-blazor-web -o MauiBlazorWeb -int Server  -ai
+```
+
+In the preceding command:
+
+* The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
+* The `-int|--interactivity` option sets up the interactivity location to `Server`.
+* The `-ai|--all-interactive` option specifies global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
+
+<!-- UPDATE 9.0 Provide the project template's name here for VS, possibly
+                using a tooling pivot for the article. -->
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
 
 ## .NET MAUI Blazor Web App sample app
 
@@ -39,8 +64,8 @@ Add new project to the solution with the **Blazor Web App** project template. Se
 * **Interactivity location**: **Global**
 * **Sample pages**: Unselected (disabled)
 
-<!-- UPDATE 9.0 Check on PU issue and revise the following
-                for >=9.0 accordingly -->
+<!-- UPDATE 9.0 Check on PU issue mentioned below and 
+                revise accordingly. -->
 
 The **Interactivity location** setting to **Global** is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section after following the guidance in this section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
@@ -148,6 +173,8 @@ Run the MAUI project by selecting the project in **Solution Explorer** and using
 Run the Blazor Web App project by selecting the Blazor Web App project in **Solution Explorer** and using Visual Studio's start button with the `https` build configuration.
 
 If you receive a build error that the RCL's assembly can't be resolved, build the RCL project first. If any MAUI project resource errors occur on build, rebuild the MAUI project to clear the errors.
+
+:::moniker-end
 
 ## Use Blazor render modes
 
@@ -365,19 +392,19 @@ In the `_Imports.razor` file of the `.Shared.Client` RCL, add `@using static Int
 
 The following example demonstrates how to use an interface to call into different implementations across the web app and the native (MAUI) app. The following example creates a component that displays the device form factor. Use the MAUI abstraction layer for native apps and provide an implementation for the web app.
 
-In the Razor class library (RCL), create an `Interfaces` folder and add file named `IFormFactor.cs` with the following code.
+In the Razor class library (RCL), an `Interfaces` folder contains an `IFormFactor` interface.
 
 `Interfaces/IFormFactor.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/Interfaces/IFormFactor.cs":::
 
-In the RCL's `Components` folder, add the following `DeviceFormFactor` component.
+The following `DeviceFormFactor` component is present in the RCL's `Components` folder:
 
 `Components/Pages/DeviceFormFactor.razor`:
 
 :::code language="razor" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/Components/Pages/DeviceFormFactor.razor":::
 
-In the RCL, add an entry for the `DeviceFormFactor` component to the navigation menu.
+In the RCL, an entry for the `DeviceFormFactor` component is part of the navigation menu in the `NavMenu` component.
 
 In `Components/Layout/NavMenu.razor`:
 
@@ -389,43 +416,43 @@ In `Components/Layout/NavMenu.razor`:
 </div>
 ```
 
-Provide implementations in the web and native apps.
+The web and native apps contain the implementations for `IFormFactor`.
 
-In the Blazor Web App, add a folder named `Services`. Add a file to the `Services` folder named `FormFactor.cs` with the following code.
+In the Blazor Web App, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for web app use.
 
 `Services/FormFactor.cs` (Blazor Web App project):
 
 :::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Web/Services/FormFactor.cs":::
 
-In the MAUI project, add a folder named `Services` and add a file named `FormFactor.cs`. The MAUI abstractions layer is used to write code that works on all native device platforms.
+In the MAUI project, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for native use. The MAUI abstractions layer is used to write code that works on all native device platforms.
 
 `Services/FormFactor.cs` (MAUI project):
  
 :::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Maui/Services/FormFactor.cs":::
 
-Use dependency injection to obtain the implementations of these services.
+Dependency injection is used to obtain the implementations of these services.
 
-In the MAUI project, open the `MauiProgram.cs` file and add the following `using` statements to the top of the file:
+In the MAUI project, the `MauiProgram.cs` file has following `using` statements at the top of the file:
 
 ```csharp
 using MauiBlazorWeb.Maui.Services;
 using MauiBlazorWeb.Shared.Interfaces;
 ```
 
-Immediately before the call to `builder.Build()`, add the following code to add device-specific services used by the RCL:
+Immediately before the call to `builder.Build()`, `FormFactor` is registered to add device-specific services used by the RCL:
 
 ```csharp
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
 ```
 
-In the Blazor Web App, open the `Program` file and add the following `using` statements to the top of the file:
+In the Blazor Web App, the `Program` file has the following `using` statements at the top of the file:
 
 ```csharp
 using MauiBlazorWeb.Shared.Interfaces;
 using MauiBlazorWeb.Web.Services;  
 ```
 
-Immediately before the call to `builder.Build()`, add the following code to add device-specific services used by the RCL:
+Immediately before the call to `builder.Build()`, `FormFactor` is registered to add device-specific services used by the Blazor Web App:
 
 ```csharp
 builder.Services.AddScoped<IFormFactor, FormFactor>();
