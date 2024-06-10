@@ -5,109 +5,87 @@ A new solution template makes it easier to create .NET MAUI native and Blazor we
 Key features of this template include:
 
 * The ability to choose a Blazor interactive render mode for the web app.
-* Automatic creation of the appropriate projects, including a Blazor Web App and a .NET MAUI Blazor Hybrid app.
+* Automatic creation of the appropriate projects, including a Blazor Web App (global Interactive Auto rendering) and a .NET MAUI Blazor Hybrid app.
 * The created projects use a shared Razor class library (RCL) to maintain the UI's Razor components.
-* Sample code is included that demonstrates how to use dependency injection to provide different interface implementations for the Blazor Hybrid and Blazor Web App. In .NET 8, this is a manual process documented in [Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](https://aka.ms/maui-blazor-web).
+* Sample code is included that demonstrates how to use dependency injection to provide different interface implementations for the Blazor Hybrid app and the Blazor Web App.
 
-To get started, install the [.NET 9 SDK](https://get.dot.net/9) and install the .NET MAUI workload, which contains the template.
+To get started, install the [.NET 9 SDK](https://get.dot.net/9) and install the .NET MAUI workload, which contains the template:
 
 ```dotnetcli
 dotnet workload install maui
 ```
 
-Then create the template from the command line like this:
+Create a solution from the project template in a command shell using the following command:
 
 ```dotnetcli
 dotnet new maui-blazor-web
 ```
 
 The template is also available in Visual Studio.
+
 > [!NOTE]
-> Currently Blazor hybrid apps throw an exception if the Blazor rendering modes are defined at the page/component level. For more information, see [#51235](https://github.com/dotnet/aspnetcore/issues/51235).
+> Currently, an exception occurs if Blazor rendering modes are defined at the per-page/component level. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
+
+For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view=aspnetcore-9.0>.
 
 ### Static asset deliver optimization
 
 For more information, see the [Optimizing static web asset delivery](#optimizing-static-web-asset-delivery) section.
 
-### Detect the current component's render mode at runtime
+### Detect rendering location, interactivity, and assigned render mode at runtime
 
-We've introduced a new api designed to simplify the process of querying component states at runtime. This api provides the following capabilities:
+We've introduced a new API designed to simplify the process of querying component states at runtime. This API provides the following capabilities:
 
-* **Determining the current execution environment of the component**: This feature allows you to identify the environment in which the component is currently running. It can be particularly useful for debugging and optimizing component performance.
-* **Checking if the component is running in an interactive environment**: This functionality enables you to verify whether the component is operating in an interactive environment. This can be helpful for components that have different behaviors based on the interactivity of their environment.
-* **Retrieving the assigned render-mode for the component**: This feature allows you to obtain the render-mode assigned to the component. Understanding the render-mode can help in optimizing the rendering process and improving the overall performance of the component.
+* **Determine the current execution location of the component**: This can be particularly useful for debugging and optimizing component performance.
+* **Check if the component is running in an interactive environment**: This can be helpful for components that have different behaviors based on the interactivity of their environment.
+* **Retrieve the assigned render mode for the component**: Understanding the render mode can help in optimizing the rendering process and improving the overall performance of a component.
 
-`ComponentBase` (and per extension your components), offer a new [`Platform`](https://source.dot.net/#Microsoft.AspNetCore.Components/ComponentBase.cs,d694f3b1e643e437) property (soon to be renamed `RendererInfo`) that exposes the [`Name`](https://source.dot.net/#Microsoft.AspNetCore.Components/RenderTree/ComponentPlatform.cs,23), [`IsInteractive`](https://source.dot.net/#Microsoft.AspNetCore.Components/RenderTree/ComponentPlatform.cs,30), and [`AssignedRenderMode`](https://source.dot.net/#Microsoft.AspNetCore.Components/ComponentBase.cs,64912adf8a598ff1) properties:
+For more information, see <xref:blazor/components/render-modes?view=aspnetcore-9.0#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
 
-* `Platform.Name`: Where the component is running: `Static`, `Server`, `WebAssembly`, or `WebView`.
-* `Platform.IsInteractive`: indicates whether the platform supports interactivity. This is `true` for all implementations except `Static`.
-* `AssignedRenderMode`: Exposes the render mode value defined in the component hierarchy, if any, via the `render-mode` attribute on a root component or the `[RenderMode]` attribute. The values can be `InteractiveServer`, `InteractiveAuto` or `InteractiveWebassembly`.
+### Improved server-side reconnection experience:
 
-These values are most useful during prerendering as they show where the component will transition to after prerendering. Knowing where the component will transition to after prerendering is often useful for rendering different content. For example, consider a create a Form component that is rendered interactively. You might choose to disable the inputs during prerendering. Once the component becomes interactive, the inputs are enabled.
+The following enhancements have been made to the default server-side reconnection experience:
 
-Alternatively, if the component is not going to be rendered in an interactive context, consider rendering markup to support performing any action through regular web mechanics.
+* When the user navigates back to an app with a disconnected circuit, reconnection is attempted immediately rather than waiting for the duration of the next reconnect interval. This improves the user experience when navigating to an app in a browser tab that has gone to sleep.
 
-### Improved Blazor Server reconnection experience:
+* When a reconnection attempt reaches the server but the server has already released the circuit, a page refresh occurs automatically. This prevents the user from having to manually refresh the page if it's likely going to result in a successful reconnection.
 
-The following enhancements have been made to the default Blazor Server reconnection experience:
+* Reconnect timing uses a computed backoff strategy. By default, the first several reconnection attempts occur in rapid succession without a retry interval before computed delays are introduced between attempts. You can customize the retry interval behavior by specifying a function to compute the retry interval, as the following exponential backoff example demonstrates:
 
-* Reconnect timing now uses an exponential backoff strategy. The first several reconnection attempts happen in rapid succession, and then a delay gradually gets introduced between attempts.
-
-  This behavior can be customized by specifying a function to compute the retry interval. For example:
-
-  ```js
+  ```javascript
   Blazor.start({
     circuit: {
       reconnectionOptions: {
-        retryIntervalMilliseconds: (previousAttempts, maxRetries) => previousAttempts >= maxRetries ? null : previousAttempts * 1000,
+        retryIntervalMilliseconds: (previousAttempts, maxRetries) => 
+          previousAttempts >= maxRetries ? null : previousAttempts * 1000
       },
     },
   });
   ```
 
-* A reconnect attempt is immediate when the user navigates back to an app with a disconnected circuit. In this case, the automatic retry interval is ignored. This behavior especially improves the user experience when navigating to an app in a browser tab that has gone to sleep.
-
-* If a reconnection attempt reaches the server, but reconnection fails because the server had already released the circuit, a refresh occurs automatically. A manual refresh isn't needed if successful reconnection is likely.
-
 * The styling of the default reconnect UI has been modernized.
+
+For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#adjust-the-server-side-reconnection-retry-count-and-interval>.
 
 ### Simplified authentication state serialization for Blazor Web Apps
 
-New APIs make it easier to add authentication to an existing Blazor web app. When you create a new Blazor web app project with authentication using **Individual Accounts** and you enable WebAssembly-based interactivity, the project includes a custom `AuthenticationStateProvider` in both the server and client projects. 
+New APIs make it easier to add authentication to an existing Blazor Web App. When you create a new Blazor Web App with authentication using **Individual Accounts** and you enable WebAssembly-based interactivity, the project includes a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in both the server and client projects. 
 
-These providers flow the user's authentication state to the browser. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the WebAssembly runtime is initialized.
+These providers flow the user's authentication state to the browser. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the Blazor WebAssembly runtime is initialized.
 
-The custom `AuthenticationStateProvider` implementations use the `PersistentComponentState` service to serialize the authentication state into HTML comments and then read it back from WebAssembly to create a new `AuthenticationState` instance. 
+The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. 
 
-This works well if you've started from the Blazor web app project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project.
+This works well if you've started from the Blazor Web App project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project. There are now APIs, which are now part of the Blazor Web App project template, that can be called in the server and client projects to add this functionality:
 
-There are now APIs that can be called in the server and client projects to add this functionality:
+* `AddAuthenticationStateSerialization`: Adds the necessary services to serialize the authentication state on the server.
+* `AddAuthenticationStateDeserialization`: Adds the necessary services to deserialize the authentication state in the browser.
 
-* In the server project, use [`AddAuthenticationStateSerialization`](https://source.dot.net/#Microsoft.AspNetCore.Components.WebAssembly.Server/WebAssemblyRazorComponentsBuilderExtensions.cs,5557151694ca7c07) in `Program.cs` to add the necessary services to serialize the authentication state on the server.
+By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to `AddAuthenticationStateSerialization` to include all claims.
 
-  ```csharp
-  builder.Services.AddRazorComponents()
-      .AddInteractiveWebAssemblyComponents()
-      .AddAuthenticationStateSerialization();
-  ```
+For more information, see the following sections of the ** article:
 
-* In the client project, use [`AddAuthenticationStateDeserialization`](https://apisof.net/catalog/4a296157ae3e0f6f0c352bfb4a0c5d5a?) in `Program.cs` to add the necessary services to deserialize the authentication state in the browser.
-
-  ```csharp
-  builder.Services.AddAuthorizationCore();
-  builder.Services.AddCascadingAuthenticationState();
-  builder.Services.AddAuthenticationStateDeserialization();
-  ```
-
-By default, these APIs will only serialize the server-side name and role claims for access in the browser. To include all claims, use [AuthenticationStateSerializationOptions](https://source.dot.net/#Microsoft.AspNetCore.Components.WebAssembly.Server/AuthenticationStateSerializationOptions.cs,f2703f443f0954f5) on the server:
-
-```csharp
-builder.Services.AddRazorComponents()
-    .AddInteractiveWebAssemblyComponents()
-    .AddAuthenticationStateSerialization(options => options.SerializeAllClaims = true);
-```
-
-The Blazor Web App project template has been updated to use these APIs.
+* [Blazor Identity UI (Individual Accounts)](xref:blazor/security/server/index?view=aspnetcore-9.0#blazor-identity-ui-individual-accounts)
+* [Manage authentication state in Blazor Web Apps](xref:blazor/security/server/index?view=aspnetcore-9.0#manage-authentication-state-in-blazor-web-apps)
 
 ### Add static server-side rendering (SSR) pages to a globally-interactive Blazor Web App
 
@@ -154,7 +132,7 @@ In the `App` component, use the pattern in the following example:
 
 An alternative to using the `HttpContext.AcceptsInteractiveRouting` extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
-This feature is covered by the reference documentation in <xref:blazor/components/render-modes#static-ssr-pages-in-a-globally-interactive-app>.
+This feature is covered by the reference documentation in <xref:blazor/components/render-modes?view=aspnetcore-9.0#static-ssr-pages-in-a-globally-interactive-app>.
 
 ### Constructor injection
 
