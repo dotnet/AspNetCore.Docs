@@ -1129,9 +1129,7 @@ Blazor Server:
 
 :::moniker range=">= aspnetcore-9.0"
 
-When the user navigates back to an app with a disconnected circuit, reconnection is attempted immediately rather than waiting for the duration of the next reconnect interval. This improves the user experience when navigating to an app in a browser tab that has gone to sleep.
-
-When a reconnection attempt reaches the server but the server has already released the circuit, a page refresh occurs automatically. This prevents the user from having to manually refresh the page if it's likely going to result in a successful reconnection.
+When the user navigates back to an app with a disconnected circuit, reconnection is attempted immediately rather than waiting for the duration of the next reconnect interval to resume  the connection as quickly as possible for the user.
 
 The default reconnect timing uses a computed backoff strategy. The first several reconnection attempts occur in rapid succession before computed delays are introduced between attempts. The default logic for computing the retry interval is an implementation detail subject to change without notice, but you can find the default logic that the Blazor framework uses [in the `computeDefaultRetryInterval` function (reference source)](https://github.com/search?q=repo%3Adotnet%2Faspnetcore%20computeDefaultRetryInterval&type=code).
 
@@ -1145,6 +1143,18 @@ Blazor.start({
     reconnectionOptions: {
       retryIntervalMilliseconds: (previousAttempts, maxRetries) => 
         previousAttempts >= maxRetries ? null : previousAttempts * 1000
+    },
+  },
+});
+```
+
+Specify the exact milliseconds of each interval for precise retry interval control. After the last specified retry interval, retries stop because the function returns `undefined`:
+
+```javascript
+Blazor.start({
+  circuit: {
+    reconnectionOptions: {
+      retryIntervalMilliseconds: Array.prototype.at.bind([0, 1000, 2000, 5000, 10000, 15000, 30000]),
     },
   },
 });
