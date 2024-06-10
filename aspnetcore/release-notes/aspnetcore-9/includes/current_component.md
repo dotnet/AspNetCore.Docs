@@ -1,10 +1,10 @@
 ## Detect the current component's render mode at runtime
 
-We've introduced an API to make easier to query components at runtime:
+We've introduced a new api designed to simplify the process of querying component states at runtime. This api provides the following capabilities:
 
-* Where is the component currently running.
-* Is the component running in an interactive environment.
-* What is the assigned render-mode for my component.
+* **Determining the current execution environment of the component**: This feature allows you to identify the environment in which the component is currently running. It can be particularly useful for debugging and optimizing component performance.
+* **Checking if the component is running in an interactive environment**: This functionality enables you to verify whether the component is operating in an interactive environment. This can be helpful for components that have different behaviors based on the interactivity of their environment.
+* **Retrieving the assigned render-mode for the component**: This feature allows you to obtain the render-mode assigned to the component. Understanding the render-mode can help in optimizing the rendering process and improving the overall performance of the component.
 
 `ComponentBase` (and per extension your components), offer a new [`Platform`](https://source.dot.net/#Microsoft.AspNetCore.Components/ComponentBase.cs,d694f3b1e643e437) property (soon to be renamed `RendererInfo`) that exposes the [`Name`](https://source.dot.net/#Microsoft.AspNetCore.Components/RenderTree/ComponentPlatform.cs,23), [`IsInteractive`](https://source.dot.net/#Microsoft.AspNetCore.Components/RenderTree/ComponentPlatform.cs,30), and [`AssignedRenderMode`](https://source.dot.net/#Microsoft.AspNetCore.Components/ComponentBase.cs,64912adf8a598ff1) properties:
 
