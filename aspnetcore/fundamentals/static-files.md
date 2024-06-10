@@ -35,6 +35,8 @@ Static files are accessible via a path relative to the [web root](xref:fundament
 
 Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
+### 
+
 ### Serve files in web root
 
 The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> method in `Program.cs`, which enables static files to be served:
