@@ -49,26 +49,9 @@ The sample app is a starter solution that contains a .NET MAUI Blazor Hybrid (na
 
 ## Migrating a .NET MAUI Blazor Hybrid solution
 
-Instead of [using the sample app](#net-maui-blazor-web-app-sample-app), you can migrate an existing .NET MAUI Blazor Hybrid app with the guidance in this section using Visual Studio.
+Instead of [using the sample app](#net-maui-blazor-hybrid-and-web-app-sample-app), you can migrate an existing .NET MAUI Blazor Hybrid app with the guidance in this section using Visual Studio.
 
 Add new project to the solution with the **Blazor Web App** project template. Select the following options:
-
-:::moniker range=">= aspnetcore-9.0"
-
-* **Project name**: Use the solution's name with `.Web` appended. The examples in this article assume the following naming:
-  * Solution: `MauiBlazorWeb`
-  * MAUI project: `MauiBlazorWeb`
-  * Blazor Web App: `MauiBlazorWeb.Web`
-  * Razor class library (RCL) (added in a later step): `MauiBlazorWeb.Shared`
-* **Authentication type**: **None**
-* **Configure for HTTPS**: Selected (enabled)
-* **Interactive render mode**: **Server**
-* **Interactivity location**: **Global**
-* **Sample pages**: Unselected (disabled)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
 
 * **Project name**: Use the solution's name with `.Web` appended. The examples in this article assume the following naming:
   * Solution: `MauiBlazorWeb`
@@ -80,8 +63,6 @@ Add new project to the solution with the **Blazor Web App** project template. Se
 * **Interactive render mode**: **Server**
 * **Interactivity location**: **Global**
 * **Sample pages**: Unselected (disabled)
-
-:::moniker-end
 
 <!-- UPDATE 9.0 Check on PU issue mentioned below and 
                 revise accordingly. -->
