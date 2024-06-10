@@ -40,7 +40,11 @@ We've introduced a new API designed to simplify the process of querying componen
 * **Check if the component is running in an interactive environment**: This can be helpful for components that have different behaviors based on the interactivity of their environment.
 * **Retrieve the assigned render mode for the component**: Understanding the render mode can help in optimizing the rendering process and improving the overall performance of a component.
 
+<!-- ACTIVATE THIS LINK AFTER https://github.com/dotnet/AspNetCore.Docs/pull/32794 merges
+
 For more information, see <xref:blazor/components/render-modes?view=aspnetcore-9.0#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
+
+-->
 
 ### Improved server-side reconnection experience:
 
