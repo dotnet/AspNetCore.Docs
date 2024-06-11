@@ -198,7 +198,7 @@ The UI is driven by the generated JSON schema:
 
 :::code language="json" source="~/tutorials/get-started-with-swashbuckle/web-api-help-pages-using-swagger/_static/v6-swagger-delete.json" range="2-24":::
 
-Add a [/<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `Create` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
+Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `Create` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
 
 :::code language="csharp" source="~/tutorials/get-started-with-swashbuckle/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Create" highlight="6-16":::
 
