@@ -265,4 +265,4 @@ To inject additional CSS stylesheets, add them to the project's *wwwroot* folder
 
 :::moniker-end
 
-[!INCLUDE[](~/includes/~/tutorials/getting-started-with-swashbuckle/includes/getting-started-with-swashbuckle8.md)]
+[!INCLUDE[](~/tutorials/getting-started-with-swashbuckle/includes/getting-started-with-swashbuckle8.md)]
