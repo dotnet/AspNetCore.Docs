@@ -43,7 +43,7 @@ Configure Map Static Assets Middleware by calling `MapStaticAssets` in the app's
 `MapStaticAssets` provides the following benefits not found with <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 * Build-time compression for all the assets in the app: [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) during development and Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) during publish.
-* Content based `ETags` are generated for each static asset, which are [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded strings of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0) hashes of the static assets. This ensures that the browser only redownloads a file if its contents have changed.
+* Content based `ETags` are generated for each static asset, which are [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded strings of the [SHA-256](xref:System.Security.Cryptography.SHA256) hashes of the static assets. This ensures that the browser only redownloads a file if its contents have changed.
 
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that `MapStaticAssets` can't handle:
 
