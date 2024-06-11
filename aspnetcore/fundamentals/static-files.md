@@ -37,7 +37,8 @@ Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyI
 
 ### MapStaticAssets
 
-`MapStaticAssets` is a middleware that helps optimize the delivery of static assets in an app. For more information, see [Optimizing static web asset delivery](xref:release-notes/aspnetcore-9#optimizing-static-web-asset-delivery).
+`MapStaticAssets` is a middleware that helps optimize the delivery of static assets in an app. For more information, see [Optimizing static web asset delivery
+](xref:aspnetcore-9#optimizing-static-web-asset-delivery).
 
 ### Serve files in web root
 
