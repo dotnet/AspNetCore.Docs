@@ -1,16 +1,5 @@
----
-title: Get started with Swashbuckle and ASP.NET Core
-author: zuckerthoben
-description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
-ms.author: scaddie
-monikerRange: '>= aspnetcore-3.1'
-ms.custom: mvc
-ms.date: 05/14/2024
-uid: tutorials/get-started-with-swashbuckle
----
-# Get started with Swashbuckle and ASP.NET Core
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 There are three main components to Swashbuckle:
 
@@ -591,5 +580,3 @@ if (env.IsDevelopment())
 * [Improve the developer experience of an API with Swagger documentation](/training/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
-
-[!INCLUDE[](~/includes/~/tutorials/getting-started-with-swashbuckle/includes/getting-started-with-swashbuckle8.md)]
