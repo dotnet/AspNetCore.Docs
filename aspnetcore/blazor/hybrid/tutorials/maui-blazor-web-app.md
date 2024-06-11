@@ -37,7 +37,7 @@ dotnet new maui-blazor-web -o MauiBlazorWeb -I Server
 In the preceding command:
 
 * The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
-* The `-I|--InteractivityPlatform` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes are supported by the project template. For more information, see the [Use Blazor render modes](#use-blazor-render-modes) section.
+* The `-I|--InteractivityPlatform` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see the [Use Blazor render modes](#use-blazor-render-modes) section.
 
 The app automatically adopts global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
