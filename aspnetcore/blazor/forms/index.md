@@ -383,7 +383,7 @@ Form examples reference aspects of the [Star Trek](http://www.startrek.com/) uni
 
 ## Client-side validation requires a circuit
 
-In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server when the form is submitted.
+In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
 
 :::moniker-end
 
