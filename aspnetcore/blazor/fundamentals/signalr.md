@@ -1154,7 +1154,8 @@ An alternative is to specify the exact sequence of retry intervals. After the la
 Blazor.start({
   circuit: {
     reconnectionOptions: {
-      retryIntervalMilliseconds: Array.prototype.at.bind([0, 1000, 2000, 5000, 10000, 15000, 30000]),
+      retryIntervalMilliseconds: 
+        Array.prototype.at.bind([0, 1000, 2000, 5000, 10000, 15000, 30000]),
     },
   },
 });
