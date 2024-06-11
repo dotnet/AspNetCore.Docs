@@ -193,10 +193,7 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 ## Filters
 
-See:
-
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* [A deep dive into endpoint filters](https://blog.safia.rocks/endpoint-filters-exploration.html)
+For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
 
 ## Authorization
 

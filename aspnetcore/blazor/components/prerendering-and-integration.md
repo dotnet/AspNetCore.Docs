@@ -947,7 +947,7 @@ By initializing components with the same state used during prerendering, any exp
 A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+* The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
 
 To resolve the problem, use ***either*** of the following approaches:
 
@@ -1890,7 +1890,7 @@ By initializing components with the same state used during prerendering, any exp
 A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+* The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
 
 To resolve the problem, use ***either*** of the following approaches:
 
@@ -2596,7 +2596,7 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+* The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
 
 To resolve the problem, use ***either*** of the following approaches:
 
@@ -3036,7 +3036,7 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+* The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
 
 To resolve the problem, use ***either*** of the following approaches:
 
