@@ -279,7 +279,7 @@ The next example shows how to render markup to support performing a regular HTML
 }
 else
 {
-    // The render mode is Interactive Server, WebAssembly, or Auto.
+    // The render mode is Interactive Server, WebAssembly, or Auto
     <input @bind="titleFilter" />
     <button @onclick="FilterMovies">Search</button>
 }
