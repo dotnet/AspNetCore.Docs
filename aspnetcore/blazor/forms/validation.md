@@ -20,6 +20,12 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
 Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
 
+:::moniker range=">= aspnetcore-8.0"
+
+In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
+
+:::moniker-end
+
 In the following component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
 
 `Starship8.razor`:
