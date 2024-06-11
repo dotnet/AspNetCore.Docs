@@ -93,7 +93,7 @@ Run the app and navigate to the movies `Index` page at `/movies`. The movies in 
 
 Append a query string to the URL in the address bar: `?titleSearch=road+warrior`. For example, the full URL appears as `https://localhost:7073/movies?titleSearch=road+warrior`, assuming the port number is `7073`. The filtered movie is displayed:
 
-![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
+!['The Road Warrior' Mad Max movie filtered using a query string in the browser's address bar](~/blazor/tutorials/movie-database-app/part-6/_static/query-string-filter-result.png)
 
 Next, give users a way to provide the `titleSearch` filter string via the component's UI. Add the following HTML under the H1 heading (`<h1>Index</h1>`). The following HTML reloads the page with the contents of the textbox as a query string value:
 
@@ -130,7 +130,7 @@ Run the app again and type `road warrior` into the search box and select the **S
 
 The result after searching on `road warrior`:
 
-![The Road Warrior Mad Max movie filtered](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result.png)
+!['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result.png)
 
 ## Stop the app
 
