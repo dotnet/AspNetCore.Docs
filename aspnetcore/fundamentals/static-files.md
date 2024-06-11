@@ -35,7 +35,10 @@ Static files are accessible via a path relative to the [web root](xref:fundament
 
 Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
-### 
+### MapStaticAssets
+
+`MapStaticAssets` is a middleware that helps optimize the delivery of static assets in an app. For more information, see [Optimizing static web asset delivery
+](xref:elease-notes/aspnetcore-9.0#optimizing-static-web-asset-delivery).
 
 ### Serve files in web root
 
