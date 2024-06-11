@@ -379,6 +379,14 @@ To demonstrate how forms work with [data annotations](xref:mvc/models/validation
 
 Form examples reference aspects of the [Star Trek](http://www.startrek.com/) universe. Star Trek is a copyright &copy;1966-2023 of [CBS Studios](https://www.paramount.com/brand/cbs-studios) and [Paramount](https://www.paramount.com).
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Client-side validation requires a circuit
+
+In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server when the form is submitted.
+
+:::moniker-end
+
 <!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
                 The intention is to link to a few of the
                 framework test assets that include great
