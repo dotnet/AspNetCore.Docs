@@ -233,34 +233,10 @@ The `ComponentBase.Platform` and `ComponentBase.AssignedRenderMode` properties p
   * `InteractiveAuto` for Interactive Auto.
   * `InteractiveWebassembly` for Interactive WebAssembly.
 
-<!-- REVIEWER NOTE
-
-The preceding line based on the pre5 issue was ...
-
-`ComponentBase.AssignedRenderMode` exposes the render mode value defined in the component hierarchy (if any) via the `@rendermode` attribute on a root component or the `[RenderMode]` attribute.
-
-... but we never covered "the `[RenderMode]` attribute," 
-so that had to be removed at least temporarily until we
-document it. Also, it's more complicated to get into 
-the details on where/how the render mode is applied 
-(by definition or by inheritance). I phrased it more 
-generally as you see above until review can sort out 
-if it should say something more specific.
-
--->
-
 > [!NOTE]
 > `ComponentBase.Platform` will be renamed to `ComponentBase.RendererInfo` in a future preview release.
 
 Components use these properties to render content depending on their location or interactivity status. For example, a form can be disabled during prerendering and enabled when the component becomes interactive:
-
-<!-- REVIEWER NOTE
-
-     In the next example, I'm supplying just a bit of
-     "Movie" property context to make it clear why
-     the init is async.
-     
--->
 
 ```razor
 <EditForm Model="Movie" ...>
