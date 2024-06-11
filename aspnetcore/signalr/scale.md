@@ -161,7 +161,7 @@ http {
 }
 ```
 
-With [Nginx Plus](https://www.nginx.com/products/nginx), use `sticky` to add a cookie to requests and pin the user's requests to a server:
+With [Nginx Plus](https://www.f5.com/products/nginx/nginx-plus), use `sticky` to add a cookie to requests and pin the user's requests to a server:
 
 ```nginx
 http {
