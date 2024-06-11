@@ -1,18 +1,5 @@
----
-title: Part 4, work with a database
-author: wadepickett
-description: Part 4 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.date: 06/11/2024
-uid: tutorials/razor-pages/sql
----
-# Part 4 of tutorial series on Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Joe Audette](https://twitter.com/joeaudette)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
 
@@ -153,13 +140,3 @@ The app shows the seeded data:
 > [Next: Update the pages](xref:tutorials/razor-pages/da1)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql3.md)]

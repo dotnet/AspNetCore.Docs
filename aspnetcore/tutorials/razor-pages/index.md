@@ -3,9 +3,8 @@ title: "Tutorial: Create a Razor Pages web app with ASP.NET Core"
 author: wadepickett
 description: This series of tutorials explains the basics of building a Razor Pages web app. 
 ms.author: wpickett
-ms.date: 05/24/2023
+ms.date: 06/11/2024
 monikerRange: '>= aspnetcore-3.1'
-ms.custom: engagement-fy23
 uid: tutorials/razor-pages/index
 ---
 # Tutorial: Create a Razor Pages web app with ASP.NET Core

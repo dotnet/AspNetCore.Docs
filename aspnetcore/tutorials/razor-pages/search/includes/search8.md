@@ -1,18 +1,5 @@
----
-title: Part 6, add search
-author: wadepickett
-description: Part 6 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.date: 06/11/2024
-uid: tutorials/razor-pages/search
----
-# Part 6, add search to ASP.NET Core Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 In the following sections, searching movies by *genre* or *name* is added.
 
@@ -124,10 +111,3 @@ Test the app by searching by genre, by movie title, and by both.
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search3-5.md)]

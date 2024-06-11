@@ -1,20 +1,5 @@
----
-title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
-author: wadepickett
-description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
-ms.author: wpickett
-monikerRange: '>= aspnetcore-3.1'
-ms.date: 06/11/2024
-uid: tutorials/razor-pages/razor-pages-start
----
 
-# Tutorial: Get started with Razor Pages in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
@@ -220,13 +205,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 > [Next: Add a model](xref:tutorials/razor-pages/model)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start3.md)]
