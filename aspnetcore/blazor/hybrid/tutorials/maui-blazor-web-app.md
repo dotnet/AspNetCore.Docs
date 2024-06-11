@@ -25,10 +25,14 @@ The .NET MAUI Blazor Hybrid and Web App solution template sets up a solution tha
 Create an app from the project template with the following .NET CLI command:
 
 ```dotnetcli
-dotnet new maui-blazor-web -o MauiBlazorWeb
+dotnet new maui-blazor-web -o MauiBlazorWeb -int Server -ai
 ```
 
-In the preceding command, the `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`. The Blazor Web App project of the solution adopts global Interactive Auto rendering.
+In the preceding command:
+
+* The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
+* The `-int|--interactivity` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes are supported by the project template. For more informaiton, see the [Use Blazor render modes](#use-blazor-render-modes) section.
+* The `-ai|--all-interactive` option specifies global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. Both interactivity locations are supported by the project template. If you don't use a global render mode (for example, not passing the `-ai|--all-interactive` option or passing `-ai False` to the command), you must implement the approach described in the appropriate subsection of the [Use Blazor render modes](#use-blazor-render-modes) section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
 > [!NOTE]
 > If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
