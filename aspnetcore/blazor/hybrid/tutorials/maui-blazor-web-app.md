@@ -37,7 +37,7 @@ In the preceding command:
 > [!NOTE]
 > At this time, you must use the .NET CLI to create an app with per-page/component interactivity location.
 >
-> When you adopt the per-page/component interactivity location, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) subsection that pertains to your choice of interactivity location. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
+> When you adopt per-page/component interactivity location, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) subsection that pertains to your choice of interactivity location. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
 <!-- UPDATE 9.0 Provide the project template's name here for VS, possibly
                 using a tooling pivot for the article. -->
