@@ -35,7 +35,9 @@ In the preceding command:
 * The `-ai|--all-interactive` option specifies global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. Both interactivity locations are supported by the project template. If you don't use a global render mode (for example, not passing the `-ai|--all-interactive` option or passing `-ai False` to the command), you must implement the approach described in the appropriate subsection of the [Use Blazor render modes](#use-blazor-render-modes) section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
 > [!NOTE]
-> If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
+> At this time, you must use the .NET CLI to create an app with per-page/component interactivity location.
+>
+> When you adopt the per-page/component interactivity location, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) subsection that pertains to your choice of interactivity location. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
 <!-- UPDATE 9.0 Provide the project template's name here for VS, possibly
                 using a tooling pivot for the article. -->
