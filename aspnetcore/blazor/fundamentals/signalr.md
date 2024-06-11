@@ -165,7 +165,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+* The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
 
 To resolve the problem, use ***either*** of the following approaches:
 
@@ -550,7 +550,7 @@ The following table describes the CSS classes applied to the `components-reconne
 
 :::moniker range=">= aspnetcore-5.0"
 
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
+Customize the delay before the reconnection UI appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
 
 :::moniker-end
 
