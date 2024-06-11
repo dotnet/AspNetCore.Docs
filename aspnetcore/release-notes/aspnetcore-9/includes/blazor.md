@@ -28,9 +28,14 @@ The template is also available in Visual Studio.
 
 For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view=aspnetcore-9.0>.
 
-### Static asset deliver optimization
+### Static asset delivery optimization
 
-For more information, see the [Optimizing static web asset delivery](#optimizing-static-web-asset-delivery) section.
+`MapStaticAssets` is a new middleware that helps optimize the delivery of static assets in any ASP.NET Core app, including Blazor apps.
+
+For more information, see either of the following resources:
+
+* The [Optimizing static web asset delivery](#optimizing-static-web-asset-delivery) section of this article.
+* <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0#static-asset-middleware>.
 
 ### Detect rendering location, interactivity, and assigned render mode at runtime
 

@@ -317,7 +317,7 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 
 :::zone-end
 
-For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files>.
 
 For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
 
