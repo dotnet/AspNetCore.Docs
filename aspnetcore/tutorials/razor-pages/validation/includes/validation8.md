@@ -1,18 +1,5 @@
----
-title: Part 8, add validation
-author: wadepickett
-description: Part 8 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.date: 06/11/2024
-uid: tutorials/razor-pages/validation
----
-# Part 8 of tutorial series on Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
@@ -257,11 +244,3 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation3-5.md)]

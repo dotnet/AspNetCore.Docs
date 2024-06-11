@@ -22,21 +22,24 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 
 The .NET MAUI Blazor Hybrid and Web App solution template sets up a solution that targets Android, iOS, Mac, Windows and Web that reuses UI. You can choose a Blazor interactive render mode for the web app and it creates the appropriate projects for the app, including a Blazor Web App and a .NET MAUI Blazor Hybrid app. A shared Razor class library (RCL) maintains the Razor components for the app's UI. The template also provides sample code to show you how to use dependency injection to provide different interface implementations for the Blazor Hybrid and Blazor Web App, which is covered in the [Using interfaces to support different device implementations](#using-interfaces-to-support-different-device-implementations) section of this article.
 
-Create an app from the project template with the following .NET CLI command:
+If you haven't already installed the .NET MAUI workload, install it now. The .NET MAUI workload provides the project template:
 
 ```dotnetcli
-dotnet new maui-blazor-web -o MauiBlazorWeb -int Server
+dotnet workload install maui
+```
+
+Create a solution from the project template with the following .NET CLI command:
+
+```dotnetcli
+dotnet new maui-blazor-web -o MauiBlazorWeb -I Server
 ```
 
 In the preceding command:
 
 * The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
-* The `-int|--interactivity` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes are supported by the project template. For more information, see the [Use Blazor render modes](#use-blazor-render-modes) section.
+* The `-I|--InteractivityPlatform` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see the [Use Blazor render modes](#use-blazor-render-modes) section.
 
 The app automatically adopts global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
-
-<!-- UPDATE 9.0 Provide the project template's name here for VS, possibly
-                using a tooling pivot for the article. -->
 
 :::moniker-end
 
