@@ -619,10 +619,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
            AddOutputFilterByType DEFLATE application/octet-stream
            AddOutputFilterByType DEFLATE application/wasm
            <IfModule mod_setenvif.c>
-         BrowserMatch ^Mozilla/4 gzip-only-text/html
-         BrowserMatch ^Mozilla/4.0[678] no-gzip
-         BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-     </IfModule>
+               BrowserMatch ^Mozilla/4 gzip-only-text/html
+               BrowserMatch ^Mozilla/4.0[678] no-gzip
+               BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+           </IfModule>
        </IfModule>
 
        ErrorLog /var/log/httpd/blazorapp-error.log
@@ -657,10 +657,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
            AddOutputFilterByType DEFLATE application/octet-stream
            AddOutputFilterByType DEFLATE application/wasm
            <IfModule mod_setenvif.c>
-         BrowserMatch ^Mozilla/4 gzip-only-text/html
-         BrowserMatch ^Mozilla/4.0[678] no-gzip
-         BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-     </IfModule>
+               BrowserMatch ^Mozilla/4 gzip-only-text/html
+               BrowserMatch ^Mozilla/4.0[678] no-gzip
+               BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+           </IfModule>
        </IfModule>
 
        ErrorLog /var/log/httpd/blazorapp-error.log
