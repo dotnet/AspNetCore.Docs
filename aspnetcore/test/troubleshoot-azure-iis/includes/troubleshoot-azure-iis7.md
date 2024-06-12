@@ -1,18 +1,4 @@
----
-title: Troubleshoot ASP.NET Core on Azure App Service and IIS
-author: rick-anderson
-description: Learn how to diagnose problems with Azure App Service and Internet Information Services (IIS) deployments of ASP.NET Core apps.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 6/11/2024
-uid: test/troubleshoot-azure-iis
----
-# Troubleshoot ASP.NET Core on Azure App Service and IIS
-
-By [Justin Kotalik](https://github.com/jkotalik)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-8.0"
 
 This article provides information on common app startup errors and instructions on how to diagnose errors when an app is deployed to Azure App Service or IIS:
 
@@ -614,5 +600,4 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 :::moniker-end
 
-[!INCLUDE[](~/test/troubleshoot-azure-iis/includes/troubleshoot-azure-iis7.md)]
 [!INCLUDE[](~/test/troubleshoot-azure-iis/includes/troubleshoot-azure-iis2.md)]
