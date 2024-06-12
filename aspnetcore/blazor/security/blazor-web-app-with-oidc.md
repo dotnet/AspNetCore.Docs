@@ -581,9 +581,9 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 :::zone-end
 
-## Adding per-component interactive server-side rendered components
+## Adding components that adopt interactive server-side rendering
 
-Because the app adopts global Auto rendering via the `Routes` component, individual components that specify interactive SSR (`@rendermode InteractiveServer`) in their component definition file (`.razor`) are *placed in the `.Client` project's `Pages` folder*.
+Because the app uses global Interactive Auto rendering via the `Routes` component, individual components that specify interactive server-side rendering (interactive SSR, `@rendermode InteractiveServer`) in their component definition file (`.razor`) are *placed in the `.Client` project's `Pages` folder*.
 
 Placing interactive SSR components in the `.Client` project is counter-intuitive because such components are only rendered on the server.
 
