@@ -614,5 +614,5 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 :::moniker-end
 
-[!INCLUDE[](~/test/troubleshoot-azure-iis/includes/troubleshoot-azure-iis7.md)]
 [!INCLUDE[](~/test/troubleshoot-azure-iis/includes/troubleshoot-azure-iis2.md)]
+[!INCLUDE[](~/test/troubleshoot-azure-iis/includes/troubleshoot-azure-iis7.md)]

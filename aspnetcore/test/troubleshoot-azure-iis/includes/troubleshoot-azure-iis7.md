@@ -599,5 +599,3 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
 :::moniker-end
-
-[!INCLUDE[](~/test/troubleshoot-azure-iis/includes/troubleshoot-azure-iis2.md)]
