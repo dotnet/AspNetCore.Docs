@@ -389,7 +389,10 @@ In the following example, the render mode is set interactive SSR by adding `@ren
 }
 ```
 
-If using the preceding component locally in a Blazor Web App, place the component in the server project's `Components/Pages` folder. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
+If using the preceding component in a Blazor Web App, place the component in the server project's `Components/Pages` folder&dagger;. The server project is the solution's project with a name that doesn't end in `.Client`. When the app is running, navigate to `/render-mode-2` in the browser's address bar.
+
+> [!IMPORTANT]
+> &dagger;If the app adopts global WebAssembly or global Auto rendering via the `Routes` component, individual components that specify interactive SSR (`@rendermode InteractiveServer`) in their component definition file (`.razor`) are *placed in the `.Client` project's `Pages` folder*. This is counter-intuitive because such components are only rendered on the server. Placement in the `.Client` project is required. After the component is prerendered on the server and briefly displayed by the browser, the client-side router isn't able to find the component, which ultimately results in a *404 - Not Found* in the browser. Therefore, place interactive SSR components in the `.Client` project's `Pages` folder when the app adopts either global WebAssembly or Auto rendering.
 
 ## Client-side rendering (CSR)
 
