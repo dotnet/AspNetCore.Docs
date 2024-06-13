@@ -159,7 +159,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
 
-```powershell
+```PowerShell
 Add-Migration AddRatingField
 ```
 
@@ -188,7 +188,7 @@ Save the migration file.
 
 In the PMC, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with the default value:
 
-```powershell
+```PowerShell
 Update-Database
 ```
 
@@ -430,7 +430,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 1. Select **OK**.
 1. In the **Package Manager Console** (PMC), execute the following command to run the existing migrations that recreate the database:
 
-   ```powershell
+   ```PowerShell
    Update-Database
    ```
 
