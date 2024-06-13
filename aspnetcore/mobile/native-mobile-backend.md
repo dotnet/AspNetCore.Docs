@@ -120,7 +120,7 @@ curl is installed with Windows 10, version 1802 or higher. For more information 
 
 Install jq with the following command in PowerShell or the Command Prompt:
 
-```PowerShell
+```powershell
 winget install jqlang.jq
 ```
 
@@ -154,7 +154,7 @@ In the terminal, call the following curl command:
 
 In PowerShell, call the following curl command:
 
-  ```PowerShell
+  ```powershell
   curl -v -X GET 'http://localhost:5000/api/todoitems/' | jq
   ```
 
@@ -223,7 +223,7 @@ curl -v -X POST 'http://localhost:5000/api/todoitems/' \
 
 # [Windows](#tab/windows)
 
-```PowerShell
+```powershell
 curl -v -X POST 'http://localhost:5000/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
@@ -265,7 +265,7 @@ curl -v -X PUT 'http://localhost:5000/api/todoitems/' \
 ```
 # [Windows](#tab/windows)
 
-```PowerShell
+```powershell
 curl -v -X PUT 'http://localhost:5000/api/todoitems/' `
 --header 'Content-Type: application/json' `
 --data '{
@@ -294,7 +294,7 @@ curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-2
 ```
 # [Windows](#tab/windows)
 
-```PowerShell
+```powershell
 curl -v -X DELETE 'http://localhost:5000/api/todoitems/6bb8b868-dba1-4f1a-93b7-24ebce87e243'
 ```
 
