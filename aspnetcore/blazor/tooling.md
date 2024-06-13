@@ -84,14 +84,6 @@ Select **Next**.
 
 Install the latest version of [Visual Studio Code](https://code.visualstudio.com/Download) for your platform.
 
-The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which is a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
-
-Install the [.NET SDK](https://dotnet.microsoft.com/download). If you previously installed one or more .NET SDKs and want to see your active version, execute the following command in the **Terminal**:
-
-```dotnetcli
-dotnet --version
-```
-
 Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
 
 If you're new to VS Code, see the [VS Code documentation](https://code.visualstudio.com/docs). If you're new to the .NET SDK, see [What is the .NET SDK?](/dotnet/core/sdk) and the associated articles in the .NET SDK documentation.
@@ -126,6 +118,8 @@ Create a new project:
 
 Select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
 -->
+
+The Visual Studio Code (VS Code) instructions for ASP.NET Core development in some parts of the Blazor documentation use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which defaults to a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
 
 For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
 
