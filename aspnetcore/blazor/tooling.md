@@ -435,9 +435,7 @@ In a command shell opened to the project's root folder, execute the [`dotnet wat
 dotnet watch
 ```
 
-The app is compiled and run. The app listens on `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
-
-Open the app in a browser by <kbd>Ctrl</kbd>-clicking the URL of the running app in the command shell. For example, <kbd>Ctrl</kbd>-click on the URL `http://localhost:5252` where the console states `Now listening on: http://localhost:5252`.
+The app is compiled and run. The app is launched at `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
 When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for Linux and macOS users.
 
