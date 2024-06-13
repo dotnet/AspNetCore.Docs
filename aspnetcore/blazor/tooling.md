@@ -19,7 +19,6 @@ This article describes tools for building Blazor apps using several tools:
 * [Visual Studio Code (VS Code)](https://code.visualstudio.com) is an open source, cross-platform code editor that can be used to develop Blazor apps.
 * [.NET CLI](/dotnet/core/tools/): The .NET command-line interface (CLI) is a cross-platform toolchain for developing, building, running, and publishing .NET applications. The .NET CLI is included with the [.NET SDK](/dotnet/core/sdk) and runs on any platform supported by the SDK.
 
-
 Select the pivot of this article that matches your tooling choice.
 
 :::zone pivot="vs"
@@ -104,15 +103,6 @@ Create a new project:
   Next, select the **https** launch configuration.
 
 * To stop the app, press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
-
-<!-- This doesn't seem to be required any longer, but the
-     commands are still there to create the debug assets. 
-     I need to clarify in my mind what these assets provide 
-     these days ... is it Hot Reload debugging? Whereas
-     without them, the app can only be run. 
-
-Select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
--->
 
 The Visual Studio Code (VS Code) instructions for ASP.NET Core development in some parts of the Blazor documentation use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which defaults to a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
 
@@ -548,6 +538,8 @@ By default, the Blazor Web App template enables both static and interactive SSR 
 > When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
 
 ### Interactivity location
+
+Interactivity location options:
 
 * **Per page/component**: The default sets up interactivity per page or per component.
 * **Global**: Using this option sets up interactivity globally for the entire app.
