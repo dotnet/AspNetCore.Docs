@@ -70,7 +70,7 @@ Select `ContosoUniversity.csproj` to open the project.
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
-   ```powershell
+   ```PowerShell
    Update-Database
    ```
 
@@ -393,7 +393,7 @@ Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget
 
 In the Package Manager Console, enter the following to add the NuGet package:
 
-```powershell
+```PowerShell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
@@ -456,7 +456,7 @@ The code checks if there are any students in the database. If there are no stude
 
 * Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
 
-  ```powershell
+  ```PowerShell
   Drop-Database -Confirm
    
   ```
@@ -602,7 +602,7 @@ Select `ContosoUniversity.csproj` to open the project.
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
-```powershell
+```PowerShell
 Update-Database
 ```
 
@@ -907,7 +907,7 @@ Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget
 
 In the Package Manager Console, enter the following to add the NuGet package:
 
-```powershell
+```PowerShell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
@@ -965,7 +965,7 @@ The code checks if there are any students in the database. If there are no stude
 
 * Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
 
-  ```powershell
+  ```PowerShell
   Drop-Database -Confirm
    
   ```
@@ -1110,7 +1110,7 @@ To run the app after downloading the completed project:
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
-   ```powershell
+   ```PowerShell
    Update-Database
    ```
 
@@ -1425,7 +1425,7 @@ Create `Data/DbInitializer.cs` with the following code:
 
 Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
 
-```powershell
+```PowerShell
 Drop-Database
 ```
 

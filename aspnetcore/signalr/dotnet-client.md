@@ -25,7 +25,7 @@ The [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microso
 
 To install the client library, run the following command in the **Package Manager Console** window:
 
-```powershell
+```PowerShell
 Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
 

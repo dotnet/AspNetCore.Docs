@@ -4,7 +4,7 @@ The generated Identity database code requires [Entity Framework Core Migrations]
 
 In the Visual Studio **Package Manager Console**:
 
-```powershell
+```PowerShell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 Add-Migration CreateIdentitySchema
 Update-Database
@@ -27,7 +27,7 @@ If the Identity schema has already been created but not applied to the database,
 
 In the Visual Studio **Package Manager Console**, execute [`Update-Database`](/ef/core/managing-schemas/migrations/applying?tabs=vs#command-line-tools):
 
-```powershell
+```PowerShell
 Update-Database
 ```
 
@@ -47,7 +47,7 @@ You can confirm the application of an Identity schema with the following command
 
 In the Visual Studio **Package Manager Console**, execute [`Get-Migration`](/ef/core/managing-schemas/migrations/managing?tabs=vs#listing-migrations):
 
-```powershell
+```PowerShell
 Get-Migration
 ```
 

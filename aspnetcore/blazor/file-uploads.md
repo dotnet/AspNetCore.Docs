@@ -125,7 +125,7 @@ using Microsoft.AspNetCore.Components.Forms;
 
 For testing file upload components, you can create test files of any size with [PowerShell](/powershell/):
 
-```powershell
+```PowerShell
 $out = new-object byte[] {SIZE}; (new-object Random).NextBytes($out); [IO.File]::WriteAllBytes('{PATH}', $out)
 ```
 

@@ -301,7 +301,7 @@ Projects that target `Microsoft.NET.Sdk.Web` automatically include support for u
 
 Using PowerShell:
 
-```powershell
+```PowerShell
 Install-Package Microsoft.Extensions.Configuration
 Install-Package Microsoft.Extensions.Configuration.UserSecrets
 ```

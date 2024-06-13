@@ -146,7 +146,7 @@ See [Layout changes](xref:security/authentication/scaffold-identity#layout-chang
 
 In the Visual Studio **Package Manager Console**:
 
-```powershell
+```PowerShell
 Add-Migration CustomUserData
 Update-Database
 ```
@@ -289,7 +289,7 @@ Build the project.
 
 In the Visual Studio **Package Manager Console**:
 
-```powershell
+```PowerShell
 Add-Migration CustomUserData
 Update-Database
 ```
@@ -512,7 +512,7 @@ Build the project.
 
 In the Visual Studio **Package Manager Console**:
 
-```powershell
+```PowerShell
 Add-Migration CustomUserData
 Update-Database
 ```

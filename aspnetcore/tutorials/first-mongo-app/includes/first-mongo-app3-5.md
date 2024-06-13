@@ -135,7 +135,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. Select the **.NET Core** target framework and **ASP.NET Core 3.0**. Select the **API** project template, and select **Create**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
-   ```powershell
+   ```PowerShell
    Install-Package MongoDB.Driver -Version {VERSION}
    ```
 

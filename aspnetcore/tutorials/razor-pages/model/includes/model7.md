@@ -244,7 +244,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 1. In the PMC, enter the following commands:
 
-   ```powershell
+   ```PowerShell
    Add-Migration InitialCreate
    Update-Database
    ```

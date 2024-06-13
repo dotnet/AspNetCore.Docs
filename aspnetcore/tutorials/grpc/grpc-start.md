@@ -153,7 +153,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 * From the **Package Manager Console** window, run `cd GrpcGreeterClient` to change directories to the folder containing the `GrpcGreeterClient.csproj` files.
 * Run the following commands:
 
-  ```powershell
+  ```PowerShell
   Install-Package Grpc.Net.Client
   Install-Package Google.Protobuf
   Install-Package Grpc.Tools

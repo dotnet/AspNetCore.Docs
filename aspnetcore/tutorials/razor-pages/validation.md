@@ -201,7 +201,7 @@ The preceding schema changes don't cause EF to throw an exception. However, crea
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
-```powershell
+```PowerShell
 Add-Migration New_DataAnnotations
 Update-Database
 ```

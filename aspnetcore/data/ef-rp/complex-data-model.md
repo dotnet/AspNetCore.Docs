@@ -181,7 +181,7 @@ SchoolContext
 
 * In the PMC, enter the following commands to create a new migration and update the database:
 
-  ```powershell
+  ```PowerShell
   Add-Migration ColumnFirstName
   Update-Database
    
@@ -568,7 +568,7 @@ Build the project.
 
 In PMC, run the following command.
 
-```powershell
+```PowerShell
 Add-Migration ComplexDataModel
 ```
 
@@ -625,7 +625,7 @@ To force EF Core to create a new database, drop and update the database:
   * Delete the *Migrations* folder.
   * In the **Package Manager Console** (PMC), run the following commands:
 
-  ```powershell
+  ```PowerShell
   Drop-Database
   Add-Migration InitialCreate
   Update-Database
@@ -707,7 +707,7 @@ The way of handling the situation shown here is simplified for this tutorial. A 
 
 * In the **Package Manager Console** (PMC), run the following command:
 
-  ```powershell
+  ```PowerShell
   Update-Database
   ```
 
@@ -884,7 +884,7 @@ SqlException: Invalid column name 'FirstName'.
 
 * In the PMC, enter the following commands to create a new migration and update the database:
 
-  ```powershell
+  ```PowerShell
   Add-Migration ColumnFirstName
   Update-Database
   ```
@@ -1257,7 +1257,7 @@ Build the project.
 
 In PMC, run the following command.
 
-```powershell
+```PowerShell
 Add-Migration ComplexDataModel
 ```
 
@@ -1312,13 +1312,13 @@ To force EF Core to create a new database, drop and update the database:
 
 * In the **Package Manager Console** (PMC), run the following command:
 
-  ```powershell
+  ```PowerShell
   Drop-Database
   ```
 
 * Delete the *Migrations* folder, then run the following command:
 
-  ```powershell
+  ```PowerShell
   Add-Migration InitialCreate
   Update-Database
   ```
@@ -1412,7 +1412,7 @@ The way of handling the situation shown here is simplified for this tutorial. A 
 
 * In the **Package Manager Console** (PMC), run the following command:
 
-  ```powershell
+  ```PowerShell
   Update-Database
   ```
 
@@ -1550,7 +1550,7 @@ To update the DB:
 
 # [Visual Studio](#tab/visual-studio)
 
-```powershell
+```PowerShell
 Add-Migration ColumnFirstName
 Update-Database
 ```
@@ -1965,7 +1965,7 @@ Build the project.
 
 # [Visual Studio](#tab/visual-studio)
 
-```powershell
+```PowerShell
 Add-Migration ComplexDataModel
 ```
 
@@ -2009,7 +2009,7 @@ The code in the updated `DbInitializer` adds seed data for the new entities. To 
 
 In the **Package Manager Console** (PMC), run the following command:
 
-```powershell
+```PowerShell
 Drop-Database
 Update-Database
 ```

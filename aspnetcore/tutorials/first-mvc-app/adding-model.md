@@ -283,7 +283,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the Package Manager Console (PMC), enter the following commands:
 
-```powershell
+```PowerShell
 Add-Migration InitialCreate
 Update-Database
  

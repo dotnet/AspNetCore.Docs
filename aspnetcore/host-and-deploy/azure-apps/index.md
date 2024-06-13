@@ -218,7 +218,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 1. Select the **Debug console** > **PowerShell** menu item.
 1. At the PowerShell prompt, execute the following command. Substitute the ASP.NET Core runtime version for `{X.Y}` and the platform for `{PLATFORM}` in the command:
 
-   ```powershell
+   ```PowerShell
    Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.{PLATFORM}\
    ```
 
@@ -231,7 +231,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 >
 > After installing the x64 preview runtime, run the following command in the Azure Kudu PowerShell command window to verify the installation. Substitute the ASP.NET Core runtime version for `{X.Y}` in the following command:
 >
-> ```powershell
+> ```PowerShell
 > Test-Path D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64\
 > ```
 >

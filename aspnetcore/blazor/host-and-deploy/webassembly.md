@@ -957,7 +957,7 @@ To use a different file extension than `.bin`, replace `.bin` in the following c
 
 On Windows:
 
-```powershell
+```PowerShell
 dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
 ((Get-Content {PATH}\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\blazor.boot.json
 ```
@@ -966,7 +966,7 @@ In the preceding command, the `{PATH}` placeholder is the path to the published 
 
 If service worker assets are also in use:
 
-```powershell
+```PowerShell
 ((Get-Content {PATH}\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\service-worker-assets.js
 ```
 
@@ -1000,7 +1000,7 @@ The following Windows example for .NET 6 uses a PowerShell script placed at the 
 
 `ChangeDLLExtensions.ps1:`:
 
-```powershell
+```PowerShell
 param([string]$filepath,[string]$tfm)
 dir $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
 ((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json
@@ -1010,7 +1010,7 @@ Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\b
 
 If service worker assets are also in use, add the following commands:
 
-```powershell
+```PowerShell
 ((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js
 Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.gz
 Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.br
@@ -1132,13 +1132,13 @@ The script checks the files in the `publish` folder and downloaded from the depl
 
 Invoke the script with the following command in a PowerShell command shell:
 
-```powershell
+```PowerShell
 .\integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
 ```
 
 In the following example, the script is executed on a locally-running app at `https://localhost:5001/`:
 
-```powershell
+```PowerShell
 .\integrity.ps1 https://localhost:5001/ C:\TestApps\BlazorSample\bin\Release\net6.0\publish\
 ```
 

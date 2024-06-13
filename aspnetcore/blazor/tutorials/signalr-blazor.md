@@ -99,13 +99,13 @@ In VS Code:
   > [!IMPORTANT]
   > Name the project `BlazorSignalRApp`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow the tutorial.
 
-  ```powershell
+  ```PowerShell
   dotnet new blazor -o BlazorSignalRApp -int WebAssembly -ai False
   ```
 
 * Use the [`code` command](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) to open the `BlazorSignalRApp` folder in the current instance of VS Code:
 
-  ```powershell
+  ```PowerShell
   code -r BlazorSignalRApp
   ```
 
@@ -149,7 +149,7 @@ If the **License Acceptance** dialog appears, select **I Accept** if you agree w
 
 In the **Terminal** (**Terminal** > **New Terminal** from the menu bar opened to the `BlazorSignalRApp.Client` project using `cd BlazorSignalRApp.Client`), execute the following command:
 
-```powershell
+```PowerShell
 dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 

@@ -196,7 +196,7 @@ Creating the certificates is the hardest part in setting up this flow. A root ce
 
 #### Create root CA
 
-```powershell
+```PowerShell
 New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
 
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
@@ -219,7 +219,7 @@ An intermediate certificate can now be created from the root certificate. This i
 
 The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
-```powershell
+```PowerShell
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint of the root..." )
@@ -235,7 +235,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath int
 
 A child certificate can be created from the intermediate certificate. This is the end entity and doesn't need to create more child certificates.
 
-```powershell
+```PowerShell
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -251,7 +251,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 A child certificate can also be created from the root certificate directly. 
 
-```powershell
+```PowerShell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $rootcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -265,7 +265,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Example root - intermediate certificate - certificate
 
-```powershell
+```PowerShell
 $mypwdroot = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
@@ -820,7 +820,7 @@ Creating the certificates is the hardest part in setting up this flow. A root ce
 
 #### Create root CA
 
-```powershell
+```PowerShell
 New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
 
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
@@ -843,7 +843,7 @@ An intermediate certificate can now be created from the root certificate. This i
 
 The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
-```powershell
+```PowerShell
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint of the root..." )
@@ -859,7 +859,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath int
 
 A child certificate can be created from the intermediate certificate. This is the end entity and doesn't need to create more child certificates.
 
-```powershell
+```PowerShell
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -875,7 +875,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 A child certificate can also be created from the root certificate directly. 
 
-```powershell
+```PowerShell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $rootcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -889,7 +889,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Example root - intermediate certificate - certificate
 
-```powershell
+```PowerShell
 $mypwdroot = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
@@ -1499,7 +1499,7 @@ Creating the certificates is the hardest part in setting up this flow. A root ce
 
 #### Create root CA
 
-```powershell
+```PowerShell
 New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
 
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
@@ -1522,7 +1522,7 @@ An intermediate certificate can now be created from the root certificate. This i
 
 The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
-```powershell
+```PowerShell
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint of the root..." )
@@ -1538,7 +1538,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath int
 
 A child certificate can be created from the intermediate certificate. This is the end entity and doesn't need to create more child certificates.
 
-```powershell
+```PowerShell
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -1554,7 +1554,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 A child certificate can also be created from the root certificate directly. 
 
-```powershell
+```PowerShell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $rootcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -1568,7 +1568,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Example root - intermediate certificate - certificate
 
-```powershell
+```PowerShell
 $mypwdroot = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 

@@ -155,7 +155,7 @@ Create the `DataProtectionKeys` table.
 
 Execute the following commands in the **Package Manager Console** (PMC) window:
 
-```powershell
+```PowerShell
 Add-Migration AddDataProtectionKeys -Context MyKeysContext
 Update-Database -Context MyKeysContext
 ```

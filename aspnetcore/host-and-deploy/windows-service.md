@@ -110,7 +110,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```powershell
+```PowerShell
 New-LocalUser -Name {SERVICE NAME}
 ```
 
@@ -147,7 +147,7 @@ To establish *Log on as a service* rights for a service user account:
 
 Use PowerShell commands to register a service. From an administrative PowerShell 6 command shell, execute the following commands:
 
-```powershell
+```PowerShell
 $acl = Get-Acl "{EXE PATH}"
 $aclRuleArgs = "{DOMAIN OR COMPUTER NAME\USER}", "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
@@ -169,7 +169,7 @@ New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH} --contentRoot 
 
 Start a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Start-Service -Name {SERVICE NAME}
 ```
 
@@ -179,7 +179,7 @@ The command takes a few seconds to start the service.
 
 To check the status of a service, use the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Get-Service -Name {SERVICE NAME}
 ```
 
@@ -194,7 +194,7 @@ The status is reported as one of the following values:
 
 Stop a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Stop-Service -Name {SERVICE NAME}
 ```
 
@@ -202,7 +202,7 @@ Stop-Service -Name {SERVICE NAME}
 
 After a short delay to stop a service, remove a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Remove-Service -Name {SERVICE NAME}
 ```
 
@@ -299,14 +299,14 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 1. Create a folder to hold crash dump files at `c:\dumps`.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1) with the application executable name:
 
-   ```powershell
+   ```PowerShell
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1):
 
-   ```powershell
+   ```PowerShell
    .\DisableDumps {APPLICATION EXE}
    ```
 
@@ -434,7 +434,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```powershell
+```PowerShell
 New-LocalUser -Name {SERVICE NAME}
 ```
 
@@ -471,7 +471,7 @@ To establish *Log on as a service* rights for a service user account:
 
 Use PowerShell commands to register a service. From an administrative PowerShell 6 command shell, execute the following commands:
 
-```powershell
+```PowerShell
 $acl = Get-Acl "{EXE PATH}"
 $aclRuleArgs = "{DOMAIN OR COMPUTER NAME\USER}", "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
@@ -493,7 +493,7 @@ New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH} --contentRoot 
 
 Start a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Start-Service -Name {SERVICE NAME}
 ```
 
@@ -503,7 +503,7 @@ The command takes a few seconds to start the service.
 
 To check the status of a service, use the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Get-Service -Name {SERVICE NAME}
 ```
 
@@ -518,7 +518,7 @@ The status is reported as one of the following values:
 
 Stop a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Stop-Service -Name {SERVICE NAME}
 ```
 
@@ -526,7 +526,7 @@ Stop-Service -Name {SERVICE NAME}
 
 After a short delay to stop a service, remove a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Remove-Service -Name {SERVICE NAME}
 ```
 
@@ -623,14 +623,14 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 1. Create a folder to hold crash dump files at `c:\dumps`.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1) with the application executable name:
 
-   ```powershell
+   ```PowerShell
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1):
 
-   ```powershell
+   ```PowerShell
    .\DisableDumps {APPLICATION EXE}
    ```
 
@@ -758,7 +758,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```powershell
+```PowerShell
 New-LocalUser -Name {SERVICE NAME}
 ```
 
@@ -795,7 +795,7 @@ To establish *Log on as a service* rights for a service user account:
 
 Use PowerShell commands to register a service. From an administrative PowerShell 6 command shell, execute the following commands:
 
-```powershell
+```PowerShell
 $acl = Get-Acl "{EXE PATH}"
 $aclRuleArgs = "{DOMAIN OR COMPUTER NAME\USER}", "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
@@ -816,7 +816,7 @@ New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "
 
 Start a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Start-Service -Name {SERVICE NAME}
 ```
 
@@ -826,7 +826,7 @@ The command takes a few seconds to start the service.
 
 To check the status of a service, use the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Get-Service -Name {SERVICE NAME}
 ```
 
@@ -841,7 +841,7 @@ The status is reported as one of the following values:
 
 Stop a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Stop-Service -Name {SERVICE NAME}
 ```
 
@@ -849,7 +849,7 @@ Stop-Service -Name {SERVICE NAME}
 
 After a short delay to stop a service, remove a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Remove-Service -Name {SERVICE NAME}
 ```
 
@@ -946,14 +946,14 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 1. Create a folder to hold crash dump files at `c:\dumps`.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1) with the application executable name:
 
-   ```powershell
+   ```PowerShell
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1):
 
-   ```powershell
+   ```PowerShell
    .\DisableDumps {APPLICATION EXE}
    ```
 
@@ -1081,7 +1081,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```powershell
+```PowerShell
 New-LocalUser -Name {SERVICE NAME}
 ```
 
@@ -1118,7 +1118,7 @@ To establish *Log on as a service* rights for a service user account:
 
 Use PowerShell commands to register a service. From an administrative PowerShell 6 command shell, execute the following commands:
 
-```powershell
+```PowerShell
 $acl = Get-Acl "{EXE PATH}"
 $aclRuleArgs = "{DOMAIN OR COMPUTER NAME\USER}", "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
@@ -1139,7 +1139,7 @@ New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "
 
 Start a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Start-Service -Name {SERVICE NAME}
 ```
 
@@ -1149,7 +1149,7 @@ The command takes a few seconds to start the service.
 
 To check the status of a service, use the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Get-Service -Name {SERVICE NAME}
 ```
 
@@ -1164,7 +1164,7 @@ The status is reported as one of the following values:
 
 Stop a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Stop-Service -Name {SERVICE NAME}
 ```
 
@@ -1172,7 +1172,7 @@ Stop-Service -Name {SERVICE NAME}
 
 After a short delay to stop a service, remove a service with the following PowerShell 6 command:
 
-```powershell
+```PowerShell
 Remove-Service -Name {SERVICE NAME}
 ```
 
@@ -1269,14 +1269,14 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 1. Create a folder to hold crash dump files at `c:\dumps`.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/EnableDumps.ps1) with the application executable name:
 
-   ```powershell
+   ```PowerShell
    .\EnableDumps {APPLICATION EXE} c:\dumps
    ```
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/host-and-deploy/windows-service/samples/scripts/DisableDumps.ps1):
 
-   ```powershell
+   ```PowerShell
    .\DisableDumps {APPLICATION EXE}
    ```
 

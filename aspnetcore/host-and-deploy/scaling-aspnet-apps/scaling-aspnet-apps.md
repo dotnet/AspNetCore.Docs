@@ -297,7 +297,7 @@ Sign in to Azure using the account settings dialog, which can be accessed in the
 
 ## [PowerShell](#tab/login-powershell)
 
-```powershell
+```PowerShell
 Connect-AzAccount
 ```
 

@@ -31,7 +31,7 @@ Swashbuckle can be added with the following approaches:
   * Navigate to the directory in which the `.csproj` file exists
   * Execute the following command:
 
-    ```powershell
+    ```PowerShell
     Install-Package Swashbuckle.AspNetCore -Version 6.6.2
     ```
 

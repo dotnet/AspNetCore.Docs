@@ -31,7 +31,7 @@ Rather than dropping and recreating the database when the data model changes, mi
 
 Use **SQL Server Object Explorer** (SSOX) to delete the database, or run the following command in the **Package Manager Console** (PMC):
 
-```powershell
+```PowerShell
 Drop-Database
 ```
 
@@ -61,7 +61,7 @@ Drop-Database
 
 Run the following commands in the PMC:
 
-```powershell
+```PowerShell
 Add-Migration InitialCreate
 Update-Database
  
@@ -183,7 +183,7 @@ Use **SQL Server Object Explorer** (SSOX) or the `database drop` command:
 
 In the **Package Manager Console** (PMC), run the following command:
 
-```powershell
+```PowerShell
 Drop-Database
 ```
 
@@ -207,7 +207,7 @@ Build the project and create the first migration.
 
 # [Visual Studio](#tab/visual-studio)
 
-```powershell
+```PowerShell
 Add-Migration InitialCreate
 Update-Database
 ```

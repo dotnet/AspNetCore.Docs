@@ -193,7 +193,7 @@ set ASPNETCORE_ENVIRONMENT=Staging
 dotnet run --no-launch-profile
 ```
 
-```powershell
+```PowerShell
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
 dotnet run --no-launch-profile
 ```
@@ -218,7 +218,7 @@ To set the value globally in Windows, use either of the following approaches:
 
     The `/M` switch sets the environment variable at the system level. If the `/M` switch isn't used, the environment variable is set for the user account.
 
-  * ```powershell
+  * ```PowerShell
     [Environment]::SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Staging", "Machine")
     ```
 
@@ -466,7 +466,7 @@ dotnet run --no-launch-profile
 
 **PowerShell**
 
-```powershell
+```PowerShell
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
 dotnet run --no-launch-profile
 ```
@@ -493,7 +493,7 @@ To set the value globally in Windows, use either of the following approaches:
 
   **PowerShell**
 
-  ```powershell
+  ```PowerShell
   [Environment]::SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Staging", "Machine")
   ```
 

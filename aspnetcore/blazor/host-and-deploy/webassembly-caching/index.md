@@ -76,13 +76,13 @@ The script checks the files in the `publish` folder and downloaded from the depl
 
 Invoke the script with the following command in a PowerShell command shell:
 
-```powershell
+```PowerShell
 .\integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
 ```
 
 In the following example, the script is executed on a locally-running app at `https://localhost:5001/`:
 
-```powershell
+```PowerShell
 .\integrity.ps1 https://localhost:5001/ C:\TestApps\BlazorSample\bin\Release\net6.0\publish\
 ```
 

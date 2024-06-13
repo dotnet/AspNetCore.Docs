@@ -99,7 +99,7 @@ Install the `SendGrid` NuGet package:
 
 From the Package Manager Console, enter the following command:
 
-```powershell
+```PowerShell
 Install-Package SendGrid
 ```
 
@@ -289,7 +289,7 @@ Install the `SendGrid` NuGet package:
 
 From the Package Manager Console, enter the following command:
 
-```powershell
+```PowerShell
 Install-Package SendGrid
 ```
 

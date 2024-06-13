@@ -49,7 +49,7 @@ Use the following instructions for your operating system configuration.
 
 Generate certificate and configure local machine:
 
-```powershell
+```PowerShell
 dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```

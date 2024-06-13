@@ -97,7 +97,7 @@ The preceding example:
 
 Combine `describe` with a service, method, or message name to view its detail:
 
-```powershell
+```PowerShell
 $ grpcurl localhost:<port> describe greet.HelloRequest
 greet.HelloRequest is a message:
 message HelloRequest {
@@ -142,7 +142,7 @@ For information about downloading and installing `grpcui`, see the [gRPCui GitHu
 
 Run `grpcui` with the server address to interact with as an argument:
 
-```powershell
+```PowerShell
 $ grpcui localhost:<port>
 gRPC Web UI available at http://127.0.0.1:55038/
 ```
@@ -250,7 +250,7 @@ The preceding example:
 
 Combine `describe` with a service, method, or message name to view its detail:
 
-```powershell
+```PowerShell
 $ grpcurl localhost:5001 describe greet.HelloRequest
 greet.HelloRequest is a message:
 message HelloRequest {
@@ -294,7 +294,7 @@ For information about downloading and installing `grpcui`, see the [gRPCui GitHu
 
 Run `grpcui` with the server address to interact with as an argument:
 
-```powershell
+```PowerShell
 $ grpcui localhost:5001
 gRPC Web UI available at http://127.0.0.1:55038/
 ```

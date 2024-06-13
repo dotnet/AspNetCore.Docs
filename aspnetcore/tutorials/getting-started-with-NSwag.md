@@ -40,7 +40,7 @@ Use one of the following approaches to install the NSwag NuGet package:
   * Navigate to the directory in which the `NSwagSample.csproj` file exists
   * Execute the following command:
 
-    ```powershell
+    ```PowerShell
     Install-Package NSwag.AspNetCore
     ```
 
@@ -258,7 +258,7 @@ Use one of the following approaches to install the NSwag NuGet package:
   * Navigate to the directory in which the `TodoApi.csproj` file exists
   * Execute the following command:
 
-    ```powershell
+    ```PowerShell
     Install-Package NSwag.AspNetCore
     ```
 

@@ -130,7 +130,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Select the **.NET 6.0 (Long-term support)** framework and select **Create**.
 1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
-   ```powershell
+   ```PowerShell
    Install-Package MongoDB.Driver
    ```
 

@@ -26,7 +26,7 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 `app_offline.htm` can be manually used to start and stop the app (requires PowerShell 5 or later):
 
-```powershell
+```PowerShell
 $pathToApp = '{PATH TO APP}'
 
 

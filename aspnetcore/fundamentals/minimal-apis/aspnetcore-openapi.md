@@ -25,7 +25,7 @@ Install the `Microsoft.AspNetCore.OpenApi` package:
 
 Run the following command from the **Package Manager Console**:
 
- ```powershell
+ ```PowerShell
  Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
 ```
 

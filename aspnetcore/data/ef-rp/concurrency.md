@@ -165,7 +165,7 @@ Build the project.
 
 Run the following commands in the PMC:
 
-  ```powershell
+  ```PowerShell
   Add-Migration RowVersion
   Update-Database
     
@@ -589,7 +589,7 @@ Build the project.
 
 * Run the following command in the PMC:
 
-  ```powershell
+  ```PowerShell
   Add-Migration RowVersion
   ```
 
@@ -614,7 +614,7 @@ This command:
 
 * Run the following command in the PMC:
 
-  ```powershell
+  ```PowerShell
   Update-Database
   ```
 
