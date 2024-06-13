@@ -52,7 +52,7 @@ The `Movie` class contains:
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-8.md)]
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
@@ -222,20 +222,28 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 * Add an initial migration.
 * Update the database with the initial migration.
 
-1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+* From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-   ![PMC menu](~/tutorials/razor-pages/model/_static/8/pmc_VS22_17.8.0.png)
+  ![PMC menu](~/tutorials/razor-pages/model/_static/8/pmc_VS22_17.8.0.png)
 
-1. In the PMC, enter the following commands:
+* In the PMC, enter the following command:
 
-   ```powershell
-   Add-Migration InitialCreate
-   Update-Database
-   ```
+  ```powershell
+  Add-Migration InitialCreate
+  ```
 
 * The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name is selected that describes the migration.
 
-* The `Update-Database` command runs the `Up` method in migrations that have not been applied. In this case, the command runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+The following warning is displayed, which is addressed in a later step:
+
+> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+
+* In the PMC, enter the following command:
+
+  ```powershell
+  Update-Database
+  ```
+  The `Update-Database` command runs the `Up` method in migrations that have not been applied. In this case, the command runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -243,16 +251,25 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
   The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
-* Run the following .NET CLI commands:
+* Run the following .NET CLI command:
 
   ```dotnetcli
   dotnet ef migrations add InitialCreate
-  dotnet ef database update
   ```
 
-* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+  The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+The following warning is displayed, which is addressed in a later step:
+
+> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+
+* Run the following .NET CLI command:
+
+  ```dotnetcli
+  dotnet ef database update
+  ```
+ 
+ The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
@@ -283,11 +300,11 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
----
-
 The following warning is displayed, which is addressed in a later step:
 
 > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+
+---
 
 The data context `RazorPagesMovieContext`:
 
