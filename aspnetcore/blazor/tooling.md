@@ -5,7 +5,7 @@ description: Learn about the tools available to build Blazor apps and how to use
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, linux-related-content
-ms.date: 06/12/2024
+ms.date: 06/13/2024
 uid: blazor/tooling
 zone_pivot_groups: tooling
 ---
@@ -66,47 +66,7 @@ Select **Next**.
 
 * Provide a **Project name** and confirm that the **Location** is correct.
 
-:::moniker range=">= aspnetcore-8.0"
-
-> [!NOTE]
-> Rendering terms and concepts used in the following guidance are introduced in the following sections of the *Fundamentals* overview article:
->
-> * [Client and server rendering concepts](xref:blazor/fundamentals/index#client-and-server-rendering-concepts)
-> * [Static and interactive rendering concepts](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts)
-> * [Render modes](xref:blazor/fundamentals/index#render-modes)
->
-> Detailed guidance on render modes is provided by the <xref:blazor/components/render-modes> article.
-
-* For a Blazor Web App in the **Additional information** dialog:
-
-  * **Interactive render mode** dropdown list
-  
-    * Interactive server-side rendering (interactive SSR) is enabled by default with the **Server** option.
-    * To only enable interactivity with client-side rendering (CSR), select the **WebAssembly** option.
-    * To enable both interactive rendering modes and the ability to automatically switch between them at runtime, select the **Auto (Server and WebAssembly)** (automatic) render mode option.
-    * If interactivity is set to `None`, the generated app has no interactivity. The app is only configured for static server-side rendering.
-
-    The Interactive Auto render mode initially uses interactive SSR while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to Interactive WebAssembly rendering.
-
-    By default, the Blazor Web App template enables both static and interactive SSR using a single project. If you also enable CSR, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
-
-    > [!IMPORTANT]
-    > When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
-
-    For more information, see <xref:blazor/components/render-modes>.
-
-  * **Interactivity location** dropdown list
-
-    * **Per page/component**: The default sets up interactivity per page or per component.
-    * **Global**: Selecting this option sets up interactivity globally for the entire app.
-
-    Interactivity location can only be set if **Interactive render mode** isn't `None` and authentication isn't enabled.
-
-  * To include sample pages and a layout based on Bootstrap styling, select the **Include sample pages** checkbox. Disable this option for project without sample pages and Bootstrap styling.
-
-  For more information, see <xref:blazor/components/render-modes>.
-
-:::moniker-end
+* For more information on the options in the **Additional information** dialog, see the [Blazor template options](#blazor-template-options) section.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -128,7 +88,7 @@ The Visual Studio Code (VS Code) instructions for ASP.NET Core development in th
 
 Install the [.NET SDK](https://dotnet.microsoft.com/download). If you previously installed one or more .NET SDKs and want to see your active version, execute the following command in the **Terminal**:
 
-```powershell
+```dotnetcli
 dotnet --version
 ```
 
@@ -136,147 +96,36 @@ Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio
 
 If you're new to VS Code, see the [VS Code documentation](https://code.visualstudio.com/docs). If you're new to the .NET SDK, see [What is the .NET SDK?](/dotnet/core/sdk) and the associated articles in the .NET SDK documentation.
 
-:::moniker range=">= aspnetcore-8.0"
-
 Create a new project:
 
-* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
+* Open VS Code. 
 
-* For a Blazor Web App experience with default interactive server-side rendering (interactive SSR), execute the following command in a command shell that uses the `blazor` project template:
+* Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" and find and select the **.NET: New Project** command.
 
-  ```powershell
-  dotnet new blazor -o BlazorApp
-  ```
+* Select the Blazor project template from the list.
 
-  To only enable client-side rendering, use the `-int|--interactivity` option set to `WebAssembly`:
+* In the **Project Location** dialog, create or select a folder for the project.
 
-  ```powershell
-  dotnet new blazor -o BlazorApp -int WebAssembly
-  ```
+* In the **Command Palette**, provide a name for the project or accept the default name.
 
-  To enable interactive server-side rendering followed by client-side rendering, use the `-int|--interactivity` option set to `Auto`:
+* Select **Create project** to create the project or adjust the project's options by selecting **Show all template options**. For more information on the options, see the [Blazor template options](#blazor-template-options) section.
 
-  ```powershell
-  dotnet new blazor -o BlazorApp -int Auto
-  ```
+* Press <kbd>F5</kbd> on the keyboard to run the app with the debugger or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without the debugger.
 
-  If interactivity is disabled by setting the `-int|--interactivity` option to `None`, the generated app has no interactivity. The app is only configured for static server-side rendering:
+  The **Command Palette** asks you to select a debugger. Select **C#** from the list.
 
-  ```powershell
-  dotnet new blazor -o BlazorApp -int None
-  ```
+  Next, select the **https** launch configuration.
 
-  The Interactive Auto render mode initially uses the interactive server-side rendering (interactive SSR) while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to the Interactive WebAssembly render mode.
+* To stop the app, press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
 
-  By default, the Blazor Web App template enables both static and interactive server-side rendering using a single project. If you also enable the Interactive WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the Interactive WebAssembly or Interactive Auto render modes must be built from the client project.
+<!-- This doesn't seem to be required any longer, but the
+     commands are still there to create the debug assets. 
+     I need to clarify in my mind what these assets provide 
+     these days ... is it Hot Reload debugging? Whereas
+     without them, the app can only be run. 
 
-  For more information, see <xref:blazor/components/render-modes>.
-
-  Apps default the interactivity location on a per-component/page basis. To establish interactivity across the entire app, use the `-ai|--all-interactive` option:
-
-  ```powershell
-  dotnet new blazor -o BlazorApp -ai
-  ```
-
-  Selecting this option sets interactivity for entire app in the `App` component by specifying a render mode for the top-level `HeadOutlet` and `Routes` components. Setting the interactivity on these components propagates the interactivity to all of the child components in the app.
-
-  Interactivity location can only be set if the interactive render mode (`-int|--interactivity`) isn't `None` and authentication isn't enabled.
-
-  To create an app without sample pages and styling, use the `-e|--empty` option:
-
-  ```powershell
-  dotnet new blazor -o BlazorApp -e
-  ```
-
-* For a standalone Blazor WebAssembly experience, execute the following command in a command shell that uses the `blazorwasm` template:
-
-  ```powershell
-  dotnet new blazorwasm -o BlazorApp
-  ```
-
-  To create an standalone Blazor WebAssembly app without sample pages and styling, use the `-e|--empty` option:
-
-  ```powershell
-  dotnet new blazorwasm -o BlazorApp -e
-  ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-Create a new project:
-
-* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
-
-* For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
-
-  ```powershell
-  dotnet new blazorserver -o BlazorApp
-  ```
-
-* Alternatively, create a Blazor Server app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
-
-  ```powershell
-  dotnet new blazorserver-empty -o BlazorApp
-  ```
-
-* For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
-
-  ```powershell
-  dotnet new blazorwasm -o BlazorApp
-  ```
-
-* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
-
-  ```powershell
-  dotnet new blazorwasm-empty -o BlazorApp
-  ```
-
-* For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
-
-  ```powershell
-  dotnet new blazorwasm -o BlazorApp -ho
-  ```
-
-* Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
-
-  ```powershell
-  dotnet new blazorwasm-empty -o BlazorApp -ho
-  ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-7.0"
-
-Create a new project:
-
-* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
-
-* For a Blazor WebAssembly experience, execute the following command:
-
-  ```powershell
-  dotnet new blazorwasm -o BlazorApp
-  ```
-
-* For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
-
-  ```powershell
-  dotnet new blazorwasm -o BlazorApp -ho
-  ```
-
-* For a Blazor Server experience, execute the following command:
-
-  ```powershell
-  dotnet new blazorserver -o BlazorApp
-  ```
-
-:::moniker-end
-
-Open the project's folder in Visual Studio Code.
-
-If Visual Studio Code requests that you add assets to build and debug the project, select **Yes**.
-
-If Visual Studio Code doesn't automatically offer to add build and debug assets (the `.vscode` folder with `launch.json` and `tasks.json` files), select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
+Select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
+-->
 
 For more information on Visual Studio Code configuration and use, see the [Visual Studio Code documentation](https://code.visualstudio.com/docs).
 
@@ -455,62 +304,16 @@ Create a new project:
 
 * Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
 
-* For a Blazor Web App experience with default interactive server-side rendering (interactive SSR), execute the following command in a command shell that uses the `blazor` project template:
+* For a Blazor Web App experience with default interactive server-side rendering (interactive SSR), execute the following command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
-  ```
-
-  To only enable client-side rendering, use the `-int|--interactivity` option set to `WebAssembly`:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp -int WebAssembly
-  ```
-
-  To enable interactive server-side rendering followed by client-side rendering, use the `-int|--interactivity` option set to `Auto`:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp -int Auto
-  ```
-
-  If interactivity is disabled by setting the `-int|--interactivity` option to `None`, the generated app has no interactivity. The app is only configured for static server-side rendering:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp -int None
-  ```
-
-  The Interactive Auto render mode initially uses the interactive server-side rendering (interactive SSR) while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to the Interactive WebAssembly render mode.
-
-  By default, the Blazor Web App template enables both static and interactive server-side rendering using a single project. If you also enable the Interactive WebAssembly render mode, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the Interactive WebAssembly or Interactive Auto render modes must be built from the client project.
-
-  For more information, see <xref:blazor/components/render-modes>.
-
-  Apps default the interactivity location on a per-component/page basis. To establish interactivity across the entire app, use the `-ai|--all-interactive` option:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp -ai
-  ```
-
-  Selecting this option sets interactivity for entire app in the `App` component by specifying a render mode for the top-level `HeadOutlet` and `Routes` components. Setting the interactivity on these components propagates the interactivity to all of the child components in the app.
-
-  Interactivity location can only be set if the interactive render mode (`-int|--interactivity`) isn't `None` and authentication isn't enabled.
-
-  To create an app without sample pages and styling, use the `-e|--empty` option:
-
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp -e
   ```
 
 * For a standalone Blazor WebAssembly experience, execute the following command in a command shell that uses the `blazorwasm` template:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
-  ```
-
-  To create an standalone Blazor WebAssembly app without sample pages and styling, use the `-e|--empty` option:
-
-  ```dotnetcli
-  dotnet new blazorwasm -o BlazorApp -e
   ```
 
 :::moniker-end
@@ -527,34 +330,16 @@ Create a new project:
   dotnet new blazorserver -o BlazorApp
   ```
 
-* Alternatively, create a Blazor Server app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
-
-  ```dotnetcli
-  dotnet new blazorserver-empty -o BlazorApp
-  ```
-
 * For a standalone Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp
   ```
 
-* Alternatively, create a standalone Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
-
-  ```dotnetcli
-  dotnet new blazorwasm-empty -o BlazorApp
-  ```
-
 * For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
 
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp -ho
-  ```
-
-* Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
-
-  ```dotnetcli
-  dotnet new blazorwasm-empty -o BlazorApp -ho
   ```
 
 :::moniker-end
@@ -584,6 +369,8 @@ Create a new project:
   ```
 
 :::moniker-end
+
+For more information on the options, see the [Blazor template options](#blazor-template-options) section.
 
 :::zone-end
 
@@ -648,25 +435,25 @@ The default browser is launched at `https://localhost:{PORT}`, which displays th
 
 For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
 
-In a command shell opened to the project's root folder, execute the [`dotnet run`](/dotnet/core/tools/dotnet-run) command to compile and start the app:
+In a command shell opened to the project's root folder, execute the [`dotnet watch`](/dotnet/core/tools/dotnet-watch) command to compile and start the app:
 
 ```dotnetcli
-dotnet run
+dotnet watch
 ```
 
-The default browser is launched at `http://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+The app is compiled and run. The app listens on `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
 Open the app in a browser by <kbd>Ctrl</kbd>-clicking the URL of the running app in the command shell. For example, <kbd>Ctrl</kbd>-click on the URL `http://localhost:5252` where the console states `Now listening on: http://localhost:5252`.
 
 When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for Linux and macOS users.
 
-One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-profile` option](/dotnet/core/tools/dotnet-run#options) with the `https` profile name to the `dotnet run` command:
+One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-profile` option](/dotnet/core/tools/dotnet-run#options) with the `https` profile name to the `dotnet watch` command:
 
 ```dotnetcli
-dotnet run -lp https
+dotnet watch -lp https
 ```
 
-A more robust approach is to simply move the `https` profile above the `http` profile in the `Properties/launchSettings.json` file and save the change. After changing the profile order in the file, the `dotnet run` command always uses the `https` profile by default.
+A more robust approach is to simply move the `https` profile above the `http` profile in the `Properties/launchSettings.json` file and save the change. After changing the profile order in the file, the `dotnet watch` command always uses the `https` profile by default.
 
 :::zone-end
 
@@ -733,7 +520,7 @@ The Blazor framework provides templates for creating new apps. The templates are
 :::moniker range=">= aspnetcore-8.0"
 
 * Blazor Web App project template: `blazor`
-* Blazor WebAssembly Standalone app project template: `blazorwasm`
+* Standalone Blazor WebAssembly app project template: `blazorwasm`
 
 :::moniker-end
 
@@ -753,10 +540,48 @@ The Blazor framework provides templates for creating new apps. The templates are
 
 For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
-For more information on template options, see the following resources:
-
 :::moniker range=">= aspnetcore-8.0"
 
+Rendering terms and concepts used in the following subsections are introduced in the following sections of the *Fundamentals* overview article:
+
+* [Client and server rendering concepts](xref:blazor/fundamentals/index#client-and-server-rendering-concepts)
+* [Static and interactive rendering concepts](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts)
+* [Render modes](xref:blazor/fundamentals/index#render-modes)
+
+Detailed guidance on render modes is provided by the <xref:blazor/components/render-modes> article.
+
+### Interactive render mode
+
+<!-- This section and the next have been generalized by going
+     with the words "use" and "using" over "select" and "selecting" 
+     because this will now apply to all tooling types. -->
+
+* Interactive server-side rendering (interactive SSR) is enabled by default with the **Server** option.
+* To only enable interactivity with client-side rendering (CSR), use the **WebAssembly** option.
+* To enable both interactive rendering modes and the ability to automatically switch between them at runtime, use the **Auto (Server and WebAssembly)** (automatic) render mode option.
+* If interactivity is set to `None`, the generated app has no interactivity. The app is only configured for static server-side rendering.
+
+The Interactive Auto render mode initially uses interactive SSR while the .NET app bundle and runtime are download to the browser. After the .NET WebAssembly runtime is activated, the render mode switches to Interactive WebAssembly rendering.
+
+By default, the Blazor Web App template enables both static and interactive SSR using a single project. If you also enable CSR, the project includes an additional client project (`.Client`) for your WebAssembly-based components. The built output from the client project is downloaded to the browser and executed on the client. Any components using the WebAssembly or automatic render modes must be built from the client project.
+
+> [!IMPORTANT]
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
+
+### Interactivity location
+
+* **Per page/component**: The default sets up interactivity per page or per component.
+* **Global**: Using this option sets up interactivity globally for the entire app.
+
+Interactivity location can only be set if **Interactive render mode** isn't `None` and authentication isn't enabled.
+
+### Sample pages
+
+To include sample pages and a layout based on Bootstrap styling, use the **Include sample pages** option. Disable this option for project without sample pages and Bootstrap styling.
+
+### Additional guidance on template options
+
+* <xref:blazor/components/render-modes>
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
@@ -767,6 +592,8 @@ For more information on template options, see the following resources:
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+For more information on template options, see the following resources:
 
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver) (includes `blazorserver-empty` options)
@@ -780,6 +607,8 @@ For more information on template options, see the following resources:
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+For more information on template options, see the following resources:
 
 * The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
