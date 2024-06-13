@@ -6,4 +6,11 @@
     },
     "ImportTriggerLabel": "reQUEST",
     "ImportedLabel": "seQUESTered"
+    "DefaultParentNode": 227486,
+    "WorkItemTags": [
+        {
+            "Label": "9.0",
+            "Tag": "new feature"
+        }
+    ]
 }
