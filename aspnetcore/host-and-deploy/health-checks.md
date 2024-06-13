@@ -1,9 +1,9 @@
 ---
 title: Health checks in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 1/11/2024
 uid: host-and-deploy/health-checks
