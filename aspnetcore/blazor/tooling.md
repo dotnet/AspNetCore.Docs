@@ -4,7 +4,7 @@ author: guardrex
 description: Learn about the tools available to build Blazor apps and how to use them.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc, linux-related-content
+ms.custom: mvc
 ms.date: 06/13/2024
 uid: blazor/tooling
 zone_pivot_groups: tooling
@@ -66,7 +66,7 @@ Select **Next**.
 
 * Provide a **Project name** and confirm that the **Location** is correct.
 
-* For more information on the options in the **Additional information** dialog, see the [Blazor template options](#blazor-template-options) section.
+* For more information on the options in the **Additional information** dialog, see the [Blazor project templates and template options](#blazor-project-templates-and-template-options) section.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -100,7 +100,7 @@ Create a new project:
 
 * In the **Command Palette**, provide a name for the project or accept the default name.
 
-* Select **Create project** to create the project or adjust the project's options by selecting **Show all template options**. For more information on the options, see the [Blazor template options](#blazor-template-options) section.
+* Select **Create project** to create the project or adjust the project's options by selecting **Show all template options**. For more information on the templates and options, see the [Blazor project templates and template options](#blazor-project-templates-and-template-options) section.
 
 * Press <kbd>F5</kbd> on the keyboard to run the app with the debugger or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without the debugger.
 
@@ -364,7 +364,7 @@ Create a new project:
 
 :::moniker-end
 
-For more information on the options, see the [Blazor template options](#blazor-template-options) section.
+For more information on the templates and options, see the [Blazor project templates and template options](#blazor-project-templates-and-template-options) section.
 
 :::zone-end
 
@@ -437,7 +437,7 @@ dotnet watch
 
 The app is launched at `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
-When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for Linux and macOS users.
+When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for non-Windows users.
 
 One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-profile` option](/dotnet/core/tools/dotnet-run#options) with the `https` profile name to the `dotnet watch` command:
 
@@ -505,9 +505,9 @@ For more information, see the following resources in the Visual Studio documenta
 * [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
 * [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
 
-## Blazor template options
+## Blazor project templates and template options
 
-The Blazor framework provides templates for creating new apps. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
+The Blazor framework provides project templates for creating new apps. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
 
 :::moniker range=">= aspnetcore-8.0"
 
