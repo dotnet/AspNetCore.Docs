@@ -172,13 +172,13 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, execute the following command:
 
-```PowerShell
+```powershell
 Add-Migration NewMovieDataAnnotations
 ```
 
 To apply the migration to the database, execute the following command in the PMC:
 
-```PowerShell
+```powershell
 Update-Database
 ```
 

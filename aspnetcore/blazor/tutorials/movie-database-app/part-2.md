@@ -479,13 +479,13 @@ To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Pa
 
 In the PMC, execute the following command to add an initial migration. The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in <xref:Microsoft.EntityFrameworkCore.DbContext>. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
-```PowerShell
+```powershell
 Add-Migration InitialCreate
 ```
 
 After the preceding command completes, update the database with the `Update-Database` command. The `Update-Database` command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
 
-```PowerShell
+```powershell
 Update-Database
 ```
 
