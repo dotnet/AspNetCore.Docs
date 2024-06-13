@@ -16,14 +16,9 @@ zone_pivot_groups: tooling
 This article describes tools for building Blazor apps using several tools:
 
 * [Visual Studio (VS)](https://visualstudio.microsoft.com): The most comprehensive integrated development environment (IDE) for .NET developers on Windows. Includes an array of tools and features to elevate and enhance every stage of software development.
-* [Visual Studio Code (VS Code)](https://code.visualstudio.com) is an open source, cross-platform IDE that can be used to develop Blazor apps.
+* [Visual Studio Code (VS Code)](https://code.visualstudio.com) is an open source, cross-platform code editor that can be used to develop Blazor apps.
 * [.NET CLI](/dotnet/core/tools/): The .NET command-line interface (CLI) is a cross-platform toolchain for developing, building, running, and publishing .NET applications. The .NET CLI is included with the [.NET SDK](/dotnet/core/sdk) and runs on any platform supported by the SDK.
 
-For assistance choosing between VS and VS Code, see the following resources:
-
-* [What is Visual Studio?](/visualstudio/get-started/visual-studio-ide)
-* [Visual Studio Code: Getting Started](https://code.visualstudio.com/docs)
-* [Wondering which tool is best for you? We can help](https://visualstudio.microsoft.com/downloads/#picker)
 
 Select the pivot of this article that matches your tooling choice.
 
@@ -374,8 +369,6 @@ For more information on the templates and options, see the [Blazor project templ
 
 > [!IMPORTANT]
 > When executing a Blazor Web App, run the app from the solution's server project, which is the project with a name that doesn't end in `.Client`.
->
-> When the app is launched, only the `Properties/launchSettings.json` file in server project is used.
 
 :::moniker-end
 
@@ -383,8 +376,6 @@ For more information on the templates and options, see the [Blazor project templ
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
->
-> When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
 :::moniker-end
 
@@ -409,7 +400,7 @@ For information on trusting the development certificate for the Firefox browser,
 Visual Studio:
 
 * Compiles and runs the app.
-* Launches the default browser at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+* Launches the default browser at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned at app creation. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
 :::zone-end
 
@@ -419,9 +410,9 @@ For information on trusting the HTTPS certificate for browsers other than Firefo
 
 In VS Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-At the **Select debugger** prompt in the **Command Palette** at the top of the VS Code UI, select **C#**. At the next prompt, select the HTTPS profile (`C#: BlazorWebAppMovies [https]`).
+At the **Select debugger** prompt in the **Command Palette** at the top of the VS Code UI, select **C#**. At the next prompt, select the HTTPS profile (`[https]`).
 
-The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned at app creation. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
 :::zone-end
 
@@ -435,7 +426,7 @@ In a command shell opened to the project's root folder, execute the [`dotnet wat
 dotnet watch
 ```
 
-The app is launched at `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+The default browser is launched at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned at app creation. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
 When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for non-Windows users.
 
@@ -445,7 +436,7 @@ One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-
 dotnet watch -lp https
 ```
 
-A more robust approach is to simply move the `https` profile above the `http` profile in the `Properties/launchSettings.json` file and save the change. After changing the profile order in the file, the `dotnet watch` command always uses the `https` profile by default.
+An alternative approach is to move the `https` profile above the `http` profile in the `Properties/launchSettings.json` file and save the change. After changing the profile order in the file, the `dotnet watch` command always uses the `https` profile by default.
 
 :::zone-end
 
@@ -543,10 +534,6 @@ Rendering terms and concepts used in the following subsections are introduced in
 Detailed guidance on render modes is provided by the <xref:blazor/components/render-modes> article.
 
 ### Interactive render mode
-
-<!-- This section and the next have been generalized by going
-     with the words "use" and "using" over "select" and "selecting" 
-     because this will now apply to all tooling types. -->
 
 * Interactive server-side rendering (interactive SSR) is enabled by default with the **Server** option.
 * To only enable interactivity with client-side rendering (CSR), use the **WebAssembly** option.
