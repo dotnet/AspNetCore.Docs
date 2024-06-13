@@ -105,6 +105,8 @@ In Visual Studio:
   * **Do not use top-level statements**: Not selected
   * Select **Create**.
 
+The Visual Studio instructions in parts of this tutorial series use EF Core commands. EF Core commands are issued in the **Package Manager Console** (PMC), which is a [PowerShell command shell](/powershell/). To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+
 :::zone-end
 
 :::zone pivot="vsc"
@@ -115,22 +117,46 @@ Confirm that you have the latest [C# Dev Kit](https://marketplace.visualstudio.c
 
 In VS Code:
 
-* Open VS Code and select **New Terminal** from the **Terminal** menu.
-* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
-* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorWebAppMovies` at the current directory location.
+Create a new project:
 
-  > [!IMPORTANT]
-  > Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow the tutorial.
+* Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" and find and select the **.NET: New Project** command.
 
-  ```powershell
-  dotnet new blazor -o BlazorWebAppMovies
-  ```
+* Select the **Blazor Web App** project template from the list.
 
-* Use the [`code` command](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) to open the `BlazorWebAppMovies` folder in the current instance of VS Code:
+* In the **Project Location** dialog, create or select a folder for the project.
 
-  ```powershell
-  code -r BlazorWebAppMovies
-  ```
+* In the **Command Palette**, name the project `BlazorWebAppMovies`, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
+
+* Adjust the project's options by selecting **Show all template options**.
+
+  Change **Interactive render mode** to **None**.
+
+  Change **Interactivity location** to **Global**.
+
+  After the preceding changes are made, the **Command Palette** shows the following:
+
+  * **Framework**: Set to the latest public non-preview release of .NET.
+  * **Authentication type**: **None**
+  * **Configure for HTTPS**: **true**
+  * **Interactive render mode**: **None**
+  * **Interactivity location**: **Global**
+  * **Include sample pages**: **true**
+  * **Do not use top-level statements**: **false**
+
+* Select **Create project** from the **Command Palette**.
+
+For more information on the options, see the [Blazor template options](#blazor-template-options) section.
+
+<!-- This doesn't seem to be required any longer, but the
+     commands are still there to create the debug assets. 
+     I need to clarify what these assets provide 
+     these days ... is it Hot Reload debugging? Whereas
+     without them, the app can only be run. 
+
+* Select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
+-->
+
+The Visual Studio Code (VS Code) instructions in parts of this tutorial series use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which defaults to a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
 
 :::zone-end
 

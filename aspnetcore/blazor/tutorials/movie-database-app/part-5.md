@@ -178,7 +178,7 @@ Add-Migration NewMovieDataAnnotations
 
 To apply the migration to the database, execute the following command in the PMC:
 
-```
+```powershell
 Update-Database
 ```
 
@@ -188,13 +188,13 @@ Update-Database
 
 Use the following command in the **Terminal** (**Terminal** menu > **New Terminal**) to add a migration for the new data annotations:
 
-```powershell
+```dotnetcli
 dotnet ef migrations add NewMovieDataAnnotations
 ```
 
 To apply the migration to the database, execute the following command:
 
-```powershell
+```dotnetcli
 dotnet ef database update
 ```
 

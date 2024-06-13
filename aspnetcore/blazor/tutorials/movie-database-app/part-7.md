@@ -125,7 +125,7 @@ Select **Build** > **Rebuild Solution** from the menu bar.
 
 In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command:
 
-```powershell
+```dotnetcli
 dotnet build
 ```
 
@@ -217,7 +217,7 @@ Modify the one movie that isn't rated *R*:
 
 In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
 
-```powershell
+```dotnetcli
 dotnet ef migrations AddRatingField
 ```
 
@@ -246,7 +246,7 @@ Save the migration file.
 
 In the **Terminal**, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with a default value:
 
-```powershell
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -295,19 +295,19 @@ For more information, see the following resources:
 
 1. Use the following command to drop the database:
 
-   ```powershell
+   ```dotnetcli
    dotnet ef database drop
    ```
 
 1. Use the following command to create an initial migration:
 
-   ```powershell
+   ```dotnetcli
    dotnet ef migrations add InitialCreate
    ```
 
 1. Use the following command to update the database:
 
-   ```powershell
+   ```dotnetcli
    dotnet ef database update
    ```
 
@@ -441,7 +441,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 1. Delete the database. If your database tooling has a connection to the database, close the tooling first or use the tool's features to close the database connection and delete the database. Consult your tool's documentation for guidance. *Make sure that you select the correct database in the list.*
 1. In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to run the existing migrations that recreate the database:
 
-   ```powershell
+   ```dotnetcli
    dotnet ef database update
    ```
 

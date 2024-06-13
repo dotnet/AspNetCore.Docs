@@ -206,7 +206,7 @@ Paste all of the following commands into the PowerShell prompt of the **Terminal
 
 When you paste multiple commands into a PowerShell prompt, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
 
-```powershell
+```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool uninstall --global dotnet-ef
@@ -243,7 +243,7 @@ By default, the .NET binaries architecture installed by the preceding commands r
 
 In the **Terminal**, build the app:
 
-```powershell
+```dotnetcli
 dotnet build
 ```
 
@@ -339,7 +339,7 @@ Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
 In the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
 
-```powershell
+```dotnetcli
 dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
 ```
 
@@ -499,13 +499,13 @@ The **Terminal** window opens with a PowerShell command prompt at the project di
 
 Execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in <xref:Microsoft.EntityFrameworkCore.DbContext>. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
-```powershell
+```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
 After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
 
-```powershell
+```dotnetcli
 dotnet ef database update
 ```
 
