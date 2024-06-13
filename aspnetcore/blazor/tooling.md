@@ -15,8 +15,8 @@ zone_pivot_groups: tooling
 
 This article describes tools for building Blazor apps using several tools:
 
-* [Visual Studio (VS)](https://visualstudio.microsoft.com): The most comprehensive IDE for .NET developers on Windows. Includes an array of tools and features to elevate and enhance every stage of software development.
-* [Visual Studio Code (VS Code)](https://code.visualstudio.com) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps.
+* [Visual Studio (VS)](https://visualstudio.microsoft.com): The most comprehensive integrated development environment (IDE) for .NET developers on Windows. Includes an array of tools and features to elevate and enhance every stage of software development.
+* [Visual Studio Code (VS Code)](https://code.visualstudio.com) is an open source, cross-platform IDE that can be used to develop Blazor apps.
 * [.NET CLI](/dotnet/core/tools/): The .NET command-line interface (CLI) is a cross-platform toolchain for developing, building, running, and publishing .NET applications. The .NET CLI is included with the [.NET SDK](/dotnet/core/sdk) and runs on any platform supported by the SDK.
 
 For assistance choosing between VS and VS Code, see the following resources:
