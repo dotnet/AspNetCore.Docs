@@ -120,7 +120,7 @@ The next instruction is to run the app again. Close the browser window and in VS
 
 :::zone pivot="cli"
 
-The next instruction is to run the app again. Stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Rerun the app with `dotnet run`. Return to the existing browser window and refresh it to reload the app.
+The next instruction is to run the app again. Stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Rerun the app with `dotnet watch`. Return to the existing browser window and refresh it to reload the app.
 
 :::zone-end
 

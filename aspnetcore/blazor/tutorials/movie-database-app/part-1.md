@@ -145,8 +145,6 @@ Create a new project:
 
 * Select **Create project** from the **Command Palette**.
 
-For more information on the options, see the [Blazor template options](#blazor-template-options) section.
-
 <!-- This doesn't seem to be required any longer, but the
      commands are still there to create the debug assets. 
      I need to clarify what these assets provide 
@@ -225,27 +223,25 @@ Navigate the pages of the app to confirm that the app is working normally.
 
 For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
 
-In a command shell opened to the project's root folder, execute the [`dotnet run`](/dotnet/core/tools/dotnet-run) command to compile and start the app:
+In a command shell opened to the project's root folder, execute the [`dotnet watch`](/dotnet/core/tools/dotnet-watch) command to compile and start the app:
 
 ```dotnetcli
-dotnet run
+dotnet watch
 ```
 
-The default browser is launched at `http://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
-
-Open the app in a browser by <kbd>Ctrl</kbd>-clicking the URL of the running app in the command shell. For example, <kbd>Ctrl</kbd>-click on the URL `http://localhost:5252` where the console states `Now listening on: http://localhost:5252`.
+The app is compiled and run. The app is launched at `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
 
 Navigate the pages of the app to confirm that the app is working normally.
 
 When an app created from the Blazor Web App project template is run with the .NET CLI, the app runs at an HTTP (insecure) endpoint because the first profile found in the app's launch settings file (`Properties/launchSettings.json`) is the HTTP (insecure) profile, which is named `http`. The HTTP profile was placed in the first position to ease the transition of adopting SSL/HTTPS security for Linux and macOS users.
 
-One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-profile` option](/dotnet/core/tools/dotnet-run#options) with the `https` profile name to the `dotnet run` command:
+One approach for running the app with SSL/HTTPS is to pass the [`-lp`|`--launch-profile` option](/dotnet/core/tools/dotnet-run#options) with the `https` profile name to the `dotnet watch` command:
 
 ```dotnetcli
-dotnet run -lp https
+dotnet watch -lp https
 ```
 
-A more robust approach is to simply move the `https` profile above the `http` profile in the `Properties/launchSettings.json` file and save the change. After changing the profile order in the file, the `dotnet run` command always uses the `https` profile by default.
+A more robust approach is to simply move the `https` profile above the `http` profile in the `Properties/launchSettings.json` file and save the change. After changing the profile order in the file, the `dotnet watch` command always uses the `https` profile by default.
 
 :::zone-end
 
