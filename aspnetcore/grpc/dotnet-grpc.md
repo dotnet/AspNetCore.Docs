@@ -3,7 +3,7 @@ title: Manage Protobuf references with dotnet-grpc
 author: jamesnk
 description: Learn about adding, updating, removing, and listing Protobuf references with the dotnet-grpc global tool.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 10/17/2019
 uid: grpc/dotnet-grpc
 ---

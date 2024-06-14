@@ -3,7 +3,7 @@ title: gRPC services with C#
 author: jamesnk
 description: Learn the basic concepts when writing gRPC services with C#.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 05/08/2023
 uid: grpc/basics
 ---

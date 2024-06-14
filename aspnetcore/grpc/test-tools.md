@@ -3,7 +3,7 @@ title: Test gRPC services with gRPCurl and gRPCui in ASP.NET Core
 author: jamesnk
 description: Learn how to test services with gRPC tools. gRPCurl a command-line tool for interacting with gRPC services. gRPCui is an interactive web UI.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 04/03/2024
 uid: grpc/test-tools
 ---

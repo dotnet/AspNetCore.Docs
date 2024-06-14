@@ -2,7 +2,7 @@
 title: Test Minimal API apps
 author: rick-anderson
 description: Unit and integration tests in Minimal API apps
-ms.author: riande
+ms.author: wpickett
 ms.date: 05/31/2024
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/test-min-api

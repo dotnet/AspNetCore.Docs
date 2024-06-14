@@ -2,7 +2,7 @@
 title: Handle errors in minimal APIs
 author: brunolins16
 description: Learn about error handling in minimal APIs in ASP.NET Core.
-ms.author: brolivei
+ms.author: wpickett
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 05/30/2024
 uid: fundamentals/minimal-apis/handle-errors

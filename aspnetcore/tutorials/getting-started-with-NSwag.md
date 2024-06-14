@@ -2,7 +2,7 @@
 title: Get started with NSwag and ASP.NET Core
 author: zuckerthoben
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: tutorials/get-started-with-nswag

@@ -2,7 +2,7 @@
 title: Filters in Minimal API apps
 author: rick-anderson
 description: Use filters in Minimal API apps
-ms.author: riande
+ms.author: wpickett
 ms.date: 8/11/2022
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters

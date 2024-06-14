@@ -2,7 +2,7 @@
 title: Minimal APIs quick reference
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
-ms.author: riande
+ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/23/2023
