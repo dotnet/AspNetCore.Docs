@@ -385,7 +385,7 @@ The following dialog is displayed:
 
 Select **Yes** to acknowledge the risk and install the certificate.
 
-For information on trusting the development certificate for the Firefox browser, see <xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error>.
+For information on trusting the HTTPS development certificate for the Firefox browser, see <xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error>.
 
 Visual Studio:
 
@@ -396,7 +396,7 @@ Visual Studio:
 
 :::zone pivot="vsc"
 
-For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error).
+For information on trusting the HTTPS development certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error).
 
 In VS Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
@@ -408,7 +408,7 @@ The default browser is launched at `https://localhost:{PORT}`, which displays th
 
 :::zone pivot="cli"
 
-For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
+For information on trusting the HTTPS development certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
 
 In a command shell opened to the project's root folder, execute the [`dotnet watch`](/dotnet/core/tools/dotnet-watch) command to compile and start the app:
 
@@ -468,12 +468,9 @@ Stop the app using the following approach:
 
 ## Visual Studio solution file (`.sln`)
 
-A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) uses a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
+A *solution* is a container to organize one or more related code projects. Solution files use a unique format and aren't intended to be edited directly.
 
-Tooling outside of Visual Studio can interact with solution files:
-
-* The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
-* [Visual Studio Code](https://code.visualstudio.com) can execute the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln) and other [.NET CLI commands](/dotnet/core/tools/) through its integrated **Terminal** that interact with the solution file's contents, but VS Code doesn't use the settings in a solution file directly.
+[Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio Code (VS Code)](https://code.visualstudio.com) use a solution file (`.sln`) to store settings for a solution. The [.NET CLI](/dotnet/core/tools/) doesn't organize projects using a solution file, but it can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -481,10 +478,11 @@ Throughout the Blazor documentation, *solution* is used to describe apps created
 
 :::moniker-end
 
-For more information, see the following resources in the Visual Studio documentation:
+For more information, see the following resources:
 
-* [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
-* [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
+* [Introduction to projects and solutions (Visual Studio documentation)](/visualstudio/get-started/tutorial-projects-solutions)
+* [What are solutions and projects in Visual Studio? (Visual Studio documentation)](/visualstudio/ide/solutions-and-projects-in-visual-studio)
+* [Project management (VS Code documentation)](https://code.visualstudio.com/docs/csharp/project-management)
 
 ## Blazor project templates and template options
 
