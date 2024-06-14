@@ -49,7 +49,7 @@ Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in app's 
 > [!WARNING]
 > The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
 
-## Collocated JS in a Razor class library (RCL) is unsupported
+## Razor class library (RCL) collocated JS is unsupported
 
 Generally, the JS location support for <xref:Microsoft.JSInterop.IJSRuntime>-based JS interop (<xref:blazor/js-interop/javascript-location>) is also present for the `[JSImport]`/`[JSExport]` interop described by this article. The only unsupported JS location feature is for *collocated JS in a Razor class library (RCL)*.
 
