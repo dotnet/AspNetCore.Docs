@@ -145,6 +145,7 @@ The scaffold process adds the following highlighted code to the `Program.cs` fil
 
 # [Visual Studio](#tab/visual-studio)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+
 # [Visual Studio Code](#tab/visual-studio-code)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
 
@@ -268,8 +269,10 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 The scaffolding tool automatically created a database context and registered it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
-
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Program.cs?name=snippet_all&highlight=9-10)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all_sl&highlight=7-8)]
 
 ---
 
