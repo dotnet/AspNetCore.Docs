@@ -61,7 +61,7 @@ Instead of using collocated JS in an RCL, place the JS file in the RCL's `wwwroo
 * The `{PATH}` placeholder is the path to the file.
 * The `{FILE NAME}` placeholder is the file name.
 
-Although collocated JS in an RCL isn't supported, you can keep your JS files organized by taking either or both of the following approaches:
+Although collocated JS in an RCL isn't supported by `[JSImport]`/`[JSExport]` interop, you can keep your JS files organized by taking either or both of the following approaches:
 
 * Name the JS file the same as the component where the JS is used. For a component in the RCL named `CallJavaScriptFromLib` (`CallJavaScriptFromLib.razor`), name the file `CallJavaScriptFromLib.js` in the `wwwroot` folder.
 * Place component-specific JS files in a `Components` folder inside the RCL's `wwwroot` folder and use "`Components`" in the path to the file: `_content/{PACKAGE ID}/Components/CallJavaScriptFromLib.js`.
