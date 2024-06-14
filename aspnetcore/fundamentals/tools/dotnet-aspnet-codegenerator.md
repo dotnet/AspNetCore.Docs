@@ -1,9 +1,9 @@
 ---
 title: dotnet aspnet-codegenerator command
-author: rick-anderson
+author: tdykstra
 description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 12/05/2022
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---

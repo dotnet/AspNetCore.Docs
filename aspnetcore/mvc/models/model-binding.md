@@ -1,9 +1,9 @@
 ---
 title: Model Binding in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 6/20/2023
 uid: mvc/models/model-binding
 ---

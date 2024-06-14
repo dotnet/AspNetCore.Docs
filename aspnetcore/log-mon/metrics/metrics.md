@@ -1,8 +1,8 @@
 ---
 title: ASP.NET Core metrics
 description: Metrics for ASP.NET Core apps
-author: rick-anderson
-ms.author: riande
+author: tdykstra
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/18/2023
 ms.topic: article

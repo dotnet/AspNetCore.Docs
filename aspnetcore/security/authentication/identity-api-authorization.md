@@ -1,6 +1,6 @@
 ---
 title: Use Identity to secure a Web API backend for SPAs
-author: JeremyLikness
+author: tdykstra
 description: Learn how to use Identity to secure a Web API backend for single page applications (SPAs).
 monikerRange: '>= aspnetcore-3.0'
 ms.author: tdykstra

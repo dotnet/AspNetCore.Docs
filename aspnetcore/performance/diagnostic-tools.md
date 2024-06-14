@@ -3,7 +3,7 @@ title: Performance Diagnostics Tools
 author: mjrousos
 description: Useful tools for diagnosing performance issues in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-1.1'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 04/11/2019
 uid: performance/diagnostic-tools
 ---
