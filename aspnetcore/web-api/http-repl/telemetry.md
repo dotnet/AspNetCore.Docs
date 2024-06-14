@@ -1,6 +1,6 @@
 ---
 title: HttpRepl telemetry
-author: tdykstra
+author: wpickett
 description: Learn about the telemetry collected by the HttpRepl.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
