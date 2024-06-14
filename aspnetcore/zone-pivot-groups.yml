@@ -88,3 +88,13 @@ groups:
       title: OIDC without BFF pattern
     - id: with-bff-pattern
       title: OIDC with BFF pattern
+- id: tooling
+  title: Tooling
+  prompt: Select your tooling
+  pivots:
+    - id: vs
+      title: Visual Studio
+    - id: vsc
+      title: Visual Studio Code
+    - id: cli
+      title: .NET CLI
