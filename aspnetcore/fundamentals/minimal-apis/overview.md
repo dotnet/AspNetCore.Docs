@@ -2,7 +2,7 @@
 title: Minimal APIs overview
 author: JeremyLikness
 description: An introduction to the fastest and easiest way to create web API endpoints with ASP.NET Core.
-ms.author: wpickett
+ms.author: jeliknes
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/22/2022
 uid: fundamentals/minimal-apis/overview
