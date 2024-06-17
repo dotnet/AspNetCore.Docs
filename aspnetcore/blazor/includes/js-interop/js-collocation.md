@@ -144,7 +144,9 @@ export function showPrompt2(message) {
 }
 ```
 
-For scripts or modules provided by a Razor class library (RCL), the following path is used:
+Use of scripts and modules for collocated JS in a Razor class library (RCL) is only supported for Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. If you're implementing [JavaScript `[JSImport]`/`[JSExport]` interop](xref:blazor/js-interop/import-export-interop), see <xref:blazor/js-interop/import-export-interop#razor-class-library-rcl-collocated-js-is-unsupported>.
+
+For scripts or modules provided by a Razor class library (RCL) using <xref:Microsoft.JSInterop.IJSRuntime>-based JS interop, the following path is used:
 
 `_content/{PACKAGE ID}/{PATH}/{COMPONENT}.{EXTENSION}.js`
 

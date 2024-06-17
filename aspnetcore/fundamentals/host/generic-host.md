@@ -3,7 +3,7 @@ title: .NET Generic Host in ASP.NET Core
 author: tdykstra
 description: Use .NET Core Generic Host in ASP.NET Core apps.  Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 09/05/2023
 uid: fundamentals/host/generic-host

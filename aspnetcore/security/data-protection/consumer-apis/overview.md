@@ -1,8 +1,8 @@
 ---
 title: Consumer APIs overview for ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Receive a brief overview of the various consumer APIs available within the ASP.NET Core data protection library.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 06/11/2019
 uid: security/data-protection/consumer-apis/overview
 ---
