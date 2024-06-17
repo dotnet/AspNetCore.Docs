@@ -273,6 +273,15 @@ Option                            | Description
      at all of the items I've listed in that issue.
 -->
 
+The following example:
+
+* Generates an endpoints class named `SpeakersEndpoints` with API endpoints that map to database operations using the `ApplicationDbContext` database context class and the `BackEnd.Models.Speaker` model.
+* Adds `app.MapSpeakerEndpoints();` to the `Program` file (`Program.cs`) to register the endpoints class.
+
+```dotnetcli
+dotnet aspnet-codegenerator minimalapi -dc ApplicationDbContext -e SpeakerEndpoints -m BackEnd.Models.Speaker -o
+```
+
 Use the `-h|--help` option for help:
 
 ```dotnetcli
