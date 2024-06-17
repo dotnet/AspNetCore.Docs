@@ -9,9 +9,9 @@ ms.date: 6/11/2024
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
-
+z
 [!INCLUDE[](~/includes/lifesupport.md)]
-
+e
 By [Justin Kotalik](https://github.com/jkotalik)
 
 :::moniker range=">= aspnetcore-8.0"
