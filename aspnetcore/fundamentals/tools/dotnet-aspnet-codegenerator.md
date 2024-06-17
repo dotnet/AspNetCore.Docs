@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core code generator tool
+title: ASP.NET Core code generator tool (`aspnet-codegenerator`)
 author: tdykstra
 description: The ASP.NET Core code generator tool scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,7 +7,7 @@ ms.author: tdykstra
 ms.date: 06/17/2024
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
-# ASP.NET Core code generator tool
+# ASP.NET Core code generator tool (`aspnet-codegenerator`)
 
 The `dotnet aspnet-codegenerator` command runs the ASP.NET Core scaffolding engine. Executing the `dotnet aspnet-codegenerator` command is only required to scaffold from the command line or when using Visual Studio Code. The command isn't required to use scaffolding with Visual Studio, which includes the scaffolding engine by default.
 
