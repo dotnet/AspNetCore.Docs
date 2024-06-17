@@ -777,7 +777,7 @@ items:
             uid: mvc/models/file-uploads
           - name: Web SDK
             uid: razor-pages/web-sdk
-          - name: aspnet-codegenerator (Scaffolding)
+          - name: Code generator tool (aspnet-codegenerator, scaffolding)
             uid: fundamentals/tools/dotnet-aspnet-codegenerator
   - name: APIs
     items:
