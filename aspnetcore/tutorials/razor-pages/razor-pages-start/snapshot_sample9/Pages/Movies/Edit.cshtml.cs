@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +26,7 @@ namespace RazorPagesMovie.Pages.Movies
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -73,10 +73,9 @@ namespace RazorPagesMovie.Pages.Movies
 
         private bool MovieExists(int id)
         {
-          return _context.Movie.Any(e => e.Id == id);
+            return _context.Movie.Any(e => e.Id == id);
         }
         // </snippet_1>
         // </snippet2>
-
     }
 }

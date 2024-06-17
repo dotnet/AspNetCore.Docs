@@ -1,3 +1,4 @@
+﻿// <snippetALL>
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,25 +22,17 @@ namespace RazorPagesMovie.Pages.Movies
 
         public IActionResult OnGet()
         {
-            Movie = new Movie
-            {
-                Genre = "Western",
-                Price = 3.99M,
-                ReleaseDate = DateTime.Today,
-                Title = "Conan"
-            };
             return Page();
         }
 
         [BindProperty]
         public Movie Movie { get; set; } = default!;
 
-
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         // <snippetPost>
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
@@ -52,3 +45,4 @@ namespace RazorPagesMovie.Pages.Movies
         // </snippetPost>
     }
 }
+// </snippetALL>

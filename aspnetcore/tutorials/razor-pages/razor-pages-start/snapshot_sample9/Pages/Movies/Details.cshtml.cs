@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +19,11 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-      public Movie Movie { get; set; } = default!;
+        public Movie Movie { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -33,7 +33,7 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Movie = movie;
             }
