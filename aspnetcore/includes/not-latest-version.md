@@ -1,13 +1,9 @@
 :::moniker range="< aspnetcore-6.0"
-
 [!INCLUDE[](~/includes/out-of-support.md)]
-
 :::moniker-end
 
 :::moniker range="= aspnetcore-7.0"
-
 [!INCLUDE[](~/includes/out-of-support.md)]
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
