@@ -65,7 +65,6 @@ Generator         | Operation
 `controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
 `identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
-`razorcomponent`  | [Scaffolds Razor components with QuickGrid](xref:blazor/components/quickgrid#quickgrid-scaffolder).
 `razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
 `view`            | [Scaffolds a view](xref:mvc/views/overview).
 
