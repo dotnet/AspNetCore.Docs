@@ -10,8 +10,6 @@ uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
 
-![version](~/includes/img/lifesupport.png)
-
 [!INCLUDE[](~/includes/lifesupport.md)]
 
 By [Justin Kotalik](https://github.com/jkotalik)
