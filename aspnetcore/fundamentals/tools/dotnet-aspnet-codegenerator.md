@@ -1,24 +1,21 @@
 ---
-title: dotnet aspnet-codegenerator command
+title: ASP.NET Core code generator tool
 author: tdykstra
-description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects.
+description: The ASP.NET Core code generator tool scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 12/05/2022
+ms.date: 06/17/2024
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
+# ASP.NET Core code generator tool
 
-# dotnet aspnet-codegenerator
+The `dotnet aspnet-codegenerator` command runs the ASP.NET Core scaffolding engine. Executing the `dotnet aspnet-codegenerator` command is only required to scaffold from the command line or when using Visual Studio Code. The command isn't required to use scaffolding with Visual Studio, which includes the scaffolding engine by default.
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-`dotnet aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet aspnet-codegenerator` is only required to scaffold from the command line, it's not needed to use scaffolding with Visual Studio.
-
-## Install and update aspnet-codegenerator
+## Install and update the code generator tool
 
 Install the [.NET SDK](https://dotnet.microsoft.com/download).
 
-`dotnet aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `dotnet aspnet-codegenerator` tool:
+`dotnet aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the ASP.NET Core code generator tool:
 
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
@@ -26,17 +23,17 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
-The following command updates `dotnet aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
+If the tool is already installed, the following command updates the tool to the latest stable version available from the installed .NET Core SDKs:
 
 ```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
 ```
 
-## Uninstall aspnet-codegenerator
+## Uninstall the code generator tool
 
-It may be necessary to uninstall the `aspnet-codegenerator` to resolve problems. For example, if you installed a preview version of `aspnet-codegenerator`, uninstall it before installing the released version.
+It may be necessary to uninstall the ASP.NET Core code generator tool to resolve problems. For example, if you installed a preview version of the tool, uninstall it before installing the released version.
 
-The following commands uninstall the `dotnet aspnet-codegenerator` tool and installs the latest stable version:
+The following commands uninstall the ASP.NET Core code generator tool and installs the latest stable version:
 
 ```dotnetcli
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
@@ -58,15 +55,19 @@ The `dotnet aspnet-codegenerator` global command runs the ASP.NET Core code gene
 
 `generator`
 
-The code generator to run. The following generators are available:
+The code generator to run. The available generators are shown in the following table.
 
-| Generator  | Operation                                                            |
-| ---------- | -------------------------------------------------------------------- |
-| area       | [Scaffolds an Area](xref:mvc/controllers/areas)                      |
-| controller | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model)  |
-| identity   | [Scaffolds Identity](xref:security/authentication/scaffold-identity) |
-| razorpage  | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model)            |
-| view       | [Scaffolds a view](xref:mvc/views/overview)                          |
+Generator         | Operation
+----------------- | ---
+`area`            | [Scaffolds an area](xref:mvc/controllers/areas).
+`blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](xref:blazor/components/quickgrid#quickgrid-scaffolder).
+`blazor-identity` | Generates Blazor Identity files.
+`controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
+`identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
+`minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
+`razorcomponent`  | [Scaffolds Razor components with QuickGrid](xref:blazor/components/quickgrid#quickgrid-scaffolder).
+`razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
+`view`            | [Scaffolds a view](xref:mvc/views/overview).
 
 ## Options
 
@@ -80,7 +81,7 @@ Defines the build configuration. The default value is `Debug`.
 
 `-tfm|--target-framework`
 
-Target [Framework](/dotnet/standard/frameworks) to use. For example, `net46`.
+Target [framework](/dotnet/standard/frameworks) to use.
 
 `-b|--build-base-path`
 
@@ -92,68 +93,193 @@ Prints out a short help for the command.
 
 `--no-build`
 
-Doesn't build the project before running. It also implicitly sets the `--no-restore` flag.
+Doesn't build the project before running. Passing `--no-build` also implicitly sets the `--no-restore` flag.
 
 `-p|--project <PATH>`
 
-Specifies the path of the project file to run (folder name or full path). If not specified, it defaults to the current directory.
+Specifies the path of the project file to run (folder name or full path). If not specified, the tool defaults to the current directory.
 
 ## Generator options
 
 The following sections detail the options available for the supported generators:
 
-* Area
-* Controller
-* Identity  
-* Razorpage
-* View
-
-<a name="area"></a>
+* Area (`area`)
+* Controller (`controller`)
+* Blazor (`blazor`)
+* Blazor Identity (`blazor-identity`)
+* Identity (`identity`)
+* Minimal API (`minimalapi`)
+* Razor page (`razorpage`)
+* View (`view`)
 
 ### Area options
 
-This tool is intended for ASP.NET Core web projects with controllers and views. It's not intended for Razor Pages apps.
+Usage: `dotnet aspnet-codegenerator area {AREA NAME}`
 
-Usage: `dotnet aspnet-codegenerator area AreaNameToGenerate`
+The `{AREA NAME}` placeholder is the name of the area to generate.
 
 The preceding command generates the following folders:
 
-* *Areas*
-  * *AreaNameToGenerate*
-    * *Controllers*
-    * *Data*
-    * *Models*
-    * *Views*
+* `Areas`
+  * `{AREA NAME}`
+    * `Controllers`
+    * `Data`
+    * `Models`
+    * `Views`
 
-<a name="ctl"></a>
+Use the `-h|--help` option for help:
+
+```dotnetcli
+dotnet aspnet-codegenerator area -h
+```
+
+### Blazor options
+
+Razor components can be individually scaffolded for Blazor apps by specifying the name of the template to use. The supported templates are:
+
+* `Empty`
+* `Create`
+* `Edit`
+* `Delete`
+* `Details`
+* `List`
+* `CRUD`: *CRUD* is an acronym for Create, Read, Update, and Delete. The `CRUD` template produces `Create`, `Edit`, `Delete`, `Details`, and `Index` (`List`) components for the app.
+
+The options for the `blazor` generator are shown in the following table.
+
+Option                           | Description
+-------------------------------- | ---
+`-dbProvider|--databaseProvider` | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, or `postgres`.
+`-dc|--dataContext`              | Database context class to use.
+`-m|--model`                     | Model class to use.
+`-ns|--namespaceName`            | Specify the name of the namespace to use for the generated Endpoints file.
+`--relativeFolderPath|-outDir`   | Relative output folder path. If not specified, files are generated in the project folder.
+
+The following example:
+
+* Uses the `Edit` template to generate an `Edit` component (`Edit.razor`) in the `Components/Pages/MoviePages` folder of the app. If the `MoviePages` folder doesn't exist, the tool creates the folder automatically.
+* Uses the SQLite database provider.
+* Uses `BlazorWebAppMovies.Data.BlazorWebAppMoviesContext` for the database context.
+* Uses the `Movie` model.
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor Edit -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
+```
+
+Use the `-h|--help` option for help:
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor -h
+```
+
+<!-- UPDATE 8.0 Uncomment link after
+                https://github.com/dotnet/AspNetCore.Docs/pull/32747
+                merges.
+
+For an example that uses the `blazor` generator, see <xref:blazor/tutorials/movie-database-app/index>.
+-->
+
+For more information, see <xref:blazor/components/quickgrid#quickgrid-scaffolder>.
+
+### Blazor Identity options
+
+Scaffold Identity Razor components into a Blazor app with the `blazor-identity` generator.
+
+The options for the `blazor-identity` template are shown in the following table.
+
+Option                           | Description
+-------------------------------- | ---
+`-dc|--dataContext`              | Database context class to use.
+`-rn|--rootNamespace`            | Root namespace to use for generating Identity code.
+`-fi|--files`                    | List of semicolon separated files to scaffold. Use the `-lf|--listFiles` option to see the available options.
+`-lf|--listFiles`                | Lists the files that can be scaffolded by using the `-fi|--files` option.
+`-u|--userClass`                 | Name of the user class to generate.
+`-dbProvider|--databaseProvider` | Database provider to use. Options include `sqlserver` (default) and `sqlite`.
+`-f|--force`                     | Use this option to overwrite existing files.
+
+Use the `-h|--help` option for help:
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor-identity -h
+```
 
 ### Controller options
 
-The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
+General options are shown in the following table.
 
-[!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
+[!INCLUDE[](~/includes/aspnet-codegenerator-args-md.md)]
 
-The following table lists options unique to  `aspnet-codegenerator controller`:
+The options unique to `controller` are shown in the following table.
 
-| Option                         | Description                                                                                               |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| --controllerName or -name      | Name of the controller.                                                                                   |
-| --useAsyncActions or -async    | Generate async controller actions.                                                                        |
-| --noViews or -nv               | Generate **no** views.                                                                                    |
-| --restWithNoViews or -api      | Generate a Controller with REST style API. `noViews` is assumed and any view related options are ignored. |
-| --readWriteActions or -actions | Generate controller with read/write actions without a model.                                              |
+Option                        | Description
+----------------------------- | ---
+`-name|--controllerName`      | Name of the controller.
+`-async|--useAsyncActions`    | Generate asynchronous controller actions.
+`-nv|--noViews`               | Generate **no** views.
+`-api|--restWithNoViews`      | Generate a controller with REST style API. `noViews` is assumed and any view related options are ignored.
+`-actions|--readWriteActions` | Generate controller with read/write actions without a model.
 
-Use the `-h` switch for help on the `aspnet-codegenerator controller` command:
+Use the `-h|--help` option for help:
 
 ```dotnetcli
 dotnet aspnet-codegenerator controller -h
 ```
 
-See [Scaffold the movie model](xref:tutorials/first-mvc-app/adding-model) for an example of `dotnet aspnet-codegenerator controller`.
+For an example that uses the `controller` generator, see <xref:tutorials/first-mvc-app/adding-model>.
 
-### Razorpage
+### Identity
 
-<a name="rp"></a>
+For more information, see <xref:security/authentication/scaffold-identity>.
+
+### Minimal API
+
+Scaffold a Minimal API backend with the `minimalapi` template.
+
+The options for `minimalapi` are shown in the following table.
+
+Option                            | Description
+--------------------------------- | ---
+`-e|--endpoints`                  | Endpoints class to use (not the file name).
+`-m|--model`                      | Model class to use.
+`-dc|--dataContext`               | Database context class to use.
+`-outDir|--relativeFolderPath`    | Relative output folder path. If not specified, files are generated in the project folder.
+`-o|--open`                       | Use this option to enable OpenAPI.
+`-namespace|--endpointsNamespace` | Specify the name of the namespace to use for the generated endpoints file.
+`-dbProvider|--databaseProvider`  | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, or `postgres`.
+`-sqlite|--useSqlite`             | Flag to specify if the database context should use SQLite instead of SQL Server. |
+
+<!-- REVIEWER NOTE
+
+     I'll delete this NOTE prior to merging.
+
+     When the `dotnet aspnet-codegenerator minimalapi -h` command
+     is executed. The list of options includes the following ...
+
+     databaseProvider : Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, or `postgres`.
+     useSqLite : Flag to specify if the database context should use SQLite instead of SQL Server.
+
+     However, that doesn't seem correct. In the table, I've placed
+     what I expect will work because it's based on the standard
+     option for the database provider syntax.
+
+     The option names aren't formatted correctly and don't have 
+     short names.
+
+     I've made a PU remark on these at ...
+
+     https://github.com/dotnet/Scaffolding/issues/2743#issuecomment-2173440407
+     
+     ... and DR said that he'd make sure that they take a look
+     at all of the items I've listed in that issue.
+-->
+
+Use the `-h|--help` option for help:
+
+```dotnetcli
+dotnet aspnet-codegenerator minimalapi -h
+```
+
+### Razor page
 
 Razor Pages can be individually scaffolded by specifying the name of the new page and the template to use. The supported templates are:
 
@@ -164,13 +290,7 @@ Razor Pages can be individually scaffolded by specifying the name of the new pag
 * `Details`
 * `List`
 
-For example, the following command uses the Edit template to generate `MyEdit.cshtml` and `MyEdit.cshtml.cs`:
-
-```dotnetcli
-dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
-```
-
-Typically, the template and generated file name is not specified, and the following templates are created:
+Typically, the template and generated file name isn't specified, which creates the following templates:
 
 * `Create`
 * `Edit`
@@ -178,29 +298,35 @@ Typically, the template and generated file name is not specified, and the follow
 * `Details`
 * `List`
 
-The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
+General options are shown in the following table.
 
-[!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
+[!INCLUDE[](~/includes/aspnet-codegenerator-args-md.md)]
 
-The following table lists options unique to  `aspnet-codegenerator razorpage`:
+The options unique to `razorpage` are shown in the following table.
 
-| Option                        | Description                                                                           |
-| ----------------------------- | ------------------------------------------------------------------------------------- |
-| --namespaceName or -namespace | The name of the namespace to use for the generated PageModel                          |
-| --partialView or -partial     | Generate a partial view. Layout options -l and -udl are ignored if this is specified. |
-| --noPageModel or -npm         | Switch to not generate a PageModel class for Empty template                           |
+Option                       | Description
+---------------------------- | ---
+`-namespace|--namespaceName` | The name of the namespace to use for the generated `PageModel` class.
+`-partial|--partialView`     | Generate a partial view. Layout options `-l` and `-udl` are ignored if this is specified.
+`-npm|--noPageModel`         | Don't generate a `PageModel` class for the `Empty` template.
 
-Use the `-h` switch for help on the `aspnet-codegenerator razorpage` command:
+The following example uses the `Edit` template to generate `CustomEditPage.cshtml` and `CustomEditPage.cshtml.cs` in the `Pages/Movies` folder:
+
+```dotnetcli
+dotnet aspnet-codegenerator razorpage CustomEditPage Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
+```
+
+Use the `-h|--help` option for help:
 
 ```dotnetcli
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-See [Scaffold the movie model](xref:tutorials/razor-pages/model) for an example of `dotnet aspnet-codegenerator razorpage`.
+For an example that uses the `razorpage` generator, see <xref:tutorials/razor-pages/model>.
 
 ### View
 
-Views can be individually scaffolded by specifying the name of the view and the template to use. The supported templates are:
+Views can be individually scaffolded by specifying the name of the view and the template. The supported templates are:
 
 * `Empty`
 * `Create`
@@ -209,29 +335,25 @@ Views can be individually scaffolded by specifying the name of the view and the 
 * `Details`
 * `List`
 
-For example, the following command uses the Edit template to generate `MyEdit.cshtml`:
+General options are shown in the following table.
+
+[!INCLUDE[](~/includes/aspnet-codegenerator-args-md.md)]
+
+The options unique to `view` are shown in the following table.
+
+Option                             | Description
+---------------------------------- | ---
+`-namespace|--controllerNamespace` | Specify the name of the namespace to use for the generated controller.
+`-partial|--partialView`           | Generate a partial view, other layout options (`-l` and `-udl`) are ignored if this is specified.
+
+The following example uses the `Edit` template to generate `CustomEditView.cshtml` in the `Views/Movies` folder:
 
 ```dotnetcli
-dotnet aspnet-codegenerator view MyEdit Edit -m Movie -dc MovieContext -outDir Views/Movies
+dotnet aspnet-codegenerator view CustomEditView Edit -m Movie -dc MovieContext -outDir Views/Movies
 ```
 
-The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
-
-[!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
-
-The following table lists options unique to  `aspnet-codegenerator view`:
-
-| Option                        | Description                                                                           |
-| ----------------------------- | ------------------------------------------------------------------------------------- |
-| --controllerNamespace or -namespace | Specify the name of the namespace to use for the generated controller |
-| --partialView or -partial | Generate a partial view, other layout options (-l and -udl) are ignored if this is specified |
-
-Use the `-h` switch for help on the `aspnet-codegenerator view` command:
+Use the `-h|--help` option for help:
 
 ```dotnetcli
 dotnet aspnet-codegenerator view -h
 ```
-
-### Identity
-
-See [Scaffold Identity](xref:security/authentication/scaffold-identity)
