@@ -265,3 +265,10 @@ The scaffolded Razor components are added to the project's `Pages` folder in a g
 The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
 
 To use the scaffolder in Visual Studio, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**. To use the scaffolder with the .NET CLI, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+
+<!-- UPDATE 8.0 Uncomment link after
+                https://github.com/dotnet/AspNetCore.Docs/pull/32747
+                merges.
+
+For an example use case, see <xref:blazor/tutorials/movie-database-app/index>.
+-->
