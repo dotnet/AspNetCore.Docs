@@ -172,16 +172,6 @@ Visual Studio displays the following tags in a distinctive bold font used for Ta
 
 ![VS view of Create.cshtml page](~/tutorials/razor-pages/page/_static/9/tag_helpers_VS22_17.11.0.png)
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-The following Tag Helpers are shown in the preceding markup:
-
-* `<form method="post">`
-* `<div asp-validation-summary="ModelOnly" class="text-danger"></div>`
-* `<label asp-for="Movie.Title" class="control-label"></label>`
-* `<input asp-for="Movie.Title" class="form-control" />`
-* `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
-
 ---
 
 The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](xref:security/anti-request-forgery).
