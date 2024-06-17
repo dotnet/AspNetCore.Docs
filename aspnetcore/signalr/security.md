@@ -3,7 +3,7 @@ title: Security considerations in ASP.NET Core SignalR
 author: bradygaster
 description: Learn about security in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 02/20/2024
 uid: signalr/security

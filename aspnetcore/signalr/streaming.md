@@ -3,7 +3,7 @@ title: Use streaming in ASP.NET Core SignalR
 author: bradygaster
 description: Learn how to stream data between the client and the server.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc, devx-track-js
 ms.date: 10/29/2020
 uid: signalr/streaming

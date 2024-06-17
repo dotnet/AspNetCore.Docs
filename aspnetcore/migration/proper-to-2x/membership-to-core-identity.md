@@ -2,7 +2,7 @@
 title: Migrate from ASP.NET Membership authentication to ASP.NET Core 2.0 Identity
 author: isaacrlevin
 description: Learn how to migrate existing ASP.NET apps using Membership authentication to ASP.NET Core 2.0 Identity.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 01/10/2019
 uid: migration/proper-to-2x/membership-to-core-identity

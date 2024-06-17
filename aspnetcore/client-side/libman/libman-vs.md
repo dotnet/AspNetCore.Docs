@@ -2,7 +2,7 @@
 title: Use LibMan with ASP.NET Core in Visual Studio
 author: rick-anderson
 description: Learn how to use LibMan in an ASP.NET Core project with Visual Studio.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 08/20/2018
 uid: client-side/libman/libman-vs

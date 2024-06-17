@@ -3,7 +3,7 @@ title: gRPC and Native AOT
 author: jamesnk
 description: Learn about support for gRPC with .NET native ahead-of-time (AOT).
 monikerRange: '>= aspnetcore-8.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 04/06/2023
 uid: grpc/native-aot
 ---

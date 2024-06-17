@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR connection troubleshooting
 author: bradygaster
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 04/08/2020
 uid: signalr/troubleshoot

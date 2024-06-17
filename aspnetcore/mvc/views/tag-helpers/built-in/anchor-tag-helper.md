@@ -2,7 +2,7 @@
 title: Anchor Tag Helper in ASP.NET Core
 author: pkellner
 description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 10/13/2019
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper

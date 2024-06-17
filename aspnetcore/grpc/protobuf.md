@@ -3,7 +3,7 @@ title: Create Protobuf messages for .NET apps
 author: jamesnk
 description: Learn how to create Protobuf messages for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 02/12/2021
 uid: grpc/protobuf
 ---

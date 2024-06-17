@@ -3,7 +3,7 @@ title: Deploy ASP.NET Core apps to Azure App Service
 author: bradygaster
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/6/2020
 uid: host-and-deploy/azure-apps/index
