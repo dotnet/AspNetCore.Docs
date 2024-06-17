@@ -43,7 +43,7 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 ## Synopsis
 
 ```
-dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] [-c|--configuration] [-tfm|--target-framework] [-b|--build-base-path] [--no-build] 
+dotnet aspnet-codegenerator [arguments] [-b|--build-base-path] [-c|--configuration] [-n|--nuget-package-dir] [--no-build] [-p|--project] [-tfm|--target-framework]
 dotnet aspnet-codegenerator [-h|--help]
 ```
 
@@ -70,25 +70,21 @@ Generator         | Operation
 
 ## Options
 
-`-n|--nuget-package-dir`
+`-b|--build-base-path`
 
-Specifies the NuGet package directory.
+The build base path.
 
 `-c|--configuration {Debug|Release}`
 
 Defines the build configuration. The default value is `Debug`.
 
-`-tfm|--target-framework`
-
-Target [framework](/dotnet/standard/frameworks) to use.
-
-`-b|--build-base-path`
-
-The build base path.
-
 `-h|--help`
 
 Prints out a short help for the command.
+
+`-n|--nuget-package-dir`
+
+Specifies the NuGet package directory.
 
 `--no-build`
 
@@ -97,6 +93,10 @@ Doesn't build the project before running. Passing `--no-build` also implicitly s
 `-p|--project <PATH>`
 
 Specifies the path of the project file to run (folder name or full path). If not specified, the tool defaults to the current directory.
+
+`-tfm|--target-framework`
+
+The target [framework](/dotnet/standard/frameworks) to use.
 
 ## Generator options
 
@@ -188,13 +188,13 @@ The options for the `blazor-identity` template are shown in the following table.
 
 Option                           | Description
 -------------------------------- | ---
+`-dbProvider|--databaseProvider` | Database provider to use. Options include `sqlserver` (default) and `sqlite`.
 `-dc|--dataContext`              | Database context class to use.
-`-rn|--rootNamespace`            | Root namespace to use for generating Identity code.
+`-f|--force`                     | Use this option to overwrite existing files.
 `-fi|--files`                    | List of semicolon separated files to scaffold. Use the `-lf|--listFiles` option to see the available options.
 `-lf|--listFiles`                | Lists the files that can be scaffolded by using the `-fi|--files` option.
+`-rn|--rootNamespace`            | Root namespace to use for generating Identity code.
 `-u|--userClass`                 | Name of the user class to generate.
-`-dbProvider|--databaseProvider` | Database provider to use. Options include `sqlserver` (default) and `sqlite`.
-`-f|--force`                     | Use this option to overwrite existing files.
 
 Use the `-h|--help` option for help:
 
@@ -212,11 +212,11 @@ The options unique to `controller` are shown in the following table.
 
 Option                        | Description
 ----------------------------- | ---
-`-name|--controllerName`      | Name of the controller.
-`-async|--useAsyncActions`    | Generate asynchronous controller actions.
-`-nv|--noViews`               | Generate **no** views.
-`-api|--restWithNoViews`      | Generate a controller with REST style API. `noViews` is assumed and any view related options are ignored.
 `-actions|--readWriteActions` | Generate controller with read/write actions without a model.
+`-api|--restWithNoViews`      | Generate a controller with REST style API. `noViews` is assumed and any view related options are ignored.
+`-async|--useAsyncActions`    | Generate asynchronous controller actions.
+`-name|--controllerName`      | Name of the controller.
+`-nv|--noViews`               | Generate **no** views.
 
 Use the `-h|--help` option for help:
 
@@ -238,13 +238,13 @@ The options for `minimalapi` are shown in the following table.
 
 Option                            | Description
 --------------------------------- | ---
+`-dbProvider|--databaseProvider`  | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, or `postgres`.
+`-dc|--dataContext`               | Database context class to use.
 `-e|--endpoints`                  | Endpoints class to use (not the file name).
 `-m|--model`                      | Model class to use.
-`-dc|--dataContext`               | Database context class to use.
-`-outDir|--relativeFolderPath`    | Relative output folder path. If not specified, files are generated in the project folder.
-`-o|--open`                       | Use this option to enable OpenAPI.
 `-namespace|--endpointsNamespace` | Specify the name of the namespace to use for the generated endpoints file.
-`-dbProvider|--databaseProvider`  | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, or `postgres`.
+`-o|--open`                       | Use this option to enable OpenAPI.
+`-outDir|--relativeFolderPath`    | Relative output folder path. If not specified, files are generated in the project folder.
 `-sqlite|--useSqlite`             | Flag to specify if the database context should use SQLite instead of SQL Server. |
 
 <!-- REVIEWER NOTE
@@ -315,13 +315,13 @@ The options unique to `razorpage` are shown in the following table.
 Option                       | Description
 ---------------------------- | ---
 `-namespace|--namespaceName` | The name of the namespace to use for the generated `PageModel` class.
-`-partial|--partialView`     | Generate a partial view. Layout options `-l` and `-udl` are ignored if this is specified.
 `-npm|--noPageModel`         | Don't generate a `PageModel` class for the `Empty` template.
+`-partial|--partialView`     | Generate a partial view. Layout options `-l` and `-udl` are ignored if this is specified.
 
 The following example uses the `Edit` template to generate `CustomEditPage.cshtml` and `CustomEditPage.cshtml.cs` in the `Pages/Movies` folder:
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorpage CustomEditPage Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
+dotnet aspnet-codegenerator razorpage CustomEditPage Edit -dc RazorPagesMovieContext -m Movie -outDir Pages/Movies
 ```
 
 Use the `-h|--help` option for help:
@@ -357,7 +357,7 @@ Option                             | Description
 The following example uses the `Edit` template to generate `CustomEditView.cshtml` in the `Views/Movies` folder:
 
 ```dotnetcli
-dotnet aspnet-codegenerator view CustomEditView Edit -m Movie -dc MovieContext -outDir Views/Movies
+dotnet aspnet-codegenerator view CustomEditView Edit -dc MovieContext -m Movie -outDir Views/Movies
 ```
 
 Use the `-h|--help` option for help:
