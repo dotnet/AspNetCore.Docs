@@ -67,7 +67,10 @@
         "**/web-api/**/**.md": "web-api",
         "whats-new/**/**.md": "whats-new",
         "**/blazor/**/**.md": "blazor",
-        "**/blazor/hybrid/**/**.md": "blazor-hybrid"
+        "**/blazor/hybrid/**/**.md": "blazor-hybrid",
+        "**/client-side/dotnet-interop.md": "blazor",
+        "**/mvc/views/tag-helpers/built-in/component-tag-helper.md": "blazor",
+        "**/mvc/views/tag-helpers/built-in/persist-component-state.md": "blazor"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
