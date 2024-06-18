@@ -3,7 +3,7 @@ title: Logging and diagnostics in gRPC on .NET
 author: jamesnk
 description: Learn how to gather diagnostics from your gRPC app on .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 10/01/2021
 uid: grpc/diagnostics
 ---

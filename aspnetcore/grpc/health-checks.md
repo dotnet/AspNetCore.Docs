@@ -3,7 +3,7 @@ title: gRPC health checks in ASP.NET Core
 author: jamesnk
 description: Learn how to use gRPC health checks in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 05/27/2024
 uid: grpc/health-checks
 ---
