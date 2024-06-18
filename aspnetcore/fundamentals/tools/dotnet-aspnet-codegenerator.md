@@ -331,7 +331,7 @@ The options unique to `view` are shown in the following table.
 Option                             | Description
 ---------------------------------- | ---
 `-namespace|--controllerNamespace` | Specify the name of the namespace to use for the generated controller.
-`-partial|--partialView`           | Generate a partial view, other layout options (`-l` and `-udl`) are ignored if this is specified.
+`-partial|--partialView`           | Generate a partial view. Other layout options (`-l` and `-udl`) are ignored if this is specified.
 
 The following example uses the `Edit` template to generate `CustomEditView.cshtml` in the `Views/Movies` folder:
 
