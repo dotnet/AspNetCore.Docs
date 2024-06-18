@@ -302,6 +302,14 @@ When using a Blazor Web App, most of the Blazor documentation example components
 
 Prerendering is enabled by default for interactive components.
 
+Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests, including for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing), [Interactive routing and prerendering](xref:blazor/components/prerender#interactive-routing-and-prerendering), and [Enhanced navigation and form handling](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+
+<!-- UPDATE 10.0 Tracking https://github.com/dotnet/aspnetcore/issues/55635
+                 for .NET 10 work in this area. Update the following remark
+                 if changes are made to the framework. -->
+
+Disabling prerendering using the following techniques only takes effect for top-level render modes. If a parent component specifies a render mode, the prerendering settings of its children are ignored. This behavior is under investigation for possible changes with the release of .NET 10 in November, 2025.
+
 To disable prerendering for a *component instance*, pass the `prerender` flag with a value of `false` to the render mode:
 
 * `<... @rendermode="new InteractiveServerRenderMode(prerender: false)" />`
