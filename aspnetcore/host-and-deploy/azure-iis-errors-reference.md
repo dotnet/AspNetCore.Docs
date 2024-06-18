@@ -33,7 +33,7 @@ Compare error information to the following common errors. If a match is found, f
 
 The list of errors in this topic isn't exhaustive. If you encounter an error not listed here, open a new issue using the **Content feedback** button at the bottom of this topic with detailed instructions on how to reproduce the error.
 
-[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
+[!INCLUDE[Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
 ## OS upgrade removed the 32-bit ASP.NET Core Module
 
@@ -321,7 +321,7 @@ Compare error information to the following common errors. If a match is found, f
 
 The list of errors in this topic isn't exhaustive. If you encounter an error not listed here, open a new issue using the **Content feedback** button at the bottom of this topic with detailed instructions on how to reproduce the error.
 
-[!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
+[!INCLUDE[Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
 ## OS upgrade removed the 32-bit ASP.NET Core Module
 
