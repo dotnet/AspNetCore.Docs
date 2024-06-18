@@ -32,10 +32,12 @@ To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/t
 
 ## Default trimmer granularity
 
-The default trimmer granularity is `partial`. To trim all assemblies, change the granularity to `full`:
+The default trimmer granularity is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
 
 ```xml
-<TrimMode>full</TrimMode>
+<ItemGroup>
+  <TrimMode>full</TrimMode>
+</ItemGroup>
 ```
 
 For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options?pivots=dotnet-8-0#trimming-granularity).
