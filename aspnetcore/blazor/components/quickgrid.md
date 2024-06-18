@@ -177,9 +177,7 @@ Start by adding a package reference for the [`Microsoft.AspNetCore.Components.Qu
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-<!-- UPDATE 8.0 MIA API for AddQuickGridEntityFrameworkAdapter -->
-
-Call `AddQuickGridEntityFrameworkAdapter` on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
+Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
 
 ```csharp
 builder.Services.AddQuickGridEntityFrameworkAdapter();
