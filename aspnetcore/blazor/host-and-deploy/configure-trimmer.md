@@ -40,7 +40,7 @@ The default trimmer granularity is `partial`. To trim all assemblies, change the
 </ItemGroup>
 ```
 
-For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options?pivots=dotnet-8-0#trimming-granularity).
+For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
 
 ## Additional resources
 
