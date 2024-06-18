@@ -256,12 +256,19 @@ For more information on calling web APIs, see <xref:blazor/call-web-api>.
 
 ## `QuickGrid` scaffolder
 
-The `QuickGrid` scaffolder in [Visual Studio](https://visualstudio.microsoft.com/vs/) scaffolds Razor components with `QuickGrid` to display data from a database.
-
-To use the scaffolder, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**.
+The `QuickGrid` scaffolder scaffolds Razor components with `QuickGrid` to display data from a database.
 
 The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
 
 The scaffolded Razor components are added to the project's `Pages` folder in a generated folder named after the model class. The generated `Index` component uses `QuickGrid` to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as sorting and filtering.
 
 The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
+
+To use the scaffolder in Visual Studio, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**. To use the scaffolder with the .NET CLI, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+
+<!-- UPDATE 8.0 Uncomment link after
+                https://github.com/dotnet/AspNetCore.Docs/pull/32747
+                merges.
+
+For an example use case, see <xref:blazor/tutorials/movie-database-app/index>.
+-->
