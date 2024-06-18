@@ -3,6 +3,7 @@
 Option                                | Description
 ------------------------------------- | ---
 `-b|--bootstrapVersion`               | Specifies the bootstrap version and creates a `wwwroot` folder for the Bootstrap assets if the folder isn't present.
+`-dbProvider|--databaseProvider`      | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
 `-dc|--dataContext`                   | The database context class to use or the name of the class to generate.
 `-f|--force`                          | Overwrite existing files.
 `-l|--layout`                         | Custom layout page to use.

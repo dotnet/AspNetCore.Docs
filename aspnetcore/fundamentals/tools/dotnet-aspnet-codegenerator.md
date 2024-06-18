@@ -102,14 +102,14 @@ The target [framework](/dotnet/standard/frameworks) to use.
 
 The following sections detail the options available for the supported generators:
 
-* Area (`area`)
-* Controller (`controller`)
-* Blazor (`blazor`)
-* Blazor Identity (`blazor-identity`)
-* Identity (`identity`)
-* Minimal API (`minimalapi`)
-* Razor page (`razorpage`)
-* View (`view`)
+* [Area (`area`)](#area-options)
+* [Controller (`controller`)](#controller-options)
+* [Blazor (`blazor`)](#blazor-options)
+* [Blazor Identity (`blazor-identity`)](#blazor-identity-options)
+* [Identity (`identity`)](#identity-options)
+* [Minimal API (`minimalapi`)](#minimal-api-options)
+* [Razor page (`razorpage`)](#razor-page-options)
+* [View (`view`)](#view-options)
 
 ### Area options
 
@@ -173,7 +173,8 @@ dotnet aspnet-codegenerator blazor -h
 
 <!-- UPDATE 8.0 Uncomment link after
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
-                merges.
+                merges. This is tracked by a comment on the
+                tutorial PR.
 
 For an example that uses the `blazor` generator, see <xref:blazor/tutorials/movie-database-app/index>.
 -->
@@ -206,17 +207,20 @@ dotnet aspnet-codegenerator blazor-identity -h
 
 General options are shown in the following table.
 
-[!INCLUDE[](~/includes/aspnet-codegenerator-args-md.md)]
+[!INCLUDE[](~/fundamentals/includes/codegenerator-common-args.md)]
 
 The options unique to `controller` are shown in the following table.
 
-Option                        | Description
------------------------------ | ---
-`-actions|--readWriteActions` | Generate controller with read/write actions without a model.
-`-api|--restWithNoViews`      | Generate a controller with REST style API. `noViews` is assumed and any view related options are ignored.
-`-async|--useAsyncActions`    | Generate asynchronous controller actions.
-`-name|--controllerName`      | Name of the controller.
-`-nv|--noViews`               | Generate **no** views.
+Option                             | Description
+---------------------------------- | ---
+`-actions|--readWriteActions`      | Generate controller with read/write actions without a model.
+`-api|--restWithNoViews`           | Generate a controller with REST style API. `noViews` is assumed and any view related options are ignored.
+`-async|--useAsyncActions`         | Generate asynchronous controller actions.
+`-name|--controllerName`           | Name of the controller.
+`-namespace|--controllerNamespace` | Specify the name of the namespace to use for the generated controller.
+`-nv|--noViews`                    | Generate **no** views.
+
+
 
 Use the `-h|--help` option for help:
 
@@ -226,11 +230,11 @@ dotnet aspnet-codegenerator controller -h
 
 For an example that uses the `controller` generator, see <xref:tutorials/first-mvc-app/adding-model>.
 
-### Identity
+### Identity options
 
 For more information, see <xref:security/authentication/scaffold-identity>.
 
-### Minimal API
+### Minimal API options
 
 Scaffold a Minimal API backend with the `minimalapi` template.
 
@@ -247,31 +251,6 @@ Option                            | Description
 `-outDir|--relativeFolderPath`    | Relative output folder path. If not specified, files are generated in the project folder.
 `-sqlite|--useSqlite`             | Flag to specify if the database context should use SQLite instead of SQL Server. |
 
-<!-- REVIEWER NOTE
-
-     I'll delete this NOTE prior to merging.
-
-     When the `dotnet aspnet-codegenerator minimalapi -h` command
-     is executed. The list of options includes the following ...
-
-     databaseProvider : Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, or `postgres`.
-     useSqLite : Flag to specify if the database context should use SQLite instead of SQL Server.
-
-     However, that doesn't seem correct. In the table, I've placed
-     what I expect will work because it's based on the standard
-     option for the database provider syntax.
-
-     The option names aren't formatted correctly and don't have 
-     short names.
-
-     I've made a PU remark on these at ...
-
-     https://github.com/dotnet/Scaffolding/issues/2743#issuecomment-2173440407
-     
-     ... and DR said that he'd make sure that they take a look
-     at all of the items I've listed in that issue.
--->
-
 The following example:
 
 * Generates an endpoints class named `SpeakersEndpoints` with API endpoints that map to database operations using the `ApplicationDbContext` database context class and the `BackEnd.Models.Speaker` model.
@@ -287,7 +266,7 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator minimalapi -h
 ```
 
-### Razor page
+### Razor page options
 
 Razor Pages can be individually scaffolded by specifying the name of the new page and the template to use. The supported templates are:
 
@@ -308,7 +287,7 @@ Typically, the template and generated file name isn't specified, which creates t
 
 General options are shown in the following table.
 
-[!INCLUDE[](~/includes/aspnet-codegenerator-args-md.md)]
+[!INCLUDE[](~/fundamentals/includes/codegenerator-common-args.md)]
 
 The options unique to `razorpage` are shown in the following table.
 
@@ -332,7 +311,7 @@ dotnet aspnet-codegenerator razorpage -h
 
 For an example that uses the `razorpage` generator, see <xref:tutorials/razor-pages/model>.
 
-### View
+### View options
 
 Views can be individually scaffolded by specifying the name of the view and the template. The supported templates are:
 
@@ -345,7 +324,7 @@ Views can be individually scaffolded by specifying the name of the view and the 
 
 General options are shown in the following table.
 
-[!INCLUDE[](~/includes/aspnet-codegenerator-args-md.md)]
+[!INCLUDE[](~/fundamentals/includes/codegenerator-common-args.md)]
 
 The options unique to `view` are shown in the following table.
 
