@@ -5,7 +5,7 @@ description: Learn how to run .NET from JavaScript.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/10/2022
+ms.date: 06/18/2024
 uid: client-side/dotnet-interop
 ---
 # Run .NET from JavaScript
@@ -22,8 +22,6 @@ Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 
 These approaches are appropriate when you only expect to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
 ## Prerequisites
-
-[!INCLUDE[](~/includes/7.0-SDK.md)]
 
 Install the latest version of the [.NET SDK](https://dotnet.microsoft.com/download/dotnet/).
 
