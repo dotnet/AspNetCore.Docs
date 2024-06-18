@@ -47,11 +47,13 @@ The JS interop API described in this article is controlled by attributes in the 
 
 To configure a project (`.csproj`) to enable JS interop:
 
-* Target `net8.0` or later:
+* Set the [target framework moniker](/dotnet/standard/frameworks) (`{TARGET FRAMEWORK}` placeholder):
 
   ```xml
-  <TargetFramework>net8.0</TargetFramework>
+  <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
   ```
+
+  .NET 7 (`net7.0`) or later is supported.
 
 * Specify `browser-wasm` for the runtime identifier:
 
