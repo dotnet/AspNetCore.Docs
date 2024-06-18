@@ -870,7 +870,6 @@ For more information, see the following topics:
 
 * <xref:test/debug-aspnetcore-source>
 * <xref:test/troubleshoot>
-* <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/error-handling>
 * <xref:host-and-deploy/aspnet-core-module>
 
