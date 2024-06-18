@@ -9,7 +9,7 @@ uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 # ASP.NET Core code generator tool (`aspnet-codegenerator`)
 
-The `dotnet aspnet-codegenerator` command runs the ASP.NET Core scaffolding engine. Executing the `dotnet aspnet-codegenerator` command is only required to scaffold from the command line or when using Visual Studio Code. The command isn't required to use scaffolding with Visual Studio, which includes the scaffolding engine by default.
+The `dotnet aspnet-codegenerator` command runs the ASP.NET Core scaffolding engine. Running the `dotnet aspnet-codegenerator` command is required to scaffold from the command line or when using Visual Studio Code. The command isn't required to use scaffolding with Visual Studio, which includes the scaffolding engine by default.
 
 ## Install and update the code generator tool
 
@@ -33,7 +33,7 @@ dotnet tool update -g dotnet-aspnet-codegenerator
 
 It may be necessary to uninstall the ASP.NET Core code generator tool to resolve problems. For example, if you installed a preview version of the tool, uninstall it before installing the released version.
 
-The following commands uninstall the ASP.NET Core code generator tool and installs the latest stable version:
+The following commands uninstall the ASP.NET Core code generator tool and install the latest stable version:
 
 ```dotnetcli
 dotnet tool uninstall -g dotnet-aspnet-codegenerator

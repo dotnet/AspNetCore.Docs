@@ -256,7 +256,7 @@ For more information on calling web APIs, see <xref:blazor/call-web-api>.
 
 ## `QuickGrid` scaffolder
 
-The `QuickGrid` scaffolder in scaffolds Razor components with `QuickGrid` to display data from a database.
+The `QuickGrid` scaffolder scaffolds Razor components with `QuickGrid` to display data from a database.
 
 The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
 
