@@ -14,7 +14,7 @@ This article explains how to run .NET from JavaScript (JS) using JS `[JSImport]`
 
 For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository.
 
-Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 or later to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
+Existing JS apps can use the expanded client-side WebAssembly support to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
 
 > [!NOTE]
 > This article focuses on running .NET from JS apps without any dependency on [Blazor](xref:blazor/index). For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
@@ -47,10 +47,10 @@ The JS interop API described in this article is controlled by attributes in the 
 
 To configure a project (`.csproj`) to enable JS interop:
 
-* Target `net7.0` or later:
+* Target `net8.0` or later:
 
   ```xml
-  <TargetFramework>net7.0</TargetFramework>
+  <TargetFramework>net8.0</TargetFramework>
   ```
 
 * Specify `browser-wasm` for the runtime identifier:
@@ -85,10 +85,10 @@ To configure a project (`.csproj`) to enable JS interop:
 Example project file (`.csproj`) after configuration:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -115,7 +115,7 @@ In the following example:
 
   > :::no-loc text="bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle":::
 
-  The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`), and the `{TARGET FRAMEWORK}` placeholder is the target framework (for example, `net7.0`).
+  The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`), and the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
   > [!IMPORTANT]
   > To integrate with an existing app, copy the contents of the `AppBundle` folder so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the `AppBundle` folder with the app.
@@ -199,7 +199,7 @@ To demonstrate the JS interop functionality and obtain JS interop project templa
 dotnet workload install wasm-experimental
 ```
 
-The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates is evolving. However, the .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
+The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates is evolving. However, the .NET and JS APIs used in the templates are supported in .NET 8 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
 
 ### Browser app
 
@@ -215,7 +215,7 @@ Build the app from Visual Studio or by using the .NET CLI:
 dotnet build
 ```
 
-The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
+The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
 Build and run the app from Visual Studio or by using the .NET CLI:
 
@@ -229,7 +229,7 @@ Alternatively, start any static file server from the `AppBundle` directory:
 dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle
 ```
 
-In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
+In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
 ### Node.js console app
 
@@ -245,7 +245,7 @@ Build the app from Visual Studio or by using the .NET CLI:
 dotnet build
 ```
 
-The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
+The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
 Build and run the app from Visual Studio or by using the .NET CLI:
 
@@ -259,7 +259,7 @@ Alternatively, start any static file server from the `AppBundle` directory:
 node bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle/main.mjs
 ```
 
-In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
+In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
 
 ## Additional resources
 
