@@ -154,7 +154,7 @@ The recommended approach for downloading relatively large files (&gt;= 250 MB) w
 
 :::moniker range="< aspnetcore-8.0"
 
-The recommended approach for downloading relatively small files (\< 250 MB) is to use JS to trigger an anchor element with the file's name and URL.
+The recommended approach for downloading relatively large files (&gt;= 250 MB) is to use JS to trigger an anchor element with the file's name and URL.
 
 :::moniker-end
 
