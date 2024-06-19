@@ -142,7 +142,7 @@ In a command shell:
 
 ---
 
-The guidance in this article is to use WebAssembly components because it doesn't make sense to use SignalR from a server to connect back to a hub on the same server. Doing so can cause a variety of issues, such as port exhaustion.
+The guidance in this article is to use a WebAssembly component for the SignalR client in a Blazor Web App because it doesn't make sense to use SignalR to connect back to a hub in the same app on the same server, as that can cause server port exhaustion.
 
 ## Add the SignalR client library
 
