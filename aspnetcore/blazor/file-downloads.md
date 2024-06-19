@@ -18,8 +18,19 @@ This article explains how to download files in Blazor apps.
 
 Files can be downloaded from the app's own static assets or from any other location:
 
-* ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of server-side apps.
+:::moniker range=">= aspnetcore-9.0"
+
+* ASP.NET Core apps use Map Static Assets Middleware or Static File Middleware to serve files to clients of server-side apps. For more information, see <xref:blazor/fundamentals/static-files>.
 * The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+* ASP.NET Core apps use [Static File Middleware](xref:blazor/fundamentals/static-files) to serve files to clients of server-side apps.
+* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
+
+:::moniker-end
 
 This article covers approaches for the following scenarios, where a file shouldn't be opened by a browser but downloaded and saved on the client:
 
@@ -42,7 +53,17 @@ Security steps that reduce the likelihood of a successful attack are:
 
 *This section applies to files that are typically up to 250 MB in size.*
 
-The recommended approach for downloading relatively small files (\< 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index).
+:::moniker range=">= aspnetcore-9.0"
+
+The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index). This approach is effective for components that adopt an interactive render mode but not components that adopt static server-side rendering (static SSR).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index).
+
+:::moniker-end
 
 > [!WARNING]
 > The approach in this section reads the file's content into a [JS `ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). This approach loads the entire file into the client's memory, which can impair performance. To download relatively large files (\>= 250 MB), we recommend following the guidance in the [Download from a URL](#download-from-a-url) section.
@@ -125,6 +146,18 @@ In the preceding example, the `{PATH}` placeholder is the path to the file. The 
 
 *This section applies to files that are relatively large, typically 250 MB or larger.*
 
+:::moniker range=">= aspnetcore-9.0"
+
+The recommended approach for downloading relatively large files (&gt;= 250 MB) is to create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element, assign the file's name and URL (`url`) for the download, and trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element. This approach is effective for interactive and static SSR components.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+The recommended approach for downloading relatively small files (\< 250 MB) is to create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element, assign the file's name and URL (`url`) for the download, and trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element.
+
+:::moniker-end
+
 The example in this section uses a download file named `quote.txt`, which is placed in a folder named `files` in the app's web root (`wwwroot` folder). The use of the `files` folder is only for demonstration purposes. You can organize downloadable files in any folder layout within the web root (`wwwroot` folder) that you prefer, including serving the files directly from the `wwwroot` folder.
 
 `wwwroot/files/quote.txt`:
@@ -177,7 +210,13 @@ Change the port in the following example to match the localhost development port
 
 :::moniker range=">= aspnetcore-8.0"
 
+For interactive components, the button in the following example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`:
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
+
+If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
+
+`FileDownload2.razor.js`:
 
 :::moniker-end
 
@@ -208,7 +247,8 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 ## Additional resources
 
 * <xref:blazor/js-interop/index>
+* <xref:blazor/js-interop/javascript-location>
+* <xref:blazor/js-interop/ssr>
 * [`<a>`: The Anchor element: Security and privacy (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
 * <xref:blazor/file-uploads>
-* <xref:blazor/forms/index>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
