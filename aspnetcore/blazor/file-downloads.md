@@ -148,7 +148,7 @@ In the preceding example, the `{PATH}` placeholder is the path to the file. The 
 
 :::moniker range=">= aspnetcore-8.0"
 
-The recommended approach for downloading relatively large files (&gt;= 250 MB) is to create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element, assign the file's name and URL (`url`) for the download, and trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element. This approach is effective for interactive and static SSR components.
+The recommended approach for downloading relatively large files (&gt;= 250 MB) with interactively-rendered components or files of any size for statically-rendered components is to use JS to trigger an anchor element with the file's name and URL.
 
 :::moniker-end
 
