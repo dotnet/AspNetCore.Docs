@@ -1696,8 +1696,6 @@ A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundame
 app.MapRazorComponents<App>();
 ```
 
-<!-- UPDATE 8.0 Any additional remarks for BWAs? -->
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
