@@ -53,13 +53,13 @@ Security steps that reduce the likelihood of a successful attack are:
 
 *This section applies to files that are typically up to 250 MB in size.*
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0"
 
 The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index). This approach is effective for components that adopt an interactive render mode but not components that adopt static server-side rendering (static SSR).
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
+:::moniker range="< aspnetcore-8.0"
 
 The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index).
 
@@ -146,13 +146,13 @@ In the preceding example, the `{PATH}` placeholder is the path to the file. The 
 
 *This section applies to files that are relatively large, typically 250 MB or larger.*
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-8.0"
 
 The recommended approach for downloading relatively large files (&gt;= 250 MB) is to create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element, assign the file's name and URL (`url`) for the download, and trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element. This approach is effective for interactive and static SSR components.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
+:::moniker range="< aspnetcore-8.0"
 
 The recommended approach for downloading relatively small files (\< 250 MB) is to create an [`HTMLAnchorElement`](https://developer.mozilla.org/docs/Web/API/HTMLAnchorElement) (`<a>` element, assign the file's name and URL (`url`) for the download, and trigger the download by firing a [`click` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/click) on the anchor element.
 
