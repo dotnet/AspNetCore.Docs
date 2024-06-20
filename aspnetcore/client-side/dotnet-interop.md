@@ -164,7 +164,7 @@ In the following example:
   > [!IMPORTANT]
   > To integrate with an existing app, copy the contents of the publish output folder&dagger; to the existing app's deployment assets so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the output folder's contents with the app.
   >
-  > &dagger;The publish output folder is the target location of your publish profile. The default for a **:::no-loc text="Release":::** profile for .NET 8 or later is `Release/{TARGET FRAMEWORK}/publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework (for example, `net8.0`).
+  > &dagger;The publish output folder is the target location of your publish profile. The default for a **:::no-loc text="Release":::** profile in .NET 8 or later is `bin/Release/{TARGET FRAMEWORK}/publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework (for example, `net8.0`).
 
 * `dotnet.create()` sets up the .NET WebAssembly runtime.
 
