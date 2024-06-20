@@ -25,16 +25,24 @@ These approaches are appropriate when you only expect to run on WebAssembly (:::
 
 Install the latest version of the [.NET SDK](https://dotnet.microsoft.com/download/dotnet/).
 
-Install the `wasm-tools` workload, which brings in the related MSBuild targets.
+Install the `wasm-tools` workload in an administrative command shell, which brings in the related MSBuild targets:
 
 ```dotnetcli
 dotnet workload install wasm-tools
 ```
 
+The tools can also be installed via Visual Studio's installer under the **ASP.NET and web development** workload in the Visual Studio installer. Select the **.NET WebAssembly build tools** option from the list of optional components.
+
 Optionally, install the `wasm-experimental` workload, which contains experimental project templates for getting started with .NET on WebAssembly in a browser app (WebAssembly Browser App) or in a Node.js-based console app (WebAssembly Console App). This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
 
 ```dotnetcli
 dotnet workload install wasm-experimental
+```
+
+The templates can also be installed from the [`Microsoft.NET.Runtime.WebAssembly.Templates`](https://www.nuget.org/packages/Microsoft.NET.Runtime.WebAssembly.Templates) NuGet package with the following command:
+
+```dotnetcli
+dotnet new install Microsoft.NET.Runtime.WebAssembly.Templates
 ```
 
 For more information, see the [Experimental workload and project templates](#experimental-workload-and-project-templates) section.
@@ -47,10 +55,46 @@ The JS interop API described in this article is controlled by attributes in the 
 
 To configure a project (`.csproj`) to enable JS interop:
 
+:::moniker range=">= aspnetcore-8.0"
+
 * Set the [target framework moniker](/dotnet/standard/frameworks) (`{TARGET FRAMEWORK}` placeholder):
 
   ```xml
   <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
+  ```
+
+  .NET 7 (`net7.0`) or later is supported.
+
+* Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property, which permits the code generator in the Roslyn compiler to use pointers for JS interop:
+
+  ```xml
+  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  ```
+
+  > [!WARNING]
+  > The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
+
+The following is an example project file (`.csproj`) after configuration. The `{TARGET FRAMEWORK}` placeholder is the target framework:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+</Project>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Set the [target framework moniker](/dotnet/standard/frameworks):
+
+  ```xml
+  <TargetFramework>net7.0</TargetFramework>
   ```
 
   .NET 7 (`net7.0`) or later is supported.
@@ -66,7 +110,7 @@ To configure a project (`.csproj`) to enable JS interop:
   ```xml
   <OutputType>Exe</OutputType>
   ```
-  
+
 * Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property, which permits the code generator in the Roslyn compiler to use pointers for JS interop:
 
   ```xml
@@ -87,10 +131,10 @@ To configure a project (`.csproj`) to enable JS interop:
 Example project file (`.csproj`) after configuration:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -100,6 +144,8 @@ Example project file (`.csproj`) after configuration:
 
 </Project>
 ```
+
+:::moniker-end
 
 ## JavaScript interop on :::no-loc text="WASM":::
 
@@ -113,14 +159,12 @@ APIs in the following example are imported from `dotnet.js`. These APIs enable y
 
 In the following example:
 
-* The `dotnet.js` file is used to create and start the .NET WebAssembly runtime. `dotnet.js` is generated as part of the build output of the app and found in the `AppBundle` folder:
-
-  > :::no-loc text="bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle":::
-
-  The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`), and the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
+* The `dotnet.js` file is used to create and start the .NET WebAssembly runtime. `dotnet.js` is generated as part of the app's build output.
 
   > [!IMPORTANT]
-  > To integrate with an existing app, copy the contents of the `AppBundle` folder so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the `AppBundle` folder with the app.
+  > To integrate with an existing app, copy the contents of the publish output folder&dagger; to the existing app's deployment assets so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the output folder's contents with the app.
+  >
+  > &dagger;The publish output folder is the target location of your publish profile. The default for a **:::no-loc text="Release":::** profile for .NET 8 or later is `Release/{TARGET FRAMEWORK}/publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework (for example, `net8.0`).
 
 * `dotnet.create()` sets up the .NET WebAssembly runtime.
 
@@ -131,6 +175,37 @@ In the following example:
 * `dotnet.run()` runs `Program.Main`.
 
 JS module:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```javascript
+import { dotnet } from './_framework/dotnet.js'
+
+const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
+    .withDiagnosticTracing(false)
+    .withApplicationArgumentsFromQuery()
+    .create();
+
+setModuleImports('main.js', {
+    window: {
+        location: {
+            href: () => globalThis.window.location.href
+        }
+    }
+});
+
+const config = getConfig();
+const exports = await getAssemblyExports(config.mainAssemblyName);
+const text = exports.MyClass.Greeting();
+console.log(text);
+
+document.getElementById('out').innerHTML = text;
+await dotnet.run();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```javascript
 import { dotnet } from './dotnet.js'
@@ -157,6 +232,8 @@ console.log(text);
 document.getElementById("out").innerHTML = text;
 await dotnet.run();
 ```
+
+:::moniker-end
 
 To import a JS function so it can be called from C#, use the new <xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute> on a matching method signature. The first parameter to the <xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute> is the name of the JS function to import and the second parameter is the name of the module.
 
@@ -188,7 +265,6 @@ internal static string Greeting()
 {
     var text = $"Hello, World! Greetings from {GetHRef()}";
     Console.WriteLine(text);
-
     return text;
 }
 ```
@@ -202,6 +278,12 @@ dotnet workload install wasm-experimental
 ```
 
 The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates is evolving. However, the .NET and JS APIs used in the templates are supported in .NET 8 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
+
+The templates can also be installed from the [`Microsoft.NET.Runtime.WebAssembly.Templates`](https://www.nuget.org/packages/Microsoft.NET.Runtime.WebAssembly.Templates) NuGet package with the following command:
+
+```dotnetcli
+dotnet new install Microsoft.NET.Runtime.WebAssembly.Templates
+```
 
 ### Browser app
 
@@ -217,13 +299,21 @@ Build the app from Visual Studio or by using the .NET CLI:
 dotnet build
 ```
 
-The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
-
 Build and run the app from Visual Studio or by using the .NET CLI:
 
 ```dotnetcli
 dotnet run
 ```
+
+<!-- REVIEWER NOTE
+
+     The 'dotnet serve' command doesn't exist AFAICT.
+     https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet
+     ... and ...
+     In .NET 8 publish output from VS, the default path doesn't
+     match what we had here. The SDK doesn't even use the 
+     target location of the publish profile. Published assets
+     end up in 'bin/Release/net8.0/publish'.
 
 Alternatively, start any static file server from the `AppBundle` directory:
 
@@ -232,6 +322,7 @@ dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle
 ```
 
 In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
+-->
 
 ### Node.js console app
 
@@ -247,21 +338,19 @@ Build the app from Visual Studio or by using the .NET CLI:
 dotnet build
 ```
 
-The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
-
 Build and run the app from Visual Studio or by using the .NET CLI:
 
 ```dotnetcli
 dotnet run
 ```
 
-Alternatively, start any static file server from the `AppBundle` directory:
+Alternatively, start any static file server from the publish output directory that contains the `main.mjs` file:
 
 ```
-node bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle/main.mjs
+node bin/$(Configuration)/{TARGET FRAMEWORK}/{PATH}/main.mjs
 ```
 
-In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
+In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks), and the `{PATH}` placeholder is the path to the `main.mjs` file.
 
 ## Additional resources
 
