@@ -121,7 +121,7 @@ Use one of the following approaches to run the app:
   * Select the **Run** button.
   * Use **Debug** > **Start Debugging** from the menu.
   * Press <kbd>F5</kbd>.
-* .NET CLI command shell: Execute the `dotnet run` command from the app's folder.
+* .NET CLI command shell: Execute the `dotnet watch` (or `dotnet run`) command from the app's folder.
 
 ## Parts of the app
 
