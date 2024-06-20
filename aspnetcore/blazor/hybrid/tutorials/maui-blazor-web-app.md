@@ -532,7 +532,7 @@ Dependency injection is used to obtain the implementations of these services.
 In the MAUI project, the `MauiProgram.cs` file has following `using` statements at the top of the file:
 
 ```csharp
-using MauiBlazorWeb.Services;
+using MauiBlazorWeb.Maui.Services;
 using MauiBlazorWeb.Shared.Interfaces;
 ```
 
