@@ -256,10 +256,13 @@ export function afterStarted(blazor) {
 }
 ```
 
-> [!NOTE]
-> The call to `registerCustomEventType` is performed in a script only once per event.
->
-> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+The call to `registerCustomEventType` is performed in a script only once per event.
+
+For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+
+The custom event name, `customevent` in the preceding example, must not match a reserved Blazor event name. The reserved names can be found in the [Blazor framework reference source (see the calls to the `registerBuiltInEventType` function)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Rendering/Events/EventTypes.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Define a class for the event arguments:
 

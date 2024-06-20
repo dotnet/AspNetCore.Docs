@@ -12,7 +12,7 @@ uid: fundamentals/static-files
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -34,6 +34,11 @@ Static files are accessible via a path relative to the [web root](xref:fundament
   * `lib`
 
 Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
+
+### MapStaticAssets
+
+`MapStaticAssets` is a middleware that helps optimize the delivery of static assets in an app. For more information, see [Optimizing static web asset delivery
+](xref:aspnetcore-9#optimizing-static-web-asset-delivery).
 
 ### Serve files in web root
 
@@ -128,7 +133,7 @@ Enable directory browsing with <xref:Microsoft.Extensions.DependencyInjection.Di
 <!-- Select RP Home > Directory browsing -->
 The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`, with links to each file and folder:
 
-![directory browsing](static-files/_static/dir-browse.png)
+![directory browsing](~/fundamentals/static-files/_static/dir-browse.png)
 
 `AddDirectoryBrowser` [adds services](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserServiceExtensions.cs#L25) required by the directory browsing middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling `AddDirectoryBrowser` to ensure the services are added in all apps.
 
@@ -198,7 +203,7 @@ Using the preceding file hierarchy and code, URLs resolve as follows:
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
-![Static files list](static-files/_static/db2.png)
+![Static files list](~/fundamentals/static-files/_static/db2.png)
 
 <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from the target URI without a trailing `/`  to the target URI with a trailing `/`. For example, from `https://<hostname>/StaticFiles` to `https://<hostname>/StaticFiles/`. Relative URLs within the *StaticFiles* directory are invalid without a trailing slash (`/`) unless the <xref:Microsoft.AspNetCore.StaticFiles.Infrastructure.SharedOptions.RedirectToAppendTrailingSlash> option of <xref:Microsoft.AspNetCore.Builder.DefaultFilesOptions> is used.
 
@@ -307,5 +312,7 @@ The following code updates `IWebHostEnvironment.WebRootPath` to a non developmen
 * [Introduction to ASP.NET Core](xref:index)
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/static-files/includes/static-files8.md)]
 
 [!INCLUDE[](~/fundamentals/static-files/includes/static-files6.md)]

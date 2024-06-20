@@ -411,7 +411,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 
 ## Install Web Deploy when publishing with Visual Studio
 
-When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=43717).
+When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, see [IIS Downloads: Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy).
 
 ## Create the IIS site
 

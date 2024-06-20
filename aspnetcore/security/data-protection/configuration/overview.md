@@ -1,9 +1,9 @@
 ---
 title: Configure ASP.NET Core Data Protection
-author: rick-anderson
+author: tdykstra
 description: Learn how to configure Data Protection in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 6/14/2023
 uid: security/data-protection/configuration/overview

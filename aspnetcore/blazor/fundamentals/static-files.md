@@ -5,7 +5,7 @@ description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/11/2024
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
@@ -14,11 +14,59 @@ uid: blazor/fundamentals/static-files
 
 This article describes Blazor app configuration for serving static files.
 
-:::moniker range=">= aspnetcore-8.0"
+## Static asset middleware
 
-## Blazor framework static files
+*This section applies to server-side Blazor apps.*
+
+:::moniker range=">= aspnetcore-9.0"
+
+Serving static assets is managed by either of the two middlewares described in the following table.
+
+Middleware | API | .NET Version | Description
+--- | --- | :---: | ---
+Map Static Assets | `MapStaticAssets` | .NET 9 or later | Optimizes the delivery of static assets to clients.
+Static Files | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of `MapStaticAssets` but useful for some tasks that `MapStaticAssets` isn't capable of managing.
+
+Configure Map Static Assets Middleware by calling `MapStaticAssets` in the app's request processing pipeline, which performs the following:
+
+* Sets the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
+* Sets [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
+* Uses [Caching Middleware](xref:performance/caching/middleware).
+* When possible, serves [compressed](xref:performance/response-compression) static assets.
+* Works with a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)) to serve the app's static assets closer to the user.
+* [Minifies](https://developer.mozilla.org/docs/Glossary/Minification) the app's static assets.
+
+`MapStaticAssets` operates by combining build and publish processes to collect information about the static assets in the app. This information is utilized by the runtime library to efficiently serve the static assets to browsers.
+
+`MapStaticAssets` can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, `MapStaticAssets` is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
+
+`MapStaticAssets` provides the following benefits not found with <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+
+* Build-time compression for all the assets in the app: [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) during development and Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) during publish.
+* Content based `ETags` are generated for each static asset, which are [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded strings of the [SHA-256](xref:System.Security.Cryptography.SHA256) hashes of the static assets. This ensures that the browser only redownloads a file if its contents have changed.
+
+Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that `MapStaticAssets` can't handle:
+
+* Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
+* Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
+
+<!-- UPDATE 9.0 Can't cross-link the main doc set article 
+                at this time because it hasn't been updated yet.
+                
+For more information, see <xref:fundamentals/static-files>.
+-->
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
+
+:::moniker-end
 
 In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
+
+:::moniker range=">= aspnetcore-8.0"
 
 ## Static Web Asset Project Mode
 
@@ -29,12 +77,6 @@ The required `<StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>` se
 Changing the value (`Default`) of `<StaticWebAssetProjectMode>` or removing the property from the `.Client` project is ***not*** supported.
 
 :::moniker-end
-
-## Static File Middleware
-
-*This section applies to server-side Blazor apps.*
-
-Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
 
 ## Static files in non-`Development` environments
 

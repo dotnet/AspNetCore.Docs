@@ -1,9 +1,9 @@
 ---
 title: Integration tests in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 2/29/2024
 uid: test/integration-tests

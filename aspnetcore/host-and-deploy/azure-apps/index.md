@@ -3,7 +3,7 @@ title: Deploy ASP.NET Core apps to Azure App Service
 author: bradygaster
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/6/2020
 uid: host-and-deploy/azure-apps/index
@@ -123,9 +123,6 @@ Discover how to enable and access diagnostic logging for HTTP status codes, fail
 Understand common approaches to handling errors in ASP.NET Core apps.
 
 <xref:test/troubleshoot-azure-iis>  
-Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
-
-<xref:host-and-deploy/azure-iis-errors-reference>  
 See the common deployment configuration errors for apps hosted by Azure App Service/IIS with troubleshooting advice.
 
 ## Data Protection key ring and deployment slots

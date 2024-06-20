@@ -3,7 +3,7 @@ title: Host ASP.NET Core SignalR in background services
 author: bradygaster
 description: Learn how to send messages to SignalR clients from .NET Core BackgroundService classes.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2019
 uid: signalr/background-services

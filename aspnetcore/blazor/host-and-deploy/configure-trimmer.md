@@ -18,6 +18,8 @@ Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossa
 
 Trimming may have detrimental effects for the published app. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trim them away. For example, complex framework types for JS interop, such as <xref:System.Collections.Generic.KeyValuePair>, might be trimmed by default and not available at runtime for JS interop calls. In these cases, we recommend creating your own custom types instead. The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
+## Configuration
+
 To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/trimming/trimming-options) article in the .NET Fundamentals documentation, which includes guidance on the following subjects:
 
 * Disable trimming for the entire app with the `<PublishTrimmed>` property in the project file.
@@ -27,6 +29,18 @@ To configure the IL Trimmer, see the [Trimming options](/dotnet/core/deploying/t
 * Surface warnings for reflected types by setting the `<SuppressTrimAnalysisWarnings>` property to `false` in the project file.
 * Control symbol trimming and debugger support.
 * Set IL Trimmer features for trimming framework library features.
+
+## Default trimmer granularity
+
+The default trimmer granularity for Blazor apps is `partial`. To trim all assemblies, change the granularity to `full` in the app's project file:
+
+```xml
+<ItemGroup>
+  <TrimMode>full</TrimMode>
+</ItemGroup>
+```
+
+For more information, see [Trimming options (.NET documentation)](/dotnet/core/deploying/trimming/trimming-options#trimming-granularity).
 
 ## Additional resources
 

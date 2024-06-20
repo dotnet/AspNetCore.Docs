@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2024
+ms.date: 06/20/2024
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
@@ -22,20 +22,24 @@ For prerequisites and preliminary steps, see <xref:blazor/hybrid/tutorials/maui>
 
 The .NET MAUI Blazor Hybrid and Web App solution template sets up a solution that targets Android, iOS, Mac, Windows and Web that reuses UI. You can choose a Blazor interactive render mode for the web app and it creates the appropriate projects for the app, including a Blazor Web App and a .NET MAUI Blazor Hybrid app. A shared Razor class library (RCL) maintains the Razor components for the app's UI. The template also provides sample code to show you how to use dependency injection to provide different interface implementations for the Blazor Hybrid and Blazor Web App, which is covered in the [Using interfaces to support different device implementations](#using-interfaces-to-support-different-device-implementations) section of this article.
 
-Create an app from the project template with the following .NET CLI command:
+If you haven't already installed the .NET MAUI workload, install it now. The .NET MAUI workload provides the project template:
 
 ```dotnetcli
-dotnet new maui-blazor-web -o MauiBlazorWeb -int Server  -ai
+dotnet workload install maui
+```
+
+Create a solution from the project template with the following .NET CLI command:
+
+```dotnetcli
+dotnet new maui-blazor-web -o MauiBlazorWeb -I Server
 ```
 
 In the preceding command:
 
 * The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
-* The `-int|--interactivity` option sets up the interactivity location to `Server`.
-* The `-ai|--all-interactive` option specifies global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
+* The `-I|--InteractivityPlatform` option sets the interactivity render mode to Interactive Server (`InteractiveServer`). All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see the [Use Blazor render modes](#use-blazor-render-modes) section.
 
-<!-- UPDATE 9.0 Provide the project template's name here for VS, possibly
-                using a tooling pivot for the article. -->
+The app automatically adopts global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
 :::moniker-end
 
@@ -178,6 +182,19 @@ If you receive a build error that the RCL's assembly can't be resolved, build th
 
 ## Use Blazor render modes
 
+:::moniker range=">= aspnetcore-9.0"
+
+Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](xref:blazor/components/render-modes) in the Blazor Web App but ignore the render mode assignments in the MAUI project.
+
+Render mode specification subsections:
+
+* [Global Server interactivity](#global-server-interactivity)
+* [Global Auto or WebAssembly interactivity](#global-auto-or-webassembly-interactivity)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](xref:blazor/components/render-modes) for a given interactivity location in the Blazor Web App but ignore the render mode assignments in the MAUI project.
 
 Render mode and interactivity specification subsections:
@@ -187,6 +204,8 @@ Render mode and interactivity specification subsections:
 * [Per-page/component Server interactivity](#per-pagecomponent-server-interactivity)
 * [Per-page/component Auto interactivity](#per-pagecomponent-auto-interactivity)
 * [Per-page/component WebAssembly interactivity](#per-pagecomponent-webassembly-interactivity)
+
+:::moniker-end
 
 ### Global Server interactivity
 
@@ -254,22 +273,9 @@ Project references:
 
 :::moniker-end
 
-### Per-page/component Server interactivity
-
-:::moniker range=">= aspnetcore-9.0"
-
-* Interactive render mode: **Server**
-* Interactivity location: **Per-page/component**
-* Solution projects
-  * MAUI (`MauiBlazorWeb`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`.
-  * Blazor Web App (`MauiBlazorWeb.Web`): Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
-  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveServer` render mode in each component.
-
-`MauiBlazorWeb` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
-
-:::moniker-end
-
 :::moniker range="< aspnetcore-9.0"
+
+### Per-page/component Server interactivity
 
 * Interactive render mode: **Server**
 * Interactivity location: **Per-page/component**
@@ -279,8 +285,6 @@ Project references:
   * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveServer` render mode in each component.
 
 `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have a project reference to `MauiBlazorWeb.Shared`.
-
-:::moniker-end
 
 Add the following `InteractiveRenderSettings` class to the RCL. The class properties are used to set component render modes.
 
@@ -309,26 +313,6 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 
 ### Per-page/component Auto interactivity
 
-:::moniker range=">= aspnetcore-9.0"
-
-* Interactive render mode: **Auto**
-* Interactivity location: **Per-page/component**
-* Solution projects
-  * MAUI (`MauiBlazorWeb`): Calls `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` in `MauiProgram.cs`.
-  * Blazor Web App
-    * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
-    * Client project: `MauiBlazorWeb.Web.Client`
-  * RCL (`MauiBlazorWeb.Shared`): Contains the shared Razor components that set the `InteractiveAuto` render mode in each component.
-
-Project references:
-
-* `MauiBlazorWeb`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` have a project reference to `MauiBlazorWeb.Shared`.
-* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
 * Interactive render mode: **Auto**
 * Interactivity location: **Per-page/component**
 * Solution projects
@@ -342,8 +326,6 @@ Project references:
 
 * `MauiBlazorWeb.Maui`, `MauiBlazorWeb.Web`, and `MauiBlazorWeb.Web.Client` have a project reference to `MauiBlazorWeb.Shared`.
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
-
-:::moniker-end
 
 Add the following `InteractiveRenderSettings` class is added to the RCL. The class properties are used to set component render modes.
 
@@ -372,29 +354,6 @@ In the RCL's `_Imports.razor` file, add the following global static `@using` dir
 
 ### Per-page/component WebAssembly interactivity
 
-:::moniker range=">= aspnetcore-9.0"
-
-* Interactive render mode: **WebAssembly**
-* Interactivity location: **Per-page/component**
-* Solution projects
-  * MAUI (`MauiBlazorWeb`)
-  * Blazor Web App
-    * Server project: `MauiBlazorWeb.Web`: Doesn't set an `@rendermode` directive attribute on the `HeadOutlet` and `Routes` components of the `App` component (`Components/App.razor`).
-    * Client project: `MauiBlazorWeb.Web.Client`
-  * RCLs
-    * `MauiBlazorWeb.Shared`
-    * `MauiBlazorWeb.Shared.Client`: Contains the shared Razor components that set the `InteractiveWebAssembly` render mode in each component. The `.Shared.Client` RCL is maintained separately from the `.Shared` RCL because the app should maintain the components that are required to run on WebAssembly separately from the components that run on server and that stay on the server.
-
-Project references:
-
-* `MauiBlazorWeb` and `MauiBlazorWeb.Web` have project references to `MauiBlazorWeb.Shared`.
-* `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
-* `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
 * Interactive render mode: **WebAssembly**
 * Interactivity location: **Per-page/component**
 * Solution projects
@@ -411,8 +370,6 @@ Project references:
 * `MauiBlazorWeb.Maui` and `MauiBlazorWeb.Web` have project references to `MauiBlazorWeb.Shared`.
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 * `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
-
-:::moniker-end
 
 Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies%2A> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its `_Imports` file) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
@@ -491,6 +448,8 @@ In the `_Imports.razor` file of the `.Shared.Client` RCL, add `@using static Int
 > [!NOTE]
 > The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
 
+:::moniker-end
+
 ## Using interfaces to support different device implementations
 
 The following example demonstrates how to use an interface to call into different implementations across the web app and the native (MAUI) app. The following example creates a component that displays the device form factor. Use the MAUI abstraction layer for native apps and provide an implementation for the web app.
@@ -560,22 +519,71 @@ In the MAUI project, a folder named `Services` contains the following `FormFacto
 
 `Services/FormFactor.cs` (MAUI project):
 
-<!-- NOTE: The following link points to the 8.0 
-           sample but we don't need to update it 
-           for 9.0 or later coverage as long as
-           the code in the project template
-           doesn't change. -->
+:::moniker range=">= aspnetcore-9.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Maui/Services/FormFactor.cs":::
+```csharp
+using MauiBlazorWeb.Shared.Interfaces;
+
+namespace MauiBlazorWeb.Services;
+
+public class FormFactor : IFormFactor
+{
+    public string GetFormFactor()
+    {
+        return DeviceInfo.Idiom.ToString();
+    }
+    public string GetPlatform()
+    {
+        return DeviceInfo.Platform.ToString() + " - " + DeviceInfo.VersionString;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```csharp
+using MauiBlazorWeb.Shared.Interfaces;
+
+namespace MauiBlazorWeb.Maui.Services;
+
+public class FormFactor : IFormFactor
+{
+    public string GetFormFactor()
+    {
+        return DeviceInfo.Idiom.ToString();
+    }
+    public string GetPlatform()
+    {
+        return DeviceInfo.Platform.ToString() + " - " + DeviceInfo.VersionString;
+    }
+}
+```
+
+:::moniker-end
 
 Dependency injection is used to obtain the implementations of these services.
 
 In the MAUI project, the `MauiProgram.cs` file has following `using` statements at the top of the file:
 
+:::moniker range=">= aspnetcore-9.0"
+
 ```csharp
 using MauiBlazorWeb.Services;
 using MauiBlazorWeb.Shared.Interfaces;
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```csharp
+using MauiBlazorWeb.Maui.Services;
+using MauiBlazorWeb.Shared.Interfaces;
+```
+
+:::moniker-end
 
 Immediately before the call to `builder.Build()`, `FormFactor` is registered to add device-specific services used by the RCL:
 

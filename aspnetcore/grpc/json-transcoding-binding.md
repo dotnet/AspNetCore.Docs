@@ -3,7 +3,7 @@ title: Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps
 author: jamesnk
 description: Learn how to configure HTTP and JSON for gRPC JSON transcoding apps.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 09/20/2022
 uid: grpc/json-transcoding-binding
 ---

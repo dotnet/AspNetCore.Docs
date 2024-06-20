@@ -4,8 +4,7 @@ author: wadepickett
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/13/2023
-ms.custom: engagement-fy23
+ms.date: 06/11/2024
 uid: tutorials/razor-pages/page
 ---
 
@@ -17,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
 
-:::moniker range="= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 ## The Create, Delete, Details, and Edit pages
 
@@ -206,6 +205,8 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 > [Next: Work with a database](xref:tutorials/razor-pages/sql)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/razor-pages/page/includes/page8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/page/includes/page7.md)]
 

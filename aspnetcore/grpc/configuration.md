@@ -3,7 +3,7 @@ title: gRPC for .NET configuration
 author: jamesnk
 description: Learn how to configure gRPC for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/23/2020
 uid: grpc/configuration

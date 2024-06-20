@@ -165,7 +165,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
 
 * The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
-* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+* The reconnection UI on the client appears when the circuit fails. Recovery isn't possible.
 
 To resolve the problem, use ***either*** of the following approaches:
 
@@ -550,7 +550,7 @@ The following table describes the CSS classes applied to the `components-reconne
 
 :::moniker range=">= aspnetcore-5.0"
 
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
+Customize the delay before the reconnection UI appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
 
 :::moniker-end
 
@@ -1126,6 +1126,42 @@ Blazor Server:
 ```
 
 **In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script and the path to use, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+
+:::moniker range=">= aspnetcore-9.0"
+
+When the user navigates back to an app with a disconnected circuit, reconnection is attempted immediately rather than waiting for the duration of the next reconnect interval. This behavior seeks to resume the connection as quickly as possible for the user.
+
+The default reconnect timing uses a computed backoff strategy. The first several reconnection attempts occur in rapid succession before computed delays are introduced between attempts. The default logic for computing the retry interval is an implementation detail subject to change without notice, but you can find the default logic that the Blazor framework uses [in the `computeDefaultRetryInterval` function (reference source)](https://github.com/search?q=repo%3Adotnet%2Faspnetcore%20computeDefaultRetryInterval&type=code).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Customize the retry interval behavior by specifying a function to compute the retry interval. In the following exponential backoff example, the number of previous reconnection attempts is multiplied by 1,000 ms to calculate the retry interval. When the count of previous attempts to reconnect (`previousAttempts`) is greater than the maximum retry limit (`maxRetries`), `null` is assigned to the retry interval (`retryIntervalMilliseconds`) to cease further reconnection attempts:
+
+```javascript
+Blazor.start({
+  circuit: {
+    reconnectionOptions: {
+      retryIntervalMilliseconds: (previousAttempts, maxRetries) => 
+        previousAttempts >= maxRetries ? null : previousAttempts * 1000
+    },
+  },
+});
+```
+
+An alternative is to specify the exact sequence of retry intervals. After the last specified retry interval, retries stop because the `retryIntervalMilliseconds` function returns `undefined`:
+
+```javascript
+Blazor.start({
+  circuit: {
+    reconnectionOptions: {
+      retryIntervalMilliseconds: 
+        Array.prototype.at.bind([0, 1000, 2000, 5000, 10000, 15000, 30000]),
+    },
+  },
+});
+```
+
+:::moniker-end
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 

@@ -8,4 +8,4 @@ Run the app from the **`Server`** project. When using Visual Studio, either:
   * Use **Debug** > **Start Debugging** from the menu.
   * Press <kbd>F5</kbd>.
 
-* In a command shell, navigate to the **`Server`** project folder of the solution. Execute the `dotnet run` command.
+* In a command shell, navigate to the **`Server`** project folder of the solution. Execute the `dotnet watch` (or `dotnet run`) command.

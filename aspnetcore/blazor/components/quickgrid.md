@@ -52,6 +52,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -74,6 +76,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -177,15 +181,64 @@ Start by adding a package reference for the [`Microsoft.AspNetCore.Components.Qu
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-<!-- UPDATE 8.0 MIA API for AddQuickGridEntityFrameworkAdapter -->
-
-Call `AddQuickGridEntityFrameworkAdapter` on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
+Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection in the `Program` file to register an EF-aware <xref:Microsoft.AspNetCore.Components.QuickGrid.IAsyncQueryExecutor> implementation:
 
 ```csharp
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
 
 :::moniker-end
+
+## Display name support
+
+A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following example, the column is given the name "`Release Date`" for the column's movie release date data:
+
+```razor
+<PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+```
+
+However, managing column titles (names) from bound model properties is usually a better choice for maintaining an app. A model can control the display name of a property with the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute). In the following example, the model specifies a movie release date display name of "`Release Date`" for its `ReleaseDate` property:
+
+```csharp
+[Display(Name = "Release Date")]
+public DateTime ReleaseDate { get; set; }
+```
+
+To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType>, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> either in the component or in a separate class:
+
+```csharp
+public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TProp>
+{
+    protected override void OnParametersSet()
+    {
+        if (Title is null && Property.Body is MemberExpression memberExpression)
+        {
+            var memberInfo = memberExpression.Member;
+            Title = 
+                memberInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName ??
+                memberInfo.GetCustomAttribute<DisplayAttribute>().Name ??
+                memberInfo.Name;
+        }
+
+        base.OnParametersSet();
+    }
+}
+```
+
+Use the subclass in the `QuickGrid` component. In the following example, the preceding `DisplayNameColumn` is used. The name "`Release Date`" is provided by the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) in the model, so there's no need to specify a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>:
+
+```razor
+<DisplayNameColumn Property="movie => movie.ReleaseDate" />
+```
+
+The [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
+
+```csharp
+[DisplayName("Release Date")]
+public DateTime ReleaseDate { get; set; }
+```
+
+However, the `[Display]` attribute is recommended because it makes additional properties available. For example, the `[Display]` attribute offers the ability to assign a resource type for localization.
 
 ## Remote data
 
@@ -256,12 +309,19 @@ For more information on calling web APIs, see <xref:blazor/call-web-api>.
 
 ## `QuickGrid` scaffolder
 
-The `QuickGrid` scaffolder in [Visual Studio](https://visualstudio.microsoft.com/vs/) scaffolds Razor components with `QuickGrid` to display data from a database.
-
-To use the scaffolder, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**.
+The `QuickGrid` scaffolder scaffolds Razor components with `QuickGrid` to display data from a database.
 
 The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
 
 The scaffolded Razor components are added to the project's `Pages` folder in a generated folder named after the model class. The generated `Index` component uses `QuickGrid` to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as sorting and filtering.
 
 The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
+
+To use the scaffolder in Visual Studio, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**. To use the scaffolder with the .NET CLI, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+
+<!-- UPDATE 8.0 Uncomment link after
+                https://github.com/dotnet/AspNetCore.Docs/pull/32747
+                merges.
+
+For an example use case, see <xref:blazor/tutorials/movie-database-app/index>.
+-->

@@ -3,7 +3,7 @@ title: Logging and diagnostics in Kestrel
 author: shirhatti
 description: Learn how to gather diagnostics from Kestrel.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
+ms.author: tdykstra
 ms.date: 01/26/2023
 uid: fundamentals/servers/kestrel/diagnostics
 ---

@@ -2,7 +2,7 @@
 title: Minimal APIs quick reference
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
-ms.author: riande
+ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/23/2023
@@ -193,10 +193,7 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 ## Filters
 
-See:
-
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* [A deep dive into endpoint filters](https://blog.safia.rocks/endpoint-filters-exploration.html)
+For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
 
 ## Authorization
 

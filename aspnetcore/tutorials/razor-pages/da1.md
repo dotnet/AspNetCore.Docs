@@ -3,15 +3,14 @@ title: Part 5, update the generated pages
 author: wadepickett
 description: Part 5 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 10/13/2023
-ms.custom: engagement-fy23
+ms.date: 06/11/2024
 uid: tutorials/razor-pages/da1
 ---
 # Part 5, update the generated pages in an ASP.NET Core app
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
@@ -135,6 +134,8 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 > [Next: Add search](xref:tutorials/razor-pages/search)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/razor-pages/da1/includes/da1_8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/da1/includes/da1_7.md)]
 

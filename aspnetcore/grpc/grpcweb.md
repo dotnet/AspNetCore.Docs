@@ -3,7 +3,7 @@ title: gRPC-Web in ASP.NET Core gRPC apps
 author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 06/30/2020
 uid: grpc/grpcweb
 ---

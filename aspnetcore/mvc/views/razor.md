@@ -1,8 +1,8 @@
 ---
 title: Razor syntax reference for ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 02/12/2020
 uid: mvc/views/razor
 ---

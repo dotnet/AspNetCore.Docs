@@ -12,7 +12,7 @@ uid: client-side/dotnet-interop
 
 This article explains how to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop.
 
-For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository. We plan to update this article to include new information in the cross-linked guidance in the latter part of 2023 or early 2024.
+For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository.
 
 Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 or later to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
 

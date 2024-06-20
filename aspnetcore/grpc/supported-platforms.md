@@ -3,7 +3,7 @@ title: gRPC on .NET supported platforms
 author: jamesnk
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 10/27/2022
 uid: grpc/supported-platforms
 ---

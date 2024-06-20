@@ -17,7 +17,12 @@ The following list includes common external OAuth authentication providers that 
 
 * [Instagram](https://www.instagram.com/developer/register/)
 
-* [Reddit](https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps) ([Instructions](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))
+<!-- DOC AUTHOR NOTE: The preferences page at https://www.reddit.com/login?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps 
+                      was linked to 'Reddit', but the URL makes a bad POST that ultimately causes our build system to claim 
+                      that the link is broken.
+-->
+
+* Reddit ([Instructions](https://github.com/reddit/reddit/wiki/OAuth2-Quick-Start-Example))
 
 * [Github](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fapplications%2Fnew) ([Instructions](https://developer.github.com/v3/oauth/))
 

@@ -612,6 +612,6 @@ Test the preceding code from the [test page](https://cors1.azurewebsites.net/tes
 ## Additional resources
 
 * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
-* [Getting started with the IIS CORS module](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)
+* [IIS CORS module Configuration Reference](/iis/extensions/cors-module/cors-module-configuration-reference)
 
 :::moniker-end

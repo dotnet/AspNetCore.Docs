@@ -777,7 +777,8 @@ items:
             uid: mvc/models/file-uploads
           - name: Web SDK
             uid: razor-pages/web-sdk
-          - name: aspnet-codegenerator (Scaffolding)
+          - name: Code generator tool (scaffolding)
+            displayName: aspnet-codegenerator
             uid: fundamentals/tools/dotnet-aspnet-codegenerator
   - name: APIs
     items:
@@ -1134,9 +1135,6 @@ items:
           - name: Troubleshoot
             displayName: deploy, publish, server, iis
             uid: test/troubleshoot-azure-iis
-          - name: Errors reference
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/azure-iis-errors-reference
           - name: Advanced configuration
             displayName: deploy, publish, server, iis, ancm, aspnetcoremodule
             uid: host-and-deploy/iis/advanced
@@ -1201,8 +1199,6 @@ items:
         uid: test/troubleshoot
       - name: Troubleshoot Azure and IIS
         uid: test/troubleshoot-azure-iis
-      - name: Azure and IIS errors reference
-        uid: host-and-deploy/azure-iis-errors-reference
   - name: Code analysis
     uid: diagnostics/code-analysis
     items:
@@ -1372,9 +1368,6 @@ items:
           - name: Troubleshoot
             displayName: azure, deploy, publish
             uid: test/troubleshoot-azure-iis
-          - name: Errors reference
-            displayName: azure, deploy, publish
-            uid: host-and-deploy/azure-iis-errors-reference
       - name: DevOps
         items:
           - name: Overview

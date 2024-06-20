@@ -24,8 +24,6 @@ This article describes an alternative JS interop approach specific to client-sid
 > [!NOTE]
 > This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop>.
 
-
-
 ## Obsolete JavaScript interop API
 
 Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core in .NET 7 or later. Follow the guidance in this article to replace the obsolete API.
@@ -36,7 +34,7 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Namespace
 
-The JS interop API described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
+The JS interop API (<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>) described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
 
 ## Enable unsafe blocks
 
@@ -50,6 +48,23 @@ Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in app's 
 
 > [!WARNING]
 > The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
+
+## Razor class library (RCL) collocated JS is unsupported
+
+Generally, the JS location support for <xref:Microsoft.JSInterop.IJSRuntime>-based JS interop (<xref:blazor/js-interop/javascript-location>) is also present for the `[JSImport]`/`[JSExport]` interop described by this article. The only unsupported JS location feature is for *collocated JS in a Razor class library (RCL)*.
+
+Instead of using collocated JS in an RCL, place the JS file in the RCL's `wwwroot` folder and reference it using the usual path for RCL static assets:
+
+`_content/{PACKAGE ID}/{PATH}/{FILE NAME}.js`
+
+* The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library).
+* The `{PATH}` placeholder is the path to the file.
+* The `{FILE NAME}` placeholder is the file name.
+
+Although collocated JS in an RCL isn't supported by `[JSImport]`/`[JSExport]` interop, you can keep your JS files organized by taking either or both of the following approaches:
+
+* Name the JS file the same as the component where the JS is used. For a component in the RCL named `CallJavaScriptFromLib` (`CallJavaScriptFromLib.razor`), name the file `CallJavaScriptFromLib.js` in the `wwwroot` folder.
+* Place component-specific JS files in a `Components` folder inside the RCL's `wwwroot` folder and use "`Components`" in the path to the file: `_content/{PACKAGE ID}/Components/CallJavaScriptFromLib.js`.
 
 ## Call JavaScript from .NET
 

@@ -3,7 +3,7 @@ title: Troubleshoot gRPC on .NET
 author: jamesnk
 description: Troubleshoot errors when using gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.custom: mvc, linux-related-content
 ms.date: 08/08/2023
 uid: grpc/troubleshoot
