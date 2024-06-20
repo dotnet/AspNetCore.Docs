@@ -20,7 +20,7 @@ This article explains how to configure output caching middleware in an ASP.NET C
 
 The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every caching feature it illustrates is also supported in the other app types.
 
-The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:index#how-to-download-a-sample) and [Preprocessor directives in sample code](xref:index#preprocessor-directives-in-sample-code).
+The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:index#how-to-download-a-sample) and [Preprocessor directives in sample code](xref:index#preprocessor-directives-in-sample-code).
 
 ## Add the middleware to the app
 
