@@ -236,29 +236,18 @@ The Azure App Services Log streams logging information as it occurs. For more in
 * [Monitor Azure App Service](/azure/app-service/web-sites-monitor)
 * [Azure App Service troubleshooting and diagnostics](/azure/app-service/troubleshoot-diagnostic-logs)
 * [Azure App Service Logging: How to Monitor Your Web Apps in Real-Time](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-app-service-logging-how-to-monitor-your-web-apps-in-real/ba-p/3800390)
-* [Azure App Service log streaming overview](/azure/app-service/web-sites-log-streaming-overview)
-* [Azure App Service log streaming](/azure/app-service/web-sites-log-streaming)
-* [Azure App Service log streaming troubleshooting](/azure/app-service/web-sites-log-streaming-troubleshooting)
-  * [Azure App Service log streaming with Azure CLI](/azure/app-service/web-sites-log-streaming-azure-cli)
-  * [Azure App Service log streaming with Azure PowerShell](/azure/app-service/web-sites-log-streaming-azure-powershell)
-  * [Azure App Service log streaming with Visual Studio](/azure/app-service/web-sites-log-streaming-visual-studio)
-  * [Azure App Service log streaming with Azure Functions](/azure/app-service/web-sites-log-streaming-azure-functions)
-  * [Azure App Service log streaming with Azure DevOps](/azure/app-service/web-sites-log-streaming-azure-devops)
-  * [Azure App Service log streaming with Azure Monitor](/azure/app-service/web-sites-log-streaming-azure-monitor)
 * [Log streams in Azure Container Apps](/azure/container-apps/how-to-view-logs)
 * [View log streams in Azure Container Apps](/azure/container-apps/log-streaming)
 
 ### Azure App Services Log
 
 * [Enable diagnostics logging for apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)
-* [Azure App Service logging](/azure/app-service/web-sites-enable-diagnostic-log)
 
 ### Application Event Log (Azure App Service)
 
 * [How to access Azure webapp of Application event log into Azure Log Analytic Workspace instead of Diagnostic tool](/answers/questions/1337181/how-to-access-azure-webapp-of-application-event-lo)
 * Enable diagnostics logging for apps in Azure App Service[https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs](/azure/app-service/troubleshoot-diagnostic-logs)
 * Kudu service overview
-
 
 ### Run the app in the Kudu console
 
