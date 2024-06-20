@@ -531,10 +531,23 @@ Dependency injection is used to obtain the implementations of these services.
 
 In the MAUI project, the `MauiProgram.cs` file has following `using` statements at the top of the file:
 
+:::moniker range=">= aspnetcore-9.0"
+
+```csharp
+using MauiBlazorWeb.Services;
+using MauiBlazorWeb.Shared.Interfaces;
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 ```csharp
 using MauiBlazorWeb.Maui.Services;
 using MauiBlazorWeb.Shared.Interfaces;
 ```
+
+:::moniker-end
 
 Immediately before the call to `builder.Build()`, `FormFactor` is registered to add device-specific services used by the RCL:
 
