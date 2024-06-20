@@ -197,7 +197,7 @@ A column title can be assigned using <xref:Microsoft.AspNetCore.Components.Quick
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
 ```
 
-However, managing column titles (names) from bound model properties is usually a better choice for maintaining the app. The model can control the display name of a property with the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute). In the following example, the model specifies a movie release date display name of "`Release Date`" for its `ReleaseDate` property:
+However, managing column titles (names) from bound model properties is usually a better choice for maintaining an app. A model can control the display name of a property with the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute). In the following example, the model specifies a movie release date display name of "`Release Date`" for its `ReleaseDate` property:
 
 ```csharp
 [Display(Name = "Release Date")]
@@ -225,7 +225,7 @@ public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TPr
 }
 ```
 
-Use the subclass in the `QuickGrid` component. In the following example, the preceding `DisplayNameColumn` is used. The name "`Release Date`" is provided by the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) in the `Movie` model, so there's no need to specify a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>:
+Use the subclass in the `QuickGrid` component. In the following example, the preceding `DisplayNameColumn` is used. The name "`Release Date`" is provided by the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) in the model, so there's no need to specify a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>:
 
 ```razor
 <DisplayNameColumn Property="movie => movie.ReleaseDate" />
