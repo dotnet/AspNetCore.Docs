@@ -287,11 +287,13 @@ dotnet new install Microsoft.NET.Runtime.WebAssembly.Templates
 
 ### Browser app
 
-You can create a browser app with the `wasmbrowser` template, which creates a web app that demonstrates using .NET and JS together in a browser:
+You can create a browser app with the `wasmbrowser` template from the command line, which creates a web app that demonstrates using .NET and JS together in a browser:
 
 ```dotnetcli
 dotnet new wasmbrowser
 ```
+
+Alternatively in Visual Studio, you can create the app using the **:::no-loc text="WebAssembly Browser App":::** project template.
 
 Build the app from Visual Studio or by using the .NET CLI:
 
@@ -331,6 +333,8 @@ You can create a console app with the `wasmconsole` template, which creates an a
 ```dotnetcli
 dotnet new wasmconsole
 ```
+
+Alternatively in Visual Studio, you can create the app using the **:::no-loc text="WebAssembly Console App":::** project template.
 
 Build the app from Visual Studio or by using the .NET CLI:
 
