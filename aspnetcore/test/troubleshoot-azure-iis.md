@@ -28,12 +28,9 @@ Provides troubleshooting advice for apps deployed to IIS or running on IIS Expre
 [Clear package caches](#clear-package-caches)  
 Explains what to do when incoherent packages break an app when performing major upgrades or changing package versions.
 
-[Additional resources](#additional-resources)  
-Lists additional troubleshooting topics.
-
 ## App startup errors
 
-In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview). A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally with IIS Express can be diagnosed using the advice in this topic.
+In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
 
 ### 403.14 Forbidden
 
@@ -79,6 +76,8 @@ An unknown error occurred loading [ASP.NET Core Module](xref:host-and-deploy/asp
 * File an issue on our [GitHub repository](https://github.com/dotnet/AspNetCore).
 
 ### 500.30 In-Process Startup Failure
+
+In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
 
 The worker process fails. The app doesn't start.
 
@@ -167,6 +166,8 @@ This error occurs when hosting an app packaged as a [single-file executable](/do
 
 ### 502.5 Process Failure
 
+In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
+
 The worker process fails. The app doesn't start.
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
@@ -228,47 +229,43 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured
 
 ### Azure App Services Log stream
 
-The Azure App Services Log streams logging information as it occurs. To view streaming logs:
+The Azure App Services Log streams logging information as it occurs. For more information, see:
 
-1. In the Azure portal, open the app in **App Services**.
-1. In the left pane, navigate to **Monitoring** > **App Service Logs**.
-  ![App Service Logs](https://user-images.githubusercontent.com/3605364/183573538-80645002-d1c3-4451-9a2f-91ef4de4e248.png)
-1. Select **File System** for **Web Server Logging**. Optionally enable **Application logging**.
-  ![enable logging](https://user-images.githubusercontent.com/3605364/183529287-f63d3e1c-ee5b-4ca1-bcb6-a8c29d8b26f5.png)
-1. In the left pane, navigate to **Monitoring** > **Log stream**, and then select **Application logs** or **Web Server Logs**.
+* [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
+* [Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)
+* [Monitor Azure App Service](/azure/app-service/web-sites-monitor)
+* [Azure App Service troubleshooting and diagnostics](/azure/app-service/troubleshoot-diagnostic-logs)
+* [Azure App Service Logging: How to Monitor Your Web Apps in Real-Time](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-app-service-logging-how-to-monitor-your-web-apps-in-real/ba-p/3800390)
+* [Azure App Service log streaming overview](/azure/app-service/web-sites-log-streaming-overview)
+* [Azure App Service log streaming](/azure/app-service/web-sites-log-streaming)
+* [Azure App Service log streaming troubleshooting](/azure/app-service/web-sites-log-streaming-troubleshooting)
+  * [Azure App Service log streaming with Azure CLI](/azure/app-service/web-sites-log-streaming-azure-cli)
+  * [Azure App Service log streaming with Azure PowerShell](/azure/app-service/web-sites-log-streaming-azure-powershell)
+  * [Azure App Service log streaming with Visual Studio](/azure/app-service/web-sites-log-streaming-visual-studio)
+  * [Azure App Service log streaming with Azure Functions](/azure/app-service/web-sites-log-streaming-azure-functions)
+  * [Azure App Service log streaming with Azure DevOps](/azure/app-service/web-sites-log-streaming-azure-devops)
+  * [Azure App Service log streaming with Azure Monitor](/azure/app-service/web-sites-log-streaming-azure-monitor)
+* [Log streams in Azure Container Apps](/azure/container-apps/how-to-view-logs)
+* [View log streams in Azure Container Apps](/azure/container-apps/log-streaming)
 
-  ![Monitoring Log stream](https://user-images.githubusercontent.com/3605364/183561255-91f3d5e1-141b-413b-a403-91e74a770545.png)
+### Azure App Services Log
 
-  The following images shows the application logs output:
-
-  ![app logs](https://user-images.githubusercontent.com/3605364/183528795-532665c0-ce87-4ed3-8e4d-4b374d469c2a.png)
-
-Streaming logs have some latency and might not display immediately.
+* [Enable diagnostics logging for apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)
+* [Azure App Service logging](/azure/app-service/web-sites-enable-diagnostic-log)
 
 ### Application Event Log (Azure App Service)
 
-To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal:
+* [How to access Azure webapp of Application event log into Azure Log Analytic Workspace instead of Diagnostic tool](/answers/questions/1337181/how-to-access-azure-webapp-of-application-event-lo)
+* Enable diagnostics logging for apps in Azure App Service[https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs](/azure/app-service/troubleshoot-diagnostic-logs)
+* Kudu service overview
 
-1. In the Azure portal, open the app in **App Services**.
-1. Select **Diagnose and solve problems**.
-1. Select the **Diagnostic Tools** heading.
-1. Under **Support Tools**, select the **Application Events** button.
-1. Examine the latest error provided by the *IIS AspNetCoreModule* or *IIS AspNetCoreModule V2* entry in the **Source** column.
-
-An alternative to using the **Diagnose and solve problems** blade is to examine the Application Event Log file directly using [Kudu](https://github.com/projectkudu/kudu/wiki):
-
-1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
-1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-1. Open the **LogFiles** folder.
-1. Select the pencil icon next to the `eventlog.xml` file.
-1. Examine the log. Scroll to the bottom of the log to see the most recent events.
 
 ### Run the app in the Kudu console
 
 Many startup errors don't produce useful information in the Application Event Log. You can run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
 
-1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
-1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
+* [Kudu service overview](/azure/app-service/kudu-overview)
+* [Video:Azure App Service Advanced Tools a.k.a. Kudu](https://www.youtube.com/watch?v=fREVSQDbdAU)
 
 #### Test a 32-bit (x86) app
 
