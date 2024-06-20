@@ -258,6 +258,8 @@ For a 64-bit deployment:
 
 ### Deploy the app framework-dependent
 
+Apps published as framework-dependent are cross-platform and don't include the .NET runtime in the deployment. Azure App Services includes the .NET runtime.
+
 # [Visual Studio](#tab/visual-studio)
 
 1. Right-click the project in **Solution Explorer** and select **Publish**. Alternatively, select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
@@ -291,6 +293,7 @@ For a 64-bit deployment:
 
 ### Deploy the app self-contained
 
+Publishing an app as self-contained produces a platform-specific executable. The output publishing folder contains all components of the app, including the .NET libraries and target runtime. For more information, see [Publish self-contained]/dotnet/core/deploying/#publish-self-contained).
 Use Visual Studio or the .NET CLI for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
 # [Visual Studio](#tab/visual-studio)
