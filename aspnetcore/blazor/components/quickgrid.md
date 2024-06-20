@@ -52,8 +52,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title> along with any applicable sort indicators and options buttons.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. This is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> is not used.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -76,8 +76,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title> along with any applicable sort indicators and options buttons.
-  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. This is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> is not used.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
 
 :::moniker-end
 
