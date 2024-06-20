@@ -5,7 +5,7 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2024
+ms.date: 06/20/2024
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
@@ -519,13 +519,49 @@ In the MAUI project, a folder named `Services` contains the following `FormFacto
 
 `Services/FormFactor.cs` (MAUI project):
 
-<!-- NOTE: The following link points to the 8.0 
-           sample but we don't need to update it 
-           for 9.0 or later coverage as long as
-           the code in the project template
-           doesn't change. -->
+:::moniker range=">= aspnetcore-9.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Maui/Services/FormFactor.cs":::
+```csharp
+using MauiBlazorWeb.Shared.Interfaces;
+
+namespace MauiBlazorWeb.Services;
+
+public class FormFactor : IFormFactor
+{
+    public string GetFormFactor()
+    {
+        return DeviceInfo.Idiom.ToString();
+    }
+    public string GetPlatform()
+    {
+        return DeviceInfo.Platform.ToString() + " - " + DeviceInfo.VersionString;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```csharp
+using MauiBlazorWeb.Shared.Interfaces;
+
+namespace MauiBlazorWeb.Maui.Services;
+
+public class FormFactor : IFormFactor
+{
+    public string GetFormFactor()
+    {
+        return DeviceInfo.Idiom.ToString();
+    }
+    public string GetPlatform()
+    {
+        return DeviceInfo.Platform.ToString() + " - " + DeviceInfo.VersionString;
+    }
+}
+```
+
+:::moniker-end
 
 Dependency injection is used to obtain the implementations of these services.
 
