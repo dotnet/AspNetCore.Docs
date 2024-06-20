@@ -559,11 +559,16 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following commands:
+In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command to change the directory to the `Server` project folder:
 
 ```dotnetcli
 cd Server
-dotnet run
+```
+
+Run the server project with the `dotnet watch` (or `dotnet run`) command:
+
+```dotnetcli
+dotnet watch
 ```
 
 > [!IMPORTANT]

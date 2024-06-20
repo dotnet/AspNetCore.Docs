@@ -397,7 +397,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 > [!NOTE]
 > Only browser debugging is supported.
 >
-> You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch`](xref:tutorials/dotnet-watch).
 
 To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** project's project file:
 
@@ -463,7 +463,7 @@ The additional options in the following table only apply to **hosted Blazor WebA
 * *Google Chrome running on Windows or macOS.*
 * *Microsoft Edge running on Windows.*
 
-1. Run the app in a command shell with `dotnet run`.
+1. Run the app in a command shell with `dotnet watch` (or `dotnet run`).
 1. Launch a browser and navigate to the app's URL.
 1. Start remote debugging by pressing:
 
@@ -506,7 +506,7 @@ To debug a Blazor WebAssembly app in Firefox during development:
    * Enable `devtools.chrome.enabled` by setting its value to `True`.
    * Disable `devtools.debugger.prompt-connection` by setting its value to `False`.
 1. Close all Firefox instances.
-1. Run the app in a command shell with `dotnet run`.
+1. Run the app in a command shell with `dotnet watch` (or `dotnet run`).
 1. Relaunch the Firefox browser and navigate to the app.
 1. Open `about:debugging` in a new browser tab. **Leave this tab open**.
 1. Go back to the tab where the app is running. Start remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
