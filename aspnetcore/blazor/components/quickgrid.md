@@ -52,6 +52,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -74,6 +76,8 @@ To implement a `QuickGrid` component:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.InitialSortDirection%2A>: Indicates the sort direction if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A> is `true`.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.IsDefaultSortColumn%2A>: Indicates whether this column should be sorted by default.
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.PlaceholderTemplate%2A>: If specified, virtualized grids use this template to render cells whose data hasn't been loaded.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate>: An optional template for this column's header cell. If not specified, the default header template includes the <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>, along with any applicable sort indicators and options buttons.
+  * <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>: Title text for the column. The title is rendered automatically if <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.HeaderTemplate> isn't used.
 
 :::moniker-end
 
@@ -184,6 +188,57 @@ builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
 
 :::moniker-end
+
+## Display name support
+
+A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following example, the column is given the name "`Release Date`" for the column's movie release date data:
+
+```razor
+<PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
+```
+
+However, managing column titles (names) from bound model properties is usually a better choice for maintaining an app. A model can control the display name of a property with the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute). In the following example, the model specifies a movie release date display name of "`Release Date`" for its `ReleaseDate` property:
+
+```csharp
+[Display(Name = "Release Date")]
+public DateTime ReleaseDate { get; set; }
+```
+
+To enable the `QuickGrid` component to use the <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name?displayProperty=nameWithType>, subclass <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2> either in the component or in a separate class:
+
+```csharp
+public class DisplayNameColumn<TGridItem, TProp> : PropertyColumn<TGridItem, TProp>
+{
+    protected override void OnParametersSet()
+    {
+        if (Title is null && Property.Body is MemberExpression memberExpression)
+        {
+            var memberInfo = memberExpression.Member;
+            Title = 
+                memberInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName ??
+                memberInfo.GetCustomAttribute<DisplayAttribute>().Name ??
+                memberInfo.Name;
+        }
+
+        base.OnParametersSet();
+    }
+}
+```
+
+Use the subclass in the `QuickGrid` component. In the following example, the preceding `DisplayNameColumn` is used. The name "`Release Date`" is provided by the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) in the model, so there's no need to specify a <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title>:
+
+```razor
+<DisplayNameColumn Property="movie => movie.ReleaseDate" />
+```
+
+The [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
+
+```csharp
+[DisplayName("Release Date")]
+public DateTime ReleaseDate { get; set; }
+```
+
+However, the `[Display]` attribute is recommended because it makes additional properties available. For example, the `[Display]` attribute offers the ability to assign a resource type for localization.
 
 ## Remote data
 
