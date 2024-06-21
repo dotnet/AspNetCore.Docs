@@ -258,7 +258,7 @@ For a 64-bit deployment:
 
 ### Deploy the app framework-dependent
 
-Apps published as framework-dependent are cross-platform and don't include the .NET runtime in the deployment. Azure App Services includes the .NET runtime.
+Apps published as framework-dependent are cross-platform and don't include the .NET runtime in the deployment. Azure App Service includes the .NET runtime.
 
 # [Visual Studio](#tab/visual-studio)
 
