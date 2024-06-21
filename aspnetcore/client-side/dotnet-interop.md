@@ -172,11 +172,11 @@ In the following example:
 
 * `setModuleImports` associates a name with a module of JS functions for import into .NET. The JS module contains a `dom.setInnerText` function, which accepts and element selector and time to display the current stopwatch time in the UI. The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `dom.setInnerText` function is imported into C# and called by the C# method `SetInnerText`. The `SetInnerText` method is shown later in this section.
 
-* `exports.StopwatchSample.Reset()` calls into .NET (`StopwatchSample.Reset`) from JS. The `Reset` C# method restarts the stopwatch if it's running or resets it if it isn't running.
+* `exports.StopwatchSample.Reset()` calls into .NET (`StopwatchSample.Reset`) from JS. The `Reset` C# method restarts the stopwatch if it's running or resets it if it isn't running. The `Reset` method is shown later in this section.
 
 * `exports.StopwatchSample.Toggle()` calls into .NET (`StopwatchSample.Toggle`) from JS. The `Toggle` C# method starts or stops the stopwatch depending on if it's currently running or not. The `Toggle` method is shown later in this section.
 
-* `runMain()` runs `Program.Main` and keeps the runtime process running and executing further API calls.
+* `runMain()` runs `Program.Main`.
 
 :::moniker-end
 
@@ -198,28 +198,29 @@ JS module:
 import { dotnet } from './_framework/dotnet.js'
 
 const { setModuleImports, getAssemblyExports, getConfig, runMain } = await dotnet
-    .withApplicationArguments("start")
-    .create();
+  .withApplicationArguments("start")
+  .create();
 
 setModuleImports('main.js', {
-    dom: {
-        setInnerText: (selector, time) => document.querySelector(selector).innerText = time
-    }
+  dom: {
+    setInnerText: (selector, time) => 
+      document.querySelector(selector).innerText = time
+  }
 });
 
 const config = getConfig();
 const exports = await getAssemblyExports(config.mainAssemblyName);
 
 document.getElementById('reset').addEventListener('click', e => {
-    exports.StopwatchSample.Reset();
-    e.preventDefault();
+  exports.StopwatchSample.Reset();
+  e.preventDefault();
 });
 
 const pauseButton = document.getElementById('pause');
 pauseButton.addEventListener('click', e => {
-    const isRunning = exports.StopwatchSample.Toggle();
-    pauseButton.innerText = isRunning ? 'Pause' : 'Start';
-    e.preventDefault();
+  const isRunning = exports.StopwatchSample.Toggle();
+  pauseButton.innerText = isRunning ? 'Pause' : 'Start';
+  e.preventDefault();
 });
 
 await runMain();
@@ -233,16 +234,16 @@ await runMain();
 import { dotnet } from './_framework/dotnet.js'
 
 const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
-    .withDiagnosticTracing(false)
-    .withApplicationArgumentsFromQuery()
-    .create();
+  .withDiagnosticTracing(false)
+  .withApplicationArgumentsFromQuery()
+  .create();
 
 setModuleImports('main.js', {
-    window: {
-        location: {
-            href: () => globalThis.window.location.href
-        }
+  window: {
+    location: {
+      href: () => globalThis.window.location.href
     }
+  }
 });
 
 const config = getConfig();
