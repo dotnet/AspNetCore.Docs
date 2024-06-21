@@ -168,15 +168,64 @@ In the following example:
 
 * `dotnet.create()` sets up the .NET WebAssembly runtime.
 
+:::moniker range=">= aspnetcore-9.0"
+
+* `setModuleImports` associates a name with a module of JS functions for import into .NET. The JS module contains a `dom.setInnerText` function, which accepts and element selector and time to display the current stopwatch time in the UI. The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `dom.setInnerText` function is imported into C# and called by the C# method `SetInnerText`. The `SetInnerText` method is shown later in this section.
+
+* `exports.StopwatchSample.Toggle()` calls into .NET (`StopwatchSample.Toggle`) from JS. The `Toggle` C# method starts or stops the stopwatch depending on if it's currently running or not. The `Toggle` method is shown later in this section.
+
+* `runMain()` runs `Program.Main` and keeps the runtime process running and executing further API calls.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * `setModuleImports` associates a name with a module of JS functions for import into .NET. The JS module contains a `window.location.href` function, which returns the current page address (URL). The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `window.location.href` function is imported into C# and called by the C# method `GetHRef`. The `GetHRef` method is shown later in this section.
 
 * `exports.MyClass.Greeting()` calls into .NET (`MyClass.Greeting`) from JS. The `Greeting` C# method returns a string that includes the result of calling the `window.location.href` function. The `Greeting` method is shown later in this section.
 
 * `dotnet.run()` runs `Program.Main`.
 
+:::moniker-end
+
 JS module:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+```javascript
+import { dotnet } from './_framework/dotnet.js'
+
+const { setModuleImports, getAssemblyExports, getConfig, runMain } = await dotnet
+    .withApplicationArguments("start")
+    .create();
+
+setModuleImports('main.js', {
+    dom: {
+        setInnerText: (selector, time) => document.querySelector(selector).innerText = time
+    }
+});
+
+const config = getConfig();
+const exports = await getAssemblyExports(config.mainAssemblyName);
+
+document.getElementById('reset').addEventListener('click', e => {
+    exports.StopwatchSample.Reset();
+    e.preventDefault();
+});
+
+const pauseButton = document.getElementById('pause');
+pauseButton.addEventListener('click', e => {
+    const isRunning = exports.StopwatchSample.Toggle();
+    pauseButton.innerText = isRunning ? 'Pause' : 'Start';
+    e.preventDefault();
+});
+
+await runMain();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 ```javascript
 import { dotnet } from './_framework/dotnet.js'
@@ -237,12 +286,27 @@ await dotnet.run();
 
 To import a JS function so it can be called from C#, use the new <xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute> on a matching method signature. The first parameter to the <xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute> is the name of the JS function to import and the second parameter is the name of the module.
 
+:::moniker range=">= aspnetcore-9.0"
+
+In the following example, the `dom.setInnerText` function is called from the `main.js` module when `SetInnerText` method is called:
+
+```csharp
+[JSImport("dom.setInnerText", "main.js")]
+internal static partial void SetInnerText(string selector, string content);
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 In the following example, the `window.location.href` function is called from the `main.js` module when `GetHRef` method is called:
 
 ```csharp
 [JSImport("window.location.href", "main.js")]
 internal static partial string GetHRef();
 ```
+
+:::moniker-end
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
 
@@ -257,6 +321,49 @@ internal static partial void Log([JSMarshalAs<JSType.String>] string message);
 
 To export a .NET method so it can be called from JS, use the <xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute>.
 
+:::moniker range=">= aspnetcore-9.0"
+
+In the following example, each method is exported to JS and can be called from JS functions:
+
+* The `Toggle` method starts or stops the stopwatch depending on its running state.
+* The `Reset` method restarts the stopwatch if it's running or resets it if it isn't running.
+* The `IsRunning` method indicates if the stopwatch is running.
+
+```csharp
+[JSExport]
+internal static bool Toggle()
+{
+    if (stopwatch.IsRunning)
+    {
+        stopwatch.Stop();
+        return false;
+    }
+    else
+    {
+        stopwatch.Start();
+        return true;
+    }
+}
+
+[JSExport]
+internal static void Reset()
+{
+    if (stopwatch.IsRunning)
+        stopwatch.Restart();
+    else
+        stopwatch.Reset();
+
+    Render();
+}
+
+[JSExport]
+internal static bool IsRunning() => stopwatch.IsRunning;
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 In the following example, the `Greeting` method returns a string that includes the result of calling the `GetHRef` method. As shown earlier, the `GetHref` C# method calls into JS for the `window.location.href` function from the `main.js` module. `window.location.href` returns the current page address (URL):
 
 ```csharp
@@ -268,6 +375,8 @@ internal static string Greeting()
     return text;
 }
 ```
+
+:::moniker-end
 
 ## Experimental workload and project templates
 
@@ -307,24 +416,13 @@ Build and run the app from Visual Studio or by using the .NET CLI:
 dotnet run
 ```
 
-<!-- REVIEWER NOTE
-
-     The 'dotnet serve' command doesn't exist AFAICT.
-     https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet
-     ... and ...
-     In .NET 8 publish output from VS, the default path doesn't
-     match what we had here. The SDK doesn't even use the 
-     target location of the publish profile. Published assets
-     end up in 'bin/Release/net8.0/publish'.
-
-Alternatively, start any static file server from the `AppBundle` directory:
+Alternatively, install and use the [`dotnet serve` command](https://github.com/natemcmaster/dotnet-serve):
 
 ```dotnetcli
-dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle
+dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/publish
 ```
 
 In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target framework moniker](/dotnet/standard/frameworks).
--->
 
 ### Node.js console app
 
