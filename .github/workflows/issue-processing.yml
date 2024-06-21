@@ -77,9 +77,9 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 😎🏖️🌴 **🦖 is OOF until July 1** 🏐🏄‍♀️🦩 
+              body: `### 😎🏖️🌴 &mdash; **🦖 is OOF until July 1** &mdash; 🏐🏄‍♀️🦩 
 
-            Hello! The green dinosaur guy 🦖 (guardrex) is OOF from 6/24 to 6/28 and will return on July 1. Critical bug reports will be addressed during this period, but please stand-by for my return on July 1 for all other non-critical issues.`
+            Hello! The green dinosaur guy 🦖 (guardrex) is OOF from 6/24 to 6/28 and will return on July 1. Critical bug reports will be addressed during this period, but please standby for my return on July 1 for all other non-critical issues.`
             })
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
