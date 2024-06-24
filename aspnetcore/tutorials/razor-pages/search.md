@@ -95,7 +95,7 @@ The following code is a LINQ query that retrieves all the genres from the databa
 
 The `SelectList` of genres is created by projecting the distinct genres:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_SearchGenre&range=19-20)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_SearchGenre&range=19)]
 
 ### Add search by genre to the Razor Page
 
