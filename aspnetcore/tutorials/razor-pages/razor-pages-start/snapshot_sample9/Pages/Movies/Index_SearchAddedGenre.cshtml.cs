@@ -28,10 +28,9 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty(SupportsGet = true)]
         public string? MovieGenre { get; set; }
 
-        // <snippet_SearchGenre>
+        // <snippet_search_SearchGenre>
         public async Task OnGetAsync()
         {
-            // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
@@ -51,7 +50,7 @@ namespace RazorPagesMovie.Pages.Movies
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             Movie = await movies.ToListAsync();
         }
-        // </snippet_SearchGenre>
+        // </snippet_search_SearchGenre>
 
 
     }
