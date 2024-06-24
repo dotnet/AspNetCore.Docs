@@ -1,6 +1,6 @@
 #define DEFAULT // SQL server is default, SQL_Lite is other
 #if DEFAULT
-// <snippet_all_sl>
+// <snippet_all>
 // <snippet_di>
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
@@ -38,7 +38,7 @@ app.MapStaticAssets();
 app.MapRazorPages();
 
 app.Run();
-// </snippet_all_sl>
+// </snippet_all>
 #elif SQL_Lite
 // <snippet_all_sl>
 using Microsoft.EntityFrameworkCore;
