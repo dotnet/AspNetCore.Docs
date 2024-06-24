@@ -47,7 +47,7 @@ Build the project to verify there are no compilation errors.
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample90/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 

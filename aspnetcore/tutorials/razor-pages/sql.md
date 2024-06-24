@@ -32,11 +32,11 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The generated connection string is similar to the following JSON:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/appsettings.json?highlight=9-11)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/appsettings.json?highlight=9-11)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/appsettings_SQLite.json?highlight=9-11)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/appsettings_SQLite.json?highlight=9-11)]
 
 ---
 

@@ -17,7 +17,7 @@ Automatic verification that the schema and model are in sync makes it easier to 
 <!-- Update code in working project (which becomes clean finished sample) to compile and verify steps, then copy to snapshot sample folder. -->
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample8/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
    <a name="addrat7"></a>
    [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample8/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]

@@ -72,7 +72,7 @@ However, users cannot be expected to modify the URL to search for a movie. In th
 
 Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the following code:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedTitle.cshtml?highlight=14-19&range=1-22)]
 
 The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
 
@@ -87,15 +87,15 @@ Save the changes and test the filter.
 
 Update the `Movies/Index.cshtml.cs` page `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml.cs?name=snippet_search_SearchGenre)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml.cs?name=snippet_search_SearchGenre&range=3-5)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_SearchGenre&range=3-5)]
 
 The `SelectList` of genres is created by projecting the distinct genres:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml.cs?name=snippet_search_SearchGenre&range=19-20)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_SearchGenre&range=19-20)]
 
 ### Add search by genre to the Razor Page
 
