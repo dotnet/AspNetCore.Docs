@@ -3,7 +3,7 @@ title: Part 6, add search
 author: wadepickett
 description: Part 6 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/11/2024
+ms.date: 06/23/2024
 uid: tutorials/razor-pages/search
 ---
 # Part 6, add search to ASP.NET Core Razor Pages
@@ -18,7 +18,7 @@ In the following sections, searching movies by *genre* or *name* is added.
 
 Add the following highlighted code to `Pages/Movies/Index.cshtml.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=12-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index.cshtml.cs?name=snippet_search_newProps&highlight=12-18)]
 
 In the previous code:
 
@@ -29,23 +29,19 @@ In the previous code:
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-Update the Index page's `OnGetAsync` method with the following code:
+Update the `Movies/Index` page's `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_1stSearch)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index.cshtml.cs?name=snippet_search_1stSearch)]
 
 The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:
 
-```csharp
-// using System.Linq;
-var movies = from m in _context.Movie
-             select m;
-```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index.cshtml.cs?name=snippet_search_1stSearch&range=3-4)]
 
 The query is only ***defined*** at this point, it has ***not*** been run against the database.
 
 If the `SearchString` property is not `null` or empty, the movies query is modified to filter on the search string:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index.cshtml.cs?name=snippet_search_SearchNull)]
 
 The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains`. LINQ queries are not executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called. See [Query Execution](/dotnet/csharp/linq/get-started/introduction-to-linq-queries#deferred) for more information.
 
@@ -58,7 +54,7 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
-![Index view](~/tutorials/razor-pages/search/_static/8/ghost8.png)
+![Index view](~/tutorials/razor-pages/search/_static/9/ghost9.png)
 
 If the following route template is added to the Index page, the search string can be passed as a URL segment. For example, `https://localhost:5001/Movies/Ghost`.
 
@@ -68,7 +64,7 @@ If the following route template is added to the Index page, the search string ca
 
 The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.  The `?` in `"{searchString?}"` means this is an optional route parameter.
 
-![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/_static/8/ghost_title_routedata8.png)
+![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/_static/9/ghost_title_routedata9.png)
 
 The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding is ***not*** case sensitive.
 
@@ -76,7 +72,7 @@ However, users cannot be expected to modify the URL to search for a movie. In th
 
 Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the following code:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml?highlight=14-19&range=1-22)]
 
 The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
 
@@ -91,30 +87,25 @@ Save the changes and test the filter.
 
 Update the `Movies/Index.cshtml.cs` page `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml.cs?name=snippet_search_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
-```csharp
-// Use LINQ to get list of genres.
-IQueryable<string> genreQuery = from m in _context.Movie
-                                orderby m.Genre
-                                select m.Genre;
-```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml.cs?name=snippet_search_SearchGenre&range=3-5)]
 
-The `SelectList` of genres is created by projecting the distinct genres.
+The `SelectList` of genres is created by projecting the distinct genres:
 
-```csharp
-Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAdded.cshtml.cs?name=snippet_search_SearchGenre&range=19-20)]
 
 ### Add search by genre to the Razor Page
 
 Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-22)]
 
-Test the app by searching by genre, by movie title, and by both.
+Test the app by searching by genre, by movie title, and by both:
+
+![Index view complete with Genre selector and Title textbox search filters](~/tutorials/razor-pages/search/_static/9/search_movie_genre_title9.png)
 
 ## Next steps
 

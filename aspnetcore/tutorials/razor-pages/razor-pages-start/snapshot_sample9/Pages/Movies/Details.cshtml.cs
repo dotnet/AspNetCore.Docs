@@ -20,7 +20,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         public Movie Movie { get; set; } = default!;
-
+        // <snippet_1>
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -39,5 +39,6 @@ namespace RazorPagesMovie.Pages.Movies
             }
             return Page();
         }
+        // </snippet_1>
     }
 }

@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 06/11/2024
+ms.date: 06/23/2024
 uid: tutorials/razor-pages/page
 ---
 
@@ -36,7 +36,7 @@ When a `GET` request is made for the page, the `OnGetAsync` method returns a lis
 
 When `OnGet` returns `void` or `OnGetAsync` returns `Task`, no return statement is used. For example, examine the Privacy Page:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Pages/Privacy.cshtml.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Privacy.cshtml.cs)]
 
 When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, a return statement must be provided. For example, the `Pages/Movies/Create.cshtml.cs OnPostAsync` method:
 
@@ -97,7 +97,6 @@ The `PageModel` base class contains a `ViewData` dictionary property that can be
 The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The following markup shows the first few lines of the `_Layout.cshtml` file.
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
-
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Shared/_Layout.cshtml?highlight=6&range=1-9)]
 
 
@@ -178,7 +177,7 @@ The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working
 
 The scaffolding engine creates Razor markup for each field in the model, except the ID, similar to the following:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/RazorPagesMovie/Pages/Movies/Create.cshtml?range=15-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Create.cshtml?range=15-20)]
 
 The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` and `<span asp-validation-for`) display validation errors. Validation is covered in more detail later in this series.
 

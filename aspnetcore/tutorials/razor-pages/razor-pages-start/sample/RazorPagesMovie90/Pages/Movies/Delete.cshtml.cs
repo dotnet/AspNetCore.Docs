@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,11 +20,11 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-      public Movie Movie { get; set; } = default!;
+        public Movie Movie { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -35,7 +35,7 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Movie = movie;
             }
@@ -44,12 +44,12 @@ namespace RazorPagesMovie.Pages.Movies
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Movie == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var movie = await _context.Movie.FindAsync(id);
 
+            var movie = await _context.Movie.FindAsync(id);
             if (movie != null)
             {
                 Movie = movie;

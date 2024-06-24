@@ -1,4 +1,4 @@
-#if Never  // See https://github.com/dotnet/Scaffolding/issues/1626
+#if NEVER  // See https://github.com/dotnet/Scaffolding/issues/1626
 // <snippet_all>
 // <snippet_di>
 var builder = WebApplication.CreateBuilder(args);
@@ -20,12 +20,12 @@ if (!app.Environment.IsDevelopment())
 // </snippet_env>
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapStaticAssets();
 app.MapRazorPages();
 
 app.Run();

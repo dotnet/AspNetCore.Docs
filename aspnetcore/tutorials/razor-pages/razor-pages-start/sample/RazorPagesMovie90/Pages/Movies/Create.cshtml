@@ -1,4 +1,4 @@
-@page
+﻿@page
 @model RazorPagesMovie.Pages.Movies.CreateModel
 
 @{
@@ -50,7 +50,5 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
