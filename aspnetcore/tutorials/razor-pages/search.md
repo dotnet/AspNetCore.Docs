@@ -35,7 +35,7 @@ Update the `Movies/Index` page's `OnGetAsync` method with the following code:
 
 The first line of the `OnGetAsync` method creates a [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) query to select the movies:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index.cshtml.cs?name=snippet_search_1stSearch&range=3-4)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index.cshtml.cs?name=snippet_search_1stSearch?range=3-4)]
 
 The query is only ***defined*** at this point, it has ***not*** been run against the database.
 
