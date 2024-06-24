@@ -101,7 +101,7 @@ The `SelectList` of genres is created by projecting the distinct genres:
 
 Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre_.cshtml?highlight=16-18&range=1-22)]
 
 Test the app by searching by genre, by movie title, and by both:
 
