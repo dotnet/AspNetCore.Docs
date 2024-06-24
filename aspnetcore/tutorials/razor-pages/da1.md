@@ -82,7 +82,7 @@ Test the behavior of `@page "{id:int?}"`:
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404):
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=3-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Details.cshtml.cs?name=snippet_1&highlight=3-6)]
 
 ### Review concurrency exception handling
 
