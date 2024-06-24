@@ -30,7 +30,7 @@ Explains what to do when incoherent packages break an app when performing major 
 
 ## App startup errors
 
-In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
+In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), which can sometimes help diagnose issues locally for IIS deployments.
 
 ### 403.14 Forbidden
 
@@ -40,19 +40,22 @@ The app fails to start. The following error is logged:
 The Web server is configured to not list the contents of this directory.
 ```
 
-The error is usually caused by a broken deployment on the hosting system, which includes any of the following scenarios:
+The error is usually caused by a problem in the deployment on the hosting system:
 
 * The app is deployed to the wrong folder on the hosting system.
 * The deployment process failed to move all of the app's files and folders to the deployment folder on the hosting system.
-* The *web.config* file is missing from the deployment, or the *web.config* file contents are malformed.
+* On IIS, the *web.config* file is missing from the deployment, or the *web.config* file contents are malformed.
 
 Perform the following steps:
 
 1. Delete all of the files and folders from the deployment folder on the hosting system.
-1. Redeploy the contents of the app's *publish* folder to the hosting system using your normal method of deployment, such as Visual Studio, PowerShell, or manual deployment:
-   * Confirm that the *web.config* file is present in the deployment and that its contents are correct.
-   * When hosting on Azure App Service, confirm that the app is deployed to the `D:\home\site\wwwroot` folder.
-   * When the app is hosted by IIS, confirm that the app is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings**.
+1. Redeploy the contents of the app's *publish* folder to the hosting system using the normal method of deployment, such as Visual Studio, PowerShell, or manual deployment. Confirm:
+
+   * Azure App Service, the app is deployed to the `D:\home\site\wwwroot` folder.
+   * IIS:
+       * The *web.config* file is present and that its contents are correct.
+       * The app is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings** on IIS deployments.
+
 1. Confirm that all of the app's files and folders are deployed by comparing the deployment on the hosting system to the contents of the project's *publish* folder.
 
 For more information on the layout of a published ASP.NET Core app, see <xref:host-and-deploy/directory-structure>. For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
@@ -61,11 +64,11 @@ For more information on the layout of a published ASP.NET Core app, see <xref:ho
 
 The app starts, but an error prevents the server from fulfilling the request.
 
-This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. Run the app at a command prompt on the server or enable the ASP.NET Core Module stdout log to troubleshoot the problem.
+This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. Run the app at a command prompt on the server or on IIS, enable the ASP.NET Core Module stdout log to troubleshoot the problem.
 
 This error also may occur when the .NET Core Hosting Bundle isn't installed or is corrupted. Installing or repairing the installation of the .NET Core Hosting Bundle (for IIS) or Visual Studio (for IIS Express) may fix the problem.
 
-### 500.0 In-Process Handler Load Failure
+### 500.0 In-Process Handler Load Failure on IIS
 
 The worker process fails. The app doesn't start.
 
@@ -81,7 +84,9 @@ In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual stu
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
+On Kestrel, check the Application Event Log or [Kudu](#kudu).
+
+On IIS, the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
 
 Common failure conditions:
 
@@ -247,13 +252,14 @@ The Azure App Services Log streams logging information as it occurs. For more in
 
 * [How to access Azure webapp of Application event log into Azure Log Analytic Workspace instead of Diagnostic tool](/answers/questions/1337181/how-to-access-azure-webapp-of-application-event-lo)
 * Enable diagnostics logging for apps in Azure App Service[https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs](/azure/app-service/troubleshoot-diagnostic-logs)
-* Kudu service overview
+
+<a name="kudu"></a>
 
 ### Run the app in the Kudu console
 
 Many startup errors don't produce useful information in the Application Event Log. You can run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
 
-* [Kudu service overview](/azure/app-service/kudu-overview)
+* [Kudu service overview)](/azure/app-service/resources-kudu)
 * [Video:Azure App Service Advanced Tools a.k.a. Kudu](https://www.youtube.com/watch?v=fREVSQDbdAU)
 
 #### Test a 32-bit (x86) app
@@ -274,7 +280,7 @@ Many startup errors don't produce useful information in the Application Event Lo
      {ASSEMBLY NAME}.exe
      ```
 
-The console output from the app, showing any errors, is piped to the Kudu console.
+The console output from the app, showing any errors, is piped to the [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console).
 
 **Framework-dependent deployment running on a preview release**
 
@@ -283,7 +289,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` is the runtime version)
 1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-The console output from the app, showing any errors, is piped to the Kudu console.
+The console output from the app, showing any errors, is piped to the [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console).
 
 #### Test a 64-bit (x64) app
 
@@ -296,7 +302,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
   1. `cd D:\home\site\wwwroot`
   1. Run the app: `{ASSEMBLY NAME}.exe`
 
-The console output from the app, showing any errors, is piped to the Kudu console.
+The console output from the app, showing any errors, is piped to the [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console).
 
 **Framework-dependent deployment running on a preview release**
 
@@ -305,7 +311,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` is the runtime version)
 1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-The console output from the app, showing any errors, is piped to the Kudu console.
+The console output from the app, showing any errors, is piped to the [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console).
 
 ### ASP.NET Core Module stdout log (Azure App Service)
 
@@ -336,11 +342,11 @@ The ASP.NET Core Module debug log provides additional, deeper logging from the A
 
 1. To enable the enhanced diagnostic log, perform either of the following:
    * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
-   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
-     1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to the live app's *web.config* file using the [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console):
+     1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console) opens in a new browser tab or window.
      1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
      1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs). Select the **Save** button.
-1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console) opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**. If you didn't supply a path for the *aspnetcore-debug.log* file, the file appears in the list. If you supplied a path, navigate to the location of the log file.
 1. Open the log file with the pencil button next to the file name.
@@ -350,7 +356,7 @@ Disable debug logging when troubleshooting is complete:
 To disable the enhanced debug log, perform either of the following:
 
 * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
-* Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
+* Use the [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console) to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
 For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
@@ -379,7 +385,7 @@ Confirm that the ASP.NET Core Extensions are installed. If the extensions aren't
 
 If stdout logging isn't enabled, follow these steps:
 
-1. In the Azure portal, select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
+1. In the Azure portal, select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The [Kudu console](https://github.com/projectkudu/kudu/wiki/Kudu-console) opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot** and scroll down to reveal the *web.config* file at the bottom of the list.
 1. Click the pencil icon next to the *web.config* file.
