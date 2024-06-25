@@ -90,9 +90,13 @@ To use this custom policy, create a named policy:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies3b":::
 
-And select the named policy for an endpoint:
+And select the named policy for an endpoint. The following code selects the custom policy for an endpoint in a minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="post":::
+
+The following code does the same for a controller action:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/PostController.cs" id="post":::
 
 ### Alternative default policy override 
 
@@ -157,15 +161,19 @@ Cache revalidation is automatic in response to these headers sent from the clien
 
 ## Use tags to evict cache entries
 
-You can use tags to identify a group of endpoints and evict all cache entries for the group. For example, the following code creates a pair of endpoints whose URLs begin with "blog", and tags them "tag-blog":
+You can use tags to identify a group of endpoints and evict all cache entries for the group. For example, the following minimal API code creates a pair of endpoints whose URLs begin with "blog", and tags them "tag-blog":
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="tagendpoint":::
 
-An alternative way to assign tags for the same pair of endpoints is to define a base policy that applies to endpoints that begin with `blog`:
+The following code shows how to assign tags to an endpoint in a controller-based API:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/TagController.cs" id="tagendpoint":::
+
+An alternative way to assign tags for endpoints with routes that begin with `blog` is to define a base policy that applies to all endpoints with that route. The following code shows how to do that:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="3-5":::
 
-Another alternative is to call `MapGroup`:
+Another alternative for minimal API apps is to call `MapGroup`:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="taggroup":::
 
@@ -189,9 +197,13 @@ To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="9":::
 
-The following example selects the no-locking policy for an endpoint:
+The following example selects the no-locking policy for an endpoint in a minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectnolock":::
+
+In a controller-based API, use the attribute to select the policy:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/NoLockController.cs" id="selectnolock":::
 
 ## Limits
 

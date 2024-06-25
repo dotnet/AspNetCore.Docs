@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace OCControllers.Controllers;
 
+// <snippet_post
 [ApiController]
 [Route("/[controller]")]
 [OutputCache(PolicyName = "CachePost")]
 public class CachePostController : ControllerBase
 {
-    [HttpPost]
-    public async Task PostAsync()
+    public async Task GetAsync()
     {
         await Gravatar.WriteGravatar(HttpContext);
     }
 }
-
+// </snippet_post>
