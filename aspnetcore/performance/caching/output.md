@@ -167,7 +167,7 @@ You can use tags to identify a group of endpoints and evict all cache entries fo
 
 The following code shows how to assign tags to an endpoint in a controller-based API:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/TagEndpointController.cs" id="tagendpoint":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/TagEndpointController.cs" id="snippet_tagendpoint":::
 
 An alternative way to assign tags for endpoints with routes that begin with `blog` is to define a base policy that applies to all endpoints with that route. The following code shows how to do that:
 
