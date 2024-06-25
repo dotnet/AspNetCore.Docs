@@ -2,7 +2,7 @@
     "redirections": [
         {
             "source_path": "aspnetcore/host-and-deploy/azure-iis-errors-reference.md",
-            "redirect_url": "/aspnet/core/test/troubleshoot-azure-iis",
+            "redirect_url": "/host-and-deploy/iis-errors-reference",
             "redirect_document_id": false
         },
         {

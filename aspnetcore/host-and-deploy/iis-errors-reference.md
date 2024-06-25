@@ -12,4 +12,5 @@ uid: host-and-deploy/iis-errors-reference
 
 # Common error troubleshooting for IIS with ASP.NET Core
 
-This article provides troubleshooting guidance for common errors when hosting ASP.NET Core apps on IIS. The article is organized by the error messages that you might see in the browser when you try to access your app. The error messages are grouped by the HTTP status code that they represent.
+This article provides troubleshooting guidance for common errors when hosting ASP.NET Core apps on IIS.
+

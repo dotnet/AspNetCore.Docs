@@ -1135,6 +1135,9 @@ items:
           - name: Troubleshoot
             displayName: deploy, publish, server, iis
             uid: test/troubleshoot-azure-iis
+          - name: Errors reference
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis-errors-reference
           - name: Advanced configuration
             displayName: deploy, publish, server, iis, ancm, aspnetcoremodule
             uid: host-and-deploy/iis/advanced
@@ -1197,8 +1200,10 @@ items:
     items:
       - name: Troubleshoot and debug
         uid: test/troubleshoot
-      - name: Troubleshoot Azure and IIS
+      - name: Troubleshoot Azure
         uid: test/troubleshoot-azure-iis
+      - name: Azure and IIS errors reference
+        uid: host-and-deploy/iis-errors-reference
   - name: Code analysis
     uid: diagnostics/code-analysis
     items:
