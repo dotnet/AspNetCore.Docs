@@ -64,7 +64,7 @@ The `Movie` class contains:
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-9.md)]
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
