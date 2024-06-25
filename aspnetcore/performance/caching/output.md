@@ -39,7 +39,7 @@ For minimal API apps, configure an endpoint to do caching by calling [`CacheOutp
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method as shown here:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/CachedController.cs" id="snippet_oneendpoint":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/CachedController.cs" id="snippet_oneendpoint":::
 
 For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -63,7 +63,7 @@ In a minimal API app, the following code configures one endpoint with a 20-secon
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method to select a policy:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/Expire20Controller.cs" id="selectpolicy":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/Expire20Controller.cs" id="selectpolicy":::
 
  For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -96,7 +96,7 @@ And select the named policy for an endpoint. The following code selects the cust
 
 The following code does the same for a controller action:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/PostController.cs" id="post":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/PostController.cs" id="post":::
 
 ### Alternative default policy override 
 
@@ -129,7 +129,7 @@ You can then select the `VaryByQuery` policy for an endpoint. In a minimal API a
 
 The following code does the same for a controller action:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/QueryController.cs" id="selectquery":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/QueryController.cs" id="selectquery":::
 
 Here are some of the options for controlling the cache key:
 
@@ -153,7 +153,7 @@ The following code illustrates the use of an [`Etag`](https://developer.mozilla.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="etag":::
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/EtagController" id="etag":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/EtagController" id="etag":::
 
 Another way to do cache revalidation is to check the date of the cache entry creation compared to the date requested by the client. When the request header `If-Modified-Since` is provided, output caching returns 304 if the cached entry is older and isn't expired.
 
@@ -167,7 +167,7 @@ You can use tags to identify a group of endpoints and evict all cache entries fo
 
 The following code shows how to assign tags to an endpoint in a controller-based API:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/TagController.cs" id="tagendpoint":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/TagController.cs" id="tagendpoint":::
 
 An alternative way to assign tags for endpoints with routes that begin with `blog` is to define a base policy that applies to all endpoints with that route. The following code shows how to do that:
 
@@ -203,7 +203,7 @@ The following example selects the no-locking policy for an endpoint in a minimal
 
 In a controller-based API, use the attribute to select the policy:
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/NoLockController.cs" id="selectnolock":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/NoLockController.cs" id="selectnolock":::
 
 ## Limits
 

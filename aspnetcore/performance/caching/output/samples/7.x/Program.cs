@@ -114,9 +114,9 @@ public class Program
 
         // <tagendpoint>
         app.MapGet("/blog", Gravatar.WriteGravatar)
-            .CacheOutput(builder => builder.Tag("tag-blog")); ;
+            .CacheOutput(builder => builder.Tag("tag-blog"));
         app.MapGet("/blog/post/{id}", Gravatar.WriteGravatar)
-            .CacheOutput(builder => builder.Tag("tag-blog")); ;
+            .CacheOutput(builder => builder.Tag("tag-blog"));
         // </tagendpoint>
 
         // <taggroup>
