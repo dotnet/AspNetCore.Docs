@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace OCControllers.Controllers;
 
+// <snippet_oneendpoint>
 [ApiController]
-[Route("/cached")]
+[Route("/[controller]")]
 [OutputCache]
 public class CachedController : ControllerBase
 {
@@ -13,4 +14,4 @@ public class CachedController : ControllerBase
         await Gravatar.WriteGravatar(HttpContext);
     }
 }
-
+// </snippet_oneendpoint>

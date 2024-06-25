@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.OutputCaching;
 namespace OCControllers.Controllers;
 
 [ApiController]
-[Route("/[controller]")]
+[Route("/[controller]/purge/{tag}")]
 [OutputCache]
 public class EvictByTagController : ControllerBase
 {
-    public async Task GetAsync()
+    [HttpPost]
+    public async Task PostAsync(IOutputCacheStore cache, string tag)
     {
-        await Gravatar.WriteGravatar(HttpContext);
+        await cache.EvictByTagAsync(tag, default);
     }
 }
 

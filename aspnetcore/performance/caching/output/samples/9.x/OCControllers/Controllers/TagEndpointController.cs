@@ -5,7 +5,7 @@ namespace OCControllers.Controllers;
 
 [ApiController]
 [Route("/[controller]")]
-[OutputCache]
+[OutputCache(Tags = new[] { "tag-blog","tag-all" })]
 public class TagEndpointController : ControllerBase
 {
     public async Task GetAsync()

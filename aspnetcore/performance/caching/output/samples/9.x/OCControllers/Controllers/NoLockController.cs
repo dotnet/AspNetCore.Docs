@@ -5,8 +5,8 @@ namespace OCControllers.Controllers;
 
 [ApiController]
 [Route("/[controller]")]
-[OutputCache]
-public class TagGroupOverrideController : ControllerBase
+[OutputCache(PolicyName = "NoLock")]
+public class NoLockController : ControllerBase
 {
     public async Task GetAsync()
     {

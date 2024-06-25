@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace OCControllers.Controllers;
 
+// <snippet_selectquery>
 [ApiController]
 [Route("/[controller]")]
-[OutputCache]
+[OutputCache(PolicyName = "Query")]
 public class QueryController : ControllerBase
 {
     public async Task GetAsync()
@@ -13,4 +14,4 @@ public class QueryController : ControllerBase
         await Gravatar.WriteGravatar(HttpContext);
     }
 }
-
+// </snippet_selectquery>

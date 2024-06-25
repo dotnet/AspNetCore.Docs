@@ -112,7 +112,6 @@ public class Program
         }).CacheOutput();
         //</etag>
 
-
         // <tagendpoint>
         app.MapGet("/blog", Gravatar.WriteGravatar)
             .CacheOutput(builder => builder.Tag("tag-blog")); ;

@@ -37,13 +37,17 @@ For minimal API apps, configure an endpoint to do caching by calling [`CacheOutp
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="oneendpoint":::
 
-For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+For apps with controllers, apply the `[OutputCache]` attribute to the action method as shown here:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/CachedController.cs" id="snippet_oneendpoint":::
+
+For Razor Pages apps, apply the attribute to the Razor page class.
 
 ## Configure multiple endpoints or pages
 
 Create *policies* when calling `AddOutputCache` to specify caching configuration that applies to multiple endpoints. A policy can be selected for specific endpoints, while a base policy provides default caching configuration for a collection of endpoints.
 
-The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified,  it defaults to one minute.
+The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified, it defaults to one minute.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies1" highlight="3-4":::
 
@@ -51,11 +55,17 @@ The following highlighted code creates two policies, each specifying a different
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies1" highlight="5-8":::
 
-You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute:
+You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute.
+
+In a minimal API app, the following code configures one endpoint with a 20-second expiration and one with a 30-second expiration:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectpolicy":::
 
-For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+For apps with controllers, apply the `[OutputCache]` attribute to the action method to select a policy:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/Expire20Controller.cs" id="selectpolicy":::
+
+ For Razor Pages apps, apply the attribute to the Razor page class.
 
 ## Default output caching policy
 
@@ -101,7 +111,7 @@ The remainder of the class is the same as shown previously. Add the custom polic
 
 The preceding code uses DI to create the instance of the custom policy class. Any public arguments in the constructor are resolved.
 
-When using a custom policy as a base policy, don't call `OutputCache()` (with no arguments) on any endpoint that the base policy should apply to. Calling `OutputCache()` adds the default policy to the endpoint.
+When using a custom policy as a base policy, don't call `OutputCache()` (with no arguments) or use the `[OutputCache]` attribute on any endpoint that the base policy should apply to. Calling `OutputCache()` or using the attribute adds the default policy to the endpoint.
 
 ## Specify the cache key
 
@@ -109,9 +119,13 @@ By default, every part of the URL is included as the key to a cache entry, that 
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="7":::
 
-You can then select the `VaryByQuery` policy for an endpoint:
+You can then select the `VaryByQuery` policy for an endpoint. In a minimal API app, the following code selects the `VaryByQuery` policy for an endpoint that returns a unique response only for each unique value of the `culture` query string:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectquery":::
+
+The following code does the same for a controller action:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/QueryController.cs" id="selectquery":::
 
 Here are some of the options for controlling the cache key:
 
@@ -120,6 +134,8 @@ Here are some of the options for controlling the cache key:
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue%2A>- Specify a value to add to the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds goes from odd to even or even to odd.
 
   :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="varybyvalue":::
+
+  <!--todo: add vary-by-value for controller-based APIs -->
 
 Use <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.UseCaseSensitivePaths?displayProperty=nameWithType> to specify that the path part of the key is case sensitive. The default is case insensitive.
 
@@ -132,6 +148,8 @@ Cache revalidation means the server can return a `304 Not Modified` HTTP status 
 The following code illustrates the use of an [`Etag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header to enable cache revalidation. If the client sends an [`If-None-Match`](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-None-Match) header with the etag value of an earlier response, and the cache entry is fresh, the server returns [304 Not Modified](https://developer.mozilla.org/docs/Web/HTTP/Status/304) instead of the full response:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="etag":::
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/Controllers/EtagController" id="etag":::
 
 Another way to do cache revalidation is to check the date of the cache entry creation compared to the date requested by the client. When the request header `If-Modified-Since` is provided, output caching returns 304 if the cached entry is older and isn't expired.
 

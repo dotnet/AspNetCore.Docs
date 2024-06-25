@@ -5,10 +5,11 @@ namespace OCControllers.Controllers;
 
 [ApiController]
 [Route("/[controller]")]
-[OutputCache]
-public class TagGroupController : ControllerBase
+[OutputCache(PolicyName = "CachePost")]
+public class CachePostController : ControllerBase
 {
-    public async Task GetAsync()
+    [HttpPost]
+    public async Task PostAsync()
     {
         await Gravatar.WriteGravatar(HttpContext);
     }
