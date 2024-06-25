@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace OCControllers.Controllers;
 
-// </snippet_tagendpoint>
+// <snippet_tagendpoint>
 [ApiController]
 [Route("/[controller]")]
 [OutputCache(Tags = new[] { "tag-blog","tag-all" })]

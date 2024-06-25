@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace OCControllers.Controllers;
 
-// </snippet_etag>
+// <snippet_etag>
 [ApiController]
 [Route("/[controller]")]
 [OutputCache]

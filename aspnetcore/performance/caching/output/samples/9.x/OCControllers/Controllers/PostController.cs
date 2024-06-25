@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace OCControllers.Controllers;
 
-// <snippet_post
+// <snippet_post>
 [ApiController]
 [Route("/[controller]")]
 [OutputCache(PolicyName = "CachePost")]
-public class CachePostController : ControllerBase
+public class PostController : ControllerBase
 {
     public async Task GetAsync()
     {
