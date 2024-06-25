@@ -56,6 +56,7 @@ For configuration guidance, see <xref:host-and-deploy/iis/advanced>.
 * <xref:host-and-deploy/directory-structure>
 * <xref:host-and-deploy/iis/modules>
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 ## Overlapped recycle
 
@@ -691,6 +692,7 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 * <xref:host-and-deploy/directory-structure>
 * <xref:host-and-deploy/iis/modules>
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 ## Additional resources
 
@@ -1208,6 +1210,7 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 * <xref:host-and-deploy/directory-structure>
 * <xref:host-and-deploy/iis/modules>
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 ## Additional resources
 
