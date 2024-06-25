@@ -313,6 +313,7 @@ An alternative approach to generate problem details is to use the third-party Nu
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 :::moniker-end
 
@@ -519,6 +520,7 @@ For information about how to handle model state errors, see [Model binding](xref
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 :::moniker-end
 
@@ -775,6 +777,7 @@ For information about how to handle model state errors, see [Model binding](xref
 ## Additional resources
 
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 :::moniker-end
 
@@ -991,5 +994,6 @@ For information about how to handle model state errors, see [Model binding](xref
 ## Additional resources
 
 * <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 :::moniker-end
