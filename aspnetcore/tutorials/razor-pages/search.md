@@ -87,7 +87,7 @@ Save the changes and test the filter.
 
 Update the `Movies/Index.cshtml.cs` page `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?name=snippet_search_SearchGenre)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Index_SearchAddedGenre.cshtml.cs?range=30-55)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 

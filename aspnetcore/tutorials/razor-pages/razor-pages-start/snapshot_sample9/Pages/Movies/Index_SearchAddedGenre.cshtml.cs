@@ -1,5 +1,4 @@
-﻿
-#define SEARCH_GENRE
+﻿#define SEARCH_GENRE
 #if SEARCH_GENRE
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -28,12 +27,13 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty(SupportsGet = true)]
         public string? MovieGenre { get; set; }
 
-        // <snippet_search_SearchGenre>
         public async Task OnGetAsync()
         {
+            // <snippet_search_linqQuery>
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
+            // </snippet_search_linqQuery>
 
             var movies = from m in _context.Movie
                          select m;
@@ -47,12 +47,12 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 movies = movies.Where(x => x.Genre == MovieGenre);
             }
+
+            // <snippet_search_selectList>
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            // </snippet_search_selectList>
             Movie = await movies.ToListAsync();
         }
-        // </snippet_search_SearchGenre>
-
-
     }
 }
 #endif
