@@ -153,7 +153,7 @@ The following code illustrates the use of an [`Etag`](https://developer.mozilla.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="etag":::
 
-:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/EtagController" id="snippet_etag":::
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/EtagController.cs" id="snippet_etag":::
 
 Another way to do cache revalidation is to check the date of the cache entry creation compared to the date requested by the client. When the request header `If-Modified-Since` is provided, output caching returns 304 if the cached entry is older and isn't expired.
 
