@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 05/02/2024
+ms.date: 06/25/2024
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -16,7 +16,7 @@ uid: tutorials/min-web-api
 <!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
@@ -39,11 +39,11 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -60,7 +60,7 @@ This tutorial creates the following API:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/8.x/create-new-project-empty-vs17.8.0.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/9.x/create-new-project-empty-vs17.8.0.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
@@ -68,7 +68,7 @@ This tutorial creates the following API:
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/8.x/add-info-vs17.9.0.png)
+  ![Additional information](~/tutorials/min-web-api/_static/9.x/add-info-vs17.9.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -116,7 +116,7 @@ This tutorial creates the following API:
 
 The `Program.cs` file contains the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todo/Program.cs" id="snippet_min":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todo/Program.cs" id="snippet_min":::
 
 The preceding code:
 
@@ -198,13 +198,13 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * In the project folder, create a file named `Todo.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/Todo.cs":::
 
 The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
 * Create a file named `TodoDb.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/TodoDb.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/TodoDb.cs":::
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
@@ -212,11 +212,11 @@ The preceding code defines the *database context*, which is the main class that 
 
 * Replace the contents of the `Program.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_all)]
 
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
 The DI container provides access to the database context and other services.
 
@@ -252,11 +252,11 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 
 * In Program.cs add the following `using` statements at the top:
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
 
 * Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
 
 In the previous code:
 
@@ -265,7 +265,7 @@ In the previous code:
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-12)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_enable_middleware&highlight=2-12)]
 
   The previous code enables the Swagger middleware for serving the generated JSON document and the Swagger UI. Swagger is only enabled in a development environment. Enabling Swagger in a production environment could expose potentially sensitive details about the API's structure and implementation.
 
@@ -277,7 +277,7 @@ In the previous code:
 
 The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_post)]
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_post)]
 
 Run the app. The browser displays a 404 error because there's no longer a `/` endpoint.
 
@@ -288,7 +288,7 @@ The POST endpoint will be used to add data to the app.
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
 
-  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/8.x/generate-request-vs17.8.0.png)
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/9.x/generate-request-vs17.8.0.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
 
@@ -335,17 +335,17 @@ The POST endpoint will be used to add data to the app.
 
 * Select the **Send request** link that is above the `POST` request line.
 
-  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/8.x/http-file-run-button-vs17.8.0.png)
+  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/9.x/http-file-run-button-vs17.8.0.png)
 
   The POST request is sent to the app and the response is displayed in the **Response** pane.
 
-  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/8.x/http-file-window-with-response-vs17.8.0.png)
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/9.x/http-file-window-with-response-vs17.8.0.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * With the app still running, in the browser, navigate to `https://localhost:<port>/swagger` to display the API testing page generated by Swagger.
 
-  ![Swagger generated API testing page](~/tutorials/min-web-api/_static/8.x/swagger.png)
+  ![Swagger generated API testing page](~/tutorials/min-web-api/_static/9.x/swagger.png)
 
 * On the Swagger API testing page, select **Post /todoitems** > **Try it out**.
 * Note that the **Request body** field contains a generated example format reflecting the parameters for the API.
@@ -360,11 +360,11 @@ The POST endpoint will be used to add data to the app.
 
 * Select **Execute**.
 
-  ![Swagger with Post request](~/tutorials/min-web-api/_static/8.x/swagger-post-1.png)
+  ![Swagger with Post request](~/tutorials/min-web-api/_static/9.x/swagger-post-1.png)
 
 Swagger provides a **Responses** pane below the **Execute** button. 
 
-  ![Swagger with Post resonse](~/tutorials/min-web-api/_static/8.x/swagger-post-responses.png)
+  ![Swagger with Post resonse](~/tutorials/min-web-api/_static/9.x/swagger-post-responses.png)
 
 Note a few of the useful details:
 
@@ -384,7 +384,7 @@ The sample app implements several GET endpoints by calling `MapGet`:
 |`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 
-[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_get)]
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_get)]
 
 ## Test the GET endpoints
 
@@ -496,7 +496,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 
 The sample app implements a single PUT endpoint using `MapPut`:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_put)]
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_put)]
 
 This method is similar to the `MapPost` method, except it uses HTTP PUT. A successful response returns [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -562,7 +562,7 @@ Use Swagger to send a PUT request:
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
 
-[!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_delete)]
+[!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo/Program.cs?name=snippet_delete)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -601,11 +601,11 @@ Replace the contents of `Program.cs` with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/Program.cs" id="snippet_all":::
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoGroup_SwaggerVersion/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup_SwaggerVersion/Program.cs" id="snippet_all":::
 
 ---
 
@@ -625,25 +625,25 @@ The `Map<HttpVerb>` methods can call route handler methods instead of using lamb
 
 # [Visual Studio](#tab/visual-studio)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults/Program.cs" id="snippet_all":::
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
 
 ---
 
 The `Map<HttpVerb>` code now calls methods instead of lambdas:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_group":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults/Program.cs" id="snippet_group":::
 
 These methods return objects that implement <xref:Microsoft.AspNetCore.Http.IResult> and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_handlers":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults/Program.cs" id="snippet_handlers":::
 
 Unit tests can call these methods and test that they return the correct type. For example, if the method is `GetAllTodos`:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
 
 Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601.Value) is returned from the handler method. For example:
 
@@ -676,7 +676,7 @@ A DTO can be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/Todo.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoDTO/Todo.cs":::
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -684,17 +684,17 @@ Verify you can post and get the secret field.
 
 Create a file named `TodoItemDTO.cs` with the following code:
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/TodoItemDTO.cs":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoDTO/TodoItemDTO.cs":::
 
 Replace the contents of the `Program.cs` file with the following code to use this DTO model:
 
 # [Visual Studio](#tab/visual-studio)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoDTO/Program.cs" id="snippet_all":::
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-:::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
 
 ---
 
@@ -722,3 +722,4 @@ See <xref:fundamentals/minimal-apis>
 :::moniker-end
 
 [!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api6-7.md)]
+[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api8.md)]
