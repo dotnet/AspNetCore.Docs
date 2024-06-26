@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 06/25/2024
+ms.date: 06/26/2024
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -45,10 +45,6 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
-
 ---
 
 ## Create an API project
@@ -60,15 +56,15 @@ This tutorial creates the following API:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
 
-  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/9.x/create-new-project-empty-vs17.8.0.png)
+  ![Visual Studio Create a new project](~/tutorials/min-web-api/_static/9.x/create-new-project-empty-vs17.11.0.png)
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 8.0 (Long Term Support)**
+  * Select **.NET 9.0 (Preview)**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/9.x/add-info-vs17.9.0.png)
+  ![Additional information](~/tutorials/min-web-api/_static/9.x/add-info-vs17.11.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -86,29 +82,6 @@ This tutorial creates the following API:
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
   The preceding commands create a new web minimal API project and open it in Visual Studio Code.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In Visual Studio for Mac 2022, select **File** > **New Project...**.
-
-* In the **Choose a template for your new project** dialog:
-  * Select **Web and Console** > **App** > **Empty**
-  * Select **Continue**
-
-  ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
-
-* Make the following selections:
-  * **Target framework:** .NET 8.0
-  * **Configure for HTTPS**: Check
-  * **Do not use top-level statements**: Uncheck
-  * Select **Continue**
-
-  ![Additional information](~/tutorials/min-web-api/_static/add-info8-vsmac-2022.png)
-
-* Enter the following:
-  * **Project name:** TodoApi
-  * **Solution name:** TodoApi
-  * Select **Create**
 
 ---
 
@@ -151,14 +124,6 @@ Close the browser window.
 
 In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
-
-`Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
-
-Close the browser window.
-
 ---
 
 ## Add NuGet packages
@@ -169,6 +134,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
+* Select **Include Prelease**.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -178,19 +144,9 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Run the following commands:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.InMemory
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+  dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
   ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
-* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
-* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
-* Select **Add Package**.
-* In the **Select Projects** window, select **Ok**.
-* In the **License Agreement** window, select **Agree**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 ---
 
@@ -224,7 +180,7 @@ The DI container provides access to the database context and other services.
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ## Create API testing UI with Swagger
 
@@ -341,7 +297,7 @@ The POST endpoint will be used to add data to the app.
 
   ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/9.x/http-file-window-with-response-vs17.8.0.png)
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * With the app still running, in the browser, navigate to `https://localhost:<port>/swagger` to display the API testing page generated by Swagger.
 
@@ -443,7 +399,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   }
   ```
   
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Swagger.
 
@@ -537,7 +493,7 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PUT request:
 
@@ -582,7 +538,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a DELETE request:
 
@@ -603,7 +559,7 @@ Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup/Program.cs" id="snippet_all":::
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoGroup_SwaggerVersion/Program.cs" id="snippet_all":::
 
@@ -627,7 +583,7 @@ The `Map<HttpVerb>` methods can call route handler methods instead of using lamb
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults/Program.cs" id="snippet_all":::
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
 
@@ -692,7 +648,7 @@ Replace the contents of the `Program.cs` file with the following code to use thi
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoDTO/Program.cs" id="snippet_all":::
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/9.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
 
