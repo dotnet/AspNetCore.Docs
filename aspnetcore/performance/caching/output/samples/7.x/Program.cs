@@ -1,4 +1,4 @@
-#define Version3c // Version1 / Version2 / Version3 / Version 3b / Version 3c / Version4
+#define Version1 // Version1 / Version2 / Version3 / Version 3b / Version 3c / Version4
 using Microsoft.AspNetCore.OutputCaching;
 using System.Globalization;
 
@@ -112,12 +112,11 @@ public class Program
         }).CacheOutput();
         //</etag>
 
-
         // <tagendpoint>
         app.MapGet("/blog", Gravatar.WriteGravatar)
-            .CacheOutput(builder => builder.Tag("tag-blog")); ;
+            .CacheOutput(builder => builder.Tag("tag-blog"));
         app.MapGet("/blog/post/{id}", Gravatar.WriteGravatar)
-            .CacheOutput(builder => builder.Tag("tag-blog")); ;
+            .CacheOutput(builder => builder.Tag("tag-blog"));
         // </tagendpoint>
 
         // <taggroup>
