@@ -14,13 +14,13 @@ When using EF Code First to automatically create and track a database, Code Firs
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
 
 ## Adding a Rating Property to the Movie Model
-<!-- Update Index in working project then copy to snap7 folder -->
+<!-- Update code in working project (which becomes clean finished sample) to compile and verify steps, then copy to snapshot sample folder. -->
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
    <a name="addrat7"></a>
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample8/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
    * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Create.cshtml)*.
@@ -117,14 +117,14 @@ dotnet ef migrations add rating
 dotnet ef database update
 ```
 
-The `dotnet-ef migrations add rating` command tells the framework to:
+The `dotnet ef migrations add rating` command tells the framework to:
 
 * Compare the `Movie` model with the `Movie` database schema.
 * Create code to migrate the database schema to the new model.
 
 The name `rating` is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `dotnet-ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
+The `dotnet ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 Delete all the records in the database, the initializer will seed the database and include the `Rating` field. 
 

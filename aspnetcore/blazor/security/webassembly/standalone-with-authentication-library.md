@@ -103,7 +103,7 @@ Google OAuth 2.0 OIDC example for an app that runs on the `localhost` address at
     "ClientId": "2...7-e...q.apps.googleusercontent.com",
     "PostLogoutRedirectUri": "https://localhost:5001/authentication/logout-callback",
     "RedirectUri": "https://localhost:5001/authentication/login-callback",
-    "ResponseType": "id_token"
+    "ResponseType": "code"
   }
 }
 ```
