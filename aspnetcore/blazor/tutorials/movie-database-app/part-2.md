@@ -97,52 +97,10 @@ The `Movie` class contains:
 
 The question mark on a `string` type indicates that the property is nullable (it can hold a `null` value).
 
-<!-- REVIEWER NOTE
-
-Although the RP/MVC tutorials present DAs later,
-this is the best time ... before scaffolding ... 
-to introduce the concept for a couple of reasons.
-
-If the Movie model is scaffolded without setting 
-the Price property decimal DA, an error is thrown 
-that we really don't want devs to see because 
-it's confusing to see errors thrown for no obvious 
-reason when working a tutorial.
-
-Second, I think scaffolding requires the date type 
-DA  on the ReleaseDate to scaffold the UI properly,
-so all of these tutorial have to show it before
-scaffolding, and the dev is looking right at it
-and probably wondering (in the RP/MVC tutorials)
-what it is.
-
-We may as well cover this briefly here, explain 
-what they're looking at, and have them go ahead
-and set up the DA for Price now. Later, DA for 
-validation can just provide a quick recap and 
-get on with modifying the model for validation.
-
-Also note that I'm going to leave the ReleaseDate
-DA on the initial model and have the reader
-manually adjust the code for Price. This is a 
-learning step for those new to development to
-get used to taking action in the code with their
-tooling.
-
--->
-
 The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by <xref:System.ComponentModel.DataAnnotations>, which are a set of attribute classes placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
 
 ```csharp
 [{ANNOTATION}]
-```
-
-Multiple annotations can appear on multiple lines, or they can appear on the same line separated by commas:
-
-```csharp
-[{ANNOTATION_1}]
-[{ANNOTATION_2}]
-[{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
 ```
 
 Add the following namespace to the top of the `Movie.cs` file:
@@ -185,9 +143,9 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
 
-Paste all of the following commands into the PowerShell prompt of the **Terminal** at once. When you paste multiple commands into the prompt, a warning appears telling you that multiple commands will execute. Dismiss any warning that appears and go ahead with pasting all of the commands.
+Paste all of the following commands at the prompt (`>`) of the **Terminal** at once. When you paste multiple commands, a warning appears telling you that multiple commands will execute. Dismiss any warning that appears and go ahead with pasting all of the commands.
 
-When you paste multiple commands into a PowerShell prompt, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
+When you paste multiple commands, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
@@ -204,7 +162,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 ```
 
 > [!WARNING]
-> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the PowerShell command shell (**Terminal** tab).
+> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the command shell (**Terminal** tab).
 
 Ignore the following messages if they appear:
 
@@ -223,11 +181,7 @@ The preceding commands add:
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
 
 
-In the **Terminal**, build the app:
-
-```dotnetcli
-dotnet build
-```
+In the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), use the `.NET: Build` command to build the app.
 
 Confirm that the app built successfully.
 
@@ -380,28 +334,6 @@ ASP.NET Core is built with dependency injection, which is a software design patt
 
 The <xref:Microsoft.AspNetCore.Components.QuickGrid> component is a Razor component for efficiently displaying data in tabular form. The scaffolder places a <xref:Microsoft.AspNetCore.Components.QuickGrid> component in the `Index` component (`Components/Pages/Index.razor`) to display movie entities. Calling <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServiceCollectionExtensions.AddQuickGridEntityFrameworkAdapter%2A> on the service collection adds an EF Core adapter for <xref:Microsoft.AspNetCore.Components.QuickGrid> to recognize EF Core-supplied <xref:System.Linq.IQueryable%601> instances and to resolve database queries asynchronously for efficiency.
 
-<!-- REVIEWER NOTE
-
-There's a remark in the RP/MVC tutorials along the lines of (and I had 
-this line here when I was writing this out initially for the VS pivot) ...
-
-To supply this EF Core adapter, the scaffolder automatically adds the 
-[`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`]
-(https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.
-EntityFrameworkAdapter) NuGet package to the app.
-
-Testing the tutorial from the command line, this wasn't the case. I had 
-to add the package to the app via the long list of setup commands. 
-Therefore, I'm holding that line here until I can investigate further.
-IIRC, there was a build step prior to the actual scaffolding that
-broke. That might be because of a delta in the early steps between
-this and the RP/MVC tutorials. I'll look into this soon and adjust
-this as needed. For now tho, nothing is harmed by sitting on the line.
-The whole process here works just fine in this form with the package
-added to the command list above.
-
--->
-
 The following code is added to the `Program` file by the scaffolder:
 
 ```csharp
@@ -429,11 +361,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 ```
 
-To only adopt static SSR, <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A> is the only extension method required. As you can see in the preceding example, scaffolding enables interactive SSR. The app isn't required to adopt interactive SSR just because this extension method is called, and the tutorial doesn't require it for the next several articles in this series, but the app is capable of adopting interactive SSR. In the last part of the tutorial series, the app is modified to adopt interactive SSR, and that's when calling <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> is required. For now, we'll leave the call in place.
-
-<xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> configures the app to support interactive SSR with the Blazor SignalR&dagger; hub. The call to <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> also isn't required for the next several articles. The call only enables interactive features for the app's SignalR hub. We'll also leave this call in place.
-
-&dagger;*SignalR* is a library that simplifies adding real-time web functionality to apps. Real-time web functionality enables server-side code to push content to clients instantly. An interactive Blazor app uses a SignalR hub to communicate with code running on client devices.
+The extension methods <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> and <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> make the app capable of adopting interactive SSR, which isn't relevant until the last part of the tutorial series on interactivity. Over the next several articles, the app's components only adopt static SSR.
 
 ## Create the initial database schema using EF Core's migration feature
 
@@ -482,7 +410,7 @@ The update database command executes the `Up` method migrations that haven't bee
 
 Right-click the `BlazorWebAppMovies` project file (`BlazorWebAppMovies.csproj`) and select **Open in Integrated Terminal**.
 
-The **Terminal** window opens with a PowerShell command prompt at the project directory, which contains the `Program` file and the app's project file (`.csproj`).
+The **Terminal** window opens with a command prompt at the project directory, which contains the `Program` file and the app's project file (`.csproj`).
 
 Execute the following .NET CLI command to add an initial migration. The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in <xref:Microsoft.EntityFrameworkCore.DbContext>. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
 
@@ -521,16 +449,6 @@ The database context `BlazorWebAppMovieContext`:
 * Coordinates EF Core functionality, such as CRUD operations, for the `Movie` model.
 * Contains a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for the `Movie` entity set. In EF terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-<!-- REVIEWER NOTE
-
-Technically, the following code is too wide for us (the
-lines are too long); but because this code is generated 
-by the template and I'd like it to match what the dev 
-sees in the file that was generated by the scaffolder, 
-I'll allow it.
-
--->
-
 ```csharp
 public class BlazorWebAppMoviesContext : DbContext
 {
@@ -552,16 +470,6 @@ Run the app.
 Add `/movies` to the URL in the browser's address bar to navigate to the movies `Index` page.
 
 After the `Index` page loads, select the **`Create New`** link.
-
-<!-- REVIEWER NOTE
-
-As usual, all of my movie references will have proper
-attribution per CELA guidelines. I can't say the same
-for the RP/MVC tutorials. I've made a long-range 
-tracking item to discuss it with Wade later to have
-them added to those tutorials.
-
--->
 
 Add a movie to the database. In the following example, the classic sci-fi movie [*The Matrix*](https://www.warnerbros.com/movies/matrix) (&copy;1999 [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/)) is added as the first movie entry. Selecting the **`Create`** button adds the movie to the database:
 
