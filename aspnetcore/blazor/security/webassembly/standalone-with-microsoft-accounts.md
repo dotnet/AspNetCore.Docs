@@ -12,7 +12,7 @@ uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Microsoft Entra (ME-ID)](/entra/identity-platform/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Microsoft Entra (ME-ID)](/security/zero-trust/develop/identity-supported-account-types) for authentication.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
