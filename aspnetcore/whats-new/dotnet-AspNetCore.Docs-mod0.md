@@ -9,12 +9,6 @@ ms.date: 07/01/2024
 
 Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists some of the major changes to docs during this period.
 
-## Miscellaneous
-
-### Updated articles
-
-- [ZZZ - Title not found in: #32841](zone-pivot-groups.yml) - Change Tooling article content layout
-
 ## Blazor
 
 ### Updated articles
@@ -39,12 +33,12 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 - <xref:blazor/security/webassembly/additional-scenarios> - Update RemoteAuthenticatorView param value
 - <xref:blazor/hybrid/tutorials/maui-blazor-web-app>
   - Place code for sample cross-link in MAUI project
-  - Update maui-blazor-web-app.md
+  - Article updates
   - .NET MAUI BH BWA tutorial updates
   - Update .NET MAUI BH BWA tutorial
   - Clarify per-page/component scenario
-  - Patch the Pre5 .NET MAUI BH BWA coverage (PR 2)
-  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage
+  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 2)
+  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 1)
   - New .NET MAUI Blazor Hybrid template
 - <xref:blazor/host-and-deploy/configure-trimmer> - Clarify Blazor trim mode
 - <xref:blazor/debug> - Blazor CLI commands moving to `dotnet watch`
@@ -177,7 +171,6 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![44 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-44-green)
 - [hakenr](https://github.com/hakenr) - Robert Haken ![5 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
 - [aidmsu](https://github.com/aidmsu) - Andrey Dorokhov ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [DickBaker](https://github.com/DickBaker) - Dick Baker ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
