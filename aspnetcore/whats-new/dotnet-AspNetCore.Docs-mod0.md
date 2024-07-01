@@ -124,8 +124,8 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 ### Updated articles
 
 - <xref:aspnetcore-9>
-  - Render mode /8
-  - 3 Blazor WN sections
+  - Render mode detection, static web asset delivery, dynamic compression
+  - Add three Blazor What's New sections
 
 ## Security
 
