@@ -40,8 +40,7 @@ public int Id { get; set; }
 
 public string? Title { get; set; }
 
-[DataType(DataType.Date)]
-public DateTime ReleaseDate { get; set; }
+public DateOnly ReleaseDate { get; set; }
 
 public string? Genre { get; set; }
 
@@ -75,21 +74,19 @@ Use the following contents for the `Movie.cs` file:
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorWebAppMovies.Models
+namespace BlazorWebAppMovies.Models;
+
+public class Movie
 {
-    public class Movie
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string? Title { get; set; }
+    public string? Title { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime ReleaseDate { get; set; }
+    public DateOnly ReleaseDate { get; set; }
 
-        public string? Genre { get; set; }
+    public string? Genre { get; set; }
 
-        public decimal Price { get; set; }
-    }
+    public decimal Price { get; set; }
 }
 ```
 
@@ -148,20 +145,13 @@ Multiple annotations can appear on multiple lines, or they can appear on the sam
 [{ANNOTATION_3}, {ANNOTATION_4}, [{ANNOTATION_5}]
 ```
 
-In the `Movie` model, the `ReleaseDate` property has a [`[DataType]` attribute](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) to specify an additional type to associate with `ReleaseDate`. In this case, the type of data is a date (<xref:System.ComponentModel.DataAnnotations.DataType.Date?displayProperty=nameWithType>):
-
-```csharp
-[DataType(DataType.Date)]
-public DateTime ReleaseDate { get; set; }
-```
-
 Add the following namespace to the top of the `Movie.cs` file:
 
 ```csharp
 using System.ComponentModel.DataAnnotations.Schema;
 ```
 
-Add the following two data annotation attributes immediately above the `Price` property:
+Add the following two data annotation attributes immediately above the `Price` property to specify that it represents a currency:
 
 ```csharp
 [DataType(DataType.Currency)]
@@ -173,13 +163,6 @@ The `Price` property in the `Movie` class file after adding the preceding data a
 ```csharp
 [DataType(DataType.Currency)]
 [Column(TypeName = "decimal(18, 2)")]
-public decimal Price { get; set; }
-```
-
-If you prefer to place data annotations on the same line, your code should look like the following:
-
-```csharp
-[DataType(DataType.Currency), Column(TypeName = "decimal(18, 2)")]
 public decimal Price { get; set; }
 ```
 
@@ -200,7 +183,7 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 ## Add Nuget packages and tools
 
-To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**). The **Terminal** tab is a PowerShell command shell.
+To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
 
 Paste all of the following commands into the PowerShell prompt of the **Terminal** at once. When you paste multiple commands into the prompt, a warning appears telling you that multiple commands will execute. Dismiss any warning that appears and go ahead with pasting all of the commands.
 
@@ -220,7 +203,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 ```
 
-> [!CAUTION]
+> [!WARNING]
 > Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the PowerShell command shell (**Terminal** tab).
 
 Ignore the following messages if they appear:
@@ -239,7 +222,6 @@ The preceding commands add:
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
 
-By default, the .NET binaries architecture installed by the preceding commands represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
 In the **Terminal**, build the app:
 
@@ -294,7 +276,6 @@ The preceding commands add:
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
 
-By default, the .NET binaries architecture installed by the preceding commands represents the currently running OS architecture. To specify a different OS architecture, see [`dotnet tool install` (`--arch option`)](/dotnet/core/tools/dotnet-tool-install#options).
 
 In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
@@ -308,7 +289,7 @@ Confirm that the app built successfully.
 
 ## Scaffold the model
 
-In this section, the `Movie` model is *scaffolded* into a database, database context, and a UI for managing movies in the database. .NET scaffolding is a code generation framework for .NET applications. You scaffold models of your project when you want to quickly add database and UI code that interacts with data models.
+In this section, the `Movie` model is used to *scaffold* a database context and a UI for managing movies in the database. .NET scaffolding is a code generation framework for .NET applications. You use scaffolding to quickly add database and UI code that interacts with data models.
 
 :::zone pivot="vs"
 
@@ -318,7 +299,7 @@ Right-click on the `Components/Pages` folder and select **Add** > **New Scaffold
 
 With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
 
-*CRUD* is an acronym for Create, Read, Update, and Delete. The Blazor generator produces create, edit, delete, details, and index components for the app.
+*CRUD* is an acronym for Create, Read, Update, and Delete. The scaffolder produces create, edit, delete, details, and index components for the app.
 
 ![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/install-common-razor-component.png)
 
@@ -393,7 +374,7 @@ The scaffolding process creates the following component files and movie database
   * `Index.razor`: Lists movie entities (records) in the database.
 * `Data/BlazorWebAppMovieContext.cs`: Database context file (<xref:Microsoft.EntityFrameworkCore.DbContext>).
 
-The component files in the `MoviePages` folder are described in greater detail the next part of this tutorial. The database context is described later in this article.
+The component files in the `MoviePages` folder are described in greater detail in the next part of this tutorial. The database context is described later in this article.
 
 ASP.NET Core is built with dependency injection, which is a software design pattern for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies. Services, such as the EF Core database context, are registered with dependency injection during application startup. These services are injected into Razor components for use by the components.
 
@@ -509,7 +490,7 @@ Execute the following .NET CLI command to add an initial migration. The `migrati
 dotnet ef migrations add InitialCreate
 ```
 
-After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
+After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
 
 ```dotnetcli
 dotnet ef database update
@@ -525,7 +506,7 @@ From the project's root folder, execute the following .NET CLI command to add an
 dotnet ef migrations add InitialCreate
 ```
 
-After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
+After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
 
 ```dotnetcli
 dotnet ef database update
@@ -589,9 +570,6 @@ Add a movie to the database. In the following example, the classic sci-fi movie 
 When you select the **Create** button, the movie data is posted to the server and saved in the database. When the app returns to the `Index` page, the added entity appears:
 
 ![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
-
-> [!NOTE]
-> For globalization instructions, see [Show support jQuery validation for non-English locales that use a comma (",") for a decimal point (`dotnet/AspNetCore.Docs` #4076)](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 Test the `Edit`, `Details` pages.
 
