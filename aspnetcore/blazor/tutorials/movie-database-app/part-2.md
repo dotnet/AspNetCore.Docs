@@ -148,9 +148,7 @@ Paste all of the following commands at the prompt (`>`) of the **Terminal** at o
 When you paste multiple commands, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
 
 ```dotnetcli
-dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
@@ -198,9 +196,7 @@ Paste all of the following commands into the command shell prompt at once. When 
 When you paste multiple commands into a command shell, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
 
 ```dotnetcli
-dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
