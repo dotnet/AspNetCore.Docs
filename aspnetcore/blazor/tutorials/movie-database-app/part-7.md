@@ -155,15 +155,11 @@ Create a migration to update the database's schema. The movie rating, as a `Rati
 
 :::zone pivot="vs"
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
+In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Add migration** in the **SQL Server Express LocalDB** area.
 
-In the PMC, execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
+Give the migration a **Migration name** of `AddRatingField` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration.
 
-```powershell
-Add-Migration AddRatingField
-```
-
-The `Add-Migration` command:
+The migration:
 
 * Compares the `Movie` model with the `Movie` database table schema.
 * Creates code to migrate the database schema to match the model.
@@ -186,11 +182,9 @@ migrationBuilder.AddColumn<string>(
 
 Save the migration file.
 
-In the PMC, execute the following command to update the database, which preserves the existing data while it adds the movie rating column with the default value:
+Select the ellipsis (`...`) again followed by the **Update database** command.
 
-```powershell
-Update-Database
-```
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button.
 
 Modify the one movie that isn't rated *R*:
 
@@ -428,11 +422,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 1. Right-click on the database, and select **Delete**. *Make sure that you select the correct database in the list.*
 1. Check **Close existing connections**.
 1. Select **OK**.
-1. In the **Package Manager Console** (PMC), execute the following command to run the existing migrations that recreate the database:
-
-   ```powershell
-   Update-Database
-   ```
+1. In **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Update database** in the **SQL Server Express LocalDB** area. Updating the database executes the existing migrations that recreate the database.
 
 :::zone-end
 

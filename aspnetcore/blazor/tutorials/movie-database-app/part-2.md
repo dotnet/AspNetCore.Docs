@@ -470,24 +470,30 @@ This is the reverse procedure of *database-first* approaches, where the database
 
 :::zone pivot="vs"
 
-In this section, the **Package Manager Console** (PMC) window is used to:
+In this section, [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) are used to issue EF Core commands that:
 
 * Add an initial migration.
 * Update the database with the initial migration.
 
-To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
+In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Add migration** in the **SQL Server Express LocalDB** area:
 
-In the PMC, execute the following command to add an initial migration. The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in <xref:Microsoft.EntityFrameworkCore.DbContext>. The `InitialCreate` argument is used to name the migration. Any name can be used, but the convention is to use a name that describes the migration.
+![UI showing the 'Add migration' option in the contextual menu opened from selecting the ellipsis next to 'SQL Server Express LocalDB'](~/blazor/tutorials/movie-database-app/part-2/_static/add-migration-menu-item.png)
 
-```powershell
-Add-Migration InitialCreate
-```
+Give the migration a **Migration name** of `InitialCreate`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration:
 
-After the preceding command completes, update the database with the `Update-Database` command. The `Update-Database` command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
+![Add a new EF migration dialog showing the migration name and database context](~/blazor/tutorials/movie-database-app/part-2/_static/new-ef-migration-dialog.png)
 
-```powershell
-Update-Database
-```
+Adding a migration generates code to create the initial database schema. The schema is based on the model specified in <xref:Microsoft.EntityFrameworkCore.DbContext>.
+
+After the preceding command completes, update the database. Select the ellipsis (`...`) again followed by the **Update database** command:
+
+![UI showing the 'Update database' option in the contextual menu opened from selecting the ellipsis next to 'SQL Server Express LocalDB'](~/blazor/tutorials/movie-database-app/part-2/_static/update-database-menu-item.png)
+
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button:
+
+![Update database with the latest migration dialog showing the database context](~/blazor/tutorials/movie-database-app/part-2/_static/update-database-dialog.png)
+
+The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
 
 :::zone-end
 

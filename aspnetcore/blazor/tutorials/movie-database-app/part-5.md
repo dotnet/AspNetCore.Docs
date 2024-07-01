@@ -168,19 +168,13 @@ To align the model and the database schema, create and apply an EF Core *databas
 
 :::zone pivot="vs"
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
+In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Add migration** in the **SQL Server Express LocalDB** area.
 
-In the PMC, execute the following command:
+Give the migration a **Migration name** of `NewMovieDataAnnotations` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration.
 
-```powershell
-Add-Migration NewMovieDataAnnotations
-```
+Select the ellipsis (`...`) again followed by the **Update database** command.
 
-To apply the migration to the database, execute the following command in the PMC:
-
-```powershell
-Update-Database
-```
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button.
 
 :::zone-end
 

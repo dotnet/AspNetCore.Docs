@@ -25,24 +25,11 @@ At the end of this tutorial, you'll have an interactive Blazor Web App that mana
 
 ## Prerequisites
 
-<!-- REVIEWER NOTE
-
-Let's not cross-link to specific tooling versions to 
-avoid content versioning and save on doc maintenance 
-costs.
-
-General reminder: As usual for tutorials, there's 
-minimal cross-linking to reference docs in the text 
-of the series to avoid distracting the reader. We do 
-link to API docs in the text. Reference doc 
-cross-links go into Additional Resources sections at 
-the bottoms of the articles.
-
--->
-
 :::zone pivot="vs"
 
-<!-- NOTE TO SELF: Confirm this is the link for continued use -->
+<!-- NOTE TO SELF: Confirm this is the link for continued use.
+                   I have an email out to the docs cats now
+                   asking about it. -->
 
 [Visual Studio (latest release)](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 
@@ -56,7 +43,7 @@ Latest releases of:
 * [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [.NET SDK](https://dotnet.microsoft.com/download/dotnet)
 
-The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which is a [PowerShell command shell](/powershell/).
+The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which is a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
 
 :::zone-end
 
@@ -65,19 +52,6 @@ The Visual Studio Code (VS Code) instructions for ASP.NET Core development in th
 [.NET SDK (latest release)](https://dotnet.microsoft.com/download/dotnet)
 
 The [.NET CLI](/dotnet/core/tools/) is part of the .NET SDK. To issue a command that affects the project, open the command shell to the project's root folder to execute the command.
-
-<!-- REVIEWER NOTE
-
-I think a PS command shell would be fine to use
-as well. If you want me to add a remark here that 
-the dev can use PowerShell for the tutorial, let 
-me know. A nice feature of PS is that the dev 
-can right-click the project and select 
-'Open in Terminal' to get a PS command shell 
-for the app without having to fiddle around with
-a change directory step.
-
--->
 
 :::zone-end
 
@@ -101,7 +75,7 @@ In Visual Studio:
   * **Do not use top-level statements**: Not selected
   * Select **Create**.
 
-The Visual Studio instructions in parts of this tutorial series use EF Core commands. EF Core commands are issued in the **Package Manager Console** (PMC), which is a [PowerShell command shell](/powershell/). To open the PMC from the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+The Visual Studio instructions in parts of this tutorial series use EF Core commands to add database migrations and update the database. EF Core commands are issued using [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services). More information is provided later in this tutorial series.
 
 :::zone-end
 
@@ -124,17 +98,6 @@ Create a new project:
 * In the **Command Palette**, name the project `BlazorWebAppMovies`, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
 
 * Select **Create project** from the **Command Palette**.
-
-<!-- This doesn't seem to be required any longer, but the
-     commands are still there to create the debug assets. 
-     I need to clarify what these assets provide 
-     these days ... is it Hot Reload debugging? Whereas
-     without them, the app can only be run. 
-
-* Select **View** > **Command Palette** and type "`.NET`" into the search box. From the list of commands, select the "`.NET: Generate Assets for Build and Debug`" command.
--->
-
-The Visual Studio Code (VS Code) instructions in parts of this tutorial series use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which defaults to a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
 
 :::zone-end
 
@@ -174,8 +137,6 @@ The following dialog is displayed:
 
 Select **Yes** to acknowledge the risk and install the certificate.
 
-For information on trusting the development certificate for the Firefox browser, see <xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error>.
-
 Visual Studio:
 
 * Compiles and runs the app.
@@ -186,8 +147,6 @@ Navigate the pages of the app to confirm that the app is working normally.
 :::zone-end
 
 :::zone pivot="vsc"
-
-For information on trusting the HTTPS certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error).
 
 In VS Code, press <kbd>F5</kbd> to run the app.
 
@@ -212,19 +171,6 @@ The app is compiled and run. The app is launched at `http://localhost:{PORT}`, w
 Navigate the pages of the app to confirm that the app is working normally.
 
 :::zone-end
-
-<!-- REVIEWER NOTE
-
-I don't assume devs understand their tooling for stopping
-an app or that a running app interferes with commands that 
-must be issued along the way while working on the app, so 
-there are explicit stop instructions at several points 
-throughout the series on stopping a running app before
-continuing. As the tutorial proceeds, I reduce the 
-amount of language used where instructions have the dev
-stop the app.
-
--->
 
 ## Stop the app
 
@@ -352,18 +298,6 @@ if (!app.Environment.IsDevelopment())
 
 HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
 
-<!-- REVIEWER NOTE
-
-BTW ... Our main doc set guidance is a bit off
-on the description of the middleware in a few 
-spots where it uses the word "always" when discussing
-HTTPS redirection ... i.e., it doesn't qualify it
-with 'when there's an HTTPS port available.'
-I've made a long-range tracking issue to 
-discuss this with the docs cats.
-
--->
-
 ```csharp
 app.UseHttpsRedirection();
 ```
@@ -395,6 +329,10 @@ app.Run();
 ## Troubleshoot with the completed sample
 
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
+
+## Additional resources
+
+When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see <xref:security/enforcing-ssl>.
 
 ## Next steps
 
