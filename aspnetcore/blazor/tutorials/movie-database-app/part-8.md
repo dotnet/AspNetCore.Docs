@@ -74,13 +74,25 @@ Using the preceding approaches, you can apply a render mode on a per-page/compon
 > [!NOTE]
 > More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR on a per-page/component basis. After the tutorial, you're free to use this app to study the other component render modes and the global interactivity location.
 
-Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`), and add the following `@rendermode` directive to make the component interactive:
+<!-- NOTE TO SELF
+     
+     This is now injecting NavManager in
+     case it can be used to update the URL
+     to reflect the search filter. If it 
+     can't be done without a full-page 
+     reload, then we'll probably be pulling
+     the service from the component.
+     
+-->
+
+Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`), and add the following `@rendermode` and `@inject` directives to make the component interactive and obtain an instance of the `NavigationManager`:
 
 ```diff
   @page "/movies"
 + @rendermode InteractiveServer
   @using Microsoft.AspNetCore.Components.QuickGrid
   @inject BlazorWebAppMovies.Data.BlazorWebAppMoviesContext DB
++ @inject NavigationManager Navigation
   @using BlazorWebAppMovies.Models
 ```
 
@@ -121,6 +133,8 @@ You can page through the movie items at two movies per page:
 
 ![Movie list showing the second page of two items](~/blazor/tutorials/movie-database-app/part-8/_static/paging-movies.png)
 
+The component is *interactive*. The page doesn't reload for paging to occur. The paging is performed live over the SignalR connection between the browser and the server, where the paging operation is performed on the server with the rendered result sent back to the client for the browser to display.
+
 Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as 10 items per page:
 
 ```diff
@@ -143,7 +157,9 @@ Run the app and navigate to the movies `Index` page.
 
 You can sort the `QuickGrid` by movie title by selecting the **Title** column.
 
-The component is *interactive*. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection between the browser and the server, where the sorting operation is performed on the server with the rendered result sent back to the client for the browser to display.
+The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client.
+
+![Movie list sorted by the Title column](~/blazor/tutorials/movie-database-app/part-8/_static/sorted-movies.png)
 
 ## Use C# code and interactivity to search by title
 

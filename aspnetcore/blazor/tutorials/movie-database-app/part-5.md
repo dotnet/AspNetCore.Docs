@@ -35,7 +35,7 @@ Validation rules are specified on a model class using *data annotations*. The fo
 * [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute): Specify the minimum and maximum values.
 * [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 
-Value types, such as `decimal`, `int`, `float`, and `DateTime`, are inherently required, so placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
+Value types, such as `decimal`, `int`, `float`, `DateOnly`, `TimeOnly`, and `DateTime`, are inherently required, so placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
 
 ## Add validation to the `Movie` model
 
@@ -61,9 +61,8 @@ Add the following data annotations to the `Movie` class properties. To update al
 
      Add to the diff:
 
-     - [DataType(DataType.Date)]
-     + [DataType(DataType.Date), Display(Name = "Release Date")]
-     public DateTime ReleaseDate { get; set; }
+     + [Display(Name = "Release Date")]
+       public DateOnly ReleaseDate { get; set; }
 
      And the following text:
      
@@ -78,26 +77,24 @@ Add the following data annotations to the `Movie` class properties. To update al
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorWebAppMovies.Models
+namespace BlazorWebAppMovies.Models;
+
+public class Movie
 {
-    public class Movie
-    {
-      public int Id { get; set; }
+    public int Id { get; set; }
 
-      [Required, StringLength(60, MinimumLength = 3)]
-      public string? Title { get; set; }
+    [Required, StringLength(60, MinimumLength = 3)]
+    public string? Title { get; set; }
 
-      [DataType(DataType.Date)]
-      public DateTime ReleaseDate { get; set; }
+    public DateOnly ReleaseDate { get; set; }
 
-      [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$"), Required, StringLength(30)]
-      public string? Genre { get; set; }
+    [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$"), Required, StringLength(30)]
+    public string? Genre { get; set; }
 
-      [Range(0, 100)]
-      [DataType(DataType.Currency)]
-      [Column(TypeName = "decimal(18, 2)")]
-      public decimal Price { get; set; }
-    }
+    [Range(0, 100)]
+    [DataType(DataType.Currency)]
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal Price { get; set; }
 }
 ```
 
