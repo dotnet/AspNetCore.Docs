@@ -97,7 +97,7 @@ The following change is for the *Mad Max* `new Movie` block. `Rating = "R",` is 
 new Movie
 {
     Title = "Mad Max",
-    ReleaseDate = DateTime.Parse("1979-4-12"),
+    ReleaseDate = DateOnly.Parse("1979-4-12"),
     Genre = "Sci-fi (Cyberpunk)",
     Price = 2.51M,
 +   Rating = "R",

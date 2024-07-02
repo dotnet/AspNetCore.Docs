@@ -83,7 +83,7 @@ When the app is deployed to a test/staging or production server, an environment 
 
 ## Database technology
 
-SQL Server and SQLite databases are the most popular at this time. The Visual Studio version of this tutorial uses SQL Server, while the VS Code and .NET CLI versions of this tutorial use SQLite.
+The Visual Studio version of this tutorial uses SQL Server, while the VS Code and .NET CLI versions of this tutorial use SQLite.
 
 :::zone pivot="vs"
 
@@ -211,35 +211,35 @@ namespace BlazorWebAppMovies.Data
                 new Movie
                 {
                     Title = "Mad Max",
-                    ReleaseDate = DateTime.Parse("1979-4-12"),
+                    ReleaseDate = DateOnly.Parse("1979-4-12"),
                     Genre = "Sci-fi (Cyberpunk)",
                     Price = 2.51M,
                 },
                 new Movie
                 {
                     Title = "The Road Warrior",
-                    ReleaseDate = DateTime.Parse("1981-12-24"),
+                    ReleaseDate = DateOnly.Parse("1981-12-24"),
                     Genre = "Sci-fi (Cyberpunk)",
                     Price = 2.78M,
                 },
                 new Movie
                 {
                     Title = "Mad Max: Beyond Thunderdome",
-                    ReleaseDate = DateTime.Parse("1985-7-10"),
+                    ReleaseDate = DateOnly.Parse("1985-7-10"),
                     Genre = "Sci-fi (Cyberpunk)",
                     Price = 3.55M,
                 },
                 new Movie
                 {
                     Title = "Mad Max: Fury Road",
-                    ReleaseDate = DateTime.Parse("2015-5-15"),
+                    ReleaseDate = DateOnly.Parse("2015-5-15"),
                     Genre = "Sci-fi (Cyberpunk)",
                     Price = 8.43M,
                 },
                 new Movie
                 {
                     Title = "Furiosa: A Mad Max Saga",
-                    ReleaseDate = DateTime.Parse("2024-5-24"),
+                    ReleaseDate = DateOnly.Parse("2024-5-24"),
                     Genre = "Sci-fi (Cyberpunk)",
                     Price = 13.49M,
                 }
@@ -251,7 +251,7 @@ namespace BlazorWebAppMovies.Data
 }
 ```
 
-A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the [*Max Max* franchise](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
+A database context instance is obtained from the dependency injection (DI) container. If movies are present, `return` is called to avoid seeding the database. When the database is empty, the [*Mad Max* franchise](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) (&copy;[Warner Bros. Entertainment](https://www.warnerbros.com/)) movies are seeded.
 
 To execute the seed initializer, add the following code to the `Program` file immediately after the line that builds the app (`var app = builder.Build();`). The [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures that the database context is disposed after the seeding operation completes.
 

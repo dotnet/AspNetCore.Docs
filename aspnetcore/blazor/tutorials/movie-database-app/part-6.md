@@ -100,7 +100,7 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 ```html
 <p>
     <form action="/movies">
-        <input type="text" name="titleFilter" />
+        <input type="search" name="titleFilter" />
         <input type="submit" value="Search" />
     </form>
 </p>
@@ -108,7 +108,7 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 
 :::zone pivot="vs"
 
-The next instruction is to run the app again. Save the file that you're working on. Visual Studio automatically recompiles and runs the app with your saved changes, so you can return to the existing browser window to see the result. You don't need to stop and restart the app for many types of code changes when using Visual Studio.
+The next instruction is to run the app again. Save the file that you're working on. Apply the change by either restarting the app or using hot reload to apply the change to the running app.
 
 :::zone-end
 
@@ -120,7 +120,7 @@ The next instruction is to run the app again. Close the browser window and in VS
 
 :::zone pivot="cli"
 
-The next instruction is to run the app again. Stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS). Rerun the app with `dotnet watch`. Return to the existing browser window and refresh it to reload the app.
+The next instruction is to run the app again. Because the app is currently running with `dotnet watch`, saved changes are detected automatically and reflected in the existing browser window.
 
 :::zone-end
 
@@ -168,7 +168,7 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 ## Legal
 
-[*Max Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
+[*Mad Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
 
 ## Next steps
 
