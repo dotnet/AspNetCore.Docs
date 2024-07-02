@@ -1,193 +1,179 @@
 ---
-title: "ASP.NET Core docs: What's new for December 2023"
-description: "What's new in the ASP.NET Core docs for December 2023."
-ms.custom: December-2023
-ms.date: 01/01/2024
+title: "ASP.NET Core docs: What's new for June 2024"
+description: "What's new in the ASP.NET Core docs for June 2024."
+ms.custom: June-2024
+ms.date: 07/01/2024
 ---
 
-# ASP.NET Core docs: What's new for December 2023
+# ASP.NET Core docs: What's new for June 2024
 
-Welcome to what's new in the ASP.NET Core docs for December 2023. This article lists some of the major changes to docs during this period.
-
-## Miscellaneous
-
-### Updated articles
-
-- <xref:index> - Update introduction-to-aspnet-core.md
+Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
 ### Updated articles
 
-- <xref:blazor/fundamentals/signalr>
-  - Highlight placeholder line
-  - Snippet cross-links 8.0 (2)
-  - Terminology consistency updates
-- <xref:blazor/forms/validation>
-  - Fix casing of "isValid" in form code examples
-  - Snippet cross-links 8.0 (2)
-- <xref:blazor/test> - Cross-link bUnit Oslo '22
-- <xref:blazor/security/webassembly/graph-api>
-  - Remove duplicate words
-  - Razor directive ordering
-- <xref:blazor/blazor-ef-core>
-  - Update examples
-  - Snippet cross-links 8.0 (3)
+- <xref:blazor/components/quickgrid>
+  - QuickGrid display name support
+  - Scaffolding tool doc overhaul with added generators
 - <xref:blazor/components/event-handling>
-  - Update examples
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/index>
-  - Update examples
-  - Snippet cross-links 8.0 (3)
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-  - Sample snippet updates
-  - Razor directive ordering
-- <xref:blazor/fundamentals/index>
-  - Snippet cross-links 8.0 (4)
-  - Snippet cross-links 8.0 (2)
-  - Terminology consistency updates
-- <xref:blazor/js-interop/call-dotnet-from-javascript> - Snippet cross-links 8.0 (4)
-- <xref:blazor/js-interop/call-javascript-from-dotnet>
-  - Snippet cross-links 8.0 (4)
-  - Snippet cross-links 8.0 (3)
-  - Snippet cross-links 8.0 (2)
-- <xref:blazor/call-web-api>
-  - Snippet cross-links 8.0 (3)
-  - Code snippet updates
-  - Terminology consistency updates
-- <xref:blazor/file-downloads>
-  - Snippet cross-links 8.0 (3)
-  - Snippet cross-links 8.0 (2)
-- <xref:blazor/file-uploads>
-  - Snippet cross-links 8.0 (3)
-  - Snippet cross-links 8.0 (2)
-- <xref:blazor/fundamentals/configuration> - Snippet cross-links 8.0 (3)
-- <xref:blazor/fundamentals/dependency-injection>
-  - Snippet cross-links 8.0 (3)
-  - Code snippet updates
-- <xref:blazor/fundamentals/handle-errors>
-  - Snippet cross-links 8.0 (3)
-  - Apply 'data-nosnippet' to error UI
-- <xref:blazor/fundamentals/logging> - Snippet cross-links 8.0 (3)
-- <xref:blazor/fundamentals/routing>
-  - Snippet cross-links 8.0 (3)
-  - Code snippet updates
-  - Terminology consistency updates
-  - Improve AdditionalAssemblies coverage
-- <xref:blazor/host-and-deploy/server> - Snippet cross-links 8.0 (3)
-- <xref:blazor/components/prerender>
-  - State persistence w/enhanced nav
-  - Snippet cross-links 8.0 (2)
-- <xref:blazor/components/cascading-values-and-parameters>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-  - Sample snippet updates
-  - Terminology consistency updates
-- <xref:blazor/components/data-binding>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/dynamiccomponent>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/key>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-  - Sample snippet updates
-- <xref:blazor/components/integration>
-  - Snippet cross-links 8.0 (2)
-  - Terminology consistency updates
-- <xref:blazor/components/layouts>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-  - Sample snippet updates
-- <xref:blazor/components/lifecycle>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/overwriting-parameters>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/quickgrid> - Snippet cross-links 8.0 (2)
-- <xref:blazor/components/rendering>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/sections> - Snippet cross-links 8.0 (2)
-- <xref:blazor/components/templated-components>
-  - Snippet cross-links 8.0 (2)
-  - Snippet cross-links 8.0
-- <xref:blazor/components/virtualization> - Snippet cross-links 8.0 (2)
-- <xref:blazor/forms/binding> - Snippet cross-links 8.0 (2)
+  - Document reserved event names
+  - Clarify interactive requirement for event handlers in BWAs
+- <xref:blazor/file-downloads> - Downloading files with static SSR
 - <xref:blazor/forms/index>
-  - Snippet cross-links 8.0 (2)
-  - Terminology consistency updates
-- <xref:blazor/forms/input-components> - Snippet cross-links 8.0 (2)
-- <xref:blazor/fundamentals/startup> - Snippet cross-links 8.0 (2)
-- <xref:blazor/globalization-localization>
-  - Snippet cross-links 8.0 (2)
-  - Terminology consistency updates
-- <xref:blazor/js-interop/index> - Snippet cross-links 8.0 (2)
-- <xref:blazor/state-management> - Snippet cross-links 8.0 (2)
-- <xref:blazor/components/control-head-content> - Snippet cross-links 8.0
-- <xref:blazor/components/generic-type-support> - Snippet cross-links 8.0
-- <xref:blazor/components/attribute-splatting> - Snippet cross-links 8.0
-- <xref:blazor/components/sync-context> - Snippet cross-links 8.0
-- <xref:blazor/project-structure>
-  - Preliminary cross-link work
-  - Terminology consistency updates
-- <xref:blazor/hybrid/routing> - MAUI deep linking guidance
-- <xref:blazor/security/webassembly/standalone-with-identity> - Token authentication updates
-- <xref:blazor/webassembly-lazy-load-assemblies> - Razor directive ordering
-- <xref:blazor/components/render-modes> - Terminology consistency updates
-- <xref:blazor/host-and-deploy/webassembly> - Terminology consistency updates
-- <xref:blazor/js-interop/ssr> - Terminology consistency updates
-- <xref:blazor/tooling> - Terminology consistency updates
+  - Mitigate overposting attacks
+  - BWA client-side validation requires a circuit
+- <xref:blazor/forms/validation> - BWA client-side validation requires a circuit
+- <xref:blazor/components/render-modes>
+  - Prerendering behavior updates
+  - Interactive SSR RCs in global WASM/Auto projects
+  - Detect the current render mode at runtime
+- <xref:blazor/fundamentals/signalr> - Blazor Server reconnection coverage
+- <xref:blazor/fundamentals/static-files> - Map Static Assets Blazor-specific coverage
+- <xref:blazor/security/webassembly/additional-scenarios> - Update RemoteAuthenticatorView param value
+- <xref:blazor/hybrid/tutorials/maui-blazor-web-app>
+  - Place code for sample cross-link in MAUI project
+  - Article updates
+  - .NET MAUI BH BWA tutorial updates
+  - Update .NET MAUI BH BWA tutorial
+  - Clarify per-page/component scenario
+  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 2)
+  - Patch the Pre5 .NET MAUI Blazor Hybrid BWA coverage (PR 1)
+  - New .NET MAUI Blazor Hybrid template
+- <xref:blazor/host-and-deploy/configure-trimmer> - Clarify Blazor trim mode
+- <xref:blazor/debug> - Blazor CLI commands moving to `dotnet watch`
+- <xref:blazor/host-and-deploy/index> - Blazor CLI commands moving to `dotnet watch`
+- <xref:blazor/host-and-deploy/webassembly>
+  - Blazor CLI commands moving to `dotnet watch`
+  - Update Apache coverage (drop CentOS mentions)
+  - Fix spacing in Apache configuration example
+- <xref:blazor/js-interop/import-export-interop> - Import-Export interop: collocated JS with RCL
+- <xref:blazor/components/prerendering-and-integration> - Use 'reconnection UI' for all references
+- <xref:blazor/security/blazor-web-app-oidc> - Interactive SSR RCs in global WASM/Auto projects
+- <xref:blazor/security/server/index> - Simplified auth state serialization for BWAs
+- <xref:blazor/tooling> - Change Tooling article content layout
+- <xref:blazor/tutorials/signalr-blazor>
+  - Blazor CLI commands moving to `dotnet watch`
+  - Blazor SignalR tutorial updates
+  - Blazor SignalR tutorial refactor
+
+## Client-side development
+
+### Updated articles
+
+- <xref:client-side/using-browserlink> - Package installation no longer needed
+- <xref:client-side/dotnet-interop> - .NET JS interop article updates
+
+## Fundamentals
+
+### Updated articles
+
+- <xref:fundamentals/tools/dotnet-aspnet-codegenerator> - Scaffolding tool doc overhaul with added generators
+- <xref:fundamentals/error-handling> - May Content Health - freshness review
+- <xref:fundamentals/minimal-apis/responses> - Inline code --> snippet references
+- <xref:fundamentals/minimal-apis/handle-errors> - May Content Health - freshness review
+- <xref:fundamentals/static-files> - moniker prep:
+
+## Getting started
+
+### Updated articles
+
+- <xref:getting-started> - May Content Health - freshness review
 
 ## gRPC
 
 ### Updated articles
 
-- <xref:grpc/grpcweb> - gRPC-Web Samples Update
+- <xref:grpc/client> - Dispose gRPC streaming calls
+- <xref:grpc/performance> - Add gRPC perf docs around gracefully completing and disposing streaming calls
 
 ## Hosting and deployment
 
+### New articles
+
+- <xref:host-and-deploy/azure-iis-errors-reference>
+
 ### Updated articles
 
-- <xref:host-and-deploy/azure-apps/index> - Preliminary cross-link work
+- <xref:host-and-deploy/azure-apps/index>
+  - Revert "refactor azure troubleshooting/1"
+  - Update index.md
+- <xref:host-and-deploy/iis/index> - Revert "refactor azure troubleshooting/1"
 
 ## Migration
 
 ### Updated articles
 
-- <xref:migration/70-to-80>
-  - Update Blazor migration guidance
-  - Improve AdditionalAssemblies coverage
+- <xref:migration/70-to-80> - Follow-up .NET 8 updates
+
+## Mobile development
+
+### Updated articles
+
+- <xref:mobile/native-mobile-backend> - Lowercase the code name
+
+## Performance
+
+### Updated articles
+
+- <xref:performance/caching/hybrid> - Add serialization sample app
+- <xref:performance/caching/output> - Note about code sample
+
+## Release notes
+
+### Updated articles
+
+- <xref:aspnetcore-9>
+  - Render mode detection, static web asset delivery, dynamic compression
+  - Add three Blazor What's New sections
 
 ## Security
 
 ### Updated articles
 
-- <xref:security/authentication/scaffold-identity> - Blazor scaffold Identity remarks
-- <xref:security/authentication/identity/spa> - Document `MapIdentityApi<TUser>` endpoints
+- <xref:security/authentication/windowsauth> - Fix broken links
+- <xref:security/enforcing-ssl> - May Content Health - freshness review
+- <xref:security/authentication/otherlogins> - Scaffolding tool doc overhaul with added generators
+
+## Testing
+
+### Updated articles
+
+- <xref:test/troubleshoot-azure-iis>
+  - refactor azure troubleshooting/1
+  - Mon prep Azure trouble
 
 ## Tutorials
 
 ### Updated articles
 
-- <xref:tutorials/web-api-javascript> - Web API with JavaScript: Move to version by include
-- <xref:tutorials/choose-web-ui> - ChooseWebUI versioning by include
-- <xref:tutorials/first-web-api> - First Web API: Remove preview specific packages
+- <xref:tutorials/get-started-with-swashbuckle> - mon split
+- <xref:tutorials/razor-pages/model> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/razor-pages/page> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/razor-pages/sql> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/razor-pages/da1> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/razor-pages/search> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/razor-pages/new-field> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/razor-pages/validation> - .NET 9 update: Prep RP tutorial series
+- <xref:tutorials/first-mvc-app/validation> - First MVC: Validation: Clear old null values
+- <xref:tutorials/min-web-api>
+  - v9 Update: Min Web API Tutorial
+  - Prework-Min Web API .NET 9 update
+- <xref:tutorials/razor-pages/razor-pages-start> - .NET 9 update: Prep RP tutorial series
+
+## Web API
+
+### Updated articles
+
+- <xref:web-api/handle-errors> - May Content Health - freshness review
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [bftelman](https://github.com/bftelman) - Telman Babayev ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [bosusites](https://github.com/bosusites) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [hassanyahya400](https://github.com/hassanyahya400) - Hassan Yahya ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [LarsK78](https://github.com/LarsK78) - LK_78 ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [markharwood101](https://github.com/markharwood101) - Mark Harwood ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [QueryCoordinator](https://github.com/QueryCoordinator) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [tg2648](https://github.com/tg2648) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [unnatRevo](https://github.com/unnatRevo) - Unnat Pandya ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [Varorbc](https://github.com/Varorbc) - Varorbc ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [hakenr](https://github.com/hakenr) - Robert Haken ![5 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
+- [aidmsu](https://github.com/aidmsu) - Andrey Dorokhov ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [DickBaker](https://github.com/DickBaker) - Dick Baker ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [Marjani](https://github.com/Marjani) - AmirHossein ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [saborrie](https://github.com/saborrie) - Steven Borrie ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [waedi](https://github.com/waedi) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
