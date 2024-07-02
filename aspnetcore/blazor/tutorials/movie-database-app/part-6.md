@@ -108,7 +108,7 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 
 :::zone pivot="vs"
 
-The next instruction is to run the app again. Save the file that you're working on. Apply the change by either restarting the app or using hot reload to apply the change to the running app.
+The next instruction is to run the app again. Save the file that you're working on. Apply the change by either restarting the app or using Hot Reload to apply the change to the running app.
 
 :::zone-end
 

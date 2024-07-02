@@ -169,7 +169,7 @@ In an earlier part of the tutorial series, the `Index` component was modified to
 
   ```html
   <form action="/movies">
-      <input type="text" name="titleFilter" />
+      <input type="search" name="titleFilter" />
       <input type="submit" value="Search" />
   </form>
   ```
@@ -237,7 +237,7 @@ Remove the HTML form from the component:
 
 ```diff
 - <form action="/movies">
--     <input type="text" name="titleFilter" />
+-     <input type="search" name="titleFilter" />
 -     <input type="submit" value="Search" />
 - </form>
 ```
