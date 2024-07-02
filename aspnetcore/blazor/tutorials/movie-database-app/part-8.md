@@ -27,7 +27,7 @@ Up to this point in the tutorial, the entire app has been *enabled* for interact
 
 *Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts interactive server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR). Client-side rendering (CSR), which is inherently interactive by default, is covered in the Blazor reference documentation.
 
-UI interactions are handled from the server over a real-time SignalR connection with the browser. Interactive SSR enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources. Page content for interactive pages is prerendered, where content on the server is initially generated and sent to the client without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users.
+Interactive SSR enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources. UI interactions are handled from the server over a real-time SignalR connection with the browser. Page content for interactive pages is prerendered, where content on the server is initially generated and sent to the client without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users.
 
 Review the API in the `Program` file (`Program.cs`) that enables interactive SSR. Razor component services are added to the app to enable Razor components to render statically from the server (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>) and execute code with interactive SSR (<xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A>):
 
@@ -69,7 +69,7 @@ To apply a render mode to a component, the developer either uses the `@rendermod
   @rendermode="InteractiveServer"
   ```
 
-Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. Global interactivity is the approach that we'll take for the movie database app.
+Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. Global interactivity is useful if most of the app requires interactive features.
 
 > [!NOTE]
 > More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR. After the tutorial, you're free to use this app to study the other component render modes.
