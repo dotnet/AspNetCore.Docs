@@ -14,7 +14,7 @@ uid: security/data-protection/introduction
 
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
 
-## Data protection overview
+## Data protection introduction
 
 Web apps often need to store sensitive data. For example, an app might store a user's authentication token in a cookie. The data protection system helps you protect this data. The system provides a simple, easy-to-use API for protecting and unprotecting data.
 
