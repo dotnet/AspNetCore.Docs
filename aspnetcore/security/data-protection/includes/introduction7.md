@@ -89,6 +89,10 @@ The data protection stack consists of five packages:
 
 * [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine and can be used by systems that must handle user passwords securely. For more information, see <xref:security/data-protection/consumer-apis/password-hashing>.
 
+## Data consistency in Azure Container Apps
+> [!WARNING]
+> New functionality was introduced in AspNetCore 8.0 to automatically keep Data Protection keys synchronized across instances in [Azure Container Apps](/azure/container-apps/overview). That functionality is not present in .NET 7 and previous, but information about how to configure it manually can be found in <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>.
+
 ## Additional resources
 
 * <xref:security/data-protection/using-data-protection>
