@@ -66,66 +66,67 @@ To apply a render mode to a component, the developer either uses the `@rendermod
 
   ```razor
   @page "/sales-forecast"
-  @rendermode="InteractiveServer"
+  @rendermode InteractiveServer
   ```
 
-Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. Global interactivity is useful if most of the app requires interactive features.
+Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. Global interactivity is useful if most of the app requires interactive features. Global interactivity is usually applied via the `App` component, which is the root component of an app created from the Blazor Web App project template.
 
 > [!NOTE]
-> More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR. After the tutorial, you're free to use this app to study the other component render modes.
+> More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR on a per-page/component basis. After the tutorial, you're free to use this app to study the other component render modes and the global interactivity location.
 
-Based on creating the app from the Blazor Web App project template, the root component of the app is the `App` component.
-
-`Components/Pages/App.razor`:
-
-```razor
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/" />
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="BlazorWebAppMovies.styles.css" />
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <HeadOutlet />
-</head>
-
-<body>
-    <Routes />
-    <script src="_framework/blazor.web.js"></script>
-</body>
-
-</html>
-```
-
-There are two components used by the `App` component:
-
-* <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component: Renders content for the `<head>` by other components.
-* `Routes` component: Sets up routing for the app. All other app components are loaded via the `Routes` component.
-
-To apply global server-side interactivity to these two components, add `@rendermode="InteractiveServer"` to each component instance:
+Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`), and add the following `@rendermode` directive to make the component interactive:
 
 ```diff
-- <HeadOutlet />
-+ <HeadOutlet @rendermode="InteractiveServer" />
-
-...
-
-- <Routes />
-+ <Routes @rendermode="InteractiveServer" />
+  @page "/movies"
++ @rendermode InteractiveServer
+  @using Microsoft.AspNetCore.Components.QuickGrid
+  @inject BlazorWebAppMovies.Data.BlazorWebAppMoviesContext DB
+  @using BlazorWebAppMovies.Models
 ```
 
-Now, every component in the movie database app inherits interactive SSR via the `Routes` component. It's not necessary for each component to specify the Interactive Server (`InteractiveServer`) render mode.
+To see how making a component interactive enhances the user experience, let's provide three enhancements to the app in the next couple of sections:
 
-To see how making a component interactive enhances the user experience, let's provide two enhancements to the app in the next couple of sections:
-
-* Make the `QuickGrid` component in the movie `Index` page *sortable*.
+* Add pagination to the movie `QuickGrid` component.
+* Make the movie `QuickGrid` component *sortable*.
 * Replace the HTML form for filtering movies by title with C# code that:
   * Runs on the server.
   * Renders content transparently over the underlying SignalR connection.
+
+## Add pagination to the `QuickGrid`
+
+The `QuickGrid` component can page data from the database.
+
+Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to just `2` items in order to demonstrate pagination later. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
+
+```csharp
+PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
+```
+
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
+
+```diff
+- <QuickGrid Class="table" Items="@movies">
++ <QuickGrid Class="table" Items="@movies" Pagination="@pagination">
+```
+
+To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the `Paginator` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A> to `pagination`:
+
+```razor
+<Paginator State="@pagination" />
+```
+
+Run the app and navigate to the movies `Index` page.
+
+You can page through the movie items at two movies per page:
+
+![Movie list showing the second page of two items](~/blazor/tutorials/movie-database-app/part-8/_static/paging-movies.png)
+
+Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as 10 items per page:
+
+```diff
+- PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
++ PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+```
 
 ## Sortable `QuickGrid`
 
@@ -182,46 +183,18 @@ The preceding approach is effective for a component that adopts static SSR, wher
 
 Now that the component is interactive, it can provide an improved user experience with Blazor features for binding and event handling, where full-page reloads aren't required to run C# on the server that interacts with the page's elements.
 
-Convert the `TitleFilter` property into a C# field because an interactive component doesn't require a filter string supplied by a user to reach the server via a query string and a GET request. Blazor can bind an HTML element's value to a C# field or property transparently over the underlying SignalR connection. Change the following code for the filter string, including the casing of the variable to match the convention for fields, which is camel case (`TitleFilter` to `titleFilter`):
-
-```diff
-- [SupplyParameterFromQuery]
-- public string? TitleFilter { get; set; }
-+ private string? titleFilter;
-```
-
-The `OnParametersSet` lifecycle method was used to conditionally filter the database based on `TitleFilter` (the property) having a value. We still want the `QuickGrid` to receive an unfiltered movie list on load, but we want that to happen just once when the component is initialized. Also, we'd like the filtering to occur when the user selects the **Search** button in the UI, which we can set up with a Blazor event handler delegate.
-
-Remove the overridden `OnParametersSet` Blazor lifecycle method from the `@code` block:
-
-```diff
-- protected override void OnParametersSet()
-- {
--     ...
-- }
-```
-
-Add an overridden `OnInitialized` Blazor lifecycle method to provide the initial movie list when the component is rendered for the first time:
-
-```csharp
-protected override void OnInitialized()
-{
-    movies = DB.Movie;
-}
-```
-
-Add a delegate event handler that the user can trigger to filter the database's movie records. The method uses the value of the `titleFilter` field to perform the operation. If the user clears `titleFilter` and searches, the method loads the entire movie list for display.
+Add a delegate event handler that the user can trigger to filter the database's movie records. The method uses the value of the `TitleFilter` property to perform the operation. If the user clears `TitleFilter` and searches, the method loads the entire movie list for display.
 
 Add the following method to the `@code` block:
 
 ```csharp
 private void FilterMovies()
 {
-    if (!string.IsNullOrEmpty(titleFilter))
+    if (!string.IsNullOrEmpty(TitleFilter))
     {
         movies = DB.Movie.Where(
             s => !string.IsNullOrEmpty(s.Title) ? 
-                s.Title.Contains(titleFilter) : false);
+                s.Title.Contains(TitleFilter) : false);
     }
     else
     {
@@ -230,9 +203,18 @@ private void FilterMovies()
 }
 ```
 
+The `OnParametersSet` lifecycle method was used to conditionally filter the database based on the `TitleFilter` property having a value. We still want the `QuickGrid` to perform filtering when parameters are set with an inbound URL that includes a `titleFilter` query string. However, the logic to filter records is now present in the `FilterMovies` method that was just added to the component. Therefore, change the `OnParametersSet` method to call the `FilterMovies` method:
+
+```csharp
+protected override void OnParametersSet()
+{
+    FilterMovies();
+}
+```
+
 The component won't issue a GET request via an HTML form to trigger the `FilterMovies` method. The component should provide:
 
-* An input element (`<input>`) bound to the `titleFilter` field. Binding is achieved in Blazor with the `@bind` directive attribute, which can bind the value of an element to either a C# field or property.
+* An input element (`<input>`) bound to the `TitleFilter` property. Binding is achieved in Blazor with the `@bind` directive attribute, which can bind the value of an element to either a C# field or property.
 * A button that triggers the `FilterMovies` method. Event handling is achieved in Blazor by specifying a delegate event handler (method) to the `@onclick` directive attribute.
 
 Remove the HTML form from the component:
@@ -247,11 +229,11 @@ Remove the HTML form from the component:
 In its place, add the following Razor markup:
 
 ```razor
-<input @bind="titleFilter" />
+<input @bind="TitleFilter" />
 <button @onclick="FilterMovies">Search</button>
 ```
 
-The `<input>` element *binds* the value of the element to the `titleFilter` field. Selecting the button triggers the `FilterMovies` delegate via the `@onclick` directive attribute of the `<button>` element.
+The `<input>` element *binds* the value of the element to the `TitleFilter` property. Selecting the button triggers the `FilterMovies` delegate via the `@onclick` directive attribute of the `<button>` element.
 
 Run the app, type "`road warrior`" into the search field, and select the **Search** button:
 

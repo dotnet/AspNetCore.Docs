@@ -176,8 +176,8 @@ migrationBuilder.AddColumn<string>(
     table: "Movie",
     type: "nvarchar(max)",
     nullable: false,
--    defaultValue: "");
-+    defaultValue: "R");
+-   defaultValue: "");
++   defaultValue: "R");
 ```
 
 Save the migration file.
@@ -232,8 +232,8 @@ migrationBuilder.AddColumn<string>(
     table: "Movie",
     type: "nvarchar(max)",
     nullable: false,
--    defaultValue: "");
-+    defaultValue: "R");
+-   defaultValue: "");
++   defaultValue: "R");
 ```
 
 Save the migration file.
@@ -332,8 +332,8 @@ migrationBuilder.AddColumn<string>(
     table: "Movie",
     type: "nvarchar(max)",
     nullable: false,
--    defaultValue: "");
-+    defaultValue: "R");
+-   defaultValue: "");
++   defaultValue: "R");
 ```
 
 Save the migration file.
