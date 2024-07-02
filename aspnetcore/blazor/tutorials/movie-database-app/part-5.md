@@ -25,20 +25,6 @@ This part of the series explains how metadata of the `Movie` model is used to va
 
 Validation rules are specified on a model class using *data annotations*. The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
 
-<!-- 
-     Now, we'll get into validation DA. I think the decision on 
-     keeping that early, general coverage on DA is a good one.
-     Now, we can dive right into applying the additional DA
-     without having to re-explain the concept.
-
-     BTW ... I'm concerned about telling readers that they can 
-     just look at the DA API to see all of them because I know 
-     that they don't all work OOB (e.g., [Display(Name="xxx")]). 
-     I've opened an issue to work on this subject further in the 
-     Blazor forms validation article: 
-     https://github.com/dotnet/AspNetCore.Docs/issues/32639
--->
-
 * [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
 * [`[CreditCard]`](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format according to the [Luhn algorithm](https://wikipedia.org/wiki/Luhn_algorithm).
 * [`[EmailAddress]`](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
@@ -136,18 +122,6 @@ Constraint | Model `Title` property | Database `Title` column
 --- | :---: | :---:
 Maximum length | 60 characters | Byte pairs up to ~2 GB&dagger;<br>[`NVARCHAR (MAX)`](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql)
 Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span><br>[`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span><br>`NULL` is permitted in the column.
-
-<!-- REVIEWER NOTE
-
-You might be thinking overkill here, but I don't think so.
-I think this is great basic info to provide on the delta
-between the code and the dB schema. This concept on NVARCHAR
-will be with them forever if they're coming into the subject 
-new to these concepts. I present this info as a 
-before-and-after to make it easy to see the difference after 
-the migration is applied. 
-
--->
 
 &dagger;Database character columns are defined by *size* (byte pairs). One byte-pair per character is used for characters defined in the Unicode range 0 to 65,535. However, individual characters outside of that Unicode range take multiple byte-pairs to store, so the actual number of characters that a column can store is arbitrary. The important concept for our purposes in comparing the `Title` property of the `Movie` model and the database schema for the `Title` column is that ~2 GB of stored byte-pairs in the database far exceeds the 60 character limit set for the property. The database schema *should be adjusted downward* to match the app's constraint.
 

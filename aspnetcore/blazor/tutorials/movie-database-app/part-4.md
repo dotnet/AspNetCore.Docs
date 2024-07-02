@@ -309,15 +309,6 @@ If the model state has errors when the form is posted, for example if `ReleaseDa
 
 ## Concurrency exception handling
 
-<!-- REVIEWER NOTE
-
-Concurrency comes up here and in the preceding part of 
-the series. I'm managing it by saying for more information
-to see the EF Core article, which is cross-linked in the
-Additional Resources section.
-
--->
-
 Review the `UpdateMovie` method of the `Edit` component (`Components/Pages/MoviePages/Edit.razor`):
 
 ```csharp
