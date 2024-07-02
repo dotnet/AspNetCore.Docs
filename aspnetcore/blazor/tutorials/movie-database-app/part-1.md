@@ -242,7 +242,7 @@ The `Components/Layout` folder contains the following layout components and styl
 
 ### `_Imports.razor` file
 
-The `_Imports` file (`_Imports.razor`) includes common *Razor directives* to include in the app's Razor components. Razor directives are reserved keywords prefixed with `@` that appear in Razor markup and change the way component markup or component elements are parsed or function.
+The `_Imports` file (`_Imports.razor`) includes common *Razor directives* to include in the app's Razor components. Razor directives are reserved keywords prefixed with `@` that appear in Razor markup and change the way component markup or component elements are compiled or function.
 
 ### `App.razor` file
 
