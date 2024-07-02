@@ -30,7 +30,7 @@ For more information, see <xref:blazor/components/render-modes>.
 
 * Server project:
 
-  * `Components` folder: 
+  * `Components` folder:
 
     * `Layout` folder: Contains the following layout components and stylesheets:
       * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
