@@ -21,7 +21,7 @@ Therefore, limit the use of integration tests to the most important infrastructu
 
 In discussions of integration tests, the tested project is frequently called the ***System Under Test***, or "**SUT**" for short. "SUT" is used throughout this article to refer to the ASP.NET Core app being tested.
 
-***Don't write integration tests for every permutation*** of data and file access with databases and file systems. Regardless of how many places across an app interact with databases and file systems, a focused set of read, write, update, and delete integration tests are usually capable of adequately testing database and file system components. Use unit tests for routine tests of method logic that interact with these components. In unit tests, the use of infrastructure fakes or mocks result in faster test execution.
+***Don't write integration tests for every permutation*** of data and file access with databases and file systems. Regardless of how many places across an app interact with databases and file systems, a focused set of read, write, update, and delete integration tests are usually capable of adequately testing database and file system components. Use unit tests for routine tests of method logic that interact with these components. In unit tests, the use of infrastructure fakes or mocks results in faster test execution.
 
 ## ASP.NET Core integration tests
 
@@ -56,4 +56,4 @@ The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) do
 **Separate unit tests from integration tests into different projects**. Separating the tests:
 
 * Helps ensure that infrastructure testing components aren't accidentally included in the unit tests.
-* Allows control over which set of tests are run.
+* Allows control over which set of tests are running.
