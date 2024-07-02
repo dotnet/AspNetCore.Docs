@@ -14,19 +14,25 @@ uid: security/data-protection/introduction
 
 ASP.NET Core provides a cryptographic API to protect data, including key management and rotation.
 
-Web apps often need to store sensitive data. The Windows data protection API ([DPAPI](/dotnet/standard/security/how-to-use-data-protection)) isn't intended for use in web apps.
+## Data protection overview
 
-The ASP.NET Core data protection stack was designed to:
+Web apps often need to store sensitive data. For example, an app might store a user's authentication token in a cookie. The data protection system helps you protect this data. The system provides a simple, easy-to-use API for protecting and unprotecting data.
 
-* Provide a built in solution for most Web scenarios, including web farms and [Azure Container Apps](/azure/container-apps/overview).
-* Address many of the deficiencies of the previous encryption system.
+The ASP.NET Core data protection stack:
 
-## Key consistency in web farms and Azure Container Apps
+* Was designed to provide a built in solution for most Web scenarios, including web farms and [Azure Container Apps](/azure/container-apps/overview).
+* Is a robust and comprehensive framework designed to manage and secure app dataEnsures that sensitive information and keep it tamper-proof.
+* Provides services for cryptographic operations such as:
 
-The `ReadOnlyDataProtectionKeyDirectory` configuration value:
+  * Data encryption and decryption
+  * Digital signatures and key management
 
-* Can be set to specify the key path.
-* Disables generation of new keys so write access to the directory is not required.
+### Key Features
+
+* Cryptographic security: The Data Protection API (DPAPI) in ASP.NET Core uses modern cryptographic algorithms to ensure data integrity and confidentiality. It supports encryption and decryption of data, making it secure from unauthorized access.
+* Key nanagement: One of the core components of the Data Protection framework is its automatic key management system. Keys are stored securely and rotated regularly, minimizing the risk of key compromise. Developers can customize key storage and lifecycle to meet specific security requirements.
+* Straight forward Integration: ASP.NET Core Data Protection can be integrated into existing apps. It provides a basic API for protecting data. The APIcan be used in various scenarios such as securing cookies, authentication tokens, and other sensitive data.
+* Configurability: The framework is highly configurable, allowing developers to specify key storage locations, e.g., file system, Azure Key Vault, encryption algorithms, and other settings. This flexibility ensures that the Data Protection services can be tailored to fit the unique security needs of most apps.
 
 ## Problem statement
 
