@@ -31,9 +31,9 @@ Although developers and online resources use the term "Blazor components," the d
 
 The anatomy of a Razor component follows the following general pattern:
 
-* At the top of the component definition (`.razor` file), razor markup specifies the way that component markup is parsed or functions.
+* At the top of the component definition (`.razor` file), various Razor directives specify how the component markup is compiled or functions.
 * Next, Razor markup specifies how HTML is rendered, which includes ordinary HTML elements.
-* Finally, an `@code` block contains C# code to execute during component lifecycle events on the server. Note that since the app adopts static SSR, any code in the `@code` block can only execute on the server when the component is rendered. In the last part of the tutorial series, components adopt interactive SSR and are able to execute C# code on the server that interacts directly with the UI rendered in the browser. For now, only static pages are rendered by the server.
+* Finally, an `@code` block contains C# code to define members for the component class including component parameters and event handlers.
 
 Consider the following `Welcome` component example (`Welcome.razor`):
 
@@ -52,7 +52,7 @@ Consider the following `Welcome` component example (`Welcome.razor`):
 }
 ```
 
-The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is parsed or functions. The `@page` Razor directive specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are placed at the top of the component definition file.
+The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is parsed or functions. The `@page` Razor directive specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are often placed at the top of the component definition file.
 
 The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title. In this case, the page title is `Welcome!`.
 
@@ -178,7 +178,7 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 The `MainLayout` component is the app's default layout. The `MainLayout` component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which is a base class for components that represent a layout. The app's components that use the layout are rendered where the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) appears in the markup.
 
-The `MainLayout` component is only part of Blazor project templates.
+The `MainLayout` component is implemented in the Blazor project.
 
 `Components/Layout/MainLayout.razor`:
 
@@ -225,7 +225,7 @@ The following sections explain the composition of the movie CRUD components and 
 
 Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`).
 
-The Razor directives at the top of the file indicate the relative URL for the page is `/movies`. An `@using` directive makes the <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName> API available to the component. A `QuickGrid` component is used to display movie entities from the database. The database context (`BlazorWebAppMoviesContext`) is injected into the component with the `@inject` directive. Finally, an `@using` directive makes the project's models available (`BlazorWebAppMovies.Models`).
+The `@page` directive at the top of the file indicates the relative URL for the page is `/movies`. An `@using` directive makes the <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName> API available to the component. A `QuickGrid` component is used to display movie entities from the database. The database context (`BlazorWebAppMoviesContext`) is injected into the component with the `@inject` directive. Finally, an `@using` directive makes the project's models available (`BlazorWebAppMovies.Models`).
 
 ```razor
 @page "/movies"
@@ -252,9 +252,9 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 
 The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. `Movie` from the injected database context (`DB`) is the item provider. For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
 
-In the following Razor markup, notice how the context (`Context`) parameter specifies a parameter name (`movie`) for each content expression of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. `Movie` class properties are read from the parameter.
+In the following Razor markup, notice how the context (`Context`) parameter specifies a parameter name (`movie`) for the context instance of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
 
-For example, the movie identifier (`Id`) is available in `movie.Id`. The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
+The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
 ```razor
 <QuickGrid Class="table" Items="DB.Movie">
@@ -287,7 +287,7 @@ For the movie example from the last part of the tutorial series, *The Matrix*&co
     <tbody>
         <tr>
             <td>The Matrix</td>
-            <td>3/29/1999 12:00:00 AM</td>
+            <td>3/29/1999</td>
             <td>Sci-fi (Cyberpunk)</td>
             <td>5.00</td>
             <td>
@@ -304,13 +304,6 @@ The column names are taken from the `Movie` model properties, so the release dat
 
 ```razor
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
-```
-
-The column for the movie's release date also shows the time. To remove the time and only display the date, modify `movie.ReleaseDate` in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602.Property?displayProperty=nameWithType> value. Add the <xref:System.DateTime.ToShortDateString%2A> extension method to the `movie.ReleaseDate` property:
-
-```diff
-- movie.ReleaseDate
-+ movie.ReleaseDate.ToShortDateString()
 ```
 
 Run the app to see that the column now displays two words for the release date.
@@ -337,7 +330,7 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 Open the `Details` component definition file (`Components/Pages/Movies/Details.razor`).
 
-The Razor directives at the top of the file indicate the relative URL for the page is `/movies/details`. As before, the database context is injected, and namespaces are provided to access API (`BlazorWebAppMovies.Models` and `Microsoft.EntityFrameworkCore`). The `Details` component also injects the app's <xref:Microsoft.AspNetCore.Components.NavigationManager>, which is used for a variety of navigation-related features in components.
+The `@page` directive at the top of the file indicates the relative URL for the page is `/movies/details`. As before, the database context is injected, and namespaces are provided to access API (`BlazorWebAppMovies.Models` and `Microsoft.EntityFrameworkCore`). The `Details` component also injects the app's <xref:Microsoft.AspNetCore.Components.NavigationManager>, which is used for a variety of navigation-related features in components.
 
 ```razor
 @page "/movies/details"
@@ -347,7 +340,7 @@ The Razor directives at the top of the file indicate the relative URL for the pa
 @using Microsoft.EntityFrameworkCore
 ```
 
-Details for a movie entity are only shown if the movie, located by its identifier (`Id`) from the query string, has been loaded for display. If there's a short delay while the component retrieves the entity, a loading message (*`Loading...`*) is displayed. The presence of the movie in `movie` is checked with an `@if` Razor statement:
+Details for a movie entity are only shown if the movie, located by its identifier (`Id`) from the query string, has been loaded for display. The presence of the movie in `movie` is checked with an `@if` Razor statement:
 
 ```razor
 @if (movie is null)
@@ -381,13 +374,6 @@ CSS classes aren't shown in the following example to simplify the Razor markup f
 </div>
 ```
 
-The data list description for the movie's release date also shows the time. To remove the time and only display the date, modify `@movie.ReleaseDate`. Add the <xref:System.DateTime.ToShortDateString%2A> extension method:
-
-```diff
-- @movie.ReleaseDate
-+ @movie.ReleaseDate.ToShortDateString()
-```
-
 Examine the C# of the component's `@code` block:
 
 ```csharp
@@ -409,7 +395,7 @@ protected override async Task OnInitializedAsync()
 
 The `movie` variable is a private field of type `Movie`, which is a null-reference type (`?`), meaning that `movie` might be set to `null`.
 
-The `Id` is a *component parameter* supplied from the component's query string due to the presence of the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute). If the identifier is missing, `Id` is set to zero (`0`).
+The `Id` is a *component parameter* supplied from the component's query string due to the presence of the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute). If the identifier is missing, `Id` defaults to zero (`0`).
 
 `OnInitializedAsync` is the first component lifecycle method that we've seen. This method is executed when the component loads. <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync%2A> is called on the database set (`DbSet<Movie>`) to retrieve the movie entity with and `Id` equal to the `Id` parameter that was set by the query string. If `movie` is `null`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> is used to navigate to a `notfound` endpoint.
 
@@ -455,7 +441,7 @@ CSS classes aren't present in the following example to simplify the display:
 </EditForm>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> specifies a method to invoke (`AddMovie`) when the form is submitted. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> specifies a method to invoke (`AddMovie`) when the form is submitted and the data is valid. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
 
 For validation:
 
@@ -463,7 +449,7 @@ For validation:
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component displays a list of validation messages.
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> components hold validation messages for the form's fields.
 
-Blazor includes several form element components to assist you with creating forms. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> form uses <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> components. Each of these is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
+Blazor includes several form element components to assist you with creating forms, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm> and various input components, such as <xref:Microsoft.AspNetCore.Components.Forms.InputText>, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>. Each input component is bound to a model property with `@bind-Value` Razor syntax, where `Value` is a property in each input component.
 
 In the component's `@code` block, C# code includes a `Movie` component parameter tied to the form via the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute).
 
@@ -489,18 +475,11 @@ The `AddMovie` method:
 ```
 
 > [!WARNING]
-> The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section later in this article.
+> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section later in this article.
 
 ### `Delete` component
 
 Open the `Delete` component definition file (`Components/Pages/Movies/Delete.razor`).
-
-As you saw in the `Index` and `Details` components, the data list description for the movie's release date also shows the time. To remove the time and only display the date, modify `@movie.ReleaseDate`. Add the <xref:System.DateTime.ToShortDateString%2A> extension method:
-
-```diff
-- @movie.ReleaseDate
-+ @movie.ReleaseDate.ToShortDateString()
-```
 
 Examine the Razor markup for the submit button of the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (CSS class removed for simplicity):
 
@@ -579,7 +558,7 @@ Additional Resources section.
 If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
 
 > [!WARNING]
-> The preceding code is susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
+> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
 
 ## Mitigate overposting attacks
 
@@ -588,10 +567,6 @@ Statically-rendered server-side forms, such as those in the `Create` and `Edit` 
 In the example `Create` and `Edit` components of this tutorial, overposting isn't a concern because the `Movie` model doesn't include restricted properties for create and update operations. However, it's important to keep overposting in mind when working with static SSR-based Blazor forms that you create and modify in the future in other apps.
 
 To mitigate overposting, we recommend using a separate view model/data transfer object (DTO) for the form and database with create (insert) and update operations. When the form is submitted, only properties of the view model/DTO are used by the component and C# code to modify the database. Any extra data included by a malicious user is discarded, so the malicious user is prevented from conducting an overposting attack.
-
-## Globalization
-
-To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (`,`) for a decimal point and non-US English date formats, you must take steps to globalize the app. For instructions on adding comma number separator, see [Show support jQuery validation for non-English locales that use a comma (",") for a decimal point (`dotnet/AspNetCore.Docs` #4076)](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 ## Troubleshoot with the completed sample
 
