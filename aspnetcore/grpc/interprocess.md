@@ -49,6 +49,11 @@ Depending on the OS, cross-platform apps may choose different IPC transports. An
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
+    serverOptions.ConfigureEndpointDefaults(listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
+
     if (OperatingSystem.IsWindows())
     {
         serverOptions.ListenNamedPipe("MyPipeName");
@@ -58,11 +63,6 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
         var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
         serverOptions.ListenUnixSocket(socketPath);
     }
-
-    serverOptions.ConfigureEndpointDefaults(listenOptions =>
-    {
-        listenOptions.Protocols = HttpProtocols.Http2;
-    });
 });
 ```
 
