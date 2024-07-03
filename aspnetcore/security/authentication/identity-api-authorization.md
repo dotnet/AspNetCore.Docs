@@ -13,7 +13,7 @@ uid: security/authentication/identity/spa
 
 :::moniker range=">= aspnetcore-8.0"
 
-[ASP.NET Core Identity](xref:security/authentication/identity) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. There's a token-based option for clients that can't use cookies.
+[ASP.NET Core Identity](xref:security/authentication/identity) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. There's a token-based option for clients that can't use cookies, but you must be careful not to leak tokens. We recommend using cookies in browser-based applications, because the browser will automatically handle them without exposing them to JavaScript by default.
 
 This article shows how to use Identity to secure a Web API backend for SPAs such as Angular, React, and Vue apps. The same backend APIs can be used to secure [Blazor WebAssembly apps](xref:blazor/security/webassembly/standalone-with-identity).
 
