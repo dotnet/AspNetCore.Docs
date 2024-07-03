@@ -19,7 +19,7 @@ zone_pivot_groups: tooling
 
 This article is the sixth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series covers adding a search feature to the movies `Index` component to filter movies by title.
+This part of the tutorial series covers adding a search feature to the movies `Index` component to filter movies by title.
 
 ## Implement a filter feature for the `QuickGrid` component
 
@@ -108,23 +108,23 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 
 :::zone pivot="vs"
 
-The next instruction is to run the app again. Save the file that you're working on. Apply the change by either restarting the app or using Hot Reload to apply the change to the running app.
+Save the file that you're working on. Apply the change by either restarting the app or using [Hot Reload](/visualstudio/debugger/hot-reload) to apply the change to the running app.
 
 :::zone-end
 
 :::zone pivot="vsc"
 
-The next instruction is to run the app again. Close the browser window and in VS Code select **Run** > **Restart Debugging** or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. VS Code recompiles and runs the app with your saved changes and spawns a new browser window for the app.
+Close the browser window and in VS Code select **Run** > **Restart Debugging** or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. VS Code recompiles and runs the app with your saved changes and spawns a new browser window for the app.
 
 :::zone-end
 
 :::zone pivot="cli"
 
-The next instruction is to run the app again. Because the app is currently running with `dotnet watch`, saved changes are detected automatically and reflected in the existing browser window.
+Because the app is currently running with `dotnet watch`, saved changes are detected automatically and reflected in the existing browser window.
 
 :::zone-end
 
-Run the app again and type `road warrior` into the search box and select the **Search** button to filter the movies:
+Type "`road warrior`" into the search box and select the **:::no-loc text="Search":::** button to filter the movies:
 
 ![Mad Max movies before filtering in the movies Index page. The search field has the value 'road warrior'.](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter.png)
 

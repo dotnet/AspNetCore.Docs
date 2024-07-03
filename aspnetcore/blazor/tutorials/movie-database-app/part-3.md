@@ -19,23 +19,23 @@ zone_pivot_groups: tooling
 
 This article is the third part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series examines the Razor components in the project that were scaffolded into the app. Improvements are made for the display of movie data.
+This part of the tutorial series examines the Razor components in the project that were scaffolded into the app. Improvements are made for the display of movie data.
 
 ## Razor components
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
-*Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page (`.razor` file extension) for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
+*Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page (`.razor` file extension) for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity.
 
-Although developers and online resources use the term "Blazor components," the documentation avoids that term and universally adopts the formal name "Razor components" (or just "components").
+Although developers and online resources use the term "Blazor components," the documentation uses the formal name "Razor components" (or just "components").
 
-The anatomy of a Razor component follows the following general pattern:
+The anatomy of a Razor component has the following general pattern:
 
 * At the top of the component definition (`.razor` file), various Razor directives specify how the component markup is compiled or functions.
 * Next, Razor markup specifies how HTML is rendered, which includes ordinary HTML elements.
-* Finally, an `@code` block contains C# code to define members for the component class including component parameters and event handlers.
+* Finally, an `@code` block contains C# code to define members for the component class, including component parameters and event handlers.
 
-Consider the following `Welcome` component example (`Welcome.razor`):
+Consider the following `Welcome` component (`Welcome.razor`):
 
 ```razor
 @page "/welcome"
@@ -54,13 +54,13 @@ Consider the following `Welcome` component example (`Welcome.razor`):
 
 The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is compiled or functions. The `@page` Razor directive specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are often placed at the top of the component definition file.
 
-The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title. In this case, the page title is `Welcome!`.
+The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title.
 
-`Welcome to Blazor!` is the first rendered body markup of the component per the content of the H1 heading element (`<h1>`).
+"`Welcome to Blazor!`" is the first rendered body markup of the component per the content of the H1 heading element (`<h1>`).
 
 Next, a welcome message is displayed using Razor syntax by prefixing the at symbol (`@`) to a C# variable (`welcomeMessage`).
 
-The `@code` block contains the C# code of the component. `welcomeMessage` is a private string type variable initialized with a value.
+The `@code` block contains the C# code of the component. `welcomeMessage` is a private string initialized with a value.
 
 In the following sections of this article:
 
@@ -73,7 +73,7 @@ The `NavMenu` component (`Components/Layout/NavMenu.razor`) implements sidebar n
 
 A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> assigned to the <xref:Microsoft.AspNetCore.Components.Routing.NavLink.Match%2A> parameter configures the component to display an active CSS class when it matches the entire current URL.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component is provided by the Blazor framework and for all Blazor apps to use, while the `NavMenu` component is only part of Blazor project templates.
+The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component built into the Blazor framework for any Blazor app to use, while the `NavMenu` component is only part of Blazor project templates.
 
 `Components/Layout/NavMenu.razor`:
 
@@ -154,7 +154,9 @@ The final `NavMenu` component after making the preceding changes:
 </div>
 ```
 
-Run the app and note that the brand is displayed at the top of the sidebar navigation and a link to reach the movies page (**`Movies`**) appears in the sidebar navigation.
+Run the app to see the updated brand at the top of the sidebar navigation and a link to reach the movies page (**Movies**):
+
+![App running in a browser showing the brand at the top of the sidebar navigation as 'Sci-fi Movies' and a 'Movie' link in the sidebar](~/blazor/tutorials/movie-database-app/part-3/_static/updated-brand-and-added-link.png)
 
 :::zone pivot="vs"
 
@@ -204,9 +206,9 @@ The `MainLayout` component is implemented in the Blazor project.
 
 The `MainLayout` component adopts the following additional specifications:
 
-* The `NavMenu` component is rendered in the sidebar. Notice that you only need to place an HTML tag with the component name to render a component at that location in Razor markup. This allows you to nest components within each other and within whatever HTML layout you implement.
+* The `NavMenu` component is rendered in the sidebar. Notice that you only need to place an HTML tag with the component name to render a component at that location in Razor markup. This allows you to nest components within each other and within any HTML layout that you implement.
 * The main content includes:
-  * An `About` link that sends the user to the ASP.NET Core documentation landing page.
+  * An **:::no-loc text="About":::** link that sends the user to the ASP.NET Core documentation landing page.
   * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
 
 The default layout (`MainLayout` component) is specified in the `Routes` component (`Components/Pages/Routes.razor`):
@@ -272,6 +274,9 @@ The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Ra
 ```
 
 For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the <xref:Microsoft.AspNetCore.Components.QuickGrid> component renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie entity's `Id` is `3`, which is composed in the query strings for the `Edit`, `Details`, and `Delete` pages.
+
+> [!NOTE]
+> The value `3` in the following example is arbitrary and may be different from what you see when you examine the page source of your running app. The number merely matches whatever movie `Id` *The Matrix*&copy; movie has in the database at the time the app is run.
 
 ```html
 <table>
@@ -455,8 +460,8 @@ In the component's `@code` block, C# code includes a `Movie` component parameter
 
 The `AddMovie` method:
 
-* Is called when the form is submitted with valid form field entries (`OnValidSubmit="AddMovie"`).
-* Adds the movie data bound to the form's model (`Movie`).
+* Is called when the form is submitted.
+* Adds the movie data bound to the form's model (`Movie`) if form validation passes.
 * <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A> is called on the database context to save the movie.
 * <xref:Microsoft.AspNetCore.Components.NavigationManager> is used to return the user to the movies `Index` page.
 
@@ -475,7 +480,7 @@ The `AddMovie` method:
 ```
 
 > [!WARNING]
-> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section later in this article.
+> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered later in this article.
 
 ### `Delete` component
 
@@ -487,7 +492,7 @@ Examine the Razor markup for the submit button of the <xref:Microsoft.AspNetCore
 <button type="submit" disabled="@(movie is null)">Delete</button>
 ```
 
-The **`Delete`** button sets its [`disabled` HTML attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/disabled) based on the presence of the movie (not `null`) using an explicit Razor expression (`@(...)`).
+The **:::no-loc text="Delete":::** button sets its [`disabled` HTML attribute (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Attributes/disabled) based on the presence of the movie (not `null`) using an explicit Razor expression (`@(...)`).
 
 In the C# code of the `@code` block, the `DeleteMovie` method removes the movie, saves the changes to the database, and navigates the user to the movies `Index` page. The exclamation point on the movie field (`movie!`) is the [null-forgiving operator (C# Language Reference)](/dotnet/csharp/language-reference/operators/null-forgiving), which suppresses nullable warnings for `movie`.
 
@@ -546,16 +551,16 @@ bool MovieExists(int id)
 
 The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <xref:Microsoft.EntityFrameworkCore.EntityState.Modified>, which signifies that the entity is tracked by the context, exists in the database, and that some or all of its property values are modified.
 
-If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated Not Found component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
+If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated *Not Found* component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
 
 > [!WARNING]
-> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered in the [Mitigate overposting attacks](#mitigate-overposting-attacks) section.
+> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered in the next section.
 
 ## Mitigate overposting attacks
 
 Statically-rendered server-side forms, such as those in the `Create` and `Edit` components, can be vulnerable to an *overposting* attack, also known as a *mass assignment* attack. An overposting attack occurs when a malicious user issues an HTML form POST to the server that processes data for properties that aren't part of the rendered form and that the developer doesn't wish to allow users to modify. The term "overposting" literally means that the malicious user has *over*-POSTed with the form.
 
-In the example `Create` and `Edit` components of this tutorial, overposting isn't a concern because the `Movie` model doesn't include restricted properties for create and update operations. However, it's important to keep overposting in mind when working with static SSR-based Blazor forms that you create and modify in the future in other apps.
+In the example `Create` and `Edit` components of this tutorial, overposting isn't a concern because the `Movie` model doesn't include restricted properties for create and update operations. However, it's important to keep overposting in mind when working with static SSR-based Blazor forms that you create and modify in the future.
 
 To mitigate overposting, we recommend using a separate view model/data transfer object (DTO) for the form and database with create (insert) and update operations. When the form is submitted, only properties of the view model/DTO are used by the component and C# code to modify the database. Any extra data included by a malicious user is discarded, so the malicious user is prevented from conducting an overposting attack.
 

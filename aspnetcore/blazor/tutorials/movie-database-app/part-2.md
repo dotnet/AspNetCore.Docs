@@ -19,11 +19,11 @@ zone_pivot_groups: tooling
 
 This article is the second part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-In this part of the series:
+In this part of the tutorial series:
 
 * A class is added to the app representing a movie in a database.
 * [Entity Framework Core (EF Core)](/ef/core) services and tooling create a database context and database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write model classes first, and EF Core creates the database from the model classes, which is called *scaffolding*.
-* Tooling scaffolds a Razor component-based UI for interacting with the movie records in the database via the database context.
+* Additional tooling scaffolds a Razor component-based UI for interacting with the movie records in the database via the database context.
 
 ## Add a data model
 
@@ -74,30 +74,35 @@ Use the following contents for the `Movie.cs` file:
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorWebAppMovies.Models;
-
-public class Movie
+namespace BlazorWebAppMovies.Models
 {
-    public int Id { get; set; }
+    public class Movie
+    {
+      public int Id { get; set; }
 
-    public string? Title { get; set; }
+      public string? Title { get; set; }
 
-    public DateOnly ReleaseDate { get; set; }
+      public DateOnly ReleaseDate { get; set; }
 
-    public string? Genre { get; set; }
+      public string? Genre { get; set; }
 
-    public decimal Price { get; set; }
+      public decimal Price { get; set; }
+  }
 }
 ```
 
 The `Movie` class contains:
 
 * A record identifier property (`Id`), which is required by EF Core and the database to track records. In the database, the `Id` property is the database record's primary key.
-* Other properties that describe aspects of a movie: the movie's title (`Title`), release date (`ReleaseDate`), genre (`Genre`), and price (`Price`). 
+* Other properties that describe aspects of a movie:
+  * Title (`Title`)
+  * Release date (`ReleaseDate`)
+  * Genre (`Genre`)
+  * Price (`Price`)
 
 The question mark on a `string` type indicates that the property is nullable (it can hold a `null` value).
 
-The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by <xref:System.ComponentModel.DataAnnotations>, which are a set of attribute classes placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name:
+The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by <xref:System.ComponentModel.DataAnnotations>, which are a set of attribute classes placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name. You can place multiple annotations on the same line separated by commas inside the braces, or you can place multiple annotations on separate lines, which is the approach used by this tutorial series. 
 
 ```csharp
 [{ANNOTATION}]
@@ -109,7 +114,7 @@ Add the following namespace to the top of the `Movie.cs` file:
 using System.ComponentModel.DataAnnotations.Schema;
 ```
 
-Add the following two data annotation attributes immediately above the `Price` property to specify that it represents a currency:
+Add the following two data annotation attributes immediately above the `Price` property:
 
 ```csharp
 [DataType(DataType.Currency)]
@@ -143,9 +148,9 @@ Select **Build** > **Build Solution** from the menu bar or press <kbd>F6</kbd> o
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in the **Terminal** (**Terminal** menu > **New Terminal**).
 
-Paste all of the following commands at the prompt (`>`) of the **Terminal** at once. When you paste multiple commands, a warning appears telling you that multiple commands will execute. Dismiss any warning that appears and go ahead with pasting all of the commands.
+Paste all of the following commands at the prompt (`>`) of the **Terminal**. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
 
-When you paste multiple commands, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
@@ -159,16 +164,8 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 ```
 
-> [!WARNING]
-> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the command shell (**Terminal** tab).
-
-Ignore the following messages if they appear:
-
-> :::no-loc text="A tool with the package Id 'dotnet-aspnet-codegenerator' could not be found.":::
-
-> :::no-loc text="A tool with the package Id 'dotnet-ef' could not be found.":::
-
-These messages mean that these tools haven't been installed on the system. The reason that commands to uninstall the tools are executed even if they've never been installed is to make sure that the latest tools are present for the tutorial.
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
 The preceding commands add:
 
@@ -177,7 +174,6 @@ The preceding commands add:
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
-
 
 In the **Command Palette** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), use the `.NET: Build` command to build the app.
 
@@ -191,9 +187,9 @@ Confirm that the app built successfully.
 
 To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
 
-Paste all of the following commands into the command shell prompt at once. When you paste multiple commands into a command shell prompt, a warning appears telling you that multiple commands will execute. Dismiss any warning that appears and go ahead with pasting all of the commands.
+Paste all of the following commands  at the prompt (`>`) of the command shell. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
 
-When you paste multiple commands into a command shell, ***the last command doesn't execute*** until you press <kbd>Enter</kbd> on the keyboard. When the last command appears at the prompt after the other commands have run, press <kbd>Enter</kbd>.
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
 
 ```dotnetcli
 dotnet tool install --global dotnet-aspnet-codegenerator
@@ -207,16 +203,8 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid
 dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
 ```
 
-> [!CAUTION]
-> Make sure that you pressed <kbd>Enter</kbd> on the keyboard to execute the last command in the command shell.
-
-Ignore the following messages if they appear:
-
-> :::no-loc text="A tool with the package Id 'dotnet-aspnet-codegenerator' could not be found.":::
-
-> :::no-loc text="A tool with the package Id 'dotnet-ef' could not be found.":::
-
-These messages mean that these tools haven't been installed on the system. The reason that commands to uninstall the tools are executed even if they've never been installed is to make sure that the latest tools are present for the tutorial.
+> [!IMPORTANT]]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
 The preceding commands add:
 
@@ -225,7 +213,6 @@ The preceding commands add:
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
-
 
 In a command shell opened to the project's root folder, execute the [`dotnet build`](/dotnet/core/tools/dotnet-build) command:
 
@@ -243,7 +230,7 @@ In this section, the `Movie` model is used to *scaffold* a database context and 
 
 :::zone pivot="vs"
 
-Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**.
+Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**:
 
 ![New Scaffolded Item](~/blazor/tutorials/movie-database-app/part-2/_static/new-scaffolded-item.png)
 
@@ -255,11 +242,11 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
-* The **Template** drop down list includes other templates for specifically creating create, edit, delete, details, and list components. This drop down list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** drop down list set to **CRUD** because we want to scaffold a full set of components.
+* The **Template** dropdown list includes other templates for specifically creating create, edit, delete, details, and list components. This dropdown list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** dropdown list set to **CRUD** to scaffold a full set of components.
 * In the **Model class** dropdown list, select **Movie (BlazorWebAppMovies.Models)**.
 * For **DbContext class**, select the **+** (plus sign) button.
 * In the **Add Data Context** modal dialog, the class name `BlazorWebAppMovies.Data.BlazorWebAppMoviesContext` is generated. Use the default generated value. Select the **Add** button.
-* After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. When you're building apps in the future, you can select the appropriate provider for the database that you're using. The options include SQLite, PostgreSQL, and Azure Cosmos DB. Leave the **Database provider** drop-down set to **SQL Server**.
+* After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. When you're building apps in the future, you can select the appropriate provider for the database that you're using. The options include SQLite, PostgreSQL, and Azure Cosmos DB. Leave the **Database provider** dropdown list set to **SQL Server**.
 * Select **Add**.
 
 ![Add Razor components using EF CRUD dialog](~/blazor/tutorials/movie-database-app/part-2/_static/add-razor-components-using-ef-crud.png)
@@ -287,7 +274,7 @@ The following table details the ASP.NET Core code generator options used in the 
 
 :::zone pivot="cli"
 
-In a command shell opened to the project's root folder, execute the following command. SQLite is used as the database for users adopting VS Code tooling for this tutorial series.
+In a command shell opened to the project's root folder, execute the following command. SQLite is used as the database for users adopting .NET CLI tooling for this tutorial series.
 
 ```dotnetcli
 dotnet aspnet-codegenerator blazor CRUD -dbProvider sqlite -dc BlazorWebAppMovies.Data.BlazorWebAppMoviesContext -m Movie -outDir Components/Pages
@@ -304,7 +291,7 @@ The following table details the ASP.NET Core code generator options used in the 
 
 :::zone-end
 
-The `appsettings.json` file is updated with the connection string used to connect to a local database. In the following example, the `{CONNECTION STRING}` is the connection string generated automatically by the scaffolder:
+The `appsettings.json` file is updated with the connection string used to connect to a local database. In the following example, the `{CONNECTION STRING}` is the connection string automatically generated by the scaffolder:
 
 ```json
 "ConnectionStrings": {
@@ -378,9 +365,9 @@ This is the reverse procedure of *database-first* approaches, where the database
 In this section, [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) are used to issue EF Core commands that:
 
 * Add an initial migration.
-* Update the database with the initial migration.
+* Update the database using the initial migration.
 
-In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Add migration** in the **SQL Server Express LocalDB** area:
+In **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) followed by **Add migration**:
 
 ![UI showing the 'Add migration' option in the contextual menu opened from selecting the ellipsis next to 'SQL Server Express LocalDB'](~/blazor/tutorials/movie-database-app/part-2/_static/add-migration-menu-item.png)
 
@@ -398,7 +385,7 @@ The **Update database with the latest migration** dialog opens. Wait for the **D
 
 ![Update database with the latest migration dialog showing the database context](~/blazor/tutorials/movie-database-app/part-2/_static/update-database-dialog.png)
 
-The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
+The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp.
 
 :::zone-end
 
@@ -414,7 +401,7 @@ Execute the following .NET CLI command to add an initial migration. The `migrati
 dotnet ef migrations add InitialCreate
 ```
 
-After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
+After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method migrations in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp.
 
 ```dotnetcli
 dotnet ef database update
@@ -430,7 +417,7 @@ From the project's root folder, execute the following .NET CLI command to add an
 dotnet ef migrations add InitialCreate
 ```
 
-After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder in the preceding example is a time stamp.
+After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method migrations in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp.
 
 ```dotnetcli
 dotnet ef database update
@@ -465,13 +452,13 @@ Run the app.
 
 Add `/movies` to the URL in the browser's address bar to navigate to the movies `Index` page.
 
-After the `Index` page loads, select the **`Create New`** link.
+After the `Index` page loads, select the **:::no-loc text="Create New":::** link.
 
-Add a movie to the database. In the following example, the classic sci-fi movie [*The Matrix*](https://www.warnerbros.com/movies/matrix) (&copy;1999 [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/)) is added as the first movie entry. Selecting the **`Create`** button adds the movie to the database:
+Add a movie to the database. In the following example, the classic sci-fi movie [*The Matrix*](https://www.warnerbros.com/movies/matrix) (&copy;1999 [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/)) is added as the first movie entry. Selecting the **:::no-loc text="Create":::** button adds the movie to the database:
 
 ![Adding The Matrix movie to the database with the 'Create' component](~/blazor/tutorials/movie-database-app/part-2/_static/create-new.png)
 
-When you select the **Create** button, the movie data is posted to the server and saved in the database. When the app returns to the `Index` page, the added entity appears:
+When you select the **:::no-loc text="Create":::** button, the movie data is posted to the server and saved in the database. When the app returns to the `Index` page, the added entity appears:
 
 ![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
 

@@ -19,9 +19,7 @@ zone_pivot_groups: tooling
 
 This article is the first part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This article shows you how to create a Blazor Web App that adopts static server-side rendering (static SSR). Static SSR means that content is rendered on the server and sent to the client for display in response to individual requests. Interactive server-side rendering (interactive SSR) is then used to demonstrate handling UI events and updating the HTML DOM dynamically.
-
-At the end of this tutorial, you'll have an interactive Blazor Web App that manages a database of movies.
+This part of the tutorial series covers how to create a Blazor Web App that adopts static server-side rendering (static SSR). Static SSR means that content is rendered on the server and sent to the client for display in response to individual requests.
 
 ## Prerequisites
 
@@ -89,7 +87,7 @@ In VS Code:
 
 Create a new project:
 
-* Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" and find and select the **.NET: New Project** command.
+* Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" to find and select the **.NET: New Project** command.
 
 * Select the **Blazor Web App** project template from the list.
 
@@ -107,11 +105,11 @@ Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/downloa
 
 In a command shell:
 
-* Change to the directory using the `cd` command to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
+* Use the `cd` command to change to the directory to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
 * Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorWebAppMovies` at the current shell directory location.
 
   > [!IMPORTANT]
-  > Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app as you follow the tutorial.
+  > Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app.
 
   ```dotnetcli
   dotnet new blazor -o BlazorWebAppMovies
@@ -140,7 +138,7 @@ Select **Yes** to acknowledge the risk and install the certificate.
 Visual Studio:
 
 * Compiles and runs the app.
-* Launches the default browser at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+* Launches the default browser at `https://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
 Navigate the pages of the app to confirm that the app is working normally.
 
@@ -152,7 +150,7 @@ In VS Code, press <kbd>F5</kbd> to run the app.
 
 At the **Select debugger** prompt in the **Command Palette** at the top of the VS Code UI, select **C#**. At the next prompt, select the default launch configuration (`C#: BlazorWebAppMovies [Default Configuration]`).
 
-The default browser is launched at `http://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+The default browser is launched at `http://localhost:{PORT}`, which displays the app's UI. The `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
 Navigate the pages of the app to confirm that the app is working normally.
 
@@ -166,7 +164,7 @@ In a command shell opened to the project's root folder, execute the [`dotnet wat
 dotnet watch
 ```
 
-The app is compiled and run. The app is launched at `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, you may do so in the project's `Properties/launchSettings.json` file.
+The app is compiled and run. The app is launched at `http://localhost:{PORT}`, where the `{PORT}` placeholder is the random port assigned to the app when the app is created. If you need to change the port due to a local port conflict, change the port in the project's `Properties/launchSettings.json` file.
 
 Navigate the pages of the app to confirm that the app is working normally.
 
@@ -232,7 +230,6 @@ Components are implemented using a combination of C# and HTML markup in [Razor](
 
 Typically, components that are nested within other components and not directly reachable ("routable") at a URL are placed in the `Components` folder. Components that are routable via a URL are usually placed in the `Components/Pages` folder.
 
-
 The `Components/Layout` folder contains the following layout components and stylesheets:
 
 * `MainLayout` component (`MainLayout.razor`): The app's main layout component.
@@ -240,15 +237,21 @@ The `Components/Layout` folder contains the following layout components and styl
 * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. This component uses several `NavLink` components to render navigation links to other Razor components.
 * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
 
-### `_Imports.razor` file
+### `Components/_Imports.razor` file
 
 The `_Imports` file (`_Imports.razor`) includes common *Razor directives* to include in the app's Razor components. Razor directives are reserved keywords prefixed with `@` that appear in Razor markup and change the way component markup or component elements are compiled or function.
 
-### `App.razor` file
+### `Components/App.razor` file
 
-The `App` component (`App.razor`) is the root component of the app with HTML markup, the `Routes` component (covered in the next section), and the Blazor script (`<script>` tag for `blazor.web.js`). The root component is the first component that the app loads.
+The `App` component (`App.razor`) is the root component of the app that includes:
 
-### `Routes.razor` file
+* HTML markup.
+* The `Routes` component.
+* The Blazor script (`<script>` tag for `blazor.web.js`).
+
+The root component is the first component that the app loads.
+
+### `Components/Routes.razor` file
 
 The `Routes` component (`Routes.razor`) sets up routing for the app.
 
@@ -302,17 +305,31 @@ HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuil
 app.UseHttpsRedirection();
 ```
 
+Antiforgery Middleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>) enforces antiforgery protection for form processing:
+
+```csharp
+app.UseAntiforgery();
+```
+
+:::moniker range=">= aspnetcore-9.0"
+
+Map Static Assets Middleware (`MapStaticAssets`) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints.
+
+```csharp
+app.MapStaticAssets();
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) serves static files, such as images, scripts, and stylesheets from the `wwwroot` folder:
 
 ```csharp
 app.UseStaticFiles();
 ```
 
-Antiforgery Middleware (<xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery%2A>) enforces antiforgery protection for form processing:
-
-```csharp
-app.UseAntiforgery();
-```
+:::moniker-end
 
 <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> maps components defined in the root `App` component to the given .NET assembly and renders routable components:
 

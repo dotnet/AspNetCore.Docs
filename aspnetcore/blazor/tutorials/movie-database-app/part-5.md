@@ -19,7 +19,7 @@ zone_pivot_groups: tooling
 
 This article is the fifth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series explains how metadata of the `Movie` model is used to validate user input in the forms that create and edit movies.
+This part of the tutorial series explains how metadata of the `Movie` model is used to validate user input in the forms that create and edit movies.
 
 ## Validation using data annotations
 
@@ -35,17 +35,20 @@ Validation rules are specified on a model class using *data annotations*. The fo
 * [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute): Specify the minimum and maximum values.
 * [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 
-Value types, such as `decimal`, `int`, `float`, `DateOnly`, `TimeOnly`, and `DateTime`, are inherently required, so placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
+Value types, such as `decimal`, `int`, `float`, `DateOnly`, `TimeOnly`, and `DateTime`, are inherently required. Placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
 
 ## Add validation to the `Movie` model
 
 Add the following data annotations to the `Movie` class properties. To update all of the properties at once, you can copy and paste the entire `Models/Movie.cs` file, which appears after the following code example.
 
 ```diff
-+ [Required, StringLength(60, MinimumLength = 3)]
++ [Required]
++ [StringLength(60, MinimumLength = 3)]
   public string? Title { get; set; }
 
-+ [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$"), Required, StringLength(30)]
++ [Required]
+* [StringLength(30)]
++ [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
   public string? Genre { get; set; }
 
 + [Range(0, 100)]
@@ -55,9 +58,8 @@ Add the following data annotations to the `Movie` class properties. To update al
 ```
 
 <!-- HOLD for a later version of the tutorial
-     when QuickGrid has display name support
-
-     Dan, your issue: https://github.com/dotnet/aspnetcore/issues/49147
+     when QuickGrid has display name support per
+     https://github.com/dotnet/aspnetcore/issues/49147.
 
      Add to the diff:
 
@@ -77,28 +79,32 @@ Add the following data annotations to the `Movie` class properties. To update al
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorWebAppMovies.Models;
-
-public class Movie
+namespace BlazorWebAppMovies.Models
 {
-    public int Id { get; set; }
+    public class Movie
+    {
+        public int Id { get; set; }
 
-    [Required, StringLength(60, MinimumLength = 3)]
-    public string? Title { get; set; }
+        [Required]
+        [StringLength(60, MinimumLength = 3)]
+        public string? Title { get; set; }
 
-    public DateOnly ReleaseDate { get; set; }
+        public DateOnly ReleaseDate { get; set; }
 
-    [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$"), Required, StringLength(30)]
-    public string? Genre { get; set; }
+        [Required]
+        [StringLength(30)]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
+        public string? Genre { get; set; }
 
-    [Range(0, 100)]
-    [DataType(DataType.Currency)]
-    [Column(TypeName = "decimal(18, 2)")]
-    public decimal Price { get; set; }
+        [Range(0, 100)]
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
+    }
 }
 ```
 
-The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters and doesn't allow additional special characters in the genre property.
+The preceding validation rules are merely for demonstration and aren't optimal for a production system. For example, the preceding validation prevents entering a movie with only one or two characters and doesn't allow additional special characters for a movie's genre.
 
 ## Create an EF Core migration and update the database
 
@@ -106,10 +112,11 @@ A data model schema defines how data is organized and connected within a relatio
 
 Adding the data annotations to the `Movie` class in the preceding section doesn't automatically result in matching changes to the database's schema.
 
-Review the annotations applied to the `Title` field:
+Review the annotations applied to the `Title` property:
 
 ```csharp
-[Required, StringLength(60, MinimumLength = 3)]
+[Required]
+[StringLength(60, MinimumLength = 3)]
 public string? Title { get; set; }
 ```
 

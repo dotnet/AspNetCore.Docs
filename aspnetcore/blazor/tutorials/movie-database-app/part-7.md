@@ -19,7 +19,7 @@ zone_pivot_groups: tooling
 
 This article is the seventh part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series covers adding a new field to the movie class, CRUD pages, and database.
+This part of the tutorial series covers adding a new field to the movie class, CRUD pages, and database.
 
 The database update is handled by EF Core migrations. EF Core transparently tracks changes to the database in a migration history table and automatically throws an exception if the app's model classes aren't synchronized with the database's tables and columns. EF Core migrations make it possible to quickly troubleshoot database consistency problems.
 
@@ -31,7 +31,8 @@ The database update is handled by EF Core migrations. EF Core transparently trac
 Open the `Models/Movie.cs` file and add a `Rating` property with a regular expression that limits the value of `Rating` to the exact [Motion Picture Association](https://www.motionpictures.org/) film rating designations:
 
 ```csharp
-[RegularExpression(@"^(G|PG|PG-13|R|NC-17)$"), Required]
+[Required]
+[RegularExpression(@"^(G|PG|PG-13|R|NC-17)$")]
 public string? Rating { get; set; }
 ```
 
@@ -39,7 +40,7 @@ public string? Rating { get; set; }
 
 Open the `Create` component definition file (`Components/Pages/MoviePages/Create.razor`).
 
-Add the following `<div>` block after the markup for `Price`:
+Add the following `<div>` block after the `<div>` block for `Price`:
 
 ```razor
 <div class="mb-3">
@@ -71,7 +72,7 @@ Add the following description list term (`<dt>`) and description list element (`
 
 Open the `Edit` component definition file (`Components/Pages/MoviePages/Edit.razor`).
 
-Add the following `<div>` block after the markup for `Price`:
+Add the following `<div>` block after the `<div>` block for `Price`:
 
 ```razor
 <div class="mb-3">
@@ -113,7 +114,7 @@ Add the `Rating` property to each of the other `new Movie` blocks in the same fa
 
 **Save all of the updated files.**
 
-Don't run the app yet. Just build the app to confirm that there are no errors.
+Don't run the app yet. Build the app to confirm that there are no errors.
 
 :::zone pivot="vs"
 
@@ -123,11 +124,7 @@ Select **Build** > **Rebuild Solution** from the menu bar.
 
 :::zone pivot="vsc"
 
-In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command:
-
-```dotnetcli
-dotnet build
-```
+In the **Command Palette**, use the `.NET: Build` command.
 
 :::zone-end
 
@@ -147,15 +144,15 @@ Fix any errors in the app that were introduced by pasting the preceding markup a
 
 If you were to try and run the app at this point, the app would fail with a SQL exception because the database doesn't include a `Rating` column in its `Movie` table. There are three approaches that you can take to resolve the discrepancy between the database's schema and the model's schema:
 
-* Modify the schema of the database so that it matches the model class. The advantage of this approach is that it maintains the database's data. Adopt this approach using either database tooling or by creating a database change script, which are approaches not covered by this tutorial but can be learned using other articles. The downside to this approach is that it requires more time and is more prone to error due to its increased complexity. *This tutorial doesn't adopt this approach.*
-* Use EF Core to automatically drop and recreate the database using the new model class schema, losing the data stored in the database in the process. The database is reseeded with fresh data when the app is run. This approach allows you to quickly evolve the model and database schema together. Don't use this approach on a production database with data that must be preserved. *This tutorial only uses this approach for VS Code and .NET CLI tooling when the provider doesn't support EF Core migrations.*
+* Modify the schema of the database so that it matches the model class. The advantage of this approach is that it maintains the database's data. Adopt this approach using either database tooling or by creating a database change script, which are approaches not covered by this tutorial but can be learned using other articles. The downside to this approach is that it requires more time and is more prone to errors due to its increased complexity. *This tutorial doesn't adopt this approach.*
+* Use EF Core to automatically drop and recreate the database using the new model class schema, losing the data stored in the database in the process. The database is reseeded with fresh data when the app is run. This approach allows you to quickly evolve the model and database schema together. Don't use this approach on a production database with data that must be preserved. *This tutorial doesn't adopt this approach.*
 * Use an EF Core migration to update the database schema after the model is changed in the app. This approach is efficient and preserves the database's data. ***This tutorial adopts this approach.***
 
 Create a migration to update the database's schema. The movie rating, as a `Rating` column, is added to the database's `Movie` table.
 
 :::zone pivot="vs"
 
-In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Add migration** in the **SQL Server Express LocalDB** area.
+In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) followed by **Add migration**.
 
 Give the migration a **Migration name** of `AddRatingField` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration.
 
@@ -164,7 +161,7 @@ The migration:
 * Compares the `Movie` model with the `Movie` database table schema.
 * Creates code to migrate the database schema to match the model.
 
-Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a small change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is an appropriate choice. The one movie that doesn't have an *R* rating can be updated later in the running app.
+Creating the migration doesn't automatically provision a default value for the rating when the database is updated. However, you can manually make a change to the migration file to apply a default movie rating value, which can be helpful when there are many records that require a default value. In this case, all but one of the *Mad Max* movies is rated *R*, so a default value of "`R`" for the `Rating` column is an appropriate choice. The one movie that doesn't have an *R* rating can be updated later in the running app.
 
 Examine the files in the `Migrations` folder of the project in Visual Studio's **Solution Explorer**. Open the migration file that adds the movie rating field, which has a file name of `{TIME STAMP}_AddRatingField.cs`, where the `{TIME STAMP}` placeholder is a time stamp (for example, `20240530123755_AddRatingField.cs`).
 
@@ -182,7 +179,7 @@ migrationBuilder.AddColumn<string>(
 
 Save the migration file.
 
-Select the ellipsis (`...`) again followed by the **Update database** command.
+In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) again followed by the **Update database** command.
 
 The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button.
 
@@ -265,46 +262,6 @@ Modify the one movie that isn't rated *R*:
 >
 > After deleting all of the records, run the app. The initializer reseeds the database and includes the correct movie ratings for the `Rating` field based on the seeding code.
 
-## Drop and recreate the database for non-SQL Server providers
-
-**Skip this section if you successfully migrated the database using the preceding guidance.**
-
-In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
-
-The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
-
-* Creating a new table with a temporary table name.
-* Copying data from the old table to the new table.
-* Dropping the old table.
-* Renaming the new table to match the old table's name.
-
-For more information, see the following resources:
-
-* [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-* [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-* [Data seeding](/ef/core/modeling/data-seeding)
-* [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
-
-1. Delete the migration folder. This effectively removes all of the existing migrations, which shouldn't be executed again.
-
-1. Use the following command to drop the database:
-
-   ```dotnetcli
-   dotnet ef database drop
-   ```
-
-1. Use the following command to create an initial migration:
-
-   ```dotnetcli
-   dotnet ef migrations add InitialCreate
-   ```
-
-1. Use the following command to update the database:
-
-   ```dotnetcli
-   dotnet ef database update
-   ```
-
 :::zone-end
 
 :::zone pivot="cli"
@@ -365,49 +322,6 @@ Modify the one movie that isn't rated *R*:
 >
 > After deleting all of the records, run the app. The initializer reseeds the database and includes the correct movie ratings for the `Rating` field based on the seeding code.
 
-## Drop and recreate the database for non-SQL Server providers
-
-**Skip this section if you successfully migrated the database using the preceding guidance.**
-
-In this tutorial, EF Core migrations are used. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
-
-The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
-
-* Creating a new table with a temporary table name.
-* Copying data from the old table to the new table.
-* Dropping the old table.
-* Renaming the new table to match the old table's name.
-
-For more information, see the following resources:
-
-* EF Core documentation
-  * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-  * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-  * [Data seeding](/ef/core/modeling/data-seeding)
-* [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
-
-1. Confirm that the app isn't running. Stopping the app when using Visual Studio only requires you to close the browser's window. When using VS Code, close the browser's window and stop the app in VS Code with **Run** > **Stop Debugging** or by pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard. When using the .NET CLI, close the browser's window and stop the app in the command shell with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS).
-
-1. Delete the migration folder. This effectively removes all of the existing migrations, which shouldn't be executed again.
-
-1. Use the following command to drop the database:
-
-   ```dotnetcli
-   dotnet ef database drop
-   ```
-
-1. Use the following command to create an initial migration:
-
-   ```dotnetcli
-   dotnet ef migrations add InitialCreate
-   ```
-
-1. Use the following command to update the database:
-
-   ```dotnetcli
-   dotnet ef database update
-   ```
-
 :::zone-end
 
 Run the app and verify you can create, edit, and display movies with the new movie rating field.
@@ -459,7 +373,7 @@ In the event that the database becomes corrupted, delete the database and use mi
 
 ## Legal
 
-[*Max Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
+[*Mad Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
 
 ## Next steps
 

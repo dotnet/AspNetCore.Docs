@@ -29,11 +29,11 @@ Parts of this series include:
 1. [Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
 1. [Add interactivity](xref:blazor/tutorials/movie-database-app/part-8)
 
-At the end of the tutorial, you'll have a Blazor Web App that can display and manage a movie database.
+At the end of the tutorial, you'll have a Blazor Web App that can display and manage movies in a movie database.
 
 As you work through the tutorial (or if you're only reading the articles and not building the app), you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.
 
-To open a documentation GitHub issue for an article of the series, use the **Open a documentation issue** link at the bottom of the article. Using the link to create your issue adds important tracking metadata to the issue and automatically pings the author.
+To open a documentation GitHub issue for an article of the series, use the **Open a documentation issue** link at the bottom of the article. Using the link to create your issue adds important tracking metadata to the issue and automatically pings the author of the article. We welcome feedback on the tutorial's articles, but we're often unable to provide product support. If you run into a problem while following the tutorial, check the steps that you've taken against the article because many problems can be traced to missing a step or not following a step correctly. For general questions about .NET and Blazor, we recommend [public forums for support requests](xref:blazor/fundamentals/index#support-requests).
 
 ## Next steps
 

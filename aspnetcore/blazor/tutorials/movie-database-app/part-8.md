@@ -18,7 +18,7 @@ uid: blazor/tutorials/movie-database-app/part-8
 
 This article is the eighth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-Up to this point in the tutorial, the entire app has been *enabled* for interactivity, but the app hasn't *adopted* interactivity. This part of the series explains how to adopt interactivity.
+Up to this point in the tutorial, the entire app has been *enabled* for interactivity, but the app hasn't *adopted* interactivity. This part of the tutorial series explains how to adopt interactivity.
 
 > [!IMPORTANT]
 > Confirm that the app isn't running for the next steps.
@@ -62,7 +62,7 @@ To apply a render mode to a component, the developer either uses the `@rendermod
   <Dialog @rendermode="InteractiveServer" />
   ```
 
-* The following example shows how to set the render mode on a component definition with the `@rendermode` directive. For example, at the top of a hypothetical sales forecast (`SalesForecast`) component:
+* The following example shows how to set the render mode on a component definition with the `@rendermode` directive. For example, at the top of a hypothetical sales forecast (`SalesForecast`) component definition file (`.razor`):
 
   ```razor
   @page "/sales-forecast"
@@ -72,34 +72,22 @@ To apply a render mode to a component, the developer either uses the `@rendermod
 Using the preceding approaches, you can apply a render mode on a per-page/component basis. However, an entire app can adopt a single render mode via a root component that then by inheritance sets the render mode of every other component loaded. This is termed *global interactivity*, as opposed to *per-page/component interactivity*. Global interactivity is useful if most of the app requires interactive features. Global interactivity is usually applied via the `App` component, which is the root component of an app created from the Blazor Web App project template.
 
 > [!NOTE]
-> More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, we'll only adopt interactive SSR on a per-page/component basis. After the tutorial, you're free to use this app to study the other component render modes and the global interactivity location.
+> More information on render modes is provided by Blazor's reference documentation. For the purposes of this tutorial, the app only adopts interactive SSR on a per-page/component basis. After the tutorial, you're free to use this app to study the other component render modes and the global interactivity location.
 
-<!-- NOTE TO SELF
-     
-     This is now injecting NavManager in
-     case it can be used to update the URL
-     to reflect the search filter. If it 
-     can't be done without a full-page 
-     reload, then we'll probably be pulling
-     the service from the component.
-     
--->
-
-Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`), and add the following `@rendermode` and `@inject` directives to make the component interactive and obtain an instance of the `NavigationManager`:
+Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`), and add the following `@rendermode` directive to make the component interactive:
 
 ```diff
   @page "/movies"
 + @rendermode InteractiveServer
   @using Microsoft.AspNetCore.Components.QuickGrid
   @inject BlazorWebAppMovies.Data.BlazorWebAppMoviesContext DB
-+ @inject NavigationManager Navigation
   @using BlazorWebAppMovies.Models
 ```
 
-To see how making a component interactive enhances the user experience, let's provide three enhancements to the app in the next couple of sections:
+To see how making a component interactive enhances the user experience, let's provide three enhancements to the app in the following sections:
 
 * Add pagination to the movie `QuickGrid` component.
-* Make the movie `QuickGrid` component *sortable*.
+* Make the `QuickGrid` component *sortable*.
 * Replace the HTML form for filtering movies by title with C# code that:
   * Runs on the server.
   * Renders content transparently over the underlying SignalR connection.
@@ -108,7 +96,7 @@ To see how making a component interactive enhances the user experience, let's pr
 
 The `QuickGrid` component can page data from the database.
 
-Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to just `2` items in order to demonstrate pagination later. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
+Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records for demonstration, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to `2` items in order to demonstrate pagination later. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
 
 ```csharp
 PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
@@ -121,7 +109,7 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 + <QuickGrid Class="table" Items="@movies" Pagination="@pagination">
 ```
 
-To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the `Paginator` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A> to `pagination`:
+To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
 
 ```razor
 <Paginator State="@pagination" />
@@ -155,9 +143,9 @@ Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBas
 
 Run the app and navigate to the movies `Index` page.
 
-You can sort the `QuickGrid` by movie title by selecting the **Title** column.
+You can sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column.
 
-The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client.
+The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
 
 ![Movie list sorted by the Title column](~/blazor/tutorials/movie-database-app/part-8/_static/sorted-movies.png)
 
@@ -251,7 +239,7 @@ In its place, add the following Razor markup:
 
 The `<input>` element *binds* the value of the element to the `TitleFilter` property. Selecting the button triggers the `FilterMovies` delegate via the `@onclick` directive attribute of the `<button>` element.
 
-Run the app, type "`road warrior`" into the search field, and select the **Search** button:
+Run the app, type "`road warrior`" into the search field, and select the **:::no-loc text="Search":::** button:
 
 ![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 

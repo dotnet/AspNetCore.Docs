@@ -19,7 +19,7 @@ zone_pivot_groups: tooling
 
 This article is the fourth part of the Blazor movie database app tutorial that teaches you the basics of building an ASP.NET Core Blazor Web App with features to manage a movie database.
 
-This part of the series focuses on the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
+This part of the tutorial series focuses on the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 
 ## Database context
 
@@ -83,9 +83,9 @@ When the app is deployed to a test/staging or production server, an environment 
 
 ## Database technology
 
-The Visual Studio version of this tutorial uses SQL Server, while the VS Code and .NET CLI versions of this tutorial use SQLite.
-
 :::zone pivot="vs"
+
+The Visual Studio version of this tutorial uses SQL Server.
 
 SQL Server Express LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, master database files (`*.mdf`) are placed in the `C:/Users/{USER}` directory, where the `{USER}` placeholder is the system's user ID.
 
@@ -115,65 +115,31 @@ The table's data opens in a new tab in Visual Studio:
 
 :::zone pivot="vsc"
 
-[SQLite](https://www.sqlite.org/) is a public, self-contained, full-featured SQL database engine.
+The VS Code version of this tutorial uses [SQLite](https://www.sqlite.org/), which is a public, self-contained, full-featured SQL database engine.
 
 There are many third-party tools you can use to manage and view SQLite databases. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
 
 ![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4/_static/dbb.png)
 
-In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
-
-The workaround for the limitations is to manually write migrations code to perform a table rebuild when the table changes. A table rebuild involves:
-
-* Creating a new table with a temporary table name.
-* Copying data from the old table to the new table.
-* Dropping the old table.
-* Renaming the new table to match the old table's name.
-
-In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/part-7#drop-and-recreate-the-database-for-non-sql-server-providers>.
-
-For more information, see the following resources:
-
-* EF Core documentation
-  * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-  * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-  * [Data seeding](/ef/core/modeling/data-seeding)
-* [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
+In this tutorial, EF Core migrations are used. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. Resources are listed at the end of this article for further reading.
 
 :::zone-end
 
 :::zone pivot="cli"
 
-[SQLite](https://www.sqlite.org/) is a public, self-contained, full-featured SQL database engine.
+The VS Code version of this tutorial uses [SQLite](https://www.sqlite.org/), which is a public, self-contained, full-featured SQL database engine.
 
 There are many third-party tools you can use to manage and view SQLite databases. The following image shows [DB Browser for SQLite](https://sqlitebrowser.org/):
 
 ![DB Browser for SQLite showing movie database](~/blazor/tutorials/movie-database-app/part-4/_static/dbb.png)
 
-In this tutorial, EF Core migrations are used when possible. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. While the SQL Server provider has wide support for migration tasks, other provider's capabilities are limited. For example, support may exist for adding a column (the `ef migrations add` command succeeds), but support may not exist for removing or changing a column (the `ef database update` command fails). Due to these limitations, you can drop and recreate the database using the guidance in this section.
-
-The workaround for the limitations is to manually write migrations code to perform a table rebuild when the table changes. A table rebuild involves:
-
-* Creating a new table with a temporary table name.
-* Copying data from the old table to the new table.
-* Dropping the old table.
-* Renaming the new table to match the old table's name.
-
-In the event that you need to adopt this approach, guidance on how to drop and recreate the database is covered in <xref:blazor/tutorials/movie-database-app/part-7#drop-and-recreate-the-database-for-non-sql-server-providers>.
-
-For more information, see the following resources:
-
-* EF Core documentation
-  * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-  * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-  * [Data seeding](/ef/core/modeling/data-seeding)
-* [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
+In this tutorial, EF Core migrations are used. A migration updates the database schema to match changes in the data model. However, migrations can only make changes to the database that the EF Core provider supports. Resources are listed at the end of this article for further reading.
 
 :::zone-end
 
 ## Seed the database
 
-Seeding code can provide a set of entities/records for development testing or even be used to create the initial data for a new production database.
+Seeding code can create a set of records for development testing or even be used to create the initial data for a new production database.
 
 > [!WARNING]
 > The technique shown in this section isn't acceptable for modifying a live database with active users.
@@ -294,7 +260,7 @@ Review the the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 
 When an HTTP GET request is made for the `Edit` component page (for example at the relative URL: `/movies/edit?id=6`):
 
-* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method fetches the movie from the database and assigns it to the `Movie` property.
+* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method fetches the movie with an `Id` of `6` from the database and assigns it to the `Movie` property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter specifies the top-level model object for the form. An edit context is constructed for the form using the assigned model.
 * The form is displayed with the values from the movie.
 
@@ -340,30 +306,30 @@ Concurrency exceptions are detected when one client deletes the movie and a diff
 
 To test how concurrency is handled by the preceding code:
 
-1. Select **Edit** for a movie, make changes, but don't select **Save**.
-1. In a different browser window, open the app to the movie `Index` page and select the **Delete** link for the same movie to delete the movie.
-1. In the previous browser window, post changes to the movie by selecting the **Save** button.
+1. Select **:::no-loc text="Edit":::** for a movie, make changes, but don't select **:::no-loc text="Save":::**.
+1. In a different browser window, open the app to the movie `Index` page and select the **:::no-loc text="Delete":::** link for the same movie to delete the movie.
+1. In the previous browser window, post changes to the movie by selecting the **:::no-loc text="Save":::** button.
 1. The browser is navigated to the `notfound` endpoint, which doesn't exist and yields a 404 (Not Found) result.
 
-Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
+Additional guidance on handling concurrency with EF Core in Blazor apps is available in the Blazor documentation.
 
 ## Stop the app
 
 :::zone pivot="vs"
 
-If the app is running, shut it down by closing the browser's window.
+If the app is running, shut the app down by closing the browser's window.
 
 :::zone-end
 
 :::zone pivot="vsc"
 
-If the app is running, shut it down by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
+If the app is running, shut the app down by closing the browser's window and pressing <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard in VS Code.
 
 :::zone-end
 
 :::zone pivot="cli"
 
-If the app is running, shut it down by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
+If the app is running, shut the app down by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) in the command shell.
 
 :::zone-end
 
@@ -378,10 +344,15 @@ If the app is running, shut it down by closing the browser's window and pressing
   * <xref:blazor/fundamentals/configuration> (Blazor documentation)
   * [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
 * [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
+* Database provider resources:
+  * EF Core documentation
+    * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+    * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+  * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 
 ## Legal
 
-[*Max Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
+[*Mad Max*, *The Road Warrior*, *Mad Max: Beyond Thunderdome*, *Mad Max: Fury Road*, and *Furiosa: A Mad Max Saga*](https://warnerbros.fandom.com/wiki/Mad_Max_(franchise)) are trademarks and copyrights of [Warner Bros. Entertainment](https://www.warnerbros.com/).
 
 ## Next steps
 
