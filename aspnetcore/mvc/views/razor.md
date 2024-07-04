@@ -467,7 +467,7 @@ Razor comments are removed by the server before the webpage is rendered. Razor u
 
 ## Directives
 
-Razor directives are represented by implicit expressions with reserved keywords following the `@` symbol. A directive typically changes the way a view is parsed or enables different functionality.
+Razor directives are represented by implicit expressions with reserved keywords following the `@` symbol. A directive typically changes the way a view is compiled or enables different functionality.
 
 Understanding how Razor generates code for a view makes it easier to understand how directives work.
 
@@ -810,7 +810,7 @@ In [Razor components](xref:blazor/components/index), `@using` also controls whic
 
 ## Directive attributes
 
-Razor directive attributes are represented by implicit expressions with reserved keywords following the `@` symbol. A directive attribute typically changes the way an element is parsed or enables different functionality.
+Razor directive attributes are represented by implicit expressions with reserved keywords following the `@` symbol. A directive attribute typically changes the way an element is compiled or enables different functionality.
 
 ### `@attributes`
 
