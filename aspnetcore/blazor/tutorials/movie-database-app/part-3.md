@@ -576,6 +576,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 * <xref:blazor/components/quickgrid>
 * <xref:blazor/forms/index>
 * [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
+* <xref:blazor/globalization-localization>: Explains how to render globalized and localized content to users in different cultures and languages, including how to accept comma number separators.
 
 ## Next steps
 
