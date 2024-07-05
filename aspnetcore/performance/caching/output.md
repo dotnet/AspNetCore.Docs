@@ -144,8 +144,6 @@ Here are some of the options for controlling the cache key:
 
   :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Program.cs" id="policies2" highlight="10-14":::
 
-  <!--todo: add vary-by-value for controller-based APIs -->
-
 Use <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.UseCaseSensitivePaths?displayProperty=nameWithType> to specify that the path part of the key is case sensitive. The default is case insensitive.
 
 For more options, see the <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder> class.
@@ -154,9 +152,11 @@ For more options, see the <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePo
 
 Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of the full response body. This status code informs the client that the response to the request is unchanged from what the client previously received.
 
-The following code illustrates the use of an [`Etag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header to enable cache revalidation. If the client sends an [`If-None-Match`](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-None-Match) header with the etag value of an earlier response, and the cache entry is fresh, the server returns [304 Not Modified](https://developer.mozilla.org/docs/Web/HTTP/Status/304) instead of the full response:
+The following code illustrates the use of an [`Etag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header to enable cache revalidation. If the client sends an [`If-None-Match`](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-None-Match) header with the etag value of an earlier response, and the cache entry is fresh, the server returns [304 Not Modified](https://developer.mozilla.org/docs/Web/HTTP/Status/304) instead of the full response. Here's how to set the etag value in a policy, in a Minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="etag":::
+
+And here's how to set the etag value in a controller-based API:
 
 :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/EtagController.cs" id="snippet_etag":::
 
