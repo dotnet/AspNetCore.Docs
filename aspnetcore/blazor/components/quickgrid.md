@@ -83,7 +83,7 @@ To implement a `QuickGrid` component:
 
 For example, add the following component to render a grid.
 
-For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes) to enable interactive features, such a paging and sorting.
+For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes) to enable interactive features, such as paging and sorting.
 
 `PromotionGrid.razor`:
 
@@ -97,19 +97,19 @@ There aren't current plans to extend `QuickGrid` with features that full-blown c
 
 The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
 
-Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to any of the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tags:
+Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tag:
 
 ```razor
 <PropertyColumn Property="..." Sortable="true" />
 ```
 
-In the running app, sort the `QuickGrid` column by selecting the column in the grid.
+In the running app, sort the `QuickGrid` column by selecting the rendered column title.
 
 ## Page items with a `Paginator` component
 
 The `QuickGrid` component can page data from the data source. In Blazor Web Apps, paging requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
 
-Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination` and ten items per page is set:
+Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`, and ten items per page is set:
 
 ```csharp
 PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
@@ -127,7 +127,7 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 <Paginator State="@pagination" />
 ```
 
-In the running app, you can page through the movie items using a `Paginator` component.
+In the running app, page through the items using a rendered `Paginator` component.
 
 ## Custom attributes and styles
 
@@ -424,5 +424,5 @@ dotnet aspnet-codegenerator blazor -h
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
                 merges.
 
-<xref:blazor/tutorials/movie-database-app/index> is a tutorial that demonstrates the use of the `QuickGrid` scaffolder.
+For an example use of the `QuickGrid` scaffoder, see <xref:blazor/tutorials/movie-database-app/index>.
 -->
