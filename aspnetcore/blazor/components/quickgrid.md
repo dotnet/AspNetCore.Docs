@@ -245,7 +245,7 @@ builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 ## Display name support
 
-A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following example, the column is given the name "`Release Date`" for the column's movie release date data:
+A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following movie example, the column is given the name "`Release Date`" for the column's movie release date data:
 
 ```razor
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
@@ -416,9 +416,12 @@ The preceding commands add:
 
 In the **Terminal**, execute the following command to scaffold a full set of components with the `CRUD` template:
 
-```powershell
+```dotnetcli
 dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDir Components/Pages
 ```
+
+> [!NOTE]
+> The preceding command is a .NET CLI command, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
 
 The following table details the ASP.NET Core code generator options used in the preceding command:
 
@@ -429,7 +432,7 @@ The following table details the ASP.NET Core code generator options used in the 
 
 For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
 
-```powershell
+```dotnetcli
 dotnet aspnet-codegenerator blazor -h
 ```
 
