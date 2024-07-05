@@ -96,28 +96,26 @@ To see how making a component interactive enhances the user experience, let's pr
 
 The `QuickGrid` component can page data from the database.
 
-Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records for demonstration, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to `2` items in order to demonstrate pagination later. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
+Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records for demonstration, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to `2` items in order to demonstrate pagination. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
 
 ```csharp
 PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
 ```
 
-Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `@pagination`:
 
 ```diff
 - <QuickGrid Class="table" Items="@movies">
 + <QuickGrid Class="table" Items="@movies" Pagination="@pagination">
 ```
 
-To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
+To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
 
 ```razor
 <Paginator State="@pagination" />
 ```
 
-Run the app and navigate to the movies `Index` page.
-
-You can page through the movie items at two movies per page:
+Run the app and navigate to the movies `Index` page. You can page through the movie items at two movies per page:
 
 ![Movie list showing the second page of two items](~/blazor/tutorials/movie-database-app/part-8/_static/paging-movies.png)
 
@@ -141,11 +139,7 @@ Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBas
 + <PropertyColumn Property="movie => movie.Title" Sortable="true" />
 ```
 
-Run the app and navigate to the movies `Index` page.
-
-You can sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column.
-
-The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
+You can sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column. The page doesn't reload for sorting to occur. The sorting is performed live over the SignalR connection, where the sorting operation is performed on the server with the rendered result sent back to the client:
 
 ![Movie list sorted by the Title column](~/blazor/tutorials/movie-database-app/part-8/_static/sorted-movies.png)
 
