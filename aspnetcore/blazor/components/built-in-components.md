@@ -75,8 +75,6 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 * [`NavigationLock`](xref:blazor/fundamentals/routing#handleprevent-location-changes)
 * [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
 * [`PageTitle`](xref:blazor/components/control-head-content)
-* [`Paginator`](xref:blazor/components/quickgrid#paging-items-with-a-paginator-component)
-* [`QuickGrid`](xref:blazor/components/quickgrid)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)

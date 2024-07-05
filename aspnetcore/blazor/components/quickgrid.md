@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor QuickGrid component
 author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2024
@@ -11,8 +11,6 @@ uid: blazor/components/quickgrid
 # ASP.NET Core Blazor `QuickGrid` component
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
 
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
@@ -29,8 +27,6 @@ For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** sample
 ## `QuickGrid` implementation
 
 To implement a `QuickGrid` component:
-
-:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -57,7 +53,7 @@ To implement a `QuickGrid` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+:::moniker range="< aspnetcore-9.0"
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
@@ -81,8 +77,6 @@ To implement a `QuickGrid` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
 For example, add the following component to render a grid.
 
 The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app, which enables interactive features. For the following example, the only interactive feature is sortable columns.
@@ -91,52 +85,6 @@ The component assumes that the Interactive Server render mode (`InteractiveServe
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The `QuickGrid` component is an experimental Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
-
-To get started with `QuickGrid`:
-
-Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-> [!NOTE]
-> Because the `Microsoft.AspNetCore.Components.QuickGrid` package is an experimental package for .NET 7, the package remains in *prerelease* status forever for .NET 7 Blazor apps. The package reached production status for .NET 8 or later. For more information, see an 8.0 or later version of this article.
-
-Add the following component to render a grid.
-
-`PromotionGrid.razor`:
-
-```razor
-@page "/promotion-grid"
-@using Microsoft.AspNetCore.Components.QuickGrid
-
-<QuickGrid Items="people">
-    <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.PromotionDate)" Format="yyyy-MM-dd" Sortable="true" />
-</QuickGrid>
-
-@code {
-    private record Person(int PersonId, string Name, DateOnly PromotionDate);
-
-    private IQueryable<Person> people = new[]
-    {
-        new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
-        new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
-        new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
-        new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
-        new Person(11898, "Jose Hernandez", new DateOnly(2011, 5, 3)),
-        new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
-    }.AsQueryable();
-}
-```
-
-:::moniker-end
-
 Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
@@ -144,14 +92,6 @@ There aren't current plans to extend `QuickGrid` with features that full-blown c
 ## Sort by column
 
 The `QuickGrid` component can sort items by columns. Sorting items requires an interactive component render mode.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The `QuickGrid` component can sort items by columns.
-
-:::moniker-end
 
 Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to any of the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tags:
 
@@ -163,17 +103,7 @@ In the running app, sort the `QuickGrid` by movie title by selecting the **:::no
 
 ## Page items with a `Paginator` component
 
-:::moniker range=">= aspnetcore-8.0"
-
 The `QuickGrid` component can page data from the data source. Paging items requires an interactive component render mode.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The `QuickGrid` component can page data from the data source.
-
-:::moniker-end
 
 Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`:
 
@@ -202,8 +132,6 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 ```razor
 <QuickGrid Items="..." custom-attribute="value" Class="custom-class">
 ```
-
-:::moniker range=">= aspnetcore-8.0"
 
 ## Entity Framework Core (EF Core) data source
 
@@ -240,8 +168,6 @@ Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServic
 ```csharp
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
-
-:::moniker-end
 
 ## Display name support
 
@@ -490,5 +416,5 @@ dotnet aspnet-codegenerator blazor -h
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
                 merges.
 
-For an example use case, see <xref:blazor/tutorials/movie-database-app/index>.
+<xref:blazor/tutorials/movie-database-app/index> is a tutorial that demonstrates the use of the `QuickGrid` scaffolder.
 -->
