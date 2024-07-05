@@ -4,7 +4,7 @@ author: tdykstra
 description: The ASP.NET Core code generator tool scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
-ms.date: 06/17/2024
+ms.date: 07/05/2024
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 # ASP.NET Core code generator tool (`aspnet-codegenerator`)
@@ -57,6 +57,8 @@ The `dotnet aspnet-codegenerator` global command runs the ASP.NET Core code gene
 
 The code generator to run. The available generators are shown in the following table.
 
+:::moniker range=">= aspnetcore-8.0"
+
 Generator         | Operation
 ----------------- | ---
 `area`            | [Scaffolds an area](xref:mvc/controllers/areas).
@@ -67,6 +69,21 @@ Generator         | Operation
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
 `razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
 `view`            | [Scaffolds a view](xref:mvc/views/overview).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Generator         | Operation
+----------------- | ---
+`area`            | [Scaffolds an area](xref:mvc/controllers/areas).
+`controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
+`identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
+`minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
+`razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
+`view`            | [Scaffolds a view](xref:mvc/views/overview).
+
+:::moniker-end
 
 ## Options
 
@@ -102,6 +119,8 @@ The target [framework](/dotnet/standard/frameworks) to use.
 
 The following sections detail the options available for the supported generators:
 
+:::moniker range=">= aspnetcore-8.0"
+
 * [Area (`area`)](#area-options)
 * [Controller (`controller`)](#controller-options)
 * [Blazor (`blazor`)](#blazor-options)
@@ -110,6 +129,19 @@ The following sections detail the options available for the supported generators
 * [Minimal API (`minimalapi`)](#minimal-api-options)
 * [Razor page (`razorpage`)](#razor-page-options)
 * [View (`view`)](#view-options)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* [Area (`area`)](#area-options)
+* [Controller (`controller`)](#controller-options)
+* [Identity (`identity`)](#identity-options)
+* [Minimal API (`minimalapi`)](#minimal-api-options)
+* [Razor page (`razorpage`)](#razor-page-options)
+* [View (`view`)](#view-options)
+
+:::moniker-end
 
 ### Area options
 
@@ -131,6 +163,8 @@ Use the `-h|--help` option for help:
 ```dotnetcli
 dotnet aspnet-codegenerator area -h
 ```
+
+:::moniker range=">= aspnetcore-8.0"
 
 ### Blazor options
 
@@ -203,6 +237,8 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator blazor-identity -h
 ```
 
+:::moniker-end
+
 ### Controller options
 
 General options are shown in the following table.
@@ -219,8 +255,6 @@ Option                             | Description
 `-name|--controllerName`           | Name of the controller.
 `-namespace|--controllerNamespace` | Specify the name of the namespace to use for the generated controller.
 `-nv|--noViews`                    | Generate **no** views.
-
-
 
 Use the `-h|--help` option for help:
 

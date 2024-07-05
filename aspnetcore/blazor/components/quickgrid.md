@@ -2,17 +2,19 @@
 title: ASP.NET Core Blazor QuickGrid component
 author: guardrex
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 07/05/2024
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
 
+<!-- UPDATE 9.0 Enable the following
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+-->
 
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
@@ -29,8 +31,6 @@ For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** sample
 ## `QuickGrid` implementation
 
 To implement a `QuickGrid` component:
-
-:::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -57,7 +57,7 @@ To implement a `QuickGrid` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+:::moniker range="< aspnetcore-9.0"
 
 * Specify tags for the `QuickGrid` component in Razor markup (`<QuickGrid>...</QuickGrid>`).
 * Name a queryable source of data for the grid. Use ***either*** of the following data sources:
@@ -81,75 +81,61 @@ To implement a `QuickGrid` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
-
 For example, add the following component to render a grid.
 
-The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app, which enables interactive features. For the following example, the only interactive feature is sortable columns.
+For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes) to enable interactive features, such as paging and sorting.
 
 `PromotionGrid.razor`:
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-The `QuickGrid` component is an experimental Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
-
-To get started with `QuickGrid`:
-
-Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-> [!NOTE]
-> Because the `Microsoft.AspNetCore.Components.QuickGrid` package is an experimental package for .NET 7, the package remains in *prerelease* status forever for .NET 7 Blazor apps. The package reached production status for .NET 8 or later. For more information, see an 8.0 or later version of this article.
-
-Add the following component to render a grid.
-
-`PromotionGrid.razor`:
-
-```razor
-@page "/promotion-grid"
-@using Microsoft.AspNetCore.Components.QuickGrid
-
-<QuickGrid Items="people">
-    <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.PromotionDate)" Format="yyyy-MM-dd" Sortable="true" />
-</QuickGrid>
-
-@code {
-    private record Person(int PersonId, string Name, DateOnly PromotionDate);
-
-    private IQueryable<Person> people = new[]
-    {
-        new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
-        new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
-        new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
-        new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
-        new Person(11898, "Jose Hernandez", new DateOnly(2011, 5, 3)),
-        new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
-    }.AsQueryable();
-}
-```
-
-:::moniker-end
-
 Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
 
-## Custom attributes and styles
+## Sort by column
 
-QuickGrid also supports passing custom attributes and style classes to the rendered table element:
+The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+
+Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tag:
 
 ```razor
-<QuickGrid Items="..." custom-attribute="value" class="custom-class">
+<PropertyColumn Property="..." Sortable="true" />
 ```
 
-:::moniker range=">= aspnetcore-8.0"
+In the running app, sort the `QuickGrid` column by selecting the rendered column title.
+
+## Page items with a `Paginator` component
+
+The `QuickGrid` component can page data from the data source. In Blazor Web Apps, paging requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+
+Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`, and ten items per page is set:
+
+```csharp
+PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+```
+
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `@pagination`:
+
+```razor
+<QuickGrid Items="..." Pagination="@pagination">
+```
+
+To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
+
+```razor
+<Paginator State="@pagination" />
+```
+
+In the running app, page through the items using a rendered `Paginator` component.
+
+## Custom attributes and styles
+
+QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
+
+```razor
+<QuickGrid Items="..." custom-attribute="value" Class="custom-class">
+```
 
 ## Entity Framework Core (EF Core) data source
 
@@ -187,11 +173,9 @@ Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServic
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
 
-:::moniker-end
-
 ## Display name support
 
-A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following example, the column is given the name "`Release Date`" for the column's movie release date data:
+A column title can be assigned using <xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Title?displayProperty=nameWithType> in the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>'s tag. In the following movie example, the column is given the name "`Release Date`" for the column's movie release date data:
 
 ```razor
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
@@ -313,15 +297,132 @@ The `QuickGrid` scaffolder scaffolds Razor components with `QuickGrid` to displa
 
 The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
 
-The scaffolded Razor components are added to the project's `Pages` folder in a generated folder named after the model class. The generated `Index` component uses `QuickGrid` to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as sorting and filtering.
+The scaffolded Razor components are added to the project's in a generated folder named after the model class. The generated `Index` component uses a `QuickGrid` component to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as [paging](#page-items-with-a-paginator-component), [sorting](#sort-by-column) and filtering.
 
 The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
 
-To use the scaffolder in Visual Studio, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**. To use the scaffolder with the .NET CLI, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+# [Visual Studio](#tab/visual-studio)
+
+Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**.
+
+With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
+
+Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
+
+* The **Template** dropdown list includes other templates for specifically creating create, edit, delete, details, and list components. This dropdown list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** dropdown list set to **CRUD** to scaffold a full set of components.
+* In the **Model class** dropdown list, select the model class. A folder is created for the generated components from the model name (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
+* For **DbContext class**, select an existing database context or select the **+** (plus sign) button and **Add Data Context** modal dialog to add a new database context.
+* After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. You can select the appropriate provider for the database that you're using. The options include SQL Server, SQLite, PostgreSQL, and Azure Cosmos DB.
+* Select **Add**.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Paste all of the following commands at the prompt (`>`) of the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
+
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+The preceding commands add:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* Design time tools for EF Core
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+
+In the **Terminal**, execute the following command to scaffold a full set of components with the `CRUD` template:
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor CRUD -dbProvider {PROVIDER} -dc {DB CONTEXT CLASS} -m {MODEL} -outDir {PATH}
+```
+
+> [!NOTE]
+> The preceding command is a .NET CLI command, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
+
+The following table explains the ASP.NET Core code generator options in the preceding command.
+
+Option        | Placeholder          | Description
+------------- | -------------------- | ---
+`-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-m`          | `{MODEL}`            | The name of the model class.
+`-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
+
+For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor -h
+```
+
+# [.NET CLI](#tab/net-cli)
+
+Paste all of the following commands at the prompt (`>`) of a command shell opened to the project's root directory. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
+
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+The preceding commands add:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* Design time tools for EF Core
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+
+In a command shell, execute the following command to scaffold a full set of components with the `CRUD` template:
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor CRUD -dbProvider {PROVIDER} -dc {DB CONTEXT CLASS} -m {MODEL} -outDir {PATH}
+```
+
+The following table explains the ASP.NET Core code generator options in the preceding command.
+
+Option        | Placeholder          | Description
+------------- | -------------------- | ---
+`-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-m`          | `{MODEL}`            | The name of the model class.
+`-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
+
+For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor -h
+```
+
+---
 
 <!-- UPDATE 8.0 Uncomment link after
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
                 merges.
 
-For an example use case, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example use of the `QuickGrid` scaffoder, see <xref:blazor/tutorials/movie-database-app/index>.
 -->
