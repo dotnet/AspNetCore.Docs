@@ -91,7 +91,7 @@ There aren't current plans to extend `QuickGrid` with features that full-blown c
 
 ## Sort by column
 
-The `QuickGrid` component can sort items by columns. Sorting items requires an interactive component render mode.
+The `QuickGrid` component can sort items by columns. Sorting items requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
 
 Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to any of the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tags:
 
@@ -99,13 +99,13 @@ Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBas
 <PropertyColumn Property="..." Sortable="true" />
 ```
 
-In the running app, sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column.
+In the running app, sort the `QuickGrid` column by selecting the column in the grid.
 
 ## Page items with a `Paginator` component
 
-The `QuickGrid` component can page data from the data source. Paging items requires an interactive component render mode.
+The `QuickGrid` component can page data from the data source. Paging items requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
 
-Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`:
+Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination` and ten items per page is set:
 
 ```csharp
 PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
@@ -117,13 +117,13 @@ Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.
 <QuickGrid Items="..." Pagination="@pagination">
 ```
 
-To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
+To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
 
 ```razor
 <Paginator State="@pagination" />
 ```
 
-In the running app, you can page through the movie items using the `Paginator` component.
+In the running app, you can page through the movie items using a `Paginator` component.
 
 ## Custom attributes and styles
 
@@ -293,7 +293,7 @@ The `QuickGrid` scaffolder scaffolds Razor components with `QuickGrid` to displa
 
 The scaffolder generates basic Create, Read, Update, and Delete (CRUD) pages based on an Entity Framework Core data model. You can scaffold individual pages or all of the CRUD pages. You select the model class and the `DbContext`, optionally creating a new `DbContext` if needed.
 
-The scaffolded Razor components are added to the project's `Pages` folder in a generated folder named after the model class. The generated `Index` component uses `QuickGrid` to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as sorting and filtering.
+The scaffolded Razor components are added to the project's in a generated folder named after the model class. The generated `Index` component uses a `QuickGrid` component to display the data. Customize the generated components as needed and enable interactivity to take advantage of interactive features, such as [paging](#page-items-with-a-paginator-component), [sorting](#sort-by-column) and filtering.
 
 The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
 
@@ -352,8 +352,8 @@ dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDi
 The following table details the ASP.NET Core code generator options used in the preceding command:
 
 * `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-* `-dc` (`{DB CONTEXT CLASS}`): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
-* `-m` (`{MODEL}`): The name of the model class.
+* `-dc` (the `{DB CONTEXT CLASS}` placeholder in the preceding example): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+* `-m` (the `{MODEL}` placeholder in the preceding example): The name of the model class.
 * `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
 
 For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
@@ -400,8 +400,8 @@ dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDi
 The following table details the ASP.NET Core code generator options used in the preceding command:
 
 * `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-* `-dc` (`{DB CONTEXT CLASS}`): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
-* `-m` (`{MODEL}`): The name of the model class.
+* `-dc` (the `{DB CONTEXT CLASS}` placeholder in the preceding example): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+* `-m` (the `{MODEL}` placeholder in the preceding example): The name of the model class.
 * `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
 
 For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
