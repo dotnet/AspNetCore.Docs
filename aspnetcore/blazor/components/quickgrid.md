@@ -10,7 +10,11 @@ uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
 
+<!-- UPDATE 9.0 Enable the following
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
@@ -79,7 +83,7 @@ To implement a `QuickGrid` component:
 
 For example, add the following component to render a grid.
 
-The component assumes that the Interactive Server render mode (`InteractiveServer`) is inherited from a parent component or applied globally to the app, which enables interactive features. For the following example, the only interactive feature is sortable columns.
+For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes) to enable interactive features, such a paging and sorting.
 
 `PromotionGrid.razor`:
 
@@ -91,7 +95,7 @@ There aren't current plans to extend `QuickGrid` with features that full-blown c
 
 ## Sort by column
 
-The `QuickGrid` component can sort items by columns. Sorting items requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
 
 Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to any of the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tags:
 
@@ -103,7 +107,7 @@ In the running app, sort the `QuickGrid` column by selecting the column in the g
 
 ## Page items with a `Paginator` component
 
-The `QuickGrid` component can page data from the data source. Paging items requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+The `QuickGrid` component can page data from the data source. In Blazor Web Apps, paging requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
 
 Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination` and ten items per page is set:
 
@@ -343,18 +347,20 @@ The preceding commands add:
 In the **Terminal**, execute the following command to scaffold a full set of components with the `CRUD` template:
 
 ```dotnetcli
-dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDir Components/Pages
+dotnet aspnet-codegenerator blazor CRUD -dbProvider {PROVIDER} -dc {DB CONTEXT CLASS} -m {MODEL} -outDir {PATH}
 ```
 
 > [!NOTE]
 > The preceding command is a .NET CLI command, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
 
-The following table details the ASP.NET Core code generator options used in the preceding command:
+The following table explains the ASP.NET Core code generator options in the preceding command.
 
-* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-* `-dc` (the `{DB CONTEXT CLASS}` placeholder in the preceding example): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
-* `-m` (the `{MODEL}` placeholder in the preceding example): The name of the model class.
-* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
+Option        | Placeholder          | Description
+------------- | -------------------- | ---
+`-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-m`          | `{MODEL}`            | The name of the model class.
+`-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
 For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
 
@@ -394,15 +400,17 @@ The preceding commands add:
 In a command shell, execute the following command to scaffold a full set of components with the `CRUD` template:
 
 ```dotnetcli
-dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDir Components/Pages
+dotnet aspnet-codegenerator blazor CRUD -dbProvider {PROVIDER} -dc {DB CONTEXT CLASS} -m {MODEL} -outDir {PATH}
 ```
 
-The following table details the ASP.NET Core code generator options used in the preceding command:
+The following table explains the ASP.NET Core code generator options in the preceding command.
 
-* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
-* `-dc` (the `{DB CONTEXT CLASS}` placeholder in the preceding example): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
-* `-m` (the `{MODEL}` placeholder in the preceding example): The name of the model class.
-* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
+Option        | Placeholder          | Description
+------------- | -------------------- | ---
+`-dbProvider` | `{PROVIDER}`         | Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+`-dc`         | `{DB CONTEXT CLASS}` | The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+`-m`          | `{MODEL}`            | The name of the model class.
+`-outDir`     | `{PATH}`             | The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`). The path is typically either `Components/Pages` for a Blazor Web App or `Pages` for a standalone Blazor WebAssembly app.
 
 For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
 
