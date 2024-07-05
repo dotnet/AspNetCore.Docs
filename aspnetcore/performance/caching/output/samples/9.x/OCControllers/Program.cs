@@ -1,4 +1,4 @@
-#define Version1 // Version1 / Version2 / Version3 / Version 3b / Version 3c / Version4
+#define Version2 // Version1 / Version2 / Version3 / Version 3b / Version 3c / Version4
 using Microsoft.AspNetCore.OutputCaching;
 using OCMinimal;
 using System.Globalization;
@@ -38,6 +38,11 @@ public class Program
             options.AddPolicy("Query", builder => builder.SetVaryByQuery("culture"));
             options.AddPolicy("NoCache", builder => builder.NoCache());
             options.AddPolicy("NoLock", builder => builder.SetLocking(false));
+            options.AddPolicy("VaryByValue", builder => 
+                builder.VaryByValue((context) =>
+                new KeyValuePair<string, string>(
+                    "time", (DateTime.Now.Second % 2)
+                        .ToString(CultureInfo.InvariantCulture))));
         });
         //</policies2>
 #endif
@@ -90,12 +95,6 @@ public class Program
 
         app.MapControllers();
         
-        //<oneendpoint>
-        app.MapGet("/cached", Gravatar.WriteGravatar).CacheOutput();
-        app.MapGet("/attribute", [OutputCache] (context) =>
-            Gravatar.WriteGravatar(context));
-        //</oneendpoint>
-
         app.Run();
     }
 }
