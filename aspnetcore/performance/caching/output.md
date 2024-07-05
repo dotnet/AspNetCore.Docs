@@ -142,7 +142,7 @@ Here are some of the options for controlling the cache key:
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByHeader%2A> - Specify one or more HTTP headers to add to the cache key.
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue%2A>- Specify a value to add to the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds goes from odd to even or even to odd.
 
-  :::code language="csharp" source="~/performance/caching/output/samples/9.x/Program.cs" id="policies2" highlight="10-14":::
+  :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Program.cs" id="policies2" highlight="10-14":::
 
   <!--todo: add vary-by-value for controller-based APIs -->
 
