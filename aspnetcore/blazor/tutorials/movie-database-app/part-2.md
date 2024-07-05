@@ -167,6 +167,9 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 > [!IMPORTANT]
 > After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
 
+> [!NOTE]
+> The preceding commands are .NET CLI commands, and .NET CLI commands are executed when entered at a [PowerShell](/powershell/) prompt, which is the default command shell of the VS Code **Terminal**.
+
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
