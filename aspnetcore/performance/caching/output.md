@@ -28,7 +28,7 @@ Add the middleware to the request processing pipeline by calling <xref:Microsoft
 
 For example:
 
-:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies4" highlight="1"':::
+:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies4" highlight="1":::
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_use" highlight="5":::
 
 Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as shown in the following sections.
