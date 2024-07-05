@@ -40,7 +40,7 @@ public class Program
             options.AddPolicy("NoLock", builder => builder.SetLocking(false));
             options.AddPolicy("VaryByValue", builder => 
                 builder.VaryByValue((context) =>
-                new KeyValuePair<string, string>(
+                    new KeyValuePair<string, string>(
                     "time", (DateTime.Now.Second % 2)
                         .ToString(CultureInfo.InvariantCulture))));
         });

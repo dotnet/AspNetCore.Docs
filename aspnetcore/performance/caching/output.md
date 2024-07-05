@@ -18,7 +18,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. Code examples are provided for both minimal API and controller-based APIs, and every caching feature is also supported in the MVC and Razor Pages app types. The controller-based API examples show how to use attributes to configure caching, and the same method of applying attributes to enable and configure caching is used in MVC and Razor Pages apps.
+The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. Code examples are provided for both minimal APIs and controller-based APIs, and every caching feature is also supported in the MVC and Razor Pages app types. The controller-based API examples show how to use attributes to configure caching, and the same method of applying attributes to enable and configure caching is used in MVC and Razor Pages apps.
 
 ## Add the middleware to the app
 
@@ -26,10 +26,15 @@ Add the output caching middleware to the service collection by calling <xref:Mic
 
 Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A>.
 
+For example:
+
+:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_addanduse":::
+
+Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as shown in the following sections.
+
 > [!NOTE]
 > * In apps that use [CORS middleware](xref:security/cors), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>.
 > * In Razor Pages apps and apps with controllers, `UseOutputCache` must be called after `UseRouting`.
-> * Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. Caching response data must be configured as shown in the following sections.
 
 ## Configure one endpoint or page
 
@@ -137,7 +142,7 @@ Here are some of the options for controlling the cache key:
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByHeader%2A> - Specify one or more HTTP headers to add to the cache key.
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue%2A>- Specify a value to add to the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds goes from odd to even or even to odd.
 
-  :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="varybyvalue":::
+  :::code language="csharp" source="~/performance/caching/output/samples/9.x/Program.cs" id="policies2" highlight="10-14":::
 
   <!--todo: add vary-by-value for controller-based APIs -->
 

@@ -65,16 +65,20 @@ public class Program
         //</policies3c>
 #endif
 #if Version4
+        //<snippet_addanduse>
         //<policies4>
         builder.Services.AddOutputCache();
         //</policies4>
 #endif
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         app.UseHttpsRedirection();
         app.UseOutputCache();
         app.UseAuthorization();
+        //</snippet_addanduse>
+
 
         app.MapGet("/", Gravatar.WriteGravatar);
 
