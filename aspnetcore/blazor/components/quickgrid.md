@@ -5,7 +5,7 @@ description: The QuickGrid component is a Razor component for quickly and effici
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 07/05/2024
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -141,12 +141,66 @@ Access the component in a browser at the relative path `/promotion-grid`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
 
-## Custom attributes and styles
+## Sort by column
 
-QuickGrid also supports passing custom attributes and style classes to the rendered table element:
+The `QuickGrid` component can sort items by columns. Sorting items requires an interactive component render mode.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The `QuickGrid` component can sort items by columns.
+
+:::moniker-end
+
+Add `Sortable="true"` (<xref:Microsoft.AspNetCore.Components.QuickGrid.ColumnBase%601.Sortable%2A>) to any of the <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn%602> tags:
 
 ```razor
-<QuickGrid Items="..." custom-attribute="value" class="custom-class">
+<PropertyColumn Property="..." Sortable="true" />
+```
+
+In the running app, sort the `QuickGrid` by movie title by selecting the **:::no-loc text="Title":::** column.
+
+## Page items with a `Paginator` component
+
+:::moniker range=">= aspnetcore-8.0"
+
+The `QuickGrid` component can page data from the data source. Paging items requires an interactive component render mode.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+The `QuickGrid` component can page data from the data source.
+
+:::moniker-end
+
+Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the component's `@code` block. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to the number of items to display per page. In the following example, the instance is named `pagination`:
+
+```csharp
+PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+```
+
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `@pagination`:
+
+```razor
+<QuickGrid Items="..." Pagination="@pagination">
+```
+
+To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
+
+```razor
+<Paginator State="@pagination" />
+```
+
+In the running app, you can page through the movie items using the `Paginator` component.
+
+## Custom attributes and styles
+
+QuickGrid also supports passing custom attributes and style classes (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Class%2A>) to the rendered table element:
+
+```razor
+<QuickGrid Items="..." custom-attribute="value" Class="custom-class">
 ```
 
 :::moniker range=">= aspnetcore-8.0"
@@ -317,7 +371,117 @@ The scaffolded Razor components are added to the project's `Pages` folder in a g
 
 The components produced by the scaffolder require server-side rendering (SSR), so they aren't supported when running on WebAssembly.
 
-To use the scaffolder in Visual Studio, right-click the project in **Solution Explorer** and select **Add** > **New Scaffolded Item**. Open **Installed** > **Common** > **Razor Component**. Select **Razor Components using Entity Framework (CRUD)**. To use the scaffolder with the .NET CLI, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+# [Visual Studio](#tab/visual-studio)
+
+Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**.
+
+With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
+
+Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
+
+* The **Template** dropdown list includes other templates for specifically creating create, edit, delete, details, and list components. This dropdown list comes in handy when you only need to create a specific type of component scaffolded to a model class. Leave the **Template** dropdown list set to **CRUD** to scaffold a full set of components.
+* In the **Model class** dropdown list, select the model class. A folder is created for the generated components from the model name (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
+* For **DbContext class**, select an existing database context or select the **+** (plus sign) button and **Add Data Context** modal dialog to add a new database context.
+* After the model dialog closes, the **Database provider** dropdown list defaults to **SQL Server**. You can select the appropriate provider for the database that you're using. The options include SQL Server, SQLite, PostgreSQL, and Azure Cosmos DB.
+* Select **Add**.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Paste all of the following commands at the prompt (`>`) of the **Terminal** (**Terminal** menu > **New Terminal**) opened to the project's root directory. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
+
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+The preceding commands add:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* Design time tools for EF Core
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+
+In the **Terminal**, execute the following command to scaffold a full set of components with the `CRUD` template:
+
+```powershell
+dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDir Components/Pages
+```
+
+The following table details the ASP.NET Core code generator options used in the preceding command:
+
+* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+* `-dc` (`{DB CONTEXT CLASS}`): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+* `-m` (`{MODEL}`): The name of the model class.
+* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
+
+For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
+
+```powershell
+dotnet aspnet-codegenerator blazor -h
+```
+
+# [.NET CLI](#tab/net-cli)
+
+Paste all of the following commands at the prompt (`>`) of a command shell opened to the project's root directory. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
+
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid
+dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter
+```
+
+> [!IMPORTANT]
+> After the first eight commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+The preceding commands add:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* Design time tools for EF Core
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
+
+In a command shell, execute the following command to scaffold a full set of components with the `CRUD` template:
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor CRUD -dc {DB CONTEXT CLASS} -m {MODEL} -outDir Components/Pages
+```
+
+The following table details the ASP.NET Core code generator options used in the preceding command:
+
+* `-dbProvider`: Database provider to use. Options include `sqlserver` (default), `sqlite`, `cosmos`, `postgres`.
+* `-dc` (`{DB CONTEXT CLASS}`): The <xref:Microsoft.EntityFrameworkCore.DbContext> class to use, including the namespace.
+* `-m` (`{MODEL}`): The name of the model class.
+* `-outDir`: The output directory for the generated components. A folder is created from the model name in the output directory to hold the components (if the model class is named `Movie`, the folder is automatically named `MoviePages`).
+
+For the additional Blazor provider options, use the .NET CLI help option (`-h`|`--help`):
+
+```dotnetcli
+dotnet aspnet-codegenerator blazor -h
+```
+
+---
 
 <!-- UPDATE 8.0 Uncomment link after
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
