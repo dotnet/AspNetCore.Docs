@@ -78,24 +78,15 @@ For more information, see <xref:fundamentals/static-files>.
 
 *This section applies to server-side Blazor apps.*
 
-<!-- UPDATE 9.0 I'm not sure what PU issue to watch for tilde/slash-based HREFs. -->
+<!-- UPDATE 10.0 Compiler implementation for tilde/slash-based HREFs. -->
 
-Assets are consumed via the `Assets` property in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which resolves the fingerprinted URL for a given asset. In the following example, the Blazor project template app styles (`app.css`) and [CSS isolation stylesheet](xref:blazor/components/css-isolation) are consumed in a root component, typically the `App` component (`Components/App.razor`):
+Assets are consumed via the `ComponentBase.Assets` property, which resolves the fingerprinted URL for a given asset. In the following example, Bootstrap, the Blazor project template app stylesheet (`app.css`), and the [CSS isolation stylesheet](xref:blazor/components/css-isolation) are linked in a root component, typically the `App` component (`Components/App.razor`):
 
 ```razor
 <link rel="stylesheet" href="@Assets["bootstrap/bootstrap.min.css"]" />
 <link rel="stylesheet" href="@Assets["app.css"]" />
 <link rel="stylesheet" href="@Assets["BlazorWeb-CSharp.styles.css"]" />
 ```
-
-> [!NOTE]
-> In a future release, a compiler feature will automatically transform tilde-prefixed links into the correct fingerprinted URLs. Examples are demonstrated in the following table.
->
-> Current .NET 9 preview release | Future .NET 9 preview release
-> --- | ---
-> `href="@Assets["bootstrap/bootstrap.min.css"]"` | `href="~/bootstrap/bootstrap.min.css"`
-> `href="@Assets["app.css"]"` | `href="~/app.css"`
-> `href="@Assets["BlazorWeb-CSharp.styles.css"]"` | `href="~/BlazorWeb-CSharp.styles.css"`
 
 ## Import maps
 
