@@ -5,7 +5,7 @@ description: Learn how to configure and manage static files for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/11/2024
+ms.date: 07/08/2024
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
@@ -35,26 +35,188 @@ Configure Map Static Assets Middleware by calling `MapStaticAssets` in the app's
 * When possible, serves [compressed](xref:performance/response-compression) static assets.
 * Works with a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)) to serve the app's static assets closer to the user.
 * [Minifies](https://developer.mozilla.org/docs/Glossary/Minification) the app's static assets.
+* [Fingerprinting assets](https://developer.mozilla.org/docs/Glossary/Fingerprinting) to prevent reusing old versions of files.
 
 `MapStaticAssets` operates by combining build and publish processes to collect information about the static assets in the app. This information is utilized by the runtime library to efficiently serve the static assets to browsers.
 
 `MapStaticAssets` can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, `MapStaticAssets` is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
-`MapStaticAssets` provides the following benefits not found with <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+`MapStaticAssets` provides the following benefits that aren't available when calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
-* Build-time compression for all the assets in the app: [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) during development and Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) during publish.
-* Content based `ETags` are generated for each static asset, which are [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded strings of the [SHA-256](xref:System.Security.Cryptography.SHA256) hashes of the static assets. This ensures that the browser only redownloads a file if its contents have changed.
+* Build-time compression for all the assets in the app, including JavaScript (JS) and stylesheets but excluding image and font assets that are already compressed. [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) compression is used during development. Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) compression is used during publish.
+* [Fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting) for all assets at build time with a [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded string of the [SHA-256](xref:System.Security.Cryptography.SHA256) hash of each file's content. This prevents reusing an old version of a file, even if the old file is cached. Fingerprinted assets are cached using the [`immutable` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives), which results in the browser never requesting the asset again until it changes. For browsers that don't support the `immutable` directive, a [`max-age` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives) is added.
+  * Even if an asset isn't fingerprinted, content based `ETags` are generated for each static asset using the fingerprint hash of the file as the `ETag` value. This ensures that the browser only downloads a file if its content changes (or the file is being downloaded for the first time).
+  * Internally, Blazor maps physical assets to their fingerprints, which allows the app to:
+    * Find automatically-generated Blazor assets, such as Razor component scoped CSS for Blazor's [CSS isolation feature](xref:blazor/components/css-isolation), and JS assets described by [JS import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap).
+    * Generate link tags in the `<head>` content of the page to preload assets.
+* During [Visual Studio Hot Reload](/visualstudio/debugger/hot-reload) development testing:
+  * Integrity information is removed from the assets to avoid issues when a file is changed while the app is running.
+  * Static assets aren't cached to ensure that the browser always retrieves current content.
+
+When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fundamentals/index#render-modes) are enabled:
+
+* Blazor creates an endpoint to expose the resource collection as a JS module.
+* The URL is emitted to the body of the request as persisted component state when a WebAssembly component is rendered into the page.
+* During WebAssembly boot, Blazor retrieves the URL, imports the module, and calls a function to retrieve the asset collection and reconstruct it in memory. The URL is specific to the content and cached forever, so this overhead cost is only paid once per user until the app is updated.
+* The resource collection is also exposed at a human-readable URL (`_framework/resource-collection.js`), so JS has access to the resource collection for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) or to implement features of other frameworks and third-party components.
+
+Map Static Assets Middleware doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
 
 Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that `MapStaticAssets` can't handle:
 
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
 * Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
 
-<!-- UPDATE 9.0 Can't cross-link the main doc set article 
-                at this time because it hasn't been updated yet.
+<!-- UPDATE 9.0 Can't cross-link the main doc set article at this time until 
+                https://github.com/dotnet/AspNetCore.Docs/issues/32782 is
+                resolved.
                 
 For more information, see <xref:fundamentals/static-files>.
 -->
+
+## Consume assets with Map Static File Middleware
+
+*This section applies to server-side Blazor apps.*
+
+<!-- UPDATE 9.0 I'm not sure what PU issue to watch for tilde/slash-based HREFs. -->
+
+Assets are consumed via the `Assets` property in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which resolves the fingerprinted URL for a given asset. In the following example, the Blazor project template app styles (`app.css`) and [CSS isolation stylesheet](xref:blazor/components/css-isolation) are consumed in a root component, typically the `App` component (`Components/App.razor`):
+
+```razor
+<link rel="stylesheet" href="@Assets["bootstrap/bootstrap.min.css"]" />
+<link rel="stylesheet" href="@Assets["app.css"]" />
+<link rel="stylesheet" href="@Assets["BlazorWeb-CSharp.styles.css"]" />
+```
+
+> [!NOTE]
+> In a future release, a compiler feature will automatically transform tilde-prefixed links into the correct fingerprinted URLs. Examples are demonstrated in the following table.
+>
+> Current .NET 9 preview release | Future .NET 9 preview release
+> --- | ---
+> `href="@Assets["bootstrap/bootstrap.min.css"]"` | `href="~/bootstrap/bootstrap.min.css"`
+> `href="@Assets["app.css"]"` | `href="~/app.css"`
+> `href="@Assets["BlazorWeb-CSharp.styles.css"]"` | `href="~/BlazorWeb-CSharp.styles.css"`
+
+## Import maps
+
+*This section applies to server-side Blazor apps.*
+
+The `ImportMap` component represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The `ImportMap` component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
+
+```razor
+<ImportMap />
+```
+
+If a custom `ImportMapDefinition` isn't assigned to an `ImportMap` component, the import map is generated based on the app's assets.
+
+The following examples demonstrate custom import map definitions and the import maps that they create.
+
+Basic import map:
+
+```csharp
+new ImportMapDefinition(
+    new Dictionary<string, string>
+    {
+        { "jquery", "https://cdn.example.com/jquery.js" },
+    },
+    null,
+    null);
+```
+
+The preceding code results in the following import map:
+
+```json
+{
+  "imports": {
+    "jquery": "https://cdn.example.com/jquery.js"
+  }
+}
+```
+
+Scoped import map:
+
+```csharp
+new ImportMapDefinition(
+    null,
+    new Dictionary<string, IReadOnlyDictionary<string, string>>
+    {
+        ["/scoped/"] = new Dictionary<string, string>
+        {
+            { "jquery", "https://cdn.example.com/jquery.js" },
+        }
+    },
+    null);
+```
+
+The preceding code results in the following import map:
+
+```json
+{
+  "scopes": {
+    "/scoped/": {
+      "jquery": "https://cdn.example.com/jquery.js"
+    }
+  }
+}
+```
+
+Import map with integrity:
+
+```csharp
+new ImportMapDefinition(
+    new Dictionary<string, string>
+    {
+        { "jquery", "https://cdn.example.com/jquery.js" },
+    },
+    null,
+    new Dictionary<string, string>
+    {
+        { "https://cdn.example.com/jquery.js", "sha384-abc123" },
+    });
+```
+
+The preceding code results in the following import map:
+
+```json
+{
+  "imports": {
+    "jquery": "https://cdn.example.com/jquery.js"
+  },
+  "integrity": {
+    "https://cdn.example.com/jquery.js": "sha384-abc123"
+  }
+}
+```
+
+Combine import map definitions (`ImportMapDefinition`) with `ImportMapDefinition.Combine`.
+
+Import map created from a `ResourceAssetCollection` that maps static assets to their corresponding unique URLs:
+
+```csharp
+ImportMapDefinition.FromResourceCollection(
+    new ResourceAssetCollection(
+    [
+        new ResourceAsset(
+            "jquery.fingerprint.js",
+            [
+                new ResourceAssetProperty("integrity", "sha384-abc123"),
+                new ResourceAssetProperty("label", "jquery.js"),
+            ])
+    ]));
+```
+
+The preceding code results in the following import map:
+
+```json
+{
+  "imports": {
+    "./jquery.js": "./jquery.fingerprint.js"
+  },
+  "integrity": {
+    "jquery.fingerprint.js": "sha384-abc123"
+  }
+}
+```
 
 :::moniker-end
 
