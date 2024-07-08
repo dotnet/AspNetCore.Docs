@@ -231,7 +231,7 @@ The `ComponentBase.Platform` and `ComponentBase.AssignedRenderMode` properties p
 * `ComponentBase.AssignedRenderMode` exposes the component's assigned render mode:
   * `InteractiveServer` for Interactive Server.
   * `InteractiveAuto` for Interactive Auto.
-  * `InteractiveWebassembly` for Interactive WebAssembly.
+  * `InteractiveWebAssembly` for Interactive WebAssembly.
 
 > [!NOTE]
 > `ComponentBase.Platform` will be renamed to `ComponentBase.RendererInfo` in a future preview release.
