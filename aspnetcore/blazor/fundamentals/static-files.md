@@ -219,6 +219,49 @@ Configure Static File Middleware to serve static assets to clients by calling <x
 
 In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via Static File Middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and Static File Middleware is no longer used.
 
+## Summary of static file `<link>` `href` formats
+
+*This section applies to all versions and Blazor apps.*
+
+The following tables summarize static file `<link>` `href` formats by release version.
+
+:::moniker range=">= aspnetcore-6.0"
+
+For the location of `<head>` content where static file `<link>`s are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>. In .NET 6 or later, static asset links can also be supplied using [`<HeadContent>` components]() in individual Razor components.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+For the location of `<head>` content where static file `<link>`s are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>.
+
+:::moniker-end
+
+.NET 9 or later
+
+App type                      | `href` format       | Example
+----------------------------- | ------------------- | ---
+Blazor Web App                | `@Assets["{LINK}"]` | `<link rel="stylesheet" href="@Assets["app.css"]" />`
+Standalone Blazor WebAssembly | `{LINK}`            | `<link rel="stylesheet" href="css/app.css" />`
+
+.NET 8.x
+
+App type                      | `href` format | Example
+----------------------------- | ------------- | ---
+Blazor Web App                | `{LINK}`      | `<link rel="stylesheet" href="app.css" />`
+Standalone Blazor WebAssembly | `{LINK}`      | `<link rel="stylesheet" href="css/app.css" />`
+
+.NET 7.x or earlier
+
+App type                          | `href` format | Example
+--------------------------------- | ------------- | ---
+Blazor Server&dagger;             | `{LINK}`      | `<link href="css/site.css" rel="stylesheet" />`
+Hosted Blazor WebAssembly&Dagger; | `{LINK}`      | `<link href="css/app.css" rel="stylesheet" />`
+Blazor WebAssembly                | `{LINK}`      | `<link href="css/app.css" rel="stylesheet" />`
+
+&dagger;Blazor Server is supported in .NET 8 or later but is no longer a project template after .NET 7.  
+&Dagger;We recommend updating Hosted Blazor WebAssembly apps to Blazor Web Apps when adopting .NET 8 or later.
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## Static Web Asset Project Mode
