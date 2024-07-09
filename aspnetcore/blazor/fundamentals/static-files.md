@@ -239,27 +239,27 @@ For the location of `<head>` content where static file links are placed, see <xr
 
 .NET 9 or later
 
-App type                      | `href` value        | Example
------------------------------ | ------------------- | ---
-Blazor Web App                | `@Assets["{PATH}"]` | `<link rel="stylesheet" href="@Assets["app.css"]" />`
-Blazor Server&dagger;         | `@Assets["{PATH}"]` | `<link href="@Assets["css/site.css"]" rel="stylesheet" />`
-Standalone Blazor WebAssembly | `{PATH}`            | `<link rel="stylesheet" href="css/app.css" />`
+App type | `href` value | Examples
+--- | --- | ---
+Blazor Web App | `@Assets["{PATH}"]` | `<link rel="stylesheet" href="@Assets["app.css"]" />`<br>`<link href="@Assets["_content/ComponentLib/styles.css"]" rel="stylesheet" />`
+Blazor Server&dagger; | `@Assets["{PATH}"]` | `<link href="@Assets["css/site.css"]" rel="stylesheet" />`<br>`<link href="@Assets["_content/ComponentLib/styles.css"]" rel="stylesheet" />`
+Standalone Blazor WebAssembly | `{PATH}` | `<link rel="stylesheet" href="css/app.css" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
 
 .NET 8.x
 
-App type                      | `href` value | Example
------------------------------ | ------------ | ---
-Blazor Web App                | `{PATH}`     | `<link rel="stylesheet" href="app.css" />`
-Blazor Server&dagger;         | `{PATH}`     | `<link href="css/site.css" rel="stylesheet" />`
-Standalone Blazor WebAssembly | `{PATH}`     | `<link rel="stylesheet" href="css/app.css" />`
+App type | `href` value | Examples
+--- | --- | ---
+Blazor Web App | `{PATH}` | `<link rel="stylesheet" href="app.css" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
+Blazor Server&dagger; | `{PATH}` | `<link href="css/site.css" rel="stylesheet" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
+Standalone Blazor WebAssembly | `{PATH}` | `<link rel="stylesheet" href="css/app.css" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
 
 .NET 7.x or earlier
 
-App type                          | `href` value | Example
---------------------------------- | ------------ | ---
-Blazor Server&dagger;             | `{PATH}`     | `<link href="css/site.css" rel="stylesheet" />`
-Hosted Blazor WebAssembly&Dagger; | `{PATH}`     | `<link href="css/app.css" rel="stylesheet" />`
-Blazor WebAssembly                | `{PATH}`     | `<link href="css/app.css" rel="stylesheet" />`
+App type | `href` value | Examples
+--- | --- | ---
+Blazor Server&dagger; | `{PATH}` | `<link href="css/site.css" rel="stylesheet" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
+Hosted Blazor WebAssembly&Dagger; | `{PATH}` | `<link href="css/app.css" rel="stylesheet" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
+Blazor WebAssembly | `{PATH}` | `<link href="css/app.css" rel="stylesheet" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
 
 &dagger;Blazor Server is supported in .NET 8 or later but is no longer a project template after .NET 7.  
 &Dagger;We recommend updating Hosted Blazor WebAssembly apps to Blazor Web Apps when adopting .NET 8 or later.
