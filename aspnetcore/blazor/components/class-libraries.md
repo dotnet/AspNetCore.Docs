@@ -179,7 +179,7 @@ Link to the library's stylesheet in the app's `<head>` markup ([location of `<he
 <link href="{HREF VALUE}" rel="stylesheet" />
 ```
 
-The static asset location is `_content/ComponentLibrary/additionalStyles.css` and its placed in the `href` value (`{HREF VALUE}` placeholder) following the guidance in <xref:#summary-of-static-file-link-href-formats>.
+The static asset location is `_content/ComponentLibrary/additionalStyles.css` and its placed in the `href` value (`{HREF VALUE}` placeholder) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>.
 
 :::moniker-end
 
