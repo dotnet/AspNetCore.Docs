@@ -217,24 +217,18 @@ Additional information on render mode propagation is provided in the [Render mod
 
 ## Detect rendering location, interactivity, and assigned render mode at runtime
 
-<!-- UPDATE 9.0 Renaming of API for Pre6: 
-                Update the content and remove the NOTE -->
+The `ComponentBase.RendererInfo` and `ComponentBase.AssignedRenderMode` properties permit the app to detect details about the location, interactivity, and assigned render mode of a component:
 
-The `ComponentBase.Platform` and `ComponentBase.AssignedRenderMode` properties permit the app to detect details about the location, interactivity, and assigned render mode of a component:
-
-* `Platform.Name` returns the location where the component is executing:
+* `RendererInfo.Name` returns the location where the component is executing:
   * `Static`: On the server (SSR) and incapable of interactivity.
   * `Server`: On the server (SSR) and capable of interactivity after prerendering.
   * `WebAssembly`: On the client (CSR) and capable of interactivity after prerendering.
   * `WebView`: On the native device and capable of interactivity after prerendering.
-* `Platform.IsInteractive` indicates if the component supports interactivity at the time of rendering. The value is `true` when rendering interactively or `false` when prerendering or for static SSR (`Platform.Name` of `Static`).
+* `RendererInfo.IsInteractive` indicates if the component supports interactivity at the time of rendering. The value is `true` when rendering interactively or `false` when prerendering or for static SSR (`Platform.Name` of `Static`).
 * `ComponentBase.AssignedRenderMode` exposes the component's assigned render mode:
   * `InteractiveServer` for Interactive Server.
   * `InteractiveAuto` for Interactive Auto.
   * `InteractiveWebAssembly` for Interactive WebAssembly.
-
-> [!NOTE]
-> `ComponentBase.Platform` will be renamed to `ComponentBase.RendererInfo` in a future preview release.
 
 Components use these properties to render content depending on their location or interactivity status. For example, a form can be disabled during prerendering and enabled when the component becomes interactive:
 
@@ -258,7 +252,7 @@ Components use these properties to render content depending on their location or
     {
         Movie ??= await ...;
 
-        if (Platform.IsInteractive)
+        if (RendererInfo.IsInteractive)
         {
             disabled = false;
         }

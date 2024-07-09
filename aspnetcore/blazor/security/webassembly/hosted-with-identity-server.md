@@ -240,7 +240,7 @@ In the app settings file (`appsettings.json`) at the project root, the `Identity
 }
 ```
 
-The placeholder `{ASSEMBLY NAME}` is the **:::no-loc text="Client":::** app's assembly name (for example, `BlazorSample.Client`).
+The `{ASSEMBLY NAME}` placeholder is the **:::no-loc text="Client":::** app's assembly name (for example, `BlazorSample.Client`).
 
 ### Authentication package
 
@@ -267,7 +267,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{PROJECT NAME}.ServerAPI"));
 ```
 
-The placeholder `{PROJECT NAME}` is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
+The `{PROJECT NAME}` placeholder is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
