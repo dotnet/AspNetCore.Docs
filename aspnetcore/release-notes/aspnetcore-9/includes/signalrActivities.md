@@ -1,41 +1,33 @@
-### Polymorphic type support in SignalR Hubs
+### Improved Activities for SignalR
 
-Hub methods can now accept a base class instead of the derived class to enable polymorphic scenarios. The base type needs to be [annotated to allow polymorphism](/dotnet/standard/serialization/system-text-json/polymorphism).
+SignalR now has an ActivitySource named "Microsoft.AspNetCore.SignalR.Server" that emits events for hub method calls. Additionally, every method is its own activity so anything that emits an activity during the hub method call will be under the hub method activity, and all the hub method activities do not have a parent so will not be bundled under the long running SignalR connection.
 
-```csharp
-public class MyHub : Hub
-{
-    public void Method(JsonPerson person)
+The following image was made using the Aspire dashboard and the OpenTelemetry packages:
+
+<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
+<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0" />
+<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+as well as the following code in startup:
+
+// Set OTEL_EXPORTER_OTLP_ENDPOINT environment variable depending on where your OTEL endpoint is
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
+
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing =>
     {
-        if (person is JsonPersonExtended)
+        if (builder.Environment.IsDevelopment())
         {
+            // We want to view all traces in development
+            tracing.SetSampler(new AlwaysOnSampler());
         }
-        else if (person is JsonPersonExtended2)
-        {
-        }
-        else
-        {
-        }
-    }
-}
 
-[JsonPolymorphic]
-[JsonDerivedType(typeof(JsonPersonExtended), nameof(JsonPersonExtended))]
-[JsonDerivedType(typeof(JsonPersonExtended2), nameof(JsonPersonExtended2))]
-private class JsonPerson
-{
-    public string Name { get; set; }
-    public Person Child { get; set; }
-    public Person Parent { get; set; }
-}
+        tracing.AddAspNetCoreInstrumentation();
+        tracing.AddSource("Microsoft.AspNetCore.SignalR.Server");
+    });
 
-private class JsonPersonExtended : JsonPerson
-{
-    public int Age { get; set; }
-}
+builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
 
-private class JsonPersonExtended2 : JsonPerson
-{
-    public string Location { get; set; }
-}
-```
+:::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activites-events.png" alt-text="Activity list for SignalR Hub method call events":::

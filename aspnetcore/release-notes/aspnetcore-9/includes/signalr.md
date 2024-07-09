@@ -39,5 +39,3 @@ private class JsonPersonExtended2 : JsonPerson
     public string Location { get; set; }
 }
 ```
-
-:::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activites-events.png" alt-text="Activity list for SignalR Hub method call events":::
