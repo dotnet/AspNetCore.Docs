@@ -11,6 +11,10 @@
         {
             "Label": "9.0",
             "Tag": "new feature"
+        },
+        {
+            "Label": ":label: content-curation",
+            "Tag": "content-curation"
         }
     ]
 }
