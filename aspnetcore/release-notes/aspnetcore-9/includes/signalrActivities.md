@@ -1,8 +1,11 @@
 ### Improved Activities for SignalR
 
-SignalR now has an ActivitySource named "Microsoft.AspNetCore.SignalR.Server" that emits events for hub method calls. Additionally, every method is its own activity so anything that emits an activity during the hub method call will be under the hub method activity, and all the hub method activities do not have a parent so will not be bundled under the long running SignalR connection.
+SignalR now has an ActivitySource named "Microsoft.AspNetCore.SignalR.Server" that emits events for hub method calls:
 
-The following image was made using the Aspire dashboard [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
+* Every method is its own activity, so anything that emits an activity during the hub method call will be under the hub method activity.
+* Hub method activities do not have a parent. This means they will not be bundled under the long-running SignalR connection.
+
+The following example uses the Aspire dashboard [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
 
 ```xml
 <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
@@ -10,7 +13,7 @@ The following image was made using the Aspire dashboard [.NET Aspire dashboard](
 <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
 ```
 
-as well as the following code in startup:
+Add the following startup code to the `Program.cs` file:
 
 ```csharp
 // Set OTEL_EXPORTER_OTLP_ENDPOINT environment variable depending on where your OTEL endpoint is
@@ -34,5 +37,7 @@ builder.Services.AddOpenTelemetry()
 
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
 ```
+
+The following is the example output from the Aspire Dashboard:
 
 :::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activites-events.png" alt-text="Activity list for SignalR Hub method call events":::
