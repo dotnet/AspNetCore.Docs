@@ -815,15 +815,13 @@ Add an `App` component to the `Components` folder with the following content.
 
 :::moniker-end
 
-
+The `{APP NAMESPACE}` placeholder is the app's namespace.
 
 The `{APP TITLE}` placeholder in the `<title>` element is the app's title. For example:
 
 ```html
 <title>Blazor Sample</title>
 ```
-
-The `{APP NAMESPACE}` placeholder is the app's namespace.
 
 Where services are registered, add services for Razor components and services to support rendering Interactive Server components.
 

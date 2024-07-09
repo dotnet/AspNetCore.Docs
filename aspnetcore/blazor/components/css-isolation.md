@@ -77,7 +77,7 @@ Standalone Blazor WebAssembly apps:
 
 :::moniker-end
 
-The placeholder `{ASSEMBLY NAME}` is the project's assembly name.
+The `{ASSEMBLY NAME}` placeholder is the project's assembly name.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -112,7 +112,7 @@ At build time, a project bundle is created with the convention `obj/{CONFIGURATI
 
 ## Child component support
 
-By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the placeholder `{COMPONENT NAME}` is usually the component name. To apply changes to a child component, use the `::deep` [pseudo-element](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) to any descendant elements in the parent component's `.razor.css` file. The `::deep` pseudo-element selects elements that are *descendants* of an element's generated scope identifier. 
+By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is usually the component name. To apply changes to a child component, use the `::deep` [pseudo-element](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) to any descendant elements in the parent component's `.razor.css` file. The `::deep` pseudo-element selects elements that are *descendants* of an element's generated scope identifier. 
 
 The following example shows a parent component called `Parent` with a child component called `Child`.
 

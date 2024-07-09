@@ -438,7 +438,7 @@ public class WeatherForecastClient
 
 :::moniker-end
 
-In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The `{ASSEMBLY NAME}` placeholder is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A?displayProperty=nameWithType> is an extension in <xref:Microsoft.Extensions.Http?displayProperty=fullName>. Add the package to an app that doesn't already reference it.
 
@@ -1370,7 +1370,7 @@ In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, repla
 
 In the preceding example:
 
-* The placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+* The `{CLIENT APP ASSEMBLY NAME}` placeholder is the client app's assembly name (for example `BlazorSample.Client`).
 * The conditional check for the `/authentication` path segment:
   * Avoids prerendering (`render-mode="WebAssembly"`) for authentication paths.
   * Prerenders (`render-mode="WebAssemblyPrerendered"`) for non-authentication paths.
