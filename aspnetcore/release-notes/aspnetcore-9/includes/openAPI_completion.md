@@ -1,0 +1,3 @@
+### Completion enhancements and package install recommendations for OpenAPI package
+
+ASP.NET Core's OpenAPI support ships in an independent package outside of the shared framework. This means that it's difficult for users to discover built-in OpenAPI API's with code-completion aids like Intellisense. In .NET 9 Preview 6, we've shipped a completion provider/codefixer combination to help users discover built-in OpenAPI support.

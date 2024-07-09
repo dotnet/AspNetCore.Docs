@@ -231,7 +231,7 @@ The `ComponentBase.Platform` and `ComponentBase.AssignedRenderMode` properties p
 * `ComponentBase.AssignedRenderMode` exposes the component's assigned render mode:
   * `InteractiveServer` for Interactive Server.
   * `InteractiveAuto` for Interactive Auto.
-  * `InteractiveWebassembly` for Interactive WebAssembly.
+  * `InteractiveWebAssembly` for Interactive WebAssembly.
 
 > [!NOTE]
 > `ComponentBase.Platform` will be renamed to `ComponentBase.RendererInfo` in a future preview release.
@@ -287,7 +287,7 @@ else
 
 In the preceding example:
 
-* When the value of `AssignedRenderMode` is null, the component adopts static SSR. Blazor event handling isn't functional in a browser with static SSR, so the component submits a form (GET request) with a `titleFilter` query string set to the user's `<input>` value. The `Movie` component (`/movie`) can read the query string and process the value of `titleFilter` to render the component with the filtered results.
+* When the value of `AssignedRenderMode` is `null`, the component adopts static SSR. Blazor event handling isn't functional in a browser with static SSR, so the component submits a form (GET request) with a `titleFilter` query string set to the user's `<input>` value. The `Movie` component (`/movie`) can read the query string and process the value of `titleFilter` to render the component with the filtered results.
 * Otherwise, the render mode is any of `InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`. The component is capable of using an event handler delegate (`FilterMovies`) and the value bound to the `<input>` element (`titleFilter`) to filter movies interactively over the background SignalR connection.
 
 :::moniker-end

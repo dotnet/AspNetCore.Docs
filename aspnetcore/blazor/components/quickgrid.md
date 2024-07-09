@@ -424,5 +424,5 @@ dotnet aspnet-codegenerator blazor -h
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
                 merges.
 
-For an example use of the `QuickGrid` scaffoder, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example use of the `QuickGrid` scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
 -->
