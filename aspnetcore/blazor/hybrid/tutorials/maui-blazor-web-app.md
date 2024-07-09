@@ -123,41 +123,19 @@ Also in the `MainPage.xaml` file, update the <xref:Microsoft.AspNetCore.Componen
 
 In the MAUI project, open the `wwwroot/index.html` file and change stylesheets to point to the RCL's static asset path.
 
-:::moniker range=">= aspnetcore-9.0"
-
-Remove the following stylesheet lines:
-
-```diff
-- <link rel="stylesheet" href="@Assets["css/bootstrap/bootstrap.min.css"]" />
-- <link rel="stylesheet" href="@Assets["css/app.css"]" />
-```
-
-Replace the preceding lines with the following markup:
-
-```razor
-<link rel="stylesheet" href="@Assets["_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css"]" />
-<link rel="stylesheet" href="@Assets["_content/MauiBlazorWeb.Shared/css/app.css"]" />
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-Remove the following stylesheet lines:
+Remove the following lines:
 
 ```diff
 - <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
 - <link rel="stylesheet" href="css/app.css" />
 ```
 
-Replace the preceding lines with the following markup:
+Replace the preceding lines with the following markup. In the following example, the RCL's static asset path is `_content/MauiBlazorWeb.Shared/`:
 
 ```razor
 <link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/app.css" />
 ```
-
-:::moniker-end
 
 In the Blazor Web App, open the `_Imports.razor` file and add the following two `@using` statements for the RCL. In the following example, the RCL's namespace is `MauiBlazorWeb.Shared`:
 
@@ -166,37 +144,18 @@ In the Blazor Web App, open the `_Imports.razor` file and add the following two 
 @using MauiBlazorWeb.Shared.Components
 ```
 
-:::moniker range=">= aspnetcore-9.0"
-
-In the Blazor Web App project, open the `App` component (`Components/App.razor`). Remove the `app.css` stylesheet `<link>`:
-
-```diff
-- <link rel="stylesheet" href="@Assets["app.css"]" />
-```
-
-Replace the removed line with the following stylesheet link using the RCL's static asset path of `_content/MauiBlazorWeb.Shared/`:
-
-```html
-<link rel="stylesheet" href="@Assets["_content/MauiBlazorWeb.Shared/app.css"]" />
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-In the Blazor Web App project, open the `App` component (`Components/App.razor`). Remove the `app.css` stylesheet `<link>`:
+In the Blazor Web App project, open the `App` component (`Components/App.razor`). Remove the `app.css` stylesheet:
 
 ```diff
 - <link rel="stylesheet" href="app.css" />
 ```
 
-Replace the removed line with the following stylesheet link using the RCL's static asset path of `_content/MauiBlazorWeb.Shared/`:
+Replace the preceding line with the RCL's static asset stylesheet references. In the following example, the RCL's static asset path is `_content/MauiBlazorWeb.Shared/`:
 
-```html
-<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/app.css" />
 ```
-
-:::moniker-end
+<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/app.css" />
+```
 
 In the Blazor Web App project, delete the following folder and files:
 
