@@ -38,6 +38,6 @@ builder.Services.AddOpenTelemetry()
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
 ```
 
-The following is an example of the output from the Aspire Dashboard:
+The following is example output from the Aspire Dashboard:
 
 :::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activites-events.png" alt-text="Activity list for SignalR Hub method call events":::
