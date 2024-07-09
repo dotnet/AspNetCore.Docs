@@ -100,7 +100,7 @@ Add an `App` component to the app, which serves as the root component, which is 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="{HREF VALUE}" />
+    <link rel="stylesheet" href="{HREF PATH}" />
     <HeadOutlet />
 </head>
 
@@ -112,7 +112,7 @@ Add an `App` component to the app, which serves as the root component, which is 
 </html>
 ```
 
-The static asset location is `{ASSEMBLY NAME}.styles.css`, which is placed in the `href` value (`{HREF VALUE}` placeholder) of the `<link>` element following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>. The `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, a project with an assembly name of `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name.
+The static asset location is `{ASSEMBLY NAME}.styles.css`, which is placed in the `href` value (`{HREF PATH}` placeholder) of the `<link>` element following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>. The `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, a project with an assembly name of `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name.
 
 Add a `Pages` folder to the `Components` folder to hold routable Razor components.
 
@@ -742,9 +742,9 @@ Add an `App` component to the `Components` folder with the following content.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{APP TITLE}</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/site.css" />
-    <link rel="stylesheet" href="/{APP NAMESPACE}.styles.css" />
+    <link rel="stylesheet" href="{HREF PATH 1}" />
+    <link rel="stylesheet" href="{HREF PATH 2}" />
+    <link rel="stylesheet" href="{HREF PATH 3}" />
     <HeadOutlet />
 </head>
 <body>
@@ -757,19 +757,19 @@ Add an `App` component to the `Components` folder with the following content.
 </html>
 ```
 
-In the preceding code update the app title and stylesheet file name:
+The `{APP TITLE}` placeholder in the `<title>` element is the app's title. For example:
 
-* For the `{APP TITLE}` placeholder in the `<title>` element, set the app's title. For example:
+```html
+<title>Blazor Sample</title>
+```
 
-  ```html
-  <title>Blazor Sample</title>
-  ```
+The static asset locations are:
 
-* For the `{APP NAMESPACE}` placeholder in the stylesheet `<link>` element, set the app's namespace. For example:
+* `{HREF PATH 1}`: `lib/bootstrap/dist/css/bootstrap.min.css`
+* `{HREF PATH 2}`: `css/site.css`
+* `{HREF PATH 3}`: `{APP NAMESPACE}.styles.css` (The `{APP NAMESPACE}` placeholder is the app's namespace.)
 
-  ```html
-  <link rel="stylesheet" href="/BlazorSample.styles.css" />
-  ```
+The static asset locations are placed in the `href` values (`{HREF PATH ...}` placeholders) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>.
 
 Where services are registered, add services for Razor components and services to support rendering Interactive Server components.
 

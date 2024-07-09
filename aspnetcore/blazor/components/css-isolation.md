@@ -54,10 +54,10 @@ h1 {
 CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)). The following `<link>` element is added by default to an app created from the Blazor project templates:
 
 ```html
-<link href="{HREF VALUE}" rel="stylesheet">
+<link href="{HREF PATH}" rel="stylesheet">
 ```
 
-The static asset location is `{ASSEMBLY NAME}.styles.css`, which is placed in the `href` value (`{HREF VALUE}` placeholder) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>. The placeholder `{ASSEMBLY NAME}` is the project's assembly name.
+The static asset location is `{ASSEMBLY NAME}.styles.css`, which is placed in the `href` value (`{HREF PATH}` placeholder) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>. The placeholder `{ASSEMBLY NAME}` is the project's assembly name.
 
 :::moniker range="< aspnetcore-8.0"
 

@@ -123,19 +123,26 @@ Also in the `MainPage.xaml` file, update the <xref:Microsoft.AspNetCore.Componen
 
 In the MAUI project, open the `wwwroot/index.html` file and change stylesheets to point to the RCL's static asset path.
 
-Remove the following lines:
+Remove the two stylesheet lines for `css/bootstrap/bootstrap.min.css` and `css/app.css`:
 
 ```diff
-- <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-- <link rel="stylesheet" href="css/app.css" />
+- <link rel="stylesheet" href="..." />
+- <link rel="stylesheet" href="..." />
 ```
 
-Replace the preceding lines with the following markup. In the following example, the RCL's static asset path is `_content/MauiBlazorWeb.Shared/`:
+Replace the preceding lines with the following markup:
 
 ```razor
-<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/app.css" />
+<link rel="stylesheet" href="{HREF PATH 1}" />
+<link rel="stylesheet" href="{HREF PATH 2}" />
 ```
+
+The RCL's static asset path is `_content/MauiBlazorWeb.Shared/`. The full static asset locations are:
+
+* `{HREF PATH 1}`: `_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css`
+* `{HREF PATH 2}`: `_content/MauiBlazorWeb.Shared/css/app.css`
+
+The static asset locations are placed in the `href` values (`{HREF PATH ...}` placeholders) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>.
 
 In the Blazor Web App, open the `_Imports.razor` file and add the following two `@using` statements for the RCL. In the following example, the RCL's namespace is `MauiBlazorWeb.Shared`:
 
@@ -144,18 +151,25 @@ In the Blazor Web App, open the `_Imports.razor` file and add the following two 
 @using MauiBlazorWeb.Shared.Components
 ```
 
-In the Blazor Web App project, open the `App` component (`Components/App.razor`). Remove the `app.css` stylesheet:
+In the Blazor Web App project, open the `App` component (`Components/App.razor`). Remove the `app.css` stylesheet `<link>` for `app.css`:
 
 ```diff
-- <link rel="stylesheet" href="app.css" />
+- <link rel="stylesheet" href="..." />
 ```
 
 Replace the preceding line with the RCL's static asset stylesheet references. In the following example, the RCL's static asset path is `_content/MauiBlazorWeb.Shared/`:
 
 ```
-<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css" />
-<link rel="stylesheet" href="_content/MauiBlazorWeb.Shared/css/app.css" />
+<link rel="stylesheet" href="{HREF PATH 1}" />
+<link rel="stylesheet" href="{HREF PATH 2}" />
 ```
+
+The RCL's static asset path is `_content/MauiBlazorWeb.Shared/`. The full static asset locations are:
+
+* `{HREF PATH 1}`: `_content/MauiBlazorWeb.Shared/css/bootstrap/bootstrap.min.css`
+* `{HREF PATH 2}`: `_content/MauiBlazorWeb.Shared/css/app.css`
+
+The static asset locations are placed in the `href` values (`{HREF PATH ...}` placeholders) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>.
 
 In the Blazor Web App project, delete the following folder and files:
 
