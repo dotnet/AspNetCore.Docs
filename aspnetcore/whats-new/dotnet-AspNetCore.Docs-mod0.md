@@ -141,7 +141,6 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 
 - <xref:test/troubleshoot-azure-iis>
   - refactor azure troubleshooting/1
-  - Mon prep Azure trouble
 
 ## Tutorials
 
