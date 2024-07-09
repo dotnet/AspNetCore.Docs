@@ -6,11 +6,11 @@ Recognizing this gap, we have introduced a new completion provider and code fixe
 
 When a user types a statement where an OpenAPI-related API is available, the completion provider displays a recommendation for the API. For example, in the following screenshots, completions for [AddOpenApi](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Extensions/OpenApiServiceCollectionExtensions.cs,61) and [MapOpenApi](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Extensions/OpenApiEndpointRouteBuilderExtensions.cs,da6124cfb6e2f8d8) are provided when a user is entering an invocation statement on a supported type, such as [IEndpointConventionBuilder](/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder):
 
-<img width="508" alt="image" src="https://github.com/dotnet/AspNetCore.Docs/assets/1857993/1ed9fcb9-7ab7-4239-b7c8-d323724e7222">
+<img width="508" alt="OpenAPI completions" src="https://github.com/dotnet/AspNetCore.Docs/assets/1857993/1ed9fcb9-7ab7-4239-b7c8-d323724e7222">
 
 When the completion is accepted and the `Microsoft.AspNetCore.OpenApi` package is not installed, a codefixer provides a shortcut for automatically installing the dependency in the project.
 
-<img width="586" alt="image" src="https://github.com/dotnet/AspNetCore.Docs/assets/1857993/675baf6f-147f-48a3-bd51-18a0b4eebdf4">
+<img width="586" alt="Automatic package installation" src="https://github.com/dotnet/AspNetCore.Docs/assets/1857993/675baf6f-147f-48a3-bd51-18a0b4eebdf4">
 
 ### Support for `[Required]` and `[DefaultValue]` attributes on parameters and properties
 
