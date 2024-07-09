@@ -1,6 +1,6 @@
 ### Improved Activities for SignalR
 
-SignalR now has an ActivitySource named "Microsoft.AspNetCore.SignalR.Server" that emits events for hub method calls:
+SignalR now has an ActivitySource named `Microsoft.AspNetCore.SignalR.Server` that emits events for hub method calls:
 
 * Every method is its own activity, so anything that emits an activity during the hub method call is under the hub method activity.
 * Hub method activities don't have a parent. This means they are not bundled under the long-running SignalR connection.
