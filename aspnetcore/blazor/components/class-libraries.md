@@ -234,8 +234,10 @@ The following background image and stylesheet are used by the RCL's `Component1`
 To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
 
 ```html
-<link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+<link href="{HREF VALUE}" rel="stylesheet" />
 ```
+
+The static asset location is `_content/ComponentLibrary/styles.css`, which is placed in the `href` value (`{HREF VALUE}` placeholder) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>.
 
 :::moniker-end
 
