@@ -4,9 +4,12 @@ SignalR now has an ActivitySource named "Microsoft.AspNetCore.SignalR.Server" th
 
 The following image was made using the Aspire dashboard and the OpenTelemetry packages:
 
+```xml
 <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
 <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0" />
 <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+```
+
 as well as the following code in startup:
 
 // Set OTEL_EXPORTER_OTLP_ENDPOINT environment variable depending on where your OTEL endpoint is
