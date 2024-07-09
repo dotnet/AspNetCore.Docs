@@ -221,19 +221,19 @@ In releases prior to .NET 8, Blazor framework static files, such as the Blazor s
 
 ## Summary of static file `<link>` `href` formats
 
-*This section applies to all versions and Blazor apps.*
+*This section applies to all .NET releases and Blazor apps.*
 
-The following tables summarize static file `<link>` `href` formats by release version.
+The following tables summarize static file `<link>` `href` formats by .NET release.
 
 :::moniker range=">= aspnetcore-6.0"
 
-For the location of `<head>` content where static file `<link>`s are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>. In .NET 6 or later, static asset links can also be supplied using [`<HeadContent>` components]() in individual Razor components.
+For the location of `<head>` content where static file links are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>. Static asset links can also be supplied using [`<HeadContent>` components](xref:blazor/components/control-head-content) in individual Razor components.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-For the location of `<head>` content where static file `<link>`s are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>.
+For the location of `<head>` content where static file links are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>.
 
 :::moniker-end
 
@@ -242,6 +242,7 @@ For the location of `<head>` content where static file `<link>`s are placed, see
 App type                      | `href` format       | Example
 ----------------------------- | ------------------- | ---
 Blazor Web App                | `@Assets["{LINK}"]` | `<link rel="stylesheet" href="@Assets["app.css"]" />`
+Blazor Server&dagger;         | `@Assets["{LINK}"]` | `<link href="@Assets["css/site.css"]" rel="stylesheet" />`
 Standalone Blazor WebAssembly | `{LINK}`            | `<link rel="stylesheet" href="css/app.css" />`
 
 .NET 8.x
@@ -249,6 +250,7 @@ Standalone Blazor WebAssembly | `{LINK}`            | `<link rel="stylesheet" hr
 App type                      | `href` format | Example
 ----------------------------- | ------------- | ---
 Blazor Web App                | `{LINK}`      | `<link rel="stylesheet" href="app.css" />`
+Blazor Server&dagger;         | `{LINK}`      | `<link href="css/site.css" rel="stylesheet" />`
 Standalone Blazor WebAssembly | `{LINK}`      | `<link rel="stylesheet" href="css/app.css" />`
 
 .NET 7.x or earlier
