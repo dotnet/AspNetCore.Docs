@@ -27,6 +27,8 @@ This section describes new features for SignalR.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalr.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalrActivities.md)]
+
 ## Minimal APIs
 
 This section describes new features for minimal APIs.
