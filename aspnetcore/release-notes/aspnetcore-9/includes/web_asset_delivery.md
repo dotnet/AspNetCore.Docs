@@ -6,7 +6,7 @@ Creating performant web apps includes optimizing asset delivery to the browser. 
 * Setting up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
 * Using [caching middleware](xref:performance/caching/middleware).
 * Serving [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
-* Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide) to serve the assets closer to the user.
+* Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minifying the assets.
 
 [`MapStaticAssets`](https://source.dot.net/#Microsoft.AspNetCore.StaticAssets/StaticAssetsEndpointRouteBuilderExtensions.cs,18) is a new middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC. It's typically a drop-in replacement for `UseStaticFiles`.
@@ -20,7 +20,7 @@ Creating performant web apps includes optimizing asset delivery to the browser. 
 * Build time compression for all the assets in the app:
   * `gzip` during development and `gzip + brotli` during publish.
   * All assets are compressed with the goal of reducing the size of the assets to the minimum.
-* Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0) hash of the content. This ensures that the browser only redownloads a file if its contents have changed.
+* Content based `ETags`: The `Etags` for each resource are the [Base64](https://developer.mozilla.org/docs/Glossary/Base64) encoded string of the [SHA-256](/dotnet/api/system.security.cryptography.sha256?view=net-8.0&preserve-view=true) hash of the content. This ensures that the browser only redownloads a file if its contents have changed.
 
 The following table shows the original and compressed sizes of the CSS and JS files in the default Razor Pages template:
 
