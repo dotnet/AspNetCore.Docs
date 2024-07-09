@@ -11,7 +11,7 @@ uid: aspnetcore-9
 
 This article highlights the most significant changes in ASP.NET Core 9.0 with links to relevant documentation.
 
-This article has been updated for .NET 9 Preview 5.
+This article has been updated for .NET 9 Preview 6.
 
 <!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
@@ -58,3 +58,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/fix-for-503s.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/asp0026.md)]
