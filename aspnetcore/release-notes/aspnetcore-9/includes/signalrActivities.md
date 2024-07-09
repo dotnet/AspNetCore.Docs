@@ -5,7 +5,7 @@ SignalR now has an ActivitySource named `Microsoft.AspNetCore.SignalR.Server` th
 * Every method is its own activity, so anything that emits an activity during the hub method call is under the hub method activity.
 * Hub method activities don't have a parent. This means they are not bundled under the long-running SignalR connection.
 
-The following example uses the Aspire dashboard [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
+The following example uses the [.NET Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#using-the-dashboard-with-net-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
 
 ```xml
 <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
