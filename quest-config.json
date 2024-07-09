@@ -6,6 +6,12 @@
     },
     "ImportTriggerLabel": "reQUEST",
     "ImportedLabel": "seQUESTered",
+    "ParentNodes": [
+        {
+            "Label": "okr-curation",
+            "ParentNodeId": 237271
+        }
+    ],
     "DefaultParentNode": 227486,
     "WorkItemTags": [
         {
@@ -13,7 +19,7 @@
             "Tag": "new feature"
         },
         {
-            "Label": ":label: content-curation",
+            "Label": "okr-curation",
             "Tag": "content-curation"
         }
     ]
