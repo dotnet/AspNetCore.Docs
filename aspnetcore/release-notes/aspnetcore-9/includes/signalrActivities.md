@@ -12,6 +12,7 @@ The following image was made using the Aspire dashboard and the OpenTelemetry pa
 
 as well as the following code in startup:
 
+```csharp
 // Set OTEL_EXPORTER_OTLP_ENDPOINT environment variable depending on where your OTEL endpoint is
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,5 +33,6 @@ builder.Services.AddOpenTelemetry()
     });
 
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());
+```
 
 :::image type="content" source="~/release-notes/aspnetcore-9/_static/signalr-activites-events.png" alt-text="Activity list for SignalR Hub method call events":::
