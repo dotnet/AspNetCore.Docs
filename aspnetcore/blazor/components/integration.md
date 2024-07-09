@@ -92,6 +92,8 @@ Add an `App` component to the app, which serves as the root component, which is 
 
 `Components/App.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
 ```razor
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +102,7 @@ Add an `App` component to the app, which serves as the root component, which is 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="{HREF PATH}" />
+    <link rel="stylesheet" href="@Assets["{ASSEMBLY NAME}.styles.css"]" />
     <HeadOutlet />
 </head>
 
@@ -112,7 +114,33 @@ Add an `App` component to the app, which serves as the root component, which is 
 </html>
 ```
 
-The static asset location is `{ASSEMBLY NAME}.styles.css`, which is placed in the `href` value (`{HREF PATH}` placeholder) of the `<link>` element following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>. The `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, a project with an assembly name of `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name.
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```razor
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="{ASSEMBLY NAME}.styles.css" />
+    <HeadOutlet />
+</head>
+
+<body>
+    <Routes />
+    <script src="_framework/blazor.web.js"></script>
+</body>
+
+</html>
+```
+
+:::moniker-end
+
+The `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, a project with an assembly name of `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name.
 
 Add a `Pages` folder to the `Components` folder to hold routable Razor components.
 
@@ -735,6 +763,8 @@ Add an `App` component to the `Components` folder with the following content.
 
 `Components/App.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
 ```razor
 <!DOCTYPE html>
 <html lang="en">
@@ -742,9 +772,9 @@ Add an `App` component to the `Components` folder with the following content.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{APP TITLE}</title>
-    <link rel="stylesheet" href="{HREF PATH 1}" />
-    <link rel="stylesheet" href="{HREF PATH 2}" />
-    <link rel="stylesheet" href="{HREF PATH 3}" />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["css/site.css"]" />
+    <link rel="stylesheet" href="@Assets["{APP NAMESPACE}.styles.css"]" />
     <HeadOutlet />
 </head>
 <body>
@@ -757,19 +787,43 @@ Add an `App` component to the `Components` folder with the following content.
 </html>
 ```
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```razor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{APP TITLE}</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="{APP NAMESPACE}.styles.css" />
+    <HeadOutlet />
+</head>
+<body>
+    <Routes />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="_framework/blazor.web.js"></script>
+</body>
+</html>
+```
+
+:::moniker-end
+
+
+
 The `{APP TITLE}` placeholder in the `<title>` element is the app's title. For example:
 
 ```html
 <title>Blazor Sample</title>
 ```
 
-The static asset locations are:
-
-* `{HREF PATH 1}`: `lib/bootstrap/dist/css/bootstrap.min.css`
-* `{HREF PATH 2}`: `css/site.css`
-* `{HREF PATH 3}`: `{APP NAMESPACE}.styles.css` (The `{APP NAMESPACE}` placeholder is the app's namespace.)
-
-The static asset locations are placed in the `href` values (`{HREF PATH ...}` placeholders) following the guidance in <xref:blazor/fundamentals/static-files#summary-of-static-file-link-href-formats>.
+The `{APP NAMESPACE}` placeholder is the app's namespace.
 
 Where services are registered, add services for Razor components and services to support rendering Interactive Server components.
 
