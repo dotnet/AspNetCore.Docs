@@ -92,6 +92,8 @@ Add an `App` component to the app, which serves as the root component, which is 
 
 `Components/App.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
 ```razor
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +102,7 @@ Add an `App` component to the app, which serves as the root component, which is 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="BlazorSample.styles.css" />
+    <link rel="stylesheet" href="@Assets["{ASSEMBLY NAME}.styles.css"]" />
     <HeadOutlet />
 </head>
 
@@ -112,11 +114,33 @@ Add an `App` component to the app, which serves as the root component, which is 
 </html>
 ```
 
-For the `<link>` element in the preceding example, change `BlazorSample` in the stylesheet's file name to match the app's project name. For example, a project named `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name:
+:::moniker-end
 
-```html
-<link rel="stylesheet" href="ContosoApp.styles.css" />
+:::moniker range="< aspnetcore-9.0"
+
+```razor
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="{ASSEMBLY NAME}.styles.css" />
+    <HeadOutlet />
+</head>
+
+<body>
+    <Routes />
+    <script src="_framework/blazor.web.js"></script>
+</body>
+
+</html>
 ```
+
+:::moniker-end
+
+The `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, a project with an assembly name of `ContosoApp` uses the `ContosoApp.styles.css` stylesheet file name.
 
 Add a `Pages` folder to the `Components` folder to hold routable Razor components.
 
@@ -739,6 +763,8 @@ Add an `App` component to the `Components` folder with the following content.
 
 `Components/App.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
 ```razor
 <!DOCTYPE html>
 <html lang="en">
@@ -746,9 +772,9 @@ Add an `App` component to the `Components` folder with the following content.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{APP TITLE}</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/site.css" />
-    <link rel="stylesheet" href="/{APP NAMESPACE}.styles.css" />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["css/site.css"]" />
+    <link rel="stylesheet" href="@Assets["{APP NAMESPACE}.styles.css"]" />
     <HeadOutlet />
 </head>
 <body>
@@ -761,19 +787,41 @@ Add an `App` component to the `Components` folder with the following content.
 </html>
 ```
 
-In the preceding code update the app title and stylesheet file name:
+:::moniker-end
 
-* For the `{APP TITLE}` placeholder in the `<title>` element, set the app's title. For example:
+:::moniker range="< aspnetcore-9.0"
 
-  ```html
-  <title>Blazor Sample</title>
-  ```
+```razor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{APP TITLE}</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="{APP NAMESPACE}.styles.css" />
+    <HeadOutlet />
+</head>
+<body>
+    <Routes />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="_framework/blazor.web.js"></script>
+</body>
+</html>
+```
 
-* For the `{APP NAMESPACE}` placeholder in the stylesheet `<link>` element, set the app's namespace. For example:
+:::moniker-end
 
-  ```html
-  <link rel="stylesheet" href="/BlazorSample.styles.css" />
-  ```
+The `{APP NAMESPACE}` placeholder is the app's namespace.
+
+The `{APP TITLE}` placeholder in the `<title>` element is the app's title. For example:
+
+```html
+<title>Blazor Sample</title>
+```
 
 Where services are registered, add services for Razor components and services to support rendering Interactive Server components.
 

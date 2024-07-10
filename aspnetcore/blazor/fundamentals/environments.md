@@ -128,7 +128,7 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 Blazor WebAssembly apps can set the environment with the `blazor-environment` header.
 
-In the following example for IIS, the custom header (`blazor-environment`) is added to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the placeholder `{TARGET FRAMEWORK}` is the target framework:
+In the following example for IIS, the custom header (`blazor-environment`) is added to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

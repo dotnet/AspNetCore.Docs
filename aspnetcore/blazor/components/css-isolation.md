@@ -51,11 +51,33 @@ h1 {
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)). The following `<link>` element is added by default to an app created from the Blazor project templates, where the placeholder `{ASSEMBLY NAME}` is the project's assembly name:
+CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)). The following `<link>` element is added by default to an app created from the Blazor project templates:
+
+:::moniker range=">= aspnetcore-9.0"
+
+Blazor Web Apps:
+
+```html
+<link href="@Assets["{ASSEMBLY NAME}.styles.css"]" rel="stylesheet">
+```
+
+Standalone Blazor WebAssembly apps:
 
 ```html
 <link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+```html
+<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
+```
+
+:::moniker-end
+
+The `{ASSEMBLY NAME}` placeholder is the project's assembly name.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -90,7 +112,7 @@ At build time, a project bundle is created with the convention `obj/{CONFIGURATI
 
 ## Child component support
 
-By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the placeholder `{COMPONENT NAME}` is usually the component name. To apply changes to a child component, use the `::deep` [pseudo-element](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) to any descendant elements in the parent component's `.razor.css` file. The `::deep` pseudo-element selects elements that are *descendants* of an element's generated scope identifier. 
+By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the `{COMPONENT NAME}` placeholder is usually the component name. To apply changes to a child component, use the `::deep` [pseudo-element](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) to any descendant elements in the parent component's `.razor.css` file. The `::deep` pseudo-element selects elements that are *descendants* of an element's generated scope identifier. 
 
 The following example shows a parent component called `Parent` with a child component called `Child`.
 
