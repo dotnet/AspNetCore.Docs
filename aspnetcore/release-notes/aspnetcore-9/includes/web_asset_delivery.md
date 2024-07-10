@@ -1,6 +1,6 @@
 ### Optimizing static web asset delivery
 
-Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as:
+Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as: 
 
 * Setting the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
 * Setting up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
