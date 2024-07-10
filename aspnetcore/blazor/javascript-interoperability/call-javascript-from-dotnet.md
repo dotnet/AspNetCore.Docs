@@ -1252,7 +1252,7 @@ In the preceding example:
 
 Disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> instance is usually unnecessary. When `leaveOpen` is set to its default value of `false`, the underlying <xref:System.IO.Stream> is automatically disposed after transmission to JS.
 
-If `leaveOpen` is `true`, then disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> doesn't dispose its underlying <xref:System.IO.Stream>. The app's code determines when to dispose the underlying <xref:System.IO.Stream>. When deciding how to dispose a <xref:Microsoft.JSInterop.DotNetStreamReference> and its underlying <xref:System.IO.Stream>, consider the following:
+If `leaveOpen` is `true`, then disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> doesn't dispose its underlying <xref:System.IO.Stream>. The app's code determines when to dispose the underlying <xref:System.IO.Stream>. When deciding how to dispose the underlying <xref:System.IO.Stream>, consider the following:
 
 * Disposing a <xref:System.IO.Stream> while it's being transmitted to JS is considered an application error and may cause an unhandled exception to occur.
 * <xref:System.IO.Stream> transmission begins as soon as the <xref:Microsoft.JSInterop.DotNetStreamReference> is passed as an argument to a JS interop call, regardless of whether the stream is actually used in JS logic.
