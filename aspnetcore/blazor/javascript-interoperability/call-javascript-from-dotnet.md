@@ -1250,12 +1250,14 @@ In the preceding example:
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JS.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
-The `streamRef` varaible isn't declared with the `using` keyword because it would result in disposing the stream twice, once when transmission completes and again when `streamRef` exits the scope that it was declared in. Use the `using` keyword to manually dispose of the stream if ***either*** of the following conditions are met:
+Disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> instance is usually unnecessary. When `leaveOpen` is set to its default value of `false`, the underlying <xref:System.IO.Stream> is automatically disposed after transmission to JS.
 
-* `leaveOpen` is set to `true` and .NET code waits for the stream to get completely consumed by JS before exiting the current scope. For example, it's valid to set `leaveOpen` to `true` and await a JS method invocation that returns a promise that completes only after the stream is completely consumed.
-* The `DotNetStreamReference` isn't passed to JS via JS interop.
+If `leaveOpen` is `true`, then disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> doesn't dispose its underlying <xref:System.IO.Stream>. The app's code determines when to dispose the underlying <xref:System.IO.Stream>. When deciding whether or not to manually dispose a <xref:Microsoft.JSInterop.DotNetStreamReference> and its underlying <xref:System.IO.Stream>, consider the following:
 
-In most cases, `leaveOpen` is `false`, which is the default value, and the `DotNetStreamReference` is passed to JS, so you generally shouldn't manually dispose the `DotNetStreamReference`.
+* Disposing a <xref:System.IO.Stream> while it's being transmitted to JS is considered an application error and may cause termination of the circuit or the WebAssembly app to crash.
+* <xref:System.IO.Stream> transmission begins as soon as the <xref:Microsoft.JSInterop.DotNetStreamReference> is passed as an argument to a JS interop call, regardless of whether the <xref:System.IO.Stream> is actually used in JS logic.
+
+Given these characteristics, we recommend disposing the underlying <xref:System.IO.Stream> only after it's fully consumed by JS (the promise returned by `arrayBuffer` or `stream` resolves). It follows that a <xref:Microsoft.JSInterop.DotNetStreamReference> should only be passed to JS if it's unconditionally going to be consumed by JS logic.
 
 <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net> covers the reverse operation, streaming from JavaScript to .NET.
 
