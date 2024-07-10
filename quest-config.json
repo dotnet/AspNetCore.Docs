@@ -8,8 +8,24 @@
     "ImportedLabel": "seQUESTered",
     "ParentNodes": [
         {
+            "Label": "okr-freshness",
+            "ParentNodeId": 237266
+        },
+        {
             "Label": "okr-curation",
             "ParentNodeId": 237271
+        },
+        {
+            "Label": "user-feedback",
+            "ParentNodeId": 233465
+        },
+        {
+            "Label": "okr-health",
+            "ParentNodeId": 237266
+        },
+        {
+            "Label": "doc-bug",
+            "ParentNodeId": 233465
         }
     ],
     "DefaultParentNode": 227486,
