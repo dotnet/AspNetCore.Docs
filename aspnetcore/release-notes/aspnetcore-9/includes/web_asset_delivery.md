@@ -1,13 +1,16 @@
 ### Optimizing static web asset delivery
 
-Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as: 
+Following production best practices for serving static assets requires a significant amount of work and technical expertise. Without optimizations like compression, caching, and [fingerprints](https://en.wikipedia.org/wiki/Fingerprint_(computing)), browsers encounter additional and larger requests, increased network traffic, and the potential delivery of stale files.
 
+Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as:
+
+* Serving a given asset once until the file changes or the browser clears its cache. Preventing the browser from using old or stale assets after an app is updated. This cache coherency works in production and in development.
 * Setting the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
 * Setting up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
 * Using [caching middleware](xref:performance/caching/middleware).
 * Serving [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
 * Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
-* Minifying the assets.
+* Minimize the size of assets served to the browser. This optimization doesn't include minification.
 
 [`MapStaticAssets`](https://source.dot.net/#Microsoft.AspNetCore.StaticAssets/StaticAssetsEndpointRouteBuilderExtensions.cs,18) is a new middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC. It's typically a drop-in replacement for `UseStaticFiles`.
 
@@ -50,6 +53,11 @@ MudBlazor.min.js | 47.4 | 9.2 | 80.59%
 **Total** | 588.4 | 46.7 | 92.07%
 
 Optimization happens automatically when using `MapStaticAssets`. When a library is added or updated, for example with new JavaScript or CSS, the assets are optimized as part of the build. Optimization is especially beneficial to mobile environments that can have a lower bandwidth or an unreliable connections.
+
+For more information on the new file delivery features, see the following resources:
+
+* <xref:fundamentals/static-files?view=aspnetcore-9.0>
+* <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>
 
 ### Enabling dynamic compression on the server vs using `MapStaticAssets`
 
