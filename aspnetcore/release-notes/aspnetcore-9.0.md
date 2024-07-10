@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/08/2024
+ms.date: 6/9/2024
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core 9.0
@@ -26,6 +26,8 @@ This section describes new features for Blazor.
 This section describes new features for SignalR.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalr.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalrActivities.md)]
 
 ## Minimal APIs
 
@@ -62,3 +64,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/asp0026.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/optimize-file-delivery.md)]
