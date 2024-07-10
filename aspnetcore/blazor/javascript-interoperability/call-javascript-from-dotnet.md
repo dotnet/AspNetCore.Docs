@@ -1213,14 +1213,14 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 ## Stream from .NET to JavaScript
 
-Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
+Blazor supports streaming data directly from .NET to JavaScript (JS). Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
 <xref:Microsoft.JSInterop.DotNetStreamReference> represents a .NET stream and uses the following parameters:
 
-* `stream`: The stream sent to JavaScript.
+* `stream`: The stream sent to JS.
 * `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
 
-In JavaScript, use an array buffer or a readable stream to receive the data:
+In JS, use an array buffer or a readable stream to receive the data:
 
 * Using an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer):
 
@@ -1241,14 +1241,21 @@ In JavaScript, use an array buffer or a readable stream to receive the data:
 In C# code:
 
 ```csharp
-using var streamRef = new DotNetStreamReference(stream: {STREAM}, leaveOpen: false);
+var streamRef = new DotNetStreamReference(stream: {STREAM}, leaveOpen: false);
 await JS.InvokeVoidAsync("streamToJavaScript", streamRef);
 ```
 
 In the preceding example:
 
-* The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
+* The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JS.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+
+The `streamRef` varaible isn't declared with the `using` keyword because it would result in disposing the stream twice, once when transmission completes and again when `streamRef` exits the scope it was declared in. You can still use the `using` keyword if ***either*** of the following conditions are met:
+
+* `leaveOpen` is set to `true` and .NET code waits for the stream to get completely consumed by JS before exiting the current scope. For example, it's valid to set `leaveOpen` to `true` and await a JS method invocation that returns a promise that completes only after the stream is completely consumed.
+* The `DotNetStreamReference` isn't passed to JS via JS interop.
+
+In most cases, `leaveOpen` is `false`, which is the default value, and the `DotNetStreamReference` is passed to JS, so you generally shouldn't manually dispose the `DotNetStreamReference`. You only have to worry about manually disposing the stream if `leaveOpen` is `true` or the stream reference isn't passed to JS.
 
 <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net> covers the reverse operation, streaming from JavaScript to .NET.
 
