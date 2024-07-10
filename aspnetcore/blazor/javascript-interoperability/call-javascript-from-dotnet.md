@@ -1250,12 +1250,12 @@ In the preceding example:
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JS.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
-The `streamRef` varaible isn't declared with the `using` keyword because it would result in disposing the stream twice, once when transmission completes and again when `streamRef` exits the scope that it was declared in. You can still use the `using` keyword if ***either*** of the following conditions are met:
+The `streamRef` varaible isn't declared with the `using` keyword because it would result in disposing the stream twice, once when transmission completes and again when `streamRef` exits the scope that it was declared in. Use the `using` keyword to manually dispose of the stream if ***either*** of the following conditions are met:
 
 * `leaveOpen` is set to `true` and .NET code waits for the stream to get completely consumed by JS before exiting the current scope. For example, it's valid to set `leaveOpen` to `true` and await a JS method invocation that returns a promise that completes only after the stream is completely consumed.
 * The `DotNetStreamReference` isn't passed to JS via JS interop.
 
-In most cases, `leaveOpen` is `false`, which is the default value, and the `DotNetStreamReference` is passed to JS, so you generally shouldn't manually dispose the `DotNetStreamReference`. You only have to worry about manually disposing the stream if `leaveOpen` is `true` or the stream reference isn't passed to JS.
+In most cases, `leaveOpen` is `false`, which is the default value, and the `DotNetStreamReference` is passed to JS, so you generally shouldn't manually dispose the `DotNetStreamReference`.
 
 <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net> covers the reverse operation, streaming from JavaScript to .NET.
 
