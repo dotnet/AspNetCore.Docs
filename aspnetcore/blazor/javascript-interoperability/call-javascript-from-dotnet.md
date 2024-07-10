@@ -1250,7 +1250,7 @@ In the preceding example:
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JS.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
-The `streamRef` varaible isn't declared with the `using` keyword because it would result in disposing the stream twice, once when transmission completes and again when `streamRef` exits the scope it was declared in. You can still use the `using` keyword if ***either*** of the following conditions are met:
+The `streamRef` varaible isn't declared with the `using` keyword because it would result in disposing the stream twice, once when transmission completes and again when `streamRef` exits the scope that it was declared in. You can still use the `using` keyword if ***either*** of the following conditions are met:
 
 * `leaveOpen` is set to `true` and .NET code waits for the stream to get completely consumed by JS before exiting the current scope. For example, it's valid to set `leaveOpen` to `true` and await a JS method invocation that returns a promise that completes only after the stream is completely consumed.
 * The `DotNetStreamReference` isn't passed to JS via JS interop.
