@@ -105,8 +105,8 @@ PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
 Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `@pagination`:
 
 ```diff
-- <QuickGrid Class="table" Items="@movies">
-+ <QuickGrid Class="table" Items="@movies" Pagination="@pagination">
+- <QuickGrid Class="table" Items="@FilteredMovies">
++ <QuickGrid Class="table" Items="@FilteredMovies" Pagination="@pagination">
 ```
 
 To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
@@ -150,7 +150,7 @@ In an earlier part of the tutorial series, the `Index` component was modified to
 * Adding an HTML form that issues a GET request to the server with the user's title search string as a query string field-value pair (for example, `?titleFilter=road+warrior` if the user searches for "`road warrior`"):
 
   ```html
-  <form action="/movies">
+  <form action="/movies" data-enhance>
       <input type="search" name="titleFilter" />
       <input type="submit" value="Search" />
   </form>
@@ -162,7 +162,7 @@ In an earlier part of the tutorial series, the `Index` component was modified to
     [SupplyParameterFromQuery]
     public string TitleFilter { get; set; }
 
-    IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+    private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
         .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
   ```
 
@@ -207,7 +207,7 @@ The component won't issue a GET request via an HTML form to trigger the `FilterM
 Remove the HTML form from the component:
 
 ```diff
-- <form action="/movies">
+- <form action="/movies" data-enhance>
 -     <input type="search" name="titleFilter" />
 -     <input type="submit" value="Search" />
 - </form>

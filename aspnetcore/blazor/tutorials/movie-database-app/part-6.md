@@ -46,8 +46,8 @@ Start by adding the following `@code` block of C# code to the `Index` component:
     [SupplyParameterFromQuery]
     public string TitleFilter { get; set; }
     
-    IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
-        .Where(movie => movie.Title!.Contains(TitleFilter ?? ""));
+    private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+        .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
 }
 ```
 
@@ -83,7 +83,7 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 
 ```html
 <p>
-    <form action="/movies">
+    <form action="/movies" data-enhance>
         <input type="search" name="titleFilter" />
         <input type="submit" value="Search" />
     </form>
