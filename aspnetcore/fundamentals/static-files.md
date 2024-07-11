@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure static fil
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/4/2023
+ms.date: 7/4/2024
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -24,7 +24,7 @@ Static files are stored within the project's [web root](xref:fundamentals/index#
 
 The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method sets the content root to the current directory:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet&highlight=1)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=1)]
 
 Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contain several folders within the `wwwroot` folder:
 
@@ -44,7 +44,7 @@ Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyI
 
 The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> method in `Program.cs`, which enables static files to be served:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
 The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
 
@@ -68,13 +68,13 @@ Consider a directory hierarchy in which the static files to be served reside out
 
 A request can access the `red-rose.jpg` file by configuring the Static File Middleware as follows:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,18-23)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,18-23)]
 
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the `red-rose.jpg` file.
 
 The following markup references `MyStaticFiles/images/red-rose.jpg`:
 <!-- zz test via /Home2/MyStaticFilesRR -->
-[!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
+[!code-html[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 To serve files from multiple locations, see [Serve files from multiple locations](#serve-files-from-multiple-locations).
 
@@ -82,7 +82,7 @@ To serve files from multiple locations, see [Serve files from multiple locations
 
 A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the [Cache-Control](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
 The preceding code makes static files publicly available in the local cache for one week (604800 seconds).
 
@@ -99,13 +99,13 @@ To serve static files based on authorization:
   * Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
   * Set the [fallback authorization policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
   
   In the preceding code, the fallback authorization policy requires ***all*** users to be authenticated. Endpoints such as controllers, Razor Pages, etc that specify their own authorization requirements don't use the fallback authorization policy. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authorization attribute rather than the fallback authorization policy.
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
-  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`. Static assets in the ***MyStaticFiles*** folder require authentication. The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/6.x) demonstrates this.
+  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`. Static assets in the ***MyStaticFiles*** folder require authentication. The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x) demonstrates this.
 
 An alternative approach to serve files based on authorization is to:
 
@@ -116,9 +116,9 @@ An alternative approach to serve files based on authorization is to:
 
 The preceding approach requires a page or endpoint per file. The following code returns files or uploads files for authenticated users:
 
-:::code language="csharp" source="~/fundamentals/static-files/samples/8.x/StaticFileAuth/Program.cs" id="snippet_1":::
+:::code language="csharp" source="~/fundamentals/static-files/samples/9.x/StaticFileAuth/Program.cs" id="snippet_1":::
 
-See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/8.x/StaticFileAuth) GitHub folder for the complete sample.
+See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFileAuth) GitHub folder for the complete sample.
 
 ## Directory browsing
 
@@ -128,7 +128,7 @@ Directory browsing is disabled by default for security reasons. For more informa
 
 Enable directory browsing with <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_db&highlight=9,23-37)]  
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_db&highlight=9,23-37)]  
 
 <!-- Select RP Home > Directory browsing -->
 The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`, with links to each file and folder:
@@ -143,7 +143,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 Setting a default page provides visitors a starting point on a site. To serve a default file from `wwwroot` without requiring the request URL to include the file's name, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df&highlight=16)]  
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df&highlight=16)]  
 
 `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't serve the file.
 
@@ -158,7 +158,7 @@ The first file found from the list is served as though the request included the 
 
 The following code changes the default file name to `mydefault.html`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
 
 ### UseFileServer for default documents
 
@@ -166,14 +166,14 @@ The following code changes the default file name to `mydefault.html`:
 
 Call `app.UseFileServer` to enable the serving of static files and the default file. Directory browsing isn't enabled:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=16)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=16)] 
 
 The following code enables the serving of static files, the default file, and directory browsing:
 
 <!--  app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, / returns the default HTML file, not Pages/Index.cshtml --
 But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml or / returns  Pages/Index.cshtml, not the default HTML file.
 -->
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=6,18)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=6,18)] 
 
 Consider the following directory hierarchy:
 
@@ -190,7 +190,7 @@ The following code enables the serving of static files, the default file, and di
 
 <!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=1,8,22-28)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=1,8,22-28)]
 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
@@ -212,7 +212,7 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a `Mappings` property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
 
 <!-- test via /mapTest/image1.image and mapTest/test.htm3 /mapTest/TextFile.rtf -->
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-33)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-33)] 
 
 See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
@@ -222,7 +222,7 @@ The Static File Middleware understands almost 400 known file content types. If t
 
 The following code enables serving unknown types and renders the unknown file as an image:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ns&highlight=16-20)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_ns&highlight=16-20)]
 
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 
@@ -233,11 +233,11 @@ With the preceding code, a request for a file with an unknown content type is re
 
 Consider the following Razor page which displays the `/MyStaticFiles/image3.png` file:
 
-[!code-cshtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Test.cshtml?highlight=5)]
+[!code-cshtml[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Pages/Test.cshtml?highlight=5)]
 
 `UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `MyStaticFiles`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mul)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_mul)]
 
 Using the preceding code:
 
@@ -246,7 +246,7 @@ Using the preceding code:
 
 The following code updates the `WebRootFileProvider`, which enables the Image Tag Helper to provide a version:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mult2)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_mult2)]
 
 <a name="sc"></a>
 
@@ -281,7 +281,7 @@ Consider a web app created with the empty web template:
 * Containing an `Index.html` file in `wwwroot` and `wwwroot-custom`.
 * With the following updated `Program.cs` file that sets `WebRootPath = "wwwroot-custom"`:
 
-  [!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet1)]
+  [!code-csharp[](~/fundamentals/static-files/samples/9.x/WebRoot/Program.cs?name=snippet1)]
 
 In the preceding code, requests to `/`:
 
@@ -303,7 +303,7 @@ To ensure assets from `wwwroot-custom` are returned, use one of the following ap
 
 The following code updates `IWebHostEnvironment.WebRootPath` to a non development value, guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet2&highlight=5)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/WebRoot/Program.cs?name=snippet2&highlight=5)]
 
 ## Additional resources
 
