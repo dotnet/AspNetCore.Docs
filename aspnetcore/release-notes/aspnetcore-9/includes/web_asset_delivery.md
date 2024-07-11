@@ -9,7 +9,33 @@ Creating performant web apps includes optimizing asset delivery to the browser. 
 * Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minifying the assets.
 
-[`MapStaticAssets`](https://source.dot.net/#Microsoft.AspNetCore.StaticAssets/StaticAssetsEndpointRouteBuilderExtensions.cs,18) is a new middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC. It's typically a drop-in replacement for `UseStaticFiles`.
+[`MapStaticAssets`](https://source.dot.net/#Microsoft.AspNetCore.StaticAssets/StaticAssetsEndpointRouteBuilderExtensions.cs,18) is a new middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC. It's typically a drop-in replacement for `UseStaticFiles`:
+
+```diff
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
++app.MapStaticAssets();
+- app.UseStaticFiles();
+app.MapRazorPages();
+
+app.Run();
+```
 
 `MapStaticAssets` operates by combining build and publish-time processes to collect information about all the static resources in an app. This information is then utilized by the runtime library to efficiently serve these files to the browser.
 
