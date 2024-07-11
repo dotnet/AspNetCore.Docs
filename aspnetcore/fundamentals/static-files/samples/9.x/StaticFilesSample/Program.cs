@@ -16,7 +16,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.UseAuthorization();
 
@@ -44,12 +44,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
-    RequestPath = "/StaticFiles"
-});
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+     RequestPath = "/StaticFiles"
+ });
 
 app.UseAuthorization();
 
@@ -114,7 +114,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 var fileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.WebRootPath, "images"));
 var requestPath = "/MyImages";
@@ -158,7 +158,7 @@ app.UseHttpsRedirection();
 
 app.UseDefaultFiles();
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 app.UseAuthorization();
 
 app.MapDefaultControllerRoute();
@@ -188,7 +188,7 @@ options.DefaultFileNames.Clear();
 options.DefaultFileNames.Add("mydefault.html");
 app.UseDefaultFiles(options);
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.UseAuthorization();
 
@@ -274,7 +274,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.UseFileServer(new FileServerOptions
 {
@@ -383,7 +383,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // <snippet_mul>
-app.UseStaticFiles(); // Serve files from wwwroot
+app.MapStaticAssets(); // Serve files from wwwroot with MapStaticAssets
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -426,7 +426,7 @@ var compositeProvider = new CompositeFileProvider(webRootProvider,
 // Update the default provider.
 app.Environment.WebRootFileProvider = compositeProvider;
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 // </snippet_mult2>
 
