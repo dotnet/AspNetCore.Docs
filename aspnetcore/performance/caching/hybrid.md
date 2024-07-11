@@ -66,7 +66,7 @@ Add GetAsync when it's implemented.
 
 ## Remove cache entries by key
 
-When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling [`RemoveAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Internal/DefaultHybridCache.cs,a1f8d27e085182cc) with the key to the entry. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,bc261d181c479a57) lets you specify a collection of tag values.
+When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling [`RemoveAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Internal/DefaultHybridCache.cs,a1f8d27e085182cc) with the key to the entry. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,bc261d181c479a57) lets you specify a collection of key values.
 
 When an entry is removed, it's removed from both the primary and secondary caches.
 
@@ -106,7 +106,7 @@ The following properties of `HybridCacheOptions` let you configure limits that a
  
 ## Serialization
 
-Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the `WithSerializer` and `WithSerializerFactory` methods, chained from the `AddHybridCache` call. By default, the library
+Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the [`AddSerializer`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheBuilderExtensions.cs,954f74a7592cc282) and [`AddSerializerFactory`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/HybridCacheBuilderExtensions.cs,ba940d95d06485ca) methods, chained from the `AddHybridCache` call. By default, the library
 handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML.
 
 The following example configures the service to use a type-specific protobuf serializer:
