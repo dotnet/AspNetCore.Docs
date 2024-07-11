@@ -90,6 +90,8 @@ Next, give users a way to provide the `titleSearch` filter string via the compon
 </p>
 ```
 
+The `data-enhance` attribute applies *enhanced navigation* to the component, where Blazor intercepts the GET request and performs a fetch request instead. Blazor then patches the response content into the page, which avoids a full-page reload and preserves more of the page state. The page loads faster, usually without losing the user's scroll position.
+
 :::zone pivot="vs"
 
 Save the file that you're working on. Apply the change by either restarting the app or using [Hot Reload](/visualstudio/debugger/hot-reload) to apply the change to the running app.

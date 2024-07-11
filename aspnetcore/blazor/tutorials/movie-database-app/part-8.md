@@ -159,11 +159,11 @@ In an earlier part of the tutorial series, the `Index` component was modified to
 * Adding code to the component that obtains the title search string from the query string and uses it to filter the database's records:
 
   ```csharp
-    [SupplyParameterFromQuery]
-    public string TitleFilter { get; set; }
+  [SupplyParameterFromQuery]
+  public string TitleFilter { get; set; }
 
-    private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
-        .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
+  private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+      .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
   ```
 
 The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content without a full-page reload.
@@ -172,37 +172,26 @@ Now that the component is interactive, it can provide an improved user experienc
 
 Add a delegate event handler that the user can trigger to filter the database's movie records. The method uses the value of the `TitleFilter` property to perform the operation. If the user clears `TitleFilter` and searches, the method loads the entire movie list for display.
 
-Add the following method to the `@code` block:
+Delete the following lines from the `@code` block:
 
-```csharp
-private void FilterMovies()
-{
-    if (!string.IsNullOrEmpty(TitleFilter))
-    {
-        movies = DB.Movie.Where(
-            s => !string.IsNullOrEmpty(s.Title) ? 
-                s.Title.Contains(TitleFilter) : false);
-    }
-    else
-    {
-        movies = DB.Movie;
-    }
-}
+```diff
+- [SupplyParameterFromQuery]
+- public string TitleFilter { get; set; }
+    
+- private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+-     .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
 ```
 
-The `OnParametersSet` lifecycle method was used to conditionally filter the database based on the `TitleFilter` property having a value. We still want the `QuickGrid` to perform filtering when parameters are set with an inbound URL that includes a `titleFilter` query string. However, the logic to filter records is now present in the `FilterMovies` method that was just added to the component. Therefore, change the `OnParametersSet` method to call the `FilterMovies` method:
+Replace the deleted code with the following code:
 
 ```csharp
-protected override void OnParametersSet()
-{
-    FilterMovies();
-}
+private string titleFilter = string.Empty;
+
+private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+    .Where(m => m.Title!.Contains(titleFilter));
 ```
 
-The component won't issue a GET request via an HTML form to trigger the `FilterMovies` method. The component should provide:
-
-* An input element (`<input>`) bound to the `TitleFilter` property. Binding is achieved in Blazor with the `@bind` directive attribute, which can bind the value of an element to either a C# field or property.
-* A button that triggers the `FilterMovies` method. Event handling is achieved in Blazor by specifying a delegate event handler (method) to the `@onclick` directive attribute.
+Next, the component should bind the `titleFilter` field to an `<input>` element, so user input is stored in the `titleFilter` variable. Binding is achieved in Blazor with the `@bind` directive attribute.
 
 Remove the HTML form from the component:
 
@@ -216,17 +205,18 @@ Remove the HTML form from the component:
 In its place, add the following Razor markup:
 
 ```razor
-<input @bind="TitleFilter" />
-<button @onclick="FilterMovies">Search</button>
+<p>
+    <input type="search" @bind="titleFilter" @bind:event="oninput" />
+</p>
 ```
 
-The `<input>` element *binds* the value of the element to the `TitleFilter` property. Selecting the button triggers the `FilterMovies` delegate via the `@onclick` directive attribute of the `<button>` element.
+`@bind:event="oninput"` performs binding for the HTML's `oninput` event, which fires when the `<input>` element's value is changed as a direct result of a user typing in the search box. The `QuickGrid` is bound to `FilteredMovies`. As `titleFilter` changes with the value of the search box, rerendering the `QuickGrid` bound to the `FilteredMovies` method filters movie entities based on the updated value of `titleFilter`.
 
-Run the app, type "`road warrior`" into the search field, and select the **:::no-loc text="Search":::** button:
+Run the app, type "`road warrior`" into the search field and notice how the `QuickGrid` is filtered for each character entered until *The Road Warrior* movie is left.
 
 ![Movie list filtered to 'The Road Warrior' movie after searching on the text 'road warrior'.](~/blazor/tutorials/movie-database-app/part-8/_static/filtered-to-road-warrior.png)
 
-When the user selects the button, an HTTP request isn't issued. The event is transparently transmitted to the server over the SignalR connection in the background. The filtering operation is performed on the server, and the server transparently sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
+Filtering database records is performed on the server, and the server transparently sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
 
