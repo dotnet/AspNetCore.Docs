@@ -25,7 +25,7 @@ Up to this point in the tutorial, the entire app has been *enabled* for interact
 
 ## Adopt interactivity
 
-*Interactivity* means that a component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts interactive server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR). Client-side rendering (CSR), which is inherently interactive by default, is covered in the Blazor reference documentation.
+*Interactivity* means that a component has the capacity to process UI events, such as a button click, via C# code. The events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime. This tutorial adopts interactive server-side rendering, known generally as Interactive Server (`InteractiveServer`) rendering or interactive server-side rendering (interactive SSR). Client-side rendering (CSR), which is inherently interactive by default, is covered in the Blazor reference documentation.
 
 Interactive SSR enables a rich user experience like one would expect from a client app but without the need to create API endpoints to access server resources. UI interactions are handled from the server over a real-time SignalR connection with the browser. Page content for interactive pages is prerendered, where content on the server is initially generated and sent to the client without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users.
 
@@ -80,7 +80,7 @@ Open the movie `Index` component file (`Components/Pages/MoviePages/Index.razor`
   @page "/movies"
 + @rendermode InteractiveServer
   @using Microsoft.AspNetCore.Components.QuickGrid
-  @inject BlazorWebAppMovies.Data.BlazorWebAppMoviesContext DB
+  @inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
   @using BlazorWebAppMovies.Models
 ```
 
@@ -90,7 +90,7 @@ To see how making a component interactive enhances the user experience, let's pr
 * Make the `QuickGrid` component *sortable*.
 * Replace the HTML form for filtering movies by title with C# code that:
   * Runs on the server.
-  * Renders content transparently over the underlying SignalR connection.
+  * Renders content interactively over the underlying SignalR connection.
 
 ## Add pagination to the `QuickGrid`
 
@@ -159,22 +159,11 @@ In an earlier part of the tutorial series, the `Index` component was modified to
 * Adding code to the component that obtains the title search string from the query string and uses it to filter the database's records:
 
   ```csharp
-  [SupplyParameterFromQuery]
-  public string? TitleFilter { get; set; }
+    [SupplyParameterFromQuery]
+    public string TitleFilter { get; set; }
 
-  protected override void OnParametersSet()
-  {
-      if (!string.IsNullOrEmpty(TitleFilter))
-      {
-          movies = DB.Movie.Where(
-              s => !string.IsNullOrEmpty(s.Title) ? 
-                  s.Title.Contains(TitleFilter) : false);
-      }
-      else
-      {
-          movies = DB.Movie;
-      }
-  }
+    IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+        .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
   ```
 
 The preceding approach is effective for a component that adopts static SSR, where the only interaction between the client and server is via HTTP requests. There was no live SignalR connection between the client and the server, and there was no way for the app on the server to process C# code *interactively* based on the user's actions in the component's UI and return content without a full-page reload.

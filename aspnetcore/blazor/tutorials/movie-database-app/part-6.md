@@ -26,7 +26,7 @@ This part of the tutorial series covers adding a search feature to the movies `I
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is used by the movie `Index` component (`Components/MoviePages/Index.razor`) to display movies from the database:
 
 ```razor
-<QuickGrid Class="table" Items="DB.Movie">
+<QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
     ...
 </QuickGrid>
 ```
@@ -43,47 +43,31 @@ Start by adding the following `@code` block of C# code to the `Index` component:
 
 ```razor
 @code {
-    private IQueryable<Movie>? movies;
-
     [SupplyParameterFromQuery]
-    public string? TitleFilter { get; set; }
-
-    protected override void OnParametersSet()
-    {
-        if (!string.IsNullOrEmpty(TitleFilter))
-        {
-            movies = DB.Movie.Where(
-                s => !string.IsNullOrEmpty(s.Title) ? 
-                    s.Title.Contains(TitleFilter) : false);
-        }
-        else
-        {
-            movies = DB.Movie;
-        }
-    }
+    public string TitleFilter { get; set; }
+    
+    IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
+        .Where(movie => movie.Title!.Contains(TitleFilter ?? ""));
 }
 ```
 
-The `movies` collection is an `IQueryable<Movie>`, which is the type for assignment to the `QuickGrid`'s <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
+The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the `QuickGrid`'s <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
 
 `TitleFilter` is the filter string. The property is provided the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute), which lets Blazor know that the value of `TitleFilter` should be assigned from the query string when the query string contains a field of the same name (for example, `?titleFilter=road+warrior`). Note that query string field names aren't case sensitive.
 
-The `OnParametersSet` Blazor component lifecycle method executes after parameters are set. The method checks if `TitleFilter` has a value and either:
-
-* Filters the database for movies with a title that contains the filter string.
-* Returns all of the movies if the filter string (`TitleFilter`) is `null`, which happens if `titleFilter` isn't present in the query string or no value is supplied for the field in the query string (`?titleFilter=`).
+The `FilteredMovies` property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't present in the query string, then no movies are filtered.
 
 Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
 
 ```diff
-- <QuickGrid Class="table" Items="DB.movies">
-+ <QuickGrid Class="table" Items="@movies">
+- <QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
++ <QuickGrid Class="table" Items="@FilteredMovies">
 ```
 
 > [!NOTE]
-> Scaffolded code doesn't prefix component parameter values with `@` as a convention, but documentation examples always do. In the preceding example, assigning only `movie` without prefixing the `@` symbol (`Items="movies"`) is valid Razor syntax, but documentation examples always show such assignments with the `@` symbol (`Items="@movies"`) to indicate that C# is provided. When the `@` is explicitly added, the markup makes it clear that the value isn't a string literal being passed to `string`-typed parameter.
+> Scaffolded code doesn't prefix component parameter values with `@` as a convention, but documentation examples always do. In the preceding example, assigning only `FilteredMovies` without prefixing the `@` symbol (`Items="FilteredMovies"`) is valid Razor syntax, but documentation examples always show such assignments with the `@` symbol (`Items="@FilteredMovies"`) to indicate that C# is provided. When the `@` is explicitly added, the markup makes it clear that the value isn't a string literal being passed to `string`-typed parameter.
 
-The `s => s.Title.Contains()` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the `Where` or `Contains` methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
+The `movie => movie.Title!.Contains()` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the `Where` or `Contains` methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
 The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, `Contains` maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case sensitive and case insensitive filtering, depending on the query. For information on making case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
 

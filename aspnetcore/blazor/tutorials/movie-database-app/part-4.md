@@ -28,7 +28,7 @@ The database context, `BlazorWebAppMoviesContext`, connects to the database and 
 :::zone pivot="vs"
 
 ```csharp
-builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
+builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlServer(
       builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
       throw new InvalidOperationException(
@@ -40,7 +40,7 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 :::zone pivot="vsc"
 
 ```csharp
-builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
+builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlite(
       builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
       throw new InvalidOperationException(
@@ -52,7 +52,7 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 :::zone pivot="cli"
 
 ```csharp
-builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
+builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlite(
       builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
       throw new InvalidOperationException(
@@ -61,7 +61,7 @@ builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
 
 :::zone-end
 
-<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> registers the given context as a service in the app's service collection.
+<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A> registers a factory for the given context as a service in the app's service collection.
 
 <xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional types of databases.
 
@@ -280,11 +280,12 @@ Review the `UpdateMovie` method of the `Edit` component (`Components/Pages/Movie
 ```csharp
 public async Task UpdateMovie()
 {
-    DB.Attach(Movie!).State = EntityState.Modified;
+    using var context = DbFactory.CreateDbContext();
+    context.Attach(Movie!).State = EntityState.Modified;
 
     try
     {
-        await DB.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
     catch (DbUpdateConcurrencyException)
     {

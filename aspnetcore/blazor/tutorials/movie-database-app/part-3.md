@@ -227,12 +227,12 @@ The following sections explain the composition of the movie CRUD components and 
 
 Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`).
 
-The `@page` directive at the top of the file indicates the relative URL for the page is `/movies`. An `@using` directive makes the <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName> API available to the component. A `QuickGrid` component is used to display movie entities from the database. The database context (`BlazorWebAppMoviesContext`) is injected into the component with the `@inject` directive. Finally, an `@using` directive makes the project's models available (`BlazorWebAppMovies.Models`).
+The `@page` directive at the top of the file indicates the relative URL for the page is `/movies`. An `@using` directive makes the <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName> API available to the component. A `QuickGrid` component is used to display movie entities from the database. The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive. Finally, an `@using` directive makes the project's models available (`BlazorWebAppMovies.Models`).
 
 ```razor
 @page "/movies"
 @using Microsoft.AspNetCore.Components.QuickGrid
-@inject BlazorWebAppMovies.Data.BlazorWebAppMoviesContext DB
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
 @using BlazorWebAppMovies.Models
 ```
 
@@ -259,7 +259,7 @@ In the following Razor markup, notice how the context (`Context`) parameter spec
 The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
 ```razor
-<QuickGrid Class="table" Items="DB.Movie">
+<QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
     <PropertyColumn Property="movie => movie.Title" />
     <PropertyColumn Property="movie => movie.ReleaseDate" />
     <PropertyColumn Property="movie => movie.Genre" />
@@ -339,7 +339,7 @@ The `@page` directive at the top of the file indicates the relative URL for the 
 
 ```razor
 @page "/movies/details"
-@inject BlazorWebAppMovies.Data.BlazorWebAppMoviesContext DB
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
 @using BlazorWebAppMovies.Models
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
@@ -389,7 +389,8 @@ public int Id { get; set; }
 
 protected override async Task OnInitializedAsync()
 {
-    movie = await DB.Movie.FirstOrDefaultAsync(m => m.Id == Id);
+    using var context = DbFactory.CreateDbContext();
+    movie = await context.Movie.FirstOrDefaultAsync(m => m.Id == Id);
 
     if (movie is null)
     {
@@ -472,8 +473,9 @@ The `AddMovie` method:
 
     public async Task AddMovie()
     {
-        DB.Movie.Add(Movie);
-        await DB.SaveChangesAsync();
+        using var context = DbFactory.CreateDbContext();
+        context.Movie.Add(Movie);
+        await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/movies");
     }
 }
@@ -499,8 +501,9 @@ In the C# code of the `@code` block, the `DeleteMovie` method removes the movie,
 ```csharp
 public async Task DeleteMovie()
 {
-    DB.Movie.Remove(movie!);
-    await DB.SaveChangesAsync();
+    using var context = DbFactory.CreateDbContext();
+    context.Movie.Remove(movie!);
+    await context.SaveChangesAsync();
     NavigationManager.NavigateTo("/movies");
 }
 ```
@@ -522,11 +525,12 @@ Examine the C# code of the `@code` block:
 ```csharp
 public async Task UpdateMovie()
 {
-    DB.Attach(Movie!).State = EntityState.Modified;
+    using var context = DbFactory.CreateDbContext();
+    context.Attach(Movie!).State = EntityState.Modified;
 
     try
     {
-        await DB.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
     catch (DbUpdateConcurrencyException)
     {
@@ -545,7 +549,8 @@ public async Task UpdateMovie()
 
 bool MovieExists(int id)
 {
-    return DB.Movie.Any(e => e.Id == id);
+    using var context = DbFactory.CreateDbContext();
+    return context.Movie.Any(e => e.Id == id);
 }
 ```
 

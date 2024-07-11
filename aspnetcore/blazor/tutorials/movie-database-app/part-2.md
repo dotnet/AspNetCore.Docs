@@ -323,7 +323,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid> component is a Razor compon
 The following code is added to the `Program` file by the scaffolder:
 
 ```csharp
-builder.Services.AddDbContext<BlazorWebAppMoviesContext>(options =>
+builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
         throw new InvalidOperationException(
