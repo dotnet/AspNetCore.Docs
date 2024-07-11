@@ -2,6 +2,10 @@
 // Version1: Register with options, GetOrCreateAsync stateless
 // Version2: Register no options, GetOrCreateAsync stateful
 // Version3: Register no options, GetOrCreateAsync stateless with options
+
+// HCMinimal2 demonstrates how to use a custom serializer.
+// This one, HCMinimal, is the main sample app.
+
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Caching.Hybrid;
 

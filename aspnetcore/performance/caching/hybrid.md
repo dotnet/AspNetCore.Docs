@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
-ms.date: 05/28/2024
+ms.date: 07/11/2024
 uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
@@ -64,37 +64,23 @@ In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` 
 Add GetAsync when it's implemented.
 -->
 
-## Remove unexpired cache entries
+## Remove cache entries by key
 
-When the underlying data for cache entries changes before they expire, you can explicitly remove the entries. The entries to remove can be specified by key. When an entry is removed, it's removed from both the primary and secondary caches.
+When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling [`RemoveAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Internal/DefaultHybridCache.cs,a1f8d27e085182cc) with the key to the entry. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,bc261d181c479a57) lets you specify a collection of tag values.
 
-### Remove by key
+When an entry is removed, it's removed from both the primary and secondary caches.
 
-The following methods support removal of cache entries by key:
+## Remove cache entries by tag
 
-* `RemoveKeyAsync`
-* `RemoveKeysAsync`
+Tags can be used to group cache entries and invalidate them together.
 
-**Note:** These will change to `RemoveByKeyAsync` and `RemoveByKeysAsync` in the future.
- 
-<!--
-## Tags
-
-Tags can be used to group cache entries and invalidate them together. You can set tags when calling `GetOrCreateAsync`, as shown in the following example:
+Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
-For example, if the key is composed of first name and last name, set a tag with the value of last name when calling `GetOrCreateAsync`. Then, when the last name changes, call one of the following methods to remove all cache entries with that tag:
+Remove all entries for a specified tag by calling [`RemoveByTagAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,c37a54f5e962ab23) with the tag value. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,9efbe8770df53e9c) lets you specify a collection of tag values.
 
-* `RemoveTagAsync`
-* `RemoveTagsAsync`
-
-These methods remove all cache entries that have one or more of the specified tags.
-
-**Note:** These will change to `RemoveByTagAsync` and `RemoveByTagsAsync` in the future.
-<!--
-Uncomment when tags are implemented.
--->
+When an entry is removed, it's removed from both the primary and secondary caches.
 
 ## Options
 
