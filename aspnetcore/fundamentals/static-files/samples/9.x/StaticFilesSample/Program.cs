@@ -383,7 +383,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // <snippet_mul>
-app.MapStaticAssets(); // Serve files from wwwroot
+app.MapStaticAssets();     // Serve files from wwwroot
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
