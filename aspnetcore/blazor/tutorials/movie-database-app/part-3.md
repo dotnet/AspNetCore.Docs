@@ -379,6 +379,13 @@ CSS classes aren't shown in the following example to simplify the Razor markup f
 </div>
 ```
 
+Add a space to the content of the description term element (`<dt>`) for the movie's release date to separate the words:
+
+```diff
+- <dt class="col-sm-2">ReleaseDate</dt>
++ <dt class="col-sm-2">Release Date</dt>
+```
+
 Examine the C# of the component's `@code` block:
 
 ```csharp
@@ -447,6 +454,13 @@ CSS classes aren't present in the following example to simplify the display:
 </EditForm>
 ```
 
+Add a space to the content of the label element (`<label>`) for the movie's release date to separate the words:
+
+```diff
+- <label for="releasedate" class="form-label">ReleaseDate:</label>
++ <label for="releasedate" class="form-label">Release Date:</label>
+```
+
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model%2A> parameter is assigned the model, in this case `Movie`. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit%2A> specifies a method to invoke (`AddMovie`) when the form is submitted and the data is valid. By convention, every form should assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.FormName%2A> to prevent form collisions when multiple forms are present on a page. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A> flag activates a Blazor feature for server-side rendering (SSR) that submits the form without performing a full-page reload.
 
 For validation:
@@ -488,6 +502,13 @@ The `AddMovie` method:
 
 Open the `Delete` component definition file (`Components/Pages/Movies/Delete.razor`).
 
+Add a space to the content of the description term element (`<dt>`) for the movie's release date to separate the words:
+
+```diff
+- <dt class="col-sm-2">ReleaseDate</dt>
++ <dt class="col-sm-2">Release Date</dt>
+```
+
 Examine the Razor markup for the submit button of the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (CSS class removed for simplicity):
 
 ```razor
@@ -511,6 +532,13 @@ public async Task DeleteMovie()
 ### `Edit` component
 
 Open the `Edit` component definition file (`Components/Pages/Movies/Edit.razor`).
+
+Add a space to the content of the label element (`<label>`) for the movie's release date to separate the words:
+
+```diff
+- <label for="releasedate" class="form-label">ReleaseDate:</label>
++ <label for="releasedate" class="form-label">Release Date:</label>
+```
 
 The component uses an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> similar to the `Create` component.
 
