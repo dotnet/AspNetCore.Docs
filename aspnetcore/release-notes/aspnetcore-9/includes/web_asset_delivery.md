@@ -1,15 +1,19 @@
 ### Optimizing static web asset delivery
 
-Following production best practices for serving static assets requires a significant amount of work and technical expertise. Without optimizations like compression, caching, and [fingerprints](https://en.wikipedia.org/wiki/Fingerprint_(computing)), browsers encounter additional and larger requests, increased network traffic, and the potential delivery of stale files.
+Following production best practices for serving static assets requires a significant amount of work and technical expertise. Without optimizations like compression, caching, and [fingerprints](https://en.wikipedia.org/wiki/Fingerprint_(computing)):
 
-Creating performant web apps includes optimizing asset delivery to the browser. This involves many aspects such as:
+* The browser has to make additional requests on every page load.
+* More bytes than necessary are transferred through the network.
+* Sometimes stale versions of files are served to clients.
 
-* Serving a given asset once until the file changes or the browser clears its cache. Preventing the browser from using old or stale assets after an app is updated. This cache coherency works in production and in development.
-* Setting the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
-* Setting up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
-* Using [caching middleware](xref:performance/caching/middleware).
-* Serving [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
-* Using a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
+Creating performant web apps requires optimizing asset delivery to the browser. Possible optimizations include:
+
+* Serve a given asset once until the file changes or the browser clears its cache. Set the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header.
+* Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
+* Set up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
+* Use [caching middleware](xref:performance/caching/middleware).
+* Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
+* Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minimize the size of assets served to the browser. This optimization doesn't include minification.
 
 [`MapStaticAssets`](https://source.dot.net/#Microsoft.AspNetCore.StaticAssets/StaticAssetsEndpointRouteBuilderExtensions.cs,18) is a new middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC. It's typically a drop-in replacement for `UseStaticFiles`.
