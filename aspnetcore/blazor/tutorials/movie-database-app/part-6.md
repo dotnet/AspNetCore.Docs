@@ -61,11 +61,8 @@ Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGr
 
 ```diff
 - <QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
-+ <QuickGrid Class="table" Items="@FilteredMovies">
++ <QuickGrid Class="table" Items="FilteredMovies">
 ```
-
-> [!NOTE]
-> Scaffolded code doesn't prefix component parameter values with `@` as a convention, but documentation examples always do. In the preceding example, assigning only `FilteredMovies` without prefixing the `@` symbol (`Items="FilteredMovies"`) is valid Razor syntax, but documentation examples always show such assignments with the `@` symbol (`Items="@FilteredMovies"`) to indicate that C# is provided. When the `@` is explicitly added, the markup makes it clear that the value isn't a string literal being passed to `string`-typed parameter.
 
 The `movie => movie.Title!.Contains()` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the `Where` or `Contains` methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 

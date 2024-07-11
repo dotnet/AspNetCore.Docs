@@ -31,23 +31,9 @@ In this part of the tutorial series:
 
 In **Solution Explorer**, right-click the `BlazorWebAppMovies` project and select **Add** > **New Folder**. Name the folder `Models`.
 
-Right-click the `Models` folder. Select **Add** > **Class**. Name the file `Movie.cs`, which creates a public class `Movie` in the file with the namespace `BlazorWebAppMovies.Models`.
+Right-click the `Models` folder. Select **Add** > **Class**. Name the file `Movie.cs`.
 
-Add the following properties to the `Movie` class:
-
-```csharp
-public int Id { get; set; }
-
-public string? Title { get; set; }
-
-public DateOnly ReleaseDate { get; set; }
-
-public string? Genre { get; set; }
-
-public decimal Price { get; set; }
-```
-
-After you paste the preceding properties between the braces (`{...}`) of the `Movie` class, the file contains the following code:
+Use the following contents for the `Movie.cs` file:
 
 :::zone-end
 

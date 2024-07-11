@@ -102,17 +102,17 @@ Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:
 PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
 ```
 
-Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `@pagination`:
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
 
 ```diff
-- <QuickGrid Class="table" Items="@FilteredMovies">
-+ <QuickGrid Class="table" Items="@FilteredMovies" Pagination="@pagination">
+- <QuickGrid Class="table" Items="FilteredMovies">
++ <QuickGrid Class="table" Items="FilteredMovies" Pagination="pagination">
 ```
 
-To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
+To provide a UI for pagination below the `QuickGrid` component, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) below the `QuickGrid` component.  Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
 
 ```razor
-<Paginator State="@pagination" />
+<Paginator State="pagination" />
 ```
 
 Run the app and navigate to the movies `Index` page. You can page through the movie items at two movies per page:
