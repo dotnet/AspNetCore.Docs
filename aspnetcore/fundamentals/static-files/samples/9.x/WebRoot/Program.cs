@@ -1,7 +1,7 @@
 #define FIRST // FIRST
 #if NEVER
 #elif FIRST
-#region snippet1
+// <snippet1>
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
@@ -15,9 +15,9 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.Run();
-#endregion
+// </snippet1>
 #elif SECOND
-#region snippet2
+// <snippet2>
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
@@ -38,5 +38,5 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.Run();
-#endregion
+// </snippet2>
 #endif
