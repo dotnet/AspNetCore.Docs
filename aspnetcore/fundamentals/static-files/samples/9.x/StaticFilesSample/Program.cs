@@ -45,8 +45,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseStaticFiles();    // required for https://localhost:<port>/images/MyImage.jpg
- app.UseStaticFiles(new StaticFileOptions
+app.UseStaticFiles();    //Serve files from wwwroot
+app.UseStaticFiles(new StaticFileOptions
  {
      FileProvider = new PhysicalFileProvider(
             Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
@@ -456,7 +456,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(); // required for https://localhost:50921/images/MyImage.jpg
+app.UseStaticFiles(); // Serve files from wwwroot
 
 app.UseStaticFiles(new StaticFileOptions
 {
