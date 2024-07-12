@@ -77,15 +77,15 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var cacheMaxAgeOneWeek = (60 * 60 * 24 * 7).ToString();
-app.UseStaticFiles(new StaticFileOptions
-{
-    OnPrepareResponse = ctx =>
-    {
-        ctx.Context.Response.Headers.Append(
-             "Cache-Control", $"public, max-age={cacheMaxAgeOneWeek}");
-    }
-});
+ var cacheMaxAgeOneWeek = (60 * 60 * 24 * 7).ToString();
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     OnPrepareResponse = ctx =>
+     {
+         ctx.Context.Response.Headers.Append(
+              "Cache-Control", $"public, max-age={cacheMaxAgeOneWeek}");
+     }
+ });
 
 app.UseAuthorization();
 
@@ -353,11 +353,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    ServeUnknownFileTypes = true,
-    DefaultContentType = "image/png"
-});
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     ServeUnknownFileTypes = true,
+     DefaultContentType = "image/png"
+ });
 
 app.UseAuthorization();
 
@@ -385,12 +385,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // <snippet_mul>
-app.MapStaticAssets(); // Serve files from wwwroot with MapStaticAssets
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
-});
+ app.UseStaticFiles();
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     FileProvider = new PhysicalFileProvider(
+         Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
+ });
 // </snippet_mul>
 
 app.UseAuthorization();
