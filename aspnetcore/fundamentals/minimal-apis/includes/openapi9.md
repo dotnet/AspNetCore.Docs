@@ -111,7 +111,7 @@ Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) =>
 {
-    var todos = await db.Todos.ToListAsync());
+    var todos = await db.Todos.ToListAsync();
     return TypedResults.Ok(todos);
 });
 ```
