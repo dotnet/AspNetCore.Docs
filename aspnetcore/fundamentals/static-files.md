@@ -24,7 +24,7 @@ Static files are stored within the project's [web root](xref:fundamentals/index#
 
 The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method sets the content root to the current directory:
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=1)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=1,15)]
 
 Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contain several folders within the `wwwroot` folder:
 
