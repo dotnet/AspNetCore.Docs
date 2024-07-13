@@ -37,7 +37,19 @@ Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyI
 
 ### MapStaticAssets
 
-`MapStaticAssets` is a middleware that helps optimize the delivery of static assets in an app. For more information, see [Optimizing static web asset delivery
+Creating performant web apps requires optimizing asset delivery to the browser. Possible optimizations include:
+
+* Serve a given asset once until the file changes or the browser clears its cache. Set the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header.
+* Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
+* Set up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
+* Use [caching middleware](xref:performance/caching/middleware).
+* Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
+* Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
+* Minimize the size of assets served to the browser. This optimization doesn't include minification.
+
+[`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) is a middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
+
+[`UseStaticFiles`](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles) also serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. For a comparison of  `UseStaticFiles` and `MapStaticAssets`, see [Optimizing static web asset delivery
 ](xref:aspnetcore-9#optimizing-static-web-asset-delivery).
 
 ### Serve files in web root
