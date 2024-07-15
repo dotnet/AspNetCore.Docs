@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling
 ---
@@ -31,9 +31,7 @@ In this part of the tutorial series:
 
 In **Solution Explorer**, right-click the `BlazorWebAppMovies` project and select **Add** > **New Folder**. Name the folder `Models`.
 
-Right-click the `Models` folder. Select **Add** > **Class**. Name the file `Movie.cs`.
-
-Use the following contents for the `Movie.cs` file:
+Right-click the `Models` folder. Select **Add** > **Class**. Name the file `Movie.cs`. Use the following contents for the file.
 
 :::zone-end
 
@@ -41,9 +39,7 @@ Use the following contents for the `Movie.cs` file:
 
 Add a folder to the project named `Models`.
 
-Add a class file to the `Models` folder named `Movie.cs`.
-
-Use the following contents for the `Movie.cs` file:
+Add a class file to the `Models` folder named `Movie.cs`. Use the following contents for the file.
 
 :::zone-end
 
@@ -51,14 +47,15 @@ Use the following contents for the `Movie.cs` file:
 
 Add a folder to the project named `Models`.
 
-Add a class file to the `Models` folder named `Movie.cs`.
-
-Use the following contents for the `Movie.cs` file:
+Add a class file to the `Models` folder named `Movie.cs`. Use the following contents for the file.
 
 :::zone-end
 
+`Models/Movie.cs`:
+
 ```csharp
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorWebAppMovies.Models;
 
@@ -72,6 +69,8 @@ public class Movie
 
     public string? Genre { get; set; }
 
+    [DataType(DataType.Currency)]
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal Price { get; set; }
 }
 ```
@@ -87,26 +86,13 @@ The `Movie` class contains:
 
 The question mark on a `string` type indicates that the property is nullable (it can hold a `null` value).
 
-The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by <xref:System.ComponentModel.DataAnnotations>, which are a set of attribute classes placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name. You can place multiple annotations on the same line separated by commas inside the braces, or you can place multiple annotations on separate lines, which is the approach used by this tutorial series. 
+The EF Core database provider selects data types based on the .NET types of the model's properties. The provider also takes into account other metadata provided by <xref:System.ComponentModel.DataAnnotations>, which are a set of attribute classes placed above a model's property with the following format, where the `{ANNOTATION}` placeholder is the annotation name. You can place multiple annotations on the same line separated by commas inside the brackets, or you can place multiple annotations on separate lines, which is the approach adopted by this tutorial series. 
 
 ```csharp
 [{ANNOTATION}]
 ```
 
-Add the following namespace to the top of the `Movie.cs` file:
-
-```csharp
-using System.ComponentModel.DataAnnotations.Schema;
-```
-
-Add the following two data annotation attributes immediately above the `Price` property:
-
-```csharp
-[DataType(DataType.Currency)]
-[Column(TypeName = "decimal(18, 2)")]
-```
-
-The `Price` property in the `Movie` class file after adding the preceding data annotations:
+The `Price` property in the `Movie` class file has two data annotations:
 
 ```csharp
 [DataType(DataType.Currency)]
@@ -297,7 +283,7 @@ The scaffolding process creates the following component files and movie database
   * `Details.razor`: Shows movie entity details.
   * `Edit.razor`: Updates a movie entity.
   * `Index.razor`: Lists movie entities (records) in the database.
-* `Data/BlazorWebAppMovieContext.cs`: Database context file (<xref:Microsoft.EntityFrameworkCore.DbContext>).
+* `Data/BlazorWebAppMoviesContext.cs`: Database context file (<xref:Microsoft.EntityFrameworkCore.DbContext>).
 
 The component files in the `MoviePages` folder are described in greater detail in the next part of this tutorial. The database context is described later in this article.
 
@@ -346,7 +332,7 @@ EF Core adopts the *code-first* approach for database design and maintenance:
 * Entity classes are created and updated first in the app.
 * The database is created and updated from the app's entity classes.
 
-This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach speeds up the process of app development because most of the difficult and time-consuming database creation and management is handled transparently by the EF Core tooling, so you can focus on app development.
+This is the reverse procedure of *database-first* approaches, where the database is designed, built, and updated first. Adopting EF Core's code-first approach speeds up the process of app development because most of the difficult and time-consuming database creation and management procedures are handled transparently by the EF Core tooling, so you can focus on app development.
 
 :::zone pivot="vs"
 
@@ -359,21 +345,25 @@ In **Solution Explorer**, double-click **Connected Services**. In the **SQL Serv
 
 ![UI showing the 'Add migration' option in the contextual menu opened from selecting the ellipsis next to 'SQL Server Express LocalDB'](~/blazor/tutorials/movie-database-app/part-2/_static/add-migration-menu-item.png)
 
-Give the migration a **Migration name** of `InitialCreate`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration:
+Give the migration a **Migration name** of `InitialCreate`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field, which may take a few seconds. Select **Finish** to create the migration:
 
 ![Add a new EF migration dialog showing the migration name and database context](~/blazor/tutorials/movie-database-app/part-2/_static/new-ef-migration-dialog.png)
 
+Select the **Close** button after the operation finishes.
+
 Adding a migration generates code to create the initial database schema. The schema is based on the model specified in <xref:Microsoft.EntityFrameworkCore.DbContext>.
 
-After the preceding command completes, update the database. Select the ellipsis (`...`) again followed by the **Update database** command:
+Select the ellipsis (`...`) again followed by the **Update database** command:
 
 ![UI showing the 'Update database' option in the contextual menu opened from selecting the ellipsis next to 'SQL Server Express LocalDB'](~/blazor/tutorials/movie-database-app/part-2/_static/update-database-menu-item.png)
 
-The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button:
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load, which may take a few seconds. Select the **Finish** button:
 
 ![Update database with the latest migration dialog showing the database context](~/blazor/tutorials/movie-database-app/part-2/_static/update-database-dialog.png)
 
 The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_InitialCreate.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp.
+
+Select the **Close** button after the operation finishes.
 
 :::zone-end
 
@@ -413,7 +403,7 @@ dotnet ef database update
 
 :::zone-end
 
-The database context `BlazorWebAppMovieContext`:
+The database context `BlazorWebAppMoviesContext`:
 
 * Derives from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>.
 * Specifies which entities are included in the data model.
@@ -450,9 +440,9 @@ When you select the **:::no-loc text="Create":::** button, the movie data is pos
 
 ![The Matrix movie shown in the movies 'Index' page](~/blazor/tutorials/movie-database-app/part-2/_static/movie-added.png)
 
-Test the `Edit`, `Details` pages.
+Open the `Edit` page. Edit the movie's record and save the changes.
 
-Examine the `Delete` page, but don't delete *The Matrix* movie from the database. The presence of this movie record is valuable in the next step of the tutorial where rendered HTML is studied and some enhancements are made to the data displayed. If you already deleted the movie, re-add it using the `Create` page before proceeding to the next part of this series.
+Examine the `Delete` page, but don't delete *The Matrix* movie from the database. The presence of this movie record is valuable in the next step of the tutorial where rendered HTML is studied and some enhancements are made to the data displayed. If you already deleted the movie, add the movie to the database again using the `Create` page before proceeding to the next part of the tutorial series.
 
 ## Stop the app
 

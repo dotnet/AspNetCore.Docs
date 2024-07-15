@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-6
 zone_pivot_groups: tooling
 ---
@@ -31,7 +31,7 @@ The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is u
 </QuickGrid>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter receives a nullable `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid. In this case, the `TGridItem` is a `DbSet<Movie>` obtained from the injected `BlazorWebAppMoviesContext` (`DB`).
+The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (`CreateDbContext`) of the injected database context factory (`DbFactory`).
 
 To make the `QuickGrid` component filter on the movie title, the `Index` component should:
 
@@ -39,23 +39,21 @@ To make the `QuickGrid` component filter on the movie title, the `Index` compone
 * If the parameter has a value, filter the movies returned from the database.
 * Provide an input for the user to provide the filter string and a button to trigger a reload using the filter.
 
-Start by adding the following `@code` block of C# code to the `Index` component:
+Start by adding the following `@code` block of C# code to the `Index` component (`MoviePages/Index.razor`):
 
 ```razor
 @code {
     [SupplyParameterFromQuery]
-    public string TitleFilter { get; set; }
+    public string? TitleFilter { get; set; }
     
     private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
         .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
 }
 ```
 
-The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the `QuickGrid`'s <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
+`TitleFilter` is the filter string. The property is provided the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute), which lets Blazor know that the value of `TitleFilter` should be assigned from the query string when the query string contains a field of the same name (for example, `?titleFilter=road+warrior` yields a `TitleFilter` value of `road warrior`). Note that query string field names, such as `titleFilter`, aren't case sensitive.
 
-`TitleFilter` is the filter string. The property is provided the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute), which lets Blazor know that the value of `TitleFilter` should be assigned from the query string when the query string contains a field of the same name (for example, `?titleFilter=road+warrior`). Note that query string field names aren't case sensitive.
-
-The `FilteredMovies` property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't present in the query string, then no movies are filtered.
+The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the `QuickGrid`'s <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), then no movies are filtered because an empty string (`string.Empty`) is used for the <xref:System.String.Contains%2A> clause.
 
 Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
 
@@ -64,9 +62,9 @@ Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGr
 + <QuickGrid Class="table" Items="FilteredMovies">
 ```
 
-The `movie => movie.Title!.Contains()` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the `Where` or `Contains` methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
+The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the <xref:System.Linq.Queryable.Where%2A> or <xref:System.String.Contains%2A> methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as <xref:System.Linq.Queryable.Where%2A>, <xref:System.String.Contains%2A>, or <xref:System.Linq.Queryable.OrderBy%2A>. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
-The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, `Contains` maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case sensitive and case insensitive filtering, depending on the query. For information on making case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
+The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case sensitive and case insensitive filtering, depending on the query. For information on making case insensitive SQLite queries, see the [Additional resources](#additional-resources) section of this article.
 
 Run the app and navigate to the movies `Index` page at `/movies`. The movies in the database load:
 
@@ -114,6 +112,13 @@ Type "`road warrior`" into the search box and select the **:::no-loc text="Searc
 The result after searching on `road warrior`:
 
 !['The Road Warrior' Mad Max movie filtered using a GET request via an HTML form action](~/blazor/tutorials/movie-database-app/part-6/_static/form-filter-result.png)
+
+Notice that the search box loses the search value ("`road warrior`") when the movies are filtered. If you want to preserve the searched value, add the `data-permanent` attribute:
+
+```diff
+- <form action="/movies" data-enhance>
++ <form action="/movies" data-enhance data-permanent>
+```
 
 ## Stop the app
 

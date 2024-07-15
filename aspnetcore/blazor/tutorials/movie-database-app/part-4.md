@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains the da
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---
@@ -140,9 +140,6 @@ In this tutorial, EF Core migrations are used. A migration updates the database 
 ## Seed the database
 
 Seeding code can create a set of records for development testing or even be used to create the initial data for a new production database.
-
-> [!WARNING]
-> The technique shown in this section isn't acceptable for modifying a live database with active users.
 
 Create a new class named `SeedData` in the `Data` folder with the following code.
 

@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-1
 zone_pivot_groups: tooling
 ---
@@ -25,10 +25,6 @@ This part of the tutorial series covers how to create a Blazor Web App that adop
 
 :::zone pivot="vs"
 
-<!-- NOTE TO SELF: Confirm this is the link for continued use.
-                   I have an email out to the docs cats now
-                   asking about it. -->
-
 [Visual Studio (latest release)](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 
 :::zone-end
@@ -41,7 +37,7 @@ Latest releases of:
 * [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [.NET SDK](https://dotnet.microsoft.com/download/dotnet)
 
-The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which is a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
+The Visual Studio Code (VS Code) instructions for ASP.NET Core development in this tutorial use the [.NET CLI](/dotnet/core/tools/), which is part of the .NET SDK. .NET CLI commands are issued in VS Code's integrated [**Terminal**](https://code.visualstudio.com/docs/editor/integrated-terminal), which defaults to a [PowerShell command shell](/powershell/). The **Terminal** is opened by selecting **New Terminal** from the **Terminal** menu in the menu bar.
 
 :::zone-end
 
@@ -49,7 +45,7 @@ The Visual Studio Code (VS Code) instructions for ASP.NET Core development in th
 
 [.NET SDK (latest release)](https://dotnet.microsoft.com/download/dotnet)
 
-The [.NET CLI](/dotnet/core/tools/) is part of the .NET SDK. To issue a command that affects the project, open the command shell to the project's root folder to execute the command.
+The [.NET CLI](/dotnet/core/tools/) is part of the .NET SDK. To issue commands that affect the project, open the command shell to the project's root folder.
 
 :::zone-end
 
@@ -106,10 +102,7 @@ Confirm that you have the latest [.NET SDK](https://dotnet.microsoft.com/downloa
 In a command shell:
 
 * Use the `cd` command to change to the directory to where you want to create the project folder (for example, `cd c:/users/Bernie_Kopell/Documents`).
-* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder named `BlazorWebAppMovies` at the current shell directory location.
-
-  > [!IMPORTANT]
-  > Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app.
+* Use the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the [`blazor` project template](/dotnet/core/tools/dotnet-new-sdk-templates#blazor) to create a new Blazor Web App project. The [`-o|--output` option](/dotnet/core/tools/dotnet-new#options) passed to the command creates the project in a new folder at the current shell directory location. Name the project `BlazorWebAppMovies`, including matching the capitalization, so the namespaces match for code that you copy from the tutorial to the app.
 
   ```dotnetcli
   dotnet new blazor -o BlazorWebAppMovies
@@ -212,7 +205,7 @@ The following sections contain an overview of the project's folders and files.
 
 If you're building the app, you don't need to make changes to the project files in the following sections. As you read the descriptions of the folders and files, examine them in the project.
 
-If you're only reading the articles and not building the app, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`. Note that the sample app is the *finished version* of the app after following all of the steps of the tutorial series. Code in the sample doesn't always match steps of the tutorial before the end of the series.
+If you're only reading the articles and not building the app, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`. The sample app is the *finished version* of the app after following all of the steps of the tutorial series. Code in the sample doesn't always match steps of the tutorial before the end of the series.
 
 ### `Properties` folder
 
@@ -263,6 +256,8 @@ The `appsettings.json` file contains configuration data, such as connection stri
 
 The `Program.cs` file contains code to create the app and configure the request processing pipeline of the app.
 
+The order of the lines in the Blazor Web App project template changes across releases of .NET, so the order of the lines in the `Program.cs` file might not match the order of the lines covered in this section. 
+
 A <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> creates the app with preconfigured defaults:
 
 ```csharp
@@ -296,9 +291,6 @@ if (!app.Environment.IsDevelopment())
 }
 ```
 
-> [!WARNING]
-> Don't run a production app in development mode because the developer exception page can leak sensitive information.
-
 HTTPS Redirection Middleware (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>) enforces the HTTPS protocol by redirecting HTTP requests to HTTPS if an HTTPS port is available:
 
 ```csharp
@@ -313,7 +305,7 @@ app.UseAntiforgery();
 
 :::moniker range=">= aspnetcore-9.0"
 
-Map Static Assets Middleware (`MapStaticAssets`) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints.
+Map Static Assets Middleware (`MapStaticAssets`) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
 
 ```csharp
 app.MapStaticAssets();

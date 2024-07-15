@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/29/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-7
 zone_pivot_groups: tooling
 ---
@@ -40,7 +40,7 @@ public string? Rating { get; set; }
 
 Open the `Create` component definition file (`Components/Pages/MoviePages/Create.razor`).
 
-Add the following `<div>` block after the `<div>` block for `Price`:
+Add the following `<div>` block between the `<div>` block for `Price` and the create button (`<button>`):
 
 ```razor
 <div class="mb-3">
@@ -52,7 +52,7 @@ Add the following `<div>` block after the `<div>` block for `Price`:
 
 Open the `Delete` component definition file (`Components/Pages/MoviePages/Delete.razor`).
 
-Add the following description list (`<dl>`) block after the description list block for `Price`:
+Add the following description list (`<dl>`) block between the description list block for `Price` and the `EditForm` component:
 
 ```razor
 <dl class="row">
@@ -63,7 +63,7 @@ Add the following description list (`<dl>`) block after the description list blo
 
 Open the `Details` component definition file (`Components/Pages/MoviePages/Details.razor`).
 
-Add the following description list term (`<dt>`) and description list element (`<dl>`) after the term and element for `Price`:
+Add the following description list term (`<dt>`) and description list element (`<dl>`) after the term and element for `Price` just inside the closing `</dl>` tag:
 
 ```razor
 <dt class="col-sm-2">Rating</dt>
@@ -72,7 +72,7 @@ Add the following description list term (`<dt>`) and description list element (`
 
 Open the `Edit` component definition file (`Components/Pages/MoviePages/Edit.razor`).
 
-Add the following `<div>` block after the `<div>` block for `Price`:
+Add the following `<div>` block between the `<div>` block for `Price` and the save button (`<button>`):
 
 ```razor
 <div class="mb-3">
@@ -154,7 +154,7 @@ Create a migration to update the database's schema. The movie rating, as a `Rati
 
 In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) followed by **Add migration**.
 
-Give the migration a **Migration name** of `AddRatingField` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration.
+Give the migration a **Migration name** of `AddRatingField` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration. Select **Close** when the operation is complete.
 
 The migration:
 
@@ -181,7 +181,7 @@ Save the migration file.
 
 In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) again followed by the **Update database** command.
 
-The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button.
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button. Select the **Close** button when the operation completes.
 
 Modify the one movie that isn't rated *R*:
 

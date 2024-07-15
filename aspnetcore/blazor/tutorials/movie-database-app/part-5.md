@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how me
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-5
 zone_pivot_groups: tooling
 ---
@@ -78,6 +78,7 @@ Add the following data annotations to the `Movie` class properties. To update al
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorWebAppMovies.Models;
 
@@ -147,11 +148,11 @@ To align the model and the database schema, create and apply an EF Core *databas
 
 In Visual Studio **Solution Explorer**, double-click **Connected Services**. In the **Service Dependencies** area, select the ellipsis (`...`) followed by **Add migration** in the **SQL Server Express LocalDB** area.
 
-Give the migration a **Migration name** of `NewMovieDataAnnotations` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration.
+Give the migration a **Migration name** of `NewMovieDataAnnotations` to describe the migration. Wait for the database context to load in the **DbContext class names** field. Select **Finish** to create the migration. Select the **Close** button when the operation completes.
 
 Select the ellipsis (`...`) again followed by the **Update database** command.
 
-The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button.
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load. Select the **Finish** button. Select the **Close** button when the operation completes.
 
 :::zone-end
 

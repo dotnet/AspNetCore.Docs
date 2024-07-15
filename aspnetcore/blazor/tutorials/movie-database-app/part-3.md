@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains the Ra
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2024
+ms.date: 07/15/2024
 uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling
 ---
@@ -52,7 +52,7 @@ Consider the following `Welcome` component (`Welcome.razor`):
 }
 ```
 
-The first line represents an important Razor construct in Razor components, the *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is compiled or functions. The `@page` Razor directive specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, a component's directives are often placed at the top of the component definition file.
+The first line represents an important Razor construct in Razor components, a *Razor directive*. A Razor directive is a reserved keyword prefixed with `@` that appears in Razor markup that changes the way component markup is compiled or functions. The `@page` Razor directive specifies the route template for the component. This component is reached in a browser at the relative URL `/welcome`. By convention, most of a component's directives are placed at the top of the component definition file.
 
 The <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component is a component built into the framework that specifies a page title.
 
@@ -180,8 +180,6 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 The `MainLayout` component is the app's default layout. The `MainLayout` component inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which is a base class for components that represent a layout. The app's components that use the layout are rendered where the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) appears in the markup.
 
-The `MainLayout` component is implemented in the Blazor project.
-
 `Components/Layout/MainLayout.razor`:
 
 ```razor
@@ -207,7 +205,7 @@ The `MainLayout` component is implemented in the Blazor project.
 The `MainLayout` component adopts the following additional specifications:
 
 * The `NavMenu` component is rendered in the sidebar. Notice that you only need to place an HTML tag with the component name to render a component at that location in Razor markup. This allows you to nest components within each other and within any HTML layout that you implement.
-* The main content includes:
+* The `<main>` element's content includes:
   * An **:::no-loc text="About":::** link that sends the user to the ASP.NET Core documentation landing page.
   * An `<article>` element with the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body%2A> (`@Body`) parameter, where components that use the layout are rendered.
 
@@ -217,7 +215,7 @@ The default layout (`MainLayout` component) is specified in the `Routes` compone
 <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
 ```
 
-Individual components are free to set their own non-default layout, and a layout can be applied to whole folder of components via an `_Imports.razor` file. These features are covered in detail in the Blazor documentation.
+Individual components are free to set their own non-default layout, and a layout can be applied to whole folder of components via an `_Imports.razor` file in the same folder. These features are covered in detail in the Blazor documentation.
 
 ## Create, Read, Update, Delete (CRUD) components
 
@@ -225,16 +223,28 @@ The following sections explain the composition of the movie CRUD components and 
 
 ### `Index` component
 
-Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`).
-
-The `@page` directive at the top of the file indicates the relative URL for the page is `/movies`. An `@using` directive makes the <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName> API available to the component. A `QuickGrid` component is used to display movie entities from the database. The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive. Finally, an `@using` directive makes the project's models available (`BlazorWebAppMovies.Models`).
+Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`) and examine the directives at the top of the file:
 
 ```razor
 @page "/movies"
+@using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
-@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
 @using BlazorWebAppMovies.Models
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
 ```
+
+> [!NOTE]
+> The order of `@using` and `@inject` directives shown in the preceding example is subject to change across .NET releases, so the preceding order of directives may not exactly match what you see in your app.
+
+The `@page` directive at the top of the file indicates the relative URL for the page is `/movies`.
+
+`@using` directives appear to access the following API:
+
+* <xref:Microsoft.EntityFrameworkCore?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName>
+* `BlazorWebAppMovies.Models`
+
+The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive.
 
 The page title is set via the Blazor framework's <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, and an H1 section heading is the first rendered element:
 
@@ -252,11 +262,7 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 </p>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. `Movie` from the injected database context (`DB`) is the item provider. For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
-
-In the following Razor markup, notice how the context (`Context`) parameter specifies a parameter name (`movie`) for the context instance of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
-
-The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
+The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (`CreateDbContext`) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
 
 ```razor
 <QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
@@ -273,10 +279,11 @@ The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Ra
 </QuickGrid>
 ```
 
-For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the <xref:Microsoft.AspNetCore.Components.QuickGrid> component renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie entity's `Id` is `3`, which is composed in the query strings for the `Edit`, `Details`, and `Delete` pages.
+Notice how the context (`Context`) parameter specifies a parameter name (`movie`) for the context instance of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
 
-> [!NOTE]
-> The value `3` in the following example is arbitrary and may be different from what you see when you examine the page source of your running app. The number merely matches whatever movie `Id` *The Matrix*&copy; movie has in the database at the time the app is run.
+The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
+
+For the movie example from the last part of the tutorial series, *The Matrix*&copy;, the <xref:Microsoft.AspNetCore.Components.QuickGrid> component renders the following HTML markup (some elements and attributes aren't present to simplify display). See how the explicit Razor expressions and interpolated strings produced the `href` values for the links to other pages. The movie's identifier in the database happens to be `3` for this example, so the `id` is `3` in the query strings for the `Edit`, `Details`, and `Delete` pages. You may see a different value when you run the app.
 
 ```html
 <table>
@@ -311,7 +318,7 @@ The column names are taken from the `Movie` model properties, so the release dat
 <PropertyColumn Property="movie => movie.ReleaseDate" Title="Release Date" />
 ```
 
-Run the app to see that the column now displays two words for the release date.
+Run the app to see that the column displays two words for the release date.
 
 :::zone pivot="vs"
 
@@ -335,15 +342,18 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 
 Open the `Details` component definition file (`Components/Pages/Movies/Details.razor`).
 
-The `@page` directive at the top of the file indicates the relative URL for the page is `/movies/details`. As before, the database context is injected, and namespaces are provided to access API (`BlazorWebAppMovies.Models` and `Microsoft.EntityFrameworkCore`). The `Details` component also injects the app's <xref:Microsoft.AspNetCore.Components.NavigationManager>, which is used for a variety of navigation-related features in components.
+The `@page` directive at the top of the file indicates the relative URL for the page is `/movies/details`. As before, the database context is injected, and namespaces are provided to access API (`BlazorWebAppMovies.Models` and `Microsoft.EntityFrameworkCore`). The `Details` component also injects the app's <xref:Microsoft.AspNetCore.Components.NavigationManager>, which is used for a variety of navigation-related operations in components.
 
 ```razor
 @page "/movies/details"
-@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
-@using BlazorWebAppMovies.Models
-@inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
+@using BlazorWebAppMovies.Models
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
+@inject NavigationManager NavigationManager
 ```
+
+> [!NOTE]
+> The order of `@using` and `@inject` directives shown in the preceding example is subject to change across .NET releases, so the preceding order of directives may not exactly match what you see in your app.
 
 Details for a movie entity are only shown if the movie, located by its identifier (`Id`) from the query string, has been loaded for display. The presence of the movie in `movie` is checked with an `@if` Razor statement:
 
@@ -496,7 +506,7 @@ The `AddMovie` method:
 ```
 
 > [!WARNING]
-> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered later in this article.
+> Although it isn't a concern for the app in this tutorial, binding form data to entity data models can be susceptible to overposting attacks. Additional information on this subject appears later in this article.
 
 ### `Delete` component
 
@@ -587,7 +597,7 @@ The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <x
 If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the non-existent endpoint (`notfound`), which results in returning a 404 (Not Found) status code. You could change this code to notify the user that the movie no longer exists in the database or create a dedicated *Not Found* component and navigate the user to that endpoint. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
 
 > [!WARNING]
-> Binding form data to entity data models can be susceptible to overposting attacks. Guidance on how to address this is covered in the next section.
+> Although it isn't a concern for the app in this tutorial, binding form data to entity data models can be susceptible to overposting attacks. Additional information on this subject appears in the next section.
 
 ## Mitigate overposting attacks
 
