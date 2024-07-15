@@ -63,7 +63,7 @@ By default, ASP.NET Core supports the following media types:
 * `text/json`
 * `text/plain`
 
-Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+Tools such as [Fiddler](https://www.telerik.com/fiddler) or curl can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
