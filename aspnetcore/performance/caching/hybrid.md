@@ -43,7 +43,7 @@ The `HybridCache` service provides a [`GetOrCreateAsync`](https://source.dot.net
 
 The method uses the key to try to retrieve the object from the primary cache. If the item is not found in the primary cache (a cache miss), it then checks the secondary cache if one is configured. If it doesn't find the data there (another cache miss), it calls the factory method to get the object from the data source. It then stores the object in both primary and secondary caches. The factory method is never called if the object is found in the primary or secondary cache (a cache hit).
 
-The `HybridCache` service ensures that only one concurrent caller for a given key executes the factory method, and all other callers wait for the result of that execution.The `CancellationToken` passed to `GetOrCreateAsync` represents the combined cancellation of all concurrent callers.
+The `HybridCache` service ensures that only one concurrent caller for a given key calls the factory method, and all other callers wait for the result of that call. The `CancellationToken` passed to `GetOrCreateAsync` represents the combined cancellation of all concurrent callers.
 
 ### The main `GetOrCreateAsync` overload
 
