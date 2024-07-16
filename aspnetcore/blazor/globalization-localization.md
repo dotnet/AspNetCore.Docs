@@ -319,7 +319,7 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 ```
 
 > [!IMPORTANT]
-> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. For more information, see [Blazor WASM doesn't load loc resources unless the current culture and current UI culture are the same (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again. When the requested language is Costa Rican Spanish, the app's culture remains United States English (`en-US`).
 
@@ -449,7 +449,7 @@ await host.RunAsync();
 ```
 
 > [!IMPORTANT]
-> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. For more information, see [Blazor WASM doesn't load loc resources unless the current culture and current UI culture are the same (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
 
 The following `CultureSelector` component shows how to perform the following actions:
 
@@ -946,7 +946,7 @@ await host.RunAsync();
 ```
 
 > [!IMPORTANT]
-> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. For more information, see [Blazor WASM doesn't load loc resources unless the current culture and current UI culture are the same (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
 
 Add the following `CultureSelector` component to the `.Client` project.
 
