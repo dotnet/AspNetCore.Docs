@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.author: tdykstra
-ms.date: 07/11/2024
+ms.date: 07/16/2024
 uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
@@ -150,6 +150,8 @@ To optimize performance, configure `HybridCache` to reuse objects and avoid `byt
 
 ### Reuse objects
 
+By reusing instances, `HybridCache` can reduce the overhead of CPU and object allocations associated with per-call deserialization. This can lead to performance improvements in scenarios where the cached objects are large or accessed frequently.
+
 In typical existing code that uses `IDistributedCache`, every retrieval of an object from the cache results in deserialization. This behavior means that each concurrent caller gets a separate instance of the object, which cannot interact with other instances. The result is thread safety, as there's no risk of concurrent modifications to the same object instance.
 
 Because a lot of `HybridCache` usage will be adapted from existing `IDistributedCache` code, `HybridCache` preserves this behavior by default to avoid introducing concurrency bugs. However, objects are inherently thread-safe if:
@@ -161,8 +163,6 @@ In such cases, inform `HybridCache` that it's safe to reuse instances by:
 
 * Marking the type as `sealed`. The `sealed` keyword in C# means that the class cannot be inherited.
 * Applying the `[ImmutableObject(true)]` attribute to the type. The `[ImmutableObject(true)]` attribute indicates that the object's state cannot be changed after it's created.
-
-By reusing instances, `HybridCache` can reduce the overhead of CPU and object allocations associated with per-call deserialization. This can lead to performance improvements in scenarios where the cached objects are large or accessed frequently.
 
 ### Avoid `byte[]` allocations
 
@@ -183,7 +183,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
 ## Compatibility
 
-The library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
+The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
 
 ## Additional resources
 
