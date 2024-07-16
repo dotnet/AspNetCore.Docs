@@ -1,6 +1,9 @@
 #define TypeSpecific // TypeSpecific or Factory
 
-// This saample app uses a Google.Protobuf type alongside
+// HCMinimal is the main sample app.
+// This one, HCMinimal2, demonstrates how to use a custom serializer.
+
+// This sample app uses a Google.Protobuf type alongside
 // an unrelated POCO type, to illustrate that the POCO
 // type is unaffected by the Google.Protobuf serialization
 // configuration. Multiple serialization setups
@@ -36,7 +39,7 @@ public class Program
                     Expiration = TimeSpan.FromSeconds(10),
                     LocalCacheExpiration = TimeSpan.FromSeconds(5)
                 };
-            }).WithSerializer<SomeProtobufMessage, 
+            }).AddSerializer<SomeProtobufMessage, 
                 GoogleProtobufSerializer<SomeProtobufMessage>>();
         //</snippet_withserializer>
 #endif
@@ -122,8 +125,8 @@ public class Program
 
 public class SomeService(HybridCache cache, IDistributedCache l2)
 {
-    private HybridCache _cache = cache;
-    private IDistributedCache _l2 = l2;
+    private readonly HybridCache _cache = cache;
+    private readonly IDistributedCache _l2 = l2;
 
     // The following Get...FromCache methods call GetOrCreate on HybridCache.
     // If the data is not in the cache, the factory method is called
