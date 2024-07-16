@@ -41,7 +41,7 @@ The `HybridCache` service provides a [`GetOrCreateAsync`](https://source.dot.net
 * A factory method.
 * State, and a factory method.
 
-The method uses the key to try to retrieve the object from the primary cache. If the item is not found in the primary cache (a cache miss), it then checks the secondary cache if one is configured. If it doesn't find the data there (another cache miss), it calls the factory method to get the object from the data source. It then stores the object in both primary and secondary caches. The factory method is never called if the object is found in the primary or secondary cache (a cache hit).
+The method uses the key to try to retrieve the object from the primary cache. If the item isn't found in the primary cache (a cache miss), it then checks the secondary cache if one is configured. If it doesn't find the data there (another cache miss), it calls the factory method to get the object from the data source. It then stores the object in both primary and secondary caches. The factory method is never called if the object is found in the primary or secondary cache (a cache hit).
 
 The `HybridCache` service ensures that only one concurrent caller for a given key calls the factory method, and all other callers wait for the result of that call. The `CancellationToken` passed to `GetOrCreateAsync` represents the combined cancellation of all concurrent callers.
 
@@ -68,7 +68,7 @@ Add GetAsync when it's implemented.
 
 When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling [`RemoveAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Internal/DefaultHybridCache.cs,a1f8d27e085182cc) with the key to the entry. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,bc261d181c479a57) lets you specify a collection of key values.
 
-When an entry is removed, it's removed from both the primary and secondary caches.
+When an entry is removed, it is removed from both the primary and secondary caches.
 
 ## Remove cache entries by tag
 
@@ -80,7 +80,7 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 Remove all entries for a specified tag by calling [`RemoveByTagAsync`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,c37a54f5e962ab23) with the tag value. An [overload](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,9efbe8770df53e9c) lets you specify a collection of tag values.
 
-When an entry is removed, it's removed from both the primary and secondary caches.
+When an entry is removed, it is removed from both the primary and secondary caches.
 
 ## Options
 
@@ -101,8 +101,8 @@ For more information about the options, see the source code:
 
 The following properties of `HybridCacheOptions` let you configure limits that apply to all cache entries:
 
-* MaximumPayloadBytes - Maximum size of a cache entry. Default value is 1 MB. Attempts to store values over this size are logged, and the value is not stored in cache.
-* MaximumKeyLength - Maximum length of a cache key. Default value is 1024 characters. Attempts to store values over this size are logged, and the value is not stored in cache.
+* MaximumPayloadBytes - Maximum size of a cache entry. Default value is 1 MB. Attempts to store values over this size are logged, and the value isn't stored in cache.
+* MaximumKeyLength - Maximum length of a cache key. Default value is 1024 characters. Attempts to store values over this size are logged, and the value isn't stored in cache.
  
 ## Serialization
 
@@ -152,17 +152,17 @@ To optimize performance, configure `HybridCache` to reuse objects and avoid `byt
 
 By reusing instances, `HybridCache` can reduce the overhead of CPU and object allocations associated with per-call deserialization. This can lead to performance improvements in scenarios where the cached objects are large or accessed frequently.
 
-In typical existing code that uses `IDistributedCache`, every retrieval of an object from the cache results in deserialization. This behavior means that each concurrent caller gets a separate instance of the object, which cannot interact with other instances. The result is thread safety, as there's no risk of concurrent modifications to the same object instance.
+In typical existing code that uses `IDistributedCache`, every retrieval of an object from the cache results in deserialization. This behavior means that each concurrent caller gets a separate instance of the object, which can't interact with other instances. The result is thread safety, as there's no risk of concurrent modifications to the same object instance.
 
-Because a lot of `HybridCache` usage will be adapted from existing `IDistributedCache` code, `HybridCache` preserves this behavior by default to avoid introducing concurrency bugs. However, objects are inherently thread-safe if:
+Because much `HybridCache` usage will be adapted from existing `IDistributedCache` code, `HybridCache` preserves this behavior by default to avoid introducing concurrency bugs. However, objects are inherently thread-safe if:
 
 * They are immutable types.
 * The code doesn't modify them.
 
 In such cases, inform `HybridCache` that it's safe to reuse instances by:
 
-* Marking the type as `sealed`. The `sealed` keyword in C# means that the class cannot be inherited.
-* Applying the `[ImmutableObject(true)]` attribute to the type. The `[ImmutableObject(true)]` attribute indicates that the object's state cannot be changed after it's created.
+* Marking the type as `sealed`. The `sealed` keyword in C# means that the class can't be inherited.
+* Applying the `[ImmutableObject(true)]` attribute to the type. The `[ImmutableObject(true)]` attribute indicates that the object's state can't be changed after it's created.
 
 ### Avoid `byte[]` allocations
 
