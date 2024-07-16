@@ -265,26 +265,27 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
 
 ### Configure the sample
 
-1. Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Microsoft Entra ID tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
+* Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Microsoft Entra ID tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
 
  * Assign it an AppRole.
  * Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this app registration represents both the API and the client invoking the API. If you like, you can create two app registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the client. Only the client app registration requires a client secret to be generated.
 
-2. Configure the `Contoso.API` project with the following settings:
+* Configure the `Contoso.API` project with the following settings:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.API/appsettings.json":::
 
-3. Configure `Contoso.Security.API` with the following settings:
+* Configure `Contoso.Security.API` with the following settings:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.Security.API/appsettings.json":::
 
-4. Import the [ContosoAPI.collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.collection.json) file and configure an environment with the following:
+* Open the [ContosoAPI.collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.collection.json) file and configure an environment with the following:
 
     * `ClientId`: Client Id from app registration representing the client calling the API.
     * `clientSecret`: Client Secret from app registration representing the client calling the API.
     * `TenantId`: Tenant Id from AAD properties
 
-5. Run the solution and use [cURL](https://curl.se/) to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
+* Extract the commands from the .json file and use them to construct cURL commands to test the app. 
+* Run the solution and use [cURL](https://curl.se/) to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
 
 ## Additional resources
 
