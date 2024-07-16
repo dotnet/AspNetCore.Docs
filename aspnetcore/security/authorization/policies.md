@@ -278,13 +278,13 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.Security.API/appsettings.json":::
 
-4. Import the [ContosoAPI.postman_collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.postman_collection.json) file into Postman and configure an environment with the following:
+4. Import the [ContosoAPI.collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.collection.json) file and configure an environment with the following:
 
     * `ClientId`: Client Id from app registration representing the client calling the API.
     * `clientSecret`: Client Secret from app registration representing the client calling the API.
     * `TenantId`: Tenant Id from AAD properties
 
-5. Run the solution and use Postman to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
+5. Run the solution and use [cURL](https://curl.se/) to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
 
 ## Additional resources
 
