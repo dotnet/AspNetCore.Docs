@@ -44,6 +44,18 @@ When health checks is set up:
   * `NotServing` is reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
   * Otherwise, `Serving` is reported.
 
+### Health checks service security
+
+gRPC health checks returns health status about an app, which could be sensitive information. Care should be taken to limit access to the gRPC health checks service.
+
+Access to the service can be controlled through standard ASP.NET Core authorization extension methods, such as <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous<TBuilder>(TBuilder)> and <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization<TBuilder>(TBuilder)>.
+
+For example, if an app has been configured to require authorizaiton by default, configuration the gRPC health checks endpoint with `AllowAnonymous()` to skip authentication and authorization.
+
+```csharp
+app.MapGrpcHealthChecksService().AllowAnonymous();
+```
+
 ### Configure `Grpc.AspNetCore.HealthChecks`
 
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
