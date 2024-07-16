@@ -50,6 +50,30 @@ When gRPC reflection is set up:
 * Client apps that support gRPC reflection can call the reflection service to discover services hosted by the server.
 * gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](xref:grpc/authn-and-authz) require the caller to pass credentials for the endpoint to be called successfully.
 
+### Reflection service security
+
+gRPC reflection returns a list of available APIs, which could be sensitive information. Care should be taken to limit access to the gRPC reflection service.
+
+gRPC reflection is often only required in a local development environment. In this situation, the service should only be mapped when <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsDevelopment(IHostingEnvironment)> returns true:
+
+```csharp
+if (env.IsDevelopment())
+{
+    app.MapGrpcReflectionService();
+}
+```
+
+Access to the service can be controlled through standard ASP.NET Core authorization extension methods, such as <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous<TBuilder>(TBuilder)> and <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization<TBuilder>(TBuilder)>.
+
+For example, if an app has been configured to require authorizaiton by default, configuration the gRPC reflection endpoint with `AllowAnonymous()` to skip authentication and authorization.
+
+```csharp
+if (env.IsDevelopment())
+{
+    app.MapGrpcReflectionService().AllowAnonymous();
+}
+```
+
 ## gRPCurl
 
 gRPCurl is a command-line tool created by the gRPC community. Its features include:
