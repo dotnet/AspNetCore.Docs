@@ -38,11 +38,11 @@ When an app is scaled to multiple instances, there might be app state that requi
 
 ## Required configuration
 
-Data Protection and Caching require configuration for apps deployed to a web farm.
+Data Protection and Caching may require configuration for apps deployed to a web farm.
 
 ### Data Protection
 
-The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the Data Protection system is initialized, it applies [default settings](xref:security/data-protection/configuration/default-settings) that store the key ring locally. Under the default configuration, a unique key ring is stored on each node of the web farm. Consequently, each web farm node can't decrypt data that's encrypted by an app on any other node. The default configuration isn't generally appropriate for hosting apps in a web farm. An alternative to implementing a shared key ring is to always route user requests to the same node. For more information on Data Protection system configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>.
+The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to  protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the  Data Protection system is initialized, it applies [default settings](xref:security/data-protection/ configuration/default-settings) that store the key ring locally. For more information, see <xref:ecurity/data-protection/configuration/scaling>.
 
 ### Caching
 
