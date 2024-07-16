@@ -75,7 +75,7 @@ The code is simpler and the library provides stampede protection and other featu
 
 ### Compatibility
 
-The library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
+The `HybridCache` library supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
 
 ### Additional resources
 
