@@ -284,7 +284,7 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
     * `clientSecret`: Client Secret from app registration representing the client calling the API.
     * `TenantId`: Tenant Id from AAD properties
 
-* Extract the commands from the .json file and use them to construct cURL commands to test the app. 
+* Extract the commands from the `ContosoAPI.collection.json` file and use them to construct cURL commands to test the app.
 * Run the solution and use [cURL](https://curl.se/) to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
 
 ## Additional resources
