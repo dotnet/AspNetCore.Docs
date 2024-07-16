@@ -83,7 +83,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 ### Updated articles
 
 - <xref:grpc/performance> - Add docs for WinHttpHandler and multiple connections
-- <xref:grpc/test-tools> - Test gRPC: Update API test Tooling: Remove Postman
+- <xref:grpc/test-tools> - Test gRPC: Update API test Tooling
 
 ## Hosting and deployment
 
@@ -95,7 +95,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 
 ### Updated articles
 
-- <xref:mobile/native-mobile-backend> - Native Mobile Backend: Replaced Postman with curl and jq
+- <xref:mobile/native-mobile-backend> - Native Mobile Backend.
 
 ## MVC
 

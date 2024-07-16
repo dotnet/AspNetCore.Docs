@@ -18,7 +18,6 @@ This article explains how to configure [Response Caching Middleware](https://git
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
-<!--Postman:  GET: Headers > Postman > go to settings > uncheck Send no-cache header -->
 ## Configuration
 
 In `Program.cs`, add the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
@@ -44,7 +43,7 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
 
-The preceding code typically doesn't return a cached value to a browser. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or another tool that can explicitly set request headers and is preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
+The preceding code typically doesn't return a cached value to a browser. Use [Fiddler](https://www.telerik.com/fiddler) or another tool that can explicitly set request headers and is preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
 
 ## Options
 
@@ -115,7 +114,7 @@ The [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main
 
 If caching behavior isn't as expected, confirm that responses are cacheable and capable of being served from the cache. Examine the request's incoming headers and the response's outgoing headers. Enable [logging](xref:fundamentals/logging/index) to help with debugging.
 
-When testing and troubleshooting caching behavior, a browser typically sets request headers that prevent caching. For example, a browser may set the `Cache-Control` header to `no-cache` or `max-age=0` when refreshing a page. [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), and other tools can explicitly set request headers and are preferred for testing caching.
+When testing and troubleshooting caching behavior, a browser typically sets request headers that prevent caching. For example, a browser may set the `Cache-Control` header to `no-cache` or `max-age=0` when refreshing a page. [Fiddler](https://www.telerik.com/fiddler) and other tools can explicitly set request headers and are preferred for testing caching.
 
 <a name="cfc"></a>
 
@@ -267,7 +266,6 @@ If caching behavior isn't as expected, confirm that responses are cacheable and 
 When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` or `max-age=0` when refreshing a page. The following tools can explicitly set request headers and are preferred for testing caching:
 
 * [Fiddler](https://www.telerik.com/fiddler)
-* [Postman](https://www.getpostman.com/)
 
 ### Conditions for caching
 
