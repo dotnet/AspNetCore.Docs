@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: wpickett
-ms.date: 04/13/2022
+ms.date: 07/16/2024
 uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
@@ -537,7 +537,7 @@ public class TicketerService : Ticketer.TicketerBase
 
 ### Authorization extension methods
 
-Authorizaiton can also be controlled using standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
+Authorizaton can also be controlled using standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
