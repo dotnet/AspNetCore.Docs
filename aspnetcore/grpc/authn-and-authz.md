@@ -535,6 +535,19 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
+### Authorization extension methods
+
+Authorizaiton can also be controlled using standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGrpc();
+
+var app = builder.Build();
+app.MapGrpcService<TicketerService>().RequireAuthorization("Administrators");
+app.Run();
+```
+
 ## Additional resources
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
