@@ -542,7 +542,7 @@ With ASP.NET Core 6, the tag helper can be invoked without having to specify a v
 
 ### Angular template updated to Angular 12
 
-The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49).
+The ASP.NET Core 6.0 template for Angular now uses Angular 12.
 
 The React template has been updated to [React 17](https://reactjs.org/blog/2020/10/20/react-v17.html).
 
