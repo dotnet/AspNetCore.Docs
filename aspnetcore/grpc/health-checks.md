@@ -48,7 +48,7 @@ When health checks is set up:
 
 gRPC health checks returns health status about an app, which could be sensitive information. Care should be taken to limit access to the gRPC health checks service.
 
-Access to the service can be controlled through standard ASP.NET Core authorization extension methods, such as <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous<TBuilder>(TBuilder)> and <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization<TBuilder>(TBuilder)>.
+Access to the service can be controlled through standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
 
 For example, if an app has been configured to require authorizaiton by default, configuration the gRPC health checks endpoint with `AllowAnonymous()` to skip authentication and authorization.
 
