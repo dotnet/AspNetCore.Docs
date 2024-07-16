@@ -52,7 +52,7 @@ When gRPC reflection is set up:
 
 ### Reflection service security
 
-gRPC reflection returns a list of available APIs, which could be sensitive information. Care should be taken to limit access to the gRPC reflection service.
+gRPC reflection returns a list of available APIs, which could contain sensitive information. Care should be taken to limit access to the gRPC reflection service.
 
 gRPC reflection is often only required in a local development environment. In this situation, the service should only be mapped when <xref:Microsoft.Aspnetcore.Hosting.HostingEnvironmentExtensions.Isdevelopment> returns true:
 
@@ -63,9 +63,9 @@ if (env.IsDevelopment())
 }
 ```
 
-Access to the service can be controlled through standard ASP.NET Core authorization extension methods, such as <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous<TBuilder>(TBuilder)> and <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization<TBuilder>(TBuilder)>.
+Access to the service can be controlled through standard ASP.NET Core authorization extension methods, such as [`AllowAnonymous`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.allowanonymous) and [`RequireAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationendpointconventionbuilderextensions.requireauthorization).
 
-For example, if an app has been configured to require authorizaiton by default, configuration the gRPC reflection endpoint with `AllowAnonymous()` to skip authentication and authorization.
+For example, if an app has been configured to require authorization by default, configuration the gRPC reflection endpoint with `AllowAnonymous` to skip authentication and authorization.
 
 ```csharp
 if (env.IsDevelopment())
