@@ -24,7 +24,7 @@ namespace ContosoUniversity.Pages.Students
         #region snippet
         public async Task OnGetAsync()
         {
-            Student = await _context.Students.Take(10).ToListAsync();
+            Students = await _context.Students.Take(10).ToListAsync();
         }
         #endregion
     }
