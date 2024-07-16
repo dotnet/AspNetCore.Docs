@@ -1,5 +1,5 @@
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-8.0"
 
 Duplicate of what we agree on in the V8+ scaling.md file with the following removed
 
