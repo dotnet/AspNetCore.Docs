@@ -1051,7 +1051,7 @@ items:
         uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
-      - name: Test services with Postman and gRPCurl
+      - name: Test services with gRPCurl and gRPCui
         uid: grpc/test-tools
       - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
