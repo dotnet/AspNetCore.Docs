@@ -54,7 +54,7 @@ When gRPC reflection is set up:
 
 gRPC reflection returns a list of available APIs, which could contain sensitive information. Care should be taken to limit access to the gRPC reflection service.
 
-gRPC reflection is often only required in a local development environment. In this situation, the service should only be mapped when <xref:Microsoft.Aspnetcore.Hosting.HostingEnvironmentExtensions.Isdevelopment> returns true:
+gRPC reflection is usually only required in a local development environment. For local development, the reflection service should only be mapped when [IsDevelopment](/en-us/dotnet/api/microsoft.aspnetcore.hosting.hostingenvironmentextensions.isdevelopment) returns true:
 
 ```csharp
 if (env.IsDevelopment())
