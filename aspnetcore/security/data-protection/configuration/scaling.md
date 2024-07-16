@@ -21,14 +21,6 @@ Newly created Azure Container Apps built using ASP.NET Core Kestrel 8.0 and late
 
 Azure Apps also support automatic key sharing.  For more information see <xref:security/data-protection/configuration/default-settings#key-management>.
 
-<!-- fixed: TODO: Make that an xref -->
-<!-- TODO: At this point, we could mention the environment variable for users who want to roll their own -->
-
 ## Custom key management for Data Protection on multiple instances
 
 The `ReadOnlyDataProtectionKeyDirectory` environment variable can be used to specify a shared location for Data Protection keys when implementing a custom key management solution. Setting the `ReadOnlyDataProtectionKeyDirectory` environment variable disables generation of new keys so write access to the directory is not required.
-
-<!-- TODO: App Service has some amount of auto-configuration too, but I doubt there's a page we can link to -->
-
-<!-- TODO: Do we actually repeat all the links from the article in "Additional resources"?
-nO, we don't. -->
