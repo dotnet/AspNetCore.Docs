@@ -208,8 +208,8 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 
 For approaches to handling exceptions globally, see the following sections:
 
-* [Error boundaries](#error-boundaries): Useful in any Blazor app.
-* [Alternative global exception handling](#alternative-global-exception-handling)
+* [Error boundaries](#error-boundaries): Applies to all Blazor apps.
+* [Alternative global exception handling](#alternative-global-exception-handling): Applies to Blazor Server, Blazor WebAssembly, and Blazor Web Apps (8.0 or later) that adopt a global interactive render mode.
 
 ## Error boundaries
 
