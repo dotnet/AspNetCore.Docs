@@ -1621,8 +1621,8 @@ To create localization shared resources, adopt the following approach.
   * `Localization/SharedResource.resx`
   * `Localization/SharedResource.es.resx`
 
-  > [!NOTE]
-  > `Localization` is resource path that can be set via <xref:Microsoft.Extensions.Localization.LocalizationOptions>.
+  > [!WARNING]
+  > When following the approach in this section, you can't simultaneously set <xref:Microsoft.Extensions.Localization.LocalizationOptions.ResourcesPath%2A?displayProperty=nameWithType> and use <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory.Create%2A?displayProperty=nameWithType> to load resources.
 
 * To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
 
