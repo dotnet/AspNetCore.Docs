@@ -206,9 +206,9 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 
 :::moniker range=">= aspnetcore-6.0"
 
-For global exception handling, see the following sections:
+For approaches to handling exceptions globally, see the following sections:
 
-* [Error boundaries](#error-boundaries)
+* [Error boundaries](#error-boundaries): Useful in any Blazor app.
 * [Alternative global exception handling](#alternative-global-exception-handling)
 
 ## Error boundaries
@@ -331,14 +331,24 @@ To avoid the infinite loop where recovering merely rerenders a component that th
 
 ## Alternative global exception handling
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+The approach described in this section applies to Blazor Server, Blazor WebAssembly, and Blazor Web Apps that adopt a global interactive render mode (`InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`). The approach doesn't work with Blazor Web Apps that adopt per-page/component render modes or static server-side rendering (static SSR) because the approach relies on a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)/[`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute), which don't work across render mode boundaries or with components that adopt static SSR.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 An alternative to using [Error boundaries](#error-boundaries) (<xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary>) is to pass a custom error component as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-The following `Error` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
+The following `ProcessError` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
 
-`Error.razor`:
+`ProcessError.razor`:
 
 ```razor
-@inject ILogger<Error> Logger
+@inject ILogger<ProcessError> Logger
 
 <CascadingValue Value="this">
     @ChildContent
@@ -348,13 +358,13 @@ The following `Error` component example merely logs errors, but methods of the c
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    public void ProcessError(Exception ex)
+    public void LogError(Exception ex)
     {
-        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
+        Logger.LogError("ProcessError.LogError: {Type} Message: {Message}", 
             ex.GetType(), ex.Message);
 
-        // Call StateHasChanged if ProcessError directly participates in 
-        // rendering. If ProcessError only logs or records the error,
+        // Call StateHasChanged if LogError directly participates in 
+        // rendering. If LogError only logs or records the error,
         // there's no need to call StateHasChanged.
         //StateHasChanged();
     }
@@ -368,55 +378,51 @@ The following `Error` component example merely logs errors, but methods of the c
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the `Routes` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component (`<Router>...</Router>`) with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+When using this approach in a Blazor Web App, open the `Routes` component and wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component (`<Router>...</Router>`) with the `ProcessError` component. This permits the `ProcessError` component to cascade down to any component of the app where the `ProcessError` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 In `Routes.razor`:
 
 ```razor
-<Error>
+<ProcessError>
     <Router ...>
         ...
     </Router>
-</Error>
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component (`<Router>...</Router>`) with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
-
-In `App.razor`:
-
-```razor
-<Error>
-    <Router ...>
-        ...
-    </Router>
-</Error>
+</ProcessError>
 ```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
+When using this approach in a Blazor Server or Blazor WebAssembly app, open the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component (`<Router>...</Router>`) with the `ProcessError` component. This permits the `ProcessError` component to cascade down to any component of the app where the `ProcessError` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+In `App.razor`:
+
+```razor
+<ProcessError>
+    <Router ...>
+        ...
+    </Router>
+</ProcessError>
+```
+
 To process errors in a component:
 
-* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block. In an example `Counter` component in an app based on a Blazor project template, add the following `Error` property:
+* Designate the `ProcessError` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block. In an example `Counter` component in an app based on a Blazor project template, add the following `ProcessError` property:
 
   ```csharp
   [CascadingParameter]
-  public Error? Error { get; set; }
+  public ProcessError? ProcessError { get; set; }
   ```
 
-* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app. In the following `Counter` component example, an exception is thrown and trapped when the count is greater than five:
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `ProcessError` component only offers a single `LogError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app. The following `Counter` component `@code` block example includes the `ProcessError` cascading parameter and traps an exception for logging when the count is greater than five:
 
   ```razor
   @code {
       private int currentCount = 0;
 
       [CascadingParameter]
-      public Error? Error { get; set; }
+      public ProcessError? ProcessError { get; set; }
 
       private void IncrementCount()
       {
@@ -431,20 +437,18 @@ To process errors in a component:
           }
           catch (Exception ex)
           {
-              Error?.ProcessError(ex);
+              ProcessError?.LogError(ex);
           }
       }
   }
   ```
 
-Using the preceding `Error` component with the preceding changes made to a `Counter` component, the browser's developer tools console indicates the trapped, logged error:
+The logged error:
 
-```console
-fail: {COMPONENT NAMESPACE}.Error[0]
-Error:ProcessError - Type: System.InvalidOperationException Message: Current count is over five!
-```
+> :::no-loc text="fail: {COMPONENT NAMESPACE}.ProcessError[0]":::  
+> :::no-loc text="ProcessError.LogError: System.InvalidOperationException Message: Current count is over five!":::
 
-If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
+If the `LogError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `LogError` method to rerender the UI.
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, an app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Other unhandled exceptions remain fatal to a circuit. For more information, see the section on [how a circuit reacts to unhandled exceptions](#unhandled-exceptions-for-circuits).
 
@@ -454,13 +458,13 @@ Because the approaches in this section handle errors with a [`try-catch`](/dotne
 
 An app can use an error processing component as a cascading value to process errors in a centralized way.
 
-The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
+The following `ProcessError` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-`Error.razor`:
+`ProcessError.razor`:
 
 ```razor
 @using Microsoft.Extensions.Logging
-@inject ILogger<Error> Logger
+@inject ILogger<ProcessError> Logger
 
 <CascadingValue Value="this">
     @ChildContent
@@ -470,9 +474,9 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    public void ProcessError(Exception ex)
+    public void LogError(Exception ex)
     {
-        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
+        Logger.LogError("ProcessError.LogError: {Type} Message: {Message}", 
             ex.GetType(), ex.Message);
     }
 }
@@ -481,28 +485,28 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
-In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.Router> component with the `ProcessError` component. This permits the `ProcessError` component to cascade down to any component of the app where the `ProcessError` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
 
 ```razor
-<Error>
+<ProcessError>
     <Router ...>
         ...
     </Router>
-</Error>
+</ProcessError>
 ```
 
 To process errors in a component:
 
-* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
+* Designate the `ProcessError` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
 
   ```razor
   [CascadingParameter]
-  public Error Error { get; set; }
+  public ProcessError ProcessError { get; set; }
   ```
 
-* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `ProcessError` component only offers a single `LogError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
 
   ```csharp
   try
@@ -511,16 +515,16 @@ To process errors in a component:
   }
   catch (Exception ex)
   {
-      Error.ProcessError(ex);
+      ProcessError.LogError(ex);
   }
   ```
 
-Using the preceding example `Error` component and `ProcessError` method, the browser's developer tools console indicates the trapped, logged error:
+Using the preceding example `ProcessError` component and `LogError` method, the browser's developer tools console indicates the trapped, logged error:
 
-> fail: BlazorSample.Shared.Error[0]
-> Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
+> :::no-loc text="fail: {COMPONENT NAMESPACE}.Shared.ProcessError[0]":::  
+> :::no-loc text="ProcessError.LogError: System.NullReferenceException Message: Object reference not set to an instance of an object.":::
 
-If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
+If the `LogError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `LogError` method to rerender the UI.
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the section on [how a circuit reacts to unhandled exceptions](#unhandled-exceptions-for-circuits).
 
