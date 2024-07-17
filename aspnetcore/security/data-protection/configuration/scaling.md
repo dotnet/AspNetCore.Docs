@@ -3,8 +3,9 @@ title: Configure ASP.NET Core Data Protection in distributed or load-balanced en
 author: acasey
 description: Learn how to configure Data Protection in ASP.NET Core for multi-instance apps.
 ms.author: acasey
-ms.custom: mvc
-ms.date: 7/15/2024
+ms.date: 7/18/2024
+content_well_notification: AI-contribution
+ms.prod: aspnet-core
 uid: security/data-protection/configuration/scaling
 ---
 
@@ -19,15 +20,15 @@ ASP.NET Core [Data Protection](xref:security/data-protection/introduction) is a 
 
 The following distributed environments provide automatic key storage in a shared location:
 
-* [Azure apps](/aspnet/core/security/data-protection/configuration/default-settings).
-* Newly created <!-- what does newly created mean? --> Azure Container Apps built using ASP.NET Core Kestrel <!-- 8.0 and later We don't like to have version information in an article when it's not needed. Given the moniker for this content is 8.0+, we'd normally leave out that redundant info. However, we make exceptions. I can leave 8.0 in if you think it's helpful -->. For more information see [Autoscaling considerations
+* [Azure apps](/aspnet/core/security/data-protection/configuration/default-settings).  For more information see <xref:security/data-protection/configuration/default-settings#key-management>.
+* Newly created Azure Container Apps built using ASP.NET Core Kestrel. For more information see [Autoscaling considerations
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
-* Azure Apps. For more information see <xref:security/data-protection/configuration/default-settings#key-management>.
+* Azure Apps.
 
 The following distributed environments do ***NOT*** provide automatic key storage in a shared location:
 
-* Separate [deployment slots](/azure/app-service/deploy-staging-slots), such as Staging and Production. When the app is swapped between deployment slots, any app using Data Protection won't be able to decrypt stored data using the key ring inside the previous slot. For example, swapping Staging to Production or using A/B testing, Data Protection is not synchronized.
-* Asp.net core apps hosted on multiple VMs that don't use [Application Request Routing cookies]/azure/app-service/manage-automatic-scaling?#how-does-arr-affinity-affect-automatic-scaling), known as an ARR Affinity.
+* Separate [deployment slots](/azure/app-service/deploy-staging-slots), such as Staging and Production.
+* Asp.net core apps hosted on multiple non-Azure VMs that don't use server affinity.
 * Azure Container Apps built using ASP.NET Core Kestrel 7.0 or earlier. For more information see [Autoscaling considerations
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
 
