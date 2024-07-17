@@ -21,7 +21,7 @@ ASP.NET Core [Data Protection](xref:security/data-protection/introduction) is a 
 The following distributed environments provide automatic key storage in a shared location:
 
 * [Azure apps](/aspnet/core/security/data-protection/configuration/default-settings).  For more information see <xref:security/data-protection/configuration/default-settings#key-management>.
-* Newly created Azure Container Apps built using ASP.NET Core Kestrel. For more information see [Autoscaling considerations
+* Newly created Azure Container Apps built using ASP.NET Core. For more information see [Autoscaling considerations
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
 
 The following distributed environments do ***NOT*** provide automatic key storage in a shared location:
