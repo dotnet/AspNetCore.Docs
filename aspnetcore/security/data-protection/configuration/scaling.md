@@ -23,7 +23,6 @@ The following distributed environments provide automatic key storage in a shared
 * [Azure apps](/aspnet/core/security/data-protection/configuration/default-settings).  For more information see <xref:security/data-protection/configuration/default-settings#key-management>.
 * Newly created Azure Container Apps built using ASP.NET Core Kestrel. For more information see [Autoscaling considerations
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
-* Azure Apps.
 
 The following distributed environments do ***NOT*** provide automatic key storage in a shared location:
 
