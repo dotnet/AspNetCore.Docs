@@ -27,9 +27,9 @@ The following distributed environments provide automatic key storage in a shared
 The following distributed environments do ***NOT*** provide automatic key storage in a shared location:
 
 * Separate [deployment slots](/azure/app-service/deploy-staging-slots), such as Staging and Production.
-* Asp.net core apps hosted on multiple non-Azure VMs that don't use server affinity.
 * Azure Container Apps built using ASP.NET Core Kestrel 7.0 or earlier. For more information see [Autoscaling considerations
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
+* Asp.net core apps hosted on multiple non-Azure VMs that don't use server affinity.
 
 :::moniker-end
 
