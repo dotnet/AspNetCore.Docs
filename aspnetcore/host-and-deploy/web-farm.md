@@ -42,7 +42,7 @@ Data Protection and Caching may require configuration for apps deployed to a web
 
 ### Data Protection
 
-The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to  protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the  Data Protection system is initialized, it applies [default settings](xref:security/data-protection/ configuration/default-settings) that store the key ring locally. For more information, see <xref:security/data-protection/configuration/scaling>.
+The [ASP.NET Core Data Protection system](xref:security/data-protection/introduction) is used by apps to protect data. Data Protection relies upon a set of cryptographic keys stored in a *key ring*. When the Data Protection system is initialized, it applies [default settings](xref:security/data-protection/configuration/default-settings) that store the key ring locally. For more information, see <xref:security/data-protection/configuration/scaling>.
 
 ### Caching
 
