@@ -1,4 +1,4 @@
-#define RR // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL MULT2
+#define DEFAULT // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL MULT2
 // Test1
 #if NEVER
 #elif DEFAULT
@@ -438,7 +438,7 @@ app.MapDefaultControllerRoute().WithStaticAssets();
 app.MapRazorPages().WithStaticAssets();
 
 app.Run();
-#elif Test1
+#elif Test1   // no snippet to import, just for testing
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -471,5 +471,4 @@ app.MapDefaultControllerRoute().WithStaticAssets();
 app.MapRazorPages().WithStaticAssets();
 
 app.Run();
-// </snippet_rr>
 #endif
