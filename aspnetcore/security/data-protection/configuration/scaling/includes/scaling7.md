@@ -6,7 +6,7 @@ Duplicate of primary doc, only change
 using .NET 8.0
  -->
 
-ASP.NET Core [Data Protection](xref:security/data-protection/introduction) is a library that provides a cryptographic API to protect data. Data Protection protects anti-forgery tokens, authentication cookies, and other sensitive data. However, in some distributed environments that don't utilize shared storage, when an app scales horizontally by adding more instances:
+ASP.NET Core [Data Protection](xref:security/data-protection/introduction) is a library that provides a cryptographic API to protect data. Data Protection protects anti-forgery tokens, authentication cookies, and other sensitive data. However, in some distributed environments that don't put data protection keys in shared storage, when an app scales horizontally by adding more instances:
 
 * It's necessary to explicitly configure Data Protection to establish a shared storage location for Data Protection keys.
 * There’s ***NO*** guarantee that the HTTP POST request, used to submit a form, will be routed to the same instance that served the initial page via an HTTP GET request. If the requests are handled by different instances, the antiforgery tokens aren’t synchronized, and an exception occurs. Sticky sessions via [ARR Affinity](/azure/app-service/manage-automatic-scaling?#how-does-arr-affinity-affect-automatic-scaling) routes user requests to the same node, however, ARR can reduce the scalability of a web farm.
