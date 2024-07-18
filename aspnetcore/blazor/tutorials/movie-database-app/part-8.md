@@ -163,7 +163,7 @@ Delete the following lines from the `@code` block:
 - public string? TitleFilter { get; set; }
     
 - private IQueryable<Movie> FilteredMovies =>
--     context.Movie.Where(m => m.Title!.Contains(TitleFilter));
+-     context.Movie.Where(m => m.Title!.Contains(TitleFilter ?? string.Empty));
 ```
 
 Replace the deleted code with the following code:
