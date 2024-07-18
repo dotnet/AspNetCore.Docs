@@ -242,7 +242,11 @@ In `MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during static server-side rendering (static SSR). The boundary doesn't activate just because a component further down the component hierarchy is interactive. An interactive render mode can't be applied to the `MainLayout` component because the component's `Body` parameter is a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate, which is arbitrary code and can't be serialized. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, the app must adopt a global interactive render mode by applying the interactive render mode to the `HeadOutlet` and `Routes` component instances in the `App` component (`Components/App.razor`). The following example adopts the Interactive Server (`InteractiveServer`) render mode:
+In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during static server-side rendering (static SSR). The boundary doesn't activate just because a component further down the component hierarchy is interactive.
+
+An interactive render mode can't be applied to the `MainLayout` component because the component's `Body` parameter is a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate, which is arbitrary code and can't be serialized. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, the app must adopt a global interactive render mode by applying the interactive render mode to the `HeadOutlet` and `Routes` component instances in the app's root component, which is typically the `App` component. The following example adopts the Interactive Server (`InteractiveServer`) render mode globally.
+
+In `Components/App.razor`:
 
 ```razor
 <HeadOutlet @rendermode="InteractiveServer" />
@@ -252,10 +256,13 @@ In Blazor Web Apps with the error boundary only applied to a static `MainLayout`
 <Routes @rendermode="InteractiveServer" />
 ```
 
-If you prefer not to enable global interactivity, place the error boundary further down the component hierarchy in a component that adopts an interactive render mode. The important concepts to keep in mind are that wherever the error boundary is placed:
+If you prefer not to enable global interactivity, place the error boundary farther down the component hierarchy. The important concepts to keep in mind are that wherever the error boundary is placed:
 
-* If the component where the error boundary is placed isn't interactive, it's only capable of activating on the server during static SSR. For example, the boundary can activate when an error is thrown in a component lifecycle method but not for an event triggered by user interactivity within the component, such as an error thrown by a button click handler.
-* If the component where the error boundary is placed is interactive, it's capable of activating for interactive components that it wraps.
+* If the component where the error boundary is placed isn't interactive, the error boundary is only capable of activating on the server during static SSR. For example, the boundary can activate when an error is thrown in a component lifecycle method but not for an event triggered by user interactivity within the component, such as an error thrown by a button click handler.
+* If the component where the error boundary is placed is interactive, the error boundary is capable of activating for interactive components that it wraps.
+
+> [!NOTE]
+> The preceding considerations aren't relevant for standalone Blazor WebAssembly apps because the client-side rendering (CSR) of a Blazor WebAssembly app is completely interactive.
 
 Consider the following example, where an exception thrown by an embedded counter component is caught by an error boundary in the `Home` component, which adopts an interactive render mode.
 
@@ -352,11 +359,11 @@ If the unhandled exception is thrown for a `currentCount` over five:
 
 By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element using the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
-![The default error UI rendered by an error boundary, which has a red background, the text 'An error has occurred,' and a yellow caution icon with an exclamation point inside it.](handle-errors/_static/default-error-ui.png)
+![The default error UI rendered by an error boundary, which has a red background, the text 'An error has occurred,' and a yellow caution icon with an exclamation point inside of it.](handle-errors/_static/default-error-ui.png)
 
 To change the default error content:
 
-* Wrap the components of the boundary in the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ChildContent> property.
+* Wrap the components of the error boundary in the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ChildContent> property.
 * Set the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property to the error content.
 
 The following example wraps the `EmbeddedCounter` component and supplies custom error content:
@@ -372,7 +379,7 @@ The following example wraps the `EmbeddedCounter` component and supplies custom 
 </ErrorBoundary>
 ```
 
-For the preceding example, the app's stylesheet presumably includes an `errorUI` CSS class to style the content. The error content is rendered without a block-level element. It's typical to place a division (`<div>`) or a paragraph (`<p>`) element around the error content markup, but it isn't required.
+For the preceding example, the app's stylesheet presumably includes an `errorUI` CSS class to style the content. The error content is rendered from the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property without a block-level element. A block-level element, such as a division (`<div>`) or a paragraph (`<p>`) element, can wrap the error content markup, but it isn't required.
 
 If the error boundary is defined in the app's layout, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
 
