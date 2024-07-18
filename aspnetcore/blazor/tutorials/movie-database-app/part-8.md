@@ -162,8 +162,8 @@ Delete the following lines from the `@code` block:
 - [SupplyParameterFromQuery]
 - public string? TitleFilter { get; set; }
     
-- private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
--     .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
+- private IQueryable<Movie> FilteredMovies =>
+-     context.Movie.Where(m => m.Title!.Contains(TitleFilter));
 ```
 
 Replace the deleted code with the following code:
@@ -171,8 +171,8 @@ Replace the deleted code with the following code:
 ```csharp
 private string titleFilter = string.Empty;
 
-private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
-    .Where(m => m.Title!.Contains(titleFilter));
+private IQueryable<Movie> FilteredMovies => 
+    context.Movie.Where(m => m.Title!.Contains(titleFilter));
 ```
 
 Next, the component should bind the `titleFilter` field to an `<input>` element, so user input is stored in the `titleFilter` variable. Binding is achieved in Blazor with the `@bind` directive attribute.

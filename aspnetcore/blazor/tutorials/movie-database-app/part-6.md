@@ -26,12 +26,12 @@ This part of the tutorial series covers adding a search feature to the movies `I
 The [`QuickGrid`](xref:Microsoft.AspNetCore.Components.QuickGrid) component is used by the movie `Index` component (`Components/MoviePages/Index.razor`) to display movies from the database:
 
 ```razor
-<QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
+<QuickGrid Class="table" Items="context.Movie">
     ...
 </QuickGrid>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (`CreateDbContext`) of the injected database context factory (`DbFactory`).
+The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`).
 
 To make the `QuickGrid` component filter on the movie title, the `Index` component should:
 
@@ -39,26 +39,30 @@ To make the `QuickGrid` component filter on the movie title, the `Index` compone
 * If the parameter has a value, filter the movies returned from the database.
 * Provide an input for the user to provide the filter string and a button to trigger a reload using the filter.
 
-Start by adding the following `@code` block of C# code to the `Index` component (`MoviePages/Index.razor`):
+Start by adding the following code to the `@code` block of the `Index` component (`MoviePages/Index.razor`):
 
-```razor
-@code {
-    [SupplyParameterFromQuery]
-    public string? TitleFilter { get; set; }
-    
-    private IQueryable<Movie> FilteredMovies => DbFactory.CreateDbContext().Movie
-        .Where(movie => movie.Title!.Contains(TitleFilter ?? string.Empty));
-}
+```csharp
+[SupplyParameterFromQuery]
+public string? TitleFilter { get; set; }
+
+private IQueryable<Movie> FilteredMovies => 
+    context.Movie.Where(m => m.Title!.Contains(TitleFilter));
 ```
 
 `TitleFilter` is the filter string. The property is provided the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute), which lets Blazor know that the value of `TitleFilter` should be assigned from the query string when the query string contains a field of the same name (for example, `?titleFilter=road+warrior` yields a `TitleFilter` value of `road warrior`). Note that query string field names, such as `titleFilter`, aren't case sensitive.
 
-The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the `QuickGrid`'s <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), then no movies are filtered because an empty string (`string.Empty`) is used for the <xref:System.String.Contains%2A> clause.
+The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the `QuickGrid`'s <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter. The property filters the list of movies based on the supplied `TitleFilter`.
+
+<!-- UPDATE - Need to check on if string.Empty is required instead
+              of a null TitleFilter.
+
+If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), then no movies are filtered because an empty string (`string.Empty`) is used for the <xref:System.String.Contains%2A> clause.
+-->
 
 Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
 
 ```diff
-- <QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
+- <QuickGrid Class="table" Items="context.Movie">
 + <QuickGrid Class="table" Items="FilteredMovies">
 ```
 

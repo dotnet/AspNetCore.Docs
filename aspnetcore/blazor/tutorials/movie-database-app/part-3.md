@@ -229,8 +229,10 @@ Open the `Index` component definition file (`Components/Pages/Movies/Index.razor
 @page "/movies"
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorWebAppMovies.Data
 @using BlazorWebAppMovies.Models
 @inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
+@implements IAsyncDisposable
 ```
 
 > [!NOTE]
@@ -243,8 +245,9 @@ The `@page` directive at the top of the file indicates the relative URL for the 
 * <xref:Microsoft.EntityFrameworkCore?displayProperty=fullName>
 * <xref:Microsoft.AspNetCore.Components.QuickGrid?displayProperty=fullName>
 * `BlazorWebAppMovies.Models`
+* `BlazorWebAppMovies.Data`
 
-The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive.
+The database context factory (`IDbContextFactory<BlazorWebAppMoviesContext>`) is injected into the component with the `@inject` directive. The factory approach requires that a database context be disposed, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive.
 
 The page title is set via the Blazor framework's <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, and an H1 section heading is the first rendered element:
 
@@ -262,10 +265,10 @@ A link is rendered to navigate to the `Create` page at `/movies/create`:
 </p>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (`CreateDbContext`) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
+The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie entities. The item provider is a `DbSet<Movie>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`). For each movie entity, the component displays the movie's title, release date, genre, and price. A column also holds links to edit, see details, and delete each movie entity.
 
 ```razor
-<QuickGrid Class="table" Items="DbFactory.CreateDbContext().Movie">
+<QuickGrid Class="table" Items="context.Movie">
     <PropertyColumn Property="movie => movie.Title" />
     <PropertyColumn Property="movie => movie.ReleaseDate" />
     <PropertyColumn Property="movie => movie.Genre" />
@@ -277,9 +280,26 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid> component displays movie en
         <a href="@($"movies/delete?id={movie.Id}")">Delete</a>
     </TemplateColumn>
 </QuickGrid>
+
+@code {
+    private BlazorWebAppMoviesContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
 ```
 
-Notice how the context (`Context`) parameter specifies a parameter name (`movie`) for the context instance of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601>. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
+In the code block (`@code`):
+
+* The `context` field holds the database context, typed as a `BlazorWebAppMoviesContext`.
+* The `OnInitialized` lifecycle method assigns a created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) from the injected factory (`DbFactory`) to the `context` variable.
+* The asynchronous `DisposeAsync` method disposes of the database context when the component is disposed.
+
+Notice how the context (`Context`) parameter of the <xref:Microsoft.AspNetCore.Components.QuickGrid.TemplateColumn%601> specifies a parameter name (`movie`) for the context instance of the column. Specifying a name for the context instance makes the markup more readable (the default name for the context is simply `context`). `Movie` class properties are read from the context instance. For example, the movie identifier (`Id`) is available in `movie.Id`.
 
 The at symbol (`@`) with parentheses (`@(...)`), which is called an *explicit Razor expression*, allows the `href` of each link to include the movie entity's `Id` property in the link query string as an *interpolated string* (`$...{...}...`). For a movie identifier (`Id`) of 7, the string value provided to the `href` to edit that movie is `movies/edit?id=7`. When the link is followed, the `id` field is read from the query string by the `Edit` component to load the movie.
 
