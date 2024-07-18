@@ -216,9 +216,9 @@ For approaches to handling exceptions globally, see the following sections:
 *Error boundaries* provide a convenient approach for handling exceptions. The <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component:
 
 * Renders its child content when an error hasn't occurred.
-* Renders error UI when an unhandled exception is thrown.
+* Renders error UI when an unhandled exception is thrown by any component within the error boundary.
 
-To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component to wrap existing content. The app continues to function normally, but the error boundary handles unhandled exceptions.
+To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component to wrap one or more other components. The error boundary manages unhandled exceptions thrown by the components that it wraps.
 
 ```razor
 <ErrorBoundary>
@@ -242,7 +242,7 @@ In `MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during the static server-side rendering (static SSR) phase. The boundary doesn't activate just because a component further down the component hierarchy is interactive. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, enable interactive rendering for the `HeadOutlet` and `Routes` component instances in the `App` component (`Components/App.razor`). The following example adopts the Interactive Server (`InteractiveServer`) render mode:
+In Blazor Web Apps with the error boundary only applied to a static `MainLayout` component, the boundary is only active during static server-side rendering (static SSR). The boundary doesn't activate just because a component further down the component hierarchy is interactive. An interactive render mode can't be applied to the `MainLayout` component because the component's `Body` parameter is a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate, which is arbitrary code and can't be serialized. To enable interactivity broadly for the `MainLayout` component and the rest of the components further down the component hierarchy, the app must adopt a global interactive render mode by applying the interactive render mode to the `HeadOutlet` and `Routes` component instances in the `App` component (`Components/App.razor`). The following example adopts the Interactive Server (`InteractiveServer`) render mode:
 
 ```razor
 <HeadOutlet @rendermode="InteractiveServer" />
@@ -252,45 +252,119 @@ In Blazor Web Apps with the error boundary only applied to a static `MainLayout`
 <Routes @rendermode="InteractiveServer" />
 ```
 
-If you prefer not to enable server interactivity across the entire app from the `Routes` component, place the error boundary further down the component hierarchy. For example, place the error boundary around markup in individual components that enable interactivity, not in the app's main layout. The important concepts to keep in mind are that wherever the error boundary is placed:
+If you prefer not to enable global interactivity, place the error boundary further down the component hierarchy in a component that adopts an interactive render mode. The important concepts to keep in mind are that wherever the error boundary is placed:
 
-* If the error boundary isn't interactive, it's only capable of activating on the server during static rendering. For example, the boundary can activate when an error is thrown in a component lifecycle method.
-* If the error boundary is interactive, it's capable of activating for Interactive Server-rendered components that it wraps.
+* If the component where the error boundary is placed isn't interactive, it's only capable of activating on the server during static SSR. For example, the boundary can activate when an error is thrown in a component lifecycle method but not for an event triggered by user interactivity within the component, such as an error thrown by a button click handler.
+* If the component where the error boundary is placed is interactive, it's capable of activating for interactive components that it wraps.
+
+Consider the following example, where an exception thrown by an embedded counter component is caught by an error boundary in the `Home` component, which adopts an interactive render mode.
+
+`EmbeddedCounter.razor`:
+
+```razor
+<h1>Embedded Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+
+        if (currentCount > 5)
+        {
+            throw new InvalidOperationException("Current count is too big!");
+        }
+    }
+}
+```
+
+`Home.razor`:
+
+```razor
+@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<ErrorBoundary>
+    <EmbeddedCounter />
+</ErrorBoundary>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+Consider the following example, where an exception thrown by an embedded counter component is caught by an error boundary in the `Home` component.
+
+`EmbeddedCounter.razor`:
+
+```razor
+<h1>Embedded Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+
+        if (currentCount > 5)
+        {
+            throw new InvalidOperationException("Current count is too big!");
+        }
+    }
+}
+```
+
+`Home.razor`:
+
+```razor
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Home</h1>
+
+<ErrorBoundary>
+    <EmbeddedCounter />
+</ErrorBoundary>
+```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
-Consider the following example, where the `Counter` component throws an exception if the count increments past five.
-
-In `Counter.razor`:
-
-```csharp
-private void IncrementCount()
-{
-    currentCount++;
-
-    if (currentCount > 5)
-    {
-        throw new InvalidOperationException("Current count is too big!");
-    }
-}
-```
-
 If the unhandled exception is thrown for a `currentCount` over five:
 
 * The error is logged normally (`System.InvalidOperationException: Current count is too big!`).
 * The exception is handled by the error boundary.
-* Error UI is rendered by the error boundary with the following default error message: `An error has occurred.`
+* The default error UI is rendered by the error boundary.
 
-By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
+By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element using the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
-Change the default error content by setting the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property:
+![The default error UI rendered by an error boundary, which has a red background, the text 'An error has occurred,' and a yellow caution icon with an exclamation point inside it.](handle-errors/_static/default-error-ui.png)
+
+To change the default error content:
+
+* Wrap the components of the boundary in the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ChildContent> property.
+* Set the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property to the error content.
+
+The following example wraps the `EmbeddedCounter` component and supplies custom error content:
 
 ```razor
 <ErrorBoundary>
     <ChildContent>
-        @Body
+        <EmbeddedCounter />
     </ChildContent>
     <ErrorContent>
         <p class="errorUI">😈 A rotten gremlin got us. Sorry!</p>
@@ -298,7 +372,9 @@ Change the default error content by setting the <xref:Microsoft.AspNetCore.Compo
 </ErrorBoundary>
 ```
 
-Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
+For the preceding example, the app's stylesheet presumably includes an `errorUI` CSS class to style the content. The error content is rendered without a block-level element. It's typical to place a division (`<div>`) or a paragraph (`<p>`) element around the error content markup, but it isn't required.
+
+If the error boundary is defined in the app's layout, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
 
 In `MainLayout.razor`:
 
@@ -327,7 +403,7 @@ In `MainLayout.razor`:
 To avoid the infinite loop where recovering merely rerenders a component that throws the error again, don't call <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> from rendering logic. Only call <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> when:
 
 * The user performs a UI gesture, such as selecting a button to indicate that they want to retry a procedure or when the user navigates to a new component.
-* Additional logic also clears the exception. When the component is rerendered, the error doesn't reoccur.
+* Additional logic that executes also clears the exception. When the component is rerendered, the error doesn't reoccur.
 
 ## Alternative global exception handling
 
