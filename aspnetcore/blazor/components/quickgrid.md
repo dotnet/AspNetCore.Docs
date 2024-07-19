@@ -139,7 +139,7 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 
 ## Entity Framework Core (EF Core) data source
 
-Use a factory to resolve the EF Core database context for a QuickGrid component, as demonstrated in this section. For more information on why the factory pattern is recommended, see <xref:blazor/blazor-ef-core>.
+Use the factory pattern to resolve an EF Core database context for a QuickGrid component. For more information on why the factory pattern is recommended, see <xref:blazor/blazor-ef-core>.
 
 A database context factory (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>) is injected into the component with the `@inject` directive. The factory approach requires disposal of the database context, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive. The item provider for the `QuickGrid` component is a `DbSet<T>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory.
 
