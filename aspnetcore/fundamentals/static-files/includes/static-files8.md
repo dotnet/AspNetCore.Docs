@@ -229,6 +229,9 @@ The following code updates the `WebRootFileProvider`, which enables the Image Ta
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mult2)]
 
+> [!NOTE]
+> The preceding approach applies to Razor Pages and MVC apps. For guidance that applies to Blazor Web Apps, see <xref:blazor/fundamentals/static-files#serve-files-from-multiple-locations>.
+
 <a name="sc"></a>
 
 ### Security considerations for static files

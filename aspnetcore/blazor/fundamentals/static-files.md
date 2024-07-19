@@ -237,7 +237,7 @@ For the location of `<head>` content where static file links are placed, see <xr
 
 :::moniker-end
 
-.NET 9 or later
+### .NET 9 or later
 
 App type | `href` value | Examples
 --- | --- | ---
@@ -245,7 +245,7 @@ Blazor Web App | `@Assets["{PATH}"]` | `<link rel="stylesheet" href="@Assets["ap
 Blazor Server&dagger; | `@Assets["{PATH}"]` | `<link href="@Assets["css/site.css"]" rel="stylesheet" />`<br>`<link href="@Assets["_content/ComponentLib/styles.css"]" rel="stylesheet" />`
 Standalone Blazor WebAssembly | `{PATH}` | `<link rel="stylesheet" href="css/app.css" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
 
-.NET 8.x
+### .NET 8.x
 
 App type | `href` value | Examples
 --- | --- | ---
@@ -253,7 +253,7 @@ Blazor Web App | `{PATH}` | `<link rel="stylesheet" href="app.css" />`<br>`<link
 Blazor Server&dagger; | `{PATH}` | `<link href="css/site.css" rel="stylesheet" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
 Standalone Blazor WebAssembly | `{PATH}` | `<link rel="stylesheet" href="css/app.css" />`<br>`<link href="_content/ComponentLib/styles.css" rel="stylesheet" />`
 
-.NET 7.x or earlier
+### .NET 7.x or earlier
 
 App type | `href` value | Examples
 --- | --- | ---
@@ -472,6 +472,53 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
       .StartsWithSegments("/_framework/blazor.server.js"),
           subApp => subApp.UseStaticFiles(new StaticFileOptions() { ... }));
   ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Serve files from multiple locations
+
+*The guidance in this section only applies to Blazor Web Apps.*
+
+To serve files from multiple locations with a <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider>:
+
+* Add the namespace for <xref:Microsoft.Extensions.FileProviders?displayProperty=fullName> to the top of the `Program` file of the server project.
+* In the server project's `Program` file ***before*** the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+  * Create a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> with the path to the static assets.
+  * Create a <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider> from the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider> and the <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>. Assign the composite file provider back to the app's <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>.
+
+Example:
+
+Create a new folder in the server project named `AdditionalStaticAssets`. Place an image into the folder.
+
+Add the following `using` statement to the top of the server project's `Program` file:
+
+```csharp
+using Microsoft.Extensions.FileProviders;
+```
+
+In the server project's `Program` file ***before*** the call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, add the following code:
+
+```csharp
+var secondaryProvider = new PhysicalFileProvider(
+    Path.Combine(builder.Environment.ContentRootPath, "AdditionalStaticAssets"));
+app.Environment.WebRootFileProvider = new CompositeFileProvider(
+    app.Environment.WebRootFileProvider, secondaryProvider);
+```
+
+In the app's `Home` component (`Home.razor`) markup, reference the image with an `<img>` tag:
+
+```razor
+<img src="{IMAGE FILE NAME}" alt="{ALT TEXT}" />
+```
+
+In the preceding example:
+
+* The `{IMAGE FILE NAME}` placeholder is the image file name. There's no need to provide a path segment if the image file is at the root of the `AdditionalStaticAssets` folder.
+* The `{ALT TEXT}` placeholder is the image alternate text.
+
+Run the app.
 
 :::moniker-end
 

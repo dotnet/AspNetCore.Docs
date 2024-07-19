@@ -10,6 +10,11 @@ uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
 
+<!-- DOC AUTHOR NOTE - Refactor the @-prefixed component param values
+                       when the 8.0 sample changes naming to match
+                       the 9.0 template-produced sample on
+                       https://github.com/dotnet/AspNetCore.Docs/issues/32802. -->
+
 This article shows you how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that uses a shared user interface via a Razor class library (RCL).
 
 ## Prerequisites and preliminary steps
