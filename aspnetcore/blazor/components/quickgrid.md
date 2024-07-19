@@ -5,7 +5,7 @@ description: The QuickGrid component is a Razor component for quickly and effici
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/05/2024
+ms.date: 07/19/2024
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -115,16 +115,16 @@ Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance 
 PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 ```
 
-Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `@pagination`:
+Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
 
 ```razor
-<QuickGrid Items="..." Pagination="@pagination">
+<QuickGrid Items="..." Pagination="pagination">
 ```
 
-To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `@pagination`:
+To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator) above, below, or both above and below the `QuickGrid` component. Set the <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator.State%2A?displayProperty=nameWithType> to `pagination`:
 
 ```razor
-<Paginator State="@pagination" />
+<Paginator State="pagination" />
 ```
 
 In the running app, page through the items using a rendered `Paginator` component.
