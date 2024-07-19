@@ -139,31 +139,13 @@ QuickGrid also supports passing custom attributes and style classes (<xref:Micro
 
 ## Entity Framework Core (EF Core) data source
 
-EF Core's <xref:Microsoft.EntityFrameworkCore.DbContext> provides a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each table in the database. Supply the property to the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
+Use the factory pattern to resolve an EF Core database context that provides data to a `QuickGrid` component. For more information on why the factory pattern is recommended, see <xref:blazor/blazor-ef-core>.
 
-The following example uses the `People` <xref:Microsoft.EntityFrameworkCore.DbSet%601> (table) as the data source:
-
-```razor
-@inject ApplicationDbContext AppDbContext
-
-<QuickGrid Items="@AppDbContext.People">
-    ...
-</QuickGrid>
-```
-
-You may also use any EF-supported LINQ operator to filter the data before passing it to the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
-
-The following example filters documents by a category ID:
-
-```razor
-<QuickGrid Items="@AppDbContext.Documents.Where(d => d.CategoryId == categoryId)">
-    ...
-</QuickGrid>
-```
+A database context factory (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601>) is injected into the component with the `@inject` directive. The factory approach requires disposal of the database context, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive. The item provider for the `QuickGrid` component is a `DbSet<T>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory.
 
 QuickGrid recognizes EF-supplied <xref:System.Linq.IQueryable> instances and knows how to resolve queries asynchronously for efficiency.
 
-Start by adding a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter).
+Add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -172,6 +154,83 @@ Call <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkAdapterServic
 ```csharp
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 ```
+
+The following example uses an `ExampleTable` <xref:Microsoft.EntityFrameworkCore.DbSet%601> (table) from a `AppDbContext` database context (`context`) as the data source for a `QuickGrid` component:
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using Microsoft.EntityFrameworkCore
+@implements IAsyncDisposable
+@inject IDbContextFactory<AppDbContext> DbFactory
+
+...
+
+<QuickGrid ... Items="context.ExampleTable" ...>
+    ...
+</QuickGrid>
+
+@code {
+    private AppDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
+```
+
+In the code block (`@code`) of the preceding example:
+
+* The `context` field holds the database context, typed as an `AppDbContext`.
+* The `OnInitialized` lifecycle method assigns a new database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) to the `context` field from the injected factory (`DbFactory`).
+* The asynchronous `DisposeAsync` method disposes of the database context when the component is disposed.
+
+You may also use any EF-supported LINQ operator to filter the data before passing it to the <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter.
+
+The following example filters movies by a movie title entered in a search box. The database context is `BlazorWebAppMoviesContext`, and the model is `Movie`. The movie's `Title` property is used for the filter operation.
+
+```razor
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using Microsoft.EntityFrameworkCore
+@implements IAsyncDisposable
+@inject IDbContextFactory<BlazorWebAppMoviesContext> DbFactory
+
+...
+
+<p>
+    <input type="search" @bind="titleFilter" @bind:event="oninput" />
+</p>
+
+<QuickGrid ... Items="FilteredMovies" ...>
+    ...
+</QuickGrid>
+
+@code {
+    private string titleFilter = string.Empty;
+    private BlazorWebAppMoviesContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    private IQueryable<Movie> FilteredMovies => 
+        context.Movie.Where(m => m.Title!.Contains(titleFilter));
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
+```
+
+<!-- UPDATE 9.0 - Enable this cross-link after merging 
+                  https://github.com/dotnet/AspNetCore.Docs/pull/32747.
+
+For a working example, see the following resources:
+
+* [Build a Blazor movie database app tutorial](xref:blazor/tutorials/movie-database-app/index)
+* [Blazor movie database sample app](https://github.com/dotnet/blazor-samples): Select the latest version folder in the repository. The sample folder for the tutorial's project is named `BlazorWebAppMovies`.
+-->
 
 ## Display name support
 
