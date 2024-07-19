@@ -68,7 +68,7 @@ public async Task<IActionResult> Index(string id)
 
     if (!String.IsNullOrEmpty(id))
     {
-        movies = movies.Where(s => s.Title!.Contains(id));
+        movies = movies.Where(s => s.Title!.ToUpper().Contains(id.ToUpper()));
     }
 
     return View(await movies.ToListAsync());
