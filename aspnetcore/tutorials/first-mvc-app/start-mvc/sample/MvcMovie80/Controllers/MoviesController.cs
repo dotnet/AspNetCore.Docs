@@ -45,7 +45,7 @@ namespace MvcMovie.Controllers
             // <snippet_IndexSearchCheckForNull>
             if (!String.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title!.Contains(searchString));
+                movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
             }
             // </snippet_IndexSearchCheckForNull>
 
@@ -68,7 +68,7 @@ public async Task<IActionResult> Index(string id)
 
     if (!String.IsNullOrEmpty(id))
     {
-        movies = movies.Where(s => s.Title!.Contains(id));
+        movies = movies.Where(s => s.Title!.ToUpper().Contains(id.ToUpper()));
     }
 
     return View(await movies.ToListAsync());
@@ -105,7 +105,7 @@ public async Task<IActionResult> Index(string id)
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title!.Contains(searchString));
+                movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
             }
 
             if (!string.IsNullOrEmpty(movieGenre))
