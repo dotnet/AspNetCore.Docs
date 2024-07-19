@@ -29,7 +29,7 @@ The following scenarios do ***NOT*** provide automatic key storage in a shared l
 * Separate [deployment slots](/azure/app-service/deploy-staging-slots), such as Staging and Production.
 * Azure Container Apps built using ASP.NET Core Kestrel 7.0 or earlier. For more information see [Autoscaling considerations
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
-* Asp.net core apps hosted on multiple non-Azure VMs that don't use server affinity. Server affinity ensures that a client's requests are always routed to the same server so having the keys in a shared location is not necessary. For more information see [Server affinity](/azure/app-service/manage-automatic-scaling?#how-does-arr-affinity-affect-automatic-scaling).
+* Distributed apps that don't have a shared storage location or synchronization mechanism for Data Protection keys.
 
 :::moniker-end
 
