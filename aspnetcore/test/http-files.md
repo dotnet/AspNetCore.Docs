@@ -471,7 +471,9 @@ Some aspects of `.http` file behavior can be configured. To see what's available
 
 ## Use Endpoints Explorer
 
-**Endpoints Explorer** is a tool window that shows all the endpoints that a web API defines and enables you to send requests to them by using an `.http` file. The initial set of endpoints that **Endpoints Explorer** displays are discovered statically. There are some endpoints that can't be discovered statically. For example, endpoints defined in a class library project can't be discovered until runtime. When you run or debug a web API, Visual Studio also discovers endpoints at run time and adds those to **Endpoints Explorer**.
+**Endpoints Explorer** is a tool window that shows all the endpoints that a web API defines. The tool enables you to send requests to the endpoints by using an `.http` file.
+
+The initial set of endpoints that **Endpoints Explorer** displays are discovered statically. There are some endpoints that can't be discovered statically. For example, endpoints defined in a class library project can't be discovered until runtime. When you run or debug a web API, Visual Studio also discovers endpoints dynamically at run time and adds those to **Endpoints Explorer**.
 
 ### Open Endpoints Explorer
 
