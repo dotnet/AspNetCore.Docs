@@ -9,6 +9,8 @@ uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 This article discusses the requirements and supported platforms for using gRPC with .NET. There are different requirements for the two major gRPC workloads:

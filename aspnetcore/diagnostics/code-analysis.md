@@ -9,6 +9,8 @@ uid: diagnostics/code-analysis
 ---
 # Code analysis in ASP.NET Core apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 .NET compiler platform analyzers inspect application code for code quality and style issues. This document lists diagnostics for ASP.NET Core. For information on .NET diagnostics, see [Overview of .NET source code analysis](/dotnet/fundamentals/code-analysis/overview).
 
 The following list contains the diagnostics for ASP.NET Core. Not all of the diagnostics shown are available in older versions of ASP.NET Core.

@@ -10,6 +10,8 @@ uid: grpc/security
 ---
 # Security considerations in gRPC for ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 This article provides information on securing gRPC with .NET Core.

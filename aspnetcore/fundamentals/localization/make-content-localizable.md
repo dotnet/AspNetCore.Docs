@@ -9,6 +9,8 @@ uid: fundamentals/localization/make-content-localizable
 ---
 # Make an ASP.NET Core app's content localizable
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range="> aspnetcore-5.0"
 
 By [Hisham Bin Ateya](https://twitter.com/hishambinateya), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax) and [Nadeem Afana](https://afana.me/)

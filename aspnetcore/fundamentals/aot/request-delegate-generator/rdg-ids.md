@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 ---
 # ASP.NET Core Request Delegate Generator (RDG) diagnostics
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates request delegates for ASP.NET Core apps. The RDG is used by the native ahead-of-time (AOT) compiler to generate request delegates for the app's `Map` methods.
 
 [!INCLUDE[](~/fundamentals/aot/includes/aot_preview.md)]

@@ -10,6 +10,8 @@ uid: fundamentals/localization-extensibility
 ---
 # Localization Extensibility
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Hisham Bin Ateya](https://github.com/hishamco)
 
 This article:

@@ -11,6 +11,8 @@ uid: data/ef-rp/intro
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 :::moniker range=">= aspnetcore-6.0"

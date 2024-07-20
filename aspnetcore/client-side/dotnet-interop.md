@@ -10,6 +10,8 @@ uid: client-side/dotnet-interop
 ---
 # Run .NET from JavaScript
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop.
 
 For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository.

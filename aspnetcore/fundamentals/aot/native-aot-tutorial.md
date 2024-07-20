@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using Native AOT
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
 > [!NOTE]

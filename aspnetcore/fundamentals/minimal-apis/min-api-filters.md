@@ -10,6 +10,8 @@ uid: fundamentals/minimal-apis/min-api-filters
 
 # Filters in Minimal API apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), [Martin Costello](https://twitter.com/martin_costello), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allow developers to implement business logic that supports:

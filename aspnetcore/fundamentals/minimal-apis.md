@@ -14,6 +14,8 @@ ai-usage: ai-assisted
 
 # Minimal APIs quick reference
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 This document:

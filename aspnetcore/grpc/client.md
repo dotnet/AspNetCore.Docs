@@ -1,3 +1,4 @@
+
 ---
 title: Call gRPC services with the .NET client
 author: jamesnk
@@ -8,6 +9,8 @@ ms.date: 6/5/2024
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) NuGet package. This document explains how to:
 

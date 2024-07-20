@@ -10,6 +10,8 @@ uid: data/ef-rp/crud
 ---
 # Part 2, Razor Pages with EF Core in ASP.NET Core - CRUD
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
