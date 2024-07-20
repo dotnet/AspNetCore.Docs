@@ -1,4 +1,3 @@
-
 ---
 title: Call gRPC services with the .NET client
 author: jamesnk
