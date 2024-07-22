@@ -34,7 +34,7 @@ Component lifecycle events:
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
 > [!NOTE]
-> Asynchronous actions performed in lifecycle events might not have been completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
+> Asynchronous actions performed in lifecycle events might not complete before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
 A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to be completed first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
