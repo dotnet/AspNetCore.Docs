@@ -43,7 +43,7 @@ The example in this section renders the following Razor component into a page vi
 
 In the `Program` file, add the [namespace for the location of the component](xref:blazor/components/index#component-name-class-name-and-namespace).
 
-Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register the a Razor component as a root component for JS rendering.
+Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register a Razor component as a root component for JS rendering.
 
 <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
 

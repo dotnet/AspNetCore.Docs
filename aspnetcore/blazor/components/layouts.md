@@ -105,7 +105,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
   @using BlazorSample.Components.Layout
   ```
 
-* Add an `@using` directive at the top the component definition where the layout is used:
+* Add an `@using` directive at the top of the component definition where the layout is used:
 
   ```razor
   @using BlazorSample.Components.Layout
