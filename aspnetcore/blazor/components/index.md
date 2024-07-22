@@ -48,7 +48,7 @@ Developers typically create Razor components from Razor component files (`.razor
 
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
 
-* [Directives](xref:mvc/views/razor#directives): Change the way component markup is compiled or functions. For example, the [`@page`][9] directive specifies a routable component with a route template and can be reached directly by a user's request in the browser at a specific URL.
+* [Directives](xref:mvc/views/razor#directives): Change the way component markup is compiled or functions. For example, the [`@page`][9] directive specifies a routable component with a route template that can be reached directly by a user's request in the browser at a specific URL.
 
   By convention, a component's directives at the top of a component definition (`.razor` file) are placed in a consistent order. For repeated directives, directives are placed alphabetically by namespace or type, except `@using` directives, which have special second-level ordering.
   
