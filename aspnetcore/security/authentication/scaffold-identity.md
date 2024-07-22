@@ -5,7 +5,7 @@ description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/17/2021
+ms.date: 07/22/2024
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -16,7 +16,19 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-8.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
+## Blazor Identity scaffolding
+
+ASP.NET Core Identity scaffolding adds [ASP.NET Core Identity](xref:security/authentication/identity) to Blazor Web Apps and Blazor Server apps. Identity Razor components added to the app can be customized to change their behavior.
+
+Although the scaffolder generates the necessary C# code to scaffold Identity into the app, you must update the project's database with an Entity Framework (EF) Core database migration to complete the process. This article explains the steps required to migrate a database.
+
+We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
+
+Services are required when using [two-factor authentication (2FA)](xref:blazor/security/server/qrcodes-for-authenticator-apps), [account confirmation and password recovery](xref:blazor/security/server/account-confirmation-and-password-recovery), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
+
+## Razor Pages and MVC Identity scaffolding
+
+ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -27,6 +39,124 @@ We recommend using a source control system that shows file differences and allow
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
+
+## Scaffold Identity into a Blazor project
+
+*This section applies to Blazor Web Apps and Blazor Server apps.*
+
+Run the Identity scaffolder:
+
+# [Visual Studio](#tab/visual-studio)
+
+* From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
+* From the left pane of the **Add New Scaffolded Item** dialog, select **Identity**. Select **Blazor Identity** in the center pane. Select the **Add** button.
+* In the **Add Blazor Identity** dialog:
+  * Select or add with the plus (**+**) button the database context class (**DbContext class**).
+  * Select the database provider (**Database provider**), which defaults to SQL Server.
+  * Select or add with the plus (**+**) button the user class (**User class**).
+  * Select the **Add** button.
+
+# [.NET CLI](#tab/net-cli)
+
+To add the required NuGet packages and tools, execute the following .NET CLI commands in a command shell opened to the project's root folder.
+
+Paste all of the following commands at the prompt (`>`) of the command shell. When you paste multiple commands, a warning appears stating that multiple commands will execute. Dismiss the warning and proceed with the paste operation.
+
+When you paste multiple commands, all of the commands execute except the last one. The last command doesn't execute until you press <kbd>Enter</kbd> on the keyboard.
+
+The following commands assume that you're using a SQL Server database and the SQL Server Entity Framework (EF) Core database provider package ([`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)). If you're using a different database, swap the EF Core database provider package. The following providers are supported by the scaffolding tool&dagger;:
+
+* SQLServer: [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+* SQLite: [`Microsoft.EntityFrameworkCore.Sqlite`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite)
+* Cosmos: [`Microsoft.EntityFrameworkCore.Cosmos`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos)
+* Postgres: [`Npgsql.EntityFrameworkCore.PostgreSQL`](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL)
+
+&dagger;The SQL Server, SQLite, and Cosmos database provider packages are owned, maintained, and supported by Microsoft. The PostgreSQL database provider package is owned, maintained, and supported by [The Npgsql Development Team](https://www.npgsql.org/) ([`npgsql/efcore.pg` Github repository)](https://github.com/npgsql/efcore.pg)).
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+```
+
+> [!IMPORTANT]
+> After the first five commands execute, make sure that you press <kbd>Enter</kbd> on the keyboard to execute the last command.
+
+The preceding commands add:
+
+* [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
+* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* Design time tools for EF Core
+* The SQLite and SQL Server providers with the EF Core package as a dependency
+* [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
+
+Run the following command to list the Identity scaffolder options:
+
+```dotnetcli
+dotnet aspnet-codegenerator identity -h
+```
+
+In the project folder, run the Identity scaffolder with the options you want. To scaffold Identity with the default Identity UI and the minimum number of files, run the following command:
+
+```dotnetcli
+dotnet aspnet-codegenerator identity --useDefaultUI
+```
+
+---
+
+The generated Identity database code requires [Entity Framework Core Migrations](/ef/core/managing-schemas/migrations/). The following steps explain how to create and apply a migration to the database.
+
+# [Visual Studio](#tab/visual-studio)
+
+[Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) are used to issue EF Core commands that:
+
+* Add a migration.
+* Update the database using the migration.
+
+In **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) followed by **Add migration**.
+
+Give the migration a **Migration name**, such as `ScaffoldIdentity`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field, which may take a few seconds. Select **Finish** to create the migration.
+
+Select the **Close** button after the operation finishes.
+
+Select the ellipsis (`...`) again followed by the **Update database** command.
+
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load, which may take a few seconds. Select the **Finish** button.
+
+The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
+
+Select the **Close** button after the operation finishes.
+
+# [.NET CLI](#tab/net-cli)
+
+From the project's root folder, execute the following .NET CLI command to add a migration. The `{MIGRATION NAME}` placeholder is used to name the migration, such as `ScaffoldIdentity`. Any name can be used, but the convention is to use a name that describes the migration.
+
+```dotnetcli
+dotnet ef migrations add {MIGRATION NAME}
+```
+
+Example:
+
+```dotnetcli
+dotnet ef migrations add ScaffoldIdentity
+```
+
+After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method migrations in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
+
+```dotnetcli
+dotnet ef database update
+```
+
+---
+
+## Client-side Blazor apps (Standalone Blazor WebAssembly)
+
+Client-side Blazor apps (Standalone Blazor WebAssembly) use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding.
+
+For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
 
 <a name="RPNA"></a>
 
@@ -145,14 +275,6 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## Client-side Blazor apps
-
-Client-side Blazor apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding.
-
-Server-side ASP.NET Core apps can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity. The Blazor framework uses Razor component versions (`.razor`) of Identity UI pages (`.cshtml`) when scaffolding Identity into a Blazor Web App.
-
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
-
 <a name="full"></a>
 
 ## Create full Identity UI source
@@ -252,7 +374,7 @@ To prevent publishing static Identity assets to the web root, see <xref:security
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
+ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -527,7 +649,7 @@ To prevent publishing static Identity assets to the web root, see <xref:security
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
+ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
