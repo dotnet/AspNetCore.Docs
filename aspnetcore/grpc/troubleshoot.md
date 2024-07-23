@@ -207,6 +207,35 @@ dotnet build
 
 For more information about using `Grpc.Tools` with unsupported architectures, see the [gRPC build integration documentation](https://github.com/grpc/grpc/blob/master/src/csharp/BUILD-INTEGRATION.md#using-grpctools-with-unsupported-architectures).
 
+## gRPC call timeout from `HttpClient.Timeout`
+
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use a `HttpClient` then long running gRPC streaming calls are canceled if they don't completed don't complete within the timeout limit.
+
+There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
+
+  ```csharp
+  var handler = new HttpClientHandler();
+  handler.ServerCertificateCustomValidationCallback = 
+      HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+  var httpClient = new HttpClient(handler) { Timeout = Timeout.InfiniteTimeSpan };
+  var channel = GrpcChannel.ForAddress("https://localhost:5001",
+      new GrpcChannelOptions { HttpClient = httpClient });
+  var client = new Greeter.GreeterClient(channel);
+  ```
+
+Alternatively, avoid creating a `HttpClient` and set `GrpcChannel.HttpHandler` instead:
+
+  ```csharp
+  var handler = new HttpClientHandler();
+  handler.ServerCertificateCustomValidationCallback = 
+      HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+  var channel = GrpcChannel.ForAddress("https://localhost:5001",
+      new GrpcChannelOptions { HttpHandler = handler });
+  var client = new Greeter.GreeterClient(channel);
+  ```
+
 :::moniker-end
 
 [!INCLUDE[](~/grpc/troubleshoot/includes/troubleshoot3-7.md)]
