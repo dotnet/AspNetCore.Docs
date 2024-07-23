@@ -690,8 +690,10 @@ items:
                 uid: client-side/libman/libman-cli
               - name: Visual Studio
                 uid: client-side/libman/libman-vs
-          - name: Run .NET from JavaScript
+          - name: JS interop (WebAssembly Browser App)
             uid: client-side/dotnet-interop
+          - name: JS interop (.NET WebAssembly)
+            uid: client-side/dotnet-interop-wasm
           - name: Grunt
             uid: client-side/using-grunt
           - name: Bundle and minify

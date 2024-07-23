@@ -12,9 +12,7 @@ uid: blazor/js-interop/import-export-interop
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later.
-
-This article explains how to setup a Blazor client-side component to interact with JavaScript (JS) using the `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later. For additional information and examples, see <xref:client-side/dotnet-js-interop>.
+This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later. For additional information and examples, see <xref:client-side/dotnet-interop-wasm>.
 
 Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. Blazor's JS interop is uniformly supported across Blazor render modes and for Blazor Hybrid apps. <xref:Microsoft.JSInterop.IJSRuntime> also enables library authors to build JS interop libraries for sharing across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor. See the following articles:
 
@@ -32,7 +30,7 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Prerequisites
 
-[Download and install .NET 7 or later](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+[.NET (latest version)](https://dotnet.microsoft.com/download/dotnet/)
 
 ## Namespace
 
@@ -199,6 +197,8 @@ In the imported method signature, you can use .NET types for parameters and retu
 [!INCLUDE[](~/blazor/includes/js-interop/7.0/import-export-interop-mappings.md)]
 
 :::moniker-end
+
+For additional type mapping information and examples, see <xref:client-side/dotnet-interop-wasm#type-mappings>.
 
 The module name in the `[JSImport]` attribute and the call to load the module in the component with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> must match and be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
@@ -609,10 +609,11 @@ if (OperatingSystem.IsBrowser())
 
 ## Additional resources
 
+* <xref:client-side/dotnet-interop-wasm>
+* <xref:client-side/dotnet-interop>
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)
-* <xref:client-side/dotnet-interop>
 * In the `dotnet/runtime` GitHub repository:
   * [.NET WebAssembly runtime](https://github.com/dotnet/runtime/tree/main/src/mono/wasm)
   * [`dotnet.d.ts` file (.NET WebAssembly runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts)
