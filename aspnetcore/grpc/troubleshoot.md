@@ -219,30 +219,9 @@ There are a couple of ways to fix this error. The first is to configure <xref:Sy
 
 [!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=5)]
 
-  ```csharp
-  var handler = new HttpClientHandler();
-  handler.ServerCertificateCustomValidationCallback = 
-      HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-
-  var httpClient = new HttpClient(handler) { Timeout = Timeout.InfiniteTimeSpan };
-  var channel = GrpcChannel.ForAddress("https://localhost:5001",
-      new GrpcChannelOptions { HttpClient = httpClient });
-  var client = new Greeter.GreeterClient(channel);
-  ```
-
 Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
 
 [!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=6)]
-
-  ```csharp
-  var handler = new HttpClientHandler();
-  handler.ServerCertificateCustomValidationCallback = 
-      HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-
-  var channel = GrpcChannel.ForAddress("https://localhost:5001",
-      new GrpcChannelOptions { HttpHandler = handler });
-  var client = new Greeter.GreeterClient(channel);
-  ```
 
 :::moniker-end
 
