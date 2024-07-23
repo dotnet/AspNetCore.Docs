@@ -6,7 +6,7 @@ ms.author: safia
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
 ms.date: 5/22/2024
-uid: fundamentals/minimal-apis/aspnetcore-openapi
+uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 

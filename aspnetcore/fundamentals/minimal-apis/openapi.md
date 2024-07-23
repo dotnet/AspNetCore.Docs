@@ -10,6 +10,6 @@ uid: fundamentals/minimal-apis/openapi
 
 # OpenAPI support in minimal API apps
 
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi9.md)]
+[!INCLUDE[](~/fundamentals/openapi/includes/openapi9.md)]
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi8.md)]
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi6.md)]

@@ -258,7 +258,7 @@ items:
               - name: RDG013
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
       - name: Middleware
-        items: 
+        items:
           - name: Middleware overview
             uid: fundamentals/middleware/index
           - name: Rate limiting middleware
@@ -845,7 +845,7 @@ items:
             - name: Overview
               uid: fundamentals/minimal-apis/openapi
             - name: Get started with Microsoft.AspNetCore.OpenApi
-              uid: fundamentals/minimal-apis/aspnetcore-openapi
+              uid: fundamentals/openapi/aspnetcore-openapi
             - name: OpenAPI tools
               uid: web-api/Microsoft.dotnet-openapi
         - name: Filters
@@ -1459,7 +1459,7 @@ items:
               - name: Overview
                 uid: security/authentication/identity
               - name: Identity with SPA
-                uid: security/authentication/identity/spa               
+                uid: security/authentication/identity/spa
               - name: Scaffold Identity
                 uid: security/authentication/scaffold-identity
               - name: Add custom user data to Identity
@@ -1523,7 +1523,7 @@ items:
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
                     href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
-                    href: /azure/active-directory-b2c/enable-authentication-web-api          
+                    href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
             uid: security/authentication/cookie
           - name: Configure certificate authentication
@@ -1544,7 +1544,7 @@ items:
           - name: Community OSS authentication options
             uid: security/authentication/community
           - name: Identity management solutions
-            uid: security/identity-management-solutions 
+            uid: security/identity-management-solutions
           - name: Multi-factor authentication
             uid: security/authentication/mfa
       - name: Authorization
@@ -1888,7 +1888,7 @@ items:
               uid: migration/inc/unit-testing
             - name: A/B Testing endpoints
               uid: migration/inc/ab-testing
-            - name: Blazor support with YARP 
+            - name: Blazor support with YARP
               uid: migration/inc/blazor
           - name: MVC and Web API
             uid: migration/mvc
