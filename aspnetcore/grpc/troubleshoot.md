@@ -211,6 +211,8 @@ For more information about using `Grpc.Tools` with unsupported architectures, se
 
 <xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use a `HttpClient` then long running gRPC streaming calls are canceled if they don't completed don't complete within the timeout limit.
 
+> System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
+
 There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
 
   ```csharp
@@ -224,7 +226,7 @@ There are a couple of ways to fix this error. The first is to configure <xref:Sy
   var client = new Greeter.GreeterClient(channel);
   ```
 
-Alternatively, avoid creating a `HttpClient` and set `GrpcChannel.HttpHandler` instead:
+Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
 
   ```csharp
   var handler = new HttpClientHandler();
