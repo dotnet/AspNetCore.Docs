@@ -14,7 +14,7 @@ ms.custom: engagement-fy23
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
@@ -198,6 +198,8 @@ In the next tutorial in this series, you learn about MVC and start writing some 
 > [Next: Add a controller](~/tutorials/first-mvc-app/adding-controller.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc8.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc7.md)]
 
