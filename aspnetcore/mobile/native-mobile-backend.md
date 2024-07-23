@@ -147,7 +147,7 @@ In the terminal, call the following curl command:
 # [Windows](#tab/windows)
 
 > [!NOTE]
-> Windows PowerShell 5.1 recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  type the `&` operator followed by the the full path to `curl.exe`. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
+> Windows PowerShell 5.1 recognizes `curl` as an alias to `Invoke-WebRequst`.  To use `curl.exe` instead,  type the `&` operator followed by the full path to `curl.exe`. Find the full path to `curl.exe` by typing `where curl` in the Command Prompt. 
 >For example, if the full path to `curl.exe` is `C:\Windows\System32\curl.exe`.  Then instead of typing the command `curl --help`, use `& 'C:\Windows\System32\curl.exe' --help`.
 >PowerShell 7 uses `curl` as the command for `curl.exe` and so a full path is not required.
 
