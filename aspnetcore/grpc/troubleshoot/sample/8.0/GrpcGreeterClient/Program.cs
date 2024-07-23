@@ -1,4 +1,4 @@
-﻿#define StandardHTTPS  // Options: StandardHTTPS | IgnoreInvalidCertificate | IgnoreInvalidCertificateClientFactory | CallInsecureGrpcServices | DotNet3InsecureGrpcServices | SubdirectoryHandler | Http3Handler
+﻿#define StandardHTTPS  // Options: StandardHTTPS | IgnoreInvalidCertificate | IgnoreInvalidCertificateClientFactory | CallInsecureGrpcServices | DotNet3InsecureGrpcServices | SubdirectoryHandler | Http3Handler | CallTimeoutHttpClient | CallTimeoutSetGrpcChannel
 
 #if StandardHTTPS
 using Grpc.Net.Client;
@@ -201,4 +201,47 @@ public class Http3Handler : DelegatingHandler
     }
 }
 // </snippet_Http3Handler>
+#endif
+
+#if CallTimeoutHttpClient
+using Grpc.Net.Client;
+using GrpcGreeterClient;
+
+// <snippet_CallTimeoutHttpClient>
+var handler = new HttpClientHandler();
+handler.ServerCertificateCustomValidationCallback = 
+    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+var httpClient = new HttpClient(handler) { Timeout = Timeout.InfiniteTimeSpan };
+var channel = GrpcChannel.ForAddress("https://localhost:5001",
+    new GrpcChannelOptions { HttpClient = httpClient });
+var client = new Greeter.GreeterClient(channel);
+// </snippet_CallTimeoutHttpClient>
+
+var reply = await client.SayHelloAsync(
+                  new HelloRequest { Name = "GreeterClient" });
+Console.WriteLine("Greeting: " + reply.Message);
+Console.WriteLine("Press any key to exit...");
+Console.ReadKey();
+#endif
+
+#if CallTimeoutSetGrpcChannel
+using Grpc.Net.Client;
+using GrpcGreeterClient;
+
+// <snippet_CallTimeoutSetGrpcChannel>
+var handler = new HttpClientHandler();
+handler.ServerCertificateCustomValidationCallback = 
+    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+var channel = GrpcChannel.ForAddress("https://localhost:5001",
+    new GrpcChannelOptions { HttpHandler = handler });
+var client = new Greeter.GreeterClient(channel);
+// </snippet_CallTimeoutSetGrpcChannel>
+
+var reply = await client.SayHelloAsync(
+                  new HelloRequest { Name = "GreeterClient" });
+Console.WriteLine("Greeting: " + reply.Message);
+Console.WriteLine("Press any key to exit...");
+Console.ReadKey();
 #endif

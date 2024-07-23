@@ -217,6 +217,8 @@ For more information about using `Grpc.Tools` with unsupported architectures, se
 
 There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
 
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=5)]
+
   ```csharp
   var handler = new HttpClientHandler();
   handler.ServerCertificateCustomValidationCallback = 
@@ -229,6 +231,8 @@ There are a couple of ways to fix this error. The first is to configure <xref:Sy
   ```
 
 Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=6)]
 
   ```csharp
   var handler = new HttpClientHandler();
