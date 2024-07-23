@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Blazor Identity scaffolding
 
-ASP.NET Core Identity scaffolding adds [ASP.NET Core Identity](xref:security/authentication/identity) to Blazor Web Apps and Blazor Server apps. Identity Razor components added to the app can be customized to change their behavior.
+ASP.NET Core Identity scaffolding adds [ASP.NET Core Identity](xref:security/authentication/identity) to Blazor Web Apps and Blazor Server apps. After the scaffolder adds the Identity Razor components to the app, you can customize the components to suit your app's requirements.
 
 Although the scaffolder generates the necessary C# code to scaffold Identity into the app, you must update the project's database with an Entity Framework (EF) Core database migration to complete the process. This article explains the steps required to migrate a database.
 
@@ -28,7 +28,7 @@ Services are required when using [two-factor authentication (2FA)](xref:blazor/s
 
 ## Razor Pages and MVC Identity scaffolding
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
+ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#full) section.
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -38,7 +38,7 @@ We recommend using a source control system that shows file differences and allow
 
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-Typically, apps that were created with individual accounts should ***not*** create a new data context.
+Typically, apps created with individual accounts should ***not*** create a new data context.
 
 ## Scaffold Identity into a Blazor project
 
@@ -64,7 +64,7 @@ Paste all of the following commands at the prompt (`>`) of the command shell. Wh
 
 When you paste multiple commands, all but the last one runs. Press <kbd>Enter</kbd> to run the last command.
 
-The following commands assume that you're using a SQL Server database and the SQL Server Entity Framework (EF) Core database provider package ([`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)). If you're using a different database, swap the EF Core database provider package. The following providers are supported by the scaffolding tool&dagger;:
+The following commands assume that you're using a SQL Server database and the SQL Server Entity EF Core database provider package ([`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)). If you're using a different database, swap the EF Core database provider package. The following providers are supported by the scaffolding tool&dagger;:
 
 * SQLServer: [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
 * SQLite: [`Microsoft.EntityFrameworkCore.Sqlite`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite)
@@ -107,32 +107,29 @@ dotnet aspnet-codegenerator identity --useDefaultUI
 
 ---
 
-The generated Identity database code requires [Entity Framework Core Migrations](/ef/core/managing-schemas/migrations/). The following steps explain how to create and apply a migration to the database.
+The generated Identity database code requires [EF Core Migrations](/ef/core/managing-schemas/migrations/). The following steps explain how to create and apply a migration to the database.
 
 # [Visual Studio](#tab/visual-studio)
 
-[Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) are used to issue EF Core commands that:
+[Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) are used to add an EF Core migration and update the database.
 
-* Add a migration.
-* Update the database using the migration.
+In **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (**`...`**) followed by **Add migration**.
 
-In **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) followed by **Add migration**.
-
-Give the migration a **Migration name**, such as `ScaffoldIdentity`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field, which may take a few seconds. Select **Finish** to create the migration.
+Give the migration a **Migration name**, such as `CreateIdentitySchema`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field, which may take a few seconds. Select **Finish** to create the migration.
 
 Select the **Close** button after the operation finishes.
 
-Select the ellipsis (`...`) again followed by the **Update database** command.
+Select the ellipsis (**`...`**) again followed by the **Update database** command.
 
 The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load, which may take a few seconds. Select the **Finish** button.
 
-The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
-
 Select the **Close** button after the operation finishes.
+
+The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the Identity tables, constraints, and indexes. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
 
 # [.NET CLI](#tab/net-cli)
 
-From the project's root folder, execute the following .NET CLI command to add a migration. The `{MIGRATION NAME}` placeholder is used to name the migration, such as `ScaffoldIdentity`. Any name can be used, but the convention is to use a name that describes the migration.
+From the project's root folder, execute the following .NET CLI command to add a migration. The `{MIGRATION NAME}` placeholder is used to name the migration, such as `CreateIdentitySchema`. Any name can be used, but the convention is to use a name that describes the migration.
 
 ```dotnetcli
 dotnet ef migrations add {MIGRATION NAME}
@@ -141,14 +138,16 @@ dotnet ef migrations add {MIGRATION NAME}
 Example:
 
 ```dotnetcli
-dotnet ef migrations add ScaffoldIdentity
+dotnet ef migrations add CreateIdentitySchema
 ```
 
-After the preceding command completes, update the database with the `update` command. The `update` command executes the `Up` method on migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method migrations in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the database. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
+After the preceding command completes, update the database with the `update` command.
 
 ```dotnetcli
 dotnet ef database update
 ```
+
+The `update` command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the Identity tables, constraints, and indexes. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
 
 ---
 
@@ -328,7 +327,7 @@ To disable user registration:
   *@
   ```
 
-* Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.
+* Update the `Areas/Identity/Pages/Account/RegisterConfirmation` page.
 
   * Remove the code and links from the cshtml file.
   * Remove the confirmation code from the `PageModel`:
@@ -384,7 +383,7 @@ We recommend using a source control system that shows file differences and allow
 
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-Typically, apps that were created with individual accounts should ***not*** create a new data context.
+Typically, apps created with individual accounts should ***not*** create a new data context.
 
 <a name="RPNA"></a>
 
@@ -603,7 +602,7 @@ To disable user registration:
   *@
   ```
 
-* Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.
+* Update the `Areas/Identity/Pages/Account/RegisterConfirmation` page.
 
   * Remove the code and links from the cshtml file.
   * Remove the confirmation code from the `PageModel`:
@@ -659,11 +658,10 @@ We recommend using a source control system that shows file differences and allow
 
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-When scaffolding Identity with a new data context into a project with existing individual accounts:
+When scaffolding Identity with a new data context into a project with existing individual accounts, open `Startup.ConfigureServices` and remove the calls to:
 
-* In `Startup.ConfigureServices`, remove the calls to:
-  * `AddDbContext`
-  * `AddDefaultIdentity`
+* `AddDbContext`
+* `AddDefaultIdentity`
 
 For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:
 
@@ -671,7 +669,7 @@ For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the fo
 
 The preceding code comments out the code that is duplicated in `Areas/Identity/IdentityHostingStartup.cs`
 
-Typically, apps that were created with individual accounts should ***not*** create a new data context.
+Typically, apps created with individual accounts should ***not*** create a new data context.
 
 ## Scaffold Identity into an empty project
 
@@ -714,7 +712,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -753,7 +751,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Scaffold Identity into an MVC project without existing authorization
 
@@ -777,9 +775,9 @@ Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.c
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-* Move the `Pages/Shared/_LoginPartial.cshtml` file to `Views/Shared/_LoginPartial.cshtml`
+Move the `Pages/Shared/_LoginPartial.cshtml` file to `Views/Shared/_LoginPartial.cshtml`.
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see IHostingStartup.
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -830,7 +828,7 @@ The Identity pages layout and styles can be modified to produce pages that use s
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Client-side Blazor apps
 
@@ -910,7 +908,7 @@ To disable user registration:
   *@
   ```
 
-* Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.
+* Update the `Areas/Identity/Pages/Account/RegisterConfirmation` page.
 
   * Remove the code and links from the cshtml file.
   * Remove the confirmation code from the `PageModel`:
@@ -954,6 +952,6 @@ To prevent publishing static Identity assets to the web root, see <xref:security
 
 ## Additional resources
 
-* [Changes to authentication code to ASP.NET Core 2.1 and later](xref:migration/20_21#changes-to-authentication-code)
+[Changes to authentication code to ASP.NET Core 2.1 and later](xref:migration/20_21#changes-to-authentication-code)
 
 :::moniker-end
