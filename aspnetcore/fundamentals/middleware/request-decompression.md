@@ -9,6 +9,8 @@ uid: fundamentals/middleware/request-decompression
 ---
 # Request decompression in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [David Acker](https://github.com/david-acker)
 
 Request decompression middleware:

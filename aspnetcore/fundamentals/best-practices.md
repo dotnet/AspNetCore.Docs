@@ -9,6 +9,8 @@ uid: fundamentals/best-practices
 ---
 # ASP.NET Core Best Practices
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Mike Rousos](https://github.com/mjrousos)
 
 This article provides guidelines for maximizing performance and reliability of ASP.NET Core apps.

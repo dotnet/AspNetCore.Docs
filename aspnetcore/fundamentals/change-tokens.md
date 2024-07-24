@@ -9,6 +9,8 @@ uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-3.0"
 
 A *change token* is a general-purpose, low-level building block used to track state changes.

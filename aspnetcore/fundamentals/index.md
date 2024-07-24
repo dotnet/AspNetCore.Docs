@@ -10,6 +10,8 @@ uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals overview
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.

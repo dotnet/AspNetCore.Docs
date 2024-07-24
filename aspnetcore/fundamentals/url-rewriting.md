@@ -10,6 +10,8 @@ uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT) 
 
 :::moniker range=">= aspnetcore-6.0"

@@ -10,6 +10,8 @@ uid: fundamentals/servers/kestrel/diagnostics
 
 # Diagnostics in Kestrel
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 This article provides guidance for gathering diagnostics from Kestrel to help troubleshoot issues. Topics covered include:

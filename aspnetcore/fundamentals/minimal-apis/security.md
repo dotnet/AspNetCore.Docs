@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 # Authentication and authorization in minimal APIs
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Minimal APIs support all the authentication and authorization options available in ASP.NET Core and provide some additional functionality to improve the experience working with authentication.
 
 ## Key concepts in authentication and authorization

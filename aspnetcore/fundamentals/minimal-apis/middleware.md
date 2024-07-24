@@ -10,6 +10,8 @@ uid: fundamentals/minimal-apis/middleware
 
 # Middleware in Minimal API apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 [!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/middleware7.md)]
 [!INCLUDE [webapplication8](~/fundamentals/minimal-apis/includes/middleware8.md)]
 
