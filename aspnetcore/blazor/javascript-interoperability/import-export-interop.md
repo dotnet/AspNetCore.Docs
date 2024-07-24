@@ -12,7 +12,7 @@ uid: blazor/js-interop/import-export-interop
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later. For additional information and examples, see <xref:client-side/dotnet-interop-wasm>.
+This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API. For additional information and examples, see <xref:client-side/dotnet-interop/index>.
 
 Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. Blazor's JS interop is uniformly supported across Blazor render modes and for Blazor Hybrid apps. <xref:Microsoft.JSInterop.IJSRuntime> also enables library authors to build JS interop libraries for sharing across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor. See the following articles:
 
@@ -186,19 +186,7 @@ The app's namespace for the preceding `CallJavaScript1` partial class is `Blazor
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
 
-:::moniker range=">= aspnetcore-8.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/8.0/import-export-interop-mappings.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/7.0/import-export-interop-mappings.md)]
-
-:::moniker-end
-
-For additional type mapping information and examples, see <xref:client-side/dotnet-interop-wasm#type-mappings>.
+For additional type mapping information and examples, see <xref:client-side/dotnet-interop/index#type-mappings>.
 
 The module name in the `[JSImport]` attribute and the call to load the module in the component with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> must match and be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
@@ -609,8 +597,8 @@ if (OperatingSystem.IsBrowser())
 
 ## Additional resources
 
-* <xref:client-side/dotnet-interop-wasm>
-* <xref:client-side/dotnet-interop>
+* <xref:client-side/dotnet-interop/index>
+* <xref:client-side/dotnet-interop/wasm-browser-app>
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)
