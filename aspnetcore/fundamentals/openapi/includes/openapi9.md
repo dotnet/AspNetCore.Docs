@@ -1,4 +1,4 @@
-:::moniker range="= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-9.0"
 
 The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in ASP.NET apps through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
 
