@@ -10,12 +10,13 @@ uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
-The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package:
+The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
-* Is compatible with native AoT.
+* Support for generating OpenAPI documents at runtime and accessing them via an endpoint on the application.
+* Support for "transformer" APIs that allow modifying the generated document.
+* Support for generating multiple OpenAPI documents from a single app.
 * Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
-* Provides a [transformers](#transformers) API for modifying generated documents.
-* Supports managing multiple OpenAPI documents within a single app.
+* Is compatible with native AoT.
 
 ## Package installation
 
@@ -46,6 +47,33 @@ dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
 ```
 ---
 
+To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
+
+### [Visual Studio](#tab/visual-studio)
+
+Run the following command from the **Package Manager Console**:
+
+ ```powershell
+ Install-Package Microsoft.Extensions.ApiDescription.Server -IncludePrerelease
+```
+
+### [Visual Studio Code](#tab/visual-studio-code)
+
+Run the following command from the **Integrated Terminal**:
+
+```dotnetcli
+dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
+```
+
+### [.NET CLI](#tab/net-cli)
+
+Run the following command in the directory that contains the project file:
+
+```dotnetcli
+dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
+```
+---
+
 ## Configure OpenAPI document generation
 
 The following code:
@@ -57,7 +85,284 @@ The following code:
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
-### The importance of document names
+## Including OpenAPI metadata in your ASP.NET web app
+
+ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
+In controller-based apps, metadata is collected from attributes like `[EndpointDescription]`, `[HttpPost]`,
+and `[Produces]`.
+In minimal APIs, metadata is also collected from attributes, but may also be set using extension methods
+and other strategies, such as returning `TypedResults` from route handlers.
+The following table provides an overview of the metadata collected and the strategies for setting it.
+
+| Metadata | Attribute | Extension method | Other strategies |
+| --- | --- | --- |
+| summary | `[EndpointSummary]` | `WithSummary` | |
+| description | `[EndpointDescription]` | `WithDescription` | |
+| tags | `[Tags]` | `WithTags` | |
+| operationId | `[EndpointName]` | `WithName` | |
+| parameters | `[FromBody]`, `[FromQuery]`, `[FromRoute]`, `[FromHeader]`, `[FromForm]` | |
+| parameter description | `[Description]` | | |
+| requestBody | `[FromBody]` | `Accepts` | |
+| responses | `[Produces]`, `[ProducesProblem]` | `Produces`, `ProducesProblem` | `TypedResults` |
+| Excluding endpoints | `[ExcludeFromDescription]` | `ExcludeFromDescription` | |
+
+Note that currently ASP.NET does not collect metadata from XML doc comments.
+
+The following sections demonstrate how to include metadata in your app to customize the generated OpenAPI document.
+
+### Summary and description
+
+The endpoint summary and description can be set using the `[EndpointSummary]` and `[EndpointDescription]` attributes,
+or in minimal APIs, using the `WithSummary` and `WithDescription` extension methods.
+
+* `[EndpointSummary]`: <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute>
+* `[EndpointDescription]`: <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>
+* `WithSummary`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
+* `WithDescription`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set summaries and descriptions.
+
+```csharp
+  [EndpointSummary("This is a summary.")]
+  [EndpointDescription("This is a description.")]
+  [HttpGet("attributes")]
+  public IResult Attributes()
+  {
+      return Results.Ok("Hello world!");
+  }
+```
+
+#### [Minimal APIs](#tab/minimal-apis)
+
+The following sample demonstrates the different strategies for setting summaries and descriptions.
+
+Note that the attributes are placed on the delegate method and not on the app.MapGet method.
+
+```csharp
+app.MapGet("/extension-methods", () => "Hello world!")
+  .WithSummary("This is a summary.")
+  .WithDescription("This is a description.");
+
+app.MapGet("/attributes",
+  [EndpointSummary("This is a summary.")]
+  [EndpointDescription("This is a description.")]
+  () => "Hello world!");
+```
+---
+
+### tags
+
+OpenAPI supports specifying tags on each endpoint as a form of categorization.
+In controller-based apps, the controller name is automatically added as a tag on each of its endpoints,
+but this can be overridden using the `[Tags]` attribute.
+In minimal APIs, tags can be set using either the `[Tags]` attribute or the `WithTags` extension method.
+
+* `[Tags]`: <xref:Microsoft.AspNetCore.Http.TagsAttribute>
+* `WithTags`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set tags.
+
+```csharp
+  [Tags(["todos", "projects"])]
+  [HttpGet("attributes")]
+  public IResult Attributes()
+  {
+      return Results.Ok("Hello world!");
+  }
+```
+
+#### [Minimal APIs](#tab/minimal-apis)
+
+The follow sample demonstrates the different strategies for setting tags.
+
+```csharp
+app.MapGet("/extension-methods", () => "Hello world!")
+  .WithTags("todos", "projects");
+
+app.MapGet("/attributes",
+  [Tags("todos", "projects")]
+  () => "Hello world!");
+```
+---
+
+### operationId
+
+OpenAPI supports an operationId on each endpoint as a unique identifier or name for the operation. 
+In controller-based apps, the operationId can be set using the `[EndpointName]` attribute.
+In minimal APIs, the operationId can be set using either the `[EndpointName]` attribute or the `WithName` extension method.
+
+* `[EndpointName]`: <xref:Microsoft.AspNetCore.Http.EndpointNameAttribute>
+* `WithName`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithName%2A>
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set the operationId.
+
+```csharp
+  [EndpointName("FromAttributes")]
+  [HttpGet("attributes")]
+  public IResult Attributes()
+  {
+      return Results.Ok("Hello world!");
+  }
+```
+
+#### [Minimal APIs](#tab/minimal-apis)
+
+The follow sample demonstrates the different strategies for setting the operationId.
+
+```csharp
+app.MapGet("/extension-methods", () => "Hello world!")
+  .WithName("FromExtensionMethods");
+
+app.MapGet("/attributes",
+  [EndpointName("FromAttributes")]
+  () => "Hello world!");
+```
+---
+
+### parameters
+
+OpenAPI supports annotating the inputs that are consumed by an API. These inputs fall into two categories:
+
+* Parameters that appear in the path, query string, headers, or cookies.
+* Data transmitted as part of the request body.
+
+The framework infers the types for request parameters in the path, query, and header string automatically based on the signature of the route handler.
+
+The `[Description]` attribute can be used to provide a description for a parameter.
+
+* `[Description]`: <xref:Microsoft.ComponentModel.DescriptionAttribute>
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set a description for a parameter.
+
+```csharp
+  [HttpGet("attributes")]
+  public IResult Attributes([Description("This is a description.")] string name)
+  {
+      return Results.Ok("Hello world!");
+  }
+```
+
+#### [Minimal APIs](#tab/minimal-apis)
+
+The follow sample demonstrates how to set a description for a parameter.
+
+```csharp
+app.MapGet("/attributes",
+  ([Description("This is a description.")] string name) => "Hello world!");
+```
+---
+
+### requestBody
+
+<!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
+
+To define the type of inputs transmitted as the request body, configure the properties by using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method to define the object type and content type that are expected by the request handler. In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
+
+```csharp
+app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
+  .Accepts<Todo>("application/xml");
+```
+
+In addition to the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A>extension method, a parameter type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
+
+```csharp
+public class Todo : IEndpointParameterMetadataProvider
+{
+    public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
+    {
+        builder.Metadata.Add(new ConsumesAttribute(typeof(Todo), isOptional: false, "application/xml"));
+    }
+}
+```
+
+When no explicit annotation is provided, the framework attempts to determine the default request type if there's a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
+
+* Request body parameters that are read from a form via the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute are described with the `multipart/form-data` content-type.
+* All other request body parameters are described with the `application/json` content-type.
+* The request body is treated as optional if it's nullable or if the <xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty> property is set on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
+
+### Describe response types
+
+<!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
+
+OpenAPI supports providing a description of the responses returned from an API. Minimal APIs support three strategies for setting the response type of an endpoint:
+
+* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method on the endpoint.
+* Via the [`ProducesResponseType`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute on the route handler.
+* By returning<xref:Microsoft.AspNetCore.Http.TypedResults> from the route handler.
+
+The `Produces` extension method can be used to add `Produces` metadata to an endpoint. When no parameters are provided, the extension method populates metadata for the targeted type under a `200` status code and an `application/json` content type.
+
+```csharp
+app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
+  .Produces<IList<Todo>>();
+```
+
+Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
+
+```csharp
+app.MapGet("/todos", async (TodoDb db) =>
+{
+    var todos = await db.Todos.ToListAsync();
+    return TypedResults.Ok(todos);
+});
+```
+
+#### Set responses for `ProblemDetails`
+
+When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
+
+When there are no explicit annotations provided by one of these strategies, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
+
+#### Multiple response types
+
+If an endpoint can return different response types in different scenarios, you can provide metadata in the following ways:
+
+* Call the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method multiple times, as shown in the following example:
+
+  [!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
+
+* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and <xref:Microsoft.AspNetCore.Http.TypedResults> in the body of the handler, as shown in the following example:
+
+  :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
+
+  The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata.
+
+  The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
+
+### Excluding endpoints from the generated document
+
+<!-- TODO: Add information for controller-based apps in this section -->
+
+By default, all endpoints that are defined in an app are documented in the generated OpenAPI file. Minimal APIs supports two strategies for excluding a given endpoint from the OpenAPI document, using:
+
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A>
+* <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>
+
+The following sample demonstrates the different strategies for excluding a given endpoint from the generated OpenAPI document.
+
+```csharp
+app.MapGet("/extension-method", () => "Hello world!")
+  .ExcludeFromDescription();
+
+app.MapGet("/attributes",
+  [ExcludeFromDescription]
+  () => "Hello world!");
+```
+
+## Options to Customize OpenAPI document generation
+
+The following sections demonstrate how to customize OpenAPI document generation.
+
+### Customize the OpenAPI document name
 
 Each OpenAPI document in an app has a unique name. The default document name that is registered is `v1`.
 
@@ -79,10 +384,6 @@ When fetching the generated OpenAPI document, the document name is provided as t
 GET http://localhost:5000/openapi/v1.json
 GET http://localhost:5000/openapi/internal.json
 ```
-
-## Options to Customize OpenAPI document generation
-
-The following sections demonstrate how to customize OpenAPI document generation.
 
 ### Customize the OpenAPI version of a generated document
 
@@ -108,19 +409,6 @@ app.MapOpenApi("/openapi/{documentName}/openapi.json");
 ### Customize the OpenAPI endpoint
 
 Because the OpenAPI document is served via a route handler endpoint, any customization that is available to standard minimal endpoints is available to the OpenAPI endpoint.
-
-### Customize OpenAPI endpoints with endpoint metadata
-
-The following list shows the endpoint metadata that is used to customize the generated OpenAPI document:
-
-* Summaries from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointSummaryMetadata>
-* Descriptions from <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointDescriptionMetadata>
-* Request body from <xref:Microsoft.AspNetCore.Http.Metadata.IAcceptsMetadata>
-* Response information from <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata>
-* Operation IDs from <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata>
-* OpenAPI tags from <xref:Microsoft.AspNetCore.Http.Metadata.ITagsMetadata>
-
-To learn more about customizing the generated OpenAPI document by modifying endpoint metadata, see <xref:fundamentals/minimal-apis/openapi>.
 
 #### Limit OpenAPI document access to authorized users
 
