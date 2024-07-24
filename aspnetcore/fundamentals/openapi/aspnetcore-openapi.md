@@ -195,8 +195,8 @@ OpenAPI supports an operationId on each endpoint as a unique identifier or name 
 In controller-based apps, the operationId can be set using the `[EndpointName]` attribute.
 In minimal APIs, the operationId can be set using either the `[EndpointName]` attribute or the `WithName` extension method.
 
-* `[EndpointName]`: <xref:Microsoft.AspNetCore.Http.EndpointNameAttribute>
-* `WithName`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithName%2A>
+* `[EndpointName]`: <xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute>
+* `WithName`: <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A>
 
 #### [Minimal APIs](#tab/minimal-apis)
 
@@ -233,7 +233,7 @@ The framework infers the types for request parameters automatically based on the
 
 The `[Description]` attribute can be used to provide a description for a parameter.
 
-* `[Description]`: <xref:Microsoft.ComponentModel.DescriptionAttribute>
+* `[Description]`: <xref:Microsoft.AspNetCore.ComponentModel.DescriptionAttribute>
 
 #### [Minimal APIs](#tab/minimal-apis)
 
