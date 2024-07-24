@@ -100,7 +100,7 @@ The following table provides an overview of the metadata collected and the strat
 | description | `[EndpointDescription]` | `WithDescription` | |
 | tags | `[Tags]` | `WithTags` | |
 | operationId | `[EndpointName]` | `WithName` | |
-| parameters | `[FromBody]`, `[FromQuery]`, `[FromRoute]`, `[FromHeader]`, `[FromForm]` | |
+| parameters | `[FromQuery]`, `[FromRoute]`, `[FromHeader]`, `[FromForm]` | |
 | parameter description | `[Description]` | | |
 | requestBody | `[FromBody]` | `Accepts` | |
 | responses | `[Produces]`, `[ProducesProblem]` | `Produces`, `ProducesProblem` | `TypedResults` |
@@ -120,20 +120,6 @@ or in minimal APIs, using the `WithSummary` and `WithDescription` extension meth
 * `WithSummary`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
 * `WithDescription`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
 
-#### [Controllers](#tab/controllers)
-
-The following sample demonstrates how to set summaries and descriptions.
-
-```csharp
-  [EndpointSummary("This is a summary.")]
-  [EndpointDescription("This is a description.")]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
-```
-
 #### [Minimal APIs](#tab/minimal-apis)
 
 The following sample demonstrates the different strategies for setting summaries and descriptions.
@@ -150,6 +136,20 @@ app.MapGet("/attributes",
   [EndpointDescription("This is a description.")]
   () => "Hello world!");
 ```
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set summaries and descriptions.
+
+```csharp
+  [EndpointSummary("This is a summary.")]
+  [EndpointDescription("This is a description.")]
+  [HttpGet("attributes")]
+  public IResult Attributes()
+  {
+      return Results.Ok("Hello world!");
+  }
+```
 ---
 
 ### tags
@@ -161,19 +161,6 @@ In minimal APIs, tags can be set using either the `[Tags]` attribute or the `Wit
 
 * `[Tags]`: <xref:Microsoft.AspNetCore.Http.TagsAttribute>
 * `WithTags`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
-
-#### [Controllers](#tab/controllers)
-
-The following sample demonstrates how to set tags.
-
-```csharp
-  [Tags(["todos", "projects"])]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
-```
 
 #### [Minimal APIs](#tab/minimal-apis)
 
@@ -187,6 +174,19 @@ app.MapGet("/attributes",
   [Tags("todos", "projects")]
   () => "Hello world!");
 ```
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set tags.
+
+```csharp
+  [Tags(["todos", "projects"])]
+  [HttpGet("attributes")]
+  public IResult Attributes()
+  {
+      return Results.Ok("Hello world!");
+  }
+```
 ---
 
 ### operationId
@@ -197,19 +197,6 @@ In minimal APIs, the operationId can be set using either the `[EndpointName]` at
 
 * `[EndpointName]`: <xref:Microsoft.AspNetCore.Http.EndpointNameAttribute>
 * `WithName`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithName%2A>
-
-#### [Controllers](#tab/controllers)
-
-The following sample demonstrates how to set the operationId.
-
-```csharp
-  [EndpointName("FromAttributes")]
-  [HttpGet("attributes")]
-  public IResult Attributes()
-  {
-      return Results.Ok("Hello world!");
-  }
-```
 
 #### [Minimal APIs](#tab/minimal-apis)
 
@@ -223,20 +210,39 @@ app.MapGet("/attributes",
   [EndpointName("FromAttributes")]
   () => "Hello world!");
 ```
+
+#### [Controllers](#tab/controllers)
+
+The following sample demonstrates how to set the operationId.
+
+```csharp
+  [EndpointName("FromAttributes")]
+  [HttpGet("attributes")]
+  public IResult Attributes()
+  {
+      return Results.Ok("Hello world!");
+  }
+```
 ---
 
 ### parameters
 
-OpenAPI supports annotating the inputs that are consumed by an API. These inputs fall into two categories:
+OpenAPI supports annotating path, query string, header, and cookie parameters that are consumed by an API.
 
-* Parameters that appear in the path, query string, headers, or cookies.
-* Data transmitted as part of the request body.
-
-The framework infers the types for request parameters in the path, query, and header string automatically based on the signature of the route handler.
+The framework infers the types for request parameters automatically based on the signature of the route handler.
 
 The `[Description]` attribute can be used to provide a description for a parameter.
 
 * `[Description]`: <xref:Microsoft.ComponentModel.DescriptionAttribute>
+
+#### [Minimal APIs](#tab/minimal-apis)
+
+The follow sample demonstrates how to set a description for a parameter.
+
+```csharp
+app.MapGet("/attributes",
+  ([Description("This is a description.")] string name) => "Hello world!");
+```
 
 #### [Controllers](#tab/controllers)
 
@@ -248,15 +254,6 @@ The following sample demonstrates how to set a description for a parameter.
   {
       return Results.Ok("Hello world!");
   }
-```
-
-#### [Minimal APIs](#tab/minimal-apis)
-
-The follow sample demonstrates how to set a description for a parameter.
-
-```csharp
-app.MapGet("/attributes",
-  ([Description("This is a description.")] string name) => "Hello world!");
 ```
 ---
 
