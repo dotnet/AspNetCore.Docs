@@ -233,7 +233,7 @@ The framework infers the types for request parameters automatically based on the
 
 The `[Description]` attribute can be used to provide a description for a parameter.
 
-* `[Description]`: <xref:Microsoft.AspNetCore.ComponentModel.DescriptionAttribute>
+* [`Description`](/dotnet/api/system.componentmodel.descriptionattribute)
 
 #### [Minimal APIs](#tab/minimal-apis)
 
