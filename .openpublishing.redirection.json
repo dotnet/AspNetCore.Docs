@@ -1292,6 +1292,11 @@
             "source_path": "aspnetcore/blazor/http-caching-issues.md",
             "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly-caching/http-caching-issues",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/client-side/dotnet-interop.md",
+            "redirect_url": "/aspnet/core/client-side/dotnet-interop/wasm-browswer-app",
+            "redirect_document_id": false
         }
     ]
 }

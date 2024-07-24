@@ -32,7 +32,7 @@ Any of the following project types:
 * A Blazor client-side project created according to <xref:blazor/js-interop/import-export-interop>.
 * A project created for a commercial or open-source platform that supports `[JSImport]`/`[JSExport]` interop (<xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> API).
 
-# JS interop using `[JSImport]`/`[JSExport]` attributes
+## JS interop using `[JSImport]`/`[JSExport]` attributes
 
 The `[JSImport]` attribute is applied to a .NET method to indicate that a corresponding JS method should be called when the .NET method is called. This allows .NET developers to define "imports" that enable .NET code to call into JS. Additionally, an <xref:System.Action> can be passed as parameters, and JS can invoke these actions to support callback or event subscription patterns.
 
@@ -813,7 +813,7 @@ The preceding example displays the following output in the browser's debug conso
 > :::no-loc text="In C# event listener: Event click from ID btn1":::  
 > :::no-loc text="Unsubscribed btn1.":::
 
-# Type mapping limitations
+## Type mapping limitations
 
 Some type mappings requiring nested generic types in the [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601) definition aren't currently supported. For example, returning a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) for an array such as `[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]` generates a compile time error. An appropriate workaround varies depending on the scenario, but one option is to represent the array as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference. This may be sufficient if accessing individual elements within .NET isn't necessary, and the reference can be passed to other JS methods which act on the array. Alternatively, a dedicated method can take the <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference as a parameter and return the materialized array, as demonstrated by the following `UnwrapJSObjectAsIntArray` example. In this case, the JS method has no type checking, and it's the developer's responsibility to ensure a <xref:System.Runtime.InteropServices.JavaScript.JSObject> wrapping the appropriate array type is passed.
 
@@ -858,7 +858,7 @@ JSObject arrayAsJSObject = await PromisesInterop.WaitGetIntArrayAsObject();
 int[] intArray = PromisesInterop.UnwrapJSObjectAsIntArray(arrayAsJSObject);
 ```
 
-# Performance considerations
+## Performance considerations
 
 Marshalling of calls and the overhead of tracking objects across the interop boundary is more expensive than native .NET operations bit should still demonstrate acceptable performance for a typical web application with moderate usage.
 
