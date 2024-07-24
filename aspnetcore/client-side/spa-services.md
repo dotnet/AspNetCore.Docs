@@ -10,6 +10,8 @@ uid: client-side/spa-services
 ---
 # Use JavaScript Services to Create Single Page Applications in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Fiyaz Hasan](https://fiyazhasan.me/)
 
 :::moniker range=">= aspnetcore-3.0"

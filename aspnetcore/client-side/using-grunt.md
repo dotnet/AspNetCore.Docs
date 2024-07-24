@@ -8,6 +8,8 @@ uid: client-side/using-grunt
 ---
 # Use Grunt in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Grunt is a JavaScript task runner that automates script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Grunt is fully supported in Visual Studio.
 
 This example uses an empty ASP.NET Core project as its starting point, to show how to automate the client build process from scratch.
