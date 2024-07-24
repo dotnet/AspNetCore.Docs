@@ -10,6 +10,8 @@ uid: fundamentals/w3c-logger/index
 
 # W3CLogger in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range="= aspnetcore-6.0"
 
 W3CLogger is a middleware that writes log files in the [W3C standard format](https://www.w3.org/TR/WD-logfile.html). The logs contain information about HTTP requests and HTTP responses. W3CLogger provides logs of:

@@ -9,6 +9,8 @@ uid: fundamentals/use-httpcontext
 ---
 # Use HttpContext in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
 
 For more information about accessing the `HttpContext`, see <xref:fundamentals/httpcontext>.

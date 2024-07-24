@@ -12,6 +12,12 @@ ai-usage: ai-assisted
 ---
 # ASP.NET Core support for Native AOT
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
+
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
 ## Why use Native AOT with ASP.NET Core

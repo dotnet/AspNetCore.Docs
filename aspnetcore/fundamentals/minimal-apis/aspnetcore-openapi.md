@@ -10,6 +10,14 @@ uid: fundamentals/minimal-apis/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
+[!INCLUDE[](~/includes/not-ga-yet.md)]
+
+<!-- Uncomment this when 9.0 is the default value in the version selector and delete not-ga-yet.md
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
+
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package:
 
 * Is compatible with native AoT.

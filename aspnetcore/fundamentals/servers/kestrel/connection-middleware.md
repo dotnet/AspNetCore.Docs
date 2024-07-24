@@ -11,6 +11,8 @@ uid: fundamentals/servers/kestrel/connection-middleware
 
 # Connection middleware
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Kestrel supports connection middleware. Connection middleware is software that is assembled into a connection pipeline and runs when Kestrel receives a new connection. Each component:
 
 * Chooses whether to pass the request to the next component in the pipeline.
