@@ -111,7 +111,8 @@ To serve static files based on authorization:
   * Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
   * Set the [fallback authorization policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
-[!code-csharp[](~/fundamentals/static-files/samples/8.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
+<!-- ~/fundamentals/static-files/samples/8.x/StaticFileAuth is a different app that ~/fundamentals/static-files/samples/6.x/StaticFileAuth -->
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
   
   In the preceding code, the fallback authorization policy requires ***all*** users to be authenticated. Endpoints such as controllers, Razor Pages, etc that specify their own authorization requirements don't use the fallback authorization policy. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authorization attribute rather than the fallback authorization policy.
 
