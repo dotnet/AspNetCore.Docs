@@ -125,11 +125,14 @@ An alternative approach to serve files based on authorization is to:
 * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
 
+
   [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Pages/BannerImage.cshtml.cs?name=snippet)]
 
 The preceding approach requires a page or endpoint per file. The following code returns files or uploads files for authenticated users:
 
 :::code language="csharp" source="~/fundamentals/static-files/samples/9.x/StaticFileAuth/Program.cs" id="snippet_1":::
+
+IFormFile in the preceding sample uses memory buffer for uploading. For handling large file use streaming. See [Upload large files with streaming](/mvc/models/file-uploads#upload-large-files-with-streaming).
 
 See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFileAuth) GitHub folder for the complete sample.
 
