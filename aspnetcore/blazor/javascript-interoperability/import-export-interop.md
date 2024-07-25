@@ -32,7 +32,9 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Prerequisites
 
-[.NET (latest version)](https://dotnet.microsoft.com/download/dotnet/)
+[Visual Studio](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload.
+
+When installing Visual Studio, select the **.NET WebAssembly build tools** option from the list of optional components.
 
 ## Namespace
 

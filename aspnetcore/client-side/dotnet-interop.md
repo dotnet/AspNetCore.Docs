@@ -25,7 +25,7 @@ These approaches are appropriate when you only expect to run on WebAssembly (:::
 
 ## Prerequisites
 
-Install the latest version of the [.NET SDK](https://dotnet.microsoft.com/download/dotnet/).
+[.NET SDK (latest version)](https://dotnet.microsoft.com/download/dotnet/)
 
 Install the `wasm-tools` workload in an administrative command shell, which brings in the related MSBuild targets:
 

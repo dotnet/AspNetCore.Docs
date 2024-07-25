@@ -16,11 +16,11 @@ By [Aaron Shumaker](https://github.com/SerratedSharp)
 
 This article explains how to interact with JavaScript (JS) in client-side WebAssembly using JS `[JSImport]`/`[JSExport]` interop (<xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> API).
 
-`[JSImport]`/`[JSExport]` interop is applicable when running a .NET WebAssembly module in a JS host:
+`[JSImport]`/`[JSExport]` interop is applicable when running a .NET WebAssembly module in a JS host in the following scenarios:
 
-* <xref:client-side/dotnet-interop/wasm-browser-app>
-* <xref:blazor/js-interop/import-export-interop>
-* Other .NET WebAssembly platforms that support `[JSImport]`/`[JSExport]` interop
+* <xref:client-side/dotnet-interop/wasm-browser-app>.
+* <xref:blazor/js-interop/import-export-interop>.
+* Other .NET WebAssembly platforms that support `[JSImport]`/`[JSExport]` interop.
 
 ## Prerequisites
 
