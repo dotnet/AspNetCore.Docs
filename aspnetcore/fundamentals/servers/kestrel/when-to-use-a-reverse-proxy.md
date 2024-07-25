@@ -11,6 +11,8 @@ uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
 
 # When to use Kestrel with a reverse proxy
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Kestrel can be used by itself or with a *reverse proxy server*. A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel. Examples of a reverse proxy server include:
 
 * [Internet Information Services (IIS)](https://www.iis.net/)

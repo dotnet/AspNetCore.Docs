@@ -10,6 +10,8 @@ uid: fundamentals/minimal-apis/test-min-api
 
 # Unit and integration tests in Minimal API apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE[](~/includes/integrationTests.md)]

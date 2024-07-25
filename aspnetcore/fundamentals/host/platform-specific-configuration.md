@@ -10,6 +10,8 @@ uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Pavel Krymets](https://github.com/pakrym)
 
 :::moniker range=">= aspnetcore-3.0"
