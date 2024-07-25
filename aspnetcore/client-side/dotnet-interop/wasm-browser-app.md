@@ -5,7 +5,7 @@ description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] in
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/21/2024
+ms.date: 07/25/2024
 uid: client-side/dotnet-interop/wasm-browser-app
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with a WebAssembly Browser App project
@@ -463,11 +463,11 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target fr
 
 * <xref:client-side/dotnet-interop/index>
 * <xref:blazor/js-interop/import-export-interop>
-* [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)
 * In the `dotnet/runtime` GitHub repository:
+  * [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)
   * [.NET WebAssembly runtime](https://github.com/dotnet/runtime/tree/main/src/mono/wasm)
   * [`dotnet.d.ts` file (.NET WebAssembly runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts)
 * [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
