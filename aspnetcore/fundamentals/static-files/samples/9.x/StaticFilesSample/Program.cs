@@ -1,4 +1,4 @@
-#define DEFAULT // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL MULT2
+#define TREE // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL MULT2
 // Test1
 #if NEVER
 #elif DEFAULT
@@ -142,6 +142,7 @@ app.MapRazorPages().WithStaticAssets();
 app.Run();
 // </snippet_db>
 #elif DF  // Default file
+https://localhost:50921/def/
 // <snippet_df>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -160,7 +161,7 @@ app.UseHttpsRedirection();
 
 app.UseDefaultFiles();
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 app.UseAuthorization();
 
 app.MapDefaultControllerRoute().WithStaticAssets();
@@ -169,6 +170,7 @@ app.MapRazorPages().WithStaticAssets();
 app.Run();
 // </snippet_df>
 #elif DF2
+// https://localhost:50921/def/
 // <snippet_df2>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -190,7 +192,7 @@ options.DefaultFileNames.Clear();
 options.DefaultFileNames.Add("mydefault.html");
 app.UseDefaultFiles(options);
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
@@ -276,7 +278,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.UseFileServer(new FileServerOptions
 {

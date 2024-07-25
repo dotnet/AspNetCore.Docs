@@ -170,11 +170,11 @@ With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 * `index.htm`
 * `index.html`
 
-The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
+The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested. For example, in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs), a request to `https://localhost:<port>/def/` serves `default.html` from `wwwroot/def`.
 
 The following code changes the default file name to `mydefault.html`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)]
 
 ### UseFileServer for default documents
 
@@ -198,9 +198,11 @@ Consider the following directory hierarchy:
   * `images`
   * `js`
 * `MyStaticFiles`
+  * `defaultFiles`
+    * `default.html`
+    * `image3.png`
   * `images`
     * `MyImage.jpg`
-  * `default.html`
 
 The following code enables the serving of static files, the default file, and directory browsing of `MyStaticFiles`:
 
@@ -215,7 +217,9 @@ Using the preceding file hierarchy and code, URLs resolve as follows:
 | URI            |      Response  |
 | ------- | ------|
 | `https://<hostname>/StaticFiles/images/MyImage.jpg` | `MyStaticFiles/images/MyImage.jpg` |
-| `https://<hostname>/StaticFiles` | `MyStaticFiles/default.html` |
+| `https://<hostname>/StaticFiles` | directory listing |
+| `https://<hostname>/StaticFiles/defaultFiles` | `MyStaticFiles/defaultFiles/default.html` |
+| `https://<hostname>/StaticFiles/defaultFiles/image3.png` | `MyStaticFiles/defaultFiles//image3.png` |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
@@ -225,7 +229,7 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 
 ## FileExtensionContentTypeProvider
 
-The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a `Mappings` property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
+The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a [Mappings](/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider.mappings) property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
 
 <!-- test via /mapTest/image1.image and mapTest/test.htm3 /mapTest/TextFile.rtf -->
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-33)] 
@@ -269,9 +273,9 @@ The following code updates the `WebRootFileProvider`, which enables the Image Ta
 ### Security considerations for static files
 
 > [!WARNING]
-> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
+> `UseDirectoryBrowser` and `UseStaticFiles` <!-- but not MapStaticAssets --> can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
 
-* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
+* The URLs for content exposed with `UseDirectoryBrowser`, `UseStaticFiles`, and `MapStaticAssets` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
 
 * ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and has no chance to handle requests.
 

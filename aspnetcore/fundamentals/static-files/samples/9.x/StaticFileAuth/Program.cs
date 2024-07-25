@@ -131,7 +131,7 @@ app.MapGet("/files/{fileName}",  IResult (string fileName) =>
 
         if (File.Exists(filePath))
         {
-            return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
+           return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
         }
 
         return TypedResults.NotFound("No file found with the supplied file name");
@@ -139,17 +139,21 @@ app.MapGet("/files/{fileName}",  IResult (string fileName) =>
     .WithName("GetFileByName")
     .RequireAuthorization("AuthenticatedUsers");
 
-// IFormFile uses memory buffer for uploading. For handling large file use streaming instead.
-// https://learn.microsoft.com/aspnet/core/mvc/models/file-uploads#upload-large-files-with-streaming
-app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext context) =>
+app.MapPost("/files", 
+       async (IFormFile file, LinkGenerator linker, HttpContext context) =>
     {
-        // Don't rely on the file.FileName as it is only metadata that can be manipulated by the end-user
-        // Take a look at the `Utilities.IsFileValid` method that takes an IFormFile and validates its signature within the AllowedFileSignatures
+        // Don't rely on the file.FileName as it is only metadata that can be
+        // manipulated by the end-user. See the `Utilities.IsFileValid` method that
+        // takes an IFormFile and validates its signature within the
+        // AllowedFileSignatures
         
-        var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+        var fileSaveName = Guid.NewGuid().ToString("N") 
+                           + Path.GetExtension(file.FileName);
         await SaveFileWithCustomFileName(file, fileSaveName);
         
-        context.Response.Headers.Append("Location", linker.GetPathByName(context, "GetFileByName", new { fileName = fileSaveName}));
+        context.Response.Headers.Append("Location",
+                                     linker.GetPathByName(context, "GetFileByName", 
+                                     new { fileName = fileSaveName}));
         return TypedResults.Ok("File Uploaded Successfully!");
     })
     .RequireAuthorization("AdminsOnly");
