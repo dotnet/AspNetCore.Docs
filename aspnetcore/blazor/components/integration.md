@@ -22,11 +22,12 @@ This article explains Razor component integration scenarios for ASP.NET Core app
 
 Razor components can be integrated into Razor Pages, MVC, and other types of ASP.NET Core apps. Razor components can also be integrated into any web app, including apps not based on ASP.NET Core, as [custom HTML elements](xref:blazor/components/js-spa-frameworks#blazor-custom-elements).
 
-Use the guidance in the following sections depending on the project's requirements:
+First, follow the guidance in the [Add Blazor support to an ASP.NET Core app](#add-blazor-support-to-an-aspnet-core-app) section. You'll at least add static server-side rendering (static SSR) support and optionally add interactive server-side rendering (interactive SSR) and/or interactive automatic (Auto) or client-side rendering (CSR) depending on your app's requirements.
 
-* Blazor support can be [added to an ASP.NET Core app](#add-blazor-support-to-an-aspnet-core-app).
-* For interactive components that aren't directly routable from user requests, see the [Use non-routable components in pages or views](#use-non-routable-components-in-pages-or-views) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
-* For interactive components that are directly routable from user requests, see the [Use routable components](#use-routable-components) section. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
+Next, use the guidance in the following sections depending on the project's requirements:
+
+* For interactive components that aren't directly routable from user requests, follow the guidance in the [Use non-routable components in pages or views](#use-non-routable-components-in-pages-or-views) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* For interactive components that are directly routable from user requests, follow the guidance in the [Use routable components](#use-routable-components) section. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
 
 ## Add Blazor support to an ASP.NET Core app
 
