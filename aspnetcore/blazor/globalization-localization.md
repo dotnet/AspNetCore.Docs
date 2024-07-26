@@ -41,6 +41,8 @@ In this article, *language* refers to selections made by a user in their browser
 
 *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("culture") property from the language that the user requested. API usually uses the word "culture" in its member names.
 
+The guidance in this article doesn't cover setting the page's HTML language attribute ([`<html lang="...">`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang)), which accessiblity tools use. You can set the value statically by assigning a language to the `lang` attribute of the `<html>` tag or to `document.documentElement.lang` in JavaScript. You can dynamically set the value of `document.documentElement.lang` with [JS interop](xref:blazor/js-interop/index).
+
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the article's examples.
 
