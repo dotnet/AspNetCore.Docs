@@ -100,12 +100,9 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 
 In **API permissions**:
 
-> [!IMPORTANT]
-> For the next set of steps, you must be an **Owner** of the *Server API app* registration in order to see the *Server API app* in the **My APIs** area of the Azure portal. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
-
 1. Confirm that the app has **Microsoft Graph** > **User.Read** permission.
 1. Select **Add a permission** followed by **My APIs**.
-1. Select the *Server API app* from the **Name** column (for example, **Blazor Server ME-ID**).
+1. Select the *Server API app* from the **Name** column (for example, **Blazor Server ME-ID**). You must be an owner of the app registration (and the API app registration if it's a separate app) in order to see the API in the **My APIs** area of the Azure portal. For more information, see [Assign application owner (Microsoft Entra documentation)](/entra/identity-platform/quickstart-configure-app-expose-web-apis#assign-application-owner).
 1. Open the **API** list.
 1. Enable access to the API (for example, `API.Access`).
 1. Select **Add permissions**.
