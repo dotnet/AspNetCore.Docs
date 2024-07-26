@@ -531,11 +531,11 @@ Explains what to do when incoherent packages break an app when performing major 
 [Additional resources](#additional-resources)  
 Lists additional troubleshooting topics.
 
-##z App startup errors
+## z App startup errors
 
 In Visual Studio, the ASP.NET Core project default server is Kestrel. Visual studio can be configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview). A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally with IIS Express can be diagnosed using the advice in this topic.
 
-###z 403.14 Forbidden
+### z 403.14 Forbidden
 
 The app fails to start. The following error is logged:
 
@@ -560,7 +560,7 @@ Perform the following steps:
 
 For more information on the layout of a published ASP.NET Core app, see <xref:host-and-deploy/directory-structure>. For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
 
-###z 500 Internal Server Error
+### z 500 Internal Server Error
 
 The app starts, but an error prevents the server from fulfilling the request.
 
@@ -568,7 +568,7 @@ This error occurs within the app's code during startup or while creating a respo
 
 This error also may occur when the .NET Core Hosting Bundle isn't installed or is corrupted. Installing or repairing the installation of the .NET Core Hosting Bundle (for IIS) or Visual Studio (for IIS Express) may fix the problem.
 
-###z 500.0 In-Process Handler Load Failure
+### z 500.0 In-Process Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
@@ -578,7 +578,7 @@ An unknown error occurred loading [ASP.NET Core Module](xref:host-and-deploy/asp
 * Ask a question on Stack Overflow.
 * File an issue on our [GitHub repository](https://github.com/dotnet/AspNetCore).
 
-###z 500.30 In-Process Startup Failure
+### z 500.30 In-Process Startup Failure
 
 The worker process fails. The app doesn't start.
 
@@ -589,7 +589,7 @@ Common failure conditions:
 * The app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
 * Using Azure Key Vault, lack of permissions to the Key Vault. Check the access policies in the targeted Key Vault to ensure that the correct permissions are granted.
 
-###z 500.31 ANCM Failed to Find Native Dependencies
+### z 500.31 ANCM Failed to Find Native Dependencies
 
 The worker process fails. The app doesn't start.
 
@@ -613,7 +613,7 @@ The error message lists all the installed .NET Core versions and the version req
 
 When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development`), the specific error is written to the HTTP response. The cause of a process startup failure is also found in the Application Event Log.
 
-###z 500.32 ANCM Failed to Load dll
+### z 500.32 ANCM Failed to Load dll
 
 The worker process fails. The app doesn't start.
 
@@ -624,7 +624,7 @@ To fix this error, either:
 * Republish the app for the same processor architecture as the worker process.
 * Publish the app as a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-executables-fde).
 
-###z 500.33 ANCM Request Handler Load Failure
+### z 500.33 ANCM Request Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
@@ -632,31 +632,31 @@ The app didn't reference the `Microsoft.AspNetCore.App` framework. Only apps tar
 
 To fix this error, confirm that the app is targeting the `Microsoft.AspNetCore.App` framework. Check the `.runtimeconfig.json` to verify the framework targeted by the app.
 
-###z 500.34 ANCM Mixed Hosting Models Not Supported
+### z 500.34 ANCM Mixed Hosting Models Not Supported
 
 The worker process can't run both an in-process app and an out-of-process app in the same process.
 
 To fix this error, run apps in separate IIS application pools.
 
-###z 500.35 ANCM Multiple In-Process Applications in same Process
+### z 500.35 ANCM Multiple In-Process Applications in same Process
 
 The worker process can't run multiple in-process apps in the same process.
 
 To fix this error, run apps in separate IIS application pools.
 
-###z 500.36 ANCM Out-Of-Process Handler Load Failure
+### z 500.36 ANCM Out-Of-Process Handler Load Failure
 
 The out-of-process request handler, *aspnetcorev2_outofprocess.dll*, isn't next to the *aspnetcorev2.dll* file. This indicates a corrupted installation of the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
 
 To fix this error, repair the installation of the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) (for IIS) or Visual Studio (for IIS Express).
 
-###z 500.37 ANCM Failed to Start Within Startup Time Limit
+### z 500.37 ANCM Failed to Start Within Startup Time Limit
 
 ANCM failed to start within the provided startup time limit. By default, the timeout is 120 seconds.
 
 This error can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
 
-###z 500.38 ANCM Application DLL Not Found
+### z 500.38 ANCM Application DLL Not Found
 
 ANCM failed to locate the application DLL, which should be next to the executable.
 
@@ -665,7 +665,7 @@ This error occurs when hosting an app packaged as a [single-file executable](/do
 1. Disable single-file publishing by setting the `PublishSingleFile` MSBuild property to `false`.
 1. Switch to the out-of-process hosting model by setting the `AspNetCoreHostingModel` MSBuild property to `OutOfProcess`.
 
-###z 502.5 Process Failure
+### z 502.5 Process Failure
 
 The worker process fails. The app doesn't start.
 
@@ -675,7 +675,7 @@ A common failure condition is the app is misconfigured due to targeting a versio
 
 The *502.5 Process Failure* error page is returned when a hosting or app misconfiguration causes the worker process to fail:
 
-###z Failed to start application (ErrorCode '0x800700c1')
+### z Failed to start application (ErrorCode '0x800700c1')
 
 ```
 EventID: 1010
@@ -697,7 +697,7 @@ Confirm that the app pool's 32-bit setting is correct:
 
 Confirm that there isn't a conflict between a `<Platform>` MSBuild property in the project file and the published bitness of the app.
 
-###z Failed to start application (ErrorCode '0x800701b1')
+### z Failed to start application (ErrorCode '0x800701b1')
 
 ```
 EventID: 1010
@@ -714,19 +714,19 @@ The following command enables the `null` Windows Service:
 sc.exe start null
 ```
 
-###z Connection reset
+### z Connection reset
 
 If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
 
-###z Default startup limits
+### z Default startup limits
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
-##z Troubleshoot on Azure App Service
+## z Troubleshoot on Azure App Service
 
 [!INCLUDE [Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
-###z Azure App Services Log stream
+### z Azure App Services Log stream
 
 The Azure App Services Log streams logging information as it occurs. To view streaming logs:
 
@@ -745,7 +745,7 @@ The Azure App Services Log streams logging information as it occurs. To view str
 
 Streaming logs have some latency and might not display immediately.
 
-###z Application Event Log (Azure App Service)
+### z Application Event Log (Azure App Service)
 
 To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal:
 
@@ -763,14 +763,14 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 1. Select the pencil icon next to the `eventlog.xml` file.
 1. Examine the log. Scroll to the bottom of the log to see the most recent events.
 
-###z Run the app in the Kudu console
+### z Run the app in the Kudu console
 
 Many startup errors don't produce useful information in the Application Event Log. You can run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
 
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 
-####z Test a 32-bit (x86) app
+#### z Test a 32-bit (x86) app
 
 **Current release**
 
@@ -799,7 +799,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
-####z Test a 64-bit (x64) app
+#### z Test a 64-bit (x64) app
 
 **Current release**
 
@@ -821,7 +821,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
-###z ASP.NET Core Module stdout log (Azure App Service)
+### z ASP.NET Core Module stdout log (Azure App Service)
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
@@ -844,7 +844,7 @@ For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-
 
 <a name="enhanced-diagnostic-logs"></a>
 
-###z ASP.NET Core Module debug log (Azure App Service)
+### z ASP.NET Core Module debug log (Azure App Service)
 
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
 
@@ -873,11 +873,11 @@ For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enha
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-###z Slow or hanging app (Azure App Service)
+### z Slow or hanging app (Azure App Service)
 
 When an app responds slowly or hangs on a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation).
 
-###z Monitoring blades
+### z Monitoring blades
 
 Monitoring blades provide an alternative troubleshooting experience to the methods described earlier in the topic. These blades can be used to diagnose 500-series errors.
 
@@ -925,9 +925,9 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 >
 > For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-##z Troubleshoot on IIS
+## z Troubleshoot on IIS
 
-###z Application Event Log (IIS)
+### z Application Event Log (IIS)
 
 Access the Application Event Log:
 
@@ -936,11 +936,11 @@ Access the Application Event Log:
 1. Select **Application** to open the Application Event Log.
 1. Search for errors associated with the failing app. Errors have a value of *IIS AspNetCore Module* or *IIS Express AspNetCore Module* in the *Source* column.
 
-###z Run the app at a command prompt
+### z Run the app at a command prompt
 
 Many startup errors don't produce useful information in the Application Event Log. You can find the cause of some errors by running the app at a command prompt on the hosting system.
 
-####z Framework-dependent deployment
+#### z Framework-dependent deployment
 
 If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
@@ -948,7 +948,7 @@ If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framewo
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the hosting configuration and less likely within the app.
 
-####z Self-contained deployment
+#### z Self-contained deployment
 
 If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
 
@@ -956,7 +956,7 @@ If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contain
 1. The console output from the app, showing any errors, is written to the console window.
 1. If the errors occur when making a request to the app, make a request to the host and port where Kestrel listens. Using the default host and post, make a request to `http://localhost:5000/`. If the app responds normally at the Kestrel endpoint address, the problem is more likely related to the hosting configuration and less likely within the app.
 
-###z ASP.NET Core Module stdout log (IIS)
+### z ASP.NET Core Module stdout log (IIS)
 
 To enable and view stdout logs:
 
@@ -982,7 +982,7 @@ For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-
 >
 > For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-###z ASP.NET Core Module debug log (IIS)
+### z ASP.NET Core Module debug log (IIS)
 
 Add the following handler settings to the app's *web.config* file to enable ASP.NET Core Module debug log:
 
@@ -999,7 +999,7 @@ Confirm that the path specified for the log exists and that the app pool's ident
 
 For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
-###z Enable the Developer Exception Page
+### z Enable the Developer Exception Page
 
 The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) to run the app in the Development environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](xref:fundamentals/error-handling) to appear when the app is run.
 
@@ -1017,15 +1017,15 @@ The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](x
 
 Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommended for use on staging and testing servers that aren't exposed to the Internet. Remove the environment variable from the *web.config* file after troubleshooting. For information on setting environment variables in *web.config*, see [environmentVariables child element of aspNetCore](xref:host-and-deploy/aspnet-core-module#setting-environment-variables).
 
-###z Obtain data from an app
+### z Obtain data from an app
 
 If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
 
-###z Slow or hanging app (IIS)
+### z Slow or hanging app (IIS)
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
-####z App crashes or encounters an exception
+#### z App crashes or encounters an exception
 
 Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/wer/windows-error-reporting):
 
@@ -1062,15 +1062,15 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-####z App hangs, fails during startup, or runs normally
+#### z App hangs, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 
-####z Analyze the dump
+#### z Analyze the dump
 
 A dump can be analyzed using several approaches. For more information, see [Analyzing a User-Mode Dump File](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
-##z Clear package caches
+## z Clear package caches
 
 A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
@@ -1082,7 +1082,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-##z Additional resources
+## z Additional resources
 
 * <xref:test/debug-aspnetcore-source>
 * <xref:test/troubleshoot>
@@ -1090,7 +1090,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 * <xref:fundamentals/error-handling>
 * <xref:host-and-deploy/aspnet-core-module>
 
-###z Azure documentation
+### z Azure documentation
 
 * [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core)
 * [Remote debugging web apps section of Troubleshoot a web app in Azure App Service using Visual Studio](/azure/app-service/web-sites-dotnet-troubleshoot-visual-studio#remotedebug)
@@ -1102,13 +1102,13 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 * [Application performance FAQs for Web Apps in Azure](/azure/app-service/app-service-web-availability-performance-application-issues-faq)
 * [Azure Web App sandbox (App Service runtime execution limitations)](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)
 
-###z Visual Studio documentation
+### z Visual Studio documentation
 
 * [Remote Debug ASP.NET Core on IIS in Azure in Visual Studio 2017](/visualstudio/debugger/remote-debugging-azure)
 * [Remote Debug ASP.NET Core on a Remote IIS Computer in Visual Studio 2017](/visualstudio/debugger/remote-debugging-aspnet-on-a-remote-iis-computer)
 * [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)
 
-###z Visual Studio Code documentation
+### z Visual Studio Code documentation
 
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
