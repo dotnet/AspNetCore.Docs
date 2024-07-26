@@ -12,7 +12,7 @@ uid: test/troubleshoot-azure-iis
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article provides information on common app startup errors and instructions on how to diagnose errors when an app is deployed to Azure App Service or IIS:
+This article provides information on common app startup errors and instructions on how to diagnose errors when an app is deployed to IIS:
 
 [App startup errors](#app-startup-errors)  
 Explains common startup HTTP status code scenarios.
@@ -50,13 +50,12 @@ The error is usually caused by a broken deployment on the hosting system, which 
 Perform the following steps:
 
 1. Delete all of the files and folders from the deployment folder on the hosting system.
-1. Redeploy the contents of the app's *publish* folder to the hosting system using your normal method of deployment, such as Visual Studio, PowerShell, or manual deployment:
-   * Confirm that the *web.config* file is present in the deployment and that its contents are correct.
-   * When hosting on Azure App Service, confirm that the app is deployed to the `D:\home\site\wwwroot` folder.
-   * When the app is hosted by IIS, confirm that the app is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings**.
+1. Redeploy the contents of the app's *publish* folder to the hosting system using your normal method of deployment, such as Visual Studio, PowerShell, or manual deployment. * Confirm that the:
+    *web.config* file is present in the deployment and that its contents are correct.
+   * App is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings**.
 1. Confirm that all of the app's files and folders are deployed by comparing the deployment on the hosting system to the contents of the project's *publish* folder.
 
-For more information on the layout of a published ASP.NET Core app, see <xref:host-and-deploy/directory-structure>. For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
 
 ### 500 Internal Server Error
 
@@ -82,10 +81,7 @@ The worker process fails. The app doesn't start.
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
 
-Common failure conditions:
-
-* The app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
-* Using Azure Key Vault, lack of permissions to the Key Vault. Check the access policies in the targeted Key Vault to ensure that the correct permissions are granted.
+The app my be misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
 
 ### 500.31 ANCM Failed to Find Native Dependencies
 
@@ -115,7 +111,7 @@ When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable i
 
 The worker process fails. The app doesn't start.
 
-The most common cause for this error is that the app is published for an incompatible processor architecture. If the worker process is running as a 32-bit app and the app was published to target 64-bit, this error occurs.
+Typically, the app is published for an incompatible processor architecture. If the worker process is running as a 32-bit app and the app was published to target 64-bit, this error occurs.
 
 To fix this error, either:
 
@@ -220,105 +216,6 @@ If an error occurs after the headers are sent, it's too late for the server to s
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
 
-## Troubleshoot on Azure App Service
-
-[!INCLUDE [Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
-
-### Azure App Services Log stream
-
-The Azure App Services Log streams logging information as it occurs. To view streaming logs:
-
-1. In the Azure portal, open the app in **App Services**.
-1. In the left pane, navigate to **Monitoring** > **App Service Logs**.
-  ![App Service Logs](https://user-images.githubusercontent.com/3605364/183573538-80645002-d1c3-4451-9a2f-91ef4de4e248.png)
-1. Select **File System** for **Web Server Logging**. Optionally enable **Application logging**.
-  ![enable logging](https://user-images.githubusercontent.com/3605364/183529287-f63d3e1c-ee5b-4ca1-bcb6-a8c29d8b26f5.png)
-1. In the left pane, navigate to **Monitoring** > **Log stream**, and then select **Application logs** or **Web Server Logs**.
-
-  ![Monitoring Log stream](https://user-images.githubusercontent.com/3605364/183561255-91f3d5e1-141b-413b-a403-91e74a770545.png)
-
-  The following images shows the application logs output:
-
-  ![app logs](https://user-images.githubusercontent.com/3605364/183528795-532665c0-ce87-4ed3-8e4d-4b374d469c2a.png)
-
-Streaming logs have some latency and might not display immediately.
-
-### Application Event Log (Azure App Service)
-
-To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal:
-
-1. In the Azure portal, open the app in **App Services**.
-1. Select **Diagnose and solve problems**.
-1. Select the **Diagnostic Tools** heading.
-1. Under **Support Tools**, select the **Application Events** button.
-1. Examine the latest error provided by the *IIS AspNetCoreModule* or *IIS AspNetCoreModule V2* entry in the **Source** column.
-
-An alternative to using the **Diagnose and solve problems** blade is to examine the Application Event Log file directly using [Kudu](https://github.com/projectkudu/kudu/wiki):
-
-1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
-1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-1. Open the **LogFiles** folder.
-1. Select the pencil icon next to the `eventlog.xml` file.
-1. Examine the log. Scroll to the bottom of the log to see the most recent events.
-
-### Run the app in the Kudu console
-
-Many startup errors don't produce useful information in the Application Event Log. You can run the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console to discover the error:
-
-1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
-1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-
-#### Test a 32-bit (x86) app
-
-**Current release**
-
-1. `cd d:\home\site\wwwroot`
-1. Run the app:
-   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
-
-     ```dotnetcli
-     dotnet .\{ASSEMBLY NAME}.dll
-     ```
-
-   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
-
-     ```console
-     {ASSEMBLY NAME}.exe
-     ```
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-**Framework-dependent deployment running on a preview release**
-
-*Requires installing the ASP.NET Core {VERSION} (x86) Runtime site extension.*
-
-1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` is the runtime version)
-1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-#### Test a 64-bit (x64) app
-
-**Current release**
-
-* If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
-  1. `cd D:\Program Files\dotnet`
-  1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
-* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
-  1. `cd D:\home\site\wwwroot`
-  1. Run the app: `{ASSEMBLY NAME}.exe`
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-**Framework-dependent deployment running on a preview release**
-
-*Requires installing the ASP.NET Core {VERSION} (x64) Runtime site extension.*
-
-1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` is the runtime version)
-1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
 ### ASP.NET Core Module stdout log (Azure App Service)
 
 > [!WARNING]
@@ -327,7 +224,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
-
+zzz
 1. In the Azure Portal, navigate to the web app.
 1. In the **App Service** blade, enter **kudu** in the search box.
 1. Select **Advanced Tools** > **Go**.
