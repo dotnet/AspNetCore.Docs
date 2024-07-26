@@ -5,12 +5,10 @@ description: Learn how to diagnose problems with Azure App Service and Internet 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/11/2024
+ms.date: 7/23/2024
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
-
-By [Justin Kotalik](https://github.com/jkotalik)
 
 :::moniker range=">= aspnetcore-8.0"
 

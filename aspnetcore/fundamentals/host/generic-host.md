@@ -10,6 +10,8 @@ uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 This article provides information on using the .NET Generic Host in ASP.NET Core.

@@ -10,6 +10,8 @@ uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Justin Kotalik](https://github.com/jkotalik)
 
 This article explains how to read from the request body and write to the response body. Code for these operations might be required when writing middleware. Outside of writing middleware, custom code isn't generally required because the operations are handled by MVC and Razor Pages.

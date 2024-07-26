@@ -35,6 +35,12 @@ The following deployment strategies are supported:
 
 :::moniker-end
 
+## Subdomain and IIS sub-application hosting
+
+Subdomain hosting doesn't require special configuration of the app. You ***don't*** need to configure the app base path (the `<base>` tag in `wwwroot/index.html`) to host the app at a subdomain.
+
+IIS sub-application hosting ***does*** require you to set the app base path. For more information and cross-links to further guidance on IIS sub-application hosting, see <xref:blazor/host-and-deploy/index#iis>.
+
 ## Decrease maximum heap size for some mobile device browsers
 
 :::moniker range=">= aspnetcore-8.0"

@@ -15,7 +15,7 @@ ms.custom: engagement-fy23
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
 
@@ -75,7 +75,7 @@ Name the controller **HelloWorldController**.
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/HelloWorldController.cs?name=snippet_First)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_First)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -103,7 +103,7 @@ MVC invokes controller classes, and the action methods within them, depending on
 
 The routing format is set in the `Program.cs` file.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_MapControllerRoute&highlight=3)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_MapControllerRoute&highlight=3)]
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.  In the preceding URL segments:
 
@@ -121,7 +121,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/HelloWorldController.cs?name=snippet_Second)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_Second)]
 
 The preceding code:
 
@@ -144,7 +144,7 @@ In the previous image:
 
 Replace the `Welcome` method with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Controllers/HelloWorldController.cs?name=snippet_Third)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_Third)]
 
 Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
@@ -154,7 +154,7 @@ In the preceding URL:
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` starts the [query string](https://wikipedia.org/wiki/Query_string).
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_MapControllerRoute&highlight=3)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_MapControllerRoute&highlight=3)]
 
 In the preceding example:
 
@@ -167,6 +167,8 @@ In the preceding example:
 > [Next: Add a View](~/tutorials/first-mvc-app/adding-view.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller8.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller7.md)]
 
