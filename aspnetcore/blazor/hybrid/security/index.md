@@ -543,6 +543,13 @@ When implementing authentication:
 
 * <xref:blazor/security/index>
 * <xref:blazor/hybrid/security/security-considerations>
+* Entra ID documentation for .NET MAUI
+  * [Tutorial: Register and configure .NET MAUI mobile app in an external tenant](/entra/external-id/customers/tutorial-mobile-app-maui-sign-in-prepare-tenant)
+  * [Sign in users in a sample .NET MAUI Android application](/entra/external-id/customers/how-to-mobile-app-maui-sample-sign-in)
+  * [Sign in users in a sample .NET MAUI desktop application](/entra/external-id/customers/how-to-desktop-app-maui-sample-sign-in)
+* Azure documentation for .NET MAUI
+  * [Add authentication to your .NET MAUI app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/maui/authentication)
+  * [MAUI mobile or desktop application using Microsoft Entra ID for authentication](https://github.com/Azure-Samples/ms-identity-dotnetcore-maui)
 
 ::: moniker-end
 
