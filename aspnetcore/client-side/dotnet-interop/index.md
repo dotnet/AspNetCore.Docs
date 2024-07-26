@@ -215,7 +215,7 @@ let PrimitivesShim = {};
 export { PrimitivesShim };
 ```
 
-`PrimitivesShim.cs`:
+`PrimitivesInterop.cs`:
 
 ```csharp
 using System.Runtime.InteropServices.JavaScript;
@@ -343,7 +343,7 @@ let DateShim = {};
 export { DateShim };
 ```
 
-`DateShim.cs`:
+`DateInterop.cs`:
 
 ```csharp
 using System.Runtime.InteropServices.JavaScript;
@@ -421,7 +421,7 @@ let JSObjectShim = {};
 export { JSObjectShim };
 ```
 
-`JSObjectShim.cs`:
+`JSObjectInterop.cs`:
 
 ```csharp
 using System;
@@ -555,7 +555,7 @@ When calling asynchronous JS methods, we often want to wait until the JS method 
 
 If the JS shim returns a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), then C# can treat it as an awaitable <xref:System.Threading.Tasks.Task>/<xref:System.Threading.Tasks.Task%601>.
 
-`PromisesShim.cs`:
+`PromisesInterop.cs`:
 
 ```csharp
 using System;
@@ -649,7 +649,7 @@ The preceding example displays the following output in the browser's debug conso
 
 A nuance of `removeEventListener` is that it requires a reference to the function previously passed to `addEventListener`. When a C# <xref:System.Action> is passed across the interop boundary, it's wrapped in a JS proxy object. Therefore, passing the same C# <xref:System.Action> to both `addEventListener` and `removeEventListener` results in generating two different JS proxy objects wrapping the <xref:System.Action>. These references are different, thus `removeEventListener` isn't able to find the event listener to remove. To address this problem, the following examples wrap the C# <xref:System.Action> in a JS function and return the reference as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> from the subscribe call to pass later to the unsubscribe call. Because the C# <xref:System.Action> is returned and passed as a <xref:System.Runtime.InteropServices.JavaScript.JSObject>, the same reference is used for both calls, and the event listener can be removed.
 
-`EventShim.js`:
+`EventsShim.js`:
 
 ```javascript
 let EventsShim = {};
@@ -714,7 +714,7 @@ let EventsShim = {};
 export { EventsShim };
 ```
 
-`EventsShim.cs`:
+`EventsInterop.cs`:
 
 ```csharp
 using System;

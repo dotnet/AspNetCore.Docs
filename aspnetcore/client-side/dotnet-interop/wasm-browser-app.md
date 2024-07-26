@@ -35,7 +35,12 @@ dotnet workload install wasm-tools
 
 The tools can also be installed via Visual Studio's installer under the **ASP.NET and web development** workload in the Visual Studio installer. Select the **.NET WebAssembly build tools** option from the list of optional components.
 
-Optionally, install the `wasm-experimental` workload, which contains experimental project templates for getting started with .NET on WebAssembly in a browser app (WebAssembly Browser App) or in a Node.js-based console app (WebAssembly Console App). This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
+Optionally, install the `wasm-experimental` workload, which adds the following experimental project templates:
+
+* *WebAssembly Browser App* for getting started with .NET on WebAssembly in a browser app.
+* *WebAssembly Console App* for getting started in a Node.js-based console app.
+
+After installing the workload, these new templates can be selected when creating a new project. This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
 
 ```dotnetcli
 dotnet workload install wasm-experimental
