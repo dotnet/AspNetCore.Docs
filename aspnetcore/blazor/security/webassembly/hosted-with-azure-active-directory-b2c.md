@@ -89,7 +89,7 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 In **API permissions** from the sidebar:
 
 1. Select **Add a permission** followed by **My APIs**.
-1. Select the *Server API app* from the **Name** column (for example, **Blazor Server AAD B2C**).
+1. Select the *Server API app* from the **Name** column (for example, **Blazor Server AAD B2C**). You must be an owner of the app registration (and the API app registration if it's a separate app) in order to see the API in the **My APIs** area of the Azure portal. For more information, see [Assign application owner (Microsoft Entra documentation)](/entra/identity-platform/quickstart-configure-app-expose-web-apis#assign-application-owner).
 1. Open the **API** list if it isn't already open.
 1. Enable access to the API (for example, `API.Access`) with the checkbox.
 1. Select **Add permissions**.
