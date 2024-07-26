@@ -58,9 +58,9 @@ GlobalInterop.ConsoleLog("Hello World!");
 
 The output appears in the browser's console.
 
-The following demonstrates importing a static method declared in JS.
+The following demonstrates importing a method declared in JS.
 
-The following custom static method (`globalThis.callAlert`) spawns an [alert dialog (`window.alert`)](https://developer.mozilla.org/docs/Web/API/Window/alert) with the message passed in `text`:
+The following custom JS method (`globalThis.callAlert`) spawns an [alert dialog (`window.alert`)](https://developer.mozilla.org/docs/Web/API/Window/alert) with the message passed in `text`:
 
 ```javascript
 globalThis.callAlert = function (text) {
@@ -200,8 +200,6 @@ let PrimitivesShim = {};
 
   // Returns an int.
   PrimitivesShim.GetCounter = () => globalThis.counter;
-  // Identical result with more verbose syntax:
-  // Primitives.GetCounter = function () { return counter; };
 
   // Takes a parameter and returns nothing. JS doesn't restrict the parameter type, 
   // but we can restrict it in the .NET proxy, if desired.
