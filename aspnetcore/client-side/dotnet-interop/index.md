@@ -252,7 +252,7 @@ public partial class PrimitivesInterop
     // Some types have multiple mappings and require explicit marshalling to the 
     // desired JS type. A long/Int64 can be mapped as either a Number or BigInt.
     // Passing a long value to the above method generates an error at runtime:
-    // "ToJS for System.Int64 is not implemented."
+    // "ToJS for System.Int64 is not implemented." ("ToJS" means "to JavaScript")
     // If the parameter declaration `Method(JSMarshalAs<JSType.Any>] long value)` 
     // is used, a compile-time error is generated:
     // "Type long is not supported by source-generated JS interop...."
