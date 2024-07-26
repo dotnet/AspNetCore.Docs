@@ -223,8 +223,10 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
-zzz
+#### Kudu console
+
+Navigate to the Kudu console to enable stdout logging:
+1. In the Azure Portal, navigate to the web app.
 1. In the **App Service** blade, enter **kudu** in the search box.
 1. Select **Advanced Tools** > **Go**.
 1. Select  **Debug console > CMD**.
@@ -505,6 +507,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 ### Visual Studio Code documentation
 
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
+
 
 <!-- copy/paste starts here wit Azure only, delete IIS  ZZZ -->
 
