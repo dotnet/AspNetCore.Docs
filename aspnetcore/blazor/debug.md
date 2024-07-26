@@ -341,27 +341,6 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 ---
 
-<!-- UPDATE 9.0 Remove the following versioning on the Debugger
-                support section at 9.0 GA -->
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Debugger support
-
-Debugging is enabled for the runtime when debugger support is enabled with `<DebuggerSupport>{VALUE}</DebuggerSupport>`, where the `{VALUE}` place holder is either `true` or `false`.
-
-By default, the Blazor framework *disables* debugger support for all non-Debug configurations. To enable debugger support for a non-Debug configuration, add a `<DebuggerSupport>` property to the app's project file.
-
-In the following example, debugger support is enabled for the custom "`DebugCustom`" configuration:
-
-```xml
-<DebuggerSupport Condition="'$(Configuration)' == 'DebugCustom'">true</DebuggerSupport>
-```
-
-For more information, see [Blazor WebAssembly custom debugger configuration (`dotnet/runtime` #96239)](https://github.com/dotnet/runtime/issues/96239).
-
-:::moniker-end
-
 :::moniker range="< aspnetcore-8.0"
 
 ## Debug a hosted Blazor WebAssembly app in an IDE
