@@ -26,6 +26,12 @@ Collocated JS files are publicly addressable using the ***path to the file in th
   }
   ```
 
+  You can configure the default layout `(Pages/Shared/_Layout.cshtml)` to always include collocated JS files, eliminating the need to configure each page individually:
+
+  ```razor
+  <script asp-src-include="@(ViewContext.View.Path).js"></script>
+  ```
+  
   When the app is published, the framework automatically moves the script to the web root. In the preceding example, the script is moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Pages\Index.cshtml.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks). No change is required to the script's relative URL in the `Index` page.
 
   When the app is published, the framework automatically moves the script to the web root. In the preceding example, the script is moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Components\Pages\Index.razor.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks). No change is required to the script's relative URL in the `Index` component.
