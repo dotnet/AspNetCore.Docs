@@ -218,7 +218,7 @@ Logs created with the [default logging providers](#lp) are displayed:
   * In the ASP.NET Core Web Server window.
 * In the console window when the app is run with `dotnet run`.
 
-Logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code use the same logging API and providers.
+Logs that begin with "Microsoft" categories are from .NET. .NET and application code use the same logging API and providers.
 
 <a name="lcat"></a>
 
