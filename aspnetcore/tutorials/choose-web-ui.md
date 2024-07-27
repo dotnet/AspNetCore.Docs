@@ -79,7 +79,7 @@ To get started, see:
 * [Create an ASP.NET Core app with Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue)
 * [JavaScript and TypeScript in Visual Studio](/visualstudio/javascript/javascript-in-visual-studio)
 
-## Choose a hybrid solution: ASP.NET Core MVC or Razor Pages plus Blazor
+## Combine multiple web UI solutions: ASP.NET Core MVC or Razor Pages plus Blazor
 
 MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps. When a view or page is rendered, components can be prerendered at the same time.
 
