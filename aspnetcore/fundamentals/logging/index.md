@@ -410,7 +410,7 @@ Generally, log levels should be specified in configuration and not code.
 
 ## ASP.NET Core categories
 
-The following table contains some categories used by ASP.NET Core:
+The following table contains some categories used by ASP.NET Core.
 
 | Category                              | Notes |
 | ------------------------------------- | ----- |
@@ -430,7 +430,7 @@ To view more categories in the console window, set **`appsettings.Development.js
 
 <!-- Review: What other providers support scopes? Console is not generally used in staging/production  -->
 
-See [EF Message categories](/ef/core/logging-events-diagnostics/simple-logging#message-categories) for a list of Entity Framework categories.
+For a list of Entity Framework categories, see [EF Message categories](/ef/core/logging-events-diagnostics/simple-logging#message-categories).
 
 <a name="logscopes"></a>
 
