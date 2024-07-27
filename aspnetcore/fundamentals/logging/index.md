@@ -218,7 +218,7 @@ Logs created with the [default logging providers](#lp) are displayed:
   * In the ASP.NET Core Web Server window.
 * In the console window when the app is run with `dotnet run`.
 
-Logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code use the same logging API and providers.
+Logs that begin with "Microsoft" categories are from .NET. .NET and application code use the same [logging API and providers](/dotnet/core/extensions/logging).
 
 <a name="lcat"></a>
 
@@ -408,9 +408,9 @@ The preceding code displays console logs when the category contains `Controller`
 
 Generally, log levels should be specified in configuration and not code.
 
-## ASP.NET Core and EF Core categories
+## ASP.NET Core categories
 
-The following table contains some categories used by ASP.NET Core and Entity Framework Core, with notes about the logs:
+The following table contains some categories used by ASP.NET Core.
 
 | Category                              | Notes |
 | ------------------------------------- | ----- |
@@ -422,13 +422,15 @@ The following table contains some categories used by ASP.NET Core and Entity Fra
 | `Microsoft.AspNetCore.Routing`        | Route matching information. |
 | `Microsoft.AspNetCore.Server`         | Connection start, stop, and keep alive responses. HTTPS certificate information. |
 | `Microsoft.AspNetCore.StaticFiles`    | Files served. |
-| `Microsoft.EntityFrameworkCore`       | General Entity Framework Core diagnostics. Database activity and configuration, change detection, migrations. |
+
 
 To view more categories in the console window, set **`appsettings.Development.json`** to the following:
 
 [!code-json[](~/fundamentals/logging/index/samples/3.x/MyMain/appsettings.Trace.json)]
 
 <!-- Review: What other providers support scopes? Console is not generally used in staging/production  -->
+
+For a list of Entity Framework categories, see [EF Message categories](/ef/core/logging-events-diagnostics/simple-logging#message-categories).
 
 <a name="logscopes"></a>
 
