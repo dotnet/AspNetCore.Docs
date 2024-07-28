@@ -107,7 +107,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
-![Privacy tab](~/tutorials/first-mvc-app/adding-view//9/privacy90.png)
+![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/9/privacy90.png)
 
 Select the **Home** link.
 
