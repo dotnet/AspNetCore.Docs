@@ -76,7 +76,7 @@ Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlight
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](~/tutorials/first-mvc-app/search/_/9/filter90.png)
+![Index view with the word ghost typed into the Title filter textbox](~/tutorials/first-mvc-app/search/_static/9/filter90.png)
 
 There's no `[HttpPost]` overload of the `Index` method as you might expect. You don't need it, because the method isn't changing the state of the app, just filtering data.
 

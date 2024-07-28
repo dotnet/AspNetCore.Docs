@@ -98,7 +98,7 @@ For this tutorial, Entity Framework Migrations is used.
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/9/pmc-VS22-17.1.0.png)
+  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/9/pmc-VS22-17.11.0.png)
 
 In the Package Manager Console, enter the following command:
 

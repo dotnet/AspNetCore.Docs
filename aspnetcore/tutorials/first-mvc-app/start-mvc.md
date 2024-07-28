@@ -19,7 +19,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This is the first tutorial of a series that teaches ASP.NET Core MVC web development with controllers and views.
 
-In this series ou learn how to:
+In this series you learn how to:
 
 > [!div class="checklist"]
 > * Create a web app.
@@ -31,9 +31,9 @@ In this series ou learn how to:
 
 At the end of the series, you'll have an app that manages and displays movie data. 
 
-![Completed application showing the search UI](~/tutorials/first-mvc-app/search/_static/search2_90.png)
+![Completed application showing the search UI](~/tutorials/first-mvc-app/search/_static/9/search2_90.png)
 
-![Completed application showing client side valiation features](~/tutorials/first-mvc-app/validation/_static/val90.png)
+![Completed application showing client side valiation features](~/tutorials/first-mvc-app/validation/_static/9/val90.png)
 
 ## Prerequisites
 

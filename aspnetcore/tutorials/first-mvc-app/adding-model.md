@@ -317,7 +317,7 @@ For local development, the [ASP.NET Core configuration system](xref:fundamentals
 
 Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Migrations/20210915202210_InitialCreate.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Migrations/20240725022257_InitialCreate.cs)]
 
 In the preceding code:
 
