@@ -14,7 +14,8 @@ namespace MvcMovie.Migrations
                 name: "Rating",
                 table: "Movie",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: false,
+                defaultValue: "");
         }
 
         /// <inheritdoc />

@@ -4,8 +4,7 @@ author: wadepickett
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 10/19/2023
-ms.custom: engagement-fy23
+ms.date: 07/24/2024
 uid: tutorials/first-mvc-app/validation
 ---
 
@@ -26,14 +25,14 @@ In this section:
 
 One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ("Don't Repeat Yourself"). ASP.NET Core MVC encourages you to specify functionality or behavior only once, and then have it be reflected everywhere in an app. This reduces the amount of code you need to write and makes the code you do write less error prone, easier to test, and easier to maintain.
 
-The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
+The validation support provided by MVC and Entity Framework Core is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
 ## Delete the previously edited data
 
 In the next step, validation rules are added that don't allow null values. 
 Run the app, navigate to `/Movies/Index`, delete all listed movies, and stop the app.  The app will use the seed data the next time it is run.
 
-[!INCLUDE[](~/includes/RP-MVC/validation-net7.md)]
+[!INCLUDE[](~/includes/RP-MVC/validation-net9.md)]
 
 ## Validation Error UI
 
@@ -41,7 +40,7 @@ Run the app and navigate to the Movies controller.
 
 Select the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/val80.png)
+![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/9/val90.png)
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
@@ -63,15 +62,15 @@ You can set a break point in the `[HttpPost] Create` method and verify the metho
 
 The following image shows how to disable JavaScript in the Firefox browser.
 
-![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/ff.png)
+![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/9/firefox_disable_javascript90.png)
 
 The following image shows how to disable JavaScript in the Chrome browser.
 
-![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](~/tutorials/first-mvc-app/validation/_static/chrome.png)
+![Google Chrome: In the Javascript section of Content settings, select Do not allow any site to run JavaScript.](~/tutorials/first-mvc-app/validation/_static/9/chrome.png)
 
 After you disable JavaScript, post invalid data and step through the debugger.
 
-![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/ms.png)
+![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/9/ms.png)
 
 A portion of the `Create.cshtml` view template is shown in the following markup:
 

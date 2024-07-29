@@ -3,10 +3,9 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 02/15/2024
+ms.date: 07/24/2024
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
-ms.custom: engagement-fy23
 ---
 
 # Part 2, add a controller to an ASP.NET Core MVC app
@@ -45,11 +44,11 @@ These concepts are introduced and demonstrated in this tutorial series while bui
 
 In **Solution Explorer**, right-click **Controllers > Add > Controller**.
 
-![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/8/add-controller-VS22-17.8.0.png)
+![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/9/add-controller-VS22-17.11.0.png)
 
 In the **Add New Scaffolded Item** dialog box, select **MVC Controller - Empty** > **Add**.
 
-![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/8/add-scaffolded-item-controller-VS22-17.8.0.png)
+![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/9/add-scaffolded-item-controller-VS22-17.11.0.png)
 
 In the **Add New Item - MvcMovie** dialog, enter *`HelloWorldController.cs`* and select **Add**.
 
@@ -58,18 +57,6 @@ In the **Add New Item - MvcMovie** dialog, enter *`HelloWorldController.cs`* and
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file `HelloWorldController.cs`.
 
 ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-In **Solution Explorer**, control-click **Controllers** and select **Add > New File**.
-
-![Contextual menu for adding a controller](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
-
-Select **ASP.NET Core** and **Controller Class**.
-
-Name the controller **HelloWorldController**.
-
-![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac_MacVS22.png)
 
 ---
 
@@ -95,7 +82,7 @@ Run the app without the debugger by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Wind
 
 Append `/HelloWorld` to the path in the address bar. The `Index` method returns a string.
 
-![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
+![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/9/hello1.png)
 
 MVC invokes controller classes, and the action methods within them, depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC, uses a format like this to determine what code to invoke:
 
@@ -115,7 +102,7 @@ Browse to: `https://localhost:{PORT}/HelloWorld/Welcome`. Replace `{PORT}` with 
 
 The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
-![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
+![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/9/welcome.png)
 
 Modify the code to pass some parameter information from the URL to the controller. For example, `/HelloWorld/Welcome?name=Rick&numtimes=4`.
 
@@ -133,7 +120,7 @@ Run the app and browse to: `https://localhost:{PORT}/HelloWorld/Welcome?name=Ric
 
 Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/9/rick4.png)
 
 In the previous image:
 

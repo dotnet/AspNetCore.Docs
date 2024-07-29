@@ -17,7 +17,7 @@ namespace MvcMovie.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0-preview.3.23174.2")
+                .HasAnnotation("ProductVersion", "9.0.0-preview.6.24327.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -37,6 +37,7 @@ namespace MvcMovie.Migrations
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("Rating")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")

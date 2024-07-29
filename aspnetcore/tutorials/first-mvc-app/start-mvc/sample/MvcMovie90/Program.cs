@@ -4,12 +4,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
-
 // <snippet_FirstSQLServer>
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddDbContext<MvcMovieContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
 // </snippet_FirstSQLServer>
 
 // Add services to the container.
@@ -26,11 +24,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapStaticAssets();
 
 // <snippet_MapControllerRoute>
 app.MapControllerRoute(
@@ -45,10 +43,8 @@ app.Run();
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
-
 // <snippet_FirstSQLite>
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddDbContext<MvcMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));
 // </snippet_FirstSQLite>
@@ -67,11 +63,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
@@ -84,7 +81,6 @@ app.Run();
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
-
 // <snippet_SQLiteDevProd>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -114,11 +110,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
@@ -133,11 +130,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 using MvcMovie.Models;
-
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddDbContext<MvcMovieContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -160,11 +155,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
@@ -180,7 +176,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 using MvcMovie.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
@@ -207,11 +202,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
