@@ -187,30 +187,22 @@ The following example demonstrates `[JSImport]` leveraging type mappings of seve
 `PrimitivesShim.js`:
 
 ```javascript
-let PrimitivesShim = {};
+globalThis.counter = 0;
 
-(function (PrimitivesShim) {
+// Takes no parameters and returns nothing.
+PrimitivesShim.IncrementCounter = function () {
+  globalThis.counter += 1;
+};
 
-  globalThis.counter = 0;
+// Returns an int.
+PrimitivesShim.GetCounter = () => globalThis.counter;
 
-  // Takes no parameters and returns nothing.
-  PrimitivesShim.IncrementCounter = function () {
-    globalThis.counter += 1;
-  };
+// Takes a parameter and returns nothing. JS doesn't restrict the parameter type, 
+// but we can restrict it in the .NET proxy, if desired.
+PrimitivesShim.LogValue = (value) => { console.log(value); };
 
-  // Returns an int.
-  PrimitivesShim.GetCounter = () => globalThis.counter;
-
-  // Takes a parameter and returns nothing. JS doesn't restrict the parameter type, 
-  // but we can restrict it in the .NET proxy, if desired.
-  PrimitivesShim.LogValue = (value) => { console.log(value); };
-
-  // Called for various .NET types to demonstrate mapping to JS primitive types.
-  PrimitivesShim.LogValueAndType = (value) => { console.log(typeof value, value); };
-
-})(PrimitivesShim);
-
-export { PrimitivesShim };
+// Called for various .NET types to demonstrate mapping to JS primitive types.
+PrimitivesShim.LogValueAndType = (value) => { console.log(typeof value, value); };
 ```
 
 `PrimitivesInterop.cs`:
@@ -320,25 +312,17 @@ A `Date` object is timezone agnostic. A .NET <xref:System.DateTime> is adjusted 
 `DateShim.js`:
 
 ```javascript
-let DateShim = {};
+DateShim.IncrementDay = function (date) {
+  date.setDate(date.getDate() + 1);
+  return date;
+};
 
-(function (DateShim) {
-
-  DateShim.IncrementDay = function (date) {
-    date.setDate(date.getDate() + 1);
-    return date;
-  };
-
-  DateShim.LogValueAndType = (value) => {
-    if (value instanceof Date) 
-      console.log("Date:", value)
-    else
-      console.log("Not a Date:", value)
-  };
-
-})(DateShim);
-
-export { DateShim };
+DateShim.LogValueAndType = (value) => {
+  if (value instanceof Date) 
+    console.log("Date:", value)
+  else
+    console.log("Not a Date:", value)
+};
 ```
 
 `DateInterop.cs`:
@@ -380,6 +364,8 @@ The preceding example displays the following output in the browser's debug conso
 > :::no-loc text="Date: Sat Dec 21 1968 07:51:00 GMT-0500 (Eastern Standard Time)":::  
 > :::no-loc text="Date: Sun Dec 22 1968 07:51:00 GMT-0500 (Eastern Standard Time)":::
 
+The preceding timezone information (`GMT-0500 (Eastern Standard Time)`) depends on local timezone of your computer/browser.
+
 ## JS object references
 
 Whenever a JS method returns an object reference, it's represented in .NET as a <xref:System.Runtime.InteropServices.JavaScript.JSObject>. The original JS object continues its lifetime within the JS boundary, while .NET code can access and modify it by reference through the <xref:System.Runtime.InteropServices.JavaScript.JSObject>. While the type itself exposes a limited API, the ability to hold a JS object reference and return or pass it across the interop boundary enables support for several interop scenarios.
@@ -389,34 +375,26 @@ The <xref:System.Runtime.InteropServices.JavaScript.JSObject> provides methods t
 `JSObjectShim.js`:
 
 ```javascript
-let JSObjectShim = {};
-
-(function (JSObjectShim) {
-
-  JSObjectShim.CreateObject = function () {
-    return {
-      name: "Example JS Object",
-      answer: 41,
-      question: null,
-      summarize: function () {
-        return `Question: "${this.question}" Answer: ${this.answer}`;
-      }
-    };
+JSObjectShim.CreateObject = function () {
+  return {
+    name: "Example JS Object",
+    answer: 41,
+    question: null,
+    summarize: function () {
+      return `Question: "${this.question}" Answer: ${this.answer}`;
+    }
   };
+};
 
-  JSObjectShim.IncrementAnswer = function (object) {
-    object.answer += 1;
-    // Don't return the modified object, since the reference is modified.
-  };
+JSObjectShim.IncrementAnswer = function (object) {
+  object.answer += 1;
+  // Don't return the modified object, since the reference is modified.
+};
 
-  // Proxy an instance method call.
-  JSObjectShim.Summarize = function (object) {
-    return object.summarize();
-  };
-
-})(JSObjectShim);
-
-export { JSObjectShim };
+// Proxy an instance method call.
+JSObjectShim.Summarize = function (object) {
+  return object.summarize();
+};
 ```
 
 `JSObjectInterop.cs`:
@@ -485,66 +463,58 @@ JS with a callback, such as a `setTimeout`, can be wrapped in a [`Promise`](http
 `PromisesShim.js`:
 
 ```javascript
-let PromisesShim = {};
+PromisesShim.Wait2Seconds = function () {
+  // This also demonstrates wrapping a callback-based API in a promise to 
+  // make it awaitable.
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(); // Resolve promise after 2 seconds
+    }, 2000);
+  });
+};
 
-(function (PromisesShim) {
+// Return a value via resolve in a promise.
+PromisesShim.WaitGetString = function () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("String From Resolve"); // Return a string via promise
+    }, 500);
+  });
+};
 
-  PromisesShim.Wait2Seconds = function () {
-    // This also demonstrates wrapping a callback-based API in a promise to 
-    // make it awaitable.
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(); // Resolve promise after 2 seconds
-      }, 2000);
-    });
-  };
+PromisesShim.WaitGetDate = function () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(new Date('1988-11-24')) // Return a date via promise
+    }, 500);
+  });
+};
 
-  // Return a value via resolve in a promise.
-  PromisesShim.WaitGetString = function () {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve("String From Resolve"); // Return a string via promise
-      }, 500);
-    });
-  };
+// Demonstrates an awaitable fetch.
+PromisesShim.FetchCurrentUrl = function () {
+  // This method returns the promise returned by .then(*.text())
+  // and .NET awaits the returned promise.
+  return fetch(globalThis.window.location, { method: 'GET' })
+    .then(response => response.text());
+};
 
-  PromisesShim.WaitGetDate = function () {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(new Date('1988-11-24')) // Return a date via promise
-      }, 500);
-    });
-  };
+// .NET can await JS methods using the async/await JS syntax.
+PromisesShim.AsyncFunction = async function () {
+  await PromisesShim.Wait2Seconds();
+};
 
-  // Demonstrates an awaitable fetch.
-  PromisesShim.FetchCurrentUrl = function () {
-    // This method returns the promise returned by .then(*.text())
-    // and .NET awaits the returned promise.
-    return fetch(globalThis.window.location, { method: 'GET' })
-      .then(response => response.text());
-  };
-
-  // .NET can await JS methods using the async/await JS syntax.
-  PromisesShim.AsyncFunction = async function () {
-    await PromisesShim.Wait2Seconds();
-  };
-
-  // A Promise.reject can be used to signal failure and is bubbled to .NET code 
-  // as a JSException.
-  PromisesShim.ConditionalSuccess = function (shouldSucceed) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (shouldSucceed)
-          resolve(); // Success
-        else
-          reject("Reject: ShouldSucceed == false"); // Failure
-      }, 500);
-    });
-  };
-
-})(PromisesShim);
-
-export { PromisesShim };
+// A Promise.reject can be used to signal failure and is bubbled to .NET code 
+// as a JSException.
+PromisesShim.ConditionalSuccess = function (shouldSucceed) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldSucceed)
+        resolve(); // Success
+      else
+        reject("Reject: ShouldSucceed == false"); // Failure
+    }, 500);
+  });
+};
 ```
 
 Don't use the `async` keyword in the C# method signature. Returning <xref:System.Threading.Tasks.Task> or <xref:System.Threading.Tasks.Task%601> is sufficient.
@@ -640,172 +610,6 @@ The preceding example displays the following output in the browser's debug conso
 > :::no-loc text="responseText.Length: 582":::  
 > :::no-loc text="Waited 2.0s for AsyncFunction.":::  
 > :::no-loc text="JS Exception Caught: 'Reject: ShouldSucceed == false'":::
-
-## Subscribing to JS events
-
-.NET code can subscribe to JS events and handle JS events by passing a C# <xref:System.Action> to a JS function to act as a handler. The JS shim code handles subscribing to the event.
-
-A nuance of `removeEventListener` is that it requires a reference to the function previously passed to `addEventListener`. When a C# <xref:System.Action> is passed across the interop boundary, it's wrapped in a JS proxy object. Therefore, passing the same C# <xref:System.Action> to both `addEventListener` and `removeEventListener` results in generating two different JS proxy objects wrapping the <xref:System.Action>. These references are different, thus `removeEventListener` isn't able to find the event listener to remove. To address this problem, the following examples wrap the C# <xref:System.Action> in a JS function and return the reference as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> from the subscribe call to pass later to the unsubscribe call. Because the C# <xref:System.Action> is returned and passed as a <xref:System.Runtime.InteropServices.JavaScript.JSObject>, the same reference is used for both calls, and the event listener can be removed.
-
-`EventsShim.js`:
-
-```javascript
-let EventsShim = {};
-
-(function (EventsShim) {
-
-  EventsShim.SubscribeEventById = function (elementId, eventName, listenerFunc) {
-    const elementObj = document.getElementById(elementId);
-
-    // Need to wrap the Managed C# action in JS func (only because it is being 
-    // returned).
-    let handler = function (event) {
-      listenerFunc(event.type, event.target.id); // Decompose object to primitives
-    }.bind(elementObj);
-
-    elementObj.addEventListener(eventName, handler, false);
-    // Return JSObject reference so it can be used for removeEventListener later.
-    return handler;
-  }
-
-  // Param listenerHandler must be the JSObject reference returned from the prior 
-  // SubscribeEvent call.
-  EventsShim.UnsubscribeEventById = function (elementId, eventName, listenerHandler) {
-    const elementObj = document.getElementById(elementId);
-    elementObj.removeEventListener(eventName, listenerHandler, false);
-  }
-
-  EventsShim.TriggerClick = function (elementId) {
-    const elementObj = document.getElementById(elementId);
-    elementObj.click();
-  }
-
-  EventsShim.GetElementById = function (elementId) {
-    return document.getElementById(elementId);
-  }
-
-  EventsShim.SubscribeEvent = function (elementObj, eventName, listenerFunc) {
-    let handler = function (e) {
-      listenerFunc(e);
-    }.bind(elementObj);
-
-    elementObj.addEventListener(eventName, handler, false);
-    return handler;
-  }
-
-  EventsShim.UnsubscribeEvent = function (elementObj, eventName, listenerHandler) {
-    return elementObj.removeEventListener(eventName, listenerHandler, false);
-  }
-
-  EventsShim.SubscribeEventFailure = function (elementObj, eventName, listenerFunc) {
-    // It's not strictly required to wrap the C# action listenerFunc in a JS 
-    // function.
-    elementObj.addEventListener(eventName, listenerFunc, false);
-    // If you need to return the wrapped proxy object, you will receive an error 
-    // when it tries to wrap the existing proxy in an additional proxy:
-    // Error: "JSObject proxy of ManagedObject proxy is not supported."
-    return listenerFunc;
-  }
-
-})(EventsShim);
-
-export { EventsShim };
-```
-
-`EventsInterop.cs`:
-
-```csharp
-using System;
-using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-
-public partial class EventsInterop
-{
-    [JSImport("EventsShim.SubscribeEventById", "EventsShim")]
-    public static partial JSObject SubscribeEventById(string elementId, 
-        string eventName, 
-        [JSMarshalAs<JSType.Function<JSType.String, JSType.String>>] 
-        Action<string, string> listenerFunc);
-
-    [JSImport("EventsShim.UnsubscribeEventById", "EventsShim")]
-    public static partial void UnsubscribeEventById(string elementId, 
-        string eventName, JSObject listenerHandler);
-
-    [JSImport("EventsShim.TriggerClick", "EventsShim")]
-    public static partial void TriggerClick(string elementId);
-
-    [JSImport("EventsShim.GetElementById", "EventsShim")]
-    public static partial JSObject GetElementById(string elementId);
-
-    [JSImport("EventsShim.SubscribeEvent", "EventsShim")]
-    public static partial JSObject SubscribeEvent(JSObject htmlElement, 
-        string eventName, 
-        [JSMarshalAs<JSType.Function<JSType.Object>>] 
-        Action<JSObject> listenerFunc);
-
-    [JSImport("EventsShim.UnsubscribeEvent", "EventsShim")]
-    public static partial void UnsubscribeEvent(JSObject htmlElement, 
-        string eventName, JSObject listenerHandler);
-}
-
-public static class EventsUsage
-{
-    public static async Task Run()
-    {
-        await JSHost.ImportAsync("EventsShim", "/EventsShim.js");
-
-        Action<string, string> listenerFunc = (eventName, elementId) =>
-            Console.WriteLine(
-                $"In C# event listener: Event {eventName} from ID {elementId}");
-
-        JSObject listenerHandler1 = 
-            EventsInterop.SubscribeEventById("btn1", "click", listenerFunc);
-        JSObject listenerHandler2 = 
-            EventsInterop.SubscribeEventById("btn2", "click", listenerFunc);
-        Console.WriteLine("Subscribed to btn1 & 2.");
-        EventsInterop.TriggerClick("btn1");
-        EventsInterop.TriggerClick("btn2");
-
-        EventsInterop.UnsubscribeEventById("btn2", "click", listenerHandler2);
-        Console.WriteLine("Unsubscribed btn2.");
-        EventsInterop.TriggerClick("btn1");
-        EventsInterop.TriggerClick("btn2"); // Doesn't trigger because unsubscribed
-        EventsInterop.UnsubscribeEventById("btn1", "click", listenerHandler1);
-        // Pitfall: Using a different handler for unsubscribe silently fails.
-        // EventsInterop.UnsubscribeEventById("btn1", "click", listenerHandler2);
-
-        // With JSObject as event target and event object.
-        Action<JSObject> listenerFuncForElement = (eventObj) =>
-        {
-            string eventType = eventObj.GetPropertyAsString("type");
-            JSObject target = eventObj.GetPropertyAsJSObject("target");
-            Console.WriteLine(
-                $"In C# event listener: Event {eventType} from " +
-                $"ID {target.GetPropertyAsString("id")}");
-        };
-
-        JSObject htmlElement = EventsInterop.GetElementById("btn1");
-        JSObject listenerHandler3 = EventsInterop.SubscribeEvent(
-            htmlElement, "click", listenerFuncForElement);
-        Console.WriteLine("Subscribed to btn1.");
-        EventsInterop.TriggerClick("btn1");
-        EventsInterop.UnsubscribeEvent(htmlElement, "click", listenerHandler3);
-        Console.WriteLine("Unsubscribed btn1.");
-        EventsInterop.TriggerClick("btn1");
-    }
-}
-```
-
-The preceding example displays the following output in the browser's debug console:
-
-> :::no-loc text="Subscribed to btn1 & 2.":::  
-> :::no-loc text="In C# event listener: Event click from ID btn1":::  
-> :::no-loc text="In C# event listener: Event click from ID btn2":::  
-> :::no-loc text="Unsubscribed btn2.":::  
-> :::no-loc text="In C# event listener: Event click from ID btn1":::  
-> :::no-loc text="Subscribed to btn1.":::  
-> :::no-loc text="In C# event listener: Event click from ID btn1":::  
-> :::no-loc text="Unsubscribed btn1.":::
 
 ## Type mapping limitations
 
@@ -939,6 +743,167 @@ The preceding example displays the following output in the browser's debug conso
 > :::no-loc text="Begin Object Creation":::  
 > :::no-loc text="JS interop elapsed time: 2.1686 seconds at .002169 ms per operation":::  
 > :::no-loc text=".NET elapsed time: .1089 seconds at .000109 ms per operation":::
+
+## Subscribing to JS events
+
+.NET code can subscribe to JS events and handle JS events by passing a C# <xref:System.Action> to a JS function to act as a handler. The JS shim code handles subscribing to the event.
+
+> [!WARNING]
+> Interacting with individual properties of the DOM via JS interop, as the guidance in this section demonstrates, is relatively slow and may lead to the creation of many proxies that create high garbage collection pressure. The following pattern isn't generally recommended. Use the following pattern for no more than a few elements. For more information, see the [Performance considerations](#performance-considerations) section.
+
+A nuance of `removeEventListener` is that it requires a reference to the function previously passed to `addEventListener`. When a C# <xref:System.Action> is passed across the interop boundary, it's wrapped in a JS proxy object. Therefore, passing the same C# <xref:System.Action> to both `addEventListener` and `removeEventListener` results in generating two different JS proxy objects wrapping the <xref:System.Action>. These references are different, thus `removeEventListener` isn't able to find the event listener to remove. To address this problem, the following examples wrap the C# <xref:System.Action> in a JS function and return the reference as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> from the subscribe call to pass later to the unsubscribe call. Because the C# <xref:System.Action> is returned and passed as a <xref:System.Runtime.InteropServices.JavaScript.JSObject>, the same reference is used for both calls, and the event listener can be removed.
+
+`EventsShim.js`:
+
+```javascript
+EventsShim.SubscribeEventById = function (elementId, eventName, listenerFunc) {
+  const elementObj = document.getElementById(elementId);
+
+  // Need to wrap the Managed C# action in JS func (only because it is being 
+  // returned).
+  let handler = function (event) {
+    listenerFunc(event.type, event.target.id); // Decompose object to primitives
+  }.bind(elementObj);
+
+  elementObj.addEventListener(eventName, handler, false);
+  // Return JSObject reference so it can be used for removeEventListener later.
+  return handler;
+}
+
+// Param listenerHandler must be the JSObject reference returned from the prior 
+// SubscribeEvent call.
+EventsShim.UnsubscribeEventById = function (elementId, eventName, listenerHandler) {
+  const elementObj = document.getElementById(elementId);
+  elementObj.removeEventListener(eventName, listenerHandler, false);
+}
+
+EventsShim.TriggerClick = function (elementId) {
+  const elementObj = document.getElementById(elementId);
+  elementObj.click();
+}
+
+EventsShim.GetElementById = function (elementId) {
+  return document.getElementById(elementId);
+}
+
+EventsShim.SubscribeEvent = function (elementObj, eventName, listenerFunc) {
+  let handler = function (e) {
+    listenerFunc(e);
+  }.bind(elementObj);
+
+  elementObj.addEventListener(eventName, handler, false);
+  return handler;
+}
+
+EventsShim.UnsubscribeEvent = function (elementObj, eventName, listenerHandler) {
+  return elementObj.removeEventListener(eventName, listenerHandler, false);
+}
+
+EventsShim.SubscribeEventFailure = function (elementObj, eventName, listenerFunc) {
+  // It's not strictly required to wrap the C# action listenerFunc in a JS 
+  // function.
+  elementObj.addEventListener(eventName, listenerFunc, false);
+  // If you need to return the wrapped proxy object, you will receive an error 
+  // when it tries to wrap the existing proxy in an additional proxy:
+  // Error: "JSObject proxy of ManagedObject proxy is not supported."
+  return listenerFunc;
+}
+```
+
+`EventsInterop.cs`:
+
+```csharp
+using System;
+using System.Runtime.InteropServices.JavaScript;
+using System.Threading.Tasks;
+
+public partial class EventsInterop
+{
+    [JSImport("EventsShim.SubscribeEventById", "EventsShim")]
+    public static partial JSObject SubscribeEventById(string elementId, 
+        string eventName, 
+        [JSMarshalAs<JSType.Function<JSType.String, JSType.String>>] 
+        Action<string, string> listenerFunc);
+
+    [JSImport("EventsShim.UnsubscribeEventById", "EventsShim")]
+    public static partial void UnsubscribeEventById(string elementId, 
+        string eventName, JSObject listenerHandler);
+
+    [JSImport("EventsShim.TriggerClick", "EventsShim")]
+    public static partial void TriggerClick(string elementId);
+
+    [JSImport("EventsShim.GetElementById", "EventsShim")]
+    public static partial JSObject GetElementById(string elementId);
+
+    [JSImport("EventsShim.SubscribeEvent", "EventsShim")]
+    public static partial JSObject SubscribeEvent(JSObject htmlElement, 
+        string eventName, 
+        [JSMarshalAs<JSType.Function<JSType.Object>>] 
+        Action<JSObject> listenerFunc);
+
+    [JSImport("EventsShim.UnsubscribeEvent", "EventsShim")]
+    public static partial void UnsubscribeEvent(JSObject htmlElement, 
+        string eventName, JSObject listenerHandler);
+}
+
+public static class EventsUsage
+{
+    public static async Task Run()
+    {
+        await JSHost.ImportAsync("EventsShim", "/EventsShim.js");
+
+        Action<string, string> listenerFunc = (eventName, elementId) =>
+            Console.WriteLine(
+                $"In C# event listener: Event {eventName} from ID {elementId}");
+
+        JSObject listenerHandler1 = 
+            EventsInterop.SubscribeEventById("btn1", "click", listenerFunc);
+        JSObject listenerHandler2 = 
+            EventsInterop.SubscribeEventById("btn2", "click", listenerFunc);
+        Console.WriteLine("Subscribed to btn1 & 2.");
+        EventsInterop.TriggerClick("btn1");
+        EventsInterop.TriggerClick("btn2");
+
+        EventsInterop.UnsubscribeEventById("btn2", "click", listenerHandler2);
+        Console.WriteLine("Unsubscribed btn2.");
+        EventsInterop.TriggerClick("btn1");
+        EventsInterop.TriggerClick("btn2"); // Doesn't trigger because unsubscribed
+        EventsInterop.UnsubscribeEventById("btn1", "click", listenerHandler1);
+        // Pitfall: Using a different handler for unsubscribe silently fails.
+        // EventsInterop.UnsubscribeEventById("btn1", "click", listenerHandler2);
+
+        // With JSObject as event target and event object.
+        Action<JSObject> listenerFuncForElement = (eventObj) =>
+        {
+            string eventType = eventObj.GetPropertyAsString("type");
+            JSObject target = eventObj.GetPropertyAsJSObject("target");
+            Console.WriteLine(
+                $"In C# event listener: Event {eventType} from " +
+                $"ID {target.GetPropertyAsString("id")}");
+        };
+
+        JSObject htmlElement = EventsInterop.GetElementById("btn1");
+        JSObject listenerHandler3 = EventsInterop.SubscribeEvent(
+            htmlElement, "click", listenerFuncForElement);
+        Console.WriteLine("Subscribed to btn1.");
+        EventsInterop.TriggerClick("btn1");
+        EventsInterop.UnsubscribeEvent(htmlElement, "click", listenerHandler3);
+        Console.WriteLine("Unsubscribed btn1.");
+        EventsInterop.TriggerClick("btn1");
+    }
+}
+```
+
+The preceding example displays the following output in the browser's debug console:
+
+> :::no-loc text="Subscribed to btn1 & 2.":::  
+> :::no-loc text="In C# event listener: Event click from ID btn1":::  
+> :::no-loc text="In C# event listener: Event click from ID btn2":::  
+> :::no-loc text="Unsubscribed btn2.":::  
+> :::no-loc text="In C# event listener: Event click from ID btn1":::  
+> :::no-loc text="Subscribed to btn1.":::  
+> :::no-loc text="In C# event listener: Event click from ID btn1":::  
+> :::no-loc text="Unsubscribed btn1.":::
 
 ## JS `[JSImport]`/`[JSExport]` interop scenarios
 

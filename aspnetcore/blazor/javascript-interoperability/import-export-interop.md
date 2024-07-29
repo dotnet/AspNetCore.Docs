@@ -32,9 +32,42 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Prerequisites
 
+# [Visual Studio](#tab/visual-studio)
+
 [Visual Studio](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload.
 
 When installing Visual Studio, select the **.NET WebAssembly build tools** option from the list of optional components.
+
+# [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
+
+Install the `wasm-tools` workload in an administrative command shell, which brings in the related MSBuild targets:
+
+```dotnetcli
+dotnet workload install wasm-tools
+```
+
+The tools can also be installed via Visual Studio's installer under the **ASP.NET and web development** workload in the Visual Studio installer. Select the **.NET WebAssembly build tools** option from the list of optional components.
+
+Optionally, install the `wasm-experimental` workload, which adds the following experimental project templates:
+
+* *WebAssembly Browser App* for getting started with .NET on WebAssembly in a browser app.
+* *WebAssembly Console App* for getting started in a Node.js-based console app.
+
+After installing the workload, these new templates can be selected when creating a new project. This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
+
+```dotnetcli
+dotnet workload install wasm-experimental
+```
+
+The templates can also be installed from the [`Microsoft.NET.Runtime.WebAssembly.Templates`](https://www.nuget.org/packages/Microsoft.NET.Runtime.WebAssembly.Templates) NuGet package with the following command:
+
+```dotnetcli
+dotnet new install Microsoft.NET.Runtime.WebAssembly.Templates
+```
+
+For more information, see [Experimental workload and project templates](xref:client-side/dotnet-interop/wasm-browser-app#experimental-workload-and-project-templates).
+
+---
 
 ## Namespace
 
