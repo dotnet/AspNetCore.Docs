@@ -40,7 +40,7 @@ The `[JSExport]` attribute is applied to a .NET method to expose it to JS code. 
 
 ## Importing JS methods
 
-The following example imports an existing static JS method (`console.log`) into C#. `[JSImport]` is limited to importing static methods or instance methods of globally-accessible objects. For example, `log` is an instance method of the `console` object, but it can be accessed using static semantics because the instance is a globally-accessible singleton. The `console.log` method is mapped to a C# proxy method, `ConsoleLog`, which accepts a string for the log message:
+The following example imports a standard built-in JS method (`console.log`) into C#. `[JSImport]` is limited to importing methods of globally-accessible objects. For example, `log` is a method defined on the `console` object, which is defined on the globally-accessible object `globalThis`. The `console.log` method is mapped to a C# proxy method, `ConsoleLog`, which accepts a string for the log message:
 
 ```csharp
 public partial class GlobalInterop
