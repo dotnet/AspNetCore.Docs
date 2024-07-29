@@ -29,7 +29,7 @@ In this series you learn how to:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
-At the end of the series, you'll have an app that manages, validates and displays movie data. 
+At the end of the series, you'll have an app that manages, validates, and displays movie data. 
 
 ![Completed application showing the search UI](~/tutorials/first-mvc-app/search/_static/9/search2_90.png)
 
