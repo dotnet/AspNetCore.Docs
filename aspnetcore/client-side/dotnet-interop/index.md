@@ -318,10 +318,7 @@ DateShim.IncrementDay = function (date) {
 };
 
 DateShim.LogValueAndType = (value) => {
-  if (value instanceof Date) 
-    console.log("Date:", value)
-  else
-    console.log("Not a Date:", value)
+  console.log("Date:", value)
 };
 ```
 
