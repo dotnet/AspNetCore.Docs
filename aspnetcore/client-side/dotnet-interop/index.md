@@ -101,8 +101,8 @@ JS declarations which are intended to be imported with `[JSImport]` are typicall
 
 * A `<script>...</script>` block declaring inline JS.
 * A script source (`src`) declaration (`<script src="./some.js"></script>`) that loads an external JS file (`.js`).
-* A JS ES6 module (`<script type='module' src="./moduleName.js"></script>`).
-* A JS ES6 module loaded using <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> from .NET WebAssembly.
+* A JS module (`<script type='module' src="./moduleName.js"></script>`).
+* A JS module loaded using <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> from .NET WebAssembly.
 
 Examples in this article use <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>. When calling <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A>, client-side .NET WebAssembly requests the file using the `moduleUrl` parameter, and thus it expects the file to be accessible as a static web asset, much the same way as a `<script>` tag retrieves a file with a `src` URL. For example, the following C# code within a WebAssembly Browser App project maintains the JS file (`.js`) at the path `/wwwroot/scripts/ExampleShim.js`:
 
@@ -113,7 +113,7 @@ await JSHost.ImportAsync("ExampleShim", "/scripts/ExampleShim.js");
 Depending on the platform that's loading WebAssembly, a dot-prefixed URL, such as `./scripts/`, might refer to an incorrect subdirectory, such as `/_framework/scripts/`, because the WebAssembly package is initialized by framework scripts under `/_framework/`. In that case, prefixing the URL with `../scripts/` refers to the correct path. Prefixing with `/scripts/` works if the site is hosted at the root of the domain. A typical approach involves configuring the correct base path for the given environment with an HTML `<base>` tag and using the `/scripts/` prefix to refer to the path relative to the base path. Tilde notation `~/` prefixes aren't supported by <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>.
 
 > [!IMPORTANT] 
-> If JS is loaded from an ES6 module, then `[JSImport]` attributes must include the module name as the second parameter. For example, `[JSImport("globalThis.callAlert", "ExampleShim")]` indicates the imported method was declared in an ES6 module named "`ExampleShim`."
+> If JS is loaded from a JavaScript module, then `[JSImport]` attributes must include the module name as the second parameter. For example, `[JSImport("globalThis.callAlert", "ExampleShim")]` indicates the imported method was declared in a JavaScript module named "`ExampleShim`."
 
 ## Type mappings
 
@@ -260,7 +260,7 @@ public static class PrimitivesUsage
 {
     public static async Task Run()
     {
-        // Ensure JS ES6 module loaded.
+        // Ensure JS module loaded.
         await JSHost.ImportAsync("PrimitivesShim", "/PrimitivesShim.js");
 
         // Call a proxy to a static JS method, console.log().
@@ -344,7 +344,7 @@ public static class DateUsage
 {
     public static async Task Run()
     {
-        // Ensure JS ES6 module loaded.
+        // Ensure JS module loaded.
         await JSHost.ImportAsync("DateShim", "/DateShim.js");
 
         // Basic examples of interop with a C# DateTime and JS Date.
