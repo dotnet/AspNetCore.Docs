@@ -1,4 +1,4 @@
-#define FIRST // FIRST
+#define SECOND // FIRST SECOND
 #if NEVER
 #elif FIRST
 // <snippet1>
@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 var app = builder.Build();
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.Run();
 // </snippet1>
@@ -35,7 +35,7 @@ app.Logger.LogInformation("app.Environment.IsDevelopment(): {env}",
       app.Environment.IsDevelopment().ToString());
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.Run();
 // </snippet2>

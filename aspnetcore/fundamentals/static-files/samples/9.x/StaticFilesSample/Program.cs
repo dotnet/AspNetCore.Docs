@@ -1,4 +1,5 @@
-#define MULT2 // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL MULT2
+#define TREE // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL MULT2
+// Test1
 #if NEVER
 #elif DEFAULT
 // <snippet>
@@ -16,12 +17,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet>
@@ -44,17 +45,18 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();    //Serve files from wwwroot
 app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
-    RequestPath = "/StaticFiles"
-});
+ {
+     FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+     RequestPath = "/StaticFiles"
+ });
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_rr>
@@ -75,20 +77,20 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var cacheMaxAgeOneWeek = (60 * 60 * 24 * 7).ToString();
-app.UseStaticFiles(new StaticFileOptions
-{
-    OnPrepareResponse = ctx =>
-    {
-        ctx.Context.Response.Headers.Append(
-             "Cache-Control", $"public, max-age={cacheMaxAgeOneWeek}");
-    }
-});
+ var cacheMaxAgeOneWeek = (60 * 60 * 24 * 7).ToString();
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     OnPrepareResponse = ctx =>
+     {
+         ctx.Context.Response.Headers.Append(
+              "Cache-Control", $"public, max-age={cacheMaxAgeOneWeek}");
+     }
+ });
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_rh>
@@ -114,7 +116,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 var fileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.WebRootPath, "images"));
 var requestPath = "/MyImages";
@@ -134,12 +136,13 @@ app.UseDirectoryBrowser(new DirectoryBrowserOptions
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_db>
 #elif DF  // Default file
+https://localhost:50921/def/
 // <snippet_df>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -161,12 +164,13 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_df>
 #elif DF2
+// https://localhost:50921/def/
 // <snippet_df2>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -192,8 +196,8 @@ app.UseStaticFiles();
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_df2>
@@ -218,8 +222,8 @@ app.UseFileServer();
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_ufs>
@@ -248,8 +252,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_ufs2>
@@ -286,8 +290,8 @@ app.UseFileServer(new FileServerOptions
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_tree>
@@ -329,8 +333,8 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_fec>
@@ -351,16 +355,16 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    ServeUnknownFileTypes = true,
-    DefaultContentType = "image/png"
-});
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     ServeUnknownFileTypes = true,
+     DefaultContentType = "image/png"
+ });
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 // </snippet_ns>
@@ -383,18 +387,18 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // <snippet_mul>
-app.UseStaticFiles(); // Serve files from wwwroot
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
-});
+ app.UseStaticFiles();
+ app.UseStaticFiles(new StaticFileOptions
+ {
+     FileProvider = new PhysicalFileProvider(
+         Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
+ });
 // </snippet_mul>
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 #elif MULT2
@@ -426,14 +430,47 @@ var compositeProvider = new CompositeFileProvider(webRootProvider,
 // Update the default provider.
 app.Environment.WebRootFileProvider = compositeProvider;
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 // </snippet_mult2>
 
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
-app.MapRazorPages();
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
+
+app.Run();
+#elif Test1   // no snippet to import, just for testing
+using Microsoft.Extensions.FileProviders;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles(); // Serve files from wwwroot
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+    RequestPath = "/StaticFiles"
+});
+
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();
 #endif
