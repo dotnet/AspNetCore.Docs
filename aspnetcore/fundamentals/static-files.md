@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure static fil
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 7/4/2024
+ms.date: 7/25/2024
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -24,7 +24,7 @@ Static files are stored within the project's [web root](xref:fundamentals/index#
 
 The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method sets the content root to the current directory:
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=1)]
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=1,15)]
 
 Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contain several folders within the `wwwroot` folder:
 
@@ -33,16 +33,28 @@ Static files are accessible via a path relative to the [web root](xref:fundament
   * `js`
   * `lib`
 
-Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
+Consider an app with the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
 ### MapStaticAssets
 
-`MapStaticAssets` is a middleware that helps optimize the delivery of static assets in an app. For more information, see [Optimizing static web asset delivery
+Creating performant web apps requires optimizing asset delivery to the browser. Possible optimizations include:
+
+* Serve a given asset once until the file changes or the browser clears its cache. Set the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header.
+* Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
+* Set up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
+* Use [caching middleware](xref:performance/caching/middleware).
+* Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
+* Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
+* Minimize the size of assets served to the browser. This optimization doesn't include minification.
+
+[`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) is a middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
+
+[`UseStaticFiles`](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles) also serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. For a comparison of  `UseStaticFiles` and `MapStaticAssets`, see [Optimizing static web asset delivery
 ](xref:aspnetcore-9#optimizing-static-web-asset-delivery).
 
 ### Serve files in web root
 
-The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> method in `Program.cs`, which enables static files to be served:
+The default web app templates call the [`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) method in `Program.cs`, which enables static files to be served:
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
@@ -84,11 +96,11 @@ A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to se
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
-The preceding code makes static files publicly available in the local cache for one week (604800 seconds).
+The preceding code makes static files publicly available in the local cache for one week.
 
 ## Static file authorization
 
-The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
+The ASP.NET Core templates call [`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
   * No authorization checks are performed on the static files.
   * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
@@ -99,24 +111,28 @@ To serve static files based on authorization:
   * Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
   * Set the [fallback authorization policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
+<!-- ~/fundamentals/static-files/samples/8.x/StaticFileAuth is a different app that ~/fundamentals/static-files/samples/6.x/StaticFileAuth -->
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
   
   In the preceding code, the fallback authorization policy requires ***all*** users to be authenticated. Endpoints such as controllers, Razor Pages, etc that specify their own authorization requirements don't use the fallback authorization policy. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authorization attribute rather than the fallback authorization policy.
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
-  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`. Static assets in the ***MyStaticFiles*** folder require authentication. The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x) demonstrates this.
+  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`. Static assets in the ***MyStaticFiles*** folder require authentication. The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/8.x) demonstrates this.
 
 An alternative approach to serve files based on authorization is to:
 
 * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
 
+
   [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Pages/BannerImage.cshtml.cs?name=snippet)]
 
 The preceding approach requires a page or endpoint per file. The following code returns files or uploads files for authenticated users:
 
 :::code language="csharp" source="~/fundamentals/static-files/samples/9.x/StaticFileAuth/Program.cs" id="snippet_1":::
+
+IFormFile in the preceding sample uses memory buffer for uploading. For handling large file use streaming. See [Upload large files with streaming](/mvc/models/file-uploads#upload-large-files-with-streaming).
 
 See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFileAuth) GitHub folder for the complete sample.
 
@@ -154,11 +170,11 @@ With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 * `index.htm`
 * `index.html`
 
-The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
+The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested. For example, in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs), a request to `https://localhost:<port>/def/` serves `default.html` from `wwwroot/def`.
 
 The following code changes the default file name to `mydefault.html`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
+[!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)]
 
 ### UseFileServer for default documents
 
@@ -182,9 +198,11 @@ Consider the following directory hierarchy:
   * `images`
   * `js`
 * `MyStaticFiles`
+  * `defaultFiles`
+    * `default.html`
+    * `image3.png`
   * `images`
     * `MyImage.jpg`
-  * `default.html`
 
 The following code enables the serving of static files, the default file, and directory browsing of `MyStaticFiles`:
 
@@ -199,7 +217,9 @@ Using the preceding file hierarchy and code, URLs resolve as follows:
 | URI            |      Response  |
 | ------- | ------|
 | `https://<hostname>/StaticFiles/images/MyImage.jpg` | `MyStaticFiles/images/MyImage.jpg` |
-| `https://<hostname>/StaticFiles` | `MyStaticFiles/default.html` |
+| `https://<hostname>/StaticFiles` | directory listing |
+| `https://<hostname>/StaticFiles/defaultFiles` | `MyStaticFiles/defaultFiles/default.html` |
+| `https://<hostname>/StaticFiles/defaultFiles/image3.png` | `MyStaticFiles/defaultFiles//image3.png` |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
@@ -209,7 +229,7 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 
 ## FileExtensionContentTypeProvider
 
-The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a `Mappings` property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
+The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a [Mappings](/dotnet/api/microsoft.aspnetcore.staticfiles.fileextensioncontenttypeprovider.mappings) property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
 
 <!-- test via /mapTest/image1.image and mapTest/test.htm3 /mapTest/TextFile.rtf -->
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-33)] 
@@ -256,9 +276,9 @@ The following code updates the `WebRootFileProvider`, which enables the Image Ta
 ### Security considerations for static files
 
 > [!WARNING]
-> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
+> `UseDirectoryBrowser` and `UseStaticFiles` <!-- but not MapStaticAssets --> can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
 
-* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
+* The URLs for content exposed with `UseDirectoryBrowser`, `UseStaticFiles`, and `MapStaticAssets` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
 
 * ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and has no chance to handle requests.
 
