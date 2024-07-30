@@ -9,6 +9,8 @@ uid: grpc/dotnet-grpc
 ---
 # Manage Protobuf references with dotnet-grpc
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 `dotnet-grpc` is a .NET Core Global Tool for managing [Protobuf (`.proto`)](xref:grpc/basics#proto-file) references within a .NET gRPC project. The tool can be used to add, refresh, remove, and list Protobuf references.
 
 ## Installation

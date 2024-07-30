@@ -9,6 +9,8 @@ uid: grpc/performance
 ---
 # Performance best practices with gRPC
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC is designed for high-performance services. This document explains how to get the best performance possible from gRPC.

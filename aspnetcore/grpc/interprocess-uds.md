@@ -9,6 +9,8 @@ uid: grpc/interprocess-uds
 ---
 # Inter-process communication with gRPC and Unix domain sockets
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 .NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](xref:grpc/interprocess).

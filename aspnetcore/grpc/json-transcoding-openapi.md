@@ -9,6 +9,8 @@ uid: grpc/json-transcoding-openapi
 ---
 # gRPC JSON transcoding documentation with Swagger / OpenAPI
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 [OpenAPI (Swagger)](https://swagger.io/specification/) is a language-agnostic specification for describing REST APIs. gRPC JSON transcoding supports generating OpenAPI from transcoded RESTful APIs. The [`Microsoft.AspNetCore.Grpc.Swagger`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:

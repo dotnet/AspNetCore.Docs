@@ -10,6 +10,8 @@ ms.custom: engagement-fy23
 ---
 # gRPC JSON transcoding in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 :::moniker range=">= aspnetcore-8.0"

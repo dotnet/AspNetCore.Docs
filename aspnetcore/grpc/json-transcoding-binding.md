@@ -9,6 +9,8 @@ uid: grpc/json-transcoding-binding
 ---
 # Configure HTTP and JSON for gRPC JSON transcoding
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC JSON transcoding creates RESTful JSON web APIs from gRPC methods. It uses annotations and options for customizing how a RESTful API maps to the gRPC methods.
