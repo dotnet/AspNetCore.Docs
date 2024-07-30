@@ -4,9 +4,8 @@ author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 05/14/2024
+ms.date: 07/24/2024
 uid: tutorials/first-mvc-app/start-mvc
-ms.custom: engagement-fy23
 ---
 # Get started with ASP.NET Core MVC
 
@@ -20,7 +19,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This is the first tutorial of a series that teaches ASP.NET Core MVC web development with controllers and views.
 
-At the end of the series, you'll have an app that manages and displays movie data. You learn how to:
+At the end of the series, you'll have an app that manages, validates, and displays movie data. You learn how to:
 
 > [!div class="checklist"]
 > * Create a web app.
@@ -34,15 +33,11 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-9.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-9.0.md)]
 
 ---
 
@@ -62,11 +57,11 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * The **Location** for the project can be set to anywhere.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 8.0 (Long Term Support)**.
+  * Select **.NET 9.0 (Preview)**.
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/8/additional-info-VS22-17.9.0.png)
+![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/9/additional-info-VS22-17.11.0.png)
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -94,18 +89,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Select **File** > **New Project...**.
-* Select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
-* In the **Configure your new Web Application (Model-View-Controller)** dialog:
-  * Select **.NET 8.0** for the **Target Framework**.
-  * Verify that **Do not use top-level statements** is unchecked.
-* Select **Continue**.
-* Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
-* The **Location** for the project can be set to anywhere.
-* Select **Create**.
-
 ---
 
 ### Run the app
@@ -128,15 +111,15 @@ Launching the app without debugging by pressing <kbd>Ctrl</kbd>+<kbd>F5</kbd> al
 
 You can launch the app in debug or non-debug mode from the **Debug** menu:
 
-![Start Debug and Start Without Debugging menus](~/tutorials/first-mvc-app/start-mvc/_static/8/debug-and-without-debug-menus-VS22-17.8.0.png)
+![Start Debug and Start Without Debugging menus](~/tutorials/first-mvc-app/start-mvc/_static/9/debug-and-without-debug-menus-VS22-17.11.0.png)
 
 You can debug the app by selecting the **https** button in the toolbar:
 
-![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/8/debug-button-VS22-17.8.0.png)
+![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/9/debug-button-VS22-17.11.0.png)
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home80-vs.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/9/home90-vs.png)
 
 * Close the browser window.  Visual Studio will stop the application.
 
@@ -160,37 +143,15 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home80-vs.png)
+  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/9/home90-vs.png)
 
 * Close the browser window.
 
 * In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kbd>Shift</kbd>+<kbd>F5</kbd> to stop the app.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Select Option+Command+Return to run the app without the debugger.
-
-  Visual Studio for Mac:
-
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
-  * Launches a browser.
-  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number, set when Visual Studio creates a web project.
-
-  [!INCLUDE[](~/includes/trustCertMacVS22.md)]
-
-  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
-
-You can launch the app in debug or non-debug mode from the **Debug** menu.
-
-The following image shows the app:
-
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos_VS22.png)
-
-* Close the browser window.  Visual Studio for Mac will stop the application.
-
 ---
 
-[!INCLUDE[](~/includes/vs-vsc-vsmac-help.md)]
+[!INCLUDE[](~/includes/vs-vsc-help.md)]
 
 In the next tutorial in this series, you learn about MVC and start writing some code.
 

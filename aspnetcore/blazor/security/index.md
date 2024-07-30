@@ -128,7 +128,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/claims-principle-data"
+@page "/claims-principal-data"
 @using System.Security.Claims
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -185,7 +185,7 @@ In the preceding example:
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@page "/claims-principle-data"
+@page "/claims-principal-data"
 @using System.Security.Claims
 @inject AuthenticationStateProvider AuthenticationStateProvider
 

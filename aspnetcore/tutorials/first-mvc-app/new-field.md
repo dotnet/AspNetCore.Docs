@@ -4,8 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 10/19/2023
-ms.custom: engagement-fy23
+ms.date: 07/24/2024
 uid: tutorials/first-mvc-app/new-field
 ---
 # Part 8, add a new field to an ASP.NET Core MVC app
@@ -16,15 +15,15 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-9.0"
 
-In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
+In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Migrations is used to:
 
 * Add a new field to the model.
 * Migrate the new field to the database.
 
-When EF Code First is used to automatically create a database, Code First:
+When Entity Framework (EF) is used to automatically create a database from model classes:
 
-* Adds a table to the database to  track the schema of the database.
-* Verifies the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+* A table is added to the database to track the schema of the database.
+* The database is verified to be in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
 
 ## Add a Rating Property to the Movie Model
 
@@ -45,11 +44,6 @@ From the *View* menu, select *Terminal* and enter the following command:
 ```dotnetcli
 dotnet build
 ```
-
-### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Press <kbd>⌘</kbd>+<kbd>B</kbd>
-
 ---
 
 Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
@@ -66,19 +60,19 @@ Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
 Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
-# [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
+# [Visual Studio](#tab/visual-studio)
 
 You can copy/paste the previous "form group" and let intelliSense help you update the fields. IntelliSense works with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
-![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](~/tutorials/first-mvc-app/new-field/_static/8/cr-VS22-17.8.0.png)
+![The developer has typed the letter R for the attribute value of asp-for in the second label element of the view. An Intellisense contextual menu has appeared showing the available fields, including Rating, which is highlighted in the list automatically. When the developer clicks the field or presses Enter on the keyboard, the value will be set to Rating.](~/tutorials/first-mvc-app/new-field/_static/9/cr-VS22-17.11.0.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/VSCode-UpdatingForm.png)
+![Updating the existed form by inserting the new field "Rating".](~/tutorials/first-mvc-app/new-field/_static/9/VSCode-UpdatingForm9.png)
 
 ---
 
-Update the remaining templates.
+Add the `Rating` property to the remaining `Create.cshtml`, `Delete.cshtml`, `Details.cshtml`, and `Edit.cshtml` view templates.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
@@ -96,21 +90,20 @@ There are a few approaches to resolving the error:
 
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is that you keep your data. You can make this change either manually or by creating a database change script.
 
-3. Use Code First Migrations to update the database schema.
+3. Use Entity Framework Migrations to update the database schema.
 
-For this tutorial, Code First Migrations is used.
+For this tutorial, Entity Framework Migrations is used.
 
 # [Visual Studio](#tab/visual-studio)
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 
-  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/8/pmc-VS22-17.8.0.png)
+  ![PMC menu](~/tutorials/first-mvc-app/new-field/_static/9/pmc-VS22-17.11.0.png)
 
-In the PMC, enter the following commands:
+In the Package Manager Console, enter the following command:
 
 ```powershell
 Add-Migration Rating
-Update-Database
 ```
 
 The `Add-Migration` command tells the migration framework to examine the current `Movie` model with the current `Movie` DB schema and create the necessary code to migrate the DB to the new model.
@@ -119,7 +112,15 @@ The name "Rating" is arbitrary and is used to name the migration file. It's help
 
 If all the records in the DB are deleted, the initialize method will seed the DB and include the `Rating` field.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+In the Package Manager Console, enter the following command:
+
+```powershell
+Update-Database
+```
+
+The Update-Database command runs the Up method in migrations that have not been applied.
+
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
