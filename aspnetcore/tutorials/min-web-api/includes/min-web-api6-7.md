@@ -172,6 +172,10 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 
 ### Configure Swagger middleware
 
+* In Program.cs add the following `using` statements at the top:
+
+  [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
+
 * Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
   [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
@@ -631,7 +635,7 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 
 * Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=7-13)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
 
 In the previous code:
 
