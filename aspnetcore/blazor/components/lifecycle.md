@@ -29,8 +29,8 @@ Component lifecycle events:
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
    * Perform property injection.
-   * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
-1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asychronous method.
+   * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asynchronous method.
+1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered. The synchronous method is called prior to the asynchronous method.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
 > [!NOTE]
@@ -58,7 +58,7 @@ The `Render` lifecycle:
    * [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) returns `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
-1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync). The synchronous method is called prior to the asychronous method.
+1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync). The synchronous method is called prior to the asynchronous method.
 
 ![Render lifecycle](~/blazor/components/lifecycle/_static/lifecycle3.png)
 
@@ -224,7 +224,7 @@ Use *streaming rendering* with static server-side rendering (static SSR) or prer
   
   For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
-The synchronous method is called prior to the asychronous method.
+The synchronous method is called prior to the asynchronous method.
 
 The methods can be invoked even if the parameter values haven't changed. This behavior underscores the need for developers to implement additional logic within the methods to check whether parameter values have indeed changed before re-initializing data or state dependent on those parameters.
 
@@ -304,7 +304,7 @@ For an example of implementing `SetParametersAsync` manually to improve performa
 
 :::moniker range=">= aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asychronous method.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asynchronous method.
 
 These methods aren't invoked during prerendering or static server-side rendering (static SSR) on the server because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
 
@@ -314,7 +314,7 @@ For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, 
 
 :::moniker range="< aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asychronous method.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asynchronous method.
 
 These methods aren't invoked during prerendering because prerendering isn't attached to a live browser DOM and is already complete before the DOM is updated.
 
@@ -583,7 +583,7 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 ## Component disposal with `IDisposable` and `IAsyncDisposable`
 
-If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asychronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](#component-initialization-oninitializedasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
+If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asynchronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](#component-initialization-oninitializedasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
 
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
