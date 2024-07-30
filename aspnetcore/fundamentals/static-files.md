@@ -132,7 +132,7 @@ The preceding approach requires a page or endpoint per file. The following code 
 
 :::code language="csharp" source="~/fundamentals/static-files/samples/9.x/StaticFileAuth/Program.cs" id="snippet_1":::
 
-IFormFile in the preceding sample uses memory buffer for uploading. For handling large file use streaming. See [Upload large files with streaming](/mvc/models/file-uploads#upload-large-files-with-streaming).
+IFormFile in the preceding sample uses memory buffer for uploading. For handling large file use streaming. See [Upload large files with streaming](xref:mvc/models/file-uploads#upload-large-files-with-streaming).
 
 See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/9.x/StaticFileAuth) GitHub folder for the complete sample.
 
