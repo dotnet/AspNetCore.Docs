@@ -15,7 +15,7 @@ For an introduction to two-factor authentication (2FA) with authenticator apps u
 
 ## Scaffold the Enable Authenticator component into the app
 
-Follow the guidance in <xref:security/authentication/scaffold-identity#client-side-blazor-apps> to scaffold `Pages\Manage\EnableAuthenticator` into the app.
+Follow the guidance in <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project> to scaffold `Pages\Manage\EnableAuthenticator` into the app.
 
 <!-- UPDATE 9.0 Update NOTE per followup on the issue -->
 
