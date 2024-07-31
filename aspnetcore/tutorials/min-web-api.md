@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 06/27/2024
+ms.date: 07/29/2024
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -206,13 +206,9 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 
 ### Configure Swagger middleware
 
-* In Program.cs add the following `using` statements at the top:
+* In Program.cs add the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
-
-* Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
-
-  [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/9.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=7-13)]
 
 In the previous code:
 

@@ -1,5 +1,4 @@
 // <snippet_all>
-using NSwag.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

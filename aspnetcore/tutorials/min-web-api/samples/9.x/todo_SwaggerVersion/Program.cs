@@ -11,9 +11,6 @@ app.Run();
 #elif FINAL
 // <snippet_all>
 // <snippet_swagger_add_service>
-// <snippet_swagger_using_statements>
-using NSwag.AspNetCore;
-// </snippet_swagger_using_statements>
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
