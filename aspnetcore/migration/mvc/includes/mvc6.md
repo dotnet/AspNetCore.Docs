@@ -352,7 +352,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 :::moniker-end
 
-:::moniker range="<= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-1.0 <= aspnetcore-2.1"
 
 This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview) 2.1. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
