@@ -9,6 +9,8 @@ uid: grpc/test-tools
 ---
 # Test gRPC services with gRPCurl and gRPCui in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
 Tooling is available for gRPC that allows developers to test services without building client apps:

@@ -9,6 +9,8 @@ uid: grpc/protobuf
 ---
 # Create Protobuf messages for .NET apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk) and [Mark Rendle](https://twitter.com/markrendle)
 
 gRPC uses [Protobuf](https://developers.google.com/protocol-buffers) as its Interface Definition Language (IDL). Protobuf IDL is a language neutral format for specifying the messages sent and received by gRPC services. Protobuf messages are defined in `.proto` files. This document explains how Protobuf concepts map to .NET.

@@ -11,6 +11,8 @@ uid: host-and-deploy/iis/protocols
 
 # Use ASP.NET Core with HTTP/2 on IIS
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Justin Kotalik](https://github.com/jkotalik)
 
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) is supported with ASP.NET Core in the following IIS deployment scenarios:

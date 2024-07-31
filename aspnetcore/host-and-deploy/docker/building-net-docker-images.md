@@ -10,6 +10,8 @@ uid: host-and-deploy/docker/building-net-docker-images
 
 # Run an ASP.NET Core app in Docker containers
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article shows how to run an ASP.NET Core app in Docker containers.
 
 Windows Home Edition doesn't support Hyper-V, and Hyper-V is needed for Docker.

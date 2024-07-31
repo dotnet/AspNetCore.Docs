@@ -10,6 +10,8 @@ uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core.
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]

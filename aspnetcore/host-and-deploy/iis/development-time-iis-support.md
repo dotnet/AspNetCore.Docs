@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 :::moniker range=">= aspnetcore-3.0"

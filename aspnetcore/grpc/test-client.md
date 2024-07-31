@@ -10,6 +10,8 @@ uid: grpc/test-client
 ---
 # Mock gRPC client in tests
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By: [James Newton-King](https://twitter.com/jamesnk)
 
 Testing is an important aspect of building stable and maintainable software. Part of writing high-quality tests is removing external dependencies. This article discusses using mock gRPC clients in tests to remove gRPC calls to external servers.

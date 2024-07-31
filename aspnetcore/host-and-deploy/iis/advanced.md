@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article covers advanced configuration options and scenarios for the ASP.NET Core Module and IIS.
 
 ## Modify the stack size
