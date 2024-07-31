@@ -405,7 +405,7 @@ The following route template inadvertently captures static asset paths in its op
 }
 ```
 
-To restrict a route parameter to capturing non-file paths, use the [`:nonfile` constraint](#route-contraints) in the route template:
+To restrict a route parameter to capturing non-file paths, use the [`:nonfile` constraint](#route-constraints) in the route template:
 
 ```razor
 @page "/{optional:nonfile?}"
