@@ -3,15 +3,12 @@ title: Learn to upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 description: Learn how to upgrade an ASP.NET MVC Framework or Web API project to ASP.NET Core MVC
 author: rick-anderson
 ms.author: riande
-monikerRange: '>= aspnetcore-1.0'
 ms.date: 03/07/2017
 uid: migration/mvc
 ---
 # Upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
- :::moniker range=">= aspnetcore-7.0 <= aspnetcore-8.0"
+ :::moniker range=">= aspnetcore-7.0"
 
 This article shows how to upgrade an ASP.NET Framework MVC or Web API app to ASP.NET Core MVC using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/inc/overview) approach.
 
