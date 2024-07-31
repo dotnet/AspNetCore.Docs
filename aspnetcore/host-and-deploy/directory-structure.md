@@ -10,6 +10,8 @@ uid: host-and-deploy/directory-structure
 ---
 # ASP.NET Core directory structure
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 The *publish* directory contains the app's deployable assets produced by the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. The directory contains:

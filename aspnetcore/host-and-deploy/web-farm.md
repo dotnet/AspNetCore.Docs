@@ -10,6 +10,8 @@ uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Chris Ross](https://github.com/Tratcher)
 
 A *web farm* is a group of two or more web servers (or *nodes*) that host multiple instances of an app. When requests from users arrive to a web farm, a *load balancer* distributes the requests to the web farm's nodes. Web farms improve:

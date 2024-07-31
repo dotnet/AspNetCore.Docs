@@ -10,6 +10,8 @@ uid: host-and-deploy/azure-iis-errors-reference
 
 # Common error troubleshooting for Azure App Service and IIS with ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 This topic describes the most common errors and provides troubleshooting advice when hosting ASP.NET Core apps on Azure Apps Service and IIS.

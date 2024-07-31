@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Some of the native IIS modules and all of the IIS managed modules aren't able to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the scenarios addressed by IIS native and managed modules.
 
 ## Native modules
