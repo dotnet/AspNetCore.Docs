@@ -9,13 +9,9 @@ uid: migration/mvc
 ---
 # Upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
--->
-
- :::moniker range=">= aspnetcore-7.0"
+ :::moniker range=">= aspnetcore-7.0 <= aspnetcore-8.0"
 
 This article shows how to upgrade an ASP.NET Framework MVC or Web API app to ASP.NET Core MVC using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/inc/overview) approach.
 
