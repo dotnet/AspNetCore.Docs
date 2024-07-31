@@ -568,6 +568,8 @@ Blazor project template layout and stylesheets are available from the [`dotnet/a
 
 Depending on how you organize your layout files in the app, you might need to add an `@using` statement for the layout files' folder in the app's `_Imports.razor` file in order to surface them for use in the app's components.
 
+There's no need to explicitly reference stylesheets when using [CSS isolation](xref:blazor/components/css-isolation). The Blazor framework automatically bundles individual component stylesheets. The app's bundled stylesheet is already referenced in the app's `App` component (`{ASSEMBLY NAME}.styles.css`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name).
+
 ## Return a `RazorComponentResult` from an MVC controller action
 
 An MVC controller action can return a component with <xref:Microsoft.AspNetCore.Http.HttpResults.RazorComponentResult%601>.
