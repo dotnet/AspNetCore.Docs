@@ -13,7 +13,7 @@ uid: security/authentication/identity/spa
 
 :::moniker range=">= aspnetcore-8.0"
 
-[ASP.NET Core Identity](xref:security/authentication/identity) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. There's a token-based option for clients that can't use cookies.
+[ASP.NET Core Identity](xref:security/authentication/identity) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. There's a token-based option for clients that can't use cookies, but you must be careful not to leak tokens. We recommend using cookies in browser-based applications, because the browser will automatically handle them without exposing them to JavaScript by default.
 
 This article shows how to use Identity to secure a Web API backend for SPAs such as Angular, React, and Vue apps. The same backend APIs can be used to secure [Blazor WebAssembly apps](xref:blazor/security/webassembly/standalone-with-identity).
 
@@ -202,7 +202,9 @@ Some web clients might not include cookies in the header by default:
 
 ## Use token-based authentication
 
-For clients that don't support cookies, the login API provides a parameter to request tokens. A custom token (one that is proprietary to the ASP.NET Core identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the application to request a new token when the old one expires without forcing the user to log in again.
+For clients that don't support cookies, the login API provides a parameter to request tokens, but you must be careful not to leak tokens. We recommend using cookies in browser-based applications, because the browser will automatically handle them without exposing them to JavaScript by default.
+
+A custom token (one that is proprietary to the ASP.NET Core identity platform) is issued that can be used to authenticate subsequent requests. The token is passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the application to request a new token when the old one expires without forcing the user to log in again.
 
 The tokens aren't standard JSON Web Tokens (JWTs). The use of custom tokens is intentional, as the built-in Identity API is meant primarily for simple scenarios. The token option isn't intended to be a full-featured identity service provider or token server, but instead an alternative to the cookie option for clients that can't use cookies.
 
