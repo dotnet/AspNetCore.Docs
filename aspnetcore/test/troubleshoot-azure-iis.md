@@ -536,6 +536,7 @@ See [Kudu](https://github.com/projectkudu/kudu/wiki) for information on download
    1. In the **Diagnostic Tools** tile, select **Application Event Logs**.
 * Kudu console: See the [Kudu wiki](https://github.com/projectkudu/kudu/wiki) and [Kudu service overview](/azure/app-service/resources-kudu). The Kudo wiki provides information on how to download logs.
 * Availability and Performance: The [Availability and Performance](/azure/app-service/overview-diagnostics#troubleshooting-categories) tile in [Diagnose and solve problems](/azure/app-service/overview-diagnostics)
+* When an app responds slowly or hangs on a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation).
 
 Many startup errors don't produce useful information in the Application Event Log. Runing the app in the [Kudu](https://github.com/projectkudu/kudu/wiki) Remote Execution Console often provides error information
 
@@ -543,82 +544,11 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
 
+#### 32-bit and 64-bit mismatch
 
-#### z Test a 32-bit (x86) app
+In the Azure Portal, navigate to the App Service and check **Settings > Configuration > Platform settings**. Ensure that the platform architecture matches the architecture of the app deployment (32-bit or 64-bit).
 
-**Current release**
-
-1. `cd d:\home\site\wwwroot`
-1. Run the app:
-   * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
-
-     ```dotnetcli
-     dotnet .\{ASSEMBLY NAME}.dll
-     ```
-
-   * If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
-
-     ```console
-     {ASSEMBLY NAME}.exe
-     ```
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-**Framework-dependent deployment running on a preview release**
-
-*Requires installing the ASP.NET Core {VERSION} (x86) Runtime site extension.*
-
-1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` is the runtime version)
-1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-#### z Test a 64-bit (x64) app
-
-**Current release**
-
-* If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
-  1. `cd D:\Program Files\dotnet`
-  1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
-* If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd):
-  1. `cd D:\home\site\wwwroot`
-  1. Run the app: `{ASSEMBLY NAME}.exe`
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-**Framework-dependent deployment running on a preview release**
-
-*Requires installing the ASP.NET Core {VERSION} (x64) Runtime site extension.*
-
-1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` is the runtime version)
-1. Run the app: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
-
-The console output from the app, showing any errors, is piped to the Kudu console.
-
-### z ASP.NET Core Module stdout log (Azure App Service)
-
-> [!WARNING]
-> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
->
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
-
-The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
-
-1. In the Azure Portal, navigate to the web app.
-1. In the **App Service** blade, enter **kudu** in the search box.
-1. Select **Advanced Tools** > **Go**.
-1. Select  **Debug console > CMD**.
-1. Navigate to *site/wwwroot*
-1. Select the pencil icon to edit the *web.config* file.
-1. In the `<aspNetCore />` element, set `stdoutLogEnabled="true"` and select **Save**.
-
-Disable stdout logging when troubleshooting is complete by setting `stdoutLogEnabled="false"`.
-
-For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
-
-<a name="enhanced-diagnostic-logs"></a>
-
-### z ASP.NET Core Module debug log (Azure App Service)
+![Platform settings image](https://github.com/user-attachments/assets/ad0673a4-57df-4cd4-87c2-d178c9792497)
 
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
 
@@ -647,9 +577,7 @@ For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enha
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### z Slow or hanging app (Azure App Service)
 
-When an app responds slowly or hangs on a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation).
 
 ### z Monitoring blades
 
