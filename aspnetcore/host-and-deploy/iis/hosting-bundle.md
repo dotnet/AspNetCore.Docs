@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/hosting-bundle
 ---
 # The .NET Core Hosting Bundle
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The bundle allows ASP.NET Core apps to run with IIS.
 
 ## Install the .NET Core Hosting Bundle

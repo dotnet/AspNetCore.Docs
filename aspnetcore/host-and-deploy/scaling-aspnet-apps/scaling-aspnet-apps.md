@@ -9,6 +9,8 @@ ms.date: 8/31/2022
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and then scale down automatically when the peak drops, which can lower costs. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrates how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
 1. [Set up the sample project](#set-up-the-sample-project)

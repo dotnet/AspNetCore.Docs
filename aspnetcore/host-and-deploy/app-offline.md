@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/app-offline
 ---
 # App Offline file (`app_offline.htm`)
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The App Offline file (`app_offline.htm`) is used by the ASP.NET Core Module to shut down an app.
 
 If a file with the name `app_offline.htm` is detected in the root directory of an app, the ASP.NET Core Module attempts to gracefully shut down the app and stop processing incoming requests. If the app is still running after the number of seconds defined in `shutdownTimeLimit`, the ASP.NET Core Module stops the running process.

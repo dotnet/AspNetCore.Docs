@@ -9,6 +9,8 @@ uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
 

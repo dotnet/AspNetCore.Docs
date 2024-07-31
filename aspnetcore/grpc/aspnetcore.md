@@ -9,6 +9,8 @@ uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 This document shows how to get started with gRPC services using ASP.NET Core.
 

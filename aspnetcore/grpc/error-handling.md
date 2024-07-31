@@ -9,6 +9,8 @@ uid: grpc/error-handling
 ---
 # Error handling with gRPC
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 This article discusses error handling and gRPC:

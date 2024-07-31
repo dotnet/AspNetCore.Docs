@@ -10,6 +10,8 @@ uid: grpc/test-services
 ---
 # Test gRPC services in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By: [James Newton-King](https://twitter.com/jamesnk)
 
 Testing is an important aspect of building stable and maintainable software. This article discusses how to test ASP.NET Core gRPC services.

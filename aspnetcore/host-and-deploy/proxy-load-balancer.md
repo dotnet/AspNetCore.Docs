@@ -10,6 +10,8 @@ uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Chris Ross](https://github.com/Tratcher)
 
 :::moniker range=">= aspnetcore-6.0"

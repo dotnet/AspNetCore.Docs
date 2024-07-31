@@ -9,6 +9,8 @@ uid: grpc/health-checks
 ---
 # gRPC health checks in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 By [James Newton-King](https://twitter.com/jamesnk)

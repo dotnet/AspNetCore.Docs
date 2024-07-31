@@ -9,6 +9,8 @@ uid: grpc/grpcweb
 ---
 # gRPC-Web in ASP.NET Core gRPC apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 :::moniker range=">= aspnetcore-8.0"

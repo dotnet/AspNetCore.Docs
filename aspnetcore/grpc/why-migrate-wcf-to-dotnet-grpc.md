@@ -9,6 +9,8 @@ uid: grpc/wcf
 ---
 # gRPC for Windows Communication Foundation (WCF) developers
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article provides a summary of why ASP.NET Core gRPC is a good fit for Windows Communication Foundation (WCF) developers who want to migrate to modern architectures and platforms.
 
 ## Comparison to WCF

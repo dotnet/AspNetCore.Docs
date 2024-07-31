@@ -9,6 +9,12 @@ uid: grpc/native-aot
 ---
 # gRPC and Native AOT
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC supports [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) in .NET 8. Native AOT enables publishing gRPC client and server apps as small, fast native executables.

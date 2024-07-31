@@ -9,6 +9,8 @@ uid: grpc/interceptors
 ---
 # gRPC interceptors on .NET
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Ernest Nguyen](https://github.com/erni27)
 
 Interceptors are a gRPC concept that allows apps to interact with incoming or outgoing gRPC calls. They offer a way to enrich the request processing pipeline.

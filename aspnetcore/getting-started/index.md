@@ -10,6 +10,8 @@ uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This tutorial shows how to create and run an ASP.NET Core web app using the .NET CLI.
 
 You'll learn how to:

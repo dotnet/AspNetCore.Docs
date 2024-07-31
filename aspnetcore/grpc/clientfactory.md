@@ -9,6 +9,8 @@ uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 :::moniker range=">= aspnetcore-6.0"

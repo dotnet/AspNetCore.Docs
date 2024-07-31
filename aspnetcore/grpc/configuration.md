@@ -10,6 +10,8 @@ uid: grpc/configuration
 ---
 # gRPC for .NET configuration
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 ## Configure services options
 
 gRPC services are configured with `AddGrpc` in `Startup.cs`. Configuration options are in the [`Grpc.AspNetCore.Server`](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package.

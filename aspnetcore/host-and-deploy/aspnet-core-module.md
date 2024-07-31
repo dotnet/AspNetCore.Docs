@@ -11,6 +11,8 @@ uid: host-and-deploy/aspnet-core-module
 
 # ASP.NET Core Module (ANCM) for IIS
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-5.0"
 
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either: 

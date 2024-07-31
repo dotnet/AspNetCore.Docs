@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/transform-webconfig
 ---
 # Transform web.config
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Vijay Ramakrishnan](https://github.com/vijayrkn)
 
 Transformations to the *web.config* file can be applied automatically when an app is published based on:

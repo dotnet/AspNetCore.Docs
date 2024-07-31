@@ -11,6 +11,8 @@ uid: host-and-deploy/iis/http3
 
 # Use ASP.NET Core with HTTP/3 on IIS
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Chris Ross](https://github.com/tratcher)
 
 :::moniker range=">= aspnetcore-7.0"

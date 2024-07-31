@@ -9,6 +9,12 @@ uid: grpc/interprocess-namedpipes
 ---
 # Inter-process communication with gRPC and Named pipes
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 .NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](xref:grpc/interprocess).

@@ -9,6 +9,8 @@ uid: grpc/index
 ---
 # Overview for gRPC on .NET
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 :::moniker range=">= aspnetcore-6.0"

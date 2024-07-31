@@ -9,6 +9,8 @@ uid: host-and-deploy/docker/index
 ---
 # Host ASP.NET Core in Docker containers
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The following articles are available for learning about hosting ASP.NET Core apps in Docker:
 
 [Introduction to Containers and Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index)  

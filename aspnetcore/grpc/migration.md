@@ -9,6 +9,8 @@ uid: grpc/migration
 ---
 # Migrate gRPC from C-core to gRPC for .NET
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and gRPC for .NET. This document highlights the key differences for migrating between the two stacks.
 
 > [!IMPORTANT]
