@@ -11,6 +11,12 @@ uid: log-mon/metrics/metrics
 
 # ASP.NET Core metrics
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
+
 Metrics are numerical measurements reported over time. They're typically used to monitor the health of an app and generate alerts. For example, a web service might track how many:
 
 * Requests it received per second.

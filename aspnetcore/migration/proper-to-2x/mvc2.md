@@ -3,11 +3,14 @@ title: Migrate from ASP.NET to ASP.NET Core 2.0
 author: isaacrlevin
 description: Receive guidance for migrating existing ASP.NET MVC or Web API applications to ASP.NET Core 2.0.
 ms.author: wpickett
+monikerRange: '>= aspnetcore-2.0'
 ms.custom: mvc
 ms.date: 10/24/2018
 uid: migration/mvc2
 ---
 # Migrate from ASP.NET to ASP.NET Core 2.0
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Isaac Levin](https://isaaclevin.com)
 

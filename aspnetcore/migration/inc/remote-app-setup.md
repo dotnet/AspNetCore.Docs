@@ -11,6 +11,8 @@ uid: migration/inc/remote-app-setup
 
 # Remote app setup
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app to be able to communicate with the original ASP.NET app.
 
 Specifically, this capability is used, currently, for [remote app authentication](xref:migration/inc/remote-authentication) and [remote session](xref:migration/inc/remote-session) features.

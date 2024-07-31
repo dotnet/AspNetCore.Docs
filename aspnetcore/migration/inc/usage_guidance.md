@@ -11,6 +11,8 @@ uid: migration/inc/usage_guidance
 
 # Usage Guidance
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 `Microsoft.AspNetCore.SystemWebAdapters` provides an emulation layer to mimic behavior from ASP.NET framework on ASP.NET Core. Below are some guidelines for some of the considerations when using them:
 
 ## `HttpContext` lifetime

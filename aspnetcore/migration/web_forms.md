@@ -2,11 +2,14 @@
 title: Learn to upgrade from ASP.NET Web Forms to ASP.NET Core
 description: Learn how to upgrade an ASP.NET Web Forms project to ASP.NET Core
 author: rick-anderson
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.date: 03/07/2017
 uid: migration/web_forms
 ---
 # Upgrade an ASP.NET Framework Web Forms app to ASP.NET Core MVC
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
  :::moniker range=">= aspnetcore-7.0"
 
