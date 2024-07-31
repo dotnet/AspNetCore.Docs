@@ -860,6 +860,5 @@ Use ***either*** of the following approaches:
 * [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider)
 * Browser developer tools documentation:
   * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-  * [Firefox Developer Tools](https://firefox-source-docs.mozilla.org/devtools-user/index.html)
   * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
