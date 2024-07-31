@@ -9,7 +9,11 @@ uid: migration/mvc
 ---
 # Upgrade from ASP.NET MVC and Web API to ASP.NET Core MVC
 
+<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
  :::moniker range=">= aspnetcore-7.0"
 
