@@ -24,7 +24,7 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see the 
 
     * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
     * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
-    * [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
+    * [Mozilla Firefox](https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/index.html) (Mozilla documentation)
   
   The documentation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
   

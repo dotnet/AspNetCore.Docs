@@ -22,7 +22,7 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see the 
 
     * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
     * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
-    * [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
+    * [Mozilla Firefox](https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/index.html) (Mozilla documentation)
 
   * For releases of Blazor where a JSON Web Token (JWT) is used, decode the contents of the token used for authenticating a client or accessing a server web API, depending on where the problem is occurring. For more information, see [Inspect the content of a JSON Web Token (JWT)](#inspect-the-content-of-a-json-web-token-jwt).
   

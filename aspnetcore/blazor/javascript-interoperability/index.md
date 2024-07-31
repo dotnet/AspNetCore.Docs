@@ -249,7 +249,7 @@ To disable client-side caching in browsers, developers usually adopt one of the 
 
 * Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
   * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Firefox Developer Tools](https://firefox-source-docs.mozilla.org/devtools-user/index.html)
   * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 * Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
 

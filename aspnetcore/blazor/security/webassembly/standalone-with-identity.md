@@ -301,7 +301,7 @@ If the configuration appears correct:
 
 * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
 * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
-* [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
+* [Mozilla Firefox](https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/index.html) (Mozilla documentation)
 
 The documentation team responds to document feedback and bugs in articles. Open an issue using the **Open a documentation issue** link at the bottom of the article. The team isn't able to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
 
