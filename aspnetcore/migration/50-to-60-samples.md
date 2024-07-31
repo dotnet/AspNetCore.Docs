@@ -10,6 +10,8 @@ uid: migration/50-to-60-samples
 
 # Code samples migrated to the new minimal hosting model in ASP.NET Core 6.0
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 <!-- 
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
  -->

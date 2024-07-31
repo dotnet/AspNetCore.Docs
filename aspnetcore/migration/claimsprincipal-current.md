@@ -9,6 +9,8 @@ uid: migration/claimsprincipal-current
 ---
 # Migrate from ClaimsPrincipal.Current
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 In ASP.NET 4.x projects, it was common to use <xref:System.Security.Claims.ClaimsPrincipal.Current%2A?displayProperty=nameWithType> to retrieve the current authenticated user's identity and claims. In ASP.NET Core, this property is no longer set. Code that was depending on it needs to be updated to get the current authenticated user's identity through a different means.
 
 ## Context-specific state instead of static state
