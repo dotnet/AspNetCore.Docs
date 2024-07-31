@@ -9,6 +9,8 @@ uid: grpc/code-first
 ---
 # Code-first gRPC services and clients with .NET
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk) and [Marc Gravell](https://twitter.com/marcgravell)
 
 :::moniker range=">= aspnetcore-6.0"

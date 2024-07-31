@@ -9,6 +9,8 @@ uid: grpc/services
 ---
 # Create gRPC services and methods
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [James Newton-King](https://twitter.com/jamesnk)
 
 This document explains how to create gRPC services and methods in C#. Topics include:

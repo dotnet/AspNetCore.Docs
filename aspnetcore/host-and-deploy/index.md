@@ -10,6 +10,8 @@ uid: host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-2.2"
 
 In general, to deploy an ASP.NET Core app to a hosting environment:

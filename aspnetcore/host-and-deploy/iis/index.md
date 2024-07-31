@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-5.0"
 
 Internet Information Services (IIS) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core.
