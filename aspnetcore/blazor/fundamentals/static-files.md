@@ -526,13 +526,15 @@ Run the app.
 
 :::moniker range=">= aspnetcore-8.0"
 
-[App base path](xref:blazor/host-and-deploy/index#app-base-path)
+* [App base path](xref:blazor/host-and-deploy/index#app-base-path)
+* [Avoid file capture in a route parameter](xref:blazor/fundamentals/routing#avoid-file-capture-in-a-route-parameter)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
+* [Avoid file capture in a route parameter](xref:blazor/fundamentals/routing#avoid-file-capture-in-a-route-parameter)
 * <xref:blazor/host-and-deploy/multiple-hosted-webassembly>
 
 :::moniker-end
