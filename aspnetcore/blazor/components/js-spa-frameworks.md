@@ -14,6 +14,13 @@ uid: blazor/components/js-spa-frameworks
 
 This article covers how to render Razor components from JavaScript, use Blazor custom elements, and generate Angular and React components.
 
+> [!NOTE]
+> We recommend using the `blazor.server.js` (Blazor Server) and `blazor.webassembly.js` (Blazor WebAssembly) scripts when integrating Razor components into an existing JavaScript app until better support for the `blazor.web.js` (Blazor Web App) script is added in the future. For more information, see [RegisterCustomElement stopped working in Blazor 8 (`dotnet/aspnetcore` #53920)](https://github.com/dotnet/aspnetcore/issues/53920#issuecomment-2261507850).
+
+<!-- DOC AUTHOR NOTE: The `blazor.web.js` (Blazor Web App) portions of
+     this article have been commented out for the time being to 
+     facilitate reconstituting the guidance later when support lands. -->
+
 ## Angular sample apps
 
 <!-- UPDATE 9.0 Add migration instructions cross-link to .NET 9 -->
@@ -54,6 +61,8 @@ One or more initializer functions can be created and called by different compone
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
+<!-- HOLD
+
 :::moniker range=">= aspnetcore-8.0"
 
 * In a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents%2A> in the server-side `Program` file:
@@ -69,7 +78,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+-->
 
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file:
 
@@ -80,8 +89,6 @@ The following example demonstrates the dynamic registration of the preceding `Qu
           javaScriptInitializer: "initializeComponent");
   });
   ```
-
-:::moniker-end
 
 * In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file:
 
@@ -179,6 +186,8 @@ Using a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-ini
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
+<!-- HOLD
+
 :::moniker range=">= aspnetcore-8.0"
 
 For a Blazor Web App:
@@ -197,6 +206,8 @@ export function afterWebStarted(blazor) {
 For a Blazor Server or Blazor WebAssembly app:
 
 :::moniker-end
+
+-->
 
 ```javascript
 export function afterStarted(blazor) {
@@ -260,6 +271,8 @@ The following examples are based on the `Counter` component from the Blazor proj
 
 :::moniker-end
 
+<!-- HOLD
+
 :::moniker range=">= aspnetcore-8.0"
 
 ### Blazor Web App registration
@@ -290,7 +303,9 @@ builder.Services.AddRazorComponents()
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+-->
+
+:::moniker range=">= aspnetcore-7.0"
 
 ### Blazor Server registration
 
@@ -316,10 +331,6 @@ builder.Services.AddServerSideBlazor(options =>
     options.RootComponents.RegisterCustomElement<Counter>("my-counter");
 });
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
 
 ### Blazor WebAssembly registration
 
