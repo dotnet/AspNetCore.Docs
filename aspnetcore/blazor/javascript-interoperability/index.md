@@ -32,7 +32,7 @@ Further JS interop guidance is provided in the following articles:
 
 ## Compression for interactive server components with untrusted data
 
-<!-- Doc author note: This content is also in an INCLUDE file at
+<!-- DOC AUTHOR NOTE: This content is also in an INCLUDE file at
      blazor/includes/compression-with-untrusted-data.md because the
      text is used in a warning format in two articles. -->
 
