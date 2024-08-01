@@ -80,8 +80,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p <CREDENTIAL_PL
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certs on Linux in the way that is supported by your distribution. It is likely that you need to trust the certificate in your browser.
-
+Prior to 9.0, `dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certs on Linux in the way that is supported by your distribution. It is likely that you need to trust the certificate in your browser.
 In the preceding commands, replace `<CREDENTIAL_PLACEHOLDER>` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS:
