@@ -23,19 +23,16 @@ This part of the tutorial series explains how metadata of the `Movie` model is u
 
 ## Validation using data annotations
 
-Validation rules are specified on a model class using *data annotations*. The following list shows <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties on a Blazor form's model:
+Validation rules are specified on a model class using *data annotations*. The following list shows some of the <xref:System.ComponentModel.DataAnnotations> attributes for user input validation of public properties in a form's model:
 
-* [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
-* [`[CreditCard]`](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format according to the [Luhn algorithm](https://wikipedia.org/wiki/Luhn_algorithm).
-* [`[EmailAddress]`](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
 * [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Require that the user provide a value.
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Specifies the minimum and maximum length of characters. Note that a `MinimumLength` passed to the attribute doesn't make the string required (apply the [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)).
-* [`[Phone]`](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
 * [`[RegularExpression]`](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute): Specify a pattern to match for the user's input.
 * [`[Range]`](xref:System.ComponentModel.DataAnnotations.RangeAttribute): Specify the minimum and maximum values.
-* [`[Url]`](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 
 Value types, such as `decimal`, `int`, `float`, `DateOnly`, `TimeOnly`, and `DateTime`, are inherently required. Placing a [`[Required]` attribute](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) on value types isn't necessary.
+
+Additional data annotations that you can use in your forms are covered by the Blazor reference documentation.
 
 ## Add validation to the `Movie` model
 
