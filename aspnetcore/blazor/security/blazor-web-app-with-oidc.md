@@ -646,7 +646,7 @@ oidcOptions.TokenValidationParameters.RoleClaimType = "{ROLE CLAIM TYPE}";
 
 For many OIDC identity providers, the role claim type is `role`. Check your identity provider's documentation for the correct value.
 
-Replace the `UserInfo` class in the `BlazorWebAppOidc.Client` project with the following class. Confirm that the role claim type constant (`RoleClaimType`) matches the value assigned to <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType> in the OIDC configuration.
+Replace the `UserInfo` class in the `BlazorWebAppOidc.Client` project with the following class.
 
 `UserInfo.cs`:
 
