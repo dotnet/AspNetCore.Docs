@@ -267,7 +267,7 @@ public class Todo : IEndpointParameterMetadataProvider
 {
     public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
     {
-        builder.Metadata.Add(new ConsumesAttribute(typeof(Todo), "application/xml"));
+        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(XmlBody)));
     }
 }
 ```
