@@ -802,8 +802,6 @@ items:
               uid: tutorials/get-started-with-swashbuckle
             - name: Get started with NSwag
               uid: tutorials/get-started-with-nswag
-            - name: OpenAPI tools
-              uid: web-api/Microsoft.dotnet-openapi
         - name: Action return types
           uid: web-api/action-return-types
         - name: Handle JSON Patch requests
@@ -840,14 +838,6 @@ items:
           uid: fundamentals/minimal-apis/parameter-binding
         - name: Create responses
           uid: fundamentals/minimal-apis/responses
-        - name: OpenAPI
-          items:
-            - name: Overview
-              uid: fundamentals/minimal-apis/openapi
-            - name: Get started with Microsoft.AspNetCore.OpenApi
-              uid: fundamentals/openapi/aspnetcore-openapi
-            - name: OpenAPI tools
-              uid: web-api/Microsoft.dotnet-openapi
         - name: Filters
           uid: fundamentals/minimal-apis/min-api-filters
         - name: Unit and integration tests
@@ -858,6 +848,14 @@ items:
           uid: fundamentals/minimal-apis/handle-errors
         - name: Authentication and authorization
           uid: fundamentals/minimal-apis/security
+      - name: OpenAPI
+        items:
+          - name: Overview
+            uid: fundamentals/openapi/overview.md
+          - name: Get started with Microsoft.AspNetCore.OpenApi
+            uid: fundamentals/openapi/aspnetcore-openapi
+          - name: OpenAPI tools
+            uid: web-api/Microsoft.dotnet-openapi
   - name: Real-time apps
     displayName: signalr
     items:
