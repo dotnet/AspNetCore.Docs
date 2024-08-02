@@ -49,14 +49,6 @@ Run the following command from the **Package Manager Console**:
  Install-Package Microsoft.Extensions.ApiDescription.Server -IncludePrerelease
 ```
 
-### [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```dotnetcli
-dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
-```
-
 ### [.NET CLI](#tab/net-cli)
 
 Run the following command in the directory that contains the project file:
@@ -259,6 +251,9 @@ To define the type of inputs transmitted as the request body, configure the prop
 app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
   .Accepts<Todo>("application/xml");
 ```
+
+<!-- TODO: Add more context on this example. Specifically we need to add the BindAsync method 
+in the TODO class because without it Minimal will try to deserialize as JSON -->
 
 In addition to the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method, a parameter type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
 
