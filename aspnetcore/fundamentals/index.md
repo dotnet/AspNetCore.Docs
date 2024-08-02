@@ -228,3 +228,5 @@ For more information, see <xref:fundamentals/static-files>.
 * [WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/index/includes/index3-7.md)]
