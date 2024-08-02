@@ -228,7 +228,7 @@ The `Startup` class is where:
 
 Here's a sample `Startup` class:
 
-[!code-csharp[](index/samples_snapshot/3.x/Startup.cs?highlight=3,12)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/Startup.cs?highlight=3,12)]
 
 For more information, see <xref:fundamentals/startup>.
 
@@ -238,13 +238,13 @@ ASP.NET Core includes a built-in dependency injection (DI) framework that makes 
 
 Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
 
-[!code-csharp[](index/samples_snapshot/3.x/ConfigureServices.cs)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/ConfigureServices.cs)]
 
 Services are typically resolved from DI using constructor injection. With constructor injection, a class declares a constructor parameter of either the required type or an interface. The DI framework provides an instance of this service at runtime.
 
 The following example uses constructor injection to resolve a `RazorPagesMovieContext` from DI:
 
-[!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
 
 If the built-in Inversion of Control (IoC) container doesn't meet all of an app's needs, a third-party IoC container can be used instead.
 
@@ -258,7 +258,7 @@ By convention, a middleware component is added to the pipeline by invoking a `Us
 
 The following example configures a request handling pipeline:
 
-[!code-csharp[](index/samples_snapshot/3.x/Configure.cs)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/Configure.cs)]
 
 ASP.NET Core includes a rich set of built-in middleware. Custom middleware components can also be written.
 
@@ -283,7 +283,7 @@ The .NET Generic Host is recommended. The ASP.NET Core Web Host is available onl
 
 The following example creates a .NET Generic Host:
 
-[!code-csharp[](index/samples_snapshot/3.x/Program.cs)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/Program.cs)]
 
 The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with a set of default options, such as:
 
@@ -339,7 +339,7 @@ Execution environments, such as `Development`, `Staging`, and `Production`, are 
 
 The following example configures the app to provide detailed error information when running in the `Development` environment:
 
-[!code-csharp[](index/samples_snapshot/3.x/StartupConfigure.cs?highlight=3-6)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/StartupConfigure.cs?highlight=3-6)]
 
 For more information, see <xref:fundamentals/environments>.
 
@@ -357,7 +357,7 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 
 To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>. For example:
 
-[!code-csharp[](index/samples_snapshot/3.x/TodoController.cs?highlight=5,13,19)]
+[!code-csharp[](~/fundamentals/index/samples_snapshot/3.x/TodoController.cs?highlight=5,13,19)]
 
 Logging methods such as `LogInformation` support any number of fields. These fields are commonly used to construct a message `string`, but some logging providers send these to a data store as separate fields. This feature makes it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
 
