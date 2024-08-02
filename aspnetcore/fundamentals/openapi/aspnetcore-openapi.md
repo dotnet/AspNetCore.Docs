@@ -30,14 +30,6 @@ Run the following command from the **Package Manager Console**:
  Install-Package Microsoft.AspNetCore.OpenApi -IncludePrerelease
 ```
 
-### [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```dotnetcli
-dotnet add package Microsoft.AspNetCore.OpenApi --prerelease
-```
-
 ### [.NET CLI](#tab/net-cli)
 
 Run the following command:
