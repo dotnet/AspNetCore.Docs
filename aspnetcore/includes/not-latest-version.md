@@ -3,7 +3,7 @@
 > This isn't the latest version of this article. For the current release, see the [.NET 8 version of this article](?view=aspnetcore-8.0&preserve-view=true).
 :::moniker-end
 
-:::moniker range="= aspnetcore-7.0 || = aspnetcore-5.0 || = aspnetcore-3.0 || = aspnetcore-2.0"
+:::moniker range="= aspnetcore-7.0 || = aspnetcore-5.0 || = aspnetcore-3.0 || = aspnetcore-3.1 || = aspnetcore-2.0"
 [!INCLUDE[](~/includes/out-of-support.md)]
 :::moniker-end
 
