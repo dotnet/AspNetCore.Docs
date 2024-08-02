@@ -385,8 +385,6 @@ The following dialog is displayed:
 
 Select **Yes** to acknowledge the risk and install the certificate.
 
-For information on trusting the HTTPS development certificate for the Firefox browser, see <xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error>.
-
 Visual Studio:
 
 * Compiles and runs the app.
@@ -395,8 +393,6 @@ Visual Studio:
 :::zone-end
 
 :::zone pivot="vsc"
-
-For information on trusting the HTTPS development certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error).
 
 In VS Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
@@ -407,8 +403,6 @@ The default browser is launched at `https://localhost:{PORT}`, which displays th
 :::zone-end
 
 :::zone pivot="cli"
-
-For information on trusting the HTTPS development certificate for browsers other than Firefox, see the [HTTPS development certificate trust guidance](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos). When using the Firefox browser, see the [certificate trust guidance for Firefox](xref:security/enforcing-ssl#trust-the-https-certificate-with-firefox-to-prevent-sec_error_inadequate_key_usage-error) section of that article.
 
 In a command shell opened to the project's root folder, execute the [`dotnet watch`](/dotnet/core/tools/dotnet-watch) command to compile and start the app:
 
