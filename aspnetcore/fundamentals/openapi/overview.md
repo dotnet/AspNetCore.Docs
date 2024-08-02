@@ -5,7 +5,7 @@ description: Learn how to use OpenAPI features in ASP.NET Core.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 8/02/2024
-uid: fundamentals/minimal-apis/openapi
+uid: fundamentals/openapi/overview
 ---
 
 ASP.NET Core supports the generation of OpenAPI documents in controller-based and minimal APIs apps.
