@@ -4,7 +4,7 @@ The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a prog
 
 * Generating information about the endpoints in the app.
 * Gathering the information into a format that matches the OpenAPI schema.
-* Exposing the generated OpenAPI schema via a visual UI or a serialized file.
+* Exposing the generated OpenAPI document via a visual UI or a serialized file.
 
 ASP.NET Core apps provide built-in support for generating information about endpoints in an app via the `Microsoft.AspNetCore.OpenApi` package.
 
@@ -23,10 +23,10 @@ In the preceding highlighted code:
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package provides the following features:
 
-* Support for generating OpenAPI documents at runtime and accessing them via an endpoint on the application
-* Support for "transformer" APIs that allow modifying the generated document
+* Support for generating OpenAPI documents at run time and accessing them via an endpoint on the application.
+* Support for "transformer" APIs that allow modifying the generated document.
 
-`Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
+To use the `Microsoft.AspNetCore.OpenApi` package, add it as a PackageReference to a project file:
 
 [!code-xml[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/projectFile.xml?highlight=15)]
 
@@ -34,10 +34,10 @@ To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundam
 
 ## `Microsoft.Extensions.ApiDescription.Server` NuGet package
 
-The [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server/) package provides support for generating OpenAPI documents at build time and serializing them to disk.
+The [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server/) package provides support for generating OpenAPI documents at build time and serializing them.
 
-`Microsoft.Extensions.ApiDescription.Server` is added as a PackageReference to a project file, and
-document generation at build time is enabled by setting the `OpenApiGenerateDocuments` property.
+To use `Microsoft.Extensions.ApiDescription.Server`, add it as a PackageReference to a project file.
+Document generation at build time is enabled by setting the `OpenApiGenerateDocuments` property.
 By default, the generated OpenAPI document is saved to the `obj` directory, but you can customize
 the output directory by setting the `OpenApiDocumentsDirectory` property.
 

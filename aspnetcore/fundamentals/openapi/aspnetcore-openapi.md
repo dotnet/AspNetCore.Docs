@@ -12,7 +12,7 @@ uid: fundamentals/openapi/aspnetcore-openapi
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
-* Support for generating OpenAPI documents at runtime and accessing them via an endpoint on the application.
+* Support for generating OpenAPI documents at run time and accessing them via an endpoint on the application.
 * Support for "transformer" APIs that allow modifying the generated document.
 * Support for generating multiple OpenAPI documents from a single app.
 * Takes advantage of JSON schema support provided by [`System.Text.Json`](/dotnet/api/system.text.json).
@@ -85,12 +85,12 @@ The following code:
 
 Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to view the generated OpenAPI document.
 
-## Including OpenAPI metadata in your ASP.NET web app
+## Including OpenAPI metadata in an ASP.NET web app
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 In controller-based apps, metadata is collected from attributes like `[EndpointDescription]`, `[HttpPost]`,
 and `[Produces]`.
-In minimal APIs, metadata is also collected from attributes, but may also be set using extension methods
+In minimal APIs, metadata can be collected from attributes, but may also be set by using extension methods
 and other strategies, such as returning `TypedResults` from route handlers.
 The following table provides an overview of the metadata collected and the strategies for setting it.
 
@@ -106,9 +106,9 @@ The following table provides an overview of the metadata collected and the strat
 | responses | `[Produces]`, `[ProducesProblem]` | `Produces`, `ProducesProblem` | `TypedResults` |
 | Excluding endpoints | `[ExcludeFromDescription]` | `ExcludeFromDescription` | |
 
-Note that currently ASP.NET does not collect metadata from XML doc comments.
+ASP.NET Core does not collect metadata from XML doc comments.
 
-The following sections demonstrate how to include metadata in your app to customize the generated OpenAPI document.
+The following sections demonstrate how to include metadata in an app to customize the generated OpenAPI document.
 
 ### Summary and description
 
@@ -164,7 +164,7 @@ In minimal APIs, tags can be set using either the `[Tags]` attribute or the `Wit
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-The follow sample demonstrates the different strategies for setting tags.
+The following sample demonstrates the different strategies for setting tags.
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
@@ -200,7 +200,7 @@ In minimal APIs, the operationId can be set using either the `[EndpointName]` at
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-The follow sample demonstrates the different strategies for setting the operationId.
+The following sample demonstrates the different strategies for setting the operationId.
 
 ```csharp
 app.MapGet("/extension-methods", () => "Hello world!")
@@ -268,7 +268,7 @@ app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
   .Accepts<Todo>("application/xml");
 ```
 
-In addition to the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A>extension method, a parameter type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
+In addition to the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method, a parameter type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
@@ -339,7 +339,7 @@ If an endpoint can return different response types in different scenarios, you c
 
 <!-- TODO: Add information for controller-based apps in this section -->
 
-By default, all endpoints that are defined in an app are documented in the generated OpenAPI file. Minimal APIs supports two strategies for excluding a given endpoint from the OpenAPI document, using:
+By default, all endpoints that are defined in an app are documented in the generated OpenAPI file. Minimal APIs support two strategies for excluding a given endpoint from the OpenAPI document, using:
 
 * <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A>
 * <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>
@@ -401,7 +401,7 @@ By default, the OpenAPI endpoint registered via a call to `MapOpenApi` exposes t
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
 ```
 
-***Note:*** It's possible, but not recommended, to remove the `documentName` route parameter from the endpoint route. When the `documentName` route parameter is removed from the endpoint route, the framework attempts to resolve the document name from the query parameter. Not providing the `documentName` in either the route or query can result in unexpected behavior.
+It's possible, but not recommended, to remove the `documentName` route parameter from the endpoint route. When the `documentName` route parameter is removed from the endpoint route, the framework attempts to resolve the document name from the query parameter. Not providing the `documentName` in either the route or query can result in unexpected behavior.
 
 ### Customize the OpenAPI endpoint
 
