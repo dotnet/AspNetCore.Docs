@@ -1,0 +1,37 @@
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# More details are here: https://help.github.com/articles/about-codeowners/
+
+# The '*' pattern is global owners.
+
+*    @dotnet/docs
+
+.github/ @dotnet/docs
+
+# Order is important. The last matching pattern has the most precedence.
+
+/aspnetcore/blazor/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs @guardrex
+/aspnetcore/breadcrumb/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/client-side/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/common/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/data/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/diagnostics/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/fundamentals/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/getting-started/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/grpc/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/host-and-deploy/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/includes/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/log-mon/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/migration/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/mobile/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/mvc/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/performance/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/razor-pages/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/release-notes/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/security/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/signalr/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/test/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/tutorials/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/web-api/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
+/aspnetcore/whats-new/ @wadepickett @Rick-Anderson @tdykstra @dotnet/docs
