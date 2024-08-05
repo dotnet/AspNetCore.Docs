@@ -8,7 +8,7 @@ ms.custom: "mvc"
 ms.date: 02/09/2024
 uid: blazor/index
 ---
-# ASP.NET Core Blazor
+# ASP.NET Core Blazor TEST
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
