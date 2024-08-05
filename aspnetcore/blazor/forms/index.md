@@ -20,19 +20,22 @@ The Blazor framework supports forms and provides built-in input components:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Bound to an object or model that can use [data annotations](xref:mvc/models/validation)
-  * HTML forms with the `<form>` element
-  * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components
-* [Built-in input components](xref:blazor/forms/input-components)
+* Bound to an object or model that can use [data annotations](xref:mvc/models/validation).
+  * HTML forms with the `<form>` element.
+  * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components.
+* [Built-in input components](xref:blazor/forms/input-components).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-* An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](xref:mvc/models/validation)
-* [Built-in input components](xref:blazor/forms/input-components)
+* An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](xref:mvc/models/validation).
+* [Built-in input components](xref:blazor/forms/input-components).
 
 :::moniker-end
+
+> [!NOTE]
+> Unsupported ASP.NET Core validation features are covered in the [Unsupported validation features](#unsupported-validation-features) section.
 
 The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides:
 
@@ -398,6 +401,10 @@ Form examples reference aspects of the [Star Trek](http://www.startrek.com/) uni
 In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
 
 :::moniker-end
+
+## Unsupported validation features
+
+All of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute).
 
 <!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
                 The intention is to link to a few of the
