@@ -62,6 +62,13 @@ Select **Next**.
 
 * For more information on the options in the **Additional information** dialog, see the [Blazor project templates and template options](#blazor-project-templates-and-template-options) section.
 
+:::moniker range=">= aspnetcore-8.0"
+
+  > [!NOTE]
+  > The hosted Blazor WebAssmebly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8.0 must be selected with the **ASP.NET Core Hosted** checkbox.
+
+:::moniker-end
+
 :::moniker range="< aspnetcore-8.0"
 
 * For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
@@ -321,6 +328,13 @@ Create a new project:
   dotnet new blazorwasm -o BlazorApp -ho
   ```
 
+  > [!NOTE]
+  > The hosted Blazor WebAssmebly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app using a .NET 8.0 or later SDK, pass the `-f|--framework` option with a 7.0 target framework (`net7.0`):
+  >
+  > ```dotnet cli
+  > dotnet new blazorwasm -o BlazorApp -ho -f net7.0
+  > ```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
@@ -340,6 +354,13 @@ Create a new project:
   ```dotnetcli
   dotnet new blazorwasm -o BlazorApp -ho
   ```
+
+  > [!NOTE]
+  > The hosted Blazor WebAssmebly project template isn't available in ASP.NET Core 8.0 or later. To create a hosted Blazor WebAssembly app using a .NET 8.0 or later SDK, pass the `-f|--framework` option with the target framework moniker (for example, `net6.0`):
+  >
+  > ```dotnet cli
+  > dotnet new blazorwasm -o BlazorApp -ho -f net6.0
+  > ```
 
 * For a Blazor Server experience, execute the following command:
 
