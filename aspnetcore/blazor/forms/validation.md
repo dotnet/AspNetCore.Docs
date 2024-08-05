@@ -144,7 +144,7 @@ The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.Da
 * [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
 * [Server validation with a validator component](#server-validation-with-a-validator-component)
 
-Of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes), only the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute) isn't supported in Blazor. Also, [class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) isn't supported in Blazor form models.
+Of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes), only the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute) isn't supported in Blazor.
 
 > [!NOTE]
 > Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, any custom attributes applied to the model must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
@@ -1349,7 +1349,7 @@ Using `CustomFieldClassProvider3`:
 
 ## Class-level validation with `IValidatableObject`
 
-[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) isn't supported in Blazor forms.
+[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported in Blazor forms. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
 
 ## Blazor data annotations validation package
 

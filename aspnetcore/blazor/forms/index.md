@@ -406,8 +406,6 @@ In Blazor Web Apps, client-side validation requires an active Blazor SignalR cir
 
 All of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute).
 
-[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) isn't supported in Blazor form models.
-
 <!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
                 The intention is to link to a few of the
                 framework test assets that include great
