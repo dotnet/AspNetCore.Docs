@@ -1349,7 +1349,7 @@ Using `CustomFieldClassProvider3`:
 
 ## Class-level validation with `IValidatableObject`
 
-[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported in Blazor forms. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
+[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
 
 ## Blazor data annotations validation package
 
