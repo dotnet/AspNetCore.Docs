@@ -207,7 +207,7 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator blazor -h
 ```
 
-<!-- UPDATE 8.0 Uncomment link after
+<!-- UPDATE 9.0 Uncomment link after
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
                 merges. This is tracked by a comment on the
                 tutorial PR.
