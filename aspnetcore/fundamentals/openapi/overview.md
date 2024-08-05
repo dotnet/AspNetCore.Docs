@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use OpenAPI features in ASP.NET Core.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 8/02/2024
+ms.date: 8/5/2024
 uid: fundamentals/openapi/overview
 ---
 
