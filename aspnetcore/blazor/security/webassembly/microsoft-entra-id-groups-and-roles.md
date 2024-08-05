@@ -525,24 +525,20 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> When developing a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the `role` claims.
+> When developing a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the role claims.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the `role` claims.
+> When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the role claims.
 
 :::moniker-end
 
-Although you can't assign roles to groups without an Microsoft Entra ID Premium account, you can assign roles to users and receive a `role` claim for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
+Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without an Microsoft Entra ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
-If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) to configure the app's roles.
-
-If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Implementation](/azure/architecture/guide/multitenant/considerations/identity#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file.
-
-The following is an example `appRoles` entry that creates `Admin` and `Developer` roles. These example roles are used later in this section's example at the component level to implement access restrictions:
+When working with the default directory, follow the guidance in [Add app roles to your application and receive them in the token](/entra/identity-platform/howto-add-app-roles-in-apps) to configure and assign roles. If you aren't working with the default directory, edit the app's manifest in the Azure portal to establish the app's roles manually in the `appRoles` entry of the manifest file. The following is an example `appRoles` entry that creates `Admin` and `Developer` roles. These example roles are used later in this section's example at the component level to implement access restrictions:
 
 ```json
 "appRoles": [
@@ -578,7 +574,7 @@ The following is an example `appRoles` entry that creates `Admin` and `Developer
 
 To assign a role to a user (or group if you have a Premium tier Azure account):
 
-1. Navigate to **Enterprise applications** in the ME-ID area of the Azure portal.
+1. Navigate to **Enterprise applications** in the ME-ID area of the [Azure portal](https://portal.azure.com/).
 1. Select the app. Select **Manage** > **Users and groups** from the sidebar.
 1. Select the checkbox for one or more user accounts.
 1. From the menu above the list of users, select **Edit assignment**.
