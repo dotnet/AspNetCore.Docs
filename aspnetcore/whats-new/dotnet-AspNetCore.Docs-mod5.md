@@ -59,11 +59,11 @@ Welcome to what's new in the ASP.NET Core docs for May 2024. This article lists 
 
 ### New articles
 
-- <xref:fundamentals/minimal-apis/aspnetcore-openapi>
+- <xref:fundamentals/openapi/aspnetcore-openapi>
 
 ### Updated articles
 
-- <xref:fundamentals/minimal-apis/aspnetcore-openapi>
+- <xref:fundamentals/openapi/aspnetcore-openapi>
   - Update install package instructions.
   - Bring back OpenAPI package installation instructions
   - Move up ## Customize OpenAPI endpoints with endpoint metadata
