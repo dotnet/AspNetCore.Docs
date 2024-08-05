@@ -5,33 +5,33 @@
 
 # The '*' pattern is global owners.
 
-*     
+# *     
 
-.github/  
+# .github/  
 
 # Order is important. The last matching pattern has the most precedence.
 
 /aspnetcore/blazor/ @guardrex
-/aspnetcore/breadcrumb/ 
-/aspnetcore/client-side/ 
-/aspnetcore/common/ 
-/aspnetcore/data/ 
+# /aspnetcore/breadcrumb/ 
+# /aspnetcore/client-side/ 
+# /aspnetcore/common/ 
+# /aspnetcore/data/ 
 /aspnetcore/diagnostics/ @Rick-Anderson
 /aspnetcore/fundamentals/ @tdykstra
-/aspnetcore/getting-started/ 
+# /aspnetcore/getting-started/ 
 /aspnetcore/grpc/ @wadepickett
 /aspnetcore/host-and-deploy/ @Rick-Anderson
-/aspnetcore/includes/ 
+# /aspnetcore/includes/ 
 /aspnetcore/log-mon/ @Rick-Anderson
 /aspnetcore/migration/ @Rick-Anderson
-/aspnetcore/mobile/ 
-/aspnetcore/mvc/ 
-/aspnetcore/performance/ 
-/aspnetcore/razor-pages/ 
-/aspnetcore/release-notes/ 
+# /aspnetcore/mobile/ 
+# /aspnetcore/mvc/ 
+# /aspnetcore/performance/ 
+# /aspnetcore/razor-pages/ 
+# /aspnetcore/release-notes/ 
 /aspnetcore/security/ @Rick-Anderson
 /aspnetcore/signalr/ @wadepickett
-/aspnetcore/test/ 
+# /aspnetcore/test/ 
 /aspnetcore/tutorials/ @wadepickett
 /aspnetcore/web-api/ @wadepickett @Rick-Anderson
 /aspnetcore/whats-new/ @Rick-Anderson
