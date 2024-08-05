@@ -4,7 +4,7 @@ author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 06/23/2024
+ms.date: 08/04/2024
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -115,9 +115,11 @@ Close the browser window.
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
-At the **Select debugger** prompt, select **.NET 5+ and .NET Core**.
+At the **Select debugger** prompt, select **C#**.
 
-![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/_static/vsc-select-debugger.png)
+![Select environment dialog](~/tutorials/razor-pages/razor-pages-start/_static/9/vsc-select-debugger-csharp-devkit9.png)
+
+At the **Select Launch Configuration** prompt, select **C#: RazorPagesMovie [https] RazorPagesMovie**.
 
 The default browser launched with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
 
