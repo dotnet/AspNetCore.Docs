@@ -12,6 +12,5 @@ uid: fundamentals/minimal-apis/openapi
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-[!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi9.md)]
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi8.md)]
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi6.md)]
