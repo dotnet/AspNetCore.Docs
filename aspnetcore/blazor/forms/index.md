@@ -406,26 +406,6 @@ In Blazor Web Apps, client-side validation requires an active Blazor SignalR cir
 
 All of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute).
 
-<!-- UPDATE 8.0 HOLD for post-RC2 or post-RTM
-                The intention is to link to a few of the
-                framework test assets that include great
-                additional examples for inspection.
-
-## Additional form examples
-
-The following additional form examples are available for inspection in the [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms).
-
-* <xref:Microsoft.AspNetCore.Components.Forms.EditForm> examples
-  * xxx
-  * xxx
-* HTML forms (`<form>`) examples
-  * xxx
-  * xxx
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
--->
-
 ## Additional resources
 
 :::moniker range=">= aspnetcore-8.0"

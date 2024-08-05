@@ -479,7 +479,7 @@ dotnet aspnet-codegenerator blazor -h
 
 ---
 
-<!-- UPDATE 8.0 Uncomment link after
+<!-- UPDATE 9.0 Uncomment link after
                 https://github.com/dotnet/AspNetCore.Docs/pull/32747
                 merges.
 
