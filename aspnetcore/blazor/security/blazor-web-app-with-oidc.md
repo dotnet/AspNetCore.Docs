@@ -636,7 +636,7 @@ A nonce isn't required or used when a refresh token is exchanged for a new acces
 
 ## Application roles for apps not registered with Microsoft Entra (ME-ID)
 
-*This section pertains to apps that don't use ME-ID as the identity provider. For apps registered with [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra), see the [Application roles for apps registered with Microsoft Entra (ME-ID)](#application-roles-for-apps-registered-with-microsoft-entra-me-id) section.*
+*This section pertains to apps that don't use [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra) as the identity provider. For apps registered with ME-ID, see the [Application roles for apps registered with Microsoft Entra (ME-ID)](#application-roles-for-apps-registered-with-microsoft-entra-me-id) section.*
 
 Configure the role claim type (<xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>) in the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> of `Program.cs`:
 
@@ -709,13 +709,13 @@ Configure the role claim type (<xref:Microsoft.IdentityModel.Tokens.TokenValidat
 oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
 ```
 
-Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without an Microsoft Entra ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
+Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without an ME-ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
 When working with the default directory, follow the guidance in [Add app roles to your application and receive them in the token (ME-ID documentation)](/entra/identity-platform/howto-add-app-roles-in-apps) to configure and assign roles. If you aren't working with the default directory, edit the app's manifest in the Azure portal to establish the app's roles manually in the `appRoles` entry of the manifest file. For more information, see [Configure the role claim (ME-ID documentation)](/entra/identity-platform/enterprise-app-role-management).
 
 A user's Azure security groups arrive in `groups` claims, and a user's built-in ME-ID administrator role assignments arrive in [well-known IDs (`wids`) claims](/entra/identity-platform/access-tokens#payload-claims). Values for both claim types are GUIDs. When received by the app, these claims can be used to establish [role and policy authorization in Razor components](xref:blazor/security/index#role-based-and-policy-based-authorization).
 
-In the app's manifest in the Azure portal, set the [`groupMembershipClaims` attribute](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security/distribution groups (`groups` claims) and roles of the signed-in user (`wids` claims). To set the `groupMembershipClaims` attribute:
+In the app's manifest in the Azure portal, set the [`groupMembershipClaims` attribute](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security/distribution groups (`groups` claims) and roles (`wids` claims) of the signed-in user. To set the `groupMembershipClaims` attribute:
 
 1. Open the app's registration in the Azure portal.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -803,4 +803,3 @@ At this point, Razor components can adopt [role-based and policy-based authoriza
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/server/index#manage-authentication-state-in-blazor-web-apps)
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)
-* 
