@@ -840,10 +840,10 @@ items:
           uid: fundamentals/minimal-apis/handle-errors
         - name: Authentication and authorization
           uid: fundamentals/minimal-apis/security
-        - name: OpenAPI
-          uid: fundamentals/minimal-apis/openapi
       - name: OpenAPI
         items:
+          - name: OpenAPI in Minimal API apps
+            uid: fundamentals/minimal-apis/openapi
           - name: Overview
             uid: fundamentals/openapi/overview
           - name: Get started with Microsoft.AspNetCore.OpenApi
