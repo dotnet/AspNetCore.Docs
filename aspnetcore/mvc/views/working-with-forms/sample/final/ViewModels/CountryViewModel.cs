@@ -11,7 +11,7 @@ namespace FormsTagHelper.ViewModels
         {
             new SelectListItem { Value = "MX", Text = "Mexico" },
             new SelectListItem { Value = "CA", Text = "Canada" },
-            new SelectListItem { Value = "US", Text = "USA"  },
+            new SelectListItem { Value = "US", Text = "USA" },
         };
     }
 }
