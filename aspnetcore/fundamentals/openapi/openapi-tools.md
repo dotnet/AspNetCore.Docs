@@ -2,14 +2,15 @@
 title: .NET OpenAPI tool command reference and installation
 author: ryanbrandenburg
 description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
-monikerRange: '>= aspnetcore-9.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 3/9/2022
 uid: fundamentals/openapi/openapi-tools
 ---
 # .NET OpenAPI tool command reference and installation
 
-<!-- TODO: Expand this section to be a more general topic on API tooling that includes other popular tools. -->
+<!-- TODO: Expand this section to be a more general topic on OpenAPI tooling that includes other popular tools.
+If tools other than for working with OpenAPI are included, a new section will be needed, not under the OpenAPI heading.  -->
 
 [Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Core Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
 
