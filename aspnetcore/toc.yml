@@ -794,14 +794,6 @@ items:
               uid: tutorials/first-web-api
             - name: Web API with MongoDB
               uid: tutorials/first-mongo-app
-        - name: Swagger / OpenAPI
-          items:
-            - name: Overview
-              uid: tutorials/web-api-help-pages-using-swagger
-            - name: Get started with Swashbuckle
-              uid: tutorials/get-started-with-swashbuckle
-            - name: Get started with NSwag
-              uid: tutorials/get-started-with-nswag
         - name: Action return types
           uid: web-api/action-return-types
         - name: Handle JSON Patch requests
@@ -856,6 +848,14 @@ items:
             uid: fundamentals/openapi/aspnetcore-openapi
           - name: OpenAPI tools
             uid: fundamentals/openapi/openapi-tools
+          - name: Swagger / NSWag
+            items:
+              - name: Overview
+                uid: tutorials/web-api-help-pages-using-swagger
+              - name: Get started with Swashbuckle
+                uid: tutorials/get-started-with-swashbuckle
+              - name: Get started with NSwag
+                uid: tutorials/get-started-with-nswag
   - name: Real-time apps
     displayName: signalr
     items:
