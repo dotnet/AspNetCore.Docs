@@ -842,12 +842,12 @@ items:
           uid: fundamentals/minimal-apis/security
       - name: OpenAPI
         items:
-          - name: OpenAPI in Minimal API apps
-            uid: fundamentals/minimal-apis/openapi
           - name: Overview
             uid: fundamentals/openapi/overview
           - name: Get started with Microsoft.AspNetCore.OpenApi
             uid: fundamentals/openapi/aspnetcore-openapi
+          - name: OpenAPI in Minimal API apps
+            uid: fundamentals/minimal-apis/openapi
           - name: OpenAPI tools
             uid: fundamentals/openapi/openapi-tools
           - name: Swagger / NSWag
