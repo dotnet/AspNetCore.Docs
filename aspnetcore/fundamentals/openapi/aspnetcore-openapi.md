@@ -10,6 +10,8 @@ uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
+> For .NET 8 or earlier, see [the .NET 8 version of the OpenAPI documentation](xref:fundamentals/minimal-apis/openapi).
+
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
 * Support for generating OpenAPI documents at run time and accessing them via an endpoint on the application.

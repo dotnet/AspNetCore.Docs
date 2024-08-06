@@ -10,5 +10,7 @@ uid: fundamentals/minimal-apis/openapi
 
 # OpenAPI support in minimal API apps
 
+> For .NET 9, see [the .NET 9 version of the OpenAPI documentation](xref:fundamentals/openapi/overview).
+
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi8.md)]
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi6.md)]
