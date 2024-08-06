@@ -840,6 +840,8 @@ items:
           uid: fundamentals/minimal-apis/handle-errors
         - name: Authentication and authorization
           uid: fundamentals/minimal-apis/security
+        - name: OpenAPI
+          uid: fundamentals/minimal-apis/openapi
       - name: OpenAPI
         items:
           - name: Overview
