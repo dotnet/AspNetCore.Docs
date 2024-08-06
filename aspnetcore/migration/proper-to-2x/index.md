@@ -8,6 +8,8 @@ uid: migration/proper-to-2x/index
 ---
 # Upgrade from ASP.NET Framework to ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
  :::moniker range=">= aspnetcore-7.0"
 
 ## Why upgrade to the latest .NET

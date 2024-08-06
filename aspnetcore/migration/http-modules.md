@@ -8,6 +8,8 @@ uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article shows how to migrate existing ASP.NET [HTTP modules and handlers from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
 
 ## Modules and handlers revisited

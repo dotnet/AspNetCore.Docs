@@ -11,6 +11,8 @@ uid: migration/inc/remote-session
 
 # Remote app session state
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Remote app session state will enable communication between the ASP.NET Core and ASP.NET app to retrieve the session state. This is enabled by exposing an endpoint on the ASP.NET app that can be queried to retrieve and set the session state.
 
 ## HttpSessionState serialization

@@ -10,6 +10,8 @@ uid: migration/inc/blazor
 ---
 # Enable ASP.NET Core Blazor Server support with Yarp in incremental migration
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 When adding Yarp to a Blazor Server app, both attempt to act as fallback routes for the app's request routing. Either Blazor or Yarp handles routing arbitrarily, which means that scenarios such as deep linking in Blazor may fail. This will be fixed in the .NET 8 release later this year. For migration to ASP.NET Core 6.0 and 7.0, map Blazor's endpoints to achieve correct request routing by following the guidance in this article.
 
 Add the following route builder extensions class to the project.

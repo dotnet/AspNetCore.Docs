@@ -9,6 +9,8 @@ uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC.
 
 :::moniker range=">= aspnetcore-6.0"

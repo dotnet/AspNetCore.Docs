@@ -8,6 +8,8 @@ uid: migration/configuration
 ---
 # Migrate configuration to ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 In the previous article, we began to [migrate an ASP.NET MVC project to ASP.NET Core MVC](xref:migration/mvc). In this article, we migrate configuration.

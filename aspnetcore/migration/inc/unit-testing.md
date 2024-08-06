@@ -11,6 +11,8 @@ uid: migration/inc/unit-testing
 
 # Unit Testing
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 In most cases, there's no need to set up additional components for running tests. But if the component being tested uses <xref:System.Web.HttpRuntime>, it might be necessary to start up the `SystemWebAdapters` service, as shown in the following example:
 
 :::code language="csharp" source="~/migration/inc/samples/unit-testing/Program.cs" id="snippet_UnitTestingFixture" :::

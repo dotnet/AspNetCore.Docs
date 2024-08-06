@@ -11,6 +11,8 @@ uid: migration/inc/remote-authentication
 
 # Remote Authentication
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The System.Web adapters' remote authentication feature allows an ASP.NET Core app to determine a user's identity (authenticate an HTTP request) by deferring to an ASP.NET app. Enabling the feature adds an endpoint to the ASP.NET app that returns a serialized <xref:System.Security.Claims.ClaimsPrincipal> representing the authenticated user for any requests made to the endpoint. The ASP.NET Core app, then, registers a custom authentication handler that will (for endpoints with remote authentication enabled) determine a user's identity by calling that endpoint on the ASP.NET app and passing selected headers and cookies from the original request received by the ASP.NET Core app.
 
 ## Configuration

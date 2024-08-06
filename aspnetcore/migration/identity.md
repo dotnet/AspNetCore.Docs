@@ -8,6 +8,8 @@ uid: migration/identity
 ---
 # Migrate Authentication and Identity to ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Steve Smith](https://ardalis.com/)
 
 In the previous article, we [migrated configuration from an ASP.NET MVC project to ASP.NET Core MVC](xref:migration/configuration). In this article, we migrate the registration, login, and user management features.

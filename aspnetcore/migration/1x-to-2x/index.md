@@ -9,6 +9,8 @@ uid: migration/1x-to-2x/index
 ---
 # Migrate from ASP.NET Core 1.x to 2.0
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Scott Addie](https://github.com/scottaddie)
 
 In this article, we walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](xref:aspnetcore-2.0).

@@ -11,6 +11,8 @@ uid: migration/inc/wrapped
 
 # Wrapped ASP.NET Core session state
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This implementation wraps the session provided on ASP.NET Core so that it can be used with the adapters. The session will be using the same backing store as `Microsoft.AspNetCore.Http.ISession` but will provide strongly-typed access to its members.
 
 Configuration for ASP.NET Core would look similar to the following:
