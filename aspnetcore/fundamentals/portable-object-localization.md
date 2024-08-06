@@ -172,6 +172,14 @@ For the Czech culture, the three translations are different. The French and Engl
 
 ## Advanced tasks
 
+### Using additional arguments
+
+The argument at index zero `{0}` always represents the count value. When invoking the `Plural` method it is possible to add additional arguments and their index will then start at one (`1`).
+
+```cshtml
+<p>@Localizer.Plural(count, "There is one item with the color {1}.", "There are {0} items. The main color is {1}.", color)</p>
+```
+
 ### Contextualizing strings
 
 Applications often contain the strings to be translated in several places. The same string may have a different translation in certain locations within an app (Razor views or class files). A PO file supports the notion of a file context, which can be used to categorize the string being represented. Using a file context, a string can be translated differently, depending on the file context (or lack of a file context).
