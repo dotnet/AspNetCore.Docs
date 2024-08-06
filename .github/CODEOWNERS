@@ -5,33 +5,33 @@
 
 # The '*' pattern is global owners.
 
-*    @wadepickett @Rick-Anderson @tdykstra 
+# *     
 
-.github/ @wadepickett @Rick-Anderson @tdykstra 
+# .github/  
 
 # Order is important. The last matching pattern has the most precedence.
 
 /aspnetcore/blazor/ @guardrex
-/aspnetcore/breadcrumb/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/client-side/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/common/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/data/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/diagnostics/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/fundamentals/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/getting-started/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/grpc/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/host-and-deploy/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/includes/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/log-mon/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/migration/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/mobile/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/mvc/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/performance/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/razor-pages/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/release-notes/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/security/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/signalr/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/test/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/tutorials/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/web-api/ @wadepickett @Rick-Anderson @tdykstra
-/aspnetcore/whats-new/ @wadepickett @Rick-Anderson @tdykstra
+# /aspnetcore/breadcrumb/ 
+# /aspnetcore/client-side/ 
+# /aspnetcore/common/ 
+# /aspnetcore/data/ 
+/aspnetcore/diagnostics/ @Rick-Anderson
+/aspnetcore/fundamentals/ @tdykstra
+# /aspnetcore/getting-started/ 
+/aspnetcore/grpc/ @wadepickett
+/aspnetcore/host-and-deploy/ @Rick-Anderson
+# /aspnetcore/includes/ 
+/aspnetcore/log-mon/ @Rick-Anderson
+/aspnetcore/migration/ @Rick-Anderson
+# /aspnetcore/mobile/ 
+# /aspnetcore/mvc/ 
+# /aspnetcore/performance/ 
+# /aspnetcore/razor-pages/ 
+# /aspnetcore/release-notes/ 
+/aspnetcore/security/ @Rick-Anderson
+/aspnetcore/signalr/ @wadepickett
+# /aspnetcore/test/ 
+/aspnetcore/tutorials/ @wadepickett
+/aspnetcore/web-api/ @wadepickett @Rick-Anderson
+/aspnetcore/whats-new/ @Rick-Anderson
