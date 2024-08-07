@@ -547,6 +547,6 @@ The output shows any issues with the OpenAPI document.
 ✖ 5 problems (0 errors, 5 warnings, 0 infos, 0 hints)
 ```
 
-moniker-end
+::: moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
