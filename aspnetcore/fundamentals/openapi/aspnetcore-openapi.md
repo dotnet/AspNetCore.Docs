@@ -3,7 +3,7 @@ title: Work with OpenAPI documents
 author: captainsafia
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
-monikerRange: '>= aspnetcore-9.0'
+monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
 ms.date: 5/22/2024
 uid: fundamentals/openapi/aspnetcore-openapi
