@@ -4,7 +4,7 @@
   dotnet dev-certs https --trust
   ```
   
- The preceding command requires .NET 9.0 or higher on Linux.  For Linux on .NET 8 and earlier, see your Linux distribution's documentation for trusting a certificate.
+  The preceding command doesn't work on Linux. See your Linux distribution's documentation for trusting a certificate.
 
   The preceding command displays the following dialog, provided the certificate was not previously trusted:
 
