@@ -190,19 +190,19 @@ The following example demonstrates `[JSImport]` leveraging type mappings of seve
 globalThis.counter = 0;
 
 // Takes no parameters and returns nothing.
-PrimitivesShim.incrementCounter = function () {
+export function incrementCounter () {
   globalThis.counter += 1;
-};
+}
 
 // Returns an int.
-PrimitivesShim.getCounter = () => globalThis.counter;
+export function getCounter() { return globalThis.counter; }
 
 // Takes a parameter and returns nothing. JS doesn't restrict the parameter type, 
 // but we can restrict it in the .NET proxy, if desired.
-PrimitivesShim.logValue = (value) => { console.log(value); };
+export function logValue(value) { console.log(value); }
 
 // Called for various .NET types to demonstrate mapping to JS primitive types.
-PrimitivesShim.logValueAndType = (value) => { console.log(typeof value, value); };
+export function logValueAndType(value) { console.log(typeof value, value); }
 ```
 
 `PrimitivesInterop.cs`:
@@ -312,19 +312,20 @@ A `Date` object is timezone agnostic. A .NET <xref:System.DateTime> is adjusted 
 `DateShim.js`:
 
 ```javascript
-DateShim.incrementDay = function (date) {
+export function incrementDay(date) {
   date.setDate(date.getDate() + 1);
   return date;
-};
+}
 
-DateShim.logValueAndType = (value) => {
+export function logValueAndType (value) {
   console.log("Date:", value)
-};
+}
 ```
 
 `DateInterop.cs`:
 
 ```csharp
+using System;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
 
@@ -372,7 +373,7 @@ The <xref:System.Runtime.InteropServices.JavaScript.JSObject> provides methods t
 `JSObjectShim.js`:
 
 ```javascript
-JSObjectShim.createObject = function () {
+export function createObject() {
   return {
     name: "Example JS Object",
     answer: 41,
@@ -381,17 +382,17 @@ JSObjectShim.createObject = function () {
       return `Question: "${this.question}" Answer: ${this.answer}`;
     }
   };
-};
+}
 
-JSObjectShim.incrementAnswer = function (object) {
+export function incrementAnswer(object) {
   object.answer += 1;
   // Don't return the modified object, since the reference is modified.
-};
+}
 
 // Proxy an instance method call.
-JSObjectShim.summarize = function (object) {
+export function summarize(object) {
   return object.summarize();
-};
+}
 ```
 
 `JSObjectInterop.cs`:
@@ -460,49 +461,49 @@ JS with a callback, such as a `setTimeout`, can be wrapped in a [`Promise`](http
 `PromisesShim.js`:
 
 ```javascript
-PromisesShim.wait2Seconds = function () {
-  // This also demonstrates wrapping a callback-based API in a promise to 
+export function wait2Seconds() {
+  // This also demonstrates wrapping a callback-based API in a promise to
   // make it awaitable.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(); // Resolve promise after 2 seconds
     }, 2000);
   });
-};
+}
 
 // Return a value via resolve in a promise.
-PromisesShim.waitGetString = function () {
+export function waitGetString() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve("String From Resolve"); // Return a string via promise
     }, 500);
   });
-};
+}
 
-PromisesShim.waitGetDate = function () {
+export function waitGetDate() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(new Date('1988-11-24')) // Return a date via promise
+      resolve(new Date('1988-11-24')); // Return a date via promise
     }, 500);
   });
-};
+}
 
 // Demonstrates an awaitable fetch.
-PromisesShim.fetchCurrentUrl = function () {
+export function fetchCurrentUrl() {
   // This method returns the promise returned by .then(*.text())
   // and .NET awaits the returned promise.
   return fetch(globalThis.window.location, { method: 'GET' })
     .then(response => response.text());
-};
+}
 
 // .NET can await JS methods using the async/await JS syntax.
-PromisesShim.asyncFunction = async function () {
-  await PromisesShim.Wait2Seconds();
-};
+export async function asyncFunction() {
+  await wait2Seconds();
+}
 
-// A Promise.reject can be used to signal failure and is bubbled to .NET code 
+// A Promise.reject can be used to signal failure and is bubbled to .NET code
 // as a JSException.
-PromisesShim.conditionalSuccess = function (shouldSucceed) {
+export function conditionalSuccess(shouldSucceed) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldSucceed)
@@ -511,7 +512,7 @@ PromisesShim.conditionalSuccess = function (shouldSucceed) {
         reject("Reject: ShouldSucceed == false"); // Failure
     }, 500);
   });
-};
+}
 ```
 
 Don't use the `async` keyword in the C# method signature. Returning <xref:System.Threading.Tasks.Task> or <xref:System.Threading.Tasks.Task%601> is sufficient.
@@ -613,34 +614,34 @@ The preceding example displays the following output in the browser's debug conso
 Some type mappings requiring nested generic types in the [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601) definition aren't currently supported. For example, returning a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) for an array such as `[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]` generates a compile-time error. An appropriate workaround varies depending on the scenario, but one option is to represent the array as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference. This may be sufficient if accessing individual elements within .NET isn't necessary and the reference can be passed to other JS methods that act on the array. Alternatively, a dedicated method can take the <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference as a parameter and return the materialized array, as demonstrated by the following `UnwrapJSObjectAsIntArray` example. In this case, the JS method has no type checking, and the developer has the responsibility to ensure a <xref:System.Runtime.InteropServices.JavaScript.JSObject> wrapping the appropriate array type is passed.
 
 ```javascript
-PromisesShim.waitGetIntArrayAsObject = function () {
+export function waitGetIntArrayAsObject() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve([1, 2, 3, 4, 5] ); // Return an array from the Promise
+      resolve([1, 2, 3, 4, 5]); // Return an array from the Promise
     }, 500);
   });
-};
+}
 
-PromisesShim.unwrapJSObjectAsIntArray = function (jsObject) {
+export function unwrapJSObjectAsIntArray(jsObject) {
   return jsObject;
-};
+}
 ```
 
 ```csharp
 // Not supported, generates compile-time error.
-[JSImport("waitGetArray", "PromisesShim")]
-[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]
-public static partial Task<int[]> WaitGetIntArray();
+// [JSImport("waitGetArray", "PromisesShim")]
+// [return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]
+// public static partial Task<int[]> WaitGetIntArray();
 
 // Workaround, take the return the call and pass it to UnwrapJSObjectAsIntArray.
 // Return a JSObject reference to a JS number array.
-[JSImport("waitGetArray", "PromisesShim")]
+[JSImport("waitGetIntArrayAsObject", "PromisesShim")]
 [return: JSMarshalAs<JSType.Promise<JSType.Object>>()]
 public static partial Task<JSObject> WaitGetIntArrayAsObject();
 
 // Takes a JSObject reference to a JS number array, and returns the array as a C# 
 // int array.
-[JSImport("waitGetArray", "PromisesShim")]
+[JSImport("unwrapJSObjectAsIntArray", "PromisesShim")]
 [return: JSMarshalAs<JSType.Array<JSType.Number>>()]
 public static partial int[] UnwrapJSObjectAsIntArray(JSObject intArray);
 //...
@@ -753,7 +754,7 @@ A nuance of `removeEventListener` is that it requires a reference to the functio
 `EventsShim.js`:
 
 ```javascript
-EventsShim.subscribeEventById = function (elementId, eventName, listenerFunc) {
+export function subscribeEventById(elementId, eventName, listenerFunc) {
   const elementObj = document.getElementById(elementId);
 
   // Need to wrap the Managed C# action in JS func (only because it is being 
@@ -769,21 +770,21 @@ EventsShim.subscribeEventById = function (elementId, eventName, listenerFunc) {
 
 // Param listenerHandler must be the JSObject reference returned from the prior 
 // SubscribeEvent call.
-EventsShim.unsubscribeEventById = function (elementId, eventName, listenerHandler) {
+export function unsubscribeEventById(elementId, eventName, listenerHandler) {
   const elementObj = document.getElementById(elementId);
   elementObj.removeEventListener(eventName, listenerHandler, false);
 }
 
-EventsShim.triggerClick = function (elementId) {
+export function triggerClick(elementId) {
   const elementObj = document.getElementById(elementId);
   elementObj.click();
 }
 
-EventsShim.getElementById = function (elementId) {
+export function getElementById(elementId) {
   return document.getElementById(elementId);
 }
 
-EventsShim.subscribeEvent = function (elementObj, eventName, listenerFunc) {
+export function subscribeEvent(elementObj, eventName, listenerFunc) {
   let handler = function (e) {
     listenerFunc(e);
   }.bind(elementObj);
@@ -792,11 +793,11 @@ EventsShim.subscribeEvent = function (elementObj, eventName, listenerFunc) {
   return handler;
 }
 
-EventsShim.unsubscribeEvent = function (elementObj, eventName, listenerHandler) {
+export function unsubscribeEvent(elementObj, eventName, listenerHandler) {
   return elementObj.removeEventListener(eventName, listenerHandler, false);
 }
 
-EventsShim.subscribeEventFailure = function (elementObj, eventName, listenerFunc) {
+export function subscribeEventFailure(elementObj, eventName, listenerFunc) {
   // It's not strictly required to wrap the C# action listenerFunc in a JS 
   // function.
   elementObj.addEventListener(eventName, listenerFunc, false);
