@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 5/22/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
-# Get started with Microsoft.AspNetCore.OpenApi
+# Work with OpenAPI documents
 
 :::moniker range=">= aspnetcore-9.0"
 
