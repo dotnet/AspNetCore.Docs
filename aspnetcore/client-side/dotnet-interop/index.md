@@ -101,8 +101,8 @@ JS declarations which are intended to be imported with `[JSImport]` are typicall
 
 * A `<script>...</script>` block declaring inline JS.
 * A script source (`src`) declaration (`<script src="./some.js"></script>`) that loads an external JS file (`.js`).
-* A JS module (`<script type='module' src="./moduleName.js"></script>`).
-* A JS module loaded using <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> from .NET WebAssembly.
+* A JS ES6 module (`<script type='module' src="./moduleName.js"></script>`).
+* A JS ES6 module loaded using <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> from .NET WebAssembly.
 
 Examples in this article use <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>. When calling <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A>, client-side .NET WebAssembly requests the file using the `moduleUrl` parameter, and thus it expects the file to be accessible as a static web asset, much the same way as a `<script>` tag retrieves a file with a `src` URL. For example, the following C# code within a WebAssembly Browser App project maintains the JS file (`.js`) at the path `/wwwroot/scripts/ExampleShim.js`:
 
