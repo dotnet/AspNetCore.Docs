@@ -10,7 +10,7 @@ uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Get started with Microsoft.AspNetCore.OpenApi
 
-moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-9.0"
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 

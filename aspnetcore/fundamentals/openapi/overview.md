@@ -1,7 +1,7 @@
 ---
-title: How to use OpenAPI in ASP.NET Core API apps
+title: Overview of OpenAPI support in ASP.NET Core API apps
 author: rick-anderson
-description: Learn how to use OpenAPI features in ASP.NET Core.
+description: Learn about OpenAPI features in ASP.NET Core.
 ms.author: wpickett
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 8/02/2024
