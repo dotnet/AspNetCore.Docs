@@ -254,7 +254,7 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 ## See also
 
 * <xref:fundamentals/minimal-apis>
-* <xref:fundamentals/minimal-apis/openapi>
+* <xref:fundamentals/openapi/aspnetcore-openapi>
 * <xref:fundamentals/minimal-apis/responses>
 * <xref:fundamentals/minimal-apis/min-api-filters>
 * <xref:fundamentals/minimal-apis/handle-errors>

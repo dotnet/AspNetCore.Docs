@@ -844,7 +844,7 @@ items:
         items:
           - name: Overview
             uid: fundamentals/openapi/overview
-          - name: Get started with Microsoft.AspNetCore.OpenApi
+          - name: Work with OpenAPI documents
             uid: fundamentals/openapi/aspnetcore-openapi
           - name: OpenAPI tools
             uid: fundamentals/openapi/openapi-tools

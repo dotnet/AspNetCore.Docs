@@ -329,7 +329,7 @@ The preceding code displays `The link to the hello endpoint is /hello` from the 
 Endpoint names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi).
 
 ### Route Parameters
 
@@ -753,6 +753,6 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## See also
 
-[OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
+[OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi)
 
 :::moniker-end

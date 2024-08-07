@@ -528,7 +528,7 @@ Starting in ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUser
 
 Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [anti-forgery token](xref:security/anti-request-forgery). The anti-forgery token is validated when the request is processed.
 
-Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
 For more information, see:
 

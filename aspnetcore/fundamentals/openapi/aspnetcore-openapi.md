@@ -1,14 +1,16 @@
 ---
-title: Get started with Microsoft.AspNetCore.OpenApi
+title: Work with OpenAPI documents
 author: captainsafia
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app
 ms.author: safia
-monikerRange: '>= aspnetcore-9.0'
+monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
 ms.date: 5/22/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
-# Get started with Microsoft.AspNetCore.OpenApi
+# Work with OpenAPI documents
+
+:::moniker range=">= aspnetcore-9.0"
 
 The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package provides built-in support for OpenAPI document generation in ASP.NET Core. The package provides the following features:
 
@@ -544,3 +546,7 @@ The output shows any issues with the OpenAPI document.
 
 ✖ 5 problems (0 errors, 5 warnings, 0 infos, 0 hints)
 ```
+
+::: moniker-end
+
+[!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
