@@ -26,6 +26,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/openapi.md",
+            "redirect_url": "/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/fundamentals/minimal-apis/handle-errrors.md",
             "redirect_url": "/aspnet/core/fundamentals/minimal-apis/handle-errors",
             "redirect_document_id": false

@@ -173,7 +173,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-For more information, see [OpenAPI in minimal API apps](xref:fundamentals/minimal-apis/openapi?view=aspnetcore-7.0)
+For more information, see [OpenAPI in minimal API apps](xref:fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-7.0)
 
 ### File uploads using IFormFile and IFormFileCollection
 
