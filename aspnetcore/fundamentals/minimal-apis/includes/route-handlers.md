@@ -43,7 +43,7 @@ The preceding code displays `The link to the hello route is /hello` from the `/`
 Endpoint names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi).
 
 ### Route Parameters
 

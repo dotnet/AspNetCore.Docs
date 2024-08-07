@@ -72,7 +72,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
   - Update not-latest and not-current include files
   - .NET 9 new feature - Internal Server Error TypedResults on Responses page
 - <xref:fundamentals/minimal-apis/handle-errors> - Update not-latest and not-current include files
-- <xref:fundamentals/minimal-apis/openapi>
+- <xref:fundamentals/openapi/aspnetcore-openapi>
   - No swag
   - Mon prep
 - <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg013> - fix RDG highlights after code samples update
