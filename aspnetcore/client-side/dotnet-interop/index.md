@@ -32,6 +32,14 @@ Any of the following project types:
 * A Blazor client-side project created according to <xref:blazor/js-interop/import-export-interop>.
 * A project created for a commercial or open-source platform that supports `[JSImport]`/`[JSExport]` interop (<xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> API).
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Sample app
+
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)): Select an 8.0 or later version folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `WASMBrowserAppImportExportInterop`.
+
+:::moniker-end
+
 ## JS interop using `[JSImport]`/`[JSExport]` attributes
 
 The `[JSImport]` attribute is applied to a .NET method to indicate that a corresponding JS method should be called when the .NET method is called. This allows .NET developers to define "imports" that enable .NET code to call into JS. Additionally, an <xref:System.Action> can be passed as a parameter, and JS can invoke the action to support a callback or event subscription pattern.
@@ -186,106 +194,16 @@ The following example demonstrates `[JSImport]` leveraging type mappings of seve
 
 `PrimitivesShim.js`:
 
-```javascript
-globalThis.counter = 0;
-
-// Takes no parameters and returns nothing.
-export function incrementCounter () {
-  globalThis.counter += 1;
-}
-
-// Returns an int.
-export function getCounter() { return globalThis.counter; }
-
-// Takes a parameter and returns nothing. JS doesn't restrict the parameter type, 
-// but we can restrict it in the .NET proxy, if desired.
-export function logValue(value) { console.log(value); }
-
-// Called for various .NET types to demonstrate mapping to JS primitive types.
-export function logValueAndType(value) { console.log(typeof value, value); }
-```
+:::code language="javascript" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/wwwroot/PrimitivesShim.js":::
 
 `PrimitivesInterop.cs`:
 
+:::code language="csharp" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/PrimitivesInterop.cs":::
+
+In `Program.Main`:
+
 ```csharp
-using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-
-public partial class PrimitivesInterop
-{
-    // Importing an existing JS method.
-    [JSImport("globalThis.console.log")]
-    public static partial void ConsoleLog([JSMarshalAs<JSType.Any>] object value);
-
-    // Importing static methods from a JS module.
-    [JSImport("incrementCounter", "PrimitivesShim")]
-    public static partial void IncrementCounter();
-
-    [JSImport("getCounter", "PrimitivesShim")]
-    public static partial int GetCounter();
-
-    // The JS shim method name isn't required to match the C# method name.
-    [JSImport("logValue", "PrimitivesShim")]
-    public static partial void LogInt(int value);
-
-    // A second mapping to the same JS method with compatible type.
-    [JSImport("logValue", "PrimitivesShim")]
-    public static partial void LogString(string value);
-
-    // Accept any type as parameter. .NET types are mapped to JS types where 
-    // possible. Otherwise, they're marshalled as an untyped object reference 
-    // to the .NET object proxy. The JS implementation logs to browser console 
-    // the JS type and value to demonstrate results of marshalling.
-    [JSImport("logValueAndType", "PrimitivesShim")]
-    public static partial void LogValueAndType([JSMarshalAs<JSType.Any>] object value);
-
-    // Some types have multiple mappings and require explicit marshalling to the 
-    // desired JS type. A long/Int64 can be mapped as either a Number or BigInt.
-    // Passing a long value to the above method generates an error at runtime:
-    // "ToJS for System.Int64 is not implemented." ("ToJS" means "to JavaScript")
-    // If the parameter declaration `Method(JSMarshalAs<JSType.Any>] long value)` 
-    // is used, a compile-time error is generated:
-    // "Type long is not supported by source-generated JS interop...."
-    // Instead, explicitly map the long parameter to either a JSType.Number or 
-    // JSType.BigInt. Note that runtime overflow errors are possible in JS if the 
-    // C# value is too large.
-    [JSImport("logValueAndType", "PrimitivesShim")]
-    public static partial void LogValueAndTypeForNumber([JSMarshalAs<JSType.Number>] long value);
-
-    [JSImport("logValueAndType", "PrimitivesShim")]
-    public static partial void LogValueAndTypeForBigInt([JSMarshalAs<JSType.BigInt>] long value);
-}
-
-public static class PrimitivesUsage
-{
-    public static async Task Run()
-    {
-        // Ensure JS module loaded.
-        await JSHost.ImportAsync("PrimitivesShim", "/PrimitivesShim.js");
-
-        // Call a proxy to a static JS method, console.log().
-        PrimitivesInterop.ConsoleLog("Printed from JSImport of console.log()");
-
-        // Basic examples of JS interop with an integer.
-        PrimitivesInterop.IncrementCounter();
-        int counterValue = PrimitivesInterop.GetCounter();
-        PrimitivesInterop.LogInt(counterValue);
-        PrimitivesInterop.LogString("I'm a string from .NET in your browser!");
-
-        // Mapping some other .NET types to JS primitives.
-        PrimitivesInterop.LogValueAndType(true);
-        PrimitivesInterop.LogValueAndType(0x3A); // Byte literal
-        PrimitivesInterop.LogValueAndType('C');
-        PrimitivesInterop.LogValueAndType((Int16)12);
-        // JS Number has a lower max value and can generate overflow errors.
-        PrimitivesInterop.LogValueAndTypeForNumber(9007199254740990L); // Int64/Long
-        // Next line: Int64/Long, JS BigInt supports larger numbers.
-        PrimitivesInterop.LogValueAndTypeForBigInt(1234567890123456789L);// 
-        PrimitivesInterop.LogValueAndType(3.14f); // Single floating point literal
-        PrimitivesInterop.LogValueAndType(3.14d); // Double floating point literal
-        PrimitivesInterop.LogValueAndType("A string");
-    }
-}
+await PrimitivesUsage.Run();
 ```
 
 The preceding example displays the following output in the browser's debug console:
@@ -311,50 +229,16 @@ A `Date` object is timezone agnostic. A .NET <xref:System.DateTime> is adjusted 
 
 `DateShim.js`:
 
-```javascript
-export function incrementDay(date) {
-  date.setDate(date.getDate() + 1);
-  return date;
-}
-
-export function logValueAndType (value) {
-  console.log("Date:", value)
-}
-```
+:::code language="javascript" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/wwwroot/DateShim.js":::
 
 `DateInterop.cs`:
 
+:::code language="csharp" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/DateInterop.cs":::
+
+In `Program.Main`:
+
 ```csharp
-using System;
-using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-
-public partial class DateInterop
-{
-    [JSImport("incrementDay", "DateShim")]
-    [return: JSMarshalAs<JSType.Date>] // Explicit JSMarshalAs for a return type
-    public static partial DateTime IncrementDay(
-        [JSMarshalAs<JSType.Date>] DateTime date);
-
-    [JSImport("logValueAndType", "DateShim")]
-    public static partial void LogValueAndType(
-        [JSMarshalAs<JSType.Date>] DateTime value);
-}
-
-public static class DateUsage
-{
-    public static async Task Run()
-    {
-        // Ensure JS module loaded.
-        await JSHost.ImportAsync("DateShim", "/DateShim.js");
-
-        // Basic examples of interop with a C# DateTime and JS Date.
-        DateTime date = new DateTime(1968, 12, 21, 12, 51, 0, DateTimeKind.Utc);
-        DateInterop.LogValueAndType(date);
-        date = DateInterop.IncrementDay(date);
-        DateInterop.LogValueAndType(date);
-    }
-}
+await DateUsage.Run();
 ```
 
 The preceding example displays the following output in the browser's debug console:
@@ -372,75 +256,16 @@ The <xref:System.Runtime.InteropServices.JavaScript.JSObject> provides methods t
 
 `JSObjectShim.js`:
 
-```javascript
-export function createObject() {
-  return {
-    name: "Example JS Object",
-    answer: 41,
-    question: null,
-    summarize: function () {
-      return `Question: "${this.question}" Answer: ${this.answer}`;
-    }
-  };
-}
-
-export function incrementAnswer(object) {
-  object.answer += 1;
-  // Don't return the modified object, since the reference is modified.
-}
-
-// Proxy an instance method call.
-export function summarize(object) {
-  return object.summarize();
-}
-```
+:::code language="javascript" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/wwwroot/JSObjectShim.js":::
 
 `JSObjectInterop.cs`:
 
+:::code language="csharp" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/JSObjectInterop.cs":::
+
+In `Program.Main`:
+
 ```csharp
-using System;
-using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-
-public partial class JSObjectInterop
-{
-    [JSImport("createObject", "JSObjectShim")]
-    public static partial JSObject CreateObject();
-
-    [JSImport("incrementAnswer", "JSObjectShim")]
-    public static partial void IncrementAnswer(JSObject jsObject);
-
-    [JSImport("summarize", "JSObjectShim")]
-    public static partial string Summarize(JSObject jsObject);
-
-    [JSImport("globalThis.console.log")]
-    public static partial void ConsoleLog([JSMarshalAs<JSType.Any>] object value);
-}
-
-public static class JSObjectUsage
-{
-    public static async Task Run()
-    {
-        await JSHost.ImportAsync("JSObjectShim", "/JSObjectShim.js");
-
-        JSObject jsObject = JSObjectInterop.CreateObject();
-        JSObjectInterop.ConsoleLog(jsObject);
-        JSObjectInterop.IncrementAnswer(jsObject);
-        // An updated object isn't retrieved. The change is reflected in the 
-        // existing instance.
-        JSObjectInterop.ConsoleLog(jsObject);
-
-        // JSObject exposes several methods for interacting with properties.
-        jsObject.SetProperty("question", "What is the answer?");
-        JSObjectInterop.ConsoleLog(jsObject);
-
-        // We can't directly JSImport an instance method on the jsObject, but we 
-        // can pass the object reference and have the JS shim call the instance 
-        // method.
-        string summary = JSObjectInterop.Summarize(jsObject);
-        Console.WriteLine("Summary: " + summary);
-    }
-}
+await JSObjectUsage.Run();
 ```
 
 The preceding example displays the following output in the browser's debug console:
@@ -460,60 +285,7 @@ JS with a callback, such as a `setTimeout`, can be wrapped in a [`Promise`](http
 
 `PromisesShim.js`:
 
-```javascript
-export function wait2Seconds() {
-  // This also demonstrates wrapping a callback-based API in a promise to
-  // make it awaitable.
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(); // Resolve promise after 2 seconds
-    }, 2000);
-  });
-}
-
-// Return a value via resolve in a promise.
-export function waitGetString() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("String From Resolve"); // Return a string via promise
-    }, 500);
-  });
-}
-
-export function waitGetDate() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(new Date('1988-11-24')); // Return a date via promise
-    }, 500);
-  });
-}
-
-// Demonstrates an awaitable fetch.
-export function fetchCurrentUrl() {
-  // This method returns the promise returned by .then(*.text())
-  // and .NET awaits the returned promise.
-  return fetch(globalThis.window.location, { method: 'GET' })
-    .then(response => response.text());
-}
-
-// .NET can await JS methods using the async/await JS syntax.
-export async function asyncFunction() {
-  await wait2Seconds();
-}
-
-// A Promise.reject can be used to signal failure and is bubbled to .NET code
-// as a JSException.
-export function conditionalSuccess(shouldSucceed) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (shouldSucceed)
-        resolve(); // Success
-      else
-        reject("Reject: ShouldSucceed == false"); // Failure
-    }, 500);
-  });
-}
-```
+:::code language="javascript" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/wwwroot/PromisesShim.js":::
 
 Don't use the `async` keyword in the C# method signature. Returning <xref:System.Threading.Tasks.Task> or <xref:System.Threading.Tasks.Task%601> is sufficient.
 
@@ -523,81 +295,12 @@ If the JS shim returns a [`Promise`](https://developer.mozilla.org/docs/Web/Java
 
 `PromisesInterop.cs`:
 
+:::code language="csharp" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/PromisesInterop.cs":::
+
+In `Program.Main`:
+
 ```csharp
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-
-public partial class PromisesInterop
-{
-    // For a promise with void return type, declare a Task return type:
-    [JSImport("wait2Seconds", "PromisesShim")]
-    public static partial Task Wait2Seconds();
-
-    [JSImport("waitGetString", "PromisesShim")]
-    public static partial Task<string> WaitGetString();
-
-    // Some return types require a [return: JSMarshalAs...] declaring the
-    // Promise's return type corresponding to Task<T>.
-    [JSImport("waitGetDate", "PromisesShim")]
-    [return: JSMarshalAs<JSType.Promise<JSType.Date>>()]
-    public static partial Task<DateTime> WaitGetDate();
-
-    [JSImport("fetchCurrentUrl", "PromisesShim")]
-    public static partial Task<string> FetchCurrentUrl();
-
-    [JSImport("asyncFunction", "PromisesShim")]
-    public static partial Task AsyncFunction();
-
-    [JSImport("conditionalSuccess", "PromisesShim")]
-    public static partial Task ConditionalSuccess(bool shouldSucceed);
-}
-
-public static class PromisesUsage
-{
-    public static async Task Run()
-    {
-        await JSHost.ImportAsync("PromisesShim", "/PromisesShim.js");
-
-        Stopwatch sw = new Stopwatch();
-        sw.Start();
-
-        await PromisesInterop.Wait2Seconds(); // Await Promise
-        Console.WriteLine($"Waited {sw.Elapsed.TotalSeconds:#.0}s.");
-
-        sw.Restart();
-        string str = 
-            await PromisesInterop.WaitGetString(); // Await promise (string return)
-        Console.WriteLine(
-            $"Waited {sw.Elapsed.TotalSeconds:#.0}s for WaitGetString: '{str}'");
-
-        sw.Restart();
-        // Await promise with string return.
-        DateTime date = await PromisesInterop.WaitGetDate();
-        Console.WriteLine(
-            $"Waited {sw.Elapsed.TotalSeconds:#.0}s for WaitGetDate: '{date}'");
-
-        // Await a JS fetch.
-        string responseText = await PromisesInterop.FetchCurrentUrl();
-        Console.WriteLine($"responseText.Length: {responseText.Length}");
-
-        sw.Restart();
-
-        await PromisesInterop.AsyncFunction(); // Await an async JS method
-        Console.WriteLine(
-            $"Waited {sw.Elapsed.TotalSeconds:#.0}s for AsyncFunction.");
-
-        try {
-            // Handle a promise rejection. Await an async JS method.
-            await PromisesInterop.ConditionalSuccess(shouldSucceed: false);
-        }
-        catch(JSException ex) // Catch JS exception
-        {
-            Console.WriteLine($"JS Exception Caught: '{ex.Message}'");
-        }
-    }
-}
+await PromisesUsage.Run();
 ```
 
 The preceding example displays the following output in the browser's debug console:
@@ -664,74 +367,12 @@ The following benchmarks, which leverage earlier example code, demonstrate that 
 
 `JSObjectBenchmark.cs`:
 
+:::code language="csharp" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/JSObjectBenchmark.cs":::
+
+In `Program.Main`:
+
 ```csharp
-using System;
-using System.Diagnostics;
-
-public static class JSObjectBenchmark
-{
-    public static void Run()
-    {
-        Stopwatch sw = new Stopwatch();
-        var jsObject = JSObjectInterop.CreateObject();
-        sw.Start();
-        for (int i = 0; i < 1000000; i++)
-        {
-            JSObjectInterop.IncrementAnswer(jsObject);
-        }
-        sw.Stop();
-        Console.WriteLine(
-            $"JS interop elapsed time: {sw.Elapsed.TotalSeconds:#.0000} seconds " +
-            $"at {sw.Elapsed.TotalMilliseconds / 1000000d:#.000000} ms per " +
-            "operation");
-
-        var pocoObject = 
-            new PocoObject { Question = "What is the answer?", Answer = 41 };
-        sw.Restart();
-        for (int i = 0; i < 1000000; i++)
-        {
-            pocoObject.IncrementAnswer();
-        }
-        sw.Stop();
-        Console.WriteLine($".NET elapsed time: {sw.Elapsed.TotalSeconds:#.0000} " +
-            $"seconds at {sw.Elapsed.TotalMilliseconds / 1000000d:#.000000} ms " +
-            "per operation");
-
-        Console.WriteLine($"Begin Object Creation");
-
-        sw.Restart();
-        for (int i = 0; i < 1000000; i++)
-        {
-            var jsObject2 = JSObjectInterop.CreateObject();
-            JSObjectInterop.IncrementAnswer(jsObject2);
-        }
-        sw.Stop();
-        Console.WriteLine(
-            $"JS interop elapsed time: {sw.Elapsed.TotalSeconds:#.0000} seconds " +
-            $"at {sw.Elapsed.TotalMilliseconds / 1000000d:#.000000} ms per " +
-            "operation");
-
-        sw.Restart();
-        for (int i = 0; i < 1000000; i++)
-        {
-            var pocoObject2 = 
-                new PocoObject { Question = "What is the answer?", Answer = 0 };
-            pocoObject2.IncrementAnswer();
-        }
-        sw.Stop();
-        Console.WriteLine(
-            $".NET elapsed time: {sw.Elapsed.TotalSeconds:#.0000} seconds at " +
-            $"{sw.Elapsed.TotalMilliseconds / 1000000d:#.000000} ms per operation");
-    }
-
-    public class PocoObject // Plain old CLR object
-    {
-        public string Question { get; set; }
-        public int Answer { get; set; }
-
-        public void IncrementAnswer() => Answer += 1;
-    }
-}
+JSObjectBenchmark.Run();
 ```
 
 The preceding example displays the following output in the browser's debug console:
@@ -753,143 +394,16 @@ A nuance of `removeEventListener` is that it requires a reference to the functio
 
 `EventsShim.js`:
 
-```javascript
-export function subscribeEventById(elementId, eventName, listenerFunc) {
-  const elementObj = document.getElementById(elementId);
-
-  // Need to wrap the Managed C# action in JS func (only because it is being 
-  // returned).
-  let handler = function (event) {
-    listenerFunc(event.type, event.target.id); // Decompose object to primitives
-  }.bind(elementObj);
-
-  elementObj.addEventListener(eventName, handler, false);
-  // Return JSObject reference so it can be used for removeEventListener later.
-  return handler;
-}
-
-// Param listenerHandler must be the JSObject reference returned from the prior 
-// SubscribeEvent call.
-export function unsubscribeEventById(elementId, eventName, listenerHandler) {
-  const elementObj = document.getElementById(elementId);
-  elementObj.removeEventListener(eventName, listenerHandler, false);
-}
-
-export function triggerClick(elementId) {
-  const elementObj = document.getElementById(elementId);
-  elementObj.click();
-}
-
-export function getElementById(elementId) {
-  return document.getElementById(elementId);
-}
-
-export function subscribeEvent(elementObj, eventName, listenerFunc) {
-  let handler = function (e) {
-    listenerFunc(e);
-  }.bind(elementObj);
-
-  elementObj.addEventListener(eventName, handler, false);
-  return handler;
-}
-
-export function unsubscribeEvent(elementObj, eventName, listenerHandler) {
-  return elementObj.removeEventListener(eventName, listenerHandler, false);
-}
-
-export function subscribeEventFailure(elementObj, eventName, listenerFunc) {
-  // It's not strictly required to wrap the C# action listenerFunc in a JS 
-  // function.
-  elementObj.addEventListener(eventName, listenerFunc, false);
-  // If you need to return the wrapped proxy object, you will receive an error 
-  // when it tries to wrap the existing proxy in an additional proxy:
-  // Error: "JSObject proxy of ManagedObject proxy is not supported."
-  return listenerFunc;
-}
-```
+:::code language="javascript" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/wwwroot/EventsShim.js":::
 
 `EventsInterop.cs`:
 
+:::code language="csharp" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/EventsInterop.cs":::
+
+In `Program.Main`:
+
 ```csharp
-using System;
-using System.Runtime.InteropServices.JavaScript;
-using System.Threading.Tasks;
-
-public partial class EventsInterop
-{
-    [JSImport("subscribeEventById", "EventsShim")]
-    public static partial JSObject SubscribeEventById(string elementId, 
-        string eventName, 
-        [JSMarshalAs<JSType.Function<JSType.String, JSType.String>>] 
-        Action<string, string> listenerFunc);
-
-    [JSImport("unsubscribeEventById", "EventsShim")]
-    public static partial void UnsubscribeEventById(string elementId, 
-        string eventName, JSObject listenerHandler);
-
-    [JSImport("triggerClick", "EventsShim")]
-    public static partial void TriggerClick(string elementId);
-
-    [JSImport("getElementById", "EventsShim")]
-    public static partial JSObject GetElementById(string elementId);
-
-    [JSImport("subscribeEvent", "EventsShim")]
-    public static partial JSObject SubscribeEvent(JSObject htmlElement, 
-        string eventName, 
-        [JSMarshalAs<JSType.Function<JSType.Object>>] 
-        Action<JSObject> listenerFunc);
-
-    [JSImport("unsubscribeEvent", "EventsShim")]
-    public static partial void UnsubscribeEvent(JSObject htmlElement, 
-        string eventName, JSObject listenerHandler);
-}
-
-public static class EventsUsage
-{
-    public static async Task Run()
-    {
-        await JSHost.ImportAsync("EventsShim", "/EventsShim.js");
-
-        Action<string, string> listenerFunc = (eventName, elementId) =>
-            Console.WriteLine(
-                $"In C# event listener: Event {eventName} from ID {elementId}");
-
-        JSObject listenerHandler1 = 
-            EventsInterop.SubscribeEventById("btn1", "click", listenerFunc);
-        JSObject listenerHandler2 = 
-            EventsInterop.SubscribeEventById("btn2", "click", listenerFunc);
-        Console.WriteLine("Subscribed to btn1 & 2.");
-        EventsInterop.TriggerClick("btn1");
-        EventsInterop.TriggerClick("btn2");
-
-        EventsInterop.UnsubscribeEventById("btn2", "click", listenerHandler2);
-        Console.WriteLine("Unsubscribed btn2.");
-        EventsInterop.TriggerClick("btn1");
-        EventsInterop.TriggerClick("btn2"); // Doesn't trigger because unsubscribed
-        EventsInterop.UnsubscribeEventById("btn1", "click", listenerHandler1);
-        // Pitfall: Using a different handler for unsubscribe silently fails.
-        // EventsInterop.UnsubscribeEventById("btn1", "click", listenerHandler2);
-
-        // With JSObject as event target and event object.
-        Action<JSObject> listenerFuncForElement = (eventObj) =>
-        {
-            string eventType = eventObj.GetPropertyAsString("type");
-            JSObject target = eventObj.GetPropertyAsJSObject("target");
-            Console.WriteLine(
-                $"In C# event listener: Event {eventType} from " +
-                $"ID {target.GetPropertyAsString("id")}");
-        };
-
-        JSObject htmlElement = EventsInterop.GetElementById("btn1");
-        JSObject listenerHandler3 = EventsInterop.SubscribeEvent(
-            htmlElement, "click", listenerFuncForElement);
-        Console.WriteLine("Subscribed to btn1.");
-        EventsInterop.TriggerClick("btn1");
-        EventsInterop.UnsubscribeEvent(htmlElement, "click", listenerHandler3);
-        Console.WriteLine("Unsubscribed btn1.");
-        EventsInterop.TriggerClick("btn1");
-    }
-}
+await EventsUsage.Run();
 ```
 
 The preceding example displays the following output in the browser's debug console:
