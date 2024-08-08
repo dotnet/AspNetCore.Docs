@@ -766,7 +766,7 @@ For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Te
 
 ### Intermediate Language (IL) trimming
 
-*This section only applies to Blazor WebAssembly apps.*
+**
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -786,13 +786,13 @@ dotnet publish -c Release
 
 ### Lazy load assemblies
 
-*This section only applies to Blazor WebAssembly apps.*
+**
 
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
 
-*This section only applies to Blazor WebAssembly apps.*
+**
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
@@ -800,7 +800,7 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 ### Disable unused features
 
-*This section only applies to Blazor WebAssembly apps.*
+*This section only applies to client-side Blazor scenarios.*
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size:
 
