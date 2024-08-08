@@ -95,6 +95,8 @@ Loading a custom subset of locales in a Blazor WebAssembly app is supported in .
 
 ## Invariant globalization
 
+*This section only applies to client-side Blazor scenarios.*
+
 If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
 
 ```xml
@@ -127,6 +129,8 @@ For more information, see [Runtime configuration options for globalization (.NET
 :::moniker range=">= aspnetcore-8.0"
 
 ## Timezone information
+
+*This section only applies to client-side Blazor scenarios.*
 
 Adopting [invariant globalization](#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
 
