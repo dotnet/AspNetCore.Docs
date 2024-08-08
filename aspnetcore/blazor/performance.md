@@ -766,7 +766,7 @@ For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Te
 
 ### Intermediate Language (IL) trimming
 
-*This section only applies to Blazor WebAssembly apps.*
+*This section only applies to client-side Blazor scenarios.*
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -786,7 +786,7 @@ dotnet publish -c Release
 
 ### Lazy load assemblies
 
-*This section only applies to Blazor WebAssembly apps.*
+*This section only applies to client-side Blazor scenarios.*
 
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
@@ -800,17 +800,38 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 ### Disable unused features
 
-*This section only applies to Blazor WebAssembly apps.*
+*This section only applies to client-side Blazor scenarios.*
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size:
 
-* A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `BlazorEnableTimeZoneSupport` MSBuild property in the app's project file to `false`:
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
+
+:::moniker range=">= aspnetcore-8.0"
+
+* Adopting [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
+
+  ```xml
+  <PropertyGroup>
+    <InvariantTimezone>true</InvariantTimezone>
+  </PropertyGroup>
+  ```
+
+  > [!NOTE]
+  > [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `<BlazorEnableTimeZoneSupport>` MSBuild property to `false` in the app's project file:
 
   ```xml
   <PropertyGroup>
     <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
   </PropertyGroup>
   ```
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
@@ -823,5 +844,3 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   ```
 
 :::moniker-end
-
-* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
