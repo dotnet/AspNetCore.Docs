@@ -95,7 +95,9 @@ Loading a custom subset of locales in a Blazor WebAssembly app is supported in .
 
 ## Invariant globalization
 
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+*This section only applies to client-side Blazor scenarios.*
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Using invariant globalization reduces the app's download size and results in faster app startup. Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
@@ -123,6 +125,37 @@ Alternatively, configure invariant globalization with the following approaches:
   * Value: `true` or `1`
 
 For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Timezone information
+
+*This section only applies to client-side Blazor scenarios.*
+
+Adopting [invariant globalization](#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data, which reduces the app's download size and results in faster app startup, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <InvariantTimezone>true</InvariantTimezone>
+</PropertyGroup>
+```
+
+> [!NOTE]
+> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `<BlazorEnableTimeZoneSupport>` MSBuild property to `false` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+</PropertyGroup>
+```
+
+:::moniker-end
 
 ## Demonstration component
 
