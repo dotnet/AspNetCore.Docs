@@ -75,7 +75,7 @@ To work with SpaServices, install the following:
 
 A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js, and then delegate further execution to the client.
 
-ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) provided by SpaServices simplifies the implementation of server-side prerendering by invoking the JavaScript functions on the server.
+ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) provided by SpaServices simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server.
 
 ### Server-side prerendering prerequisites
 
