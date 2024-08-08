@@ -5,7 +5,7 @@ description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] in
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/07/2024
+ms.date: 08/08/2024
 uid: client-side/dotnet-interop/index
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
