@@ -137,7 +137,7 @@ Adopting [invariant globalization](#invariant-globalization) only results in usi
 ```
 
 > [!NOTE]
-> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting.
+> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
 
 :::moniker-end
 
