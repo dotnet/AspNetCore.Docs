@@ -124,7 +124,7 @@ The following is an example project file (`.csproj`) after configuration. The `{
 
 * Specify `WasmMainJSPath` to point to a file on disk. This file is published with the app, but use of the file isn't required if you're integrating .NET into an existing JS app.
 
-  In the following example, the JS file on disk is `main.js`, but any JS filename is permissable:
+  In the following example, the JS file on disk is `main.js`, but any JS filename is permissible:
 
   ```xml
   <WasmMainJSPath>main.js</WasmMainJSPath>
