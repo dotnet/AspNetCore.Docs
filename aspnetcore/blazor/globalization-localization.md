@@ -124,6 +124,35 @@ Alternatively, configure invariant globalization with the following approaches:
 
 For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Timezone information
+
+Adopting [invariant globalization](#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <InvariantTimezone>true</InvariantTimezone>
+</PropertyGroup>
+```
+
+> [!NOTE]
+> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `<BlazorEnableTimeZoneSupport>` MSBuild property to `false` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+</PropertyGroup>
+```
+
+:::moniker-end
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
