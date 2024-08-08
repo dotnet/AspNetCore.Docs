@@ -107,7 +107,7 @@ Apply policies to controllers by using the `[Authorize]` attribute with the poli
 
 If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" id="snippet" highlight="1,4":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller2.cs" id="snippet" highlight="1,4":::
 
 ## Apply policies to Razor Pages
 
