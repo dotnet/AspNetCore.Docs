@@ -85,13 +85,15 @@ Common storage options for files include:
 
 The definition of small and large files depend on the computing resources available. Apps should benchmark the storage approach used to ensure it can handle the expected sizes. Benchmark memory, CPU, disk, and database performance.
 
-While specific boundaries can't be provided on what is small vs large for your deployment, here are some of AspNetCore's related defaults for [FormOptions](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs):
+While specific boundaries can't be provided on what is small versus large for your deployment, here are some of ASP.NET Core's related defaults for [`FormOptions`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs) ([API documentation](xref:Microsoft.AspNetCore.Http.Features.FormOptions)):
 
-- By default, [HttpRequest.Form](xref:Microsoft.AspNetCore.Http.HttpRequest.Form) does not buffer the entire request body (<xref:Microsoft.AspNetCore.Http.Features.FormOptions.BufferBody>), but it does buffer any multipart form files included.
-- <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> is the max size for buffered form files, defaults to 128MB.
-- <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates how much to buffer files in memory before transitioning to a buffer file on disk, defaults to 64KB. `MemoryBufferThreshold` acts as a boundary between small and large files which is raised or lowered depending on the apps resources and scenarios.
+* By default, [`HttpRequest.Form`](xref:Microsoft.AspNetCore.Http.HttpRequest.Form) doesn't buffer the entire request body (<xref:Microsoft.AspNetCore.Http.Features.FormOptions.BufferBody>), but it does buffer any multipart form files included.
+* <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> is the maximum size for buffered form files (default: 128 MB).
+* <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates the buffering threshold in memory before transitioning to a buffer file on disk (default: 64 KB). `MemoryBufferThreshold` acts as a boundary between small and large files, which is raised or lowered depending on the apps resources and scenarios.
 
-Fore more information on `FormOptions`, see the [source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs).
+For more information on <xref:Microsoft.AspNetCore.Http.Features.FormOptions>, see the [`FormOptions` class](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs) in the ASP.NET Core reference source.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## File upload scenarios
 
