@@ -1,22 +1,4 @@
----
-title: ASP.NET Core support for Native AOT
-author: mitchdenny
-description: Learn about ASP.NET Core support for Native AOT
-ms.author: midenn
-content_well_notification: AI-contribution
-ms.custom: mvc, engagement-fy23
-ms.date: 8/11/2024
-uid: fundamentals/native-aot
-ai-usage: ai-assisted
----
-# ASP.NET Core support for Native AOT
-
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
@@ -299,5 +281,3 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 * [Behind `[LogProperties]` and the new telemetry logging source generator](https://andrewlock.net/behind-logproperties-and-the-new-telemetry-logging-source-generator/)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/native-aot/includes/native-aot8.md)]
