@@ -91,7 +91,7 @@ While specific boundaries can't be provided on what is small vs large for your d
 - <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> is the max size for buffered form files, defaults to 128MB.
 - <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates how much to buffer files in memory before transitioning to a buffer file on disk, defaults to 64KB. `MemoryBufferThreshold` acts as a boundary between small and large files which is raised or lowered depending on the apps resources and scenarios.
 
-Fore more information on `FormOptions`, see the [source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs).
+For more information on `FormOptions`, see the [source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs).
 
 ## File upload scenarios
 
