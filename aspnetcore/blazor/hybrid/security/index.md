@@ -40,7 +40,7 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 For additional guidance, see the following resources:
 
-* [Web authenticator (.NET MAUI documentation](/dotnet/maui/platform-integration/communication/authentication)
+* [Web authenticator (.NET MAUI documentation)](/dotnet/maui/platform-integration/communication/authentication)
 * [`Sample.Server.WebAuthenticator` sample app](https://github.com/dotnet/maui/tree/main/src/Essentials/samples/Sample.Server.WebAuthenticator)
 
 :::zone-end
@@ -578,7 +578,7 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 For additional guidance, see the following resources:
 
-* [Web authenticator (.NET MAUI documentation](/dotnet/maui/platform-integration/communication/authentication)
+* [Web authenticator (.NET MAUI documentation)](/dotnet/maui/platform-integration/communication/authentication)
 * [`Sample.Server.WebAuthenticator` sample app](https://github.com/dotnet/maui/tree/main/src/Essentials/samples/Sample.Server.WebAuthenticator)
 
 :::zone-end
