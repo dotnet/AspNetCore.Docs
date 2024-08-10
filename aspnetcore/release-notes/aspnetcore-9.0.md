@@ -35,11 +35,17 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/status500.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/produces-problem.md)]
+
 ## OpenAPI
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openApi.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openAPI_completion.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/transformer-registration.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/openapi-aot.md)]
 
 ## Authentication and authorization
 
@@ -64,3 +70,9 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/asp0026.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/improved-kestrel-connection-metrics.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/customize-named-pipes.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/exception-type-sets-http-status.md)]
