@@ -35,6 +35,8 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/status500.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/produces-problem.md)]
+
 ## OpenAPI
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openApi.md)]
