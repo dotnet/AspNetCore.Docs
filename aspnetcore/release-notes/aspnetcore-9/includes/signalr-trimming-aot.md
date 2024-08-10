@@ -14,7 +14,7 @@ dotnet new webapiaot -o MyAOTSingnalRChat
 
 Replace the contents of the `Program.cs` file with the following SignalR code:
 
-[!code-csharp[ChatHub](~/release-notes/aspnetcore-9/includes/Program.cs)]
+[!code-csharp[ChatHub](~/release-notes/aspnetcore-9/includes/SignalRChatAOTExample/Program.cs)]
 
 The previous example produces a native Windows executable of `10 MB` and a Linux executable of `10.9 MB`.
 
