@@ -9,12 +9,12 @@ Install the latest [.NET 9 SDK](https://get.dot.net/9).
 Create a solution from the `webapiaot` template in a command shell using the following command:
 
 ```dotnetcli
-dotnet new webapiaot -o MyAOTSingnalRChat
+dotnet new webapiaot -o SignalRChatAOTExample
 ```
 
 Replace the contents of the `Program.cs` file with the following SignalR code:
 
-[!code-csharp[ChatHub](~/release-notes/aspnetcore-9/includes/SignalRChatAOTExample/Program.cs)]
+[!code-csharp[](~/release-notes/aspnetcore-9/samples/SignalRChatAOTExample/Program.cs)]
 
 The previous example produces a native Windows executable of `10 MB` and a Linux executable of `10.9 MB`.
 
