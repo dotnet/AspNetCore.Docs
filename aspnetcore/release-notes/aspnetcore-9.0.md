@@ -41,6 +41,8 @@ This section describes new features for minimal APIs.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openAPI_completion.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/transformer-registration.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
