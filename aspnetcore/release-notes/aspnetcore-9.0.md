@@ -64,3 +64,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/web_asset_delivery.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/asp0026.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/improved-kestrel-connection-metrics.md)]
