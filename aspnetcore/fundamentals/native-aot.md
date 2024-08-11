@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 <!-- ms.author: midenn -->
 # ASP.NET Core support for Native AOT
 
+By [Mitch Denny](https://github.com/mitchdenny)
+
 <!-- UPDATE 9.0 Activate after release and INCLUDE is updated
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
