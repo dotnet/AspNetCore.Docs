@@ -16,7 +16,7 @@ Replace the contents of the `Program.cs` file with the following SignalR code:
 
 [!code-csharp[](~/release-notes/aspnetcore-9/samples/SignalRChatAOTExample/Program.cs)]
 
-The previous example produces a native Windows executable of `10 MB` and a Linux executable of `10.9 MB`.
+The preceding example produces a native Windows executable of 10 MB and a Linux executable of 10.9 MB.
 
 #### Limitations
 
