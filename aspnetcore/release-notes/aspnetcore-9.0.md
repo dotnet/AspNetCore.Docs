@@ -1,4 +1,4 @@
----
+
 title: What's new in ASP.NET Core 9.0
 author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
@@ -78,3 +78,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/customize-named-pipes.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/exception-type-sets-http-status.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/prob_validationv.md)]
