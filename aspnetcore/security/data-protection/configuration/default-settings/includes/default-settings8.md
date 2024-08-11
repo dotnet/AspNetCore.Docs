@@ -1,16 +1,4 @@
----
-title: Data Protection key management and lifetime in ASP.NET Core
-author: tdykstra
-description: Learn about Data Protection key management and lifetime in ASP.NET Core.
-ms.author: tdykstra
-ms.date: 10/14/2016
-uid: security/data-protection/configuration/default-settings
----
-# Data Protection key management and lifetime in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="< aspnetcore-9.0"
 
 ## Key management
 
@@ -55,5 +43,3 @@ The default payload protection algorithm used is AES-256-CBC for confidentiality
 * <xref:host-and-deploy/web-farm>
 
 :::moniker-end
-
-[!INCLUDE[](~/security/data-protection/configuration/default-settings/includes/default-settings8.md)]
