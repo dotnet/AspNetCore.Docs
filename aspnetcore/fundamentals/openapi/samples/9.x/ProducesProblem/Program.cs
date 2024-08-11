@@ -15,7 +15,7 @@ todos.MapPost("/", (Todo todo) => Results.Ok(todo));
 app.Run();
 
 record Todo(int Id, string Title, bool IsCompleted);
-// <snippet_1>
+// </snippet_1>
 #elif SECOND
 // <snippet_2>
 using Microsoft.AspNetCore.Http;
@@ -25,7 +25,8 @@ var app = WebApplication.Create();
 app.MapGet("/", () =>
 {
 	var extensions = new List<KeyValuePair<string, object>> { new("test", "value") };
-	return TypedResults.Problem("This is an error with extensions", extensions: extensions);
+	return TypedResults.Problem("This is an error with extensions",
+                                                       extensions: extensions);
 });
 // </snippet_2>
 #endif
