@@ -63,6 +63,8 @@ The following sections describe miscellaneous new features.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/endpoint-metadata.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/opt_out_metrics.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/debugger.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/fix-for-503s.md)]
