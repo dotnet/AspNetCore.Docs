@@ -24,7 +24,7 @@ app.Run();
 The `MetricsDisabled` property has been added to `IHttpMetricsTagsFeature` for:
 
 * Advanced scenarios where a request doesn't map to an endpoint.
-* Dynamically opting-out of HTTP requests.
+* Dynamically disabling metrics collection for specific HTTP requests.
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/Metrics/Program.cs" id="snippet_2":::
 
