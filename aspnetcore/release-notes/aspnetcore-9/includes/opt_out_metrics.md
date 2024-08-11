@@ -18,4 +18,3 @@ The `MetricsDisabled` property has been added to `IHttpMetricsTagsFeature` for:
 * Dynamically disabling metrics collection for specific HTTP requests.
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/Metrics/Program.cs" id="snippet_2":::
-
