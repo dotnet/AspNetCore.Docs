@@ -3,7 +3,7 @@
 -->
 ### Opt-out of HTTP metrics on certain endpoints and requests
 
-.NET 9 adds the ability to opt-out of HTTP metrics and not record a value for certain endpoints and requests. It's common for apps to have endpoints that are frequently called by automated systems, such as a health checks endpoint. Recording information about those requests generally isn't useful.
+.NET 9 introduces the ability to opt-out of HTTP metrics for specific endpoints and requests. This is particularly useful for endpoints frequently called by automated systems, such as health checks. Recording metrics for these requests is often unnecessary.
 
 HTTP requests to an endpoint can be excluded from metrics by adding metadata. Either:
 
