@@ -17,7 +17,6 @@ app.MapGet("/delete-old-keys", (IServiceProvider services) =>
 
         if (!deletableKeyManager.DeleteKeys(key => key.ExpirationDate < yearAgo))
         {
-            // Log the error or handle it appropriately
             return Results.BadRequest("Failed to delete keys.");
         }
 
@@ -25,7 +24,7 @@ app.MapGet("/delete-old-keys", (IServiceProvider services) =>
     }
     else
     {
-        return Results.StatusCode(500); // Or another appropriate status code
+        return Results.StatusCode(500);
     }
 });
 
