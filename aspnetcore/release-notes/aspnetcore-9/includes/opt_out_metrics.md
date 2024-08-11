@@ -1,3 +1,6 @@
+<!-- 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/opt_out_metrics.md)]
+-->
 ### Opt-out of HTTP metrics on certain endpoints and requests
 
 .NET 9 adds the ability to opt-out of HTTP metrics and not record a value for certain endpoints and requests. It's common for apps to have endpoints that are frequently called by automated systems, such as a health checks endpoint. Recording information about those requests generally isn't useful.

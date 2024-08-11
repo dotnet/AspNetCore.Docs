@@ -44,7 +44,7 @@ app.Use(async (context, next) =>
 
     await next(context);
 });
+// </snippet_2>
 
 app.Run();
-// </snippet_2>
 #endif
