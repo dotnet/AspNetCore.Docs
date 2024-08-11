@@ -4,6 +4,6 @@
 
 ### Data Protection support for deleting keys
 
-Historically, it was intentionally impossible to delete data protection keys because deleting keys makes it impossible to decrypt any data protected by them. Keys are small, so the impact of accumulating many of them is minor.  However, in order to support _very_ long running services, we've added the ability to explicitly delete keys. Generally, only old keys should be deleted. Only delete keys when you can accept the risk of data loss in exchange for storage savings. We recommend data protection keys should ___not___ be deleted.
+Previous to .NET 9, data protection keys were ___not___ deletable to prevent data loss, as deleting a key renders its protected data inaccessible. Given their small size, the accumulation of these keys generally posed minimal impact. However, to accommodate extremely long-running services, we have introduced the option to delete keys. Generally, only old keys should be deleted. Only delete keys when you can accept the risk of data loss in exchange for storage savings. We recommend data protection keys should ___not___ be deleted.
 
 :::code language="csharp" source="~/security/data-protection/configuration/samples/9/deleteKeys/Program.cs" :::
