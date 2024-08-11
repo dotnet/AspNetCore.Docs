@@ -1,4 +1,4 @@
-<!-- Add this include to WN9 
+<!-- Add this include to the OpenAPI section
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/prob_validation.md)]
 -->
 ## Support calling `ProducesProblem` and `ProducesValidationProblem` on route groups
@@ -9,7 +9,7 @@ The [ProducesProblem](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerb
 
 ## `Problem` and `ValidationProblem` result types support construction with `IEnumerable<KeyValuePair<string, object?>>` values
 
-Prior to this .NET 9, constructing [Problem](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem) and [ValidationProblem](/dotnet/api/microsoft.aspnetcore.http.typedresults.validationproblem) result types in minimal APIs required that the `errors` and `extensions` properties be initialized with an implementation of `IDictionary<string, object?>`. In this release, these construction APIs support overloads that consume `IEnumerable<KeyValuePair<string, object?>>`.
+Prior to .NET 9, constructing [Problem](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem) and [ValidationProblem](/dotnet/api/microsoft.aspnetcore.http.typedresults.validationproblem) result types in minimal APIs required that the `errors` and `extensions` properties be initialized with an implementation of `IDictionary<string, object?>`. In this release, these construction APIs support overloads that consume `IEnumerable<KeyValuePair<string, object?>>`.
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/ProducesProblem/Program.cs" id="snippet_2" :::
 
