@@ -117,7 +117,7 @@ In the following example:
 `wwwroot/scripts.js`:
 
 ```javascript
-async function showQuote() {
+window.showQuote = async () => {
   let targetElement = document.getElementById('quoteContainer');
   await Blazor.rootComponents.add(targetElement, 'quote', 
   {
