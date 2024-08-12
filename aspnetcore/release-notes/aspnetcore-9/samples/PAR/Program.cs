@@ -11,7 +11,7 @@ builder.Services
         options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
     })
     .AddCookie()
-    .AddOpenIdConnect(oidcOptions =>
+    .AddOpenIdConnect("oidc", oidcOptions =>
     {
         // Other provider-specific configuration goes here.
 
