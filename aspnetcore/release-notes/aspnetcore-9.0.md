@@ -78,3 +78,7 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/customize-named-pipes.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/exception-type-sets-http-status.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/opt_out_metrics.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/delete_keys.md)]
