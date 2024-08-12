@@ -10,7 +10,6 @@ app.MapHealthChecks("/healthz").DisableHttpMetrics();
 app.Run();
 // </snippet_1>
 #elif SECOND
-
 using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
