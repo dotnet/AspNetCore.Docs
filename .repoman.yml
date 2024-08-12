@@ -1,4 +1,4 @@
-revision: 3
+revision: 4
 schema-version: 1
 owner-ms-alias: adegeo
 
@@ -25,8 +25,11 @@ issues:
         - labels-add: ["Source - Docs.ms"]
         - prod_tech_labels: true
 
-    # technology types
+  labeled:
 
-    # Checks for specific files
-
-    # If the word appears anywhere in the file name path, add the label
+    # Temporary label to mark issues as updated for Quest. The label is instantly removed
+    - check:
+        - type: query
+          value: "length(Issue.labels[?name == ':world_map: mapQUEST']) != `0`"
+      pass:
+        - labels-remove: [":world_map: mapQUEST"]
