@@ -117,7 +117,7 @@ In the following example:
 `wwwroot/scripts.js`:
 
 ```javascript
-async function showQuote() {
+window.showQuote = async () => {
   let targetElement = document.getElementById('quoteContainer');
   await Blazor.rootComponents.add(targetElement, 'quote', 
   {
@@ -125,6 +125,9 @@ async function showQuote() {
       "anybody. More like, 'camera is generally pointed at.'"
   });
 }
+
+const btn = document.querySelector("showQuoteBtn");
+btn.addEventListener("click", showQuote);
 ```
 
 After the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
@@ -140,7 +143,7 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 In HTML, place the target container element (`quoteContainer`). For the demonstration in this section, a button triggers rendering the `Quote` component by calling the `showQuote` JS function:
 
 ```html
-<button onclick="showQuote()">Show Quote</button>
+<button id="showQuoteBtn">Show Quote</button>
 
 <div id="quoteContainer"></div>
 ```

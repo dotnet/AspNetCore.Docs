@@ -62,6 +62,76 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
+## Avoid inline event handlers
+
+A JavaScript function can be invoked directly from an inline event handler. In the following example, `alertUser` is a JavaScript function called when the button is selected by the user:
+
+```html
+<button onclick="alertUser">Click Me!</button>
+```
+
+However, the use of inline event handlers is a *poor design choice* for calling JavaScript functions:
+
+* Mixing HTML markup and JavaScript code often leads to unmaintainable code.
+* Inline event handler execution may be blocked by a [Content Security Policy (CSP) (MDN documentation)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+
+We recommend avoiding inline event handlers in favor of approaches that assign handlers in JavaScript with [`addEventListener`](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener), as the following example demonstrates:
+
+`AlertUser.razor.js`:
+
+```javascript
+export function alertUser() {
+  alert('The button was selected!');
+}
+
+export function addHandlers() {
+  const btn = document.getElementById("btn");
+  btn.addEventListener("click", alertUser);
+}
+```
+
+`AlertUser.razor`:
+
+```razor
+@page "/alert-user"
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<h1>Alert User</h1>
+
+<p>
+    <button id="btn">Click Me!</button>
+</p>
+
+@code {
+    private IJSObjectReference? module;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSObjectReference>("import",
+                "./Components/Pages/AlertUser.razor.js");
+
+            await module.InvokeVoidAsync("addHandlers");
+        }
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+}
+```
+
+For more information, see the following resources:
+
+* <xref:blazor/js-interop/javascript-location>
+* [Introduction to events (MDN documentation)](https://developer.mozilla.org/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these)
+
 ## Asynchronous JavaScript calls
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across server-side and client-side rendering models. When adopting server-side rendering, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt client-side rendering, synchronous JS interop calls are supported.
