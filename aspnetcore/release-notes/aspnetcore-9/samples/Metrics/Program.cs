@@ -10,7 +10,6 @@ app.MapHealthChecks("/healthz").DisableHttpMetrics();
 app.Run();
 // </snippet_1>
 #elif SECOND
-// <snippet_2>
 using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,12 +17,15 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
+// <snippet_2>
 // Middleware that conditionally opts-out HTTP requests.
 app.Use(async (context, next) =>
 {
-    if (context.Request.Headers.ContainsKey("x-disable-metrics"))
+    var metricsFeature = context.Features.Get<IHttpMetricsTagsFeature>();
+    if (metricsFeature != null &&
+        context.Request.Headers.ContainsKey("x-disable-metrics"))
     {
-        context.Features.Get<IHttpMetricsTagsFeature>()?.MetricsDisabled = true;
+        metricsFeature.MetricsDisabled = true;
     }
 
     await next(context);
