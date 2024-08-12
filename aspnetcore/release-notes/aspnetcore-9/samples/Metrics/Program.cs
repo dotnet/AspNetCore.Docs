@@ -22,8 +22,8 @@ app.MapGet("/", () => "Hello World!");
 app.Use(async (context, next) =>
 {
     var metricsFeature = context.Features.Get<IHttpMetricsTagsFeature>();
-    if (context.Request.Headers.ContainsKey("x-disable-metrics")
-                                      && metricsFeature != null)
+    if (metricsFeature != null &&
+        context.Request.Headers.ContainsKey("x-disable-metrics"))
     {
         metricsFeature.MetricsDisabled = true;
     }
