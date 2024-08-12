@@ -1,15 +1,18 @@
 ---
 title: ASP.NET Core support for Native AOT
-author: mitchdenny
+author: rick-anderson
+ms.author: riande
 description: Learn about ASP.NET Core support for Native AOT
-ms.author: midenn
 content_well_notification: AI-contribution
 ms.custom: mvc, engagement-fy23
 ms.date: 8/11/2024
 uid: fundamentals/native-aot
 ai-usage: ai-assisted
 ---
+<!-- ms.author: midenn -->
 # ASP.NET Core support for Native AOT
+
+By [Mitch Denny](https://github.com/mitchdenny)
 
 <!-- UPDATE 9.0 Activate after release and INCLUDE is updated
 
