@@ -16,7 +16,7 @@
     <PackageReference Include="Azure.Storage.Files.Shares" Version="12.1.0" />
     <PackageReference Include="Azure.Storage.Queues" Version="12.11.0" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.0.0" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>
