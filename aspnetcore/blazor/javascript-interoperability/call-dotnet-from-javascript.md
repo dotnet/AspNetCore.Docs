@@ -74,6 +74,14 @@ In the following component, the `ReturnArrayAsync` C# method returns an `int` ar
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallDotnet1.razor":::
 
+`CallDotnet1.razor.js`:
+
+:::code language="javascript" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallDotnet1.razor.js":::
+
+The `addHandlers` JS function adds a [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event to the button. The `returnArrayAsync` JS function is assigned as the handler.
+
+The `returnArrayAsync` JS function calls the `ReturnArrayAsync` .NET method of the component, which logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
@@ -108,9 +116,11 @@ In the following component, the `ReturnArrayAsync` C# method returns an `int` ar
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 The `<button>` element's `onclick` HTML attribute is JavaScript's `onclick` event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
-The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the preceding component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
+The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the component, which logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
 ```html
 <script>
@@ -123,23 +133,40 @@ The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET 
 </script>
 ```
 
+:::moniker-end
+
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
 
 When the **`Trigger .NET static method`** button is selected, the browser's developer tools console output displays the array data. The format of the output differs slightly among browsers. The following output shows the format used by Microsoft Edge:
 
 ```console
-Array(3) [ 1, 2, 3 ]
+Array(3) [ 11, 12, 13 ]
 ```
 
 Pass data to a .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
 
-To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
+To demonstrate passing data to .NET, pass a starting position to the `ReturnArrayAsync` method where the method is invoked in JS:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```javascript
+export function returnArrayAsync() {
+  DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', 14)
+    .then(data => {
+      console.log(data);
+    });
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script>
-  window.returnArrayAsync = (startPosition) => {
-    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', startPosition)
+  window.returnArrayAsync = () => {
+    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', 14)
       .then(data => {
         console.log(data);
       });
@@ -147,13 +174,7 @@ To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS fu
 </script>
 ```
 
-In the component, change the function call to include a starting position. The following example uses a value of `5`:
-
-```razor
-<button onclick="returnArrayAsync(5)">
-    ...
-</button>
-```
+:::moniker-end
 
 The component's invokable `ReturnArrayAsync` method receives the starting position and constructs the array from it. The array is returned for logging to the console:
 
@@ -168,7 +189,7 @@ public static Task<int[]> ReturnArrayAsync(int startPosition)
 After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
 
 ```console
-Array(3) [ 5, 6, 7 ]
+Array(3) [ 14, 15, 16 ]
 ```
 
 :::moniker range=">= aspnetcore-5.0"
@@ -195,7 +216,7 @@ In the call to `DotNet.invokeMethodAsync` (server-side or client-side components
 > [JSInvokable]
 > public static async Task<int[]> ReturnArrayAsync()
 > {
->     return await Task.FromResult(new int[] { 1, 2, 3 });
+>     return await Task.FromResult(new int[] { 11, 12, 13 });
 > }
 > ```
 >
@@ -459,10 +480,117 @@ In the following component, the `Trigger JS function` buttons call JS functions 
 
 ```razor
 @page "/call-dotnet-example-one-helper"
-@implements IDisposable
+@implements IAsyncDisposable
 @inject IJSRuntime JS
 
 <PageTitle>Call .NET Example</PageTitle>
+
+<h1>Pass <code>DotNetObjectReference</code> to a JavaScript class</h1>
+
+<p>
+    <label>
+        Message: <input @bind="name" />
+    </label>
+</p>
+
+<p>
+    <button id="sayHelloBtn">
+        Trigger JS function <code>sayHello</code>
+    </button>
+</p>
+
+<p>
+    <button id="welcomeVisitorBtn">
+        Trigger JS function <code>welcomeVisitor</code>
+    </button>
+</p>
+
+@code {
+    private IJSObjectReference? module;
+    private string? name;
+    private DotNetObjectReference<CallDotNetExampleOneHelper>? dotNetHelper;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSObjectReference>("import",
+                "./Components/Pages/CallDotNetExampleOneHelper.razor.js");
+
+            dotNetHelper = DotNetObjectReference.Create(this);
+            await module.InvokeVoidAsync("GreetingHelpers.setDotNetHelper", 
+                dotNetHelper);
+
+            await module.InvokeVoidAsync("addHandlers");
+        }
+    }
+
+    [JSInvokable]
+    public string GetHelloMessage() => $"Hello, {name}!";
+
+    [JSInvokable]
+    public string GetWelcomeMessage() => $"Welcome, {name}!";
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+
+        dotNetHelper?.Dispose();
+    }
+}
+```
+
+In the preceding example:
+
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
+* The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+* The component must explicitly dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference> to permit garbage collection and prevent a memory leak.
+
+`CallDotNetExampleOneHelper.razor.js`:
+
+```javascript
+export class GreetingHelpers {
+  static dotNetHelper;
+
+  static setDotNetHelper(value) {
+    GreetingHelpers.dotNetHelper = value;
+  }
+
+  static async sayHello() {
+    const msg =
+      await GreetingHelpers.dotNetHelper.invokeMethodAsync('GetHelloMessage');
+    alert(`Message from .NET: "${msg}"`);
+  }
+
+  static async welcomeVisitor() {
+    const msg =
+      await GreetingHelpers.dotNetHelper.invokeMethodAsync('GetWelcomeMessage');
+    alert(`Message from .NET: "${msg}"`);
+  }
+}
+
+export function addHandlers() {
+  const sayHelloBtn = document.getElementById("sayHelloBtn");
+  sayHelloBtn.addEventListener("click", GreetingHelpers.sayHello);
+
+  const welcomeVisitorBtn = document.getElementById("welcomeVisitorBtn");
+  welcomeVisitorBtn.addEventListener("click", GreetingHelpers.welcomeVisitor);
+}
+```
+
+In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+```csharp
+@page "/call-dotnet-example-one-helper"
+@implements IDisposable
+@inject IJSRuntime JS
 
 <h1>Pass <code>DotNetObjectReference</code> to a JavaScript class</h1>
 
@@ -510,127 +638,6 @@ In the following component, the `Trigger JS function` buttons call JS functions 
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-```csharp
-@page "/call-dotnet-example-one-helper"
-@implements IDisposable
-@inject IJSRuntime JS
-
-<PageTitle>Call .NET Example</PageTitle>
-
-<h1>Pass <code>DotNetObjectReference</code> to a JavaScript class</h1>
-
-<p>
-    <label>
-        Message: <input @bind="name" />
-    </label>
-</p>
-
-<p>
-    <button onclick="GreetingHelpers.sayHello()">
-        Trigger JS function <code>sayHello</code>
-    </button>
-</p>
-
-<p>
-    <button onclick="GreetingHelpers.welcomeVisitor()">
-        Trigger JS function <code>welcomeVisitor</code>
-    </button>
-</p>
-
-@code {
-    private string? name;
-    private DotNetObjectReference<CallDotNetExampleOneHelper>? dotNetHelper;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            dotNetHelper = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("GreetingHelpers.setDotNetHelper", 
-                dotNetHelper);
-        }
-    }
-
-    [JSInvokable]
-    public string GetHelloMessage() => $"Hello, {name}!";
-
-    [JSInvokable]
-    public string GetWelcomeMessage() => $"Welcome, {name}!";
-
-    public void Dispose()
-    {
-        dotNetHelper?.Dispose();
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-@page "/call-dotnet-example-one-helper"
-@implements IDisposable
-@inject IJSRuntime JS
-
-<PageTitle>Call .NET Example</PageTitle>
-
-<h1>Pass <code>DotNetObjectReference</code> to a JavaScript class</h1>
-
-<p>
-    <label>
-        Message: <input @bind="name" />
-    </label>
-</p>
-
-<p>
-    <button onclick="GreetingHelpers.sayHello()">
-        Trigger JS function <code>sayHello</code>
-    </button>
-</p>
-
-<p>
-    <button onclick="GreetingHelpers.welcomeVisitor()">
-        Trigger JS function <code>welcomeVisitor</code>
-    </button>
-</p>
-
-@code {
-    private string name;
-    private DotNetObjectReference<CallDotNetExampleOneHelper>? dotNetHelper;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            dotNetHelper = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("GreetingHelpers.setDotNetHelper", 
-                dotNetHelper);
-        }
-    }
-
-    [JSInvokable]
-    public string GetHelloMessage() => $"Hello, {name}!";
-
-    [JSInvokable]
-    public string GetWelcomeMessage() => $"Welcome, {name}!";
-
-    public void Dispose()
-    {
-        if (dotNetHelper is not null)
-        {
-            dotNetHelper.Dispose();
-        }
-    }
-}
-```
-
-:::moniker-end
 
 In the preceding example:
 
@@ -664,13 +671,15 @@ In the preceding example:
 </script>
 ```
 
-> [!NOTE]
-> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
-
 In the preceding example:
 
 * The `GreetingHelpers` class is added to the `window` object to globally define the class, which permits Blazor to locate the class for JS interop.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+
+:::moniker-end
+
+> [!NOTE]
+> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1272,29 +1281,35 @@ Similar to the approach described in the [Component instance .NET method helper 
 
 In the following example:
 
-* The component contains several `ListItem2` components, which is a shared component in the app's `Shared` folder.
+* The component contains several `ListItem2` components, which is a shared component.
 * Each `ListItem2` component is composed of a list item message `<span>` and a second `<span>` with a `display` CSS property set to `inline-block` for display.
 * When a `ListItem2` component list item is selected, that `ListItem2`'s `UpdateMessage` method changes the list item text in the first `<span>` and hides the second `<span>` by setting its `display` property to `none`.
 
-The following `assignDotNetHelper` JS function assigns the <xref:Microsoft.JSInterop.DotNetObjectReference> to an element in a property named `dotNetHelper`:
+The following `assignDotNetHelper` JS function assigns the <xref:Microsoft.JSInterop.DotNetObjectReference> to an element in a property named `dotNetHelper`. The following `interopCall` JS function uses the <xref:Microsoft.JSInterop.DotNetObjectReference> for the passed element to invoke a .NET method named `UpdateMessage`.
+
+:::moniker range=">= aspnetcore-8.0"
+
+`ListItem2.razor.js`:
+
+:::code language="javascript" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItem2.razor.js":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script>
   window.assignDotNetHelper = (element, dotNetHelper) => {
     element.dotNetHelper = dotNetHelper;
   }
-</script>
-```
 
-The following `interopCall` JS function uses the <xref:Microsoft.JSInterop.DotNetObjectReference> for the passed element to invoke a .NET method named `UpdateMessage`:
-
-```html
-<script>
   window.interopCall = async (element) => {
     await element.dotNetHelper.invokeMethodAsync('UpdateMessage');
   }
 </script>
 ```
+
+:::moniker-end
 
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
@@ -1474,6 +1489,18 @@ Blazor supports optimized byte array JavaScript (JS) interop that avoids encodin
 
 Provide a `sendByteArray` JS function. The function is called statically, which includes the assembly name parameter in the `invokeMethodAsync` call, by a button in the component and doesn't return a value:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+`CallDotnet8.razor.js`:
+
+:::code language="javascript" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/CallDotnet8.razor.js":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 ```html
 <script>
   window.sendByteArray = () => {
@@ -1488,6 +1515,10 @@ Provide a `sendByteArray` JS function. The function is called statically, which 
   };
 </script>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
