@@ -62,6 +62,40 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
+## JavaScript class with a field of type function
+
+A JavaScript class with a field of type function is ***not*** supported by Blazor JS interop. Use Javascript functions in classes.
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> `GreetingHelpers.sayHello` in the following class as a field of type function isn't discovered by Blazor's JS interop and can't be executed from C# code:
+
+```javascript
+export class GreetingHelpers {
+  sayHello = function() {
+    ...
+  }
+}
+```
+
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `GreetingHelpers.sayHello` in the following class as a function is supported:
+
+```javascript
+export class GreetingHelpers {
+  sayHello() {
+    ...
+  }
+}
+```
+
+Arrow functions are also supported:
+
+```javascript
+export class GreetingHelpers {
+  sayHello = () => {
+    ...
+  }
+}
+```
+
 ## Avoid inline event handlers
 
 A JavaScript function can be invoked directly from an inline event handler. In the following example, `alertUser` is a JavaScript function called when the button is selected by the user:
