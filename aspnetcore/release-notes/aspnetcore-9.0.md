@@ -51,6 +51,8 @@ This section describes new features for OpenAPI
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openapi-aot.md)]
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/prob_validation.md)]
+
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
