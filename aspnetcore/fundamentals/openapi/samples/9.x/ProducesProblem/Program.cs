@@ -24,6 +24,5 @@ app.MapGet("/", () =>
     return TypedResults.Problem("This is an error with extensions",
                                                        extensions: extensions);
 });
-
 // </snippet_2>
 #endif
