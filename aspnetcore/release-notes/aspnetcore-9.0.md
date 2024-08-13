@@ -41,6 +41,8 @@ This section describes new features for minimal APIs.
 
 ## OpenAPI
 
+This section describes new features for OpenAPI
+
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openApi.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/openAPI_completion.md)]
@@ -52,6 +54,8 @@ This section describes new features for minimal APIs.
 ## Authentication and authorization
 
 This section describes new features for authentication and authorization.
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/par.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/oidccustomparms.md)]
 
@@ -78,3 +82,7 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/customize-named-pipes.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/exception-type-sets-http-status.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/opt_out_metrics.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/delete_keys.md)]

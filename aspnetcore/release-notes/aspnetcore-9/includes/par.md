@@ -1,6 +1,3 @@
-<!-- Add the following to the MISC
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/par.md)]
--->
 ### OpenIdConnectHandler adds support for Pushed Authorization Requests (PAR)
 
 We'd like to thank [Joe DeCock](https://github.com/josephdecock) from [Duende Software](https://github.com/DuendeSoftware) for adding Pushed Authorization Requests (PAR) to ASP.NET Core's [OpenIdConnectHandler](/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnecthandler). Joe described the background and motivation for enabling PAR in [his API proposal](https://github.com/dotnet/aspnetcore/issues/51686) as follows:
