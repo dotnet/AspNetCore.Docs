@@ -1,6 +1,3 @@
-<!-- Add this include to the OpenAPI section
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/prob_validation.md)]
--->
 ### Support calling `ProducesProblem` and `ProducesValidationProblem` on route groups
 
 The [ProducesProblem](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesproblem) and [ProducesValidationProblem](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesvalidationproblem) extension methods have been updated for route groups. These methods can be used to indicate that all endpoints in a route group can return `ProblemDetails` or `ValidationProblemDetails` responses for the purposes of OpenAPI metadata.
