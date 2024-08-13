@@ -20,14 +20,9 @@ var app = WebApplication.Create();
 
 app.MapGet("/", () =>
 {
-    var app = WebApplication.Create();
-
-    app.MapGet("/", () =>
-    {
-        var extensions = new List<KeyValuePair<string, object?>> { new("test", "value") };
-        return TypedResults.Problem("This is an error with extensions", extensions: extensions);
-    });
-
+    var extensions = new List<KeyValuePair<string, object?>> { new("test", "value") };
+    return TypedResults.Problem("This is an error with extensions", extensions: extensions);
 });
+
 // </snippet_2>
 #endif
