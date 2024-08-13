@@ -49,6 +49,17 @@ Keys have a 90-day lifetime by default. When a key expires, the app automaticall
 
 The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, changed every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See [subkey derivation](xref:security/data-protection/implementation/subkeyderivation#additional-authenticated-data-and-subkey-derivation) for more information.
 
+### Delete keys
+
+Deleting a key renders its protected data irretrievable. Given their small size, the accumulation of these keys generally imposes minimal impact. In some cases, e.g., to accommodate extremely long-running services, keys can be deleted. Generally, only delete:
+
+* Old keys.
+* Keys when you can accept the risk of data loss in exchange for storage savings.
+
+We recommend data protection keys should ___not___ be deleted.
+
+:::code language="csharp" source="~/security/data-protection/configuration/samples/9/deleteKeys/Program.cs" :::
+
 ## Additional resources
 
 * <xref:security/data-protection/extensibility/key-management>
