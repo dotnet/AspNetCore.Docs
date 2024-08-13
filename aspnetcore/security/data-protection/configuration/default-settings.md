@@ -51,7 +51,7 @@ The default payload protection algorithm used is AES-256-CBC for confidentiality
 
 ### Delete keys
 
-Deleting a key renders its protected data irretrievable. Given their small size, the accumulation of these keys generally imposes minimal impact. In some cases, e.g., to accommodate extremely long-running services, keys can be deleted. Generally, only delete:
+Deleting a key makes its protected data permanently inaccessible. Given their small size, the accumulation of these keys generally imposes minimal impact. In some cases, e.g., to accommodate extremely long-running services, keys can be deleted. Generally, only delete:
 
 * Old keys.
 * Keys when you can accept the risk of data loss in exchange for storage savings.
