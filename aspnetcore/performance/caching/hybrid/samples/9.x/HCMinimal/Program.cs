@@ -52,11 +52,8 @@ public class Program
 
         app.UseAuthorization();
 
-        app.MapGet("/{name}/{ID}", async (context) =>
+        app.MapGet("/{name}/{ID}", async (HttpContext context, string? name, Int32 ID) =>
         {
-            string? name = context.Request.RouteValues["name"] as string;
-            int ID = Convert.ToInt32(context.Request.RouteValues["ID"]);
-
             var someService = context.RequestServices.GetRequiredService<SomeService>();
             var someInfo = await someService.GetSomeInfoAsync(name!, ID);
             context.Response.StatusCode = 200;
@@ -79,7 +76,7 @@ public class SomeService(HybridCache cache)
         return await _cache.GetOrCreateAsync(
             $"{name}-{id}", // Unique key to the cache entry
             async cancel => await GetDataFromTheSourceAsync(name, id, cancel),
-            token: token
+            cancellationToken: token
         );
     }
 
@@ -110,7 +107,7 @@ public class SomeService(HybridCache cache)
             async cancel => await GetDataFromTheSourceAsync(name, id, cancel),
             entryOptions,
             tags,
-            token: token
+            cancellationToken: token
         );
     }
     
@@ -135,7 +132,7 @@ public class SomeService(HybridCache cache)
             (name, id, obj: this),
             static async (state, token) =>
             await state.obj.GetDataFromTheSourceAsync(state.name, state.id, token),
-            token: token
+            cancellationToken: token
         );
     }
 
