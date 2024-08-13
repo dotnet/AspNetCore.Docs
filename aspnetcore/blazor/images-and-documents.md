@@ -146,9 +146,9 @@ The following `ShowFile` component loads either a text file (`files/quote.txt`) 
 [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main/8.0/BlazorSample_BlazorWebApp/wwwroot/files): Navigate to `BlazorSample_BlazorWebApp` (8.0 or later), `BlazorSample_Server` (7.0 or earlier), or `BlazorSample_WebAssembly`. Locate the files in the `wwwroot/files` directory of the sample app.
 
 > [!CAUTION]
-> Use of the `<iframe>` element in the following example is safe and doesn't require [sandboxing](https://developer.mozilla.org/docs/Web/HTML/Element/iframe#sandbox) because content is loaded from the app, a trusted source, and not from an untrusted external source or user input.
+> Use of the `<iframe>` element in the following example is safe and doesn't require \[sandboxing](https://developer.mozilla.org/docs/Web/HTML/Element/iframe#sandbox) because content is loaded from the app, a trusted source.
 >
-> An improperly implemented `<iframe>` element risks creating security vulnerabilities. When using an `<iframe>` element in a context outside of this article, consult `<iframe>` security guidance.
+> When loading content from an untrusted source or user input, an improperly implemented `<iframe>` element risks creating security vulnerabilities.
 
 `ShowFile.razor`:
 
