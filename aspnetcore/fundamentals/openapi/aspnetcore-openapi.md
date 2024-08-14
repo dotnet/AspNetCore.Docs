@@ -8,6 +8,8 @@ ms.custom: mvc
 ms.date: 5/22/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
+<!-- backup writer.sms.author: tdykstra and rick-anderson -->
+
 # Work with OpenAPI documents
 
 :::moniker range=">= aspnetcore-9.0"

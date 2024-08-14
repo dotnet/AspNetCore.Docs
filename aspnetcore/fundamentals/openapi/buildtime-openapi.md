@@ -8,18 +8,19 @@ ms.custom: mvc
 ms.date: 8/13/2024
 uid: fundamentals/openapi/buildtime-openapi
 ---
+<!-- backup writer.sms.author: tdykstra and rick-anderson -->
 
 # Generate OpenAPI documents at build-time
 
-In a typical web applications, OpenAPI documents are generated at run-time and served via an HTTP request to the application server.
+In a typical web apps, OpenAPI documents are generated at run-time and served via an HTTP request to the app server.
 
-In some scenarios, it is helpful to generate the OpenAPI document during the application's build step. These scenarios including:
+Generating OpenAPI documentation during the app's build step can be useful for documentation that is:
 
-- Generating OpenAPI documentation that is committed into source control
-- Generating OpenAPI documentation that is used for spec-based integration testing
-- Generating OpenAPI documentation that is served statically from the web server
+- Committed into source control
+- Used for spec-based integration testing
+- Served statically from the web server
 
-To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
+To add support for generating OpenAPI documents at build time, install the [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) NuGet package:
 
 ### [Visual Studio](#tab/visual-studio)
 
@@ -38,18 +39,18 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 ```
 ---
 
-Upon installation, this package will automatically generate the Open API document(s) associated with the application during build and populate them into the application's output directory.
+This package automatically generates the Open API document(s) associated with the app during build and populates them into the app's output directory.
 
 ```cli
 $ dotnet build
 $ cat bin/Debub/net9.0/{ProjectName}.json
 ```
 
-## Customizing build-time document generation
+## Customize build-time document generation
 
-### Modifying the output directory of the generated Open API file
+### Modify the output directory of the generated Open API file
 
-By default, the generated OpenAPI document will be emitted to the application's output directory. To modify the location of the emitted file, set the target path in the `OpenApiDocumentsDirectory` property.
+By default, the generated OpenAPI document is generated in the app's output directory. To modify the location of the generated file, set the target path in the `OpenApiDocumentsDirectory` property in the project file:
 
 ```xml
 <PropertyGroup>
@@ -57,11 +58,11 @@ By default, the generated OpenAPI document will be emitted to the application's 
 </PropertyGroup>
 ```
 
-The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `./` value above will emit the OpenAPI document in the same directory as the project file.
+The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `./` value in the preceding markup generates the OpenAPI document in the same directory as the project file.
 
-### Modifying the output file name
+### Modify the output file name
 
-By default, the generated OpenAPI document will have the same name as the application's project file. To modify the name of the emitted file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property.
+By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
 ```xml
 <PropertyGroup>
@@ -69,9 +70,14 @@ By default, the generated OpenAPI document will have the same name as the applic
 </PropertyGroup>
 ```
 
-### Selecting the OpenAPI document to generate
+### Select the OpenAPI document to generate
 
-Some applications may be configured to emit multiple OpenAPI documents, for various versions of an API or to distinguish between public and internal APIs. By default, the build-time document generator will emit files for all documents that are configured in an application. To only emit for a single document name, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property.
+Some apps may be configured to generate multiple OpenAPI documents, for example:
+
+* For various versions of an API.
+* To distinguish between public and internal APIs.
+
+By default, the build-time document generator generates files for all documents that are configured in an app. To generate for a single document name only, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
 ```xml
 <PropertyGroup>
@@ -79,9 +85,9 @@ Some applications may be configured to emit multiple OpenAPI documents, for vari
 </PropertyGroup>
 ```
 
-## Customizing run-time behavior during build-time document generation
+## Customize run-time behavior during build-time document generation
 
-Under the hood, build-time OpenAPI document generation functions by launching the application's entrypoint with an inert server implementation. This is a requirement to produce accurate OpenAPI documents since all information in the OpenAPI document cannot be statically analyzed. Because the application's entrypoint is invoked, any logic in the applications' startup will be invoked. This includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the codepaths that will run when the application's entry point is being invoked from build-time document generation. These scenarios include:
+The OpenAPI document generation at build-time works by starting the app’s entrypoint with a temporary background server. This is a requirement to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the app's entrypoint is invoked, any logic in the apps' startup will be invoked. This includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the codepaths that will run when the app's entry point is being invoked from build-time document generation. These scenarios include:
 
 - Not reading from certain configuration strings
 - Not registering database-related services
