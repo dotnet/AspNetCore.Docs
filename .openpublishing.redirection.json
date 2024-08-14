@@ -1307,6 +1307,11 @@
             "source_path": "aspnetcore/blazor/http-caching-issues.md",
             "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly-caching/http-caching-issues",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/images.md",
+            "redirect_url": "/aspnet/core/blazor/images-and-documents",
+            "redirect_document_id": false
         }
     ]
 }
