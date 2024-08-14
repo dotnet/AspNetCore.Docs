@@ -5,7 +5,7 @@ description: Learn how to generate OpenAPI documents in your application's build
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 8/13/2024
+ms.date: 8/14/2024
 uid: fundamentals/openapi/buildtime-openapi
 ---
 
