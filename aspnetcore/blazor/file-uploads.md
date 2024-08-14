@@ -53,16 +53,39 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
 
+* Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
+* Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-To avoid coping all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array all at once, which can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, consider adopting either of the following approaches:
-
-:::moniker-end
+To avoid coping all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array all at once when uploading files to a server, which can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, consider adopting either of the following approaches:
 
 * Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+If the component limits file uploads to a single file at a time or if the component only adopts interactive client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array:
+
+```csharp
+var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+If the component limits file uploads to a single file at a time, the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array:
+
+```csharp
+var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+```
+
+:::moniker-end
+
+:::moniker-end
 
 In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the file upload components later in this article.
 
@@ -308,6 +331,36 @@ The following `FileUpload2` component:
 :::moniker range="< aspnetcore-6.0"
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+If the component limits file uploads to a single file at a time or if the component only adopts interactive client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array. The following example demonstrates the changes for the `FileUpload2` component:
+
+```diff
+- var memoryStream = new MemoryStream();
+- var browserFileStream = file.OpenReadStream(maxFileSize);
+- await browserFileStream.CopyToAsync(memoryStream);
+- memoryStream.Position = 0;
+- var fileContent = new StreamContent(memoryStream);
++ var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+If the component limits file uploads to a single file at a time, the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array. The following example demonstrates the changes for the `FileUpload2` component:
+
+```diff
+- var memoryStream = new MemoryStream();
+- var browserFileStream = file.OpenReadStream(maxFileSize);
+- await browserFileStream.CopyToAsync(memoryStream);
+- memoryStream.Position = 0;
+- var fileContent = new StreamContent(memoryStream);
++ var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+```
 
 :::moniker-end
 
