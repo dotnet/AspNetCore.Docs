@@ -572,8 +572,8 @@ items:
                 uid: blazor/js-interop/ssr
           - name: Call a web API
             uid: blazor/call-web-api
-          - name: Images
-            uid: blazor/images
+          - name: Images and documents
+            uid: blazor/images-and-documents
           - name: Security and Identity
             items:
               - name: Overview
