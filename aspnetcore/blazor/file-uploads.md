@@ -65,6 +65,8 @@ To avoid coping all of the file's bytes into a <xref:System.IO.MemoryStream> or 
 * Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 If the component limits file uploads to a single file at a time or if the component only adopts interactive client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array:
