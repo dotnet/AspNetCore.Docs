@@ -37,9 +37,10 @@ Run the following command in the directory that contains the project file:
 ```dotnetcli
 dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 ```
+
 ---
 
-This package automatically generates the Open API document(s) associated with the app during build and populates them into the app's output directory.
+The `Microsoft.Extensions.ApiDescription.Server` package automatically generates the Open API document(s) associated with the app during build and populates them into the app's output directory:
 
 ```cli
 $ dotnet build
@@ -53,14 +54,14 @@ $ cat bin/Debub/net9.0/{ProjectName}.json
 By default, the generated OpenAPI document is generated in the app's output directory. To modify the location of the generated file, set the target path in the `OpenApiDocumentsDirectory` property in the project file:
 
 ```xml
-<PropertyGroup>
-  <OpenApiDocumentsDirectory>./</OpenApiDocumentsDirectory>
-</PropertyGroup>
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet" highlight="8":::
 ```
 
-:::code language="xml" source="~\fundamentals\openapi\samples\9.x\BuildTime\MyTestApi.csproj" highlight="8":::
+The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value in the preceding markup generates the OpenAPI document in the same directory as the project file. To generate the OpenAPI document in a different directory, provide the path relative to the project file. In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling of the project file:
 
-The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `./` value in the preceding markup generates the OpenAPI document in the same directory as the project file.
+```xml
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet2" highlight="8":::
+```
 
 ### Modify the output file name
 
