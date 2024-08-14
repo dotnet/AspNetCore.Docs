@@ -58,6 +58,8 @@ By default, the generated OpenAPI document is generated in the app's output dire
 </PropertyGroup>
 ```
 
+:::code language="xml" source="~\fundamentals\openapi\samples\9.x\BuildTime\MyTestApi.csproj" highlight="8":::
+
 The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `./` value in the preceding markup generates the OpenAPI document in the same directory as the project file.
 
 ### Modify the output file name
@@ -74,17 +76,17 @@ By default, the generated OpenAPI document has the same name as the app's projec
 
 Some apps may be configured to generate multiple OpenAPI documents, for example:
 
-* For various versions of an API.
+* For different versions of an API.
 * To distinguish between public and internal APIs.
 
-By default, the build-time document generator generates files for all documents that are configured in an app. To generate for a single document name only, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
+By default, the build-time document generator creates files for all documents that are configured in an app. To generate for a single document only, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
 ```xml
 <PropertyGroup>
   <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
 </PropertyGroup>
 ```
-
+zz
 ## Customize run-time behavior during build-time document generation
 
 The OpenAPI document generation at build-time works by starting the app’s entrypoint with a temporary background server. This is a requirement to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the app's entrypoint is invoked, any logic in the apps' startup will be invoked. This includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the codepaths that will run when the app's entry point is being invoked from build-time document generation. These scenarios include:
