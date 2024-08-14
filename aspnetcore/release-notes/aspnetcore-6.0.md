@@ -252,7 +252,7 @@ Use a deployment layout to enable Blazor WebAssembly app downloads in restricted
 In addition to the Blazor features described in the preceding sections, new Blazor articles are available on the following subjects:
 
 * <xref:blazor/file-downloads>: Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
-* <xref:blazor/images>: Discover how to work with images in Blazor apps, including how to stream image data and preview an image.
+* <xref:blazor/images-and-documents>: Discover how to work with images and documents in Blazor apps, including how to stream image and document data.
 
 ## Build Blazor Hybrid apps with .NET MAUI, WPF, and Windows Forms
 

@@ -1,30 +1,28 @@
 ---
-title: Work with images in ASP.NET Core Blazor
+title: Display images and documents in ASP.NET Core Blazor
 author: guardrex
-description: Learn how to work with images in ASP.NET Core Blazor apps.
+description: Learn how to display images and documents in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
-uid: blazor/images
+ms.date: 08/13/2024
+uid: blazor/images-and-documents
 ---
-# Work with images in ASP.NET Core Blazor
+# Display images and documents in ASP.NET Core Blazor
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article describes common scenarios for working with images in Blazor apps. 
+This article describes approaches for displaying images and documents in Blazor apps.
+
+The examples in this article are available for inspection and use in the [Blazor sample apps](xref:blazor/fundamentals/index#sample-apps):
+
+[`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples): Navigate to the app named `BlazorSample_BlazorWebApp` (8.0 or later), `BlazorSample_Server` (7.0 or earlier), or `BlazorSample_WebAssembly`.
 
 ## Dynamically set an image source
 
 The following example demonstrates how to dynamically set an image's source with a C# field.
 
-For the example in this section:
-
-* Obtain three images from any source or right-click each of the following images to save them locally. Name the images `image1.png`, `image2.png`, and `image3.png`.
-
-  ![Computer icon](~/blazor/images/_static/image1.png) &nbsp;&nbsp; ![Smiley icon](~/blazor/images/_static/image2.png) &nbsp;&nbsp; ![Earth icon](~/blazor/images/_static/image3.png)
-
-* Place the images in a new folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize images in any folder layout that you prefer, including serving the images directly from the `wwwroot` folder.
+The example in this section uses three image files, named `image1.png`, `image2.png`, and `image3.png`. The images are placed in a folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize static assets in any folder layout that you prefer, including serving assets directly from the `wwwroot` folder.
 
 In the following `ShowImage1` component:
 
@@ -73,29 +71,39 @@ The preceding example uses a C# field to hold the image's source data, but you c
 >
 > For more information, see <xref:blazor/components/event-handling#lambda-expressions>.
 
-## Stream image data
+## Stream image or document data
 
-An image can be directly sent to the client using Blazor's streaming interop features instead of hosting the image at a public URL.
+An image or other document type, such as a PDF, can be directly transmitted to the client using Blazor's streaming interop features instead of hosting the file at a public URL.
 
-The example in this section streams image source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setImage` JS function accepts the `<img>` tag `id` and data stream for the image. The function performs the following steps:
+The example in this section streams source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setSource` JS function:
+
+* Can be used to stream content for the following elements: `<body>`, `<embed>`, `<iframe>`, `<img>`, `<link>`, `<object>`, `<script>`, `<style>`, and `<track>`.
+* Accepts an element `id` to display the file's contents, a data stream for the document, the content type, and a title for the display element.
+
+The function:
 
 * Reads the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
-* Creates an object URL to serve as the address for the image to be shown.
-* Updates the `<img>` element with the specified `imageElementId` with the object URL just created.
-* To prevent memory leaks, the function calls [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when the component is finished working with an image.
+* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`, setting the blob's content type.
+* Creates an object URL to serve as the address for the document to be shown.
+* Set's the element's title (`title`) from the `title` parameter and sets the element's source (`src`) from the created object URL.
+* To prevent memory leaks, the function calls [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL after the element loads the resource ([`load` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/load_event)).
 
 ```html
 <script>
-  window.setImage = async (imageElementId, imageStream) => {
-    const arrayBuffer = await imageStream.arrayBuffer();
-    const blob = new Blob([arrayBuffer]);
+  window.setSource = async (elementId, stream, contentType, title) => {
+    const arrayBuffer = await stream.arrayBuffer();
+    let blobOptions = {};
+    if (contentType) {
+      blobOptions['type'] = contentType;
+    }
+    const blob = new Blob([arrayBuffer], blobOptions);
     const url = URL.createObjectURL(blob);
-    const image = document.getElementById(imageElementId);
-    image.onload = () => {
+    const element = document.getElementById(elementId);
+    element.title = title;
+    element.onload = () => {
       URL.revokeObjectURL(url);
     }
-    image.src = url;
+    element.src = url;
   }
 </script>
 ```
@@ -111,7 +119,7 @@ The following `ShowImage2` component:
 * Has a `SetImageAsync` method that's triggered on the button's selection by the user. `SetImageAsync` performs the following steps:
   * Retrieves the <xref:System.IO.Stream> from `GetImageStreamAsync`.
   * Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the image data to the client.
-  * Invokes the `setImage` JavaScript function, which accepts the data on the client.
+  * Invokes the `setSource` JavaScript function, which accepts the data on the client.
 
 > [!NOTE]
 > Server-side apps use a dedicated <xref:System.Net.Http.HttpClient> service to make requests, so no action is required by the developer of a server-side Blazor app to register an <xref:System.Net.Http.HttpClient> service. Client-side apps have a default <xref:System.Net.Http.HttpClient> service registration when the app is created from a Blazor project template. If an <xref:System.Net.Http.HttpClient> service registration isn't present in the `Program` file of a client-side app, provide one by adding `builder.Services.AddHttpClient();`. For more information, see <xref:fundamentals/http-requests>.
@@ -133,6 +141,33 @@ The following `ShowImage2` component:
 :::moniker range="< aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/images/ShowImage2.razor":::
+
+:::moniker-end
+
+The following `ShowFile` component loads either a text file (`files/quote.txt`) or a PDF file (`files/quote.pdf`) into an [`<iframe>` element (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/iframe).
+
+> [!CAUTION]
+> Use of the `<iframe>` element in the following example is safe and doesn't require \[sandboxing](https://developer.mozilla.org/docs/Web/HTML/Element/iframe#sandbox) because content is loaded from the app, a trusted source.
+>
+> When loading content from an untrusted source or user input, an improperly implemented `<iframe>` element risks creating security vulnerabilities.
+
+`ShowFile.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ShowFile.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/images/ShowFile.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/images/ShowFile.razor":::
 
 :::moniker-end
 

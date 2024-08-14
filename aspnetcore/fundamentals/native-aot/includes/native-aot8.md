@@ -1,25 +1,4 @@
----
-title: ASP.NET Core support for Native AOT
-author: rick-anderson
-ms.author: riande
-description: Learn about ASP.NET Core support for Native AOT
-content_well_notification: AI-contribution
-ms.custom: mvc, engagement-fy23
-ms.date: 8/11/2024
-uid: fundamentals/native-aot
-ai-usage: ai-assisted
----
-<!-- ms.author: midenn -->
-# ASP.NET Core support for Native AOT
-
-By [Mitch Denny](https://github.com/mitchdenny)
-
-<!-- UPDATE 9.0 Activate after release and INCLUDE is updated
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
@@ -51,7 +30,7 @@ Not all features in ASP.NET Core are currently compatible with Native AOT. The f
 | Minimal APIs | | <span aria-hidden="true">✔️</span><span class="visually-hidden">Partially supported</span> | |
 | MVC | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 | Blazor Server | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
-| SignalR | | <span aria-hidden="true">✔️</span><span class="visually-hidden">Partially supported</span> | |
+| SignalR | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 | JWT Authentication | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | Other Authentication | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>  |
 | CORS | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
@@ -302,5 +281,3 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 * [Behind `[LogProperties]` and the new telemetry logging source generator](https://andrewlock.net/behind-logproperties-and-the-new-telemetry-logging-source-generator/)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/native-aot/includes/native-aot8.md)]

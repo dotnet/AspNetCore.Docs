@@ -76,10 +76,8 @@ public class Program
 
         app.UseAuthorization();
 
-        app.MapGet("/{ID}", async (context) =>
+        app.MapGet("/{ID}", async (HttpContext context, Int32 ID) =>
         {
-            int ID = Convert.ToInt32(context.Request.RouteValues["ID"]);
-
             var someService = context.RequestServices.GetRequiredService<SomeService>();
             var someProtobufMessage = await someService.GetSomeProtobufMessageFromCacheAsync(ID);
             var someMessage = await someService.GetSomeMessageFromCacheAsync(ID);
@@ -138,7 +136,7 @@ public class SomeService(HybridCache cache, IDistributedCache l2)
         return await _cache.GetOrCreateAsync(
             $"SomeMessage_{id}", // Unique key to the cache entry
             async cancel => await GetSomeMessageFromSourceAsync(id, token),
-            token: token
+            cancellationToken: token
         );
     }
 
@@ -148,7 +146,7 @@ public class SomeService(HybridCache cache, IDistributedCache l2)
         return await _cache.GetOrCreateAsync(
             $"Protobuf_{id}", // Unique key to the cache entry
             async cancel => await GetSomeProtobufMessageFromSourceAsync(id, token),
-            token: token
+            cancellationToken: token
         );
     }
 
