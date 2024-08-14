@@ -336,7 +336,7 @@ The following `FileUpload2` component:
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
-If the component limits file uploads to a single file at a time or if the component only adopts interactive client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array. The following example demonstrates the changes for the `FileUpload2` component:
+If the component limits file uploads to a single file at a time or if the component only adopts interactive client-side rendering (CSR, `InteractiveWebAssembly`), the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array. The following demonstrates the changes for the `FileUpload2` component:
 
 ```diff
 - var memoryStream = new MemoryStream();
@@ -351,7 +351,7 @@ If the component limits file uploads to a single file at a time or if the compon
 
 :::moniker range="< aspnetcore-8.0"
 
-If the component limits file uploads to a single file at a time, the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array. The following example demonstrates the changes for the `FileUpload2` component:
+If the component limits file uploads to a single file at a time, the component can avoid copying all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array. The following demonstrates the changes for the `FileUpload2` component:
 
 ```diff
 - var memoryStream = new MemoryStream();
