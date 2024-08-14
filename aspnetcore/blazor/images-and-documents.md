@@ -22,11 +22,7 @@ The examples in this article are available for inspection and use in the [Blazor
 
 The following example demonstrates how to dynamically set an image's source with a C# field.
 
-The example in this section uses three image files: `image1.png`, `image2.png`, and `image3.png`.
-
-![Computer icon](~/blazor/images-and-documents/_static/image1.png) &nbsp;&nbsp; ![Smiley icon](~/blazor/images-and-documents/_static/image2.png) &nbsp;&nbsp; ![Earth icon](~/blazor/images-and-documents/_static/image3.png)
-
-The images are placed in a folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize static assets in any folder layout that you prefer, including serving assets directly from the `wwwroot` folder.
+The example in this section uses three image files, named `image1.png`, `image2.png`, and `image3.png`. The images are placed in a folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize static assets in any folder layout that you prefer, including serving assets directly from the `wwwroot` folder.
 
 In the following `ShowImage1` component:
 
