@@ -55,7 +55,7 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer((document, context, cancellationToken) =>
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
     {
         document.Info = new()
         {
@@ -91,7 +91,7 @@ builder.Services.AddAuthentication().AddJwtBearer();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer<BearerSecuritySchemeTransformer>();
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
 });
 
 var app = builder.Build();
@@ -141,7 +141,7 @@ builder.Services.AddAuthentication().AddJwtBearer();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseOperationTransformer((operation, context, cancellationToken) =>
+    options.AddOperationTransformer((operation, context, cancellationToken) =>
     {
         operation.Responses.Add("500", new OpenApiResponse { Description = "Internal server error" });
         return Task.CompletedTask;
@@ -172,7 +172,7 @@ builder.Services.AddAuthentication().AddJwtBearer();
 
 builder.Services.AddOpenApi("internal", options =>
 {
-    options.UseTransformer<BearerSecuritySchemeTransformer>();
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
 });
 builder.Services.AddOpenApi("public");
 
@@ -360,11 +360,11 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer((document, context, cancellationToken) 
+    options.AddDocumentTransformer((document, context, cancellationToken) 
                              => Task.CompletedTask);
-    options.UseTransformer(new MyDocumentTransformer());
-    options.UseTransformer<MyDocumentTransformer>();
-    options.UseOperationTransformer((operation, context, cancellationToken)
+    options.AddDocumentTransformer(new MyDocumentTransformer());
+    options.AddDocumentTransformer<MyDocumentTransformer>();
+    options.AddOperationTransformer((operation, context, cancellationToken)
                             => Task.CompletedTask);
 });
 
@@ -396,9 +396,9 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseOperationTransformer((operation, context, cancellationToken)
+    options.AddOperationTransformer((operation, context, cancellationToken)
                                      => Task.CompletedTask);
-    options.UseTransformer((document, context, cancellationToken)
+    options.AddDocumentTransformer((document, context, cancellationToken)
                                      => Task.CompletedTask);
 });
 
