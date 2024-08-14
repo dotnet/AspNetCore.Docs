@@ -5,11 +5,11 @@ OpenAPI transformers support modifying the OpenAPI document, operations within t
 Previously, the following APIs were available for registering transformers:
 
 ```csharp
-OpenApiOptions UseTransformer(Func<OpenApiDocument, OpenApiDocumentTransformerContext, CancellationToken, Task> transformer)
-OpenApiOptions UseTransformer(IOpenApiDocumentTransformer transformer)
-OpenApiOptions UseTransformer<IOpenApiDocumentTransformer>()
+OpenApiOptions AddDocumentTransformer(Func<OpenApiDocument, OpenApiDocumentTransformerContext, CancellationToken, Task> transformer)
+OpenApiOptions AddDocumentTransformer(IOpenApiDocumentTransformer transformer)
+OpenApiOptions AddDocumentTransformer<IOpenApiDocumentTransformer>()
 OpenApiOptions UseSchemaTransformer(Func<OpenApiSchema, OpenApiSchemaTransformerContext, CancellationToken, Task>)
-OpenApiOptions UseOperationTransformer(Func<OpenApiOperation, OpenApiOperationTransformerContext, CancellationToken, Task>)
+OpenApiOptions AddOperationTransformer(Func<OpenApiOperation, OpenApiOperationTransformerContext, CancellationToken, Task>)
 ```
 
 The new API set is as follows:
