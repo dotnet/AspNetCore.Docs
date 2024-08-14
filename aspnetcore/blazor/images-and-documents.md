@@ -20,11 +20,19 @@ The following example demonstrates how to dynamically set an image's source with
 
 For the example in this section:
 
-* Obtain three images from any source or right-click each of the following images to save them locally. Name the images `image1.png`, `image2.png`, and `image3.png`.
+* Access the `ShowImage1` component in the latest version of the [Blazor sample app](xref:blazor/fundamentals/index#sample-apps):
 
-  ![Computer icon](~/blazor/images-and-documents/_static/image1.png) &nbsp;&nbsp; ![Smiley icon](~/blazor/images-and-documents/_static/image2.png) &nbsp;&nbsp; ![Earth icon](~/blazor/images-and-documents/_static/image3.png)
+  [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples): Navigate to the app named `BlazorSample_BlazorWebApp` (8.0 or later), `BlazorSample_Server` (7.0 or earlier), or `BlazorSample_WebAssembly`.
 
-* Place the images in a new folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize images in any folder layout that you prefer, including serving the images directly from the `wwwroot` folder.
+* Use a local test app:
+
+  * Obtain three images from any source or right-click each of the following images to save them locally. Name the images `image1.png`, `image2.png`, and `image3.png`.
+
+    ![Computer icon](~/blazor/images-and-documents/_static/image1.png) &nbsp;&nbsp; ![Smiley icon](~/blazor/images-and-documents/_static/image2.png) &nbsp;&nbsp; ![Earth icon](~/blazor/images-and-documents/_static/image3.png)
+
+  * Place the images in a new folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize static assets in any folder layout that you prefer, including serving assets directly from the `wwwroot` folder.
+
+  * Place the following `ShowImage1` component into the test app.
 
 In the following `ShowImage1` component:
 
@@ -75,15 +83,15 @@ The preceding example uses a C# field to hold the image's source data, but you c
 
 ## Stream image or document data
 
-An image or other document type, such as a PDF, can be directly sent to the client using Blazor's streaming interop features instead of hosting the file at a public URL.
+An image or other document type, such as a PDF, can be directly transmitted to the client using Blazor's streaming interop features instead of hosting the file at a public URL.
 
-The example in this section streams source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setDocument` JS function accepts an `id` for an image (`<img>`), iframe (`<iframe>`), or embed (`<embed>`) element and data stream for the document. The function performs the following steps:
+The example in this section streams source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setSource` JS function accepts an element `id` to display the file's contents, a data stream for the document, the content type, and a title for the display element. The function performs the following steps:
 
 * Reads the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
+* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`, setting the blob's content type.
 * Creates an object URL to serve as the address for the document to be shown.
-* Updates the element (`elementId`) with the object URL just created.
-* To prevent memory leaks, the function calls [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when the component is finished working with the document.
+* Updates the element with the created object URL.
+* To prevent memory leaks, the function calls [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL.
 
 ```html
 <script>
@@ -141,9 +149,9 @@ The following `ShowImage2` component:
 
 :::moniker-end
 
-The following `ShowFile` component loads either a text file (`files/quote.txt`) or a PDF file (`files/quote.pdf`) into an [`<iframe>` element (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/iframe). You can obtain the quote files using the following link. Place the files into a `wwwroot/files` folder in a local test app or experience this component in the latest version of the [Blazor sample app](xref:blazor/fundamentals/index#sample-apps).
+The following `ShowFile` component loads either a text file (`files/quote.txt`) or a PDF file (`files/quote.pdf`) into an [`<iframe>` element (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/iframe). You can obtain the quote files using the following link. Place the files into a `wwwroot/files` folder in a local test app or experience this component in the latest version of the [Blazor sample app](xref:blazor/fundamentals/index#sample-apps):
 
-[`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples/tree/main/8.0/BlazorSample_BlazorWebApp/wwwroot/files): Navigate to `BlazorSample_BlazorWebApp` (8.0 or later), `BlazorSample_Server` (7.0 or earlier), or `BlazorSample_WebAssembly`. Locate the files in the `wwwroot/files` directory of the sample app.
+[`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples): Navigate to the app named `BlazorSample_BlazorWebApp` (8.0 or later), `BlazorSample_Server` (7.0 or earlier), or `BlazorSample_WebAssembly`. Locate the quote files in the `wwwroot/files` directory of the sample app.
 
 > [!CAUTION]
 > Use of the `<iframe>` element in the following example is safe and doesn't require \[sandboxing](https://developer.mozilla.org/docs/Web/HTML/Element/iframe#sandbox) because content is loaded from the app, a trusted source.
