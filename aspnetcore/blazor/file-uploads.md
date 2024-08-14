@@ -49,7 +49,17 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> can be used to specify a larger size if required.
 
-If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in performance and security problems, especially for server-side components. Instead, consider adopting either of the following approaches:
+:::moniker range=">= aspnetcore-9.0"
+
+If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+To avoid coping all of the file's bytes into a <xref:System.IO.MemoryStream> or reading the entire stream into a byte array all at once, which can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/server/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, consider adopting either of the following approaches:
+
+:::moniker-end
 
 * Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
@@ -63,6 +73,8 @@ var reader =
     await new StreamReader(browserFile.OpenReadStream()).ReadToEndAsync();
 ```
 
+:::moniker range=">= aspnetcore-9.0"
+
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> The following approach is **NOT recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> content is copied into a <xref:System.IO.MemoryStream> in memory (`memoryStream`) before calling <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync%2A>:
 
 ```csharp
@@ -71,6 +83,8 @@ await browserFile.OpenReadStream().CopyToAsync(memoryStream);
 await blobContainerClient.UploadBlobAsync(
     trustedFileName, memoryStream));
 ```
+
+:::moniker-end
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> The following approach is **recommended** because the file's <xref:System.IO.Stream> is provided directly to the consumer, a <xref:System.IO.FileStream> that creates the file at the provided path:
 
@@ -87,6 +101,15 @@ await blobContainerClient.UploadBlobAsync(
 ```
 
 A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
+
+
+:::moniker range="< aspnetcore-9.0"
+
+## Autofac Inversion of Control (IoC) container users
+
+If you're using the [Autofac Inversion of Control (IoC) container](https://autofac.org/) instead of the built-in ASP.NET Core dependency injection container, set <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters%2A> to `true` in the [server-side circuit handler hub options](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). For more information, see [FileUpload: Did not receive any data in the allotted time (`dotnet/aspnetcore` #38842)](https://github.com/dotnet/aspnetcore/issues/38842#issuecomment-1342540950).
+
+:::moniker-end
 
 ## File size read and upload limits
 
@@ -213,17 +236,7 @@ The component assumes that the Interactive WebAssembly render mode (`Interactive
 
 ## Upload files to a server with server-side rendering
 
-:::moniker range=">= aspnetcore-8.0"
-
-*This section applies to Interactive Server components in Blazor Web Apps.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to Blazor Server apps.*
-
-:::moniker-end
+*This section applies to Interactive Server components in Blazor Web Apps or Blazor Server apps.*
 
 The following example demonstrates uploading files from a server-side app to a backend web API controller in a separate app, possibly on a separate server.
 
