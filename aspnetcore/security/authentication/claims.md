@@ -39,7 +39,7 @@ Another way to get the user claims is to use the OpenID Connect User Info API. T
 :::moniker range="> aspnetcore-8.0"
 
 > [!NOTE]
-> The default Open ID Connect handler uses Pushed Authorization Requests (PAR) if the identity provider's discovery document advertises support for PAR. The identity provider's discovery document is usually found at .well-known/openid-configuration. If you cannot update the client configuration on the identity provider, PAR can be disabled by using the **PushedAuthorizationBehavior** option. 
+> The default Open ID Connect handler uses Pushed Authorization Requests (PAR) if the identity provider's discovery document advertises support for PAR. The identity provider's discovery document is usually found at `.well-known/openid-configuration`. If you cannot use PAR in the client configuration on the identity provider, PAR can be disabled by using the **PushedAuthorizationBehavior** option. 
 
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/PAR/Program.cs" id="snippet_1" highlight="8-99":::
 
