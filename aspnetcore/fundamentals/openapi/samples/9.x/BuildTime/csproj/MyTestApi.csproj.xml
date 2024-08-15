@@ -1,7 +1,7 @@
-<!-- The dash dash (--) sequence is an illegal string in an XML comment and 
-results in the error: An XML comment cannot contain '--' 
-It's to use -- in the following project file markup: -->
-<!-- </snippet_file_name> -->
+<!-- The dash dash sequence is an illegal string in an XML comment and 
+results in the error: An XML comment cannot contain dash-dash.
+ -->
+<!-- <snippet_file_name> -->
   <PropertyGroup>
     <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>

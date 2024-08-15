@@ -77,17 +77,17 @@ By default, the generated OpenAPI document is generated in the app's output dire
 Which generates misleading error: Missing required option '--project'.
 -->
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet_1":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_1":::
 
 The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value in the preceding markup generates the OpenAPI document in the same directory as the project file. To generate the OpenAPI document in a different directory, provide the path relative to the project file. In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory of the project directory:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet2":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet2":::
 
 ### Modify the output file name
 
 By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet_file_name" :::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_file_name" :::
 
 ### Select the OpenAPI document to generate
 
@@ -98,7 +98,7 @@ Some apps may be configured to generate multiple OpenAPI documents, for example:
 
 By default, the build-time document generator creates files for all documents that are configured in an app. To generate for a single document only, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet_doc_name":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_doc_name":::
 
 ## Customize run-time behavior during build-time document generation
 
