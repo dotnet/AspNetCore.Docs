@@ -42,10 +42,35 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 
 The `Microsoft.Extensions.ApiDescription.Server` package automatically generates the Open API document(s) associated with the app during build and populates them into the app's output directory:
 
+Consider a template created API app named `MyTestApi`:
+
+### [Visual Studio](#tab/visual-studio)
+
+The output tab of Visual Studio includes the output similar to the following:
+
+```text
+1>Generating document named 'v1'.
+1>Writing document named 'v1' to 'MyProjectPath\obj\MyTestApi.json'.
+```
+
+### [.NET CLI](#tab/net-cli)
+
 ```cli
 $ dotnet build
-$ cat bin/Debub/net9.0/{ProjectName}.json
+$ cat obj/MyTestApi.json
 ```
+
+---
+
+The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, title,  endpoints, and more](https://learn.openapis.org/specification/structure.html). The following JSON shows the first few lines of obj/MyTestApi.json file:
+
+```json
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "MyTestApi",
+
+
 
 ## Customize build-time document generation
 
