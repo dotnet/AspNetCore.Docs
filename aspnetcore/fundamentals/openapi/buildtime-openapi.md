@@ -72,7 +72,7 @@ The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, tit
 
 Build-time document generation can be customized with properties added to the project file. [dotnet](/dotnet/core/tools/) parses the `ApiDescription.Server` properties in the project file and provides them to the build-time document generator. The following properties are available and explained in the following sections:
 
-:::code language="json" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.json" id="snippet_all":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_all" highlight="2-4":::
 
 ### Modify the output directory of the generated Open API file
 
