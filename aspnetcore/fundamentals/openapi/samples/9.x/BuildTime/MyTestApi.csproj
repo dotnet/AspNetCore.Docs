@@ -4,10 +4,14 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
 
-  <!--Remaining markup ommited for clarity-->
+  <!--<snippet_doc_name>-->
+  <PropertyGroup>
+    <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
+  </PropertyGroup>
+  <!--</snippet_doc_name>-->
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.0-rc.1.24414.4, 10.0.0)" />
 

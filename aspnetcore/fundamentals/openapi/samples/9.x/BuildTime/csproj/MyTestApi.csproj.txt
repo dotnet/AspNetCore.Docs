@@ -1,0 +1,39 @@
+<!-- The dash dash (--) sequence is an illegal string in an XML comment and 
+results in the error: An XML comment cannot contain '--' 
+It's to use -- in the following project file markup: -->
+<!-- </snippet_file_name> -->
+  <PropertyGroup>
+    <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
+  </PropertyGroup>
+ <!-- </snippet_file_name> -->
+
+ <!--<snippet_1>-->
+    <OpenApiDocumentsDirectory>.</OpenApiDocumentsDirectory>
+  </PropertyGroup> 
+ <!--</snippet_1>-->
+
+ <!--<snippet2>--> 
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>../MyOpenApiDocs</OpenApiDocumentsDirectory>
+  </PropertyGroup>
+ <!--</snippet2>-->
+
+<!--<snippet_doc_name>-->
+<PropertyGroup>
+  <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
+</PropertyGroup>
+<!--</snippet_doc_name>-->
+
+    <!--<snippet_x>-->
+    <!--</snippet_x>-->
+
+    <!--<snippet_x>-->
+    <!--</snippet_x>-->
+
+
+    <!--<snippet_x>-->
+    <!--</snippet_x>-->
+
+
+    <!--<snippet_x>-->
+    <!--</snippet_x>-->

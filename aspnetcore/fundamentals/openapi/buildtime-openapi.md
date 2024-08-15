@@ -58,17 +58,17 @@ By default, the generated OpenAPI document is generated in the app's output dire
 Which generates misleading error: Missing required option '--project'.
 -->
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_1" highlight="9":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet_1":::
 
 The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value in the preceding markup generates the OpenAPI document in the same directory as the project file. To generate the OpenAPI document in a different directory, provide the path relative to the project file. In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory of the project directory:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet2" highlight="5":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet2":::
 
 ### Modify the output file name
 
 By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_file_name" highlight="5-6":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet_file_name" :::
 
 ### Select the OpenAPI document to generate
 
@@ -79,12 +79,8 @@ Some apps may be configured to generate multiple OpenAPI documents, for example:
 
 By default, the build-time document generator creates files for all documents that are configured in an app. To generate for a single document only, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-```xml
-<PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
-</PropertyGroup>
-```
-zz
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.txt" id="snippet_doc_name":::
+
 ## Customize run-time behavior during build-time document generation
 
 The OpenAPI document generation at build-time works by starting the app’s entrypoint with a temporary background server. This is a requirement to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the app's entrypoint is invoked, any logic in the apps' startup will be invoked. This includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the codepaths that will run when the app's entry point is being invoked from build-time document generation. These scenarios include:
