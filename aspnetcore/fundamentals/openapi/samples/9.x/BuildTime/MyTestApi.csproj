@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <!--<snippet_doc_name>-->
-
+  <PropertyGroup>
+    <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
+  </PropertyGroup>
   <!--</snippet_doc_name>-->
   
   <ItemGroup>
