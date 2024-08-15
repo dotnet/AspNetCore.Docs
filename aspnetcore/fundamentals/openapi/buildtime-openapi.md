@@ -53,14 +53,19 @@ $ cat bin/Debub/net9.0/{ProjectName}.json
 
 By default, the generated OpenAPI document is generated in the app's output directory. To modify the location of the generated file, set the target path in the `OpenApiDocumentsDirectory` property in the project file:
 
+<!-- Original had
+   <OpenApiDocumentsDirectory>./</OpenApiDocumentsDirectory>
+Which generates misleading error: Missing required option '--project'.
+-->
+
 ```xml
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet" highlight="8":::
 ```
 
-The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value in the preceding markup generates the OpenAPI document in the same directory as the project file. To generate the OpenAPI document in a different directory, provide the path relative to the project file. In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling of the project file:
+The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value in the preceding markup generates the OpenAPI document in the same directory as the project file. To generate the OpenAPI document in a different directory, provide the path relative to the project file. In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory of the project directory:
 
 ```xml
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet2" highlight="8":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet2" highlight="28":::
 ```
 
 ### Modify the output file name
