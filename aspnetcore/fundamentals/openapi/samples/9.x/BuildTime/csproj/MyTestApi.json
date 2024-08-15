@@ -1,3 +1,5 @@
+//Copy from \obj\MyTestApi.json
+//  <snippet_1>
 {
   "openapi": "3.0.1",
   "info": {
@@ -14,6 +16,7 @@
         "responses": {
           "200": {
             "description": "OK",
+            //  </snippet_1>
             "content": {
               "application/json": {
                 "schema": {
@@ -47,7 +50,7 @@
       }
     }
   },
-  "components": { },
+  "components": {},
   "tags": [
     {
       "name": "MyTestApi"
