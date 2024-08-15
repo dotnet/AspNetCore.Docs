@@ -1,56 +1,20 @@
-<!-- No snippets here, for testing only -->
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
+  
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <OpenApiDocumentsDirectory>.</OpenApiDocumentsDirectory>
+    <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
 
+  <!--Remaining markup ommited for clarity-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.*" />
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.*">
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.0-rc.1.24414.4, 10.0.0)" />
+
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="[9.0.0-rc.1.24414.4, 10.0.0)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
 </Project>
-
-<!-- Copy/paste to test.
- <snippet_1>
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <OpenApiDocumentsDirectory>.</OpenApiDocumentsDirectory>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-*" />
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.0-*">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-</Project>
- </snippet_1>
- -->
-
-<!-- 
- <snippet2> 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <OpenApiDocumentsDirectory>../MyOpenApiDocs</OpenApiDocumentsDirectory>
-  </PropertyGroup>
- </snippet2>
- -->
-

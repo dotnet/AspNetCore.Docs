@@ -58,24 +58,17 @@ By default, the generated OpenAPI document is generated in the app's output dire
 Which generates misleading error: Missing required option '--project'.
 -->
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet" highlight="8":::
-
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_1" highlight="9":::
 
 The value of `OpenApiDocumentsDirectory` is resolved relative to the project file. Using the `.` value in the preceding markup generates the OpenAPI document in the same directory as the project file. To generate the OpenAPI document in a different directory, provide the path relative to the project file. In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory of the project directory:
 
-
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/MyTestApi.csproj" id="snippet2" highlight="28":::
-
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet2" highlight="5":::
 
 ### Modify the output file name
 
 By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-```xml
-<PropertyGroup>
-  <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
-</PropertyGroup>
-```
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.xml" id="snippet_file_name" highlight="5-6":::
 
 ### Select the OpenAPI document to generate
 
