@@ -1,22 +1,19 @@
-//Copy from \obj\MyTestApi.json
-//  <snippet_1>
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "MyTestApi | v1",
+    "title": "GetDocument.Insider | v1",
     "version": "1.0.0"
   },
   "paths": {
     "/weatherforecast": {
       "get": {
         "tags": [
-          "MyTestApi"
+          "GetDocument.Insider"
         ],
         "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
             "description": "OK",
-            //  </snippet_1>
             "content": {
               "application/json": {
                 "schema": {
@@ -50,10 +47,10 @@
       }
     }
   },
-  "components": {},
+  "components": { },
   "tags": [
     {
-      "name": "MyTestApi"
+      "name": "GetDocument.Insider"
     }
   ]
 }

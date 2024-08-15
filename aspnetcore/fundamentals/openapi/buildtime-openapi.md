@@ -74,6 +74,8 @@ Build-time document generation can be customized with properties added to the pr
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_all" highlight="2-4":::
 
+:::code language="php" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_all" highlight="2-4":::
+
 ### Modify the output directory of the generated Open API file
 
 By default, the generated OpenAPI document is generated in the `obj` directory. The value of the `OpenApiDocumentsDirectory` property:
