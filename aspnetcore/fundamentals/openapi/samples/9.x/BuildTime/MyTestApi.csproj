@@ -6,9 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <OpenApiDocumentsDirectory>./</OpenApiDocumentsDirectory>
-  </PropertyGroup>
+  <!--<PropertyGroup>
+    <OpenApiDocumentsDirectory>.</OpenApiDocumentsDirectory>
+  </PropertyGroup>-->
   
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.0-rc.1.24414.4, 10.0.0)" />
