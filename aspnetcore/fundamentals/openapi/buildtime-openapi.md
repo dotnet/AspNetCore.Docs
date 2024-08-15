@@ -40,7 +40,7 @@ dotnet add package Microsoft.Extensions.ApiDescription.Server --prerelease
 
 ---
 
-The `Microsoft.Extensions.ApiDescription.Server` package automatically generates the Open API document(s) associated with the app during build and populates them into the app's output directory:
+The `Microsoft.Extensions.ApiDescription.Server` package automatically generates the Open API document(s) associated with the app during build and places them in the app's `obj` directory:
 
 Consider a template created API app named `MyTestApi`:
 
@@ -86,7 +86,7 @@ By default, the generated OpenAPI document has the same name as the app's projec
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_file_name" highlight="2":::
 
-In development mode, the preceding markup generates the `obj/my-open-api.json` file.
+The preceding markup generates the `obj/my-open-api.json` file.
 
 ### Select the OpenAPI document to generate
 
@@ -127,3 +127,7 @@ if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
   builder.Services.AddDefaults();
 }
 ```
+
+## OpenAPI document cleanup
+
+Then generated OpenAPI documents are not cleaned up by `dotnet clean` or **Build > Clean Solution** in Visual Studio. To clean up the generated OpenAPI documents, delete the `obj` directory or the directory where the OpenAPI documents are generated.

@@ -5,13 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <!--<snippet_doc_name>-->
-  <PropertyGroup>
-    <OpenApiGenerateDocumentsOptions>--file-name my-open-api</OpenApiGenerateDocumentsOptions>
-  </PropertyGroup>
-  <!--</snippet_doc_name>-->
-  
+ 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.0-rc.1.24414.4, 10.0.0)" />
 
