@@ -46,7 +46,7 @@ Consider a template created API app named `MyTestApi`:
 
 ### [Visual Studio](#tab/visual-studio)
 
-The output tab of Visual Studio includes the output similar to the following:
+The Output tab in Visual Studio includes information similar to the following:
 
 ```text
 1>Generating document named 'v1'.
@@ -73,11 +73,6 @@ The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, tit
 ### Modify the output directory of the generated Open API file
 
 By default, the generated OpenAPI document is generated in the app's output directory. To modify the location of the generated file, set the target path in the `OpenApiDocumentsDirectory` property in the project file:
-
-<!-- Original had
-   <OpenApiDocumentsDirectory>./</OpenApiDocumentsDirectory>
-Which generates misleading error: Missing required option '--project'.
--->
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_1" highlight="2":::
 
