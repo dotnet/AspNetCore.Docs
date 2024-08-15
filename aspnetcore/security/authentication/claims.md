@@ -39,10 +39,11 @@ Another way to get the user claims is to use the OpenID Connect User Info API. T
 :::moniker range="> aspnetcore-8.0"
 
 > [!NOTE]
-> The default Open ID Connect handler uses Pushed Authorization Requests (PAR) when the secure token server supports this. If you cannot use a PAR client configuration, PAR can be disabled by using the **PushedAuthorizationBehavior** option. 
-> See:
->
-> [Pushed Authorization Requests (PAR)](xref:release-notes/aspnetcore-9/includes/par)
+> The default Open ID Connect handler uses Pushed Authorization Requests (PAR) if the identity provider's discovery document advertises support for PAR. The identity provider's discovery document is usually found at .well-known/openid-configuration. If you cannot update the client configuration on the identity provider, PAR can be disabled by using the **PushedAuthorizationBehavior** option. 
+
+:::code language="csharp" source="~/release-notes/aspnetcore-9/samples/PAR/Program.cs" id="snippet_1" highlight="8-99":::
+
+To ensure that authentication only succeeds if PAR is used, use [PushedAuthorizationBehavior.Require](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OpenIdConnect/PushedAuthorizationBehavior.cs,3af73de8f33b70c5) instead. This change also introduces a new [OnPushAuthorization](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OpenIdConnect/Events/OpenIdConnectEvents.cs,6a21c8f3a90753c1) event to [OpenIdConnectEvents](/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnectevents) which can be used customize the pushed authorization request or handle it manually. See the [API proposal](https://github.com/dotnet/aspnetcore/issues/51686) for more details.
 
 :::moniker-end
 
