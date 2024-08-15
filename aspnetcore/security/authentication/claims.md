@@ -34,6 +34,20 @@ Another way to get the user claims is to use the OpenID Connect User Info API. T
 
 [!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=26-29)]
 
+:::moniker-end
+
+:::moniker range="> aspnetcore-8.0"
+
+> [!NOTE]
+> The default Open ID Connect handler uses Pushed Authorization Requests (PAR) when the secure token server supports this. If you cannot use a PAR client configuration, PAR can be disabled by using the **PushedAuthorizationBehavior** option. 
+> See:
+>
+> [Pushed Authorization Requests (PAR)](xref:release-notes/aspnetcore-9/includes/par)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ## Name claim and role claim mapping
 
 The **Name** claim and the **Role** claim are mapped to default properties in the ASP.NET Core HTTP context. Sometimes it is required to use different claims for the default properties, or the name claim and the role claim do not match the default values. The claims can be mapped using the **TokenValidationParameters** property and set to any claim as required. The values from the claims can be used directly in the HttpContext **User.Identity.Name** property and the roles.
