@@ -16,9 +16,9 @@ In a typical web apps, OpenAPI documents are generated at run-time and served vi
 
 Generating OpenAPI documentation during the app's build step can be useful for documentation that is:
 
-- Committed into source control
-- Used for spec-based integration testing
-- Served statically from the web server
+- Committed into source control.
+- Used for spec-based integration testing.
+- Served statically from the web server.
 
 To add support for generating OpenAPI documents at build time, install the [`Microsoft.Extensions.ApiDescription.Server`](https://www.nuget.org/packages/Microsoft.Extensions.ApiDescription.Server) NuGet package:
 
@@ -46,7 +46,7 @@ Consider a template created API app named `MyTestApi`:
 
 ### [Visual Studio](#tab/visual-studio)
 
-The Output tab in Visual Studio includes information similar to the following:
+The Output tab in Visual Studio when building the app includes information similar to the following:
 
 ```text
 1>Generating document named 'v1'.
@@ -70,7 +70,7 @@ The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, tit
 
 ## Customize build-time document generation
 
-Build-time document generation can be customized with properties added to the project file. [dotnet](/dotnet/core/tools/) parses the `ApiDescription.Server` properties in the project file and provides them to the build-time document generator. The following properties are available and explained in the following sections:
+Build-time document generation can be customized with properties added to the project file. [dotnet](/dotnet/core/tools/) parses the `ApiDescription.Server` properties in the project file and provides the property and values as arguments to the build-time document generator. The following properties are available and explained in the following sections:
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_all" highlight="2-4":::
 
@@ -85,13 +85,13 @@ The following example generates the OpenAPI document in the same directory as th
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_1" highlight="2":::
 
-In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory of the project directory:
+In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory to the project directory:
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet2" highlight="2":::
 
 ### Modify the output file name
 
-By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
+By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:zz
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_file_name" highlight="2":::
 
