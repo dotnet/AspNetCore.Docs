@@ -91,11 +91,11 @@ In the following example, the OpenAPI document is generated in the `MyOpenApiDoc
 
 ### Modify the output file name
 
-By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:zz
+By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_file_name" highlight="2":::
 
-The preceding markup generates the `obj/my-open-api.json` file.
+The preceding markup configures creation of the `obj/my-open-api.json` file.
 
 ### Select the OpenAPI document to generate
 
@@ -119,12 +119,14 @@ What's the equivalent  of
 
 ## Customize run-time behavior during build-time document generation
 
-The OpenAPI document generation at build-time works by starting the app’s entrypoint with a temporary background server. This is a requirement to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the app's entrypoint is invoked, any logic in the apps' startup is invoked. The app's entrypoint includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the code paths that run when the app's entry point is being invoked from build-time document generation. These scenarios include:
+OpenAPI document generation at build-time works by starting the app’s entry point with a temporary background server. This approach is necessary to produce accurate OpenAPI documents, as not all information can be statically analyzed. When the app’s entry point is invoked, any logic in the app’s startup is executed, including code that injects services into the DI container or reads from configuration.
 
-- Not reading from certain configuration strings.
+In some scenarios, it's important to restrict certain code paths when the app's entry point is invoked during build-time document generation. These scenarios include:
+
+- Not reading from specific configuration strings.
 - Not registering database-related services.
 
-In order to restrict these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
+To prevent these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
 ```csharp
 using System.Reflection;
@@ -139,4 +141,4 @@ if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
 
 ## OpenAPI document cleanup
 
-Then generated OpenAPI documents are not cleaned up by `dotnet clean` or **Build > Clean Solution** in Visual Studio. To clean up the generated OpenAPI documents, delete the `obj` directory or the directory where the OpenAPI documents are generated.
+Then generated OpenAPI documents are not cleaned up by `dotnet clean` or **Build > Clean Solution** in Visual Studio. To remove the generated OpenAPI documents, delete the `obj` directory or the directory specified by the `OpenApiDocumentsDirectory` property.
