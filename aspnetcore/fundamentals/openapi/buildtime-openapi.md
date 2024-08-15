@@ -72,8 +72,6 @@ The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, tit
 
 Build-time document generation can be customized with properties added to the project file. [dotnet](/dotnet/core/tools/) parses the `ApiDescription.Server` properties in the project file and provides the property and values as arguments to the build-time document generator. The following properties are available and explained in the following sections:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_all" highlight="2-4":::
-
 :::code language="php" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_all" highlight="2-4":::
 
 ### Modify the output directory of the generated Open API file
@@ -85,17 +83,17 @@ By default, the generated OpenAPI document is generated in the `obj` directory. 
 
 The following example generates the OpenAPI document in the same directory as the project file:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_1" highlight="2":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_1" highlight="2":::
 
 In the following example, the OpenAPI document is generated in the `MyOpenApiDocs` directory, which is a sibling directory to the project directory:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet2" highlight="2":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet2" highlight="2":::
 
 ### Modify the output file name
 
 By default, the generated OpenAPI document has the same name as the app's project file. To modify the name of the generated file, set the `--file-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_file_name" highlight="2":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_file_name" highlight="2":::
 
 The preceding markup configures creation of the `obj/my-open-api.json` file.
 
@@ -108,7 +106,7 @@ Some apps may be configured to generate multiple OpenAPI documents, for example:
 
 By default, the build-time document generator creates files for all documents that are configured in an app. To generate for a single document only, set the `--document-name` argument in the `OpenApiGenerateDocumentsOptions` property:
 
-:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.html" id="snippet_doc_name":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_doc_name":::
 
 <!--
 What's the equivalent  of 
