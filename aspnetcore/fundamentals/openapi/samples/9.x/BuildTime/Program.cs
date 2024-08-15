@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder();
 
 if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
 {
-    builder.Services.AddDefaults();
+   // builder.Services.AddDefaults();
 }
 
 builder.Services.AddAuthorization();

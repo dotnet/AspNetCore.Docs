@@ -132,8 +132,3 @@ if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
   builder.Services.AddDefaults();
 }
 ```
-
-<!--
-builder.Services.AddDefaults(); generates the error:
-'IServiceCollection' does not contain a definition for 'AddDefaults' 
--->
