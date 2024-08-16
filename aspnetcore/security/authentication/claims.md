@@ -34,6 +34,21 @@ Another way to get the user claims is to use the OpenID Connect User Info API. T
 
 [!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=26-29)]
 
+:::moniker-end
+
+:::moniker range="> aspnetcore-8.0"
+
+> [!NOTE]
+> The default Open ID Connect handler uses Pushed Authorization Requests (PAR) if the identity provider's discovery document advertises support for PAR. The identity provider's discovery document is usually found at `.well-known/openid-configuration`. If you cannot use PAR in the client configuration on the identity provider, PAR can be disabled by using the **PushedAuthorizationBehavior** option. 
+
+:::code language="csharp" source="~/release-notes/aspnetcore-9/samples/PAR/Program.cs" id="snippet_1" highlight="8-99":::
+
+To ensure that authentication only succeeds if PAR is used, use [PushedAuthorizationBehavior.Require](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OpenIdConnect/PushedAuthorizationBehavior.cs,3af73de8f33b70c5) instead. This change also introduces a new [OnPushAuthorization](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OpenIdConnect/Events/OpenIdConnectEvents.cs,6a21c8f3a90753c1) event to [OpenIdConnectEvents](/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnectevents) which can be used to customize the pushed authorization request or handle it manually. See the [API proposal](https://github.com/dotnet/aspnetcore/issues/51686) for more details.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ## Name claim and role claim mapping
 
 The **Name** claim and the **Role** claim are mapped to default properties in the ASP.NET Core HTTP context. Sometimes it is required to use different claims for the default properties, or the name claim and the role claim do not match the default values. The claims can be mapped using the **TokenValidationParameters** property and set to any claim as required. The values from the claims can be used directly in the HttpContext **User.Identity.Name** property and the roles.

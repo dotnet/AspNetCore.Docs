@@ -23,7 +23,7 @@ This article explains how to manage Blazor app request routing and how to use th
 
 *This section applies to Blazor Web Apps.*
 
-If [prerendering isn't disabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
+If [prerendering is enabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
 
 When an interactive render mode is assigned to the `Routes` component, the Blazor router becomes interactive after static SSR with static routing on the server. This type of routing is called *interactive routing*.
 
