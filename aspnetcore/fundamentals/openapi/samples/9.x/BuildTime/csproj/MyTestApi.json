@@ -1,3 +1,4 @@
+//<!--<snippet_1>-->
 {
   "openapi": "3.0.1",
   "info": {
@@ -16,6 +17,7 @@
             "description": "OK",
             "content": {
               "application/json": {
+                //<!--</snippet_1>-->
                 "schema": {
                   "type": "array",
                   "items": {
@@ -47,7 +49,7 @@
       }
     }
   },
-  "components": { },
+  "components": {},
   "tags": [
     {
       "name": "GetDocument.Insider"

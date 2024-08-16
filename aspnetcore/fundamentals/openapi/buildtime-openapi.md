@@ -66,7 +66,6 @@ $ cat obj/MyTestApi.json
 
 The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, title,  endpoints, and more](https://learn.openapis.org/specification/structure.html). The first few lines of `obj/MyTestApi.json` file:
 
-
 :::code language="json" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.json" id="snippet_1" highlight="4-5":::
 
 ## Customize build-time document generation
@@ -128,6 +127,8 @@ In some scenarios, it's important to restrict certain code paths when the app's 
 - Not registering database-related services.
 
 To prevent these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
+
+~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs" id="snippet_1" highlight="7-12":::
 
