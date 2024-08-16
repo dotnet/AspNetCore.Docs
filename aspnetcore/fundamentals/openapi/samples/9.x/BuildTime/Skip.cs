@@ -6,7 +6,7 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
+if (Assembly.GetEntryAssembly()?.GetName().Name != "MyTestApi")
 {
     builder.Services.AddDbContext<ControllerApiContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("ControllerApiContext")

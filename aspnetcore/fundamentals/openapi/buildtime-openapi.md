@@ -128,8 +128,6 @@ In some scenarios, it's important to restrict certain code paths when the app's 
 
 To prevent these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
-~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs
-
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs" id="snippet_1" highlight="7-12":::
 
 ## OpenAPI document cleanup

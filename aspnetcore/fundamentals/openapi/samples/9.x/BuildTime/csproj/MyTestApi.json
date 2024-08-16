@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "GetDocument.Insider | v1",
+    "title": "MyTestApi | v1",
     "version": "1.0.0"
   },
   "paths": {
     "/weatherforecast": {
       "get": {
         "tags": [
-          "GetDocument.Insider"
+          "MyTestApi"
         ],
         "operationId": "GetWeatherForecast",
         "responses": {
@@ -51,7 +51,7 @@
   "components": { },
   "tags": [
     {
-      "name": "GetDocument.Insider"
+      "name": "MyTestApi"
     }
   ]
 }
