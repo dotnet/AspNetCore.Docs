@@ -66,7 +66,7 @@ $ cat obj/MyTestApi.json
 
 The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, title,  endpoints, and more](https://learn.openapis.org/specification/structure.html). The first few lines of `obj/MyTestApi.json` file:
 
-:::code language="json" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.json" id="snippet_1" highlight="4-5":::
+:::code language="json" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.json" range="1-15 highlight="4-5":::
 
 ## Customize build-time document generation
 

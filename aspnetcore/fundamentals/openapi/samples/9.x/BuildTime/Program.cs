@@ -2,7 +2,9 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder();
 
-builder.Services.AddAuthorization();
+if (Assembly.GetEntryAssembly()?.GetName().Name != "Crazy String")
+
+    builder.Services.AddAuthorization();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
