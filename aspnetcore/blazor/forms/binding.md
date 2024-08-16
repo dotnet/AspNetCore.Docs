@@ -276,6 +276,132 @@ Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Component
 
 :::moniker-end
 
+## Advanced custom input components
+
+For an advanced form processing scenario, you may want to create and manage your own custom input components. There are two approaches available, which are covered in the following subsections:
+
+* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The input component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, which manages a degree of input processing by convention.
+* [Input component with full developer control](#input-component-with-full-developer-control): The input component takes full programmatic control of input processing, implementing without <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventions.
+
+### Input component based on `InputBase<T>`
+
+<xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>
+
+`InputBaseApproval.razor`:
+
+```razor
+@using System.Diagnostics.CodeAnalysis
+@inherits InputBase<bool>
+
+<div class="@divCssClass">
+    <label>
+        Engineering Approval:
+        <input @bind="CurrentValue" @bind:after="AfterChange" class="@CssClass" type="checkbox" />
+    </label>
+</div>
+
+@code {
+    private string? divCssClass;
+
+    private void AfterChange()
+    {
+        divCssClass = CurrentValue ? "bg-success text-white" : null;
+    }
+
+    protected override bool TryParseValueFromString(
+        string? value, out bool result, 
+        [NotNullWhen(false)] out string? validationErrorMessage)
+            => throw new NotSupportedException(
+                $"This component does not parse string inputs. " +
+                $"Bind to the '{nameof(CurrentValue)}' property, " +
+                $"not '{nameof(CurrentValueAsString)}'.");
+}
+```
+
+In the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with the `InputBaseApproval` component bound to the model's `IsValidatedDesign` property:
+
+```diff
+- <div>
+-     <label>
+-         Engineering Approval: 
+-         <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
+-     </label>
+- </div>
++ <InputBaseApproval @bind-Value="Model!.IsValidatedDesign" />
+```
+
+### Input component with full developer control
+
+
+
+Not based on <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventions:
+
+
+
+
+
+`FullControlApproval.razor`:
+
+```razor
+@using System.Globalization
+@using System.Linq.Expressions
+
+<div class="@divCssClass">
+    <label>
+        Engineering Approval:
+        <input class="@fieldCssClass" @onchange="OnChange" type="checkbox" 
+            value="@Value" />
+    </label>
+</div>
+
+@code {
+    private string? divCssClass;
+    private FieldIdentifier fieldIdentifier;
+    private string? fieldCssClass => 
+        CascadedEditContext?.FieldCssClass(fieldIdentifier);
+
+    [CascadingParameter]
+    private EditContext? CascadedEditContext { get; set; }
+
+    [Parameter]
+    public bool? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ValueChanged { get; set; }
+
+    [Parameter]
+    public Expression<Func<bool>>? ValueExpression { get; set; }
+
+    protected override void OnInitialized()
+    {
+        fieldIdentifier = FieldIdentifier.Create(ValueExpression!);
+    }
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        BindConverter.TryConvertToBool(args.Value, CultureInfo.CurrentCulture, 
+            out var parsedValue);
+
+        divCssClass = parsedValue ? "bg-success text-white" : null;
+
+        await ValueChanged.InvokeAsync(parsedValue);
+        CascadedEditContext?.NotifyFieldChanged(fieldIdentifier);
+    }
+}
+```
+
+In the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with the `FullControlApproval` component bound to the model's `IsValidatedDesign` property:
+
+```diff
+- <div>
+-     <label>
+-         Engineering Approval: 
+-         <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
+-     </label>
+- </div>
++ <FullControlApproval @bind-Value="Model!.IsValidatedDesign" />
+```
+
 ## Radio buttons
 
 :::moniker range=">= aspnetcore-5.0"
