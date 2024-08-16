@@ -12,13 +12,7 @@ uid: tutorials/choose-web-ui
 :::moniker range=">= aspnetcore-8.0"
 
 ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
-
-:::moniker-end
-:::moniker range=">= aspnetcore-9.0"
-
 For new project development, we recommend ASP.NET Core Blazor.
-:::moniker-end
-:::moniker range=">= aspnetcore-8.0"
 
 ## ASP.NET Core Blazor
 
