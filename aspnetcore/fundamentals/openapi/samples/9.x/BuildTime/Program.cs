@@ -2,11 +2,6 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder();
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
-{
-   // builder.Services.AddDefaults();
-}
-
 builder.Services.AddAuthorization();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

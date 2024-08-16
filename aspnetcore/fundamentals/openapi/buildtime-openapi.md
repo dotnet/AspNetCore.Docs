@@ -66,6 +66,7 @@ $ cat obj/MyTestApi.json
 
 The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, title,  endpoints, and more](https://learn.openapis.org/specification/structure.html). The first few lines of `obj/MyTestApi.json` file:
 
+
 :::code language="json" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.json" id="snippet_1" highlight="4-5":::
 
 ## Customize build-time document generation
@@ -109,7 +110,7 @@ By default, the build-time document generator creates files for all documents th
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_doc_name":::
 
 <!--
-What's the equivalent  of 
+What's the equivalent of 
  app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Public API v1");
@@ -128,8 +129,7 @@ In some scenarios, it's important to restrict certain code paths when the app's 
 
 To prevent these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs
-" id="snippet_1" highlight="7-12":::
+:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs" id="snippet_1" highlight="7-12":::
 
 ## OpenAPI document cleanup
 
