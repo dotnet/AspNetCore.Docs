@@ -50,7 +50,7 @@ The Output tab in Visual Studio when building the app includes information simil
 
 ```text
 1>Generating document named 'v1'.
-1>Writing document named 'v1' to 'MyProjectPath\obj\MyTestApi.json'.
+1>Writing document named 'v1' to 'MyProjectPath/obj/MyTestApi.json'.
 ```
 
 ### [.NET CLI](#tab/net-cli)
@@ -72,7 +72,7 @@ The generated `obj/{MyProjectName}.json` file contains the [OpenAPI version, tit
 
 Build-time document generation can be customized with properties added to the project file. [dotnet](/dotnet/core/tools/) parses the `ApiDescription.Server` properties in the project file and provides the property and values as arguments to the build-time document generator. The following properties are available and explained in the following sections:
 
-:::code language="php" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_all" highlight="2-4":::
+:::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_all" highlight="2-4":::
 
 ### Modify the output directory of the generated Open API file
 
@@ -128,16 +128,8 @@ In some scenarios, it's important to restrict certain code paths when the app's 
 
 To prevent these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
-```csharp
-using System.Reflection;
-
-var builder = WebApplication.CreateBuilder();
-
-if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
-{
-  builder.Services.AddDefaults();
-}
-```
+:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs
+" id="snippet_1" highlight="7-12":::
 
 ## OpenAPI document cleanup
 
