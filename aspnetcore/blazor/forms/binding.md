@@ -276,16 +276,21 @@ Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Component
 
 :::moniker-end
 
-## Advanced custom input components
+## Custom input components
 
-For an advanced form processing scenario, you may want to create and manage your own custom input components. There are two approaches available, which are covered in the following subsections:
+For custom input processing scenarios, two approaches are available for creating custom input components:
 
-* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The input component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, which manages a degree of input processing by convention.
-* [Input component with full developer control](#input-component-with-full-developer-control): The input component takes full programmatic control of input processing, implementing without <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventions.
+* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The custom input component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, which manages a degree of processing via <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventions, such as callbacks and input validation. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+
+* [Input component with full developer control](#input-component-with-full-developer-control): The custom input component takes full programmatic control of input processing. None of the built-in <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventions are applied, so you must write code to manage every aspect of the component's behavior, including for callbacks and input validation. With this approach, the component isn't limited to use in a Blazor <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 ### Input component based on `InputBase<T>`
 
-<xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>
+The following example component:
+
+* Inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+* Takes boolean input from a checkbox.
+* Changes the background color if the checkbox is checked.
 
 `InputBaseApproval.razor`:
 
@@ -318,7 +323,7 @@ For an advanced form processing scenario, you may want to create and manage your
 }
 ```
 
-In the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with the `InputBaseApproval` component bound to the model's `IsValidatedDesign` property:
+To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with an `InputBaseApproval` component instance bound to the model's `IsValidatedDesign` property:
 
 ```diff
 - <div>
@@ -332,13 +337,30 @@ In the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/for
 
 ### Input component with full developer control
 
+The following example component:
 
+* Does ***not*** inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. The component takes full control of input processing, including callbacks and validation. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> are limited to use in a Blazor <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+* Takes boolean input from a checkbox.
+* Changes the background color if the checkbox is checked.
 
-Not based on <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventions:
+Code in the component includes:
 
+* `fieldCssClass` to style the field based on the result of <xref:Microsoft.AspNetCore.Components.Forms.EditContext> validation.
 
+* When the following component appears in a Blazor form, the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading value](xref:blazor/components/cascading-values-and-parameters).
 
+* `Value` is used with two-way binding to get or set the value of the input. `ValueChanged` is the callback that updates the bound value.
 
+* `ValueExpression` is an expression assigned by the framework that identifies the bound value.
+
+* <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> uniquely identifies a single field that can be edited, usually corresponding to a model property. The field identifier is created with the expression that identifies the field (`ValueExpression`).
+
+In the `OnChange` event handler:
+
+* The value of the checkbox input is obtained from <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>.
+* The background color and text color of the `<div>` element are set.
+* <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with this binding and dispatches an event notification to the appropriate component.
+* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyFieldChanged%2A?displayProperty=nameWithType> is called, which triggers validation if the component is used in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 `FullControlApproval.razor`:
 
@@ -357,11 +379,10 @@ Not based on <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventi
 @code {
     private string? divCssClass;
     private FieldIdentifier fieldIdentifier;
-    private string? fieldCssClass => 
-        CascadedEditContext?.FieldCssClass(fieldIdentifier);
+    private string? fieldCssClass => EditContext?.FieldCssClass(fieldIdentifier);
 
     [CascadingParameter]
-    private EditContext? CascadedEditContext { get; set; }
+    private EditContext? EditContext { get; set; }
 
     [Parameter]
     public bool? Value { get; set; }
@@ -380,17 +401,17 @@ Not based on <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> conventi
     private async Task OnChange(ChangeEventArgs args)
     {
         BindConverter.TryConvertToBool(args.Value, CultureInfo.CurrentCulture, 
-            out var parsedValue);
+            out var value);
 
-        divCssClass = parsedValue ? "bg-success text-white" : null;
+        divCssClass = value ? "bg-success text-white" : null;
 
-        await ValueChanged.InvokeAsync(parsedValue);
-        CascadedEditContext?.NotifyFieldChanged(fieldIdentifier);
+        await ValueChanged.InvokeAsync(value);
+        EditContext?.NotifyFieldChanged(fieldIdentifier);
     }
 }
 ```
 
-In the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with the `FullControlApproval` component bound to the model's `IsValidatedDesign` property:
+To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with a `FullControlApproval` component instance bound to the model's `IsValidatedDesign` property:
 
 ```diff
 - <div>
