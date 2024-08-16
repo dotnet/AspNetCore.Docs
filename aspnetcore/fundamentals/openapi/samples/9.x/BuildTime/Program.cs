@@ -2,16 +2,14 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder();
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "Crazy String")
+//if (Assembly.GetEntryAssembly()?.GetName().Name != "Crazy String")
 
-    builder.Services.AddAuthorization();
+builder.Services.AddAuthorization();
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
