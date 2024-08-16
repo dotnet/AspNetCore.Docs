@@ -1,8 +1,4 @@
-using System.Reflection;
-
 var builder = WebApplication.CreateBuilder();
-
-//if (Assembly.GetEntryAssembly()?.GetName().Name != "Crazy String")
 
 builder.Services.AddAuthorization();
 
