@@ -13,7 +13,7 @@ uid: security/authentication/identity-enable-qrcodes
 ASP.NET Core ships with support for authenticator applications for individual authentication. Two factor authentication (2FA) authenticator apps, using a Time-based One-time Password Algorithm (TOTP), are the industry recommended approach for 2FA. 2FA using TOTP is preferred to SMS 2FA. An authenticator app provides a 6 to 8 digit code which users must enter after confirming their username and password. Typically an authenticator app is installed on a smartphone.
 
 > [!WARNING]
-> ASP.NET Core TOTP codes should be kept secret because it can be used to authenticate successfully multiple times before it expires.
+> An ASP.NET Core TOTP code should be kept secret because it can be used to authenticate successfully multiple times before it expires.
 
 :::moniker range=">= aspnetcore-8.0"
 
