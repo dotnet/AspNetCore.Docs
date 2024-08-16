@@ -13,6 +13,9 @@ This article explains how to configure an ASP.NET Core Blazor Web App with QR co
 
 For an introduction to two-factor authentication (2FA) with authenticator apps using a Time-based One-time Password Algorithm (TOTP), see <xref:security/authentication/identity-enable-qrcodes>.
 
+> [!WARNING]
+> An ASP.NET Core TOTP code should be kept secret because it can be used to authenticate successfully multiple times before it expires.
+
 ## Scaffold the Enable Authenticator component into the app
 
 Follow the guidance in <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-project> to scaffold `Pages\Manage\EnableAuthenticator` into the app.
@@ -124,6 +127,9 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
 ```
 
 Run the app and ensure that the QR code is scannable and that the code validates.
+
+> [!WARNING]
+> An ASP.NET Core TOTP code should be kept secret because it can be used to authenticate successfully multiple times before it expires.
 
 ## `EnableAuthenticator` component in reference source
 
