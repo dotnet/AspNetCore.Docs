@@ -6,12 +6,12 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
-{
+//if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
+//{
     builder.Services.AddDbContext<ControllerApiContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("ControllerApiContext")
         ?? throw new InvalidOperationException("Connection string 'ControllerApiContext' not found.")));
-}
+//}
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
