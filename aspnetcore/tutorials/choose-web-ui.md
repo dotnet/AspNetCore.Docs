@@ -13,6 +13,8 @@ uid: tutorials/choose-web-ui
 
 ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
 
+For new project development, we recommend ASP.NET Core Blazor.
+
 ## ASP.NET Core Blazor
 
 Blazor is a full-stack web UI framework and is recommended for most web UI scenarios.
