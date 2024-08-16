@@ -399,6 +399,9 @@ The corresponding JavaScript code registers the DOM event listener for mouse mov
 
 By default, components inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>, which automatically invokes <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> after the component's event handlers are invoked. In some cases, it might be unnecessary or undesirable to trigger a rerender after an event handler is invoked. For example, an event handler might not modify component state. In these scenarios, the app can leverage the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface to control the behavior of Blazor's event handling.
 
+> [!NOTE]
+> The approach in this section doesn't flow exceptions to [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries). For more information and demonstration code that supports error boundaries by calling <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A?displayProperty=nameWithType>, see [AsNonRenderingEventHandler + ErrorBoundary = unexpected behavior (`dotnet/aspnetcore` #54543)](https://github.com/dotnet/aspnetcore/issues/54543).
+
 To prevent rerenders for all of a component's event handlers, implement <xref:Microsoft.AspNetCore.Components.IHandleEvent> and provide a <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync%2A?displayProperty=nameWithType> task that invokes the event handler without calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
 
 In the following example, no event handler added to the component triggers a rerender, so `HandleSelect` doesn't result in a rerender when invoked.
