@@ -1,5 +1,5 @@
 <!-- 
-    This file is needed to contain snippets and provides a convient
+    This file is needed to contain snippets and provides a convenient
     location to copy/paste the <PropertyGroup> into the .csproj file.
     The dash dash sequence is an illegal string in an XML comment and
     results in the error: An XML comment cannot contain --.

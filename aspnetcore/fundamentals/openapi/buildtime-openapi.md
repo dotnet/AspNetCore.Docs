@@ -12,7 +12,7 @@ uid: fundamentals/openapi/buildtime-openapi
 
 # Generate OpenAPI documents at build-time
 
-In a typical web apps, OpenAPI documents are generated at run-time and served via an HTTP request to the app server.
+In typical web apps, OpenAPI documents are generated at run-time and served via an HTTP request to the app server.
 
 Generating OpenAPI documentation during the app's build step can be useful for documentation that is:
 
