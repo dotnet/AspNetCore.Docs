@@ -51,12 +51,12 @@ The default payload protection algorithm used is AES-256-CBC for confidentiality
 
 ### Delete keys
 
-Deleting a key makes its protected data permanently inaccessible. Given their small size, the accumulation of these keys generally imposes minimal impact. In some cases, e.g., to accommodate extremely long-running services, keys can be deleted. Generally, only delete:
+Deleting a key makes its protected data permanently inaccessible. To mitigate that risk, it's common to avoid deleting them. The resulting accumulation of keys generally has minimal impact because they're small. In exceptional cases, such as extremely long-running services, keys can be deleted. Only delete keys:
 
-* Old keys.
-* Keys when you can accept the risk of data loss in exchange for storage savings.
+* That are old (no longer in use).
+* When you can accept the risk of data loss in exchange for storage savings.
 
-We recommend data protection keys should ___not___ be deleted.
+We recommend not deleting data protection keys.
 
 :::code language="csharp" source="~/security/data-protection/configuration/samples/9/deleteKeys/Program.cs" :::
 
