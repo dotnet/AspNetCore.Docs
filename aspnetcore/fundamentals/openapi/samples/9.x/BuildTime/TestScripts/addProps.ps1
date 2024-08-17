@@ -1,17 +1,12 @@
-# Adds OpenApiDocumentsDirectory to MyOpenApiTest.csproj
-# builds
-$env:ProgramName = "MyOpenApiTest"
-$env:Project = "$($env:ProgramName).csproj"
-$xml = [xml](Get-Content $env:Project)
-
+$env:Project = "$($env:PRONAM).csproj"
 $newPropertyGroup = $xml.CreateElement("PropertyGroup")
 $newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
 $newElement.InnerText = "./"
 $newPropertyGroup.AppendChild($newElement)
-
-# Append to the root 'Project' element
-$xml.SelectSingleNode("/Project").AppendChild($newPropertyGroup) 
-
-$xml.Save($env:Project)
-$xml.OuterXml 
+$xml.Project.AppendChild($newPropertyGroup)
+$xml.OuterXml | Set-Content -Path $env:Project
+$xml.OuterXml
+# verify change is saved
+# $xml2 = [xml](Get-Content $env:Project)
+# $xml2.OuterXml
 dotnet build
