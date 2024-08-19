@@ -290,8 +290,8 @@ The following example component:
 
 * Inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 * Takes boolean input from a checkbox.
-* Changes the background color of its container `<div>` when the checkbox is selected.
-* Is required to override the base class's `TryParseValueFromString` method but doesn't process string input data because a checkbox doesn't provide string data. Example implementations of `TryParseValueFromString` for other types of input components are available in the [ASP.NET Core reference source](https://github.com/search?q=repo%3Adotnet%2Faspnetcore%20TryParseValueFromString&type=code).
+* Sets the background color of its container `<div>` based on the checkbox's state, which occurs when the `AfterChange` method executes after binding (`@bind:after`).
+* Is required to override the base class's `TryParseValueFromString` method but doesn't process string input data because a checkbox doesn't provide string data. Example implementations of `TryParseValueFromString` for other types of input components that process string input are available in the [ASP.NET Core reference source](https://github.com/search?q=repo%3Adotnet%2Faspnetcore%20TryParseValueFromString&type=code).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -355,7 +355,7 @@ Code in the component includes:
 
   * The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading value](xref:blazor/components/cascading-values-and-parameters).
   * `fieldCssClass` styles the field based on the result of <xref:Microsoft.AspNetCore.Components.Forms.EditContext> validation.
-  * `ValueExpression` is an expression assigned by the framework that identifies the bound value.
+  * `ValueExpression` is an expression (`Expression<Func<T>>`) assigned by the framework that identifies the bound value.
   * <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> uniquely identifies a single field that can be edited, usually corresponding to a model property. The field identifier is created with the expression that identifies the bound value (`ValueExpression`).
 
 * In the `OnChange` event handler:
@@ -429,17 +429,14 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 The `FullControlApproval` component is also functional outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>:
 
 ```razor
-<FullControlApproval @bind-Value="Model!.IsValidatedDesign" />
+<FullControlApproval @bind-Value="ValidDesign" />
 
 <div>
-    <b>IsValidatedDesign:</b> @Model?.IsValidatedDesign
+    <b>ValidDesign:</b> @ValidDesign
 </div>
 
 @code {
-    private Starship? Model { get; set; }
-
-    protected override void OnInitialized() =>
-        Model ??= new() { ProductionDate = DateTime.UtcNow };
+    private bool ValidDesign { get; set; }
 }
 ```
 
