@@ -16,12 +16,13 @@ $newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
 $newElement.InnerText = "./"
 $newPropertyGroup.AppendChild($newElement)
 $xml.Project.AppendChild($newPropertyGroup)
+
+# Save the modified XML back to the original project file
 $xml.Save($Project) 
-$xml.OuterXml | Set-Content -Path $env:Project
-$xml.OuterXml
-#verify change is saved
-$xml2 = [xml](Get-Content $env:Project)
-$xml2.OuterXml
+
+# Verify the change is saved
+$xml2 = [xml](Get-Content $Project)
+$xml2.OuterXml 
 dotnet build
 cd ..
 # Remove-Item -Recurse -Force $ProgramName
