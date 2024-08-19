@@ -30,14 +30,16 @@ The component folder structure of the `.Client` project differs from the Blazor 
 
 More information on components and render modes is found in the <xref:blazor/components/index> and <xref:blazor/components/render-modes> articles.
 
-Based on the interactive render mode selected at app creation, the `Layout` folder is either in the server project in the `Components` folder or the root of the `.Client` project. The folder contains the following layout components and stylesheets:
+Based on the interactive render mode selected at app creation, the `Layout` folder is either in the server project in the `Components` folder or at the root of the `.Client` project. The folder contains the following layout components and stylesheets:
 
 * The `MainLayout` component (`MainLayout.razor`) is the app's [layout component](xref:blazor/components/layouts).
 * The `MainLayout.razor.css` is the stylesheet for the app's main layout.
-* The `NavMenu` component (`NavMenu.razor`) implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
+* The `NavMenu` component (`NavMenu.razor`) implements sidebar navigation. The component includes [`NavLink` components](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which render navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
 * The `NavMenu.razor.css` is the stylesheet for the app's navigation menu.
 
 The `Routes` component (`Routes.razor`) is either in the server project or the `.Client` project and sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
+
+The `Components` folder of the server project holds the app's server-side components. Shared components are often placed at the root of the `Components` folder, while layout and page components are usually placed in folders within the `Components` folder.
 
 The `Components/Pages` folder of the server project contains the app's routable server-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
@@ -50,7 +52,7 @@ The `Properties` folder of the server project holds [development environment con
 > [!NOTE]
 > The `http` profile precedes the `https` profile in the `launchSettings.json` file. When an app is run with the .NET CLI, the app runs at an HTTP endpoint because the first profile found is `http`. The profile order eases the transition of adopting HTTPS for Linux and macOS users. If you prefer to start the app with the .NET CLI without having to pass the `-lp https` or `--launch-profile https` option to the `dotnet watch` (or `dotnet run`) command, simply place the `https` profile above the `http` profile in the file.
 
-The `wwwroot` folder of the server project is the [Web Root](xref:fundamentals/index#web-root) folder for the server project containing the app's public static assets.
+The `wwwroot` folder of the server project is the [Web Root](xref:fundamentals/index#web-root) folder for the server project that holds the app's public static assets.
 
 The `Program.cs` file of the server project is the project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline:
 
@@ -63,7 +65,7 @@ In the `.Client` project:
 
 * The `Pages` folder contains routable client-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
-* The `wwwroot` folder is the [Web Root](xref:fundamentals/index#web-root) folder for the `.Client` project containing the app's public static assets.
+* The `wwwroot` folder is the [Web Root](xref:fundamentals/index#web-root) folder for the `.Client` project that holds the app's public static assets.
 
 * The `Program.cs` file is the project's entry point that sets up the WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
 
