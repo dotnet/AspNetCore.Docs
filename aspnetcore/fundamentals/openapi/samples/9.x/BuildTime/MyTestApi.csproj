@@ -9,6 +9,13 @@
   <PropertyGroup>
     <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="PS\**" />
+    <Content Remove="PS\**" />
+    <EmbeddedResource Remove="PS\**" />
+    <None Remove="PS\**" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.0-rc.1.24414.4, 10.0.0)" />

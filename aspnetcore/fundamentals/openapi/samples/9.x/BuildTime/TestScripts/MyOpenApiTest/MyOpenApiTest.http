@@ -1,0 +1,6 @@
+@MyOpenApiTest_HostAddress = http://localhost:5062
+
+GET {{MyOpenApiTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
