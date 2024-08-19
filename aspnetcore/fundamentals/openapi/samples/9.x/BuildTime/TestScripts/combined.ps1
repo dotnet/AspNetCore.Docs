@@ -12,9 +12,10 @@ dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
 dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-*
 dotnet build
+# show output is in the obj directory
 Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
 
-# Add prob and test
+# Add property and test
 $env:Project = $Project 
 $newPropertyGroup = $xml.CreateElement("PropertyGroup")
 $newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
@@ -26,8 +27,5 @@ $xml.OuterXml
 # verify change is saved
 $xml2 = [xml](Get-Content $env:Project)
 $xml2.OuterXml
-
-# Remove-Item $Project -Force
-# Rename-Item -Path ".csproj" -NewName $Project
 dotnet build
 cd ..
