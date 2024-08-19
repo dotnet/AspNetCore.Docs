@@ -2,8 +2,10 @@
 # and displays first few lines
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
-Remove-Item $ProgramName -Force
-Del $ProgramName -Recurse -Force
+if (Test-Path $ProgramName) {
+    Write-Host "Removing existing '$ProgramName' directory..."
+    Remove-Item $ProgramName -Recurse -Force 
+} 
 $Project = "$ProgramName.csproj"
 Write-Output $ProgramName
 dotnet new webapi -n $ProgramName
