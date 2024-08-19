@@ -524,12 +524,12 @@ In a component:
 
 :::moniker-end
 
-The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `AuthenticationService` maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>. With the additional configuration later in this section, the `AuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
+The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `CustomAuthenticationService` class maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>. With the additional configuration later in this section, the `CustomAuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
 
 ```csharp
 using System.Security.Claims;
 
-public class AuthenticationService
+public class CustomAuthenticationService
 {
     public event Action<ClaimsPrincipal>? UserChanged;
     private ClaimsPrincipal? currentUser;
@@ -552,25 +552,25 @@ public class AuthenticationService
 
 :::moniker range=">= aspnetcore-6.0"
 
-In the `Program` file, register the `AuthenticationService` in the dependency injection container:
+In the `Program` file, register the `CustomAuthenticationService` in the dependency injection container:
 
 ```csharp
-builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<CustomAuthenticationService>();
 ```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In `Startup.ConfigureServices` of `Startup.cs`, register the `AuthenticationService` in the dependency injection container:
+In `Startup.ConfigureServices` of `Startup.cs`, register the `CustomAuthenticationService` in the dependency injection container:
 
 ```csharp
-services.AddScoped<AuthenticationService>();
+services.AddScoped<CustomAuthenticationService>();
 ```
 
 :::moniker-end
 
-The following `CustomAuthStateProvider` subscribes to the `AuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `AuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
+The following `CustomAuthStateProvider` subscribes to the `CustomAuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `CustomAuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
 
 ```csharp
 using System.Security.Claims;
@@ -581,16 +581,14 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 {
     private AuthenticationState authenticationState;
 
-    public CustomAuthStateProvider(AuthenticationService service)
+    public CustomAuthStateProvider(CustomAuthenticationService service)
     {
         authenticationState = new AuthenticationState(service.CurrentUser);
 
         service.UserChanged += (newUser) =>
         {
             authenticationState = new AuthenticationState(newUser);
-
-            NotifyAuthenticationStateChanged(
-                Task.FromResult(new AuthenticationState(newUser)));
+            NotifyAuthenticationStateChanged(Task.FromResult(authenticationState));
         };
     }
 
@@ -599,12 +597,12 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-The following component's `SignIn` method creates a claims principal for the user's identifier to set on `AuthenticationService.CurrentUser`:
+The following component's `SignIn` method creates a claims principal for the user's identifier to set on `CustomAuthenticationService.CurrentUser`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@inject AuthenticationService AuthenticationService
+@inject CustomAuthenticationService AuthService
 
 <input @bind="userIdentifier" />
 <button @onclick="SignIn">Sign in</button>
@@ -623,7 +621,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
     private void SignIn()
     {
-        var currentUser = AuthenticationService.CurrentUser;
+        var currentUser = AuthService.CurrentUser;
 
         var identity = new ClaimsIdentity(
             new[]
@@ -634,7 +632,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
         var newUser = new ClaimsPrincipal(identity);
 
-        AuthenticationService.CurrentUser = newUser;
+        AuthService.CurrentUser = newUser;
     }
 }
 ```
@@ -644,7 +642,7 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@inject AuthenticationService AuthenticationService
+@inject CustomAuthenticationService AuthService
 
 <input @bind="userIdentifier" />
 <button @onclick="SignIn">Sign in</button>
@@ -663,7 +661,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
     private void SignIn()
     {
-        var currentUser = AuthenticationService.CurrentUser;
+        var currentUser = AuthService.CurrentUser;
 
         var identity = new ClaimsIdentity(
             new[]
@@ -674,7 +672,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
         var newUser = new ClaimsPrincipal(identity);
 
-        AuthenticationService.CurrentUser = newUser;
+        AuthService.CurrentUser = newUser;
     }
 }
 ```
