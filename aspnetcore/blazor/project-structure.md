@@ -20,7 +20,7 @@ This article describes the files and folders that make up a Blazor app generated
 
 Blazor Web App project template: `blazor`
 
-The Blazor Web App project template provides a single starting point for using Razor components to build any style of web UI, both server-side rendered and client-side rendered. It combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
+The Blazor Web App project template provides a single starting point for using Razor components (`.razor`) to build any style of web UI, both server-side rendered and client-side rendered. It combines the strengths of the existing Blazor Server and Blazor WebAssembly hosting models with server-side rendering, streaming rendering, enhanced navigation and form handling, and the ability to add interactivity using either Blazor Server or Blazor WebAssembly on a per-component basis.
 
 If both client-side rendering (CSR) and interactive server-side rendering (interactive SSR) are selected on app creation, the project template uses the Interactive Auto render mode. The automatic rendering mode initially uses interactive SSR while the .NET app bundle and runtime are downloaded to the browser. After the .NET WebAssembly runtime is activated, rendering switches to CSR.
 
@@ -39,13 +39,13 @@ Based on the interactive render mode selected at app creation, the `Layout` fold
 
 The `Routes` component (`Routes.razor`) is either in the server project or the `.Client` project and sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-The `Components` folder of the server project holds the app's server-side components. Shared components are often placed at the root of the `Components` folder, while layout and page components are usually placed in folders within the `Components` folder.
+The `Components` folder of the server project holds the app's server-side Razor components. Shared components are often placed at the root of the `Components` folder, while layout and page components are usually placed in folders within the `Components` folder.
 
-The `Components/Pages` folder of the server project contains the app's routable server-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
+The `Components/Pages` folder of the server project contains the app's routable server-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
 The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag. The root component is the first component that the app loads.
 
-An `_Imports.razor` file in each of the server and `.Client` projects includes common Razor directives for components (`.razor`) of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+An `_Imports.razor` file in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 The `Properties` folder of the server project holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
@@ -63,7 +63,7 @@ The app settings files (`appsettings.Development.json`, `appsettings.json`) in e
 
 In the `.Client` project:
 
-* The `Pages` folder contains routable client-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
+* The `Pages` folder contains routable client-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
 
 * The `wwwroot` folder is the [Web Root](xref:fundamentals/index#web-root) folder for the `.Client` project that holds the app's public static assets.
 
