@@ -1,0 +1,1 @@
+Delete this file in the PR that creats the https://github.com/dotnet/AspNetCore.Docs/pull/33190 sample.
