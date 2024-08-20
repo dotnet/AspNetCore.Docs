@@ -16,16 +16,16 @@ dotnet build
 Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
 
 # Add property and test
-$env:Project = $Project 
-$newPropertyGroup = $xml.CreateElement("PropertyGroup")
+$xml = [xml](Get-Content $Project)
+$newPropGrp1 = $xml.CreateElement("PropertyGroup")
 $newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
 $newElement.InnerText = "./"
-$newPropertyGroup.AppendChild($newElement)
-$xml.Project.AppendChild($newPropertyGroup)
-$xml.OuterXml | Set-Content -Path $env:Project
+$newPropGrp1.AppendChild($newElement)
+$xml.Project.AppendChild($newPropGrp1)
+$xml.OuterXml | Set-Content -Path $Project
 $xml.OuterXml
 # verify change is saved
-$xml2 = [xml](Get-Content $env:Project)
+$xml2 = [xml](Get-Content $Project)
 $xml2.OuterXml
 dotnet build
 cd ..
