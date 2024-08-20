@@ -23,9 +23,10 @@ $newElement.InnerText = "./"
 $newPropGrp1.AppendChild($newElement)
 $xml.Project.AppendChild($newPropGrp1)
 $xml.OuterXml | Set-Content -Path $Project
-$xml.OuterXml
-# verify change is saved
-$xml2 = [xml](Get-Content $Project)
-$xml2.OuterXml
+$count = ($xml.OuterXml -split '\./').Count - 1
+Write-Host "The count of './' is $count"
+
+# the following line displays the entire file
+# $xml.OuterXml
 dotnet build
 cd ..
