@@ -28,36 +28,14 @@ Microsoft Entra (ME-ID) provides several authorization approaches that can be co
 
 The guidance in this article applies to the Blazor WebAssembly ME-ID deployment scenarios described in the following articles:
 
-:::moniker range=">= aspnetcore-8.0"
-
-* [Standalone with Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Standalone with ME-ID](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 * [Standalone with Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
 * [Standalone with ME-ID](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
 * [Hosted with ME-ID](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
 
-:::moniker-end
-
 The article's guidance provides instructions for client and server apps:
-
-:::moniker range=">= aspnetcore-8.0"
-
-* **CLIENT**: Standalone Blazor WebAssembly apps.
-* **SERVER**: ASP.NET Core server API/web API apps. You can ignore the **SERVER** guidance throughout the article for a standalone Blazor WebAssembly app.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
 
 * **CLIENT**: Standalone Blazor WebAssembly apps or the **:::no-loc text="Client":::** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * **SERVER**: ASP.NET Core server API/web API apps or the **:::no-loc text="Server":::** app of a hosted Blazor solution. You can ignore the **SERVER** guidance throughout the article for a standalone Blazor WebAssembly app.
-
-:::moniker-end
 
 The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
@@ -74,17 +52,7 @@ To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role
 * A **CLIENT** app is configured with the ***delegated*** `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal because access to read user data is determined by the scopes granted (delegated) to individual users.
 * A **SERVER** app is configured with the ***application*** `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal because access is for the app to obtain information about group membership, not based on individual user authorization to access data about group members.
 
-:::moniker range=">= aspnetcore-8.0"
-
-The preceding scopes are required in addition to the scopes required in ME-ID deployment scenarios described by the articles listed earlier (*Standalone with Microsoft Accounts* or *Standalone with ME-ID*).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 The preceding scopes are required in addition to the scopes required in ME-ID deployment scenarios described by the articles listed earlier (*Standalone with Microsoft Accounts*, *Standalone with ME-ID*, and *Hosted with ME-ID*).
-
-:::moniker-end
 
 For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
@@ -533,19 +501,8 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 * `Admin`
 * `Developer`
 
-:::moniker range=">= aspnetcore-8.0"
-
-> [!NOTE]
-> When developing a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the role claims.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and an ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct entries in the role claims.
-
-:::moniker-end
 
 Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without an Microsoft Entra ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
 
