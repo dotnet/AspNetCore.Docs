@@ -133,7 +133,7 @@ The following example demonstrates the use of a Razor Pages form to upload a sin
             <label asp-for="FileUpload.FormFile"></label>
         </dt>
         <dd>
-            <input asp-for="FileUpload.FormFile" type="file">
+            <input asp-for="FileUpload.FormFile" type="file" />
             <span asp-validation-for="FileUpload.FormFile"></span>
         </dd>
     </dl>
