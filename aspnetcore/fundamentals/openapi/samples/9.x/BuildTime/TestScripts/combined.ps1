@@ -7,15 +7,22 @@ if ($args.Count -gt 0) {
     $Inner_text = "./" 
 }
 
-Write-Host "Inner_text is set to: $Inner_text"
+Write-Host "Inner_text is set to: $Inner_text, supply any arguement to use ../"
 
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
+$Project = "$ProgramName.csproj"
+
 if (Test-Path $ProgramName) {
     Write-Host "Removing existing '$ProgramName' directory..."
     Remove-Item $ProgramName -Recurse -Force 
 } 
-$Project = "$ProgramName.csproj"
+
+if (Test-Path "$ProgramName.json") {
+    Write-Host "Removing existing $ProgramName.json' file"
+    Remove-Item $ProgramName -Recurse -Force 
+} 
+
 # Write-Output $ProgramName
 dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
