@@ -1,4 +1,4 @@
-# Creates a Web API project, adds ApiDescription.Server
+# Yields error Document with name 'v2' not found.
 cls
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
@@ -28,4 +28,7 @@ dotnet build
 if ($?) {
     Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
 } 
+else{
+      Write-Output "Build failed"
+}
 cd ..

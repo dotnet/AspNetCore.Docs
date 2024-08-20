@@ -28,7 +28,9 @@ $xml.OuterXml | Set-Content -Path $Project
 dotnet build
 
 # Select-String -Path "obj\$newOpenApiName.json" -Pattern "." | Select-Object -First 5
+$command
 $command = "Select-String -Path 'obj/$newOpenApiName.json' -Pattern '.' | Select-Object -First 5"
 $command | Invoke-Expression
-Write-Host "copy/paste and run the following command to verify $newOpenApiName"
-$command
+
+$command | Invoke-Expression | Out-Host  # must run twice to see output
+cd ..

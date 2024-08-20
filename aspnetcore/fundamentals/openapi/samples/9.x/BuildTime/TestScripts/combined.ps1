@@ -1,4 +1,5 @@
 # Creates a Web API project, adds ApiDescription.Server
+# Use one arguement and it creates ../MyOpenApiTest.json
 cls
 ## any arg sets the Inner_text to ".."
 if ($args.Count -gt 0) { 
@@ -7,7 +8,7 @@ if ($args.Count -gt 0) {
     $Inner_text = "./" 
 }
 
-Write-Host "Inner_text is set to: $Inner_text, supply any arguement to use ../"
+Write-Host "Inner_text is set to: $Inner_text, supply any arguement for .. path"
 
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
@@ -18,18 +19,22 @@ if (Test-Path $ProgramName) {
     Remove-Item $ProgramName -Recurse -Force 
 } 
 
-if (Test-Path "$ProgramName.json") {
-    Write-Host "Removing existing $ProgramName.json' file"
-    Remove-Item $ProgramName -Recurse -Force 
-} 
+## remove possible $JsonFile
 
+if (Test-Path $JsonFile) {
+    Write-Host "Removing existing $JsonFile file"
+    Remove-Item $JsonFile -Force 
+} 
+else{
+    Write-Host "No existing $JsonFile file"
+}
 # Write-Output $ProgramName
 dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
 dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-*
 dotnet build
 # show output is in the obj directory
-Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
+Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
 
 # Add property and test build with new property
 $xml = [xml](Get-Content $Project)
@@ -47,10 +52,10 @@ $xml.OuterXml | Set-Content -Path $Project
 dotnet build
 if ($? -and $Inner_text -eq "..") {
    cd ..  # must move up or formatting bad
-   Select-String -Path "$ProgramName.json" -Pattern "." | Select-Object -First 5
+   Select-String -Path "$JsonFile" -Pattern "." | Select-Object -First 5
 }
 elseif ($?) {
-    Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
+    Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
 }
 else{   ## build failed so move up directories to run the next command.
       cd .. 
