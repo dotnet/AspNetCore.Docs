@@ -10,7 +10,8 @@ $Project = "$ProgramName.csproj"
 # Write-Output $ProgramName
 dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
-dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-*
+dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-* --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
+
 dotnet build
 
 # Add property and test build with new property
