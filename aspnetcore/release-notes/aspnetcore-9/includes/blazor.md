@@ -9,7 +9,7 @@ Key features of this template include:
 * The created projects use a shared Razor class library (RCL) to maintain the UI's Razor components.
 * Sample code is included that demonstrates how to use dependency injection to provide different interface implementations for the Blazor Hybrid app and the Blazor Web App.
 
-To get started, install the [.NET 9 SDK](https://get.dot.net/9) and install the .NET MAUI workload, which contains the template:
+To get started, install the [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) and install the .NET MAUI workload, which contains the template:
 
 ```dotnetcli
 dotnet workload install maui
