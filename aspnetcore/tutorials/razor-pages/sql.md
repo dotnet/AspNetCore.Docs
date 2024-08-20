@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+ms.date: 08/20/2024
 uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
@@ -27,6 +27,8 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 ---
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the `appsettings.json` file.
+
+ [!INCLUDE [managed-identities](../includes/managed-identities.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
