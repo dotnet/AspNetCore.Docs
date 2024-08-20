@@ -1,5 +1,14 @@
 # Creates a Web API project, adds ApiDescription.Server
 cls
+## any arg sets the Inner_text to ".."
+if ($args.Count -gt 0) { 
+    $Inner_text = ".."
+} else {
+    $Inner_text = "./" 
+}
+
+Write-Host "Inner_text is set to: $Inner_text"
+
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
 if (Test-Path $ProgramName) {
@@ -20,7 +29,7 @@ $xml = [xml](Get-Content $Project)
 $newPropGrp1 = $xml.CreateElement("PropertyGroup")
 
 $newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
-$newElement.InnerText = "./"
+$newElement.InnerText = $Inner_text
 $newPropGrp1.AppendChild($newElement)
 
 $xml.Project.AppendChild($newPropGrp1)
@@ -29,9 +38,13 @@ $xml.OuterXml | Set-Content -Path $Project
 #$xml.OuterXml # displays the entire file
 # 
 dotnet build
-if ($?) {
+if ($? -and $Inner_text -eq "..") {
+   cd ..  # must move up or formatting bad
+   Select-String -Path "$ProgramName.json" -Pattern "." | Select-Object -First 5
+}
+elseif ($?) {
     Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
-} 
-
-cd ..  # move up so ready to run another script
-
+}
+else{   ## build failed so move up directories to run the next command.
+      cd .. 
+}

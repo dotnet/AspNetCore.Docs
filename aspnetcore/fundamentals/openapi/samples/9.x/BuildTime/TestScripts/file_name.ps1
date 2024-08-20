@@ -17,15 +17,18 @@ dotnet build
 $xml = [xml](Get-Content $Project)
 $newPropGrp1 = $xml.CreateElement("PropertyGroup")
 
+$newOpenApiName = "my-open-api"
 $newElement = $xml.CreateElement("OpenApiGenerateDocumentsOptions")
-$newElement.InnerText = "--file-name my-open-api"
+$newElement.InnerText = "--file-name $newOpenApiName"
 $newPropGrp1.AppendChild($newElement)
 
 $xml.Project.AppendChild($newPropGrp1)
 $xml.OuterXml | Set-Content -Path $Project
 
 dotnet build
-if ($?) {
-    Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
-} 
-cd ..
+
+# Select-String -Path "obj\$newOpenApiName.json" -Pattern "." | Select-Object -First 5
+$command = "Select-String -Path 'obj/$newOpenApiName.json' -Pattern '.' | Select-Object -First 5"
+$command | Invoke-Expression
+Write-Host "copy/paste and run the following command to verify $newOpenApiName"
+$command
