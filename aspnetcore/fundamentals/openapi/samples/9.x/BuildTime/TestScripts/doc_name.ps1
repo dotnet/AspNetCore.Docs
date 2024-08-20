@@ -12,26 +12,20 @@ dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
 dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-*
 dotnet build
-# show output is in the obj directory
-Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
 
 # Add property and test build with new property
 $xml = [xml](Get-Content $Project)
 $newPropGrp1 = $xml.CreateElement("PropertyGroup")
 
-$newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
-$newElement.InnerText = "./"
+$newElement = $xml.CreateElement("OpenApiGenerateDocumentsOptions")
+$newElement.InnerText = "--document-name v2"
 $newPropGrp1.AppendChild($newElement)
 
 $xml.Project.AppendChild($newPropGrp1)
 $xml.OuterXml | Set-Content -Path $Project
 
-#$xml.OuterXml # displays the entire file
-# 
 dotnet build
 if ($?) {
     Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
 } 
-
-cd ..  # move up so ready to run another script
-
+cd ..
