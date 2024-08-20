@@ -1,5 +1,6 @@
 # Creates a Web API project, adds ApiDescription.Server
 # and displays first few lines
+cls
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
 if (Test-Path $ProgramName) {
@@ -23,10 +24,8 @@ $newElement.InnerText = "./"
 $newPropGrp1.AppendChild($newElement)
 $xml.Project.AppendChild($newPropGrp1)
 $xml.OuterXml | Set-Content -Path $Project
-$count = ($xml.OuterXml -split '\./').Count - 1
-Write-Host "The count of './' is $count"
 
-# the following line displays the entire file
-# $xml.OuterXml
+#$xml.OuterXml # displays the entire file
+# 
 dotnet build
 cd ..
