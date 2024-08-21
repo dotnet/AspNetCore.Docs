@@ -4,7 +4,7 @@ Continuing the [native AOT journey](xref:fundamentals/native-aot) started in .NE
 
 #### Getting started
 
-Install the latest [.NET 9 SDK](https://get.dot.net/9).
+Install the latest [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0).
 
 Create a solution from the `webapiaot` template in a command shell using the following command:
 

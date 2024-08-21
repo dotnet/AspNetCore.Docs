@@ -505,7 +505,7 @@ Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:blazor/security/webassembly/meid-groups-roles>
+* <xref:blazor/security/webassembly/meid-groups-roles-net5to7>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/entra/identity-platform/)
 * [Quickstart: Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app)
