@@ -8,9 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 if (Assembly.GetEntryAssembly()?.GetName().Name != "MyTestApi")
 {
-    builder.Services.AddDbContext<ControllerApiContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("ControllerApiContext")
-        ?? throw new InvalidOperationException("Connection string 'ControllerApiContext' not found.")));
+    var schemeName = builder.Configuration.GetValue<string>("Authentication:SchemeName");
+    builder.Services.AddAuthentication(schemeName);
 }
 
 builder.Services.AddControllers();
