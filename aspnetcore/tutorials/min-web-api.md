@@ -323,7 +323,7 @@ Note a few of the useful details:
 * cURL: Swagger provides an example cURL command in Unix/Linux syntax, which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
 * Request URL: A simplified representation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests can include details such as headers and query parameters and a request body.
 * Server response: Includes the response body and headers. The response body shows the `id` was set to `1`.
-* Response Code: A 200 `HTTP` status code was returned indicating the request was successfully processed.
+* Response Code: A 201 `HTTP` status code was returned, indicating that the request was successfully processed and resulted in the creation of a new resource.
 
 ---
 

@@ -616,6 +616,8 @@ items:
                     uid: blazor/security/webassembly/additional-scenarios
                   - name: ME-ID groups and roles
                     uid: blazor/security/webassembly/meid-groups-roles
+                  - name: ME-ID groups and roles
+                    uid: blazor/security/webassembly/meid-groups-roles-net5to7
                   - name: Graph API
                     uid: blazor/security/webassembly/graph-api
               - name: Blazor Web App with OIDC

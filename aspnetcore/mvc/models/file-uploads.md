@@ -133,7 +133,7 @@ The following example demonstrates the use of a Razor Pages form to upload a sin
             <label asp-for="FileUpload.FormFile"></label>
         </dt>
         <dd>
-            <input asp-for="FileUpload.FormFile" type="file">
+            <input asp-for="FileUpload.FormFile" type="file" />
             <span asp-validation-for="FileUpload.FormFile"></span>
         </dd>
     </dl>
@@ -217,7 +217,7 @@ In order to support file uploads, HTML forms must specify an encoding type (`enc
 For a `files` input element to support uploading multiple files provide the `multiple` attribute on the `<input>` element:
 
 ```cshtml
-<input asp-for="FileUpload.FormFiles" type="file" multiple>
+<input asp-for="FileUpload.FormFiles" type="file" multiple />
 ```
 
 The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
