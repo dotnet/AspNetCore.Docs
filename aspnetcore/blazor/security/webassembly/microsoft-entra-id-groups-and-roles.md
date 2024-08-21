@@ -51,7 +51,7 @@ When testing with the Graph SDK locally, we recommend using a new in-private/inc
 
 ## ME-ID app registration online tools
 
-This article refers to the [Azure portal](https://learn.microsoft.com/azure/azure-portal/azure-portal-overview) throughout when prompting you to configure the app's ME-ID app registration, but the newer [Microsoft Entra Admin Center](https://learn.microsoft.com/entra/fundamentals/entra-admin-center) is also a viable option for managing ME-ID app registrations. Either interface can be used, but the guidance in this article specifically covers gestures for the Azure portal.
+This article refers to the [Azure portal](/azure/azure-portal/azure-portal-overview) throughout when prompting you to configure the app's ME-ID app registration, but the [Microsoft Entra Admin Center](/entra/fundamentals/entra-admin-center) is also a viable option for managing ME-ID app registrations. Either interface can be used, but the guidance in this article specifically covers gestures for the Azure portal.
 
 ## Scopes
 
@@ -62,8 +62,8 @@ To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role
 
 Additional required scopes include:
 
-* ***Delegated*** [`RoleManagement.Read.Directory`](https://learn.microsoft.com/graph/permissions-reference#rolemanagementreaddirectory) scope (`https://graph.microsoft.com/RoleManagement.Read.Directory`): Allows the app to read the role-based access control (RBAC) settings for your company's directory, on behalf of the signed-in user. This includes reading directory role templates, directory roles, and memberships. Directory role memberships are used to create `directoryRole` claims in the app for ME-ID built-in Administrator Roles. Admin consent is required.
-* ***Delegated*** [`AdministrativeUnit.Read.All`](https://learn.microsoft.com/graph/permissions-reference#administrativeunitreadall) scope (`https://graph.microsoft.com/AdministrativeUnit.Read.All`): Allows the app to read administrative units and administrative unit membership on behalf of the signed-in user. These memberships are used to create `administrativeUnit` claims in the app. Admin consent is required.
+* ***Delegated*** [`RoleManagement.Read.Directory`](/graph/permissions-reference#rolemanagementreaddirectory) scope (`https://graph.microsoft.com/RoleManagement.Read.Directory`): Allows the app to read the role-based access control (RBAC) settings for your company's directory, on behalf of the signed-in user. This includes reading directory role templates, directory roles, and memberships. Directory role memberships are used to create `directoryRole` claims in the app for ME-ID built-in Administrator Roles. Admin consent is required.
+* ***Delegated*** [`AdministrativeUnit.Read.All`](/graph/permissions-reference#administrativeunitreadall) scope (`https://graph.microsoft.com/AdministrativeUnit.Read.All`): Allows the app to read administrative units and administrative unit membership on behalf of the signed-in user. These memberships are used to create `administrativeUnit` claims in the app. Admin consent is required.
 
 For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
