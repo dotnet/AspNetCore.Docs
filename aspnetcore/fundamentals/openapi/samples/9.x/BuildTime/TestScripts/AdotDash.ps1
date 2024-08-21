@@ -1,43 +1,36 @@
-# Yields error Document with name 'v2' not found.
 cls
+$Inner_text = "./"
 $ProgramName = "MyOpenApiTest"
-# remove build from last run
+$Project = "$ProgramName.csproj"
+$JsonFile = "$ProgramName.json"
+
 if (Test-Path $ProgramName) {
     Write-Host "Removing existing '$ProgramName' directory..."
     Remove-Item $ProgramName -Recurse -Force 
 } 
-$Project = "$ProgramName.csproj"
+
 dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
 dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-* --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
 
 dotnet build
-if ($LASTEXITCODE -eq 0) {
-    Write-Output "Build succeeded."
-} else {
-    Write-Output "Build failed."
-}
+# show output is in the obj directory
+Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
+
 # Add property and test build with new property
+
 $xml = [xml](Get-Content $Project)
 $newPropGrp1 = $xml.CreateElement("PropertyGroup")
 
-$newElement = $xml.CreateElement("OpenApiGenerateDocumentsOptions")
-$newElement.InnerText = "--document-name v2"
+$newElement = $xml.CreateElement("OpenApiDocumentsDirectory")
+$newElement.InnerText = $Inner_text
 $newPropGrp1.AppendChild($newElement)
 
 $xml.Project.AppendChild($newPropGrp1)
 $xml.OuterXml | Set-Content -Path $Project
 
 dotnet build
-if ($LASTEXITCODE -eq 0) {
-    Write-Output "Build succeeded."
-} else {
-    Write-Output "Build failed."
-}
-if ($?) {
-    Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
-} 
-else{
-      Write-Output "Build failed"
-}
-cd ..
+
+Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
+cd .. 
+
