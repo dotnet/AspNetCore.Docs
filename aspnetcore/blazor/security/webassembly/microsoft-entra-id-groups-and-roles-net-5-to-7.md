@@ -5,14 +5,14 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 02/09/2024
+ms.date: 08/21/2024
 uid: blazor/security/webassembly/meid-groups-roles-net5to7
 zone_pivot_groups: blazor-groups-and-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles (.NET 5 to .NET 7)
 
 > [!NOTE]
-> This isn't the latest version of this article. For the current release, see the latest version of <xref:blazor/security/webassembly/meid-groups-roles>.
+> This isn't the latest version of this article. For the current ASP.NET Core release, see the latest version of <xref:blazor/security/webassembly/meid-groups-roles>.
 
 This article explains how to configure Blazor WebAssembly to use Microsoft Entra ID groups and roles.
 
@@ -317,7 +317,13 @@ public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
 
 The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
 
-The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft identity platform are ME-ID Administrator Role **entity IDs** and not [**Role Template IDs**](/entra/identity/role-based-access-control/permissions-reference). Entity IDs aren't stable across tenants in Microsoft identity platform and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for ME-ID Administrator Roles **provided by `wids` claims**.
+:::zone pivot="graph-sdk-4"
+
+The preceding code ignores group membership claims (`groups`) that are ME-ID Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by ME-ID are Administrator Role **entity IDs** and not role [**Template IDs**](/entra/identity/role-based-access-control/permissions-reference). Entity IDs aren't stable across tenants and shouldn't be used to create authorization policies for users in apps. Always use **Template IDs** for ME-ID Administrator Roles provided by `wids` claims.
+
+:::zone-end
+
+The `wids` claim (and thus `directoryRole` claim) with a value of `b79fbf4d-3ef9-4689-8143-76b194e85509` exists for non-guest accounts of the tenant. It doesn't refer to an ME-ID Administrator Role Template ID.
 
 In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
