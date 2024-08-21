@@ -28,8 +28,6 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the `appsettings.json` file.
 
-[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
-
 # [Visual Studio](#tab/visual-studio)
 
 The generated connection string is similar to the following JSON:
@@ -42,7 +40,9 @@ The generated connection string is similar to the following JSON:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a test or production database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+When the app is deployed to a test, non-production server, an environment variable can be used to set the connection string to a test, non-production database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
