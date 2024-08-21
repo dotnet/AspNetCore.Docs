@@ -16,7 +16,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the `appsettings.json` file.
 
- [!INCLUDE [managed-identities](~/includes/managed-identities.md)]
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
