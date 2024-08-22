@@ -30,9 +30,9 @@ The database context, `BlazorWebAppMoviesContext`, connects to the database and 
 ```csharp
 builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlServer(
-      builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
-      throw new InvalidOperationException(
-         "Connection string 'BlazorWebAppMoviesContext' not found.")));
+        builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+        throw new InvalidOperationException(
+            "Connection string 'BlazorWebAppMoviesContext' not found.")));
 ```
 
 :::zone-end
@@ -42,9 +42,9 @@ builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
 ```csharp
 builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlite(
-      builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
-      throw new InvalidOperationException(
-         "Connection string 'BlazorWebAppMoviesContext' not found.")));
+        builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+        throw new InvalidOperationException(
+            "Connection string 'BlazorWebAppMoviesContext' not found.")));
 ```
 
 :::zone-end
@@ -54,9 +54,9 @@ builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
 ```csharp
 builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
     options.UseSqlite(
-      builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
-      throw new InvalidOperationException(
-         "Connection string 'BlazorWebAppMoviesContext' not found.")));
+        builder.Configuration.GetConnectionString("BlazorWebAppMoviesContext") ?? 
+        throw new InvalidOperationException(
+            "Connection string 'BlazorWebAppMoviesContext' not found.")));
 ```
 
 :::zone-end

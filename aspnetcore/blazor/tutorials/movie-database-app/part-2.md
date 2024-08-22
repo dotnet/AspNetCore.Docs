@@ -407,24 +407,12 @@ dotnet ef database update
 
 :::zone-end
 
-The database context `BlazorWebAppMoviesContext`:
+The database context `BlazorWebAppMoviesContext` (`Data/BlazorWebAppMoviesContext.cs`):
 
 * Derives from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>.
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as CRUD operations, for the `Movie` model.
 * Contains a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for the `Movie` entity set. In EF terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
-
-```csharp
-public class BlazorWebAppMoviesContext : DbContext
-{
-    public BlazorWebAppMoviesContext(DbContextOptions<BlazorWebAppMoviesContext> options)
-        : base(options)
-    {
-    }
-
-    public DbSet<BlazorWebAppMovies.Models.Movie> Movie { get; set; } = default!;
-}
-```
 
 The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the connection string is read from the `appsettings.json` file.
 

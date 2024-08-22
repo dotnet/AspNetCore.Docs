@@ -99,7 +99,7 @@ The `QuickGrid` component can page data from the database.
 Open the `Index` component (`Components/Pages/Movies/Index.razor`). Add a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance to the `@code` block. Because the tutorial only uses five movie records for demonstration, set the <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to `2` items in order to demonstrate pagination. Normally, the number of items to display would be set to a higher value or set dynamically via a dropdown list.
 
 ```csharp
-PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
+private PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
 ```
 
 Set the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination> property to `pagination`:
@@ -124,8 +124,8 @@ The component is *interactive*. The page doesn't reload for paging to occur. The
 Change <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.ItemsPerPage%2A> to a more reasonable value, such as 10 items per page:
 
 ```diff
-- PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
-+ PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+- private PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
++ private PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 ```
 
 ## Sortable `QuickGrid`

@@ -223,22 +223,9 @@ The following sections explain the composition of the movie CRUD components and 
 
 ### `Index` component
 
-Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`) and examine the directives at the top of the file:
+Open the `Index` component definition file (`Components/Pages/Movies/Index.razor`) and examine the Razor directives at the top of the file.
 
-```razor
-@page "/movies"
-@using Microsoft.EntityFrameworkCore
-@using Microsoft.AspNetCore.Components.QuickGrid
-@using BlazorWebAppMovies.Data
-@using BlazorWebAppMovies.Models
-@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
-@implements IAsyncDisposable
-```
-
-> [!NOTE]
-> The order of `@using` and `@inject` directives shown in the preceding example is subject to change across .NET releases, so the preceding order of directives may not exactly match what you see in your app.
-
-The `@page` directive at the top of the file indicates the relative URL for the page is `/movies`.
+The `@page` directive's route template indicates the URL for the page is `/movies`.
 
 `@using` directives appear to access the following API:
 
@@ -372,9 +359,6 @@ The `@page` directive at the top of the file indicates the relative URL for the 
 @inject NavigationManager NavigationManager
 ```
 
-> [!NOTE]
-> The order of `@using` and `@inject` directives shown in the preceding example is subject to change across .NET releases, so the preceding order of directives may not exactly match what you see in your app.
-
 Details for a movie entity are only shown if the movie, located by its identifier (`Id`) from the query string, has been loaded for display. The presence of the movie in `movie` is checked with an `@if` Razor statement:
 
 ```razor
@@ -419,7 +403,7 @@ Add a space to the content of the description term element (`<dt>`) for the movi
 Examine the C# of the component's `@code` block:
 
 ```csharp
-Movie? movie;
+private Movie? movie;
 
 [SupplyParameterFromQuery]
 public int Id { get; set; }
