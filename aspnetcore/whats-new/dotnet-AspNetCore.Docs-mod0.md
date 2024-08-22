@@ -62,7 +62,7 @@ Welcome to what's new in the ASP.NET Core docs for June 2024. This article lists
 ### Updated articles
 
 - <xref:client-side/using-browserlink> - Package installation no longer needed
-- <xref:client-side/dotnet-interop> - .NET JS interop article updates
+- <xref:client-side/dotnet-interop/wasm-browser-app> - .NET JS interop article updates
 
 ## Fundamentals
 

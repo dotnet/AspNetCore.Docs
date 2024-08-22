@@ -498,7 +498,7 @@ JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism fo
 For more information:
 
 * <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssembly apps.
-* <xref:client-side/dotnet-interop>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
+* <xref:client-side/dotnet-interop/index>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
 
 ### Conditional registration of the authentication state provider
 
