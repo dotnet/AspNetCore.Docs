@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddOpenApi();
+builder.Services.AddOpenApi("v2");
 
 var app = builder.Build();
 

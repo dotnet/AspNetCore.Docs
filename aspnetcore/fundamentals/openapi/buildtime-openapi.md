@@ -108,15 +108,6 @@ By default, the build-time document generator creates files for all documents th
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_doc_name":::
 
-<!--
-What's the equivalent of 
- app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Public API v1");
-        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Internal API v2");
-    });
--->
-
 ## Customize run-time behavior during build-time document generation
 
 OpenAPI document generation at build-time works by starting the app’s entry point with a temporary background server. This approach is necessary to produce accurate OpenAPI documents, as not all information can be statically analyzed. When the app’s entry point is invoked, any logic in the app’s startup is executed, including code that injects services into the DI container or reads from configuration.
