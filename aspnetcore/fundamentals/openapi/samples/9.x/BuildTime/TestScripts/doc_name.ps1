@@ -1,4 +1,5 @@
 # Yields error Document with name 'v2' not found.
+# This script is similar to updateProgram.ps1, but it doesn't add the v2 endpoint
 cls
 $originalDir = Get-Location
 cd C:\tmp

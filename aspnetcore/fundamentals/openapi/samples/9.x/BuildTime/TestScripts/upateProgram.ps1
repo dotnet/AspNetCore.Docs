@@ -1,4 +1,5 @@
-# Creates a Web API project, adds ApiDescription.Server
+# Yields error Document with name 'v2' not found.
+# This script is similar to updateProgram.ps1, but it adds thee v2 endpoint
 cls
 $originalDir = Get-Location
 cd C:\tmp
