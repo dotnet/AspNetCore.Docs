@@ -3,8 +3,7 @@ title: Part 4, work with a database
 author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 10/13/2023
-ms.custom: engagement-fy23
+ms.date: 06/23/2024
 uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
@@ -13,17 +12,17 @@ uid: tutorials/razor-pages/sql
 
 By [Joe Audette](https://twitter.com/joeaudette)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_di&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_di&highlight=8-9)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_di_sl&highlight=7-8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Program.cs?name=snippet_di_sl&highlight=7-8)]
 
 ---
 
@@ -33,11 +32,11 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The generated connection string is similar to the following JSON:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings.json?highlight=10-12)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/appsettings.json?highlight=9-11)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/appsettings_SQLite.json?highlight=9-11)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/appsettings_SQLite.json?highlight=9-11)]
 
 ---
 
@@ -52,21 +51,21 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 <a name="ssox"></a>
 1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-   ![View menu](~/tutorials/razor-pages/sql/_static/8/ssox_VS22_17.8.0.png)
+   ![View menu](~/tutorials/razor-pages/sql/_static/9/ssox_VS22_17.11.0.png)
 
 1. Right-click on the `Movie` table and select **View Designer**:
 
-   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/_static/8/view_designer_VS22_17.8.0.png)
+   ![Contextual menus open on Movie table](~/tutorials/razor-pages/sql/_static/9/view_designer_VS22_17.11.0.png)
 
-   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/_static/8/db_VS22_17.8.0.png)
+   ![Movie tables open in Designer](~/tutorials/razor-pages/sql/_static/9/db_VS22_17.11.0.png)
 
    Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 1. Right-click on the `Movie` table and select **View Data**:
 
-   ![Movie table open showing table data](~/tutorials/razor-pages/sql/_static/8/view_data_VS22_17.8.0.png)
+   ![Movie table open showing table data](~/tutorials/razor-pages/sql/_static/9/view_data_VS22_17.11.0.png)
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ## SQLite
 
@@ -101,7 +100,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 <!-- Next version put it in the Data folder -->
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -120,11 +119,11 @@ Update the `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
 
 ---
 
@@ -145,7 +144,7 @@ Delete all the records in the database so the seed method will run. Stop and sta
 
 The app shows the seeded data:
 
-![Movie application open in browser showing movie data](~/tutorials/razor-pages/sql/_static/m605.png)
+![Movie application open in browser showing movie data](~/tutorials/razor-pages/sql/_static/9/seededDataUI.png)
 
 ## Next steps
 
@@ -154,6 +153,8 @@ The app shows the seeded data:
 > [Next: Update the pages](xref:tutorials/razor-pages/da1)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql7.md)]
 

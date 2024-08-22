@@ -10,6 +10,8 @@ uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.com/), [Stephen Halter](https://twitter.com/halter73), and [Chris Ross](https://github.com/Tratcher)
 
 An ASP.NET Core app runs with an in-process HTTP server implementation. The server implementation listens for HTTP requests and surfaces them to the app as a set of [request features](xref:fundamentals/request-features) composed into an <xref:Microsoft.AspNetCore.Http.HttpContext>.
@@ -143,10 +145,6 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-nginx>.
 
-### Apache with Kestrel
-
-For information on how to use Apache on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-apache>.
-
 ## HTTP.sys
 
 If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel. For more information, see <xref:fundamentals/servers/httpsys>.
@@ -275,5 +273,4 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:fundamentals/servers/httpsys>

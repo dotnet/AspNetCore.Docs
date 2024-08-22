@@ -14,6 +14,23 @@ uid: blazor/fundamentals/index
 
 *Fundamentals* articles provide guidance on foundational Blazor concepts. Some of the concepts are connected to a basic understanding of *Razor components*, which are described further in the next section of this article and covered in detail in the *Components* articles.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Static and interactive rendering concepts
+
+Razor components are either *statically* rendered or *interactively* rendered.
+
+*Static* or *static rendering* is a server-side scenario that means the component is rendered without the capacity for interplay between the user and .NET/C# code. JavaScript and HTML DOM events remain unaffected, but no user events on the client can be processed with .NET running on the server.
+
+*Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
+
+> [!IMPORTANT]
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode.
+
+More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article later in the Blazor documentation.
+
+:::moniker-end
+
 ## Client and server rendering concepts
 
 Throughout the Blazor documentation, activity that takes place on the user's system is said to occur *on the client* or *client-side*. Activity that takes place on a server is said to occur *on the server* or *server-side*.
@@ -28,20 +45,6 @@ The term *rendering* means to produce the HTML markup that browsers display.
   * **Interactive SSR**: Blazor events permit user interactivity and Razor component state is maintained by the Blazor framework. 
 
 * **Prerendering** is the process of initially rendering page content on the server without enabling event handlers for rendered controls. The server outputs the HTML UI of the page as soon as possible in response to the initial request, which makes the app feel more responsive to users. Prerendering can also improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines use to calculate page rank. Prerendering is always followed by final rendering, either on the server or the client.
-
-:::moniker range=">= aspnetcore-8.0"
-
-## Static and interactive rendering concepts
-
-Razor components are either *statically* rendered or *interactively* rendered.
-
-*Static* or *static rendering* is a server-side scenario that means the component is rendered without the capacity for interplay between the user and .NET/C# code. JavaScript and HTML DOM events remain unaffected, but no user events on the client can be processed with .NET running on the server.
-
-*Interactive* or *interactive rendering* means that the component has the capacity to process .NET events via C# code. The .NET events are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
-
-More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article later in the Blazor documentation.
-
-:::moniker-end
 
 ## Razor components
 

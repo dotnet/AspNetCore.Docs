@@ -49,9 +49,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 - <xref:blazor/debug> - Add Debugger support section
 - <xref:blazor/components/dynamiccomponent> - [Blazor] DynamicComponents - fixes samples vulnerability + related adjustments
 - <xref:blazor/host-and-deploy/webassembly>
-  - Address CentOS EOL in Blazor
   - Blazor WASM build tools + AOT article
-  - Adding CentOS EOL caution
   - WASM runtime max heap size
 - <xref:blazor/host-and-deploy/server>
   - Improve IIS crosslinking and additional deployment updates
@@ -74,7 +72,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
   - Update not-latest and not-current include files
   - .NET 9 new feature - Internal Server Error TypedResults on Responses page
 - <xref:fundamentals/minimal-apis/handle-errors> - Update not-latest and not-current include files
-- <xref:fundamentals/minimal-apis/openapi>
+- <xref:fundamentals/openapi/aspnetcore-openapi>
   - No swag
   - Mon prep
 - <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg013> - fix RDG highlights after code samples update
@@ -85,20 +83,19 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 ### Updated articles
 
 - <xref:grpc/performance> - Add docs for WinHttpHandler and multiple connections
-- <xref:grpc/test-tools> - Test gRPC: Update API test Tooling: Remove Postman
+- <xref:grpc/test-tools> - Test gRPC: Update API test Tooling
 
 ## Hosting and deployment
 
 ### Updated articles
 
 - <xref:host-and-deploy/proxy-load-balancer> - Fix documentation about how X-Original-* headers are populated
-- <xref:host-and-deploy/linux-apache> - Adding CentOS EOL caution
 
 ## Mobile development
 
 ### Updated articles
 
-- <xref:mobile/native-mobile-backend> - Native Mobile Backend: Replaced Postman with curl and jq
+- <xref:mobile/native-mobile-backend> - Native Mobile Backend.
 
 ## MVC
 

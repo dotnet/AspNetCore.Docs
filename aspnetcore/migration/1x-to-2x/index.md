@@ -2,7 +2,7 @@
 title: Migrate from ASP.NET Core 1.x to 2.0
 author: rick-anderson
 description: This article outlines the prerequisites and most common steps for migrating an ASP.NET Core 1.x project to ASP.NET Core 2.0.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: migration/1x-to-2x/index
@@ -68,7 +68,7 @@ The package `Microsoft.Extensions.CommandLineUtils` has been [retired](https://g
 
 <a name="dot-net-cli-tool-reference"></a>
 
-## Update .NET Core CLI tools
+## Update .NET CLI tools
 
 In the `.csproj` file, update the `Version` attribute of each `<DotNetCliToolReference />` node to 2.0.0.
 

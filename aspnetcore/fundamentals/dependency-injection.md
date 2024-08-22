@@ -1,8 +1,8 @@
 ---
 title: Dependency injection in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 10/17/2023
 uid: fundamentals/dependency-injection
@@ -359,6 +359,10 @@ The following table lists a small sample of these framework-registered services:
 * [NDC Conference Patterns for DI app development](https://www.youtube.com/watch?v=x-C-CNBVTaY)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
+* [Understand dependency injection basics in .NET](/dotnet/core/extensions/dependency-injection-basics)
+* [Dependency injection guidelines](/dotnet/core/extensions/dependency-injection-guidelines)
+* [Tutorial: Use dependency injection in .NET](/dotnet/core/extensions/dependency-injection-usage)
+* [.NET dependency injection](/dotnet/core/extensions/dependency-injection)
 * [ASP.NET CORE DEPENDENCY INJECTION: WHAT IS THE ISERVICECOLLECTION?](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iservicecollection)
 * [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](/archive/msdn-magazine/2016/may/asp-net-writing-clean-code-in-asp-net-core-with-dependency-injection)

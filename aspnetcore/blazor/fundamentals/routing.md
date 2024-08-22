@@ -23,7 +23,7 @@ This article explains how to manage Blazor app request routing and how to use th
 
 *This section applies to Blazor Web Apps.*
 
-If [prerendering isn't disabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
+If [prerendering is enabled](xref:blazor/components/render-modes#prerendering), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
 
 When an interactive render mode is assigned to the `Routes` component, the Blazor router becomes interactive after static SSR with static routing on the server. This type of routing is called *interactive routing*.
 
@@ -357,6 +357,7 @@ Constraint | Example | Example Matches | Invariant<br>culture<br>matching
 `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No
 `int` | `{id:int}` | `123456789`, `-123456789` | Yes
 `long` | `{ticks:long}` | `123456789`, `-123456789` | Yes
+`nonfile` | `{parameter:nonfile}` | Not `BlazorSample.styles.css`, not `favicon.ico` | Yes
 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
@@ -388,6 +389,27 @@ Route constraints also work with [optional parameters](#route-parameters). In th
 ```
 
 :::moniker-end
+
+## Avoid file capture in a route parameter
+
+The following route template inadvertently captures static asset paths in its optional route parameter (`Optional`). For example, the app's stylesheet (`.styles.css`) is captured, which breaks the app's styles:
+
+```razor
+@page "/{optional?}"
+
+...
+
+@code {
+    [Parameter]
+    public string? Optional { get; set; }
+}
+```
+
+To restrict a route parameter to capturing non-file paths, use the [`:nonfile` constraint](#route-constraints) in the route template:
+
+```razor
+@page "/{optional:nonfile?}"
+```
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -1695,8 +1717,6 @@ A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundame
 ```csharp
 app.MapRazorComponents<App>();
 ```
-
-<!-- UPDATE 8.0 Any additional remarks for BWAs? -->
 
 :::moniker-end
 

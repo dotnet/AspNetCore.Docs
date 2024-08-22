@@ -5,7 +5,7 @@ description: Learn how to configure and use output caching middleware in ASP.NET
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/09/2024
+ms.date: 06/20/2024
 uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
@@ -18,7 +18,9 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every caching feature it illustrates is also supported in the other app types.
+The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. Code examples are provided for minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
+
+The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:index#how-to-download-a-sample) and [Preprocessor directives in sample code](xref:index#preprocessor-directives-in-sample-code).
 
 ## Add the middleware to the app
 
@@ -26,10 +28,16 @@ Add the output caching middleware to the service collection by calling <xref:Mic
 
 Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A>.
 
+For example:
+
+:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies4" highlight="1":::
+:::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="snippet_use" highlight="5":::
+
+Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as shown in the following sections.
+
 > [!NOTE]
 > * In apps that use [CORS middleware](xref:security/cors), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>.
 > * In Razor Pages apps and apps with controllers, `UseOutputCache` must be called after `UseRouting`.
-> * Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. Caching response data must be configured as shown in the following sections.
 
 ## Configure one endpoint or page
 
@@ -37,13 +45,17 @@ For minimal API apps, configure an endpoint to do caching by calling [`CacheOutp
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="oneendpoint":::
 
-For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+For apps with controllers, apply the `[OutputCache]` attribute to the action method as shown here:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/CachedController.cs" id="snippet_oneendpoint":::
+
+For Razor Pages apps, apply the attribute to the Razor page class.
 
 ## Configure multiple endpoints or pages
 
 Create *policies* when calling `AddOutputCache` to specify caching configuration that applies to multiple endpoints. A policy can be selected for specific endpoints, while a base policy provides default caching configuration for a collection of endpoints.
 
-The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified,  it defaults to one minute.
+The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified, it defaults to one minute.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies1" highlight="3-4":::
 
@@ -51,11 +63,17 @@ The following highlighted code creates two policies, each specifying a different
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies1" highlight="5-8":::
 
-You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute:
+You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute.
+
+In a minimal API app, the following code configures one endpoint with a 20-second expiration and one with a 30-second expiration:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectpolicy":::
 
-For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+For apps with controllers, apply the `[OutputCache]` attribute to the action method to select a policy:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/Expire20Controller.cs" id="snippet_selectpolicy":::
+
+ For Razor Pages apps, apply the attribute to the Razor page class.
 
 ## Default output caching policy
 
@@ -80,9 +98,13 @@ To use this custom policy, create a named policy:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies3b":::
 
-And select the named policy for an endpoint:
+And select the named policy for an endpoint. The following code selects the custom policy for an endpoint in a minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="post":::
+
+The following code does the same for a controller action:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/PostController.cs" id="snippet_post":::
 
 ### Alternative default policy override 
 
@@ -101,7 +123,7 @@ The remainder of the class is the same as shown previously. Add the custom polic
 
 The preceding code uses DI to create the instance of the custom policy class. Any public arguments in the constructor are resolved.
 
-When using a custom policy as a base policy, don't call `OutputCache()` (with no arguments) on any endpoint that the base policy should apply to. Calling `OutputCache()` adds the default policy to the endpoint.
+When using a custom policy as a base policy, don't call `OutputCache()` (with no arguments) or use the `[OutputCache]` attribute on any endpoint that the base policy should apply to. Calling `OutputCache()` or using the attribute adds the default policy to the endpoint.
 
 ## Specify the cache key
 
@@ -109,9 +131,13 @@ By default, every part of the URL is included as the key to a cache entry, that 
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="7":::
 
-You can then select the `VaryByQuery` policy for an endpoint:
+You can then select the `VaryByQuery` policy for an endpoint. In a minimal API app, the following code selects the `VaryByQuery` policy for an endpoint that returns a unique response only for each unique value of the `culture` query string:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectquery":::
+
+The following code does the same for a controller action:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/QueryController.cs" id="snippet_selectquery":::
 
 Here are some of the options for controlling the cache key:
 
@@ -119,7 +145,7 @@ Here are some of the options for controlling the cache key:
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByHeader%2A> - Specify one or more HTTP headers to add to the cache key.
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue%2A>- Specify a value to add to the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds goes from odd to even or even to odd.
 
-  :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="varybyvalue":::
+  :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Program.cs" id="policies2" highlight="10-14":::
 
 Use <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.UseCaseSensitivePaths?displayProperty=nameWithType> to specify that the path part of the key is case sensitive. The default is case insensitive.
 
@@ -129,9 +155,13 @@ For more options, see the <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePo
 
 Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of the full response body. This status code informs the client that the response to the request is unchanged from what the client previously received.
 
-The following code illustrates the use of an [`Etag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header to enable cache revalidation. If the client sends an [`If-None-Match`](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-None-Match) header with the etag value of an earlier response, and the cache entry is fresh, the server returns [304 Not Modified](https://developer.mozilla.org/docs/Web/HTTP/Status/304) instead of the full response:
+The following code illustrates the use of an [`Etag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header to enable cache revalidation. If the client sends an [`If-None-Match`](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-None-Match) header with the etag value of an earlier response, and the cache entry is fresh, the server returns [304 Not Modified](https://developer.mozilla.org/docs/Web/HTTP/Status/304) instead of the full response. Here's how to set the etag value in a policy, in a Minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="etag":::
+
+And here's how to set the etag value in a controller-based API:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/EtagController.cs" id="snippet_etag":::
 
 Another way to do cache revalidation is to check the date of the cache entry creation compared to the date requested by the client. When the request header `If-Modified-Since` is provided, output caching returns 304 if the cached entry is older and isn't expired.
 
@@ -139,15 +169,19 @@ Cache revalidation is automatic in response to these headers sent from the clien
 
 ## Use tags to evict cache entries
 
-You can use tags to identify a group of endpoints and evict all cache entries for the group. For example, the following code creates a pair of endpoints whose URLs begin with "blog", and tags them "tag-blog":
+You can use tags to identify a group of endpoints and evict all cache entries for the group. For example, the following minimal API code creates a pair of endpoints whose URLs begin with "blog", and tags them "tag-blog":
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="tagendpoint":::
 
-An alternative way to assign tags for the same pair of endpoints is to define a base policy that applies to endpoints that begin with `blog`:
+The following code shows how to assign tags to an endpoint in a controller-based API:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/TagEndpointController.cs" id="snippet_tagendpoint":::
+
+An alternative way to assign tags for endpoints with routes that begin with `blog` is to define a base policy that applies to all endpoints with that route. The following code shows how to do that:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="3-5":::
 
-Another alternative is to call `MapGroup`:
+Another alternative for minimal API apps is to call `MapGroup`:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="taggroup":::
 
@@ -171,9 +205,13 @@ To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies2" highlight="9":::
 
-The following example selects the no-locking policy for an endpoint:
+The following example selects the no-locking policy for an endpoint in a minimal API app:
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="selectnolock":::
+
+In a controller-based API, use the attribute to select the policy:
+
+:::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/NoLockController.cs" id="snippet_selectnolock":::
 
 ## Limits
 

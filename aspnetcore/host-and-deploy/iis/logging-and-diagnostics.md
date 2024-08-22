@@ -8,7 +8,9 @@ ms.custom: mvc
 ms.date: 02/07/2020
 uid: host-and-deploy/iis/logging-and-diagnostics
 ---
-# Log creation and redirection
+# IIS log creation and redirection
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 The ASP.NET Core Module redirects stdout and stderr console output to disk if the `stdoutLogEnabled` and `stdoutLogFile` attributes of the `aspNetCore` element are set. Any folders in the `stdoutLogFile` path are created by the module when the log file is created. The app pool must have write access to the location where the logs are written (use `IIS AppPool\{APP POOL NAME}` to provide write permission, where the placeholder `{APP POOL NAME}` is the app pool name).
 

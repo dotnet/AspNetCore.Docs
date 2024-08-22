@@ -16,7 +16,7 @@ dotnet new react -o my-new-app
 cd my-new-app
 ```
 
-Run the app from either Visual Studio or the .NET Core CLI:
+Run the app from either Visual Studio or the .NET CLI:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -24,7 +24,7 @@ Open the generated `.csproj` file, and run the app as normal from there.
 
 The build process restores npm dependencies on the first run, which can take several minutes. Subsequent builds are much faster.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 Ensure you have an environment variable called `ASPNETCORE_ENVIRONMENT` with value of `Development`. On Windows (in non-PowerShell prompts), run `SET ASPNETCORE_ENVIRONMENT=Development`. On Linux or macOS, run `export ASPNETCORE_ENVIRONMENT=Development`.
 
@@ -99,7 +99,7 @@ dotnet new react -o my-new-app
 cd my-new-app
 ```
 
-Run the app from either Visual Studio or the .NET Core CLI:
+Run the app from either Visual Studio or the .NET CLI:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -107,7 +107,7 @@ Open the generated `.csproj` file, and run the app as normal from there.
 
 The build process restores npm dependencies on the first run, which can take several minutes. Subsequent builds are much faster.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 Ensure you have an environment variable called `ASPNETCORE_ENVIRONMENT` with value of `Development`. On Windows (in non-PowerShell prompts), run `SET ASPNETCORE_ENVIRONMENT=Development`. On Linux or macOS, run `export ASPNETCORE_ENVIRONMENT=Development`.
 

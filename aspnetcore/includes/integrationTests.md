@@ -9,7 +9,7 @@ These broader tests are used to test the app's infrastructure and whole framewor
 * Network appliances
 * Request-response pipeline
 
-Unit tests use fabricated components, known as *fakes* or *mock objects*, in place of infrastructure components.
+Unit tests use fabricated components, known as [*fakes* or *mock objects*](/dotnet/core/testing/unit-testing-best-practices#lets-speak-the-same-language), in place of infrastructure components.
 
 In contrast to unit tests, integration tests:
 

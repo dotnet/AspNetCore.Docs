@@ -1,13 +1,15 @@
 ---
 title: Error handling with gRPC on .NET
 author: jamesnk
-ms.author: jamesnk
+ms.author: wpickett
 description: Learn how to do error handling with gRPC on .NET.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/09/2024
 uid: grpc/error-handling
 ---
 # Error handling with gRPC
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

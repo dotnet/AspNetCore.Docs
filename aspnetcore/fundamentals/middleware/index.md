@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core Middleware
-author: rick-anderson
+author: tdykstra
 description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 05/03/2023
 uid: fundamentals/middleware/index

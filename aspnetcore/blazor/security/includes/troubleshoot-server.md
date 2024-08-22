@@ -24,7 +24,7 @@ To enable debug or trace logging for Blazor WebAssembly authentication, see the 
 
     * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
     * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
-    * [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
+    * [Mozilla Firefox](https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/index.html) (Mozilla documentation)
   
   The documentation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
   
@@ -74,8 +74,8 @@ One approach to prevent lingering cookies and site data from interfering with te
     * Mozilla Firefox: `C:\Program Files\Mozilla Firefox\firefox.exe`
   * In the **Arguments** field, provide the command-line option that the browser uses to open in InPrivate or Incognito mode. Some browsers require the URL of the app.
     * Microsoft Edge: Use `-inprivate`.
-    * Google Chrome: Use `--incognito --new-window {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
-    * Mozilla Firefox: Use `-private -url {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
+    * Google Chrome: Use `--incognito --new-window {URL}`, where the `{URL}` placeholder is the URL to open (for example, `https://localhost:5001`).
+    * Mozilla Firefox: Use `-private -url {URL}`, where the `{URL}` placeholder is the URL to open (for example, `https://localhost:5001`).
   * Provide a name in the **Friendly name** field. For example, `Firefox Auth Testing`.
   * Select the **OK** button.
   * To avoid having to select the browser profile for each iteration of testing with an app, set the profile as the default with the **Set as Default** button.

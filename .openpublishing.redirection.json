@@ -1,13 +1,33 @@
 { 
     "redirections": [
         {
+            "source_path": "aspnetcore/web-api/microsoft.dotnet-openapi.md",
+            "redirect_url": "/aspnet/core/fundamentals/openapi/tools",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/aspnetcore-openapi.md",
+            "redirect_url": "/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/security/authentication/samples.md",
             "redirect_url": "/aspnet/core/security/authorization/introduction",
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/host-and-deploy/linux-apache.md",
+            "redirect_url": "/aspnet/core/host-and-deploy/linux-nginx",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/fundamentals/aot/request-delegate-generator/rgd_ids.md",
             "redirect_url": "/aspnet/core/fundamentals/aot/request-delegate-generator/rdg_ids",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/minimal-apis/openapi.md",
+            "redirect_url": "/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
             "redirect_document_id": false
         },
         {
@@ -1286,6 +1306,11 @@
         {
             "source_path": "aspnetcore/blazor/http-caching-issues.md",
             "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly-caching/http-caching-issues",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/images.md",
+            "redirect_url": "/aspnet/core/blazor/images-and-documents",
             "redirect_document_id": false
         }
     ]

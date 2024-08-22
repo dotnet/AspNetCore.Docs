@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 02/09/2024
+ms.date: 06/07/2024
 uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID
@@ -50,6 +50,9 @@ Record the following information:
 * *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
 * ME-ID Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+
+> [!IMPORTANT]
+> For later in the *Register a client app in Azure* section when API permissions are added, you must add yourself as an **Owner** of the *Server API app* registration in order to see the *Server API app* in the **My APIs** area of the Azure portal. For more information, see [Why I cannot find my API in the list of APIs in MyAPI within Azure AD portal (Microsoft Learn: Q&A: Questions)](/answers/questions/1336925/why-i-cannot-find-my-api-in-the-list-of-apis-in-my). This documentation will be updated to provide exact guidance per [Register a server API app in Azure is missing a step (`dotnet/AspNetCore.Docs` #32541)](https://github.com/dotnet/AspNetCore.Docs/issues/32541).
 
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the server API app doesn't require additional API access for merely signing in users and calling server API endpoints.
 
@@ -99,7 +102,7 @@ In **API permissions**:
 
 1. Confirm that the app has **Microsoft Graph** > **User.Read** permission.
 1. Select **Add a permission** followed by **My APIs**.
-1. Select the *Server API app* from the **Name** column (for example, **Blazor Server ME-ID**).
+1. Select the *Server API app* from the **Name** column (for example, **Blazor Server ME-ID**). You must be an owner of the app registration (and the API app registration if it's a separate app) in order to see the API in the **My APIs** area of the Azure portal. For more information, see [Assign application owner (Microsoft Entra documentation)](/entra/identity-platform/quickstart-configure-app-expose-web-apis#assign-application-owner).
 1. Open the **API** list.
 1. Enable access to the API (for example, `API.Access`).
 1. Select **Add permissions**.
@@ -316,7 +319,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{PROJECT NAME}.ServerAPI"));
 ```
 
-The placeholder `{PROJECT NAME}` is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
+The `{PROJECT NAME}` placeholder is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
@@ -502,7 +505,7 @@ Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:blazor/security/webassembly/meid-groups-roles>
+* <xref:blazor/security/webassembly/meid-groups-roles-net5to7>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/entra/identity-platform/)
 * [Quickstart: Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app)

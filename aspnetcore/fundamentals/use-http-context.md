@@ -3,11 +3,13 @@ title: Use HttpContext in ASP.NET Core
 author: jamesnk
 description: How to use HttpContext in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 01/31/2022
 uid: fundamentals/use-httpcontext
 ---
 # Use HttpContext in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
 

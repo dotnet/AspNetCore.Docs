@@ -3,11 +3,13 @@ title: Use gRPC in browser apps
 author: jamesnk
 description: Learn the options available to make ASP.NET Core gRPC services callable from browser apps.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 08/04/2022
 uid: grpc/browser
 ---
 # Use gRPC in browser apps
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

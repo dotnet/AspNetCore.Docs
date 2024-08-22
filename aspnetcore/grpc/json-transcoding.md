@@ -3,12 +3,14 @@ title: gRPC JSON transcoding in ASP.NET Core gRPC apps
 author: jamesnk
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 05/10/2023
 uid: grpc/json-transcoding
 ms.custom: engagement-fy23
 ---
 # gRPC JSON transcoding in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

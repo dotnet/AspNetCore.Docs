@@ -3,11 +3,13 @@ title: Inter-process communication with gRPC and Unix domain sockets
 author: jamesnk
 description: Learn how to use gRPC for inter-process communication with Unix domain sockets.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 01/18/2023
 uid: grpc/interprocess-uds
 ---
 # Inter-process communication with gRPC and Unix domain sockets
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

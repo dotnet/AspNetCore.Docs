@@ -1,8 +1,8 @@
 ---
 title: Razor syntax reference for ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 02/12/2020
 uid: mvc/views/razor
 ---
@@ -467,7 +467,7 @@ Razor comments are removed by the server before the webpage is rendered. Razor u
 
 ## Directives
 
-Razor directives are represented by implicit expressions with reserved keywords following the `@` symbol. A directive typically changes the way a view is parsed or enables different functionality.
+Razor directives are represented by implicit expressions with reserved keywords following the `@` symbol. A directive typically changes the way a view is compiled or functions.
 
 Understanding how Razor generates code for a view makes it easier to understand how directives work.
 
@@ -810,7 +810,7 @@ In [Razor components](xref:blazor/components/index), `@using` also controls whic
 
 ## Directive attributes
 
-Razor directive attributes are represented by implicit expressions with reserved keywords following the `@` symbol. A directive attribute typically changes the way an element is parsed or enables different functionality.
+Razor directive attributes are represented by implicit expressions with reserved keywords following the `@` symbol. A directive attribute typically changes the way an element is compiled or functions.
 
 ### `@attributes`
 

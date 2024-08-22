@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.2.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/5/2019
 uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
@@ -93,7 +93,7 @@ For more information, see [Response Compression Middleware supports Brotli compr
 
 ## Project templates
 
-ASP.NET Core web project templates were updated to [Bootstrap 4](https://getbootstrap.com/docs/4.1/migration/) and [Angular 6](https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4). The new look is visually simpler and makes it easier to see the important structures of the app.
+ASP.NET Core web project templates were updated to [Bootstrap 4](https://getbootstrap.com/docs/4.1/migration/) and Angular 6. The new look is visually simpler and makes it easier to see the important structures of the app.
 
 ![Home or Index page](~/tutorials/razor-pages/razor-pages-start/_static/home2.2.png)
 

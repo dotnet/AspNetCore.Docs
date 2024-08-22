@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 07/19/2024
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -25,6 +25,13 @@ Although "Razor components" shares some naming with other ASP.NET Core content-r
 * [Razor views](xref:tutorials/first-mvc-app/adding-view), which are [Razor-based](xref:mvc/views/razor) markup pages for MVC apps.
 * [View components](xref:mvc/views/view-components), which are for rendering chunks of content rather than whole responses in Razor Pages and MVC apps.
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!IMPORTANT]
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by <xref:blazor/components/render-modes>, which is the next article in the table of contents after this article.
+
+:::moniker-end
+
 ## Component classes
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
@@ -41,7 +48,7 @@ Developers typically create Razor components from Razor component files (`.razor
 
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
 
-* [Directives](xref:mvc/views/razor#directives): Change the way component markup is parsed or functions. For example, the [`@page`][9] directive specifies a routable component with a route template and can be reached directly by a user's request in the browser at a specific URL.
+* [Directives](xref:mvc/views/razor#directives): Change the way component markup is compiled or functions. For example, the [`@page`][9] directive specifies a routable component with a route template that can be reached directly by a user's request in the browser at a specific URL.
 
   By convention, a component's directives at the top of a component definition (`.razor` file) are placed in a consistent order. For repeated directives, directives are placed alphabetically by namespace or type, except `@using` directives, which have special second-level ordering.
   
@@ -80,7 +87,7 @@ Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are exte
   ...
   ```
 
-* [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is parsed or functions.
+* [Directive attributes](xref:mvc/views/razor#directive-attributes): Change the way a component element is compiled or functions.
 
   Example:
 
@@ -876,6 +883,7 @@ Throughout the documentation, code examples:
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
 
 ```razor
+<ParameterChild Title="await ..." />
 <ParameterChild Title="@await ..." />
 ```
 

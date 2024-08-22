@@ -3,11 +3,13 @@ title: Use gRPC client with .NET Standard 2.0
 author: jamesnk
 description: Learn how to use the .NET gRPC client in apps and libraries that support .NET Standard 2.0.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 3/11/2021
 uid: grpc/netstandard
 ---
 # Use gRPC client with .NET Standard 2.0
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

@@ -2,7 +2,7 @@
 title: Configure portable object localization in ASP.NET Core
 author: sebastienros
 description: This article introduces Portable Object files and outlines steps for using them in an ASP.NET Core application with the Orchard Core framework.
-ms.author: scaddie
+ms.author: wpickett
 ms.date: 09/26/2017
 uid: fundamentals/portable-object-localization
 ---
@@ -171,6 +171,14 @@ Existuje 5 položek.
 For the Czech culture, the three translations are different. The French and English cultures share the same construction for the two last translated strings.
 
 ## Advanced tasks
+
+### Using additional arguments
+
+The argument at index zero `{0}` always represents the count value. When invoking the `Plural` method it is possible to add additional arguments and their index will then start at one (`1`).
+
+```cshtml
+<p>@Localizer.Plural(count, "There is one item with the color {1}.", "There are {0} items. The main color is {1}.", color)</p>
+```
 
 ### Contextualizing strings
 

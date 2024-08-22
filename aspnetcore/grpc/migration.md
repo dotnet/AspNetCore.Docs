@@ -3,11 +3,13 @@ title: Migrate gRPC from C-core to gRPC for .NET
 author: jamesnk
 description: Learn how to move an existing C-core based gRPC app to run on top of gRPC for .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 01/18/2022
 uid: grpc/migration
 ---
 # Migrate gRPC from C-core to gRPC for .NET
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and gRPC for .NET. This document highlights the key differences for migrating between the two stacks.
 

@@ -775,7 +775,7 @@ Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettin
 
 At the top of the Razor component file (`.razor`):
 
-* Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+* Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a <xref:Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 * Inject an `IConfiguration` to read the `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
@@ -860,6 +860,5 @@ Use ***either*** of the following approaches:
 * [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider)
 * Browser developer tools documentation:
   * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
   * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

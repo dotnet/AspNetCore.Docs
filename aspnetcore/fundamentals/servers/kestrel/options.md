@@ -10,6 +10,8 @@ uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. To configure Kestrel configuration options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A> in `Program.cs`:

@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/07/2024
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
@@ -89,7 +89,7 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 In **API permissions** from the sidebar:
 
 1. Select **Add a permission** followed by **My APIs**.
-1. Select the *Server API app* from the **Name** column (for example, **Blazor Server AAD B2C**).
+1. Select the *Server API app* from the **Name** column (for example, **Blazor Server AAD B2C**). You must be an owner of the app registration (and the API app registration if it's a separate app) in order to see the API in the **My APIs** area of the Azure portal. For more information, see [Assign application owner (Microsoft Entra documentation)](/entra/identity-platform/quickstart-configure-app-expose-web-apis#assign-application-owner).
 1. Open the **API** list if it isn't already open.
 1. Enable access to the API (for example, `API.Access`) with the checkbox.
 1. Select **Add permissions**.
@@ -308,7 +308,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{PROJECT NAME}.ServerAPI"));
 ```
 
-The placeholder `{PROJECT NAME}` is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
+The `{PROJECT NAME}` placeholder is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 

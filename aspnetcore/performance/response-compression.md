@@ -32,7 +32,7 @@ Use Response Compression Middleware when the app is:
 * Unable to use the following server-based compression technologies:
   * [IIS Dynamic Compression module](https://www.iis.net/overview/reliability/dynamiccachingandcompression)
   * [Apache mod_deflate module](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
-  * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
+  * [Nginx Compression and Decompression](https://docs.nginx.com/nginx/admin-guide/web-server/compression/)
 * Hosting directly on:
   * [HTTP.sys server](xref:fundamentals/servers/httpsys)
   * [Kestrel server](xref:fundamentals/servers/kestrel)

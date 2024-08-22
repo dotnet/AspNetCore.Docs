@@ -3,11 +3,13 @@ title: Use OpenAPI with gRPC JSON transcoding ASP.NET Core apps
 author: jamesnk
 description: Learn how to configure gRPC JSON transcoding to generate OpenAPI.
 monikerRange: '>= aspnetcore-7.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 09/20/2022
 uid: grpc/json-transcoding-openapi
 ---
 # gRPC JSON transcoding documentation with Swagger / OpenAPI
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

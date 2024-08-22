@@ -10,6 +10,8 @@ uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
@@ -760,7 +762,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
@@ -1517,7 +1518,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end
@@ -2274,7 +2274,6 @@ WebHost.CreateDefaultBuilder(args)
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/linux-apache>
 * <xref:host-and-deploy/windows-service>
 
 :::moniker-end

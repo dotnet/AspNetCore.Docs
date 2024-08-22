@@ -2,7 +2,7 @@
 title: Use the LibMan CLI with ASP.NET Core
 author: rick-anderson
 description: Learn how to use the LibMan CLI in an ASP.NET Core project.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 01/11/2024
 uid: client-side/libman/libman-cli

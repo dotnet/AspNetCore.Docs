@@ -5,5 +5,50 @@
         "AreaPath": "Production\\Digital and App Innovation\\DotNet and more\\ASP.NET"
     },
     "ImportTriggerLabel": "reQUEST",
-    "ImportedLabel": "seQUESTered"
+    "ImportedLabel": "seQUESTered",
+    "ParentNodes": [
+        {
+            "Label": "okr-freshness",
+            "ParentNodeId": 237266
+        },
+        {
+            "Label": "okr-curation",
+            "ParentNodeId": 237271
+        },
+        {
+            "Label": "user-feedback",
+            "ParentNodeId": 233465
+        },
+        {
+            "Label": "okr-health",
+            "ParentNodeId": 237266
+        },
+        {
+            "Label": "doc-bug",
+            "ParentNodeId": 233465
+        },
+        {
+            "Label": "sfi-ropc",
+            "ParentNodeId": 271716
+        },
+        {
+            "Label": "sfi-admin",
+            "ParentNodeId": 271716
+        },
+        {
+            "Label": "sfi-images",
+            "ParentNodeId": 286370
+        }
+    ],
+    "DefaultParentNode": 227486,
+    "WorkItemTags": [
+        {
+            "Label": "9.0",
+            "Tag": "new feature"
+        },
+        {
+            "Label": "okr-curation",
+            "Tag": "content-curation"
+        }
+    ]
 }

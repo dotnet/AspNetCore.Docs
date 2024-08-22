@@ -1,9 +1,9 @@
 ---
 title: Configure ASP.NET Core Data Protection
-author: rick-anderson
+author: tdykstra
 description: Learn how to configure Data Protection in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 6/14/2023
 uid: security/data-protection/configuration/overview
@@ -23,6 +23,10 @@ For these scenarios, the Data Protection system offers a rich configuration API.
 > Similar to configuration files, the data protection key ring should be protected using appropriate permissions. You can choose to encrypt keys at rest, but this doesn't prevent attackers from creating new keys. Consequently, your app's security is impacted. The storage location configured with Data Protection should have its access limited to the app itself, similar to the way you would protect configuration files. For example, if you choose to store your key ring on disk, use file system permissions. Ensure only the identity under which your web app runs has read, write, and create access to that directory. If you use Azure Blob Storage, only the web app should have the ability to read, write, or create new entries in the blob store, etc.
 >
 > The extension method <xref:Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection%2A> returns an <xref:Microsoft.AspNetCore.DataProtection.IDataProtectionBuilder>. `IDataProtectionBuilder` exposes extension methods that you can chain together to configure Data Protection options.
+
+> [!NOTE]
+> This article was written for an app that runs within a docker container. In a docker container the app always has the same path and, therefore, the same application discriminator. Apps that need to run in multiple environments (e.g. local and deployed), must set the default application discriminator for the environment.
+> Running an app in multiple environments is beyond the scope of this article.
 
 The following NuGet packages are required for the Data Protection extensions used in this article:
 

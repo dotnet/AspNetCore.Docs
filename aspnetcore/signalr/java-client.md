@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR Java client
 author: mikaelm12
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/12/2019
 uid: signalr/java-client

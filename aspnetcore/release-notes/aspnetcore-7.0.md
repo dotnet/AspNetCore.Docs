@@ -173,7 +173,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-For more information, see [OpenAPI in minimal API apps](xref:fundamentals/minimal-apis/openapi?view=aspnetcore-7.0)
+For more information, see [OpenAPI in minimal API apps](xref:fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-7.0)
 
 ### File uploads using IFormFile and IFormFileCollection
 
@@ -498,7 +498,7 @@ JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism fo
 For more information:
 
 * <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssembly apps.
-* <xref:client-side/dotnet-interop>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
+* <xref:client-side/dotnet-interop/index>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
 
 ### Conditional registration of the authentication state provider
 

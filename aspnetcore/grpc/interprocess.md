@@ -3,11 +3,13 @@ title: Inter-process communication with gRPC
 author: jamesnk
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 11/08/2023
 uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 

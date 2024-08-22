@@ -237,7 +237,7 @@ Update-Database
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
-Run the following .NET Core CLI commands:
+Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate

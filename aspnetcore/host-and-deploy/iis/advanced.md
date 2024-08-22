@@ -10,6 +10,8 @@ uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article covers advanced configuration options and scenarios for the ASP.NET Core Module and IIS.
 
 ## Modify the stack size
@@ -47,6 +49,29 @@ The `disallowRotationOnConfigChange` setting is intended for blue/green scenario
 ```
 
 This setting corresponds to the API <xref:Microsoft.Web.Administration.ApplicationPoolRecycling.DisallowRotationOnConfigChange?displayProperty=nameWithType>
+
+## Reduce 503 likelihood during app recycle
+
+By default, there is a one second delay between when IIS is notified of a recycle or shutdown and when ANCM tells the managed server to initiate shutdown. The delay is configurable via the `ANCM_shutdownDelay` environment variable or by setting the `shutdownDelay` handler setting. Both values are in milliseconds. The delay is primarily to reduce the likelihood of a race where:
+
+* IIS hasn't started queuing requests to go to the new app.
+* ANCM starts rejecting new requests that come into the old app.
+
+This setting doesn't mean incoming requests will be delayed by this amount. The setting indicates that the old app instance will start shutting down after the timeout occurs. Slower machines or machines with heavier CPU usage might need to adjust this value to reduce 503 likelihood.
+
+The following example sets the delay to 5 seconds:
+
+```xml
+<aspNetCore processPath="dotnet"
+    arguments=".\MyApp.dll"
+    stdoutLogEnabled="false"
+    stdoutLogFile="\\?\%home%\LogFiles\stdout"
+    hostingModel="inprocess">
+  <handlerSettings>
+    <handlerSetting name="shutdownDelay" value="5000" />
+  </handlerSettings>
+</aspNetCore>
+```
 
 ## Proxy configuration uses HTTP protocol and a pairing token
 
@@ -388,7 +413,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 
 ## Install Web Deploy when publishing with Visual Studio
 
-When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=43717).
+When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, see [IIS Downloads: Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy).
 
 ## Create the IIS site
 

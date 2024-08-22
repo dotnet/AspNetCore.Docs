@@ -1098,7 +1098,7 @@ In the preceding example:
 
 * The `<div>` with `@ref="mapElement"` is left empty as far as Blazor is concerned. The `mapbox-gl.js` script can safely populate the element and modify its contents. Use this technique with any JS library that renders UI. You can embed components from a third-party JS SPA framework inside Razor components, as long as they don't try to reach out and modify other parts of the page. It is **not** safe for external JS code to modify elements that Blazor does not regard as empty.
 * When using this approach, bear in mind the rules about how Blazor retains or destroys DOM elements. The component safely handles button click events and updates the existing map instance because DOM elements are retained where possible by default. If you were rendering a list of map elements from inside a `@foreach` loop, you want to use `@key` to ensure the preservation of component instances. Otherwise, changes in the list data could cause component instances to retain the state of previous instances in an undesirable manner. For more information, see how to [use the `@key` directive attribute to preserve the relationship among elements, components, and model objects](xref:blazor/components/key).
-* The example encapsulates JS logic and dependencies within an ES6 module and loads the module dynamically using the `import` identifier. For more information, see [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules).
+* The example encapsulates JS logic and dependencies within a JavaScript module and loads the module dynamically using the `import` identifier. For more information, see [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules).
 
 :::moniker-end
 
@@ -1213,14 +1213,14 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 ## Stream from .NET to JavaScript
 
-Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
+Blazor supports streaming data directly from .NET to JavaScript (JS). Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
 <xref:Microsoft.JSInterop.DotNetStreamReference> represents a .NET stream and uses the following parameters:
 
-* `stream`: The stream sent to JavaScript.
+* `stream`: The stream sent to JS.
 * `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
 
-In JavaScript, use an array buffer or a readable stream to receive the data:
+In JS, use an array buffer or a readable stream to receive the data:
 
 * Using an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer):
 
@@ -1241,14 +1241,23 @@ In JavaScript, use an array buffer or a readable stream to receive the data:
 In C# code:
 
 ```csharp
-using var streamRef = new DotNetStreamReference(stream: {STREAM}, leaveOpen: false);
+var streamRef = new DotNetStreamReference(stream: {STREAM}, leaveOpen: false);
 await JS.InvokeVoidAsync("streamToJavaScript", streamRef);
 ```
 
 In the preceding example:
 
-* The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
+* The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JS.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+
+Disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> instance is usually unnecessary. When `leaveOpen` is set to its default value of `false`, the underlying <xref:System.IO.Stream> is automatically disposed after transmission to JS.
+
+If `leaveOpen` is `true`, then disposing a <xref:Microsoft.JSInterop.DotNetStreamReference> doesn't dispose its underlying <xref:System.IO.Stream>. The app's code determines when to dispose the underlying <xref:System.IO.Stream>. When deciding how to dispose the underlying <xref:System.IO.Stream>, consider the following:
+
+* Disposing a <xref:System.IO.Stream> while it's being transmitted to JS is considered an application error and may cause an unhandled exception to occur.
+* <xref:System.IO.Stream> transmission begins as soon as the <xref:Microsoft.JSInterop.DotNetStreamReference> is passed as an argument to a JS interop call, regardless of whether the stream is actually used in JS logic.
+
+Given these characteristics, we recommend disposing the underlying <xref:System.IO.Stream> only after it's fully consumed by JS (the promise returned by `arrayBuffer` or `stream` resolves). It follows that a <xref:Microsoft.JSInterop.DotNetStreamReference> should only be passed to JS if it's unconditionally going to be consumed by JS logic.
 
 <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net> covers the reverse operation, streaming from JavaScript to .NET.
 

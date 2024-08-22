@@ -16,7 +16,6 @@ ASP.NET Core provides the following benefits:
   * [IIS](xref:host-and-deploy/iis/index)
   * [HTTP.sys](xref:fundamentals/servers/httpsys)
   * [Nginx](xref:host-and-deploy/linux-nginx)
-  * [Apache](xref:host-and-deploy/linux-apache)
   * [Docker](xref:host-and-deploy/docker/index)
 * [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level).
 * Tooling that simplifies modern web development.

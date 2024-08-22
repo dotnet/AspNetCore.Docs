@@ -3,11 +3,13 @@ title: Reliable gRPC services with deadlines and cancellation
 author: jamesnk
 description: Learn how to create reliable gRPC services with deadlines and cancellation in .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 09/07/2020
 uid: grpc/deadlines-cancellation
 ---
 # Reliable gRPC services with deadlines and cancellation
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

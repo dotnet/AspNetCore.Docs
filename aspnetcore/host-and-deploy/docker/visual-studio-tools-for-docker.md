@@ -2,12 +2,14 @@
 title: Visual Studio Container Tools with ASP.NET Core
 author: spboyer
 description: Learn how to use Visual Studio tooling and Docker for Windows to containerize an ASP.NET Core app.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Container Tools with ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Visual Studio 2017 and later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 

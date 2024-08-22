@@ -1,8 +1,8 @@
 ---
 title: Reusable Razor UI in class libraries with ASP.NET Core
-author: Rick-Anderson
+author: tdykstra
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 11/19/2023
 ms.custom: mvc
 uid: razor-pages/ui-class
@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
-For information on how to integrate npm and webpack into the build process for a Razor Class Library, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
+For information on how to integrate npm and webpack into the build process for a RCL, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
 
 ## Create a class library containing Razor UI
 
@@ -26,9 +26,9 @@ For information on how to integrate npm and webpack into the build process for a
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need the library to contain pages and/or views. By default, only Razor components are supported. Select **Create**.
 
-The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see <xref:blazor/components/class-libraries>.
+The Razor Class Library template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see <xref:blazor/components/class-libraries>.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
@@ -36,7 +36,7 @@ From the command line, run `dotnet new razorclasslib`. For example:
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
-The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
+The Razor Class Library template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 

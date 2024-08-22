@@ -14,12 +14,6 @@ uid: blazor/host-and-deploy/webassembly
 
 This article explains how to host and deploy Blazor WebAssembly using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
 
-<!-- UPDATE 9.0 Remove CAUTION at 9.0 GA or
-                when we update CentOS guidance -->
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that's nearing End Of Life (EOL) status. Please consider your use and plan accordingly. For more information, see the [CentOS](#centos) section of this article.
-
 With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
@@ -40,6 +34,12 @@ The following deployment strategies are supported:
 * An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 :::moniker-end
+
+## Subdomain and IIS sub-application hosting
+
+Subdomain hosting doesn't require special configuration of the app. You ***don't*** need to configure the app base path (the `<base>` tag in `wwwroot/index.html`) to host the app at a subdomain.
+
+IIS sub-application hosting ***does*** require you to set the app base path. For more information and cross-links to further guidance on IIS sub-application hosting, see <xref:blazor/host-and-deploy/index#iis>.
 
 ## Decrease maximum heap size for some mobile device browsers
 
@@ -571,31 +571,14 @@ Increase the value if browser developer tools or a network traffic tool indicate
 
 For more information on production Nginx web server configuration, see [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/).
 
-### CentOS
-
-<!-- UPDATE 9.0 Update future tense, and we'll 
-                need to completely update the 
-                following "Apache" section to use
-                a different Linux distribution. 
-                Currently, this is tracked by
-                the UE issue. -->
-
-On June 30, 2024, CentOS reaches End Of Life (EOL) status and will no longer be supported with web servers for Blazor WebAssembly hosting. For more information, see the following resources:
-
-* [CentOS Stream: Building an innovative future for enterprise Linux](https://www.redhat.com/blog/centos-stream-building-innovative-future-enterprise-linux)
-* [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life)
-
-:::moniker range="< aspnetcore-9.0"
 
 ### Apache
 
-To deploy a Blazor WebAssembly app to CentOS 7 or later:
+To deploy a Blazor WebAssembly app to Apache:
+
+:::moniker range=">= aspnetcore-8.0"
 
 1. Create the Apache configuration file. The following example is a simplified configuration file (`blazorapp.config`):
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
    ```
    <VirtualHost *:80>
@@ -619,10 +602,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
            AddOutputFilterByType DEFLATE application/octet-stream
            AddOutputFilterByType DEFLATE application/wasm
            <IfModule mod_setenvif.c>
-         BrowserMatch ^Mozilla/4 gzip-only-text/html
-         BrowserMatch ^Mozilla/4.0[678] no-gzip
-         BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-     </IfModule>
+               BrowserMatch ^Mozilla/4 gzip-only-text/html
+               BrowserMatch ^Mozilla/4.0[678] no-gzip
+               BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+           </IfModule>
        </IfModule>
 
        ErrorLog /var/log/httpd/blazorapp-error.log
@@ -633,6 +616,8 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+1. Create the Apache configuration file. The following example is a simplified configuration file (`blazorapp.config`):
 
    ```
    <VirtualHost *:80>
@@ -657,10 +642,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
            AddOutputFilterByType DEFLATE application/octet-stream
            AddOutputFilterByType DEFLATE application/wasm
            <IfModule mod_setenvif.c>
-         BrowserMatch ^Mozilla/4 gzip-only-text/html
-         BrowserMatch ^Mozilla/4.0[678] no-gzip
-         BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-     </IfModule>
+               BrowserMatch ^Mozilla/4 gzip-only-text/html
+               BrowserMatch ^Mozilla/4.0[678] no-gzip
+               BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+           </IfModule>
        </IfModule>
 
        ErrorLog /var/log/httpd/blazorapp-error.log
@@ -670,17 +655,13 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
+1. Place the Apache configuration file into the `/etc/httpd/conf.d/` directory.
 
-1. Place the Apache configuration file into the `/etc/httpd/conf.d/` directory, which is the default Apache configuration directory in CentOS 7.
-
-1. Place the app's files into the `/var/www/blazorapp` directory (the location specified to `DocumentRoot` in the configuration file).
+1. Place the app's published assets (`/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot`, where the `{TARGET FRAMEWORK}` placeholder is the target framework) into the `/var/www/blazorapp` directory (the location specified to `DocumentRoot` in the configuration file).
 
 1. Restart the Apache service.
 
 For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
-
-:::moniker-end
 
 ### GitHub Pages
 
@@ -724,10 +705,10 @@ The `--contentroot` argument sets the absolute path to the directory that contai
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
   ```dotnetcli
-  dotnet run --contentroot=/content-root-path
+  dotnet watch --contentroot=/content-root-path
   ```
 
-* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when the app is run with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when the app is run with the Visual Studio Debugger and from a command prompt with `dotnet watch` (or `dotnet run`).
 
   ```json
   "commandLineArgs": "--contentroot=/content-root-path"
@@ -749,10 +730,10 @@ The `--pathbase` argument sets the app base path for an app run locally with a n
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
   ```dotnetcli
-  dotnet run --pathbase=/relative-URL-path
+  dotnet watch --pathbase=/relative-URL-path
   ```
 
-* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet watch` (or `dotnet run`).
 
   ```json
   "commandLineArgs": "--pathbase=/relative-URL-path"
@@ -771,10 +752,10 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
   ```dotnetcli
-  dotnet run --urls=http://127.0.0.1:0
+  dotnet watch --urls=http://127.0.0.1:0
   ```
 
-* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet watch` (or `dotnet run`).
 
   ```json
   "commandLineArgs": "--urls=http://127.0.0.1:0"
@@ -906,7 +887,6 @@ For an app that responds to requests at `/blazor`:
 
 For more information and configuration guidance, consult the following resources:
 
-* <xref:host-and-deploy/linux-apache>
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
@@ -1174,7 +1154,7 @@ Placeholders:
 * `{PUBLISH OUTPUT FOLDER}`: The path to the app's `publish` folder or location where the app is published for deployment.
 
 > [!NOTE]
-> When cloning the `dotnet/AspNetCore.Docs` GitHub repository, the `integrity.ps1` script might be quarantined by [Bitdefender](https://www.bitdefender.com) or another virus scanner present on the system. Usually, the file is trapped by a virus scanner's *heuristic scanning* technology, which merely looks for patterns in files that might indicate the presence of malware. To prevent the virus scanner from quarantining the file, add an exception to the virus scanner prior to cloning the repo. The following example is a typical path to the script on a Windows system. Adjust the path as needed for other systems. The placeholder `{USER}` is the user's path segment.
+> When cloning the `dotnet/AspNetCore.Docs` GitHub repository, the `integrity.ps1` script might be quarantined by [Bitdefender](https://www.bitdefender.com) or another virus scanner present on the system. Usually, the file is trapped by a virus scanner's *heuristic scanning* technology, which merely looks for patterns in files that might indicate the presence of malware. To prevent the virus scanner from quarantining the file, add an exception to the virus scanner prior to cloning the repo. The following example is a typical path to the script on a Windows system. Adjust the path as needed for other systems. The `{USER}` placeholder is the user's path segment.
 >
 > ```
 > C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1

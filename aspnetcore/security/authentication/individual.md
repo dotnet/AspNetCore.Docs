@@ -10,7 +10,7 @@ uid: security/authentication/individual
 
 ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
 
-The authentication templates are available in .NET Core CLI with `-au Individual`:
+The authentication templates are available in .NET CLI with `-au Individual`:
 
 :::moniker range=">= aspnetcore-2.1"
 
@@ -36,7 +36,7 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5833) for we
 
 ## No Authentication
 
-Authentication is specified in the .NET Core CLI with the `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
+Authentication is specified in the .NET CLI with the `-au` option. In Visual Studio, the **Change Authentication** dialog is available for new web applications. The default for new web apps in Visual Studio is **No Authentication**.
 
 Projects created with no authentication:
 
@@ -47,7 +47,7 @@ Projects created with no authentication:
 
 ## Windows Authentication
 
-Windows Authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
+Windows Authentication is specified for new web apps in the .NET CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
 
 If Windows Authentication is selected, the app is configured to use the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
 

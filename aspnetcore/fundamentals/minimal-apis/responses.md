@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 04/10/2024
+ms.date: 06/04/2024
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -28,9 +28,7 @@ Minimal endpoints support the following types of return values:
 
 Consider the following route handler, which returns a `Hello world` text. 
 
-```csharp
-app.MapGet("/hello", () => "Hello World");
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_01":::
 
 The `200` status code is returned with `text/plain` Content-Type header and the following content.
 
@@ -46,9 +44,7 @@ Hello World
 
 Consider the following route handler, which returns an anonymous type containing a `Message` string property.
 
-```csharp
-app.MapGet("/hello", () => new { Message = "Hello World" });
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_02":::
 
 The `200` status code is returned with `application/json` Content-Type header and the following content.
 
@@ -71,7 +67,7 @@ The <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http
 Returning `TypedResults` rather than `Results` has the following advantages:
 
 * `TypedResults` helpers return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
-* The implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types) to describe the endpoint.
+* The implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types) to describe the endpoint.
 
 Consider the following endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
@@ -81,7 +77,7 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1).
+For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
 
 As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following minimal API which returns a `TypedResults` class
 
@@ -118,19 +114,11 @@ This has the added benefit of providing compile-time checking that a route handl
 
 Consider the following endpoint, for which a `400 BadRequest` status code is returned when the `orderId` is greater than `999`. Otherwise, it produces a `200 OK` with the expected content.
 
-```csharp
-app.MapGet("/orders/{orderId}", IResult (int orderId)
-    => orderId > 999 ? TypedResults.BadRequest() : TypedResults.Ok(new Order(orderId)))
-    .Produces(400)
-    .Produces<Order>();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_03":::
 
 In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you can return the `Results<T1, Tn>` union type instead, as shown in the following code.
 
-```csharp
-app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId) 
-    => orderId > 999 ? TypedResults.BadRequest() : TypedResults.Ok(new Order(orderId)));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_04":::
 
 <a name="binr7"></a>
 
@@ -142,9 +130,7 @@ The following sections demonstrate the usage of the common result helpers.
 
 #### JSON
 
-```csharp
-app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_05":::
 
 <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
 
@@ -152,23 +138,17 @@ app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 
 #### Custom Status Code
 
-```csharp
-app.MapGet("/405", () => Results.StatusCode(405));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_06":::
 
 #### Internal Server Error
 
-```csharp
-app.MapGet("/500", () => Results.InternalServerError("Something went wrong!"));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_07":::
 
 The preceding example returns a 500 status code.
 
 #### Text
 
-```csharp
-app.MapGet("/text", () => Results.Text("This is some text"));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_08":::
 
 <a name="stream7"></a>
 
@@ -190,15 +170,11 @@ The following example streams a video from an Azure Blob:
 
 #### Redirect
 
-```csharp
-app.MapGet("/old-path", () => Results.Redirect("/new-path"));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_09":::
 
 #### File
 
-```csharp
-app.MapGet("/download", () => Results.File("myfile.text"));
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_10":::
 
 <a name="httpresultinterfaces7"></a>
 
@@ -239,12 +215,7 @@ The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Ht
 
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
-```csharp
-public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
-{
-    builder.Metadata.Add(new ProducesAttribute(MediaTypeNames.Text.Html));
-}
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_11":::
 
 ## Configure JSON serialization options
 

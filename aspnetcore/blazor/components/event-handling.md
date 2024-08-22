@@ -23,9 +23,22 @@ Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}=
 
 For event handling:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Delegate event handlers in Blazor Web Apps are only called in components that adopt an interactive render mode. The examples throughout this article assume that the app adopts an interactive render mode globally in the app's root component, typically the `App` component. For more information, see <xref:blazor/components/render-modes#apply-a-render-mode-to-the-entire-app>.
 * Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
 * Delegate event handlers automatically trigger a UI render, so there's no need to manually call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged).
 * Exceptions are logged.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
+* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged).
+* Exceptions are logged.
+
+:::moniker-end
 
 The following code:
 
@@ -243,10 +256,13 @@ export function afterStarted(blazor) {
 }
 ```
 
-> [!NOTE]
-> The call to `registerCustomEventType` is performed in a script only once per event.
->
-> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+The call to `registerCustomEventType` is performed in a script only once per event.
+
+For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by the Blazor start event. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+
+The custom event name, `customevent` in the preceding example, must not match a reserved Blazor event name. The reserved names can be found in the [Blazor framework reference source (see the calls to the `registerBuiltInEventType` function)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Rendering/Events/EventTypes.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Define a class for the event arguments:
 

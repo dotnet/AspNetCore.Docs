@@ -75,8 +75,12 @@ For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-inte
 
 :::moniker-end
 
+<!-- UPDATE 9.0 Ask Beth on a replacement for this
+
 ## Additional resources
 
 * .NET MAUI Blazor podcast sample app
   * [Source code (`microsoft/dotnet-podcasts` GitHub repository)](https://github.com/microsoft/dotnet-podcasts)
   * [Live app](https://dotnetpodcasts.azurewebsites.net/)
+
+-->

@@ -3,11 +3,13 @@ title: Call gRPC services with the .NET client
 author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
-ms.date: 12/18/2020
+ms.author: wpickett
+ms.date: 6/5/2024
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) NuGet package. This document explains how to:
 
@@ -119,6 +121,8 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 }
 ```
 
+The type returned from starting a server streaming call implements `IDisposable`. Always dispose a streaming call to ensure it's stopped and all resources are cleaned up.
+
 ### Client streaming call
 
 A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages, `RequestStream.CompleteAsync()` should be called to notify the service. The call is finished when the service returns a response message.
@@ -137,6 +141,8 @@ var response = await call;
 Console.WriteLine($"Count: {response.Count}");
 // Count: 3
 ```
+
+The type returned from starting a client streaming call implements `IDisposable`. Always dispose a streaming call to ensure it's stopped and all resources are cleaned up.
 
 ### Bi-directional streaming call
 
@@ -183,6 +189,8 @@ For best performance, and to avoid unnecessary errors in the client and service,
 5. Waits until the background task has read all incoming messages.
 
 During a bi-directional streaming call, the client and service can send messages to each other at any time. The best client logic for interacting with a bi-directional call varies depending upon the service logic.
+
+The type returned from starting a bi-directional streaming call implements `IDisposable`. Always dispose a streaming call to ensure it's stopped and all resources are cleaned up.
 
 ## Access gRPC headers
 

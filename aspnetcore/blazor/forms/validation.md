@@ -20,6 +20,12 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
 Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
 
+:::moniker range=">= aspnetcore-8.0"
+
+In Blazor Web Apps, client-side validation requires an active Blazor SignalR circuit. Client-side validation isn't available to forms in components that have adopted static server-side rendering (static SSR). Forms that adopt static SSR are validated on the server after the form is submitted.
+
+:::moniker-end
+
 In the following component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
 
 `Starship8.razor`:
@@ -138,8 +144,10 @@ The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.Da
 * [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
 * [Server validation with a validator component](#server-validation-with-a-validator-component)
 
+Of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes), only the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute) isn't supported in Blazor.
+
 > [!NOTE]
-> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, any custom attributes applied to the model must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
 
@@ -265,7 +273,7 @@ When validation messages are set in the component, they're added to the validato
 :::moniker-end
 
 > [!NOTE]
-> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 ## Server validation with a validator component
 
@@ -799,7 +807,7 @@ The preceding example sets the base address with `builder.HostEnvironment.BaseAd
 -->
 
 > [!NOTE]
-> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server validation, the attributes must be executable on the server. For more information, see the [Custom validation attributes](#custom-validation-attributes) section.
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -1338,6 +1346,10 @@ Using `CustomFieldClassProvider3`:
 * The `Description` field uses logic similar to Blazor's logic and Blazor's default field CSS validation styles.
 
 :::moniker-end
+
+## Class-level validation with `IValidatableObject`
+
+[Class-level validation with `IValidatableObject`](xref:mvc/models/validation#ivalidatableobject) ([API documentation](xref:System.ComponentModel.DataAnnotations.IValidatableObject)) is supported for Blazor form models. <xref:System.ComponentModel.DataAnnotations.IValidatableObject> validation only executes when the form is submitted and only if all other validation succeeds.
 
 ## Blazor data annotations validation package
 

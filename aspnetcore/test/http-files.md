@@ -471,7 +471,9 @@ Some aspects of `.http` file behavior can be configured. To see what's available
 
 ## Use Endpoints Explorer
 
-**Endpoints Explorer** is a tool window in Visual Studio 2022 that provides a UI that integrates with the `.http` file editor for testing HTTP requests.
+**Endpoints Explorer** is a tool window that shows all the endpoints that a web API defines. The tool enables you to send requests to the endpoints by using an `.http` file.
+
+The initial set of endpoints that **Endpoints Explorer** displays are discovered statically. There are some endpoints that can't be discovered statically. For example, endpoints defined in a class library project can't be discovered until runtime. When you run or debug a web API, Visual Studio version 17.11 Preview discovers endpoints dynamically at run time also and adds those to **Endpoints Explorer**.
 
 ### Open Endpoints Explorer
 

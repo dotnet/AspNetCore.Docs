@@ -324,6 +324,22 @@ dotnet build
 
 For more information about using `Grpc.Tools` with unsupported architectures, see the [gRPC build integration documentation](https://github.com/grpc/grpc/blob/master/src/csharp/BUILD-INTEGRATION.md#using-grpctools-with-unsupported-architectures).
 
+## gRPC call timeout from `HttpClient.Timeout`
+
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don’t complete within the timeout limit.
+
+```output
+System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
+```
+
+There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=5)]
+
+Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=6)]
+
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
@@ -557,6 +573,22 @@ The preceding code:
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
+## gRPC call timeout from `HttpClient.Timeout`
+
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don’t complete within the timeout limit.
+
+```output
+System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
+```
+
+There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=5)]
+
+Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=6)]
+
 :::moniker-end
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
@@ -789,5 +821,21 @@ The preceding code:
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+
+## gRPC call timeout from `HttpClient.Timeout`
+
+<xref:System.Net.Http.HttpClient> is configured with a 100 second timeout by default. If a `GrpcChannel` is configured to use an `HttpClient`, long-running gRPC streaming calls are canceled if they don’t complete within the timeout limit.
+
+```output
+System.OperationCanceledException: The request was canceled due to the configured HttpClient.Timeout of 100 seconds elapsing.
+```
+
+There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=5)]
+
+Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
+
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=6)]
 
 :::moniker-end

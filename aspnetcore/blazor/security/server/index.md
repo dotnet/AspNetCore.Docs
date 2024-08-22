@@ -5,7 +5,7 @@ description: Learn how to secure server-side Blazor apps as ASP.NET Core applica
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/10/2024
 uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core server-side Blazor apps
@@ -89,7 +89,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 When issuing the .NET CLI command to create and configure the server-side Blazor app, indicate the authentication mechanism with the `-au|--auth` option:
 
@@ -159,11 +159,29 @@ The template handles the following:
 
 To inspect the Blazor framework's Identity components, access them in the `Pages` and `Shared` folders of the [`Account` folder in the Blazor Web App project template (reference source)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account).
 
-When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components render statically on the server in the Blazor Web App's main project. The project template includes a [`PersistentAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp.Client/PersistentAuthenticationStateProvider.cs) in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> class to prerender the authentication state and persist it to the page.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components render statically on the server in the Blazor Web App's main project.
+
+The framework provides a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in both the server and client (`.Client`) projects to flow the user's authentication state to the browser. The server project calls `AddAuthenticationStateSerialization`, while the client project calls `AddAuthenticationStateDeserialization`. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the Blazor WebAssembly runtime is initialized. The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and then read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. For more information, see the [Manage authentication state in Blazor Web Apps](#manage-authentication-state-in-blazor-web-apps) section.
+
+Only for Interactive Server solutions, [`IdentityRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that revalidates the security stamp for the connected user every 30 minutes an interactive circuit is connected.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+When you choose the Interactive WebAssembly or Interactive Auto render modes, the server handles all authentication and authorization requests, and the Identity components render statically on the server in the Blazor Web App's main project. The project template includes a [`PersistentAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp.Client/PersistentAuthenticationStateProvider.cs) in the `.Client` project to synchronize the user's authentication state between the server and the browser. The class is a custom implementation of <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>. The provider uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to prerender the authentication state and persist it to the page.
+
+In the main project of a Blazor Web App, the authentication state provider is named either [`IdentityRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) (Server interactivity solutions only) or [`PersistingRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingRevalidatingAuthenticationStateProvider.cs) (WebAssembly or Auto interactivity solutions).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 Blazor Identity depends on <xref:Microsoft.EntityFrameworkCore.DbContext> instances not [created by a factory](xref:blazor/blazor-ef-core#new-dbcontext-instances), which is intentional because <xref:Microsoft.EntityFrameworkCore.DbContext> is sufficient for the project template's Identity components to render statically without supporting interactivity.
-
-In the main project of a Blazor Web App, the authentication state provider is named either [`IdentityRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) (Server interactivity solutions only) or [`PersistingRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingRevalidatingAuthenticationStateProvider.cs) (WebAssembly or Auto interactivity solutions).
 
 For a description on how global interactive render modes are applied to non-Identity components while at the same time enforcing static SSR for the Identity components, see <xref:blazor/components/render-modes#area-folder-of-static-ssr-components>.
 
@@ -179,18 +197,51 @@ For more information on the Blazor Identity UI and guidance on integrating exter
 
 *This section applies to Blazor Web Apps that adopt:*
 
-* *Interactive server-side rendering (interactive SSR) and CSR.*
-* *Client-side rendering (CSR).*
+* Individual Accounts
+* *Client-side rendering (CSR, WebAssembly-based interactivity).*
 
 A client-side authentication state provider is only used within Blazor and isn't integrated with the ASP.NET Core authentication system. During prerendering, Blazor respects the metadata defined on the page and uses the ASP.NET Core authentication system to determine if the user is authenticated. When a user navigates from one page to another, a client-side authentication provider is used. When the user refreshes the page (full-page reload), the client-side authentication state provider isn't involved in the authentication decision on the server. Since the user's state isn't persisted by the server, any authentication state maintained client-side is lost.
 
-To address this, the best approach is to perform authentication within the ASP.NET Core authentication system. The client-side authentication state provider only takes care of reflecting the user's authentication state. Examples for how to accomplish this with authentication state providers are demonstrated by the Blazor Web App project template:
+To address this, the best approach is to perform authentication within the ASP.NET Core authentication system. The client-side authentication state provider only takes care of reflecting the user's authentication state. Examples for how to accomplish this with authentication state providers are demonstrated by the Blazor Web App project template and described below.
 
-* [`PersistingRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingRevalidatingAuthenticationStateProvider.cs): For Blazor Web Apps that adopt interactive server-side rendering (interactive SSR) and client-side rendering (CSR). This is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that revalidates the security stamp for the connected user every 30 minutes an interactive circuit is connected. It also uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) to flow the authentication state to the client, which is then fixed for the lifetime of CSR.
+:::moniker-end
 
-* [`PersistingServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingServerAuthenticationStateProvider.cs): For Blazor Web Apps that only adopt CSR. This is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) to flow the authentication state to the client, which is then fixed for the lifetime of CSR.
+:::moniker range=">= aspnetcore-9.0"
 
-* [`PersistentAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp.Client/PersistentAuthenticationStateProvider.cs): For Blazor Web Apps that adopt CSR. This is a client-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that determines the user's authentication state by looking for data persisted in the page when it was rendered on the server. This authentication state is fixed for the lifetime of CSR. If the user needs to log in or out, a full-page reload is required. This only provides a user name and email for display purposes. It doesn't include tokens that authenticate to the server when making subsequent requests, which is handled separately using a cookie that's included on `HttpClient` requests to the server.
+In the server project's `Program` file, call `AddAuthenticationStateSerialization`, which serializes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> returned by the server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> using the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>):
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveWebAssemblyComponents()
+    .AddAuthenticationStateSerialization();
+```
+
+By default, the API only serializes the server-side name and role claims for access in the browser. To include all claims, set `SerializeAllClaims` to `true` in the server-side call to `AddAuthenticationStateSerialization`:
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddInteractiveWebAssemblyComponents()
+    .AddAuthenticationStateSerialization(
+        options => options.SerializeAllClaims = true);
+```
+
+In the client (`.Client`) project's `Program` file, call `AddAuthenticationStateDeserialization`, which adds an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> where the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> is deserialized from the server using `AuthenticationStateData` and the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>). There should be a corresponding call to `AddAuthenticationStateSerialization` in the server project.
+
+```csharp
+builder.Services.AddAuthorizationCore();
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddAuthenticationStateDeserialization();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
+* [`PersistingRevalidatingAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingRevalidatingAuthenticationStateProvider.cs): For Blazor Web Apps that adopt interactive server-side rendering (interactive SSR) and client-side rendering (CSR). This is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that revalidates the security stamp for the connected user every 30 minutes an interactive circuit is connected. It also uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) to flow the authentication state to the client, which is then fixed for the lifetime of CSR.
+
+* [`PersistingServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/PersistingServerAuthenticationStateProvider.cs): For Blazor Web Apps that only adopt CSR. This is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that uses the [Persistent Component State service](xref:blazor/components/prerender#persist-prerendered-state) to flow the authentication state to the client, which is then fixed for the lifetime of CSR.
+
+* [`PersistentAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/release/8.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp.Client/PersistentAuthenticationStateProvider.cs): For Blazor Web Apps that adopt CSR. This is a client-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that determines the user's authentication state by looking for data persisted in the page when it was rendered on the server. This authentication state is fixed for the lifetime of CSR. If the user needs to log in or out, a full-page reload is required. This only provides a user name and email for display purposes. It doesn't include tokens that authenticate to the server when making subsequent requests, which is handled separately using a cookie that's included on `HttpClient` requests to the server.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -473,12 +524,12 @@ In a component:
 
 :::moniker-end
 
-The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `AuthenticationService` maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>. With the additional configuration later in this section, the `AuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
+The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `CustomAuthenticationService` class maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>. With the additional configuration later in this section, the `CustomAuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
 
 ```csharp
 using System.Security.Claims;
 
-public class AuthenticationService
+public class CustomAuthenticationService
 {
     public event Action<ClaimsPrincipal>? UserChanged;
     private ClaimsPrincipal? currentUser;
@@ -501,25 +552,25 @@ public class AuthenticationService
 
 :::moniker range=">= aspnetcore-6.0"
 
-In the `Program` file, register the `AuthenticationService` in the dependency injection container:
+In the `Program` file, register the `CustomAuthenticationService` in the dependency injection container:
 
 ```csharp
-builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<CustomAuthenticationService>();
 ```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In `Startup.ConfigureServices` of `Startup.cs`, register the `AuthenticationService` in the dependency injection container:
+In `Startup.ConfigureServices` of `Startup.cs`, register the `CustomAuthenticationService` in the dependency injection container:
 
 ```csharp
-services.AddScoped<AuthenticationService>();
+services.AddScoped<CustomAuthenticationService>();
 ```
 
 :::moniker-end
 
-The following `CustomAuthStateProvider` subscribes to the `AuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `AuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
+The following `CustomAuthStateProvider` subscribes to the `CustomAuthenticationService.UserChanged` event. `GetAuthenticationStateAsync` returns the user's authentication state. Initially, the authentication state is based on the value of the `CustomAuthenticationService.CurrentUser`. When there's a change in user, a new authentication state is created with the new user (`new AuthenticationState(newUser)`) for calls to `GetAuthenticationStateAsync`:
 
 ```csharp
 using System.Security.Claims;
@@ -530,16 +581,14 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 {
     private AuthenticationState authenticationState;
 
-    public CustomAuthStateProvider(AuthenticationService service)
+    public CustomAuthStateProvider(CustomAuthenticationService service)
     {
         authenticationState = new AuthenticationState(service.CurrentUser);
 
         service.UserChanged += (newUser) =>
         {
             authenticationState = new AuthenticationState(newUser);
-
-            NotifyAuthenticationStateChanged(
-                Task.FromResult(new AuthenticationState(newUser)));
+            NotifyAuthenticationStateChanged(Task.FromResult(authenticationState));
         };
     }
 
@@ -548,12 +597,12 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-The following component's `SignIn` method creates a claims principal for the user's identifier to set on `AuthenticationService.CurrentUser`:
+The following component's `SignIn` method creates a claims principal for the user's identifier to set on `CustomAuthenticationService.CurrentUser`:
 
 :::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@inject AuthenticationService AuthenticationService
+@inject CustomAuthenticationService AuthService
 
 <input @bind="userIdentifier" />
 <button @onclick="SignIn">Sign in</button>
@@ -572,7 +621,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
     private void SignIn()
     {
-        var currentUser = AuthenticationService.CurrentUser;
+        var currentUser = AuthService.CurrentUser;
 
         var identity = new ClaimsIdentity(
             new[]
@@ -583,7 +632,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
         var newUser = new ClaimsPrincipal(identity);
 
-        AuthenticationService.CurrentUser = newUser;
+        AuthService.CurrentUser = newUser;
     }
 }
 ```
@@ -593,7 +642,7 @@ The following component's `SignIn` method creates a claims principal for the use
 :::moniker range="< aspnetcore-8.0"
 
 ```razor
-@inject AuthenticationService AuthenticationService
+@inject CustomAuthenticationService AuthService
 
 <input @bind="userIdentifier" />
 <button @onclick="SignIn">Sign in</button>
@@ -612,7 +661,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
     private void SignIn()
     {
-        var currentUser = AuthenticationService.CurrentUser;
+        var currentUser = AuthService.CurrentUser;
 
         var identity = new ClaimsIdentity(
             new[]
@@ -623,7 +672,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
         var newUser = new ClaimsPrincipal(identity);
 
-        AuthenticationService.CurrentUser = newUser;
+        AuthService.CurrentUser = newUser;
     }
 }
 ```
@@ -746,7 +795,7 @@ For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.
 
 To avoid showing unauthorized content, for example content in an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component), while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
 
-* Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+* Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs).
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -769,7 +818,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
   <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
   ```
 
-  You can also selectively disable prerendering with fine control of the render mode applied to the `Routes` component instance. For more information, see <xref:blazor/components/render-modes#fine-control-of-render-modes>.
+  You can also selectively control the render mode applied to the `Routes` component instance. For example, see <xref:blazor/components/render-modes#static-ssr-pages-in-a-globally-interactive-app>.
 
 :::moniker-end
 
@@ -797,7 +846,7 @@ For guidance on general state management outside of ASP.NET Core Identity, see <
 
 Two additional abstractions participate in managing authentication state:
 
-* <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs)): An <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to obtain authentication state from the server.
+* <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs)): An <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to obtain authentication state from the server.
 
 * <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals.
 

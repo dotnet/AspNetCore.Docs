@@ -3,7 +3,7 @@ title: HttpRepl telemetry
 author: tdykstra
 description: Learn about the telemetry collected by the HttpRepl.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: scaddie
+ms.author: tdykstra
 ms.date: 11/11/2020
 uid: web-api/http-repl/telemetry
 ---
@@ -64,4 +64,4 @@ The telemetry feature collects the following data.
 ## Additional resources
 
 * [.NET Core SDK telemetry](/dotnet/core/tools/telemetry)
-* [.NET Core CLI telemetry data](https://dotnet.microsoft.com/platform/telemetry)
+* [.NET CLI telemetry data](https://dotnet.microsoft.com/platform/telemetry)

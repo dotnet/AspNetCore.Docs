@@ -1,0 +1,34 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GetDocument.Insider | v1",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "GetDocument.Insider"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "x-aspnetcore-id": "14ccb7f6-1846-48e4-aeaf-c760aadda7c3"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "GetDocument.Insider"
+    }
+  ]
+}

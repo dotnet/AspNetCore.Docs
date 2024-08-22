@@ -3,11 +3,13 @@ title: gRPC services with C#
 author: jamesnk
 description: Learn the basic concepts when writing gRPC services with C#.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 05/08/2023
 uid: grpc/basics
 ---
 # gRPC services with C\#
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 This document outlines the concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks)-based and ASP.NET Core-based gRPC apps.

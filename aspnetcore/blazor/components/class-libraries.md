@@ -37,7 +37,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
    1. Right-click the app project. Select **Add** > **Project Reference**.
    1. Select the RCL project. Select **OK**.
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
 
 1. Use the **Razor Class Library** project template (`razorclasslib`) with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created and named `ComponentLibrary` using the `-o|--output` option. The folder that holds `ComponentLibrary` is created automatically when the command is executed:
 
@@ -173,10 +173,30 @@ Add a page to the app that uses the `ExtraStyles` component from the RCL.
 <ExtraStyles />
 ```
 
-Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+Blazor Web Apps:
 
 ```html
-<link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
+<link href="@Assets["_content/ComponentLibrary/additionalStyles.css"]" rel="stylesheet">
+```
+
+Standalone Blazor WebAssembly apps:
+
+```html
+<link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet">
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
+```html
+<link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet">
 ```
 
 :::moniker-end

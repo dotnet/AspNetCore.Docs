@@ -1,8 +1,8 @@
 ---
 title: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
-ms.author: riande
+ms.author: tdykstra
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc

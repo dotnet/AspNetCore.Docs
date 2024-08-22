@@ -27,10 +27,6 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
-
 ---
 
 ## Create an API project
@@ -69,29 +65,6 @@ This tutorial creates the following API:
 
   The preceding commands create a new web minimal API project and open it in Visual Studio Code.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In Visual Studio for Mac 2022, select **File** > **New Project...**.
-
-* In the **Choose a template for your new project** dialog:
-  * Select **Web and Console** > **App** > **Empty**.
-  * Select **Continue**.
-
-  ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
-
-* Make the following selections:
-  * **Target framework:** .NET 7.0 (or later)
-  * **Configure for HTTPS**: Check
-  * **Do not use top-level statements**: Uncheck
-  * Select **Continue**.
-
-  ![Additional information](~/tutorials/min-web-api/_static/add-info7-vsmac-2022.png)
-
-* Enter the following:
-  * **Project name:** TodoApi
-  * **Solution name:** TodoApi
-  * Select **Create**.
-
 ---
 
 ### Examine the code
@@ -121,10 +94,6 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 Press Ctrl+F5 to run the app. A browser window is opened.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
-
 ---
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
@@ -150,16 +119,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 7.0.17
    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 7.0.17
    ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
-* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
-* Select **Add Package**.
-* In the **Select Projects** window, select **Ok**.
-* Select the **Project** checkbox in the right pane.
-* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 ---
 
@@ -213,13 +172,9 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 
 ### Configure Swagger middleware
 
-* In Program.cs add the following `using` statements at the top:
-
-  [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_using_statements)]
-
 * Add the following highlighted code before `app` is defined in line `var app = builder.Build();`
 
-  [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=8-14)]
+  [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo_SwaggerVersion/Program.cs?name=snippet_swagger_add_service&highlight=7-13)]
 
 In the previous code:
 
@@ -272,7 +227,7 @@ Note a few of the useful details:
 * cURL: Swagger provides an example cURL command in Unix/Linux syntax, which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
 * Request URL: A simplified representation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests can include details such as headers and query parameters and a request body.
 * Server response: Includes the response body and headers. The response body shows the `id` was set to `1`.
-* Response Code: A 200 `HTTP` status code was returned indicating the request was successfully processed.
+* Response Code: A 201 `HTTP` status code was returned, indicating that the request was successfully processed and resulted in the creation of a new resource.
 ---
 
 ## Examine the GET endpoints
@@ -404,7 +359,7 @@ The `Map<HttpVerb>` methods can call route handler methods instead of using lamb
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoTypedResults_SwaggerVersion/Program.cs" id="snippet_all":::
 
@@ -469,7 +424,7 @@ Replace the contents of the `Program.cs` file with the following code to use thi
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO/Program.cs" id="snippet_all":::
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
 
@@ -488,7 +443,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 * [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
 * Handle errors and exceptions: The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:web-api/handle-errors).
 * For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-* [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
+* [OpenAPI support in minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
@@ -527,10 +482,6 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
-
 ---
 
 ## Create an API project
@@ -567,27 +518,6 @@ This tutorial creates the following API:
 
   The preceding commands create a new web minimal API project and open it in Visual Studio Code.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In Visual Studio for Mac 2022, select **File** > **New Project...**.
-
-* In the **Choose a template for your new project** dialog:
-  * Select **Web and Console** > **App** > **Empty**.
-  * Select **Continue**.
-
-  ![Visual Studio for Mac Create a new project](~/tutorials/min-web-api/_static/empty-vsmac-2022.png)
-
-* Make the following selections:
-  * **Target framework:** .NET 6.0
-  * **Configure for HTTPS**: Check
-  * **Do not use top-level statements**: Uncheck
-  * Select **Continue**.
-
-* Enter the following:
-  * **Project name:** TodoApi
-  * **Solution name:** TodoApi
-  * Select **Create**.
-
 ---
 
 ### Examine the code
@@ -617,10 +547,6 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 Press Ctrl+F5 to run the app. A browser window is opened.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
-
 ---
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
@@ -646,16 +572,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 6.0.28
    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 6.0.28
    ```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
-* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
-* Select **Add Package**.
-* In the **Select Projects** window, select **Ok**.
-* Select the **Project** checkbox in the right pane.
-* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 ---
 
@@ -768,7 +684,7 @@ Note a few of the useful details:
 * cURL: Swagger provides an example cURL command in Unix/Linux syntax, which can be run at the command line with any bash shell that uses Unix/Linux syntax, including Git Bash from [Git for Windows](https://git-scm.com/downloads).
 * Request URL: A simplified representation of the HTTP request made by Swagger UI's JavaScript code for the API call. Actual requests can include details such as headers and query parameters and a request body.
 * Server response: Includes the response body and headers. The response body shows the `id` was set to `1`.
-* Response Code: A 200 `HTTP` status code was returned indicating the request was successfully processed.
+* Response Code: A 201 `HTTP` status code was returned, indicating that the request was successfully processed and resulted in the creation of a new resource.
 ---
 
 ## Examine the GET endpoints
@@ -905,7 +821,7 @@ Replace the contents of the `Program.cs` file with the following code to use thi
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO/Program.cs" id="snippet_all":::
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todoDTO_SwaggerVersion/Program.cs" id="snippet_all":::
 

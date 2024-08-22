@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor WebAssembly App with OpenID Connect (O
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/07/2024
+ms.date: 05/28/2024
 uid: blazor/security/blazor-web-app-oidc
 zone_pivot_groups: blazor-web-app-oidc-specification
 ---
@@ -27,7 +27,7 @@ The following specification is covered:
 
 * The Blazor Web App uses [the Auto render mode with global interactivity](xref:blazor/components/render-modes).
 * Custom auth state provider services are used by the server and client apps to capture the user's authentication state and flow it between the server and client.
-* This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can used with Entra, Microsoft Identity Web, and hosted in Azure.
+* This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
 * Automatic non-interactive token refresh.
 * Securely calls a (web) API in the server project for data.
 
@@ -139,13 +139,13 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
-  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do ***not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do **not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
 
   ```csharp
   oidcOptions.ResponseType = OpenIdConnectResponseType.Code;
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example manually maps the name and role claims:
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings, and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
@@ -153,7 +153,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   ```csharp
   oidcOptions.MapInboundClaims = false;
   oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
-  oidcOptions.TokenValidationParameters.RoleClaimType = "role";
+  oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
   ```
 
 * Path configuration: Paths must match the redirect URI (login callback path) and post logout redirect (signed-out callback path) paths configured when registering the application with the OIDC provider. In the Azure portal, paths are configured in the **Authentication** blade of the app's registration. Both the sign-in and sign-out paths must be registered as redirect URIs. The default values are `/signin-oidc` and `/signout-callback-oidc`.
@@ -244,17 +244,16 @@ The following specification is covered:
 
 * The Blazor Web App uses [the Auto render mode with global interactivity](xref:blazor/components/render-modes).
 * Custom auth state provider services are used by the server and client apps to capture the user's authentication state and flow it between the server and client.
-* This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can used with Entra, Microsoft Identity Web, and hosted in Azure.
+* This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
 * Automatic non-interactive token refresh.
 * The [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) is adopted using [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) for service discovery and [YARP](https://microsoft.github.io/reverse-proxy/) for proxying requests to a weather forecast endpoint on the backend app.
   * A backend web API uses JWT-bearer authentication to validate JWT tokens saved by the Blazor Web App in the sign-in cookie.
   * Aspire improves the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns for building and running distributed apps.
   * YARP (Yet Another Reverse Proxy) is a library used to create a reverse proxy server.
 
-## Preview package warning
+<!-- UPDATE 9.0 Remove the following line at either 9.0 or 10.0 ... -->
 
-> [!WARNING]
-> Technologies and packages used by the `BlazorWebAppOidcBff` sample app and described in this article are in ***preview*** release at this time. The article's content, the API, and the sample app aren't supported at this time and aren't currently recommended for production use. The sample app and guidance are subject to change without notice.
+For more information on .NET Aspire, see [General Availability of .NET Aspire: Simplifying .NET Cloud-Native Development (May, 2024)](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
 
 ## Prerequisite
 
@@ -280,6 +279,8 @@ Access the sample apps through the latest version folder from the repository's r
 For more information on using .NET Aspire and details on the `.AppHost` and `.ServiceDefaults` projects of the sample app, see the [.NET Aspire documentation](/dotnet/aspire/).
 
 Confirm that you've met the prerequisites for .NET Aspire. For more information, see the *Prerequisites* section of [Quickstart: Build your first .NET Aspire app](/dotnet/aspire/get-started/build-your-first-aspire-app?tabs=visual-studio#prerequisites).
+
+The sample app only configures an insecure HTTP launch profile (`http`) for use during development testing. For more information, including an example of insecure and secure launch settings profiles, see [Allow unsecure transport in .NET Aspire (.NET Aspire documentation)](/dotnet/aspire/troubleshooting/allow-unsecure-transport).
 
 ## Server-side Blazor Web App project (`BlazorWebAppOidc`)
 
@@ -406,13 +407,13 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
-  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do ***not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
+  In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do **not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
 
   ```csharp
   oidcOptions.ResponseType = OpenIdConnectResponseType.Code;
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example manually maps the name and role claims:
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
@@ -420,7 +421,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   ```csharp
   oidcOptions.MapInboundClaims = false;
   oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
-  oidcOptions.TokenValidationParameters.RoleClaimType = "role";
+  oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
   ```
 
 * Path configuration: Paths must match the redirect URI (login callback path) and post logout redirect (signed-out callback path) paths configured when registering the application with the OIDC provider. In the Azure portal, paths are configured in the **Authentication** blade of the app's registration. Both the sign-in and sign-out paths must be registered as redirect URIs. The default values are `/signin-oidc` and `/signout-callback-oidc`.
@@ -580,6 +581,16 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 :::zone-end
 
+## Adding components that adopt interactive server-side rendering
+
+Because the app uses global Interactive Auto rendering via the `Routes` component, individual components that specify interactive server-side rendering (interactive SSR, `@rendermode InteractiveServer`) in their component definition file (`.razor`) are *placed in the `.Client` project's `Pages` folder*.
+
+Placing interactive SSR components in the `.Client` project is counter-intuitive because such components are only rendered on the server.
+
+If you place an interactive SSR component in the server project's `Components/Pages` folder, the component is prerendered normally and briefly displayed in the user's browser. However, the client-side router isn't able to find the component, ultimately resulting in a *404 - Not Found* in the browser.
+
+Therefore, place interactive SSR components in the `.Client` project's `Pages` folder.
+
 ## Redirect to the home page on signout
 
 When a user navigates around the app, the `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the value of the current URL (`currentURL`). When the user signs out of the app, the identity provider returns them to the page from which they signed out.
@@ -622,6 +633,162 @@ A *nonce* is a string value that associates a client's session with an ID token 
 If you receive a nonce error during authentication development and testing, use a new InPrivate/incognito browser session for each test run, no matter how small the change made to the app or test user because stale cookie data can lead to a nonce error. For more information, see the [Cookies and site data](#cookies-and-site-data) section.
 
 A nonce isn't required or used when a refresh token is exchanged for a new access token. In the sample app, the `CookieOidcRefresher` (`CookieOidcRefresher.cs`) deliberately sets <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectProtocolValidator.RequireNonce?displayProperty=nameWithType> to `false`.
+
+## Application roles for apps not registered with Microsoft Entra (ME-ID)
+
+*This section pertains to apps that don't use [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra) as the identity provider. For apps registered with ME-ID, see the [Application roles for apps registered with Microsoft Entra (ME-ID)](#application-roles-for-apps-registered-with-microsoft-entra-me-id) section.*
+
+Configure the role claim type (<xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>) in the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> of `Program.cs`:
+
+```csharp
+oidcOptions.TokenValidationParameters.RoleClaimType = "{ROLE CLAIM TYPE}";
+```
+
+For many OIDC identity providers, the role claim type is `role`. Check your identity provider's documentation for the correct value.
+
+Replace the `UserInfo` class in the `BlazorWebAppOidc.Client` project with the following class.
+
+`UserInfo.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using System.Security.Claims;
+
+namespace BlazorWebAppOidc.Client;
+
+// Add properties to this class and update the server and client 
+// AuthenticationStateProviders to expose more information about 
+// the authenticated user to the client.
+public sealed class UserInfo
+{
+    public required string UserId { get; init; }
+    public required string Name { get; init; }
+    public required string[] Roles { get; init; }
+
+    public const string UserIdClaimType = "sub";
+    public const string NameClaimType = "name";
+    private const string RoleClaimType = "role";
+
+    public static UserInfo FromClaimsPrincipal(ClaimsPrincipal principal) =>
+        new()
+        {
+            UserId = GetRequiredClaim(principal, UserIdClaimType),
+            Name = GetRequiredClaim(principal, NameClaimType),
+            Roles = principal.FindAll(RoleClaimType).Select(c => c.Value)
+                .ToArray(),
+        };
+
+    public ClaimsPrincipal ToClaimsPrincipal() =>
+        new(new ClaimsIdentity(
+            Roles.Select(role => new Claim(RoleClaimType, role))
+                .Concat([
+                    new Claim(UserIdClaimType, UserId),
+                    new Claim(NameClaimType, Name),
+                ]),
+            authenticationType: nameof(UserInfo),
+            nameType: NameClaimType,
+            roleType: RoleClaimType));
+
+    private static string GetRequiredClaim(ClaimsPrincipal principal,
+        string claimType) =>
+            principal.FindFirst(claimType)?.Value ??
+            throw new InvalidOperationException(
+                $"Could not find required '{claimType}' claim.");
+}
+```
+
+At this point, Razor components can adopt [role-based and policy-based authorization](xref:blazor/security/index#role-based-and-policy-based-authorization). Application roles appear in `role` claims, one claim per role.
+
+## Application roles for apps registered with Microsoft Entra (ME-ID)
+
+Use the guidance in this section to implement application roles, ME-ID security groups, and ME-ID built-in administrator roles for apps using [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra).
+
+Configure the role claim type (<xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>) in <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> of `Program.cs`. Set the value to `roles`:
+
+```csharp
+oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
+```
+
+Although you can't [assign roles to groups](/entra/identity/role-based-access-control/groups-concept) without an ME-ID Premium account, you can assign roles to users and receive role claims for users with a standard Azure account. The guidance in this section doesn't require an ME-ID Premium account.
+
+When working with the default directory, follow the guidance in [Add app roles to your application and receive them in the token (ME-ID documentation)](/entra/identity-platform/howto-add-app-roles-in-apps) to configure and assign roles. If you aren't working with the default directory, edit the app's manifest in the Azure portal to establish the app's roles manually in the `appRoles` entry of the manifest file. For more information, see [Configure the role claim (ME-ID documentation)](/entra/identity-platform/enterprise-app-role-management).
+
+A user's Azure security groups arrive in `groups` claims, and a user's built-in ME-ID administrator role assignments arrive in [well-known IDs (`wids`) claims](/entra/identity-platform/access-tokens#payload-claims). Values for both claim types are GUIDs. When received by the app, these claims can be used to establish [role and policy authorization in Razor components](xref:blazor/security/index#role-based-and-policy-based-authorization).
+
+In the app's manifest in the Azure portal, set the [`groupMembershipClaims` attribute](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security/distribution groups (`groups` claims) and roles (`wids` claims) of the signed-in user. To set the `groupMembershipClaims` attribute:
+
+1. Open the app's registration in the Azure portal.
+1. Select **Manage** > **Manifest** in the sidebar.
+1. Find the `groupMembershipClaims` attribute.
+1. Set the value to `All` (`"groupMembershipClaims": "All"`).
+1. Select the **Save** button.
+
+Replace the `UserInfo` class in the `BlazorWebAppOidc.Client` project with the following class.
+
+`UserInfo.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using System.Security.Claims;
+
+namespace BlazorWebAppOidc.Client;
+
+// Add properties to this class and update the server and client 
+// AuthenticationStateProviders to expose more information about 
+// the authenticated user to the client.
+public sealed class UserInfo
+{
+    public required string UserId { get; init; }
+    public required string Name { get; init; }
+    public required string[] Roles { get; init; }
+    public required string[] Groups { get; init; }
+    public required string[] Wids { get; init; }
+
+    public const string UserIdClaimType = "sub";
+    public const string NameClaimType = "name";
+    private const string RoleClaimType = "roles";
+    private const string GroupsClaimType = "groups";
+    private const string WidsClaimType = "wids";
+
+    public static UserInfo FromClaimsPrincipal(ClaimsPrincipal principal) =>
+        new()
+        {
+            UserId = GetRequiredClaim(principal, UserIdClaimType),
+            Name = GetRequiredClaim(principal, NameClaimType),
+            Roles = principal.FindAll(RoleClaimType).Select(c => c.Value)
+                .ToArray(),
+            Groups = principal.FindAll(GroupsClaimType).Select(c => c.Value)
+                .ToArray(),
+            Wids = principal.FindAll(WidsClaimType).Select(c => c.Value)
+                .ToArray(),
+        };
+
+    public ClaimsPrincipal ToClaimsPrincipal() =>
+        new(new ClaimsIdentity(
+            Roles.Select(role => new Claim(RoleClaimType, role))
+                .Concat(Groups.Select(role => new Claim(GroupsClaimType, role)))
+                .Concat(Wids.Select(role => new Claim(WidsClaimType, role)))
+                .Concat([
+                    new Claim(UserIdClaimType, UserId),
+                    new Claim(NameClaimType, Name),
+                ]),
+            authenticationType: nameof(UserInfo),
+            nameType: NameClaimType,
+            roleType: RoleClaimType));
+
+    private static string GetRequiredClaim(ClaimsPrincipal principal,
+        string claimType) =>
+            principal.FindFirst(claimType)?.Value ??
+            throw new InvalidOperationException(
+                $"Could not find required '{claimType}' claim.");
+}
+```
+
+At this point, Razor components can adopt [role-based and policy-based authorization](xref:blazor/security/index#role-based-and-policy-based-authorization):
+
+* Application roles appear in `roles` claims, one claim per role.
+* Security groups appear in `groups` claims, one claim per group. The security group GUIDs appear in the Azure portal when you create a security group and are listed when selecting **Identity** > **Overview** > **Groups** > **View**.
+* Built-in ME-ID administrator roles appear in `wids` claims, one claim per role. The `wids` claim with a value of `b79fbf4d-3ef9-4689-8143-76b194e85509` is always sent by ME-ID for non-guest accounts of the tenant and doesn't refer to an administrator role. Administrator role GUIDs (*role template IDs*) appear in the Azure portal when selecting **Roles & admins**, followed by the ellipsis (**&hellip;**) > **Description** for the listed role. The role template IDs are also listed in [Microsoft Entra built-in roles (Entra documentation)](/entra/identity/role-based-access-control/permissions-reference).
 
 ## Troubleshoot
 

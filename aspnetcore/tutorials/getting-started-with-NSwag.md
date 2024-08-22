@@ -2,7 +2,7 @@
 title: Get started with NSwag and ASP.NET Core
 author: zuckerthoben
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
-ms.author: scaddie
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 12/05/2019
 uid: tutorials/get-started-with-nswag
@@ -65,7 +65,7 @@ Run the following command from the **Integrated Terminal**:
 dotnet add NSwagSample.csproj package NSwag.AspNetCore
 ```
 
-### [.NET Core CLI](#tab/netcore-cli)
+### [.NET CLI](#tab/net-cli)
 
 Run the following command:
 
@@ -161,7 +161,7 @@ Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/NSwagSample.csproj" id="snippet_GenerateDocumentationFile" highlight="2":::
 
-#### [.NET Core CLI](#tab/netcore-cli)
+#### [.NET CLI](#tab/net-cli)
 
 Manually add the highlighted lines to the `.csproj` file:
 
@@ -283,7 +283,7 @@ Run the following command from the **Integrated Terminal**:
 dotnet add TodoApi.csproj package NSwag.AspNetCore
 ```
 
-### [.NET Core CLI](#tab/netcore-cli)
+### [.NET CLI](#tab/net-cli)
 
 Run the following command:
 
@@ -425,7 +425,7 @@ Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
-#### [.NET Core CLI](#tab/netcore-cli)
+#### [.NET CLI](#tab/net-cli)
 
 Manually add the highlighted lines to the `.csproj` file:
 

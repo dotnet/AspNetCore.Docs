@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy24
-ms.date: 4/3/2024
+ms.date: 08/04/2024
 uid: tutorials/first-web-api
 ---
 
@@ -14,9 +14,9 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0"
 
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
 
 ## Overview
 
@@ -161,7 +161,7 @@ Run the app:
 
 * <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser.
 
-* The default browser is launched to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+* The default browser is launched to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number displayed in the output. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut it down.
 
@@ -288,8 +288,8 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
+* Right-click the `Controllers` folder.
+* Select **Add** > **:::no-loc text="New Scaffolded Item":::**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
@@ -320,6 +320,13 @@ The preceding commands:
 
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
+
+For Linux, add the .NET tools directory to the system path with the following command:
+
+```Bash
+echo 'export PATH=$HOME/.dotnet/tools:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
@@ -361,7 +368,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. `HTTP 201` is the standard response for an `HTTP POST` method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
-* References the `PostTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+* References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
 <a name="post7"></a>
 
@@ -404,7 +411,7 @@ The previous section showed an example of the `/api/todoitems/{id}` route.
 
 Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
 
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post7) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request doesn't return any data. If no data is returned, [POST](#post7) data to the app.
 
 ## Routing and URL paths
 
@@ -537,5 +544,3 @@ For more information, see the following resources:
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api3-7.md)]

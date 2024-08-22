@@ -77,9 +77,9 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### 🕺💃 **Happy Cinco de Mayo!** 🥳🎈 
+              body: `### 😎🏖️🌴 **Summertime!** 🏐🏄‍♀️🦩 
 
-            A green dinosaur 🦖 will be along shortly to assist. *Stand-by ........*`
+            Stand by! A green dinosaur 🦖 (guardrex) will arrive shortly to assist.`
             })
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,

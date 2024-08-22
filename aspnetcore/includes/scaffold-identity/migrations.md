@@ -1,16 +1,24 @@
-The generated Identity database code requires [Entity Framework Core Migrations](/ef/core/managing-schemas/migrations/). If a migration to create the Identity schema hasn't been created and applied to the database, create a migration and update the database. For example, run the following commands:
+The generated Identity database code requires [Entity Framework (EF) Core Migrations](/ef/core/managing-schemas/migrations/). If a migration to generate the Identity schema hasn't been created and applied to the database, create a migration and update the database.
 
 # [Visual Studio](#tab/visual-studio)
 
-In the Visual Studio **Package Manager Console**:
+[Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) are used to add an EF Core migration and update the database.
 
-```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-Add-Migration CreateIdentitySchema
-Update-Database
-```
+In **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (**`...`**) followed by **Add migration**.
 
-# [.NET Core CLI](#tab/netcore-cli)
+Give the migration a **Migration name**, such as `CreateIdentitySchema`, which is a name that describes the migration. Wait for the database context to load in the **DbContext class names** field, which may take a few seconds. Select **Finish** to create the migration.
+
+Select the **Close** button after the operation finishes.
+
+Select the ellipsis (**`...`**) again followed by the **Update database** command.
+
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load, which may take a few seconds. Select the **Finish** button.
+
+Select the **Close** button after the operation finishes.
+
+The update database command executes the `Up` method migrations that haven't been applied in a migration code file created by the scaffolder. In this case, the command executes the `Up` method in the `Migrations/{TIME STAMP}_{MIGRATION NAME}.cs` file, which creates the Identity tables, constraints, and indexes. The `{TIME STAMP}` placeholder is a time stamp, and the `{MIGRATION NAME}` placeholder is the migration name.
+
+# [.NET CLI](#tab/net-cli)
 
 ```dotnetcli
 dotnet ef migrations add CreateIdentitySchema
@@ -19,19 +27,17 @@ dotnet ef database update
 
 ---
 
-The "CreateIdentitySchema" name parameter for the `Add-Migration` command is arbitrary. `"CreateIdentitySchema"` describes the migration.
-
 If the Identity schema has already been created but not applied to the database, only the command to update the database must be executed:
 
 # [Visual Studio](#tab/visual-studio)
 
-In the Visual Studio **Package Manager Console**, execute [`Update-Database`](/ef/core/managing-schemas/migrations/applying?tabs=vs#command-line-tools):
+In **Solution Explorer**, double-click **Connected Services**. In the **SQL Server Express LocalDB** area of **Service Dependencies**, select the ellipsis (`...`) followed by the **Update database** command.
 
-```powershell
-Update-Database
-```
+The **Update database with the latest migration** dialog opens. Wait for the **DbContext class names** field to update and for prior migrations to load, which may take a few seconds. Select the **Finish** button.
 
-# [.NET Core CLI](#tab/netcore-cli)
+Select the **Close** button after the operation finishes.
+
+# [.NET CLI](#tab/net-cli)
 
 In a command shell, execute [`dotnet ef database update`](/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#command-line-tools):
 
@@ -53,7 +59,7 @@ Get-Migration
 
 If more than one database context exists, specify the context with the `-Context` parameter.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [.NET CLI](#tab/net-cli)
 
 In a command shell, execute [`dotnet ef migrations list`](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#listing-migrations):
 

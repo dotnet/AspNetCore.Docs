@@ -3,12 +3,14 @@ title: HTTP.sys web server implementation in ASP.NET Core
 author: tdykstra
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 10/30/2023
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
@@ -70,7 +72,7 @@ HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the con
 * An `https` url binding is used.
 * The [EnableHttp3 registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880) is set.
 
-The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
+The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://www.microsoft.com/en-us/windowsinsider/) build.
 
 HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. Http.Sys doesn't automatically add the `alt-svc` header, it must be added by the application. The following code is a middleware example that adds the `alt-svc` response header.
 

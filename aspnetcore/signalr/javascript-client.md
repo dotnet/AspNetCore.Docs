@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR JavaScript client
 author: bradygaster
 description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc, devx-track-js
 ms.date: 1/22/2022
 uid: signalr/javascript-client

@@ -5,14 +5,16 @@ description: Learn how to interact with JavaScript in client-side components usi
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 07/25/2024
 uid: blazor/js-interop/import-export-interop
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later.
+This article explains how to interact with JavaScript (JS) in client-side components using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API. For additional information and examples, see <xref:client-side/dotnet-interop/index>.
+
+For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository.
 
 Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. Blazor's JS interop is uniformly supported across Blazor render modes and for Blazor Hybrid apps. <xref:Microsoft.JSInterop.IJSRuntime> also enables library authors to build JS interop libraries for sharing across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor. See the following articles:
 
@@ -22,9 +24,7 @@ Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInte
 This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking during code execution if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
 
 > [!NOTE]
-> This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop>.
-
-
+> This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop/wasm-browser-app>.
 
 ## Obsolete JavaScript interop API
 
@@ -32,11 +32,21 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Prerequisites
 
-[Download and install .NET 7 or later](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+[Visual Studio](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload.
+
+No further tooling is required if you plan on implementing `[JSImport]`/`[JSExport]` interop in a Blazor WebAssembly app generated from the Blazor WebAssembly project template.
+
+If you plan to use the WebAssembly Browser or WebAssembly Console app project templates, install the [`Microsoft.NET.Runtime.WebAssembly.Templates`](https://www.nuget.org/packages/Microsoft.NET.Runtime.WebAssembly.Templates) NuGet package with the following command:
+
+```dotnetcli
+dotnet new install Microsoft.NET.Runtime.WebAssembly.Templates
+```
+
+For more information, see <xref:client-side/dotnet-interop/wasm-browser-app#experimental-workload-and-project-templates>.
 
 ## Namespace
 
-The JS interop API described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
+The JS interop API (<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>) described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
 
 ## Enable unsafe blocks
 
@@ -50,6 +60,23 @@ Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in app's 
 
 > [!WARNING]
 > The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
+
+## Razor class library (RCL) collocated JS is unsupported
+
+Generally, the JS location support for <xref:Microsoft.JSInterop.IJSRuntime>-based JS interop (<xref:blazor/js-interop/javascript-location>) is also present for the `[JSImport]`/`[JSExport]` interop described by this article. The only unsupported JS location feature is for *collocated JS in a Razor class library (RCL)*.
+
+Instead of using collocated JS in an RCL, place the JS file in the RCL's `wwwroot` folder and reference it using the usual path for RCL static assets:
+
+`_content/{PACKAGE ID}/{PATH}/{FILE NAME}.js`
+
+* The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library).
+* The `{PATH}` placeholder is the path to the file.
+* The `{FILE NAME}` placeholder is the file name.
+
+Although collocated JS in an RCL isn't supported by `[JSImport]`/`[JSExport]` interop, you can keep your JS files organized by taking either or both of the following approaches:
+
+* Name the JS file the same as the component where the JS is used. For a component in the RCL named `CallJavaScriptFromLib` (`CallJavaScriptFromLib.razor`), name the file `CallJavaScriptFromLib.js` in the `wwwroot` folder.
+* Place component-specific JS files in a `Components` folder inside the RCL's `wwwroot` folder and use "`Components`" in the path to the file: `_content/{PACKAGE ID}/Components/CallJavaScriptFromLib.js`.
 
 ## Call JavaScript from .NET
 
@@ -171,17 +198,7 @@ The app's namespace for the preceding `CallJavaScript1` partial class is `Blazor
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
 
-:::moniker range=">= aspnetcore-8.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/8.0/import-export-interop-mappings.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/7.0/import-export-interop-mappings.md)]
-
-:::moniker-end
+For additional type mapping information and examples, see <xref:client-side/dotnet-interop/index#type-mappings>.
 
 The module name in the `[JSImport]` attribute and the call to load the module in the component with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> must match and be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
@@ -197,7 +214,7 @@ Functions accessible on the global namespace can be imported by using the [`glob
 internal static partial void Log([JSMarshalAs<JSType.String>] string message);
 ```
 
-Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) either [collocated with a component](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets in a JS file (for example, `wwwroot/js/{FILE NAME}.js`, where JS static assets are maintained in a folder named `js` in the app's `wwwroot` folder and the `{FILE NAME}` placeholder is the file name).
+Export scripts from a standard [JavaScript module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) either [collocated with a component](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets in a JS file (for example, `wwwroot/js/{FILE NAME}.js`, where JS static assets are maintained in a folder named `js` in the app's `wwwroot` folder and the `{FILE NAME}` placeholder is the file name).
 
 In the following example, a JS function named `getMessage` is exported from a collocated JS file that returns a welcome message, "Hello from Blazor!" in Portuguese:
 
@@ -592,10 +609,12 @@ if (OperatingSystem.IsBrowser())
 
 ## Additional resources
 
+* <xref:client-side/dotnet-interop/index>
+* <xref:client-side/dotnet-interop/wasm-browser-app>
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)
-* <xref:client-side/dotnet-interop>
 * In the `dotnet/runtime` GitHub repository:
+  * [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)
   * [.NET WebAssembly runtime](https://github.com/dotnet/runtime/tree/main/src/mono/wasm)
   * [`dotnet.d.ts` file (.NET WebAssembly runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts)

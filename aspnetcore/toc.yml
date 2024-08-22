@@ -258,7 +258,7 @@ items:
               - name: RDG013
                 uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
       - name: Middleware
-        items: 
+        items:
           - name: Middleware overview
             uid: fundamentals/middleware/index
           - name: Rate limiting middleware
@@ -574,8 +574,8 @@ items:
                 uid: blazor/js-interop/ssr
           - name: Call a web API
             uid: blazor/call-web-api
-          - name: Images
-            uid: blazor/images
+          - name: Images and documents
+            uid: blazor/images-and-documents
           - name: Security and Identity
             items:
               - name: Overview
@@ -618,6 +618,8 @@ items:
                     uid: blazor/security/webassembly/additional-scenarios
                   - name: ME-ID groups and roles
                     uid: blazor/security/webassembly/meid-groups-roles
+                  - name: ME-ID groups and roles
+                    uid: blazor/security/webassembly/meid-groups-roles-net5to7
                   - name: Graph API
                     uid: blazor/security/webassembly/graph-api
               - name: Blazor Web App with OIDC
@@ -692,8 +694,12 @@ items:
                 uid: client-side/libman/libman-cli
               - name: Visual Studio
                 uid: client-side/libman/libman-vs
-          - name: Run .NET from JavaScript
-            uid: client-side/dotnet-interop
+          - name: WebAssembly JS interop
+            items:
+              - name: Overview
+                uid: client-side/dotnet-interop/index
+              - name: JS interop (WebAssembly Browser App)
+                uid: client-side/dotnet-interop/wasm-browser-app
           - name: Grunt
             uid: client-side/using-grunt
           - name: Bundle and minify
@@ -779,7 +785,8 @@ items:
             uid: mvc/models/file-uploads
           - name: Web SDK
             uid: razor-pages/web-sdk
-          - name: aspnet-codegenerator (Scaffolding)
+          - name: Code generator tool (scaffolding)
+            displayName: aspnet-codegenerator
             uid: fundamentals/tools/dotnet-aspnet-codegenerator
   - name: APIs
     items:
@@ -795,16 +802,6 @@ items:
               uid: tutorials/first-web-api
             - name: Web API with MongoDB
               uid: tutorials/first-mongo-app
-        - name: Swagger / OpenAPI
-          items:
-            - name: Overview
-              uid: tutorials/web-api-help-pages-using-swagger
-            - name: Get started with Swashbuckle
-              uid: tutorials/get-started-with-swashbuckle
-            - name: Get started with NSwag
-              uid: tutorials/get-started-with-nswag
-            - name: OpenAPI tools
-              uid: web-api/Microsoft.dotnet-openapi
         - name: Action return types
           uid: web-api/action-return-types
         - name: Handle JSON Patch requests
@@ -841,8 +838,6 @@ items:
           uid: fundamentals/minimal-apis/parameter-binding
         - name: Create responses
           uid: fundamentals/minimal-apis/responses
-        - name: OpenAPI
-          uid: fundamentals/minimal-apis/openapi
         - name: Filters
           uid: fundamentals/minimal-apis/min-api-filters
         - name: Unit and integration tests
@@ -853,6 +848,22 @@ items:
           uid: fundamentals/minimal-apis/handle-errors
         - name: Authentication and authorization
           uid: fundamentals/minimal-apis/security
+      - name: OpenAPI
+        items:
+          - name: Overview
+            uid: fundamentals/openapi/overview
+          - name: Work with OpenAPI documents
+            uid: fundamentals/openapi/aspnetcore-openapi
+          - name: OpenAPI tools
+            uid: fundamentals/openapi/openapi-tools
+          - name: Swagger / NSWag
+            items:
+              - name: Overview
+                uid: tutorials/web-api-help-pages-using-swagger
+              - name: Get started with Swashbuckle
+                uid: tutorials/get-started-with-swashbuckle
+              - name: Get started with NSwag
+                uid: tutorials/get-started-with-nswag
   - name: Real-time apps
     displayName: signalr
     items:
@@ -1046,7 +1057,7 @@ items:
         uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
-      - name: Test services with Postman and gRPCurl
+      - name: Test services with gRPCurl and gRPCui
         uid: grpc/test-tools
       - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
@@ -1252,6 +1263,8 @@ items:
         uid: diagnostics/asp0024
       - name: ASP0025
         uid: diagnostics/asp0025
+      - name: ASP0026
+        uid: diagnostics/asp0026
       - name: BL0001
         uid: diagnostics/bl0001
       - name: BL0002
@@ -1400,9 +1413,6 @@ items:
       - name: Linux with Nginx
         displayName: deploy, publish
         uid: host-and-deploy/linux-nginx
-      - name: Linux with Apache
-        displayName: deploy, publish
-        uid: host-and-deploy/linux-apache
       - name: Docker
         displayName: deploy, publish
         items:
@@ -1455,7 +1465,7 @@ items:
               - name: Overview
                 uid: security/authentication/identity
               - name: Identity with SPA
-                uid: security/authentication/identity/spa               
+                uid: security/authentication/identity/spa
               - name: Scaffold Identity
                 uid: security/authentication/scaffold-identity
               - name: Add custom user data to Identity
@@ -1519,7 +1529,7 @@ items:
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
                     href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
-                    href: /azure/active-directory-b2c/enable-authentication-web-api          
+                    href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
             uid: security/authentication/cookie
           - name: Configure certificate authentication
@@ -1540,7 +1550,7 @@ items:
           - name: Community OSS authentication options
             uid: security/authentication/community
           - name: Identity management solutions
-            uid: security/identity-management-solutions 
+            uid: security/identity-management-solutions
           - name: Multi-factor authentication
             uid: security/authentication/mfa
       - name: Authorization
@@ -1702,6 +1712,9 @@ items:
           - name: Distributed caching
             displayName: cache
             uid: performance/caching/distributed
+          - name: Hybrid cache
+            displayName: caching
+            uid: performance/caching/hybrid
           - name: Output caching
             displayName: cache
             uid: performance/caching/output
@@ -1881,7 +1894,7 @@ items:
               uid: migration/inc/unit-testing
             - name: A/B Testing endpoints
               uid: migration/inc/ab-testing
-            - name: Blazor support with YARP 
+            - name: Blazor support with YARP
               uid: migration/inc/blazor
           - name: MVC and Web API
             uid: migration/mvc

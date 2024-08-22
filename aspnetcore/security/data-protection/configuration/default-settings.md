@@ -1,14 +1,16 @@
 ---
 title: Data Protection key management and lifetime in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn about Data Protection key management and lifetime in ASP.NET Core.
-ms.author: riande
+ms.author: tdykstra
 ms.date: 10/14/2016
 uid: security/data-protection/configuration/default-settings
 ---
 # Data Protection key management and lifetime in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+:::moniker range=">= aspnetcore-9.0"
 
 ## Key management
 
@@ -47,7 +49,22 @@ Keys have a 90-day lifetime by default. When a key expires, the app automaticall
 
 The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, changed every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See [subkey derivation](xref:security/data-protection/implementation/subkeyderivation#additional-authenticated-data-and-subkey-derivation) for more information.
 
+### Delete keys
+
+Deleting a key makes its protected data permanently inaccessible. To mitigate that risk, we recommend not deleting keys. The resulting accumulation of keys generally has minimal impact because they're small. In exceptional cases, such as extremely long-running services, keys can be deleted. Only delete keys:
+
+* That are old (no longer in use).
+* When you can accept the risk of data loss in exchange for storage savings.
+
+We recommend not deleting data protection keys.
+
+:::code language="csharp" source="~/security/data-protection/configuration/samples/9/deleteKeys/Program.cs" :::
+
 ## Additional resources
 
 * <xref:security/data-protection/extensibility/key-management>
 * <xref:host-and-deploy/web-farm>
+
+:::moniker-end
+
+[!INCLUDE[](~/security/data-protection/configuration/default-settings/includes/default-settings8.md)]

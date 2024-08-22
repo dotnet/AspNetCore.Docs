@@ -1,10 +1,10 @@
 ---
 title: Routing in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
 monikerRange: '>= aspnetcore-3.1'
 content_well_notification: AI-contribution
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 6/14/2023
 uid: fundamentals/routing

@@ -5,14 +5,14 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/07/2024
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Microsoft Entra (ME-ID)](/entra/identity-platform/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Microsoft Entra (ME-ID)](/security/zero-trust/develop/identity-supported-account-types) for authentication.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -77,7 +77,7 @@ Use one of the following approaches to run the app:
   * Select the **Run** button.
   * Use **Debug** > **Start Debugging** from the menu.
   * Press <kbd>F5</kbd>.
-* .NET CLI command shell: Execute the `dotnet run` command from the app's folder.
+* .NET CLI command shell: Execute the `dotnet watch` (or `dotnet run`) command from the app's folder.
 
 ## Parts of the app
 

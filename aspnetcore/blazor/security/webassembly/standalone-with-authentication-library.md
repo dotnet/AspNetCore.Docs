@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/07/2024
 uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
@@ -63,7 +63,7 @@ After choosing the **Blazor WebAssembly App** template, set the **Authentication
 
 The **Individual Accounts** selection uses ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [Visual Studio Code / .NET CLI](#tab/visual-studio-code+net-cli)
 
 Create a new Blazor WebAssembly project with an authentication mechanism in an empty folder. Specify the `Individual` authentication mechanism with the `-au|--auth` option to use ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
@@ -103,7 +103,7 @@ Google OAuth 2.0 OIDC example for an app that runs on the `localhost` address at
     "ClientId": "2...7-e...q.apps.googleusercontent.com",
     "PostLogoutRedirectUri": "https://localhost:5001/authentication/logout-callback",
     "RedirectUri": "https://localhost:5001/authentication/login-callback",
-    "ResponseType": "id_token"
+    "ResponseType": "code"
   }
 }
 ```
@@ -121,7 +121,7 @@ Use one of the following approaches to run the app:
   * Select the **Run** button.
   * Use **Debug** > **Start Debugging** from the menu.
   * Press <kbd>F5</kbd>.
-* .NET CLI command shell: Execute the `dotnet run` command from the app's folder.
+* .NET CLI command shell: Execute the `dotnet watch` (or `dotnet run`) command from the app's folder.
 
 ## Parts of the app
 

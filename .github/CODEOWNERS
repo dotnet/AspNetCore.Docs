@@ -1,0 +1,39 @@
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+
+# More details are here: https://help.github.com/articles/about-codeowners/
+# Initial experience with this file was not all positive, so most lines are currently commented out.
+# It will be easy to give it another trial should we decide to do that.
+
+# The '*' pattern is global owners.
+
+# *     
+
+# .github/  
+
+# Order is important. The last matching pattern has the most precedence.
+
+/aspnetcore/blazor/ @guardrex
+# /aspnetcore/breadcrumb/ 
+# /aspnetcore/client-side/ 
+# /aspnetcore/common/ 
+# /aspnetcore/data/ 
+# /aspnetcore/diagnostics/ @Rick-Anderson
+# /aspnetcore/fundamentals/ @tdykstra
+# /aspnetcore/getting-started/ 
+# /aspnetcore/grpc/ @wadepickett
+# /aspnetcore/host-and-deploy/ @Rick-Anderson
+# /aspnetcore/includes/ 
+# /aspnetcore/log-mon/ @Rick-Anderson
+# /aspnetcore/migration/ @Rick-Anderson
+# /aspnetcore/mobile/ 
+# /aspnetcore/mvc/ 
+/aspnetcore/performance/caching/ @tdykstra 
+# /aspnetcore/razor-pages/ 
+# /aspnetcore/release-notes/ 
+# /aspnetcore/security/ @Rick-Anderson
+# /aspnetcore/signalr/ @wadepickett
+# /aspnetcore/test/ 
+# /aspnetcore/tutorials/ @wadepickett
+# /aspnetcore/web-api/ @wadepickett @Rick-Anderson
+# /aspnetcore/whats-new/ @Rick-Anderson

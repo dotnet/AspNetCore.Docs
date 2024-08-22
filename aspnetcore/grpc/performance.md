@@ -3,11 +3,13 @@ title: Performance best practices with gRPC
 author: jamesnk
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 04/11/2023
 uid: grpc/performance
 ---
 # Performance best practices with gRPC
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -191,7 +193,39 @@ For more information about how flow control works, see [HTTP/2 Flow Control (blo
 > [!IMPORTANT]
 > Increasing Kestrel's window size allows Kestrel to buffer more data on behalf of the app, which possibly increases memory usage. Avoid configuring an unnecessarily large window size.
 
-## Streaming
+## Gracefully complete streaming calls
+
+Try to complete streaming calls gracefully. Gracefully completing calls avoids unnecessary errors and allow servers to reuse internal data structures between requests.
+
+A call is completed gracefully when the client and server have finished sending messages and the peer has read all the messages.
+
+Client request stream:
+
+1. The client has finished writing messages to the request stream and completes the stream with `call.RequestStream.CompleteAsync()`.
+2. The server has read all messages from the request stream. Depending on how you're reading messages, either `requestStream.MoveNext()` returns `false` or `requestStream.ReadAllAsync()` has finished.
+
+Server response stream:
+
+1. The server has finished writing messages to the response stream and the server method has exited.
+2. The client has read all messages from the response stream. Depending on how you're reading messages, either `call.ResponseStream.MoveNext()` returns `false` or `call.ResponseStream.ReadAllAsync()` has finished.
+
+For an example of gracefully completing a bi-direction streaming call, see [making a bi-directional streaming call](xref:grpc/client#bi-directional-streaming-call).
+
+Server streaming calls don't have a request stream. This means that the only way a client can communicate to the server that the stream should stop is by canceling it. If the overhead from canceled calls is impacting the app then consider changing the server streaming call to a bi-directional streaming call. In a bi-directional streaming call the client completing the request stream can be a signal to the server to end the call.
+
+## Dispose streaming calls
+
+Always dispose streaming calls once they're no longer needed. The type returned when starting streaming calls implements `IDisposable`. Disposing a call once it is no longer needed ensures it is stopped and all resources are cleaned up.
+
+In the following example, the [using declaration](/dotnet/csharp/language-reference/proposals/csharp-8.0/using#using-declaration) on the `AccumulateCount()` call ensures it's always disposed if an unexpected error occurs.
+
+[!code-csharp[](~/grpc/performance/dispose-streaming-call.cs?highlight=2)]
+
+Ideally streaming calls should be [completed gracefully](#gracefully-complete-streaming-calls). Disposing the call ensures the HTTP request between the client and the server is canceled if an unexpected error occurs. Streaming calls that are accidentally left running don't just leak memory and resources on the client, but are left running on the server as well. Many leaked streaming calls could impact the stability of the app.
+
+Disposing of a streaming call that has already completed gracefully doesn't have any negative impact.
+
+## Replace unary calls with streaming
 
 gRPC bidirectional streaming can be used to replace unary gRPC calls in high-performance scenarios. Once a bidirectional stream has started, streaming messages back and forth is faster than sending messages with multiple unary gRPC calls. Streamed messages are sent as data on an existing HTTP/2 request and eliminates the overhead of creating a new HTTP/2 request for each unary call.
 

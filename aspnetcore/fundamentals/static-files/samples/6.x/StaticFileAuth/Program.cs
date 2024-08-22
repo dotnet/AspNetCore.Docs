@@ -1,7 +1,7 @@
 #define DEFAULT // DEFAULT AUTH AUTH2
 #if NEVER
 #elif DEFAULT
-#region snippet
+// <snippet>
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StaticFileAuth.Data;
@@ -38,9 +38,9 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet>
 #elif AUTH
-#region snippet_auth
+// <snippet_auth>
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -95,9 +95,9 @@ app.UseStaticFiles(new StaticFileOptions
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet_auth>
 #elif AUTH2
-#region snippet_auth2
+// <snippet_auth2>
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -135,5 +135,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet_auth2>
 #endif

@@ -14,6 +14,13 @@ uid: blazor/components/js-spa-frameworks
 
 This article covers how to render Razor components from JavaScript, use Blazor custom elements, and generate Angular and React components.
 
+> [!NOTE]
+> We recommend using the `blazor.server.js` (Blazor Server) and `blazor.webassembly.js` (Blazor WebAssembly) scripts when integrating Razor components into an existing JavaScript app until better support for the `blazor.web.js` (Blazor Web App) script is added in the future. For more information, see [RegisterCustomElement stopped working in Blazor 8 (`dotnet/aspnetcore` #53920)](https://github.com/dotnet/aspnetcore/issues/53920#issuecomment-2261507850).
+
+<!-- DOC AUTHOR NOTE: The `blazor.web.js` (Blazor Web App) portions of
+     this article have been commented out for the time being to 
+     facilitate reconstituting the guidance later when support lands. -->
+
 ## Angular sample apps
 
 <!-- UPDATE 9.0 Add migration instructions cross-link to .NET 9 -->
@@ -43,7 +50,7 @@ The example in this section renders the following Razor component into a page vi
 
 In the `Program` file, add the [namespace for the location of the component](xref:blazor/components/index#component-name-class-name-and-namespace).
 
-Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register the a Razor component as a root component for JS rendering.
+Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register a Razor component as a root component for JS rendering.
 
 <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
 
@@ -53,6 +60,8 @@ One or more initializer functions can be created and called by different compone
 > Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
+
+<!-- HOLD
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -69,7 +78,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+-->
 
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file:
 
@@ -80,8 +89,6 @@ The following example demonstrates the dynamic registration of the preceding `Qu
           javaScriptInitializer: "initializeComponent");
   });
   ```
-
-:::moniker-end
 
 * In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file:
 
@@ -110,7 +117,7 @@ In the following example:
 `wwwroot/scripts.js`:
 
 ```javascript
-async function showQuote() {
+window.showQuote = async () => {
   let targetElement = document.getElementById('quoteContainer');
   await Blazor.rootComponents.add(targetElement, 'quote', 
   {
@@ -118,6 +125,9 @@ async function showQuote() {
       "anybody. More like, 'camera is generally pointed at.'"
   });
 }
+
+const btn = document.querySelector("showQuoteBtn");
+btn.addEventListener("click", showQuote);
 ```
 
 After the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
@@ -133,7 +143,7 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 In HTML, place the target container element (`quoteContainer`). For the demonstration in this section, a button triggers rendering the `Quote` component by calling the `showQuote` JS function:
 
 ```html
-<button onclick="showQuote()">Show Quote</button>
+<button id="showQuoteBtn">Show Quote</button>
 
 <div id="quoteContainer"></div>
 ```
@@ -179,6 +189,8 @@ Using a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-ini
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
+<!-- HOLD
+
 :::moniker range=">= aspnetcore-8.0"
 
 For a Blazor Web App:
@@ -197,6 +209,8 @@ export function afterWebStarted(blazor) {
 For a Blazor Server or Blazor WebAssembly app:
 
 :::moniker-end
+
+-->
 
 ```javascript
 export function afterStarted(blazor) {
@@ -260,6 +274,8 @@ The following examples are based on the `Counter` component from the Blazor proj
 
 :::moniker-end
 
+<!-- HOLD
+
 :::moniker range=">= aspnetcore-8.0"
 
 ### Blazor Web App registration
@@ -290,7 +306,9 @@ builder.Services.AddRazorComponents()
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+-->
+
+:::moniker range=">= aspnetcore-7.0"
 
 ### Blazor Server registration
 
@@ -316,10 +334,6 @@ builder.Services.AddServerSideBlazor(options =>
     options.RootComponents.RegisterCustomElement<Counter>("my-counter");
 });
 ```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
 
 ### Blazor WebAssembly registration
 

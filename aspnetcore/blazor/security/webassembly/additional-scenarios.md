@@ -438,7 +438,7 @@ public class WeatherForecastClient
 
 :::moniker-end
 
-In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The `{ASSEMBLY NAME}` placeholder is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A?displayProperty=nameWithType> is an extension in <xref:Microsoft.Extensions.Http?displayProperty=fullName>. Add the package to an app that doesn't already reference it.
 
@@ -982,7 +982,7 @@ In the following example, all of the paths are prefixed with `/security`.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action" />
+<RemoteAuthenticatorView Action="@Action" />
 
 @code{
     [Parameter]
@@ -998,7 +998,7 @@ In the following example, all of the paths are prefixed with `/security`.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action" />
+<RemoteAuthenticatorView Action="@Action" />
 
 @code{
     [Parameter]
@@ -1046,7 +1046,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action">
+<RemoteAuthenticatorView Action="@Action">
     <LoggingIn>
         You are about to be redirected to https://login.microsoftonline.com.
     </LoggingIn>
@@ -1066,7 +1066,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 @page "/security/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorView Action="Action">
+<RemoteAuthenticatorView Action="@Action">
     <LoggingIn>
         You are about to be redirected to https://login.microsoftonline.com.
     </LoggingIn>
@@ -1370,7 +1370,7 @@ In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, repla
 
 In the preceding example:
 
-* The placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+* The `{CLIENT APP ASSEMBLY NAME}` placeholder is the client app's assembly name (for example `BlazorSample.Client`).
 * The conditional check for the `/authentication` path segment:
   * Avoids prerendering (`render-mode="WebAssembly"`) for authentication paths.
   * Prerenders (`render-mode="WebAssemblyPrerendered"`) for non-authentication paths.

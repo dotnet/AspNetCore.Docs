@@ -3,10 +3,9 @@ title: Part 5, work with a database in an ASP.NET Core MVC app
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 04/23/2024
+ms.date: 07/24/2024
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/working-with-sql
-ms.custom: engagement-fy23
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app
@@ -15,25 +14,25 @@ ms.custom: engagement-fy23
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLServer&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_FirstSQLServer&highlight=2-3)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/appsettings.json?highlight=2&range=9-11)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/appsettings.json?highlight=2&range=9-11)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/appsettings_SQLite.json?highlight=2&range=9-11)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/appsettings_SQLite.json?highlight=2&range=9-11)]
 
 ---
 
@@ -69,7 +68,7 @@ Right-click on the `Movie` table **> View Data**
 ![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/8/vd_vs22_17.8.0.png)
 -->
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -81,7 +80,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Models/SeedData.cs?name=snippet_FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Models/SeedData.cs?name=snippet_FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -100,17 +99,17 @@ if (context.Movie.Any())
 
 Replace the contents of `Program.cs` with the following code. The new code is highlighted.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLServerSeedData&highlight=4,16-21)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_SQLServerSeedData&highlight=4,14-20)]
 
 Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
 
 Test the app. Force the app to initialize, calling the code in the `Program.cs` file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteSeedData&highlight=4,16-21)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_SQLiteSeedData&highlight=4,15-20)]
 
 Delete all the records in the database.
 
@@ -127,6 +126,8 @@ The app shows the seeded data.
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql8.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql7.md)]
 

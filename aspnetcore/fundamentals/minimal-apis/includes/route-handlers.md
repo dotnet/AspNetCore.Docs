@@ -36,14 +36,14 @@ Endpoints can be given names in order to generate URLs to the endpoint. Using a 
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr)]
 
-The preceding code displays `The link to the hello endpoint is /hello` from the `/` endpoint.
+The preceding code displays `The link to the hello route is /hello` from the `/` endpoint.
 
 **NOTE**: Endpoint names are case sensitive.
 
 Endpoint names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi).
 
 ### Route Parameters
 

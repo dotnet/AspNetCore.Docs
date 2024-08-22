@@ -1,13 +1,13 @@
 ---
-title: Browser Link in ASP.NET Core
-author: ncarandini
-description: Explains how Browser Link is a Visual Studio feature that links the development environment with one or more web browsers.
+title: Browser link in ASP.NET Core
+author: tdykstra
+description: Explains how browser link is a Visual Studio feature that links the development environment with one or more web browsers.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: tdykstra
-ms.date: 07/11/2022
+ms.date: 06/05/2024
 uid: client-side/using-browserlink
 ---
-# Browser Link in ASP.NET Core
+# Browser link in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -15,49 +15,29 @@ uid: client-side/using-browserlink
 
 By [Nicolò Carandini](https://github.com/ncarandini) and [Tom Dykstra](https://github.com/tdykstra)
 
-Browser Link is a Visual Studio feature. It creates a communication channel between the development environment and one or more web browsers. Use Browser Link to:
+Browser link is a Visual Studio feature. It creates a communication channel between the development environment and one or more web browsers. Use browser link to:
 
 * Refresh your web app in several browsers at once.
 * Test across multiple browsers with specific settings such as screen sizes.
 * Select UI elements in browsers in real-time, see what markup and source it's correlated to in Visual Studio.
-* Conduct real-time browser test automation. Browser Link is also extensible.
+* Conduct real-time browser test automation.
 
-## Browser Link setup
+## Runtime compilation vs. hot reload
 
-Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
+Use browser Link with [runtime compilation](xref:mvc/views/view-compilation) or [hot reload](xref:test/hot-reload) to see the effect of run-time changes in Razor (`.cshtml`) files. We recommend hot reload.
 
-### Configuration
+## How to use browser link
 
-Call `UseBrowserLink` in the `Startup.Configure` method:
+When you have an ASP.NET Core project open, Visual Studio shows the browser link toolbar control next to the **Debug Type** toolbar control:
 
-```csharp
-app.UseBrowserLink();
-```
+![browser link drop-down menu](~/client-side/using-browserlink/_static/browserLink-dropdown-menu.png)
 
-The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment. For example:
-
-```csharp
-if (env.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseBrowserLink();
-}
-```
-
-For more information, see <xref:fundamentals/environments>.
-
-## How to use Browser Link
-
-When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:
-
-![Browser Link drop-down menu](~/client-side/using-browserlink/_static/browserLink-dropdown-menu.png)
-
-From the Browser Link toolbar control, you can:
+From the browser link toolbar control, you can:
 
 * Refresh the web app in several browsers at once.
 * Open the **Browser Link Dashboard**.
-* Enable or disable **Browser Link**. Note: Browser Link is disabled by default in Visual Studio.
-* Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).
+* Enable or disable **Browser Link**.
+* Enable or disable **CSS Hot Reload**.
 
 ## Refresh the web app in several browsers at once
 
@@ -73,51 +53,47 @@ The following screenshot shows Visual Studio with the Index view open and two op
 
 ![Sync with two browsers example](~/client-side/using-browserlink/_static/sync-with-two-browsers-example.png)
 
-Hover over the Browser Link toolbar control to see the browsers that are connected to the project:
+Hover over the browser link toolbar control to see the browsers that are connected to the project:
 
 ![Hover tip](~/client-side/using-browserlink/_static/hoover-tip.png)
 
-Change the Index view, and all connected browsers are updated when you click the Browser Link refresh button:
+Change the Index view, and all connected browsers are updated when you click the browser link refresh button:
 
 ![Browsers sync to changes](~/client-side/using-browserlink/_static/browsers-sync-to-changes.png)
 
-Browser Link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.
+browser link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.
 
-### The Browser Link Dashboard
+## The browser link dashboard
 
-Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:
+Open the **browser link dashboard** window from the browser link drop down menu to manage the connection with open browsers:
 
 ![how-to-open-browserlink-dashboard](~/client-side/using-browserlink/_static/open-browserlink-dashboard.png)
 
-If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:
+The connected browsers are shown with the path to the page that each browser is showing:
 
-![Browserlink dashboard no connections](~/client-side/using-browserlink/_static/browserlink-dashboard-no-connections.png)
-
-Otherwise, the connected browsers are shown with the path to the page that each browser is showing:
-
-![Browserlink dashboard two connections](~/client-side/using-browserlink/_static/browserlink-dashboard-two-connections.png)
+![Browser link dashboard two connections](~/client-side/using-browserlink/_static/browserlink-dashboard-two-connections.png)
 
 You can also click on an individual browser name to refresh only that browser.
 
-### Enable or disable Browser Link
+## Enable or disable browser link
 
-When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.
+When you re-enable browser link after disabling it, you must refresh the browsers to reconnect them.
 
-### Enable or disable CSS Auto-Sync
+## Enable or disable CSS hot reload
 
-When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
+When CSS hot reload is enabled, connected browsers are automatically refreshed when you make any change to CSS files.
 
 ## How it works
 
-Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser. When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. Browser Link also registers a middleware component in the ASP.NET Core request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
+browser link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser. When browser link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. browser link also registers a middleware component in the ASP.NET Core request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
 
 ```html
-    <!-- Visual Studio Browser Link -->
+    <!-- Visual Studio browser link -->
     <script type="application/json" id="__browserLink_initializationData">
         {"requestId":"a717d5a07c1741949a7cefd6fa2bad08","requestMappingFromServer":false}
     </script>
     <script type="text/javascript" src="http://localhost:54139/b6e36e429d034f578ebccd6a79bf19bf/browserLink" async="async"></script>
-    <!-- End Browser Link -->
+    <!-- End browser link -->
 </body>
 ```
 

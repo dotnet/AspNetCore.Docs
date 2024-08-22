@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 06/07/2024
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C
@@ -101,7 +101,7 @@ Use one of the following approaches to run the app:
   * Select the **Run** button.
   * Use **Debug** > **Start Debugging** from the menu.
   * Press <kbd>F5</kbd>.
-* .NET CLI command shell: Execute the `dotnet run` command from the app's folder.
+* .NET CLI command shell: Execute the `dotnet watch` (or `dotnet run`) command from the app's folder.
 
 ## Parts of the app
 
@@ -222,6 +222,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Additional resources
 
+* [Identity and account types for single- and multitenant apps](/security/zero-trust/develop/identity-supported-account-types)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

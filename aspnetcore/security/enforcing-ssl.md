@@ -2,17 +2,17 @@
 title: Enforce HTTPS in ASP.NET Core
 author: tdykstra
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
-ms.author: riande
+ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc, linux-related-content
-ms.date: 2/14/2023
+ms.date: 05/29/2024
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
 
 By [David Galvan](https://www.linkedin.com/in/dave-galvan/) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This document shows how to:
+this article shows how to:
 
 * Require HTTPS for all requests.
 * Redirect all HTTP requests to HTTPS.
@@ -39,7 +39,7 @@ No API can prevent a client from sending sensitive data on the first request.
 
 ### HTTP redirection to HTTPS causes ERR_INVALID_REDIRECT on the CORS preflight request
 
-Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> fail with `ERR_INVALID_REDIRECT on the CORS preflight request`.
+Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> fail with `ERR_INVALID_REDIRECT` on the CORS preflight request.
 
 API projects can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
 
@@ -135,7 +135,7 @@ When configuring services in `Program.cs`:
 
 An alternative to using HTTPS Redirection Middleware (`UseHttpsRedirection`) is to use URL Rewriting Middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
-When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware (`UseHttpsRedirection`) described in this topic.
+When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware (`UseHttpsRedirection`) described in this article.
 
 <a name="hsts"></a>
 
@@ -187,7 +187,7 @@ Uncheck the **Configure for HTTPS** checkbox.
 
 ![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 Use the `--no-https` option. For example
 
@@ -214,13 +214,13 @@ For establishing trust on other platforms refer to the platform specific documen
 For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
 ```
 
-Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the dotnet `dev-certs` tool:
+Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --trust
 ```
 
-The following command provides help on the `dev-certs` tool:
+The following command provides help on the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --help
@@ -243,7 +243,7 @@ Create a policy file (`policies.json`) at:
 
 * Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
-* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
+* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this article.
 
 Add the following JSON to the Firefox policy file:
 
@@ -280,6 +280,19 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 ## Trust HTTPS certificate on Linux
 
 Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome) and for Firefox.
+
+### Trust HTTPS certificate on Linux with linux-dev-certs
+
+[linux-dev-certs](https://github.com/tmds/linux-dev-certs) is an open-source, community-supported, .NET global tool that provides a convenient way to create and trust a developer certificate on Linux. The tool is not maintained or supported by Microsoft.
+
+The following commands install the tool and create a trusted developer certificate:
+
+```cli
+dotnet tool update -g linux-dev-certs
+dotnet linux-dev-certs install
+```
+
+For more information or to report issues, see the [linux-dev-certs GitHub repository](https://github.com/tmds/linux-dev-certs).
 
 ### Ubuntu trust the certificate for service-to-service communication
 
@@ -360,7 +373,7 @@ EOF
 ```
 Note: Ubuntu 21.10 Firefox comes as a snap package and the installation folder is `/snap/firefox/current/usr/lib/firefox`.
   
-See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
+See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this article for an alternative way to configure the policy file using the browser.
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
@@ -668,7 +681,6 @@ In some cases, group policy may prevent self-signed certificates from being trus
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * <xref:fundamentals/servers/kestrel/endpoints>
@@ -798,7 +810,7 @@ public void ConfigureServices(IServiceCollection services)
 
 An alternative to using HTTPS Redirection Middleware (`UseHttpsRedirection`) is to use URL Rewriting Middleware (`AddRedirectToHttps`). `AddRedirectToHttps` can also set the status code and port when the redirect is executed. For more information, see [URL Rewriting Middleware](xref:fundamentals/url-rewriting).
 
-When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware (`UseHttpsRedirection`) described in this topic.
+When redirecting to HTTPS without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware (`UseHttpsRedirection`) described in this article.
 
 <a name="hsts"></a>
 
@@ -848,9 +860,9 @@ To opt-out of HTTPS/HSTS:
 
 Uncheck the **Configure for HTTPS** checkbox.
 
-![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
+![Additional information dialog for New ASP.NET Core Web App template, showing the Configure for HTTPS checkbox](enforcing-ssl/_static/out-vs2022.png)
 
-# [.NET Core CLI](#tab/netcore-cli) 
+# [.NET CLI](#tab/net-cli) 
 
 Use the `--no-https` option. For example
 
@@ -866,24 +878,21 @@ dotnet new webapp --no-https
 
 For the Firefox browser, see the next section.
 
-The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces a variation of the following output:
+The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, running `dotnet new webapp` for the first time produces a variation of the following output:
 
-```cli
-ASP.NET Core
-------------
-Successfully installed the ASP.NET Core HTTPS Development Certificate.
-To trust the certificate run 'dotnet dev-certs https --trust' (Windows and macOS only).
-For establishing trust on other platforms refer to the platform specific documentation.
-For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+```output
+Installed an ASP.NET Core HTTPS development certificate.
+To trust the certificate, run 'dotnet dev-certs https --trust'
+Learn about HTTPS: https://aka.ms/dotnet-https
 ```
 
-Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the dotnet `dev-certs` tool:
+Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --trust
 ```
 
-The following command provides help on the `dev-certs` tool:
+The following command provides help on the `dotnet dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --help
@@ -906,7 +915,7 @@ Create a policy file (`policies.json`) at:
 
 * Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
-* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
+* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) later in this article.
 
 Add the following JSON to the Firefox policy file:
 
@@ -930,9 +939,9 @@ Set  `security.enterprise_roots.enabled` = `true` using the following instructio
 
 1. Enter `about:config` in the FireFox browser.
 1. Select **Accept the Risk and Continue** if you accept the risk.
-1. Select **Show All**
-1. Set `security.enterprise_roots.enabled` = `true`
-1. Exit and restart Firefox
+1. Select **Show All**.
+1. Set `security.enterprise_roots.enabled` = `true`.
+1. Exit and restart Firefox.
 
 For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox) and the [mozilla/policy-templates/README file](https://github.com/mozilla/policy-templates/blob/master/README.md).
 
@@ -958,8 +967,8 @@ Establishing trust is distribution and browser specific. The following sections 
 The preceding commands:
 
 * Ensure the current user's developer certificate is created.
-* Exports the certificate with elevated permissions needed for the `ca-certificates` folder, using the current user's environment.
-* Removing the `-E`  flag exports the root user certificate, generating it if necessary. Each newly generated certificate has a different thumbprint. When running as root, `sudo`  and  `-E` are not needed.
+* Export the certificate with elevated permissions needed for the `ca-certificates` folder, using the current user's environment.
+* Remove the `-E`  flag to export the root user certificate, generating it if necessary. Each newly generated certificate has a different thumbprint. When running as root, `sudo`  and  `-E` are not needed.
 
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
@@ -1019,7 +1028,7 @@ cat <<EOF | sudo tee /usr/lib/firefox/distribution/policies.json
 EOF
 ```
   
-See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
+See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this article for an alternative way to configure the policy file using the browser.
 
 <a name="wsl"></a>
 
@@ -1105,9 +1114,9 @@ dotnet dev-certs https --clean
 dotnet dev-certs https --trust
 ```
 
-Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
+Close any browser instances that are open. Open a new browser window to the app. Certificate trust is cached by browsers.
 
-### dotnet dev-certs https --clean Fails
+### dotnet dev-certs https --clean fails
 
 The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform-specific suggestions that follow.
 
@@ -1128,7 +1137,7 @@ dotnet dev-certs https --clean
 dotnet dev-certs https --trust
 ```
 
-Close any browser instances open. Open a new browser window to app.
+Close any browser instances that are open. Open a new browser window to the app. Certificate trust is cached by browsers.
 
 ### OS X - certificate not trusted
 
@@ -1144,7 +1153,7 @@ dotnet dev-certs https --clean
 dotnet dev-certs https --trust
 ```
 
-Close any browser instances open. Open a new browser window to app.
+Close any browser instances that are open. Open a new browser window to the app. Certificate trust is cached by browsers.
 
 See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.com/dotnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
 
@@ -1183,7 +1192,6 @@ To fix problems with the IIS Express certificate, select **Repair** from the Vis
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)

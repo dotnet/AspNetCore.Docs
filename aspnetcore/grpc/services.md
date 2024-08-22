@@ -3,11 +3,13 @@ title: Create gRPC services and methods
 author: jamesnk
 description: Learn how to create gRPC services and methods.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 08/18/2022
 uid: grpc/services
 ---
 # Create gRPC services and methods
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [James Newton-King](https://twitter.com/jamesnk)
 

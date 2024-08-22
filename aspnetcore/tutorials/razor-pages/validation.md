@@ -3,8 +3,7 @@ title: Part 8, add validation
 author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.custom: engagement-fy23
-ms.date: 02/01/2024
+ms.date: 06/23/2024
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -13,7 +12,7 @@ uid: tutorials/razor-pages/validation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
@@ -38,7 +37,7 @@ The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
 Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
@@ -109,7 +108,7 @@ The following code shows a portion of the `Create.cshtml` page scaffolded earlie
 * Display the initial form.
 * Redisplay the form in the event of an error.
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/Create.cshtml?range=14-20)]
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
 
@@ -121,7 +120,7 @@ When validation logic needs to change, it's done only in the model. Validation i
 
 Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 The `[DataType]` attributes provide:
 
@@ -168,7 +167,7 @@ It's a best practice to avoid compiling hard dates in models, so using the `[Ran
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
@@ -176,7 +175,7 @@ The following code shows combining attributes on one line:
 
 The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRatingDA.cs?name=snippet11)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRatingDA.cs?name=snippet11)]
 
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
@@ -209,7 +208,7 @@ Update-Database
 
 `Update-Database` runs the `Up` method of the `New_DataAnnotations` class.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Use the following commands to add a migration for the new DataAnnotations:
 
@@ -224,7 +223,7 @@ dotnet ef database update
 
 Examine the `Up` method:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
 
 The updated `Movie` table has the following schema:
 
@@ -258,6 +257,8 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation7.md)]
 

@@ -3,11 +3,13 @@ title: gRPC services with ASP.NET Core
 author: jamesnk
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: jamesnk
+ms.author: wpickett
 ms.date: 09/21/2023
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 This document shows how to get started with gRPC services using ASP.NET Core.

@@ -41,6 +41,8 @@ In this article, *language* refers to selections made by a user in their browser
 
 *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("culture") property from the language that the user requested. API usually uses the word "culture" in its member names.
 
+The guidance in this article doesn't cover setting the page's HTML language attribute ([`<html lang="...">`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang)), which accessiblity tools use. You can set the value statically by assigning a language to the `lang` attribute of the `<html>` tag or to `document.documentElement.lang` in JavaScript. You can dynamically set the value of `document.documentElement.lang` with [JS interop](xref:blazor/js-interop/index).
+
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the article's examples.
 
@@ -93,7 +95,9 @@ Loading a custom subset of locales in a Blazor WebAssembly app is supported in .
 
 ## Invariant globalization
 
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+*This section only applies to client-side Blazor scenarios.*
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Using invariant globalization reduces the app's download size and results in faster app startup. Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
@@ -122,6 +126,37 @@ Alternatively, configure invariant globalization with the following approaches:
 
 For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Timezone information
+
+*This section only applies to client-side Blazor scenarios.*
+
+Adopting [invariant globalization](#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data, which reduces the app's download size and results in faster app startup, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <InvariantTimezone>true</InvariantTimezone>
+</PropertyGroup>
+```
+
+> [!NOTE]
+> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `<BlazorEnableTimeZoneSupport>` MSBuild property to `false` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+</PropertyGroup>
+```
+
+:::moniker-end
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -134,9 +169,10 @@ The following `CultureExample1` component can be used to demonstrate Blazor glob
 
 <h1>Culture Example 1</h1>
 
-<p>
-    <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
-</p>
+<ul>
+    <li><b>CurrentCulture</b>: @CultureInfo.CurrentCulture</li>
+    <li><b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture</li>
+</ul>
 
 <h2>Rendered values</h2>
 
@@ -318,8 +354,8 @@ CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 ```
 
-> [!IMPORTANT]
-> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+> [!NOTE]
+> Currently, Blazor WebAssembly apps only load resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture>. For more information, see [Blazor WASM only relies on the current culture (current UI culture isn't respected) (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again. When the requested language is Costa Rican Spanish, the app's culture remains United States English (`en-US`).
 
@@ -448,8 +484,8 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
-> [!IMPORTANT]
-> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+> [!NOTE]
+> Currently, Blazor WebAssembly apps only load resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture>. For more information, see [Blazor WASM only relies on the current culture (current UI culture isn't respected) (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
 
 The following `CultureSelector` component shows how to perform the following actions:
 
@@ -945,8 +981,8 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
-> [!IMPORTANT]
-> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+> [!NOTE]
+> Currently, Blazor WebAssembly apps only load resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture>. For more information, see [Blazor WASM only relies on the current culture (current UI culture isn't respected) (`dotnet/aspnetcore` #56824)](https://github.com/dotnet/aspnetcore/issues/56824).
 
 Add the following `CultureSelector` component to the `.Client` project.
 
@@ -1031,9 +1067,10 @@ In the `.Client` project, place the following `CultureClient` component to study
 
 <h1>Culture Client</h1>
 
-<p>
-    <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
-</p>
+<ul>
+    <li><b>CurrentCulture</b>: @CultureInfo.CurrentCulture</li>
+    <li><b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture</li>
+</ul>
 
 <h2>Rendered values</h2>
 
@@ -1215,9 +1252,10 @@ In the server project, place the following `CultureServer` component to study ho
 
 <h1>Culture Server</h1>
 
-<p>
-    <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
-</p>
+<ul>
+    <li><b>CurrentCulture</b>: @CultureInfo.CurrentCulture</li>
+    <li><b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture</li>
+</ul>
 
 <h2>Rendered values</h2>
 
@@ -1553,9 +1591,10 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 
 <h1>Culture Example 2</h1>
 
-<p>
-    <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
-</p>
+<ul>
+    <li><b>CurrentCulture</b>: @CultureInfo.CurrentCulture</li>
+    <li><b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture</li>
+</ul>
 
 <h2>Greeting</h2>
 
@@ -1617,8 +1656,8 @@ To create localization shared resources, adopt the following approach.
   * `Localization/SharedResource.resx`
   * `Localization/SharedResource.es.resx`
 
-  > [!NOTE]
-  > `Localization` is resource path that can be set via <xref:Microsoft.Extensions.Localization.LocalizationOptions>.
+  > [!WARNING]
+  > When following the approach in this section, you can't simultaneously set <xref:Microsoft.Extensions.Localization.LocalizationOptions.ResourcesPath%2A?displayProperty=nameWithType> and use <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory.Create%2A?displayProperty=nameWithType> to load resources.
 
 * To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
 

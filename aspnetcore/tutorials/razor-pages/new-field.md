@@ -3,8 +3,7 @@ title: Part 7, add a new field
 author: wadepickett
 description: Part 7 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.custom: engagement-fy23
-ms.date: 02/15/2024
+ms.date: 06/23/2024
 uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
@@ -13,14 +12,16 @@ uid: tutorials/razor-pages/new-field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
-In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
+In this section [Entity Framework Core (EF Core)](/ef/core/get-started/aspnetcore/new-db) is used to define the database schema based on the app's model class:
 
 * Add a new field to the model.
 * Migrate the new field schema change to the database.
 
-When using EF Code First to automatically create and track a database, Code First:
+The EF Core approach allows for a more agile development process. The developer works on the app's data model directly while the database schema is created and then syncronized, all without the developer having to switch contexts to and from a datbase management tool. For an overview of Entity Framework Core and its benefits, see [Entity Framework Core](/ef/core).
+
+Using EF Code to automatically create and track a database:
 
 * Adds an [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
 * Throws an exception if the model classes aren't in sync with the database.
@@ -28,19 +29,19 @@ When using EF Code First to automatically create and track a database, Code Firs
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
 
 ## Adding a Rating Property to the Movie Model
-<!-- Update Index in working project then copy to snap7 folder -->
+<!-- Update code in working project (which becomes clean finished sample) to compile and verify steps, then copy to snapshot sample folder. -->
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
    <a name="addrat7"></a>
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
-   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Create.cshtml)*.
-   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Delete.cshtml)*.
-   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Details.cshtml)*.
-   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Edit.cshtml)*.
+   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Pages/Movies/Create.cshtml)*.
+   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Pages/Movies/Delete.cshtml)*.
+   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Pages/Movies/Details.cshtml)*.
+   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Pages/Movies/Edit.cshtml)*.
 
 The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
 
@@ -52,15 +53,15 @@ There are a few approaches to resolving the error:
 
 1. Have the Entity Framework automatically drop and re-create the database using the new model class schema. This approach is convenient early in the development cycle, it allows developers to quickly evolve the model and database schema together. The downside is that existing data in the database is lost. Don't use this approach on a production database! Dropping the database on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is to keep the data. Make this change either manually or by creating a database change script.
-3. Use Code First Migrations to update the database schema.
+3. Use EF Core Migrations to update the database schema.
 
-For this tutorial, use Code First Migrations.
+For this tutorial, use EF Core Migrations.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but make this change for each `new Movie` block.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample9/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie90/Models/SeedData.cs).
 
 Build the app
 
@@ -75,11 +76,6 @@ From the *View* menu, select *Terminal* and enter the following command:
 ```dotnetcli
 dotnet build
 ```
-
-### [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Press <kbd>⌘</kbd>+<kbd>B</kbd>
-
 ---
 
 # [Visual Studio](#tab/visual-studio)
@@ -89,11 +85,10 @@ Press <kbd>⌘</kbd>+<kbd>B</kbd>
 ### Add a migration for the rating field
 
 1. From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
-2. In the PMC, enter the following commands:
+2. In the Package Manager Console (PMC), enter the following command:
 
    ```powershell
    Add-Migration Rating
-   Update-Database
    ```
 
 The `Add-Migration` command tells the framework to:
@@ -102,6 +97,12 @@ The `Add-Migration` command tells the framework to:
 * Create code to migrate the database schema to the new model.
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+2. In the PMC, enter the following command:
+
+   ```powershell
+   Update-Database
+   ```
 
 The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
@@ -121,7 +122,7 @@ Another option is to delete the database and use migrations to re-create the dat
    Update-Database
    ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ### Add a migration for rating
 Use the following commands to add a migration for the rating field:
@@ -131,14 +132,14 @@ dotnet ef migrations add rating
 dotnet ef database update
 ```
 
-The `dotnet-ef migrations add rating` command tells the framework to:
+The `dotnet ef migrations add rating` command tells the framework to:
 
 * Compare the `Movie` model with the `Movie` database schema.
 * Create code to migrate the database schema to the new model.
 
 The name `rating` is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `dotnet-ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
+The `dotnet ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 Delete all the records in the database, the initializer will seed the database and include the `Rating` field. 
 
@@ -183,6 +184,8 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field7.md)]
 

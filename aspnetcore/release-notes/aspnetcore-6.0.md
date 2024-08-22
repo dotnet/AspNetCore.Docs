@@ -252,7 +252,7 @@ Use a deployment layout to enable Blazor WebAssembly app downloads in restricted
 In addition to the Blazor features described in the preceding sections, new Blazor articles are available on the following subjects:
 
 * <xref:blazor/file-downloads>: Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
-* <xref:blazor/images>: Discover how to work with images in Blazor apps, including how to stream image data and preview an image.
+* <xref:blazor/images-and-documents>: Discover how to work with images and documents in Blazor apps, including how to stream image and document data.
 
 ## Build Blazor Hybrid apps with .NET MAUI, WPF, and Windows Forms
 
@@ -542,7 +542,7 @@ With ASP.NET Core 6, the tag helper can be invoked without having to specify a v
 
 ### Angular template updated to Angular 12
 
-The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49).
+The ASP.NET Core 6.0 template for Angular now uses Angular 12.
 
 The React template has been updated to [React 17](https://reactjs.org/blog/2020/10/20/react-v17.html).
 

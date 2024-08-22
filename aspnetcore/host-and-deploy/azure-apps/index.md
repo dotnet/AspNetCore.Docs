@@ -3,12 +3,14 @@ title: Deploy ASP.NET Core apps to Azure App Service
 author: bradygaster
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 11/6/2020
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core.
 
@@ -50,7 +52,7 @@ The platform architecture (x86/x64) of an App Services app is set in the app's s
 
 :::moniker range=">= aspnetcore-2.2"
 
-Runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps built locally using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or the publish process in Visual Studio. For more information, see the [Publish and deploy the app](#publish-and-deploy-the-app) section.
+ASP.NET Core apps can be published [framework-dependent](/dotnet/core/deploying/) because the runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps built locally using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or the publish process in Visual Studio. For more information, see the [Publish and deploy the app](#publish-and-deploy-the-app) section.
 
 :::moniker-end
 
@@ -261,6 +263,8 @@ For a 64-bit deployment:
 
 ### Deploy the app framework-dependent
 
+Apps published as framework-dependent are cross-platform and don't include the .NET runtime in the deployment. Azure App Service includes the .NET runtime.
+
 # [Visual Studio](#tab/visual-studio)
 
 1. Right-click the project in **Solution Explorer** and select **Publish**. Alternatively, select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
@@ -278,7 +282,7 @@ For a 64-bit deployment:
    * Select **Save**.
    * Select **Publish**.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 1. In the project file, don't specify a [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
@@ -294,7 +298,8 @@ For a 64-bit deployment:
 
 ### Deploy the app self-contained
 
-Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
+Publishing an app as self-contained produces a platform-specific executable. The output publishing folder contains all components of the app, including the .NET libraries and target runtime. For more information, see [Publish self-contained]/dotnet/core/deploying/#publish-self-contained).
+Use Visual Studio or the .NET CLI for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -313,7 +318,7 @@ Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/
    * Select **Save**.
    * Select **Publish**.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+# [.NET CLI](#tab/net-cli/)
 
 1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` for a single RID, or use `<RuntimeIdentifiers>` to provide a semicolon-delimited list of multiple RIDs. In the following example, the `win-x86` RID is specified:
 

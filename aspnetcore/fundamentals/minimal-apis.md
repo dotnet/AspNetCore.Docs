@@ -2,7 +2,7 @@
 title: Minimal APIs quick reference
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
-ms.author: riande
+ms.author: wpickett
 content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/23/2023
@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 <!-- When working on this file, open all the LATEST VERSION MD files in ~/fundamentals/minimal-apis/includes/ and search for the target text -->
 
 # Minimal APIs quick reference
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -193,10 +195,7 @@ See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 ## Filters
 
-See:
-
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* [A deep dive into endpoint filters](https://blog.safia.rocks/endpoint-filters-exploration.html)
+For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
 
 ## Authorization
 
@@ -255,7 +254,7 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 ## See also
 
 * <xref:fundamentals/minimal-apis>
-* <xref:fundamentals/minimal-apis/openapi>
+* <xref:fundamentals/openapi/aspnetcore-openapi>
 * <xref:fundamentals/minimal-apis/responses>
 * <xref:fundamentals/minimal-apis/min-api-filters>
 * <xref:fundamentals/minimal-apis/handle-errors>

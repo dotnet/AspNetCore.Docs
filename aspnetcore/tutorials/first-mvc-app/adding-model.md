@@ -4,9 +4,8 @@ author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 02/15/2024
+ms.date: 07/24/2024
 uid: tutorials/first-mvc-app/adding-model
-ms.custom: engagement-fy23
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app
@@ -15,7 +14,7 @@ ms.custom: engagement-fy23
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
 
@@ -35,15 +34,11 @@ Right-click the *Models* folder > **Add** > **Class**. Name the file `Movie.cs`.
 
 Add a file named `Movie.cs` to the *Models* folder.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Control-click the **Models** folder and select **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
-
 ---
 
 Update the `Models/Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Models/Movie.cs?name=snippet_First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Models/Movie.cs?name=snippet_First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -66,58 +61,11 @@ Build the project as a check for compiler errors.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-9.md)]
 
 In Visual Studio Code, press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
 In the *Panel* below the editor region, select the *PROBLEMS* tab, or from the *View* menu, select *Problems* if it is not currently in view. Verify there are no compilation errors.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* From the **Project** menu, select **Manage NuGet Packages**.
-* Select the **Browse** tab.
-* Select **Include prereleases**.
-* In the **Search** field in the upper right:
-  * Enter `Microsoft.EntityFrameworkCore.SQLite`.
-  * Press the <kbd>Return</kbd> key to search.
-  * Select the matching NuGet package and select the **Add Package** button.
-
-![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages_VS22.png)
-
-The **Select Projects** dialog displays, with the `MvcMovie` project selected. Select the **Ok** button.
-
-A **License Acceptance** dialog displays. Review the licenses, then select the **Accept** button.
-
-Repeat the above steps to install the following NuGet packages:
-
-* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
-* `Microsoft.EntityFrameworkCore.SqlServer`
-* `Microsoft.EntityFrameworkCore.Design`
-* `Microsoft.EntityFrameworkCore.Tools`
-
-The preceding packages include:
-
-* The EF Core SQLite provider, which installs the EF Core package as a dependency.
-* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
-* Design time tools for EF Core.
-
-Run the following .NET CLI commands:
-
-```dotnetcli
-dotnet tool uninstall --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool uninstall --global dotnet-ef
-dotnet tool install --global dotnet-ef
-```
-
-[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
-
-The preceding commands add:
-
-* The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-
-Build the project as a check for compiler errors.
 
 ---
 
@@ -129,7 +77,7 @@ Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CR
 
 In **Solution Explorer**, right-click the *Controllers* folder and select **Add > New Scaffolded Item**.
 
-![view of above step](~/tutorials/first-mvc-app/adding-model/_static/8/add_new_scaffoldvs22v17.8.0.png)
+![view of above step](~/tutorials/first-mvc-app/adding-model/_static/9/add_new_scaffoldvs22v17.11.0.png)
 
 In the **Add New Scaffolded Item** dialog:
 
@@ -137,7 +85,7 @@ In the **Add New Scaffolded Item** dialog:
 * Select  **MVC Controller with views, using Entity Framework**.
 * Select **Add**.
 
-![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/8/add_scaffold-VS22-17.8.0.png)
+![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/9/add_scaffold-VS22-17.11.0.png)
 
 Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
@@ -149,7 +97,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * **Views** and **Controller name**: Keep the default.
 * Select **Add**.
 
-![Add Data context keep defaults](~/tutorials/first-mvc-app/adding-model/_static/8/dc_last_step_vs22v17.8.0.png)
+![Add Data context keep defaults](~/tutorials/first-mvc-app/adding-model/_static/9/dc_last_step_vs22v17.11.0.png)
 
 If you get an error message, select **Add** a second time to try it again.
 
@@ -222,52 +170,7 @@ Build the app to verify that there are no errors.
 
 The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Open a command window in the project directory. The project directory is the directory that contains the `.csproj` file.
-
-Export the scaffold tool path:
-
-```console
-export PATH=$HOME/.dotnet/tools:$PATH
-```
-
-Run the following command:
-
-```dotnetcli
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
-```
-
-[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
-
-Scaffolding creates the following:
-
-* A movies controller: `Controllers/MoviesController.cs`
-* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: `Data/MvcMovieContext.cs`
-
-Scaffolding updates the following:
-
-* Registers the database context in the `Program.cs` file
-* Adds a database connection string to the `appsettings.json` file.
-
-The automatic creation of these files and file updates is known as *scaffolding*.
-
-The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
-
-Build the app to verify that there are no errors.
-
-<a name="sqlite-dev-vs-mac"></a>
-
-### Use SQLite for development, SQL Server for production
-
-The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
-
-<a name="scaffolding-created"></a>
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_SQLiteDevProd&highlight=3-99)]
 
 ---
 
@@ -281,39 +184,50 @@ Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the 
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** .
 
-In the Package Manager Console (PMC), enter the following commands:
+In the Package Manager Console (PMC), enter the following command:
 
 ```powershell
 Add-Migration InitialCreate
-Update-Database
  
 ```
 
 * `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
 
-* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
-
-The `Update-Database` command generates the following warning:
+The following warning is displayed, which is addressed in a later step:
 
 > No store type was specified for the decimal property 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
 
-Ignore the preceding warning, it's fixed in a later tutorial.
+In the PMC, enter the following command:
+
+```powershell
+Update-Database
+ 
+```
+
+* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 [!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-Run the following .NET CLI commands:
+Run the following .NET CLI command:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
+* `ef migrations add InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the `Data/MvcMovieContext.cs` file.
+
+The following warning is displayed, which is addressed in a later step:
+
+> No store type was specified for the decimal property 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+
+Run the following .NET CLI command:
+
 ```dotnetcli
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the `Data/MvcMovieContext.cs` file.
 * `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 For more information on maintaining multiple providers such as Microsoft SQL Server and SQLite, see [Migrations with Multiple Providers](/ef/core/managing-schemas/migrations/providers).
@@ -334,7 +248,7 @@ If you get an exception similar to the following, you may have missed the `Updat
 SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
 ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the app and select the **Movie App** link.
 
@@ -357,7 +271,7 @@ With EF Core, data access is performed using a model. A model is made up of enti
 
 Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Data/MvcMovieContext.cs?name=snippet_First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Data/MvcMovieContext.cs?name=snippet_First)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property that represents the movies in the database.
 
@@ -371,11 +285,11 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLServer&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_FirstSQLServer&highlight=2-3)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
 
 ---
 
@@ -389,11 +303,11 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/appsettings.json?highlight=9-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/appsettings.json?highlight=9-10)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/appsettings_SQLite.json?highlight=9-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/appsettings_SQLite.json?highlight=9-10)]
 
 ---
 
@@ -403,7 +317,7 @@ For local development, the [ASP.NET Core configuration system](xref:fundamentals
 
 Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Migrations/20210915202210_InitialCreate.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Migrations/20240725022257_InitialCreate.cs)]
 
 In the preceding code:
 
@@ -416,7 +330,7 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Controllers/MoviesController.cs?name=snippet_Constructor)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/MoviesController.cs?name=snippet_Constructor)]
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
@@ -434,7 +348,7 @@ MVC provides the ability to pass strongly typed model objects to a view. This st
 
 Examine the generated `Details` method in the `Controllers/MoviesController.cs` file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Controllers/MoviesController.cs?name=snippet_Details)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Controllers/MoviesController.cs?name=snippet_Details)]
 
 The `id` parameter is generally passed as route data. For example, `https://localhost:5001/movies/details/1` sets:
 
@@ -463,7 +377,7 @@ return View(movie);
 
 Examine the contents of the `Views/Movies/Details.cshtml` file:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Views/Movies/DetailsOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/Movies/DetailsOriginal.cshtml)]
 
 The `@model` statement at the top of the view file specifies the type of object that the view expects. When the movie controller was created, the following `@model` statement was included:
 
@@ -475,7 +389,7 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie90/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
 
 The code returns [problem details](xref:web-api/handle-errors#problem-details-service) if the `Movie` property of the data context is null.
 
@@ -483,11 +397,11 @@ When the movies controller was created, scaffolding included the following `@mod
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Views/Movies/IndexOriginal.cshtml?range=1)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/Movies/IndexOriginal.cshtml?range=1)]
 
 The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the `Index.cshtml` view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie80/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie90/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the compiler validates the types used in the code.
 
@@ -502,6 +416,8 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Next: Working with SQL](~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model8.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model7.md)]
 

@@ -27,7 +27,7 @@ Many of the commercial licenses provide "community" or free options that may be 
 |**Keycloak**|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[https://www.keycloak.org/](https://www.keycloak.org/)|[Keycloak client adapters documentation](https://www.keycloak.org/docs/latest/securing_apps/#client-adapters)|
 |**Microsoft Entra ID**|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[https://azure.microsoft.com/services/active-directory/](https://azure.microsoft.com/services/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
 |**Okta**|Managed|[Commercial](https://www.okta.com/pricing/)|[https://www.okta.com/](https://www.okta.com/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
-|**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://github.com/openiddict/openiddict-core](https://github.com/openiddict/openiddict-core)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
+|**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://github.com/openiddict/openiddict-core](https://github.com/openiddict/openiddict-core)|[OpenIddict documentation](https://documentation.openiddict.com/)|
 -->
 
 |Name  |Type | License Type  | Documentation  |
@@ -38,6 +38,6 @@ Many of the commercial licenses provide "community" or free options that may be 
 |[Keycloak](https://www.keycloak.org)|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[Keycloak client adapters documentation](https://www.keycloak.org/docs/latest/securing_apps/#client-adapters)|
 |[Microsoft Entra ID](https://azure.microsoft.com/services/active-directory)|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
 |[Okta](https://www.okta.com)|Managed|[Commercial](https://www.okta.com/pricing/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
-|[OpenIddict](https://github.com/openiddict/openiddict-core)|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
+|[OpenIddict](https://github.com/openiddict/openiddict-core)|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[OpenIddict documentation](https://documentation.openiddict.com/)|
 
 Is there a solution that should be added to this list? Do you have a correction, suggestion, or feedback? We welcome your contributions. Learn [how to contribute](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md).

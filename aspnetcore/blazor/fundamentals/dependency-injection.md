@@ -539,7 +539,7 @@ To activate the demonstration code and witness its operation:
   + else
   ```
 
-* Run the sample app and navigate to to the `TransientService` component at `/transient-service`.
+* Run the sample app and navigate to the `TransientService` component at `/transient-service`.
 
 :::moniker-end
 
