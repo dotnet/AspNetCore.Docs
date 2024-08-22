@@ -9,6 +9,7 @@ if (Test-Path $ProgramName) {
 $Project = "$ProgramName.csproj"
 dotnet new webapi -n $ProgramName
 Set-Location $ProgramName
+
 dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-* --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
 
 dotnet build
@@ -32,11 +33,16 @@ dotnet build
 if ($LASTEXITCODE -eq 0) {
     Write-Output "Build succeeded."
     Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
+    }
 else {
     Write-Output "Build failed."
 }
 
-# must remove so project builds
- Remove-Item Program.cs 
+# must remove so ../MyTestApi builds
+if (Test-Path bin) {
+     Remove-Item Program.cs -Force 
+ Remove-Item bin -Recurse -Force 
+  Remove-Item obj -Recurse -Force 
+} 
 cd .. 
 

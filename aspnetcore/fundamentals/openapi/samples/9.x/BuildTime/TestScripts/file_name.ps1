@@ -34,6 +34,10 @@ $command = "Select-String -Path 'obj/$newOpenApiName.json' -Pattern '.' | Select
 $command | Invoke-Expression
 
 $command | Invoke-Expression | Out-Host  # must run twice to see output
-# must remove so project builds
- Remove-Item Program.cs 
+# must remove so ../MyTestApi builds
+if (Test-Path bin) {
+     Remove-Item Program.cs -Force 
+ Remove-Item bin -Recurse -Force 
+  Remove-Item obj -Recurse -Force 
+} 
 cd .. 

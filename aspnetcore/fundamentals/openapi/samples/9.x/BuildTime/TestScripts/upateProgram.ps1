@@ -24,11 +24,11 @@ app.MapGet("/v2/weatherforecast", (HttpContext httpContext) =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        })
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
         .ToArray();
     return forecast;
 })
@@ -45,7 +45,7 @@ $updatedContent = $programContent[0..($runIndex-1)] + $newMapGetCode + $programC
 Set-Content -Path $ProgramCSname -Value $updatedContent
 
 #Write-Host "New MapGet code has been added successfully."
-exit
+
 dotnet build
 if ($LASTEXITCODE -eq 0) {
     Write-Output "Build succeeded."
@@ -72,6 +72,11 @@ else {
     Write-Output "Build failed."
 }
 
-# must remove so project builds
- Remove-Item Program.cs 
+# must remove so ../MyTestApi builds
+exit
+if (Test-Path bin) {
+     Remove-Item Program.cs -Force 
+ Remove-Item bin -Recurse -Force 
+  Remove-Item obj -Recurse -Force 
+} 
 cd .. 

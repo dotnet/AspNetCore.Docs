@@ -32,7 +32,11 @@ $xml.OuterXml | Set-Content -Path $Project
 dotnet build
 
 Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
-# must remove so project builds
- Remove-Item Program.cs 
+# must remove so ../MyTestApi builds
+if (Test-Path bin) {
+     Remove-Item Program.cs -Force 
+ Remove-Item bin -Recurse -Force 
+  Remove-Item obj -Recurse -Force 
+} 
 cd .. 
 
