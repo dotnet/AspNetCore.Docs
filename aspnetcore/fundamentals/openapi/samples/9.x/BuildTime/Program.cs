@@ -34,18 +34,4 @@ app.MapGet("/weatherforecast", (HttpContext httpContext) =>
 })
 .WithName("GetWeatherForecast");
 
-app.MapGet("/v2/weatherforecast", (HttpContext httpContext) =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        })
-        .ToArray();
-    return forecast;
-})
-.WithGroupName("v2");
-
 app.Run();
