@@ -1,5 +1,7 @@
 # Creates a Web API project, adds ApiDescription.Server
 cls
+$originalDir = Get-Location
+cd C:\tmp
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
 if (Test-Path $ProgramName) {
@@ -72,11 +74,4 @@ else {
     Write-Output "Build failed."
 }
 
-# must remove so ../MyTestApi builds
-exit
-if (Test-Path bin) {
-     Remove-Item Program.cs -Force 
- Remove-Item bin -Recurse -Force 
-  Remove-Item obj -Recurse -Force 
-} 
-cd .. 
+Set-Location -Path $originalDir

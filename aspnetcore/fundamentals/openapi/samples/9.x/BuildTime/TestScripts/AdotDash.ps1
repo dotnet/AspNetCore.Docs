@@ -1,4 +1,6 @@
 cls
+$originalDir = Get-Location
+cd C:\tmp
 $Inner_text = "."   # "./" fails on Windows, but works on Linux/Mac
 $ProgramName = "MyOpenApiTest"
 $Project = "$ProgramName.csproj"
@@ -32,11 +34,6 @@ $xml.OuterXml | Set-Content -Path $Project
 dotnet build
 
 Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
-# must remove so ../MyTestApi builds
-if (Test-Path bin) {
-     Remove-Item Program.cs -Force 
- Remove-Item bin -Recurse -Force 
-  Remove-Item obj -Recurse -Force 
-} 
-cd .. 
+
+Set-Location -Path $originalDir
 

@@ -1,5 +1,7 @@
 # Creates a Web API project, adds ApiDescription.Server
 cls
+$originalDir = Get-Location
+cd C:\tmp
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
 if (Test-Path $ProgramName) {
@@ -34,10 +36,5 @@ $command = "Select-String -Path 'obj/$newOpenApiName.json' -Pattern '.' | Select
 $command | Invoke-Expression
 
 $command | Invoke-Expression | Out-Host  # must run twice to see output
-# must remove so ../MyTestApi builds
-if (Test-Path bin) {
-     Remove-Item Program.cs -Force 
- Remove-Item bin -Recurse -Force 
-  Remove-Item obj -Recurse -Force 
-} 
-cd .. 
+
+Set-Location -Path $originalDir

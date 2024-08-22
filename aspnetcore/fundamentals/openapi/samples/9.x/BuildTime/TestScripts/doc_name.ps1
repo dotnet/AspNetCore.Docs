@@ -1,5 +1,7 @@
 # Yields error Document with name 'v2' not found.
 cls
+$originalDir = Get-Location
+cd C:\tmp
 $ProgramName = "MyOpenApiTest"
 # remove build from last run
 if (Test-Path $ProgramName) {
@@ -38,11 +40,5 @@ else {
     Write-Output "Build failed."
 }
 
-# must remove so ../MyTestApi builds
-if (Test-Path bin) {
-     Remove-Item Program.cs -Force 
- Remove-Item bin -Recurse -Force 
-  Remove-Item obj -Recurse -Force 
-} 
-cd .. 
+Set-Location -Path $originalDir
 

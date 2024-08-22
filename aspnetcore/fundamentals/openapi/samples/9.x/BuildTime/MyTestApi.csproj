@@ -14,4 +14,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
+  </PropertyGroup>
+
 </Project>
