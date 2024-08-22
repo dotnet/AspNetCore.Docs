@@ -9,7 +9,7 @@ if (Test-Path $ProgramName) {
 $Project = "$ProgramName.csproj"
 
 dotnet new webapi -n $ProgramName
-exit
+
 Set-Location $ProgramName
 dotnet add package Microsoft.Extensions.ApiDescription.Server --version 9.0.0-* --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
 
