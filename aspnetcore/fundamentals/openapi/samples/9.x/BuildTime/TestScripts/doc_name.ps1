@@ -31,13 +31,9 @@ $xml.OuterXml | Set-Content -Path $Project
 dotnet build
 if ($LASTEXITCODE -eq 0) {
     Write-Output "Build succeeded."
-} else {
+    Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
+else {
     Write-Output "Build failed."
 }
-if ($?) {
-    Select-String -Path "obj\$ProgramName.json" -Pattern "." | Select-Object -First 5
-} 
-else{
-      Write-Output "Build failed"
-}
+
 cd ..

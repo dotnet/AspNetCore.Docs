@@ -1,5 +1,5 @@
 cls
-$Inner_text = "./"
+$Inner_text = "."   # "./" fails on Windows, but works on Linux/Mac
 $ProgramName = "MyOpenApiTest"
 $Project = "$ProgramName.csproj"
 $JsonFile = "$ProgramName.json"
