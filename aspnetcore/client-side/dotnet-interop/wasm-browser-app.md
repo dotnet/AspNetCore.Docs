@@ -1,18 +1,18 @@
 ---
-title: JavaScript `[JSImport]`/`[JSExport]` interop
+title: JavaScript `[JSImport]`/`[JSExport]` interop with a WebAssembly Browser App project
 author: pavelsavara
-description: Learn how to run .NET from JS with [JSImport]/[JSExport] interop in a WebAssembly Browser App project.
+description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop in a WebAssembly Browser App project.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/25/2024
-uid: client-side/dotnet-interop
+uid: client-side/dotnet-interop/wasm-browser-app
 ---
-# JavaScript `[JSImport]`/`[JSExport]` interop
+# JavaScript `[JSImport]`/`[JSExport]` interop with a WebAssembly Browser App project
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop.
+This article explains how to setup a WebAssembly Browser App project to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop. For additional information and examples, see <xref:client-side/dotnet-interop/index>.
 
 For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository.
 
@@ -21,7 +21,7 @@ Existing JS apps can use the expanded client-side WebAssembly support to reuse .
 > [!NOTE]
 > This article focuses on running .NET from JS apps without any dependency on [Blazor](xref:blazor/index). For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
 
-These approaches are appropriate when you only expect to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+These approaches are appropriate when you only expect the Blazor app to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
 ## Prerequisites
 
@@ -35,7 +35,12 @@ dotnet workload install wasm-tools
 
 The tools can also be installed via Visual Studio's installer under the **ASP.NET and web development** workload in the Visual Studio installer. Select the **.NET WebAssembly build tools** option from the list of optional components.
 
-Optionally, install the `wasm-experimental` workload, which contains experimental project templates for getting started with .NET on WebAssembly in a browser app (WebAssembly Browser App) or in a Node.js-based console app (WebAssembly Console App). This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
+Optionally, install the `wasm-experimental` workload, which adds the following experimental project templates:
+
+* *WebAssembly Browser App* for getting started with .NET on WebAssembly in a browser app.
+* *WebAssembly Console App* for getting started in a Node.js-based console app.
+
+After installing the workload, these new templates can be selected when creating a new project. This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
 
 ```dotnetcli
 dotnet workload install wasm-experimental
@@ -124,7 +129,7 @@ The following is an example project file (`.csproj`) after configuration. The `{
 
 * Specify `WasmMainJSPath` to point to a file on disk. This file is published with the app, but use of the file isn't required if you're integrating .NET into an existing JS app.
 
-  In the following example, the JS file on disk is `main.js`, but any JS filename is permissible:
+  In the following example, the JS file on disk is `main.js`, but any JS filename is permissable:
 
   ```xml
   <WasmMainJSPath>main.js</WasmMainJSPath>
@@ -315,6 +320,8 @@ internal static partial string GetHRef();
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
 
+For additional type mapping information and examples, see <xref:client-side/dotnet-interop/index#type-mappings>.
+
 Functions accessible on the global namespace can be imported by using the [`globalThis`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/globalThis) prefix in the function name and by using the `[JSImport]` attribute without providing a module name. In the following example, [`console.log`](https://developer.mozilla.org/docs/Web/API/console/log) is prefixed with `globalThis`. The imported function is called by the C# `Log` method, which accepts a C# string message (`message`) and marshalls the C# string to a JS [`String`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) for `console.log`:
 
 ```csharp
@@ -459,12 +466,13 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target fr
 
 ## Additional resources
 
-* [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)
+* <xref:client-side/dotnet-interop/index>
+* <xref:blazor/js-interop/import-export-interop>
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)
-* <xref:blazor/js-interop/import-export-interop>
 * In the `dotnet/runtime` GitHub repository:
+  * [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md)
   * [.NET WebAssembly runtime](https://github.com/dotnet/runtime/tree/main/src/mono/wasm)
   * [`dotnet.d.ts` file (.NET WebAssembly runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts)
 * [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)

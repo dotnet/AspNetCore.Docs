@@ -68,7 +68,8 @@
         "whats-new/**/**.md": "whats-new",
         "**/blazor/**/**.md": "blazor",
         "**/blazor/hybrid/**/**.md": "blazor-hybrid",
-        "**/client-side/dotnet-interop.md": "blazor",
+        "**/client-side/dotnet-interop/index.md": "blazor",
+        "**/client-side/dotnet-interop/wasm-browser-app.md": "blazor",
         "**/mvc/views/tag-helpers/built-in/component-tag-helper.md": "blazor",
         "**/mvc/views/tag-helpers/built-in/persist-component-state.md": "blazor"
       },
