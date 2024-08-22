@@ -15,7 +15,11 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <!--<DocNameV2>true</DocNameV2>-->
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(DocNameV2)' == 'true' ">
     <OpenApiGenerateDocumentsOptions>--document-name v2</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
-
+  
 </Project>
