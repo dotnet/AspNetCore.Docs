@@ -71,3 +71,7 @@ if ($LASTEXITCODE -eq 0) {
 else {
     Write-Output "Build failed."
 }
+
+# must remove so project builds
+ Remove-Item Program.cs 
+cd .. 

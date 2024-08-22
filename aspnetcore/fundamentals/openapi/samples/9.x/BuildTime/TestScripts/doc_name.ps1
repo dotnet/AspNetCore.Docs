@@ -36,4 +36,7 @@ else {
     Write-Output "Build failed."
 }
 
-cd ..
+# must remove so project builds
+ Remove-Item Program.cs 
+cd .. 
+

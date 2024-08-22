@@ -32,5 +32,7 @@ $xml.OuterXml | Set-Content -Path $Project
 dotnet build
 
 Select-String -Path "obj\$JsonFile" -Pattern "." | Select-Object -First 5
+# must remove so project builds
+ Remove-Item Program.cs 
 cd .. 
 

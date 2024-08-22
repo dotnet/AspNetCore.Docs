@@ -34,4 +34,6 @@ $command = "Select-String -Path 'obj/$newOpenApiName.json' -Pattern '.' | Select
 $command | Invoke-Expression
 
 $command | Invoke-Expression | Out-Host  # must run twice to see output
-cd ..
+# must remove so project builds
+ Remove-Item Program.cs 
+cd .. 
