@@ -28,7 +28,7 @@ The generated connection string will be similar to the following:
 
 ---
 
-When the app is deployed to a test, non-production server, an environment variable can be used to set the connection string to a test, non-production database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+[!INCLUDE [managed-identities](~/includes/managed-identities-local-db-no-pwd.md)]
 
 [!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 

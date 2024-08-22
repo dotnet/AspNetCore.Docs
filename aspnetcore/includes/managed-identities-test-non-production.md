@@ -1,3 +1,9 @@
+---
+author: wpickett
+ms.author: wpickett
+ms.date: 08/22/2024
+ms.topic: include
+---
 > [!NOTE]
 > Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this procedure is only suitable for testing and local development.
 >
