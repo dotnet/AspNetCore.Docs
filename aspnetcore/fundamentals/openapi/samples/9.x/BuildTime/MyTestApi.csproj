@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <!--<DocNameV2>true</DocNameV2>-->
+    <DocNameV2>true</DocNameV2>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(DocNameV2)' == 'true' ">
