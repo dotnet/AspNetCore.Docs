@@ -363,7 +363,7 @@ Code in the component includes:
   * The value of the checkbox input is obtained from <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>.
   * The background color and text color of the container `<div>` element are set.
   * <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding and dispatches an event notification to consumers that the value has changed.
-  * If the component is used in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (the `EditForm` isn't `null`), <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyFieldChanged%2A?displayProperty=nameWithType> is called to trigger validation.
+  * If the component is used in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (the `EditContext` property isn't `null`), <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyFieldChanged%2A?displayProperty=nameWithType> is called to trigger validation.
 
 `FullControlApproval.razor`:
 
