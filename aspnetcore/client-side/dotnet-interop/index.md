@@ -273,7 +273,7 @@ The preceding example displays the following output in the browser's debug conso
 > :::no-loc text="{name: 'Example JS Object', answer: 41, question: null, Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::  
 > :::no-loc text="{name: 'Example JS Object', answer: 42, question: null, Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::  
 > :::no-loc text="{name: 'Example JS Object', answer: 42, question: 'What is the answer?', Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::  
-> :::no-loc text="Summary: Question: "What is the answer?" Answer: 42":::
+> :::no-loc text="Summary: Question: \"What is the answer?\" Answer: 42":::
 
 ## Asynchronous interop
 
