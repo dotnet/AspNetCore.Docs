@@ -28,7 +28,7 @@ The generated connection string will be similar to the following:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a test or production database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 # [Visual Studio](#tab/visual-studio)
 

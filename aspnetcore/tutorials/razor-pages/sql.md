@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 06/23/2024
+ms.date: 08/20/2024
 uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
@@ -40,7 +40,7 @@ The generated connection string is similar to the following JSON:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a test or production database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+[!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
