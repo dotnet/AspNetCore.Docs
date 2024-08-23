@@ -15,7 +15,10 @@
 
 During prerendering, calling into JavaScript (JS) isn't possible. The following example demonstrates how to use JS interop as part of a component's initialization logic in a way that's compatible with prerendering.
 
-The following `scrollElementIntoView` function scrolls to the passed element with [`scrollIntoView`](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView) and returns top property value from [`getBoundingClientRect`](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect):
+The following `scrollElementIntoView` function:
+
+* Scrolls to the passed element with [`scrollIntoView`](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView).
+* Returns the element's `top` property value from the [`getBoundingClientRect`](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect) method.
 
 ```javascript
 window.scrollElementIntoView = (element) => {
