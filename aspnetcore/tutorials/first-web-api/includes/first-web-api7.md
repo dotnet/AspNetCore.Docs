@@ -1,20 +1,4 @@
----
-title: "Tutorial: Create a web API with ASP.NET Core"
-author: wadepickett
-description: Learn how to build a web API with ASP.NET Core.
-ms.author: wpickett
-ms.custom: mvc, engagement-fy24
-ms.date: 08/04/2024
-uid: tutorials/first-web-api
----
-
-# Tutorial: Create a web API with ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-7.0"
 
 This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
 
@@ -43,6 +27,10 @@ The following diagram shows the design of the app.
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
 
 ---
 
@@ -90,6 +78,34 @@ A NuGet package must be added to support the database used in this tutorial.
 
 [!INCLUDE[](~/includes/vscode-trust-authors-add-assets.md)]
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
+
+* In the **Choose a template for your new project** dialog:
+  * Select **Web and Console** > **App** > **API**.
+  * Select **Continue**.
+
+* In the **Configure your new API** dialog, make the following selections:
+  * Confirm the **Target framework** is **.NET 8.0**.
+  * Confirm the checkbox for **Enable OpenAPI support** is checked.
+  * Confirm the checkbox for **Use controllers** is checked.
+  * Select **Create**.
+
+* Enter the following:
+  * **Project name:** TodoApi
+  * **Solution name:** TodoApi
+  * Select **Create**.
+
+## Add a NuGet package
+
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
+* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
+* Select **Add Package**
+* In the **Select Projects** window, select **Ok**.
+* In the **License Agreement** window, select **Agree**.
+
 ---
 
 [!INCLUDE[](~/includes/package-reference.md)]
@@ -132,6 +148,10 @@ Run the app:
 * The default browser is launched to `https://localhost:<port>/swagger/index.html`, where `<port>` is the randomly chosen port number displayed in the output. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut it down.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number set at the project creation.
 
 ---
 
@@ -200,9 +220,17 @@ A *model* is a set of classes that represent the data that the app manages. The 
 * Add a folder named `Models`.
 * Add a `TodoItem.cs` file to the `Models` folder with the following code:
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
+* Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
+* Name the class *TodoItem*, and then select **Create**.
+
+* Replace the template code with the following:
+
 ---
 
-  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Models/TodoItem.cs)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -216,7 +244,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Add a `TodoContext.cs` file to the `Models` folder.
 
@@ -224,7 +252,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Enter the following code:
 
-  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Models/TodoContext.cs)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
@@ -232,7 +260,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?highlight=1-2,7-8)]
+[!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Program.cs?highlight=1-2,7-8)]
 
 The preceding code:
 
@@ -255,7 +283,7 @@ The preceding code:
 
   If the scaffolding operation fails, select **Add** to try scaffolding a second time.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Make sure that all of your changes so far are saved.
 
@@ -314,7 +342,7 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
 The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
@@ -382,7 +410,7 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Return values
 
@@ -397,7 +425,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -455,11 +483,11 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs)]
+[!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
+[!code-csharp[](~/tutorials/first-web-api/samples/7.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
 
 Verify you can't post or get the secret field.
 
@@ -500,7 +528,3 @@ For more information, see the following resources:
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api7.md)]
-
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api8.md)]
