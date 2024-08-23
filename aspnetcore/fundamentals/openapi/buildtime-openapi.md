@@ -108,6 +108,7 @@ By default, the build-time document generator creates files for all documents th
 
 :::code language="xml" source="~/fundamentals/openapi/samples/9.x/BuildTime/csproj/MyTestApi.csproj.php" id="snippet_doc_name":::
 
+<!-- comment out this section until it's sorted 
 ## Customize run-time behavior during build-time document generation
 
 OpenAPI document generation at build-time works by starting the app’s entry point with a temporary background server. This approach is necessary to produce accurate OpenAPI documents, as not all information can be statically analyzed. When the app’s entry point is invoked, any logic in the app’s startup is executed, including code that injects services into the DI container or reads from configuration.
@@ -120,6 +121,7 @@ In some scenarios, it's important to restrict certain code paths when the app's 
 To prevent these code paths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly:
 
 :::code language="csharp" source="~/fundamentals/openapi/samples/9.x/BuildTime/Skip.cs" id="snippet_1" highlight="7-12":::
+-->
 
 ## OpenAPI document cleanup
 
