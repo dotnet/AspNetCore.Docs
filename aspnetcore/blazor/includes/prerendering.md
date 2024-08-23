@@ -15,7 +15,7 @@
 
 During prerendering, calling into JavaScript (JS) isn't possible. The following example demonstrates how to use JS interop as part of a component's initialization logic in a way that's compatible with prerendering.
 
-The following `scrollElementIntoView` function is called by a component with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value.
+The following `scrollElementIntoView` function scrolls to the passed element with [`scrollIntoView`](https://developer.mozilla.org/docs/Web/API/Element/scrollIntoView) and returns top property value from [`getBoundingClientRect`](https://developer.mozilla.org/docs/Web/API/Element/getBoundingClientRect):
 
 ```javascript
 window.scrollElementIntoView = (element) => {
@@ -24,7 +24,7 @@ window.scrollElementIntoView = (element) => {
 }
 ```
 
-Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> is called, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no HTML DOM element until after the component is rendered.
+Where <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> calls the JS function in component code, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no HTML DOM element until after the component is rendered.
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) ([reference source](xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A)) is called to rerender the component with the new state obtained from the JS interop call (for more information, see <xref:blazor/components/rendering>). An infinite loop isn't created because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is only called when `scrollPosition` is `null`.
 
