@@ -28,8 +28,6 @@ The generated connection string is similar to the following JSON:
 
 ---
 
-[!INCLUDE [managed-identities](~/includes/managed-identities-local-db-no-pwd.md)]
-
 [!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 # [Visual Studio](#tab/visual-studio)
