@@ -1,20 +1,4 @@
----
-title: "Tutorial: Create a web API with ASP.NET Core"
-author: wadepickett
-description: Learn how to build a web API with ASP.NET Core.
-ms.author: wpickett
-ms.custom: mvc, engagement-fy24
-ms.date: 08/04/2024
-uid: tutorials/first-web-api
----
-
-# Tutorial: Create a web API with ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help with choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
 
@@ -202,7 +186,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 ---
 
-  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApi/Models/TodoItem.cs)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -224,7 +208,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Enter the following code:
 
-  [!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Models/TodoContext.cs)]
+  [!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
@@ -232,7 +216,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Program.cs?highlight=1-2,7-8)]
+[!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApi/Program.cs?highlight=1-2,7-8)]
 
 The preceding code:
 
@@ -314,7 +298,7 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
 The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
@@ -382,7 +366,7 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Return values
 
@@ -397,7 +381,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -455,11 +439,11 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Models/TodoItemDTO.cs)]
+[!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](~/tutorials/first-web-api/samples/9.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
+[!code-csharp[](~/tutorials/first-web-api/samples/8.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
 
 Verify you can't post or get the secret field.
 
@@ -500,7 +484,3 @@ For more information, see the following resources:
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api7.md)]
-
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api8.md)]
