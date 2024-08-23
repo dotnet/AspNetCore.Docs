@@ -31,9 +31,19 @@ Parts of this series include:
 
 At the end of the tutorial, you'll have a Blazor Web App that can display and manage movies in a movie database.
 
-If you're only reading the articles and not building the demonstration app, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.
+## Sample app
 
-To open a documentation GitHub issue for an article of the series, use the **Open a documentation issue** link at the bottom of the article. Using the link to create your issue adds important tracking metadata to the issue and automatically pings the author of the article. We welcome feedback on the tutorial's articles, but we're often unable to provide product support. If you run into a problem while following the tutorial, check the steps that you've taken against the article because many problems can be traced to missing a step or not following a step correctly. For general questions about .NET and Blazor beyond the reference documentation, we recommend conversing with developers in [public forums](xref:blazor/fundamentals/index#support-requests).
+If you don't intend to create the demonstration app while reading the article, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.
+
+## Report a tutorial issue
+
+To open a documentation GitHub issue for an article of the series, use the **Open a documentation issue** link at the bottom of the article. Using the link to create your issue adds important tracking metadata to the issue and automatically pings the author of the article.
+
+## Support requests
+
+We welcome feedback on the tutorial's articles, such as bug reports and comments on the article's text, but we're often unable to provide product support. If you run into a problem while following the tutorial, don't immediately open a documentation issue. Check the steps that you've taken against the article and compare your code to the [sample app](#sample-app) before opening an issue because many problems can be traced to missing a step or not following a step correctly.
+
+For general questions about .NET and Blazor beyond the tutorial and reference documentation or to obtain assistance from the .NET community, converse with developers in [public forums](xref:blazor/fundamentals/index#support-requests).
 
 ## Next steps
 

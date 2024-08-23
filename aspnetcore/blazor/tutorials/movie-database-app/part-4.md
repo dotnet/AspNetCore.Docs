@@ -263,7 +263,7 @@ When the `Edit` page is posted to the server, the form values on the page are bo
 
 ```csharp
 [SupplyParameterFromForm]
-public Movie? Movie { get; set; }
+private Movie? Movie { get; set; }
 ```
 
 If the model state has errors when the form is posted, for example if `ReleaseDate` can't be converted into a date, the form is redisplayed with the submitted values. If no model errors exist, the movie is saved using the form's posted values.
@@ -273,7 +273,7 @@ If the model state has errors when the form is posted, for example if `ReleaseDa
 Review the `UpdateMovie` method of the `Edit` component (`Components/Pages/MoviePages/Edit.razor`):
 
 ```csharp
-public async Task UpdateMovie()
+private async Task UpdateMovie()
 {
     using var context = DbFactory.CreateDbContext();
     context.Attach(Movie!).State = EntityState.Modified;

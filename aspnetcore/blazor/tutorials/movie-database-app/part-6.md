@@ -43,7 +43,7 @@ Start by adding the following code to the `@code` block of the `Index` component
 
 ```csharp
 [SupplyParameterFromQuery]
-public string? TitleFilter { get; set; }
+private string? TitleFilter { get; set; }
 
 private IQueryable<Movie> FilteredMovies => 
     context.Movie.Where(m => m.Title!.Contains(TitleFilter ?? string.Empty));

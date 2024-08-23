@@ -160,7 +160,7 @@ Delete the following lines from the `@code` block:
 
 ```diff
 - [SupplyParameterFromQuery]
-- public string? TitleFilter { get; set; }
+- private string? TitleFilter { get; set; }
     
 - private IQueryable<Movie> FilteredMovies =>
 -     context.Movie.Where(m => m.Title!.Contains(TitleFilter ?? string.Empty));

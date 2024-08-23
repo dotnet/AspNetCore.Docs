@@ -406,7 +406,7 @@ Examine the C# of the component's `@code` block:
 private Movie? movie;
 
 [SupplyParameterFromQuery]
-public int Id { get; set; }
+private int Id { get; set; }
 
 protected override async Task OnInitializedAsync()
 {
@@ -497,9 +497,9 @@ The `AddMovie` method:
 ```csharp
 @code {
     [SupplyParameterFromForm]
-    public Movie Movie { get; set; } = new();
+    private Movie Movie { get; set; } = new();
 
-    public async Task AddMovie()
+    private async Task AddMovie()
     {
         using var context = DbFactory.CreateDbContext();
         context.Movie.Add(Movie);
@@ -534,7 +534,7 @@ The **:::no-loc text="Delete":::** button sets its [`disabled` HTML attribute (M
 In the C# code of the `@code` block, the `DeleteMovie` method removes the movie, saves the changes to the database, and navigates the user to the movies `Index` page. The exclamation point on the movie field (`movie!`) is the [null-forgiving operator (C# Language Reference)](/dotnet/csharp/language-reference/operators/null-forgiving), which suppresses nullable warnings for `movie`.
 
 ```csharp
-public async Task DeleteMovie()
+private async Task DeleteMovie()
 {
     using var context = DbFactory.CreateDbContext();
     context.Movie.Remove(movie!);
@@ -565,7 +565,7 @@ The movie entity's identifier `Id` is stored in a hidden field of the form:
 Examine the C# code of the `@code` block:
 
 ```csharp
-public async Task UpdateMovie()
+private async Task UpdateMovie()
 {
     using var context = DbFactory.CreateDbContext();
     context.Attach(Movie!).State = EntityState.Modified;
