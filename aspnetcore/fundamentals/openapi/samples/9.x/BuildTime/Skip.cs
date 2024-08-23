@@ -1,5 +1,5 @@
 #if NEVER
-#region snippet_1
+// <snippet_1>
 using ControllerApi.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -30,5 +30,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet_1>
 #endif
