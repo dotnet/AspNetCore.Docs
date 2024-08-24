@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-2.1< aspnetcore-8.0"
 
-ASP.NET Core uses [HTTPS by default](~/aspnetcore/security/enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
+ASP.NET Core uses [HTTPS by default](~/security/enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
 This document explains how to run pre-built container images with HTTPS using the [.NET command-line interface (CLI)](/dotnet/core/tools/). For instructions on how to run Docker in development with Visual Studio, see [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md).
 
