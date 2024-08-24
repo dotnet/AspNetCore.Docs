@@ -172,3 +172,5 @@ docker-compose -f "docker-compose.debug.yml" up -d
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
 
 :::moniker-end
+
+[!INCLUDE[](~/security/includes/docker-compose-https7.md)]
