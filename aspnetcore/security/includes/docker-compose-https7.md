@@ -1,15 +1,4 @@
----
-title: Hosting ASP.NET Core image in container using docker compose with HTTPS
-author: ravipal
-description: Learn how to host ASP.NET Core Images with Docker Compose over HTTPS
-ms.author: wpickett
-ms.custom: mvc
-ms.date: 03/28/2020
-uid: security/docker-compose-https
----
-# Hosting ASP.NET Core images with Docker Compose over HTTPS
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-8.0"
 
 ASP.NET Core uses [HTTPS by default](~/security/enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
@@ -170,7 +159,4 @@ docker-compose -f "docker-compose.debug.yml" up -d
 ## See also
 
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
-
 :::moniker-end
-
-[!INCLUDE[](~/security/includes/docker-compose-https7.md)]
