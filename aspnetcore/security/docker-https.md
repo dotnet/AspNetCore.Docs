@@ -123,6 +123,6 @@ See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github
 * [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
 
-[!INCLUDE[](~/security/includes/docker-https6.md)]
-
 :::moniker-end
+
+[!INCLUDE[](~/security/includes/docker-https6.md)]

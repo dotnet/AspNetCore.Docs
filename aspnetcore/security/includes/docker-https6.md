@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-2.1< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-8.0"
 
 ASP.NET Core uses [HTTPS by default](~/security/enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
