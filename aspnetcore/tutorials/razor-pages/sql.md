@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
-ms.date: 08/20/2024
+ms.date: 8/20/2024
 uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
