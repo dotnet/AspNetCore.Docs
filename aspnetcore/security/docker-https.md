@@ -2,7 +2,6 @@
 title: Hosting ASP.NET Core Images with Docker over HTTPS
 author: rick-anderson
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
-monikerRange: '>= aspnetcore-8.0'
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 07/05/2019
@@ -10,7 +9,7 @@ uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
 
-<!-- This topic drops loc for "Let's Encrypt" -->
+:::moniker range=">= aspnetcore-8.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -125,3 +124,5 @@ See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
 
 [!INCLUDE[](~/security/includes/docker-https6.md)]
+
+:::moniker-end
