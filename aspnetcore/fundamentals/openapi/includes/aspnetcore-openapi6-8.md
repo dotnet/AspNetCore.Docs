@@ -133,7 +133,9 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 ### Set responses for `ProblemDetails`
 
-When setting the response type for endpoints that may return a ProblemDetails response, the [`ProducesProblem`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesproblem) extension method or [`TypedResults.Problem`](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata.
+When setting the response type for endpoints that may return a ProblemDetails response, the [`ProducesProblem`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesproblem) extension method, [`ProducesValidationProblem`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesvalidationproblem), or [`TypedResults.Problem`](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata. Note that the `ProducesProblem` and `ProducesValidationProblem` extension methods can't be used with [route groups](xref:fundamentals/minimal-apis/route-handlers#route-groups).
+
+```csharp        
 
 When there are no explicit annotations provided by one of the strategies above, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
