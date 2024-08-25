@@ -72,7 +72,7 @@ The following code uses a lambda for exception handling:
 
 Another way to use a lambda is to set the status code based on the exception type, as in the following example:
 
-:::code language="csharp" source="~/fundamentals/error-handling/samples/9.x/ErrorHandlingSample/Program.cs" id="snippet_lambda" highlight="2,7-12":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/9.x/ErrorHandlingSample/Program.cs" id="snippet_lambda" highlight="2,6-11":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
