@@ -4,12 +4,11 @@ author: RicoSuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
 ms.author: wpickett
 ms.custom: mvc
+monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 4/25/2024
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
