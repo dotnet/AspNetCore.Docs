@@ -901,6 +901,12 @@ Various network tools are publicly available for testing web API backend apps di
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
 
+### Mitigation of overposting attacks
+
+Web APIs can be vulnerable to an *overposting* attack, also known as a *mass assignment* attack. An overposting attack occurs when a malicious user issues an HTML form POST to the server that processes data for properties that aren't part of the rendered form and that the developer doesn't wish to allow users to modify. The term "overposting" literally means that the malicious user has *over*-POSTed with the form.
+
+For guidance on mitigating overposting attacks, see <xref:tutorials/first-web-api#prevent-over-posting>.
+
 ### Server-side
 
 * <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
