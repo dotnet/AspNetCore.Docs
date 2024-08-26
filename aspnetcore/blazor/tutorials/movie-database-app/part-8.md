@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2024
 uid: blazor/tutorials/movie-database-app/part-8
+zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 8 - Add interactivity)
 
