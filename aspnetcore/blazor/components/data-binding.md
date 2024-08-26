@@ -553,7 +553,7 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 A common scenario is binding a property of a child component to a property in its parent component. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-You can't implement chained binds with [`@bind`](xref:mvc/views/razor#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](xref:mvc/views/razor#bind) syntax to set up databinding with the child component.
+You can't implement chained binds with [`@bind`](xref:mvc/views/razor#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](xref:mvc/views/razor#bind) syntax to set up data binding with the child component.
 
 The following `ChildBind` component has a `Year` component parameter and an <xref:Microsoft.AspNetCore.Components.EventCallback%601>. By convention, the <xref:Microsoft.AspNetCore.Components.EventCallback%601> for the parameter must be named as the component parameter name with a "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the following example, the <xref:Microsoft.AspNetCore.Components.EventCallback%601> is named `YearChanged`.
 
