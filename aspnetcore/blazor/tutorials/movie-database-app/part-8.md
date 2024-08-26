@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains how to
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/15/2024
+ms.date: 08/26/2024
 uid: blazor/tutorials/movie-database-app/part-8
 ---
 # Build a Blazor movie database app (Part 8 - Add interactivity)
@@ -201,6 +201,33 @@ Run the app, type "`road warrior`" into the search field and notice how the `Qui
 Filtering database records is performed on the server, and the server interactively sends back the HTML to display over the same SignalR connection. The page doesn't reload. The user feels like their interactions with the page are running code on the client. Actually, the code is running the server.
 
 Instead of an HTML form, submitting a GET request in this scenario could've also used JavaScript to submit the request to the server, either using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)` or [XMLHttpRequest API](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). In most cases, JavaScript can be replaced by using Blazor and C# in an interactive component.
+
+## Clean up
+
+:::zone pivot="vs"
+
+When you're finished with the tutorial and delete the sample app from your local system, you can also delete the `BlazorWebAppMovies` database in Visual Studio's SQL Server Object Explorer (SSOX):
+
+1. Access SSOX by selecting **View** > **SQL Server Object Explorer** from the menu bar.
+1. Display the database list by selecting the triangles next to `SQL Server` > `(localdb)\MSSQLLocalDB` > `Databases`.
+1. Right-click the `BlazorWebAppMovies` database in the list and select **Delete**.
+1. Select the checkbox to close existing collections before selecting **OK**.
+
+When deleting the database in SSOX, the database's physical files are removed from your Windows user folder.
+
+:::zone-end
+
+:::zone pivot="vsc"
+
+When you're finished with the tutorial and delete the sample app from your local system, you can also manually delete the `BlazorWebAppMovies` database. The database's location varies depending on the platform and operating system, but you can search for it by the file name indicated in the database connection string of app settings file (`appsettings.json`).
+
+:::zone-end
+
+:::zone pivot="cli"
+
+When you're finished with the tutorial and delete the sample app from your local system, you can also manually delete the `BlazorWebAppMovies` database. The database's location varies depending on the platform and operating system, but you can search for it by the file name indicated in the database connection string of the app settings file (`appsettings.json`).
+
+:::zone-end
 
 ## Congratulations!
 

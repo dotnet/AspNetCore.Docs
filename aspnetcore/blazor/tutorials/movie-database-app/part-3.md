@@ -5,7 +5,7 @@ description: This part of the Blazor movie database app tutorial explains the Ra
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/15/2024
+ms.date: 08/26/2024
 uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling
 ---
@@ -47,8 +47,7 @@ Consider the following `Welcome` component (`Welcome.razor`):
 <p>@welcomeMessage</p>
 
 @code {
-    private string welcomeMessage = 
-        "You're going to ❤️ Blazor!";
+    private string welcomeMessage = "We ❤️ Blazor!";
 }
 ```
 
@@ -589,7 +588,7 @@ private async Task UpdateMovie()
     NavigationManager.NavigateTo("/movies");
 }
 
-bool MovieExists(int id)
+private bool MovieExists(int id)
 {
     using var context = DbFactory.CreateDbContext();
     return context.Movie.Any(e => e.Id == id);
