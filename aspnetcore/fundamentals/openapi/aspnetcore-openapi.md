@@ -304,7 +304,7 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 #### Set responses for `ProblemDetails`
 
-When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
+When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
 
 When there are no explicit annotations provided by one of these strategies, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
