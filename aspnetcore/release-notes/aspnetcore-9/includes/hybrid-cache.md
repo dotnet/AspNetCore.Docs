@@ -59,7 +59,7 @@ To simplify and improve this code with `HybridCache`, we first need to add the n
 Register the `HybridCache` service, like you would register an `IDistributedCache` implementation:
 
 ```csharp
-services.AddHybridCache(); // Not shown: optional configuration API.
+builder.Services.AddHybridCache(); // Not shown: optional configuration API.
 ```
 
 Now most caching concerns can be offloaded to `HybridCache`:
