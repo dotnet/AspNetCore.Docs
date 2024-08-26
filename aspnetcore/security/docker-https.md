@@ -2,7 +2,6 @@
 title: Hosting ASP.NET Core Images with Docker over HTTPS
 author: rick-anderson
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
-monikerRange: '>= aspnetcore-2.1'
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 07/05/2019
@@ -10,11 +9,11 @@ uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
 
-<!-- This topic drops loc for "Let's Encrypt" -->
+:::moniker range=">= aspnetcore-8.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
+ASP.NET Core uses [HTTPS by default](~/security/enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
 This document explains how to run pre-built container images with HTTPS using the [.NET command-line interface (CLI)](/dotnet/core/tools/). For instructions on how to run Docker in development with Visual Studio, see [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md).
 
@@ -123,3 +122,7 @@ See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github
 
 * [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 * [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
+
+:::moniker-end
+
+[!INCLUDE[](~/security/includes/docker-https6.md)]

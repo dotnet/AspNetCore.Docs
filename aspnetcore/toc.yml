@@ -414,6 +414,8 @@ items:
                 href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
               - name: Build a Blazor todo list app
                 uid: blazor/tutorials/build-a-blazor-app
+              - name: Build a Blazor movie database app
+                uid: blazor/tutorials/movie-database-app/index
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
               - name: Learn modules

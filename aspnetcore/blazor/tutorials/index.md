@@ -22,6 +22,8 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 * <xref:blazor/tutorials/build-a-blazor-app> (Blazor Web App)
 
+* <xref:blazor/tutorials/movie-database-app/index> (Blazor Web App)
+
 * <xref:blazor/tutorials/signalr-blazor> (Blazor Web App)
 
 * <xref:blazor/hybrid/tutorials/index>
