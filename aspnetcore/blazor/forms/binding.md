@@ -31,7 +31,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 
 @code {
     [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
+    private Starship? Model { get; set; }
 
     protected override void OnInitialized() => Model ??= new();
 }
@@ -73,7 +73,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
     private EditContext? editContext;
 
     [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
+    private Starship? Model { get; set; }
 
     protected override void OnInitialized()
     {
@@ -184,7 +184,7 @@ In the following example, the `HelloFormFromLibrary` component has a form named 
     bool submitted = false;
 
     [SupplyParameterFromForm]
-    public string? Name { get; set; }
+    private string? Name { get; set; }
 
     private void Submit() => submitted = true;
 }
@@ -219,7 +219,7 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
     bool submitted = false;
 
     [SupplyParameterFromForm]
-    public string? Name { get; set; }
+    private string? Name { get; set; }
 
     private void Submit() => submitted = true;
 }
@@ -227,7 +227,7 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
 
 ## Supply a parameter from the form (`[SupplyParameterFromForm]`)
 
-The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding.
+The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding. Unlike component parameter properties (`[Parameter]`), properties annotated with `[SupplyParameterFromForm]` aren't required to be marked `public`.
 
 You can specify the following form binding parameters to the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute):
 

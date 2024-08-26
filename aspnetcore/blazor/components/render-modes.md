@@ -246,7 +246,7 @@ Components use these properties to render content depending on their location or
     private bool disabled = true;
 
     [SupplyParameterFromForm]
-    public Movie? Movie { get; set; }
+    private Movie? Movie { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

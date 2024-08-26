@@ -108,7 +108,7 @@ Consider the following example:
 
 @code {
     [SupplyParameterFromForm]
-    public Product? Model { get; set; }
+    private Product? Model { get; set; }
 
     protected override void OnInitialized() => Model ??= new();
 

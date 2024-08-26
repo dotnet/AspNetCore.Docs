@@ -5,7 +5,7 @@ description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 08/26/2024
 uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
@@ -606,7 +606,7 @@ In the following component, update the namespace of the **`Shared`** project (`@
     private string messageStyles = "visibility:hidden";
 
     [SupplyParameterFromForm]
-    public Starship? Model { get; set; }
+    private Starship? Model { get; set; }
 
     protected override void OnInitialized() => 
         Model ??= new() { ProductionDate = DateTime.UtcNow };
