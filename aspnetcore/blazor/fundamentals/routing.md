@@ -856,6 +856,8 @@ Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.
 
 :::moniker range=">= aspnetcore-8.0"
 
+Unlike component parameter properties (`[Parameter]`), `[SupplyParameterFromQuery]` properties can be marked `private` in addition to `public`.
+
 ```csharp
 [SupplyParameterFromQuery(Name = "{QUERY PARAMETER NAME}")]
 private string? {COMPONENT PARAMETER NAME} { get; set; }
@@ -865,10 +867,12 @@ private string? {COMPONENT PARAMETER NAME} { get; set; }
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
+Just like component parameter properties (`[Parameter]`), `[SupplyParameterFromQuery]` properties are always `public` properties in .NET 6/7. In .NET 8 or later, `[SupplyParameterFromQuery]` properties can be marked `public` or `private`.
+
 ```csharp
 [Parameter]
 [SupplyParameterFromQuery(Name = "{QUERY PARAMETER NAME}")]
-private string? {COMPONENT PARAMETER NAME} { get; set; }
+public string? {COMPONENT PARAMETER NAME} { get; set; }
 ```
 
 :::moniker-end
@@ -953,15 +957,15 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 @code {
     [Parameter]
     [SupplyParameterFromQuery]
-    private string? Filter { get; set; }
+    public string? Filter { get; set; }
 
     [Parameter]
     [SupplyParameterFromQuery]
-    private int? Page { get; set; }
+    public int? Page { get; set; }
 
     [Parameter]
     [SupplyParameterFromQuery(Name = "star")]
-    private string[]? Stars { get; set; }
+    public string[]? Stars { get; set; }
 }
 ```
 
