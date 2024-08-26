@@ -56,11 +56,18 @@ The [.NET CLI](/dotnet/core/tools/) is part of the .NET SDK. To issue commands t
 In Visual Studio:
 
 * Select **Create a new project** from the **Start Window** or select **File** > **New** > **Project** from the menu bar.
+
 * In the **Create a new project** dialog, select **Blazor Web App** from the list of project templates. Select the **Next** button.
+
 * In the **Configure your new project** dialog, name the project `BlazorWebAppMovies` in the **Project name** field, including matching the capitalization. Using this exact project name is important to ensure that the namespaces match for code that you copy from the tutorial into the app that you're building.
+
 * Confirm that the **Location** for the app is suitable. Set the **Place solution and project in the same directory** checkbox to match your preferred solution file location. Select the **Next** button.
+
+:::moniker range=">= aspnetcore-9.0"
+
 * In the **Additional information** dialog, use the following settings:
-  * **Framework**: Confirm that the [latest framework](https://dotnet.microsoft.com/download/dotnet) is selected. If Visual Studio's **Framework** dropdown list doesn't include the latest available .NET framework, [update Visual Studio](/visualstudio/install/update-visual-studio) and restart the tutorial.
+
+  * **Framework**: Select **.NET 9.0 (Standard Term Support)**.
   * **Authentication type**: **None**
   * **Configure for HTTPS**: Selected
   * **Interactive render mode**: **Server**
@@ -68,6 +75,23 @@ In Visual Studio:
   * **Include sample pages**: Selected
   * **Do not use top-level statements**: Not selected
   * Select **Create**.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+* In the **Additional information** dialog, use the following settings:
+
+  * **Framework**: Select **.NET 8.0 (Long Term Support)**.
+  * **Authentication type**: **None**
+  * **Configure for HTTPS**: Selected
+  * **Interactive render mode**: **Server**
+  * **Interactivity location**: **Per page/component**
+  * **Include sample pages**: Selected
+  * **Do not use top-level statements**: Not selected
+  * Select **Create**.
+
+:::moniker-end
 
 The Visual Studio instructions in parts of this tutorial series use EF Core commands to add database migrations and update the database. EF Core commands are issued using [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services). More information is provided later in this tutorial series.
 
