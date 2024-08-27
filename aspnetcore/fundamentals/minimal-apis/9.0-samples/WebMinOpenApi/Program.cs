@@ -1,8 +1,8 @@
-#define DEFAULT 
+//#define DEFAULT 
 //#define DOCUMENTtransformerInOut 
 //#define DOCUMENTtransformer1 
 //#define DOCUMENTtransformer2 
-//#define DOCUMENTtransformerUse999
+#define DOCUMENTtransformerUse999
 //#define DEFAULT
 //#define FIRST
 //#define OPENAPIWITHSCALAR
@@ -375,8 +375,16 @@ builder.Services.AddOpenApi(options =>
                              => Task.CompletedTask);
     options.AddDocumentTransformer(new MyDocumentTransformer());
     options.AddDocumentTransformer<MyDocumentTransformer>();
+
     options.AddOperationTransformer((operation, context, cancellationToken)
                             => Task.CompletedTask);
+    options.AddOperationTransformer(new MyOperationTransformer());
+    options.AddOperationTransformer<MyOperationTransformer>();
+
+    options.AddSchemaTransformer((schema, context, cancellationToken)
+                            => Task.CompletedTask);
+    options.AddSchemaTransformer(new MySchemaTransformer());
+    options.AddSchemaTransformer<MySchemaTransformer>();
 });
 
 var app = builder.Build();
@@ -399,6 +407,26 @@ internal class MyDocumentTransformer : IOpenApiDocumentTransformer
     }
 }
 
+internal class MyOperationTransformer : IOpenApiOperationTransformer
+{
+    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
+    {
+        // Simple transformation logic (e.g., adding a summary to the operation)
+        operation.Summary = "Transformed OpenAPI operation";
+
+        return Task.CompletedTask;
+    }
+}
+internal class MySchemaTransformer : IOpenApiSchemaTransformer
+{
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
+    {
+        // Simple transformation logic (e.g., adding a description to the schema)
+        schema.Description = "Transformed OpenAPI schema";
+
+        return Task.CompletedTask;
+    }
+}
 #endif
 
 #if DOCUMENTtransformerInOut
