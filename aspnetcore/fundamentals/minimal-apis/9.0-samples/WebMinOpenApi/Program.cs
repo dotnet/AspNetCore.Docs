@@ -1,4 +1,4 @@
-//#define DEFAULT 
+#define DEFAULT 
 //#define DOCUMENTtransformerInOut 
 //#define DOCUMENTtransformer1 
 //#define DOCUMENTtransformer2 
@@ -10,10 +10,7 @@
 //#define MAPOPENAPIWITHAUTH
 //#define SWAGGERUI
 //#define MULTIDOC_OPERATIONtransformer1
-#define OPERATIONtransformer1
-
-
-
+//#define OPERATIONtransformer1
 
 #if DEFAULT
 // <snippet_default>
