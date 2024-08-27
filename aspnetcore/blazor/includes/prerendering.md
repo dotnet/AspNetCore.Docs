@@ -29,7 +29,7 @@ window.scrollElementIntoView = (element) => {
 
 Where <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> calls the JS function in component code, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no HTML DOM element until after the component is rendered.
 
-[`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) ([reference source](xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A)) is called to rerender the component with the new state obtained from the JS interop call (for more information, see <xref:blazor/components/rendering>). An infinite loop isn't created because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is only called when `scrollPosition` is `null`.
+[`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) ([reference source](xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A)) is called to enqueue rerendering of the component with the new state obtained from the JS interop call (for more information, see <xref:blazor/components/rendering>). An infinite loop isn't created because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is only called when `scrollPosition` is `null`.
 
 `PrerenderedInterop.razor`:
 
