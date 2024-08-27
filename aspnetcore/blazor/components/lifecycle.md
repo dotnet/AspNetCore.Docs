@@ -62,7 +62,7 @@ The `Render` lifecycle:
 
 ![Render lifecycle](~/blazor/components/lifecycle/_static/lifecycle3.png)
 
-Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering#statehaschanged>.
+Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a rerender. For more information, see <xref:blazor/components/rendering#statehaschanged>.
 
 ## When parameters are set (`SetParametersAsync`)
 
