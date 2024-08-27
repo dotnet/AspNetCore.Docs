@@ -21,11 +21,11 @@
               }
             }
           }
-        },
-        "x-aspnetcore-id": "14ccb7f6-1846-48e4-aeaf-c760aadda7c3"
+        }
       }
     }
   },
+  "components": { },
   "tags": [
     {
       "name": "GetDocument.Insider"
