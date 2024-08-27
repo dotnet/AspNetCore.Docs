@@ -375,12 +375,10 @@ builder.Services.AddOpenApi(options =>
                              => Task.CompletedTask);
     options.AddDocumentTransformer(new MyDocumentTransformer());
     options.AddDocumentTransformer<MyDocumentTransformer>();
-
     options.AddOperationTransformer((operation, context, cancellationToken)
                             => Task.CompletedTask);
     options.AddOperationTransformer(new MyOperationTransformer());
     options.AddOperationTransformer<MyOperationTransformer>();
-
     options.AddSchemaTransformer((schema, context, cancellationToken)
                             => Task.CompletedTask);
     options.AddSchemaTransformer(new MySchemaTransformer());
