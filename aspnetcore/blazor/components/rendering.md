@@ -143,11 +143,50 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/performance#avoid-unnecessary-rendering-of-component-subtrees>.
 
-## When to call `StateHasChanged`
+## `StateHasChanged`
 
-Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> allows you to trigger a render at any time. However, be careful not to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> unnecessarily, which is a common mistake that imposes unnecessary rendering costs.
+Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> enqueues a rerender to occur when the app's main thread is free.
 
-Code shouldn't need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> when:
+Components are enqueued for rendering, and they aren't enqueued again if there's already a pending rerender. If a component calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> five times in a row in a loop, the component only renders once. This behavior is encoded in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which checks first if it has queued a rerender before enqueuing an additional one.
+
+A component can render multiple times during the same cycle, which commonly occurs when a component has children that interact with each other:
+
+* A parent component renders several children.
+* Child components render and trigger an update on the parent.
+* A parent component rerenders with new state.
+
+This design allows for <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to be called when necessary without the risk of introducing unnecessary rendering. You can always take control of this behavior in individual components by implementing <xref:Microsoft.AspNetCore.Components.IComponent> directly and manually handling when the component renders.
+
+Consider the following `IncrementCount` method that increments a count, calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, and increments the count again:
+
+```csharp
+private void IncrementCount()
+{
+    currentCount++;
+    StateHasChanged();
+    currentCount++;
+}
+```
+
+Stepping through the code in the debugger, you might think that the count updates in the UI for the first `currentCount++` execution immediately after <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called. However, the UI doesn't show an updated count at that point due to the synchronous processing taking place for this method's execution. There's no opportunity for the renderer to render the component until after the event handler is finished. The UI displays increases for both `currentCount++` executions *in a single render*.
+
+If you await something between the `currentCount++` lines, the awaited call gives the renderer a chance to render. This has led to some developers calling <xref:System.Threading.Tasks.Task.Delay%2A> with a one millisecond delay in their components to allow a render to occur, but we don't recommend arbitrarily slowing down an app to enqueue a render.
+
+The best approach is to await <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>, which forces the component to process code asynchronously and render during the current batch with a second render in a separate batch after the yielded task runs the continuation.
+
+Consider the following revised `IncrementCount` method, which updates the UI twice because the render enqueued by <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is performed when the task is yielded with the call to <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>:
+
+```csharp
+private async Task IncrementCount()
+{
+    currentCount++;
+    StateHasChanged();
+    await Task.Yield();
+    currentCount++;
+}
+```
+
+Be careful not to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> unnecessarily, which is a common mistake that imposes unnecessary rendering costs. Code shouldn't need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> when:
 
 * Routinely handling events, whether synchronously or asynchronously, since <xref:Microsoft.AspNetCore.Components.ComponentBase> triggers a render for most routine event handlers.
 * Implementing typical lifecycle logic, such as [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) or [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), whether synchronously or asynchronously, since <xref:Microsoft.AspNetCore.Components.ComponentBase> triggers a render for typical lifecycle events.

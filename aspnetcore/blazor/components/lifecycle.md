@@ -62,7 +62,7 @@ The `Render` lifecycle:
 
 ![Render lifecycle](~/blazor/components/lifecycle/_static/lifecycle3.png)
 
-Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
+Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a rerender. For more information, see <xref:blazor/components/rendering#statehaschanged>.
 
 ## When parameters are set (`SetParametersAsync`)
 
@@ -471,7 +471,7 @@ In the following example, `base.OnInitialized();` is called to ensure that the b
 
 ## State changes (`StateHasChanged`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> causes the component to be rerendered.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> enqueues a rerender that occurs when the app's main thread is free.
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see <xref:blazor/components/event-handling#eventcallback>.
 
