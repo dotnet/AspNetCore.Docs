@@ -170,7 +170,7 @@ private void IncrementCount()
 
 Stepping through the code in the debugger, you might think that the count updates in the UI for the first `currentCount++` execution immediately after <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called. However, the UI doesn't show an updated count at that point due to the synchronous processing taking place for this method's execution. There's no opportunity for the renderer to render the component until after the event handler is finished. The UI displays increases for both `currentCount++` executions *in a single render*.
 
-If you await something between the `currentCount++` lines, the awaited call gives the renderer a chance to render. This has led to some users calling <xref:System.Threading.Tasks.Task.Delay%2A> with a one millisecond delay in their components to allow a render to occur, but we don't recommend arbitrarily slowing down an app to enqueue a render.
+If you await something between the `currentCount++` lines, the awaited call gives the renderer a chance to render. This has led to some developers calling <xref:System.Threading.Tasks.Task.Delay%2A> with a one millisecond delay in their components to allow a render to occur, but we don't recommend arbitrarily slowing down an app to enqueue a render.
 
 The best approach is to await <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>, which forces the component to process code asynchronously and render during the current batch with a second render in a separate batch after the yielded task runs the continuation.
 
