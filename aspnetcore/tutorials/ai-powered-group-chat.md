@@ -1,0 +1,89 @@
+---
+title: Building AI-Powered Group Chat with SignalR and OpenAI
+author: kevinguo-ed
+description: ...
+ms.author: ...
+ms.date: 08/27/2024
+---
+
+## Overview
+
+The integration of AI into applications is rapidly becoming a must-have for developers looking to help their users be more creative, productive and achieve their health goals. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. The AI-powered apps that came out since Chat GPT captured our imagination are primarily between one user and one AI assistant. As developers get more comfortable with the capabilities of AI, they are exploring AI-powered apps in a team's context. They ask "what value can AI add to a team of collaborators"? 
+
+This tutorial guides you through building a real-time group chat application. Among a group of human collaborators in a chat, there's an AI assistant which has access to the chat history and can be invited to help out by any collaborator when they start the message with `@gpt`. The finished app looks like this. 
+
+{{Chat interface missing...}}
+
+We use Open AI for generating intelligent, context-aware responses and SignalR for delivering the response to users in a group. You can find the complete code [in this repo](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
+
+## Dependencies
+You can use either Azure Open AI or Open AI for this project. Make sure to update the `endpoint` and `key` in `appsetting.json`. `OpenAIExtensions` reads the configuration when the app starts and they are required to authenticate and use either service.
+
+# [Open AI](#tab/open-ai)
+To build this application, you will need the following:
+* ASP.NET Core: To create the web application and host the SignalR hub.
+* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
+* [OpenAI Client](https://www.nuget.org/packages/OpenAI/2.0.0-beta.10): To interact with OpenAI's API for generating AI responses.
+
+# [Azure Open AI](#tab/azure-open-ai)
+To build this application, you will need the following:
+* ASP.NET Core: To create the web application and host the SignalR hub.
+* [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
+* [Azure Open AI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.0.0-beta.3): Azure.AI.OpenAI
+---
+
+## Implementation
+
+In this section, we'll walk through the key parts of the code that integrate SignalR with OpenAI to create an AI-enhanced group chat experience.
+
+### SignalR Hub integration**
+
+The `GroupChatHub` class manages user connections, message broadcasting, and AI interactions. When a user sends a message starting with `@gpt`, the hub forwards it to OpenAI, which generates a response. The AI's response is streamed back to the group in real-time.
+```csharp
+var chatClient = _openAI.GetChatClient(_options.Model);
+await foreach (var completion in chatClient.CompleteChatStreamingAsync(messagesInludeHistory))
+{   
+    // ...
+    // Buffering and sending the AI's response in chunks
+    await Clients.Group(groupName).SendAsync("newMessageWithId", "ChatGPT", id, totalCompletion.ToString());
+    // ...
+}
+```
+
+The chat history is managed by `GroupHistoryStore`, which stores messages for context. It includes both user and assistant messages to maintain conversation continuity.
+```csharp
+public void UpdateGroupHistoryForAssistant(string groupName, string message) { ... }
+```
+
+### Streaming AI responses
+
+The `CompleteChatStreamingAsync()` method streams responses from OpenAI incrementally, which allows the application to send partial responses to the client as they are generated. 
+
+The code uses a `StringBuilder` to accumulate the AI's response. It checks the length of the buffered content and sends it to the clients when it exceeds a certain threshold (e.g., 20 characters). This approach ensures that users see the AI’s response as it forms, mimicking a human-like typing effect. 
+```csharp
+totalCompletion.Append(content);
+if (totalCompletion.Length - lastSentTokenLength > 20)
+{
+    await Clients.Group(groupName).SendAsync("newMessageWithId", "ChatGPT", id, totalCompletion.ToString());
+    lastSentTokenLength = totalCompletion.Length;
+}
+``` 
+
+### Maintaining context with history
+
+The `GroupHistoryStore` class manages the chat history for each group. It stores both user and AI messages, ensuring that the conversation context is preserved across interactions. This context is crucial for generating coherent AI responses.
+```csharp
+public void UpdateGroupHistoryForAssistant(string groupName, string message)
+{
+    var chatMessages = _store.GetOrAdd(groupName, _ => InitiateChatMessages());
+    chatMessages.Add(new AssistantChatMessage(message));
+}
+```
+
+### Explore further
+
+This project opens up exciting possibilities for further enhancement:
+1. **Advanced AI features**: Leverage other OpenAI capabilities like sentiment analysis, translation, or summarization. 
+2. **Incorporating multiple AI agents**: You can introduce multiple AI agents with distinct roles or expertise areas within the same chat. For example, one agent might focus on text generation, the other provides image or audio generation. This can create a richer and more dynamic user experience where different AI agents interact seamlessly with users and each other.
+3. **Share chat history between server instances**: Implement a database layer to persist chat history across sessions, allowing conversations to resume even after a disconnect. Beyond SQL or NO SQL based solutions, you can also explore using a caching service like Redis. It can significantly improve performance by storing frequently accessed data, such as chat history or AI responses, in memory. This reduces latency and offloads database operations, leading to faster response times, particularly in high-traffic scenarios. 
+4. **Leveraging Azure SignalR Service**: [Azure SignalR Service](https://learn.microsoft.com/azure/azure-signalr/signalr-overview) provides scalable and reliable real-time messaging for your application. By offloading the SignalR backplane to Azure, you can scale out the chat application easily to support thousands of concurrent users across multiple servers. Azure SignalR also simplifies management and provides built-in features like automatic reconnections.
