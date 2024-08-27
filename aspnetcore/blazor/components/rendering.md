@@ -149,22 +149,15 @@ Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> 
 
 Components are enqueued for rendering, and they aren't enqueued again if there's already a pending rerender. If a component calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> five times in a row in a loop, the component only renders once. This behavior is encoded in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which checks first if it has queued a rerender before enqueuing an additional one.
 
-A component can render multiple times during the same cycle. Rendering multiple times isn't rare, for example, when a component has children that interact with each other:
+A component can render multiple times during the same cycle, which commonly occurs when a component has children that interact with each other:
 
 * A parent component renders several children.
 * Child components render and trigger an update on the parent.
 * A parent component rerenders with new state.
 
-:::moniker range=">= aspnetcore-8.0"
-
-The [`QuickGrid` component](xref:blazor/components/quickgrid) presents an example of these interactions, where the grid first renders a set of grid columns, and then the grid columns trigger additional renders of the grid.
-
-:::moniker-end
-
-This design allows for <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to be called when necessary without the risk of introducing unnecessary renders. You can always take control of this behavior in individual components by implementing <xref:Microsoft.AspNetCore.Components.IComponent> directly and manually handling when the component renders.
+This design allows for <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to be called when necessary without the risk of introducing unnecessary rendering. You can always take control of this behavior in individual components by implementing <xref:Microsoft.AspNetCore.Components.IComponent> directly and manually handling when the component renders.
 
 Consider the following `IncrementCount` method that increments a count, calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, and increments the count again:
-
 
 ```csharp
 private void IncrementCount()
@@ -177,7 +170,7 @@ private void IncrementCount()
 
 Stepping through the code in the debugger, you might think that the count updates in the UI for the first `currentCount++` execution immediately after <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called. However, the UI doesn't show an updated count at that point due to the synchronous processing taking place for this method's execution. There's no opportunity for the renderer to render the component until after the event handler is finished. The UI displays increases for both `currentCount++` executions *in a single render*.
 
-If you await something between the `currentCount++` lines, the awaited call gives the renderer a chance to render. This has led to some users calling <xref:System.Threading.Tasks.Task.Delay%2A> with a one millisecond delay in their components to allow a render to occur, but we don't recommend arbitrarily slowing down an app to permit a render in cases like this.
+If you await something between the `currentCount++` lines, the awaited call gives the renderer a chance to render. This has led to some users calling <xref:System.Threading.Tasks.Task.Delay%2A> with a one millisecond delay in their components to allow a render to occur, but we don't recommend arbitrarily slowing down an app to enqueue a render.
 
 The best approach is to await <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>, which forces the component to process code asynchronously and render during the current batch with a second render in a separate batch after the yielded task runs the continuation.
 
