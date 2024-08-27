@@ -145,9 +145,9 @@ For more information on performance best practices pertaining to <xref:Microsoft
 
 ## `StateHasChanged`
 
-Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> allows you to queue a render to occur when the main thread is free.
+Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> allows you to enqueue a render to occur when the app's main thread is free.
 
-Components are queued for rendering, and they aren't queued again if there's already a pending render. If a component calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> five times in a row in a loop, the component only renders once. This behavior is encoded in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which checks first if it has enqueued a render before queuing an additional one.
+Components are enqueued for rendering, and they aren't enqueued again if there's already a pending render. If a component calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> five times in a row in a loop, the component only renders once. This behavior is encoded in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which checks first if it has enqueued a render before queuing an additional one.
 
 A component can render multiple times during the same cycle. Rendering multiple times isn't rare, for example, when a component has children that interact with each other:
 
@@ -181,7 +181,7 @@ If you await something between the `currentCount++` lines, the awaited call give
 
 The best approach is to await <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>, which forces the component to process code asynchronously and render during the current batch with a second render in a separate batch after the yielded task runs the continuation.
 
-Consider the following revised `IncrementCount` method, which updates the UI twice because the render queued by <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is performed when the task is yielded with the call to <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>:
+Consider the following revised `IncrementCount` method, which updates the UI twice because the render enqueued by <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is performed when the task is yielded with the call to <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType>:
 
 ```csharp
 private async Task IncrementCount()
