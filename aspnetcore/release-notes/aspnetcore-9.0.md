@@ -67,6 +67,8 @@ This section describes new features for authentication and authorization.
 
 The following sections describe miscellaneous new features.
 
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/websockets-keep-alive-timeout.md)]
+
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/hybrid-cache.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/endpoint-metadata.md)]
