@@ -145,7 +145,7 @@ For more information on performance best practices pertaining to <xref:Microsoft
 
 ## `StateHasChanged`
 
-Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> allows you to enqueue a rerender to occur when the app's main thread is free.
+Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> enqueues a rerender to occur when the app's main thread is free.
 
 Components are enqueued for rendering, and they aren't enqueued again if there's already a pending rerender. If a component calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> five times in a row in a loop, the component only renders once. This behavior is encoded in <xref:Microsoft.AspNetCore.Components.ComponentBase>, which checks first if it has queued a rerender before enqueuing an additional one.
 
