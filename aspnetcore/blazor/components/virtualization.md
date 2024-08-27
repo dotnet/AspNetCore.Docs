@@ -217,7 +217,7 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 </Virtualize>
 ```
 
-By default, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second re-render is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
+By default, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
 ## Overscan count
 
@@ -231,7 +231,7 @@ By default, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtual
 
 ## State changes
 
-When making changes to items rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
+When making changes to items rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to enqueue re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
 
 :::moniker range=">= aspnetcore-6.0"
 
