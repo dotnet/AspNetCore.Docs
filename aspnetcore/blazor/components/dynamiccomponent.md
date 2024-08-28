@@ -353,7 +353,7 @@ Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-a
 
 Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance.
 
-Create an interface to describe the dynamically-created component instance with any methods or properties that you need to access from the parent component. The following example specifies a `Log` method.
+Create an interface to describe the dynamically-created component instance with any methods and properties that you need to access from the parent component when the component is dynamically loaded. The following example specifies a `Log` method.
 
 `Interfaces/ILoggable.cs`:
 
@@ -418,7 +418,7 @@ The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3
   }
   ```
 
-The parent component casts the dynamically-loaded component instance to an `ILoggable` to access component members identified by the interface. In the following example, the loaded component's `Log` method is called when a button is selected in the UI:
+The parent component casts the dynamically-loaded component instance to as an `ILoggable` to access members of the interface. In the following example, the loaded component's `Log` method is called when a button is selected in the UI:
 
 ```razor
 ...
