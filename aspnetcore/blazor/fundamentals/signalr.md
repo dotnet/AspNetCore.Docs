@@ -317,6 +317,26 @@ app.MapBlazorHub(options =>
 });
 ```
 
+<!-- UPDATE 9.0 The following is scheduled for a fix in .NET 9 -->
+
+Configuring the hub used by <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode%2A> with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> fails with an `AmbiguousMatchException`:
+
+> :::no-loc text="Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints.":::
+
+To workaround the problem for apps targeting .NET 8, give the custom-configured Blazor hub higher precedence using the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithOrder%2A> method:
+
+```csharp
+app.MapBlazorHub(options =>
+{
+    options.CloseOnAuthenticationExpiration = true;
+}).WithOrder(-1);
+```
+
+For more information, see the following resources:
+
+* [MapBlazorHub configuration in NET8 throws a The request matched multiple endpoints exception (`dotnet/aspnetcore` #51698)](https://github.com/dotnet/aspnetcore/issues/51698#issuecomment-1984340954)
+* [Attempts to map multiple blazor entry points with MapBlazorHub causes Ambiguous Route Error. This worked with net7 (`dotnet/aspnetcore` #52156)](https://github.com/dotnet/aspnetcore/issues/52156#issuecomment-1984503178)
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
