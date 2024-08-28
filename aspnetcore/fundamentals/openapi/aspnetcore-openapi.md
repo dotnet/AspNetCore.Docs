@@ -439,7 +439,7 @@ Transformers can be registered onto the document by calling the [`AddDocumentTra
 * Register a schema transformer using an instance of `IOpenApiSchemaTransformer`.
 * Register a schema transformer using a DI-activated `IOpenApiSchemaTransformer`.
 
-[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-20)]
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-19)]
 
 ### Execution order for transformers
 
