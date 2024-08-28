@@ -8,9 +8,9 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// <snippet_WebSocket_KeepAliveInterval_Global>
-app.UseWebSockets(new WebSocketOptions { KeepAliveInterval = TimeSpan.FromSeconds(15) });
-// </snippet_WebSocket_KeepAliveInterval_Global>
+// <snippet_WebSocket_KeepAliveTimeout_Global>
+app.UseWebSockets(new WebSocketOptions { KeepAliveTimeout = TimeSpan.FromSeconds(15) });
+// </snippet_WebSocket_KeepAliveTimeout_Global>
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
