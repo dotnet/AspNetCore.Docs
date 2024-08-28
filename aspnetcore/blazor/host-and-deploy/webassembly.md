@@ -79,7 +79,7 @@ Webcil is the default packaging format when you publish a Blazor WebAssembly app
 
 ## Customize how boot resources are loaded
 
-Customize how boot resources are loaded using the `loadBootResource` API. For more information, see <xref:blazor/fundamentals/startup#load-boot-resources>.
+Customize how boot resources are loaded using the `loadBootResource` API. For more information, see <xref:blazor/fundamentals/startup#load-client-side-boot-resources>.
 
 ## Compression
 
