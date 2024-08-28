@@ -427,7 +427,7 @@ Transformers fall into two categories:
 * Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 
-Transformers can be registered onto the document by calling the [`AddDocumentTransformer`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,90bbc6506b8eff7a) method on the `OpenApiOptions` object. The following snippet shows different ways to register transformers onto the document:
+Transformers can be registered onto the document by calling the [`AddDocumentTransformer`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,90bbc6506b8eff7a) method on the [`OpenApiOptions`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,c0a8b420f4ce6918) object. The following snippet shows different ways to register transformers onto the document:
 
 * Register a document transformer using a delegate.
 * Register a document transformer using an instance of `IOpenApiDocumentTransformer`.
