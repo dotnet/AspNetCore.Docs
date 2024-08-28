@@ -1,42 +1,47 @@
 ---
-title: Building AI-Powered Group Chat with SignalR and OpenAI
+title: Build an AI-Powered Group Chat with SignalR and OpenAI
 author: kevinguo-ed
-description: ...
-ms.author: ...
+description: A tutorial explaining how SignalR and OpenAI are used together to build an AI-powered group chat
+ms.author: kevinguo
 ms.date: 08/27/2024
+uid: tutorials/ai-powered-group-chat
 ---
 
 ## Overview
 
-The integration of AI into applications is rapidly becoming a must-have for developers looking to help their users be more creative, productive and achieve their health goals. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. The AI-powered apps that came out since Chat GPT captured our imagination are primarily between one user and one AI assistant. As developers get more comfortable with the capabilities of AI, they are exploring AI-powered apps in a team's context. They ask "what value can AI add to a team of collaborators"? 
+The integration of AI into applications is rapidly becoming a must-have for developers looking to help their users be more creative, productive and achieve their health goals. AI-powered features, such as intelligent chatbots, personalized recommendations, and contextual responses, add significant value to modern apps. The AI-powered apps that came out since ChatGPT captured our imagination are primarily between one user and one AI assistant. As developers get more comfortable with the capabilities of AI, they are exploring AI-powered apps in a team's context. They ask "what value can AI add to a team of collaborators"? 
 
 This tutorial guides you through building a real-time group chat application. Among a group of human collaborators in a chat, there's an AI assistant which has access to the chat history and can be invited to help out by any collaborator when they start the message with `@gpt`. The finished app looks like this. 
 
-{{Chat interface missing...}}
+:::image type="content" source="./ai-powered-group-chat.jpg" alt-text="user interface for the AI-powered group chat":::
 
-We use Open AI for generating intelligent, context-aware responses and SignalR for delivering the response to users in a group. You can find the complete code [in this repo](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
+We use OpenAI for generating intelligent, context-aware responses and SignalR for delivering the response to users in a group. You can find the complete code [in this repo](https://github.com/microsoft/SignalR-Samples-AI/tree/main/AIStreaming).
 
 ## Dependencies
-You can use either Azure Open AI or Open AI for this project. Make sure to update the `endpoint` and `key` in `appsetting.json`. `OpenAIExtensions` reads the configuration when the app starts and they are required to authenticate and use either service.
+You can use either Azure OpenAI or OpenAI for this project. Make sure to update the `endpoint` and `key` in `appsetting.json`. `OpenAIExtensions` reads the configuration when the app starts and they are required to authenticate and use either service.
 
-# [Open AI](#tab/open-ai)
+# [OpenAI](#tab/open-ai)
 To build this application, you will need the following:
 * ASP.NET Core: To create the web application and host the SignalR hub.
 * [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
 * [OpenAI Client](https://www.nuget.org/packages/OpenAI/2.0.0-beta.10): To interact with OpenAI's API for generating AI responses.
 
-# [Azure Open AI](#tab/azure-open-ai)
+# [Azure OpenAI](#tab/azure-open-ai)
 To build this application, you will need the following:
 * ASP.NET Core: To create the web application and host the SignalR hub.
 * [SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client): For real-time communication between clients and the server.
-* [Azure Open AI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.0.0-beta.3): Azure.AI.OpenAI
+* [Azure OpenAI](https://www.nuget.org/packages/Azure.AI.OpenAI/2.0.0-beta.3): Azure.AI.OpenAI
 ---
 
 ## Implementation
 
 In this section, we'll walk through the key parts of the code that integrate SignalR with OpenAI to create an AI-enhanced group chat experience.
 
-### SignalR Hub integration**
+### Data flow 
+
+:::image type="content" source="./sequence-diagram-ai-powered-group-chat.png" alt-text="sequence diagram for the AI-powered group chat":::
+
+### SignalR Hub integration
 
 The `GroupChatHub` class manages user connections, message broadcasting, and AI interactions. When a user sends a message starting with `@gpt`, the hub forwards it to OpenAI, which generates a response. The AI's response is streamed back to the group in real-time.
 ```csharp
@@ -80,7 +85,7 @@ public void UpdateGroupHistoryForAssistant(string groupName, string message)
 }
 ```
 
-### Explore further
+## Explore further
 
 This project opens up exciting possibilities for further enhancement:
 1. **Advanced AI features**: Leverage other OpenAI capabilities like sentiment analysis, translation, or summarization. 
