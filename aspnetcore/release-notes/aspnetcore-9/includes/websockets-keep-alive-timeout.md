@@ -7,7 +7,9 @@ The keep-alive timeout aborts the WebSocket connection and throws an exception f
 * The server sends a ping frame using the websocket protocol.
 * The client doesn't reply with a pong frame within the specified timeout.
 
-The server automatically sends the ping frame and configures it with `KeepAliveInterval`. The keep-alive timeout setting is useful for detecting connections that might be slow or ungracefully disconnected.
+The server automatically sends the ping frame and configures it with `KeepAliveInterval`. 
+
+The keep-alive timeout setting is useful for detecting connections that might be slow or ungracefully disconnected.
 
 The keep-alive timeout can be configured globally for the WebSocket middleware:
 
