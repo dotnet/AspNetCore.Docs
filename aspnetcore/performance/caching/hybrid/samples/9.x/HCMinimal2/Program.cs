@@ -58,7 +58,7 @@ public class Program
                 Expiration = TimeSpan.FromSeconds(10),
                 LocalCacheExpiration = TimeSpan.FromSeconds(5)
             };
-        }).WithSerializerFactory<GoogleProtobufSerializerFactory>();
+        }).AddSerializerFactory<GoogleProtobufSerializerFactory>();
         // </snippet_withserializerfactory>
 #endif
         // <snippet_redis>
