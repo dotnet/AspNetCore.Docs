@@ -61,7 +61,7 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.6.2
 
 Add the Swagger generator to the services collection in `Program.cs`:
 
-:::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
+:::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="3,4":::
 
 The call to <xref:Microsoft.Extensions.DependencyInjection.EndpointMetadataApiExplorerServiceCollectionExtensions.AddEndpointsApiExplorer%2A> shown in the preceding example is required only for [minimal APIs](/aspnet/core/fundamentals/minimal-apis/overview). For more information, see [this StackOverflow post](https://stackoverflow.com/a/71933535).
 
