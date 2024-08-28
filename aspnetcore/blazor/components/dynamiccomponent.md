@@ -349,11 +349,11 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 
 Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
 
-## Access the dynamically-created component instances
+## Access the dynamically-created component instance
 
 Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance.
 
-First, create an interface to describe the dynamically-created component instances. The following interface example specifies a `Log` method.
+Create an interface to describe the dynamically-created component instance with any methods or properties that you need to access from the parent component. The following example specifies a `Log` method.
 
 `Interfaces/ILoggable.cs`:
 
@@ -375,7 +375,7 @@ First, create an interface to describe the dynamically-created component instanc
 
 :::moniker-end
 
-Each component definition implements the interface. The following example is a modified Rocket Lab&reg; component from the [Example](#example) section that logs a string.
+Each component definition implements the interface. The following example is a modified Rocket Lab&reg; component from the [Example](#example) section that logs a string via its `Log` method.
 
 `RocketLab3.razor`:
 
@@ -399,7 +399,7 @@ Each component definition implements the interface. The following example is a m
 
 The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3`, `SpaceX3`) receive similar treatment:
 
-* Added directives to each, where the `{COMPONENT TYPE}` placeholder is the component type:
+* The following directives are added to the components, where the `{COMPONENT TYPE}` placeholder is the component type:
 
   ```razor
   @using BlazorSample.Interfaces
@@ -407,7 +407,7 @@ The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3
   @inject ILogger<{COMPONENT TYPE}> Logger
   ```
 
-* Added `Log` methods to each:
+* Each component receives a `Log` method. There's no need to identify the component in the log message because the log category includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> is called:
 
   ```razor
   @code {
@@ -418,7 +418,7 @@ The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3
   }
   ```
 
-The parent component casts the dynamically-loaded component instance to an `ILoggable` and calls the component's `Log` method when, for the following example, a button is selected in the UI:
+The parent component casts the dynamically-loaded component instance to an `ILoggable` to access component members identified by the interface. In the following example, the loaded component's `Log` method is called when a button is selected in the UI:
 
 ```razor
 ...
@@ -426,11 +426,14 @@ The parent component casts the dynamically-loaded component instance to an `ILog
 
 ...
 
+<DynamicComponent Type="..." @ref="dc" />
+
+...
+
 <button @onclick="LogFromLoadedComponent">Log from loaded component</button>
 
 @code {
     private DynamicComponent? dc;
-    ...
 
     ...
 
