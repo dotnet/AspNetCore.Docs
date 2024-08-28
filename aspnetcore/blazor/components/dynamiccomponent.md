@@ -36,28 +36,6 @@ In the following example:
 
 For more information on passing parameter values, see the [Pass parameters](#pass-parameters) section later in this article.
 
-Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance:
-
-```razor
-<DynamicComponent Type="typeof({COMPONENT})" @ref="dc" />
-
-<button @onclick="Refresh">Refresh</button>
-
-@code {
-    private DynamicComponent? dc;
-
-    private Task Refresh()
-    {
-        return (dc?.Instance as IRefreshable)?.Refresh();
-    }
-}
-```
-
-In the preceding example:
-
-* The `{COMPONENT}` placeholder is the dynamically-created component type.
-* `IRefreshable` is an example interface provided by the developer for the dynamic component instance.
-
 ## Example
 
 In the following example, a Razor component renders a component based on the user's selection from a dropdown list of four possible values.
@@ -370,6 +348,116 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 ## Avoid catch-all parameters
 
 Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
+
+## Access the dynamically-created component instance
+
+Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance.
+
+Create an interface to describe the dynamically-created component instance with any methods and properties that you need to access from the parent component when the component is dynamically loaded. The following example specifies a `Log` method for implementation in components.
+
+`Interfaces/ILoggable.cs`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Interfaces/ILoggable.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/Interfaces/ILoggable.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/Interfaces/ILoggable.cs":::
+
+:::moniker-end
+
+Each component definition implements the interface. The following example is a modified Rocket Lab&reg; component from the [Example](#example) section that logs a string via its `Log` method.
+
+`RocketLab3.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/RocketLab3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/RocketLab3.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/RocketLab3.razor":::
+
+:::moniker-end
+
+The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3`, `SpaceX3`) receive similar treatment:
+
+* The following directives are added to the components, where the `{COMPONENT TYPE}` placeholder is the component type:
+
+  ```razor
+  @using BlazorSample.Interfaces
+  @implements ILoggable
+  @inject ILogger<{COMPONENT TYPE}> Logger
+  ```
+
+* Each component implements a `Log` method. There's no need to identify the component in the log message template because the log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> is called:
+
+  ```razor
+  @code {
+      public void Log()
+      {
+          Logger.LogInformation("Woot! I logged this call!");
+      }
+  }
+  ```
+
+The parent component casts the dynamically-loaded component instance as an `ILoggable` to access members of the interface. In the following example, the loaded component's `Log` method is called when a button is selected in the UI:
+
+```razor
+...
+@using BlazorSample.Interfaces
+
+...
+
+<DynamicComponent Type="..." @ref="dc" />
+
+...
+
+<button @onclick="LogFromLoadedComponent">Log from loaded component</button>
+
+@code {
+    private DynamicComponent? dc;
+
+    ...
+
+    private void LogFromLoadedComponent() => (dc?.Instance as ILoggable)?.Log();
+}
+```
+
+:::moniker range=">= aspnetcore-8.0"
+
+For a working demonstration of the preceding example, see the [`DynamicComponent4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorSample_BlazorWebApp/Components/Pages/DynamicComponent4.razor).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+For a working demonstration of the preceding example, see the [`DynamicComponentExample4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorSample_BlazorServer/Pages/dynamiccomponent/DynamicComponentExample4.razor).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+For a working demonstration of the preceding example, see the [`DynamicComponentExample4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorSample_BlazorServer/Pages/dynamiccomponent/DynamicComponentExample4.razor).
+
+:::moniker-end
 
 ## Trademarks
 
