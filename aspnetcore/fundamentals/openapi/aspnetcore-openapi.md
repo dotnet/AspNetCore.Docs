@@ -5,7 +5,7 @@ description: Learn how to generate and customize OpenAPI documents in an ASP.NET
 ms.author: safia
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 5/22/2024
+ms.date: 08/27/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
 # Work with OpenAPI documents
@@ -427,14 +427,19 @@ Transformers fall into two categories:
 * Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 
-Transformers can be registered onto the document via the `UseTransformer` call on the `OpenApiOptions` object. The following snippet shows different ways to register transformers onto the document:
+Transformers can be registered onto the document by calling the [`AddDocumentTransformer`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,90bbc6506b8eff7a) method on the [`OpenApiOptions`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,c0a8b420f4ce6918) object. The following snippet shows different ways to register transformers onto the document:
 
 * Register a document transformer using a delegate.
 * Register a document transformer using an instance of `IOpenApiDocumentTransformer`.
 * Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
 * Register an operation transformer using a delegate.
+* Register an operation transformer using an instance of `IOpenApiOperationTransformer`.
+* Register an operation transformer using a DI-activated `IOpenApiOperationTransformer`.
+* Register a schema transformer using a delegate.
+* Register a schema transformer using an instance of `IOpenApiSchemaTransformer`.
+* Register a schema transformer using a DI-activated `IOpenApiSchemaTransformer`.
 
-[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-13)]
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-19)]
 
 ### Execution order for transformers
 
