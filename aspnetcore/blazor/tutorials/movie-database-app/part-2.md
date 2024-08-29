@@ -204,20 +204,13 @@ In this section, the `Movie` model is used to *scaffold* a database context and 
 
 Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**:
 
-<!-- UPDATE 9.0 Update image: In 17.12 this image will likely need to change. 
-                The Razor Components node will be nested under a new Blazor 
-                node in the tree view: 
-                
-                See: https://github.com/dotnet/AspNetCore.Docs/pull/32747#discussion_r1731616280
-                -->
-
 ![New Scaffolded Item](~/blazor/tutorials/movie-database-app/part-2/_static/new-scaffolded-item.png)
 
-With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
+With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Blazor** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
 
 *CRUD* is an acronym for Create, Read, Update, and Delete. The scaffolder produces create, edit, delete, details, and index components for the app.
 
-![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/install-common-razor-component.png)
+![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/add-new-scaffolded-item.png)
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
