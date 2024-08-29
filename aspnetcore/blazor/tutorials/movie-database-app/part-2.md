@@ -210,7 +210,7 @@ With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > *
 
 *CRUD* is an acronym for Create, Read, Update, and Delete. The scaffolder produces create, edit, delete, details, and index components for the app.
 
-![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/install-common-razor-component.png)
+![Scaffold item](~/blazor/tutorials/movie-database-app/part-2/_static/add-new-scaffolded-item.png)
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 
