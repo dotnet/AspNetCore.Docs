@@ -367,7 +367,9 @@ The components produced by the scaffolder require server-side rendering (SSR), s
 
 Right-click on the `Components/Pages` folder and select **Add** > **New Scaffolded Item**.
 
-With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
+With the **Add New Scaffold Item** dialog open to **Installed** > **Common** > **Blazor** > **Razor Component**, select **Razor Components using Entity Framework (CRUD)**. Select the **Add** button.
+
+*CRUD* is an acronym for Create, Read, Update, and Delete. The scaffolder produces create, edit, delete, details, and index components for the app.
 
 Complete the **Add Razor Components using Entity Framework (CRUD)** dialog:
 

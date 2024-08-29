@@ -138,7 +138,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <p>@authMessage</p>
 
-@if (claims.Count() > 0)
+@if (claims.Any())
 {
     <ul>
         @foreach (var claim in claims)
@@ -195,7 +195,7 @@ In the preceding example:
 
 <p>@authMessage</p>
 
-@if (claims.Count() > 0)
+@if (claims.Any())
 {
     <ul>
         @foreach (var claim in claims)
