@@ -201,8 +201,6 @@ dotnet new webapp --no-https
 
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
-For the Firefox browser, see the next section.
-
 The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces a variation of the following output:
 
 ```cli
@@ -231,55 +229,13 @@ dotnet dev-certs https --help
 
 <a name="trust-ff"></a>
 
-### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
-
-The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
-
-There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
-
-#### Create a policy file to trust HTTPS certificate with Firefox
-
-Create a policy file (`policies.json`) at:
-
-* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
-* MacOS: `Firefox.app/Contents/Resources/distribution`
-* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this article.
-
-Add the following JSON to the Firefox policy file:
-
-```json
-{
-  "policies": {
-    "Certificates": {
-      "ImportEnterpriseRoots": true
-    }
-  }
-}
-```
-
-The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to create the preceding policy file by using the Firefox browser.
-
-<a name="trust-ff-ba"></a>
-
-### Configure trust of HTTPS certificate using Firefox browser
-
-Set  `security.enterprise_roots.enabled` = `true` using the following instructions:
-
-1. Enter `about:config` in the FireFox browser.
-1. Select **Accept the Risk and Continue** if you accept the risk.
-1. Select **Show All**
-1. Set `security.enterprise_roots.enabled` = `true`
-1. Exit and restart Firefox
-
-For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox) and the [mozilla/policy-templates/README file](https://github.com/mozilla/policy-templates/blob/master/README.md).
-
 ## How to set up a developer certificate for Docker
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 ## Trust HTTPS certificate on Linux
 
-Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome) and for Firefox.
+Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome).
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
@@ -345,36 +301,6 @@ For chromium browsers on Linux:
 
 <a name="trust-ff-linux"></a>
 
-#### Trust the certificate with Firefox on Linux
-
-* Export the certificate with the following command:
-
-  ```vstscli
-  dotnet dev-certs https
-  sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
-  ```
-
-  The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
-
-* Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following command:
-
-```sh
-cat <<EOF | sudo tee /usr/lib/firefox/distribution/policies.json
-{
-    "policies": {
-        "Certificates": {
-            "Install": [
-                "/usr/local/share/ca-certificates/aspnet/https.crt"
-            ]
-        }
-    }
-}
-EOF
-```
-Note: Ubuntu 21.10 Firefox comes as a snap package and the installation folder is `/snap/firefox/current/usr/lib/firefox`.
-  
-See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this article for an alternative way to configure the policy file using the browser.
-
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
 > [!WARNING]
@@ -428,13 +354,6 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ${ProjectD
 certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
 ```
 
-#### Mozilla Firefox
-
-```sh
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
-```
-
 #### Create An Alias To Test With Curl
 
 > [!IMPORTANT]
@@ -450,7 +369,6 @@ alias curl="curl --cacert ${ProjectDirectory}/${CertificateName}.crt"
 
 ```sh
 certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n ${CertificateName}
 rm ${ProjectDirectory}/${CertificateName}.crt
 dotnet dev-certs https --clean
 ```
@@ -514,13 +432,6 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ${ProjectD
 certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
 ```
 
-#### Mozilla Firefox
-
-```sh
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
-```
-
 #### Create An Alias To Test With Curl
 
 > [!IMPORTANT]
@@ -536,7 +447,6 @@ alias curl="curl --cacert ${ProjectDirectory}/${CertificateName}.crt"
 
 ```sh
 certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n ${CertificateName}
 rm ${ProjectDirectory}/${CertificateName}.crt
 dotnet dev-certs https --clean
 ```
@@ -905,6 +815,8 @@ dotnet dev-certs https --help
 
 ### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
 
+**Note:** The following special instructions for Firefox might not be necessary.
+
 The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
 
 There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
@@ -1002,6 +914,8 @@ For chromium browsers on Linux:
 <a name="trust-ff-linux"></a>
 
 ### Trust the certificate with Firefox on Linux
+
+**Note:** The following special instructions for Firefox might not be necessary.
 
 * Export the certificate with the following command:
 
