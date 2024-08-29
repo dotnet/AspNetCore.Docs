@@ -195,13 +195,13 @@ For a deeper exploration of scaling server-side Blazor apps on the Azure Contain
 When using IIS, enable:
 
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
-* [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
+* [Session affinity with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
 For more information, see the guidance and external IIS resource cross-links in <xref:tutorials/publish-to-iis>.
 
 ## Kubernetes
 
-Create an ingress definition with the following [Kubernetes annotations for sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
+Create an ingress definition with the following [Kubernetes annotations for session affinity](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
 
 ```yaml
 apiVersion: extensions/v1beta1
