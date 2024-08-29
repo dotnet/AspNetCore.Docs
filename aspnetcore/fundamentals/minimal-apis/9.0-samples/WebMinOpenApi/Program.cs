@@ -1,5 +1,16 @@
-#define DOCUMENTtransformerInOut //DOCUMENTtransformerInOut DOCUMENTtransformerUse 
-// DOCUMENTtransformerUse999
+//#define DEFAULT 
+//#define DOCUMENTtransformerInOut 
+//#define DOCUMENTtransformer1 
+//#define DOCUMENTtransformer2 
+#define DOCUMENTtransformerUse999
+//#define DEFAULT
+//#define FIRST
+//#define OPENAPIWITHSCALAR
+//#define MAPOPENAPIWITHCACHING
+//#define MAPOPENAPIWITHAUTH
+//#define SWAGGERUI
+//#define MULTIDOC_OPERATIONtransformer1
+//#define OPERATIONtransformer1
 
 #if DEFAULT
 // <snippet_default>
@@ -55,7 +66,7 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer((document, context, cancellationToken) =>
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
     {
         document.Info = new()
         {
@@ -91,7 +102,7 @@ builder.Services.AddAuthentication().AddJwtBearer();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer<BearerSecuritySchemeTransformer>();
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
 });
 
 var app = builder.Build();
@@ -141,7 +152,7 @@ builder.Services.AddAuthentication().AddJwtBearer();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseOperationTransformer((operation, context, cancellationToken) =>
+    options.AddOperationTransformer((operation, context, cancellationToken) =>
     {
         operation.Responses.Add("500", new OpenApiResponse { Description = "Internal server error" });
         return Task.CompletedTask;
@@ -172,7 +183,7 @@ builder.Services.AddAuthentication().AddJwtBearer();
 
 builder.Services.AddOpenApi("internal", options =>
 {
-    options.UseTransformer<BearerSecuritySchemeTransformer>();
+    options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
 });
 builder.Services.AddOpenApi("public");
 
@@ -360,12 +371,18 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseTransformer((document, context, cancellationToken) 
+    options.AddDocumentTransformer((document, context, cancellationToken) 
                              => Task.CompletedTask);
-    options.UseTransformer(new MyDocumentTransformer());
-    options.UseTransformer<MyDocumentTransformer>();
-    options.UseOperationTransformer((operation, context, cancellationToken)
+    options.AddDocumentTransformer(new MyDocumentTransformer());
+    options.AddDocumentTransformer<MyDocumentTransformer>();
+    options.AddOperationTransformer((operation, context, cancellationToken)
                             => Task.CompletedTask);
+    options.AddOperationTransformer(new MyOperationTransformer());
+    options.AddOperationTransformer<MyOperationTransformer>();
+    options.AddSchemaTransformer((schema, context, cancellationToken)
+                            => Task.CompletedTask);
+    options.AddSchemaTransformer(new MySchemaTransformer());
+    options.AddSchemaTransformer<MySchemaTransformer>();
 });
 
 var app = builder.Build();
@@ -388,6 +405,26 @@ internal class MyDocumentTransformer : IOpenApiDocumentTransformer
     }
 }
 
+internal class MyOperationTransformer : IOpenApiOperationTransformer
+{
+    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
+    {
+        // Simple transformation logic (e.g., adding a summary to the operation)
+        operation.Summary = "Transformed OpenAPI operation";
+
+        return Task.CompletedTask;
+    }
+}
+internal class MySchemaTransformer : IOpenApiSchemaTransformer
+{
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
+    {
+        // Simple transformation logic (e.g., adding a description to the schema)
+        schema.Description = "Transformed OpenAPI schema";
+
+        return Task.CompletedTask;
+    }
+}
 #endif
 
 #if DOCUMENTtransformerInOut
@@ -396,9 +433,9 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseOperationTransformer((operation, context, cancellationToken)
+    options.AddOperationTransformer((operation, context, cancellationToken)
                                      => Task.CompletedTask);
-    options.UseTransformer((document, context, cancellationToken)
+    options.AddDocumentTransformer((document, context, cancellationToken)
                                      => Task.CompletedTask);
 });
 
