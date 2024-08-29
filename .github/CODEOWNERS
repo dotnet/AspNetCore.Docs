@@ -37,3 +37,7 @@
 # /aspnetcore/tutorials/ @wadepickett
 # /aspnetcore/web-api/ @wadepickett @Rick-Anderson
 # /aspnetcore/whats-new/ @Rick-Anderson
+/client-side/dotnet-interop/index.md @guardrex
+/client-side/dotnet-interop/wasm-browser-app.md @guardrex
+/mvc/views/tag-helpers/built-in/component-tag-helper.md @guardrex
+/mvc/views/tag-helpers/built-in/persist-component-state.md @guardrex
