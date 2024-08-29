@@ -52,24 +52,23 @@ In the following `ShowImage1` component:
 
 The preceding example uses a C# field to hold the image's source data, but you can also use a C# property to hold the data.
 
-> [!NOTE]
-> Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
->
-> * The loop variable `i` is assigned to `imageId`.
-> * `imageId` is used in the lambda expression.
->
-> Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
->
-> ```razor
-> @foreach (var imageId in Enumerable.Range(1,3))
-> {
->     <button @onclick="() => ShowImage(imageId)">
->         Image @imageId
->     </button>
-> }
-> ```
->
-> For more information, see <xref:blazor/components/event-handling#lambda-expressions>.
+Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
+
+* The loop variable `i` is assigned to `imageId`.
+* `imageId` is used in the lambda expression.
+
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+
+```razor
+@foreach (var imageId in Enumerable.Range(1,3))
+{
+    <button @onclick="() => ShowImage(imageId)">
+        Image @imageId
+    </button>
+}
+```
+
+For more information on lambda expressions with event handling, see <xref:blazor/components/event-handling#lambda-expressions>.
 
 ## Stream image or document data
 
