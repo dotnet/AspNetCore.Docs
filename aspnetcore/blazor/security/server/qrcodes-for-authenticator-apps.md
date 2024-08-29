@@ -109,9 +109,9 @@ Make the following changes:
 + <div id="qrCodeData" data-url="@authenticatorUri"></div>
 ```
 
-Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component. The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app alongside other QR codes for other apps. Leave the value URL encoded. Developers usually set a site name that matches the company's name. Examples: Yahoo, Amazon, Etsy, Microsoft, Zoho.
+Change the site name in the `GenerateQrCodeUri` method of the `EnableAuthenticator` component. The default value is `Microsoft.AspNetCore.Identity.UI`. Change the value to a meaningful site name that users can identify easily in their authenticator app. Leave the value URL encoded. Developers usually set a site name that matches the company's name. Examples: Yahoo, Amazon, Etsy, Microsoft, Zoho. We recommend limiting the site name length to 30 characters or less to allow the site name to display on narrow mobile device screens.
 
-In the following example, the `{SITE NAME}` placeholder is where the site (company) name:
+In the following example, the `{SITE NAME}` placeholder is where the site (company) name is specified:
 
 ```diff
 private string GenerateQrCodeUri(string email, string unformattedKey)
@@ -121,6 +121,20 @@ private string GenerateQrCodeUri(string email, string unformattedKey)
         AuthenticatorUriFormat,
 -       UrlEncoder.Encode("Microsoft.AspNetCore.Identity.UI"),
 +       UrlEncoder.Encode("{SITE NAME}"),
+        UrlEncoder.Encode(email),
+        unformattedKey);
+}
+```
+
+Example:
+
+```csharp
+private string GenerateQrCodeUri(string email, string unformattedKey)
+{
+    return string.Format(
+        CultureInfo.InvariantCulture,
+        AuthenticatorUriFormat,
+        UrlEncoder.Encode("Weyland-Yutani Corporation"),
         UrlEncoder.Encode(email),
         unformattedKey);
 }
