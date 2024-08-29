@@ -113,7 +113,7 @@ The following `UserClaims` component can be used directly in apps or serve as th
 
 <h1>User Claims</h1>
 
-@if (claims.Count() > 0)
+@if (claims.Any())
 {
     <ul>
         @foreach (var claim in claims)
