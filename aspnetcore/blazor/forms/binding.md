@@ -295,7 +295,7 @@ The following example component:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-`InputBaseApproval.razor`:
+`EngineeringApprovalInputDerived.razor`:
 
 ```razor
 @using System.Diagnostics.CodeAnalysis
@@ -327,7 +327,7 @@ The following example component:
 }
 ```
 
-To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with an `InputBaseApproval` component instance bound to the model's `IsValidatedDesign` property:
+To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with an `EngineeringApprovalInputDerived` component instance bound to the model's `IsValidatedDesign` property:
 
 ```diff
 - <div>
@@ -336,7 +336,7 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 -         <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
 -     </label>
 - </div>
-+ <InputBaseApproval @bind-Value="Model!.IsValidatedDesign" />
++ <EngineeringApprovalInputDerived @bind-Value="Model!.IsValidatedDesign" />
 ```
 
 ### Input component with full developer control
@@ -365,7 +365,7 @@ Code in the component includes:
   * <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding and dispatches an event notification to consumers that the value has changed.
   * If the component is used in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> (the `EditContext` property isn't `null`), <xref:Microsoft.AspNetCore.Components.Forms.EditContext.NotifyFieldChanged%2A?displayProperty=nameWithType> is called to trigger validation.
 
-`FullControlApproval.razor`:
+`EngineeringApprovalInputStandalone.razor`:
 
 ```razor
 @using System.Globalization
@@ -414,7 +414,7 @@ Code in the component includes:
 }
 ```
 
-To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with a `FullControlApproval` component instance bound to the model's `IsValidatedDesign` property:
+To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with a `EngineeringApprovalInputStandalone` component instance bound to the model's `IsValidatedDesign` property:
 
 ```diff
 - <div>
@@ -423,13 +423,13 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 -         <InputCheckbox @bind-Value="Model!.IsValidatedDesign" />
 -     </label>
 - </div>
-+ <FullControlApproval @bind-Value="Model!.IsValidatedDesign" />
++ <EngineeringApprovalInputStandalone @bind-Value="Model!.IsValidatedDesign" />
 ```
 
-The `FullControlApproval` component is also functional outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>:
+The `EngineeringApprovalInputStandalone` component is also functional outside of an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>:
 
 ```razor
-<FullControlApproval @bind-Value="ValidDesign" />
+<EngineeringApprovalInputStandalone @bind-Value="ValidDesign" />
 
 <div>
     <b>ValidDesign:</b> @ValidDesign
