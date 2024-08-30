@@ -284,7 +284,7 @@ For custom input processing scenarios, the following subsections demonstrate cus
 
 * [Input component with full developer control](#input-component-with-full-developer-control): The component takes full control of input processing. The component's code must manage binding, callbacks, and validation. The component can be used inside or outside of a Blazor form.
 
-We recommend that you derive your custom input components from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, unless specific requirements prevent you from doing so. The <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> class is actively maintained by the ASP.NET Core team, ensuring it stays up-to-date with the latest Blazor features and framework changes.
+We recommend that you derive your custom input components from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> unless specific requirements prevent you from doing so. The <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> class is actively maintained by the ASP.NET Core team, ensuring it stays up-to-date with the latest Blazor features and framework changes.
 
 ### Input component based on `InputBase<T>`
 
