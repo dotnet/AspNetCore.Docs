@@ -14,7 +14,7 @@ For information on how to integrate npm and webpack into the build process for a
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
 
-The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
+The Razor Class Library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
 # [.NET CLI](#tab/net-cli)
 
@@ -24,7 +24,7 @@ From the command line, run `dotnet new razorclasslib`. For example:
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
-The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
+The Razor Class Library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 
