@@ -5,7 +5,7 @@ description: Use .NET Core Generic Host in ASP.NET Core apps.  Generic Host is r
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/05/2023
+ms.date: 08/29/2024
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host in ASP.NET Core
@@ -282,7 +282,7 @@ To set this value, use configuration or call `UseSetting`:
 
 The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
-**Key**: `https_port`  
+**Key**: `https_port`
 **Type**: `string`  
 **Default**: A default value isn't set.  
 **Environment variable**: `{PREFIX_}HTTPS_PORT`
@@ -290,6 +290,19 @@ The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 To set this value, use configuration or call `UseSetting`:
 
 :::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHttpsPort":::
+
+### HTTPS_Ports
+
+The HTTPS ports to listen on for HTTPS connections.
+
+**Key**: `https_ports`  
+**Type**: `string`  
+**Default**: A default value isn't set.  
+**Environment variable**: `{PREFIX_}HTTPS_PORTS`
+
+To set this value, use configuration or call `UseSetting`:
+
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHttpsPorts":::
 
 ### PreferHostingUrls
 
