@@ -109,4 +109,4 @@ The [remote session support](xref:migration/inc/remote-session) exposes an endpo
 
 The virtual directory setup is used for route generation, authorization, and other services within the system. At this point, no reliable method has been found to enable different virtual directories due to how ASP.NET Framework works.
 
-**Recomendation**: Ensure your two applications are on different sites (hosts and/or ports) with the same application/virtual directory layout.
+**Recommendation**: Ensure your two applications are on different sites (hosts and/or ports) with the same application/virtual directory layout.
