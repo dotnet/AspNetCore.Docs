@@ -5,7 +5,7 @@ description: Learn about Web Host in ASP.NET Core, which is responsible for app 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 02/22/2022
+ms.date: 08/29/2024
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -217,9 +217,24 @@ WebHost.CreateDefaultBuilder(args)
 
 ### HTTPS Port
 
-Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
+Set the HTTPS port to redirect to if you get a non-HTTPS connection. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
 **Key**: https_port  
+**Type**: *string*  
+**Default**: A default value isn't set.  
+**Set using**: `UseSetting`  
+**Environment variable**: `ASPNETCORE_HTTPS_PORT`
+
+```csharp
+WebHost.CreateDefaultBuilder(args)
+    .UseSetting("https_port", "8080")
+```
+
+### HTTPS Ports
+
+Set the ports to listen on for HTTPS connections.
+
+**Key**: https_ports
 **Type**: *string*  
 **Default**: A default value isn't set.  
 **Set using**: `UseSetting`  
@@ -227,7 +242,7 @@ Set the HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-s
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
-    .UseSetting("https_port", "8080")
+    .UseSetting("https_ports", "8080")
 ```
 
 ### Hosting Startup Exclude Assemblies

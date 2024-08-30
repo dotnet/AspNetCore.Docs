@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc, linux-related-content
-ms.date: 05/29/2024
+ms.date: 08/29/2024
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -62,7 +62,7 @@ The following code calls <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderEx
 The preceding highlighted code:
 
 * Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode?displayProperty=nameWithType> (<xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>).
-* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> (null) unless overridden by the `ASPNETCORE_HTTPS_PORTS` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
+* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> (null) unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 We recommend using temporary redirects rather than permanent redirects. Link caching can cause unstable behavior in development environments. If you prefer to send a permanent redirect status code when the app is in a non-Development environment, see the [Configure permanent redirects in production](#configure-permanent-redirects-in-production) section. We recommend using [HSTS](#http-strict-transport-security-protocol-hsts) to signal to clients that only secure resource requests should be sent to the app (only in production).
 
@@ -79,7 +79,7 @@ Specify the HTTPS port using any of the following approaches:
 * Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
 
   * In host configuration.
-  * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
+  * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
@@ -723,7 +723,7 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 The preceding highlighted code:
 
 * Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode?displayProperty=nameWithType> (<xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>).
-* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> (null) unless overridden by the `ASPNETCORE_HTTPS_PORTS` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
+* Uses the default <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort?displayProperty=nameWithType> (null) unless overridden by the `ASPNETCORE_HTTPS_PORT` environment variable or <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 We recommend using temporary redirects rather than permanent redirects. Link caching can cause unstable behavior in development environments. If you prefer to send a permanent redirect status code when the app is in a non-Development environment, see the [Configure permanent redirects in production](#configure-permanent-redirects-in-production) section. We recommend using [HSTS](#http-strict-transport-security-protocol-hsts) to signal to clients that only secure resource requests should be sent to the app (only in production).
 
@@ -740,7 +740,7 @@ Specify the HTTPS port using any of the following approaches:
 * Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
 
   * In host configuration.
-  * By setting the `ASPNETCORE_HTTPS_PORTS` environment variable.
+  * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
