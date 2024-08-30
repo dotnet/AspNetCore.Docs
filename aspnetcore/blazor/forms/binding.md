@@ -280,9 +280,11 @@ Developers aren't expected to interact with <xref:Microsoft.AspNetCore.Component
 
 For custom input processing scenarios, the following subsections demonstrate custom input components:
 
-* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, which provides conventions for binding, callbacks, and validation. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
+* [Input component based on `InputBase<T>`](#input-component-based-on-inputbaset): The component inherits from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>, which comes with base implementation for binding, callbacks, validation, and more. Components that inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> must be used in a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 
 * [Input component with full developer control](#input-component-with-full-developer-control): The component takes full control of input processing. The component's code must manage binding, callbacks, and validation. The component can be used inside or outside of a Blazor form.
+
+**Recommendation**: Derive your custom input components from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> unless specific requirements prevent you from doing so. The <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601> class is actively maintained by the ASP.NET Core team, ensuring it stays up-to-date with the latest Blazor features and framework changes. By building on this foundation, you benefit from continuous improvements and optimizations, minimizing the effort needed to adapt your components to future Blazor versions.
 
 ### Input component based on `InputBase<T>`
 
