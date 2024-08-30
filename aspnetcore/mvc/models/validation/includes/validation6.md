@@ -378,7 +378,7 @@ Other options to disable client-side validation:
 * Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
-The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.
+The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor class library. For more information, see <xref:security/authentication/scaffold-identity>.
 
 ## Additional resources
 
@@ -749,7 +749,7 @@ Other options to disable client-side validation:
 * Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
-The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.
+The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor class library. For more information, see <xref:security/authentication/scaffold-identity>.
 
 ## Additional resources
 

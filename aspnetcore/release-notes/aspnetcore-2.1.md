@@ -33,11 +33,11 @@ ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a librar
 * The app startup time is significantly faster.
 * Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.
 
-For more information, see [Create reusable UI using the Razor Class Library project](xref:razor-pages/ui-class).
+For more information, see <xref:razor-pages/ui-class>.
 
 ## Identity UI library & scaffolding
 
-ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
+ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
 Apps that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
