@@ -15,7 +15,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 This sample shows how to enable users to [sign in with their Twitter account](https://dev.twitter.com/web/sign-in/desktop-browser) using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
 > [!NOTE]
-> The Microsoft.AspNetCore.Authentication.Twitter package described below uses the OAuth 1.0 APIs provided by Twitter. Twitter has since added OAuth 2.0 APIs with a different set of functionality. The [OpenIddict](https://documentation.openiddict.com/guides/getting-started/integrating-with-a-remote-server-instance.html) and [AspNet.Security.OAuth.Twitter](https://www.nuget.org/packages/AspNet.Security.OAuth.Twitter/) packages are community implementations that use the new OAuth 2.0 APIs.
+> The Microsoft.AspNetCore.Authentication.Twitter package described below uses the OAuth 1.0 APIs provided by Twitter. Twitter has since added OAuth 2.0 APIs with a different set of functionality. The [OpenIddict](https://documentation.openiddict.com/integrations/web-providers) and [AspNet.Security.OAuth.Twitter](https://www.nuget.org/packages/AspNet.Security.OAuth.Twitter/) packages are community implementations that use the new OAuth 2.0 APIs.
 
 ## Create the app in Twitter
 

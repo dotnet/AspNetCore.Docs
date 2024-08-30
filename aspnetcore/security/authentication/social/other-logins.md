@@ -11,7 +11,7 @@ uid: security/authentication/otherlogins
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Pranav Rastogi](https://github.com/rustd), and [Valeriy Novytskyy](https://github.com/01binary)
 
-The following list includes common external OAuth authentication providers that work with ASP.NET Core apps. Third-party NuGet packages, such as the ones maintained by [OpenIddict](https://documentation.openiddict.com/guides/getting-started/integrating-with-a-remote-server-instance.html) or [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth), can be used to complement the authentication providers implemented by the ASP.NET Core team.
+The following list includes common external OAuth authentication providers that work with ASP.NET Core apps. Third-party NuGet packages, such as the ones maintained by [OpenIddict](https://documentation.openiddict.com/integrations/web-providers) or [aspnet-contrib](https://www.nuget.org/packages?q=owners%3Aaspnet-contrib+title%3AOAuth), can be used to complement the authentication providers implemented by the ASP.NET Core team.
 
 * [LinkedIn](https://www.linkedin.com/developer/apps)
 
