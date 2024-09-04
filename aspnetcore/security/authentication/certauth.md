@@ -211,7 +211,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 #### Install in the trusted root
 
-The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default. For information on how to trust the root certificate on Windows, see [this question](https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the).
+The root certificate must be trusted on your host system. Only root certificates created by a certificate authority are trusted by default. For information on how to trust the root certificate on Windows, see [the Windows documentation](/windows-hardware/drivers/install/trusted-root-certification-authorities-certificate-store) or the [`Import-Certificate`](/powershell/module/pki/import-certificate) PowerShell cmdlet.
 
 #### Intermediate certificate
 
