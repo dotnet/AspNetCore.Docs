@@ -31,6 +31,24 @@ Parts of this series include:
 
 At the end of the tutorial, you'll have a Blazor Web App that can display and manage movies in a movie database.
 
+## Secure authentication flow required for production apps
+
+<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
+                add it to the list. -->
+
+This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
+
+* <xref:blazor/security/index>
+* <xref:blazor/security/server/index> and the following articles in the *Server* security node
+* <xref:blazor/security/blazor-web-app-oidc>
+
+For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
+
+* [What are managed identities for Azure resources? (Microsoft Entra documentation)](/entra/identity/managed-identities-azure-resources/overview)
+* Azure services documentation
+  * [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity)
+  * [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
+
 ## Sample app
 
 If you don't intend to create the demonstration app while reading the article, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.

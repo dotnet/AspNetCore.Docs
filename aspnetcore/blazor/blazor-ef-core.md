@@ -31,6 +31,17 @@ This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly
 
 :::moniker-end
 
+## Secure authentication flow required for production apps
+
+This article uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see the articles in the [Blazor *Security and Identity* node](xref:blazor/security/index).
+
+For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
+
+* [What are managed identities for Azure resources? (Microsoft Entra documentation)](/entra/identity/managed-identities-azure-resources/overview)
+* Azure services documentation
+  * [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity)
+  * [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
+
 ## Sample app
 
 The sample app was built as a reference for server-side Blazor apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.
@@ -347,3 +358,4 @@ We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsB
 
 * [EF Core documentation](/ef/)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
+* [Blazor *Security and Identity* node articles](xref:blazor/security/index)
