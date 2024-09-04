@@ -33,7 +33,7 @@ This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly
 
 ## Secure authentication flow required for production apps
 
-This article uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see articles in the [Blazor *Security and Identity* node](xref:blazor/security/index).
+This article uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see the articles in the [Blazor *Security and Identity* node](xref:blazor/security/index).
 
 ## Sample app
 
