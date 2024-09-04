@@ -39,7 +39,7 @@ At the end of the tutorial, you'll have a Blazor Web App that can display and ma
 This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
 
 * <xref:blazor/security/index>
-* <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
+* <xref:blazor/security/server/index> and the following articles in the *Server* security node
 * <xref:blazor-web-app-oidc-specification>
 
 ## Sample app
