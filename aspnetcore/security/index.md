@@ -50,7 +50,7 @@ We recommend using the most secure secure authentication option. For Microsoft s
 * [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity).
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity).
 
-When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). An environment variable should ***NEVER*** be used to store a production connection string.
 
 For more information, see:
 
