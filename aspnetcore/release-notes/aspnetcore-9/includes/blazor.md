@@ -87,7 +87,7 @@ This works well if you've started from the Blazor Web App project template and s
 
 By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to `AddAuthenticationStateSerialization` to include all claims.
 
-For more information, see the following sections of the ** article:
+For more information, see the following sections of <xref:blazor/security/server/index?view=aspnetcore-9.0>:
 
 * [Blazor Identity UI (Individual Accounts)](xref:blazor/security/server/index?view=aspnetcore-9.0#blazor-identity-ui-individual-accounts)
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/server/index?view=aspnetcore-9.0#manage-authentication-state-in-blazor-web-apps)
