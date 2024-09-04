@@ -32,6 +32,11 @@ This tutorial uses a local database that doesn't require user authentication. Pr
 * <xref:blazor/security/server/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
 
+For Microsoft services, we recommend using [managed identities](/entra/identity/managed-identities-azure-resources/overview). Managed identities are a secure way to authenticate to services without storing credentials in app code. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services. For more information, see the following resources:
+
+* [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity)
+* [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
+
 ## Database context
 
 The database context, `BlazorWebAppMoviesContext`, connects to the database and maps model objects to database records. The database context was created in the second part of this series. The scaffolded database context code appears in the `Program` file:
