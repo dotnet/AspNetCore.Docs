@@ -32,7 +32,7 @@ This tutorial uses a local database that doesn't require user authentication. Pr
 * <xref:blazor/security/server/index> and the following articles in the *Server* security node
 * <xref:blazor/security/blazor-web-app-oidc>
 
-For Microsoft Azure services, we recommend using *managed identities*. Managed identities are a secure way to authenticate to services without storing credentials in app code. For more information, see the following resources:
+For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
 * [What are managed identities for Azure resources? (Microsoft Entra documentation)](/entra/identity/managed-identities-azure-resources/overview)
 * Azure services documentation:

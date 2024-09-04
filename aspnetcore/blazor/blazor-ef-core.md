@@ -35,7 +35,7 @@ This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly
 
 This article uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see the articles in the [Blazor *Security and Identity* node](xref:blazor/security/index).
 
-For Microsoft Azure services, we recommend using *managed identities*. Managed identities are a secure way to authenticate to services without storing credentials in app code. For more information, see the following resources:
+For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
 * [What are managed identities for Azure resources? (Microsoft Entra documentation)](/entra/identity/managed-identities-azure-resources/overview)
 * Azure services documentation:
