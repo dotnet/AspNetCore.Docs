@@ -40,7 +40,7 @@ This tutorial uses a local database that doesn't require user authentication. Pr
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/server/index> and the following articles in the *Server* security node
-* <xref:blazor-web-app-oidc-specification>
+* <xref:blazor/security/blazor-web-app-oidc>
 
 ## Sample app
 

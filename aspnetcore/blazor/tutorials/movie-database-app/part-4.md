@@ -30,7 +30,7 @@ This tutorial uses a local database that doesn't require user authentication. Pr
 
 * <xref:blazor/security/index>
 * <xref:blazor/security/server/index> and the following articles in the *Server* security node
-* <xref:blazor-web-app-oidc-specification>
+* <xref:blazor/security/blazor-web-app-oidc>
 
 ## Database context
 
@@ -362,7 +362,7 @@ If the app is running, shut the app down by closing the browser's window and pre
 * Blazor Web App security
   * <xref:blazor/security/index>
   * <xref:blazor/security/server/index> and the following articles in the *Server* security node
-  * <xref:blazor-web-app-oidc-specification>
+  * <xref:blazor/security/blazor-web-app-oidc>
 
 ## Legal
 
