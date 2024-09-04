@@ -43,6 +43,15 @@ ASP.NET Core and EF contain features that help you secure your apps and prevent 
 
 There are more vulnerabilities that you should be aware of. For more information, see the other articles in the **Security and Identity** section of the table of contents.
 
+# Secure authentication flows
+
+We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication option we can recommend is to use [managed identities](/entra/identity/managed-identities-azure-resources/overview). Managed identities are a secure way to authenticate to services without needing to store credentials in your code. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
+
+* [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity).
+* [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity).
+
+
+
 ## Additional resources
 
 * <xref:security/authentication/identity>
