@@ -45,12 +45,18 @@ There are more vulnerabilities that you should be aware of. For more information
 
 ## Secure authentication flows
 
-We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication option we can recommend is to use [managed identities](/entra/identity/managed-identities-azure-resources/overview). Managed identities are a secure way to authenticate to services without needing to store credentials in your code. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
+We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview). Managed identities are a secure way to authenticate to services without needing to store credentials in code, environment variables, or configuration files. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
 
 * [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity).
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity).
 
+When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
+For more information, see:
+
+* [Managed identity best practice recommendations](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations)
+* Connecting from your application to resources without handling credentials
+* Azure services that can use managed identities to access other services
 
 ## Additional resources
 
