@@ -48,7 +48,7 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
 * [What are managed identities for Azure resources? (Microsoft Entra documentation)](/entra/identity/managed-identities-azure-resources/overview)
-* Azure services documentation:
+* Azure services documentation
   * [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity)
   * [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
 
