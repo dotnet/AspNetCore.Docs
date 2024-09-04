@@ -47,8 +47,9 @@ There are more vulnerabilities that you should be aware of. For more information
 
 We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview). Managed identities are a secure way to authenticate to services without needing to store credentials in code, environment variables, or configuration files. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
 
-* [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity).
-* [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity).
+* [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity)
+* [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
+* [Secure authentication flows](/entra/identity-platform/authentication-flows-app-scenarios#web-app-that-signs-in-a-user)
 
 When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). An environment variable should ***NEVER*** be used to store a production connection string.
 
