@@ -33,25 +33,7 @@ This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly
 
 ## Secure authentication flow required for production apps
 
-This article uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production server-side Blazor apps, see the following resources:
-
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
-                add it to the list. -->
-
-* <xref:blazor/security/index>
-* <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
-* <xref:blazor-web-app-oidc-specification>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* <xref:blazor/security/index>
-* <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
-
-:::moniker-end
+This article uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see articles in the [Blazor *Security and Identity* node](xref:blazor/security/index).
 
 ## Sample app
 
@@ -367,26 +349,6 @@ We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsB
 
 ## Additional resources
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
-                add it to the list. -->
-
 * [EF Core documentation](/ef/)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-* Blazor Web App security
-  * <xref:blazor/security/index>
-  * <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
-  * <xref:blazor-web-app-oidc-specification>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* [EF Core documentation](/ef/)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-* Blazor Server security
-  * <xref:blazor/security/index>
-  * <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
-
-:::moniker-end
+* [Blazor *Security and Identity* node articles](xref:blazor/security/index)
