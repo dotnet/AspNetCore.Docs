@@ -31,6 +31,17 @@ Parts of this series include:
 
 At the end of the tutorial, you'll have a Blazor Web App that can display and manage movies in a movie database.
 
+## Secure authentication flow required for production apps
+
+<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
+                add it to the list. -->
+
+This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
+
+* <xref:blazor/security/index>
+* <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
+* <xref:blazor-web-app-oidc-specification>
+
 ## Sample app
 
 If you don't intend to create the demonstration app while reading the article, you can refer to the completed sample app in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples). Select the latest version folder in the repository. The sample folder for this tutorial's project is named `BlazorWebAppMovies`.

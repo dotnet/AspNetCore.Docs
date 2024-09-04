@@ -21,6 +21,17 @@ This article is the fourth part of the Blazor movie database app tutorial that t
 
 This part of the tutorial series focuses on the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 
+## Secure authentication flow required for production apps
+
+<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
+                add it to the list. -->
+
+This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
+
+* <xref:blazor/security/index>
+* <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
+* <xref:blazor-web-app-oidc-specification>
+
 ## Database context
 
 The database context, `BlazorWebAppMoviesContext`, connects to the database and maps model objects to database records. The database context was created in the second part of this series. The scaffolded database context code appears in the `Program` file:
@@ -335,6 +346,9 @@ If the app is running, shut the app down by closing the browser's window and pre
 
 ## Additional resources
 
+<!-- UPDATE 9.0 If we get a BWA + MS Identity Web app+article,
+                add it to the list. -->
+
 * Configuration articles:
   * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
   * <xref:blazor/fundamentals/configuration> (Blazor documentation)
@@ -345,6 +359,10 @@ If the app is running, shut the app down by closing the browser's window and pre
     * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
     * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
   * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
+* Blazor Web App security
+  * <xref:blazor/security/index>
+  * <xref:blazor/security/server/index> (and the following articles in the *Server* security node)
+  * <xref:blazor-web-app-oidc-specification>
 
 ## Legal
 
