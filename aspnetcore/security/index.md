@@ -56,8 +56,9 @@ When the app is deployed to a test server, an environment variable can be used t
 For more information, see:
 
 * [Managed identity best practice recommendations](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations)
-* Connecting from your application to resources without handling credentials
-* Azure services that can use managed identities to access other services
+* [Connecting from your application to resources without handling credentials in your code](/entra/identity/managed-identities-azure-resources/overview)
+* [ Azure services that can use managed identities to access other services](/entra/identity/managed-identities-azure-resources/services-support-managed-identities)
+* [IETF OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics#section-2.4)
 
 ## Additional resources
 
