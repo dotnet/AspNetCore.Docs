@@ -148,7 +148,10 @@ In the following example, the partial (code-behind) class injects the `Navigatio
 ```csharp
 public partial class ConstructorInjection(NavigationManager navigation)
 {
-    protected NavigationManager Navigation { get; } = navigation;
+    private void HandleClick()
+    {
+        navigation.NavigateTo("/counter");
+    }
 }
 ```
 
