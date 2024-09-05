@@ -45,7 +45,15 @@ There are more vulnerabilities that you should be aware of. For more information
 
 ## Secure authentication flows
 
-We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview). Managed identities are a secure way to authenticate to services without needing to store credentials in code, environment variables, or configuration files. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
+We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview).
+
+Resource Owner Password Credentials Grant:
+
+* Exposes the user's password to the client.
+* Is a significant security risk.
+* Should only be used when other flows are not possible.
+
+Managed identities are a secure way to authenticate to services without needing to store credentials in code, environment variables, or configuration files. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
 
 * [Managed identities in Microsoft Entra for Azure SQL](/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity)
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
