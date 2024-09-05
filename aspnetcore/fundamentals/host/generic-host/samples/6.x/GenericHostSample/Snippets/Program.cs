@@ -99,7 +99,7 @@ public static class Program
         // </snippet_WebHostBuilderHttpsPort>
 
         // <snippet_WebHostBuilderHttpsPorts>
-        webBuilder.UseSetting("https_ports", "8080");
+           webBuilder.UseSetting("https_ports", "8080", "8443", "10443");
         // </snippet_WebHostBuilderHttpsPorts>
 
         // <snippet_WebHostBuilderPreferHostingUrls>
