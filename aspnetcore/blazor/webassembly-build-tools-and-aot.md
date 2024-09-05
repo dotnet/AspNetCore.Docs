@@ -182,6 +182,11 @@ To enable WebAssembly exception handling, add the `<WasmEnableExceptionHandling>
 
 :::moniker-end
 
+For more information, see the following resources:
+
+* [Configuring and hosting .NET WebAssembly applications: EH - Exception handling](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#eh---exception-handling)
+* [Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md)
+
 ## Additional resources
 
 * <xref:blazor/webassembly-native-dependencies>
