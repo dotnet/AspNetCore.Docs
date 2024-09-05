@@ -915,7 +915,7 @@ For chromium browsers on Linux:
 
 ### Trust the certificate with Firefox on Linux
 
-**Note:** The following special instructions for Firefox might not be necessary.
+In some instances the Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates and requires the following instructions. 
 
 * Export the certificate with the following command:
 
