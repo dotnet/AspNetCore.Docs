@@ -280,7 +280,7 @@ To set this value, use configuration or call `UseSetting`:
 
 ### HTTPS_Port
 
-The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
+The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't also cause the server to listen on that port. That is, it's possible to accidentally redirect requests to an unused port.
 
 **Key**: `https_port`
 **Type**: `string`  
@@ -293,7 +293,7 @@ To set this value, use configuration or call `UseSetting`:
 
 ### HTTPS_Ports
 
-The HTTPS ports to listen on for HTTPS connections.
+The ports to listen on for HTTPS connections.
 
 **Key**: `https_ports`  
 **Type**: `string`  
