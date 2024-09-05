@@ -29,7 +29,7 @@ This section describes new features for SignalR.
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalrActivities.md)]
 
-[!INCLUDE[](~/release-notes/aspnetcore-9/signalr-distributed-tracing-improvements.md)]
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalr-distributed-tracing-improvements.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/signalr-trimming-aot.md)]
 
