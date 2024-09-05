@@ -224,7 +224,7 @@ After services are added to the service collection, inject one or more services 
 ```razor
 @page "/constructor-injection"
 
-<button @onclick="@(() => Navigation.NavigateTo("/counter"))">
+<button @onclick="HandleClick">
     Take me to the Counter component
 </button>
 ```
@@ -236,7 +236,10 @@ using Microsoft.AspNetCore.Components;
 
 public partial class ConstructorInjection(NavigationManager navigation)
 {
-    protected NavigationManager Navigation { get; } = navigation;
+    private void HandleClick()
+    {
+        navigation.NavigateTo("/counter");
+    }
 }
 ```
 
@@ -616,7 +619,7 @@ There may be times when a Razor component invokes asynchronous methods that exec
 
 For example, <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> have their own DI service scope. As a result, <xref:System.Net.Http.HttpMessageHandler> instances configured on the <xref:System.Net.Http.HttpClient> aren't able to directly inject Blazor services.
 
-Create a class `BlazorServiceAccessor` that defines an [`AsyncLocal`](xref:System.Threading.AsyncLocal`1), which stores the Blazor <xref:System.IServiceProvider> for the current asynchronous context. A `BlazorServiceAcccessor` instance can be acquired from within a different DI service scope to access Blazor services.
+Create a class `BlazorServiceAccessor` that defines an [`AsyncLocal`](xref:System.Threading.AsyncLocal`1), which stores the Blazor <xref:System.IServiceProvider> for the current asynchronous context. A `BlazorServiceAccessor` instance can be acquired from within a different DI service scope to access Blazor services.
 
 `BlazorServiceAccessor.cs`:
 
@@ -769,6 +772,7 @@ services.AddScoped<BlazorServiceAccessor>();
 * <xref:fundamentals/dependency-injection>
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
+* [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)
 
 :::moniker-end
 
