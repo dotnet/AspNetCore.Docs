@@ -34,7 +34,6 @@ Configure Map Static Assets Middleware by calling `MapStaticAssets` in the app's
 * Uses [Caching Middleware](xref:performance/caching/middleware).
 * When possible, serves [compressed](xref:performance/response-compression) static assets.
 * Works with a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)) to serve the app's static assets closer to the user.
-* [Minifies](https://developer.mozilla.org/docs/Glossary/Minification) the app's static assets.
 * [Fingerprinting assets](https://developer.mozilla.org/docs/Glossary/Fingerprinting) to prevent reusing old versions of files.
 
 `MapStaticAssets` operates by combining build and publish processes to collect information about the static assets in the app. This information is utilized by the runtime library to efficiently serve the static assets to browsers.

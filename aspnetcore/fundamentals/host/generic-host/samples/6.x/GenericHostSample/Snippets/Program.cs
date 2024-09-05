@@ -98,6 +98,10 @@ public static class Program
         webBuilder.UseSetting("https_port", "8080");
         // </snippet_WebHostBuilderHttpsPort>
 
+        // <snippet_WebHostBuilderHttpsPorts>
+        webBuilder.UseSetting("https_ports", "8080");
+        // </snippet_WebHostBuilderHttpsPorts>
+
         // <snippet_WebHostBuilderPreferHostingUrls>
         webBuilder.PreferHostingUrls(true);
         // </snippet_WebHostBuilderPreferHostingUrls>
