@@ -301,3 +301,25 @@ For more information, see the following topics:
 :::moniker-end
 
 [!INCLUDE[](~/host-and-deploy/azure-iis-errors-reference/includes/azure-iis-errors-reference2-2.md)]
+
+### Using Dynamic IP restrictions
+
+![image](https://github.com/user-attachments/assets/467b3d49-9133-4372-8d8d-9bd903ca31a0)
+
+![image](https://github.com/user-attachments/assets/65b9e71f-16f8-48df-819b-ad3fbf7e1516)
+
+![image](https://github.com/user-attachments/assets/9e1d4d42-0dc0-4ab3-bd6c-0537d74e44ec)
+
+![image](https://github.com/user-attachments/assets/c35467bc-af38-4769-bbeb-126fff5e69d8)
+
+![image](https://github.com/user-attachments/assets/c9649fa5-6c8d-4dc9-8b57-62e6ae003241)
+
+![image](https://github.com/user-attachments/assets/6b970cd7-8611-4deb-b44f-e74df910e52d)
+
+![image](https://github.com/user-attachments/assets/9e624bd6-3a4a-4fae-b5c0-43f8f9cb5e22)
+
+![image](https://github.com/user-attachments/assets/44c9dce1-fb82-4b49-ab88-1e9fe3223aaf)
+
+![image](https://github.com/user-attachments/assets/20cf2373-c656-496b-8408-3c01f9e4f9a6)
+
+![image](https://github.com/user-attachments/assets/5e9f2587-2418-4e38-8fc4-2e97b85400ee)
