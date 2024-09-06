@@ -1,6 +1,9 @@
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
+> [!NOTE]
+> Swashbuckle is not available in .NET 9 and later. For an alternative, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
+
 There are three main components to Swashbuckle:
 
 * [Swashbuckle.AspNetCore.Swagger](https://www.nuget.org/packages/Swashbuckle.AspNetCore.Swagger/): a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
