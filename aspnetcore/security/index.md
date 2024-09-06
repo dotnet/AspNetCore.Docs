@@ -22,6 +22,8 @@ ASP.NET Core enables developers to configure and manage security. The following 
 
 These security features allow you to build robust and secure ASP.NET Core apps.
 
+For Blazor security coverage, which adds to or supersedes the guidance in this node, see <xref:blazor/security/index> and the other articles in Blazor's *Security and Identity* node.
+
 ## ASP.NET Core security features
 
 ASP.NET Core provides many tools and libraries to secure ASP.NET Core apps such as built-in identity providers and third-party identity services such as Facebook, Twitter, and LinkedIn. ASP.NET Core provides several approaches to store app secrets.
