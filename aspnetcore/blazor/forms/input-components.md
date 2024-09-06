@@ -527,3 +527,87 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 > The ProductionDate field has an incorrect date value.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+### Override `InputNumber` `type` attribute
+
+The `InputNumber` component supports overriding the `type` attribute, where the `{TYPE}` placeholder represents the `type` value:
+
+```razor
+<InputNumber ... type="{TYPE}" ... />
+```
+
+For example, specify an [`<input>` element of `type="range"`](https://developer.mozilla.org/docs/Web/HTML/Element/input/range) with an `InputNumber` component to create a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+
+```razor
+<InputNumber @bind-Value="..." max="..." min="..." step="..." type="range" />
+```
+
+If the user's browser doesn't support `type="range"`, the `<input>` element gracefully degrades back to a default text box.
+
+In the following example, the `InputNumber` components set their `type` attributes to `range`, resulting in a set of three sliders or dial controls by typical browsers.
+
+`EngineForm.razor`:
+
+```razor
+@page "/engine-form"
+@inject ILogger<EngineForm> Logger
+
+<EditForm Model="Model" OnSubmit="Submit" FormName="EngineForm">
+    <div>
+        <label>
+            Nacelle Count (2-6): 
+            <InputNumber @bind-Value="Model!.NacelleCount" max="6" min="2" 
+                step="1" type="range" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Plasma Injector Count (per nacelle, 2-8): 
+            <InputNumber @bind-Value="Model!.PlasmaInjectorCount" max="8" min="2" 
+                step="1" type="range" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Warp Field Coil Count (per nacelle, 4-20): 
+            <InputNumber @bind-Value="Model!.WarpFieldCoilCount" max="20" min="4" 
+                step="1" type="range" />
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private EngineSpecifications? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit()
+    {
+        Logger.LogInformation(
+            "Nacelle Count = {NacelleCount}, Plasma Injector Count = " +
+            "{PlasmaInjectorCount}, Warp Field Coil Count = {WarpFieldCoilCount}", 
+            Model?.PlasmaInjectorCount, Model?.WarpFieldCoilCount, 
+            Model?.NacelleCount);
+    }
+
+    public class Starship
+    {
+        [Required, Range(minimum: 2, maximum: 6)]
+        public int NacelleCount { get; set; }
+
+        [Required, Range(minimum: 2, maximum: 8)]
+        public int PlasmaInjectorCount { get; set; }
+
+        [Required, Range(minimum: 4, maximum: 20)]
+        public int WarpFieldCoilCount { get; set; }
+    }
+}
+```
+
+:::moniker-end
