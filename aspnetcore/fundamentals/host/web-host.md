@@ -217,7 +217,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ### HTTPS Port
 
-Set the HTTPS port to redirect to if you get a non-HTTPS connection. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
+Set the HTTPS port to redirect to if you get a non-HTTPS connection. Used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
 
 **Key**: https_port  
 **Type**: *string*  
