@@ -79,14 +79,14 @@ builder.AddContent(1, "Second");
 When the code executes for the first time and `someFlag` is `true`, the builder receives the sequence in the following table.
 
 Sequence | Type      | Data
-:------: | --------- | :----:
+:------: | --------- | ------
 0        | Text node | First
 1        | Text node | Second
 
 Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives the sequence in the following table.
 
 Sequence | Type      | Data
-:------: | --------- | :----:
+:------: | --------- | ------
 1        | Text node | Second
 
 When the runtime performs a diff, it sees that the item at sequence `0` was removed, so it generates the following trivial *edit script* with a single step:
@@ -111,7 +111,7 @@ builder.AddContent(seq++, "Second");
 The first output is reflected in the following table.
 
 Sequence | Type      | Data
-:------: | --------- | :----:
+:------: | --------- | ------
 0        | Text node | First
 1        | Text node | Second
 
