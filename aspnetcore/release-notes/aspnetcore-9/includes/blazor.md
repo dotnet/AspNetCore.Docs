@@ -218,7 +218,7 @@ The `InputNumber` component now supports overriding the `type` attribute. For ex
 
     protected override void OnInitialized() => Model ??= new();
 
-    public class Starship
+    public class EngineSpecifications
     {
         [Required, Range(minimum: 2, maximum: 6)]
         public int NacelleCount { get; set; }
