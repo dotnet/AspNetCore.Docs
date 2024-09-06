@@ -11,7 +11,7 @@ uid: fundamentals/dependency-injection
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.com/), and [Brandon Dahler](https://github.com/brandondahler)
 
@@ -371,5 +371,7 @@ The following table lists a small sample of these framework-registered services:
 * [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/dependency-injection/includes/dependency-injection-8.md)]
 
 [!INCLUDE[](~/fundamentals/dependency-injection/includes/dependency-injection-5-7.md)]
