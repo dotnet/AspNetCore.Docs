@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 09/05/2024
 uid: fundamentals/openapi/aspnetcore-openapi
 ---
-# Work with OpenAPI documents
+# Generate OpenAPI documents
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -486,6 +486,11 @@ Operation transformers have access to a context object which contains:
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
+
+## Additional resources
+
+* <xref:fundamentals/openapi/using-openapi-documents>
+* [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
 ::: moniker-end
 
