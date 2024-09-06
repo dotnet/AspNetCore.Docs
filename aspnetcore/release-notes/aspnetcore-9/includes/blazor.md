@@ -194,9 +194,9 @@ The default `OverscanCount` is 3. The following example increases the `OverscanC
 </QuickGrid>
 ```
 
-### Override `InputNumber` `type` attribute
+### `InputNumber` component supports `type="range"` attribute
 
-The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now supports overriding the `type` attribute. For example, specify an [`<input>` element of `type="range"`](https://developer.mozilla.org/docs/Web/HTML/Element/input/range) to create a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
 
 ```razor
 <EditForm Model="Model" OnSubmit="Submit" FormName="EngineForm">

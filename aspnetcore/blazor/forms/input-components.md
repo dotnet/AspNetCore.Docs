@@ -69,13 +69,11 @@ Some components include useful parsing logic. For example, <xref:Microsoft.AspNe
 
 :::moniker range=">= aspnetcore-9.0"
 
-The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component supports overriding the `type` attribute. For example, specify an [`<input>` element of `type="range"`](https://developer.mozilla.org/docs/Web/HTML/Element/input/range) to create a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
 
 ```razor
 <InputNumber @bind-Value="..." max="..." min="..." step="..." type="range" />
 ```
-
-If the user's browser doesn't support `type="range"`, the `<input>` element gracefully degrades back to a default text box.
 
 :::moniker-end
 
