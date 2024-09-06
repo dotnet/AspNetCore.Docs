@@ -75,3 +75,5 @@ The output shows any issues with the OpenAPI document. For example:
 ✖ 5 problems (0 errors, 5 warnings, 0 infos, 0 hints)
 ```
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-6-8.md)]
