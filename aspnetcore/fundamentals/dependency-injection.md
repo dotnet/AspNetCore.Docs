@@ -152,7 +152,7 @@ public class MyService
 
 #### Keyed services in Middleware
 
-Middleware supports Keyed DI in both the constructor and the `Invoke`/`InvokeAsync` method:
+Middleware supports Keyed services in both the constructor and the `Invoke`/`InvokeAsync` method:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs"  id="snippet_2":::
 
