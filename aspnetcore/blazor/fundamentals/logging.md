@@ -646,15 +646,15 @@ In Blazor script start configuration, pass in the `configureSignalR` configurati
 
 For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
 
-| <xref:Microsoft.Extensions.Logging.LogLevel>             | String setting | Integer setting |
-| -------------------------------------------------------- | :------------: | :-------------: |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Trace>       | `trace`        | 0               |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Debug>       | `debug`        | 1               |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Information> | `information`  | 2               |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Warning>     | `warning`      | 3               |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Error>       | `error`        | 4               |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5               |
-| <xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6               |
+<xref:Microsoft.Extensions.Logging.LogLevel>             | String setting | Integer setting
+-------------------------------------------------------- | :------------: | :-------------:
+<xref:Microsoft.Extensions.Logging.LogLevel.Trace>       | `trace`        | 0
+<xref:Microsoft.Extensions.Logging.LogLevel.Debug>       | `debug`        | 1
+<xref:Microsoft.Extensions.Logging.LogLevel.Information> | `information`  | 2
+<xref:Microsoft.Extensions.Logging.LogLevel.Warning>     | `warning`      | 3
+<xref:Microsoft.Extensions.Logging.LogLevel.Error>       | `error`        | 4
+<xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5
+<xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6
 
 Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value.
 
