@@ -364,5 +364,3 @@ The following table lists a small sample of these framework-registered services:
 * [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/dependency-injection/includes/dependency-injection-5-7.md)]
