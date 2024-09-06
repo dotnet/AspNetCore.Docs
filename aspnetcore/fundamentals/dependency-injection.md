@@ -148,7 +148,13 @@ public class MyService
 
 *Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47" id="snippet_1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs" highlight="6,7,12-14,39,47" id="snippet_1":::
+
+#### Keyed DI in Middleware
+
+Middleware supports Keyed DI in both the constructor and the `Invoke`/`InvokeAsync` method:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs"  id="snippet_2":::
 
 ## Constructor injection behavior
 
