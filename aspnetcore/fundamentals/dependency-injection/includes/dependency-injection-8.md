@@ -1,17 +1,10 @@
 ---
-title: Dependency injection in ASP.NET Core
-author: tdykstra
-description: Learn how ASP.NET Core implements dependency injection and how to use it.
-ms.author: tdykstra
-ms.custom: mvc
-ms.date: 9/7/2024
-uid: fundamentals/dependency-injection
+author: rick-anderson
+ms.author: riande
+ms.date: 8/17/2024
 ---
-# Dependency injection in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range="= aspnetcore-8.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.com/), and [Brandon Dahler](https://github.com/brandondahler)
 
@@ -143,20 +136,11 @@ public class MyService
     }
 }
 ```
-
 ### Keyed services
 
 *Keyed services* refers to a mechanism for registering and retrieving Dependency Injection (DI) services using keys. A service is associated with a key by calling <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddKeyedSingleton%2A> (or `AddKeyedScoped` or `AddKeyedTransient`) to register it. Access a registered service by specifying the key with the [`[FromKeyedServices]`](xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute) attribute. The following code shows how to use keyed services:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs" highlight="6,7,12-14,39,47" id="snippet_1":::
-
-#### Keyed DI in Middleware
-
-Middleware supports Keyed DI in both the constructor and the `Invoke`/`InvokeAsync` method:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs"  id="snippet_2":::
-
-For more information on creating Middleware, see <xref:fundamentals/middleware/write>
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices/Program.cs" highlight="6,7,12-14,39,47":::
 
 ## Constructor injection behavior
 
@@ -380,7 +364,3 @@ The following table lists a small sample of these framework-registered services:
 * [How to register a service with multiple interfaces in ASP.NET Core DI](https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/)
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/dependency-injection/includes/dependency-injection-8.md)]
-
-[!INCLUDE[](~/fundamentals/dependency-injection/includes/dependency-injection-5-7.md)]
