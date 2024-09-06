@@ -379,7 +379,7 @@ Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetC
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise `GetClientCertificateAsync` may throw `InvalidOperationException: Client stream needs to be drained before renegotiation.`.
 
-If you're programmatically configuring the TLS settings per host there is a new [UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps) overload available in .NET 6 and later that takes <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> and controls client certificate renegotiation via <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A?displayProperty=nameWithType>.
+If you're programmatically configuring the TLS settings per SNI host name, call the [`UseHttps`](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps) overload (.NET 6 or later) that takes <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> and controls client certificate renegotiation via <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation%2A?displayProperty=nameWithType>.
 
     
 :::moniker-end
