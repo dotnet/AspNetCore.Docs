@@ -67,6 +67,16 @@ Input components provide default behavior for validating when a field is changed
 
 Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 
+:::moniker range=">= aspnetcore-9.0"
+
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+
+```razor
+<InputNumber @bind-Value="..." max="..." min="..." step="..." type="range" />
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-5.0"
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
