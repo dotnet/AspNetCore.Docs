@@ -196,16 +196,32 @@ The default `OverscanCount` is 3. The following example increases the `OverscanC
 
 ### Override `InputNumber` `type` attribute
 
-The `InputNumber` component now supports overriding the `type` attribute, where the `{TYPE}` placeholder represents the `type` value:
+The `InputNumber` component now supports overriding the `type` attribute. For example, specify an [`<input>` element of `type="range"`](https://developer.mozilla.org/docs/Web/HTML/Element/input/range) to create a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
 
 ```razor
-<InputNumber ... type="{TYPE}" ... />
+<EditForm Model="Model" OnSubmit="Submit" FormName="EngineForm">
+    <div>
+        <label>
+            Nacelle Count (2-6): 
+            <InputNumber @bind-Value="Model!.NacelleCount" max="6" min="2" 
+                step="1" type="range" />
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private EngineSpecifications? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    public class Starship
+    {
+        [Required, Range(minimum: 2, maximum: 6)]
+        public int NacelleCount { get; set; }
+    }
+}
 ```
-
-For example, specify an [`<input>` element of `type="range"`](https://developer.mozilla.org/docs/Web/HTML/Element/input/range) to create a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
-
-```razor
-<InputNumber @bind-Value="Model!.Rating" max="10" min="1" step="1" type="range" />
-```
-
-For more information and an example use in a component, see <xref:blazor/forms/input-components?view=aspnetcore-9.0#override-inputnumber-type-attribute>.
