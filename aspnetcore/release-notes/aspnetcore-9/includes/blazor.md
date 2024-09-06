@@ -218,6 +218,11 @@ The `InputNumber` component now supports overriding the `type` attribute. For ex
 
     protected override void OnInitialized() => Model ??= new();
 
+    private void Submit()
+    {
+        ...
+    }
+
     public class EngineSpecifications
     {
         [Required, Range(minimum: 2, maximum: 6)]
