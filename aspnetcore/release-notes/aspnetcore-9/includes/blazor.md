@@ -208,4 +208,4 @@ For example, specify an [`<input>` element of `type="range"`](https://developer.
 <InputNumber @bind-Value="Model!.Rating" max="10" min="1" step="1" type="range" />
 ```
 
-For more information and an example use in a component, see <xref:xref:blazor/forms/input-components?view=aspnetcore-9.0#override-inputnumber-type-attribute>.
+For more information and an example use in a component, see <xref:blazor/forms/input-components?view=aspnetcore-9.0#override-inputnumber-type-attribute>.
