@@ -4,7 +4,7 @@ ms.author: riande
 ms.date: 8/17/2024
 ---
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-8.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.com/), and [Brandon Dahler](https://github.com/brandondahler)
 
