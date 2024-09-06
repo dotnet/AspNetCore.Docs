@@ -150,7 +150,7 @@ public class MyService
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/KeyedServices9/Program.cs" highlight="6,7,12-14,39,47" id="snippet_1":::
 
-#### Keyed DI in Middleware
+#### Keyed services in Middleware
 
 Middleware supports Keyed DI in both the constructor and the `Invoke`/`InvokeAsync` method:
 
