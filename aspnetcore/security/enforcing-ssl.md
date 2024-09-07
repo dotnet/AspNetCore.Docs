@@ -12,14 +12,14 @@ uid: security/enforcing-ssl
 
 By [David Galvan](https://www.linkedin.com/in/dave-galvan/) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-9.0"
-
-This article shows how to:
+this article shows how to:
 
 * Require HTTPS for all requests.
 * Redirect all HTTP requests to HTTPS.
 
 No API can prevent a client from sending sensitive data on the first request.
+
+:::moniker range=">= aspnetcore-9.0"
 
 > [!WARNING]
 > ## API projects
