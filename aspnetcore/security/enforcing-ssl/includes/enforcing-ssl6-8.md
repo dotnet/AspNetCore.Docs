@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-6.0 <=aspnetcore-8.0>"
+:::moniker range=">= aspnetcore-6.0 <=aspnetcore-8.0"
 
 > [!WARNING]
 > ## API projects
