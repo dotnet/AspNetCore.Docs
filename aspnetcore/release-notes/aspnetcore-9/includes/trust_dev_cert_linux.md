@@ -14,7 +14,7 @@ Previously, `--trust` only worked on Windows and macOS. Certificate trust is app
 To establish trust in OpenSSL, the `dev-certs` tool:
 
 * Puts the certificate in `~/.aspnet/dev-certs/trust`
-* Runs a simplified version of OpenSSL's c_rehash tool on the directory.
+* Runs a simplified version of OpenSSL's [c_rehash tool](https://docs.openssl.org/1.0.2/man1/c_rehash/) on the directory.
 * Asks the user to update the `SSL_CERT_DIR` environment variable.
 
 To establish trust in dotnet, the tool puts the certificate in the `My/Root` certificate store.
