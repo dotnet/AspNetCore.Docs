@@ -259,6 +259,7 @@ If you store the certificates you want OpenSSL to trust in a specific directory,
 
 > [!WARNING]
 > If you set either of these variables, it is important that they are set to the same values each time trust is updated.  If they change, the tool won't know about certificates in the former locations (e.g. to clean them up)
+
 ### Using sudo
 
 As on other platforms, development certificates are stored and trusted separately for each user.  As a result, if you run `dotnet dev-certs` as a different user (e.g. by using `sudo`), it is _that_ user (e.g. `root`) that will trust the development certificate.
