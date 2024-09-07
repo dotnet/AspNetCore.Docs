@@ -317,7 +317,6 @@ For chromium browsers on Linux:
 
    ```cli
    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
-   certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
    ```
 
 * Exit and restart the browser.
@@ -973,7 +972,6 @@ For chromium browsers on Linux:
   
    ```cli
    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
-   certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
    ```
 
 * Exit and restart the browser.
