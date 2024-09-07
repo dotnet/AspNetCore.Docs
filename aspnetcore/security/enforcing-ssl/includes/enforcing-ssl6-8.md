@@ -36,7 +36,7 @@ We recommend that production ASP.NET Core web apps use:
 
 The following code calls <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> in the `Program.cs` file:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=13)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=13)]
 
 The preceding highlighted code:
 
@@ -61,7 +61,7 @@ Specify the HTTPS port using any of the following approaches:
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By adding a top-level entry in `appsettings.json`:
 
-    [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
+    [!code-json[](~/security/enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * The ASP.NET Core web templates set an HTTPS URL in `Properties/launchsettings.json` for both Kestrel and IIS Express. `launchsettings.json` is only used on the local machine.
@@ -93,7 +93,7 @@ When deploying to Azure App Service, follow the guidance in [Tutorial: Bind an e
 
 The following highlighted code calls <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection%2A> to configure middleware options:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=16-20)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=16-20)]
 
 Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPort` or `RedirectStatusCode`.
 
@@ -108,7 +108,7 @@ The middleware defaults to sending a <xref:Microsoft.AspNetCore.Http.StatusCodes
 
 When configuring services in `Program.cs`:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
 
 ## HTTPS Redirection Middleware alternative approach
 
@@ -133,7 +133,7 @@ Because [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transp
 
 ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=10)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=10)]
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
@@ -141,7 +141,7 @@ For production environments that are implementing HTTPS for the first time, set 
 
 The following highlighted code:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=7-14)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=7-14)]
 
 * Sets the preload parameter of the `Strict-Transport-Security` header. Preload isn't part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. For more information, see [https://hstspreload.org/](https://hstspreload.org/).
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains.
@@ -164,7 +164,7 @@ To opt-out of HTTPS/HSTS:
 
 Uncheck the **Configure for HTTPS** checkbox.
 
-![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
+![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](~/security/enforcing-ssl/_static/out-vs2019.png)
 
 # [.NET CLI](#tab/net-cli) 
 
@@ -697,7 +697,7 @@ We recommend that production ASP.NET Core web apps use:
 
 The following code calls `UseHttpsRedirection` in the `Startup` class:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=14)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=14)]
 
 The preceding highlighted code:
 
@@ -722,7 +722,7 @@ Specify the HTTPS port using any of the following approaches:
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By adding a top-level entry in `appsettings.json`:
 
-    [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
+    [!code-json[](~/security/enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in `launchsettings.json`. Enable HTTPS when IIS Express is used.
@@ -755,7 +755,7 @@ When deploying to Azure App Service, follow the guidance in [Tutorial: Bind an e
 
 The following highlighted code calls <xref:Microsoft.AspNetCore.Builder.HttpsRedirectionServicesExtensions.AddHttpsRedirection%2A> to configure middleware options:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=14-18)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=14-18)]
 
 Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPort` or `RedirectStatusCode`.
 
@@ -808,7 +808,7 @@ Because HSTS is enforced by the client, it has some limitations:
 
 ASP.NET Core implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=11)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=11)]
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
@@ -816,7 +816,7 @@ For production environments that are implementing HTTPS for the first time, set 
 
 The following code:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=5-12)]
+[!code-csharp[](~/security/enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=5-12)]
 
 * Sets the preload parameter of the `Strict-Transport-Security` header. Preload isn't part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. For more information, see [https://hstspreload.org/](https://hstspreload.org/).
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains.
@@ -839,7 +839,7 @@ To opt-out of HTTPS/HSTS:
 
 Uncheck the **Configure for HTTPS** checkbox.
 
-![Additional information dialog for New ASP.NET Core Web App template, showing the Configure for HTTPS checkbox](enforcing-ssl/_static/out-vs2022.png)
+![Additional information dialog for New ASP.NET Core Web App template, showing the Configure for HTTPS checkbox](~/security/enforcing-ssl/_static/out-vs2022.png)
 
 # [.NET CLI](#tab/net-cli) 
 
