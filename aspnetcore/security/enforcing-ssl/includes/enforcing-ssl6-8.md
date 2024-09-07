@@ -1,12 +1,5 @@
 :::moniker range=">= aspnetcore-6.0 <=aspnetcore-8.0>"
 
-This article shows how to:
-
-* Require HTTPS for all requests.
-* Redirect all HTTP requests to HTTPS.
-
-No API can prevent a client from sending sensitive data on the first request.
-
 > [!WARNING]
 > ## API projects
 >
@@ -675,13 +668,6 @@ In some cases, group policy may prevent self-signed certificates from being trus
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
-
-This article shows how to:
-
-* Require HTTPS for all requests.
-* Redirect all HTTP requests to HTTPS.
-
-No API can prevent a client from sending sensitive data on the first request.
 
 > [!WARNING]
 > ## API projects
