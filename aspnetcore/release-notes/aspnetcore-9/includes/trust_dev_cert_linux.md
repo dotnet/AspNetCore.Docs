@@ -21,7 +21,10 @@ To establish trust in dotnet, the tool puts the certificate in the `My/Root` cer
 
 To establish trust in [NSS databases](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/developer_guide/che-nsslib), the tool:
 
-* Searches the home directory for Firefox profiles.
+* Searches the home directory.
 * For each profiles found, adds an entry to the `nssdb` database.
 
-The home directories searched are `~/.pki/nssdb` and `~/snap/chromium/current/.pki/nssdb`.
+The home directories searched are:
+
+* Firefox profiles for Mozilla Firefox and Mozilla derived browsers.
+* `~/.pki/nssdb` and `~/snap/chromium/current/.pki/nssdb` for Chromium browsers.
