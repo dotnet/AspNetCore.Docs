@@ -40,6 +40,8 @@ Configure Map Static Assets Middleware by calling `MapStaticAssets` in the app's
 
 `MapStaticAssets` can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, `MapStaticAssets` is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
+`MapStaticAssets` replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
+
 `MapStaticAssets` provides the following benefits that aren't available when calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 * Build-time compression for all the assets in the app, including JavaScript (JS) and stylesheets but excluding image and font assets that are already compressed. [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) compression is used during development. Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) compression is used during publish.
