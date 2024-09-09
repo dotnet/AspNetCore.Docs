@@ -1,5 +1,8 @@
 :::moniker range=">= aspnetcore-6.0 <=aspnetcore-8.0"
 
+> [!NOTE]
+> If you're using .NET 8.0.402 SDK or later, see the updated Linux and Firefox procedures in the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).”
+
 > [!WARNING]
 > ## API projects
 >
