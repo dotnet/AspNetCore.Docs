@@ -17,5 +17,4 @@
 
   For more information, see the **Trust the ASP.NET Core HTTPS development certificate** section of the [Enforcing SSL](xref:security/enforcing-ssl) article.
 
-<!--todo Should this be omitted when 9.0 is selected?-->  
 [!INCLUDE[trust FF](~/includes/trust-ff.md)]
