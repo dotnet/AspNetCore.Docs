@@ -1,6 +1,3 @@
-<!-- 
-[!INCLUDE[](~/release-notes/aspnetcore-9/includes/trust_dev_cert_linux.md)]
--->
 #### Trust the ASP.NET Core HTTPS development certificate on Linux
 
 On Ubuntu and Fedora based Linux distros, `dotnet dev-certs https --trust` now configures ASP.NET Core HTTPS development certificate as a trusted certificate for:
