@@ -230,7 +230,7 @@ For a potential bug in the framework or product feedback, open an issue for the 
 * **Clear explanation of the problem**: Follow the instructions in the GitHub issue template provided by the product unit when opening the issue.
 * **Minimal repro project**: Place a project on GitHub for the product unit engineers to download and run. Cross-link the project into the issue's opening comment.
 
-For a potential problem with a Blazor article, open a documentation issue. To open a documentation issue, use the **This page** feedback button and form at the bottom of the article and leave the metadata in place when creating the opening comment. The metadata provides tracking data and automatically pings the author of the article. If the subject was discussed with the product unit, place a cross-link to the engineering issue in the documentation issue's opening comment.
+For a potential problem with a Blazor article, open a documentation issue. To open a documentation issue, use the **Open a documentation issue** feedback link at the bottom of the article. Metadata added to your issue provides tracking data and automatically pings the author of the article. If the subject was discussed with the product unit prior to opening the documentation issue, place a cross-link to the engineering issue in the documentation issue's opening comment.
 
 For problems or feedback on Visual Studio, use the [**Report a Problem**](/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](/visualstudio/ide/suggest-a-feature) gestures from within Visual Studio, which open internal issues for Visual Studio. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home).
 
