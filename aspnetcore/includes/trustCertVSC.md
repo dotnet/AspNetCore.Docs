@@ -5,7 +5,7 @@
   ```
   :::moniker range="<=aspnetcore-8.0"
 
-  The preceding command requires .NET 8.0.401 SDK or higher on Linux. For Linux on .NET 8.0.400 SDK and earlier, see your Linux distribution's documentation for trusting a certificate.<!--todo What is the correct 8.0 patch version that has the new functionality? -->
+  The preceding command requires .NET 8.0.402 SDK or later on Linux. For Linux on .NET 8.0.401 SDK and earlier, see your Linux distribution's documentation for trusting a certificate.
 
   :::moniker-end
 
