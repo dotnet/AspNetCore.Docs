@@ -19,4 +19,4 @@ To establish trust in OpenSSL, the `dev-certs` tool:
 
 To establish trust in dotnet, the tool puts the certificate in the `My/Root` certificate store.
 
-To establish trust in [NSS databases](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/developer_guide/che-nsslib), if any, in the current user's Firefox profiles, ~/.pki/nssdb, and ~/snap/chromium/current/.pki/nssdb.
+To establish trust in [NSS databases](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/developer_guide/che-nsslib), if any, the tool searches the home directory for Firefox profiles, `~/.pki/nssdb`, and `~/snap/chromium/current/.pki/nssdb`. For each directory found, the tool adds an entry to the `nssdb`
