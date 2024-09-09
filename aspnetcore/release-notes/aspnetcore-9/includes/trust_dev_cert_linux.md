@@ -5,7 +5,6 @@
 
 On Ubuntu and Fedora based Linux distros, `dotnet dev-certs https --trust` now configures ASP.NET Core HTTPS development certificate as a trusted certificate for:
 
-* Chromium browsers, for example, Google Chrome, Microsoft Edge, and Chromium.
 * Mozilla Firefox and Mozilla derived browsers.
 * .NET APIs, for example, [HttpClient](/dotnet/api/system.net.http.httpclient)
 
