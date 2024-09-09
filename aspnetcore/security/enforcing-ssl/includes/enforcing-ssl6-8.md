@@ -1,5 +1,8 @@
 :::moniker range=">= aspnetcore-6.0 <=aspnetcore-8.0"
 
+> [!NOTE]
+> If you're using .NET 8.0.402 SDK or later, see the updated Linux procedures in the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
+
 > [!WARNING]
 > ## API projects
 >
@@ -317,7 +320,6 @@ For chromium browsers on Linux:
 
    ```cli
    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
-   certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
    ```
 
 * Exit and restart the browser.
@@ -973,7 +975,6 @@ For chromium browsers on Linux:
   
    ```cli
    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
-   certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
    ```
 
 * Exit and restart the browser.

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to host ASP.NET Core Images with Docker over HTTPS
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 09/07/2024
 uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
@@ -79,7 +79,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p <CREDENTIAL_PL
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certs on Linux in the way that is supported by your distribution. It is likely that you need to trust the certificate in your browser.
+On Linux, `dotnet dev-certs https --trust` requires .NET 8.0.402 SDK or later. For Linux on .NET 8.0.401 SDK and earlier, see your Linux distribution's documentation for trusting a certificate.
 
 In the preceding commands, replace `<CREDENTIAL_PLACEHOLDER>` with a password.
 
