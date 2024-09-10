@@ -61,3 +61,4 @@ Hubs call client-side code by sending messages that contain the name and paramet
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
 * [Browsers that don't support ECMAScript 6 (ES6)](xref:signalr/supported-platforms#es6)
+* <xref:blazor/fundamentals/signalr>

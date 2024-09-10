@@ -17,7 +17,9 @@ uid: fundamentals/logging/index
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This article describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging). For more information on logging in Blazor apps, see <xref:blazor/fundamentals/logging>.
+This article describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging).
+
+For Blazor logging guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/fundamentals/logging>.
 
 <a name="lp"></a>
 

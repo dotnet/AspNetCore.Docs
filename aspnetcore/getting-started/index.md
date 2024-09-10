@@ -14,6 +14,8 @@ uid: getting-started
 
 This tutorial shows how to create and run an ASP.NET Core web app using the .NET CLI.
 
+For Blazor tutorials, see <xref:blazor/tutorials/index>.
+
 You'll learn how to:
 
 > [!div class="checklist"]

@@ -33,6 +33,7 @@ This article covers low-level details of ASP.NET Core routing. For information o
 
 * For controllers, see <xref:mvc/controllers/routing>.
 * For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
+* For Blazor routing guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/routing>.
 
 ## Routing basics
 

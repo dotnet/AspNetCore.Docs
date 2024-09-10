@@ -20,6 +20,8 @@ In general, to deploy an ASP.NET Core app to a hosting environment:
 * Set up a process manager that starts the app when requests arrive and restarts the app after it crashes or the server reboots.
 * For configuration of a reverse proxy, set up a reverse proxy to forward requests to the app.
 
+For Blazor host and deploy guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/host-and-deploy/index>.
+
 ## Publish to a folder
 
 The [dotnet publish](/dotnet/core/tools/dotnet-publish) command compiles app code and copies the files required to run the app into a *publish* folder. When deploying from Visual Studio, the `dotnet publish` step occurs automatically before the files are copied to the deployment destination.

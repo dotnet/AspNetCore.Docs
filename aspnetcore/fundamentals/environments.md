@@ -18,6 +18,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
+For Blazor environments guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/environments>.
+
 ## Environments
 
 :::moniker-end
