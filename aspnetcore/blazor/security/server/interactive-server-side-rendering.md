@@ -124,15 +124,14 @@ By default, there's no limit on the number of connections per user for an app. I
 
 * Require authentication, which naturally limits the ability of unauthorized users to connect to the app. For this scenario to be effective, users must be prevented from provisioning new users on demand.
 * Limit the number of connections per user. Limiting connections can be accomplished via the following approaches. Exercise care to allow legitimate users to access the app (for example, when a connection limit is established based on the client's IP address).
-  * At the app level:
+  * Application level
     * Endpoint routing extensibility.
     * Require authentication to connect to the app and keep track of the active sessions per user.
     * Reject new sessions upon reaching a limit.
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
-  * At the server level: Use a proxy/gateway in front of the app. For example, [Azure Front Door](/azure/frontdoor/front-door-overview) enables you to define, manage, and monitor the global routing of web traffic to an app and works when apps are configured to use Long Polling.
-  
-    > [!NOTE]
-    > Although Long Polling is supported, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). As of February, 2023, [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets, but support for WebSockets is under development for a future release of the service. For more information, see [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/d365community/idea/c8b1d257-8a26-ec11-b6e6-000d3a4f0789).
+  * Server level
+    * Use a proxy/gateway in front of the app. For example, [Azure Application Gateway](/azure/application-gateway/overview) is a web traffic (OSI layer 7) load balancer that enables you to manage traffic to your web applications. For more information, see [Overview of WebSocket support in Application Gateway](/azure/application-gateway/application-gateway-websocket).
+    * Although Long Polling is supported for Blazor apps, which would permit the adoption of [Azure Front Door](/azure/frontdoor/front-door-overview), [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). As of September, 2024, [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets, but support for WebSockets is under consideration. For more information, see [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/d365community/idea/c8b1d257-8a26-ec11-b6e6-000d3a4f0789).
 
 :::moniker-end
 
@@ -140,15 +139,14 @@ By default, there's no limit on the number of connections per user for an app. I
 
 * Require authentication, which naturally limits the ability of unauthorized users to connect to the app. For this scenario to be effective, users must be prevented from provisioning new users on demand.
 * Limit the number of connections per user. Limiting connections can be accomplished via the following approaches. Exercise care to allow legitimate users to access the app (for example, when a connection limit is established based on the client's IP address).
-  * At the app level:
+  * Application level
     * Endpoint routing extensibility.
     * Require authentication to connect to the app and keep track of the active sessions per user.
     * Reject new sessions upon reaching a limit.
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
-  * At the server level: Use a proxy/gateway in front of the app.
-  
-    > [!NOTE]
-    > Although Long Polling is supported, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service).
+  * Server level
+    * Use a proxy/gateway in front of the app.
+    * Although Long Polling is supported for Blazor apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). We recommend selecting a proxy/gateway that supports WebSockets.
 
 :::moniker-end
 
