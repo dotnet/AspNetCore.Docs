@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0 < aspnetcore-8.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 08/21/2024
+ms.date: 09/09/2024
 uid: blazor/security/webassembly/meid-groups-roles-net5to7
 zone_pivot_groups: blazor-groups-and-roles
 ---
@@ -56,8 +56,9 @@ The preceding scopes are required in addition to the scopes required in ME-ID de
 
 For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-> [!NOTE]
-> The words "permission" and "scope" are used interchangeably in the Azure portal and in various Microsoft and external documentation sets. This article uses the word "scope" throughout for the permissions assigned to an app in the Azure portal.
+*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
+
+Scopes are case insensitive, so `User.Read` is the same as `user.read`. Feel free to use either format, but we recommend a consistent choice across application code.
 
 ## Group Membership Claims attribute
 
@@ -156,9 +157,12 @@ public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
 {
     private readonly ILogger<CustomAccountFactory> logger = logger;
     private readonly IServiceProvider serviceProvider = serviceProvider;
-    private readonly string? baseUrl = string.Join("/",
-        config.GetSection("MicrosoftGraph")["BaseUrl"],
-        config.GetSection("MicrosoftGraph")["Version"]);
+    private readonly string? baseUrl =
+        string.Join("/",
+            config.GetSection("MicrosoftGraph")["BaseUrl"] ??
+                "https://graph.microsoft.com",
+            config.GetSection("MicrosoftGraph")["Version"] ??
+                "v1.0");
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -351,11 +355,14 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 Confirm the presence of the *Graph SDK* code described by the <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk> article and that the `wwwroot/appsettings.json` configuration is correct per the *Graph SDK* guidance:
 
 ```csharp
-var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
-    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var baseUrl = 
+    string.Join("/",
+        builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+            "https://graph.microsoft.com",
+        builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+            "v1.0");
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-    .Get<List<string>>();
+    .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```

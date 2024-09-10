@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 08/20/2024
+ms.date: 09/09/2024
 uid: blazor/security/webassembly/meid-groups-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles
@@ -55,8 +55,9 @@ This article refers to the [Azure portal](/azure/azure-portal/azure-portal-overv
 
 ## Scopes
 
-> [!NOTE]
-> The words "permission" and "scope" are used interchangeably in the Azure portal and in various Microsoft and external documentation sets. This article uses the word "scope" throughout for the permissions assigned to an app in the Azure portal.
+*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
+
+Scopes are case insensitive, so `User.Read` is the same as `user.read`. Feel free to use either format, but we recommend a consistent choice across application code.
 
 To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role assignment, and group membership data, the app is configured with the ***delegated*** `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal because access to read user data is determined by the scopes granted (delegated) to individual users. This scope is required in addition to the scopes required in ME-ID deployment scenarios described by the articles listed earlier (*Standalone with Microsoft Accounts* or *Standalone with ME-ID*).
 
@@ -135,11 +136,14 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 Confirm the presence of the *Graph SDK* code in the `Program` file described by the <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk> article:
 
 ```csharp
-var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
-    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var baseUrl =
+    string.Join("/",
+        builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+            "https://graph.microsoft.com",
+        builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+            "v1.0");
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-    .Get<List<string>>();
+    .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
