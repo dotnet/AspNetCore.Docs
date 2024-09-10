@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 09/09/2024
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -13,18 +13,27 @@ zone_pivot_groups: blazor-graph-api
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to use [Microsoft Graph API](/graph/use-the-api) in Blazor WebAssembly apps, which is a RESTful web API that enables apps to access Microsoft Cloud service resources.
+This article explains how to use [Microsoft Graph](/graph/) in Blazor WebAssembly apps, which enables apps to access Microsoft Cloud resources.
 
-Two approaches are available for directly interacting with Microsoft Graph in Blazor apps:
+Two approaches are covered:
 
-* **Graph SDK**: The [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph. Select the **Graph SDK** button at the top of this article to adopt this approach.
+* **Graph SDK**: The [Microsoft Graph SDK](/graph/sdks/sdks-overview) simplifies building high-quality, efficient, and resilient apps that access Microsoft Graph. Select the **Graph SDK** button at the top of this article to adopt this approach.
 
-* **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue web API requests to directly to Graph API. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
+* **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Microsoft Graph. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
 
-The guidance in this article isn't meant to replace the primary [Microsoft Graph documentation](/graph/) and additional Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow all of Microsoft's best practices to limit the attack surface area of your apps.
+The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the attack surface area of your apps.
+
+Additional approaches for working with Microsoft Graph and Blazor WebAssembly are provided by the following Microsoft Graph and Azure samples:
+
+* [Microsoft Graph sample Blazor WebAssembly app](https://github.com/microsoftgraph/msgraph-sample-blazor-clientside): The sample adopts a factory-based approach with the [Microsoft Graph SDK](/graph/sdks/sdks-overview) to obtain Office 365 data. The sample uses a default <xref:System.Net.Http.HttpClient> to make Graph client requests. If you need to use the default <xref:System.Net.Http.HttpClient> with the base address of the app (`BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)`) for other purposes, for example to load data from the web root of the app, consider refactoring the Graph client factory to use a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) dedicated to Graph requests.
+* [ASP.NET Core 8.0 Blazor WebAssembly | standalone app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform](https://github.com/Azure-Samples/ms-identity-docs-code-dotnet/tree/main/spa-blazor-wasm): The sample is a [Progressive Web Application (PWA)](xref:blazor/progressive-web-app) that uses an authorization message handler and <xref:System.Net.Http.HttpClient> to obtain Graph data. As with the preceding sample, this sample also uses a default <xref:System.Net.Http.HttpClient> to make Graph client requests. Instead of using the Microsoft Graph SDK, the sample retrieves user account data as JSON via a [Microsoft Graph API](/graph/use-the-api) request in a component. This is a similar technique to the **Named HttpClient with Graph API** approach in this article (use the button at the top of this article to see the guidance), except that this article's guidance uses a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) dedicated to Graph requests.
+
+To provide feedback on either of the preceding two samples, open an issue on the sample's GitHub repository. If you're opening an issue for the Azure sample, provide a link to the sample in your opening comment because the Azure sample repository (`Azure-Samples`) contains many samples. Describe the problem in detail and include sample code as needed. Place a minimal app into GitHub that reproduces the problem or error. Be sure to remove Azure account configuration data from the sample before you commit it to the public repository.
+
+To provide feedback or seek assistance with this article or ASP.NET Core, see <xref:blazor/fundamentals/index#support-requests>. 
 
 > [!IMPORTANT]
-> The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time because the app would require a client secret, which can't be secured in the client-side Blazor app. For an AAD B2C standalone Blazor WebAssembly app use Graph API, create a backend server (web) API to access Graph API on behalf of users. The client-side app authenticates and authorizes users to [call the web API](xref:blazor/call-web-api) to securely access Microsoft Graph and return data to the client-side Blazor app. The client secret is safely maintained in the server-based web API, not in the Blazor app on the client. **Never store a client secret in a client-side Blazor app.**
+> The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time because the app would require a client secret, which can't be secured in the client-side Blazor app. For an AAD B2C standalone Blazor WebAssembly app use Graph API, create a backend server (web) API to access Graph API on behalf of users. The client-side app authenticates and authorizes users to [call the web API](xref:blazor/call-web-api) to securely access Microsoft Graph and return data to the client-side Blazor app from your server-based web API. The client secret is safely maintained in the server-based web API, not in the Blazor app on the client. **Never store a client secret in a client-side Blazor app.**
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -61,21 +70,23 @@ The Graph SDK examples require the following package references in the standalon
 
 In the Azure portal, grant delegated permissions (scopes)&dagger; for Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign in to the app and allows the app to read the profile and company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-> [!NOTE]
-> &dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. This article uses *scope*/*scopes* when referring to Graph API permissions.
+&dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
+
+Scopes are case insensitive, so `User.Read` is the same as `user.read`. Feel free to use either format, but we recommend a consistent choice across application code.
 
 After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}/",
+  "BaseUrl": "https://graph.microsoft.com",
+  "Version": "{VERSION}",
   "Scopes": [
     "user.read"
   ]
 }
 ```
 
-In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`). The trailing slash is ***required***.
+In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`).
 
 The following is an example of a complete `wwwroot/appsettings.json` configuration file for an app that uses ME-ID as its identity provider, where reading user data (`user.read` scope) is specified for Microsoft Graph:
 
@@ -87,7 +98,8 @@ The following is an example of a complete `wwwroot/appsettings.json` configurati
     "ValidateAuthority": true
   },
   "MicrosoftGraph": {
-    "BaseUrl": "https://graph.microsoft.com/v1.0/",
+    "BaseUrl": "https://graph.microsoft.com",
+    "Version": "v1.0",
     "Scopes": [
       "user.read"
     ]
@@ -171,7 +183,8 @@ internal static class GraphClientExtensions
                 new AccessTokenRequestOptions()
                 {
                     Scopes = 
-                        config.GetSection("MicrosoftGraph:Scopes").Get<string[]>()
+                        config.GetSection("MicrosoftGraph:Scopes").Get<string[]>() ??
+                        [ "user.read" ]
                 });
 
             if (result.TryGetToken(out var token))
@@ -187,12 +200,16 @@ internal static class GraphClientExtensions
 > [!IMPORTANT]
 > See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>.
 
-In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method:
+In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method. The following code defaults to the Version 1.0 Microsoft Graph base address and `User.Read` scopes if these settings aren't found in the app settings file:
 
 ```csharp
-var baseUrl = builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
+var baseUrl = string.Join("/",
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+        "https://graph.microsoft.com",
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+        "v1.0");
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-    .Get<List<string>>();
+    .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
@@ -274,8 +291,11 @@ public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
 {
     private readonly ILogger<CustomAccountFactory> logger = logger;
     private readonly IServiceProvider serviceProvider = serviceProvider;
-    private readonly string? baseUrl = 
-        config.GetSection("MicrosoftGraph")["BaseUrl"];
+    private readonly string? baseUrl = string.Join("/",
+        config.GetSection("MicrosoftGraph")["BaseUrl"] ?? 
+            "https://graph.microsoft.com",
+        config.GetSection("MicrosoftGraph")["Version"] ??
+            "v1.0");
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
@@ -331,9 +351,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 The example in this section builds on the approach of reading the base URL with version and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in the `Program` file from following the guidance earlier in this article:
 
 ```csharp
-var baseUrl = builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
+var baseUrl = string.Join("/",
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+        "https://graph.microsoft.com",
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+        "v1.0");
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-    .Get<List<string>>();
+    .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
@@ -435,21 +459,23 @@ The Graph SDK examples require the following package references in the standalon
 
 In the Azure portal, grant delegated permissions (scopes)&dagger; for Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign in to the app and allows the app to read the profile and company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-> [!NOTE]
-> &dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. This article uses *scope*/*scopes* when referring to Graph API permissions.
+&dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
+
+Scopes are case insensitive, so `User.Read` is the same as `user.read`. Feel free to use either format, but we recommend a consistent choice across application code.
 
 After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}/",
+  "BaseUrl": "https://graph.microsoft.com",
+  "Version": "{VERSION}",
   "Scopes": [
     "user.read"
   ]
 }
 ```
 
-In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`). The trailing slash is ***required***.
+In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`).
 
 The following is an example of a complete `wwwroot/appsettings.json` configuration file for an app that uses ME-ID as its identity provider, where reading user data (`user.read` scope) is specified for Microsoft Graph:
 
@@ -461,7 +487,8 @@ The following is an example of a complete `wwwroot/appsettings.json` configurati
     "ValidateAuthority": true
   },
   "MicrosoftGraph": {
-    "BaseUrl": "https://graph.microsoft.com/v1.0/",
+    "BaseUrl": "https://graph.microsoft.com",
+    "Version": "v1.0",
     "Scopes": [
       "user.read"
     ]
@@ -586,10 +613,13 @@ internal static class GraphClientExtensions
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
 ```csharp
-var baseUrl = builder.Configuration
-    .GetSection("MicrosoftGraph")["BaseUrl"];
+var baseUrl = string.Join("/",
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+        "https://graph.microsoft.com",
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+        "v1.0");
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-    .Get<List<string>>();
+    .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
@@ -720,10 +750,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 The example in this section builds on the approach of reading the base URL with version and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in the `Program` file from following the guidance earlier in this article:
 
 ```csharp
-var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
+var baseUrl = string.Join("/",
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+        "https://graph.microsoft.com",
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+        "v1.0");
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-    .Get<List<string>>();
+    .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
@@ -818,21 +851,23 @@ The examples require a package reference for [`Microsoft.Extensions.Http`](https
 
 In the Azure portal, grant delegated permissions (scopes)&dagger; for Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign in to the app and allows the app to read the profile and company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-> [!NOTE]
-> &dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. This article uses *scope*/*scopes* when referring to Graph API permissions.
+&dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
+
+Scopes are case insensitive, so `User.Read` is the same as `user.read`. Feel free to use either format, but we recommend a consistent choice across application code.
 
 After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com/{VERSION}/",
+  "BaseUrl": "https://graph.microsoft.com",
+  "Version": "{VERSION}",
   "Scopes": [
     "user.read"
   ]
 }
 ```
 
-In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`). The trailing slash is ***required***.
+In the preceding example, the `{VERSION}` placeholder is the version of the Microsoft Graph API (for example: `v1.0`).
 
 The following is an example of a complete `wwwroot/appsettings.json` configuration file for an app that uses ME-ID as its identity provider, where reading user data (`user.read` scope) is specified for Microsoft Graph:
 
@@ -844,7 +879,8 @@ The following is an example of a complete `wwwroot/appsettings.json` configurati
     "ValidateAuthority": true
   },
   "MicrosoftGraph": {
-    "BaseUrl": "https://graph.microsoft.com/v1.0/",
+    "BaseUrl": "https://graph.microsoft.com",
+    "Version": "v1.0",
     "Scopes": [
       "user.read"
     ]
@@ -871,12 +907,20 @@ public class GraphAuthorizationMessageHandler : AuthorizationMessageHandler
         : base(provider, navigation)
     {
         ConfigureHandler(
-            authorizedUrls: [ config.GetSection("MicrosoftGraph")["BaseUrl"] ?? 
-                string.Empty ],
-            scopes: config.GetSection("MicrosoftGraph:Scopes").Get<List<string>>());
+            authorizedUrls: [ 
+                string.Join("/",
+                    config.GetSection("MicrosoftGraph")["BaseUrl"] ??
+                        "https://graph.microsoft.com",
+                    config.GetSection("MicrosoftGraph")["Version"] ??
+                        "v1.0")
+            ],
+            scopes: config.GetSection("MicrosoftGraph:Scopes")
+                        .Get<List<string>>() ?? [ "user.read" ]);
     }
 }
 ```
+
+The trailing slash (`/`) of the authorized URL is required. The preceding code builds the following authorized URL from app settings configuration or defaults to the following authorized URL if the app settings configuration is missing: `https://graph.microsoft.com/v1.0/`.
 
 In the `Program` file, configure the named <xref:System.Net.Http.HttpClient> for Graph API:
 
@@ -885,8 +929,12 @@ builder.Services.AddTransient<GraphAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("GraphAPI",
         client => client.BaseAddress = new Uri(
-            builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ?? 
-                string.Empty))
+            string.Join("/",
+                builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
+                    "https://graph.microsoft.com",
+                builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
+                    "v1.0",
+                string.Empty)))
     .AddHttpMessageHandler<GraphAuthorizationMessageHandler>();
 ```
 
@@ -894,6 +942,8 @@ In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Ne
 
 * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
+
+A trailing slash (`/`) on the base address is required. In the preceding code, the third argument to `string.Join` is `string.Empty` to ensure the trailing slash is present: `https://graph.microsoft.com/v1.0/`.
 
 ## Call Graph API from a component using a named `HttpClient`
 
@@ -981,7 +1031,7 @@ If you prefer that scope provisioning (consent for Graph API scopes) take place 
 
 ```diff
 + var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
-+     .Get<List<string>>() ?? [];
++     .Get<List<string>>() ?? [ "user.read" ];
 
 builder.Services.AddMsalAuthentication(options =>
 {
