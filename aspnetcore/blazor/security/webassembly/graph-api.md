@@ -15,11 +15,11 @@ zone_pivot_groups: blazor-graph-api
 
 This article explains how to use [Microsoft Graph](/graph/) in Blazor WebAssembly apps, which enables apps to access Microsoft Cloud resources.
 
-Two approaches are covered by this article for interacting with Microsoft Graph in Blazor WebAssembly apps:
+Two approaches are covered:
 
-* **Graph SDK**: The [Microsoft Graph SDK](/graph/sdks/sdks-overview) is designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph. Select the **Graph SDK** button at the top of this article to adopt this approach.
+* **Graph SDK**: The [Microsoft Graph SDK](/graph/sdks/sdks-overview) simplifies building high-quality, efficient, and resilient apps that access Microsoft Graph. Select the **Graph SDK** button at the top of this article to adopt this approach.
 
-* **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Graph API. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
+* **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Microsoft Graph. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
 
 The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the attack surface area of your apps.
 
@@ -70,7 +70,7 @@ The Graph SDK examples require the following package references in the standalon
 
 In the Azure portal, grant delegated permissions (scopes)&dagger; for Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign in to the app and allows the app to read the profile and company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-&dagger;The words "permission" and "scope" are used interchangeably in the Azure portal and in various Microsoft and external documentation sets. This article uses the word "scope" for the permissions assigned to an app.
+&dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
 
 Scopes are case insensitive, so `User.Read` is the same as `user.read`. Feel free to use either format, but we recommend a consistent choice across application code.
 
@@ -459,8 +459,7 @@ The Graph SDK examples require the following package references in the standalon
 
 In the Azure portal, grant delegated permissions (scopes)&dagger; for Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign in to the app and allows the app to read the profile and company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-> [!NOTE]
-> &dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. This article uses *scope*/*scopes* when referring to Graph API permissions.
+&dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
 
 After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
 
@@ -850,8 +849,7 @@ The examples require a package reference for [`Microsoft.Extensions.Http`](https
 
 In the Azure portal, grant delegated permissions (scopes)&dagger; for Microsoft Graph data that the app should be able to access on behalf of a user. For the example in this article, the app's registration should include delegated permission to read user data (`Microsoft.Graph` > `User.Read` scope in **API permissions**, Type: Delegated). The `User.Read` scope allows users to sign in to the app and allows the app to read the profile and company information of signed-in users. For more information, see [Overview of permissions and consent in the Microsoft identity platform](/entra/identity-platform/permissions-consent-overview) and [Overview of Microsoft Graph permissions](/graph/permissions-overview).
 
-> [!NOTE]
-> &dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. This article uses *scope*/*scopes* when referring to Graph API permissions.
+&dagger;*Permissions* and *scopes* mean the same thing and are used interchangeably in security documentation and the Azure portal. Unless the text is referring to the Azure portal, this article uses *scope*/*scopes* when referring to Graph permissions.
 
 After adding the Microsoft Graph API scopes to the app's registration in the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file in the app, which includes the Graph base URL with the Microsoft Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article. Scopes aren't case sensitive.
 
@@ -918,6 +916,8 @@ public class GraphAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
+The trailing slash (`/`) of the authorized URL is required. The preceding code builds the following authorized URL from app settings configuration or defaults to the following authorized URL if the app settings configuration is missing: `https://graph.microsoft.com/v1.0/`.
+
 In the `Program` file, configure the named <xref:System.Net.Http.HttpClient> for Graph API:
 
 ```csharp
@@ -929,7 +929,8 @@ builder.Services.AddHttpClient("GraphAPI",
                 builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"] ??
                     "https://graph.microsoft.com",
                 builder.Configuration.GetSection("MicrosoftGraph")["Version"] ??
-                    "v1.0")))
+                    "v1.0",
+                string.Empty)))
     .AddHttpMessageHandler<GraphAuthorizationMessageHandler>();
 ```
 
@@ -937,6 +938,8 @@ In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Ne
 
 * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
 * [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
+
+A trailing slash (`/`) on the base address is required. In the preceding code, the third argument to `string.Join` is `string.Empty` to ensure the trailing slash is present: `https://graph.microsoft.com/v1.0/`.
 
 ## Call Graph API from a component using a named `HttpClient`
 
