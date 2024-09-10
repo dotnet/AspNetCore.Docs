@@ -98,7 +98,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p $CREDENTIAL_PL
 dotnet dev-certs https --trust
 ```
 
-On Linux, `dotnet dev-certs https --trust` requires .NET 8.0.402 SDK or later. For Linux on .NET 8.0.401 SDK and earlier, see your Linux distribution's documentation for trusting a certificate.
+On Linux, `dotnet dev-certs https --trust` requires .NET 9 SDK or later. For Linux on .NET 8.0.401 SDK and earlier, see your Linux distribution's documentation for trusting a certificate.
 
 In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
