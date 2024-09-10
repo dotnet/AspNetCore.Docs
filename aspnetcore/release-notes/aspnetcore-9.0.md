@@ -88,3 +88,7 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/opt_out_metrics.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/delete_keys.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/keyedDI.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/trust_dev_cert_linux.md)]

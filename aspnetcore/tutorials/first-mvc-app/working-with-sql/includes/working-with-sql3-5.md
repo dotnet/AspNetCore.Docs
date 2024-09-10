@@ -20,7 +20,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a production SQL Server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 # [Visual Studio](#tab/visual-studio)
 

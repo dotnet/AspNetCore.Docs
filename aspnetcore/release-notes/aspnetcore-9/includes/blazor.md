@@ -193,3 +193,37 @@ The default `OverscanCount` is 3. The following example increases the `OverscanC
     ...
 </QuickGrid>
 ```
+
+### `InputNumber` component supports the `type="range"` attribute
+
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+
+```razor
+<EditForm Model="Model" OnSubmit="Submit" FormName="EngineForm">
+    <div>
+        <label>
+            Nacelle Count (2-6): 
+            <InputNumber @bind-Value="Model!.NacelleCount" max="6" min="2" 
+                step="1" type="range" />
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private EngineSpecifications? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Submit() {}
+
+    public class EngineSpecifications
+    {
+        [Required, Range(minimum: 2, maximum: 6)]
+        public int NacelleCount { get; set; }
+    }
+}
+```
