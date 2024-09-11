@@ -81,7 +81,7 @@ In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps 
   <script src="_framework/blazor.web.js"></script>
   ```
 
-  There's no need to manually add a `blazor.web.js` script to the app because the Blazor framework adds the `blazor.web.js` script to the app.
+  The Blazor framework automatically adds the `blazor.web.js` script to the app.
 
 > [!NOTE]
 > Typically, the layout loads via a `_ViewStart.cshtml` file.
@@ -395,7 +395,7 @@ When the app is run, the `Counter` component is accessed at `/counter`.
 
 Follow the guidance in the [Add static server-side rendering (static SSR)](#add-static-server-side-rendering-static-ssr) section.
 
-Components using the Interactive Auto render mode initially use interactive SSR. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the Interactive WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Interactive Auto or Interactive WebAssembly render modes, component code downloaded to the client is ***not*** private. For more information, see <xref:blazor/components/render-modes>.
+Components using the Interactive Auto render mode initially use interactive SSR. The .NET runtime and app bundle are downloaded to the client in the background and cached so that they can be used on future visits. Components using the Interactive WebAssembly render mode only render interactively on the client after the Blazor bundle is downloaded and the Blazor runtime activates. Keep in mind that when using the Interactive Auto or Interactive WebAssembly render modes, component code downloaded to the client isn't private. For more information, see <xref:blazor/components/render-modes>.
 
 After deciding which render mode to adopt:
 
@@ -419,7 +419,7 @@ Visual Studio:
 .NET CLI:
 
 * Use the `-int Auto` option.
-* Do ***not*** use the `-ai|--all-interactive` option.
+* Don't use the `-ai|--all-interactive` option.
 * Pass the `-e|--empty` option.
 
 From the donor Blazor Web App, copy the entire `.Client` project into the solution folder of the ASP.NET Core app.

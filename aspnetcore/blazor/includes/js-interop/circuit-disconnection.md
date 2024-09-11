@@ -15,7 +15,7 @@ For the following component disposal example:
 * The component implements <xref:System.IAsyncDisposable>.
 * `objInstance` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
 * <xref:Microsoft.JSInterop.JSDisconnectedException> is caught and not logged.
-* Optionally, you can log custom information in the `catch` statement at whatever log level you prefer. The following example doesn't log custom information because it assumes the developer doesn't care about when or where circuits are disconnected during component disposal.
+* Optionally, you can log custom information in the `catch` statement at whatever log level you prefer. The following example doesn't log custom information. The code assumes that the developer doesn't care about when or where circuits are disconnected during component disposal.
 
 ```csharp
 async ValueTask IAsyncDisposable.DisposeAsync()

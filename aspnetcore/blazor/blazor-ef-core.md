@@ -97,7 +97,7 @@ The grid, add, and view components use the "context-per-operation" pattern, wher
 
 ## Database access
 
-EF Core relies on a <xref:Microsoft.EntityFrameworkCore.DbContext> as the means to [configure database access](/ef/core/miscellaneous/configuring-dbcontext) and act as a [*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html). EF Core provides the <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> extension for ASP.NET Core apps that registers the context as a *scoped* service by default. In server-side Blazor apps, scoped service registrations can be problematic because the instance is shared across components within the user's circuit. <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread safe and isn't designed for concurrent use. The existing lifetimes are inappropriate for these reasons:
+EF Core relies on a <xref:Microsoft.EntityFrameworkCore.DbContext> as the means to [configure database access](/ef/core/miscellaneous/configuring-dbcontext) and act as a [*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html). EF Core provides the <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> extension for ASP.NET Core apps that registers the context as a *scoped* service. In server-side Blazor apps, scoped service registrations can be problematic because the instance is shared across components within the user's circuit. <xref:Microsoft.EntityFrameworkCore.DbContext> isn't thread safe and isn't designed for concurrent use. The existing lifetimes are inappropriate for these reasons:
 
 * **Singleton** shares state across all users of the app and leads to inappropriate concurrent use.
 * **Scoped** (the default) poses a similar issue between components for the same user.
@@ -105,7 +105,7 @@ EF Core relies on a <xref:Microsoft.EntityFrameworkCore.DbContext> as the means 
 
 The following recommendations are designed to provide a consistent approach to using EF Core in server-side Blazor apps.
 
-* By default, consider using one context per operation. The context is designed for fast, low overhead instantiation:
+* Consider using one context per operation. The context is designed for fast, low overhead instantiation:
 
   ```csharp
   using var context = new MyContext();
@@ -135,7 +135,7 @@ The following recommendations are designed to provide a consistent approach to u
 
   Place operations after the `Loading = true;` line in the `try` block.
   
-  Loading logic doesn't require locking database records because thread safety isn't a concern. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
+  Thread safety isn't a concern, so loading logic doesn't require locking database records. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
   
 * If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-to-the-component-lifetime) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
 

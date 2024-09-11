@@ -119,7 +119,7 @@ For Blazor Web Apps:
 * `afterWebAssemblyStarted(blazor)`: Called after the Interactive WebAssembly runtime is started.
 
 > [!NOTE]
-> Legacy JS initializers (`beforeStart`, `afterStarted`) are ***not*** invoked by default in a Blazor Web App. You can enable the legacy initializers to run with the `enableClassicInitializers` option. However, legacy initializer execution is unpredictable.
+> Legacy JS initializers (`beforeStart`, `afterStarted`) aren't invoked by default in a Blazor Web App. You can enable the legacy initializers to run with the `enableClassicInitializers` option. However, legacy initializer execution is unpredictable.
 >
 > ```html
 > <script>
@@ -368,7 +368,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 * Alias resources to a different name by redirecting each `fetch` request to a new name.
 
 > [!NOTE]
-> External sources must return the required [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) headers for browsers to allow cross-origin resource loading. CDNs usually provide the required headers by default.
+> External sources must return the required [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) headers for browsers to allow cross-origin resource loading. CDNs usually provide the required headers.
 
 `loadBootResource` parameters appear in the following table.
 

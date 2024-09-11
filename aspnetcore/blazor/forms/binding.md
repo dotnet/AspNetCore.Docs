@@ -163,7 +163,7 @@ Supplying a form name:
 
 The form name is only checked when the form is posted to an endpoint as a traditional HTTP POST request from a statically-rendered server-side component. The framework doesn't throw an exception at the point of rendering a form, but only at the point that an HTTP POST arrives and doesn't specify a form name.
 
-By default, there's an unnamed (empty string) form scope above the app's root component, which suffices when there are no form name collisions in the app. If form name collisions are possible, such as when including a form from a library and you have no control of the form name used by the library's developer, provide a form name scope with the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component in the Blazor Web App's main project.
+There's an unnamed (empty string) form scope above the app's root component, which suffices when there are no form name collisions in the app. If form name collisions are possible, such as when including a form from a library and you have no control of the form name used by the library's developer, provide a form name scope with the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component in the Blazor Web App's main project.
 
 In the following example, the `HelloFormFromLibrary` component has a form named `Hello` and is in a library.
 
@@ -345,7 +345,7 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 
 The following example component:
 
-* Does ***not*** inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. The component takes full control of input processing, including binding, callbacks, and validation. The component can be used inside or outside of a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
+* Doesn't inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. The component takes full control of input processing, including binding, callbacks, and validation. The component can be used inside or outside of a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 * Takes boolean input from a checkbox.
 * Changes the background color if the checkbox is checked.
 

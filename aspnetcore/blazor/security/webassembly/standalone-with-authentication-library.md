@@ -57,7 +57,7 @@ After choosing the **Blazor WebAssembly App** template, set the **Authentication
 
 :::moniker range="< aspnetcore-8.0"
 
-After choosing the **Blazor WebAssembly App** template, set the **Authentication type** to **Individual Accounts**. Confirm that the **ASP.NET Core Hosted** checkbox is ***not*** selected.
+After choosing the **Blazor WebAssembly App** template, set the **Authentication type** to **Individual Accounts**. Confirm that the **ASP.NET Core Hosted** checkbox isn't selected.
 
 :::moniker-end
 

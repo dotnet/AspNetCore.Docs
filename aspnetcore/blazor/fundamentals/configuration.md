@@ -18,17 +18,17 @@ This article explains how to configure Blazor apps, including app settings, auth
 
 This guidance applies to client-side project configuration in a Blazor Web App or a standalone Blazor WebAssembly app.
 
-In Blazor Web Apps:
+Default behavior in Blazor Web Apps:
 
 * For server-side configuration:
   * See <xref:fundamentals/configuration/index> for guidance.
-  * Only configuration in the project's root app settings files are loaded by default.
+  * Only configuration in the project's root app settings files is loaded.
   * The remainder of this article only applies to client-side configuration in the `.Client` project. 
-* For client-side configuration (`.Client` project), configuration is loaded from the following app settings files by default:
+* For client-side configuration (`.Client` project), configuration is loaded from the following app settings files:
   * `wwwroot/appsettings.json`.
   * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
 
-In standalone Blazor WebAssembly apps, configuration is loaded from the following app settings files by default:
+In standalone Blazor WebAssembly apps, configuration is loaded from the following app settings files:
 
 * `wwwroot/appsettings.json`.
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
@@ -41,7 +41,7 @@ This guidance applies to the **`Client`** project of a hosted Blazor WebAssembly
 
 For server-side ASP.NET Core app configuration in the **`Server`** project of a hosted Blazor WebAssembly solution, see <xref:fundamentals/configuration/index>.
 
-On the client, configuration is loaded from the following app settings files by default:
+On the client, configuration is loaded from the following app settings files:
 
 * `wwwroot/appsettings.json`.
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
@@ -56,7 +56,7 @@ On the client, configuration is loaded from the following app settings files by 
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate:
 
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially client-side apps because the client secret can't be secured client-side to access the Azure Key Vault service.
-* [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for client-side apps because they don't run on a server in Azure.
+* [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for a client-side app because the app doesn't run on a server in Azure.
 
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
