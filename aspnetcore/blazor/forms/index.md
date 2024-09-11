@@ -42,7 +42,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 * Classes for managing form elements, state, and validation.
 * Access to built-in :::no-loc text="Input*"::: components.
 
-A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
+A project created from the Blazor project template includes the namespace in the app's `_Imports.razor` file, which makes the namespace available to the app's Razor components.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -253,7 +253,7 @@ The app uses Antiforgery Middleware by calling <xref:Microsoft.AspNetCore.Builde
 
 The <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component renders an antiforgery token as a hidden field, and the `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a [`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response is thrown and the form isn't processed.
 
-For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection by default.
+For forms based on <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component and `[RequireAntiforgeryToken]` attribute are automatically added to provide antiforgery protection.
 
 For forms based on the HTML `<form>` element, manually add the <xref:Microsoft.AspNetCore.Components.Forms.AntiforgeryToken> component to the form:
 

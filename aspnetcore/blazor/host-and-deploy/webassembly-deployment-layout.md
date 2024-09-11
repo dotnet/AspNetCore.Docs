@@ -397,7 +397,7 @@ export async function afterStarted(blazor) {
 
 ## Serve the bundle from the host server app
 
-Due to security restrictions, ASP.NET Core doesn't serve the `app.bundle` file by default. A request processing helper is required to serve the file when it's requested by clients.
+Due to security restrictions, ASP.NET Core doesn't serve the `app.bundle` file. A request processing helper is required to serve the file when it's requested by clients.
 
 > [!NOTE]
 > Since the same optimizations are transparently applied to the Publish Extensions that are applied to the app's files, the `app.bundle.gz` and `app.bundle.br` compressed asset files are produced automatically on publish.

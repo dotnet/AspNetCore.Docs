@@ -136,7 +136,7 @@ To specify the render mode for a component as part of its definition, use the [`
 @rendermode InteractiveServer
 ```
 
-Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages by default use the same render mode as the <xref:Microsoft.AspNetCore.Components.Routing.Router> component that rendered the page.
+Applying a render mode to a component definition is commonly used when applying a render mode to a specific page. Routable pages use the same render mode as the <xref:Microsoft.AspNetCore.Components.Routing.Router> component that rendered the page.
 
 Technically, `@rendermode` is both a Razor *directive* and a Razor *directive attribute*. The semantics are similar, but there are differences. The `@rendermode` directive is on the component definition, so the referenced render mode instance must be static. The `@rendermode` directive attribute can take any render mode instance.
 
@@ -334,7 +334,7 @@ Making a root component, such as the `App` component, interactive with the `@ren
 
 ## Static server-side rendering (static SSR)
 
-By default, components use static server-side rendering (static SSR). The component renders to the response stream and interactivity isn't enabled.
+Components use static server-side rendering (static SSR). The component renders to the response stream and interactivity isn't enabled.
 
 In the following example, there's no designation for the component's render mode, so the component inherits its render mode from its parent. Since no ancestor component specifies a render mode, the following component is *statically rendered* on the server. The button isn't interactive and doesn't call the `UpdateMessage` method when selected. The value of `message` doesn't change, and the component isn't rerendered in response to UI events.
 
@@ -523,7 +523,7 @@ In the following example, the `SharedMessage` component is interactive over a Si
 
 ### Child components with different render modes
 
-In the following example, both `SharedMessage` components are prerendered (by default) and appear when the page is displayed in the browser.
+In the following example, both `SharedMessage` components are prerendered and appear when the page is displayed in the browser.
 
 * The first `SharedMessage` component with interactive server-side rendering (interactive SSR) is interactive after the SignalR circuit is established.
 * The second `SharedMessage` component with client-side rendering (CSR) is interactive *after* the Blazor app bundle is downloaded and the .NET runtime is active on the client.
@@ -549,7 +549,7 @@ The following example demonstrates an interactive child component that takes a p
 <SharedMessage @rendermode="InteractiveServer" Greeting="Welcome!" />
 ```
 
-Non-serializable component parameters, such as child content or a render fragment, are ***not*** supported. In the following example, passing child content to the `SharedMessage` component results in a runtime error.
+Non-serializable component parameters, such as child content or a render fragment, aren't supported. In the following example, passing child content to the `SharedMessage` component results in a runtime error.
 
 `RenderMode9.razor`:
 
@@ -743,7 +743,7 @@ In the `App` component, any request for a component in the `Account` folder appl
 
 In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the appropriate value, depending on if the rest of the application should adopt global <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer>, <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveWebAssembly>, or <xref:Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveAuto> rendering.
 
-The components that must adopt static SSR in the `Account` folder aren't required to set the layout because it's applied via the `_Imports.razor` file, and the components do ***not*** set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
+The components that must adopt static SSR in the `Account` folder aren't required to set the layout, which is applied via the `_Imports.razor` file. The components don't set a render mode because they should render with static SSR. Nothing further must be done for the components in the `Account` folder to enforce static SSR.
 
 ### Static SSR components spread out across the app
 
@@ -800,7 +800,7 @@ In the `App` component, reflection is used to set the render mode. Whatever rend
 }
 ```
 
-Each component that must adopt static SSR sets the custom layout and does ***not*** specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode assigned to the `Routes` component instance and enforcement of static SSR.
+Each component that must adopt static SSR sets the custom layout and doesn't specify a render mode. Not specifying a render mode results in a `null` value of <xref:Microsoft.AspNetCore.Components.RenderModeAttribute.Mode?displayProperty=nameWithType> in the `App` component, which results in no render mode assigned to the `Routes` component instance and enforcement of static SSR.
 
 > [!IMPORTANT]
 > Applying a `null` render mode doesn't always enforce static SSR. It just happens to behave that way using the approach shown in this section.

@@ -146,7 +146,7 @@ The following `ShowImage2` component:
 The following `ShowFile` component loads either a text file (`files/quote.txt`) or a PDF file (`files/quote.pdf`) into an [`<iframe>` element (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/iframe).
 
 > [!CAUTION]
-> Use of the `<iframe>` element in the following example is safe and doesn't require [sandboxing](https://developer.mozilla.org/docs/Web/HTML/Element/iframe#sandbox) because content is loaded from the app, a trusted source.
+> Use of the `<iframe>` element in the following example is safe and doesn't require [sandboxing](https://developer.mozilla.org/docs/Web/HTML/Element/iframe#sandbox) because content is loaded from the app, which is a trusted source.
 >
 > When loading content from an untrusted source or user input, an improperly implemented `<iframe>` element risks creating security vulnerabilities.
 

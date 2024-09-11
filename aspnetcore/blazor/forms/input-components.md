@@ -63,7 +63,7 @@ All of the input components, including <xref:Microsoft.AspNetCore.Components.For
 Input components provide default behavior for validating when a field is changed:
 
 * For input components in a form with an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation behavior includes updating the field CSS class to reflect the field's state as valid or invalid with validation styling of the underlying HTML element.
-* For controls that don't have an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation reflects the valid or invalid state but does ***not*** provide validation styling to the underlying HTML element.
+* For controls that don't have an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation reflects the valid or invalid state but doesn't provide validation styling to the underlying HTML element.
 
 Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 

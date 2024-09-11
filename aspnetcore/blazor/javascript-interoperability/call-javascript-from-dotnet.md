@@ -932,7 +932,7 @@ In the preceding example, the namespace of the app is `BlazorSample` with shared
 
 *This section only applies to Interactive Server components, but client-side components may also set JS interop timeouts if conditions warrant it.*
 
-In server-side apps with server interactivity, JavaScript (JS) interop may fail due to networking errors and should be treated as unreliable. By default, Blazor apps use a one minute timeout for JS interop calls. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches.
+In server-side apps with server interactivity, JavaScript (JS) interop may fail due to networking errors and should be treated as unreliable. Blazor apps use a one minute timeout for JS interop calls. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1097,7 +1097,7 @@ The preceding example produces an interactive map UI. The user:
 In the preceding example:
 
 * The `<div>` with `@ref="mapElement"` is left empty as far as Blazor is concerned. The `mapbox-gl.js` script can safely populate the element and modify its contents. Use this technique with any JS library that renders UI. You can embed components from a third-party JS SPA framework inside Razor components, as long as they don't try to reach out and modify other parts of the page. It is **not** safe for external JS code to modify elements that Blazor does not regard as empty.
-* When using this approach, bear in mind the rules about how Blazor retains or destroys DOM elements. The component safely handles button click events and updates the existing map instance because DOM elements are retained where possible by default. If you were rendering a list of map elements from inside a `@foreach` loop, you want to use `@key` to ensure the preservation of component instances. Otherwise, changes in the list data could cause component instances to retain the state of previous instances in an undesirable manner. For more information, see how to [use the `@key` directive attribute to preserve the relationship among elements, components, and model objects](xref:blazor/components/key).
+* When using this approach, bear in mind the rules about how Blazor retains or destroys DOM elements. The component safely handles button click events and updates the existing map instance because DOM elements are retained where possible. If you were rendering a list of map elements from inside a `@foreach` loop, you want to use `@key` to ensure the preservation of component instances. Otherwise, changes in the list data could cause component instances to retain the state of previous instances in an undesirable manner. For more information, see how to [use the `@key` directive attribute to preserve the relationship among elements, components, and model objects](xref:blazor/components/key).
 * The example encapsulates JS logic and dependencies within a JavaScript module and loads the module dynamically using the `import` identifier. For more information, see [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules).
 
 :::moniker-end

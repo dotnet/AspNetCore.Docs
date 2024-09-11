@@ -349,7 +349,7 @@ If a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-
     typeof(SomeLibraryComponentToBePreserved))]
 ```
 
-The preceding approach usually isn't required because in most cases the app prerenders its components (which are not trimmed), which in turn references components from libraries (causing them also not to be trimmed). Only use `DynamicDependency` explicitly for prerendering a library component directly when the library is subject to trimming.
+The preceding approach usually isn't required because the app usually prerenders its components (which are not trimmed), which in turn references components from libraries (causing them also not to be trimmed). Only use `DynamicDependency` explicitly for prerendering a library component directly when the library is subject to trimming.
 
 ## Render components in a page or view with a CSS selector
 
@@ -1320,7 +1320,7 @@ If a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-
     typeof(SomeLibraryComponentToBePreserved))]
 ```
 
-The preceding approach usually isn't required because in most cases the app prerenders its components (which are not trimmed), which in turn references components from libraries (causing them also not to be trimmed). Only use `DynamicDependency` explicitly for prerendering a library component directly when the library is subject to trimming.
+The preceding approach usually isn't required because the app usually prerenders its components (which are not trimmed), which in turn references components from libraries (causing them also not to be trimmed). Only use `DynamicDependency` explicitly for prerendering a library component directly when the library is subject to trimming.
 
 ## Render components in a page or view with a CSS selector
 
