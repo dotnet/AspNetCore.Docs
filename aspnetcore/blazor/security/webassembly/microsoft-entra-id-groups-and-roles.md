@@ -109,7 +109,7 @@ Add the following custom user account factory to the app. The custom user factor
 The preceding code:
 
 * Doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
-* Sets GUID values in `directoryRole` claims are ME-ID Administrator Role [*Template IDs*](/entra/identity/role-based-access-control/permissions-reference) (`Microsoft.Graph.Models.DirectoryRole.RoleTemplateId`). Template IDs are stable identifiers for creating user authorization policies in apps, which is covered later in this article. don't use `entry.Id` for directory role claim values, as they aren't stable across tenants.
+* Sets GUID values in `directoryRole` claims are ME-ID Administrator Role [*Template IDs*](/entra/identity/role-based-access-control/permissions-reference) (`Microsoft.Graph.Models.DirectoryRole.RoleTemplateId`). Template IDs are stable identifiers for creating user authorization policies in apps, which is covered later in this article. Don't use `entry.Id` for directory role claim values, as they aren't stable across tenants.
 
 Next, configure the MSAL authentication to use the custom user account factory.
 

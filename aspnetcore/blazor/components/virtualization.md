@@ -293,7 +293,7 @@ The spacer elements internally use an [Intersection Observer](https://developer.
 
 * **All rendered content items, including [placeholder content](#placeholder), are of identical height.** This makes it possible to calculate which content corresponds to a given scroll position without first fetching every data item and rendering the data into a DOM element.
 
-* **Both the spacers and the content rows are rendered in a single vertical stack with every item filling the entire horizontal width.** In typical cases, `Virtualize` works with `div` elements. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
+* **Both the spacers and the content rows are rendered in a single vertical stack with every item filling the entire horizontal width.** In typical use cases, `Virtualize` works with `div` elements. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
 
   * Scroll container styling requires a `display` with any of the following values:
     * `block` (the default for a `div`).

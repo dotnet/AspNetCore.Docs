@@ -419,7 +419,7 @@ Visual Studio:
 .NET CLI:
 
 * Use the `-int Auto` option.
-* don't use the `-ai|--all-interactive` option.
+* Don't use the `-ai|--all-interactive` option.
 * Pass the `-e|--empty` option.
 
 From the donor Blazor Web App, copy the entire `.Client` project into the solution folder of the ASP.NET Core app.

@@ -65,7 +65,7 @@ The preceding field types:
 
 Blazor provides built-in support to render values in the current culture. Therefore, specifying a culture with [`@bind:culture`](xref:mvc/views/razor#bindculture) isn't recommended when using the `date` and `number` field types.
 
-The following field types have specific formatting requirements and aren't supported by all of the major browsers, so they aren't currently supported by Blazor:
+The following field types have specific formatting requirements and aren't supported by all of the major browsers, so they aren't supported by Blazor:
 
 * `datetime-local`
 * `month`

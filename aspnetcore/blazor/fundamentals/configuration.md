@@ -22,7 +22,7 @@ Default behavior in Blazor Web Apps:
 
 * For server-side configuration:
   * See <xref:fundamentals/configuration/index> for guidance.
-  * Only configuration in the project's root app settings files are loaded.
+  * Only configuration in the project's root app settings files is loaded.
   * The remainder of this article only applies to client-side configuration in the `.Client` project. 
 * For client-side configuration (`.Client` project), configuration is loaded from the following app settings files:
   * `wwwroot/appsettings.json`.

@@ -345,7 +345,7 @@ To use the preceding component in the [starship example form (`Starship3.razor`/
 
 The following example component:
 
-* doesn't inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. The component takes full control of input processing, including binding, callbacks, and validation. The component can be used inside or outside of a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
+* Doesn't inherit from <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601>. The component takes full control of input processing, including binding, callbacks, and validation. The component can be used inside or outside of a Blazor form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm>).
 * Takes boolean input from a checkbox.
 * Changes the background color if the checkbox is checked.
 
