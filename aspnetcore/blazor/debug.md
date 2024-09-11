@@ -378,17 +378,15 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 >
 > You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch`](xref:tutorials/dotnet-watch).
 
-To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** project's project file:
+Publishing an app disables debugger support. To debug a published, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** project's project file:
 
 ```xml
 <DebuggerSupport>true</DebuggerSupport>
 <CopyOutputSymbolsToPublishDirectory>true</CopyOutputSymbolsToPublishDirectory>
 ```
 
-By default, publishing an app disables the preceding properties by setting them to `false`.
-
 > [!WARNING]
-> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Don't deploy a published app into a production environment with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
 
 **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
@@ -497,7 +495,7 @@ To debug a Blazor WebAssembly app in Firefox during development:
 
 ## Break on unhandled exceptions
 
-The debugger doesn't break on unhandled exceptions by default because Blazor catches exceptions that are unhandled by developer code.
+The debugger doesn't break on unhandled exceptions because Blazor catches exceptions that are unhandled by developer code.
 
 To break on unhandled exceptions:
 

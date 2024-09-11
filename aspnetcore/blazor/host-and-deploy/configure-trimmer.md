@@ -14,9 +14,9 @@ uid: blazor/host-and-deploy/configure-trimmer
 
 This article explains how to control the Intermediate Language (IL) Trimmer when building a Blazor app.
 
-Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossary#il) trimming to reduce the size of the published output. By default, trimming occurs when publishing an app.
+Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossary#il) trimming to reduce the size of the published output. Trimming occurs when publishing an app.
 
-Trimming may have detrimental effects for the published app. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trim them away. For example, complex framework types for JS interop, such as <xref:System.Collections.Generic.KeyValuePair>, might be trimmed by default and not available at runtime for JS interop calls. In these cases, we recommend creating your own custom types instead. The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
+Trimming may have detrimental effects for the published app. In apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), the IL Trimmer often can't determine the required types for runtime reflection and trim them away. For example, complex framework types for JS interop, such as <xref:System.Collections.Generic.KeyValuePair>, might be trimmed and not available at runtime for JS interop calls. In these cases, we recommend creating your own custom types instead. The IL Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
 ## Configuration
 

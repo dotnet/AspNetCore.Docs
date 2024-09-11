@@ -58,15 +58,15 @@ When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/ifr
 ```
 
 > [!WARNING]
-> The [`sandbox` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) is ***not*** supported in early browser versions. For more information, see [Can I use: `sandbox`](https://caniuse.com/?search=sandbox).
+> The [`sandbox` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) isn't supported in early browser versions. For more information, see [Can I use: `sandbox`](https://caniuse.com/?search=sandbox).
 
 ## Links to external URLs
 
-By default, links to URLs outside of the app are opened in an appropriate external app, not loaded within the Web View. We do ***not*** recommend overriding the default behavior.
+Links to URLs outside of the app are opened in an appropriate external app, not loaded within the Web View. We don't recommend overriding the default behavior.
 
 ## Keep the Web View current in deployed apps
 
-By default, the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control uses the currently-installed, platform-specific native Web View. Since the native Web View is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a Web View version that meets the app's requirements.
+The <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control uses the currently-installed, platform-specific native Web View. Since the native Web View is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a Web View version that meets the app's requirements.
 
 Use one of the following approaches to keep the Web View current in deployed apps:
 
@@ -79,7 +79,7 @@ The Android Web View is distributed and updated via the [Google Play Store](http
 
 When using the Android Emulator:
 
-* Use an emulated device with **Google Play Services** preinstalled. Emulated devices without Google Play Services preinstalled are ***not*** supported.
+* Use an emulated device with **Google Play Services** preinstalled. Emulated devices without Google Play Services preinstalled aren't supported.
 * Install Google Chrome from the Google Play Store. If Google Chrome is already installed, [update Chrome from the Google Play Store](https://support.google.com/chrome/answer/95414?hl=en&co=GENIE.Platform%3DAndroid). If an emulated device doesn't have the latest version of Chrome installed, it might not have the latest version of the Android Web View installed.
 
 ### iOS/:::no-loc text="Mac Catalyst":::
@@ -90,7 +90,7 @@ iOS and :::no-loc text="Mac Catalyst"::: both use [`WKWebView`](https://develope
 
 On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor web apps.
 
-By default, the newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::*.
+The newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::*.
 
 For more information on checking the currently-installed `WebView2` version and the distribution modes, see the [`WebView2` distribution documentation](/microsoft-edge/webview2/concepts/distribution).
 

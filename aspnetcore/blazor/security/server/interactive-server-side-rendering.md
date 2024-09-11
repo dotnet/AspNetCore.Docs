@@ -118,7 +118,7 @@ Connection exhaustion can occur when one or more clients open too many concurren
 
 Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open. Given the persistent nature of the connections and the stateful nature of server-side Blazor apps, connection exhaustion is a greater risk to availability of the app.
 
-By default, there's no limit on the number of connections per user for an app. If the app requires a connection limit, take one or more of the following approaches:
+There's no limit on the number of connections per user for an app. If the app requires a connection limit, take one or more of the following approaches:
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -341,7 +341,7 @@ The guidance for securing ASP.NET Core apps apply to server-side Blazor apps and
 
 JS interop interactions between the client and server are recorded in the server's logs with <xref:Microsoft.Extensions.Logging.ILogger> instances. Blazor avoids logging sensitive information, such as actual events or JS interop inputs and outputs.
 
-When an error occurs on the server, the framework notifies the client and tears down the session. By default, the client receives a generic error message that can be seen in the browser's developer tools.
+When an error occurs on the server, the framework notifies the client and tears down the session. The client receives a generic error message that can be seen in the browser's developer tools.
 
 The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#detailed-circuit-errors).
 

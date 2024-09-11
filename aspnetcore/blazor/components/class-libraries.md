@@ -27,7 +27,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
 1. Create a new project.
 1. In the **Create a new project** dialog, select **Razor Class Library** from the list of ASP.NET Core project templates. Select **Next**.
 1. In the **Configure your new project** dialog, provide a project name in the **Project name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Next**.
-1. In the **Additional information** dialog, do ***not*** select **Support pages and views**. Select **Create**.
+1. In the **Additional information** dialog, don't select **Support pages and views**. Select **Create**.
 1. Add the RCL to a solution:
    1. Open the solution.
    1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.

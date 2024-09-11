@@ -26,7 +26,7 @@ Static SSR is a mode in which components run when the server handles an incoming
 
 The benefit of this mode is cheaper, more scalable hosting, because no ongoing server resources are required to hold component state, no ongoing connection must be maintained between browser and server, and no WebAssembly payload is required in the browser.
 
-By default, all existing components can still be used with static SSR. However, the cost of this mode is that event handlers, such as `@onclick`&dagger;, can't be run for the following reasons:
+All existing components can still be used with static SSR. However, the cost of this mode is that event handlers, such as `@onclick`&dagger;, can't be run for the following reasons:
 
 * There's no .NET code in the browser to run them.
 * The server has immediately discarded any component and renderer state that would be needed to execute event handlers or to rerender the same component instances.
@@ -123,7 +123,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Enhance%2A>, <xref:Micr
 
 ## Avoid APIs that are specific to static SSR
 
-To make a reusable component that works across all render modes, don't rely on <xref:Microsoft.AspNetCore.Http.HttpContext> because it's only available during static SSR. The <xref:Microsoft.AspNetCore.Http.HttpContext> API doesn't make sense to use during interactive rendering because there's no active HTTP request in flight at those times. It's meaningless to think about setting a status code or writing to the response.
+<xref:Microsoft.AspNetCore.Http.HttpContext> is only available during static SSR, so don't rely on <xref:Microsoft.AspNetCore.Http.HttpContext> when creating components that work across render modes. The <xref:Microsoft.AspNetCore.Http.HttpContext> API doesn't make sense to use during interactive rendering either because there's no active HTTP request in flight at those times. It's meaningless to think about setting a HTTP status code or writing to the HTTP response.
 
 Reusable components are free to receive an <xref:Microsoft.AspNetCore.Http.HttpContext> when available, as follows:
 

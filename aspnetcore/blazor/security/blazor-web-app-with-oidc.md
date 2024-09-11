@@ -72,7 +72,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `false` by default to reduce the size of the final authentication cookie.
+* <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A>: Defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties> after a successful authorization. This property is set to `false` to reduce the size of the final authentication cookie.
 
   ```csharp
   oidcOptions.SaveTokens = false;
@@ -113,7 +113,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   **The following example is only for testing and demonstration purposes. Don't store the client secret in the app's assembly or check the secret into source control.**  Store the client secret in [User Secrets](xref:security/app-secrets), [Azure Key Vault](xref:security/key-vault-configuration), or an [environment variable](xref:fundamentals/configuration/index#non-prefixed-environment-variables).
   
-  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc` by default. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
+  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
 
   ```dotnetcli
   set Authentication__Schemes__MicrosoftOidc__ClientSecret={CLIENT SECRET}
@@ -381,7 +381,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   **The following example is only for testing and demonstration purposes. Don't store the client secret in the app's assembly or check the secret into source control.**  Store the client secret in [User Secrets](xref:security/app-secrets), [Azure Key Vault](xref:security/key-vault-configuration), or an [environment variable](xref:fundamentals/configuration/index#non-prefixed-environment-variables).
   
-  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc` by default. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
+  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
 
   ```dotnetcli
   set Authentication__Schemes__MicrosoftOidc__ClientSecret={CLIENT SECRET}

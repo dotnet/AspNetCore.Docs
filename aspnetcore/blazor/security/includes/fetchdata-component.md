@@ -11,7 +11,7 @@ In order to obtain the actual token to include in the request, the app must chec
 
 If the request was successful, the token variable is populated with the access token. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessToken.Value?displayProperty=nameWithType> property of the token exposes the literal string to include in the `Authorization` request header.
 
-If the request failed because the token couldn't be provisioned without user interaction:
+If the token couldn't be provisioned without user interaction resulting in a failed request:
 
 * ASP.NET Core in .NET 7 or later: The app navigates to `AccessTokenResult.InteractiveRequestUrl` using the given `AccessTokenResult.InteractionOptions` to allow refreshing the access token.
 * ASP.NET Core in .NET 6 or earlier: The token result contains a redirect URL. Navigating to this URL takes the user to the login page and back to the current page after a successful authentication.

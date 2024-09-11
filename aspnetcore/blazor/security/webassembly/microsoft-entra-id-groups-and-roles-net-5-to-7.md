@@ -747,7 +747,7 @@ Multiple role tests are supported:
   if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
 
-Because .NET string comparisons are case-sensitive by default, matching role names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+Because .NET string comparisons are case-sensitive, matching role names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
 
 Pascal case is typically used for role names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role names is also unusual but permitted. For example, `billing administrator` is an unusual role name format in .NET apps but valid.
 

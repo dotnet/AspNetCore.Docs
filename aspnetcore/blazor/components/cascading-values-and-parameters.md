@@ -167,7 +167,7 @@ Blazor Web Apps provide alternative approaches for cascading values that apply m
   ```
 
   > [!NOTE]
-  > Wrapping the `Routes` component instance in the `App` component (`Components/App.razor`) with a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component is ***not*** supported.
+  > Wrapping the `Routes` component instance in the `App` component (`Components/App.razor`) with a [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601) component isn't supported.
 
 * Specify a *root-level cascading value* as a service by calling the <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A> extension method on the service collection builder.
 

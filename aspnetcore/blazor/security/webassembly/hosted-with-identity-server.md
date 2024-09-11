@@ -256,7 +256,7 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-In the `Program` file, a named <xref:System.Net.Http.HttpClient> is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API. By default at solution creation, the named <xref:System.Net.Http.HttpClient> is `{PROJECT NAME}.ServerAPI`, where the `{PROJECT NAME}` placeholder is the project's name.
+In the `Program` file, a named <xref:System.Net.Http.HttpClient> is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API. At solution creation, the named <xref:System.Net.Http.HttpClient> is `{PROJECT NAME}.ServerAPI`, where the `{PROJECT NAME}` placeholder is the project's name.
 
 ```csharp
 builder.Services.AddHttpClient("{PROJECT NAME}.ServerAPI", 
@@ -282,7 +282,7 @@ The support for authenticating users is plugged into the service container by th
 builder.Services.AddApiAuthorization();
 ```
 
-By default, configuration for the app is loaded by convention from `_configuration/{client-id}`. By convention, the client ID is set to the app's assembly name. This URL can be changed to point to a separate endpoint by calling the overload with options.
+Configuration for the app is loaded by convention from `_configuration/{client-id}`. By convention, the client ID is set to the app's assembly name. This URL can be changed to point to a separate endpoint by calling the overload with options.
 
 ### `Imports` file
 
@@ -309,7 +309,7 @@ The `App` component (`App.razor`) is similar to the `App` component found in Bla
 Due to changes in the framework across releases of ASP.NET Core, Razor markup for the `App` component (`App.razor`) isn't shown in this section. To inspect the markup of the component for a given release, use ***either*** of the following approaches:
 
 * Create an app provisioned for authentication from the default Blazor WebAssembly project template for the version of ASP.NET Core that you intend to use. Inspect the `App` component (`App.razor`) in the generated app.
-* Inspect the `App` component (`App.razor`) in [reference source](https://github.com/dotnet/aspnetcore). Select the version from the branch selector, and search for the component in the `ProjectTemplates` folder of the repository because it has moved over the years.
+* Inspect the `App` component (`App.razor`) in [reference source](https://github.com/dotnet/aspnetcore). Select the version from the branch selector, and search for the component in the `ProjectTemplates` folder of the repository because the `App` component's location has changed over the years.
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -791,7 +791,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 
    No configuration changes to the default settings are required for the key vault service.
 
-   For testing purposes, an app's local [SQLite](https://www.sqlite.org/index.html) database, which is configured by default by the Blazor template, can be deployed with the app without additional configuration. Configuring a different database for Identity Server in production is beyond the scope of this article. For more information, see the database resources in the following documentation sets:
+   For testing purposes, an app's local [SQLite](https://www.sqlite.org/index.html) database, which is configured by the Blazor template, can be deployed with the app without additional configuration. Configuring a different database for Identity Server in production is beyond the scope of this article. For more information, see the database resources in the following documentation sets:
 
    * [App Service](/azure/app-service/)
    * [Duende Identity Server](https://docs.duendesoftware.com)

@@ -63,9 +63,9 @@ The preceding field types:
 * Can't contain free-form text.
 * Provide user interaction characteristics based on the browser's implementation.
 
-When using the `date` and `number` field types, specifying a culture with [`@bind:culture`](xref:mvc/views/razor#bindculture) isn't recommended because Blazor provides built-in support to render values in the current culture.
+Blazor provides built-in support to render values in the current culture. Therefore, specifying a culture with [`@bind:culture`](xref:mvc/views/razor#bindculture) isn't recommended when using the `date` and `number` field types.
 
-The following field types have specific formatting requirements and aren't currently supported by Blazor because they aren't supported by all of the major browsers:
+The following field types have specific formatting requirements and aren't supported by all of the major browsers, so they aren't supported by Blazor:
 
 * `datetime-local`
 * `month`
@@ -295,7 +295,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 
 :::moniker range="< aspnetcore-5.0"
 
-By default, the Intermediate Language (IL) Linker configuration for client-side rendering strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+The Intermediate Language (IL) Linker configuration for client-side rendering strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
 
 :::moniker-end
 

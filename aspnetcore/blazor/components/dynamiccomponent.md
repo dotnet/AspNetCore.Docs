@@ -407,7 +407,7 @@ The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3
   @inject ILogger<{COMPONENT TYPE}> Logger
   ```
 
-* Each component implements a `Log` method. There's no need to identify the component in the log message template because the log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> is called:
+* Each component implements a `Log` method. The log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> is called:
 
   ```razor
   @code {

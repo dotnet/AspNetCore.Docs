@@ -105,7 +105,7 @@ When the app is deployed to a test/staging or production server, an environment 
 
 The Visual Studio version of this tutorial uses SQL Server.
 
-SQL Server Express LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, master database files (`*.mdf`) are placed in the `C:/Users/{USER}` directory, where the `{USER}` placeholder is the system's user ID.
+SQL Server Express LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. Master database files (`*.mdf`) are placed in the `C:/Users/{USER}` directory, where the `{USER}` placeholder is the system's user ID.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
@@ -119,7 +119,7 @@ The **View Designer** opens:
 
 ![Movie table open in the table designer](~/blazor/tutorials/movie-database-app/part-4/_static/movie-table.png)
 
-Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
+Note the key icon next to `ID`. EF creates a property named `ID` for the primary key.
 
 Right-click on the `Movie` table and select **View Data**:
 
