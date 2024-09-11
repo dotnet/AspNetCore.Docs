@@ -51,7 +51,7 @@ Resource Owner Password Credentials Grant:
 
 * Exposes the user's password to the client.
 * Is a significant security risk.
-* Should only be used when other flows are not possible.
+* Should only be used when other authentication flows are not possible.
 
 Managed identities are a secure way to authenticate to services without needing to store credentials in code, environment variables, or configuration files. Managed identities are available for Azure services, and can be used with Azure SQL, Azure Storage, and other Azure services:
 
