@@ -381,7 +381,7 @@ The following example wraps the `EmbeddedCounter` component and supplies custom 
 
 For the preceding example, the app's stylesheet presumably includes an `errorUI` CSS class to style the content. The error content is rendered from the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property without a block-level element. A block-level element, such as a division (`<div>`) or a paragraph (`<p>`) element, can wrap the error content markup, but it isn't required.
 
-Optionally, use the context of the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> to obtain error data:
+Optionally, use the context (`@context`) of the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> to obtain error data:
 
 ```razor
 <ErrorContent>
@@ -402,7 +402,7 @@ If the error boundary is defined in the app's layout, the error UI is seen regar
 In `MainLayout.razor`:
 
 * Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
-* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A>. The following example clears the error when the user navigates to a different component.
+* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), you can trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> to clear the error when the user navigates to a different component.
 
 ```razor
 ...
