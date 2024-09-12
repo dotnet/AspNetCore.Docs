@@ -93,7 +93,7 @@ In the following example, the `LinkerConfig.xml` file is specified as an embedde
 
 ### Configure the linker for internationalization
 
-By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
+Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
 
 To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:
 

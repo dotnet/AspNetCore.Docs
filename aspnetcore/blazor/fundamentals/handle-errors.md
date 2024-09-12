@@ -357,7 +357,7 @@ If the unhandled exception is thrown for a `currentCount` over five:
 * The exception is handled by the error boundary.
 * The default error UI is rendered by the error boundary.
 
-By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element using the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
+The <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element using the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
 ![The default error UI rendered by an error boundary, which has a red background, the text 'An error has occurred,' and a yellow caution icon with an exclamation point inside of it.](handle-errors/_static/default-error-ui.png)
 
@@ -381,12 +381,31 @@ The following example wraps the `EmbeddedCounter` component and supplies custom 
 
 For the preceding example, the app's stylesheet presumably includes an `errorUI` CSS class to style the content. The error content is rendered from the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property without a block-level element. A block-level element, such as a division (`<div>`) or a paragraph (`<p>`) element, can wrap the error content markup, but it isn't required.
 
+Optionally, use the context (`@context`) of the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> to obtain error data:
+
+```razor
+<ErrorContent>
+    @context.HelpLink
+</ErrorContent>
+```
+
+The <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> can also name the context. In the following example, the context is named `exception`:
+
+```razor
+<ErrorContent Context="exception">
+    @exception.HelpLink
+</ErrorContent>
+```
+
+> [!WARNING]
+> Always avoid exposing error information to clients on the Internet, which is a security risk.
+
 If the error boundary is defined in the app's layout, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
 
 In `MainLayout.razor`:
 
 * Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
-* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A>.
+* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), you can trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> to clear the error when the user navigates to a different component.
 
 ```razor
 ...
@@ -411,6 +430,86 @@ To avoid the infinite loop where recovering merely rerenders a component that th
 
 * The user performs a UI gesture, such as selecting a button to indicate that they want to retry a procedure or when the user navigates to a new component.
 * Additional logic that executes also clears the exception. When the component is rerendered, the error doesn't reoccur.
+
+The following example permits the user to recover from the exception with a button:
+
+```razor
+<ErrorBoundary @ref="errorBoundary">
+    <ChildContent>
+        <EmbeddedCounter />
+    </ChildContent>
+    <ErrorContent>
+        <div class="alert alert-danger" role="alert">
+            <p class="fs-3 fw-bold">😈 A rotten gremlin got us. Sorry!</p>
+            <p>@context.HelpLink</p>
+            <button class="btn btn-info" @onclick="_ => errorBoundary.Recover()">
+                Clear
+            </button>
+        </div>
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+    private ErrorBoundary? errorBoundary;
+}
+```
+
+You can also subclass <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> for custom processing by overriding <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary.OnErrorAsync%2A>. The following example merely logs the error, but you can implement any error handling code you wish. You can remove the line that awaits a <xref:System.Threading.Tasks.Task.CompletedTask> if your code awaits an asynchronous task.
+
+`CustomErrorBoundary.razor`:
+
+```razor
+@inherits ErrorBoundary
+@inject ILogger<CustomErrorBoundary> Logger
+
+@if (CurrentException is null)
+{
+    @ChildContent
+}
+else if (ErrorContent is not null)
+{
+    @ErrorContent(CurrentException)
+}
+
+@code {
+    protected override Task OnErrorAsync(Exception ex)
+    {
+        Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
+        await Task.CompletedTask;
+    }
+}
+```
+
+The preceding example can also be implemented as a class.
+
+`CustomErrorBoundary.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+
+namespace BlazorSample;
+
+public class CustomErrorBoundary : ErrorBoundary
+{
+    [Inject]
+    ILogger<CustomErrorBoundary> Logger {  get; set; } = default!;
+
+    protected override async Task OnErrorAsync(Exception ex)
+    {
+        Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
+        await Task.CompletedTask;
+    }
+}
+```
+
+Either of the preceding implementations used in a component:
+
+```razor
+<CustomErrorBoundary>
+    ...
+</CustomErrorBoundary>
+```
 
 ## Alternative global exception handling
 
@@ -617,7 +716,7 @@ Because the approaches in this section handle errors with a [`try-catch`](/dotne
 
 :::moniker range=">= aspnetcore-6.0"
 
-If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a location on the server (or backend web API for client-side apps) with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
+If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. Blazor apps log console output with the Console Logging Provider. Consider logging to a location on the server (or backend web API for client-side apps) with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
 
 > [!NOTE]
 > Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support client-side apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (microsoft/ApplicationInsights-dotnet #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (dotnet/aspnetcore #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
@@ -638,7 +737,7 @@ For more information, see the following articles:
 
 :::moniker range="< aspnetcore-6.0"
 
-If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server by sending error information to a backend web API that uses a logging provider with log size management and log rotation. Alternatively, the backend web API app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)&dagger;](/azure/azure-monitor/app/app-insights-overview), to record error information that it receives from clients.
+If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. Blazor apps log console output with the Console Logging Provider. Consider logging to a more permanent location on the server by sending error information to a backend web API that uses a logging provider with log size management and log rotation. Alternatively, the backend web API app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)&dagger;](/azure/azure-monitor/app/app-insights-overview), to record error information that it receives from clients.
 
 You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as incidents for logging.
 
@@ -796,11 +895,11 @@ The following conditions apply to error handling with <xref:Microsoft.JSInterop.
 
 * If a call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> fails synchronously, a .NET exception occurs. A call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> may fail, for example, because the supplied arguments can't be serialized. Developer code must catch the exception. If app code in an event handler or component lifecycle method doesn't handle an exception in a Blazor app operating over a circuit, the resulting exception is fatal to the app's circuit.
 * If a call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> fails asynchronously, the .NET <xref:System.Threading.Tasks.Task> fails. A call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> may fail, for example, because the JS-side code throws an exception or returns a `Promise` that completed as `rejected`. Developer code must catch the exception. If using the [`await`](/dotnet/csharp/language-reference/keywords/await) operator, consider wrapping the method call in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging. Otherwise in a Blazor app operating over a circuit, the failing code results in an unhandled exception that's fatal to the app's circuit.
-* By default, calls to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> must complete within a certain period or else the call times out. The default timeout period is one minute. The timeout protects the code against a loss in network connectivity or JS code that never sends back a completion message. If the call times out, the resulting <xref:System.Threading.Tasks> fails with an <xref:System.OperationCanceledException>. Trap and process the exception with logging.
+* Calls to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> must complete within a certain period or else the call times out. The default timeout period is one minute. The timeout protects the code against a loss in network connectivity or JS code that never sends back a completion message. If the call times out, the resulting <xref:System.Threading.Tasks> fails with an <xref:System.OperationCanceledException>. Trap and process the exception with logging.
 
 Similarly, JS code may initiate calls to .NET methods indicated by the [`[JSInvokable]` attribute](xref:blazor/js-interop/call-dotnet-from-javascript). If these .NET methods throw an unhandled exception:
 
-* In a Blazor app operating over a circuit, the exception is ***not*** treated as fatal to the app's circuit.
+* In a Blazor app operating over a circuit, the exception isn't treated as fatal to the app's circuit.
 * The JS-side `Promise` is rejected.
 
 You have the option of using error handling code on either the .NET side or the JS side of the method call.

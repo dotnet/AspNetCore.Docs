@@ -258,7 +258,7 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
 
 ### Visual Studio
 
-By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **:::no-loc text="Server":::** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+A [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **:::no-loc text="Server":::** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
 
 In the `.pubxml` publish profile file in the **:::no-loc text="Server":::** project's `Properties` folder:
 
@@ -277,7 +277,7 @@ In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifi
 Publish the **:::no-loc text="Server":::** project in the **Release** configuration.
 
 > [!NOTE]
-> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
+> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, not with the `-r|--runtime` option.
 
 ### .NET CLI
 
@@ -306,7 +306,7 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** 
    dotnet publish -c Release
   ```
 
-* Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+* Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), not with the `-r|--runtime` option:
   
   ```dotnetcli
   dotnet publish -c Release /p:RuntimeIdentifier={RID}
@@ -928,7 +928,7 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 > [!NOTE]
 > Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
 >
-> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core in .NET 8 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+> For a more robust approach in environments that block the download and execution of DLL files, use ASP.NET Core in .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
@@ -941,7 +941,7 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 >
 > For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 >
-> * Use ASP.NET Core in .NET 8 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
+> * Use ASP.NET Core in .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
 > * In ASP.NET Core in .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).

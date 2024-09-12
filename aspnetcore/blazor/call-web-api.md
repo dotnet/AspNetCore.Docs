@@ -101,7 +101,7 @@ Calls a todo list web API from a Blazor WebAssembly app:
 
 Server-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see <xref:fundamentals/http-requests>.
 
-A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
+A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
 
 In the `Program` file:
 
@@ -188,7 +188,7 @@ For an additional working example, see the server-side file upload example that 
 When using the interactive WebAssembly and Auto render modes, components are prerendered by default. Auto components are also initially rendered interactively from the server before the Blazor bundle downloads to the client and the client-side runtime activates. This means that components using these render modes should be designed so that they run successfully from both the client and the server. If the component must call a server project-based API or transform a request to an external web API (one that's outside of the Blazor Web App) when running on the client, the recommended approach is to abstract that API call behind a service interface and implement client and server versions of the service:
 
 * The client version calls the web API with a preconfigured <xref:System.Net.Http.HttpClient>.
-* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server is ***not*** recommended, as the network request is typically unnecessary. Alternatively, the API might be external to the server project, but a service abstraction for the server is required to transform the request in some way, for example to add an access token to a proxied request.
+* The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server isn't recommended, as the network request is typically unnecessary. Alternatively, the API might be external to the server project, but a service abstraction for the server is required to transform the request in some way, for example to add an access token to a proxied request.
 
 When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see <xref:blazor/components/render-modes#prerendering>.
 
@@ -214,11 +214,11 @@ Use ***either*** of the following approaches:
   builder.Services.AddHttpClient();
   ```
 
-  No explicit package reference is required because <xref:System.Net.Http.HttpClient> services are provided by the shared framework.
+  <xref:System.Net.Http.HttpClient> services are provided by the shared framework, so a package reference in the app's project file isn't required.
 
   Example: Todo list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
 
-* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component won't be prerendered on the server.
+* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in <xref:blazor/components/render-modes#prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component isn't prerendered on the server.
 
 For more information, see [Client-side services fail to resolve during prerendering](xref:blazor/components/render-modes#client-side-services-fail-to-resolve-during-prerendering).
 

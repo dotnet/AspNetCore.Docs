@@ -529,7 +529,7 @@ For example, the source for a Jeep image (`jeep-yj.png`) in the `vehicle` folder
 Add the [Razor class library (RCL)](xref:blazor/components/class-libraries) to the solution as a new project:
 
 * Right-click the solution in **Solution Explorer** and select **Add** > **New Project**.
-* Use the **Razor Class Library** project template to create the project. The examples in this section use the project name `ComponentLibrary`, which is also the RCL's assembly name. Do ***not*** select the **Support pages and views** checkbox.
+* Use the **Razor Class Library** project template to create the project. The examples in this section use the project name `ComponentLibrary`, which is also the RCL's assembly name. Don't select the **Support pages and views** checkbox.
 
 For each hosted Blazor WebAssembly client app, create a project reference for the RCL project by right-clicking each client project in **Solution Explorer** and selecting **Add** > **Project Reference**.
 

@@ -41,7 +41,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 </div>
 ```
 
-If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't seen because they fall outside of the height of the `<div>` element.
+If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights fall outside of the height of the `<div>` element, so most of them aren't seen.
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component:
 
@@ -217,7 +217,7 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 </Virtualize>
 ```
 
-By default, the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component measures the rendering size (height) of individual items *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second rerender is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
 ## Overscan count
 
@@ -293,7 +293,7 @@ The spacer elements internally use an [Intersection Observer](https://developer.
 
 * **All rendered content items, including [placeholder content](#placeholder), are of identical height.** This makes it possible to calculate which content corresponds to a given scroll position without first fetching every data item and rendering the data into a DOM element.
 
-* **Both the spacers and the content rows are rendered in a single vertical stack with every item filling the whole horizontal width.** This is generally the default. In typical cases with `div` elements, `Virtualize` works by default. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
+* **Both the spacers and the content rows are rendered in a single vertical stack with every item filling the entire horizontal width.** In typical use cases, `Virtualize` works with `div` elements. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
 
   * Scroll container styling requires a `display` with any of the following values:
     * `block` (the default for a `div`).
@@ -302,7 +302,7 @@ The spacer elements internally use an [Intersection Observer](https://developer.
   * Content row styling requires a `display` with either of the following values:
     * `block` (the default for a `div`).
     * `table-row` (the default for a `tr`).
-  * Don't use CSS to interfere with the layout for the spacer elements. By default, the spacer elements have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence spacer element width or height, including by causing them to have a border or `content` pseudo-elements.
+  * Don't use CSS to interfere with the layout for the spacer elements. The spacer elements have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence spacer element width or height, including by causing them to have a border or `content` pseudo-elements.
 
 Any approach that stops the spacers and content elements from rendering as a single vertical stack, or causes the content items to vary in height, prevents correct functioning of the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component.
 
@@ -344,7 +344,7 @@ To work around this problem prior to the release of .NET 7, either avoid styling
 
 :::moniker range="< aspnetcore-6.0"
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. When using the document as the scroll root, avoid styling the `<html>` or `<body>` elements with `overflow-y: scroll` because it cause the full scrollable height of the page to be treated as the visible region, instead of just the window viewport.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`. When using the document as the scroll root, avoid styling the `<html>` or `<body>` elements with `overflow-y: scroll` because it causes the full scrollable height of the page to be treated as the visible region, instead of just the window viewport.
 
 You can reproduce this problem by creating a large virtualized list (for example, 100,000 items) and attempt to use the document as the scroll root with `html { overflow-y: scroll }` in the page CSS styles. Although it may work correctly at times, the browser attempts to render all 100,000 items at least once at the start of rendering, which may cause a browser tab lockup.
 
