@@ -385,7 +385,7 @@ Optionally, use the context (`@context`) of the <xref:Microsoft.AspNetCore.Compo
 
 ```razor
 <ErrorContent>
-    @context.Message
+    @context.HelpLink
 </ErrorContent>
 ```
 
@@ -393,7 +393,7 @@ The <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> can al
 
 ```razor
 <ErrorContent Context="exception">
-    @exception.Message
+    @exception.HelpLink
 </ErrorContent>
 ```
 
