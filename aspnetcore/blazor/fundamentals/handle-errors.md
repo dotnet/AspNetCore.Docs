@@ -454,7 +454,7 @@ The following example permits the user to recover from the exception with a butt
 }
 ```
 
-You can also subclass <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> for custom processing by overriding <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary.OnErrorAsync%2A>. The following example merely logs the error, but you can implement any error handling code you wish. You can remove the line that returns a <xref:System.Threading.Tasks.Task.CompletedTask> if your code awaits an asynchronous task.
+You can also subclass <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> for custom processing by overriding <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary.OnErrorAsync%2A>. The following example merely logs the error, but you can implement any error handling code you wish. You can remove the line that awaits a <xref:System.Threading.Tasks.Task.CompletedTask> if your code awaits an asynchronous task.
 
 `CustomErrorBoundary.razor`:
 
