@@ -39,7 +39,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.MapHub<ChatHub>("/chat");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/chat");
+});
 
 app.Run();
 #endregion
