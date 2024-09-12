@@ -381,12 +381,31 @@ The following example wraps the `EmbeddedCounter` component and supplies custom 
 
 For the preceding example, the app's stylesheet presumably includes an `errorUI` CSS class to style the content. The error content is rendered from the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property without a block-level element. A block-level element, such as a division (`<div>`) or a paragraph (`<p>`) element, can wrap the error content markup, but it isn't required.
 
+Optionally, use the context (`@context`) of the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> to obtain error data:
+
+```razor
+<ErrorContent>
+    @context.HelpLink
+</ErrorContent>
+```
+
+The <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> can also name the context. In the following example, the context is named `exception`:
+
+```razor
+<ErrorContent Context="exception">
+    @exception.HelpLink
+</ErrorContent>
+```
+
+> [!WARNING]
+> Always avoid exposing error information to clients on the Internet, which is a security risk.
+
 If the error boundary is defined in the app's layout, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
 
 In `MainLayout.razor`:
 
 * Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
-* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A>.
+* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), you can trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> to clear the error when the user navigates to a different component.
 
 ```razor
 ...
@@ -411,6 +430,86 @@ To avoid the infinite loop where recovering merely rerenders a component that th
 
 * The user performs a UI gesture, such as selecting a button to indicate that they want to retry a procedure or when the user navigates to a new component.
 * Additional logic that executes also clears the exception. When the component is rerendered, the error doesn't reoccur.
+
+The following example permits the user to recover from the exception with a button:
+
+```razor
+<ErrorBoundary @ref="errorBoundary">
+    <ChildContent>
+        <EmbeddedCounter />
+    </ChildContent>
+    <ErrorContent>
+        <div class="alert alert-danger" role="alert">
+            <p class="fs-3 fw-bold">😈 A rotten gremlin got us. Sorry!</p>
+            <p>@context.HelpLink</p>
+            <button class="btn btn-info" @onclick="_ => errorBoundary.Recover()">
+                Clear
+            </button>
+        </div>
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+    private ErrorBoundary? errorBoundary;
+}
+```
+
+You can also subclass <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> for custom processing by overriding <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary.OnErrorAsync%2A>. The following example merely logs the error, but you can implement any error handling code you wish. You can remove the line that returns a <xref:System.Threading.Tasks.Task.CompletedTask> if your code awaits an asynchronous task.
+
+`CustomErrorBoundary.razor`:
+
+```razor
+@inherits ErrorBoundary
+@inject ILogger<CustomErrorBoundary> Logger
+
+@if (CurrentException is null)
+{
+    @ChildContent
+}
+else if (ErrorContent is not null)
+{
+    @ErrorContent(CurrentException)
+}
+
+@code {
+    protected override Task OnErrorAsync(Exception ex)
+    {
+        Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
+        return Task.CompletedTask;
+    }
+}
+```
+
+The preceding example can also be implemented as a class.
+
+`CustomErrorBoundary.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+
+namespace BlazorSample;
+
+public class CustomErrorBoundary : ErrorBoundary
+{
+    [Inject]
+    ILogger<CustomErrorBoundary> Logger {  get; set; } = default!;
+
+    protected override async Task OnErrorAsync(Exception ex)
+    {
+        Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
+        return Task.CompletedTask;
+    }
+}
+```
+
+Either of the preceding implementations used in a component:
+
+```razor
+<CustomErrorBoundary>
+    ...
+</CustomErrorBoundary>
+```
 
 ## Alternative global exception handling
 
