@@ -397,6 +397,9 @@ The <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> can al
 </ErrorContent>
 ```
 
+> [!WARNING]
+> Always avoid exposing error information to clients on the Internet, which is a security risk.
+
 If the error boundary is defined in the app's layout, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
 
 In `MainLayout.razor`:
