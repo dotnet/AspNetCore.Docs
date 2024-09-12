@@ -474,7 +474,7 @@ else if (ErrorContent is not null)
 @code {
     protected override Task OnErrorAsync(Exception ex)
     {
-        Logger.LogError(ex, "An error occurred while rendering a component.");
+        Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
         return Task.CompletedTask;
     }
 }
@@ -497,7 +497,7 @@ public class CustomErrorBoundary : ErrorBoundary
 
     protected override async Task OnErrorAsync(Exception ex)
     {
-        Logger.LogError(ex, "An error occurred while rendering a component.");
+        Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
         return Task.CompletedTask;
     }
 }
