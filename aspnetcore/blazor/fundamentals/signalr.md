@@ -181,17 +181,19 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Use session affinity (sticky sessions) for server-side webfarm hosting
 
-A Blazor app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. When more than one backend server is in use, the app should implement session affinity, also called *sticky sessions*, for SignalR connections.
+A Blazor app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, the client must reconnect to the same server. When more than one backend server is in use, the app should implement session affinity, also called *sticky sessions*, for SignalR connections.
 
 The following error is thrown by an app that hasn't enabled session affinity in a webfarm:
 
-> :::no-loc text="blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
+> :::no-loc text="Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
 
-## Server-side Azure SignalR Service
+For more information on session affinity with Azure App Service hosting, see <xref:blazor/host-and-deploy/server#azure-app-service>.
+
+## Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for server-side development hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a server-side app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
-[Session affinity](#use-session-affinity-sticky-sessions-for-server-side-webfarm-hosting) is enabled for the Azure SignalR Service by setting the service's `ServerStickyMode` option or configuration value to `Required`. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
 
 ## Server-side circuit handler options
 

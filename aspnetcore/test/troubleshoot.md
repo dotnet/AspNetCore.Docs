@@ -124,7 +124,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             }
             sb.Append(nl);
 
-            sb.Append($"Websockets{rule}");
+            sb.Append($"WebSockets{rule}");
             if (context.Features.Get<IHttpUpgradeFeature>() != null)
             {
                 sb.Append($"Status: Enabled{nl}{nl}");

@@ -16,11 +16,11 @@ This article explains hosting and scaling considerations for high-traffic apps t
 
 ## Sticky Sessions
 
-SignalR requires that all HTTP requests for a specific connection be handled by the same server process. When SignalR is running on a server farm (multiple servers), "sticky sessions" must be used. "Sticky sessions" are also called session affinity by some load balancers. Azure App Service uses [Application Request Routing](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (ARR) to route requests. Enabling the "ARR Affinity" setting in your Azure App Service will enable "sticky sessions". The only circumstances in which sticky sessions are not required are:
+SignalR requires that all HTTP requests for a specific connection be handled by the same server process. When SignalR is running on a server farm (multiple servers), "sticky sessions" must be used. "Sticky sessions" are also called session affinity. Azure App Service uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) to route requests. Enabling the "Session affinity" (ARR Affinity) setting in your Azure App Service enables "sticky sessions." The only circumstances in which sticky sessions aren't required for the app are:
 
-1. When hosting on a single server, in a single process.
-1. When using the Azure SignalR Service.
-1. When all clients are configured to **only** use WebSockets, **and** the [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration.
+1. When hosting on a single server in a single process.
+1. When using the Azure SignalR Service (sticky sessions are enabled for the service, not the app).
+1. When all clients are configured to **only** use WebSockets, **and** the [`SkipNegotiation` setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration.
 
 In all other circumstances (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
 

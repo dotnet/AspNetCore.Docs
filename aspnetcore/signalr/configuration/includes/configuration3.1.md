@@ -220,7 +220,7 @@ let connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-In this version of the Java client websockets is the only available transport.
+In this version of the Java client WebSockets is the only available transport.
 
 In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
