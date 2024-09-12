@@ -475,7 +475,7 @@ else if (ErrorContent is not null)
     protected override Task OnErrorAsync(Exception ex)
     {
         Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 }
 ```
@@ -498,7 +498,7 @@ public class CustomErrorBoundary : ErrorBoundary
     protected override async Task OnErrorAsync(Exception ex)
     {
         Logger.LogError(ex, "😈 A rotten gremlin got us. Sorry!");
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 }
 ```
