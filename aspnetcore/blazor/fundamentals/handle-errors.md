@@ -438,7 +438,7 @@ The following example permits the user to recover from the exception with a butt
     <ErrorContent>
         <div class="alert alert-danger" role="alert">
             <p class="fs-3 fw-bold">😈 A rotten gremlin got us. Sorry!</p>
-            <p>@context.GetType(): @context.Message</p>
+            <p>@context.HelpLink</p>
             <button class="btn btn-info" @onclick="_ => errorBoundary.Recover()">
                 Clear
             </button>
@@ -457,7 +457,7 @@ You can also subclass <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> f
 
 ```razor
 @inherits ErrorBoundary
-@inject ILogger<CustomErrorBoundary>? Logger
+@inject ILogger<CustomErrorBoundary> Logger
 
 @if (CurrentException is null)
 {
@@ -469,10 +469,10 @@ else if (ErrorContent is not null)
 }
 
 @code {
-    protected override async Task OnErrorAsync(Exception ex)
+    protected override Task OnErrorAsync(Exception ex)
     {
-        await Task.Yield();
-        Logger?.LogError("{Type}: {Message}", ex.GetType(), ex.Message);
+        Logger.LogError(ex, "An error occurred while rendering a component.");
+        return Task.CompletedTask;
     }
 }
 ```
@@ -490,12 +490,12 @@ namespace BlazorSample;
 public class CustomErrorBoundary : ErrorBoundary
 {
     [Inject]
-    ILogger<CustomErrorBoundary>? Logger {  get; set; }
+    ILogger<CustomErrorBoundary> Logger {  get; set; } = default!;
 
     protected override async Task OnErrorAsync(Exception ex)
     {
-        await Task.Yield();
-        Logger?.LogError("{Type}: {Message}", ex.GetType(), ex.Message);
+        Logger.LogError(ex, "An error occurred while rendering a component.");
+        return Task.CompletedTask;
     }
 }
 ```
