@@ -191,7 +191,12 @@ For more information on session affinity with Azure App Service hosting, see <xr
 
 ## Azure SignalR Service
 
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for server-side development hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a server-side app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+
+The service isn't required for Blazor apps but can be helpful:
+
+* To facilitate connection scale out.
+* Handle global distribution.
 
 For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
 

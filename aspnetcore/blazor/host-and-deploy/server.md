@@ -50,7 +50,7 @@ For more information on SignalR in Blazor apps, including configuration guidance
 
 ### Transports
 
-Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](xref:signalr/security). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
+Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](xref:signalr/security). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
 
 A console warning appears if Long Polling is utilized:
 
@@ -70,18 +70,29 @@ Recommendations for global deployments to geographical data centers:
 
 Hosting on Azure App Service requires configuration for WebSockets and session affinity, also called Application Request Routing (ARR) affinity.
 
-See the following resources:
+> [!NOTE]
+> If the app optionally uses the [Azure SignalR Service](#azure-signalr-service), the App Service doesn't require the configuration of WebSockets and session affinity described in this section. Clients connect their WebSockets to the Azure SignalR Service, not directly to the app.
 
-* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service)
-* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits)
+Enable the following for the app's registration in Azure App Service:
 
-If the app is deployed to a single server to run in a single process, the app doesn't require using the [Azure SignalR Service](#azure-signalr-service).
+* [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function. The default setting is **Off**.
+* Session affinity to route requests from a user back to the same App Service instance. The default setting is **On**.
 
-If the app is deployed to a webfarm (multiple servers), the [Azure SignalR Service](#azure-signalr-service) is recommended.
+1. In the Azure portal, navigate to the web app in **App Services**.
+1. Open **Settings** > **Configuration**.
+1. Set **Web sockets** to **On**.
+1. Verify that **Session affinity** is set to **On**.
+
+If you wish to disable the session affinity feature for a Blazor app that runs on a single Azure instance, see [Disable Session affinity cookie (ARR cookie) for Azure web apps](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html).
 
 ## Azure SignalR Service
 
-The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's Blazor hub for scaling up to a large number of concurrent SignalR connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography. If your hosting environment already handles these concerns, using the Azure SignalR Service isn't necessary.
+The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+
+The service isn't required for Blazor apps but can be helpful:
+
+* To facilitate connection scale out.
+* Handle global distribution.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -94,24 +105,60 @@ The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in c
 
 :::moniker-end
 
-For guidance on deployment and configuration for the Azure SignalR Service:
+We recommend using WebSockets for Blazor apps deployed to Azure App Service. If [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
 
-* Only when the app is in production on Azure App Service, see <xref:signalr/publish-to-azure-web-app>.
-* When you want the app to adopt the Azure SignalR Service during development, see [Build Blazor Server chat app: Further topic: Enable Azure SignalR Service in local development](https://github.com/aspnet/AzureSignalR-samples/tree/main/samples/BlazorChat#further-topic-enable-azure-signalr-service-in-local-development).
+In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service if the service ever falls back from WebSockets to Long Polling. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection. The service also cleans up connections when the cached waiting-to-write buffer size is greater than 1 MB for improved service performance.
 
-We recommend using WebSockets for server-side Blazor apps deployed to Azure App Service. If [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
+### Add the service as a dependency to a production deployment
 
-In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service if the service ever falls back from WebSockets to Long Polling. If the next poll request doesn't arrive within the maximum poll interval, Azure SignalR Service closes the client connection. The Azure SignalR Service also cleans up connections when the cached waiting-to-write buffer size is greater than 1 MB for improved service performance.
+For guidance, see <xref:signalr/publish-to-azure-web-app>.
+
+### Use the service locally
+
+Add package reference to the app for [`Microsoft.Azure.SignalR`](https://www.nuget.org/packages/Microsoft.Azure.SignalR).
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Implement and configure the Azure SignalR Service in the app's service configuration of the `Program` file:
+
+```csharp
+builder.Services.AddSignalR().AddAzureSignalR();
+```
+
+Configure the following for the service in the app settings file (`appsettings.json`):
+
+* Session affinity (sticky sessions) with the `ServerStickyMode` key. Set the value to `Required`.
+* Connection string (`{CONNECTION STRING}` placeholder in the following example). To avoid maintaining the connection string in plain text in the file, use the [Secret Manager tool](xref:security/app-secrets) to supply the string.
+
+In `appsettings.json`:
+
+```json
+"Azure": {
+  "SignalR": {
+    "Enabled": true,
+    "ServerStickyMode": "Required",
+    "ConnectionString": {CONNECTION STRING}
+  }
+}
+```
+
+Assign the Azure SignalR Service SDK as a hosting startup assembly. Edit `Properties/launchSettings.json`. Add an `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` entry to `environmentVariables` of the `https` profile with a value of `Microsoft.Azure.SignalR`:
+
+```json
+"environmentVariables": {
+    "ASPNETCORE_ENVIRONMENT": "Development",
+    "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.Azure.SignalR"
+}
+```
+
+### Additional information on the Azure SignalR Service
 
 For more information, see:
 
-* [Azure SignalR Service](/products/signalr-service/)
+* [Azure SignalR Service](https://azure.microsoft.com/products/signalr-service/)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/scale#azure-signalr-service>
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 * <xref:signalr/publish-to-azure-web-app>
-* <xref:signalr/configuration>
-* [Build Blazor Server chat app](https://github.com/aspnet/AzureSignalR-samples/tree/main/samples/BlazorChat)
 
 :::moniker range=">= aspnetcore-6.0"
 
