@@ -349,10 +349,9 @@ app.MapGet("/attributes",
 C# classes or records used in request or response bodies are represented as schemas
 in the generated OpenAPI document.
 By default, only public properties are represented in the schema, but there are
-<xref:System.Text.Json.Serialization.JsonSerializerOptions>
-to also create schema properties for fields.
+<xref:System.Text.Json.JsonSerializerOptions> to also create schema properties for fields.
 
-When the <xref:System.Text.Json.Serialization.PropertyNamingPolicy> is set to camel-case (this is the default
+When the <xref:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy> is set to camel-case (this is the default
 in ASP.NET web applications), property names in a schema are the camel-case form
 of the class or record property name.
 The <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> can be used on an individual property to specify the name
@@ -417,7 +416,7 @@ but validation must be performed by the route handler.
 
 Properties can also be marked as `required` with the [required] modifier.
 
-[required]: https://learn.microsoft.com/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier
+[required]: /dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier
 
 ### enum
 
@@ -465,7 +464,7 @@ but since the discriminator property is not defined in the concrete base class, 
 
 You can use a schema transformer to override any default metadata or add additional metadata,
 such as `example` values, to the generated schema.
-See <xref:use-schema-transformers> for more information.
+See [Use schema transformers](#use-schema-transformers) for more information.
 
 ## Options to Customize OpenAPI document generation
 
