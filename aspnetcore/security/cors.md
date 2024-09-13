@@ -17,7 +17,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 This article shows how **C**ross-**O**rigin **R**esource **S**haring ([CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS)) is enabled in an ASP.NET Core app.
 
-
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites to make cross-origin requests to your app. For more information, see the [Mozilla CORS article](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
 [Cross Origin Resource Sharing](https://www.w3.org/TR/cors/) (CORS):
@@ -41,7 +40,7 @@ These two URLs have the same origin:
 These URLs have different origins than the previous two URLs:
 
 * `https://example.net`: Different domain
-* `https://www.example.com/foo.html`: Different subdomain
+* `https://contoso.example.com/foo.html`: Different subdomain
 * `http://example.com/foo.html`: Different scheme
 * `https://example.com:9000/foo.html`: Different port
 
