@@ -611,7 +611,7 @@ The following `TodoItems2Controller` provides similar endpoints, but includes ex
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
-The preceding code can be tested by deploying the sample to Azure.In the **Controller** drop down list, select **Preflight** and then **Set Controller**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
+The preceding code can be tested by deploying the sample to Azure. In the **Controller** drop down list, select **Preflight** and then **Set Controller**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
 
 ## Additional resources
 
