@@ -382,18 +382,15 @@ The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as
 | object         | _omitted_      |                  |
 | dynamic        | _omitted_      |                  |
 
-Note that object and dynamic types have _no_ type defined in the OpenAPI because
-these can contain data of any type, including primitive types like int or string.
+Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
 
-The `type` and `format` can also be set with a [Schema Transformer]. For example,
-you may want the `format` of decimal types to be `decimal` instead of `double`.
+The `type` and `format` can also be set with a [Schema Transformer]. For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
 ## Using attributes to add metadata
 
-ASP.NET will use metadata from attributes on class or record properties to set metadata
-on the corresponding properties of the generated schema.
-The following table summarizes attributes from the System.ComponentModel namespace
-that provide metadata for the generated schema.
+ASP.NET uses metadata from attributes on class or record properties to set metadata on the corresponding properties of the generated schema.
+
+The following table summarizes attributes from the `System.ComponentModel` namespace that provide metadata for the generated schema:
 
 | Attribute                    | Description |
 | ---------------------------- | ----------- |
@@ -405,66 +402,46 @@ that provide metadata for the generated schema.
 | <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>         | Sets the `maxLength` of a string. |
 | <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute> | Sets the `pattern` of a string. |
 
-Note that in controller-based apps, these attributes add filters to the operation
-to validate any incoming data satisfies the constraints.
-In Minimal APIs, these attributes will set the metadata in the generated schema
-but validation must be performed by the route handler.
+Note that in controller-based apps, these attributes add filters to the operation to validate any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed by the route handler.
 
 ## Other sources of metadata for generated schemas
 
 ### required
 
-Properties can also be marked as `required` with the [required] modifier.
-
-[required]: /dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier
+Properties can also be marked as `required` with the [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier.
 
 ### enum
 
-Properties with an `enum` type are represented as an `enum` in the generated schema. Since all C# enums are
-integer-based, the property is defined with `type: integer` and `format: int32`, and
-the `enum` values are the implicit or explicit values of the C# enum.
+Properties with an `enum` type are represented as an `enum` in the generated schema. Since all C# enums are integer-based:
 
-To get string-based enums, you can use the <xref:System.Text.Json.Serialization.JsonConverterAttribute> with
-a <xref:System.Text.Json.Serialization.JsonStringEnumConverter> on a regular C# enum type.
+* The property is defined with `type: integer` and `format: int32`
+*  The `enum` values are the implicit or explicit values of the C# enum.
 
-Note: the <xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute> does not set the `enum` values of a property.
+To get string-based enums, use the <xref:System.Text.Json.Serialization.JsonConverterAttribute> with a <xref:System.Text.Json.Serialization.JsonStringEnumConverter> on a regular C# enum type.
+
+**Note:** The <xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute> does not set the `enum` values of a property.
 
 ### nullable
 
-Properties defined as a nullable value or reference type will have `nullable: true` in the generated schema.
-This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a
-valid value for a nullable property.
+Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
 
 ### additionalProperties
 
-Schemas are generated without an `additionalProperties` assertion by default, which implies the default of `true`.
-This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which silently ignores
-additional properties in a JSON object.
+Schemas are generated without an `additionalProperties` assertion by default, which implies the default of `true`. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which silently ignores additional properties in a JSON object.
 
-If the additional properties of a schema should only have values of a specific type,
-define the property or class as a Dictionary<string, type>.
-The key type for the dictionary must be `string`.
-This will generate a schema with `additionalProperties` specifying the schema for "type" as the required value types.
+If the additional properties of a schema should only have values of a specific type, define the property or class as a `Dictionary<string, type>`. The key type for the dictionary must be `string`. This generates a schema with `additionalProperties` specifying the schema for "type" as the required value types.
 
 ### metadata for polymorphic types
 
-Use the <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> and <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute>
-attributes on a parent class to to specify the discriminator field and subtypes for a polymorphic type.
+Use the <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> and <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> attributes on a parent class to to specify the discriminator field and subtypes for a polymorphic type.
 
-The <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> adds the discriminator field to the schema for each subclass,
-with an enum specifying the specific discriminator value for the subclass.
-This attribute also modifies the constructor of each derived class to set the discriminator value.
+The <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> adds the discriminator field to the schema for each subclass, with an enum specifying the specific discriminator value for the subclass. This attribute also modifies the constructor of each derived class to set the discriminator value.
 
-An abstract class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute will have a `discriminator` field in the schema,
-but a concrete class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute will not have a `discriminator` field.
-OpenAPI requires that the discriminator property be a required property in the schema,
-but since the discriminator property is not defined in the concrete base class, the schema cannot include a `discriminator` field.
+An abstract class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute has a `discriminator` field in the schema, but a concrete class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute doesn't have a `discriminator` field. OpenAPI requires that the discriminator property be a required property in the schema, but since the discriminator property isn't defined in the concrete base class, the schema cannot include a `discriminator` field.
 
 ## Adding metadata with a schema transformer
 
-You can use a schema transformer to override any default metadata or add additional metadata,
-such as `example` values, to the generated schema.
-See [Use schema transformers](#use-schema-transformers) for more information.
+A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](#use-schema-transformers) for more information.
 
 ## Options to Customize OpenAPI document generation
 
@@ -520,7 +497,7 @@ Because the OpenAPI document is served via a route handler endpoint, any customi
 
 #### Limit OpenAPI document access to authorized users
 
-The OpenAPI endpoint  doesn't enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document. For example, in the following code, access to the OpenAPI document is limited to those with the `tester` role:
+The OpenAPI endpoint  doesn't enable any authorization checks by default. However, authorization checks can be applied to the OpenAPI document. In the following code, access to the OpenAPI document is limited to those with the `tester` role:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithauth)]
 
@@ -578,7 +555,7 @@ Document transformers have access to a context object that includes:
 * The list of `ApiDescriptionGroups` associated with that document.
 * The `IServiceProvider` used in document generation.
 
-Document transformers also can mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
+Document transformers can also mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
