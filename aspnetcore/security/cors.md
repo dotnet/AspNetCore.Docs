@@ -434,9 +434,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/do
 
 The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-Select the **PUT** test button on the deployed sample.
-
- The `Origin` header:
+The following is an example of a cross-origin request from the **Values** test button to `https://cors1.azurewebsites.net/api/values`. The `Origin` header:
 
 * Provides the domain of the site that's making the request.
 * Is required and must be different from the host.
