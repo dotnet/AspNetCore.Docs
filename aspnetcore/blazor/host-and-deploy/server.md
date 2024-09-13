@@ -62,7 +62,7 @@ Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
 * Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#control-when-the-reconnection-ui-appears>.
-* For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
+* For Azure hosting outside of Azure App Service, use the [Azure SignalR Service](#azure-signalr-service).
 
 :::moniker-end
 
@@ -71,7 +71,7 @@ Recommendations for global deployments to geographical data centers:
 Hosting on Azure App Service requires configuration for WebSockets and session affinity, also called Application Request Routing (ARR) affinity.
 
 > [!NOTE]
-> If the app optionally uses the [Azure SignalR Service](#azure-signalr-service), the App Service doesn't require the configuration of WebSockets and session affinity described in this section. Clients connect their WebSockets to the Azure SignalR Service, not directly to the app.
+> A Blazor app on Azure App Service doesn't require [Azure SignalR Service](#azure-signalr-service).
 
 Enable the following for the app's registration in Azure App Service:
 
@@ -89,7 +89,7 @@ If you wish to disable the session affinity feature for a Blazor app that runs o
 
 The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
-The service isn't required for Blazor apps but can be helpful:
+The service isn't required for Blazor apps hosted in Azure App Service but can be helpful in other hosting environments:
 
 * To facilitate connection scale out.
 * Handle global distribution.
