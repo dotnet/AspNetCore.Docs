@@ -384,7 +384,7 @@ The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as
 
 Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
 
-The `type` and `format` can also be set with a [Schema Transformer]. For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
+The `type` and `format` can also be set with a [Schema Transformer](#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
 ## Using attributes to add metadata
 
