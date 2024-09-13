@@ -402,7 +402,7 @@ The following table summarizes attributes from the `System.ComponentModel` names
 | <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>         | Sets the `maxLength` of a string. |
 | <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute> | Sets the `pattern` of a string. |
 
-Note that in controller-based apps, these attributes add filters to the operation to validate any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed by the route handler.
+Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed by the route handler.
 
 ## Other sources of metadata for generated schemas
 
