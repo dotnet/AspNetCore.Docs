@@ -402,7 +402,7 @@ The following table summarizes attributes from the `System.ComponentModel` names
 | <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>         | Sets the `maxLength` of a string. |
 | <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute> | Sets the `pattern` of a string. |
 
-Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed by the route handler.
+Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
 
 ## Other sources of metadata for generated schemas
 
@@ -431,7 +431,7 @@ Schemas are generated without an `additionalProperties` assertion by default, wh
 
 If the additional properties of a schema should only have values of a specific type, define the property or class as a `Dictionary<string, type>`. The key type for the dictionary must be `string`. This generates a schema with `additionalProperties` specifying the schema for "type" as the required value types.
 
-### metadata for polymorphic types
+### Metadata for polymorphic types
 
 Use the <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> and <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> attributes on a parent class to to specify the discriminator field and subtypes for a polymorphic type.
 
