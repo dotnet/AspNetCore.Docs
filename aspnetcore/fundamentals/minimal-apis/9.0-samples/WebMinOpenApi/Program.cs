@@ -235,10 +235,7 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
 
 #if SCHEMAtransformer1
 // <snippet_schematransformer1>
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder();
 
