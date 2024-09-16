@@ -344,6 +344,101 @@ app.MapGet("/attributes",
   () => "Hello world!");
 ```
 
+## Including OpenAPI metadata for data types
+
+C# classes or records used in request or response bodies are represented as schemas
+in the generated OpenAPI document.
+By default, only public properties are represented in the schema, but there are
+<xref:System.Text.Json.JsonSerializerOptions> to also create schema properties for fields.
+
+When the <xref:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy> is set to camel-case (this is the default
+in ASP.NET web applications), property names in a schema are the camel-case form
+of the class or record property name.
+The <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> can be used on an individual property to specify the name
+of the property in the schema.
+
+## type and format
+
+The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as follows:
+
+| C# Type        | OpenAPI `type` | OpenAPI `format` |
+| -------------- | -------------- | ---------------- |
+| int            | integer        | int32            |
+| long           | integer        | int64            |
+| short          | integer        | int16            |
+| byte           | integer        | uint8            |
+| float          | number         | float            |
+| double         | number         | double           |
+| decimal        | number         | double           |
+| bool           | boolean        |                  |
+| string         | string         |                  |
+| char           | string         | char             |
+| byte[]         | string         | byte             |
+| DateTimeOffset | string         | date-time        |
+| DateOnly       | string         | date             |
+| TimeOnly       | string         | time             |
+| Uri            | string         | uri              |
+| Guid           | string         | uuid             |
+| object         | _omitted_      |                  |
+| dynamic        | _omitted_      |                  |
+
+Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
+
+The `type` and `format` can also be set with a [Schema Transformer](#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
+
+## Using attributes to add metadata
+
+ASP.NET uses metadata from attributes on class or record properties to set metadata on the corresponding properties of the generated schema.
+
+The following table summarizes attributes from the `System.ComponentModel` namespace that provide metadata for the generated schema:
+
+| Attribute                    | Description |
+| ---------------------------- | ----------- |
+| <xref:System.ComponentModel.DescriptionAttribute>                       | Sets the `description` of a property in the schema. |
+| <xref:System.ComponentModel.DataAnnotations.RequiredAttribute>          | Marks a property as `required` in the schema. |
+| <xref:System.ComponentModel.DefaultValueAttribute>                      | Sets the `default` value of a property in the schema. |
+| <xref:System.ComponentModel.DataAnnotations.RangeAttribute>             | Sets the `minimum` and `maximum` value of an integer or number. |
+| <xref:System.ComponentModel.DataAnnotations.MinLengthAttribute>         | Sets the `minLength` of a string. |
+| <xref:System.ComponentModel.DataAnnotations.MaxLengthAttribute>         | Sets the `maxLength` of a string. |
+| <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute> | Sets the `pattern` of a string. |
+
+Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
+
+## Other sources of metadata for generated schemas
+
+### required
+
+Properties can also be marked as `required` with the [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier.
+
+### enum
+
+Enum types in C# are integer-based, but can be represented as strings in JSON with a  <xref:System.Text.Json.Serialization.JsonConverterAttribute> and a <xref:System.Text.Json.Serialization.JsonStringEnumConverter>. When an enum type is represented as a string in JSON, the generated schema will have an `enum` property with the string values of the enum.
+An enum type without a  <xref:System.Text.Json.Serialization.JsonConverterAttribute> will be defined as `type: integer` in the generated schema.
+
+**Note:** The <xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute> does not set the `enum` values of a property.
+
+### nullable
+
+Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
+
+### additionalProperties
+
+Schemas are generated without an `additionalProperties` assertion by default, which implies the default of `true`. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which silently ignores additional properties in a JSON object.
+
+If the additional properties of a schema should only have values of a specific type, define the property or class as a `Dictionary<string, type>`. The key type for the dictionary must be `string`. This generates a schema with `additionalProperties` specifying the schema for "type" as the required value types.
+
+### Metadata for polymorphic types
+
+Use the <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> and <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> attributes on a parent class to to specify the discriminator field and subtypes for a polymorphic type.
+
+The <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> adds the discriminator field to the schema for each subclass, with an enum specifying the specific discriminator value for the subclass. This attribute also modifies the constructor of each derived class to set the discriminator value.
+
+An abstract class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute has a `discriminator` field in the schema, but a concrete class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute doesn't have a `discriminator` field. OpenAPI requires that the discriminator property be a required property in the schema, but since the discriminator property isn't defined in the concrete base class, the schema cannot include a `discriminator` field.
+
+## Adding metadata with a schema transformer
+
+A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](#use-schema-transformers) for more information.
+
 ## Options to Customize OpenAPI document generation
 
 The following sections demonstrate how to customize OpenAPI document generation.
@@ -398,7 +493,7 @@ Because the OpenAPI document is served via a route handler endpoint, any customi
 
 #### Limit OpenAPI document access to authorized users
 
-The OpenAPI endpoint  doesn't enable any authorization checks by default. However, it's possible to limit access to the OpenAPI document. For example, in the following code, access to the OpenAPI document is limited to those with the `tester` role:
+The OpenAPI endpoint  doesn't enable any authorization checks by default. However, authorization checks can be applied to the OpenAPI document. In the following code, access to the OpenAPI document is limited to those with the `tester` role:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_mapopenapiwithauth)]
 
@@ -422,10 +517,11 @@ Transformers provide an API for modifying the OpenAPI document with user-defined
 * Modifying descriptions for parameters or operations.
 * Adding top-level information to the OpenAPI document.
 
-Transformers fall into two categories:
+Transformers fall into three categories:
 
 * Document transformers have access to the entire OpenAPI document. These can be used to make global modifications to the document.
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
+* Schema transformers apply to each schema in the document. These can be used to modify the schema of request or response bodies, or any nested schemas.
 
 Transformers can be registered onto the document by calling the [`AddDocumentTransformer`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,90bbc6506b8eff7a) method on the [`OpenApiOptions`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,c0a8b420f4ce6918) object. The following snippet shows different ways to register transformers onto the document:
 
@@ -455,7 +551,7 @@ Document transformers have access to a context object that includes:
 * The list of `ApiDescriptionGroups` associated with that document.
 * The `IServiceProvider` used in document generation.
 
-Document transformers also can mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
+Document transformers can also mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
@@ -486,6 +582,23 @@ Operation transformers have access to a context object which contains:
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
+
+### Use schema transformers
+
+Schemas are the data models that are used in request and response bodies in an OpenAPI document. Schema transformers are useful when a modification:
+
+* Should be made to each schema in the document, or
+* Conditionally applied to certain schemas.
+
+Schema transformers have access to a context object which contains:
+
+* The name of the document the schema belongs to.
+* The JSON type information associated with the target schema.
+* The `IServiceProvider` used in document generation.
+
+For example, the following schema transformer sets the `format` of decimal types to `decimal` instead of `double`:
+
+[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_schematransformer1)]
 
 ## Additional resources
 
