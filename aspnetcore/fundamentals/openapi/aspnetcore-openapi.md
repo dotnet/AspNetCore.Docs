@@ -412,12 +412,8 @@ Properties can also be marked as `required` with the [required](/dotnet/csharp/l
 
 ### enum
 
-Properties with an `enum` type are represented as an `enum` in the generated schema. Since all C# enums are integer-based:
-
-* The property is defined with `type: integer` and `format: int32`
-*  The `enum` values are the implicit or explicit values of the C# enum.
-
-To get string-based enums, use the <xref:System.Text.Json.Serialization.JsonConverterAttribute> with a <xref:System.Text.Json.Serialization.JsonStringEnumConverter> on a regular C# enum type.
+Enum types in C# are integer-based, but can be represented as strings in JSON with a  <xref:System.Text.Json.Serialization.JsonConverterAttribute> and a <xref:System.Text.Json.Serialization.JsonStringEnumConverter>. When an enum type is represented as a string in JSON, the generated schema will have an `enum` property with the string values of the enum.
+An enum type without a  <xref:System.Text.Json.Serialization.JsonConverterAttribute> will be defined as `type: integer` in the generated schema.
 
 **Note:** The <xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute> does not set the `enum` values of a property.
 
