@@ -87,7 +87,7 @@ With regard to DP, you must clearly understand where the code is executing. For 
 
 ## Denial of service
 
-At the server level, the framework provides limits on request/response parameters, such as the maximum size of the request and the header size. In regard to app code, Blazor's form mapping system defines limits similar to those defined by MVC's model binding system:
+At the server level, the framework provides limits on request/response parameters, such as the maximum size of the request and the header size. In regard to app code, Blazor's form mapping system defines limits similar to those defined by the MVC model binding system:
 
 * Limit on the maximum number of errors.
 * Limit on the maximum recursion depth for the binder.

@@ -277,5 +277,5 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Additional resources
 
-* [Mandrill.net (`feinoujc/Mandrill.net` GitHub repository)](https://github.com/feinoujc/Mandrill.net)
+* [Mandrill.net (GitHub repository)](https://github.com/feinoujc/Mandrill.net)
 * [Mailchimp developer: Transactional API](https://mailchimp.com/developer/transactional/docs/fundamentals/)
