@@ -579,7 +579,7 @@ A loading progress indicator shows the loading progress of the app to users, ind
 The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
 
 * Showing multiple loading indicators on the same rendered page.
-* Inadvertently discarding prerendered content while the WebAssembly runtime is loading.
+* Inadvertently discarding prerendered content while the .NET WebAssembly runtime is loading.
 
 <!-- UPDATE 9.0 Will be removed for a new feature in this area. 
                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
@@ -814,7 +814,7 @@ Standalone Blazor WebAssembly:
 ```
 
 > [!NOTE]
-> The .NET runtime instance can be accessed using the Blazor WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
+> The .NET runtime instance can be accessed using the .NET WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
 >
 > For more information on the .NET WebAssembly runtime configuration, see the [runtime's TypeScript definition file (`dotnet.d.ts`) in the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts).
 >
