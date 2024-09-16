@@ -107,49 +107,7 @@ The service isn't required for Blazor apps hosted in Azure App Service or Azure 
 
 In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service if the service ever falls back from WebSockets to Long Polling. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection.
 
-### Add the service as a dependency to a production deployment
-
-For guidance, see <xref:signalr/publish-to-azure-web-app>.
-
-### Use the service locally
-
-Add package reference to the app for [`Microsoft.Azure.SignalR`](https://www.nuget.org/packages/Microsoft.Azure.SignalR).
-
-[!INCLUDE[](~/includes/package-reference.md)]
-
-Implement and configure the Azure SignalR Service in the app's service configuration of the `Program` file:
-
-```csharp
-builder.Services.AddSignalR().AddAzureSignalR();
-```
-
-Configure the following for the service in the app settings file (`appsettings.json`):
-
-* Session affinity (sticky sessions) with the `ServerStickyMode` key. Set the value to `Required`.
-* Connection string (`{CONNECTION STRING}` placeholder in the following example). To avoid maintaining the connection string in plain text in the file, use the [Secret Manager tool](xref:security/app-secrets) to supply the string.
-
-In `appsettings.json`:
-
-```json
-"Azure": {
-  "SignalR": {
-    "Enabled": true,
-    "ServerStickyMode": "Required",
-    "ConnectionString": {CONNECTION STRING}
-  }
-}
-```
-
-Assign the Azure SignalR Service SDK as a hosting startup assembly. Edit `Properties/launchSettings.json`. Add an `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` entry to `environmentVariables` of the `https` profile with a value of `Microsoft.Azure.SignalR`:
-
-```json
-"environmentVariables": {
-    "ASPNETCORE_ENVIRONMENT": "Development",
-    "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.Azure.SignalR"
-}
-```
-
-### Additional information on the Azure SignalR Service
+For guidance on how to add the service as a dependency to a production deployment, see <xref:signalr/publish-to-azure-web-app>.
 
 For more information, see:
 
