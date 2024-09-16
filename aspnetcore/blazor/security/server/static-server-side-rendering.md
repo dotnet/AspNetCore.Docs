@@ -76,18 +76,18 @@ The framework provides built-in error handling for the app at the framework leve
 
 Errors that occur during streaming rendering after the response has started to be sent to the client are displayed in the final response as a generic error message. Details about the cause of the error are only included during development.
 
-## Data protection
+## ASP.NET Core Data Protection
 
-The framework offers mechanisms for protecting sensitive information for a given user session and ensures that the built-in components use these mechanisms to protect sensitive information, such as protecting user identity when using cookie authentication. Outside of scenarios handled by the framework, developer code is responsible for protecting other app-specific information. The most common way of doing this is via the ASP.NET Core Data Protection APIs or any other form of encryption. As a general rule, the app is responsible for:
+The framework offers mechanisms for protecting sensitive information for a given user session and ensures that the built-in components use these mechanisms to protect sensitive information, such as protecting user identity when using cookie authentication. Outside of scenarios handled by the framework, developer code is responsible for protecting other app-specific information. The most common way of doing this is via the ASP.NET Core Data Protection (DP) APIs or any other form of encryption. As a general rule, the app is responsible for:
 
 * Making sure that a user can't inspect or modify the private information of another user.
 * Making sure that a user can't modify user data of another user, such as an internal identifier.
 
-With regard to data protection, you must clearly understand where the code is executing. For the static server-side rendering (static SSR) and interactive server-side rendering (interactive SSR), code is stored on the server and never reaches the client. For the Interactive WebAssembly render mode, the app code *always reaches the client*, which means that any sensitive information stored in the app code is available to anyone with access to the app. Obfuscation and other similar technique to "protect" the code isn't effective. Once the code reaches the client, it can be reverse-engineered to extract the sensitive information.
+With regard to DP, you must clearly understand where the code is executing. For the static server-side rendering (static SSR) and interactive server-side rendering (interactive SSR), code is stored on the server and never reaches the client. For the Interactive WebAssembly render mode, the app code *always reaches the client*, which means that any sensitive information stored in the app code is available to anyone with access to the app. Obfuscation and other similar technique to "protect" the code isn't effective. Once the code reaches the client, it can be reverse-engineered to extract the sensitive information.
 
 ## Denial of service
 
-At the server level, the framework provides limits on request/response parameters, such as the maximum size of the request and the header size. In regard to app code, Blazor's form mapping system defines limits similar to those defined by MVC's model binding system:
+At the server level, the framework provides limits on request/response parameters, such as the maximum size of the request and the header size. In regard to app code, Blazor's form mapping system defines limits similar to those defined by the MVC model binding system:
 
 * Limit on the maximum number of errors.
 * Limit on the maximum recursion depth for the binder.
