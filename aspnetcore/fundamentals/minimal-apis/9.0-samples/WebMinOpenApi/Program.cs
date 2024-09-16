@@ -1,7 +1,7 @@
-//#define DEFAULT 
-//#define DOCUMENTtransformerInOut 
-//#define DOCUMENTtransformer1 
-//#define DOCUMENTtransformer2 
+//#define DEFAULT
+//#define DOCUMENTtransformerInOut
+//#define DOCUMENTtransformer1
+//#define DOCUMENTtransformer2
 #define DOCUMENTtransformerUse999
 //#define DEFAULT
 //#define FIRST
@@ -233,6 +233,38 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
 // </snippet_multidoc_operationtransformer1>
 #endif
 
+#if SCHEMAtransformer1
+// <snippet_schematransformer1>
+using Microsoft.AspNetCore.OpenApi;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddOpenApi(options => {
+    // Schema transformer to set the format of decimal to 'decimal'
+    options.AddSchemaTransformer((schema, context, cancellationToken) =>
+    {
+        if (context.JsonTypeInfo.Type == typeof(decimal))
+        {
+            schema.Format = "decimal";
+        }
+        return Task.CompletedTask;
+    });
+});
+
+var app = builder.Build();
+
+app.MapOpenApi();
+
+app.MapGet("/", () => new Body { Amount = 1.1m });
+
+app.Run();
+
+public class Body {
+    public decimal Amount { get; set; }
+}
+// </snippet_schematransformer1>
+#endif
+
 #if SWAGGERUI
 // <snippet_swaggerui>
 using Microsoft.AspNetCore.Authentication;
@@ -371,7 +403,7 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.AddDocumentTransformer((document, context, cancellationToken) 
+    options.AddDocumentTransformer((document, context, cancellationToken)
                              => Task.CompletedTask);
     options.AddDocumentTransformer(new MyDocumentTransformer());
     options.AddDocumentTransformer<MyDocumentTransformer>();
