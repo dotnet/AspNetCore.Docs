@@ -159,9 +159,9 @@ builder.Services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## Change all data protection token lifespans
+## Change all Data Protection token lifespans
 
-The following code changes all data protection tokens timeout period to 3 hours:
+The following code changes all ASP.NET Core Data Protection tokens timeout period to 3 hours:
 
 ```csharp
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
