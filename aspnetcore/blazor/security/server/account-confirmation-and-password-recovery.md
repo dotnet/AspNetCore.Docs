@@ -150,7 +150,7 @@ Also in the `RegisterConfirmation` component, remove the Razor markup and code f
 
 ## Email and activity timeout
 
-The default inactivity timeout is 14 days. The following code sets the inactivity timeout to 5 days with sliding expiration:
+The default inactivity timeout is 14 days. The following code sets the inactivity timeout to five days with sliding expiration:
 
 ```csharp
 builder.Services.ConfigureApplicationCookie(options => {
@@ -159,9 +159,9 @@ builder.Services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## Change all Data Protection token lifespans
+## Change all ASP.NET Core Data Protection token lifespans
 
-The following code changes all ASP.NET Core Data Protection tokens timeout period to 3 hours:
+The following code changes Data Protection tokens' timeout period to three hours:
 
 ```csharp
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
