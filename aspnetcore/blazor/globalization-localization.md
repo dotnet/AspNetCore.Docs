@@ -307,7 +307,7 @@ Prevent Blazor autostart by adding `autostart="false"` to [Blazor's `<script>` t
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 Add the following `<script>` block after [Blazor's `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) and before the closing `</body>` tag:
 

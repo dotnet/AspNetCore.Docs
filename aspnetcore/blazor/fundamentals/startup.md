@@ -89,7 +89,7 @@ Standalone Blazor WebAssembly and Blazor Server:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -329,7 +329,7 @@ The following example starts Blazor when the document is ready:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -344,7 +344,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -431,7 +431,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
 
@@ -483,7 +483,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
@@ -579,7 +579,7 @@ A loading progress indicator shows the loading progress of the app to users, ind
 The loading progress indicator used in Blazor WebAssembly apps isn't present in an app created from the Blazor Web App project template. Usually, a loading progress indicator isn't desirable for interactive WebAssembly components because Blazor Web Apps prerender client-side components on the server for fast initial load times. For mixed-render-mode situations, the framework or developer code must also be careful to avoid the following problems:
 
 * Showing multiple loading indicators on the same rendered page.
-* Inadvertently discarding prerendered content while the WebAssembly runtime is loading.
+* Inadvertently discarding prerendered content while the .NET WebAssembly runtime is loading.
 
 <!-- UPDATE 9.0 Will be removed for a new feature in this area. 
                 Tracked by: https://github.com/dotnet/aspnetcore/issues/49056 -->
@@ -779,7 +779,7 @@ In advanced programming scenarios, the `configureRuntime` function with the `dot
 
 The `configureRuntime` function can also be used to [enable integration with a browser profiler](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#profiling).
 
-In the following examples that set an environment variable:
+For the placeholders in the following examples that set an environment variable:
 
 * The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 * The `{NAME}` placeholder is the environment variable's name.
@@ -814,7 +814,7 @@ Standalone Blazor WebAssembly:
 ```
 
 > [!NOTE]
-> The .NET runtime instance can be accessed using the Blazor WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
+> The .NET runtime instance can be accessed using the .NET WebAssembly Runtime API (`Blazor.runtime`). For example, the app's build configuration can be obtained using `Blazor.runtime.runtimeBuildInfo.buildConfiguration`.
 >
 > For more information on the .NET WebAssembly runtime configuration, see the [runtime's TypeScript definition file (`dotnet.d.ts`) in the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/blob/main/src/mono/browser/runtime/dotnet.d.ts).
 >
@@ -839,7 +839,7 @@ To disable [enhanced navigation and form handling](xref:blazor/fundamentals/rout
 </script>
 ```
 
-In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
 
 :::moniker-end
 
