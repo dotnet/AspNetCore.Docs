@@ -232,7 +232,7 @@ When prerendering occurs on the server, the component is rendered in the `Develo
 
 > **:::no-loc text="Environment:":::** :::no-loc text="Development":::
 
-When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the Blazor WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment on the client:
+When the component is rerendered just a second or two later, after the Blazor bundle is downloaded and the .NET WebAssembly runtime activates, the values change to reflect that the client is operating in the `Staging` environment on the client:
 
 > **:::no-loc text="Environment:":::** :::no-loc text="Staging":::
 
