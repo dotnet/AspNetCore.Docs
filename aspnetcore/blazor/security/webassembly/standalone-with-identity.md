@@ -57,7 +57,7 @@ builder.Services
 For native and mobile scenarios where some clients don't support cookies, the login API provides a parameter to request tokens.
 
 > [!WARNING]
-> We recommend using cookies for browser-based apps instead of tokens because the browser handles cookies without exposing them to JavaScript. If you opt to use token-based security, as described in this section, you're responsible for ensuring the tokens are kept secure.
+> We recommend using cookies for browser-based apps instead of tokens because the browser handles cookies without exposing them to JavaScript. If you opt to use token-based security in web apps, you're responsible for ensuring the tokens are kept secure.
 
 A custom token (one that is proprietary to the ASP.NET Core Identity platform) is issued that can be used to authenticate subsequent requests. The token should be passed in the `Authorization` header as a bearer token. A refresh token is also provided. This token allows the app to request a new token when the old one expires without forcing the user to log in again.
 
