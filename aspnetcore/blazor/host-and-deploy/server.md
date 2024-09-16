@@ -105,7 +105,7 @@ The service isn't required for Blazor apps hosted in Azure App Service or Azure 
 :::moniker-end
 
 
-In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service if the service ever falls back from WebSockets to Long Polling. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection. The service also cleans up connections when the cached waiting-to-write buffer size is greater than 1 MB for improved service performance.
+In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service if the service ever falls back from WebSockets to Long Polling. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection.
 
 ### Add the service as a dependency to a production deployment
 
