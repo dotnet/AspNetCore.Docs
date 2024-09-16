@@ -62,7 +62,7 @@ Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
 * Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#control-when-the-reconnection-ui-appears>.
-* For Azure hosting outside of Azure App Service, use the [Azure SignalR Service](#azure-signalr-service).
+* Consider using the [Azure SignalR Service](#azure-signalr-service).
 
 :::moniker-end
 
@@ -83,13 +83,12 @@ Enable the following for the app's registration in Azure App Service:
 1. Set **Web sockets** to **On**.
 1. Verify that **Session affinity** is set to **On**.
 
-If you wish to disable the session affinity feature for a Blazor app that runs on a single Azure instance, see [Disable Session affinity cookie (ARR cookie) for Azure web apps](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html).
 
 ## Azure SignalR Service
 
 The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
-The service isn't required for Blazor apps hosted in Azure App Service but can be helpful in other hosting environments:
+The service isn't required for Blazor apps hosted in Azure App Service or Azure Container Apps but can be helpful in other hosting environments:
 
 * To facilitate connection scale out.
 * Handle global distribution.
@@ -105,7 +104,6 @@ The service isn't required for Blazor apps hosted in Azure App Service but can b
 
 :::moniker-end
 
-We recommend using WebSockets for Blazor apps deployed to Azure App Service. If [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
 
 In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service if the service ever falls back from WebSockets to Long Polling. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection. The service also cleans up connections when the cached waiting-to-write buffer size is greater than 1 MB for improved service performance.
 
