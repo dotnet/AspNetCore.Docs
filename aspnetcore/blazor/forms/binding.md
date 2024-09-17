@@ -268,6 +268,59 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship7.razor":::
 
+## Initialize form data with static SSR
+
+When a component adopts static SSR, the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and the [`OnParametersSet{Async}` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) fire when the component is initially rendered and on every form POST to the server. To initialize form model values, confirm if the model already has data before assigning new model values in `OnParametersSet{Async}`, as the following example demonstrates.
+
+`StarshipInit.razor`:
+
+```razor
+@page "/starship-init"
+@inject ILogger<StarshipInit> Logger
+
+<EditForm Model="Model" OnValidSubmit="Submit" FormName="StarshipInit">
+    <div>
+        <label>
+            Identifier:
+            <InputText @bind-Value="Model!.Id" />
+        </label>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private Starship? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    protected override void OnParametersSet()
+    {
+        if (Model!.Id == default)
+        {
+            LoadData();
+        }
+    }
+
+    private void LoadData()
+    {
+        Model!.Id = "Set by LoadData";
+    }
+
+    private void Submit()
+    {
+        Logger.LogInformation("Id = {Id}", Model?.Id);
+    }
+
+    public class Starship
+    {
+        public string? Id { get; set; }
+    }
+}
+```
+
 ## Advanced form mapping error scenarios
 
 The framework instantiates and populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> for a form, which is the context associated with a given form's mapping operation. Each mapping scope (defined by a <xref:Microsoft.AspNetCore.Components.Forms.FormMappingScope> component) instantiates <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext>. Each time a `[SupplyParameterFromForm]` asks the context for a value, the framework populates the <xref:Microsoft.AspNetCore.Components.Forms.FormMappingContext> with the attempted value and any mapping errors.
