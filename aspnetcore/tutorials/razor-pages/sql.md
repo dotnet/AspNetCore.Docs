@@ -6,6 +6,7 @@ ms.author: wpickett
 ms.date: 8/20/2024
 uid: tutorials/razor-pages/sql
 ---
+
 # Part 4 of tutorial series on Razor Pages
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
