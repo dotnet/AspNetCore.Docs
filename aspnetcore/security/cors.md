@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/02/2024
+ms.date: 9/02/2024
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -16,7 +16,6 @@ uid: security/cors
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 This article shows how **C**ross-**O**rigin **R**esource **S**haring ([CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS)) is enabled in an ASP.NET Core app.
-
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites to make cross-origin requests to your app. For more information, see the [Mozilla CORS article](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
@@ -41,7 +40,7 @@ These two URLs have the same origin:
 These URLs have different origins than the previous two URLs:
 
 * `https://example.net`: Different domain
-* `https://www.example.com/foo.html`: Different subdomain
+* `https://contoso.example.com/foo.html`: Different subdomain
 * `http://example.com/foo.html`: Different scheme
 * `https://example.com:9000/foo.html`: Different port
 
@@ -77,8 +76,6 @@ The preceding code:
 * When using [Response Caching Middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
 
 With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and  `UseEndpoints`.
-
-See [Test CORS](#testc6) for instructions on testing code similar to the preceding code.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors%2A> method call adds CORS services to the app's service container:
 
@@ -161,7 +158,7 @@ For the finest control of limiting CORS requests:
 
 The code in the next section meets the preceding list.
 
-See [Test CORS](#testc6) for instructions on testing code similar to the preceding code.
+
 
 <a name="dc6"></a>
 
@@ -326,6 +323,9 @@ For some CORS requests, the browser sends an additional [OPTIONS](https://develo
 
 The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers [author request headers](https://www.w3.org/TR/cors/#author-request-headers). The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
 
+> [!NOTE]
+> This article contains URLs created by deploying the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/8.0sample/Cors) to two Azure web sites, `https://cors3.azurewebsites.net` and `https://cors.azurewebsites.net`.
+
 The following is an example response similar to the preflight request made from the **[Put test]** button in the [Test CORS](#testc6) section of this document.
 
 ```
@@ -434,9 +434,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/do
 
 The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-The  [PUT test button](https://cors3.azurewebsites.net/test) on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/8.0sample/Cors/Web2API)
-
-The following is an example of a cross-origin request from the [Values](https://cors3.azurewebsites.net/) test button to `https://cors1.azurewebsites.net/api/values`. The `Origin` header:
+The following is an example of a cross-origin request from the **Values** test button to `https://cors1.azurewebsites.net/api/values`. The `Origin` header:
 
 * Provides the domain of the site that's making the request.
 * Is required and must be different from the host.
@@ -477,7 +475,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0 ...
 ```
 
-In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/8.0sample/Cors/Web2API), [Delete [EnableCors]](https://cors1.azurewebsites.net/test?number=2) button `OPTIONS` request contains the following  headers:
+In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, in the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/8.0sample/Cors/Web2API), the ` Delete [EnableCors]` button `OPTIONS` request contains the following  headers:
 
 **General headers**
 
@@ -557,7 +555,6 @@ The following `ValuesController` provides the endpoints for testing:
 
 Test the preceding sample code by using one of the following approaches:
 
-* Use the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
 * Run the sample with `dotnet run` using the default URL of `https://localhost:5001`.
 * Run the sample from Visual Studio with the port set to 44398 for a URL of `https://localhost:44398`.
 
@@ -583,7 +580,7 @@ curl -X OPTIONS https://cors3.azurewebsites.net/api/TodoItems2/5 -i
 <!--
 curl come with Git. Add to path variable
 C:\Program Files\Git\mingw64\bin\
-zz
+
 -->
 
 <a name="tcer"></a>
@@ -600,7 +597,7 @@ The following `TodoItems1Controller` provides endpoints for testing:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/TodoItems1Controller.cs?name=snippet2)]
 
-Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=1) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/8.0sample/Cors/Web2API).
+
 
 The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails. The **GET** button fails, because the [JavaScript](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/8.0sample/Cors/Web2API/wwwroot/js/MyJS.js) sends:
 
@@ -614,7 +611,7 @@ The following `TodoItems2Controller` provides similar endpoints, but includes ex
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
-Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=2) of the deployed sample. In the **Controller** drop down list, select **Preflight** and then **Set Controller**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
+The preceding code can be tested by deploying the sample to Azure. In the **Controller** drop down list, select **Preflight** and then **Set Controller**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
 
 ## Additional resources
 
