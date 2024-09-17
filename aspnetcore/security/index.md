@@ -45,9 +45,9 @@ There are more vulnerabilities that you should be aware of. For more information
 
 ## Secure authentication flows
 
-We recommend using the most secure secure authentication option. For Microsoft services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview).
+We recommend using the most secure secure authentication option. For Azure services, the most secure authentication is [managed identities](/entra/identity/managed-identities-azure-resources/overview).
 
-Resource Owner Password Credentials Grant:
+Avoid Resource Owner Password Credentials Grant because it:
 
 * Exposes the user's password to the client.
 * Is a significant security risk.
