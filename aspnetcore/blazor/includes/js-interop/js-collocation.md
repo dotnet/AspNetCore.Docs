@@ -148,8 +148,9 @@ Use of scripts and modules for collocated JS in a Razor class library (RCL) is o
 
 For scripts or modules provided by a Razor class library (RCL) using <xref:Microsoft.JSInterop.IJSRuntime>-based JS interop, the following path is used:
 
-`_content/{PACKAGE ID}/{PATH}/{COMPONENT}.{EXTENSION}.js`
+`./_content/{PACKAGE ID}/{PATH}/{COMPONENT}.{EXTENSION}.js`
 
+* The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 * The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library referenced by the app).
 * The `{PATH}` placeholder is the path to the component. If a Razor component is located at the root of the RCL, the path segment isn't included.
 * The `{COMPONENT}` placeholder is the component name.
