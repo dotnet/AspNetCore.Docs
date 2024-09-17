@@ -442,7 +442,7 @@ The following example permits the user to recover from the exception with a butt
         <div class="alert alert-danger" role="alert">
             <p class="fs-3 fw-bold">😈 A rotten gremlin got us. Sorry!</p>
             <p>@context.HelpLink</p>
-            <button class="btn btn-info" @onclick="_ => errorBoundary.Recover()">
+            <button class="btn btn-info" @onclick="_ => errorBoundary?.Recover()">
                 Clear
             </button>
         </div>
