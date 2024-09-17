@@ -27,7 +27,7 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
+.NET 7 introduced WebSockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
 
 > [!NOTE]
 > HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
@@ -112,7 +112,7 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 
 ## Add HTTP/2 WebSockets support for existing controllers
 
-.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET. If you previously used `[HttpGet("/path")]` on your controller action method for Websocket requests, update it to use `[Route("/path")]` instead.
+.NET 7 introduced WebSockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET. If you previously used `[HttpGet("/path")]` on your controller action method for Websocket requests, update it to use `[Route("/path")]` instead.
 
 [!code-csharp[](~/fundamentals/websockets/samples/8.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
 
