@@ -500,6 +500,12 @@ Alternatively, logging in using OTP with Identity:
 
 ![Logging in using OTP with Identity](~/security/authentication/mfa/_static/require_mfa_oidc_01.png)
 
+### OIDC and OAuth Parameter Customization
+
+The OAuth and OIDC authentication handlers  [`AdditionalAuthorizationParameters`](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OAuth/OAuthOptions.cs,ddb988460467cfbf) option allows customization of authorization message parameters that are usually included as part of the redirect query string:
+
+:::code language="csharp" source="~/security/authentication/mfa/samples9/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
+
 ## Additional resources
 
 * [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
