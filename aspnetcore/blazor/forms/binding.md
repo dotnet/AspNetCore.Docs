@@ -156,7 +156,7 @@ When a component adopts static SSR, the [`OnInitialized{Async}` lifecycle method
 @page "/starship-init"
 @inject ILogger<StarshipInit> Logger
 
-<EditForm Model="Model" OnValidSubmit="Submit" FormName="Starship1">
+<EditForm Model="Model" OnValidSubmit="Submit" FormName="StarshipInit">
     <div>
         <label>
             Identifier:
