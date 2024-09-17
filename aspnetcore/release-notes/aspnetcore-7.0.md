@@ -584,7 +584,7 @@ Changes were made in the HTTP/2 frame writing code that improves performance whe
 
 ### Http/2 WebSockets support
 
-.NET 7 introduces Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
+.NET 7 introduces WebSockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
 
 Using WebSockets over HTTP/2 takes advantage of new features such as:
 

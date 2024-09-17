@@ -94,7 +94,7 @@ app.UseOwin(pipeline =>
 
 ## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 
-Another example of how OWIN-based servers' features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web app that supports Web Sockets and echoes back everything sent to the server through WebSockets.
+Another example of how OWIN-based servers' features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for WebSockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web app that supports WebSockets and echoes back everything sent to the server through WebSockets.
 
 ```csharp
 public class Startup

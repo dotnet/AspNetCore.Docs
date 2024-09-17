@@ -143,9 +143,8 @@ You can also serve scripts directly from the `wwwroot` folder if you prefer not 
 <script src="scripts.js"></script>
 ```
 
-When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
+When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
-* The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
 * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
@@ -154,7 +153,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
     ...
 
     <script src="{BLAZOR SCRIPT}"></script>
-    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
+    <script src="_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
@@ -164,7 +163,7 @@ In the following example of the preceding `<script>` tag:
 * The `scripts.js` file is in the class library's `wwwroot` folder.
 
 ```html
-<script src="./_content/ComponentLibrary/scripts.js"></script>
+<script src="_content/ComponentLibrary/scripts.js"></script>
 ```
 
 For more information, see <xref:blazor/components/class-libraries>.
