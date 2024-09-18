@@ -79,6 +79,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
    * If you created a folder for the IIS site that's available on the development machine as a network share, provide the path to the share. The current user must have write access to publish to the share.
    * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
 1. Select the **Publish** button.
+2. Manually copy the wwwroot folder to the published Folder. (if this is not done the Static files wont be available to the application when the app is accessed on a network)
 
 # [.NET CLI](#tab/net-cli)
 
