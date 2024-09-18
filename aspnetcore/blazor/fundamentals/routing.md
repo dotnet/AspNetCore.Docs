@@ -1611,10 +1611,10 @@ The following HTML markup is rendered:
 > ```razor
 > @for (int c = 0; c < 10; c++)
 > {
->     var current = c;
+>     var ct = c;
 >     <li ...>
->         <NavLink ... href="product-number/@c">
->             <span ...></span> Product #@current
+>         <NavLink ...>
+>             <span ...></span> Product #@ct
 >         </NavLink>
 >     </li>
 > }
@@ -1628,7 +1628,7 @@ The following HTML markup is rendered:
 > @foreach (var c in Enumerable.Range(0,10))
 > {
 >     <li ...>
->         <NavLink ... href="product-number/@c">
+>         <NavLink ...>
 >             <span ...></span> Product #@c
 >         </NavLink>
 >     </li>
