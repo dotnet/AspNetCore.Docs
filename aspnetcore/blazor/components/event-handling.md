@@ -57,7 +57,7 @@ The following code:
 
 `EventHandlerExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor" highlight="10,17,27-30,32-35":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor":::
 
 :::moniker-end
 
@@ -65,7 +65,7 @@ The following code:
 
 `EventHandlerExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor" highlight="10,17,27-30,32-35":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor":::
 
 :::moniker-end
 
@@ -73,7 +73,7 @@ The following code:
 
 `EventHandlerExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor" highlight="10,17,27-30,32-35":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor":::
 
 :::moniker-end
 
@@ -81,7 +81,7 @@ The following code:
 
 `EventHandlerExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor" highlight="10,17,27-30,32-35":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor":::
 
 :::moniker-end
 
@@ -102,7 +102,7 @@ In the following example, `UpdateHeading`:
 
 `EventHandlerExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor" highlight="10,19-24":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor":::
 
 :::moniker-end
 
@@ -110,7 +110,7 @@ In the following example, `UpdateHeading`:
 
 `EventHandlerExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor" highlight="10,19-24":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor":::
 
 :::moniker-end
 
@@ -118,7 +118,7 @@ In the following example, `UpdateHeading`:
 
 `EventHandlerExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor" highlight="10,19-24":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor":::
 
 :::moniker-end
 
@@ -126,7 +126,7 @@ In the following example, `UpdateHeading`:
 
 `EventHandlerExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor" highlight="10,19-24":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor":::
 
 :::moniker-end
 
@@ -146,7 +146,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `EventHandlerExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor" highlight="17-20":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor":::
 
 :::moniker-end
 
@@ -154,7 +154,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `EventHandlerExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor" highlight="17-20":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor":::
 
 :::moniker-end
 
@@ -162,7 +162,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `EventHandlerExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor" highlight="17-20":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor":::
 
 :::moniker-end
 
@@ -170,7 +170,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `EventHandlerExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor" highlight="17-20":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor":::
 
 :::moniker-end
 
@@ -464,7 +464,7 @@ In a Razor component, attach the custom handler to an element.
 
 `EventHandlerExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor":::
 
 :::moniker-end
 
@@ -472,7 +472,7 @@ In a Razor component, attach the custom handler to an element.
 
 `EventHandlerExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor":::
 
 :::moniker-end
 
@@ -480,7 +480,7 @@ In a Razor component, attach the custom handler to an element.
 
 `EventHandlerExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor":::
 
 :::moniker-end
 
@@ -488,7 +488,7 @@ In a Razor component, attach the custom handler to an element.
 
 `EventHandlerExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor" highlight="6":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor":::
 
 :::moniker-end
 
@@ -509,7 +509,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `EventHandlerExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor":::
 
 :::moniker-end
 
@@ -517,7 +517,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `EventHandlerExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor":::
 
 :::moniker-end
 
@@ -525,7 +525,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `EventHandlerExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor":::
 
 :::moniker-end
 
@@ -533,7 +533,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `EventHandlerExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor":::
 
 :::moniker-end
 
@@ -722,7 +722,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `EventHandlerExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor":::
 
 :::moniker-end
 
@@ -730,7 +730,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `EventHandlerExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor":::
 
 :::moniker-end
 
@@ -738,7 +738,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `EventHandlerExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor":::
 
 :::moniker-end
 
@@ -746,7 +746,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `EventHandlerExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor" highlight="4":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor":::
 
 :::moniker-end
 
@@ -787,7 +787,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `EventHandlerExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor" highlight="4,15-16":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor":::
 
 :::moniker-end
 
@@ -795,7 +795,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `EventHandlerExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor" highlight="4,15-16":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor":::
 
 :::moniker-end
 
@@ -803,7 +803,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `EventHandlerExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor" highlight="4,15-16":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor":::
 
 :::moniker-end
 
@@ -811,7 +811,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `EventHandlerExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor" highlight="4,15-16":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor":::
 
 :::moniker-end
 
@@ -835,7 +835,7 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 `EventHandlerExample8.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor" highlight="16":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor":::
 
 :::moniker-end
 
@@ -843,6 +843,6 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 `EventHandlerExample8.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor" highlight="16":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor":::
 
 :::moniker-end
