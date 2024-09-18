@@ -42,7 +42,7 @@ git clone "https://github.com/dotnet/AspNetCore.Docs.Samples.git"
 
 Navigate to the `/tutorials/scalable-razor-apps/start` folder and open the `ScalableRazor.csproj`.
 
-The sample app uses a search form to browse GitHub repositories by name. The form relies on the built-in ASP.NET Core data protection services to handle anti-forgery concerns. By default, when the app scales horizontally on Container Apps, the data protection service throws an exception. 
+The sample app uses a search form to browse GitHub repositories by name. The form relies on the built-in ASP.NET Core data protection services to handle antiforgery concerns. By default, when the app scales horizontally on Container Apps, the data protection service throws an exception. 
 
 #### Test the app
 
