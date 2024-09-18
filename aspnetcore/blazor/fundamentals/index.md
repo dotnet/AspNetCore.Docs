@@ -56,17 +56,21 @@ Although some Blazor developers and online resources use the term "Blazor compon
 
 Blazor documentation adopts several conventions for showing and discussing components:
 
+* Generally, examples adhere to ASP.NET Core/C# coding conventions and engineering guidelines. For more information see the following resources:
+  * [ASP.NET Core framework engineering guidelines (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines)
+  * [C# Coding Conventions (C# guide)](/dotnet/csharp/fundamentals/coding-style/coding-conventions)
 * Project code, file paths and names, project template names, and other specialized terms are in United States English and usually code-fenced.
 * Components are usually referred to by their C# class name (Pascal case) followed by the word "component." For example, a typical file upload component is referred to as the "`FileUpload` component."
 * Usually, a component's C# class name is the same as its file name.
 * Routable components usually set their relative URLs to the component's class name in kebab-case. For example, a `FileUpload` component includes routing configuration to reach the rendered component at the relative URL `/file-upload`. Routing and navigation is covered in <xref:blazor/fundamentals/routing>.
 * When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component is reached at `/file-upload-3`.
-* [Razor directives](xref:mvc/views/razor#directives) at the top of a component definition (`.razor file`) are placed in the following order: `@page`, `@rendermode` (.NET 8 or later), `@using` statements, other directives in alphabetical order. Additional information on Razor directive ordering is found in the *Razor syntax* section of <xref:blazor/components/index#razor-syntax>.
+* [Razor directives](xref:mvc/views/razor#directives) at the top of a component definition (`.razor file`) are placed in the following order: `@page`, `@rendermode` (.NET 8 or later), `@using` statements, other directives in alphabetical order.
 * Although not required for `private` members, access modifiers are used in article examples and sample apps. For example, `private` is stated for declaring a field named `maxAllowedFiles` as `private int maxAllowedFiles = 3;`.
 * [Component parameter](xref:blazor/components/index#component-parameters) values lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
-* Generally, examples adhere to ASP.NET Core/C# coding conventions and engineering guidelines. For more information see the following resources:
-  * [Engineering guidelines (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines)
-  * [C# Coding Conventions (C# guide)](/dotnet/csharp/fundamentals/coding-style/coding-conventions)
+* C# classes use the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) and avoid prefixing fields with an underscore (`_`) that are assigned to in constructors, which differs from the [ASP.NET Core framework engineering guidelines](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines).
+* In examples that use [primary constructors (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors), primary constructor parameters are typically used directly by class members.
+
+Additional information on Razor component syntax is provided in the *Razor syntax* section of <xref:blazor/components/index#razor-syntax>.
 
 The following is an example counter component and part of an app created from a Blazor project template. Detailed components coverage is found in the *Components* articles later in the documentation. The following example demonstrates component concepts seen in the *Fundamentals* articles before reaching the *Components* articles later in the documentation.
 

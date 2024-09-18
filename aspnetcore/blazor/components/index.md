@@ -44,6 +44,8 @@ Components are implemented using a combination of C# and HTML markup in [Razor](
 
 Developers typically create Razor components from Razor component files (`.razor`) or base their components on <xref:Microsoft.AspNetCore.Components.ComponentBase>, but components can also be built by implementing <xref:Microsoft.AspNetCore.Components.IComponent>. Developer-built components that implement <xref:Microsoft.AspNetCore.Components.IComponent> can take low-level control over rendering at the cost of having to manually trigger rendering with events and lifecycle methods that the developer must create and maintain.
 
+Additional conventions adopted by Blazor documentation example code and sample apps is found in <xref:blazor/fundamentals/index#razor-components>.
+
 ### Razor syntax
 
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
@@ -1268,7 +1270,7 @@ Consider the following `RenderFragmentChild2` component that has both a componen
 When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`ct` in the following example) instead of the loop variable (`c`) when assigning the component parameter value and providing the child component's content:
 
 ```razor
-<h1>Three children with an index variable</h1>
+<h1>Three children with a <code>for</code> loop and an index variable</h1>
 
 @for (int c = 1; c < 4; c++)
 {
@@ -1283,7 +1285,7 @@ When rendering the `RenderFragmentChild2` component in a parent component, use a
 Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop:
 
 ```razor
-<h1>Second example of three children with an index variable</h1>
+<h1>Alternative approach without an index variable</h1>
 
 @foreach (var c in Enumerable.Range(1, 3))
 {
