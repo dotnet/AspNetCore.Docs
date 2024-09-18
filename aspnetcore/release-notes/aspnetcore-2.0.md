@@ -111,9 +111,9 @@ In ASP.NET Core 2.0, this feature is used to automatically enable Application In
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/3389).
 
-## Automatic use of anti-forgery tokens
+## Automatic use of antiforgery tokens
 
-ASP.NET Core has always helped HTML-encode content by default, but with the new version an extra step is taken to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
+ASP.NET Core has always helped HTML-encode content by default, but with the new version an extra step is taken to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit antiforgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
 For more information, see <xref:security/anti-request-forgery>.
 

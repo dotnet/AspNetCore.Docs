@@ -60,7 +60,7 @@ Avoid using a loop variable directly in a lambda expression, such as `i` in the 
 Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
 
 ```razor
-@foreach (var imageId in Enumerable.Range(1,3))
+@foreach (var imageId in Enumerable.Range(1, 3))
 {
     <button @onclick="() => ShowImage(imageId)">
         Image @imageId

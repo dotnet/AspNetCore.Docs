@@ -23,6 +23,8 @@ By [Mitch Denny](https://github.com/mitchdenny)
 
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
+For Blazor WebAssembly Native AOT guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/tooling/webassembly>.
+
 ## Why use Native AOT with ASP.NET Core
 
 Publishing and deploying a Native AOT app provides the following benefits:

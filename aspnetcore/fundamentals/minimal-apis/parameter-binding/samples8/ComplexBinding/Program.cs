@@ -39,7 +39,7 @@ app.MapPost("/todo", async Task<Results<Ok<Todo>, BadRequest<string>>>
     }
     catch (AntiforgeryValidationException e)
     {
-        return TypedResults.BadRequest("Invalid anti-forgery token");
+        return TypedResults.BadRequest("Invalid antiforgery token");
     }
 });
 

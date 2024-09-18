@@ -16,6 +16,8 @@ uid: fundamentals/index
 
 This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 
+For Blazor fundamentals guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/fundamentals/index>.
+
 ## Program.cs
 
 ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file. The `Program.cs` file is where:

@@ -1182,6 +1182,8 @@ items:
             uid: web-api/http-repl/telemetry
       - name: Test Minimal API
         uid: fundamentals/minimal-apis/test-min-api
+      - name: Blazor tests
+        uid: blazor/test
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
       - name: MVC controllers unit tests
