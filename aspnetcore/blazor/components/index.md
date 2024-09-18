@@ -1265,17 +1265,17 @@ Consider the following `RenderFragmentChild2` component that has both a componen
 }
 ```
 
-When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`current` in the following example) instead of the loop variable (`c`):
+When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`ct` in the following example) instead of the loop variable (`c`):
 
 ```razor
 <h1>Three children with an index variable</h1>
 
 @for (int c = 1; c < 4; c++)
 {
-    var current = c;
+    var ct = c;
 
-    <RenderFragmentChild2 Id="@($"Child{current}")">
-        Count: @current
+    <RenderFragmentChild2 Id="@($"Child{ct}")">
+        Count: @ct
     </RenderFragmentChild2>
 }
 ```
