@@ -1268,7 +1268,7 @@ Consider the following `RenderFragmentChild2` component that has both a componen
 When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`ct` in the following example) instead of the loop variable (`c`) when assigning the component parameter value and providing the child component's content:
 
 ```razor
-<h1>Three children with an index variable</h1>
+<h1>Three children with a <code>for</code> loop and an index variable</h1>
 
 @for (int c = 1; c < 4; c++)
 {
@@ -1283,7 +1283,7 @@ When rendering the `RenderFragmentChild2` component in a parent component, use a
 Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop:
 
 ```razor
-<h1>Second example of three children with an index variable</h1>
+<h1>Alternative approach without an index variable</h1>
 
 @foreach (var c in Enumerable.Range(1, 3))
 {
