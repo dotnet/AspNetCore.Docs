@@ -1285,7 +1285,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```razor
 <h1>Second example of three children with an index variable</h1>
 
-@foreach (var c in Enumerable.Range(1,3))
+@foreach (var c in Enumerable.Range(1, 3))
 {
     <RenderFragmentChild2 Id="@($"Child{c}")">
         Count: @c

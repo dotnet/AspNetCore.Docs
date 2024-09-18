@@ -1625,7 +1625,7 @@ The following HTML markup is rendered:
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
 > ```razor
-> @foreach (var c in Enumerable.Range(1,3))
+> @foreach (var c in Enumerable.Range(1, 3))
 > {
 >     <li ...>
 >         <NavLink ...>
