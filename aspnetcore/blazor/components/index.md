@@ -44,6 +44,8 @@ Components are implemented using a combination of C# and HTML markup in [Razor](
 
 Developers typically create Razor components from Razor component files (`.razor`) or base their components on <xref:Microsoft.AspNetCore.Components.ComponentBase>, but components can also be built by implementing <xref:Microsoft.AspNetCore.Components.IComponent>. Developer-built components that implement <xref:Microsoft.AspNetCore.Components.IComponent> can take low-level control over rendering at the cost of having to manually trigger rendering with events and lifecycle methods that the developer must create and maintain.
 
+Additional conventions adopted by Blazor documentation example code and sample apps is found in <xref:blazor/fundamentals/index#razor-components>.
+
 ### Razor syntax
 
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
