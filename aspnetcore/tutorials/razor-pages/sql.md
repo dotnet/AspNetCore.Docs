@@ -5,7 +5,7 @@ description: Part 4 of tutorial series on Razor Pages.
 ms.author: wpickett
 ms.date: 8/20/2024
 uid: tutorials/razor-pages/sql
----
+--- 
 
 # Part 4 of tutorial series on Razor Pages
 
