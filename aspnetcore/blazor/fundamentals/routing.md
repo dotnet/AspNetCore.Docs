@@ -1609,7 +1609,7 @@ The following HTML markup is rendered:
 > Due to the way that Blazor renders child content, rendering `NavLink` components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the `NavLink` (child) component's content:
 >
 > ```razor
-> @for (int c = 0; c < 10; c++)
+> @for (int c = 1; c < 4; c++)
 > {
 >     var ct = c;
 >     <li ...>
@@ -1625,7 +1625,7 @@ The following HTML markup is rendered:
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
 > ```razor
-> @foreach (var c in Enumerable.Range(0,10))
+> @foreach (var c in Enumerable.Range(1,3))
 > {
 >     <li ...>
 >         <NavLink ...>
