@@ -105,7 +105,7 @@ The following counter component example persists counter state during prerenderi
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts interactive routing and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output.
+> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal navigation, prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter2` component to see the following output.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
@@ -130,7 +130,7 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
 
 ## Interactive routing and prerendering
 
-Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests.
+Internal navigation for [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests.
 
 The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service only works on the initial page load and not across [enhanced page navigation events](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling). If the app performs a full (non-enhanced) navigation to a page utilizing persistent component state, the persisted state is made available for the app to use when it becomes interactive. But if an interactive circuit has already been established and an enhanced navigation is performed to a page that renders persisted component state, that state isn't made available in the existing circuit. The <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware of enhanced navigation, and there's no mechanism to deliver state updates to components that are already running.
 
