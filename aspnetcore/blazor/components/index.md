@@ -1244,7 +1244,7 @@ For more information, see [Reuse rendering logic](xref:blazor/performance#define
 
 ## Loop variables with component parameters and child content
 
-Rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the component's parameters or <xref:Microsoft.AspNetCore.Components.RenderFragment> child content.
+Rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used by the component's parameters or <xref:Microsoft.AspNetCore.Components.RenderFragment> child content.
 
 Consider the following `RenderFragmentChild2` component that has both a component parameter (`Id`) and a render fragment to display child content (`ChildContent`).
 
@@ -1265,7 +1265,7 @@ Consider the following `RenderFragmentChild2` component that has both a componen
 }
 ```
 
-When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`ct` in the following example) instead of the loop variable (`c`):
+When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`ct` in the following example) instead of the loop variable (`c`) when assigning the component parameter value and providing the child component's content:
 
 ```razor
 <h1>Three children with an index variable</h1>
