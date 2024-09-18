@@ -1214,34 +1214,6 @@ The following component provides content for rendering the `RenderFragmentChild`
 
 :::moniker-end
 
-Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding parent component:
-
-```razor
-<h1>Three children with an index variable</h1>
-
-@for (int c = 0; c < 3; c++)
-{
-    var current = c;
-
-    <RenderFragmentChild>
-        Count: @current
-    </RenderFragmentChild>
-}
-```
-
-Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding parent component:
-
-```razor
-<h1>Second example of three children with an index variable</h1>
-
-@foreach (var c in Enumerable.Range(0,3))
-{
-    <RenderFragmentChild>
-        Count: @c
-    </RenderFragmentChild>
-}
-```
-
 Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
 
 * [Blazor layouts](xref:blazor/components/layouts)
@@ -1269,6 +1241,57 @@ You can factor out child components purely as a way of reusing rendering logic. 
 ```
 
 For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
+
+## Loop variables with component parameters and child content
+
+Rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used by the component's parameters or <xref:Microsoft.AspNetCore.Components.RenderFragment> child content.
+
+Consider the following `RenderFragmentChild2` component that has both a component parameter (`Id`) and a render fragment to display child content (`ChildContent`).
+
+`RenderFragmentChild2.razor`:
+
+```razor
+<div class="card w-25" style="margin-bottom:15px">
+    <div class="card-header font-weight-bold">Child content (@Id)</div>
+    <div class="card-body">@ChildContent</div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+When rendering the `RenderFragmentChild2` component in a parent component, use a local index variable (`ct` in the following example) instead of the loop variable (`c`) when assigning the component parameter value and providing the child component's content:
+
+```razor
+<h1>Three children with an index variable</h1>
+
+@for (int c = 1; c < 4; c++)
+{
+    var ct = c;
+
+    <RenderFragmentChild2 Id="@($"Child{ct}")">
+        Count: @ct
+    </RenderFragmentChild2>
+}
+```
+
+Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop:
+
+```razor
+<h1>Second example of three children with an index variable</h1>
+
+@foreach (var c in Enumerable.Range(1, 3))
+{
+    <RenderFragmentChild2 Id="@($"Child{c}")">
+        Count: @c
+    </RenderFragmentChild2>
+}
+```
 
 ## Capture references to components
 
