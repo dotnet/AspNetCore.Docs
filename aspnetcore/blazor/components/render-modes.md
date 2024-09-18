@@ -621,7 +621,7 @@ Mark any Razor component page with the `[ExcludeFromInteractiveRouting]` attribu
 @attribute [ExcludeFromInteractiveRouting]
 ```
 
-Applying the attribute causes navigation to the page to exit from interactive routing. Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
+Applying the attribute causes navigation to the page to exit from [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing). Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
 The `HttpContext.AcceptsInteractiveRouting` extension method allows the component to detect whether `[ExcludeFromInteractiveRouting]` is applied to the current page.
 
