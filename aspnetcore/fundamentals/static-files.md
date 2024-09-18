@@ -18,6 +18,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients by default.
 
+For Blazor static files guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/static-files>.
+
 ## Serve static files
 
 Static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method. For more information, see [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root).
@@ -333,6 +335,8 @@ The following code updates `IWebHostEnvironment.WebRootPath` to a non developmen
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
 * [Middleware](xref:fundamentals/middleware/index)
 * [Introduction to ASP.NET Core](xref:index)
+* <xref:blazor/file-uploads>
+* <xref:blazor/file-downloads>
 
 :::moniker-end
 

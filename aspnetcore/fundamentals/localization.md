@@ -17,6 +17,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twi
 
 A multilingual website allows a website to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
+For Blazor localization guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/globalization-localization>.
+
 ## Terms
 
 * Globalization (G11N): The process of making an app support different languages and regions. The abbreviation comes from the first and last letters and the number of letters between them.

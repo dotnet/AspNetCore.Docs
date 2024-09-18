@@ -11,6 +11,10 @@ uid: signalr/configuration
 
 # ASP.NET Core SignalR configuration
 
+This article covers ASP.NET Core SignalR configuration.
+
+For Blazor SignalR guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/signalr>.
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## JSON/MessagePack serialization options
