@@ -15,6 +15,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
+For Blazor state management guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/state-management>.
+
 ## State management
 
 State can be stored using several approaches. Each approach is described later in this article.

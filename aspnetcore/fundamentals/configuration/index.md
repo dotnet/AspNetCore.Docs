@@ -29,6 +29,8 @@ Application configuration in ASP.NET Core is performed using one or more [config
 
 This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
+For Blazor configuration guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/fundamentals/configuration>.
+
 ## Application and Host Configuration
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration.

@@ -18,6 +18,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
 
+For Blazor startup guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/startup>.
+
 The following app startup code supports:
 
 * [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
