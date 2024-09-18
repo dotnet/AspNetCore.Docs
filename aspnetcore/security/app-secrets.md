@@ -60,7 +60,7 @@ File system path:
 
 In the preceding file paths, replace `<user_secrets_id>` with the `UserSecretsId` value specified in the project file.
 
-Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted, but could be in the future.
+Don't write code that depends on the location or format of data saved with the Secret Manager tool. These implementation details may change. For example, the secret values aren't encrypted.
 
 ## Enable secret storage
 
