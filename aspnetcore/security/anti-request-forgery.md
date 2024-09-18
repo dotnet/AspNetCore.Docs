@@ -297,7 +297,7 @@ Consider the following `GenerateForm` method:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_html":::
 
-The preceding code has three arguments, the action, the anti-forgery token, and a `bool` indicating whether the token should be used.
+The preceding code has three arguments, the action, the antiforgery token, and a `bool` indicating whether the token should be used.
 
 Consider the following sample:
 
