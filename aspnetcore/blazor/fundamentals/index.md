@@ -70,7 +70,7 @@ Blazor documentation adopts several conventions for showing and discussing compo
 * C# classes use the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) and avoid prefixing fields with an underscore (`_`) that are assigned to in constructors, which differs from the [ASP.NET Core framework engineering guidelines](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines).
 * In examples that use [primary constructors (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors), primary constructor parameters are typically used directly by class members.
 
-Additional information on Razor component syntax is covered by <xref:blazor/components/index#razor-syntax>.
+Additional information on Razor component syntax is provided in the *Razor syntax* section of <xref:blazor/components/index#razor-syntax>.
 
 The following is an example counter component and part of an app created from a Blazor project template. Detailed components coverage is found in the *Components* articles later in the documentation. The following example demonstrates component concepts seen in the *Fundamentals* articles before reaching the *Components* articles later in the documentation.
 
