@@ -67,6 +67,8 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddAuthorization();
 ```
 
+:::moniker-end
+
 :::moniker range="< aspnetcore-6.0"
 
 Configure authentication and authorization services in `Startup.ConfigureServices` of `Startup.cs`.
