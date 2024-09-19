@@ -777,6 +777,9 @@ In advanced programming scenarios, the `configureRuntime` function with the `dot
 * Configures the .NET WebAssembly runtime.
 * Changes the behavior of a C library.
 
+> [!NOTE]
+> A documentation request is pending in the `dotnet/runtime` GitHub repository for more information on environment variables that configure the .NET WebAssembly runtime or affect the behavior of C libraries. Although the documentation request is pending, more information and cross-links to additional resources are available in the request, [Question/request for documentation on .NET WASM runtime env vars (`dotnet/runtime` #98225)](https://github.com/dotnet/runtime/issues/98225). 
+
 The `configureRuntime` function can also be used to [enable integration with a browser profiler](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md#profiling).
 
 For the placeholders in the following examples that set an environment variable:
