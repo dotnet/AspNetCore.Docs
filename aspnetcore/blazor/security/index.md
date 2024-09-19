@@ -85,7 +85,9 @@ Blazor uses the existing ASP.NET Core authentication mechanisms to establish the
 
 Interactively-rendered server-side Blazor operates over a SignalR connection with the client. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server).
 
-The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+
+For more information on server-side authentication, see <xref:blazor/security/server/index>.
 
 #### `IHttpContextAccessor`/`HttpContext` in Razor components
 
@@ -107,9 +109,9 @@ Add the following:
 
 * The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace to the app's `_Imports.razor` file.
 
-To handle authentication, use of the built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service is covered in the following sections.
+To handle authentication, use the built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service.
 
-For more information, see <xref:blazor/security/webassembly/index>.
+For more information on client-side authentication, see <xref:blazor/security/webassembly/index>.
 
 ## `AuthenticationStateProvider` service
 
@@ -127,8 +129,9 @@ For more information, see <xref:blazor/security/webassembly/index>.
 
 You don't typically use <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> directly. Use the [`AuthorizeView` component](#authorizeview-component) or [`Task<AuthenticationState>`](#expose-the-authentication-state-as-a-cascading-parameter) approaches described later in this article. The main drawback to using <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> directly is that the component isn't notified automatically if the underlying authentication state data changes.
 
-> [!NOTE]
-> To implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
+To implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/authentication-state>, which includes guidance on implementing user authentication state change notifications.
+
+## Obtain a user's claims principal data
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service can provide the current user's <xref:System.Security.Claims.ClaimsPrincipal> data, as shown in the following example.
 
@@ -245,7 +248,7 @@ In the preceding example:
 
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in server-side Blazor apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 
