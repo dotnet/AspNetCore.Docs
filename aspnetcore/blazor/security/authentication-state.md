@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/19/2024
 uid: blazor/security/authentication-state
-zone-pivot-groups: blazor-app-models
+zone_pivot_groups: blazor-app-models
 ---
 # ASP.NET Core Blazor authentication state
 
@@ -67,7 +67,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddAuthorization();
 ```
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 
 Configure authentication and authorization services in `Startup.ConfigureServices` of `Startup.cs`.
 
