@@ -82,7 +82,7 @@ App settings in the Azure Portal permit you to set environment variables for the
 
 When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
 
-When an app uses the [Generic Host](xref:fundamentals/host/generic-host), environment variables are loaded into the app's configuration when <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> is called to build the host. For more information, see <xref:fundamentals/host/generic-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables).
+Environment variables are loaded into the app's configuration when [CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder) is called to build the host. For more information, see the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables).
 
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
@@ -238,9 +238,6 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 > ```
 >
 > The command returns `True` when the x64 preview runtime is installed.
-
-> [!NOTE]
-> **ASP.NET Core Extensions** enables additional functionality for ASP.NET Core on Azure App Services, such as enabling Azure logging. The extension is installed automatically when deploying from Visual Studio. If the extension isn't installed, install it for the app.
 
 **Use the preview site extension with an ARM template**
 
