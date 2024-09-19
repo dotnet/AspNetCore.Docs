@@ -137,7 +137,7 @@ The `SeedData` class creates two accounts: administrator and manager. Use the [S
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
-If a strong password is not specified, an exception is thrown when `SeedData.Initialize` is called.
+If a weak password is specified, an exception is thrown when `SeedData.Initialize` is called.
 
 Update the app to use the test password:
 
@@ -288,9 +288,12 @@ In the preceding code:
 
 ## Test the completed app
 
+> [!WARNING]
+> This article uses the [Secret Manager tool](xref:security/app-secrets) to store the password for the seeded user accounts. The Secret Manager tool is used to store sensitive data during local development. For more information on authentication for deployed test and production apps, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+
 If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
 
-* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
+* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol.
 * Execute the following command from the project's folder, where `<PW>` is the password:
 
   ```dotnetcli
