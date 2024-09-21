@@ -220,11 +220,11 @@ This section describes the various options that can be set in a CORS policy:
 
 ### Set the allowed request headers
 
-To allow specific headers to be sent in a CORS request, called [author request headers](https://xhr.spec.whatwg.org/#request), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders%2A> and specify the allowed headers:
+To allow specific headers to be sent in a CORS request, called *author request headers*, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders%2A> and specify the allowed headers:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_sa)]
 
-To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader%2A>:
+To allow all author request headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader%2A>:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_aah)]
 
@@ -321,7 +321,7 @@ For some CORS requests, the browser sends an additional [OPTIONS](https://develo
   * `multipart/form-data`
   * `text/plain`
 
-The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers [author request headers](https://www.w3.org/TR/cors/#author-request-headers). The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
+The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers *author request headers*. The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
 
 > [!NOTE]
 > This article contains URLs created by deploying the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/8.0sample/Cors) to two Azure web sites, `https://cors3.azurewebsites.net` and `https://cors.azurewebsites.net`.
@@ -360,7 +360,6 @@ The preflight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs
 
 * [Access-Control-Request-Method](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Request-Method): The HTTP method that will be used for the actual request.
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
-* [Access-Control-Allow-Methods](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
 If the preflight request is denied, the app returns a `200 OK` response but doesn't set the CORS headers. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc6) section of this document.
 
@@ -373,7 +372,7 @@ To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.C
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_whx)]
 
-To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader%2A>:
+To allow all author request headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader%2A>:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Program.cs?name=snippet_aah2)]
 

@@ -73,6 +73,8 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 
 ## Including OpenAPI metadata in an ASP.NET web app
 
+### Including OpenAPI metadata for endpoints
+
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 In controller-based apps, metadata is collected from attributes like `[EndpointDescription]`, `[HttpPost]`,
 and `[Produces]`.
@@ -96,7 +98,7 @@ ASP.NET Core does not collect metadata from XML doc comments.
 
 The following sections demonstrate how to include metadata in an app to customize the generated OpenAPI document.
 
-### Summary and description
+#### Summary and description
 
 The endpoint summary and description can be set using the `[EndpointSummary]` and `[EndpointDescription]` attributes,
 or in minimal APIs, using the `WithSummary` and `WithDescription` extension methods.
@@ -106,7 +108,7 @@ or in minimal APIs, using the `WithSummary` and `WithDescription` extension meth
 * `WithSummary`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
 * `WithDescription`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
 
-#### [Minimal APIs](#tab/minimal-apis)
+##### [Minimal APIs](#tab/minimal-apis)
 
 The following sample demonstrates the different strategies for setting summaries and descriptions.
 
@@ -123,7 +125,7 @@ app.MapGet("/attributes",
   () => "Hello world!");
 ```
 
-#### [Controllers](#tab/controllers)
+##### [Controllers](#tab/controllers)
 
 The following sample demonstrates how to set summaries and descriptions.
 
@@ -138,7 +140,7 @@ The following sample demonstrates how to set summaries and descriptions.
 ```
 ---
 
-### tags
+#### tags
 
 OpenAPI supports specifying tags on each endpoint as a form of categorization.
 In controller-based apps, the controller name is automatically added as a tag on each of its endpoints,
@@ -148,7 +150,7 @@ In minimal APIs, tags can be set using either the `[Tags]` attribute or the `Wit
 * `[Tags]`: <xref:Microsoft.AspNetCore.Http.TagsAttribute>
 * `WithTags`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
 
-#### [Minimal APIs](#tab/minimal-apis)
+##### [Minimal APIs](#tab/minimal-apis)
 
 The following sample demonstrates the different strategies for setting tags.
 
@@ -161,7 +163,7 @@ app.MapGet("/attributes",
   () => "Hello world!");
 ```
 
-#### [Controllers](#tab/controllers)
+##### [Controllers](#tab/controllers)
 
 The following sample demonstrates how to set tags.
 
@@ -175,7 +177,7 @@ The following sample demonstrates how to set tags.
 ```
 ---
 
-### operationId
+#### operationId
 
 OpenAPI supports an operationId on each endpoint as a unique identifier or name for the operation. 
 In controller-based apps, the operationId can be set using the `[EndpointName]` attribute.
@@ -184,7 +186,7 @@ In minimal APIs, the operationId can be set using either the `[EndpointName]` at
 * `[EndpointName]`: <xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute>
 * `WithName`: <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A>
 
-#### [Minimal APIs](#tab/minimal-apis)
+##### [Minimal APIs](#tab/minimal-apis)
 
 The following sample demonstrates the different strategies for setting the operationId.
 
@@ -197,7 +199,7 @@ app.MapGet("/attributes",
   () => "Hello world!");
 ```
 
-#### [Controllers](#tab/controllers)
+##### [Controllers](#tab/controllers)
 
 The following sample demonstrates how to set the operationId.
 
@@ -211,7 +213,7 @@ The following sample demonstrates how to set the operationId.
 ```
 ---
 
-### parameters
+#### parameters
 
 OpenAPI supports annotating path, query string, header, and cookie parameters that are consumed by an API.
 
@@ -221,7 +223,7 @@ The `[Description]` attribute can be used to provide a description for a paramet
 
 * [`Description`](/dotnet/api/system.componentmodel.descriptionattribute)
 
-#### [Minimal APIs](#tab/minimal-apis)
+##### [Minimal APIs](#tab/minimal-apis)
 
 The follow sample demonstrates how to set a description for a parameter.
 
@@ -230,7 +232,7 @@ app.MapGet("/attributes",
   ([Description("This is a description.")] string name) => "Hello world!");
 ```
 
-#### [Controllers](#tab/controllers)
+##### [Controllers](#tab/controllers)
 
 The following sample demonstrates how to set a description for a parameter.
 
@@ -243,7 +245,7 @@ The following sample demonstrates how to set a description for a parameter.
 ```
 ---
 
-### requestBody
+#### requestBody
 
 <!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
 
@@ -275,7 +277,7 @@ When no explicit annotation is provided, the framework attempts to determine the
 * All other request body parameters are described with the `application/json` content-type.
 * The request body is treated as optional if it's nullable or if the <xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty> property is set on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
 
-### Describe response types
+#### Describe response types
 
 <!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
 
@@ -302,13 +304,13 @@ app.MapGet("/todos", async (TodoDb db) =>
 });
 ```
 
-#### Set responses for `ProblemDetails`
+##### Set responses for `ProblemDetails`
 
 When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
 
 When there are no explicit annotations provided by one of these strategies, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
-#### Multiple response types
+##### Multiple response types
 
 If an endpoint can return different response types in different scenarios, you can provide metadata in the following ways:
 
@@ -324,7 +326,7 @@ If an endpoint can return different response types in different scenarios, you c
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
-### Excluding endpoints from the generated document
+#### Excluding endpoints from the generated document
 
 <!-- TODO: Add information for controller-based apps in this section -->
 
@@ -344,7 +346,7 @@ app.MapGet("/attributes",
   () => "Hello world!");
 ```
 
-## Including OpenAPI metadata for data types
+### Including OpenAPI metadata for data types
 
 C# classes or records used in request or response bodies are represented as schemas
 in the generated OpenAPI document.
@@ -357,7 +359,7 @@ of the class or record property name.
 The <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> can be used on an individual property to specify the name
 of the property in the schema.
 
-## type and format
+#### type and format
 
 The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as follows:
 
@@ -386,7 +388,7 @@ Note that object and dynamic types have _no_ type defined in the OpenAPI because
 
 The `type` and `format` can also be set with a [Schema Transformer](#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
-## Using attributes to add metadata
+#### Using attributes to add metadata
 
 ASP.NET uses metadata from attributes on class or record properties to set metadata on the corresponding properties of the generated schema.
 
@@ -404,30 +406,30 @@ The following table summarizes attributes from the `System.ComponentModel` names
 
 Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
 
-## Other sources of metadata for generated schemas
+#### Other sources of metadata for generated schemas
 
-### required
+##### required
 
 Properties can also be marked as `required` with the [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier.
 
-### enum
+##### enum
 
 Enum types in C# are integer-based, but can be represented as strings in JSON with a  <xref:System.Text.Json.Serialization.JsonConverterAttribute> and a <xref:System.Text.Json.Serialization.JsonStringEnumConverter>. When an enum type is represented as a string in JSON, the generated schema will have an `enum` property with the string values of the enum.
 An enum type without a  <xref:System.Text.Json.Serialization.JsonConverterAttribute> will be defined as `type: integer` in the generated schema.
 
 **Note:** The <xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute> does not set the `enum` values of a property.
 
-### nullable
+##### nullable
 
 Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
 
-### additionalProperties
+##### additionalProperties
 
 Schemas are generated without an `additionalProperties` assertion by default, which implies the default of `true`. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which silently ignores additional properties in a JSON object.
 
 If the additional properties of a schema should only have values of a specific type, define the property or class as a `Dictionary<string, type>`. The key type for the dictionary must be `string`. This generates a schema with `additionalProperties` specifying the schema for "type" as the required value types.
 
-### Metadata for polymorphic types
+##### Metadata for polymorphic types
 
 Use the <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> and <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> attributes on a parent class to to specify the discriminator field and subtypes for a polymorphic type.
 
@@ -435,7 +437,7 @@ The <xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute> adds the disc
 
 An abstract class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute has a `discriminator` field in the schema, but a concrete class with a <xref:System.Text.Json.Serialization.JsonPolymorphicAttribute> attribute doesn't have a `discriminator` field. OpenAPI requires that the discriminator property be a required property in the schema, but since the discriminator property isn't defined in the concrete base class, the schema cannot include a `discriminator` field.
 
-## Adding metadata with a schema transformer
+#### Adding metadata with a schema transformer
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](#use-schema-transformers) for more information.
 
