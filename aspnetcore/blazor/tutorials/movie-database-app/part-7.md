@@ -199,7 +199,7 @@ Modify the one movie that isn't rated *R*:
 In the **Terminal** (**Terminal** menu > **New Terminal**), execute the following command to add a migration. The migration name (`AddRatingField`) is an arbitrary description for the migration:
 
 ```dotnetcli
-dotnet ef migrations AddRatingField
+dotnet ef migrations add AddRatingField
 ```
 
 The `dotnet-ef migrations` command:
