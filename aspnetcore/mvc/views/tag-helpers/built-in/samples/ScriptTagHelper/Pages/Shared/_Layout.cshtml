@@ -49,10 +49,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @* Include collocated JS files
-    // <snippet_1>    *@
+    @* Include collocated JS files *@
+
     <script asp-src-include="@(ViewContext.View.Path).js"></script>
-    @*   // </snippet_1>    *@
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
