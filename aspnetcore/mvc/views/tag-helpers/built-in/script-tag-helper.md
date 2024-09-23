@@ -4,7 +4,7 @@ author: rick-anderson
 ms.author: riande
 description: Discover the ASP.NET Core Script Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Script tag.
 ms.custom: mvc
-ms.date: 12/12/2022
+ms.date: 9/12/2024
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
 ---
 # Script Tag Helper in ASP.NET Core
