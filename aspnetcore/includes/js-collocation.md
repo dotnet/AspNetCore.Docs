@@ -28,6 +28,11 @@ Collocated JS files are publicly addressable using the ***path to the file in th
 
 The default layout `Pages/Shared/_Layout.cshtml` can be configured to include collocated JS files, eliminating the need to configure each page individually:
 
+:::code language="razor" source="/mvc/views/tag-helpers/built-in/samples/ScriptTagHelper/Pages/Shared/_Layout.cshtml"  range="54-54":::
+
+
+:::code language="razor" source="/mvc/views/tag-helpers/built-in/samples/ScriptTagHelper/Pages/Shared/_Layout.cshtml" id="snippet_1" :::
+
   ```razor
   <script asp-src-include="@(ViewContext.View.Path).js"></script>
   ```
