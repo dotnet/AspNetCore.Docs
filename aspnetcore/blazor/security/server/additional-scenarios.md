@@ -54,7 +54,7 @@ builder.Services.Configure<OpenIdConnectOptions>(
 });
 ```
 
-<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect?displayProperty=fullName> and <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect?displayProperty=fullName> API is provided by the [`Microsoft.AspNetCore.Authentication.OpenIdConnect`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) NuGet package.
+<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect?displayProperty=fullName> and <xref:Microsoft.IdentityModel.Protocols.OpenIdConnect?displayProperty=fullName> API is provided by the [`Microsoft.AspNetCore.Authentication.OpenIdConnect` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -343,7 +343,7 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 > [!NOTE]
 > An alternative to assigning the initial state to the `TokenProvider` in the preceding example is to copy the data into a scoped service within <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> for use across the app.
 
-Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client` NuGet package](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

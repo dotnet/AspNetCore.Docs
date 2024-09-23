@@ -36,7 +36,7 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 No further tooling is required if you plan on implementing `[JSImport]`/`[JSExport]` interop in a Blazor WebAssembly app generated from the Blazor WebAssembly project template.
 
-If you plan to use the WebAssembly Browser or WebAssembly Console app project templates, install the [`Microsoft.NET.Runtime.WebAssembly.Templates`](https://www.nuget.org/packages/Microsoft.NET.Runtime.WebAssembly.Templates) NuGet package with the following command:
+If you plan to use the WebAssembly Browser or WebAssembly Console app project templates, install the [`Microsoft.NET.Runtime.WebAssembly.Templates` NuGet package](https://www.nuget.org/packages/Microsoft.NET.Runtime.WebAssembly.Templates) with the following command:
 
 ```dotnetcli
 dotnet new install Microsoft.NET.Runtime.WebAssembly.Templates

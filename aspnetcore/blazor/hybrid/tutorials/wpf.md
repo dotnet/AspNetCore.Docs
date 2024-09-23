@@ -52,7 +52,7 @@ In the **Additional information** dialog, select the framework version with the 
 
 :::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) NuGet package:
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf` NuGet package](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf):
 
 :::image type="content" source="wpf/_static/nuget-package-manager.png" alt-text="Use Nuget Package Manager in Visual Studio to install the Microsoft.AspNetCore.Components.WebView.Wpf NuGet package.":::
 

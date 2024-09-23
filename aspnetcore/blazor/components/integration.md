@@ -402,7 +402,7 @@ After deciding which render mode to adopt:
 * If you plan to adopt the Interactive Auto render mode, follow the guidance in the [Enable interactive server-side rendering (interactive SSR)](#enable-interactive-server-side-rendering-interactive-ssr) section. 
 * If you plan to only adopt Interactive WebAssembly rendering, continue without adding interactive SSR.
 
-Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server) NuGet package to the app.
+Add a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Server` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

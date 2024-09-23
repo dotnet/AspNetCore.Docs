@@ -103,7 +103,7 @@ In client-side Blazor apps, client-side authentication checks can be bypassed be
 
 Add the following:
 
-* A package reference for the [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) NuGet package.
+* A package reference for the [`Microsoft.AspNetCore.Components.Authorization` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
 
   [!INCLUDE[](~/includes/package-reference.md)]
 

@@ -50,7 +50,7 @@ After configuring components to write log information, configure where the logge
 
 The **Debug** logging providers write the output [using `Debug` statements](xref:fundamentals/logging/index#debug).
 
-To configure the **Debug** logging provider, add a reference to the [`Microsoft.Extensions.Logging.Debug`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) NuGet package.
+To configure the **Debug** logging provider, add a reference to the [`Microsoft.Extensions.Logging.Debug` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

@@ -392,7 +392,7 @@ Laid out with indentation, spacing, and unescaped quotes, the unencoded PATCH do
 
 To simplify the creation of PATCH documents in the app issuing PATCH requests, an app can use .NET JSON PATCH support, as the following guidance demonstrates.
 
-Install the [`Microsoft.AspNetCore.JsonPatch`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) NuGet package and use the API features of the package to compose a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a PATCH request.
+Install the [`Microsoft.AspNetCore.JsonPatch` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) and use the API features of the package to compose a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a PATCH request.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -432,7 +432,7 @@ Add <xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=n
 
 Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
 
-Add a package reference for the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
+Add a package reference for the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) to the web API app.
 
 > [!NOTE]
 > There's no need to add a package reference for the [`Microsoft.AspNetCore.JsonPatch`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) package to the app because the reference to the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package automatically transitively adds a package reference for `Microsoft.AspNetCore.JsonPatch`.
@@ -486,7 +486,7 @@ await Http.DeleteAsync($"todoitems/{id}");
 > [!NOTE]
 > An alternative to using a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory> is to use a typed <xref:System.Net.Http.HttpClient>. For more information, see the [Typed `HttpClient`](#typed-httpclient) section.
 
-Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
+Add the [`Microsoft.Extensions.Http` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Http) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -568,7 +568,7 @@ Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:Syst
 > [!NOTE]
 > An alternative to using a typed <xref:System.Net.Http.HttpClient> is to use a named <xref:System.Net.Http.HttpClient> from an <xref:System.Net.Http.IHttpClientFactory>. For more information, see the [Named `HttpClient` with `IHttpClientFactory`](#named-httpclient-with-ihttpclientfactory) section.
 
-Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
+Add the [`Microsoft.Extensions.Http` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Http) to the app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 

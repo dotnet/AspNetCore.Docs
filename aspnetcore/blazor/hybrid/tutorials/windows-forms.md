@@ -51,7 +51,7 @@ In the **Additional information** dialog, select the framework version with the 
 
 :::image type="content" source="windows-forms/_static/additional-information.png" alt-text="The Additional Information dialog.":::
 
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) NuGet package:
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms` NuGet package](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms):
 
 :::image type="content" source="windows-forms/_static/nuget-package-manager.png" alt-text="Use Nuget Package Manager in Visual Studio to install the Microsoft.AspNetCore.Components.WebView.WindowsForms NuGet package.":::
 
