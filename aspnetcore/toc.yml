@@ -580,6 +580,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/security/index
+              - name: Authentication state
+                uid: blazor/security/authentication-state
               - name: Server
                 items:
                   - name: Overview

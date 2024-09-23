@@ -932,8 +932,8 @@ By initializing components with the same state used during prerendering, any exp
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
-  * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+  * [General aspects](xref:blazor/security/index)
+  * [Prerendering with authentication in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 * [Handle errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
