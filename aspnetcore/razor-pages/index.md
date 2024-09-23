@@ -4,7 +4,7 @@ author: tdykstra
 description: Explains how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
-ms.date: 08/28/2023
+ms.date: 8/28/2023
 uid: razor-pages/index
 ---
 
