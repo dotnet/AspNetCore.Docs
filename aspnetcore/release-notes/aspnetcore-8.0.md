@@ -320,6 +320,14 @@ Routing and deep linking for Blazor Server with Yarp work correctly in .NET 8.
 
 For more information, see <xref:migration/70-to-80#drop-blazor-server-with-yarp-routing-workaround>.
 
+### Multiple Blazor Web Apps per server project
+
+<!-- UPDATE 10.0 Confirm or update -->
+
+Support for multiple Blazor Web Apps per server project will be considered for .NET 10 (November, 2025).
+
+For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).
+
 ### Blazor Hybrid
 
 The following articles document changes for Blazor Hybrid in .NET 8:
