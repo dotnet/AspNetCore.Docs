@@ -101,9 +101,32 @@ If you're using the [Autofac Inversion of Control (IoC) container](https://autof
 
 ## File size read and upload limits
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-9.0"
+
+Server-side or client-side, there's no file read or upload size limit for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+
+For Chromium-based browsers (Google Chrome and Microsoft Edge) using the HTTP/2 protocol, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files (> 2 GB or larger than the device's available memory).
+
+For non-Chromium browsers or without HTTP/2 protocol, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
+
+* [The Blazor InputFile Component should handle chunking when the file is uploaded (dotnet/runtime #84685)](https://github.com/dotnet/runtime/issues/84685)
+* [Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634)
+
+For large client-side file uploads that fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 Server-side or client-side, there's no file read or upload size limit specifically for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. However, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
+
+* [The Blazor InputFile Component should handle chunking when the file is uploaded (dotnet/runtime #84685)](https://github.com/dotnet/runtime/issues/84685)
+* [Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634)
+
+For large client-side file uploads that fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend:
+
+* Adopting .NET 9 or later for Chromium-based browsers (Google Chrome and Microsoft Edge) with HTTP/2 protocol support, where this problem is internally addressed by Blazor with [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API).
+* For non-Chromium browsers, Chromium browsers without HTTP/2, or .NET 8 or earlier, chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
 :::moniker-end
 
@@ -111,16 +134,13 @@ Server-side or client-side, there's no file read or upload size limit specifical
 
 The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB. Additionally, client-side Blazor reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail for client-side uploads using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component. For more information, see the following discussions:
 
-:::moniker-end
-
 * [The Blazor InputFile Component should handle chunking when the file is uploaded (dotnet/runtime #84685)](https://github.com/dotnet/runtime/issues/84685)
 * [Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634)
 
-For large client-side file uploads that fail when attempting to use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, we recommend chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+* Adopting .NET 9 or later for Chromium-based browsers (Google Chrome and Microsoft Edge) with HTTP/2 protocol support, where this problem is internally addressed by Blazor with [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API).
+* For non-Chromium browsers, Chromium browsers without HTTP/2, or .NET 5 or earlier, chunking large files with a custom component using multiple [HTTP range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests) instead of using the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
-<!-- UPDATE 9.0 PU PR: https://github.com/dotnet/runtime/pull/91295 -->
-
-Work is currently scheduled for .NET 9 (late 2024) to address the client-side file size upload limitation.
+:::moniker-end
 
 ## Examples
 

@@ -235,3 +235,9 @@ The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now s
 Support for multiple Blazor Web Apps per server project will be considered for .NET 10 (November, 2025).
 
 For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).
+
+### File size read and upload limits
+
+For Chromium-based browsers (Google Chrome and Microsoft Edge) using the HTTP/2 protocol, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files (> 2 GB or larger than the device's available memory).
+
+For more information, see <xref:blazor/file-uploads?view=aspnetcore-9.0#file-size-read-and-upload-limits>.
