@@ -328,7 +328,7 @@ If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membe
 
 Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and cascading authentication state services.
 
-When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and the call to <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState%2A> shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the `Router` component](#customize-unauthorized-content-with-the-router-component) section.
 
 ```razor
 <Router ...>
@@ -352,7 +352,7 @@ builder.Services.AddCascadingAuthenticationState();
 
 Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` [cascading parameter](xref:blazor/components/cascading-values-and-parameters) using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components.
 
-When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component) section.
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components shown in the following example. A client-side Blazor app includes the required service registrations as well. Additional information is presented in the [Customize unauthorized content with the `Router` component](#customize-unauthorized-content-with-the-router-component) section.
 
 ```razor
 <CascadingAuthenticationState>
@@ -581,7 +581,7 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 * Authenticated (signed-in) users are authorized.
 * Unauthenticated (signed-out) users are unauthorized.
 
-When the user isn't authorized and if the app doesn't [customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
+When the user isn't authorized and if the app doesn't [customize unauthorized content with the `Router` component](#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
 
 ```html
 Not authorized.
@@ -688,7 +688,7 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 
 :::moniker-end
 
-## Customize unauthorized content with the Router component
+## Customize unauthorized content with the `Router` component
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunction with the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component, allows the app to specify custom content if:
 
