@@ -32,11 +32,7 @@ The default layout `Pages/Shared/_Layout.cshtml` can be configured to include co
 
 :::code language="razor" source="~/mvc/views/tag-helpers/built-in/samples/ScriptTagHelper/Pages/Shared/_Layout.cshtml" id="snippet_1" :::
 
-  ```razor
-  <script asp-src-include="@(ViewContext.View.Path).js"></script>
-  ```
-
-The sample download uses the preceding code snippet to include collocated JS files in the default layout.
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples/ScriptTagHelper) uses the preceding code snippet to include collocated JS files in the default layout.
   
   When the app is published, the framework automatically moves the script to the web root. In the preceding example, the script is moved to `bin\Release\{TARGET FRAMEWORK MONIKER}\publish\wwwroot\Pages\Index.cshtml.js`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks). No change is required to the script's relative URL in the `Index` page.
 
