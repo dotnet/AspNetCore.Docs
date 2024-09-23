@@ -489,7 +489,7 @@ EF Core documentation:
 
 ## Legal
 
-[*The Matrix*](https://www.warnerbros.com/movies/matrix) is a trademark and copyright of [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/).
+[*The Matrix*](https://www.warnerbros.com/movies/matrix) is a copyright of [Warner Bros. Entertainment Inc.](https://www.warnerbros.com/).
 
 ## Next steps
 
