@@ -63,4 +63,4 @@ projects_v2_item:
         - type: query
           value: "EventPayload.changes.field_value.field_name == 'Priority' || EventPayload.changes.field_value.field_name == 'Size'"
       pass:
-        - labels-add: [":world_map: mapQUEST"]
+        - labels-add: ["mapQuest"]
