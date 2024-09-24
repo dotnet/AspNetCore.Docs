@@ -1,5 +1,5 @@
-revision: 4
-schema-version: 1
+revision: 5
+schema-version: 5
 owner-ms-alias: adegeo
 
 config:
@@ -18,18 +18,41 @@ issues:
     # New issue opened, add Not Triaged  
     - labels-add: [":watch: Not Triaged"]
 
+    # Try to detect an empty issue
+    - check:
+        - type: comment-body
+          value: "### Description[\\n\\r]+\\[Enter feedback here\\][\\n\\r]+###"
+      pass:
+        - labels-add: ["needs-more-info"]
+        - labels-remove: [":watch: Not Triaged"]
+        - close
+
     # default for doc comment
     - check:
         - type: metadata-exists
       pass:
         - labels-add: ["Source - Docs.ms"]
-        - prod_tech_labels: true
+        - svc_subsvc_labels: true
+
+    # Add links to related issues if it's a doc issue
+    - check:
+        - type: metadata-exists
+        - type: variable-exists
+          name: "document_version_independent_id"
+      pass:
+        - link-related-issues
 
   labeled:
 
     # Temporary label to mark issues as updated for Quest. The label is instantly removed
     - check:
         - type: query
-          value: "length(Issue.labels[?name == ':world_map: mapQUEST']) != `0`"
+          value: "length(Issue.Labels[?Name == 'mapQuest']) != `0`"
       pass:
-        - labels-remove: [":world_map: mapQUEST"]
+        - labels-remove: ["mapQuest"]
+
+projects_v2_item:
+
+  reordered:
+
+    - labels-add: ["mapQuest"]
