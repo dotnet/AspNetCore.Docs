@@ -56,3 +56,11 @@ projects_v2_item:
   reordered:
 
     - labels-add: ["mapQuest"]
+
+  edited:
+
+    - check:
+        - type: query
+          value: "EventPayload.changes.field_value.field_name == 'Priority' || EventPayload.changes.field_value.field_name == 'Size'"
+      pass:
+        - labels-add: ["mapQuest"]
