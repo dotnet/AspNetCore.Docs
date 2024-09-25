@@ -92,27 +92,18 @@ Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.A
 :::moniker range="< aspnetcore-7.0"
 
 Add the Authentication service to the `program.cs`:
-```
-/*
-builder.Services.AddAuthentication(o =>
-{
-     o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-}).AddCookie().AddGoogleOpenIdConnect(googleOptions =>
- {
-     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
- });*/
-```
+
+[!code-csharp[](https://github.com/sharafabacery/GoogleAuthticationExample/blob/main/Program.cs?range=18-26)]
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
 ## Sign in with Google
 * Go to [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
 * Then go to [google developer button genration ](https://developers.google.com/identity/gsi/web/tools/configurator)
-* Setup your Controller to match with ``` data-login_uri="{HostName}/{ControllerName}/{actionName}"``` attrbute because after success login it will forward you to that link.
-* Create controller and action takes one argement  ```string credential``` because that what google return when complete login process.
-* Verify ```credential``` by using this line of code
-```//GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);```
+* Setup your Controller to match with ` data-login_uri="{HostName}/{ControllerName}/{actionName}" ` attrbute because after success login it will forward you to that link.
+* Create controller and action takes one argement  `string credential` because that what google return when complete login process.
+* Verify `credential` by using this line of code
+[!code-csharp[](https://github.com/sharafabacery/GoogleAuthticationExample/blob/main/Controllers/LoginGoogleController.cs?range=21-2)]
 * Here you  get all information about login user you can store it in database.
 
 [!INCLUDE[Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)]
