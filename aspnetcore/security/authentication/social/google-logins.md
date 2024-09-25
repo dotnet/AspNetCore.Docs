@@ -15,7 +15,8 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 ## Create the Google OAuth 2.0 Client ID and secret
 
-* Follow the guidance in [Integrating Google Sign-In into your web app (New)]([https://developers.google.com/identity/sign-in/web/sign-in](https://developers.google.com/identity/gsi/web/guides/overview)) [Integrating Google Sign-In into your web app (Deprecated)](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation). (Deprecated)
+* Follow the guidance in [Integrating Google Sign-In into your web app (New)](https://developers.google.com/identity/gsi/web/guides/overview) (Google documentation)
+* [Integrating Google Sign-In into your web app (Deprecated)](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation). (Deprecated)
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
 * A **Project** must exist first, you may have to create one. Once a project is selected, enter the **Dashboard**.
 
