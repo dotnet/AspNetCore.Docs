@@ -74,7 +74,7 @@ Add the Authentication service to the `Program`:
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
-## Sign in with Google
+## Sign in with Google `Google.Apis.Auth.AspNetCore3` version
 
 * Run the app and select **Log in**. An option to sign in with Google appears.
 * Select the **Google** button, which redirects to Google for authentication.
@@ -90,7 +90,6 @@ For more information on configuration options supported by Google authentication
 
 Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
 
-:::moniker range="< aspnetcore-7.0"
 
 Add the Authentication service to the `program.cs`:
 
@@ -107,7 +106,7 @@ Follow this link [`Add Authtication for asp.net app`](https://developers.google.
 `GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
 * Here you  get all information about login user you can store it in database.
 
-[!INCLUDE[Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)]
+[Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
