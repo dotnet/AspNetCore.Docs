@@ -93,7 +93,7 @@ Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.A
 
 Add the Authentication service to the `program.cs`:
 
-[!code-csharp[](https://github.com/sharafabacery/GoogleAuthticationExample/blob/main/Program.cs?range=18-26)]
+Follow this link [`Add Authtication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
@@ -103,7 +103,7 @@ Add the Authentication service to the `program.cs`:
 * Setup your Controller to match with ` data-login_uri="{HostName}/{ControllerName}/{actionName}" ` attrbute because after success login it will forward you to that link.
 * Create controller and action takes one argement  `string credential` because that what google return when complete login process.
 * Verify `credential` by using this line of code
-[!code-csharp[](https://github.com/sharafabacery/GoogleAuthticationExample/blob/main/Controllers/LoginGoogleController.cs?range=21-2)]
+`GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
 * Here you  get all information about login user you can store it in database.
 
 [!INCLUDE[Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)]
