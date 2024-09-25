@@ -318,7 +318,7 @@ To ensure assets from `wwwroot-custom` are returned, use one of the following ap
 * Delete duplicate named assets in `wwwroot`.
 * Set `"ASPNETCORE_ENVIRONMENT"` in `Properties/launchSettings.json` to any value other than `"Development"`.
 * Completely disable static web assets by setting `<StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>` in the project file. ***WARNING, disabling static web assets disables [Razor Class Libraries](xref:razor-pages/ui-class)***.
-* Add the following JSON to the project file:
+* Add the following XML to the project file:
 
   ```xml
   <ItemGroup>
