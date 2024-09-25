@@ -41,7 +41,7 @@ When downloading files from a different origin than the app, Cross-Origin Resour
 
 ## Security considerations
 
-Use caution when providing users with the ability to download files from a server. Attackers may execute [Denial of Service (DoS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
+Use caution when providing users with the ability to download files from a server. Cyberattackers may execute [Denial of Service (DoS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
 
 Security steps that reduce the likelihood of a successful attack are:
 

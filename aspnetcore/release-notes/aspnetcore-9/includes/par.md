@@ -4,10 +4,10 @@ We'd like to thank [Joe DeCock](https://github.com/josephdecock) from [Duende So
 
 > Pushed Authorization Requests (PAR) is a relatively new [OAuth standard](https://datatracker.ietf.org/doc/html/rfc9126) that improves the security of OAuth and OIDC flows by moving authorization parameters from the front channel to the back channel. Thats is, moving authorization parameters from redirect URLs in the browser to direct machine to machine http calls on the back end.
 >
-> This prevents an attacker in the browser from:
+> This prevents a cyberattacker in the browser from:
 >
 > * Seeing authorization parameters, which could leak PII.
-> * Tampering with those parameters, e.g., the attacker could change the scope of access being requested.
+> * Tampering with those parameters. For example, the cyberattacker could change the scope of access being requested.
 >
 > Pushing the authorization parameters also keeps request URLs short. Authorize parameters can get very long when using more complex OAuth and OIDC features such as [Rich Authorization Requests](https://oauth.net/2/rich-authorization-requests/). URLs that are long cause issues in many browsers and networking infrastructures.
 >

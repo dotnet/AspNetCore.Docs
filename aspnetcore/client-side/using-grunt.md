@@ -194,7 +194,7 @@ Grunt is configured using a manifest named `Gruntfile.js` that defines, loads an
     ```
 
     > [!NOTE]
-    > The option "-W069" is an error produced by jshint when JavaScript uses bracket syntax to assign a property instead of dot notation, i.e. `Tastes["Sweet"]` instead of `Tastes.Sweet`. The option turns off the warning to allow the rest of the process to continue.
+    > The option "-W069" is an error produced by jshint when JavaScript uses bracket syntax to assign a property instead of dot notation, `Tastes["Sweet"]` instead of `Tastes.Sweet`. The option turns off the warning to allow the rest of the process to continue.
 
 1. Add the `uglify` task using the code below.
 

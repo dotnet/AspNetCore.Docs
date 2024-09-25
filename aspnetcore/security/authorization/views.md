@@ -16,7 +16,7 @@ A developer often wants to show, hide, or otherwise modify a UI based on the cur
 @inject IAuthorizationService AuthorizationService
 ```
 
-If you want the authorization service in every view, place the `@inject` directive into the `_ViewImports.cshtml` file of the *Views* directory. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
+If you want the authorization service in every view, place the `@inject` directive into the `_ViewImports.cshtml` file of the `Views` directory. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
 Use the injected authorization service to invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
 
@@ -40,4 +40,4 @@ In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in 
 In the preceding code, the model is passed as a resource the policy evaluation should take into consideration.
 
 > [!WARNING]
-> Don't rely on toggling visibility of your app's UI elements as the sole authorization check. Hiding a UI element may not completely prevent access to its associated controller action. For example, consider the button in the preceding code snippet. A user can invoke the `Edit` action method if he or she knows the relative resource URL is */Document/Edit/1*. For this reason, the `Edit` action method should perform its own authorization check.
+> Don't rely on toggling visibility of your app's UI elements as the sole authorization check. Hiding a UI element may not completely prevent access to its associated controller action. For example, consider the button in the preceding code snippet. A user can invoke the `Edit` action method if they know the relative resource URL is `/Document/Edit/1`. For this reason, the `Edit` action method should perform its own authorization check.

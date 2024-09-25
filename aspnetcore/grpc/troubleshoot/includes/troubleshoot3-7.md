@@ -308,7 +308,7 @@ For Alpine Linux, there are community-provided packages for the protocol buffers
 ```sh
 # Build or install the binaries for your architecture.
 
-# e.g. for Alpine Linux the grpc-plugins package can be used
+# For Alpine Linux, the grpc-plugins package can be used.
 #  See https://pkgs.alpinelinux.org/package/edge/community/x86_64/grpc-plugins
 apk add grpc-plugins  # Alpine Linux specific package installer
 

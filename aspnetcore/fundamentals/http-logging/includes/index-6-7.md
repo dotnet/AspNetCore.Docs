@@ -66,7 +66,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 [!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices&highlight=10)]
 
-This approach can also be used to enable logging for data that is not logged by default (e.g. form data, which might have a media type such as `application/x-www-form-urlencoded` or `multipart/form-data`).
+This approach can also be used to enable logging for data that is not logged by default. For example, form data, which might have a media type such as `application/x-www-form-urlencoded` or `multipart/form-data`.
 
 #### `MediaTypeOptions` methods
 

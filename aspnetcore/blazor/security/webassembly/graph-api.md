@@ -21,7 +21,7 @@ Two approaches are covered:
 
 * **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Microsoft Graph. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
 
-The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the attack surface area of your apps.
+The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the vulnerabilities of your apps.
 
 Additional approaches for working with Microsoft Graph and Blazor WebAssembly are provided by the following Microsoft Graph and Azure samples:
 

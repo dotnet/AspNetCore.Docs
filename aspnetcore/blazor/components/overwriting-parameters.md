@@ -167,7 +167,7 @@ The following revised `ShowMoreExpander` component:
 :::moniker-end
 
 > [!NOTE]
-> The revised `ShowMoreExpander` doesn't reflect changes to the `InitiallyExpanded` parameter after initialization (`OnInitialized`). In certain scenarios, an already initialized component might receive new parameter values. This can happen, for example, in a master-detail view where the same component is used to render different detail views or when the `/item/{id}` route parameter changes to display a different item.
+> The revised `ShowMoreExpander` doesn't reflect changes to the `InitiallyExpanded` parameter after initialization (`OnInitialized`). In certain scenarios, an already initialized component might receive new parameter values. This can happen, for example, in a primary-subordinate view where the same component is used to render different detail views or when the `/item/{id}` route parameter changes to display a different item.
 
 Consider following `ToggleExpander` component that:
 

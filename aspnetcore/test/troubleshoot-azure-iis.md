@@ -269,9 +269,9 @@ For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enha
 >
 > For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
-### Slow or hanging app (Azure App Service)
+### Slow or nonresponsive app (Azure App Service)
 
-When an app responds slowly or hangs on a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation).
+When an app responds slowly or doesn't respond to a request, see [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation).
 
 ### Monitoring blades
 
@@ -417,7 +417,7 @@ Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommende
 
 If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
 
-### Slow or hanging app (IIS)
+### Slow or non-responding app (IIS)
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
@@ -458,9 +458,9 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App doesn't respond, fails during startup, or runs normally
 
-When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
+When an app stops responding but doesn't crash, fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 
 #### Analyze the dump
 

@@ -32,7 +32,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Using a token-based protocol offers a smaller attack surface area, as the tokens aren't sent in all requests.
+* Using a token-based protocol offers fewer vulnerabilities, as the tokens aren't sent in all requests.
 * The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
 * Tokens have a short lifetime, one hour, which limits the attack window. Tokens can also be revoked at any time.
@@ -44,7 +44,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 
 :::moniker range="< aspnetcore-8.0"
 
-* Using a token-based protocol offers a smaller attack surface area, as the tokens aren't sent in all requests.
+* Using a token-based protocol offers fewer vulnerabilities, as the tokens aren't sent in all requests.
 * The tokens are explicitly sent to the server, so server endpoints don't require protection against [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery). This allows you to host Blazor WebAssembly apps alongside MVC or Razor pages apps.
 * Tokens have narrower permissions than cookies. For example, tokens can't be used to manage the user account or change a user's password unless such functionality is explicitly implemented.
 * Tokens have a short lifetime, one hour, which limits the attack window. Tokens can also be revoked at any time.
@@ -104,7 +104,7 @@ The state stored by the History API provides the following benefits for remote a
 
 * The state passed to the secured app endpoint is tied to the navigation performed to authenticate the user at the `authentication/login` endpoint.
 * Extra work encoding and decoding data is avoided.
-* The attack surface area is reduced. Unlike using the query string to store navigation state, a top-level navigation or influence from a different origin can't set the state stored by the History API.
+* Vulnerabilities are reduced. Unlike using the query string to store navigation state, a top-level navigation or influence from a different origin can't set the state stored by the History API.
 * The history entry is replaced upon successful authentication, so the state attached to the history entry is removed and doesn't require clean up.
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> represents the request to the identity provider for logging in or provisioning an access token.

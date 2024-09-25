@@ -4,7 +4,7 @@ This sample app demonstrates concepts described in the [Upload files in ASP.NET 
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks, attempt to upload viruses or malware, or attempt to compromise networks and servers in other ways.
+Use caution when providing users with the ability to upload files to a server. Cyberattackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks, attempt to upload viruses or malware, or attempt to compromise networks and servers in other ways.
 
 Security steps that reduce the likelihood of a successful attack are:
 
@@ -28,7 +28,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
 >
-> For information on reducing the attack surface area when accepting files from users, see the following resources:
+> For information on reducing vulnerabilities when accepting files from users, see the following resources:
 >
 > * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
