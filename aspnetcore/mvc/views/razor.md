@@ -412,7 +412,7 @@ In C#, a `using` statement is used to ensure an object is disposed. In Razor, th
 @using (Html.BeginForm())
 {
     <div>
-        Email: <input type="email" id="Email" value="">
+        <label>Email: <input type="email" id="Email" value=""></label>
         <button>Register</button>
     </div>
 }
