@@ -233,36 +233,36 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 ## Linux-specific considerations
 
-Linux distros differ substantially in how they mark certificates as trusted.  While `dotnet dev-certs` is expected to be broadly applicable it is only officially supported on Ubuntu and Fedora and specifically aims to ensure trust in Firefox and Chromium-based browsers (Edge, Chrome, and Chromium).
+Linux distros differ substantially in how they mark certificates as trusted. While `dotnet dev-certs` is expected to be broadly applicable it is only officially supported on Ubuntu and Fedora and specifically aims to ensure trust in Firefox and Chromium-based browsers (Edge, Chrome, and Chromium).
 
 ### Dependencies
 
 To establish OpenSSL trust, the `openssl` tool must be on the path.
 
-To establish browser trust (e.g. in Edge or Firefox), the `certutil` tool must be on the path.
+To establish browser trust (for example in Edge or Firefox), the `certutil` tool must be on the path.
 
 ### OpenSSL trust
 
-When the ASP.NET Core development certificate is trusted, it is exported to a folder in the current user's home directory.  To have [OpenSSL](https://www.openssl.org/) (and clients that consume it) pick up this folder, you need to set the `SSL_CERT_DIR` environment variable.  You can either do this in a single session by running a command like `export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs` (the exact value will be in the output when `--verbose` is passed) or by adding it your (distro- and shell-specific) configuration file (e.g. `.profile`).
+When the ASP.NET Core development certificate is trusted, it is exported to a folder in the current user's home directory. To have [OpenSSL](https://www.openssl.org/) (and clients that consume it) pick up this folder, you need to set the `SSL_CERT_DIR` environment variable. You can either do this in a single session by running a command like `export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs` (the exact value will be in the output when `--verbose` is passed) or by adding it your (distro- and shell-specific) configuration file (for example `.profile`).
 
-This is required to make tools like `curl` trust the development certificate.  (Or, alternatively, you can pass `-CAfile` or `-CApath` to each individual `curl` invocation.)
+This is required to make tools like `curl` trust the development certificate. Or, alternatively, you can pass `-CAfile` or `-CApath` to each individual `curl` invocation.
 
 Note that this requires 1.1.1h or later or 3.0.0 or later, depending on which major version you're using.
 
-If OpenSSL trust gets into a bad state (e.g. if `dotnet dev-certs https --clean` fails to remove it), it is frequently possible to set things right using the [`c_rehash`](https://docs.openssl.org/master/man1/openssl-rehash/) tool.
+If OpenSSL trust gets into a bad state (for example if `dotnet dev-certs https --clean` fails to remove it), it is frequently possible to set things right using the [`c_rehash`](https://docs.openssl.org/master/man1/openssl-rehash/) tool.
 
 ### Overrides
 
-If you're using another browser with its own Network Security Services (NSS) store, you can use the `DOTNET_DEV_CERTS_NSSDB_PATHS` environment variable to specify a colon-delimited list of NSS directories (i.e. the directory containing `cert9.db`) to which to add the development certificate.
+If you're using another browser with its own Network Security Services (NSS) store, you can use the `DOTNET_DEV_CERTS_NSSDB_PATHS` environment variable to specify a colon-delimited list of NSS directories (for example, the directory containing `cert9.db`) to which to add the development certificate.
 
 If you store the certificates you want OpenSSL to trust in a specific directory, you can use the `DOTNET_DEV_CERTS_OPENSSL_CERTIFICATE_DIRECTORY` environment variable to indicate where that is.
 
 > [!WARNING]
-> If you set either of these variables, it is important that they are set to the same values each time trust is updated.  If they change, the tool won't know about certificates in the former locations (e.g. to clean them up)
+> If you set either of these variables, it is important that they are set to the same values each time trust is updated. If they change, the tool won't know about certificates in the former locations (for example to clean them up).
 
 ### Using sudo
 
-As on other platforms, development certificates are stored and trusted separately for each user.  As a result, if you run `dotnet dev-certs` as a different user (e.g. by using `sudo`), it is _that_ user (e.g. `root`) that will trust the development certificate.
+As on other platforms, development certificates are stored and trusted separately for each user. As a result, if you run `dotnet dev-certs` as a different user (for example by using `sudo`), it is _that_ user (for example `root`) that will trust the development certificate.
 
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
@@ -444,7 +444,7 @@ openssl x509 -noout -fingerprint -sha1 -inform pem -in /usr/local/share/ca-certi
 If the certificate doesn't match, it could be one of the following:
 
 * An old certificate.
-* An exported a developer certificate for the root user. For this case, export the  certificate.
+* An exported a developer certificate for the root user. For this case, export the certificate.
 
 The root user certificate can be checked at:
 

@@ -63,7 +63,7 @@ Custom decompression providers are registered with <xref:Microsoft.AspNetCore.Re
 
 ## Request size limits
 
-In order to guard against [zip bombs or decompression bombs](https://en.wikipedia.org/wiki/Zip_bomb):
+In order to protect against [zip bombs or decompression bombs](https://en.wikipedia.org/wiki/Zip_bomb):
 
 * The maximum size of the decompressed request body is limited to the request body size limit enforced by the endpoint or server.
 * If the number of bytes read from the decompressed request body stream exceeds the limit, an [InvalidOperationException](xref:System.InvalidOperationException) is thrown to prevent additional bytes from being read from the stream.

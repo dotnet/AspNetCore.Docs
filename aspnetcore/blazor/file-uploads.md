@@ -478,7 +478,7 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
 
@@ -701,7 +701,7 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
 
