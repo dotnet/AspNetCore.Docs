@@ -9,13 +9,13 @@ uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
-By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Valeriy Novytskyy](https://github.com/01binary) , [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sharaf Abacery](https://github.com/sharafabacery)
 
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the Google OAuth 2.0 Client ID and secret
 
-* Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation).
+* Follow the guidance in [Integrating Google Sign-In into your web app (New)]([https://developers.google.com/identity/sign-in/web/sign-in](https://developers.google.com/identity/gsi/web/guides/overview)) [Integrating Google Sign-In into your web app (Deprecated)](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation). (Deprecated)
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
 * A **Project** must exist first, you may have to create one. Once a project is selected, enter the **Dashboard**.
 
@@ -51,7 +51,7 @@ Store sensitive settings such as the Google client ID and secret values with [Se
 
 You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 
-## Configure Google authentication
+## Configure Google authentication (First Edition)
 
 Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
 
@@ -78,6 +78,43 @@ Add the Authentication service to the `Program`:
 * Run the app and select **Log in**. An option to sign in with Google appears.
 * Select the **Google** button, which redirects to Google for authentication.
 * After entering your Google credentials, you are redirected back to the web site.
+
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
+[!INCLUDE[](includes/chain-auth-providers.md)]
+
+For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
+
+## Configure Google authentication (Second Edition)
+
+Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
+
+:::moniker range="< aspnetcore-7.0"
+
+Add the Authentication service to the `program.cs`:
+```
+builder.Services.AddAuthentication(o =>
+{
+     o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie().AddGoogleOpenIdConnect(googleOptions =>
+ {
+     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+ });
+```
+
+[!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
+
+## Sign in with Google
+* Go to [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
+* Then go to [google developer button genration ](https://developers.google.com/identity/gsi/web/tools/configurator)
+* Setup your Controller to match with ``` data-login_uri="{HostName}/{ControllerName}/{actionName}"``` attrbute because after success login it will forward you to that link.
+* Create controller and action takes one argement  ```string credential``` because that what google return when complete login process.
+* Verify ```credential``` by using this line of code
+```GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);```
+* Here you  get all information about login user you can store it in database.
+
+[!INCLUDE[Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)]
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
