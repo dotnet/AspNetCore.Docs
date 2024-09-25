@@ -108,10 +108,6 @@ Follow this link [`Add Authtication for asp.net app`](https://developers.google.
 
 [Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)
 
-[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
-
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
 For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
 
 ## Change the default callback URI
