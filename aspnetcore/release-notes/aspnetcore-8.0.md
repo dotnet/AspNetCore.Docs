@@ -205,7 +205,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetco
 
 ### Ahead-of-time (AOT) SIMD and exception handling
 
-Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
+Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-width SIMD](https://wikipedia.org/wiki/Single_instruction,_multiple_data) and [WebAssembly Exception handling](https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md) by default to improve runtime performance.
 
 For more information, see the following articles:
 
