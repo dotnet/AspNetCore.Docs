@@ -236,8 +236,11 @@ Support for multiple Blazor Web Apps per server project will be considered for .
 
 For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).
 
-### File size read and upload limits
+### Client-side request streaming
 
-For Chromium-based browsers (Google Chrome and Microsoft Edge) using the HTTP/2 protocol, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit uploading large files (> 2 GB or larger than the device's available memory).
+For Chromium-based browsers (for example, Google Chrome and Microsoft Edge) using the HTTP/2 protocol, [CORS](xref:security/cors), and HTTPS, client-side Blazor uses [Streams API](https://developer.mozilla.org/docs/Web/API/Streams_API) to permit [request streaming](https://developer.chrome.com/docs/capabilities/web-apis/fetch-streaming-requests).
 
-For more information, see <xref:blazor/file-uploads?view=aspnetcore-9.0#file-size-read-and-upload-limits>.
+For more information, see the following resources:
+
+* <xref:blazor/call-web-api?view=aspnetcore-9.0#client-side-request-streaming>
+* <xref:blazor/file-uploads?view=aspnetcore-9.0#file-size-read-and-upload-limits>.
