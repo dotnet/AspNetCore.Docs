@@ -343,7 +343,7 @@ Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn
 
 ### Azure Static Web Apps
 
-Deploy a Blazor WebAssembly app to Azure Static Web Apps use one of the following approaches:
+Use one of the following approaches to deploy a Blazor WebAssembly app to Azure Static Web Apps:
 
 * [Deploy from Visual Studio](#deploy-from-visual-studio)
 * [Deploy from Visual Studio Code](#deploy-from-visual-studio-code)
