@@ -5,6 +5,7 @@ description: Learn how to create an ASP.NET Core web app with user data protecte
 ms.author: riande
 ms.date: 12/5/2021
 ms.custom: mvc
+ms.sfi.ropc: t
 uid: security/authorization/secure-data
 ---
 
@@ -293,7 +294,7 @@ In the preceding code:
 
 If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
 
-* Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol.
+* Choose a non-weak password: Use eight or more characters and at least one upper-case character, number, and symbol. Note those requirements don't guarantee a strong password.
 * Execute the following command from the project's folder, where `<PW>` is the password:
 
   ```dotnetcli
