@@ -1,8 +1,8 @@
 ﻿@model RegisterAddressViewModel
 
 <form asp-controller="Demo" asp-action="RegisterAddress" method="post">
-    Email:  <input asp-for="Email" /> <br />
-    Password: <input asp-for="Password" /><br />
-    Address: <input asp-for="Address.AddressLine1" /><br />
+    <label>Email: <input asp-for="Email" /></label> <br />
+    <label>Password: <input asp-for="Password" /></label><br />
+    <label>Address: <input asp-for="Address.AddressLine1" /></label><br />
     <button type="submit">Register</button>
 </form>
