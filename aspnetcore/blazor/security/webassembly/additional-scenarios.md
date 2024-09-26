@@ -337,7 +337,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddScoped(static sp => new HttpClient(
+builder.Services.AddScoped(sp => new HttpClient(
     sp.GetRequiredService<AuthorizationMessageHandler>()
     .ConfigureHandler(
         authorizedUrls: [ "https://api.contoso.com/v1.0" ],
