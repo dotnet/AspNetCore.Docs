@@ -181,7 +181,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Use session affinity (sticky sessions) for server-side webfarm hosting
 
-When more than one backend server is in use, the app must implement session affinity, also called *sticky sessions*. Session affinity ensures that a client's circuit reconnects to the same server if the connection is droped. 
+When more than one backend server is in use, the app must implement session affinity, also called *sticky sessions*. Session affinity ensures that a client's circuit reconnects to the same server if the connection is dropped. 
 
 The following error is thrown by an app that hasn't enabled session affinity in a webfarm:
 
