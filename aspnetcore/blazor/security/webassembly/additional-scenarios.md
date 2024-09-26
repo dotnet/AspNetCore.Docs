@@ -340,11 +340,12 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 builder.Services.AddScoped(sp => new HttpClient(
     sp.GetRequiredService<AuthorizationMessageHandler>()
     .ConfigureHandler(
-        authorizedUrls: new[] { "https://api.contoso.com/v1.0" },
-        scopes: new[] { "example.read", "example.write" }))
-    {
-        BaseAddress = new Uri("https://api.contoso.com/v1.0")
-    });
+        authorizedUrls: [ "https://api.contoso.com/v1.0" ],
+        scopes: [ "example.read", "example.write" ])
+    .InnerHandler = new HttpClientHandler())
+{
+    BaseAddress = new Uri("https://api.contoso.com/v1.0")
+});
 ```
 
 In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
