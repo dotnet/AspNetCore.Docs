@@ -1,7 +1,7 @@
 ﻿@model RegisterViewModel
 
 <form asp-controller="Demo" asp-action="RegisterInput" method="post">
-    Email:  <input asp-for="Email" /> <br />
-    Password: <input asp-for="Password" /><br />
+    <label>Email: <input asp-for="Email" /></label> <br />
+    <label>Password: <input asp-for="Password" /></label><br />
     <button type="submit">Register</button>
 </form>

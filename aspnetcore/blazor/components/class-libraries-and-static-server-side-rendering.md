@@ -101,7 +101,7 @@ Consider the following example:
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <p>Name: <InputText @bind-Value="Item.Name" /></p>
+    <p><label>Name: <InputText @bind-Value="Item.Name" /></label></p>
 
     <button type="submit">Submit</button>
 </EditForm>

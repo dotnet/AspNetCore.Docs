@@ -484,9 +484,9 @@ public class PersonController
 ```cshtml
 @model Person
 
-Name: <input asp-for="Name" />
+<label>Name: <input asp-for="Name" /></label>
 <br />
-Age: <input asp-for="Age" />
+<label>Age: <input asp-for="Age" /></label>
 ```
 
 When validating record types, the runtime searches for binding and validation metadata specifically on parameters rather than on properties.
@@ -1117,9 +1117,9 @@ public class PersonController
 ```cshtml
 @model Person
 
-Name: <input asp-for="Name" />
+<label>Name: <input asp-for="Name" /></label>
 <br />
-Age: <input asp-for="Age" />
+<label>Age: <input asp-for="Age" /></label>
 ```
 
 When validating record types, the runtime searches for binding and validation metadata specifically on parameters rather than on properties.
@@ -1764,9 +1764,9 @@ public class PersonController
 ```cshtml
 @model Person
 
-Name: <input asp-for="Name" />
+<label>Name: <input asp-for="Name" /></label>
 ...
-Age: <input asp-for="Age" />
+<label>Age: <input asp-for="Age" /></label>
 ```
 
 When validating record types, the runtime searches for binding and validation metadata specifically on parameters rather than on properties.
