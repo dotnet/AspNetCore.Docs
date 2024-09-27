@@ -279,9 +279,11 @@ When no explicit annotation is provided, the framework attempts to determine the
 
 #### Describe response types
 
-<!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
+OpenAPI supports providing a description of the responses returned from an API.
 
-OpenAPI supports providing a description of the responses returned from an API. Minimal APIs support three strategies for setting the response type of an endpoint:
+##### [Minimal APIs](#tab/minimal-apis)
+
+Minimal APIs support three strategies for setting the response type of an endpoint:
 
 * Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method on the endpoint.
 * Via the [`ProducesResponseType`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute on the route handler.
@@ -304,13 +306,13 @@ app.MapGet("/todos", async (TodoDb db) =>
 });
 ```
 
-##### Set responses for `ProblemDetails`
+###### Set responses for `ProblemDetails`
 
 When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
 
 When there are no explicit annotations provided by one of these strategies, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
-##### Multiple response types
+###### Multiple response types
 
 If an endpoint can return different response types in different scenarios, you can provide metadata in the following ways:
 
@@ -325,6 +327,30 @@ If an endpoint can return different response types in different scenarios, you c
   The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata.
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
+
+##### [Controllers](#tab/controllers)
+
+In controller-based apps, ASP.NET Core can extract the response metadata from the action method signature, attributes, and conventions. 
+
+* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute-1> attribute to specify the status code, the type of the response body, and content type(s) of a response from an action method.
+* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute-1> attribute to specify the type of the response body.
+* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute> attribute to specify the response body type for the "default" response.
+* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute> attribute to specify the response body type for an error response. However, be aware that this is only complements the status code and content type(s) specified by an <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute with a 4XX status code.
+
+Only one <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute-1> attributes may be applied to an action method, but multiple <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute-1> attributes with different status codes may be applied to a single action method.
+
+All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
+
+When not specified by an attribute:
+* the status code for the response defaults to 200,
+* the schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, but otherwise is considered to be not specified,
+* the schema for the response body of 4xx responses is inferred to be a problem details object,
+* the schema for the response body of 3xx and 5xx responses is considered to be not specified,
+* the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
+
+Note that there is no build-time validation of the OpenAPI metadata for responses in controller-based apps. For example, there is no build error issued if an action method returns a different status code than one specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute, and may return an object of a different type than specified in the <xref:Microsoft.AspNetCore.Mvc.ActionResult%601> return type of the action method.
+
+---
 
 #### Excluding endpoints from the generated document
 
