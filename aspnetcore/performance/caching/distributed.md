@@ -31,6 +31,8 @@ Distributed cache configuration is implementation specific. This article describ
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
+
 ## Prerequisites
 
 Add a package reference for the distributed cache provider used:
