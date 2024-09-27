@@ -619,7 +619,7 @@ The following demonstration uses the loading progress indicator found in apps cr
                     .loading-progress circle:last-child {
                         stroke: #1b6ec2;
                         stroke-dasharray: 
-                            calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 
+                            calc(3.142 * var(--blazor-load-percentage, 0%) * 0.8), 
                             500%;
                         transition: stroke-dasharray 0.05s ease-in-out;
                     }

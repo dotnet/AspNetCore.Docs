@@ -407,7 +407,7 @@ Using the preceding code, validation is enabled in `Startup.ConfigureServices` w
 :::code language="csharp" source="~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/StartupValidation.cs" id="snippet":::
 
 <!-- The following comment doesn't seem that useful 
-Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
+Options validation doesn't protect against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 

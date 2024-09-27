@@ -29,24 +29,24 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Interactive Server Components with WebSocket compression enabled
 
-[Compression](xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components) can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the attacker:
+[Compression](xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components) can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the cyberattacker:
 
-* Force a browser to issue requests with a payload the attacker controls to a vulnerable site via cross-site form posting or by embedding the site inside an iframe of another site.
+* Force a browser to issue requests with a payload the cyberattacker controls to a vulnerable site via cross-site form posting or by embedding the site inside an iframe of another site.
 * Observe the length of the compressed and encrypted response over the network.
 
-For the app to be vulnerable, it must reflect the payload from the attacker in the response, for example, by writing out the path or the query string into the response. Using the length of the response, the attacker can "guess" any information on the response, bypassing the encryption of the connection.
+For the app to be vulnerable, it must reflect the payload from the cyberattacker in the response, for example, by writing out the path or the query string into the response. Using the length of the response, the cyberattacker can "guess" any information on the response, bypassing the encryption of the connection.
 
 Generally speaking, Blazor apps can enable compression over the WebSocket connection with appropriate security measures:
 
-* The app can be vulnerable when it takes content from the request (for example, the path or query string) that can be influenced by an attacker and reproduces it into the HTML of the page or otherwise makes it part of the response.
+* The app can be vulnerable when it takes content from the request (for example, the path or query string) that can be influenced by a cyberattacker and reproduces it into the HTML of the page or otherwise makes it part of the response.
 
 * Blazor applies the following security measures automatically:
 
   * When compression is configured, Blazor automatically blocks embedding the app into an iframe, which blocks the initial (uncompressed) response from the server from rendering and precludes the WebSocket connection from ever starting.
 
-  * The restriction on embedding the app into an iframe can be relaxed. However, relaxing the restriction exposes the app to attack if the embedding document becomes compromised via a cross-site scripting vulnerability, as that gives the attacker a way to execute the attack.
+  * The restriction on embedding the app into an iframe can be relaxed. However, relaxing the restriction exposes the app to attack if the embedding document becomes compromised via a cross-site scripting vulnerability, as that gives the cyberattacker a way to execute the attack.
 
-* Normally for this type of attack to take place, the app must repeatedly reproduce the content in the responses so that the attacker can guess the response. Given how Blazor renders (it renders once and then produces diffs of the content only for the elements that changed) this is hard for an attacker to accomplish. However, it isn't impossible for an attacker, so care must be taken to avoid rendering sensitive information alongside external information that can be manipulated by an attacker. Some examples of this are:
+* Normally for this type of attack to take place, the app must repeatedly reproduce the content in the responses so that the cyberattacker can guess the response. Given how Blazor renders (it renders once and then produces diffs of the content only for the elements that changed) this is hard for a cyberattacker to accomplish. However, it isn't impossible for a cyberattacker, so care must be taken to avoid rendering sensitive information alongside external information that can be manipulated by a cyberattacker. Some examples of this are:
 
   * Render [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) on the page at the same time as rendering database data that was added by another user.
 
@@ -183,7 +183,7 @@ For calls from .NET methods to JavaScript:
   * Cause an issue in the app by returning an error from the JavaScript function.
   * Induce an unintended behavior on the server by returning an unexpected result from the JavaScript function.
 
-Take the following precautions to guard against the preceding scenarios:
+Take the following precautions to protect against the preceding scenarios:
 
 * Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
@@ -263,9 +263,9 @@ A client can dispatch one or more increment events before the framework produces
 
 By adding the `if (count < 3) { ... }` check inside the handler, the decision to increment `count` is based on the current app state. The decision isn't based on the state of the UI as it was in the previous example, which might be temporarily stale.
 
-### Guard against multiple dispatches
+### Protect against multiple dispatches
 
-If an event callback invokes a long running operation asynchronously, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from enqueueing multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `DataService.GetDataAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
+If an event callback invokes a long running operation asynchronously, such as fetching data from an external service or database, consider using a safeguard. The safeguard can prevent the user from enqueueing multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `DataService.GetDataAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
 
 ```razor
 <button disabled="@isLoading" @onclick="UpdateData">Update</button>
@@ -286,11 +286,11 @@ If an event callback invokes a long running operation asynchronously, such as fe
 }
 ```
 
-The guard pattern demonstrated in the preceding example works if the background operation is executed asynchronously with the `async`-`await` pattern.
+The safeguard pattern demonstrated in the preceding example works if the background operation is executed asynchronously with the `async`-`await` pattern.
 
 ### Cancel early and avoid use-after-dispose
 
-In addition to using a guard as described in the [Guard against multiple dispatches](#guard-against-multiple-dispatches) section, consider using a <xref:System.Threading.CancellationToken> to cancel long-running operations when the component is disposed. This approach has the added benefit of avoiding *use-after-dispose* in components:
+In addition to using a safeguard as described in the [Protect against multiple dispatches](#protect-against-multiple-dispatches) section, consider using a <xref:System.Threading.CancellationToken> to cancel long-running operations when the component is disposed. This approach has the added benefit of avoiding *use-after-dispose* in components:
 
 ```razor
 @implements IDisposable
@@ -432,7 +432,7 @@ Components must:
 * Avoid using user input as part of the navigation call arguments.
 * Validate arguments to ensure that the target is allowed by the app.
 
-Otherwise, a malicious user can force the browser to go to an attacker-controlled site. In this scenario, the attacker tricks the app into using some user input as part of the invocation of the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> method.
+Otherwise, a malicious user can force the browser to go to a cyberattacker-controlled site. In this scenario, the cyberattacker tricks the app into using some user input as part of the invocation of the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> method.
 
 This advice also applies when rendering links as part of the app:
 
@@ -451,7 +451,7 @@ The following list of security considerations isn't comprehensive:
 * Prevent the client from allocating an unbound amount of memory.
   * Data within the component.
   * <xref:Microsoft.JSInterop.DotNetObjectReference> objects returned to the client.
-* Guard against multiple dispatches.
+* Protect against multiple dispatches.
 * Cancel long-running operations when the component is disposed.
 * Avoid events that produce large amounts of data.
 * Avoid using user input as part of calls to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and validate user input for URLs against a set of allowed origins first if unavoidable.
