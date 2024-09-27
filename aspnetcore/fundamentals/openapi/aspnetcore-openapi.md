@@ -332,12 +332,12 @@ If an endpoint can return different response types in different scenarios, you c
 
 In controller-based apps, ASP.NET Core can extract the response metadata from the action method signature, attributes, and conventions. 
 
-* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute-1> attribute to specify the status code, the type of the response body, and content type(s) of a response from an action method.
-* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute-1> attribute to specify the type of the response body.
+* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute to specify the status code, the type of the response body, and content type(s) of a response from an action method.
+* You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attribute to specify the type of the response body.
 * You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute> attribute to specify the response body type for the "default" response.
 * You can use the <xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute> attribute to specify the response body type for an error response. However, be aware that this is only complements the status code and content type(s) specified by an <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute with a 4XX status code.
 
-Only one <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute-1> attributes may be applied to an action method, but multiple <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute-1> attributes with different status codes may be applied to a single action method.
+Only one <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attributes may be applied to an action method, but multiple <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attributes with different status codes may be applied to a single action method.
 
 All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
 
