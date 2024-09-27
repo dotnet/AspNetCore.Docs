@@ -294,7 +294,7 @@ In the preceding code:
 
 If you haven't already set a password for seeded user accounts, use the [Secret Manager tool](xref:security/app-secrets#secret-manager) to set a password:
 
-* Choose a [strong password](https://support.microsoft.com/en-us/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb):
+* Choose a [strong password](https://support.microsoft.com/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb):
   * At least 12 characters long but 14 or more is better.
   * A combination of uppercase letters, lowercase letters, numbers, and symbols.
   * Not a word that can be found in a dictionary or the name of a person, character, product, or organization.
