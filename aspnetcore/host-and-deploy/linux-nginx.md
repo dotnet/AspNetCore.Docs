@@ -169,25 +169,23 @@ To configure Nginx as a reverse proxy to forward HTTP requests to an ASP.NET Cor
 ---
 
 ```text
-http {
-  map $http_connection $connection_upgrade {
-    "~*Upgrade" $http_connection;
-    default keep-alive;
-  }
+map $http_connection $connection_upgrade {
+  "~*Upgrade" $http_connection;
+  default keep-alive;
+}
 
-  server {
-    listen        80;
-    server_name   example.com *.example.com;
-    location / {
-        proxy_pass         http://127.0.0.1:5000/;
-        proxy_http_version 1.1;
-        proxy_set_header   Upgrade $http_upgrade;
-        proxy_set_header   Connection $connection_upgrade;
-        proxy_set_header   Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Proto $scheme;
-    }
+server {
+  listen        80;
+  server_name   example.com *.example.com;
+  location / {
+      proxy_pass         http://127.0.0.1:5000/;
+      proxy_http_version 1.1;
+      proxy_set_header   Upgrade $http_upgrade;
+      proxy_set_header   Connection $connection_upgrade;
+      proxy_set_header   Host $host;
+      proxy_cache_bypass $http_upgrade;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto $scheme;
   }
 }
 ```
