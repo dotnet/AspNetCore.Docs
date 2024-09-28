@@ -73,7 +73,6 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
      * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
      * Azure: Save the connection string in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview)
 
-
 The following code enables the Azure Cache for Redis:
 
 [!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddStackExchangeRedisCache)]
