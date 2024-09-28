@@ -7,6 +7,7 @@ ms.author: tdykstra
 ms.custom: mvc
 ms.date: 01/29/2024
 uid: performance/caching/distributed
+ms.sfi.ropc: t
 ---
 # Distributed caching in ASP.NET Core
 
@@ -29,6 +30,8 @@ When cached data is distributed, the data:
 Distributed cache configuration is implementation specific. This article describes how to configure SQL Server and Redis distributed caches. Third party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache)). Regardless of which implementation is selected, the app interacts with the cache using the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 ## Prerequisites
 
@@ -68,7 +71,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
   1. Create an Azure Cache for Redis.
   1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
      * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
-     * Azure: Save the connection string in the App Service Configuration or another secure store.
+     * Azure: Save the connection string in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview)
 
 The following code enables the Azure Cache for Redis:
 
