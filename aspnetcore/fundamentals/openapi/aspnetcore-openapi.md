@@ -279,21 +279,41 @@ When no explicit annotation is provided, the framework attempts to determine the
 
 #### Describe response types
 
-OpenAPI supports providing a description of the responses returned from an API.
+OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata for of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content type(s) of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
+
+The specific mechanisms for setting response metadata depend on the type of app being developed.
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
-Minimal APIs support three strategies for setting the response type of an endpoint:
+In Minimal API apps, ASP.NET Core can extract the response metadata from extension methods on the endpoint, attributes on the route handler, and the return type of the route handler.
 
-* Via the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method on the endpoint.
-* Via the [`ProducesResponseType`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute on the route handler.
-* By returning<xref:Microsoft.AspNetCore.Http.TypedResults> from the route handler.
+* You can use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method on the endpoint to specify the status code, the type of the response body, and content type(s) of a response from an endpoint.
+* You can use a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute to specify the type of the response body.
+* You can define a route handler return type that implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> to specify the type and content-type(s) of the response body.
+* You can use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method on the endpoint to specify the status code and content-type(s) of an error response.
 
-The `Produces` extension method can be used to add `Produces` metadata to an endpoint. When no parameters are provided, the extension method populates metadata for the targeted type under a `200` status code and an `application/json` content type.
+Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method are supported on both <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Http.OpenApiRouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
+
+When not specified by one of these strategies:
+* the status code for the response defaults to 200,
+* the schema for the response body may be inferred from the implicit or explicit return type of the endpoint method, e.g. from `T` in <xref:System.Threading.Tasks.Task%601>, but otherwise is considered to be not specified,
+* the content-type for the specified or inferred response body is "application/json".
+
+Similar to controller-based apps, there is no build-time validation of the OpenAPI metadata specified with the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute. For example, there is no build error issued if an endpoint returns a different status code than specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute, or when the endpoint method returns an object of a different type than specified in the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method.
+
+The following example illustrates using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method to specify the response type for an endpoint, with the default status code of 200 and default content type of `application/json`.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
   .Produces<IList<Todo>>();
+```
+
+You can also use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> to add response metadata to an endpoint. Note that the attribute is applied to the route handler method, not the method invocation to create the route, as shown in the following example:
+
+```csharp
+app.MapGet("/todos",
+    [ProducesResponseType<List<Todo>>(200)]
+    async (TodoDb db) => await db.Todos.ToListAsync());
 ```
 
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
@@ -305,6 +325,26 @@ app.MapGet("/todos", async (TodoDb db) =>
     return TypedResults.Ok(todos);
 });
 ```
+
+Only return types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> will create a `responses` entry in the OpenAPI document. Here's a quick list of some of the <xref:Microsoft.AspNetCore.Http.TypedResults> helper methods that produce a `responses` entry:
+
+| TypedResults helper method | status code |
+| -------------------------- | ----------- |
+| Ok()                       | 200         |
+| Created()                  | 201         |
+| CreatedAtRoute()           | 201         |
+| Accepted()                 | 202         |
+| AcceptedAtRoute()          | 202         |
+| NoContent()                | 204         |
+| BadRequest()               | 400         |
+| ValidationProblem()        | 400         |
+| NotFound()                 | 404         |
+| Conflict()                 | 409         |
+| UnprocessableEntity()      | 422         |
+
+All of these methods except `NoContent` have a generic overload that allows you to specify the type of the response body.
+
+You can implement your own class to set the endpoint metadata and return it from the route handler.
 
 ###### Set responses for `ProblemDetails`
 
