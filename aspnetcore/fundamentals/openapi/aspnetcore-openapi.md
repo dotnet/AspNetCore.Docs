@@ -348,8 +348,9 @@ You can implement your own class to set the endpoint metadata and return it from
 
 ###### Set responses for `ProblemDetails`
 
-When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method
-or one of the generic <xref:Microsoft.AspNetCore.Http.TypedResults> can be used to add the appropriate response metadata for the endpoint.
+When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method or a <xref:Microsoft.AspNetCore.Http.TypedResults> with a status code in the (400-499) range can be used to add the appropriate response metadata for the endpoint.
+
+For more information about how to configure a Minimal API app to return ProblemDetails responses, see <xref:fundamentals/minimal-apis/handle-errors>.
 
 ###### Multiple response types
 
