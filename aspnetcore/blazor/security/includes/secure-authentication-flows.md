@@ -1,8 +1,2 @@
----
-author: guardrex
-ms.author: riande
-ms.date: 09/30/2024
-ms.topic: include
----
 > [!WARNING]
 > Don't store app secrets, connection strings, credentials, passwords, personal identification numbers (PINs), private C#/.NET code, or private keys/tokens in client-side code, which is ***always insecure***. In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code, configuration files, and environment variables. For more information, see [Securely maintain sensitive data and credentials](xref:blazor/security/index#securely-maintain-sensitive-data-and-credentials).
