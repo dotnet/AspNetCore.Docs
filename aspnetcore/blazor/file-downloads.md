@@ -204,8 +204,6 @@ The following `triggerFileDownload` JS function:
 
 The following example component downloads the file from the same origin that the app uses. If the file download is attempted from a different origin, configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
-Change the port in the following example to match the localhost development port of your environment.
-
 `FileDownload2.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
@@ -216,17 +214,19 @@ For interactive components, the button in the following example calls the `Downl
 
 If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
 
-`FileDownload2.razor.js`:
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+Change the port in the following example to match the localhost development port of your environment.
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+Change the port in the following example to match the localhost development port of your environment.
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
