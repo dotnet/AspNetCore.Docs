@@ -348,9 +348,8 @@ You can implement your own class to set the endpoint metadata and return it from
 
 ###### Set responses for `ProblemDetails`
 
-When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method or <xref:Microsoft.AspNetCore.Http.TypedResults.Problem%2A?displayProperty=nameWithType> can be used to add the appropriate annotation to the endpoint's metadata.
-
-When there are no explicit annotations provided by one of these strategies, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
+When setting the response type for endpoints that may return a ProblemDetails response, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method
+or one of the generic <xref:Microsoft.AspNetCore.Http.TypedResults> can be used to add the appropriate response metadata for the endpoint.
 
 ###### Multiple response types
 
@@ -390,6 +389,17 @@ When not specified by an attribute:
 
 Note that there is no build-time validation of the OpenAPI metadata for responses in controller-based apps. For example, there is no build error issued if an action method returns a different status code than one specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute, and may return an object of a different type than specified in the <xref:Microsoft.AspNetCore.Mvc.ActionResult%601> return type of the action method.
 
+In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with an 4xx or 5xx HTTP status code. Validation errors are typically use the 400 status code, so you can use the [ProducesValidationProblem] extension method to specify the validation error response for an action, as shown in the following example:
+
+```csharp
+[HttpPut("/todos/{id}")]
+[ProducesResponseType<Todo>(StatusCodes.Status200OK, "application/json")]
+[ProducesResponseType<Todo>(StatusCodes.Status201Created, "application/json")]
+[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
+public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
+```
+
+This example also illustrates how to define multiple response types for an action method, including the content type of the response body.
 ---
 
 #### Excluding endpoints from the generated document
