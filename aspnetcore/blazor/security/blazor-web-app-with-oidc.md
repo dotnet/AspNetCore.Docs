@@ -116,7 +116,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   **For local development and testing**, use one of the following approaches:
   
   * Use the [Secret Manager tool](xref:security/app-secrets) to secure the secret locally.
-  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. Because configuration is preconfigured, a client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
+  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. The client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
@@ -365,7 +365,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   **For local development and testing**, use one of the following approaches:
   
   * Use the [Secret Manager tool](xref:security/app-secrets) to secure the secret locally.
-  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. Because configuration is preconfigured, a client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
+  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. The client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
