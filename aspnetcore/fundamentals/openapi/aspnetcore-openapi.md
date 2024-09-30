@@ -292,7 +292,7 @@ In Minimal API apps, ASP.NET Core can extract the response metadata from extensi
 * You can define a route handler return type that implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> to specify the type and content-type(s) of the response body.
 * You can use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method on the endpoint to specify the status code and content-type(s) of an error response.
 
-Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method are supported on both <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Http.OpenApiRouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
+Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method are supported on both <xref:Microsoft.AspNetCore.Builder.RouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Builder.RouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
 
 When not specified by one of these strategies:
 * the status code for the response defaults to 200,
@@ -389,7 +389,7 @@ When not specified by an attribute:
 
 Note that there is no build-time validation of the OpenAPI metadata for responses in controller-based apps. For example, there is no build error issued if an action method returns a different status code than one specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute, and may return an object of a different type than specified in the <xref:Microsoft.AspNetCore.Mvc.ActionResult%601> return type of the action method.
 
-In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with an 4xx or 5xx HTTP status code. Validation errors are typically use the 400 status code, so you can use the [ProducesValidationProblem] extension method to specify the validation error response for an action, as shown in the following example:
+In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with an 4xx or 5xx HTTP status code. Validation errors are typically use the 400 status code, so you can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute to specify the error response for an action, as shown in the following example:
 
 ```csharp
 [HttpPut("/todos/{id}")]
