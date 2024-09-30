@@ -47,7 +47,7 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 
 Don't store app secrets, connection strings, credentials, passwords, personal identification numbers (PINs), private .NET/C# code, or private keys/tokens in client-side code, which is ***always insecure***. Client-side Blazor code should access secure services and databases through a secure web API that you control.
 
-Server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code, configuration files, or environment variables. For more information, see the following resources:
+In test/staging and production environments, server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code, configuration files, and environment variables. For more information, see the following resources:
 
 * [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
 * [Managed identities for Microsoft Azure services (this article)](#managed-identities-for-microsoft-azure-services)
