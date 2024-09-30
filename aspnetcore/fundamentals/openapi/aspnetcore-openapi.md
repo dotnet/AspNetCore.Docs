@@ -292,7 +292,7 @@ In Minimal API apps, ASP.NET Core can extract the response metadata from extensi
 * You can define a route handler return type that implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> to specify the type and content-type(s) of the response body.
 * You can use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method on the endpoint to specify the status code and content-type(s) of an error response.
 
-Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method are supported on both <xref:Microsoft.AspNetCore.Builder.RouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Builder.RouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
+Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method are supported on both <xref:Microsoft.AspNetCore.Builder.RouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Routing.RouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
 
 When not specified by one of these strategies:
 * the status code for the response defaults to 200,
