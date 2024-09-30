@@ -204,19 +204,15 @@ The following `triggerFileDownload` JS function:
 
 The following example component downloads the file from the same origin that the app uses. If the file download is attempted from a different origin, configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
-Change the port in the following example to match the localhost development port of your environment.
-
 `FileDownload2.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
 
-For interactive components, the button in the following example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`:
-
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
 
-If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
+For interactive components, the button in the preceding example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`.
 
-`FileDownload2.razor.js`:
+If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
 
 :::moniker-end
 
@@ -224,11 +220,15 @@ If the component adopts static server-side rendering (static SSR), add an event 
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
+Change the port in the preceding example to match the localhost development port of your environment.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
+
+Change the port in the preceding example to match the localhost development port of your environment.
 
 :::moniker-end
 
