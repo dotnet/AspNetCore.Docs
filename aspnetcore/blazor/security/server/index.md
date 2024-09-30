@@ -35,7 +35,7 @@ In test/staging and production environments, server-side Blazor code and web API
 * [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
 * [Managed identities for Microsoft Azure services (Blazor documentation)](xref:blazor/security/index#managed-identities-for-microsoft-azure-services)
 
-During development, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
+For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
 
 ## Project template
 
