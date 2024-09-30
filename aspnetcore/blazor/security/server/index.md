@@ -28,6 +28,15 @@ Blazor differs from a traditional server-rendered web apps that make new HTTP re
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the examples in this article.
 
+## Server-side security of sensitive data and credentials
+
+Server-side Blazor code and web APIs should use secure authentication flows that avoid maintaining credentials within project code, configuration files, or environment variables. For more information, see the following resources:
+
+* [Secure authentication flows (ASP.NET Core documentation)](xref:security/index#secure-authentication-flows)
+* [Managed identities for Microsoft Azure services (this article)](#managed-identities-for-microsoft-azure-services)
+
+During development, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
+
 ## Project template
 
 Create a new server-side Blazor app by following the guidance in <xref:blazor/tooling>.
