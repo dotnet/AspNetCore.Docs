@@ -304,14 +304,14 @@ Similar to controller-based apps, there is no build-time validation of the OpenA
 * If an endpoint returns a different status code than specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute.
 * When the endpoint method returns an object of a different type than specified in the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method.
 
-The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method  extension method can specify an endpoint's response type, with a default status code of 200 and a default content type of `application/json`. The following example illustrates this:
+The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can specify an endpoint's response type, with a default status code of 200 and a default content type of `application/json`. The following example illustrates this:
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
   .Produces<IList<Todo>>();
 ```
 
-The <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> cab be used to add response metadata to an endpoint. Note that the attribute is applied to the route handler method, not the method invocation to create the route, as shown in the following example:
+The <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> can be used to add response metadata to an endpoint. Note that the attribute is applied to the route handler method, not the method invocation to create the route, as shown in the following example:
 
 ```csharp
 app.MapGet("/todos",
