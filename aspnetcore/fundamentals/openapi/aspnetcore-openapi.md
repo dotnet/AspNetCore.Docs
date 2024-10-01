@@ -279,7 +279,7 @@ When no explicit annotation is provided, the framework attempts to determine the
 
 #### Describe response types
 
-OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata for of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content type(s) of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
+OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content type(s) of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
 
 The specific mechanisms for setting response metadata depend on the type of app being developed.
 
@@ -296,7 +296,7 @@ Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensio
 
 When not specified by one of the preceding strategies, the:
 * Status code for the response defaults to 200.
-* Schema for the response body can be inferred from the implicit or explicit return type of the endpoint method, e.g. from `T` in <xref:System.Threading.Tasks.Task%601>;  otherwise it's considered to be unspecified.
+* Schema for the response body can be inferred from the implicit or explicit return type of the endpoint method, for example, from `T` in <xref:System.Threading.Tasks.Task%601>; otherwise, it's considered to be unspecified.
 * Content-type for the specified or inferred response body is "application/json".
 
 Similar to controller-based apps, there is no build-time validation of the OpenAPI metadata specified with the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method or the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute. For example, there is no build error issued:
@@ -397,7 +397,7 @@ When not specified by an attribute:
 
 Note that there is no build-time validation of the OpenAPI metadata for responses in controller-based apps. For example, there is no build error issued if an action method returns a different status code than one specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute, and may return an object of a different type than specified in the <xref:Microsoft.AspNetCore.Mvc.ActionResult%601> return type of the action method.
 
-In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with an 4xx or 5xx HTTP status code. Validation errors are typically use the 400 status code, so you can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute to specify the error response for an action, as shown in the following example:
+In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with a 4xx or 5xx HTTP status code. Validation errors typically use the 400 status code, so you can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute to specify the error response for an action, as shown in the following example:
 
 ```csharp
 [HttpPut("/todos/{id}")]
@@ -408,6 +408,7 @@ public async Task<ActionResult<Todo>> CreateOrReplaceTodo(string id, Todo todo)
 ```
 
 This example also illustrates how to define multiple response types for an action method, including the content type of the response body.
+
 ---
 
 #### Excluding endpoints from the generated document
