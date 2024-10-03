@@ -234,11 +234,6 @@ In the following example:
 * The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `Submit` method.
 * Logging is executed depending on the validation result.
 
-> [!NOTE]
-> `Submit` in the next example is demonstrated as an asynchronous method because storing form values often uses asynchronous calls (`await ...`). If the form is used in a test app as shown, `Submit` merely runs synchronously. For testing purposes, ignore the following build warning:
->
-> > :::no-loc text="This async method lacks 'await' operators and will run synchronously. ...":::
-
 `Starship4.razor`:
 
 :::moniker range=">= aspnetcore-8.0"

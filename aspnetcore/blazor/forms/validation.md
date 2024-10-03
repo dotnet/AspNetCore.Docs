@@ -878,7 +878,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship11.razor" highlight="9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship11.razor":::
 -->
 
 :::moniker-end
@@ -1145,7 +1145,7 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 ```
 
 <!--
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship13.razor" highlight="21":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/Starship13.razor":::
 -->
 
 :::moniker-end
