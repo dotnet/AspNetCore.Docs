@@ -145,11 +145,10 @@ Blazor supports generating a full Blazor-based Identity UI when you choose the a
 
 The Blazor Web App template scaffolds Identity code for a SQL Server database. The command line version uses SQLite and includes a SQLite database for Identity.
 
-The template handles the following:
+The template:
 
-* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out.
-  * The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multifactor authentication](xref:security/authentication/mfa) using a third-party app.
-  * Interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios are supported.
+* Supports interactive server-side rendering (interactive SSR) and client-side rendering (CSR) scenarios with authenticated users. 
+* Adds Identity Razor components and related logic for routine authentication tasks, such as signing users in and out. The Identity components also support advanced Identity features, such as [account confirmation and password recovery](xref:security/authentication/accconfirm) and [multifactor authentication](xref:security/authentication/mfa) using a third-party app. Note that the Identity components themselves don't support interactivity.
 * Adds the Identity-related packages and dependencies.
 * References the Identity packages in `_Imports.razor`.
 * Creates a custom user Identity class (`ApplicationUser`).
