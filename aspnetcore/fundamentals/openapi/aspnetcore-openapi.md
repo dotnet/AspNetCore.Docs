@@ -328,9 +328,14 @@ If an endpoint can return different response types in different scenarios, you c
 
 #### Excluding endpoints from the generated document
 
-<!-- TODO: Add information for controller-based apps in this section -->
+By default, all endpoints that are defined in an app are documented in the generated OpenAPI file,
+but endpoints can be excluded from the document using attributes or extension methods.
 
-By default, all endpoints that are defined in an app are documented in the generated OpenAPI file. Minimal APIs support two strategies for excluding a given endpoint from the OpenAPI document, using:
+The mechanism for specifying an endpoint should be excluded depends on the type of app being developed.
+
+##### [Minimal APIs](#tab/minimal-apis)
+
+Minimal APIs support two strategies for excluding a given endpoint from the OpenAPI document, using:
 
 * <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A>
 * <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>
@@ -345,6 +350,21 @@ app.MapGet("/attributes",
   [ExcludeFromDescription]
   () => "Hello world!");
 ```
+
+##### [Controllers](#tab/controllers)
+
+In controller-based apps, the <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute> attribute can be used to exclude an endpoint from the OpenAPI document.
+
+The following example demonstrates how to exclude an endpoint from the generated OpenAPI document.
+
+```csharp
+  [HttpGet("/private")]
+  [ApiExplorerSettings(IgnoreApi = true)]
+  public IActionResult PrivateEndpoint() {
+      return Ok("This is a private endpoint");
+  }
+```
+---
 
 ### Including OpenAPI metadata for data types
 
