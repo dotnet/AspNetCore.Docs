@@ -5,7 +5,7 @@ description: Learn where to place and how to load JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2024
+ms.date: 10/03/2024
 uid: blazor/js-interop/javascript-location
 ---
 # JavaScript location in ASP.NET Core Blazor apps
