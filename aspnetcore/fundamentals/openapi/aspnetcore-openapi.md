@@ -285,7 +285,7 @@ The specific mechanisms for setting response metadata depend on the type of app 
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
-In Minimal API apps, ASP.NET Core can extract the response metadata from extension methods on the endpoint, attributes on the route handler, and the return type of the route handler.
+In Minimal API apps, ASP.NET Core can extract the response metadata added by extension methods on the endpoint, attributes on the route handler, and the return type of the route handler.
 
 * The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can be used on the endpoint to specify the status code, the type of the response body, and content type(s) of a response from an endpoint.
 * The <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute can be used to specify the type of the response body.
