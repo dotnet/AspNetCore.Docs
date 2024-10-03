@@ -32,6 +32,8 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
+A <xref:Microsoft.AspNetCore.Components.RenderFragment> generic type is supported, but components aren't supported as the generic type. To render components by type, consider using a <xref:Microsoft.AspNetCore.Components.DynamicComponent>. For more information, see <xref:blazor/components/dynamiccomponent>.
+
 In the following example, the `ListItems1` component is generically typed as `TExample`, which represents the type of the `ExampleList` collection.
 
 `ListItems1.razor`:
