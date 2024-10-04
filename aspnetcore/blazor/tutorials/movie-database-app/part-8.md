@@ -258,4 +258,4 @@ In the documentation website's sidebar navigation, articles are organized by sub
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database-app/part-7)
+> [Previous: Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
