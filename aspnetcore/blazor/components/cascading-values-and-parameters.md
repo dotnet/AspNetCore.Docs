@@ -54,6 +54,7 @@ builder.Services.AddCascadingValue(sp =>
 {
     var dalek = new Dalek { Units = 789 };
     var source = new CascadingValueSource<Dalek>(dalek, isFixed: false);
+
     return source;
 });
 ```

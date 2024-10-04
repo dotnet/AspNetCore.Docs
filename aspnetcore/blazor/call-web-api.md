@@ -61,10 +61,8 @@ The following example obtains a list of movies from the `/movies` endpoint:
 ```csharp
 public class ClientMovieService(HttpClient http) : IMovieService
 {
-    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
-    {
-        return await http.GetFromJsonAsync<Movie[]>("movies") ?? [];
-    }
+    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies) => 
+        await http.GetFromJsonAsync<Movie[]>("movies") ?? [];
 }
 ```
 
@@ -75,12 +73,10 @@ The following example obtains a list of movies:
 ```csharp
 public class ServerMovieService(MovieContext db) : IMovieService
 {
-    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies)
-    {
-        return watchedMovies ? 
-            await db.Movies.Where(t => t.IsWatched).ToArrayAsync() : 
-            await db.Movies.ToArrayAsync();
-    }
+    public async Task<Movie[]> GetMoviesAsync(bool watchedMovies) => 
+        watchedMovies ? 
+        await db.Movies.Where(t => t.IsWatched).ToArrayAsync() : 
+        await db.Movies.ToArrayAsync();
 }
 ```
 
@@ -583,10 +579,8 @@ namespace BlazorSample.Client;
 
 public class ForecastHttpClient(HttpClient http)
 {
-    public async Task<Forecast[]> GetForecastAsync()
-    {
-        return await http.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
-    }
+    public async Task<Forecast[]> GetForecastAsync() => 
+        await http.GetFromJsonAsync<Forecast[]>("forecast") ?? [];
 }
 ```
 

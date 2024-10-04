@@ -131,10 +131,7 @@ The following component:
 For a component in a server-side app that must return a <xref:System.IO.Stream> for a physical file, the component can call <xref:System.IO.File.OpenRead%2A?displayProperty=nameWithType>, as the following example demonstrates:
 
 ```csharp
-private Stream GetFileStream()
-{
-    return File.OpenRead(@"{PATH}");
-}
+private Stream GetFileStream() => File.OpenRead(@"{PATH}");
 ```
 
 In the preceding example, the `{PATH}` placeholder is the path to the file. The `@` prefix indicates that the string is a [*verbatim string literal*](/dotnet/csharp/programming-guide/strings/#verbatim-string-literals), which permits the use of backslashes (`\`) in a Windows OS path and embedded double-quotes (`""`) for a single quote in the path. Alternatively, avoid the string literal (`@`) and use either of the following approaches:

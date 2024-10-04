@@ -282,8 +282,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 using Microsoft.Kiota.Abstractions.Authentication;
 
-namespace BlazorSample;
-
 public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider, ILogger<CustomAccountFactory> logger,
         IConfiguration config) 
@@ -690,8 +688,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using Microsoft.Graph;
 
-namespace BlazorSample;
-
 public class CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
         IServiceProvider serviceProvider, ILogger<CustomAccountFactory> logger)
     : AccountClaimsPrincipalFactory<RemoteUserAccount>(accessor)
@@ -1092,8 +1088,6 @@ using System.Net.Http.Json;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
-
-namespace BlazorSample;
 
 public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IHttpClientFactory clientFactory,
