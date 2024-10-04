@@ -1675,9 +1675,8 @@ In the Razor markup of the `NavMenu` component (`NavMenu.razor`) under the defau
 The `GetRoutableComponents` method in the `@code` block:
 
 ```csharp
-public IEnumerable<string> GetRoutableComponents()
-{
-    return Assembly.GetExecutingAssembly()
+public IEnumerable<string> GetRoutableComponents() => 
+    Assembly.GetExecutingAssembly()
         .ExportedTypes
         .Where(t => t.IsSubclassOf(typeof(ComponentBase)))
         .Where(c => c.GetCustomAttributes(inherit: true)
@@ -1686,7 +1685,6 @@ public IEnumerable<string> GetRoutableComponents()
         .Where(c => c.Name != "Home" && c.Name != "Error")
         .OrderBy(o => o.Name)
         .Select(c => c.Name);
-}
 ```
 
 The preceding example doesn't include the following pages in the rendered list of components:

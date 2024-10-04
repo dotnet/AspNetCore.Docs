@@ -658,11 +658,9 @@ The `clickElement` method is called directly on the object. The following exampl
 When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
 ```csharp
-public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
-    IJSRuntime js)
-{
-    return js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
-}
+public static ValueTask<T> GenericMethod<T>(
+        this ElementReference elementRef, IJSRuntime js) => 
+    js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
 ```
 
 The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.

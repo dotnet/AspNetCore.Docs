@@ -162,10 +162,8 @@ In the following example:
     private string? searchText;
     private string[]? searchResult;
 
-    private async Task PerformSearch()
-    {
+    private async Task PerformSearch() => 
         searchResult = await SearchService.FetchAsync(searchText);
-    }
 }
 ```
 

@@ -180,10 +180,8 @@ The component's invokable `ReturnArrayAsync` method receives the starting positi
 
 ```csharp
 [JSInvokable]
-public static Task<int[]> ReturnArrayAsync(int startPosition)
-{
-    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
-}
+public static Task<int[]> ReturnArrayAsync(int startPosition) => 
+    Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
 ```
 
 After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
@@ -214,10 +212,8 @@ In the call to `DotNet.invokeMethodAsync` (server-side or client-side components
 >
 > ```csharp
 > [JSInvokable]
-> public static async Task<int[]> ReturnArrayAsync()
-> {
->     return await Task.FromResult(new int[] { 11, 12, 13 });
-> }
+> public static async Task<int[]> ReturnArrayAsync() => 
+>     await Task.FromResult(new int[] { 11, 12, 13 });
 > ```
 >
 > For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.

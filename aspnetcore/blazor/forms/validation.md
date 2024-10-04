@@ -351,16 +351,10 @@ namespace BlazorSample.Server.Controllers;
 [Authorize]
 [ApiController]
 [Route("[controller]")]
-public class StarshipValidationController : ControllerBase
+public class StarshipValidationController(
+    ILogger<StarshipValidationController> logger) 
+    : ControllerBase
 {
-    private readonly ILogger<StarshipValidationController> logger;
-
-    public StarshipValidationController(
-        ILogger<StarshipValidationController> logger)
-    {
-        this.logger = logger;
-    }
-
     static readonly string[] scopeRequiredByApi = new[] { "API.Access" };
 
     [HttpPost]
