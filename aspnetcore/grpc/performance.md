@@ -185,7 +185,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 Recommendations:
 
-* If a gRPC service often receives messages larger than 96 KB, Kestrel's default stream window size, then consider increasing the connection and stream window size.
+* If a gRPC service often receives messages larger than 768 KB, Kestrel's default stream window size, then consider increasing the connection and stream window size.
 * The connection window size should always be equal to or greater than the stream window size. A stream is part of the connection, and the sender is limited by both.
 
 For more information about how flow control works, see [HTTP/2 Flow Control (blog post)](https://medium.com/coderscorner/http-2-flow-control-77e54f7fd518).

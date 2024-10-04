@@ -592,10 +592,8 @@ An MVC controller action can return a component with <xref:Microsoft.AspNetCore.
 In a controller:
 
 ```csharp
-public IResult GetWelcomeComponent()
-{
-    return new RazorComponentResult<Welcome>(new { Message = "Hello, world!" });
-}
+public IResult GetWelcomeComponent() => 
+    new RazorComponentResult<Welcome>(new { Message = "Hello, world!" });
 ```
 
 Only HTML markup for the rendered component is returned. Layouts and HTML page markup aren't automatically rendered with the component. To produce a complete HTML page, the app can maintain a [Blazor layout](xref:blazor/components/layouts) that provides HTML markup for `<html>`, `<head>`, `<body>`, and other tags. The component includes the layout with the [`@layout`](xref:mvc/views/razor#layout) Razor directive at the top of the component definition file, `Welcome.razor` for the example in this section. The following example assumes that the app has a layout named `RazorComponentResultLayout` (`Components/Layout/RazorComponentResultLayout.razor`):

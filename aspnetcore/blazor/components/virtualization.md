@@ -121,12 +121,10 @@ In the following example, a collection of <xref:System.Data.DataRow> is a non-ge
 @code{
     ...
 
-    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
-    {
-        return new(new ItemsProviderResult<DataRow>(
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request) => 
+        new(new ItemsProviderResult<DataRow>(
             dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
             dataTable.Rows.Count));
-    }
 }
 ```
 

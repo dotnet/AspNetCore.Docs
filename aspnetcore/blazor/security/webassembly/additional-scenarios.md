@@ -264,8 +264,8 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
         : base(provider, navigation)
     {
         ConfigureHandler(
-            authorizedUrls: new[] { "https://api.contoso.com/v1.0" },
-            scopes: new[] { "example.read", "example.write" });
+            authorizedUrls: [ "https://api.contoso.com/v1.0" ],
+            scopes: [ "example.read", "example.write" ]);
     }
 }
 ```
@@ -365,23 +365,15 @@ A typed client can be defined that handles all of the HTTP and token acquisition
 
 `WeatherForecastClient.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using static {ASSEMBLY NAME}.Data;
 
-public class WeatherForecastClient
+public class WeatherForecastClient(HttpClient http)
 {
-    private readonly HttpClient http;
     private WeatherForecast[]? forecasts;
 
-    public WeatherForecastClient(HttpClient http)
-    {
-        this.http = http;
-    }
-
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
         try
@@ -398,46 +390,6 @@ public class WeatherForecastClient
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using static {ASSEMBLY NAME}.Data;
-
-public class WeatherForecastClient
-{
-    private readonly HttpClient http;
-    private WeatherForecast[] forecasts;
- 
-    public WeatherForecastClient(HttpClient http)
-    {
-        this.http = http;
-    }
- 
-    public async Task<WeatherForecast[]> GetForecastAsync()
-    {
-        try
-        {
-            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
-                "WeatherForecast");
-        }
-        catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
-        }
-
-        return forecasts ?? Array.Empty<WeatherForecast>();
-    }
-}
-```
-
-:::moniker-end
 
 In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The `{ASSEMBLY NAME}` placeholder is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
@@ -755,10 +707,7 @@ public class StateContainer
 {
     public int CounterValue { get; set; }
 
-    public string GetStateForLocalStorage()
-    {
-        return JsonSerializer.Serialize(this);
-    }
+    public string GetStateForLocalStorage() => JsonSerializer.Serialize(this);
 
     public void SetStateFromLocalStorage(string locallyStoredState)
     {
@@ -805,8 +754,6 @@ Create an `ApplicationAuthenticationState` from <xref:Microsoft.AspNetCore.Compo
 
 `ApplicationAuthenticationState.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
@@ -816,24 +763,7 @@ public class ApplicationAuthenticationState : RemoteAuthenticationState
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-
-public class ApplicationAuthenticationState : RemoteAuthenticationState
-{
-    public string Id { get; set; }
-}
-```
-
-:::moniker-end
-
 The `Authentication` component (`Authentication.razor`) saves and restores the app's state using local session storage with the `StateContainer` serialization and deserialization methods, `GetStateForLocalStorage` and `SetStateFromLocalStorage`:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/authentication/{action}"
@@ -884,62 +814,6 @@ The `Authentication` component (`Authentication.razor`) saves and restores the a
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/authentication/{action}"
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject IJSRuntime JS
-@inject StateContainer State
-
-<RemoteAuthenticatorViewCore Action="Action"
-                             TAuthenticationState="ApplicationAuthenticationState"
-                             AuthenticationState="AuthenticationState"
-                             OnLogInSucceeded="RestoreState"
-                             OnLogOutSucceeded="RestoreState" />
-
-@code {
-    [Parameter]
-    public string Action { get; set; }
-
-    public ApplicationAuthenticationState AuthenticationState { get; set; } =
-        new ApplicationAuthenticationState();
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
-            Action) ||
-            RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogOut,
-            Action))
-        {
-            AuthenticationState.Id = Guid.NewGuid().ToString();
-
-            await JS.InvokeVoidAsync("sessionStorage.setItem",
-                AuthenticationState.Id, State.GetStateForLocalStorage());
-        }
-    }
-
-    private async Task RestoreState(ApplicationAuthenticationState state)
-    {
-        if (state.Id != null)
-        {
-            var locallyStoredState = await JS.InvokeAsync<string>(
-                "sessionStorage.getItem", state.Id);
-
-            if (locallyStoredState != null)
-            {
-                State.SetStateFromLocalStorage(locallyStoredState);
-                await JS.InvokeVoidAsync("sessionStorage.removeItem", state.Id);
-            }
-        }
-    }
-}
-```
-
-:::moniker-end
 
 This example uses Microsoft Entra (ME-ID) for authentication. In the `Program` file:
 
@@ -1105,8 +979,6 @@ In the following example, the app's authenticated users receive an `amr` claim f
 
 Create a class that extends the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> class. The following example sets the `AuthenticationMethod` property to the user's array of `amr` JSON property values. `AuthenticationMethod` is populated automatically by the framework when the user is authenticated.
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -1118,26 +990,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-
-public class CustomUserAccount : RemoteUserAccount
-{
-    [JsonPropertyName("amr")]
-    public string[] AuthenticationMethod { get; set; }
-}
-```
-
-:::moniker-end
-
 Create a factory that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> to create claims from the user's authentication methods stored in `CustomUserAccount.AuthenticationMethod`:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 using System.Security.Claims;
@@ -1145,14 +998,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class CustomAccountFactory 
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
+public class CustomAccountFactory(NavigationManager navigation,
+    IAccessTokenProviderAccessor accessor)
+    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
 {
-    public CustomAccountFactory(NavigationManager navigation, 
-        IAccessTokenProviderAccessor accessor) : base(accessor)
-    {
-    }
-  
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
@@ -1175,47 +1024,6 @@ public class CustomAccountFactory
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
-
-public class CustomAccountFactory 
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
-{
-    public CustomAccountFactory(NavigationManager navigation, 
-        IAccessTokenProviderAccessor accessor) : base(accessor)
-    {
-    }
-  
-    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
-        CustomUserAccount account, RemoteAuthenticationUserOptions options)
-    {
-        var initialUser = await base.CreateUserAsync(account, options);
-
-        if (initialUser.Identity != null && initialUser.Identity.IsAuthenticated)
-        {
-            var userIdentity = (ClaimsIdentity)initialUser.Identity;
-
-            foreach (var value in account.AuthenticationMethod)
-            {
-                userIdentity.AddClaim(new Claim("amr", value));
-            }
-        }
-
-        return initialUser;
-    }
-}
-```
-
-:::moniker-end
 
 Register the `CustomAccountFactory` for the authentication provider in use. Any of the following registrations are valid:
 
@@ -1667,8 +1475,6 @@ Define a class for passing the data to the underlying JavaScript library.
 
 The following example demonstrates a `ProviderOptions` class with [`JsonPropertyName` attributes](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) matching a hypothetical custom provider library's expectations:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 public class ProviderOptions
 {
@@ -1678,8 +1484,7 @@ public class ProviderOptions
     [JsonPropertyName("client_id")]
     public string? ClientId { get; set; }
     
-    public IList<string> DefaultScopes { get; } = 
-        new List<string> { "openid", "profile" };
+    public IList<string> DefaultScopes { get; set; } = [ "openid", "profile" ];
         
     [JsonPropertyName("redirect_uri")]
     public string? RedirectUri { get; set; }
@@ -1695,51 +1500,19 @@ public class ProviderOptions
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-public class ProviderOptions
-{
-    public string Authority { get; set; }
-    public string MetadataUrl { get; set; }
-    
-    [JsonPropertyName("client_id")]
-    public string ClientId { get; set; }
-    
-    public IList<string> DefaultScopes { get; } = 
-        new List<string> { "openid", "profile" };
-        
-    [JsonPropertyName("redirect_uri")]
-    public string RedirectUri { get; set; }
-    
-    [JsonPropertyName("post_logout_redirect_uri")]
-    public string PostLogoutRedirectUri { get; set; }
-    
-    [JsonPropertyName("response_type")]
-    public string ResponseType { get; set; }
-    
-    [JsonPropertyName("response_mode")]
-    public string ResponseMode { get; set; }
-}
-```
-
-:::moniker-end
-
 Register the provider options within the DI system and configure the appropriate values:
 
 ```csharp
 builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAccount,
     ProviderOptions>(options => {
-        options.Authority = "...";
-        options.MetadataUrl = "...";
-        options.ClientId = "...";
-        options.DefaultScopes = new List<string> { "openid", "profile", "myApi" };
-        options.RedirectUri = "https://localhost:5001/authentication/login-callback";
-        options.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
-        options.ResponseType = "...";
-        options.ResponseMode = "...";
+        options.ProviderOptions.Authority = "...";
+        options.ProviderOptions.MetadataUrl = "...";
+        options.ProviderOptions.ClientId = "...";
+        options.ProviderOptions.DefaultScopes = [ "openid", "profile", "myApi" ];
+        options.ProviderOptions.RedirectUri = "https://localhost:5001/authentication/login-callback";
+        options.ProviderOptions.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
+        options.ProviderOptions.ResponseType = "...";
+        options.ProviderOptions.ResponseMode = "...";
     });
 ```
 
