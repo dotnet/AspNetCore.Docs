@@ -1484,8 +1484,7 @@ public class ProviderOptions
     [JsonPropertyName("client_id")]
     public string? ClientId { get; set; }
     
-    public IList<string> DefaultScopes { get; } = 
-        [ "openid", "profile" ];
+    public IList<string> DefaultScopes { get; set; } = [ "openid", "profile" ];
         
     [JsonPropertyName("redirect_uri")]
     public string? RedirectUri { get; set; }
@@ -1506,14 +1505,14 @@ Register the provider options within the DI system and configure the appropriate
 ```csharp
 builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAccount,
     ProviderOptions>(options => {
-        options.Authority = "...";
-        options.MetadataUrl = "...";
-        options.ClientId = "...";
-        options.DefaultScopes = new List<string> { "openid", "profile", "myApi" };
-        options.RedirectUri = "https://localhost:5001/authentication/login-callback";
-        options.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
-        options.ResponseType = "...";
-        options.ResponseMode = "...";
+        options.ProviderOptions.Authority = "...";
+        options.ProviderOptions.MetadataUrl = "...";
+        options.ProviderOptions.ClientId = "...";
+        options.ProviderOptions.DefaultScopes = [ "openid", "profile", "myApi" ];
+        options.ProviderOptions.RedirectUri = "https://localhost:5001/authentication/login-callback";
+        options.ProviderOptions.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
+        options.ProviderOptions.ResponseType = "...";
+        options.ProviderOptions.ResponseMode = "...";
     });
 ```
 
