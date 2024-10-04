@@ -140,25 +140,25 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor" highlight="8":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor" highlight="8":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor" highlight="8":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor" highlight="8":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor":::
 
 :::moniker-end
 
@@ -646,7 +646,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `CounterWithTimerDisposal1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor" highlight="3,11,28":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor":::
 
 :::moniker-end
 
@@ -654,7 +654,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `CounterWithTimerDisposal1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor" highlight="3,11,28":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor":::
 
 :::moniker-end
 
@@ -662,7 +662,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `CounterWithTimerDisposal1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor" highlight="3,11,28":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor":::
 
 :::moniker-end
 
@@ -670,7 +670,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `CounterWithTimerDisposal1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor" highlight="3,11,28":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor":::
 
 :::moniker-end
 
@@ -691,7 +691,7 @@ If the object is created in a lifecycle method, such as [`OnInitialized{Async}`]
 
 `CounterWithTimerDisposal2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor" highlight="15,29":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor":::
 
 :::moniker-end
 
@@ -699,7 +699,7 @@ If the object is created in a lifecycle method, such as [`OnInitialized{Async}`]
 
 `CounterWithTimerDisposal2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor" highlight="15,29":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor":::
 
 :::moniker-end
 
@@ -707,7 +707,7 @@ If the object is created in a lifecycle method, such as [`OnInitialized{Async}`]
 
 `CounterWithTimerDisposal2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor" highlight="15,29":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor":::
 
 :::moniker-end
 
@@ -715,7 +715,7 @@ If the object is created in a lifecycle method, such as [`OnInitialized{Async}`]
 
 `CounterWithTimerDisposal2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor" highlight="15,29":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor":::
 
 :::moniker-end
 

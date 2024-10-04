@@ -41,7 +41,7 @@ In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods wi
 
 :::moniker range="< aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/advanced-scenarios/BuiltContent.razor" highlight="6,16-24,28":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/advanced-scenarios/BuiltContent.razor":::
 
 :::moniker-end
 

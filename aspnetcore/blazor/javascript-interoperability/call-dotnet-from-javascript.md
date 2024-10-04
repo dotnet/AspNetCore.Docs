@@ -88,7 +88,7 @@ The `returnArrayAsync` JS function calls the `ReturnArrayAsync` .NET method of t
 
 `CallDotNetExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor":::
 
 :::moniker-end
 
@@ -96,7 +96,7 @@ The `returnArrayAsync` JS function calls the `ReturnArrayAsync` .NET method of t
 
 `CallDotNetExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor":::
 
 :::moniker-end
 
@@ -104,7 +104,7 @@ The `returnArrayAsync` JS function calls the `ReturnArrayAsync` .NET method of t
 
 `CallDotNetExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor":::
 
 :::moniker-end
 
@@ -112,7 +112,7 @@ The `returnArrayAsync` JS function calls the `ReturnArrayAsync` .NET method of t
 
 `CallDotNetExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor":::
 
 :::moniker-end
 
@@ -180,10 +180,8 @@ The component's invokable `ReturnArrayAsync` method receives the starting positi
 
 ```csharp
 [JSInvokable]
-public static Task<int[]> ReturnArrayAsync(int startPosition)
-{
-    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
-}
+public static Task<int[]> ReturnArrayAsync(int startPosition) => 
+    Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
 ```
 
 After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
@@ -214,10 +212,8 @@ In the call to `DotNet.invokeMethodAsync` (server-side or client-side components
 >
 > ```csharp
 > [JSInvokable]
-> public static async Task<int[]> ReturnArrayAsync()
-> {
->     return await Task.FromResult(new int[] { 11, 12, 13 });
-> }
+> public static async Task<int[]> ReturnArrayAsync() => 
+>     await Task.FromResult(new int[] { 11, 12, 13 });
 > ```
 >
 > For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.
@@ -950,25 +946,25 @@ The following `HelloHelper` class has a JS-invokable .NET method named `GetHello
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/HelloHelper.cs" highlight="5,12-13":::
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/HelloHelper.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/HelloHelper.cs" highlight="5,12-13":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/HelloHelper.cs":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/HelloHelper.cs" highlight="5,12-13":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/HelloHelper.cs":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/HelloHelper.cs" highlight="5,12-13":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/HelloHelper.cs":::
 
 :::moniker-end
 
@@ -1022,7 +1018,7 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="36":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 :::moniker-end
 
@@ -1030,7 +1026,7 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="36":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 :::moniker-end
 
@@ -1038,7 +1034,7 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="36":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 :::moniker-end
 
@@ -1046,7 +1042,7 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="36":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 :::moniker-end
 
@@ -1068,7 +1064,7 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 `CallDotNetExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor" highlight="28-29":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
 :::moniker-end
 
@@ -1076,7 +1072,7 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 `CallDotNetExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor" highlight="28-29":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
 :::moniker-end
 
@@ -1084,7 +1080,7 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 `CallDotNetExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor" highlight="28-29":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
 :::moniker-end
 
@@ -1092,7 +1088,7 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 `CallDotNetExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor" highlight="28-29":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
 :::moniker-end
 
@@ -1230,7 +1226,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor":::
 
 :::moniker-end
 
@@ -1238,7 +1234,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor":::
 
 :::moniker-end
 
@@ -1246,7 +1242,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor":::
 
 :::moniker-end
 
@@ -1254,7 +1250,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample6.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor":::
 
 :::moniker-end
 
@@ -1370,7 +1366,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor":::
 
 :::moniker-end
 
@@ -1378,7 +1374,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor":::
 
 :::moniker-end
 
@@ -1386,7 +1382,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor":::
 
 :::moniker-end
 
@@ -1394,7 +1390,7 @@ The following parent component includes four list items, each an instance of the
 
 `CallDotNetExample7.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor" highlight="6-9":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor":::
 
 :::moniker-end
 

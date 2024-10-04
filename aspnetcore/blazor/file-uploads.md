@@ -389,18 +389,10 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
-public class FilesaveController : ControllerBase
+public class FilesaveController(
+    IHostEnvironment env, ILogger<FilesaveController> logger) 
+    : ControllerBase
 {
-    private readonly IHostEnvironment env;
-    private readonly ILogger<FilesaveController> logger;
-
-    public FilesaveController(IHostEnvironment env, 
-        ILogger<FilesaveController> logger)
-    {
-        this.env = env;
-        this.logger = logger;
-    }
-
     [HttpPost]
     public async Task<ActionResult<IList<UploadResult>>> PostFile(
         [FromForm] IEnumerable<IFormFile> files)
@@ -409,7 +401,7 @@ public class FilesaveController : ControllerBase
         long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
-        List<UploadResult> uploadResults = new();
+        List<UploadResult> uploadResults = [];
 
         foreach (var file in files)
         {
@@ -612,18 +604,10 @@ using BlazorSample.Shared;
 
 [ApiController]
 [Route("[controller]")]
-public class FilesaveController : ControllerBase
+public class FilesaveController(
+    IHostEnvironment env, ILogger<FilesaveController> logger) 
+    : ControllerBase
 {
-    private readonly IHostEnvironment env;
-    private readonly ILogger<FilesaveController> logger;
-
-    public FilesaveController(IHostEnvironment env,
-        ILogger<FilesaveController> logger)
-    {
-        this.env = env;
-        this.logger = logger;
-    }
-
     [HttpPost]
     public async Task<ActionResult<IList<UploadResult>>> PostFile(
         [FromForm] IEnumerable<IFormFile> files)
@@ -632,7 +616,7 @@ public class FilesaveController : ControllerBase
         long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
-        List<UploadResult> uploadResults = new();
+        List<UploadResult> uploadResults = [];
 
         foreach (var file in files)
         {

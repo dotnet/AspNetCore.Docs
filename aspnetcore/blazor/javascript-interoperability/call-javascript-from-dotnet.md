@@ -68,7 +68,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -76,7 +76,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -84,7 +84,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -92,7 +92,7 @@ The following component:
 
 `CallJsExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34-35":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor":::
 
 :::moniker-end
 
@@ -138,7 +138,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -146,7 +146,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -154,7 +154,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -162,7 +162,7 @@ Provide a `displayTickerAlert1` JS function. The function is called with <xref:M
 
 `CallJsExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor":::
 
 :::moniker-end
 
@@ -280,7 +280,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -288,7 +288,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -296,7 +296,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -304,7 +304,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor":::
 
 :::moniker-end
 
@@ -356,7 +356,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -364,7 +364,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -372,7 +372,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,38-40,43":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -380,7 +380,7 @@ Provide a `displayTickerAlert2` JS function. The following example returns a str
 
 `CallJsExample5.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,38-40,43":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor":::
 
 :::moniker-end
 
@@ -658,11 +658,9 @@ The `clickElement` method is called directly on the object. The following exampl
 When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
 ```csharp
-public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
-    IJSRuntime js)
-{
-    return js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
-}
+public static ValueTask<T> GenericMethod<T>(
+        this ElementReference elementRef, IJSRuntime js) => 
+    js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
 ```
 
 The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
@@ -792,7 +790,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -800,7 +798,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -808,7 +806,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -816,7 +814,7 @@ For a parent component to make an element reference available to other component
 
 `CallJsExample7.razor` (parent component):
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor":::
 
 :::moniker-end
 
@@ -1285,7 +1283,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1293,7 +1291,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1301,7 +1299,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 
@@ -1309,7 +1307,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `CallJsExample11.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor":::
 
 :::moniker-end
 

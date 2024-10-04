@@ -149,20 +149,26 @@ using Microsoft.Kiota.Abstractions.Authentication;
 
 namespace BlazorSample;
 
-public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
-        IServiceProvider serviceProvider,
-        ILogger<CustomAccountFactory> logger,
-        IConfiguration config)
-    : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
+public class CustomAccountFactory() 
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    private readonly ILogger<CustomAccountFactory> logger = logger;
-    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
     private readonly string? baseUrl =
         string.Join("/",
             config.GetSection("MicrosoftGraph")["BaseUrl"] ??
                 "https://graph.microsoft.com",
             config.GetSection("MicrosoftGraph")["Version"] ??
                 "v1.0");
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+    }
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
@@ -244,13 +250,20 @@ using Microsoft.Graph;
 
 namespace BlazorSample;
 
-public class CustomAccountFactory(IAccessTokenProviderAccessor accessor,
-        IServiceProvider serviceProvider,
-        ILogger<CustomAccountFactory> logger)
+public class CustomAccountFactory() 
     : AccountClaimsPrincipalFactory<CustomUserAccount>(accessor)
 {
-    private readonly ILogger<CustomAccountFactory> logger = logger;
-    private readonly IServiceProvider serviceProvider = serviceProvider;
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+    }
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,

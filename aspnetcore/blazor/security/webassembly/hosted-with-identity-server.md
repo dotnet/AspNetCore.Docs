@@ -349,22 +349,15 @@ In the **:::no-loc text="Client":::** app, create a custom user factory. Identit
 
 `CustomUserFactory.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using System.Security.Claims;
 using System.Text.Json;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class CustomUserFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+public class CustomUserFactory(IAccessTokenProviderAccessor accessor)
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>(accessor)
 {
-    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
-        : base(accessor)
-    {
-    }
-
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
@@ -420,70 +413,6 @@ public class CustomUserFactory
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using System.Linq;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
-
-public class CustomUserFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
-{
-    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
-        : base(accessor)
-    {
-    }
-
-    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
-        RemoteUserAccount account,
-        RemoteAuthenticationUserOptions options)
-    {
-        var user = await base.CreateUserAsync(account, options);
-
-        if (user.Identity.IsAuthenticated)
-        {
-            var identity = (ClaimsIdentity)user.Identity;
-            var roleClaims = identity.FindAll(identity.RoleClaimType).ToArray();
-
-            if (roleClaims.Any())
-            {
-                foreach (var existingClaim in roleClaims)
-                {
-                    identity.RemoveClaim(existingClaim);
-                }
-
-                var rolesElem = account.AdditionalProperties[identity.RoleClaimType];
-
-                if (rolesElem is JsonElement roles)
-                {
-                    if (roles.ValueKind == JsonValueKind.Array)
-                    {
-                        foreach (var role in roles.EnumerateArray())
-                        {
-                            identity.AddClaim(new Claim(options.RoleClaim, role.GetString()));
-                        }
-                    }
-                    else
-                    {
-                        identity.AddClaim(new Claim(options.RoleClaim, roles.GetString()));
-                    }
-                }
-            }
-        }
-
-        return user;
-    }
-}
-```
-
-:::moniker-end
 
 In the **:::no-loc text="Client":::** app, register the factory in the `Program` file:
 
@@ -593,8 +522,6 @@ In the **:::no-loc text="Server":::** app, create a `ProfileService` implementat
 
 `ProfileService.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using IdentityModel;
 using Duende.IdentityServer.Models;
@@ -623,42 +550,6 @@ public class ProfileService : IProfileService
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-using IdentityModel;
-using Duende.IdentityServer.Models;
-using Duende.IdentityServer.Services;
-using System.Threading.Tasks;
-
-public class ProfileService : IProfileService
-{
-    public ProfileService()
-    {
-    }
-
-    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
-    {
-        var nameClaim = context.Subject.FindAll(JwtClaimTypes.Name);
-        context.IssuedClaims.AddRange(nameClaim);
-
-        var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
-        context.IssuedClaims.AddRange(roleClaims);
-
-        await Task.CompletedTask;
-    }
-
-    public async Task IsActiveAsync(IsActiveContext context)
-    {
-        await Task.CompletedTask;
-    }
-}
-```
-
-:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 

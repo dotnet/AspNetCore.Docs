@@ -122,31 +122,31 @@ Open the `Todo` component in any file editor and add an `@page` Razor directive 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1-4":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/7.0/Todo0.razor" highlight="1-3":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo0.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="build-a-blazor-app/6.0/Todo0.razor" highlight="1-3":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo0.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="build-a-blazor-app/5.0/Todo0.razor" highlight="1":::
+:::code language="razor" source="build-a-blazor-app/5.0/Todo0.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="build-a-blazor-app/3.1/Todo0.razor" highlight="1":::
+:::code language="razor" source="build-a-blazor-app/3.1/Todo0.razor":::
 
 :::moniker-end
 
@@ -233,7 +233,7 @@ Return to the `Todo` component and perform the following tasks:
 
 `Components/Pages/Todo.razor`:
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo2.razor" highlight="8-13,16":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo2.razor":::
 
 :::moniker-end
 
@@ -241,7 +241,7 @@ Return to the `Todo` component and perform the following tasks:
 
 `Pages/Todo.razor`:
 
-:::code language="razor" source="build-a-blazor-app/7.0/Todo2.razor" highlight="7-12,15":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo2.razor":::
 
 :::moniker-end
 
@@ -249,7 +249,7 @@ Return to the `Todo` component and perform the following tasks:
 
 `Pages/Todo.razor`:
 
-:::code language="razor" source="build-a-blazor-app/6.0/Todo2.razor" highlight="7-12,15":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo2.razor":::
 
 :::moniker-end
 
@@ -257,7 +257,7 @@ Return to the `Todo` component and perform the following tasks:
 
 `Pages/Todo.razor`:
 
-:::code language="razor" source="build-a-blazor-app/5.0/Todo2.razor" highlight="7-12,15":::
+:::code language="razor" source="build-a-blazor-app/5.0/Todo2.razor":::
 
 :::moniker-end
 
@@ -265,7 +265,7 @@ Return to the `Todo` component and perform the following tasks:
 
 `Pages/Todo.razor`:
 
-:::code language="razor" source="build-a-blazor-app/3.1/Todo2.razor" highlight="7-12,15":::
+:::code language="razor" source="build-a-blazor-app/3.1/Todo2.razor":::
 
 :::moniker-end
 
@@ -273,31 +273,31 @@ The app requires UI elements for adding todo items to the list. Add a text input
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo3.razor" highlight="15-16":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/7.0/Todo3.razor" highlight="14-15":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="build-a-blazor-app/6.0/Todo3.razor" highlight="14-15":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo3.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="build-a-blazor-app/5.0/Todo3.razor" highlight="14-15":::
+:::code language="razor" source="build-a-blazor-app/5.0/Todo3.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="build-a-blazor-app/3.1/Todo3.razor" highlight="14-15":::
+:::code language="razor" source="build-a-blazor-app/3.1/Todo3.razor":::
 
 :::moniker-end
 
@@ -309,31 +309,31 @@ Add an `AddTodo` method to the `Todo` component and register the method for the 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo4.razor" highlight="2,7-10":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/7.0/Todo4.razor" highlight="2,7-10":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="build-a-blazor-app/6.0/Todo4.razor" highlight="2,7-10":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo4.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="build-a-blazor-app/5.0/Todo4.razor" highlight="2,7-10":::
+:::code language="razor" source="build-a-blazor-app/5.0/Todo4.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="build-a-blazor-app/3.1/Todo4.razor" highlight="2,7-10":::
+:::code language="razor" source="build-a-blazor-app/3.1/Todo4.razor":::
 
 :::moniker-end
 
@@ -365,31 +365,31 @@ Update the `AddTodo` method to add the `TodoItem` with the specified title to th
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo6.razor" highlight="22-29":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo6.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/7.0/Todo6.razor" highlight="21-28":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo6.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="build-a-blazor-app/6.0/Todo6.razor" highlight="21-28":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo6.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="build-a-blazor-app/5.0/Todo6.razor" highlight="21-28":::
+:::code language="razor" source="build-a-blazor-app/5.0/Todo6.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="build-a-blazor-app/3.1/Todo6.razor" highlight="21-28":::
+:::code language="razor" source="build-a-blazor-app/3.1/Todo6.razor":::
 
 :::moniker-end
 

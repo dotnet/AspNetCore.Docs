@@ -306,6 +306,19 @@ public class DataAccess : IDataAccess
     {
         ...
     }
+
+    ...
+}
+```
+
+Constructor injection is supported with [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) in C# 12 (.NET 8) or later:
+
+```csharp
+using System.Net.Http;
+
+public class DataAccess(HttpClient http) : IDataAccess
+{
+    ...
 }
 ```
 
@@ -570,28 +583,18 @@ public class CircuitServicesAccessor
     }
 }
 
-public class ServicesAccessorCircuitHandler : CircuitHandler
+public class ServicesAccessorCircuitHandler(
+    IServiceProvider services, CircuitServicesAccessor servicesAccessor) 
+    : CircuitHandler
 {
-    readonly IServiceProvider services;
-    readonly CircuitServicesAccessor circuitServicesAccessor;
-
-    public ServicesAccessorCircuitHandler(IServiceProvider services, 
-        CircuitServicesAccessor servicesAccessor)
-    {
-        this.services = services;
-        this.circuitServicesAccessor = servicesAccessor;
-    }
-
     public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
-        Func<CircuitInboundActivityContext, Task> next)
-    {
-        return async context =>
-        {
-            circuitServicesAccessor.Services = services;
-            await next(context);
-            circuitServicesAccessor.Services = null;
-        };
-    }
+        Func<CircuitInboundActivityContext, Task> next) => 
+            async context =>
+            {
+                servicesAccessor.Services = services;
+                await next(context);
+                servicesAccessor.Services = null;
+            };
 }
 
 public static class CircuitServicesServiceCollectionExtensions

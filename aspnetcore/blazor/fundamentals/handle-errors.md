@@ -809,25 +809,25 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor":::
 
 :::moniker-end
 

@@ -328,10 +328,7 @@ public partial class CallDotNet1
     internal static partial void SetWelcomeMessage();
 
     [JSExport]
-    internal static string GetMessageFromDotnet()
-    {
-        return "Olá do Blazor!";
-    }
+    internal static string GetMessageFromDotnet() => "Olá do Blazor!";
 }
 ```
 
@@ -374,10 +371,7 @@ public partial class CallDotNet1
     internal static partial void SetWelcomeMessage();
 
     [JSExport]
-    internal static string GetMessageFromDotnet()
-    {
-        return "Olá do Blazor!";
-    }
+    internal static string GetMessageFromDotnet() => "Olá do Blazor!";
 }
 ```
 
@@ -452,10 +446,7 @@ public partial class Interop
     internal static partial void SetWelcomeMessage();
 
     [JSExport]
-    internal static string GetMessageFromDotnet()
-    {
-        return "Olá do Blazor!";
-    }
+    internal static string GetMessageFromDotnet() => "Olá do Blazor!";
 }
 ```
 
