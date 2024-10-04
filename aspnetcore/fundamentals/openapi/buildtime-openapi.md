@@ -3,11 +3,14 @@ title: Generate OpenAPI documents at build time
 author: captainsafia
 description: Learn how to generate OpenAPI documents in your application's build step
 ms.author: safia
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-9.0'
 ms.custom: mvc
 ms.date: 8/13/2024
 uid: fundamentals/openapi/buildtime-openapi
 ---
+<!-- Per this comment by Mike, Question for @captainsafia: This doc currently says aspnetcore-6.0 and later. Should we make this just 9.0 and later, since 8.0 and earlier involve Swashbuckle or NSwag generating the doc?
+I made it 9.0
+https://github.com/dotnet/AspNetCore.Docs/pull/33361#discussion_r1778546753 -->
 <!-- backup writer.sms.author: tdykstra and rick-anderson -->
 
 # Generate OpenAPI documents at build-time
