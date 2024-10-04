@@ -125,4 +125,4 @@ To prevent these code paths from being invoked by the build-time generation pipe
 
 ## OpenAPI document cleanup
 
-Then generated OpenAPI documents are not cleaned up by `dotnet clean` or **Build > Clean Solution** in Visual Studio. To remove the generated OpenAPI documents, delete the `obj` directory or the directory specified by the `OpenApiDocumentsDirectory` property.
+The generated OpenAPI documents are not cleaned up by `dotnet clean` or **Build > Clean Solution** in Visual Studio. To remove the generated OpenAPI documents, delete the `obj` directory or the directory specified by the `OpenApiDocumentsDirectory` property.
