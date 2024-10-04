@@ -31,6 +31,57 @@ The following scenarios do ***NOT*** provide automatic key storage in a shared l
 ](/azure/container-apps/dotnet-overview#autoscaling-considerations).
 * Distributed apps that don't have a shared storage location or synchronization mechanism for Data Protection keys.
 
+## Managing Data Protection keys outside the app
+
+An app with multiple instances may occasionally see an error like `System.Security.Cryptography.CryptographicException: The key {A6EF5BC2-FDCC-4C0C-A3A5-CDA9A1733D70} was not found in the key ring.`.  This can happen when instances get out of sync and data protected on one instance (e.g. an anti-forgery token) is unprotected on another instance (e.g. because a form was served from the former and posted to the latter) that doesn't yet know about that key.  When this happens, an app user may have to resubmit a form or re-authenticate (if it was an authentication token that couldn't be unprotected).
+
+One common reason app instances end up with different sets of keys is that, in the absence of a usable key (e.g. due to expiration, lack of access to the backing repository, etc), an instance will generate a new key of its own.  Until that key has propagated to all other instances (which can take up to two days), there's a risk that data protected with that new key will sent to an instance that doesn't know how to unprotect it.
+
+Generally, app instances don't know about each other, so coordinating the generation and distribution of new keys (e.g. when they are periodically rotating) requires explicit configuration.  One way to avoid having instances generate and use keys that are unknown to other instances is to prevent them from generating keys at all.  The details of how to accomplish this vary slightly from app to app, but the general approach is straightforward.
+
+First, app instances [disable key generation](xref:security/data-protection/configuration/overview#disableautomatickeygeneration).  Next, a new component is introduced that connects to the same key repository and performs a dummy protect operation once a day or so.
+
+For example, with Azure blob storage as the key repository, the key manager could be a simple console app run on a schedule.
+
+```csharp
+using Azure.Identity;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.Azure;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+var hostBuilder = new HostApplicationBuilder();
+
+hostBuilder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
+
+var blobStorageUri = hostBuilder.Configuration["AzureURIs:BlobStorage"]!;
+var keyVaultURI = hostBuilder.Configuration["AzureURIs:KeyVault"]!;
+
+// Use the same persistence and protection mechanisms as your app
+hostBuilder.Services
+    .AddDataProtection()
+    .PersistKeysToAzureBlobStorage(new Uri(blobStorageUri), new DefaultAzureCredential())
+    .ProtectKeysWithAzureKeyVault(new Uri(keyVaultURI), new DefaultAzureCredential());
+
+using var host = hostBuilder.Build();
+
+// Perform a dummy operation to force key creation or rotation, if needed
+var dataProtector = host.Services.GetDataProtector("Default");
+dataProtector.Protect([]);
+```
+
+```json
+{
+  "AzureURIs": {
+    "BlobStorage": "https://<storage-account-name>.blob.core.windows.net/<container-name>/keys.xml",
+    "KeyVault": "https://<key-vault-name>.vault.azure.net/keys/<key-name>/"
+  }
+}
+```
+
+Note that app instances will throw exceptions if they need to perform any `Protect` or `Unprotect` operations before the key manager has run for the first time, so it is preferable to execute it before creating app instances.
+
 :::moniker-end
 
 [!INCLUDE[](~/security/data-protection/configuration/scaling/includes/scaling7.md)]
