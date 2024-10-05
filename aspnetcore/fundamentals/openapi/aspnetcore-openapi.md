@@ -352,7 +352,7 @@ app.MapGet("/attributes",
 
 ##### [Controllers](#tab/controllers)
 
-In controller-based apps, the <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute> attribute can be used to exclude an endpoint from the OpenAPI document.
+In controller-based apps, the <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute> attribute can be used to exclude an endpoint or all endpoints in a controller class from the OpenAPI document.
 
 The following example demonstrates how to exclude an endpoint from the generated OpenAPI document:
 
