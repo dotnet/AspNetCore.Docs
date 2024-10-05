@@ -299,10 +299,7 @@ When not specified by one of the preceding strategies, the:
 * Schema for the response body can be inferred from the implicit or explicit return type of the endpoint method, for example, from `T` in <xref:System.Threading.Tasks.Task%601>; otherwise, it's considered to be unspecified.
 * Content-type for the specified or inferred response body is "application/json".
 
-Similar to controller-based apps, there is no build-time validation of the OpenAPI metadata specified with the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method or the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute. For example, there is no build error issued:
-
-* If an endpoint returns a different status code than specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute.
-* When the endpoint method returns an object of a different type than specified in the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method.
+In Minimal APIs, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute only set the response metadata for the endpoint. They do not modify or constrain the behavior of the endpoint, which may return a different status code or response body type than specified by the metadata, and the content-type is determined by the return type of the route handler method, irrespective of any content-type specified in attributes or extension methods.
 
 The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can specify an endpoint's response type, with a default status code of 200 and a default content type of `application/json`. The following example illustrates this:
 
@@ -395,7 +392,8 @@ When not specified by an attribute:
 * the schema for the response body of 3xx and 5xx responses is considered to be not specified,
 * the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
 
-Note that there is no build-time validation of the OpenAPI metadata for responses in controller-based apps. For example, there is no build error issued if an action method returns a different status code than one specified by a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute, and may return an object of a different type than specified in the <xref:Microsoft.AspNetCore.Mvc.ActionResult%601> return type of the action method.
+Note that there are no compile-time checks to ensure that the response metadata specified with a <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute is consistent with the actual behavior of the action method,
+which may return a different status code or response body type than specified by the metadata.
 
 In controller-based apps, ASP.NET responds with a ProblemDetails response type when model validation fails or when the action method returns a result with a 4xx or 5xx HTTP status code. Validation errors typically use the 400 status code, so you can use the <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> attribute to specify the error response for an action, as shown in the following example:
 
