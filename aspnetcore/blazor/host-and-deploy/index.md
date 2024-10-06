@@ -194,9 +194,11 @@ In a standalone Blazor WebAssembly app, only the `<base>` tag is configured, per
 
 ### Configure the app base path
 
-To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the app base path, which is also called the relative root path.
+To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the [app base path (`<base>`)](https://developer.mozilla.org/docs/Web/HTML/Element/base), which is also called the relative root path.
 
 By configuring the app base path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component handles the internal navigation.
+
+Place the the `<base>` tag in `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)) before any elements with attribute values that are URLs, such as the `href` attributes of `<link>` elements.
 
 :::moniker range=">= aspnetcore-8.0"
 
