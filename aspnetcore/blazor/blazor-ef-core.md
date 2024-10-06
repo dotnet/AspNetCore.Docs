@@ -44,7 +44,9 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 
 ## Sample app
 
-The sample app was built as a reference for server-side Blazor apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.
+The sample app was built as a reference for server-side Blazor apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations.
+
+The sample demonstrates use of EF Core to handle optimistic concurrency. However, [native database-generated concurrency tokens](/ef/core/saving/concurrency?tabs=fluent-api#native-database-generated-concurrency-tokens) aren't supported for SQLite databases, which is the database provider for the sample app. To demontrate concurrency with the sample app, adopt a differnt database provider that supports database-generated concurrency tokens (for example, SQL Server).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -249,7 +251,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 
 ## Scope to the component lifetime
 
-You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
+You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and  resolution.
 
 :::moniker range=">= aspnetcore-8.0"
 
