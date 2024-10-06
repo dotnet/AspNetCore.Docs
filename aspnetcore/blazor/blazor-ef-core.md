@@ -251,7 +251,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 
 ## Scope to the component lifetime
 
-You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and  resolution.
+You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 
 :::moniker range=">= aspnetcore-8.0"
 
