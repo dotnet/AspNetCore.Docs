@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 9.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/10/2024
+ms.date: 10/07/2024
 uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core 9.0
@@ -92,3 +92,5 @@ The following sections describe miscellaneous new features.
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/keyedDI.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-9/includes/trust_dev_cert_linux.md)]
+
+[!INCLUDE[](~/release-notes/aspnetcore-9/includes/updated-versions.md)]
