@@ -47,9 +47,6 @@ Authentication state provider services are provided by the framework with a call
 
 The `BlazorWebAppEntra.http` file can be used for testing the weather data request. Note that the `BlazorWebAppEntra` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-> [!NOTE]
-> Internally, the server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
-
 ## Client-side Blazor Web App project (`BlazorWebAppEntra.Client`)
 
 The `BlazorWebAppEntra.Client` project is the client-side project of the Blazor Web App.
@@ -130,7 +127,7 @@ When a user navigates around the app, the `LogInOrOut` component (`Layout/LogInO
 
 If the user signs out from a secure page, they're returned back to the same secure page after signing out only to be sent back through the authentication process. This behavior is fine when users need to switch accounts frequently. However, a alternative app specification may call for the user to be returned to the app's home page or some other page after signing out. The following example shows how to set the app's home page as the return URL for sign-out operations.
 
-The important changes to the `LogInOrOut` component are demonstrated in the following example. The `value` of the hidden field for the `ReturnUrl` is set to the home page at `/`. <xref:System.IDisposable> is no longer implemented. The <xref:Microsoft.AspNetCore.Components.NavigationManager> is no longer injected. The entire `@code` block is removed.
+The important changes to the `LogInOrOut` component are demonstrated in the following example. There's no need to provide a hidden field for the `ReturnUrl` set to the home page at `/` because that's the default path. <xref:System.IDisposable> is no longer implemented. The <xref:Microsoft.AspNetCore.Components.NavigationManager> is no longer injected. The entire `@code` block is removed.
 
 `Layout/LogInOrOut.razor`:
 
@@ -142,7 +139,6 @@ The important changes to the `LogInOrOut` component are demonstrated in the foll
         <Authorized>
             <form action="authentication/logout" method="post">
                 <AntiforgeryToken />
-                <input type="hidden" name="ReturnUrl" value="/" />
                 <button type="submit" class="nav-link">
                     <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true">
                     </span> Logout @context.User.Identity?.Name
