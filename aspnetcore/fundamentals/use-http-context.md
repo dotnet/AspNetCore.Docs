@@ -4,9 +4,11 @@ author: jamesnk
 description: How to use HttpContext in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 01/31/2022
+ms.date: 10/07/2024
 uid: fundamentals/use-httpcontext
 ---
+<!-- ms.sfi.ropc: t -->
+
 # Use HttpContext in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
@@ -28,8 +30,10 @@ Commonly used members on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en`<br />`article=getstarted`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
-|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:fundamentals/best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`<br />`password=TNkt4taM`|
+|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:fundamentals/best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
 
 ### Get request headers
 
