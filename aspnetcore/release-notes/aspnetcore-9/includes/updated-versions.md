@@ -4,7 +4,7 @@ author: tdykstra
 ms.author: tdykstra
 ms.date: 10/07/2024
 ---
-### Updated templates to latest Bootstrap, jQuery, and jQuery Validation versions
+### Templates updated to latest Bootstrap, jQuery, and jQuery Validation versions
 
 The ASP.NET Core project templates and libraries have been updated to use the latest versions of Bootstrap, jQuery, and jQuery Validation, specifically:
 
