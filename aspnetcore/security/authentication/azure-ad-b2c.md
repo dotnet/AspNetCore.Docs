@@ -53,7 +53,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     
     In the preceding:
 
-    - `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft Identity platform.
+    - `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft identity platform.
     - `Microsoft.Identity.Web.UI` includes UI functionality encapsulated in an area named `MicrosoftIdentity`.
 
 1. Add an `AzureADB2C` object to `appsettings.json`.
@@ -100,7 +100,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
         In the preceding code:
 
-        - Calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft Identity platform.
+        - Calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft identity platform.
         - `AddAuthorization` initializes ASP.NET Core authorization.
         - The `AddRazorPages` call configures the app so anonymous browsers can view the Index page. All other requests require authentication.
         - `AddMvcOptions` and `AddMicrosoftIdentityUI` add the required UI components for redirecting to/from Azure AD B2C.

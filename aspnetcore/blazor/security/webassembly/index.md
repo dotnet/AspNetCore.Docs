@@ -24,7 +24,7 @@ To protect .NET/C# code and use [ASP.NET Core Data Protection](xref:security/dat
 
 ## Authentication library
 
-Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library using the [Microsoft Identity Platform](/entra/identity-platform/). The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
+Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library using the [Microsoft identity platform](/entra/identity-platform/). The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
 
 The authentication support in the Blazor WebAssembly Library (`Authentication.js`) is built on top of the [Microsoft Authentication Library (MSAL, `msal.js`)](/entra/identity-platform/msal-overview), which is used to handle the underlying authentication protocol details. The Blazor WebAssembly Library only supports the Proof Key for Code Exchange (PKCE) authorization code flow. Implicit grant isn't supported.
 
