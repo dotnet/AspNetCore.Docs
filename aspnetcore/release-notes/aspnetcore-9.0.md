@@ -11,7 +11,7 @@ uid: aspnetcore-9
 
 This article highlights the most significant changes in ASP.NET Core 9.0 with links to relevant documentation.
 
-This article has been updated for .NET 9 Preview 7.
+This article has been updated for .NET 9 Release Candidate 2.
 
 <!-- New content should be added to ~/aspnetcore-9/includes/newFeatureName.md files. This will help prevent merge conflicts in this file. -->
 
