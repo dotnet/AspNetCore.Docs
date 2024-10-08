@@ -33,8 +33,6 @@ Commonly used members on `HttpRequest` include:
 |[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:fundamentals/best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
 
-[!INCLUDE [managed-identities](~/includes/managed-identities-test-non-production.md)]
-
 ### Get request headers
 
 <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType> provides access to the request headers sent with the HTTP request. There are two ways to access headers using this collection:
