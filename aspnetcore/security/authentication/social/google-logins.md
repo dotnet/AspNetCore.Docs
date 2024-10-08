@@ -53,17 +53,14 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
-
-
-Add the Authentication service to the `program.cs`:
-
-Follow this link [`Add Authtication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
+* Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
+* Add the Authentication service to the `program.cs`:
+* Follow [`Add Authtication for asp.net app`](https://developers.google.com/api-client-library/dotnet/guide/aaa_oauth#configure-your-application-to-use-google.apis.auth.aspnetcore3)
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
 ## Sign in with Google
-* Go to [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
+* Get a link to the libary at [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
 * Then go to [google developer button genration ](https://developers.google.com/identity/gsi/web/tools/configurator)
 * Setup your Controller to match with ` data-login_uri="{HostName}/{ControllerName}/{actionName}" ` attrbute because after success login it will forward you to that link.
 * Create controller and action takes one argement  `string credential` because that what google return when complete login process.
