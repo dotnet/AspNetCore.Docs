@@ -271,6 +271,8 @@ The `appsettings.json` file is updated with the connection string used to connec
 }
 ```
 
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 ## Files created and updated by scaffolding
 
 The scaffolding process creates the following component files and movie database context class file:
@@ -413,6 +415,8 @@ The database context `BlazorWebAppMoviesContext` (`Data/BlazorWebAppMoviesContex
 * Contains a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for the `Movie` entity set. In EF terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the connection string is read from the `appsettings.json` file.
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
 ## Test the app
 

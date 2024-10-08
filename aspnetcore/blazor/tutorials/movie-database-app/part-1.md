@@ -276,6 +276,8 @@ The `Routes` component (`Routes.razor`) sets up routing for the app.
 
 The `appsettings.json` file contains configuration data, such as connection strings.
 
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 ### `Program.cs` file
 
 The `Program.cs` file contains code to create the app and configure the request processing pipeline of the app.

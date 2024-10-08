@@ -94,6 +94,10 @@ For additional Identity scenarios provided by the API, see <xref:security/authen
 * Recovery codes
 * User info management
 
+## Use secure authentication flows to maintain sensitive data and credentials
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 ## Sample apps
 
 In this article, sample apps serve as a reference for standalone Blazor WebAssembly apps that access ASP.NET Core Identity through a backend web API. The demonstration includes two apps:
