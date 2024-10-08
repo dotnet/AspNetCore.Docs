@@ -16,11 +16,13 @@ Blazor WebAssembly apps are secured in the same manner as single-page applicatio
 
 The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Additional resources* section](xref:blazor/security/index#additional-resources).
 
-## Client-side/SPA security
+## Client-side/SPA security of sensitive data and credentials
 
-A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place anything of a secret nature into a Blazor WebAssembly app, such as private .NET/C# code, security keys, passwords, or any other type of sensitive information.
+A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place credentials or secrets into a Blazor WebAssembly app, such as app secrets, connection strings, passwords, private .NET/C# code, or other sensitive data.
 
 To protect .NET/C# code and use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features to secure data, use a server-side ASP.NET Core web API. Have the client-side Blazor WebAssembly app call the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles in this node.
+
+For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data.
 
 ## Authentication library
 

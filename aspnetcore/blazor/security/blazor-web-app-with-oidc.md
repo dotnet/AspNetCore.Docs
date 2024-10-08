@@ -111,31 +111,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A>: The OIDC client secret.
 
-  **The following example is only for testing and demonstration purposes. Don't store the client secret in the app's assembly or check the secret into source control.**  Store the client secret in [User Secrets](xref:security/app-secrets), [Azure Key Vault](xref:security/key-vault-configuration), or an [environment variable](xref:fundamentals/configuration/index#non-prefixed-environment-variables).
+  Don't store the client secret in the app's assembly or check the secret into source control. For more information, see [Securely maintain sensitive data and credentials](xref:blazor/security/index#securely-maintain-sensitive-data-and-credentials).
+
+  **For local development and testing**, use one of the following approaches:
   
-  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
-
-  ```dotnetcli
-  set Authentication__Schemes__MicrosoftOidc__ClientSecret={CLIENT SECRET}
-  ```
-  
-  **For demonstration and testing only**, the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A> can be set directly. Don't set the value directly for deployed production apps. For slightly improved security, [conditionally compile](/dotnet/csharp/language-reference/preprocessor-directives#conditional-compilation) the line with the `DEBUG` symbol:
-
-  ```csharp
-  #if DEBUG
-  oidcOptions.ClientSecret = "{CLIENT SECRET}";
-  #endif
-  ```
-
-  Example:
-
-  Client secret (`{CLIENT SECRET}`): `463471c8c4...f90d674bc9` (shortened for display)
-
-  ```csharp
-  #if DEBUG
-  oidcOptions.ClientSecret = "463471c8c4...137f90d674bc9";
-  #endif
-  ```
+  * Use the [Secret Manager tool](xref:security/app-secrets) to secure the secret locally.
+  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. The client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
@@ -379,31 +360,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A>: The OIDC client secret.
 
-  **The following example is only for testing and demonstration purposes. Don't store the client secret in the app's assembly or check the secret into source control.**  Store the client secret in [User Secrets](xref:security/app-secrets), [Azure Key Vault](xref:security/key-vault-configuration), or an [environment variable](xref:fundamentals/configuration/index#non-prefixed-environment-variables).
+  Don't store the client secret in the app's assembly or check the secret into source control. For more information, see [Securely maintain sensitive data and credentials](xref:blazor/security/index#securely-maintain-sensitive-data-and-credentials).
+
+  **For local development and testing**, use one of the following approaches:
   
-  Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. Because configuration is preconfigured, a client secret can automatically be read via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key. On the server using environment variables, name the environment variable `Authentication__Schemes__MicrosoftOidc__ClientSecret`:
-
-  ```dotnetcli
-  set Authentication__Schemes__MicrosoftOidc__ClientSecret={CLIENT SECRET}
-  ```
-  
-  **For demonstration and testing only**, the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A> can be set directly. Don't set the value directly for deployed production apps. For slightly improved security, [conditionally compile](/dotnet/csharp/language-reference/preprocessor-directives#conditional-compilation) the line with the `DEBUG` symbol:
-
-  ```csharp
-  #if DEBUG
-  oidcOptions.ClientSecret = "{CLIENT SECRET}";
-  #endif
-  ```
-
-  Example:
-
-  Client secret (`{CLIENT SECRET}`): `463471c8c4...f90d674bc9` (shortened for display)
-
-  ```csharp
-  #if DEBUG
-  oidcOptions.ClientSecret = "463471c8c4...137f90d674bc9";
-  #endif
-  ```
+  * Use the [Secret Manager tool](xref:security/app-secrets) to secure the secret locally.
+  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. The client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
