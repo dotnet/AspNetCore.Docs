@@ -114,6 +114,8 @@ When the component executes, `currentCount` is only set once during prerendering
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
+The prerendered data sent to the client by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection](xref:security/data-protection/introduction), so the state can't be read by a malicious user.
+
 ## Components embedded into pages and views (Razor Pages/MVC)
 
 For components embedded into a page or view of a Razor Pages or MVC app, you must add the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) with the `<persist-component-state />` HTML tag inside the closing `</body>` tag of the app's layout. **This is only required for Razor Pages and MVC apps.** For more information, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
