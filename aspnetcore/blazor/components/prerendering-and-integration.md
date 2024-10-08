@@ -920,6 +920,8 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps. For prerendering in a hosted Blazor WebAssembly app, the data is exposed to the browser and must not contain sensitive, private information.
+
 :::zone pivot="webassembly"
 
 ## Additional Blazor WebAssembly resources
@@ -1864,6 +1866,8 @@ else
 ```
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps. For prerendering in a hosted Blazor WebAssembly app, the data is exposed to the browser and must not contain sensitive, private information.
 
 :::zone pivot="webassembly"
 
