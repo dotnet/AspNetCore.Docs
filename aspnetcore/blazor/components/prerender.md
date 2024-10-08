@@ -114,8 +114,6 @@ When the component executes, `currentCount` is only set once during prerendering
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-For server payloads of Blazor Web Apps, prerendered data sent to a client and returned to the server by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction). The state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of Blazor Web Apps aren't protected by DP because clients are untrusted.
-
 The persisted prerendered state is transferred to the client, where it's used to restore the component state. During client-side rendering (CSR, `InteractiveWebAssembly`), the data is exposed to the browser and must not contain sensitive, private information. During interactive server-side rendering (interactive SSR, `InteractiveServer`), [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction) ensures that the data is transferred securely. The `InteractiveAuto` render mode combines WebAssembly and Server interactivity, so it's necessary to consider data exposure to the browser, as in the CSR case.
 
 ## Components embedded into pages and views (Razor Pages/MVC)
