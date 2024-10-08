@@ -51,28 +51,6 @@ Store sensitive settings such as the Google client ID and secret values with [Se
 
 You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 
-## Configure Google authentication (First Edition)
-
-Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
-
-:::moniker range="< aspnetcore-6.0"
-
-Add the Authentication service to the `Startup.ConfigureServices`:
-
-[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
-Add the Authentication service to the `Program`:
-
-[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramGoogle.cs)]
-
-:::moniker-end
-
-[!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
-
 ## Sign in with Google `Google.Apis.Auth.AspNetCore3` version
 
 * Run the app and select **Log in**. An option to sign in with Google appears.
@@ -85,7 +63,7 @@ Add the Authentication service to the `Program`:
 
 For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
 
-## Configure Google authentication (Second Edition)
+## Configure Google authentication
 
 Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
 
