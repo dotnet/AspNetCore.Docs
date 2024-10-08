@@ -9,7 +9,7 @@ uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
-By [Valeriy Novytskyy](https://github.com/01binary) , [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sharaf Abacery](https://github.com/sharafabacery)
+By [Valeriy Novytskyy](https://github.com/01binary), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Sharaf Abacery](https://github.com/sharafabacery)
 
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
