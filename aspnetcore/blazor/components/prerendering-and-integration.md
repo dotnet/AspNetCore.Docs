@@ -920,7 +920,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-For Blazor Server apps, prerendered data sent to a client by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction), so the state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of hosted Blazor WebAssembly apps aren't protected by DP because clients are untrusted.
+For Blazor Server apps, prerendered data sent to a client and returned to the server by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction), so the state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of hosted Blazor WebAssembly apps aren't protected by DP because clients are untrusted.
 
 :::zone pivot="webassembly"
 
@@ -1867,7 +1867,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-For Blazor Server apps, prerendered data sent to a client by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction), so the state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of hosted Blazor WebAssembly apps aren't protected by DP because clients are untrusted.
+For Blazor Server apps, prerendered data sent to a client and returned to the server by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction), so the state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of hosted Blazor WebAssembly apps aren't protected by DP because clients are untrusted.
 
 :::zone pivot="webassembly"
 
