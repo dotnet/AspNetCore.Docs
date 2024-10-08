@@ -40,13 +40,15 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 ## Configure a user secret for the provider's security key
 
-Set the key with the [secret-manager tool](xref:security/app-secrets). In the following example, the key name is `EmailAuthKey` and the key is represented by the `{KEY}` placeholder. In a command shell, navigate to the app's root folder and execute the following command with the API key:
+Set the key with the [Secret Manager tool](xref:security/app-secrets). In the following example, the key name is `EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. In a command shell, navigate to the app's root folder and execute the following command with the API key:
 
 ```dotnetcli
 dotnet user-secrets set "EmailAuthKey" "{KEY}"
 ```
 
 For more information, see <xref:security/app-secrets>.
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
 ## Implement `IEmailSender`
 

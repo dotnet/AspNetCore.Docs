@@ -150,6 +150,8 @@ The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> i
 * Using [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
 * Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
 
 :::moniker range="< aspnetcore-5.0"

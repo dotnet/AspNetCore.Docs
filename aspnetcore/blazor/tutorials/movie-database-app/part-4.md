@@ -97,7 +97,9 @@ The following is an example connection string:
 
 > :::no-loc text="Server=(localdb)\\mssqllocaldb;Database=BlazorWebAppMoviesContext-c347f669-bddf-56a3-a32e-7fe010306593;Trusted_Connection=True;MultipleActiveResultSets=true":::
 
-When the app is deployed to a test/staging or production server, an environment variable can be used to set the connection string to a test/staging or production database server.
+When the app is deployed to a test/staging or production server, securely store the connection string outside of the project's configuration files.
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
 ## Database technology
 

@@ -656,6 +656,8 @@ In a more sophisticated and real-world example, the following `PasswordEntry` co
 * Exposes changes of a `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback) that passes in the current value of the child's `password` field as its argument.
 * Uses the `onclick` event to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
 
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
 `PasswordEntry.razor`:
 
 :::moniker range=">= aspnetcore-8.0"
