@@ -51,18 +51,6 @@ Store sensitive settings such as the Google client ID and secret values with [Se
 
 You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 
-## Sign in with Google `Google.Apis.Auth.AspNetCore3` version
-
-* Run the app and select **Log in**. An option to sign in with Google appears.
-* Select the **Google** button, which redirects to Google for authentication.
-* After entering your Google credentials, you are redirected back to the web site.
-
-[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
-
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
-For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
-
 ## Configure Google authentication
 
 Add the [`Google.Apis.Auth.AspNetCore3`](https://www.nuget.org/packages/Google.Apis.Auth.AspNetCore3) NuGet package to the app.
@@ -86,6 +74,8 @@ Follow this link [`Add Authtication for asp.net app`](https://developers.google.
 [Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)
 
 For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
+
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Change the default callback URI
 
