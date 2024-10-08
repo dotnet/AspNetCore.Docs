@@ -22,7 +22,7 @@ A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's 
 
 To protect .NET/C# code and use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features to secure data, use a server-side ASP.NET Core web API. Have the client-side Blazor WebAssembly app call the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles in this node.
 
-For client-side and server-side local development and testing, use the [Secret Manager tool](xref:security/app-secrets) to secure sensitive credentials.
+For local development testing, the [Secret Manager tool](xref:security/app-secrets) is recommended for securing sensitive data.
 
 ## Authentication library
 
