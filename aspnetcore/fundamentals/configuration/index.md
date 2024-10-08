@@ -181,7 +181,7 @@ Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Conf
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-The following `set` commands:
+The following commands:
 
 * Set the environment keys and values of the [preceding example](#appsettingsjson) on Windows.
 * Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
