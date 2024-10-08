@@ -920,7 +920,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-For Blazor Server apps, prerendered data sent to a client and returned to the server by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction), so the state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of hosted Blazor WebAssembly apps aren't protected by DP because clients are untrusted.
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps. For prerendering in a hosted Blazor WebAssembly app, the data is exposed to the browser and must not contain sensitive, private information.
 
 :::zone pivot="webassembly"
 
@@ -1867,7 +1867,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-For Blazor Server apps, prerendered data sent to a client and returned to the server by the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is protected by [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction), so the state can't be read by a malicious user in-transit. Only server payloads are protected because server payloads are read and interpreted on the server. Client payloads of hosted Blazor WebAssembly apps aren't protected by DP because clients are untrusted.
+The persisted prerendered state is transferred to the client, where it's used to restore the component state. [ASP.NET Core Data Protection (DP)](xref:security/data-protection/introduction) ensures that the data is transferred securely in Blazor Server apps. For prerendering in a hosted Blazor WebAssembly app, the data is exposed to the browser and must not contain sensitive, private information.
 
 :::zone pivot="webassembly"
 
