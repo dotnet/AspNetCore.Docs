@@ -5,7 +5,7 @@ description: Learn how to secure a Blazor WebAssembly App with OpenID Connect (O
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2024
+ms.date: 10/09/2024
 uid: blazor/security/blazor-web-app-oidc
 zone_pivot_groups: blazor-web-app-oidc-specification
 ---
@@ -56,7 +56,26 @@ The `BlazorWebAppOidc.http` file can be used for testing the weather data reques
 This section explains how to configure the sample app.
 
 > [!NOTE]
-> For Microsoft Entra ID and Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
+> For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
+
+#### Establish the client secret
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `MicrosoftOidc:ClientSecret`.
+
+> [!NOTE]
+> If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
+
+Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
+
+```dotnetcli
+dotnet user-secrets set "MicrosoftOidc:ClientSecret" "{SECRET}"
+```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
+
+#### Configure the app
 
 The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
 
@@ -109,15 +128,6 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A>: The OIDC client secret.
-
-  Don't store the client secret in the app's assembly or check the secret into source control. For more information, see [Securely maintain sensitive data and credentials](xref:blazor/security/index#securely-maintain-sensitive-data-and-credentials).
-
-  **For local development and testing**, use one of the following approaches:
-  
-  * Use the [Secret Manager tool](xref:security/app-secrets) to secure the secret locally.
-  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. The client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
-
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
   In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do **not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
@@ -133,7 +143,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   ```csharp
   oidcOptions.MapInboundClaims = false;
-  oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+  oidcOptions.TokenValidationParameters.NameClaimType = "name";
   oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
   ```
 
@@ -196,12 +206,27 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 Inspect the sample app for the following features:
 
+:::moniker range=">= aspnetcore-9.0"
+
+* Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
+* The server project calls `AddAuthenticationStateSerialization` to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls `AddAuthenticationStateDeserialization` to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+* An example requests to the Blazor Web App for weather data is handled by a Minimal API endpoint (`/weather-forecast`) in the `Program` file (`Program.cs`). The endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
+* The app securely calls a (web) API in the server project for weather data:
+  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` on the server to obtain weather data directly (not via a web API call).
+  * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file obtains the weather data from the `ServerWeatherForecaster` and returns the data to the client.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
 * The `PersistingAuthenticationStateProvider` class (`PersistingAuthenticationStateProvider.cs`) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client, which is then fixed for the lifetime of the WebAssembly application.
 * An example requests to the Blazor Web App for weather data is handled by a Minimal API endpoint (`/weather-forecast`) in the `Program` file (`Program.cs`). The endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>. For any controllers that you add to the project, add the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the controller or action.
 * The app securely calls a (web) API in the server project for weather data:
   * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` on the server to obtain weather data directly (not via a web API call).
   * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file obtains the weather data from the `ServerWeatherForecaster` and returns the data to the client.
+
+:::moniker-end
 
 For more information on (web) API calls using a service abstractions in Blazor Web Apps, see <xref:blazor/call-web-api#service-abstractions-for-web-api-calls>.
 
@@ -277,7 +302,26 @@ The `BlazorWebAppOidc.http` file can be used for testing the weather data reques
 This section explains how to configure the sample app.
 
 > [!NOTE]
-> For Microsoft Entra ID and Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
+> For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this section doesn't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see the linked resources.
+
+#### Establish the client secret
+
+[!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `MicrosoftOidc:ClientSecret`.
+
+> [!NOTE]
+> If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
+
+Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
+
+```dotnetcli
+dotnet user-secrets set "MicrosoftOidc:ClientSecret" "{SECRET}"
+```
+
+If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
+
+#### Configure the app
 
 The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions> configuration is found in the project's `Program` file on the call to <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>:
 
@@ -358,15 +402,6 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   oidcOptions.Authority = "https://login.microsoftonline.com/common/v2.0/";
   ```
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret%2A>: The OIDC client secret.
-
-  Don't store the client secret in the app's assembly or check the secret into source control. For more information, see [Securely maintain sensitive data and credentials](xref:blazor/security/index#securely-maintain-sensitive-data-and-credentials).
-
-  **For local development and testing**, use one of the following approaches:
-  
-  * Use the [Secret Manager tool](xref:security/app-secrets) to secure the secret locally.
-  * Authentication scheme configuration is automatically read from `builder.Configuration["Authentication:Schemes:{SCHEME NAME}:{PropertyName}"]`, where the `{SCHEME NAME}` placeholder is the scheme, which is `MicrosoftOidc`. The client secret can automatically be read during local development via the `Authentication:Schemes:MicrosoftOidc:ClientSecret` configuration key from an `appsettings.Development.json` file.
-
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType%2A>: Configures the OIDC handler to only perform authorization code flow. Implicit grants and hybrid flows are unnecessary in this mode.
 
   In the Entra or Azure portal's **Implicit grant and hybrid flows** app registration configuration, do **not** select either checkbox for the authorization endpoint to return **Access tokens** or **ID tokens**. The OIDC handler automatically requests the appropriate tokens using the code returned from the authorization endpoint.
@@ -382,7 +417,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   
   ```csharp
   oidcOptions.MapInboundClaims = false;
-  oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+  oidcOptions.TokenValidationParameters.NameClaimType = "name";
   oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
   ```
 
@@ -445,11 +480,25 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 Inspect the sample app for the following features:
 
+:::moniker range=">= aspnetcore-9.0"
+
+* Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
+* The server project calls `AddAuthenticationStateSerialization` to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls `AddAuthenticationStateDeserialization` to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+* Requests to the Blazor Web App are proxied to the backend web API project (`MinimalApiJwt`). `MapForwarder` in the `Program` file adds direct forwarding of HTTP requests that match the specified pattern to a specific destination using default configuration for the outgoing request, customized transforms, and default HTTP client:
+  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` to proxy the request for weather data with the user's access token.
+  * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file transforms the request with the user's access token to obtain the weather data.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 * Automatic non-interactive token refresh with the help of a custom cookie refresher (`CookieOidcRefresher.cs`).
 * The `PersistingAuthenticationStateProvider` class (`PersistingAuthenticationStateProvider.cs`) is a server-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client, which is then fixed for the lifetime of the WebAssembly application.
 * Requests to the Blazor Web App are proxied to the backend web API project (`MinimalApiJwt`). `MapForwarder` in the `Program` file adds direct forwarding of HTTP requests that match the specified pattern to a specific destination using default configuration for the outgoing request, customized transforms, and default HTTP client:
   * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` to proxy the request for weather data with the user's access token.
   * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file transforms the request with the user's access token to obtain the weather data.
+
+:::moniker-end
 
 For more information on (web) API calls using a service abstractions in Blazor Web Apps, see <xref:blazor/call-web-api#service-abstractions-for-web-api-calls>.
 
