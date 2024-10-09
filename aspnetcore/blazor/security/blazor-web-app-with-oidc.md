@@ -143,7 +143,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   ```csharp
   oidcOptions.MapInboundClaims = false;
-  oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+  oidcOptions.TokenValidationParameters.NameClaimType = "name";
   oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
   ```
 
@@ -417,7 +417,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   
   ```csharp
   oidcOptions.MapInboundClaims = false;
-  oidcOptions.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+  oidcOptions.TokenValidationParameters.NameClaimType = "name";
   oidcOptions.TokenValidationParameters.RoleClaimType = "roles";
   ```
 
