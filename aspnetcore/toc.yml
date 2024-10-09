@@ -624,6 +624,8 @@ items:
                     uid: blazor/security/webassembly/meid-groups-roles-net5to7
                   - name: Graph API
                     uid: blazor/security/webassembly/graph-api
+              - name: Blazor Web App with Entra
+                uid: blazor/security/blazor-web-app-entra
               - name: Blazor Web App with OIDC
                 uid: blazor/security/blazor-web-app-oidc
               - name: Content Security Policy
