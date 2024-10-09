@@ -43,8 +43,6 @@ Access sample apps through the latest version folder from the repository's root 
 
 The `BlazorWebAppEntra` project is the server-side project of the Blazor Web App.
 
-Authentication state provider services are provided by the framework with a call to `AddAuthenticationStateSerialization` on the Razor components builder in the `Program` file, which captures the user's authentication state and flows it from the server to the client.
-
 The `BlazorWebAppEntra.http` file can be used for testing the weather data request. Note that the `BlazorWebAppEntra` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 ## Client-side Blazor Web App project (`BlazorWebAppEntra.Client`)
