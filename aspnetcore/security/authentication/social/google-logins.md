@@ -68,11 +68,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 `GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
 * Here you  get all information about login user you can store it in database.
 
-[Complete Simple working app](https://github.com/sharafabacery/GoogleAuthticationExample)
-
-For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
-
-[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+[Complete Simple working app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/social/GoogleAuthExample)
 
 ## Change the default callback URI
 
