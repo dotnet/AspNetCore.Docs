@@ -781,7 +781,6 @@ In the following `GenericsExample` component:
 
 ```razor
 @page "/generics-example"
-@using System.Runtime.InteropServices
 @implements IDisposable
 @inject IJSRuntime JS
 
@@ -808,8 +807,7 @@ In the following `GenericsExample` component:
 
     public async Task InvokeInterop()
     {
-        var syncInterop =
-            RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
+        var syncInterop = OperatingSystem.IsBrowser();
 
         await JS.InvokeVoidAsync(
             "invokeMethodsAsync", syncInterop, objRef1, objRef2);
