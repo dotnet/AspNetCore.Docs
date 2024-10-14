@@ -381,17 +381,21 @@ In the `Program` file:
 builder.Services.AddLocalization();
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 Specify the static culture in the `Program` file before any middleware that might check the request culture. Generally, place Request Localization Middleware immediately before <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures United States English:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 Specify the static culture in the `Program` file immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures United States English:
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 app.UseRequestLocalization("en-US");
