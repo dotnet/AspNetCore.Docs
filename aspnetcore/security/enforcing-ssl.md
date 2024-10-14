@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc, linux-related-content
-ms.date: 09/06/2024
+ms.date: 10/14/2024
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -470,4 +470,6 @@ In some cases, group policy may prevent self-signed certificates from being trus
 
 :::moniker-end
 
-[!INCLUDE[](~//security/enforcing-ssl/includes/enforcing-ssl6-8.md)]
+[!INCLUDE[](~//security/enforcing-ssl/includes/enforcing-ssl6.md)]
+[!INCLUDE[](~//security/enforcing-ssl/includes/enforcing-ssl7.md)]
+[!INCLUDE[](~//security/enforcing-ssl/includes/enforcing-ssl8.md)]

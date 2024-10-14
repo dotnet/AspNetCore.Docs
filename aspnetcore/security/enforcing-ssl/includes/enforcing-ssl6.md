@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-6.0 <=aspnetcore-8.0"
+:::moniker range="= aspnetcore-6.0"
 
 > [!NOTE]
 > If you're using .NET 9 SDK or later, see the updated Linux procedures in the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
@@ -263,6 +263,7 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome) and for Firefox.
 
+<!-- Uncomment when linus-dev-certs supports .NET 6.0>
 ### Trust HTTPS certificate on Linux with linux-dev-certs
 
 [linux-dev-certs](https://github.com/tmds/linux-dev-certs) is an open-source, community-supported, .NET global tool that provides a convenient way to create and trust a developer certificate on Linux. The tool is not maintained or supported by Microsoft.
@@ -275,6 +276,7 @@ dotnet linux-dev-certs install
 ```
 
 For more information or to report issues, see the [linux-dev-certs GitHub repository](https://github.com/tmds/linux-dev-certs).
+-->
 
 ### Ubuntu trust the certificate for service-to-service communication
 
