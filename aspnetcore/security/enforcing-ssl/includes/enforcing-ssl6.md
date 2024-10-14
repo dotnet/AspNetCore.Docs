@@ -1,4 +1,4 @@
-:::moniker range="<=aspnetcore-6.0"
+:::moniker range="=aspnetcore-6.0"
 
 > [!NOTE]
 > If you're using .NET 9 SDK or later, see the updated Linux procedures in the [.NET 9 version of this article](?view=aspnetcore-9.0&preserve-view=true).
