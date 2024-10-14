@@ -254,7 +254,17 @@ Add the following line to the `Program` file where services are registered:
 builder.Services.AddLocalization();
 ```
 
-In ***server-side development***, you can specify the app's supported cultures immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish:
+:::moniker range=">= aspnetcore-8.0"
+
+In ***server-side development***, specify the app's supported cultures before any middleware that might check the request culture. Generally, place Request Localization Middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures supported cultures for United States English and Costa Rican Spanish:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+In ***server-side development***, specify the app's supported cultures immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures supported cultures for United States English and Costa Rican Spanish:
+
+:::moniker-end
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
@@ -371,7 +381,21 @@ In the `Program` file:
 builder.Services.AddLocalization();
 ```
 
-Specify the static culture in the `Program` file immediately after Routing Middleware is added to the processing pipeline. The following example configures United States English:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Specify the static culture in the `Program` file before any middleware that might check the request culture. Generally, place Request Localization Middleware immediately before <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>. The following example configures United States English:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+Specify the static culture in the `Program` file immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline. The following example configures United States English:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 app.UseRequestLocalization("en-US");
@@ -638,13 +662,13 @@ Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Bui
 
 :::moniker range=">= aspnetcore-8.0"
 
-Before the call to `app.MapRazorComponents` in the request processing pipeline, place the following code:
+Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the request processing pipeline, place the following code:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-After the call to `app.UseRouting` in the request processing pipeline, place the following code:
+After Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the request processing pipeline, place the following code:
 
 :::moniker-end
 
@@ -1125,7 +1149,7 @@ builder.Services.AddLocalization();
 
 Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
-Before the call to `app.MapRazorComponents` in the request processing pipeline, place the following code:
+Before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the request processing pipeline, place the following code:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CR" };
@@ -1366,7 +1390,21 @@ If the app doesn't already support dynamic culture selection:
 builder.Services.AddLocalization();
 ```
 
-Immediately after Routing Middleware is added to the processing pipeline:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Place Request Localization Middleware before any middleware that might check the request culture. Generally, place the middleware immediately before calling <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+Immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CR" };
@@ -1393,7 +1431,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
+In `Startup.Configure` immediately after Routing Middleware (<xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>) is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CR" };
