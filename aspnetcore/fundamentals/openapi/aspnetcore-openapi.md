@@ -573,7 +573,7 @@ builder.Services.AddOpenApi(options =>
 
 ### Customize the OpenAPI endpoint route
 
-By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
+By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
