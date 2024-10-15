@@ -265,7 +265,7 @@ When no explicit annotation is provided, the framework attempts to determine the
 
 * Request body parameters that are read from a form via the <xref:Microsoft.AspNetCore.Mvc.FromFormAttribute> attribute are described with the `multipart/form-data` content-type.
 * All other request body parameters are described with the `application/json` content-type.
-* The request body is treated as optional if it's nullable or if the <xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty> property is set on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
+* The request body is treated as optional if it's nullable or if the <xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty> property is set on the <xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute> attribute.
 
 #### Describe response types
 
@@ -643,8 +643,7 @@ Document transformers have access to a context object that includes:
 
 * The name of the document being modified.
 * The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider.ApiDescriptionGroups> associated with that document.
-<!-- TODO: replace IServiceProvider on following line and below with xref -->
-* The `IServiceProvider` used in document generation.
+* The <xref:System.IServiceProvider> used in document generation.
 
 Document transformers can also mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
@@ -672,7 +671,7 @@ Operation transformers have access to a context object which contains:
 
 * The name of the document the operation belongs to.
 * The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> associated with the operation.
-* The `IServiceProvider` used in document generation.
+* The <xref:System.IServiceProvider> used in document generation.
 
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
@@ -689,7 +688,7 @@ Schema transformers have access to a context object which contains:
 
 * The name of the document the schema belongs to.
 * The JSON type information associated with the target schema.
-* The `IServiceProvider` used in document generation.
+* The <xref:System.IServiceProvider> used in document generation.
 
 For example, the following schema transformer sets the `format` of decimal types to `decimal` instead of `double`:
 
