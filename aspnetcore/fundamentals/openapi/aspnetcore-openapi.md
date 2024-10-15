@@ -76,23 +76,23 @@ Launch the app and navigate to `https://localhost:<port>/openapi/v1.json` to vie
 ### Including OpenAPI metadata for endpoints
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
-In controller-based apps, metadata is collected from attributes like `[EndpointDescription]`, `[HttpPost]`,
-and `[Produces]`.
+In controller-based apps, metadata is collected from attributes like <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>,
+and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>.
 In minimal APIs, metadata can be collected from attributes, but may also be set by using extension methods
-and other strategies, such as returning `TypedResults` from route handlers.
+and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
 The following table provides an overview of the metadata collected and the strategies for setting it.
 
 | Metadata | Attribute | Extension method | Other strategies |
 | --- | --- | --- |
-| summary | `[EndpointSummary]` | `WithSummary` | |
-| description | `[EndpointDescription]` | `WithDescription` | |
-| tags | `[Tags]` | `WithTags` | |
-| operationId | `[EndpointName]` | `WithName` | |
-| parameters | `[FromQuery]`, `[FromRoute]`, `[FromHeader]`, `[FromForm]` | |
-| parameter description | `[Description]` | | |
-| requestBody | `[FromBody]` | `Accepts` | |
-| responses | `[Produces]`, `[ProducesProblem]` | `Produces`, `ProducesProblem` | `TypedResults` |
-| Excluding endpoints | `[ExcludeFromDescription]` | `ExcludeFromDescription` | |
+| summary | <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute> | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> | |
+| description | <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute> | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> | |
+| tags | <xref:Microsoft.AspNetCore.Http.TagsAttribute> | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> | |
+| operationId | <xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute> | <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> | |
+| parameters | <xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute>, <xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute>, <xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute>, <xref:Microsoft.AspNetCore.Mvc.FromFormAttribute> | |
+| parameter description | <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute> | | |
+| requestBody | <xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute> | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> | |
+| responses | <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A>, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> | <xref:Microsoft.AspNetCore.Http.TypedResults> |
+| Excluding endpoints | <xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute>, <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute> | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A> | |
 
 ASP.NET Core does not collect metadata from XML doc comments.
 
@@ -100,13 +100,8 @@ The following sections demonstrate how to include metadata in an app to customiz
 
 #### Summary and description
 
-The endpoint summary and description can be set using the `[EndpointSummary]` and `[EndpointDescription]` attributes,
-or in minimal APIs, using the `WithSummary` and `WithDescription` extension methods.
-
-* `[EndpointSummary]`: <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute>
-* `[EndpointDescription]`: <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>
-* `WithSummary`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A>
-* `WithDescription`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A>
+The endpoint summary and description can be set using the <xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute> and <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute> attributes,
+or in minimal APIs, using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> extension methods.
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
@@ -143,14 +138,10 @@ The following sample demonstrates how to set summaries and descriptions.
 #### tags
 
 OpenAPI supports specifying tags on each endpoint as a form of categorization.
-In controller-based apps, the controller name is automatically added as a tag on each of its endpoints,
-but this can be overridden using the `[Tags]` attribute.
-In minimal APIs, tags can be set using either the `[Tags]` attribute or the `WithTags` extension method.
-
-* `[Tags]`: <xref:Microsoft.AspNetCore.Http.TagsAttribute>
-* `WithTags`: <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A>
 
 ##### [Minimal APIs](#tab/minimal-apis)
+
+In minimal APIs, tags can be set using either the <xref:Microsoft.AspNetCore.Http.TagsAttribute> attribute or the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> extension method.
 
 The following sample demonstrates the different strategies for setting tags.
 
@@ -164,6 +155,8 @@ app.MapGet("/attributes",
 ```
 
 ##### [Controllers](#tab/controllers)
+
+In controller-based apps, the controller name is automatically added as a tag on each of its endpoints, but this can be overridden using the <xref:Microsoft.AspNetCore.Http.TagsAttribute> attribute.
 
 The following sample demonstrates how to set tags.
 
@@ -180,13 +173,10 @@ The following sample demonstrates how to set tags.
 #### operationId
 
 OpenAPI supports an operationId on each endpoint as a unique identifier or name for the operation. 
-In controller-based apps, the operationId can be set using the `[EndpointName]` attribute.
-In minimal APIs, the operationId can be set using either the `[EndpointName]` attribute or the `WithName` extension method.
-
-* `[EndpointName]`: <xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute>
-* `WithName`: <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A>
 
 ##### [Minimal APIs](#tab/minimal-apis)
+
+In minimal APIs, the operationId can be set using either the <xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute> attribute or the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> extension method.
 
 The following sample demonstrates the different strategies for setting the operationId.
 
@@ -200,6 +190,8 @@ app.MapGet("/attributes",
 ```
 
 ##### [Controllers](#tab/controllers)
+
+In controller-based apps, the operationId can be set using the <xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute> attribute.
 
 The following sample demonstrates how to set the operationId.
 
@@ -219,9 +211,7 @@ OpenAPI supports annotating path, query string, header, and cookie parameters th
 
 The framework infers the types for request parameters automatically based on the signature of the route handler.
 
-The `[Description]` attribute can be used to provide a description for a parameter.
-
-* [`Description`](/dotnet/api/system.componentmodel.descriptionattribute)
+The <xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute> attribute can be used to provide a description for a parameter.
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
@@ -273,7 +263,7 @@ public class Todo : IEndpointParameterMetadataProvider
 
 When no explicit annotation is provided, the framework attempts to determine the default request type if there's a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
 
-* Request body parameters that are read from a form via the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute are described with the `multipart/form-data` content-type.
+* Request body parameters that are read from a form via the <xref:Microsoft.AspNetCore.Mvc.FromFormAttribute> attribute are described with the `multipart/form-data` content-type.
 * All other request body parameters are described with the `application/json` content-type.
 * The request body is treated as optional if it's nullable or if the <xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty> property is set on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
 
@@ -368,7 +358,7 @@ If an endpoint can return different response types in different scenarios, you c
 
   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
 
-  The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata.
+  The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> will contribute to the endpoint’s metadata.
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
@@ -583,7 +573,7 @@ builder.Services.AddOpenApi(options =>
 
 ### Customize the OpenAPI endpoint route
 
-By default, the OpenAPI endpoint registered via a call to `MapOpenApi` exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
+By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.MapOpenApi> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
@@ -627,17 +617,17 @@ Transformers fall into three categories:
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 * Schema transformers apply to each schema in the document. These can be used to modify the schema of request or response bodies, or any nested schemas.
 
-Transformers can be registered onto the document by calling the [`AddDocumentTransformer`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,90bbc6506b8eff7a) method on the [`OpenApiOptions`](https://source.dot.net/#Microsoft.AspNetCore.OpenApi/Services/OpenApiOptions.cs,c0a8b420f4ce6918) object. The following snippet shows different ways to register transformers onto the document:
+Transformers can be registered onto the document by calling the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer> method on the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> object. The following snippet shows different ways to register transformers onto the document:
 
 * Register a document transformer using a delegate.
-* Register a document transformer using an instance of `IOpenApiDocumentTransformer`.
-* Register a document transformer using a DI-activated `IOpenApiDocumentTransformer`.
+* Register a document transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer>.
+* Register a document transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer>.
 * Register an operation transformer using a delegate.
-* Register an operation transformer using an instance of `IOpenApiOperationTransformer`.
-* Register an operation transformer using a DI-activated `IOpenApiOperationTransformer`.
+* Register an operation transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer>.
+* Register an operation transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer>.
 * Register a schema transformer using a delegate.
-* Register a schema transformer using an instance of `IOpenApiSchemaTransformer`.
-* Register a schema transformer using a DI-activated `IOpenApiSchemaTransformer`.
+* Register a schema transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer>.
+* Register a schema transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer>.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-19)]
 
@@ -652,14 +642,15 @@ Transformers execute in first-in first-out order based on registration. In the f
 Document transformers have access to a context object that includes:
 
 * The name of the document being modified.
-* The list of `ApiDescriptionGroups` associated with that document.
+* The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider.ApiDescriptionGroups> associated with that document.
+<!-- TODO: replace IServiceProvider on following line and below with xref -->
 * The `IServiceProvider` used in document generation.
 
 Document transformers can also mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
-Service-activated document transformers can utilize instances from DI to modify the app. The following sample demonstrates a document transformer that uses the `IAuthenticationSchemeProvider` service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
+Service-activated document transformers can utilize instances from DI to modify the app. The following sample demonstrates a document transformer that uses the <xref:Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider> service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
@@ -680,7 +671,7 @@ Operations are unique combinations of HTTP paths and methods in an OpenAPI docum
 Operation transformers have access to a context object which contains:
 
 * The name of the document the operation belongs to.
-* The `ApiDescription` associated with the operation.
+* The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> associated with the operation.
 * The `IServiceProvider` used in document generation.
 
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
