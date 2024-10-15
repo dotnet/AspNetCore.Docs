@@ -208,7 +208,7 @@ Options validation also supports <xref:System.ComponentModel.DataAnnotations.IVa
 
 ### `ValidateOnStart`
 
-Options validation runs the first time `TOption` instance is created. That means for instance when first 
+Options validation runs the first time a `TOption` instance is created. That means, for instance, when first 
 access to [`IOptionsSnapshot<TOptions>.Value`](xref:Microsoft.Extensions.Options.IOptionsSnapshot%601) occurs in a request pipeline or when 
 [`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.OptionsMonitor`1.Get(System.String)) is called on settings present. This implies that 
 after settings reload validation runs again. The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance once created.
