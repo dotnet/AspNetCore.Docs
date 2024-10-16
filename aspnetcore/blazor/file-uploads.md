@@ -142,6 +142,48 @@ The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Fo
 
 :::moniker-end
 
+## Security considerations
+
+### Avoid `IBrowserFile.Size` for file size limits
+
+Avoid using <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Size?displayProperty=nameWithType> to impose a limit on the file size.
+
+<span aria-hidden="true">❌</span> The following approach is ***insecure*** and must be avoided:
+
+```diff
+- var fileContent = new StreamContent(file.OpenReadStream(file.Size));
+```
+
+Instead of using the unsafe client-supplied file size, explicitly specify the maximum file size. The following example sets the maximum file size (`maxFileSize`) to 15 K:
+
+```csharp
+long maxFileSize = 1024 * 15;
+
+...
+
+var fileContent = new StreamContent(file.OpenReadStream(maxFileSize));
+```
+
+### File name security
+
+Never use a client-supplied file name for saving a file to physical storage. Create a safe file name for the file using <xref:System.IO.Path.GetRandomFileName?displayProperty=nameWithType> or <xref:System.IO.Path.GetTempFileName?displayProperty=nameWithType> to create a full path (including the file name) for temporary storage.
+
+Razor automatically HTML encodes property values for display. The following code is safe to use:
+
+```cshtml
+@foreach (var file in Model.DatabaseFiles) {
+    <tr>
+        <td>
+            @file.UntrustedName
+        </td>
+    </tr>
+}
+```
+
+Outside of Razor, always use <xref:System.Net.WebUtility.HtmlEncode%2A> to safely encode file names from a user's request.
+
+Many implementations must include a check that the file exists; otherwise, the file is overwritten by a file of the same name. Supply additional logic to meet your app's specifications.
+
 ## Examples
 
 The following examples demonstrate multiple file upload in a component. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.GetMultipleFiles%2A?displayProperty=nameWithType> allows reading multiple files. Specify the maximum number of files to prevent a malicious user from uploading a larger number of files than the app expects. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.File?displayProperty=nameWithType> allows reading the first and only file if the file upload doesn't support multiple files.
