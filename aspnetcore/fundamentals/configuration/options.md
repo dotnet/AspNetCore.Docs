@@ -19,7 +19,6 @@ when updating this article -->
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-
 The options pattern uses classes to provide strongly typed access to groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
 * [Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation):
