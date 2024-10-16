@@ -784,5 +784,6 @@ You can also use compiler preprocessor directives in your RCL to implement diffe
 
 ## Additional resources
 
+* <xref:blazor/hybrid/security/index?pivots=maui>
 * <xref:blazor/components/render-modes>
 * <xref:blazor/hybrid/reuse-razor-components>
