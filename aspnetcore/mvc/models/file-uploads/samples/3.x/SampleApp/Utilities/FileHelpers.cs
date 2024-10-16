@@ -146,39 +146,33 @@ namespace SampleApp.Utilities
             return Array.Empty<byte>();
         }
 
-        public static async Task<byte[]> ProcessStreamedFile(
+        public static async Task ProcessStreamedFile(
             MultipartSection section, ContentDispositionHeaderValue contentDisposition, 
-            ModelStateDictionary modelState, string[] permittedExtensions, long sizeLimit)
+            ModelStateDictionary modelState, string[] permittedExtensions, long sizeLimit, Stream destination)
         {
+            var oldLength = destination.Length;
             try
             {
-                using (var memoryStream = new MemoryStream())
-                {
-                    await section.Body.CopyToAsync(memoryStream);
+                await section.Body.CopyToAsync(destination);
 
-                    // Check if the file is empty or exceeds the size limit.
-                    if (memoryStream.Length == 0)
-                    {
-                        modelState.AddModelError("File", "The file is empty.");
-                    }
-                    else if (memoryStream.Length > sizeLimit)
-                    {
-                        var megabyteSizeLimit = sizeLimit / 1048576;
-                        modelState.AddModelError("File",
-                        $"The file exceeds {megabyteSizeLimit:N1} MB.");
-                    }
-                    else if (!IsValidFileExtensionAndSignature(
-                        contentDisposition.FileName.Value, memoryStream, 
-                        permittedExtensions))
-                    {
-                        modelState.AddModelError("File",
-                            "The file type isn't permitted or the file's " +
-                            "signature doesn't match the file's extension.");
-                    }
-                    else
-                    {
-                        return memoryStream.ToArray();
-                    }
+                // Check if the file is empty or exceeds the size limit.
+                if (destination.Length == 0)
+                {
+                    modelState.AddModelError("File", "The file is empty.");
+                }
+                else if (destination.Length > sizeLimit)
+                {
+                    var megabyteSizeLimit = sizeLimit / 1048576;
+                    modelState.AddModelError("File",
+                    $"The file exceeds {megabyteSizeLimit:N1} MB.");
+                }
+                else if (!IsValidFileExtensionAndSignature(
+                    contentDisposition.FileName.Value, destination, 
+                    permittedExtensions))
+                {
+                    modelState.AddModelError("File",
+                        "The file type isn't permitted or the file's " +
+                        "signature doesn't match the file's extension.");
                 }
             }
             catch (Exception ex)
@@ -187,9 +181,8 @@ namespace SampleApp.Utilities
                     "The upload failed. Please contact the Help Desk " +
                     $" for support. Error: {ex.HResult}");
                 // Log the exception
+                destination.SetLength(oldLength); // Reset the stream to its original length
             }
-
-            return Array.Empty<byte>();
         }
 
         private static bool IsValidFileExtensionAndSignature(string fileName, Stream data, string[] permittedExtensions)
@@ -208,7 +201,7 @@ namespace SampleApp.Utilities
 
             data.Position = 0;
 
-            using (var reader = new BinaryReader(data))
+            using (var reader = new BinaryReader(data, System.Text.Encoding.UTF8, leaveOpen: true))
             {
                 if (ext.Equals(".txt") || ext.Equals(".csv") || ext.Equals(".prn"))
                 {
@@ -247,12 +240,10 @@ namespace SampleApp.Utilities
                 // for files (when possible) for all file types you intend
                 // to allow on the system and perform the file signature
                 // check.
-                /*
                 if (!_fileSignature.ContainsKey(ext))
                 {
                     return true;
                 }
-                */
 
                 // File signature check
                 // --------------------
