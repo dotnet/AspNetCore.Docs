@@ -149,6 +149,8 @@ Custom configuration providers aren't required to implement array binding.
 
 ## Custom configuration provider
 
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
+
 The sample app demonstrates how to create a basic configuration provider that reads configuration key-value pairs from a database using [Entity Framework (EF)](/ef/core/).
 
 The provider has the following characteristics:
