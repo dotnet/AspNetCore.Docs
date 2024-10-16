@@ -387,9 +387,9 @@ See [Template generated ports for Kestrel](#tgp) in this document for more infor
 
 ### Authentication servers
 
-.NET 3 to .NET 5 used [IdentityServer4](https://identityserver4.readthedocs.io) as part of our template to support the issuing of JWT tokens for SPA and Blazor applications. The templates now use the [Duende Identity Server](https://docs.duendesoftware.com/identityserver/v5).
+.NET 3 to .NET 5 used [IdentityServer4](https://identityserver4.readthedocs.io) as part of our template to support the issuing of JWT tokens for SPA and Blazor applications. The templates now use the [Duende Identity Server](https://docs.duendesoftware.com).
 
-If you are extending the identity models and are updating existing projects you need to update the namespaces in your code from `IdentityServer4.IdentityServer` to `Duende.IdentityServer` and follow their [migration instructions](https://docs.duendesoftware.com/identityserver/v5/upgrades/).
+If you are extending the identity models and are updating existing projects, update the namespaces in your code from `IdentityServer4.IdentityServer` to `Duende.IdentityServer` and follow their migration instructions.
 
 The license model for Duende Identity Server has changed to a reciprocal license, which may require license fees when it's used commercially in production. See the [Duende license page](https://duendesoftware.com/products/identityserver#pricing) for more details.
 
