@@ -67,13 +67,8 @@ Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.
 
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
 * Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
-
-<!-- UPDATE 9.0 Can't cross-link the main doc set article at this time until 
-                https://github.com/dotnet/AspNetCore.Docs/issues/32782 is
-                resolved.
-                
+      
 For more information, see <xref:fundamentals/static-files>.
--->
 
 ## Consume assets with Map Static File Middleware
 
