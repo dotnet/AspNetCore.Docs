@@ -1,5 +1,5 @@
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
+<!-- ms.sfi.ropc: t -->
 <a name="kestrel"></a>
 
 ## Kestrel endpoint configuration
