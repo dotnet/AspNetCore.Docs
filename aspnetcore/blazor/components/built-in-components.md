@@ -14,7 +14,45 @@ uid: blazor/components/built-in-components
 
 The following built-in Razor components are provided by the Blazor framework. For information on non-security-related project template components, see <xref:blazor/project-structure>. For information on security-related project template components, see the [Security node articles](xref:blazor/security/index).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+* [`AntiforgeryToken`](xref:blazor/forms/index#antiforgery-support)
+* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DataAnnotationsValidator`](xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation)
+* [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
+* [`Editor<T>`](xref:blazor/forms/binding#nest-and-bind-forms)
+* [`EditForm`](xref:blazor/forms/binding#editformeditcontext-model)
+* [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
+* [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
+* [`HeadContent`](xref:blazor/components/control-head-content)
+* [`HeadOutlet`](xref:blazor/components/control-head-content)
+* [`ImportMap`](xref:blazor/fundamentals/static-files#import-maps)
+* [`InputCheckbox`](xref:blazor/forms/input-components)
+* [`InputDate`](xref:blazor/forms/input-components)
+* [`InputFile`](xref:blazor/file-uploads)
+* [`InputNumber`](xref:blazor/forms/input-components)
+* [`InputRadio`](xref:blazor/forms/input-components)
+* [`InputRadioGroup`](xref:blazor/forms/input-components)
+* [`InputSelect`](xref:blazor/forms/input-components)
+* [`InputText`](xref:blazor/forms/input-components)
+* [`InputTextArea`](xref:blazor/forms/input-components)
+* [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
+* [`NavigationLock`](xref:blazor/fundamentals/routing#handleprevent-location-changes)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-component)
+* [`PageTitle`](xref:blazor/components/control-head-content)
+* [`Paginator`](xref:blazor/components/quickgrid#page-items-with-a-paginator-component)
+* [`QuickGrid`](xref:blazor/components/quickgrid)
+* [`Router`](xref:blazor/fundamentals/routing#route-templates)
+* [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+* [`SectionContent`](xref:blazor/components/sections)
+* [`SectionOutlet`](xref:blazor/components/sections)
+* [`ValidationSummary`](xref:blazor/forms/validation#validation-summary-and-validation-message-components)
+* [`Virtualize`](xref:blazor/components/virtualization)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 * [`AntiforgeryToken`](xref:blazor/forms/index#antiforgery-support)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)

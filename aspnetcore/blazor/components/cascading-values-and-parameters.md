@@ -29,7 +29,21 @@ The following class is used in this section's examples.
 
 `Dalek.cs`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Dalek.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Dalek.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 The following registrations are made in the app's `Program` file with <xref:Microsoft.Extensions.DependencyInjection.CascadingValueServiceCollectionExtensions.AddCascadingValue%2A>:
 
@@ -45,7 +59,21 @@ The following `Daleks` component displays the cascaded values.
 
 `Daleks.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Daleks.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Daleks.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 In the following example, `Dalek` is registered as a cascading value using [`CascadingValueSource<T>`](xref:Microsoft.AspNetCore.Components.CascadingValueSource%601), where `<T>` is the type. The `isFixed` flag indicates whether the value is fixed. If false, all recipients are subscribed for update notifications, which are issued by calling <xref:Microsoft.AspNetCore.Components.CascadingValueSource%601.NotifyChangedAsync%2A>. Subscriptions create overhead and reduce performance, so set `isFixed` to `true` if the value doesn't change.
 
@@ -81,7 +109,13 @@ The following `ThemeInfo` C# class specifies the theme information.
 
 `ThemeInfo.cs`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ThemeInfo.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ThemeInfo.cs":::
 
@@ -115,7 +149,13 @@ The following [layout component](xref:blazor/components/layouts) specifies theme
 
 `MainLayout.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Layout/MainLayout.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Layout/MainLayout.razor":::
 
@@ -196,7 +236,13 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `ThemedCounter.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ThemedCounter.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ThemedCounter.razor":::
 

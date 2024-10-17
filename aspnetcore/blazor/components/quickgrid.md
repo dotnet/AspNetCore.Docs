@@ -87,7 +87,17 @@ For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render
 
 `PromotionGrid.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PromotionGrid.razor":::
+
+:::moniker-end
 
 Access the component in a browser at the relative path `/promotion-grid`.
 
