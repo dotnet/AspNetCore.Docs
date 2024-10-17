@@ -194,7 +194,21 @@ Use the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.
 
 `EmptyContent.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/EmptyContent.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/EmptyContent.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 Change the `OnInitialized` method lambda to see the component display strings:
 
