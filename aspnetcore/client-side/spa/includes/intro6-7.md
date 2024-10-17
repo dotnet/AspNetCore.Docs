@@ -3,7 +3,7 @@
 
 ## Architecture of Single Page Application templates
 
-The Single Page Application (SPA) templates for [Angular](https://angular.io/) and [React](https://reactjs.org/) offer the ability to develop Angular and React apps that are hosted inside a .NET backend server.
+The Single Page Application (SPA) templates for [Angular](https://angular.dev/) and [React](https://reactjs.org/) offer the ability to develop Angular and React apps that are hosted inside a .NET backend server.
 
 At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static files middleware](xref:fundamentals/static-files).
 
@@ -77,7 +77,7 @@ The template generated `ClientApp/package.json` file:
 * The `prestart` script invokes `ClientApp/aspnetcore-https.js`, which is responsible for ensuring the development server HTTPS certificate is available to the SPA proxy server.
 * The `start:windows` and `start:default`:
 
-  * Launch the Angular development server via [`ng serve`](https://angular.io/cli/serve).
+  * Launch the Angular development server via [`ng serve`](https://angular.dev/cli/serve).
   * Provide the port, the options to use HTTPS, and the path to the certificate and the associated key. The provide port number matches the port number specified in the `.csproj` file.
 
 The template generated `ClientApp/angular.json` file contains:

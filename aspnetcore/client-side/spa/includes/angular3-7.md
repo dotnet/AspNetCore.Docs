@@ -39,7 +39,7 @@ The project template creates an ASP.NET Core app and an Angular app. The ASP.NET
 
 ## Add pages, images, styles, and modules
 
-The `ClientApp` directory contains a standard Angular CLI app. See the official [Angular documentation](https://angular.io) for more information.
+The `ClientApp` directory contains a standard Angular CLI app. See the official [Angular documentation](https://angular.dev) for more information.
 
 There are slight differences between the Angular app created by this template and the one created by Angular CLI itself (via `ng new`); however, the app's capabilities are unchanged. The app created by the template contains a [Bootstrap](https://getbootstrap.com/)-based layout and a basic routing example.
 
@@ -51,7 +51,7 @@ In a command prompt, switch to the `ClientApp` subdirectory:
 cd ClientApp
 ```
 
-If you have the `ng` tool installed globally, you can run any of its commands. For example, you can run `ng lint`, `ng test`, or any of the other [Angular CLI commands](https://angular.io/cli). There's no need to run `ng serve` though, because your ASP.NET Core app deals with serving both server-side and client-side parts of your app. Internally, it uses `ng serve` in development.
+If you have the `ng` tool installed globally, you can run any of its commands. For example, you can run `ng lint`, `ng test`, or any of the other [Angular CLI commands](https://angular.dev/cli). There's no need to run `ng serve` though, because your ASP.NET Core app deals with serving both server-side and client-side parts of your app. Internally, it uses `ng serve` in development.
 
 If you don't have the `ng` tool installed, run `npm run ng` instead. For example, you can run `npm run ng lint` or `npm run ng test`.
 
@@ -144,7 +144,7 @@ The project template creates an ASP.NET Core app and an Angular app. The ASP.NET
 
 ## Add pages, images, styles, and modules
 
-The `ClientApp` directory contains a standard Angular CLI app. See the official [Angular documentation](https://angular.io) for more information.
+The `ClientApp` directory contains a standard Angular CLI app. See the official [Angular documentation](https://angular.dev) for more information.
 
 There are slight differences between the Angular app created by this template and the one created by Angular CLI itself (via `ng new`); however, the app's capabilities are unchanged. The app created by the template contains a [Bootstrap](https://getbootstrap.com/)-based layout and a basic routing example.
 
@@ -156,7 +156,7 @@ In a command prompt, switch to the `ClientApp` subdirectory:
 cd ClientApp
 ```
 
-If you have the `ng` tool installed globally, you can run any of its commands. For example, you can run `ng lint`, `ng test`, or any of the other [Angular CLI commands](https://angular.io/cli). There's no need to run `ng serve` though, because your ASP.NET Core app deals with serving both server-side and client-side parts of your app. Internally, it uses `ng serve` in development.
+If you have the `ng` tool installed globally, you can run any of its commands. For example, you can run `ng lint`, `ng test`, or any of the other [Angular CLI commands](https://angular.dev/cli). There's no need to run `ng serve` though, because your ASP.NET Core app deals with serving both server-side and client-side parts of your app. Internally, it uses `ng serve` in development.
 
 If you don't have the `ng` tool installed, run `npm run ng` instead. For example, you can run `npm run ng lint` or `npm run ng test`.
 
