@@ -49,7 +49,7 @@ To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-m
 
 ## ASP.NET Core Single Page Applications (SPA) with frontend JavaScript frameworks
 
-Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). ASP.NET Core provides project templates for Angular, React, and Vue, and it can be used with other JavaScript frameworks as well.
+Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.dev/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). ASP.NET Core provides project templates for Angular, React, and Vue, and it can be used with other JavaScript frameworks as well.
 
 Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
 
