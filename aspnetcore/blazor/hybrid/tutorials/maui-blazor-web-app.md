@@ -5,15 +5,10 @@ description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web 
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/20/2024
+ms.date: 10/17/2024
 uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
-
-<!-- DOC AUTHOR NOTE - Refactor the @-prefixed component param values
-                       when the 8.0 sample changes naming to match
-                       the 9.0 template-produced sample on
-                       https://github.com/dotnet/AspNetCore.Docs/issues/32802. -->
 
 This article shows you how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that uses a shared user interface via a Razor class library (RCL).
 
@@ -73,8 +68,7 @@ Add new project to the solution with the **Blazor Web App** project template. Se
 * **Interactivity location**: **Global**
 * **Sample pages**: Unselected (disabled)
 
-<!-- UPDATE 9.0 Check on PU issue mentioned below and 
-                revise accordingly. -->
+<!-- UPDATE 10.0 Check on PU issue mentioned below and revise accordingly. -->
 
 The **Interactivity location** setting to **Global** is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. If you don't use a global render mode, you must implement the approach described in the [Use Blazor render modes](#use-blazor-render-modes) section after following the guidance in this section. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
@@ -299,7 +293,7 @@ For the Blazor Web App on the web client, the property values are assigned from 
 
 `InteractiveRenderSettings.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
+:::code language="csharp" source="~/../blazor-samples/9.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
 
 In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridRenderModes`:
 
@@ -307,14 +301,15 @@ In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridR
 InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-In the RCL's `_Imports.razor` file, add the following global static `@using` directive to make the properties of the class available to components:
+In the `_Imports.razor` file of the `.Shared` RCL, replace the `@using` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode?displayProperty=fullName> with an `@using` statement for `InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
 
-```razor
-@using static InteractiveRenderSettings
+```diff
+- @using static Microsoft.AspNetCore.Components.Web.RenderMode
++ @using static InteractiveRenderSettings
 ```
 
 > [!NOTE]
-> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the Blazor Web App's `_Import` file.
 
 ### Per-page/component Auto interactivity
 
@@ -340,7 +335,7 @@ For the Blazor Web App on the web client, the property values are assigned from 
 
 `InteractiveRenderSettings.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
+:::code language="csharp" source="~/../blazor-samples/9.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
 
 In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridRenderModes`:
 
@@ -348,14 +343,15 @@ In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridR
 InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-In the RCL's `_Imports.razor` file, add the following global static `@using` directive to make the properties of the class available to components:
+In the `_Imports.razor` file of the `.Shared.Client` RCL, replace the `@using` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode?displayProperty=fullName> with an `@using` statement for `InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
 
-```razor
-@using static InteractiveRenderSettings
+```diff
+- @using static Microsoft.AspNetCore.Components.Web.RenderMode
++ @using static InteractiveRenderSettings
 ```
 
 > [!NOTE]
-> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the Blazor Web App's `_Import` file.
 
 ### Per-page/component WebAssembly interactivity
 
@@ -405,7 +401,7 @@ For the Blazor Web App on the web client, the property values are assigned from 
 
 `InteractiveRenderSettings.cs` (`.Shared.Client` RCL):
 
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
+:::code language="csharp" source="~/../blazor-samples/9.0/MauiBlazorWeb/MauiBlazorWeb.Shared/InteractiveRenderSettings.cs":::
 
 A slightly different version of the `InteractiveRenderSettings` class is added to the `.Shared` RCL. In the class added to the `.Shared` RCL, `InteractiveRenderSettings.ConfigureBlazorHybridRenderModes` of the `.Shared.Client` RCL is called. This ensures that the render mode of WebAssembly components rendered on the MAUI client are unassigned (`null`) because they're interactive by default on the native client.
 
@@ -444,14 +440,15 @@ In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridR
 InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-In the `_Imports.razor` file of the `.Shared.Client` RCL, add `@using static InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
+In the `_Imports.razor` file of the `.Shared.Client` RCL, replace the `@using` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode?displayProperty=fullName> with an `@using` statement for `InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
 
-```razor
-@using static InteractiveRenderSettings
+```diff
+- @using static Microsoft.AspNetCore.Components.Web.RenderMode
++ @using static InteractiveRenderSettings
 ```
 
 > [!NOTE]
-> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the Blazor Web App's `_Import` file.
 
 :::moniker-end
 
@@ -484,14 +481,15 @@ In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridR
 InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-In the RCL's `_Imports.razor` file, add the following global static `@using` directive to make the properties of the class available to components:
+In the `_Imports.razor` file of the `.Shared` RCL, replace the `@using` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode?displayProperty=fullName> with an `@using` statement for `InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
 
-```razor
-@using static InteractiveRenderSettings
+```diff
+- @using static Microsoft.AspNetCore.Components.Web.RenderMode
++ @using static InteractiveRenderSettings
 ```
 
 > [!NOTE]
-> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the Blazor Web App's `_Import` file.
 
 ### Per-page/component Auto interactivity
 
@@ -525,14 +523,15 @@ In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridR
 InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-In the RCL's `_Imports.razor` file, add the following global static `@using` directive to make the properties of the class available to components:
+In the `_Imports.razor` file of the `.Shared` RCL, replace the `@using` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode?displayProperty=fullName> with an `@using` statement for `InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
 
-```razor
-@using static InteractiveRenderSettings
+```diff
+- @using static Microsoft.AspNetCore.Components.Web.RenderMode
++ @using static InteractiveRenderSettings
 ```
 
 > [!NOTE]
-> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> in the Blazor Web App's `_Import` file.
 
 ### Per-page/component WebAssembly interactivity
 
@@ -621,14 +620,15 @@ In `MauiProgram.CreateMauiApp` of `MauiProgram.cs`, call `ConfigureBlazorHybridR
 InteractiveRenderSettings.ConfigureBlazorHybridRenderModes();
 ```
 
-In the `_Imports.razor` file of the `.Shared.Client` RCL, add `@using static InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
+In the `_Imports.razor` file of the `.Shared.Client` RCL, replace the `@using` statement for <xref:Microsoft.AspNetCore.Components.Web.RenderMode?displayProperty=fullName> with an `@using` statement for `InteractiveRenderSettings` to make the properties of the `InteractiveRenderSettings` class available to components:
 
-```razor
-@using static InteractiveRenderSettings
+```diff
+- @using static Microsoft.AspNetCore.Components.Web.RenderMode
++ @using static InteractiveRenderSettings
 ```
 
 > [!NOTE]
-> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via the `@using static Microsoft.AspNetCore.Components.Web.RenderMode` statement in the Blazor Web App's `_Import` file.
+> The assignment of render modes via the RCL's `InteractiveRenderSettings` class properties differs from a typical standalone Blazor Web App. In a Blazor Web App, the render modes are normally provided by <xref:Microsoft.AspNetCore.Components.Web.RenderMode> via in the Blazor Web App's `_Import` file.
 
 :::moniker-end
 
@@ -636,13 +636,13 @@ In the `_Imports.razor` file of the `.Shared.Client` RCL, add `@using static Int
 
 The following example demonstrates how to use an interface to call into different implementations across the web app and the native (MAUI) app. The following example creates a component that displays the device form factor. Use the MAUI abstraction layer for native apps and provide an implementation for the web app.
 
-In the Razor class library (RCL), an `Interfaces` folder contains an `IFormFactor` interface.
-
-`Interfaces/IFormFactor.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/Interfaces/IFormFactor.cs":::
-
 :::moniker range=">= aspnetcore-9.0"
+
+In the Razor class library (RCL), a `Services` folder contains an `IFormFactor` interface.
+
+`Services/IFormFactor.cs`:
+
+:::code language="csharp" source="~/../blazor-samples/9.0/MauiBlazorWeb/MauiBlazorWeb.Shared/Services/IFormFactor.cs":::
 
 The `Home` component (`Components/Pages/Home.razor`) of the RCL displays the form factor and platform.
 
@@ -650,7 +650,7 @@ The `Home` component (`Components/Pages/Home.razor`) of the RCL displays the for
 
 ```razor
 @page "/"
-@using MyApp.Shared.Services
+@using MauiBlazorWeb.Shared.Services
 @inject IFormFactor FormFactor
 
 <PageTitle>Home</PageTitle>
@@ -668,6 +668,12 @@ Welcome to your new app running on <em>@factor</em> using <em>@platform</em>.
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
+
+In the Razor class library (RCL), an `Interfaces` folder contains an `IFormFactor` interface.
+
+`Interfaces/IFormFactor.cs`:
+
+:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Shared/Interfaces/IFormFactor.cs":::
 
 The following `DeviceFormFactor` component is present in the RCL's `Components` folder.
 
@@ -693,47 +699,35 @@ The web and native apps contain the implementations for `IFormFactor`.
 
 In the Blazor Web App, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for web app use.
 
-`Services/FormFactor.cs` (Blazor Web App project):
-
-:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Web/Services/FormFactor.cs":::
-
-In the MAUI project, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for native use. The MAUI abstractions layer is used to write code that works on all native device platforms.
-
-`Services/FormFactor.cs` (MAUI project):
+`Services/FormFactor.cs` (`MauiBlazorWeb.Web` project):
 
 :::moniker range=">= aspnetcore-9.0"
 
-```csharp
-using MauiBlazorWeb.Shared.Interfaces;
-
-namespace MauiBlazorWeb.Services;
-
-public class FormFactor : IFormFactor
-{
-    public string GetFormFactor() => DeviceInfo.Idiom.ToString();
-
-    public string GetPlatform() => 
-        DeviceInfo.Platform.ToString() + " - " + DeviceInfo.VersionString;
-}
-```
+:::code language="csharp" source="~/../blazor-samples/9.0/MauiBlazorWeb/MauiBlazorWeb.Web/Services/FormFactor.cs":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-```csharp
-using MauiBlazorWeb.Shared.Interfaces;
+:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Web/Services/FormFactor.cs":::
 
-namespace MauiBlazorWeb.Maui.Services;
+:::moniker-end
 
-public class FormFactor : IFormFactor
-{
-    public string GetFormFactor() => DeviceInfo.Idiom.ToString();
+In the MAUI project, a folder named `Services` contains the following `FormFactor.cs` file with the `FormFactor` implementation for native use. The MAUI abstractions layer is used to write code that works on all native device platforms.
 
-    public string GetPlatform() => 
-        DeviceInfo.Platform.ToString() + " - " + DeviceInfo.VersionString;
-}
-```
+:::moniker range=">= aspnetcore-9.0"
+
+`Services/FormFactor.cs` (`MauiBlazorWeb` project):
+
+:::code language="csharp" source="~/../blazor-samples/9.0/MauiBlazorWeb/MauiBlazorWeb/Services/FormFactor.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
+`Services/FormFactor.cs` (`MauiBlazorWeb.Maui` project):
+
+:::code language="csharp" source="~/../blazor-samples/8.0/MauiBlazorWeb/MauiBlazorWeb.Maui/Services/FormFactor.cs":::
 
 :::moniker-end
 
