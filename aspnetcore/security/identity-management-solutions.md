@@ -23,7 +23,7 @@ Many of the commercial licenses provide "community" or free options that may be 
 |---------|-----|--------|---------|---------|
 |**ASP.NET Core Identity**| Self host |[OSS (MIT)](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt)|[https://dotnet.microsoft.com/](https://dotnet.microsoft.com/apps/aspnet)|[Secure a web app with ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity/)|
 |**Auth0**|Managed|[Commercial](https://auth0.com/pricing)|[https://auth0.com/](https://auth0.com/)|[Get started](https://auth0.com/docs/get-started)|
-|**Duende IdentityServer**|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[https://duendesoftware.com/](https://duendesoftware.com/products/identityserver)|[ASP.NET Identity integration](https://docs.duendesoftware.com/identityserver/v6/aspnet_identity/)|
+|**Duende IdentityServer**|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[https://duendesoftware.com/](https://duendesoftware.com/products/identityserver)|[ASP.NET Identity integration](https://docs.duendesoftware.com)|
 |**Keycloak**|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[https://www.keycloak.org/](https://www.keycloak.org/)|[Keycloak documentation](https://www.keycloak.org/documentation)|
 |**Microsoft Entra ID**|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[https://azure.microsoft.com/services/active-directory/](https://azure.microsoft.com/services/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
 |**Okta**|Managed|[Commercial](https://www.okta.com/pricing/)|[https://www.okta.com/](https://www.okta.com/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
@@ -34,7 +34,7 @@ Many of the commercial licenses provide "community" or free options that may be 
 |---------|-----|--------|---------|
 |[ASP.NET Core Identity](https://dotnet.microsoft.com/apps/aspnet)| Self host |[OSS (MIT)](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt)|[Secure a web app with ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity/)|
 |[Auth0](https://auth0.com/)|Managed|[Commercial](https://auth0.com/pricing)|[Get started](https://auth0.com/docs/get-started)|
-|[Duende IdentityServer](https://duendesoftware.com/products/identityserver)|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[ASP.NET Identity integration](https://docs.duendesoftware.com/identityserver/v6/aspnet_identity/)|
+|[Duende IdentityServer](https://duendesoftware.com/products/identityserver)|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[ASP.NET Identity integration](https://docs.duendesoftware.com)|
 |[Keycloak](https://www.keycloak.org)|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[Keycloak securing apps documentation](https://www.keycloak.org/guides#securing-apps)|
 |[Microsoft Entra ID](https://azure.microsoft.com/services/active-directory)|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[Entra documentation](/azure/active-directory/fundamentals/active-directory-whatis)|
 |[Okta](https://www.okta.com)|Managed|[Commercial](https://www.okta.com/pricing/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|

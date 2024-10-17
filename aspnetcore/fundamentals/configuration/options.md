@@ -208,7 +208,11 @@ Options validation also supports <xref:System.ComponentModel.DataAnnotations.IVa
 
 ### `ValidateOnStart`
 
-Options validation runs the first time an <xref:Microsoft.Extensions.Options.IOptions%601>, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> implementation is created. To run options validation eagerly, when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in `Program.cs`:
+Options validation runs the first time a `TOption` instance is created. That means, for instance, when first 
+access to [`IOptionsSnapshot<TOptions>.Value`](xref:Microsoft.Extensions.Options.IOptionsSnapshot%601) occurs in a request pipeline or when 
+[`IOptionsMonitor<TOptions>.Get(string)`](xref:Microsoft.Extensions.Options.OptionsMonitor`1.Get(System.String)) is called on settings present. After settings are reloaded, validation runs again. The ASP.NET Core runtime uses <xref:Microsoft.Extensions.Options.OptionsCache%601> to cache the options instance once it is created.
+
+To run options validation eagerly, when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart``1(Microsoft.Extensions.Options.OptionsBuilder{``0})>in `Program.cs`:
 
 :::code language="csharp" source="~/fundamentals/configuration/options/samples/6.x/OptionsValidationSample/Snippets/Program.cs" id="snippet_ValidateOnStart" highlight="4":::
 

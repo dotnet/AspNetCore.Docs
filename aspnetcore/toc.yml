@@ -862,7 +862,7 @@ items:
             uid: fundamentals/openapi/using-openapi-documents
           - name: OpenAPI tools
             uid: fundamentals/openapi/openapi-tools
-          - name: Swagger / NSWag
+          - name: Swagger / NSwag
             items:
               - name: Overview
                 uid: tutorials/web-api-help-pages-using-swagger
