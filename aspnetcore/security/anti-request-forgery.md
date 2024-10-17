@@ -189,7 +189,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 
-The preceding example sets a cookie named `XSRF-TOKEN`. The client can read this cookie and provide its value as a header attached to AJAX requests. For example, Angular includes [built-in XSRF protection](https://angular.io/guide/http#security-xsrf-protection) that reads a cookie named `XSRF-TOKEN` by default.
+The preceding example sets a cookie named `XSRF-TOKEN`. The client can read this cookie and provide its value as a header attached to AJAX requests. For example, Angular includes [built-in XSRF protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security) that reads a cookie named `XSRF-TOKEN` by default.
 
 ### Require antiforgery validation
 
@@ -510,7 +510,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 
-The preceding example sets a cookie named `XSRF-TOKEN`. The client can read this cookie and provide its value as a header attached to AJAX requests. For example, Angular includes [built-in XSRF protection](https://angular.io/guide/http#security-xsrf-protection) that reads a cookie named `XSRF-TOKEN` by default.
+The preceding example sets a cookie named `XSRF-TOKEN`. The client can read this cookie and provide its value as a header attached to AJAX requests. For example, Angular includes [built-in XSRF protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security) that reads a cookie named `XSRF-TOKEN` by default.
 
 ### Require antiforgery validation
 
@@ -782,7 +782,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 
-The preceding example sets a cookie named `XSRF-TOKEN`. The client can read this cookie and provide its value as a header attached to AJAX requests. For example, Angular includes [built-in XSRF protection](https://angular.io/guide/http#security-xsrf-protection) that reads a cookie named `XSRF-TOKEN` by default.
+The preceding example sets a cookie named `XSRF-TOKEN`. The client can read this cookie and provide its value as a header attached to AJAX requests. For example, Angular includes [built-in XSRF protection](https://angular.dev/best-practices/security#httpclient-xsrf-csrf-security) that reads a cookie named `XSRF-TOKEN` by default.
 
 ### Require antiforgery validation
 

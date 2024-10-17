@@ -871,7 +871,7 @@ The following sections describe miscellaneous new features in ASP.NET Core 8.
 
 ### Visual Studio project templates for SPA apps with ASP.NET Core backend
 
-Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.io/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). These templates:
+Visual Studio project templates are now the recommended way to create single-page apps (SPAs) that have an ASP.NET Core backend. Templates are provided that create apps based on the JavaScript frameworks [Angular](https://angular.dev/), [React](https://facebook.github.io/react/), and [Vue](https://vuejs.org/). These templates:
 
 * Create a Visual Studio solution with a frontend project and a backend project.
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.
