@@ -1,5 +1,5 @@
 :::moniker range="= aspnetcore-7.0" 
-
+<!-- ms.sfi.ropc: t -->
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`

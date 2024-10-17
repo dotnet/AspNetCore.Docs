@@ -8,6 +8,7 @@ ms.custom: mvc
 ms.date: 04/26/2024
 uid: fundamentals/configuration/index
 ---
+<!-- ms.sfi.ropc: t -->
 # Configuration in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
