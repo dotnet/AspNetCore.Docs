@@ -111,7 +111,7 @@ The following `ThemeInfo` C# class specifies the theme information.
 
 :::moniker range=">= aspnetcore-9.0"
 
-:::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/ThemeInfo.cs":::
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/ThemeInfo.cs":::
 
 :::moniker-end
 

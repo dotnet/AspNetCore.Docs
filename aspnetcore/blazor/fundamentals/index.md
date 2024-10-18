@@ -76,7 +76,15 @@ The following is an example counter component and part of an app created from a 
 
 `Counter.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+The component assumes that an interactive render mode is inherited from a parent component or applied globally to the app.
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Counter.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 The component assumes that an interactive render mode is inherited from a parent component or applied globally to the app.
 
