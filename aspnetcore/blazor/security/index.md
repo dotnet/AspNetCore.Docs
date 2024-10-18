@@ -711,10 +711,6 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
 > [!IMPORTANT]
 > Blazor router features that display `<NotAuthorized>` and `<NotFound>` content aren't operational during static server-side rendering (static SSR) because request processing is entirely handled by ASP.NET Core middleware pipeline request processing and Razor components aren't rendered at all for unauthorized or bad requests. Use server-side techniques to handle unauthorized and bad requests during static SSR. For more information, see <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
 ```razor
 <Router ...>
     <Found ...>

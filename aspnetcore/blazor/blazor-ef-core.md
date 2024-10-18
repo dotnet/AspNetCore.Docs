@@ -62,7 +62,13 @@ The sample demonstrates use of EF Core to handle optimistic concurrency. However
 
 The sample uses a local [SQLite](https://www.sqlite.org/index.html) database so that it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="json" source="~/../blazor-samples/9.0/BlazorWebAppEFCore/appsettings.Development.json":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="json" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/appsettings.Development.json":::
 
@@ -167,7 +173,13 @@ In the preceding factory:
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorWebAppEFCore/Program.cs" id="snippet1":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Program.cs" id="snippet1":::
 
@@ -207,7 +219,13 @@ In the home page of the sample app, `IDbContextFactory<ContactContext>` is injec
 
 A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorWebAppEFCore/Components/Pages/Home.razor" id="snippet1":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/Home.razor" id="snippet1":::
 
@@ -274,7 +292,13 @@ You can use the factory to create a context and track it for the lifetime of the
 
 The sample app ensures the context is disposed when the component is disposed:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet1":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet1":::
 
@@ -306,7 +330,13 @@ The sample app ensures the context is disposed when the component is disposed:
 
 Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context. In the sample app, [`OnInitializedAsync`](xref:blazor/components/lifecycle) loads the contact in the same method:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet2":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorWebAppEFCore/Components/Pages/EditContact.razor" id="snippet2":::
 
