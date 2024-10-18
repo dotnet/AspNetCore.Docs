@@ -32,7 +32,13 @@ In the following `ShowImage1` component:
 
 `ShowImage1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ShowImage1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ShowImage1.razor":::
 
@@ -125,7 +131,13 @@ The following `ShowImage2` component:
 
 `ShowImage2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ShowImage2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ShowImage2.razor":::
 
@@ -152,7 +164,13 @@ The following `ShowFile` component loads either a text file (`files/quote.txt`) 
 
 `ShowFile.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/ShowFile.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/ShowFile.razor":::
 

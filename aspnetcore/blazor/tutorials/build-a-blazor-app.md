@@ -120,7 +120,13 @@ Open the `Todo` component in any file editor and add an `@page` Razor directive 
 
 `Todo.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="build-a-blazor-app/9.0/Todo0.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor":::
 
@@ -188,7 +194,13 @@ Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to h
 
 `TodoItem.cs`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="~/../blazor-samples/9.0/BlazorSample_WebAssembly/TodoItem.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="csharp" source="~/../blazor-samples/8.0/BlazorSample_WebAssembly/TodoItem.cs":::
 
@@ -229,7 +241,15 @@ Return to the `Todo` component and perform the following tasks:
 * Add a field for the todo items in the `@code` block. The `Todo` component uses this field to maintain the state of the todo list.
 * Add unordered list markup and a `foreach` loop to render each todo item as a list item (`<li>`).
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+`Components/Pages/Todo.razor`:
+
+:::code language="razor" source="build-a-blazor-app/9.0/Todo2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 `Components/Pages/Todo.razor`:
 
@@ -271,7 +291,13 @@ Return to the `Todo` component and perform the following tasks:
 
 The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="build-a-blazor-app/9.0/Todo3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo3.razor":::
 
@@ -307,7 +333,13 @@ When the **`Add todo`** button is selected, nothing happens because an event han
 
 Add an `AddTodo` method to the `Todo` component and register the method for the button using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="build-a-blazor-app/9.0/Todo4.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo4.razor":::
 
@@ -363,7 +395,13 @@ Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
 
 Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="build-a-blazor-app/9.0/Todo6.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo6.razor":::
 
@@ -417,7 +455,13 @@ Update the `<h3>` header to show a count of the number of todo items that aren't
 
 The completed `Todo` component:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="build-a-blazor-app/9.0/Todo8.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="build-a-blazor-app/8.0/Todo8.razor":::
 

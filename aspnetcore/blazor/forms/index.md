@@ -50,7 +50,21 @@ Standard HTML forms are supported. Create a form using the normal HTML `<form>` 
 
 `StarshipPlainForm.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/StarshipPlainForm.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/StarshipPlainForm.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 In the preceding `StarshipPlainForm` component:
 
@@ -84,9 +98,19 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 `Starship1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
 
 In the preceding `Starship1` component:
 
@@ -158,7 +182,13 @@ In the next example, the preceding component is modified to create the form in t
 
 `Starship2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Starship2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Starship2.razor":::
 
