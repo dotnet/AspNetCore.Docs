@@ -45,8 +45,8 @@ Register an ME-ID app:
 
 Record the following information:
 
-* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
-* Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
+* Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`)
+* Directory (tenant) ID (for example, `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
 
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
@@ -66,8 +66,8 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {PROJECT NAME} 
 | Placeholder      | Azure portal name       | Example                                |
 | ---------------- | ----------------------- | -------------------------------------- |
 | `{PROJECT NAME}` | &mdash;                 | `BlazorSample`                         |
-| `{CLIENT ID}`    | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{TENANT ID}`    | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
+| `{CLIENT ID}`    | Application (client) ID | `00001111-aaaa-2222-bbbb-3333cccc4444` |
+| `{TENANT ID}`    | Directory (tenant) ID   | `aaaabbbb-0000-cccc-1111-dddd2222eeee` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
@@ -132,7 +132,7 @@ Example:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
     "ValidateAuthority": true
   }
 }

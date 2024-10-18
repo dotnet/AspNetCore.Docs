@@ -112,12 +112,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   Example:
 
-  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
-  * Client Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+  * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
   oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
-  oidcOptions.ClientId = "4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
   Example for Microsoft Azure "common" authority:
@@ -138,8 +138,8 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings, and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+  > [!NOTE]
+  > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
 
   ```csharp
   oidcOptions.MapInboundClaims = false;
@@ -179,19 +179,19 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > [!NOTE]
     > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("{PATH}");
-  oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
-  oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("{PATH}");
+    oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+    oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
+    ```
 
-  Examples (default values):
+    Examples (default values):
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("/signin-oidc");
-  oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
-  oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("/signin-oidc");
+    oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+    ```
 
 * (*Microsoft Azure only with the "common" endpoint*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
 
@@ -359,7 +359,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   * App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
     * Directory Name (`{DIRECTORY NAME}`): `contoso`
-    * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+    * Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
   * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
 
   ```csharp
@@ -370,11 +370,11 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   Example:
 
-  * App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
   * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
 
   ```csharp
-  oidcOptions.Scope.Add("api://4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f/Weather.Get");
+  oidcOptions.Scope.Add("api://00001111-aaaa-2222-bbbb-3333cccc4444/Weather.Get");
   ```
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority%2A> and <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId%2A>: Sets the Authority and Client ID for OIDC calls.
@@ -386,12 +386,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   Example:
 
-  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
-  * Client Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+  * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
   oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
-  oidcOptions.ClientId = "4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
   Example for Microsoft Azure "common" authority:
@@ -412,8 +412,8 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+  > [!NOTE]
+  > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
   
   ```csharp
   oidcOptions.MapInboundClaims = false;
@@ -453,19 +453,19 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > [!NOTE]
     > A port isn't required for `localhost` addresses.
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("{PATH}");
-  oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
-  oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("{PATH}");
+    oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+    oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
+    ```
 
-  Examples (default values):
+    Examples (default values):
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("/signin-oidc");
-  oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
-  oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("/signin-oidc");
+    oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+    ```
 
 * (*Microsoft Azure only with the "common" endpoint*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
 
@@ -533,20 +533,20 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`:
   
   * Directory Name (`{DIRECTORY NAME}`): `contoso`
-  * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
-  jwtOptions.Audience = "https://contoso.onmicrosoft.com/4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  jwtOptions.Audience = "https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
   The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the App ID URI is different, thus the audience is different.
 
   Example:
 
-  App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
-  jwtOptions.Audience = "api://4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  jwtOptions.Audience = "api://00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
 * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority%2A>: Sets the Authority for making OpenID Connect calls. Match the value to the Authority configured for the OIDC handler in `BlazorWebAppOidc/Program.cs`:
@@ -557,7 +557,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
 
   Example:
 
-  Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
+  Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
 
   ```csharp
   jwtOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";

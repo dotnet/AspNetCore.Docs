@@ -44,7 +44,7 @@ Register an AAD B2C app for the *Server API app*:
 
 Record the following information:
 
-* *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
+* *Server API app* Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`)
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash). The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
 * Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
@@ -60,7 +60,7 @@ Select **Expose an API** from the sidebar and follow these steps:
 
 Record the following information:
 
-* App ID URI GUID (for example, record `41451fa7-82d9-4673-8fa5-69eff5a761fd` from `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`)
+* App ID URI GUID (for example, record `00001111-aaaa-2222-bbbb-3333cccc4444` from `https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444`)
 * Scope name (for example, `API.Access`)
 
 ### Register a client app in Azure
@@ -77,7 +77,7 @@ Register an AAD B2C app for the *Client app*:
 > [!NOTE]
 > Supplying the port number for a `localhost` AAD B2C redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Entra documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
 
-Record the *Client app* Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
+Record the *Client app* Application (client) ID (for example, `11112222-bbbb-3333-cccc-4444dddd5555`).
 
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
@@ -116,10 +116,10 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | --- | --- | --- |
 | `{AAD B2C INSTANCE}` | Instance | `https://contoso.b2clogin.com/` (includes the trailing slash) |
 | `{PROJECT NAME}` | &mdash; | `BlazorSample` |
-| `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `11112222-bbbb-3333-cccc-4444dddd5555` |
 | `{DEFAULT SCOPE}` | Scope name | `API.Access` |
-| `{SERVER API APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Server":::** app | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
+| `{SERVER API APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Server":::** app | `00001111-aaaa-2222-bbbb-3333cccc4444` |
+| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `00001111-aaaa-2222-bbbb-3333cccc4444` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
 | `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow | `B2C_1_signupsignin1` |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 
@@ -185,7 +185,7 @@ Example:
 {
   "AzureAdB2C": {
     "Instance": "https://contoso.b2clogin.com/",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
     "Domain": "contoso.onmicrosoft.com",
     "Scopes": "API.Access",
     "SignUpSignInPolicyId": "B2C_1_signupsignin1",
@@ -273,7 +273,7 @@ Example:
 {
   "AzureAdB2C": {
     "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
-    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ClientId": "11112222-bbbb-3333-cccc-4444dddd5555",
     "ValidateAuthority": false
   }
 }
@@ -322,7 +322,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The `{SCOPE URI}` is the default access token scope (for example, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` or the custom URI that you configured in the Azure portal).
+The `{SCOPE URI}` is the default access token scope (for example, `https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444/API.Access` or the custom URI that you configured in the Azure portal).
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
 

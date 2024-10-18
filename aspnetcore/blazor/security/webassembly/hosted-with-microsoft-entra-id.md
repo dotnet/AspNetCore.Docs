@@ -47,8 +47,8 @@ Register an ME-ID app for the *Server API app*:
 
 Record the following information:
 
-* *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
-* Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
+* *Server API app* Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`)
+* Directory (tenant) ID (for example, `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
 * ME-ID Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the server API app doesn't require additional API access for merely signing in users and calling server API endpoints.
@@ -66,7 +66,7 @@ In **Expose an API**:
 
 Record the following information:
 
-* App ID URI GUID (for example, record `41451fa7-82d9-4673-8fa5-69eff5a761fd` from the App ID URI of `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`)
+* App ID URI GUID (for example, record `00001111-aaaa-2222-bbbb-3333cccc4444` from the App ID URI of `api://00001111-aaaa-2222-bbbb-3333cccc4444`)
 * Scope name (for example, `API.Access`)
 
 > [!IMPORTANT]
@@ -86,7 +86,7 @@ Register an ME-ID app for the *Client app*:
 > [!NOTE]
 > Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Entra documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
 
-Record the **:::no-loc text="Client":::** app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
+Record the **:::no-loc text="Client":::** app Application (client) ID (for example, `11112222-bbbb-3333-cccc-4444dddd5555`).
 
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
@@ -121,12 +121,12 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 | Placeholder | Azure portal name | Example |
 | --- | --- | --- |
 | `{PROJECT NAME}` | &mdash; | `BlazorSample` |
-| `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `11112222-bbbb-3333-cccc-4444dddd5555` |
 | `{DEFAULT SCOPE}` | Scope name | `API.Access` |
-| `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app* | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
+| `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app* | `00001111-aaaa-2222-bbbb-3333cccc4444` |
+| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `00001111-aaaa-2222-bbbb-3333cccc4444` (GUID ONLY, matches the `{SERVER API APP CLIENT ID}`) |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
-| `{TENANT ID}` | Directory (tenant) ID | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
+| `{TENANT ID}` | Directory (tenant) ID | `aaaabbbb-0000-cccc-1111-dddd2222eeee` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
@@ -191,8 +191,8 @@ Example:
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
     "Domain": "contoso.onmicrosoft.com",
-    "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
     "CallbackPath": "/signin-oidc",
     "Scopes": "API.Access"
   }
@@ -281,7 +281,7 @@ Example:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
-    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ClientId": "11112222-bbbb-3333-cccc-4444dddd5555",
     "ValidateAuthority": true
   }
 }
@@ -364,7 +364,7 @@ Example default access token scope:
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes.Add(
-    "api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
+    "api://00001111-aaaa-2222-bbbb-3333cccc4444/API.Access");
 ```
 
 For more information, see the following sections of the *Additional scenarios* article:
@@ -448,7 +448,7 @@ Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID O
   Example:
 
   ```json
-  "Audience": "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd"
+  "Audience": "https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444"
   ```
 
 * In the `Program` file of the **`Client`** app, set the audience of the scope (App ID URI) to match the server API app's audience:
@@ -467,7 +467,7 @@ Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID O
       .Add("https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
   ```
 
-  In the preceding scope, the App ID URI/audience is the `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd` portion of the value, which doesn't include a trailing slash (`/`) and doesn't include the scope name (`API.Access`).
+  In the preceding scope, the App ID URI/audience is the `https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444` portion of the value, which doesn't include a trailing slash (`/`) and doesn't include the scope name (`API.Access`).
 
 ## Use of a custom App ID URI
 
