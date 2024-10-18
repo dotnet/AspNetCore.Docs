@@ -112,12 +112,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   Example:
 
-  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
-  * Client Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+  * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
   oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
-  oidcOptions.ClientId = "4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
   Example for Microsoft Azure "common" authority:
@@ -359,7 +359,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   * App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`
     * Directory Name (`{DIRECTORY NAME}`): `contoso`
-    * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+    * Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
   * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
 
   ```csharp
@@ -370,11 +370,11 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   Example:
 
-  * App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
   * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
 
   ```csharp
-  oidcOptions.Scope.Add("api://4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f/Weather.Get");
+  oidcOptions.Scope.Add("api://00001111-aaaa-2222-bbbb-3333cccc4444/Weather.Get");
   ```
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority%2A> and <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId%2A>: Sets the Authority and Client ID for OIDC calls.
@@ -386,12 +386,12 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
   Example:
 
-  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
-  * Client Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+  * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
   oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
-  oidcOptions.ClientId = "4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
   Example for Microsoft Azure "common" authority:
@@ -533,20 +533,20 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   App ID URI (`{APP ID URI}`): `https://{DIRECTORY NAME}.onmicrosoft.com/{CLIENT ID}`:
   
   * Directory Name (`{DIRECTORY NAME}`): `contoso`
-  * Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  * Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
-  jwtOptions.Audience = "https://contoso.onmicrosoft.com/4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  jwtOptions.Audience = "https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
   The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the App ID URI is different, thus the audience is different.
 
   Example:
 
-  App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f`
+  App ID URI (`{APP ID URI}`): `api://{CLIENT ID}` with Application (Client) Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
-  jwtOptions.Audience = "api://4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f";
+  jwtOptions.Audience = "api://00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
 * <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority%2A>: Sets the Authority for making OpenID Connect calls. Match the value to the Authority configured for the OIDC handler in `BlazorWebAppOidc/Program.cs`:
@@ -557,7 +557,7 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
 
   Example:
 
-  Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/` (uses Tenant ID `a3942615-d115-4eb7-bc84-9974abcf5064`)
+  Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
 
   ```csharp
   jwtOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";

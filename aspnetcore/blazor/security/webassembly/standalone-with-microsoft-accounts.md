@@ -43,7 +43,7 @@ Register an ME-ID app:
 > [!NOTE]
 > Supplying the port number for a `localhost` ME-ID redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Entra documentation)](/entra/identity-platform/reply-url#localhost-exceptions).
 
-Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
+Record the Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`).
 
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
@@ -63,7 +63,7 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "commo
 | Placeholder      | Azure portal name       | Example                                |
 | ---------------- | ----------------------- | -------------------------------------- |
 | `{PROJECT NAME}` | &mdash;                 | `BlazorSample`                         |
-| `{CLIENT ID}`    | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{CLIENT ID}`    | Application (client) ID | `00001111-aaaa-2222-bbbb-3333cccc4444` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
@@ -128,7 +128,7 @@ Example:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/common",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
     "ValidateAuthority": true
   }
 }
