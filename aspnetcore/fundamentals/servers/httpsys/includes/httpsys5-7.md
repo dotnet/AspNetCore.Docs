@@ -206,7 +206,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
        ```xml
        <PropertyGroup>
-         <PackageTags>9412ee86-c21b-4eb8-bd89-f650fbf44931</PackageTags>
+         <PackageTags>00001111-aaaa-2222-bbbb-3333cccc4444</PackageTags>
        </PropertyGroup>
        ```
 
@@ -219,7 +219,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
    netsh http add sslcert 
        ipport=10.0.0.4:443 
        certhash=b66ee04419d4ee37464ab8785ff02449980eae10 
-       appid="{9412ee86-c21b-4eb8-bd89-f650fbf44931}"
+       appid="{00001111-aaaa-2222-bbbb-3333cccc4444}"
    ```
 
    When a certificate is registered, the tool responds with `SSL Certificate successfully added`.
@@ -478,7 +478,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
        ```xml
        <PropertyGroup>
-         <PackageTags>9412ee86-c21b-4eb8-bd89-f650fbf44931</PackageTags>
+         <PackageTags>00001111-aaaa-2222-bbbb-3333cccc4444</PackageTags>
        </PropertyGroup>
        ```
 
@@ -491,7 +491,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
    netsh http add sslcert 
        ipport=10.0.0.4:443 
        certhash=b66ee04419d4ee37464ab8785ff02449980eae10 
-       appid="{9412ee86-c21b-4eb8-bd89-f650fbf44931}"
+       appid="{00001111-aaaa-2222-bbbb-3333cccc4444}"
    ```
 
    When a certificate is registered, the tool responds with `SSL Certificate successfully added`.
