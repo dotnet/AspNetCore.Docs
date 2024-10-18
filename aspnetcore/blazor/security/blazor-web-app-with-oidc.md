@@ -138,8 +138,8 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings, and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+  > [!NOTE]
+  > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
 
   ```csharp
   oidcOptions.MapInboundClaims = false;
@@ -179,19 +179,19 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > [!NOTE]
     > A port isn't required for `localhost` addresses when using Microsoft Entra ID. Most other OIDC providers require a correct port.
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("{PATH}");
-  oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
-  oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("{PATH}");
+    oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+    oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
+    ```
 
-  Examples (default values):
+    Examples (default values):
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("/signin-oidc");
-  oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
-  oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("/signin-oidc");
+    oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+    ```
 
 * (*Microsoft Azure only with the "common" endpoint*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
 
@@ -412,8 +412,8 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
 
 * <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> and configuration of <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType%2A> and <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType%2A>: Many OIDC servers use "`name`" and "`role`" rather than the SOAP/WS-Fed defaults in <xref:System.Security.Claims.ClaimTypes>. When <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> is set to `false`, the handler doesn't perform claims mappings and the claim names from the JWT are used directly by the app. The following example sets the role claim type to "`roles`," which is appropriate for [Microsoft Entra ID (ME-ID)](https://www.microsoft.com/security/business/microsoft-entra). Consult your identity provider's documentation for more information.
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
+  > [!NOTE]
+  > <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims%2A> must be set to `false` for most OIDC providers, which prevents renaming claims.
   
   ```csharp
   oidcOptions.MapInboundClaims = false;
@@ -453,19 +453,19 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
     > [!NOTE]
     > A port isn't required for `localhost` addresses.
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("{PATH}");
-  oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
-  oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("{PATH}");
+    oidcOptions.SignedOutCallbackPath = new PathString("{PATH}");
+    oidcOptions.RemoteSignOutPath = new PathString("{PATH}");
+    ```
 
-  Examples (default values):
+    Examples (default values):
 
-  ```csharp
-  oidcOptions.CallbackPath = new PathString("/signin-oidc");
-  oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
-  oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
-  ```
+    ```csharp
+    oidcOptions.CallbackPath = new PathString("/signin-oidc");
+    oidcOptions.SignedOutCallbackPath = new PathString("/signout-callback-oidc");
+    oidcOptions.RemoteSignOutPath = new PathString("/signout-oidc");
+    ```
 
 * (*Microsoft Azure only with the "common" endpoint*) <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.IssuerValidator%2A?displayProperty=nameWithType>: Many OIDC providers work with the default issuer validator, but we need to account for the issuer parameterized with the Tenant ID (`{TENANT ID}`) returned by `https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration`. For more information, see [SecurityTokenInvalidIssuerException with OpenID Connect and the Azure AD "common" endpoint (`AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet` #1731)](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/issues/1731).
 
