@@ -99,11 +99,11 @@ Example:
 ```json
 "AzureAd": {
   "CallbackPath": "/signin-oidc",
-  "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+  "ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "Domain": "contoso.onmicrosoft.com",
   "Instance": "https://login.microsoftonline.com/",
   "ResponseType": "code",
-  "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e"
+  "TenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee"
 },
 ```
 
