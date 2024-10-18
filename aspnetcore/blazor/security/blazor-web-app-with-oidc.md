@@ -62,7 +62,7 @@ This section explains how to configure the sample app.
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
 > [!NOTE]
 > If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
@@ -70,7 +70,7 @@ For local development testing, use the [Secret Manager tool](xref:security/app-s
 Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
 
 ```dotnetcli
-dotnet user-secrets set "MicrosoftOidc:ClientSecret" "{SECRET}"
+dotnet user-secrets set "Authentication:Schemes:MicrosoftOidc:ClientSecret" "{SECRET}"
 ```
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
@@ -308,7 +308,7 @@ This section explains how to configure the sample app.
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
-For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `MicrosoftOidc:ClientSecret`.
+For local development testing, use the [Secret Manager tool](xref:security/app-secrets) to store the server app's client secret under the configuration key `Authentication:Schemes:MicrosoftOidc:ClientSecret`.
 
 > [!NOTE]
 > If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
@@ -316,7 +316,7 @@ For local development testing, use the [Secret Manager tool](xref:security/app-s
 Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
 
 ```dotnetcli
-dotnet user-secrets set "MicrosoftOidc:ClientSecret" "{SECRET}"
+dotnet user-secrets set "Authentication:Schemes:MicrosoftOidc:ClientSecret" "{SECRET}"
 ```
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
