@@ -38,7 +38,17 @@ In the following example, the `ListItems1` component is generically typed as `TE
 
 `ListItems1.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ListItems1.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems1.razor":::
+
+:::moniker-end
 
 The following component renders two `ListItems1` components:
 
@@ -47,7 +57,17 @@ The following component renders two `ListItems1` components:
 
 `Generics1.razor`:
 
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Generics1.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics1.razor":::
+
+:::moniker-end
 
 For more information, see <xref:mvc/views/razor#typeparam>. For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
 
@@ -76,7 +96,21 @@ The following subsections provide examples of the preceding approaches using the
 
 `ListDisplay1.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ListDisplay1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListDisplay1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ### Explicit generic types based on ancestor components
 
@@ -89,29 +123,99 @@ The following `ListItems2` component receives data and cascades a generic type p
 
 `ListItems2.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ListItems2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The following parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListItems2` components specifying the `ListItems2` types (`TExample`), which are cascaded to child components. `ListDisplay1` components are rendered with the list item data shown in the example. String data is used with the first `ListItems2` component, and integer data is used with the second `ListItems2` component.
 
 `Generics2.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Generics2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 Specifying the type explicitly also allows the use of [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters) to provide data to child components, as the following demonstration shows.
 
 `ListDisplay2.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ListDisplay2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListDisplay2.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 `ListItems3.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ListItems3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 When cascading the data in the following example, the type must be provided to the component.
 
 `Generics3.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Generics3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics3.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 When multiple generic types are cascaded, values for all generic types in the set must be passed. In the following example, `TItem`, `TValue`, and `TEdit` are `GridColumn` generic types, but the parent component that places `GridColumn` doesn't specify the `TItem` type:
 
@@ -134,17 +238,55 @@ The demonstration in this section cascades a type inferred for `TExample`.
 
 `ListItems4.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/ListItems4.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/ListItems4.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The following component with inferred cascaded types provides different data for display.
 
 `Generics4.razor`:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Generics4.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics4.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The following component with inferred cascaded types provides the same data for display. The following example directly assigns the data to the components.
 
 `Generics5.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/Generics5.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/Generics5.razor":::
 

@@ -110,7 +110,13 @@ The following component:
 
 `FileDownload1.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload1.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload1.razor":::
 
@@ -159,7 +165,13 @@ The example in this section uses a download file named `quote.txt`, which is pla
 
 `wwwroot/files/quote.txt`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="text" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/wwwroot/files/quote.txt":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="text" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/wwwroot/files/quote.txt":::
 
@@ -203,7 +215,17 @@ The following example component downloads the file from the same origin that the
 
 `FileDownload2.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="razor" source="~/../blazor-samples/9.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
+
+For interactive components, the button in the preceding example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`.
+
+If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/FileDownload2.razor":::
 
