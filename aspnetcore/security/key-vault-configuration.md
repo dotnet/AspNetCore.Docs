@@ -143,7 +143,7 @@ The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extens
 Example values:
 
 * Key Vault name: `contosovault`
-* Application ID: `627e911e-43cc-61d4-992e-12db9c81b413`
+* Application ID: `00001111-aaaa-2222-bbbb-3333cccc4444`
 * Certificate thumbprint: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
 `appsettings.json`:
@@ -516,7 +516,7 @@ The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extens
 Example values:
 
 * Key Vault name: `contosovault`
-* Application ID: `627e911e-43cc-61d4-992e-12db9c81b413`
+* Application ID: `00001111-aaaa-2222-bbbb-3333cccc4444`
 * Certificate thumbprint: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
 `appsettings.json`:
