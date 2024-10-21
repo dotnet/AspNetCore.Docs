@@ -415,7 +415,25 @@ items:
               - name: Build a Blazor todo list app
                 uid: blazor/tutorials/build-a-blazor-app
               - name: Build a Blazor movie database app
-                uid: blazor/tutorials/movie-database-app/index
+                items:
+                  - name: Overview
+                    uid: blazor/tutorials/movie-database-app/index
+                  - name: Create a Blazor Web App
+                    uid: blazor/tutorials/movie-database-app/part-1
+                  - name: Add and scaffold a model
+                    uid: blazor/tutorials/movie-database-app/part-2
+                  - name: Learn about Razor components
+                    uid: blazor/tutorials/movie-database-app/part-3
+                  - name: Work with a database
+                    uid: blazor/tutorials/movie-database-app/part-4
+                  - name: Add validation
+                    uid: blazor/tutorials/movie-database-app/part-5
+                  - name: Add search
+                    uid: blazor/tutorials/movie-database-app/part-6
+                  - name: Add a new field
+                    uid: blazor/tutorials/movie-database-app/part-7
+                  - name: Add interactivity
+                    uid: blazor/tutorials/movie-database-app/part-8
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
               - name: Learn modules
