@@ -264,7 +264,7 @@ See the [Custom binding](xref:fundamentals/minimal-apis/parameter-binding#custom
 
 There are several ways to specify a different content type for the request body.
 If the type of the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter implements [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider), ASP.NET Core uses this interface to determine the content type(s) the request body.
-The framework uses the [`PopulateMetadata`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata%60) method of this interface to set the content type(s) and type of the body content of the request body. For example, a `Todo` class that accepts either `application/xml` or `text/xml` content-type can use [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider) to provide this information to the framework.
+The framework uses the [`PopulateMetadata`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata%2A) method of this interface to set the content type(s) and type of the body content of the request body. For example, a `Todo` class that accepts either `application/xml` or `text/xml` content-type can use [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider) to provide this information to the framework.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
@@ -306,8 +306,8 @@ Note that if you specify [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRoute
 In controller-based apps, the content type(s) for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the [`InputFormatter`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter)s configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
 
 ASP.NET Core uses an [`InputFormatter`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter) to deserialize a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body.
-InputFormatters are configured in the [`MvcOptions`](xref:Microsoft.AspNetCore.Mvc.MvcOptions) passed to the [`AddControllers`](xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%28) extension method for the app's service collection.
-Each input formatter declares the content types it can handle, in its [`SupportedMediaTypes`](xref:Microsoft.AspNetCore.Mvc.MvcOptions.SupportedMediaTypes) property, and the type(s) of body content it can handle, with its [`CanReadType`](xref:Microsoft.AspNetCore.Mvc.MvcOptions.CanReadType) method.
+InputFormatters are configured in the [`MvcOptions`](xref:Microsoft.AspNetCore.Mvc.MvcOptions) passed to the [`AddControllers`](xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A) extension method for the app's service collection.
+Each input formatter declares the content types it can handle, in its [`SupportedMediaTypes`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes) property, and the type(s) of body content it can handle, with its [`CanReadType`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType) method.
 
 ASP.NET Core MVC includes built-in input formatters for JSON and XML, though only the JSON input formatter is enabled by default.
 The built-in JSON input formatter supports the `application/json`, `text/json`, and `application/*+json` content types, and the built-in XML input formatter supports the `application/xml`, `text/xml`, and `application/*+xml` content types.
@@ -321,7 +321,7 @@ In this case, the requestBody in the generated OpenAPI document will include onl
 A [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute cannot add support for a content type that does not have an associated input formatter, and the generated OpenAPI document will not include any content types that do not have an associated input formatter.
 
 For content types other than JSON or XML, you need to create a custom input formatter.
-For more detailed information and examples, see [Custom formatters in ASP.NET Core Web API](xref:core/web-api/advanced/custom-formatters).
+For more detailed information and examples, see [Custom formatters in ASP.NET Core Web API](xref:web-api/advanced/custom-formatters).
 
 If the route handler does not have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter, the route handler may read the request body directly from the `Request.Body` stream and may use the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute to restrict the content types allowed, but no requestBody is generated in the OpenAPI document.
 
