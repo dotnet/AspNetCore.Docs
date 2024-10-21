@@ -235,21 +235,36 @@ The following sample demonstrates how to set a description for a parameter.
 ```
 ---
 
-#### requestBody
+#### Describe the request body
 
-<!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
+The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content type(s) supported and the schema for the body content.
 
-To define the type of inputs transmitted as the request body, configure the properties by using the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method to define the object type and content type that are expected by the request handler. In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
+When the endpoint handler method accepts parameters that are bound to the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
 
-```csharp
-app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
-  .Accepts<Todo>("application/xml");
-```
+If the endpoint does not define any parameters bound to the request body, but instead consumes the request body from the [`HttpContext`](xref:Microsoft.AspNetCore.Http.HttpContext) directly, ASP.NET Core provides mechanisms to specify request body metadata. This is a common scenario for endpoints that process the request body as a stream.
 
-<!-- TODO: Add more context on this example. Specifically we need to add the BindAsync method 
-in the TODO class because without it Minimal will try to deserialize as JSON -->
+Some request body metadata can be determined from the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters of the route handler method.
 
-In addition to the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method, a parameter type can describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
+A description for the request body can be set with a [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter.
+
+If the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is non-nullable and [`EmptyBodyBehavior`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute.EmptyBodyBehavior) is not set to [`EmptyBodyBehavior.Allow`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.EmptyBodyBehavior.Allow) in the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute, the request body is required and the `required` field of the `requestBody` is set to `true` in the generated OpenAPI document.
+Form bodies are always required and have `required` set to `true`.
+
+Use a [document transformer](#use-document-transformers) or an [operation transformer](#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
+
+Other mechanisms for setting request body metadata depend on the type of app being developed and are described in the following sections.
+
+##### [Minimal APIs](#tab/minimal-apis)
+
+The content types for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body or specified with the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method.
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter will be `application/json` and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter(s) will be `multipart/form-data` or `application/x-www-form-urlencoded`.
+
+Support for these default content types is built in to Minimal APIs, but other content types require custom binding.
+See the [Custom binding](xref:fundamentals/minimal-apis/parameter-binding#custom-binding) topic of the Minimal APIs documentation for more information.
+
+There are several ways to specify a different content type for the request body.
+If the type of the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter implements [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider), ASP.NET Core uses this interface to determine the content type(s) the request body.
+The framework uses the [`PopulateMetadata`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata%60) method of this interface to set the content type(s) and type of the body content of the request body. For example, a `Todo` class that accepts either `application/xml` or `text/xml` content-type can use [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider) to provide this information to the framework.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
@@ -261,11 +276,56 @@ public class Todo : IEndpointParameterMetadataProvider
 }
 ```
 
-When no explicit annotation is provided, the framework attempts to determine the default request type if there's a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
+The [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method can also be used to specify the content type of the request body.
+In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
 
-* Request body parameters that are read from a form via the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute are described with the `multipart/form-data` content-type.
-* All other request body parameters are described with the `application/json` content-type.
-* The request body is treated as optional if it's nullable or if the [`AllowEmpty`](xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty) property is set on the [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
+```csharp
+app.MapPut("/todos/{id}", (int id, Todo todo) => ...)
+  .Accepts<Todo>("application/xml");
+```
+
+Since `application/xml` is not a built-in content type, the `Todo` class must implement the [`IBindableFromHttpContext<T>`](xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601) interface to provide a custom binding for the request body. For example
+
+```csharp
+public class Todo : IBindableFromHttpContext<Todo>
+{
+    public static async ValueTask<Todo?> BindAsync(HttpContext context, ParameterInfo parameter)
+    {
+        var xmlDoc = await XDocument.LoadAsync(context.Request.Body, LoadOptions.None, context.RequestAborted);
+        var serializer = new XmlSerializer(typeof(Todo));
+        return (Todo?)serializer.Deserialize(xmlDoc.CreateReader());
+    }
+```
+
+If the endpoint does not define any parameters bound to the request body, use the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method to specify the content type that the endpoint accepts.
+
+Note that if you specify [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) multiple times, only the last one will be used -- they are not combined.
+
+##### [Controllers](#tab/controllers)
+
+In controller-based apps, the content type(s) for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the [`InputFormatter`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter)s configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
+
+ASP.NET Core uses an [`InputFormatter`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter) to deserialize a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body.
+InputFormatters are configured in the [`MvcOptions`](xref:Microsoft.AspNetCore.Mvc.MvcOptions) passed to the [`AddControllers`](xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%28) extension method for the app's service collection.
+Each input formatter declares the content types it can handle, in its [`SupportedMediaTypes`](xref:Microsoft.AspNetCore.Mvc.MvcOptions.SupportedMediaTypes) property, and the type(s) of body content it can handle, with its [`CanReadType`](xref:Microsoft.AspNetCore.Mvc.MvcOptions.CanReadType) method.
+
+ASP.NET Core MVC includes built-in input formatters for JSON and XML, though only the JSON input formatter is enabled by default.
+The built-in JSON input formatter supports the `application/json`, `text/json`, and `application/*+json` content types, and the built-in XML input formatter supports the `application/xml`, `text/xml`, and `application/*+xml` content types.
+
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body may be any content type accepted by an [`InputFormatter`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter) for the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter type. For a request body with [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter(s) the default content types are `multipart/form-data` or `application/x-www-form-urlencoded`.These content types will be included in the generated OpenAPI document if the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute is not specified on the route handler method.
+
+The content type(s) accepted by a route handler can be restricted using a [filter](xref:mvc/controllers/filters) on the endpoint (action scope).
+The [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute adds an action scope filter to the endpoint that restricts the content types that a route handler will accept.
+In this case, the requestBody in the generated OpenAPI document will include only the content type(s) specified in the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute.
+
+A [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute cannot add support for a content type that does not have an associated input formatter, and the generated OpenAPI document will not include any content types that do not have an associated input formatter.
+
+For content types other than JSON or XML, you need to create a custom input formatter.
+For more detailed information and examples, see [Custom formatters in ASP.NET Core Web API](xref:core/web-api/advanced/custom-formatters).
+
+If the route handler does not have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter, the route handler may read the request body directly from the `Request.Body` stream and may use the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute to restrict the content types allowed, but no requestBody is generated in the OpenAPI document.
+
+---
 
 #### Describe response types
 
