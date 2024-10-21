@@ -307,7 +307,7 @@ In controller-based apps, the content type(s) for the request body in the genera
 
 ASP.NET Core uses an [`InputFormatter`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter) to deserialize a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body.
 InputFormatters are configured in the [`MvcOptions`](xref:Microsoft.AspNetCore.Mvc.MvcOptions) passed to the [`AddControllers`](xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A) extension method for the app's service collection.
-Each input formatter declares the content types it can handle, in its [`SupportedMediaTypes`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes) property, and the type(s) of body content it can handle, with its [`CanReadType`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType) method.
+Each input formatter declares the content types it can handle, in its [`SupportedMediaTypes`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes) property, and the type(s) of body content it can handle, with its [`CanReadType`](xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A) method.
 
 ASP.NET Core MVC includes built-in input formatters for JSON and XML, though only the JSON input formatter is enabled by default.
 The built-in JSON input formatter supports the `application/json`, `text/json`, and `application/*+json` content types, and the built-in XML input formatter supports the `application/xml`, `text/xml`, and `application/*+xml` content types.
