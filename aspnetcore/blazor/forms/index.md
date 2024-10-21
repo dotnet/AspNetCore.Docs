@@ -439,7 +439,7 @@ All of the [data annotation built-in validators](xref:mvc/models/validation#buil
 jQuery validation isn't supported in Razor components. We recommend any of the following approaches:
 
 * Follow the guidance in <xref:blazor/forms/validation> for either:
-  * Server-side validation in a Blazor Web App that adopts interactive rendering.
+  * Server-side validation in a Blazor Web App that adopts an interactive render mode.
   * Client-side validation in a standalone Blazor Web Assembly app.
 * Use native HTML validation attributes (see [Client-side form validation (MDN documentation)](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.
