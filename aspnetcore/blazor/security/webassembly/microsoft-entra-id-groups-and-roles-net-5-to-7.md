@@ -563,7 +563,7 @@ When working with the default directory, follow the guidance in [Add app roles t
 ],
 ```
 
-For the `{ADMIN GUID}` and `{DEVELOPER GUID}` placeholders in the preceding example, you can generate GUIDs with an [online GUID generator program (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator).
+For the `{ADMIN GUID}` and `{DEVELOPER GUID}` placeholders in the preceding example, you can generate GUIDs with an [online GUID generator (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator).
 
 To assign a role to a user (or group if you have a Premium tier Azure account):
 
