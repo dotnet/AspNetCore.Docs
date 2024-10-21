@@ -95,7 +95,7 @@ For local development, configuration obtains the database connection string from
 
 The following is an example connection string:
 
-> :::no-loc text="Server=(localdb)\\mssqllocaldb;Database=BlazorWebAppMoviesContext-c347f669-bddf-56a3-a32e-7fe010306593;Trusted_Connection=True;MultipleActiveResultSets=true":::
+> :::no-loc text="Server=(localdb)\\mssqllocaldb;Database=BlazorWebAppMoviesContext-00001111-aaaa-2222-bbbb-3333cccc4444;Trusted_Connection=True;MultipleActiveResultSets=true":::
 
 When the app is deployed to a test/staging or production server, securely store the connection string outside of the project's configuration files.
 
