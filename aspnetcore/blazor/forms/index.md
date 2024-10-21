@@ -436,9 +436,11 @@ In Blazor Web Apps, client-side validation requires an active Blazor SignalR cir
 
 All of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute).
 
-jQuery validation isn't supported for Razor components. For client-side validation, we recommend any of the following approaches:
+jQuery validation isn't supported in Razor components. We recommend any of the following approaches:
 
-* For either a Blazor Web App that adopts interactive rendering or a standalone Blazor Web Assembly app, follow the guidance in <xref:blazor/forms/validation>.
+* Follow the guidance in <xref:blazor/forms/validation> for either:
+  * Server-side validation in a Blazor Web App that adopts interactive rendering.
+  * Client-side validation in a standalone Blazor Web Assembly app.
 * Use native HTML validation attributes (see [Client-side form validation (MDN documentation)](https://developer.mozilla.org/docs/Learn/Forms/Form_validation)).
 * Adopt a third-party validation JavaScript library.
 
