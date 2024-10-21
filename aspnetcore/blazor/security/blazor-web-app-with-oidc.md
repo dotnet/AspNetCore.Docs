@@ -116,7 +116,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
-  oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
+  oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
   oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
@@ -363,7 +363,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   * Scope configured for weather data from `MinimalApiJwt` (`{API NAME}`): `Weather.Get`
 
   ```csharp
-  oidcOptions.Scope.Add("https://contoso.onmicrosoft.com/4ba4de56-9cef-45d9-83fa-a4c18f9f5f0f/Weather.Get");
+  oidcOptions.Scope.Add("https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444/Weather.Get");
   ```
 
   The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the App ID URI is different, thus the scope is different.
@@ -390,7 +390,7 @@ The following <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConn
   * Client Id (`{CLIENT ID}`): `00001111-aaaa-2222-bbbb-3333cccc4444`
 
   ```csharp
-  oidcOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
+  oidcOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
   oidcOptions.ClientId = "00001111-aaaa-2222-bbbb-3333cccc4444";
   ```
 
@@ -560,13 +560,13 @@ Configure the project in the <xref:Microsoft.AspNetCore.Authentication.JwtBearer
   Authority (`{AUTHORITY}`): `https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/` (uses Tenant ID `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
 
   ```csharp
-  jwtOptions.Authority = "https://login.microsoftonline.com/a3942615-d115-4eb7-bc84-9974abcf5064/v2.0/";
+  jwtOptions.Authority = "https://login.microsoftonline.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/v2.0/";
   ```
 
   The preceding example pertains to an app registered in a tenant with an AAD B2C tenant type. If the app is registered in an ME-ID tenant, the authority should match the issurer (`iss`) of the JWT returned by the identity provider:
 
   ```csharp
-  jwtOptions.Authority = "https://sts.windows.net/a3942615-d115-4eb7-bc84-9974abcf5064/";
+  jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
   ```
 
 ### Minimal API for weather data

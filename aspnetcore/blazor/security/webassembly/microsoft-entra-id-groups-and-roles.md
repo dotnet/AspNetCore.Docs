@@ -282,7 +282,7 @@ Take either of the following approaches add app roles in ME-ID:
       ],
       "description": "Administrators manage developers.",
       "displayName": "Admin",
-      "id": "584e483a-7101-404b-9bb1-83bf9463e335",
+      "id": "{ADMIN GUID}",
       "isEnabled": true,
       "lang": null,
       "origin": "Application",
@@ -294,7 +294,7 @@ Take either of the following approaches add app roles in ME-ID:
       ],
       "description": "Developers write code.",
       "displayName": "Developer",
-      "id": "82770d35-2a93-4182-b3f5-3d7bfe9dfe46",
+      "id": "{DEVELOPER GUID}",
       "isEnabled": true,
       "lang": null,
       "origin": "Application",
@@ -303,8 +303,7 @@ Take either of the following approaches add app roles in ME-ID:
   ],
   ```
 
-  > [!NOTE]
-  > You can generate GUIDs with an [online GUID generator program (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator). 
+  For the `{ADMIN GUID}` and `{DEVELOPER GUID}` placeholders in the preceding example, you can generate GUIDs with an [online GUID generator (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator). 
 
 To assign a role to a user (or group if you have a Premium tier Azure account):
 
