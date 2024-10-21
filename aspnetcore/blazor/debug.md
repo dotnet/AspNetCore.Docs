@@ -164,13 +164,13 @@ Blazor Server: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://ww
 
 :::moniker-end
 
-Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 
 :::moniker range="< aspnetcore-8.0"
 
 Hosted Blazor WebAssembly:
 
-* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 * **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 :::moniker-end
@@ -187,7 +187,7 @@ The example in this section assumes that you've created a Blazor Web App with an
 
 1. Open the app.
 1. Set a breakpoint on the `currentCount++;` line in the `Counter` component (`Pages/Counter.razor`) of the client project (`.Client`).
-1. Press <kbd>F5</kbd> to run the app in the debugger.
+1. With the server project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 1. In the browser, navigate to `Counter` page at `/counter`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -195,35 +195,9 @@ The example in this section assumes that you've created a Blazor Web App with an
 Breakpoints can also be hit in the server project in statically-rendered and interactively-rendered server-side components.
 
 1. Stop the debugger.
-1. Add the following component to the server app. The component applies the Interactive Server render mode (`InteractiveServer`).
-
-   `Components/Pages/Counter2.razor`:
-
-   ```razor
-   @page "/counter-2"
-   @rendermode InteractiveServer
-
-   <PageTitle>Counter 2</PageTitle>
-
-   <h1>Counter 2</h1>
-
-   <p role="status">Current count: @currentCount</p>
-
-   <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-   @code {
-       private int currentCount = 0;
-
-       private void IncrementCount()
-       {
-           currentCount++;
-       }
-   }
-   ```
-
-1. Set a breakpoint on the `currentCount++;` line in the `Counter2` component.
+1. In the server app, open the statically-rendered `Weather` component (`Components/Pages/Weather.razor`) and set a breakpoint anywhere in the `OnInitializedAsync` method.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
-1. In the browser, navigate to `Counter2` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
+1. In the browser, navigate to the `Weather` page at `/weather`. Wait a few seconds for the debug proxy to load and run. Application execution stops at the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
 
 Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
@@ -241,35 +215,9 @@ The example in this section assumes that you've created a Blazor Web App with an
 Breakpoints can also be hit in the server project.
 
 1. Stop debugging by selecting the **Stop** button or press <kbd>Shift</kbd>+<kbd>F5</kbd> on the keyboard.
-1. Add the following component to the server app. The component adopts the Interactive Server render mode (`InteractiveServer`).
-
-   `Components/Pages/Counter2.razor`:
-
-   ```razor
-   @page "/counter-2"
-   @rendermode InteractiveServer
-
-   <PageTitle>Counter 2</PageTitle>
-
-   <h1>Counter 2</h1>
-
-   <p role="status">Current count: @currentCount</p>
-
-   <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-   @code {
-       private int currentCount = 0;
-
-       private void IncrementCount()
-       {
-           currentCount++;
-       }
-   }
-   ```
-
-1. Set a breakpoint on the `currentCount++;` line in the `Counter2` component.
+1. In the server app, open the statically-rendered `Weather` component (`Components/Pages/Weather.razor`) and set a breakpoint anywhere in the `OnInitializedAsync` method.
 1. Select the **Start Debugging** button in the UI or press <kbd>F5</kbd> (**Start Debugging**) to run the app in the debugger.
-1. In the browser, navigate to the `Counter2` page at `/counter-2`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
+1. In the browser, navigate to the `Weather` page at `/weather`. Wait a few seconds for the debug proxy to load and run. Application execution stops at the breakpoint.
 1. Select the **Continue** button in the UI or press <kbd>F5</kbd> (**Continue**) to continue execution.
 
 Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
@@ -437,8 +385,8 @@ The additional options in the following table only apply to **hosted Blazor WebA
 
 *The guidance in this section applies debugging Blazor WebAssembly apps in:*
 
-* *Google Chrome running on Windows or macOS.*
-* *Microsoft Edge running on Windows.*
+* ***Google Chrome*** *running on Windows or macOS.*
+* ***Microsoft Edge** *running on Windows.*
 
 1. Run the app in a command shell with `dotnet watch` (or `dotnet run`).
 1. Launch a browser and navigate to the app's URL.
