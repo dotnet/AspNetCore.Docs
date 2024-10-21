@@ -444,7 +444,7 @@ jQuery validation isn't supported for Razor components. For client-side validati
 
 <!-- UPDATE 10.0 - Remove if the feature is realized. -->
 
-For statically-rendered forms on the server, providing a new mechanism for client-side validation is under consideration for .NET 10 in late 2025. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
+For statically-rendered forms on the server, a new mechanism for client-side validation is under consideration for .NET 10 in late 2025. For more information, see [Create server rendered forms with client validation using Blazor without a circuit (`dotnet/aspnetcore` #51040)](https://github.com/dotnet/aspnetcore/issues/51040).
 
 ## Additional resources
 
