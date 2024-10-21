@@ -520,7 +520,7 @@ If you're calling an external web API (not in the same URL space as the client a
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
-    client.BaseAddress = new Uri(https://localhost:5001));
+    client.BaseAddress = new Uri("https://localhost:5001"));
 ```
 
 In the following component code:
@@ -618,7 +618,7 @@ If you're calling an external web API (not in the same URL space as the client a
 
 ```csharp
 builder.Services.AddHttpClient<ForecastHttpClient>(client => 
-    client.BaseAddress = new Uri(https://localhost:5001));
+    client.BaseAddress = new Uri("https://localhost:5001"));
 ```
 
 Components inject the typed <xref:System.Net.Http.HttpClient> to call the web API.
