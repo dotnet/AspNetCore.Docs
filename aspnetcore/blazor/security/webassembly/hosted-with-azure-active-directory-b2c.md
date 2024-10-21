@@ -137,7 +137,7 @@ The output location specified with the `-o|--output` option creates a project fo
 
 *The guidance in this section covers optionally populating `User.Identity.Name` with the value from the `name` claim.*
 
-The **:::no-loc text="Server":::** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
+The **:::no-loc text="Server":::** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `aaaabbbb-0000-cccc-1111-dddd2222eeee@contoso.onmicrosoft.com`).
 
 To configure the app to receive the value from the `name` claim type:
 
@@ -358,7 +358,7 @@ Example default access token scope:
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes.Add(
-    "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
+    "https://contoso.onmicrosoft.com/00001111-aaaa-2222-bbbb-3333cccc4444/API.Access");
 ```
 
 For more information, see the following sections of the *Additional scenarios* article:

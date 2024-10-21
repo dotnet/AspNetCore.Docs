@@ -372,7 +372,7 @@ Constraint | Example | Example Matches | Invariant<br>culture<br>matching
 `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Yes
 `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Yes
 `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Yes
-`guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | No
+`guid` | `{id:guid}` | `00001111-aaaa-2222-bbbb-3333cccc4444`, `{00001111-aaaa-2222-bbbb-3333cccc4444}` | No
 `int` | `{id:int}` | `123456789`, `-123456789` | Yes
 `long` | `{ticks:long}` | `123456789`, `-123456789` | Yes
 `nonfile` | `{parameter:nonfile}` | Not `BlazorSample.styles.css`, not `favicon.ico` | Yes
