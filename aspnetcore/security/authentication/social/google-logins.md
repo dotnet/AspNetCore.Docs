@@ -66,7 +66,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 * Create a controller and action that takes one argument `string credential`, which is returned by Google upon completing the login process.
 * Verify the `credential` using the following line of code:
 `GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
-* Here you  get all information about login user you can store it in database.
+* This will retrieve the available information about the logged-in user, which could then be stored in a database.
 
 [Complete Simple working app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/social/GoogleAuthExample)
 
