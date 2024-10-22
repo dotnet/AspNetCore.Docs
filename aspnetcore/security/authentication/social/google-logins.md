@@ -63,7 +63,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 * Get a link to the libary at [google developer library link ](https://developers.google.com/identity/gsi/web/guides/client-library) to get link of library.
 * Then go to [google developer button genration ](https://developers.google.com/identity/gsi/web/tools/configurator)
 * Setup your Controller to match with ` data-login_uri="{HostName}/{ControllerName}/{actionName}" ` attrbute because after success login it will forward you to that link.
-* Create controller and action takes one argement  `string credential` because that what google return when complete login process.
+* Create a controller and action that takes one argument `string credential`, which is returned by Google upon completing the login process.
 * Verify `credential` by using this line of code
 `GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
 * Here you  get all information about login user you can store it in database.
