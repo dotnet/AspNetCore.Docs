@@ -1176,7 +1176,7 @@ A helper class can invoke a .NET instance method as an <xref:System.Action>. Hel
 
 In the following example:
 
-* The component contains several `ListItem1` components, which is a shared component in the app's `Shared` folder.
+* The component contains several `ListItem1` components.
 * Each `ListItem1` component is composed of a message and a button.
 * When a `ListItem1` component button is selected, that `ListItem1`'s `UpdateMessage` method changes the list item text and hides the button.
 
