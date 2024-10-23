@@ -159,11 +159,23 @@ else
 
 ## Examples with code snippets
 
+### Example Keycloak
+
+### Example Duende
+
+### Implementing Microsoft identity providers
+
 ## Using third party provider clients
 
 ## Backend for frontend (BFF) security architecture
 
 ## Advanced features, standards, extending the OIDC client
+
+### Logging
+
+### Customizations
+
+### OAuth DPoP
 
 ## Standards
 
