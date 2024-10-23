@@ -171,4 +171,6 @@ else
 
 [Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
 
+[The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
+
 [OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126)
