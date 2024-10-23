@@ -235,7 +235,9 @@ IdentityModelEventSource.ShowPII = true;
 app.Run();
 ```
 
-### Customizations
+### OIDC and OAuth Parameter Customization
+
+The OAuth and OIDC authentication handlers  [`AdditionalAuthorizationParameters`](https://source.dot.net/#Microsoft.AspNetCore.Authentication.OAuth/OAuthOptions.cs,ddb988460467cfbf) option allows customization of authorization message parameters that are usually included as part of the redirect query string:
 
 ## Map claims from OpenID Connect
 
