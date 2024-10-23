@@ -303,7 +303,7 @@ If you specify <AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A>
 
 ##### [Controllers](#tab/controllers)
 
-In controller-based apps, the content type(s) for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> types configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
+In controller-based apps, the content type(s) for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> types configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
 
 ASP.NET Core uses an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> to deserialize a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body.
 InputFormatters are configured in the <xref:Microsoft.AspNetCore.Mvc.MvcOptions> passed to the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> extension method for the app's service collection.
