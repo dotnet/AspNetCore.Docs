@@ -271,7 +271,7 @@ public class Todo : IEndpointParameterMetadataProvider
 {
     public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
     {
-        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(XmlBody)));
+        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(Todo)));
     }
 }
 ```
@@ -299,7 +299,7 @@ public class Todo : IBindableFromHttpContext<Todo>
 
 If the endpoint does not define any parameters bound to the request body, use the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method to specify the content type that the endpoint accepts.
 
-Note that if you specify [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) multiple times, only the last one will be used -- they are not combined.
+Note that if you specify [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) multiple times, only metadata from the last one is used -- they are not combined.
 
 ##### [Controllers](#tab/controllers)
 
