@@ -78,7 +78,9 @@ builder.Services.AddAuthentication(options =>
 ```
 
 See [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:core/blazor/security/blazor-web-app-with-oidc) for details on the different OpenID Connect options.
-^
+
+See [Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims) for the different claims mapping possibilities.
+
 > [!NOTE]
 > The following namespaces are required:
 
@@ -189,19 +191,59 @@ else
 
 ## Examples with code snippets
 
-### Example Keycloak
+### Example Using User Info endpoint
 
 ```csharp
+services.AddAuthentication(options =>
+{
+	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+{
+	options.Authority = authConfiguration["IdentityProviderUrl"];
+	options.ClientSecret = authConfiguration["ClientSecret"];
+	options.ClientId = authConfiguration["Audience"];
+	options.ResponseType = OpenIdConnectResponseType.Code;
+
+	options.Scope.Clear();
+	options.Scope.Add("openid");
+	options.Scope.Add("profile");
+	options.Scope.Add("email");
+	options.Scope.Add("offline_access");
+
+	options.ClaimActions.Remove("amr");
+	options.ClaimActions.MapJsonKey("website", "website");
+
+	options.GetClaimsFromUserInfoEndpoint = true;
+	options.SaveTokens = true;
+
+    // .NET 9 feature
+	options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Require;
+
+	options.TokenValidationParameters = new TokenValidationParameters
+	{
+		NameClaimType = JwtClaimTypes.Name,
+		RoleClaimType = JwtClaimTypes.Role,
+	};
+});
 ```
+See the following code example: 
 
 https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
 
-### Example Duende
-
-```csharp
-```
-
 ### Implementing Microsoft identity providers
+
+Microsoft has multiple identity providers and OpenID connect implementations. Microsoft has different OpenID Connect servers:
+
+* Microsoft Entra ID
+* Microsoft Entra External ID
+* Azure AD B2C
+
+If authenticating using one of the Microsoft identity providers in ASP.NET Core, it is recommended to use the [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web) Nuget packages.
+
+The Microsoft.Identity.Web Nuget packages is a Microsoft specific client built on top on the ASP.NET Core OpenID Connect client with some changes to the default client.
 
 ## Using third party OpenID Connect provider clients
 
@@ -210,10 +252,6 @@ https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
 [draft OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
 
 ## Advanced features, standards, extending the OIDC client
-
-:::moniker range="> aspnetcore-8.0"
-
-:::moniker-end
 
 ### Logging
 
