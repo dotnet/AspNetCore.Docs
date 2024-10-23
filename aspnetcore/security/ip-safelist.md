@@ -10,7 +10,7 @@ uid: security/ip-safelist
 ---
 # Client IP safelist for ASP.NET Core
 
-By [Damien Bowden](https://twitter.com/damien_bod) and [Tom Dykstra](https://github.com/tdykstra)
+By [Damien Bowden](https://github.com/damienbod) and [Tom Dykstra](https://github.com/tdykstra)
  
 This article shows three ways to implement an IP address safelist (also known as an allow list) in an ASP.NET Core app. An accompanying sample app demonstrates all three approaches. You can use:
 
