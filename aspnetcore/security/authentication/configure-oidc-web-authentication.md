@@ -169,6 +169,8 @@ else
 
 ## Backend for frontend (BFF) security architecture
 
+[draft OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
+
 ## Advanced features, standards, extending the OIDC client
 
 ### Logging
