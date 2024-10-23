@@ -252,7 +252,13 @@ The Microsoft.Identity.Web Nuget packages is a Microsoft specific client built o
 
 ## Using third party OpenID Connect provider clients
 
-// TODO
+Many OpenID Connect server implementations create Nuget packages which are optimized for the same OpenID Connect implementation. These packages implement the OpenID connect client specifics with the extras required by the specific OpenID Connect server. Microsoft.Identity.Web is one example of this. 
+
+If implementing multiple OpenID Connect clients from different OpenID Connect servers in a single application, it is normally better to revert to the default ASP.NET Core implementation as the different clients overwrite some options which affect the other clients. 
+
+[OpenIddict Web providers](https://documentation.openiddict.com/integrations/web-providers) is a client implementation which supports many different server implementations.
+
+[IdentityModel](https://github.com/IdentityModel/IdentityModel) is a .NET standard helper library for claims-based identity, OAuth 2.0 and OpenID Connect. This can also be used to help with the client implementation.
 
 ## Backend for frontend (BFF) security architecture
 
