@@ -164,3 +164,11 @@ else
 ## Backend for frontend (BFF) security architecture
 
 ## Advanced features, standards, extending the OIDC client
+
+## Standards
+
+[OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html)
+
+[Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
+
+[OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126)
