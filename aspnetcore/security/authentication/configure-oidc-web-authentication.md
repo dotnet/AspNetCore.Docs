@@ -240,7 +240,7 @@ https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
 
 ### Implementing Microsoft identity providers
 
-Microsoft has multiple identity providers and OpenID connect implementations. Microsoft has different OpenID Connect servers:
+Microsoft has multiple identity providers and OpenID Connect implementations. Microsoft has different OpenID Connect servers:
 
 * Microsoft Entra ID
 * Microsoft Entra External ID
