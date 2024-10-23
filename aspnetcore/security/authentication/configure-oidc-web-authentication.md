@@ -25,7 +25,7 @@ This article covers the following areas:
 
 ## What is an OpenID Connect confidential interactive client
 
-OpenID Connect can be used to implement authentication in ASP.NET Core applications. The recommended way is to use an OpenID Connect confidential client using the code flow. The [Proof Key for Code Exchange by OAuth Public Clients (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636) is required for this implement.
+[OpenID Connect](https://openid.net/developers/how-connect-works/) can be used to implement authentication in ASP.NET Core applications. The recommended way is to use an OpenID Connect confidential client using the code flow. The [Proof Key for Code Exchange by OAuth Public Clients (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636) is required for this implement.
 
 Public clients are no longer recommended for web applications.
 
@@ -44,7 +44,7 @@ The following section shows how to implement an OpenID connect client in an empt
 
 ### Add OpenID Connect support
 
-Add the **Microsoft.AspNetCore.Authentication.OpenIdConnect** nuget packages to the ASP.NET Core project.
+Add the [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect) Nuget packages to the ASP.NET Core project.
 
 ### Setup the OpenID Connect client
 
@@ -77,6 +77,8 @@ builder.Services.AddAuthentication(options =>
 });
 ```
 
+See [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:core/blazor/security/blazor-web-app-with-oidc) for details on the different OpenID Connect options.
+^
 > [!NOTE]
 > The following namespaces are required:
 
@@ -235,7 +237,11 @@ app.Run();
 
 ### Customizations
 
-### OAuth DPoP
+## Map claims from OpenID Connect
+
+Refer to the following document:
+
+[Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims)
 
 ## Standards
 
