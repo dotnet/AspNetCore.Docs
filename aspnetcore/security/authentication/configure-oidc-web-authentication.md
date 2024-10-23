@@ -10,15 +10,18 @@ uid: security/authentication/configure-oidc-web-authentication
 ---
 # Configure OpenID Connect Web (UI) authentication in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Damien Bowden](https://github.com/damienbod)
 
-TODo
+[View or download sample code](~/security/authentication/configure-oidc-web-authentication/sample/oidc-net8)
 
 This article covers the following areas:
 
-* TODO
+* What is an OpenID Connect confidential interactive client
+* Create an OpenID Connect client in ASP.NET Core
+* Examples of OpenID Connect client with code snippets
+* Using third party OpenID Connect provider clients
+* Backend for frontend (BFF) security architecture
+* Advanced features, standards, extending the an OpenID Connect client
 
 ## What is an OpenID Connect confidential interactive client
 
@@ -79,7 +82,9 @@ Add the OpenID Connect client settings to the application configuration properti
 
 ```json
 "OpenIDConnectSettings": {
+    // OpenID Connect URL
 	"Authority": "https://localhost:44318",
+	// client ID from the OpenID Connect server
 	"ClientId": "oidc-pkce-confidential",
 	//"ClientSecret": "--stored-in-user-secrets-or-key-vault--"
 },
@@ -138,6 +143,18 @@ public class LogoutModel : PageModel
 }
 ```
 
+The `SignedOut.cshtml` requires the AllowAnonymous attribute.
+
+```csharp
+[AllowAnonymous]
+public class SignedOutModel : PageModel
+{
+    public void OnGet()
+    {
+    }
+}
+```
+
 ### Add a login, logout button for the user.
 
 ```
@@ -173,7 +190,7 @@ https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
 
 ### Implementing Microsoft identity providers
 
-## Using third party provider clients
+## Using third party OpenID Connect provider clients
 
 ## Backend for frontend (BFF) security architecture
 
