@@ -22,7 +22,7 @@ This article covers the following areas:
 
 ## What is an OpenID Connect confidential interactive client
 
-![TOTO](~/security/authentication/configure-oidc-web-authentication/_static/TODO.png)
+![OIDC code flow confidential client using PKCE](~/security/authentication/configure-oidc-web-authentication/_static/oidc-confidential-pkce-flow-drawio.png)
 
 ## Create an Open ID Connect Code Flow client using Razor Pages
 
