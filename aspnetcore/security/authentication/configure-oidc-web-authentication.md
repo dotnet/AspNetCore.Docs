@@ -25,8 +25,7 @@ This article covers the following areas:
 
 ## What is an OpenID Connect confidential interactive client
 
-[OpenID Connect](https://openid.net/developers/how-connect-works/) can be used to implement authentication in ASP.NET Core applications. The recommended way is to use an OpenID Connect confidential client using the code flow. The [Proof Key for Code Exchange by OAuth Public Clients (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636) is required for this implement.
-
+[OpenID Connect](https://openid.net/developers/how-connect-works/) can be used to implement authentication in ASP.NET Core applications. The recommended way is to use an OpenID Connect confidential client using the code flow. The [Proof Key for Code Exchange by OAuth Public Clients (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636) is required for this implementation. Both the application client and the user of the application are authenticated in the confidential flow. The application client uses a client secret or a client assertion to authenticate. 
 Public clients are no longer recommended for web applications.
 
 The default flow works as shown in the following diagram:
