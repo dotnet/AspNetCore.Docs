@@ -14,7 +14,7 @@ uid: security/authentication/configure-oidc-web-authentication
 
 By [Damien Bowden](https://github.com/damienbod)
 
-TODO
+TODo
 
 This article covers the following areas:
 
@@ -161,7 +161,15 @@ else
 
 ### Example Keycloak
 
+```csharp
+```
+
+https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
+
 ### Example Duende
+
+```csharp
+```
 
 ### Implementing Microsoft identity providers
 
@@ -173,7 +181,29 @@ else
 
 ## Advanced features, standards, extending the OIDC client
 
+:::moniker range="> aspnetcore-8.0"
+
+:::moniker-end
+
 ### Logging
+
+```csharp
+//using ...
+
+using Microsoft.IdentityModel.Logging;
+
+var builder = WebApplication.CreateBuilder(args);
+
+//... code 
+
+var app = builder.Build();
+
+IdentityModelEventSource.ShowPII = true;
+
+//... code 
+
+app.Run();
+```
 
 ### Customizations
 
