@@ -193,6 +193,10 @@ else
 
 ### Example Using User Info endpoint
 
+The OpenID Connect options can be used to map claims, implement handlers or even save the tokens in the session for later usage. 
+
+The **Scope** option can be used to request different claims or a refresh token which is sent as information to the OpenID Connect server. Requesting the **offline_access** is asking the server to return a reference token which can be used to refresh the session without authenticating the user of the application again.
+
 ```csharp
 services.AddAuthentication(options =>
 {
@@ -229,6 +233,7 @@ services.AddAuthentication(options =>
 	};
 });
 ```
+
 See the following code example: 
 
 https://github.com/damienbod/keycloak-backchannel/tree/main/RazorPagePar
@@ -247,13 +252,21 @@ The Microsoft.Identity.Web Nuget packages is a Microsoft specific client built o
 
 ## Using third party OpenID Connect provider clients
 
+// TODO
+
 ## Backend for frontend (BFF) security architecture
 
-[draft OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/)
+It is no longer recommended to implement OpenID Connect public clients for any web applications. 
+
+See the [draft OAuth 2.0 for Browser-Based Applications](https://datatracker.ietf.org/doc/draft-ietf-oauth-browser-based-apps/) for further details.
+
+If implementing **web** applications which have no backend, it is recommended to use the [Backend for Frontend (BFF) pattern](/azure/architecture/patterns/backends-for-frontends) security architecture.  This pattern can be implemented in different ways, but the authentication is always implemented in the backend and no sensitive data is sent to the web client for further authorization or authentication flows.
 
 ## Advanced features, standards, extending the OIDC client
 
 ### Logging
+
+Debugging OpenID Connect clients can be hard. Personally identifiable information (PII) data is not logged by default. If debugging in development mode, the ** IdentityModelEventSource.ShowPII** can be used to log sensitive personal data. This should never by deployed to productive servers.
 
 ```csharp
 //using ...
@@ -282,6 +295,12 @@ The OAuth and OIDC authentication handlers  [`AdditionalAuthorizationParameters`
 Refer to the following document:
 
 [Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims)
+
+## Blazor OpenID Connect
+
+Refer to the following document:
+
+[Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:sblazor/security/blazor-web-app-oidc)
 
 ## Standards
 
