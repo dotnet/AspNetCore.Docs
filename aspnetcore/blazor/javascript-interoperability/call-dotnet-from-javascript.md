@@ -1169,7 +1169,7 @@ In the preceding example:
 
 ## Component instance .NET method helper class
 
-A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in the following scenarios:
+A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in scenarios where using static .NET methods is not applicable:
 
 * When several components of the same type are rendered on the same page.
 * In server-side apps with multiple users concurrently using the same component.
@@ -1345,7 +1345,7 @@ The assignment of a <xref:Microsoft.JSInterop.DotNetObjectReference> to a proper
 * In the component's [`OnAfterRender{Async}` method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), a JavaScript (JS) function is invoked with the element reference and the component instance as a <xref:Microsoft.JSInterop.DotNetObjectReference>. The JS function attaches the <xref:Microsoft.JSInterop.DotNetObjectReference> to the element in a property.
 * When an element event is invoked in JS (for example, `onclick`), the element's attached <xref:Microsoft.JSInterop.DotNetObjectReference> is used to call a .NET method.
 
-Similar to the approach described in the [Component instance .NET method helper class](#component-instance-net-method-helper-class) section, this approach is useful in the following scenarios:
+Similar to the approach described in the [Component instance .NET method helper class](#component-instance-net-method-helper-class) section, this approach is useful in scenarios where using static .NET methods is not applicable:
 
 * When several components of the same type are rendered on the same page.
 * In server-side apps with multiple users concurrently using the same component.
