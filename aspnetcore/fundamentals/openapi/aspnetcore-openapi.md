@@ -239,13 +239,13 @@ The following sample demonstrates how to set a description for a parameter.
 
 The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content type(s) supported and the schema for the body content.
 
-When the endpoint handler method accepts parameters that are bound to the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
+When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
 
 If the endpoint does not define any parameters bound to the request body, but instead consumes the request body from the [`HttpContext`](xref:Microsoft.AspNetCore.Http.HttpContext) directly, ASP.NET Core provides mechanisms to specify request body metadata. This is a common scenario for endpoints that process the request body as a stream.
 
 Some request body metadata can be determined from the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters of the route handler method.
 
-A description for the request body can be set with a [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute on the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter.
+A description for the request body can be set with a [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute on the parameter with [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute).
 
 If the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is non-nullable and [`EmptyBodyBehavior`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute.EmptyBodyBehavior) is not set to [`EmptyBodyBehavior.Allow`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.EmptyBodyBehavior.Allow) in the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute, the request body is required and the `required` field of the `requestBody` is set to `true` in the generated OpenAPI document.
 Form bodies are always required and have `required` set to `true`.
