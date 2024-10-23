@@ -25,7 +25,18 @@ This article covers the following areas:
 
 ## What is an OpenID Connect confidential interactive client
 
+OpenID Connect can be used to implement authentication in ASP.NET Core applications. The recommended way is to use an OpenID Connect confidential client using the code flow. The [Proof Key for Code Exchange by OAuth Public Clients (PKCE)](https://datatracker.ietf.org/doc/html/rfc7636) is required for this implement.
+
+Public clients are no longer recommended for web applications.
+
+The default flow works as shown in the following diagram:
+
 ![OIDC code flow confidential client using PKCE](~/security/authentication/configure-oidc-web-authentication/_static/oidc-confidential-pkce-flow-drawio.png)
+
+OpenID Connect comes in many variations and all server implementations have slightly different parameters and requirements. Some servers don’t’ support the user info endpoint, some still don’t support PKCE and others require special parameters in the token request. Client assertions can be used instead of client secrets. New standards also exist which add extra security on top of the OpenID Connect Core, for example FAPI, CIBA or DPoP for downstream APIs.
+
+> [!NOTE]
+> From .NET 9, [OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126) is used per default if the OpenID Connect server supports this. This is a three step flow and not a two step flow as shown above. (User Info request is an optional step.)
 
 ## Create an Open ID Connect Code Flow client using Razor Pages
 
