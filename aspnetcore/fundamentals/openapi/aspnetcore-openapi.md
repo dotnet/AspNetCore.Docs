@@ -79,20 +79,20 @@ ASP.NET collects metadata from the web app's endpoints and uses it to generate a
 In controller-based apps, metadata is collected from attributes like [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
 and [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute).
 In minimal APIs, metadata can be collected from attributes, but may also be set by using extension methods
-and other strategies, such as returning [`TypedResults`](xref:Microsoft.AspNetCore.Http.TypedResults) from route handlers.
+and other strategies, such as returning <xref:Microsoft.AspNetCore.Http.TypedResults> from route handlers.
 The following table provides an overview of the metadata collected and the strategies for setting it.
 
 | Metadata | Attribute | Extension method | Other strategies |
 | --- | --- | --- |
-| summary | [`[EndpointSummary]`](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute) | [`WithSummary`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A) | |
-| description | [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) | [`WithDescription`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A) | |
-| tags | [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) | [`WithTags`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A) | |
-| operationId | [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) | [`WithName`](xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A) | |
+| summary | [`[EndpointSummary]`](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> | |
+| description | [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> | |
+| tags | [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> | |
+| operationId | [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) | <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> | |
 | parameters | [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute), [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute), [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute), [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) | |
 | parameter description | [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) | | |
-| requestBody | [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) | [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) | |
-| responses | [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) | [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A), [`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A) | [`TypedResults`](xref:Microsoft.AspNetCore.Http.TypedResults) |
-| Excluding endpoints | [`[ExcludeFromDescription]`](xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute), [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) | [`ExcludeFromDescription`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A) | |
+| requestBody | [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> | |
+| responses | [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A>, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> | <xref:Microsoft.AspNetCore.Http.TypedResults> |
+| Excluding endpoints | [`[ExcludeFromDescription]`](xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute), [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A> | |
 
 ASP.NET Core does not collect metadata from XML doc comments.
 
@@ -101,7 +101,7 @@ The following sections demonstrate how to include metadata in an app to customiz
 #### Summary and description
 
 The endpoint summary and description can be set using the [`[EndpointSummary]`](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute) and [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) attributes,
-or in minimal APIs, using the [`WithSummary`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A) and [`WithDescription`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A) extension methods.
+or in minimal APIs, using the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> extension methods.
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
@@ -141,7 +141,7 @@ OpenAPI supports specifying tags on each endpoint as a form of categorization.
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
-In minimal APIs, tags can be set using either the [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) attribute or the [`WithTags`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A) extension method.
+In minimal APIs, tags can be set using either the [`[Tags]`](xref:Microsoft.AspNetCore.Http.TagsAttribute) attribute or the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithTags%2A> extension method.
 
 The following sample demonstrates the different strategies for setting tags.
 
@@ -176,7 +176,7 @@ OpenAPI supports an operationId on each endpoint as a unique identifier or name 
 
 ##### [Minimal APIs](#tab/minimal-apis)
 
-In minimal APIs, the operationId can be set using either the [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) attribute or the [`WithName`](xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A) extension method.
+In minimal APIs, the operationId can be set using either the [`[EndpointName]`](xref:Microsoft.AspNetCore.Routing.EndpointNameAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A> extension method.
 
 The following sample demonstrates the different strategies for setting the operationId.
 
@@ -235,37 +235,97 @@ The following sample demonstrates how to set a description for a parameter.
 ```
 ---
 
-#### requestBody
+#### Describe the request body
 
-<!-- TODO: Restructure this section to cover both controller-based and minimal API apps -->
+The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content type(s) supported and the schema for the body content.
 
-To define the type of inputs transmitted as the request body, configure the properties by using the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method to define the object type and content type that are expected by the request handler. In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
+When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
 
-```csharp
-app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
-  .Accepts<Todo>("application/xml");
-```
+If the endpoint doesn't define any parameters bound to the request body, but instead consumes the request body from the <xref:Microsoft.AspNetCore.Http.HttpContext> directly, ASP.NET Core provides mechanisms to specify request body metadata. This is a common scenario for endpoints that process the request body as a stream.
 
-<!-- TODO: Add more context on this example. Specifically we need to add the BindAsync method 
-in the TODO class because without it Minimal will try to deserialize as JSON -->
+Some request body metadata can be determined from the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters of the route handler method.
 
-In addition to the [`Accepts`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A) extension method, a parameter type can describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type.
+A description for the request body can be set with a [`[Description]`](xref:System.ComponentModel.DescriptionAttribute) attribute on the parameter with [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute).
+
+If the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is non-nullable and <xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute.EmptyBodyBehavior> is not set to <xref:Microsoft.AspNetCore.Mvc.ModelBinding.EmptyBodyBehavior.Allow> in the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute, the request body is required and the `required` field of the `requestBody` is set to `true` in the generated OpenAPI document.
+Form bodies are always required and have `required` set to `true`.
+
+Use a [document transformer](#use-document-transformers) or an [operation transformer](#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
+
+Other mechanisms for setting request body metadata depend on the type of app being developed and are described in the following sections.
+
+##### [Minimal APIs](#tab/minimal-apis)
+
+The content types for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body or specified with the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method.
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter will be `application/json` and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter(s) will be `multipart/form-data` or `application/x-www-form-urlencoded`.
+
+Support for these default content types is built in to Minimal APIs, and other content types can be handled by using custom binding.
+See the [Custom binding](xref:fundamentals/minimal-apis/parameter-binding#custom-binding) topic of the Minimal APIs documentation for more information.
+
+There are several ways to specify a different content type for the request body.
+If the type of the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider>, ASP.NET Core uses this interface to determine the content type(s) in the request body.
+The framework uses the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider.PopulateMetadata%2A> method of this interface to set the content type(s) and type of the body content of the request body. For example, a `Todo` class that accepts either `application/xml` or `text/xml` content-type can use <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider> to provide this information to the framework.
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
 {
     public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
     {
-        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(XmlBody)));
+        builder.Metadata.Add(new AcceptsMetadata(["application/xml", "text/xml"], typeof(Todo)));
     }
 }
 ```
 
-When no explicit annotation is provided, the framework attempts to determine the default request type if there's a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
+The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method can also be used to specify the content type of the request body.
+In the following example, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
 
-* Request body parameters that are read from a form via the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute are described with the `multipart/form-data` content-type.
-* All other request body parameters are described with the `application/json` content-type.
-* The request body is treated as optional if it's nullable or if the [`AllowEmpty`](xref:Microsoft.AspNetCore.Http.Metadata.IFromBodyMetadata.AllowEmpty) property is set on the [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute.
+```csharp
+app.MapPut("/todos/{id}", (int id, Todo todo) => ...)
+  .Accepts<Todo>("application/xml");
+```
+
+Since `application/xml` is not a built-in content type, the `Todo` class must implement the <xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601> interface to provide a custom binding for the request body. For example:
+
+```csharp
+public class Todo : IBindableFromHttpContext<Todo>
+{
+    public static async ValueTask<Todo?> BindAsync(HttpContext context, ParameterInfo parameter)
+    {
+        var xmlDoc = await XDocument.LoadAsync(context.Request.Body, LoadOptions.None, context.RequestAborted);
+        var serializer = new XmlSerializer(typeof(Todo));
+        return (Todo?)serializer.Deserialize(xmlDoc.CreateReader());
+    }
+```
+
+If the endpoint doesn't define any parameters bound to the request body, use the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> extension method to specify the content type that the endpoint accepts.
+
+If you specify <AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Accepts%2A> multiple times, only metadata from the last one is used -- they aren't combined.
+
+##### [Controllers](#tab/controllers)
+
+In controller-based apps, the content type(s) for the request body in the generated OpenAPI document are determined from the type of the parameter that is bound to the request body, the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> types configured in the application, or by a [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute on the route handler method.
+
+ASP.NET Core uses an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> to deserialize a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body.
+InputFormatters are configured in the <xref:Microsoft.AspNetCore.Mvc.MvcOptions> passed to the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> extension method for the app's service collection.
+Each input formatter declares the content types it can handle, in its <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.SupportedMediaTypes> property, and the type(s) of body content it can handle, with its <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> method.
+
+ASP.NET Core MVC includes built-in input formatters for JSON and XML, though only the JSON input formatter is enabled by default.
+The built-in JSON input formatter supports the `application/json`, `text/json`, and `application/*+json` content types, and the built-in XML input formatter supports the `application/xml`, `text/xml`, and `application/*+xml` content types.
+
+By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body may be any content type accepted by an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> for the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter type. For a request body with [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter(s) the default content types are `multipart/form-data` or `application/x-www-form-urlencoded`.These content types will be included in the generated OpenAPI document if the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute is not specified on the route handler method.
+
+The content type(s) accepted by a route handler can be restricted using a [filter](xref:mvc/controllers/filters) on the endpoint (action scope).
+The [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute adds an action scope filter to the endpoint that restricts the content types that a route handler will accept.
+In this case, the requestBody in the generated OpenAPI document will include only the content type(s) specified in the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute.
+
+A [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute can't add support for a content type that doesn't have an associated input formatter, and the generated OpenAPI document doesn't include any content types that don't have an associated input formatter.
+
+For content types other than JSON or XML, you need to create a custom input formatter.
+For more information and examples, see [Custom formatters in ASP.NET Core Web API](xref:web-api/advanced/custom-formatters).
+
+If the route handler doesn't have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameter, the route handler might read the request body directly from the `Request.Body` stream and might use the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute to restrict the content types allowed, but no requestBody is generated in the OpenAPI document.
+
+---
 
 #### Describe response types
 
@@ -277,21 +337,21 @@ The specific mechanisms for setting response metadata depend on the type of app 
 
 In Minimal API apps, ASP.NET Core can extract the response metadata added by extension methods on the endpoint, attributes on the route handler, and the return type of the route handler.
 
-* The [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A) extension method can be used on the endpoint to specify the status code, the type of the response body, and content type(s) of a response from an endpoint.
-* The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or [`ProducesResponseTypeAttribute`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601) attribute can be used to specify the type of the response body.
-* A route handler can be used to return a type that implements [`IEndpointMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider) to specify the type and content-type(s) of the response body.
-* The [`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A) extension method on the endpoint can be used to specify the status code and content-type(s) of an error response.
+* The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can be used on the endpoint to specify the status code, the type of the response body, and content type(s) of a response from an endpoint.
+* The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute can be used to specify the type of the response body.
+* A route handler can be used to return a type that implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> to specify the type and content-type(s) of the response body.
+* The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension method on the endpoint can be used to specify the status code and content-type(s) of an error response.
 
-Note that the [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A)  and [`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A) extension methods are supported on both [`RouteHandlerBuilder`](xref:Microsoft.AspNetCore.Builder.RouteHandlerBuilder) and on [`RouteGroupBuilder`](xref:Microsoft.AspNetCore.Routing.RouteGroupBuilder). This allows, for example, a common set of error responses to be defined for all operations in a group.
+Note that the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A>  and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A> extension methods are supported on both <xref:Microsoft.AspNetCore.Builder.RouteHandlerBuilder> and on <xref:Microsoft.AspNetCore.Routing.RouteGroupBuilder>. This allows, for example, a common set of error responses to be defined for all operations in a group.
 
 When not specified by one of the preceding strategies, the:
 * Status code for the response defaults to 200.
-* Schema for the response body can be inferred from the implicit or explicit return type of the endpoint method, for example, from `T` in [`Task`](xref:System.Threading.Tasks.Task%601); otherwise, it's considered to be unspecified.
+* Schema for the response body can be inferred from the implicit or explicit return type of the endpoint method, for example, from `T` in <xref:System.Threading.Tasks.Task%601>; otherwise, it's considered to be unspecified.
 * Content-type for the specified or inferred response body is "application/json".
 
-In Minimal APIs, the [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A) extension method and the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute only set the response metadata for the endpoint. They do not modify or constrain the behavior of the endpoint, which may return a different status code or response body type than specified by the metadata, and the content-type is determined by the return type of the route handler method, irrespective of any content-type specified in attributes or extension methods.
+In Minimal APIs, the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method and the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute only set the response metadata for the endpoint. They do not modify or constrain the behavior of the endpoint, which may return a different status code or response body type than specified by the metadata, and the content-type is determined by the return type of the route handler method, irrespective of any content-type specified in attributes or extension methods.
 
-The [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A) extension method can specify an endpoint's response type, with a default status code of 200 and a default content type of `application/json`. The following example illustrates this:
+The <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method can specify an endpoint's response type, with a default status code of 200 and a default content type of `application/json`. The following example illustrates this:
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
@@ -306,7 +366,7 @@ app.MapGet("/todos",
     async (TodoDb db) => await db.Todos.ToListAsync());
 ```
 
-Using [`TypedResults`](xref:Microsoft.AspNetCore.Http.TypedResults) in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
+Using <xref:Microsoft.AspNetCore.Http.TypedResults> in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the following code automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) =>
@@ -316,7 +376,7 @@ app.MapGet("/todos", async (TodoDb db) =>
 });
 ```
 
-Only return types that implement [`IEndpointMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider) create a `responses` entry in the OpenAPI document. The following is a partial list  of some of the [`TypedResults`](xref:Microsoft.AspNetCore.Http.TypedResults) helper methods that produce a `responses` entry:
+Only return types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> create a `responses` entry in the OpenAPI document. The following is a partial list  of some of the <xref:Microsoft.AspNetCore.Http.TypedResults> helper methods that produce a `responses` entry:
 
 | TypedResults helper method | status code |
 | -------------------------- | ----------- |
@@ -340,9 +400,9 @@ A class can be implemented to set the endpoint metadata and return it from the r
 
 When setting the response type for endpoints that may return a ProblemDetails response, the following can be used to add the appropriate response metadata for the endpoint:
 
-* [`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A)
-* [`ProducesValidationProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A) extension method.
-* [`TypedResults`](xref:Microsoft.AspNetCore.Http.TypedResults) with a status code in the (400-499) range.
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A>
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem%2A> extension method.
+* <xref:Microsoft.AspNetCore.Http.TypedResults> with a status code in the (400-499) range.
 
 For more information on how to configure a Minimal API app to return ProblemDetails responses, see <xref:fundamentals/minimal-apis/handle-errors>.
 
@@ -350,15 +410,15 @@ For more information on how to configure a Minimal API app to return ProblemDeta
 
 If an endpoint can return different response types in different scenarios, you can provide metadata in the following ways:
 
-* Call the [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A) extension method multiple times, as shown in the following example:
+* Call the <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> extension method multiple times, as shown in the following example:
 
   [!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
-* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and [`TypedResults`](xref:Microsoft.AspNetCore.Http.TypedResults) in the body of the handler, as shown in the following example:
+* Use <xref:Microsoft.AspNetCore.Http.HttpResults.Results%606> in the signature and <xref:Microsoft.AspNetCore.Http.TypedResults> in the body of the handler, as shown in the following example:
 
   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
 
-  The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement [`IEndpointMetadataProvider`](xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider) will contribute to the endpoint’s metadata.
+  The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> will contribute to the endpoint’s metadata.
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
@@ -366,18 +426,18 @@ If an endpoint can return different response types in different scenarios, you c
 
 In controller-based apps, ASP.NET Core can extract the response metadata from the action method signature, attributes, and conventions. 
 
-* You can use the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or [`ProducesResponseTypeAttribute`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601) attribute to specify the status code, the type of the response body, and content type(s) of a response from an action method.
-* You can use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or [`ProducesAttribute`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601) attribute to specify the type of the response body.
+* You can use the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attribute to specify the status code, the type of the response body, and content type(s) of a response from an action method.
+* You can use the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attribute to specify the type of the response body.
 * You can use the [`[ProducesDefaultResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesDefaultResponseTypeAttribute) attribute to specify the response body type for the "default" response.
 * You can use the [`[ProducesErrorResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesErrorResponseTypeAttribute) attribute to specify the response body type for an error response. However, be aware that this is only complements the status code and content type(s) specified by an [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute with a 4XX status code.
 
-Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or [`ProducesAttribute`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601) attributes may be applied to an action method, but multiple [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or [`ProducesResponseTypeAttribute`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601) attributes with different status codes may be applied to a single action method.
+Only one [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute%601> attributes may be applied to an action method, but multiple [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) or <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute%601> attributes with different status codes may be applied to a single action method.
 
 All of the above attributes can be applied to individual action methods or to the controller class where it applies to all action methods in the controller.
 
 When not specified by an attribute:
 * the status code for the response defaults to 200,
-* the schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in [`ActionResult`](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), but otherwise is considered to be not specified,
+* the schema for the response body of 2xx responses may be inferred from the return type of the action method, e.g. from `T` in <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, but otherwise is considered to be not specified,
 * the schema for the response body of 4xx responses is inferred to be a problem details object,
 * the schema for the response body of 3xx and 5xx responses is considered to be not specified,
 * the content-type for the response body can be inferred from the return type of the action method and the set of output formatters.
@@ -409,7 +469,7 @@ The mechanism for specifying an endpoint that should be excluded depends on the 
 
 Minimal APIs support two strategies for excluding a given endpoint from the OpenAPI document:
 
-* [`ExcludeFromDescription`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A) extension method
+* <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription%2A> extension method
 * [`[ExcludeFromDescription]`](xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute) attribute
 
 The following sample demonstrates the different strategies for excluding a given endpoint from the generated OpenAPI document.
@@ -443,9 +503,9 @@ The following example demonstrates how to exclude an endpoint from the generated
 C# classes or records used in request or response bodies are represented as schemas
 in the generated OpenAPI document.
 By default, only public properties are represented in the schema, but there are
-[`JsonSerializerOptions`](xref:System.Text.Json.JsonSerializerOptions) to also create schema properties for fields.
+<xref:System.Text.Json.JsonSerializerOptions> to also create schema properties for fields.
 
-When the [`PropertyNamingPolicy`](xref:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy) is set to camel-case (this is the default
+When the <xref:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy> is set to camel-case (this is the default
 in ASP.NET web applications), property names in a schema are the camel-case form
 of the class or record property name.
 The [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) can be used on an individual property to specify the name
@@ -506,18 +566,18 @@ Properties can also be marked as `required` with the [required](/dotnet/csharp/l
 
 ##### enum
 
-Enum types in C# are integer-based, but can be represented as strings in JSON with a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) and a [`JsonStringEnumConverter`](xref:System.Text.Json.Serialization.JsonStringEnumConverter). When an enum type is represented as a string in JSON, the generated schema will have an `enum` property with the string values of the enum.
+Enum types in C# are integer-based, but can be represented as strings in JSON with a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) and a <xref:System.Text.Json.Serialization.JsonStringEnumConverter>. When an enum type is represented as a string in JSON, the generated schema will have an `enum` property with the string values of the enum.
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
 **Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) does not set the `enum` values of a property.
 
 ##### nullable
 
-Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the [`Json`](xref:System.Text.Json) deserializer, which accepts `null` as a valid value for a nullable property.
+Properties defined as a nullable value or reference type have `nullable: true` in the generated schema. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which accepts `null` as a valid value for a nullable property.
 
 ##### additionalProperties
 
-Schemas are generated without an `additionalProperties` assertion by default, which implies the default of `true`. This is consistent with the default behavior of the [`Json`](xref:System.Text.Json) deserializer, which silently ignores additional properties in a JSON object.
+Schemas are generated without an `additionalProperties` assertion by default, which implies the default of `true`. This is consistent with the default behavior of the <xref:System.Text.Json> deserializer, which silently ignores additional properties in a JSON object.
 
 If the additional properties of a schema should only have values of a specific type, define the property or class as a `Dictionary<string, type>`. The key type for the dictionary must be `string`. This generates a schema with `additionalProperties` specifying the schema for "type" as the required value types.
 
@@ -573,7 +633,7 @@ builder.Services.AddOpenApi(options =>
 
 ### Customize the OpenAPI endpoint route
 
-By default, the OpenAPI endpoint registered via a call to [`MapOpenApi`](xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A) exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
+By default, the OpenAPI endpoint registered via a call to <xref:Microsoft.AspNetCore.Builder.OpenApiEndpointRouteBuilderExtensions.MapOpenApi%2A> exposes the document at the `/openapi/{documentName}.json` endpoint. The following code demonstrates how to customize the route at which the OpenAPI document is registered:
 
 ```csharp
 app.MapOpenApi("/openapi/{documentName}/openapi.json");
@@ -617,17 +677,17 @@ Transformers fall into three categories:
 * Operation transformers apply to each individual operation. Each individual operation is a combination of path and HTTP method. These can be used to modify parameters or responses on endpoints.
 * Schema transformers apply to each schema in the document. These can be used to modify the schema of request or response bodies, or any nested schemas.
 
-Transformers can be registered onto the document by calling the [`AddDocumentTransformer`](xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer%2A) method on the [`OpenApiOptions`](xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions) object. The following snippet shows different ways to register transformers onto the document:
+Transformers can be registered onto the document by calling the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions.AddDocumentTransformer%2A> method on the <xref:Microsoft.AspNetCore.OpenApi.OpenApiOptions> object. The following snippet shows different ways to register transformers onto the document:
 
 * Register a document transformer using a delegate.
-* Register a document transformer using an instance of [`IOpenApiDocumentTransformer`](xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer).
-* Register a document transformer using a DI-activated [`IOpenApiDocumentTransformer`](xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer).
+* Register a document transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer>.
+* Register a document transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiDocumentTransformer>.
 * Register an operation transformer using a delegate.
-* Register an operation transformer using an instance of [`IOpenApiOperationTransformer`](xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer).
-* Register an operation transformer using a DI-activated [`IOpenApiOperationTransformer`](xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer).
+* Register an operation transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer>.
+* Register an operation transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiOperationTransformer>.
 * Register a schema transformer using a delegate.
-* Register a schema transformer using an instance of [`IOpenApiSchemaTransformer`](xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer).
-* Register a schema transformer using a DI-activated [`IOpenApiSchemaTransformer`](xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer).
+* Register a schema transformer using an instance of <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer>.
+* Register a schema transformer using a DI-activated <xref:Microsoft.AspNetCore.OpenApi.IOpenApiSchemaTransformer>.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_transUse&highlight=8-19)]
 
@@ -642,14 +702,14 @@ Transformers execute in first-in first-out order based on registration. In the f
 Document transformers have access to a context object that includes:
 
 * The name of the document being modified.
-* The [`ApiDescriptionGroups`](xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider.ApiDescriptionGroups) associated with that document.
-* The [`IServiceProvider`](xref:System.IServiceProvider) used in document generation.
+* The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescriptionGroupCollectionProvider.ApiDescriptionGroups> associated with that document.
+* The <xref:System.IServiceProvider> used in document generation.
 
 Document transformers can also mutate the OpenAPI document that is generated. The following example demonstrates a document transformer that adds some information about the API to the OpenAPI document.
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer1)]
 
-Service-activated document transformers can utilize instances from DI to modify the app. The following sample demonstrates a document transformer that uses the [`IAuthenticationSchemeProvider`](xref:Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider) service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
+Service-activated document transformers can utilize instances from DI to modify the app. The following sample demonstrates a document transformer that uses the <xref:Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider> service from the authentication layer. It checks if any JWT bearer-related schemes are registered in the app and adds them to the OpenAPI document's top level:
 
 [!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_documenttransformer2)]
 
@@ -670,8 +730,8 @@ Operations are unique combinations of HTTP paths and methods in an OpenAPI docum
 Operation transformers have access to a context object which contains:
 
 * The name of the document the operation belongs to.
-* The [`ApiDescription`](xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription) associated with the operation.
-* The [`IServiceProvider`](xref:System.IServiceProvider) used in document generation.
+* The <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> associated with the operation.
+* The <xref:System.IServiceProvider> used in document generation.
 
 For example, the following operation transformer adds `500` as a response status code supported by all operations in the document.
 
@@ -688,7 +748,7 @@ Schema transformers have access to a context object which contains:
 
 * The name of the document the schema belongs to.
 * The JSON type information associated with the target schema.
-* The [`IServiceProvider`](xref:System.IServiceProvider) used in document generation.
+* The <xref:System.IServiceProvider> used in document generation.
 
 For example, the following schema transformer sets the `format` of decimal types to `decimal` instead of `double`:
 
@@ -702,4 +762,5 @@ For example, the following schema transformer sets the `format` of decimal types
 ::: moniker-end
 
 [!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
+
 
