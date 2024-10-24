@@ -1,0 +1,54 @@
+﻿@page
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string? GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(this.HttpContext).RequestToken;
+    }
+}
+@model OpeniddictServer.Areas.Identity.Pages.Account.MfaModel
+@{
+    ViewData["Title"] = "Login with Fido2 MFA";
+}
+
+<h4>@ViewData["Title"]</h4>
+<div class="section">
+    <div class="container">
+        <h1 class="title is-1">2FA/MFA</h1>
+        <div class="content"><p>This is scenario where we just want to use FIDO as the MFA. The user register and logins with their username and password. For demo purposes, we trigger the MFA registering on sign up.</p></div>
+        <div class="notification is-danger" style="display:none">
+            Please note: Your browser does not seem to support WebAuthn yet. <a href="https://caniuse.com/#search=webauthn" target="_blank">Supported browsers</a>
+        </div>
+
+        <div class="columns">
+            <div class="column is-4">
+
+                <h3 class="title is-3">Fido2 2FA</h3>
+                <form action="/LoginFido2Mfa" method="post" id="signin">
+                    <input type="hidden" id="RequestVerificationToken" name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+                    <div class="field">
+                        <div class="control">
+                            <button class="btn btn-primary">2FA with FIDO2 device</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="fido2logindisplay"></div>
+
+    </div>
+</div>
+
+<div style="display:none" id="fido2TapKeyToLogin">FIDO2_TAP_YOUR_SECURITY_KEY_TO_LOGIN</div>
+<div style="display:none" id="fido2CouldNotVerifyAssertion">FIDO2_COULD_NOT_VERIFY_ASSERTION</div>
+<div style="display:none" id="fido2ReturnUrl">@Model.ReturnUrl</div>
+
+
+<script src="~/js/helpers.js"></script>
+<script src="~/js/instant.js"></script>
+<script src="~/js/mfa.login.js"></script>

@@ -1,0 +1,14 @@
+﻿@model ErrorViewModel
+    
+<div class="jumbotron">
+    <h2>Ooooops, something went really bad! :(</h2>
+    <p class="lead text-left">
+        @if (!string.IsNullOrEmpty(Model.Error)) {
+            <strong>@Model.Error</strong>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.ErrorDescription)) {
+            <small>@Model.ErrorDescription</small>
+        }
+    </p>
+</div>
