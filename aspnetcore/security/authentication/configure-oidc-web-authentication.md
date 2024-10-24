@@ -38,7 +38,7 @@ OpenID Connect comes in many variations and all server implementations have slig
 > [!NOTE]
 > From .NET 9, [OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126) is used per default, if the OpenID Connect server supports this. This is a three step flow and not a two step flow as shown above. (User Info request is an optional step.)
 
-## Create an Open ID Connect Code Flow client using Razor Pages
+## Create an Open ID Connect code flow client using Razor Pages
 
 The following section shows how to implement an OpenID Connect client in an empty ASP.NET Core Razor page project. The same logic can be applied to any ASP.NET Core web project with only the UI integration being different.
 
@@ -48,7 +48,7 @@ Add the [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.or
 
 ### Setup the OpenID Connect client
 
-Configure the Startup authentication in the project using the builder.Services. The configuration is dependent on the OpenID Connect server. Each OpenID Connect server requires small differences in the setup.
+Add the authentication to the web application using the builder.Services in the **Program.cs** file. The configuration is dependent on the OpenID Connect server. Each OpenID Connect server requires small differences in the setup.
 
 ```csharp
 builder.Services.AddAuthentication(options =>
