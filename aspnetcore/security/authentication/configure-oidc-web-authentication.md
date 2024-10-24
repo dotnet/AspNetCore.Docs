@@ -40,7 +40,7 @@ OpenID Connect comes in many variations and all server implementations have slig
 
 ## Create an Open ID Connect Code Flow client using Razor Pages
 
-The following section shows how to implement an OpenID connect client in an empty ASP.NET Core Razor page project. The same logic can be applied to any ASP.NET Core web project with only the UI integration being different.
+The following section shows how to implement an OpenID Connect client in an empty ASP.NET Core Razor page project. The same logic can be applied to any ASP.NET Core web project with only the UI integration being different.
 
 ### Add OpenID Connect support
 
