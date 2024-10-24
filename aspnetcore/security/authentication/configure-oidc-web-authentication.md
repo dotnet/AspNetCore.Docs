@@ -306,7 +306,7 @@ Refer to the following document:
 
 Refer to the following document:
 
-[Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:sblazor/security/blazor-web-app-oidc)
+[Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:blazor/security/blazor-web-app-oidc)
 
 ## Standards
 
