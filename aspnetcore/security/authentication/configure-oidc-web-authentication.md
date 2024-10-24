@@ -77,7 +77,7 @@ builder.Services.AddAuthentication(options =>
 });
 ```
 
-See [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:core/blazor/security/blazor-web-app-with-oidc) for details on the different OpenID Connect options.
+See [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:blazor/security/blazor-web-app-with-oidc) for details on the different OpenID Connect options.
 
 See [Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims) for the different claims mapping possibilities.
 
@@ -252,7 +252,7 @@ The Microsoft.Identity.Web Nuget packages is a Microsoft specific client built o
 
 ## Using third party OpenID Connect provider clients
 
-Many OpenID Connect server implementations create Nuget packages which are optimized for the same OpenID Connect implementation. These packages implement the OpenID connect client specifics with the extras required by the specific OpenID Connect server. Microsoft.Identity.Web is one example of this. 
+Many OpenID Connect server implementations create Nuget packages which are optimized for the same OpenID Connect implementation. These packages implement the OpenID Connect client specifics with the extras required by the specific OpenID Connect server. Microsoft.Identity.Web is one example of this. 
 
 If implementing multiple OpenID Connect clients from different OpenID Connect servers in a single application, it is normally better to revert to the default ASP.NET Core implementation as the different clients overwrite some options which affect the other clients. 
 
