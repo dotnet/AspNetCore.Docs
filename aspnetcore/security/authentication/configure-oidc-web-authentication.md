@@ -12,7 +12,7 @@ uid: security/authentication/configure-oidc-web-authentication
 
 By [Damien Bowden](https://github.com/damienbod)
 
-[View or download sample code](~/security/authentication/configure-oidc-web-authentication/sample/oidc-net8)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/configure-oidc-web-authentication/sample/oidc-net8)
 
 This article covers the following areas:
 
@@ -77,7 +77,7 @@ builder.Services.AddAuthentication(options =>
 });
 ```
 
-See [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:blazor/security/blazor-web-app-with-oidc) for details on the different OpenID Connect options.
+See [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](xref:blazor/security/blazor-web-app-oidc) for details on the different OpenID Connect options.
 
 See [Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims) for the different claims mapping possibilities.
 
