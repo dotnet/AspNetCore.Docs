@@ -138,7 +138,7 @@ builder.services.AddRazorPages().AddMvcOptions(options =>
 });
 ```
 
-### Add a new Logout.cshtml and SignedOut.cshtml Razor page in the project
+### Add a new Logout.cshtml and SignedOut.cshtml Razor page to the project
 
 Implement a default sign out page and change the Logout razor page code with this:
 
