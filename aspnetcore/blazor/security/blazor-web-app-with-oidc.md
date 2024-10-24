@@ -234,7 +234,17 @@ For more information on (web) API calls using a service abstractions in Blazor W
 
 The `BlazorWebAppOidc.Client` project is the client-side project of the Blazor Web App.
 
+:::moniker range=">= aspnetcore-9.0"
+
+The client calls `AddAuthenticationStateDeserialization` to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 The `PersistentAuthenticationStateProvider` class (`PersistentAuthenticationStateProvider.cs`) is a client-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that determines the user's authentication state by looking for data persisted in the page when it was rendered on the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+
+:::moniker-end
 
 If the user needs to log in or out, a full page reload is required.
 
@@ -506,7 +516,17 @@ For more information on (web) API calls using a service abstractions in Blazor W
 
 The `BlazorWebAppOidc.Client` project is the client-side project of the Blazor Web App.
 
+:::moniker range=">= aspnetcore-9.0"
+
+The client calls `AddAuthenticationStateDeserialization` to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-9.0"
+
 The `PersistentAuthenticationStateProvider` class (`PersistentAuthenticationStateProvider.cs`) is a client-side <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that determines the user's authentication state by looking for data persisted in the page when it was rendered on the server. The authentication state is fixed for the lifetime of the WebAssembly application.
+
+:::moniker-end
 
 If the user needs to log in or out, a full page reload is required.
 
