@@ -1,5 +1,5 @@
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
+<!-- ms.sfi.ropc: t -->
 <a name="kestrel"></a>
 
 ## Kestrel endpoint configuration
@@ -148,6 +148,8 @@ Index: 5  Value: value5
 Custom configuration providers aren't required to implement array binding.
 
 ## Custom configuration provider
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 The sample app demonstrates how to create a basic configuration provider that reads configuration key-value pairs from a database using [Entity Framework (EF)](/ef/core/).
 
