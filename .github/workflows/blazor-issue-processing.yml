@@ -2,10 +2,11 @@ name: Issue processing
 on:
   issues:
     types:
-      - labeled
+      - opened
+    paths:
+      - 'aspnetcore/blazor/**'
 jobs:
-  process-grpc-issue:
-    if: github.event.label.name == 'grpc/subsvc'
+  process-blazor-issue:
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -13,49 +14,36 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            await github.rest.issues.addLabels({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["gRPC"]
+              body: `### 🍂🎃🏮 *Autumn Skies and Pumpkin Pies!* 🥧☕🍂
+            Stand by! A green dinosaur 🦖 will arrive shortly to assist.`
             })
-
-  process-signalr-issue:
-    if: github.event.label.name == 'aspnetcore-signalr/subsvc'
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["SignalR"]
+              labels: ["Blazor"]
             })
-
-  process-blazorhybrid-issue:
-    if: github.event.label.name == 'blazor-hybrid/subsvc'
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["Blazor Hybrid"]
+              labels: ["aspnet-core/svc"]
+            })
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["blazor/subsvc"]
             })
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              assignees: ["guardrex", "BethMassi"]
+              assignees: ["guardrex"]
             })
             await github.rest.issues.removeLabel({
               issue_number: context.issue.number,
