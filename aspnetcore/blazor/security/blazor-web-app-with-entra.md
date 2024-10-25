@@ -159,7 +159,7 @@ The important changes to the `LogInOrOut` component are demonstrated in the foll
 
 To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret.
 
-The following `GetSecretFromKeyVault` method retrieves a secret from a key vault using the Entra tenant ID. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
+The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
 
 `Helpers/AzureHelper`:
 
@@ -223,7 +223,7 @@ Example:
 "SecretName": "BlazorSample_Entra"
 ```
 
-Configuration is used to facilitate supplying values based on the app's environmental configuration files. For example, `appsettings.Development.json` for Development, `appsettings.Staging.json` for Staging, and `appsettings.Production.json` for Production can use dedicated key vaults for each environment.
+Configuration is used to facilitate supplying values based on the app's environmental configuration files. For example, `appsettings.Development.json` for Development, `appsettings.Staging.json` for Staging, and `appsettings.Production.json` for Production can use dedicated key vaults and secret names for each environment.
 
 ## Troubleshoot
 
