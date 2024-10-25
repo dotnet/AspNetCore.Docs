@@ -132,7 +132,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 ---
 
-[!INCLUDE [managed-identities-test-non-production](~/core/includes/managed-identities-test-non-production.md)]
+[!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
 
 ### Files created and updated
 
