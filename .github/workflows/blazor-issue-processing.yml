@@ -2,10 +2,10 @@ name: Issue processing
 on:
   issues:
     types:
-      - opened
+      - labeled
 jobs:
   process-blazor-issue:
-    if: contains(github.event.comment.body, 'aspnet/core/blazor')
+    if: github.event.label.name == 'blazor/subsvc'
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -25,18 +25,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               labels: ["Blazor"]
-            })
-            await github.rest.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ["aspnet-core/svc"]
-            })
-            await github.rest.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ["blazor/subsvc"]
             })
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
