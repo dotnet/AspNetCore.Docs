@@ -5,7 +5,7 @@ on:
       - opened
 jobs:
   process-blazor-issue:
-    if: contains(github.event.issue.comment.body, 'aspnet/core/blazor')
+    if: contains(github.event.comment.body, 'aspnet/core/blazor')
     runs-on: ubuntu-latest
     permissions:
       issues: write
