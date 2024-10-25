@@ -89,9 +89,9 @@ var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddOpenApi(options =>
 {
-    options.UseSchemaTransformer((schema, context, cancellationToken) =>
+    options.AddSchemaTransformer((schema, context, cancellationToken) =>
     {
-        if (context.Type == typeof(Todo))
+        if (context.JsonTypeInfo.Type == typeof(Todo))
         {
             schema.Example = new OpenApiObject
             {
