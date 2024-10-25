@@ -153,6 +153,78 @@ The important changes to the `LogInOrOut` component are demonstrated in the foll
 </div>
 ```
 
+## Obtain the client secret from Azure Key Vault
+
+[Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app when hosting in [Microsoft Azure](https://azure.microsoft.com/).
+
+To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret.
+
+The following `GetSecretFromKeyVault` method retrieves a secret from a key vault using the Entra tenant ID. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
+
+`Helpers/AzureHelper`:
+
+```csharp
+using Azure;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+
+namespace BlazorSample.Helpers;
+
+public static class AzureHelper
+{
+    public static string GetKeyVaultSecret(string tenantId, string vaultUri, string secretName)
+    {
+        DefaultAzureCredentialOptions options = new()
+        {
+            // Specify the tenant ID to use the dev credentials when running the app locally
+            VisualStudioTenantId = tenantId,
+            SharedTokenCacheTenantId = tenantId
+        };
+
+        var client = new SecretClient(new Uri(vaultUri), new DefaultAzureCredential(options));
+        var secret = client.GetSecretAsync(secretName).Result;
+
+        return secret.Value.Value;
+    }
+}
+```
+
+In the server project's `Program` file after Microsoft identity platform services are added (`AddMicrosoftIdentityWebApp`), obtain and apply the client secret using the following code:
+
+```csharp
+string tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
+string vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
+string secretName = builder.Configuration.GetValue<string>("AzureAd:SecretName")!;
+
+builder.Services.Configure<MicrosoftIdentityOptions>(
+   options =>
+   {
+       options.ClientSecret = 
+           AzureHelper.GetKeyVaultSecret(tenantId, vaultUri, secretName);
+   });
+```
+
+Supply the vault URI and secret name from configuration.
+
+In the `AzureAd` section of `appsettings.json`, add configuration keys and values:
+
+* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
+* The `{SECRET NAME}` placeholder is the secret name.
+
+```json
+"VaultUri": "{VAULT URI}",
+"SecretName": "{SECRET NAME}"
+```
+
+Example:
+
+```json
+"VaultUri": "https://contoso.vault.azure.net/",
+"SecretName": "BlazorSample_Entra"
+```
+
+Configuration is used to facilitate supplying values based on the app's environmental configuration files. For example, `appsettings.Development.json` for Development, `appsettings.Staging.json` for Staging, and `appsettings.Production.json` for Production can use dedicated key vaults for each environment.
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-server.md)]
