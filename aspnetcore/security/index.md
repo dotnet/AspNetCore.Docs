@@ -61,7 +61,7 @@ Managed identities are a secure way to authenticate to services without needing 
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
 * [Secure authentication flows](/entra/identity-platform/authentication-flows-app-scenarios#web-app-that-signs-in-a-user)
 
-When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). We recommend environment variables not be used to store a production connection string as it's not the most secure approach.
+When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. We recommend environment variables not be used to store a production connection string as it's not the most secure approach.
 
 For more information, see:
 
