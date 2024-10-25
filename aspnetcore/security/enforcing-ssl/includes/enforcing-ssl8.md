@@ -225,7 +225,7 @@ Create a policy file (`policies.json`) at:
 
 * Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
-* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this article.
+* Linux: See [Trust the certificate with Firefox on Linux](/aspnet/core/security/enforcing-ssl?tabs=visual-studio%2Clinux-ubuntu%2Clinux-sles#trust-the-certificate-with-firefox-on-linux) in this article.
 
 Add the following JSON to the Firefox policy file:
 
@@ -324,7 +324,7 @@ For chromium browsers on Linux:
 
 * Exit and restart the browser.
 
-<a name="trust-ff-linux"></a>
+<a name="trust-ff-linux8"></a>
 
 #### Trust the certificate with Firefox on Linux
 
