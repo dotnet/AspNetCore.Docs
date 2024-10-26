@@ -28,7 +28,7 @@ Minimal endpoints support the following types of return values:
 
 Consider the following route handler, which returns a `Hello world` text. 
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_01":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_01":::
 
 The `200` status code is returned with `text/plain` Content-Type header and the following content.
 
@@ -44,7 +44,7 @@ Hello World
 
 Consider the following route handler, which returns an anonymous type containing a `Message` string property.
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_02":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_02":::
 
 The `200` status code is returned with `application/json` Content-Type header and the following content.
 
@@ -114,11 +114,11 @@ This has the added benefit of providing compile-time checking that a route handl
 
 Consider the following endpoint, for which a `400 BadRequest` status code is returned when the `orderId` is greater than `999`. Otherwise, it produces a `200 OK` with the expected content.
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_03":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_03":::
 
 In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you can return the `Results<T1, Tn>` union type instead, as shown in the following code.
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_04":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_04":::
 
 <a name="binr7"></a>
 
@@ -130,7 +130,7 @@ The following sections demonstrate the usage of the common result helpers.
 
 #### JSON
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_05":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_05":::
 
 <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
 
@@ -138,17 +138,17 @@ The following sections demonstrate the usage of the common result helpers.
 
 #### Custom Status Code
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_06":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_06":::
 
 #### Internal Server Error
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_07":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_07":::
 
 The preceding example returns a 500 status code.
 
 #### Text
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_08":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_08":::
 
 <a name="stream7"></a>
 
@@ -170,11 +170,11 @@ The following example streams a video from an Azure Blob:
 
 #### Redirect
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_09":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_09":::
 
 #### File
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_10":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_10":::
 
 <a name="httpresultinterfaces7"></a>
 
@@ -215,7 +215,7 @@ The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Ht
 
 An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
-:::code language="csharp" source="~/fundamentals/openapi/samples/9.x/Snippets/Program.cs" id="snippet_11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/9.0-samples/Snippets/Program.cs" id="snippet_11":::
 
 ## Configure JSON serialization options
 

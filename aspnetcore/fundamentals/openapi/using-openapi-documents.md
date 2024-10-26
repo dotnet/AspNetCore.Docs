@@ -28,7 +28,7 @@ The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's
 
 [Scalar](https://scalar.com/) is an open-source interactive document UI for OpenAPI. Scalar can integrate with the OpenAPI endpoint provided by ASP.NET Core. To configure Scalar, install the `Scalar.AspNetCore` package.
 
-[!code-csharp[](~/fundamentals/minimal-apis/9.0-samples/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
+[!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_openapiwithscalar)]
 
 ## Lint generated OpenAPI documents with Spectral
 
