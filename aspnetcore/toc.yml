@@ -878,6 +878,8 @@ items:
             uid: fundamentals/openapi/aspnetcore-openapi
           - name: Use OpenAPI documents
             uid: fundamentals/openapi/using-openapi-documents
+          - name: Generate OpenAPI documents at build-time
+            uid: fundamentals/openapi/buildtime-openapi
           - name: OpenAPI tools
             uid: fundamentals/openapi/openapi-tools
           - name: Swagger / NSwag
