@@ -11,13 +11,13 @@ uid: fundamentals/openapi/buildtime-openapi
 
 # Generate OpenAPI documents at build-time
 
-In a typical web applications, OpenAPI documents are generated at run-time and served via an HTTP request to the application server.
+In typical web applications, OpenAPI documents are generated at run-time and served via an HTTP request to the application server.
 
-In some scenarios, it is helpful to generate the OpenAPI document during the application's build step. These scenarios including:
+In some scenarios, it's helpful to generate the OpenAPI document during the application's build step. These scenarios include:
 
-- Generating OpenAPI documentation that is committed into source control
-- Generating OpenAPI documentation that is used for spec-based integration testing
-- Generating OpenAPI documentation that is served statically from the web server
+- Generating OpenAPI documentation that is committed into source control.
+- Generating OpenAPI documentation that is used for spec-based integration testing.
+- Generating OpenAPI documentation that is served statically from the web server.
 
 To add support for generating OpenAPI documents at build time, install the `Microsoft.Extensions.ApiDescription.Server` package:
 
@@ -42,7 +42,7 @@ Upon installation, this package will automatically generate the Open API documen
 
 ```cli
 $ dotnet build
-$ cat bin/Debub/net9.0/{ProjectName}.json
+$ cat bin/Debug/net9.0/{ProjectName}.json
 ```
 
 ## Customizing build-time document generation
@@ -83,8 +83,8 @@ Some applications may be configured to emit multiple OpenAPI documents, for vari
 
 Under the hood, build-time OpenAPI document generation functions by launching the application's entrypoint with an inert server implementation. This is a requirement to produce accurate OpenAPI documents since all information in the OpenAPI document cannot be statically analyzed. Because the application's entrypoint is invoked, any logic in the applications' startup will be invoked. This includes code that injects services into the DI container or reads from configuration. In some scenarios, it's necessary to restrict the codepaths that will run when the application's entry point is being invoked from build-time document generation. These scenarios include:
 
-- Not reading from certain configuration strings
-- Not registering database-related services
+- Not reading from certain configuration strings.
+- Not registering database-related services.
 
 In order to restrict these codepaths from being invoked by the build-time generation pipeline, they can be conditioned behind a check of the entry assembly like so:
 
@@ -95,6 +95,6 @@ var builder = WebApplication.CreateBuilder();
 
 if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
 {
-  builders.Services.AddDefaults();
+  builder.Services.AddDefaults();
 }
 ```
