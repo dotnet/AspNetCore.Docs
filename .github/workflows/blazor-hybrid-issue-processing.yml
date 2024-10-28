@@ -5,12 +5,7 @@ on:
       - opened
 jobs:
   process-blazor-issue:
-    if: (contains(github.event.issue.body, 'aspnet/core/blazor') 
-      && !contains(github.event.issue.body, 'aspnet/core/blazor/hybrid'))
-      || contains(github.event.issue.body, 'client-side/dotnet-interop/index.md')
-      || contains(github.event.issue.body, 'client-side/dotnet-interop/wasm-browser-app.md')
-      || contains(github.event.issue.body, 'mvc/views/tag-helpers/built-in/component-tag-helper.md')
-      || contains(github.event.issue.body, 'mvc/views/tag-helpers/built-in/persist-component-state.md')
+    if: contains(github.event.issue.body, 'aspnet/core/blazor/hybrid')
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -18,13 +13,6 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `### 🍂🎃🏮 *Autumn Skies and Pumpkin Pies!* 🥧☕🍂
-            Stand by! A green dinosaur 🦖 will arrive shortly to assist.`
-            })
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -35,19 +23,19 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["blazor/subsvc"]
+              labels: ["blazor-hybrid/subsvc"]
             })
             await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["Blazor"]
+              labels: ["Blazor Hybrid"]
             })
             await github.rest.issues.addAssignees({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              assignees: ["guardrex"]
+              assignees: ["guardrex", "BethMassi"]
             })
             await github.rest.issues.removeLabel({
               issue_number: context.issue.number,
