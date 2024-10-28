@@ -101,10 +101,10 @@ The callback path (`CallbackPath`) must match the redirect URI (login callback p
 
 Create a client secret in the app's Entra ID registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
 
-Use one of the following approaches to supply the client secret to the app:
+Use either or both of the following approaches to supply the client secret to the app:
 
-* [Secret Manager tool](#secret-manager-tool)
-* [Azure Key Vault](#azure-key-vault)
+* [Secret Manager tool](#secret-manager-tool): The Secret Manager tool is only used during local development.
+* [Azure Key Vault](#azure-key-vault): You can store the client secret in a key vault for use in any environment, including the Development environment locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development, which this section explains how to set up.
 
 We strongly recommend that you avoid storing client secrets in project code or configuration files. Use secure authentication flows, such as either of the approaches in this section.
 
