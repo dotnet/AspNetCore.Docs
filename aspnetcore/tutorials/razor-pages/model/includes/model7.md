@@ -202,6 +202,8 @@ In each of the files, append `= default!;` to the `Movie` declaration. For examp
 Fixed in GA per https://github.com/dotnet/Scaffolding/issues/1594#issuecomment-1292422389
 -->
 
+[!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
+
 ### Files created and updated
 
 The scaffold process creates the following files:
