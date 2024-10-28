@@ -46,7 +46,7 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 
 The sample app was built as a reference for server-side Blazor apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations.
 
-The sample demonstrates use of EF Core to handle optimistic concurrency. However, [native database-generated concurrency tokens](/ef/core/saving/concurrency?tabs=fluent-api#native-database-generated-concurrency-tokens) aren't supported for SQLite databases, which is the database provider for the sample app. To demontrate concurrency with the sample app, adopt a differnt database provider that supports database-generated concurrency tokens (for example, the [SQL Server provider](/ef/core/providers/sql-server)).
+The sample demonstrates use of EF Core to handle optimistic concurrency. However, [native database-generated concurrency tokens](/ef/core/saving/concurrency?tabs=fluent-api#native-database-generated-concurrency-tokens) aren't supported for SQLite databases, which is the database provider for the sample app. To demonstrate concurrency with the sample app, adopt a different database provider that supports database-generated concurrency tokens (for example, the [SQL Server provider](/ef/core/providers/sql-server)).
 
 :::moniker range=">= aspnetcore-8.0"
 
