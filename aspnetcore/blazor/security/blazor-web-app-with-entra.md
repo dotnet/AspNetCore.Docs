@@ -112,6 +112,12 @@ We strongly recommend that you avoid storing client secrets in project code or c
 
 The [Secret Manager tool](xref:security/app-secrets) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
 
+The [sample app](#sample-app) has already been initialized for the Secret Manager tool, where a user secrets Id (`<UserSecretsId>`) is already present in the app's project file (`.csproj`). If you're working with an app that hasn't been initialized, use the following command from the server project's directory to establish a user secrets Id:
+
+```dotnetcli
+dotnet user-secrets init
+```
+
 Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
 
 ```dotnetcli
