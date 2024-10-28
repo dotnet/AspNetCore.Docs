@@ -124,11 +124,11 @@ Execute the following command in a command shell from the server project's direc
 dotnet user-secrets set "AzureAd:ClientSecret" "{SECRET}"
 ```
 
-If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
+If using Visual Studio, you can confirm that the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
 ### Azure Key Vault
 
-[Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app when hosting in [Microsoft Azure](https://azure.microsoft.com/).
+[Azure Key Vault](https://azure.microsoft.com/products/key-vault/) provides a safe approach for providing the app's client secret to the app.
 
 To create a key vault and set a client secret, see [About Azure Key Vault secrets (Azure documentation)](/azure/key-vault/secrets/about-secrets), which cross-links resources to get started with Azure Key Vault. To implement the code in this section, record the key vault URI and the secret name from Azure when you create the key vault and secret. When you set the access policy for the secret in the **Access policies** panel:
 
@@ -137,7 +137,7 @@ To create a key vault and set a client secret, see [About Azure Key Vault secret
 
 The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme. If you aren't using Visual Studio, you can use the [Secret Manager tool](#secret-manager-tool) locally to store the secret and use the approach in this section in staging/production when the app is deployed.
 
-`Helpers/AzureHelper`:
+`Helpers/AzureHelper.cs`:
 
 ```csharp
 using Azure;
@@ -191,15 +191,17 @@ if (!context.HostingEnvironment.IsDevelopment())
 }
 ```
 
-In the `AzureAd` section of `appsettings.json`, add the following configuration keys and values:
-
-* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
-* The `{SECRET NAME}` placeholder is the secret name.
+In the `AzureAd` section of `appsettings.json`, add the following `VaultUri` and `SecretName` configuration keys and values:
 
 ```json
 "VaultUri": "{VAULT URI}",
 "SecretName": "{SECRET NAME}"
 ```
+
+In the preceding example:
+
+* The `{VAULT URI}` placeholder is the key vault URI. Include the trailing slash on the URI.
+* The `{SECRET NAME}` placeholder is the secret name.
 
 Example:
 
