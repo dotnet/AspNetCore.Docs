@@ -2,7 +2,7 @@ name: Issue processing
 on:
   issues:
     types:
-      - labeled
+      - opened
 jobs:
   process-blazor-issue:
     if: contains(github.event.issue.body, 'aspnet/core/blazor')
