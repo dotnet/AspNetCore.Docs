@@ -2,6 +2,7 @@
 name: Doc issue
 about: Create an issue to help us improve
 ---
+
 # Before you open an issue
 
 If the issue is with an ASP.NET Core document:
