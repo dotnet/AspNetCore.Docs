@@ -67,7 +67,7 @@ For local development testing, use the [Secret Manager tool](xref:security/app-s
 > [!NOTE]
 > If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The command establishes a user secrets identifier (`<UserSecretsId>` in the app's project file):
+The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
 ```dotnetcli
 dotnet user-secrets init
@@ -329,7 +329,7 @@ For local development testing, use the [Secret Manager tool](xref:security/app-s
 > [!NOTE]
 > If the app uses Microsoft Entra ID or Azure AD B2C, create a client secret in the app's registration in the Entra or Azure portal (**Manage** > **Certificates & secrets** > **New client secret**). Use the **Value** of the new secret in the following guidance.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Execute the following command in a command shell from the server project's directory, such as the Developer PowerShell command shell in Visual Studio. The command establishes a user secrets identifier (`<UserSecretsId>` in the app's project file):
+The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
 
 ```dotnetcli
 dotnet user-secrets init
