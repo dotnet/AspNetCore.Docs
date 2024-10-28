@@ -5,7 +5,7 @@ on:
       - labeled
 jobs:
   process-blazor-issue:
-    if: github.event.label.name == 'blazor/subsvc'
+    if: contains(github.event.issue.body, 'aspnet/core/blazor')
     runs-on: ubuntu-latest
     permissions:
       issues: write
