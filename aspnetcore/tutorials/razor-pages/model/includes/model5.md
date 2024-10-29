@@ -159,6 +159,8 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 ---
 
+[!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
+
 ### Files created and updated
 
 The scaffold process creates the following files:

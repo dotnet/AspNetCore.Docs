@@ -8,6 +8,8 @@ The model classes are known as POCO classes (from "plain-old CLR objects") becau
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).
 
+[!INCLUDE [managed-identities-test-non-production](~/includes/managed-identities-test-non-production.md)]
+
 ## Add a data model
 
 # [Visual Studio](#tab/visual-studio)
