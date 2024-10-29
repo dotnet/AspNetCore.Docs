@@ -103,22 +103,22 @@ Create a client secret in the app's Entra ID registration in the Entra or Azure 
 
 Use either or both of the following approaches to supply the client secret to the app:
 
-* [Secret Manager tool](#secret-manager-tool): The Secret Manager tool is only used during local development.
-* [Azure Key Vault](#azure-key-vault): You can store the client secret in a key vault for use in any environment, including the Development environment locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development, which this section explains how to set up.
+* [Secret Manager tool](#secret-manager-tool): The Secret Manager tool stores private data on the local machine and is only used during local development.
+* [Azure Key Vault](#azure-key-vault): You can store the client secret in a key vault for use in any environment, including for the Development environment when working locally. Some developers prefer to use key vaults for staging and production deployments and use the [Secret Manager tool](#secret-manager-tool) for local development.
 
-We strongly recommend that you avoid storing client secrets in project code or configuration files. Use secure authentication flows, such as either of the approaches in this section.
+We strongly recommend that you avoid storing client secrets in project code or configuration files. Use secure authentication flows, such as either or both of the approaches in this section.
 
 ### Secret Manager tool
 
 The [Secret Manager tool](xref:security/app-secrets) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
 
-The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>` in the server app's project file):
+The [sample app](#sample-app) hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>`) in the server app's project file, which is used internally by the tooling to track secrets for the app:
 
 ```dotnetcli
 dotnet user-secrets init
 ```
 
-Execute the following command to set the client secret. The `{SECRET}` placeholder is the client secret obtained from the app's registration:
+Execute the following command to set the client secret. The `{SECRET}` placeholder is the client secret obtained from the app's Entra registration:
 
 ```dotnetcli
 dotnet user-secrets set "AzureAd:ClientSecret" "{SECRET}"
@@ -135,7 +135,7 @@ To create a key vault and set a client secret, see [About Azure Key Vault secret
 * Only the **Get** secret permission is required.
 * Select the application as the **Principal** for the secret. 
 
-The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme. If you aren't using Visual Studio, you can use the [Secret Manager tool](#secret-manager-tool) locally to store the secret and use the approach in this section in staging/production when the app is deployed.
+The following `GetKeyVaultSecret` method retrieves a secret from a key vault. Add this method to the server project. Adjust the namespace (`BlazorSample.Helpers`) to match your project namespace scheme.
 
 `Helpers/AzureHelper.cs`:
 
@@ -166,7 +166,7 @@ public static class AzureHelper
 }
 ```
 
-In the server project's `Program` file where services are registered, obtain and apply the client secret using the following code:
+Where services are registered in the server project's `Program` file, obtain and apply the client secret using the following code:
 
 ```csharp
 var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
@@ -210,7 +210,7 @@ Example:
 "SecretName": "BlazorWebAppEntra"
 ```
 
-Configuration is used to facilitate supplying dedicated key vaults and secret values based on the app's environmental configuration files. For example, you can supply different values for `appsettings.Development.json` in Development, `appsettings.Staging.json` when Staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
+Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
 
 ## Redirect to the home page on sign out
 
