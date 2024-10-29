@@ -14,11 +14,11 @@ Using the **Open a documentation issue** link and form to open an issue adds art
 
 If the issue is:
 
-* A simple typo or similar correction, you can submit a PR. See [the contributor guide](https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents) for instructions.
-* A general support question, consider asking on a support forum site:
-  * [Stack Overflow](https://stackoverflow.com/questions/tagged/asp.net-core)
-  * [ASP.NET Core Slack](https://aspnetcore.slack.com/join/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ#/shared-invite/email)
-  * [ASP.NET Gitter](https://gitter.im/aspnet/Home)
-* A site design concern, create an issue at [MicrosoftDocs/Feedback](https://github.com/MicrosoftDocs/Feedback/issues/new/choose).
+* A simple typo or similar correction, you can submit a PR. See the Contributor Guide for instructions: https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents
+* A general support question, consider asking on a support forum:
+  * Stack Overflow: https://stackoverflow.com/questions/tagged/asp.net-core
+  * ASP.NET Core Slack: https://aspnetcore.slack.com/join/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ#/shared-invite/email
+  * ASP.NET Gitter: https://gitter.im/aspnet/Home
+* A site design concern, create an issue at MicrosoftDocs/Feedback: https://github.com/MicrosoftDocs/Feedback/issues/new/choose
 * A problem completing a tutorial, compare your code with the completed sample.
 * A duplicate of an open or closed issue, leave a comment on that issue.
