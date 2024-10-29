@@ -176,7 +176,7 @@ The following sample demonstrates how to set a description for a parameter.
 
 The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content type(s) supported and the schema for the body content.
 
-When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
+When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
 
 If the endpoint doesn't define any parameters bound to the request body, but instead consumes the request body from the <xref:Microsoft.AspNetCore.Http.HttpContext> directly, ASP.NET Core provides mechanisms to specify request body metadata. This is a common scenario for endpoints that process the request body as a stream.
 
@@ -187,7 +187,7 @@ A description for the request body can be set with a [`[Description]`](xref:Syst
 If the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is non-nullable and <xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute.EmptyBodyBehavior> is not set to <xref:Microsoft.AspNetCore.Mvc.ModelBinding.EmptyBodyBehavior.Allow> in the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute, the request body is required and the `required` field of the `requestBody` is set to `true` in the generated OpenAPI document.
 Form bodies are always required and have `required` set to `true`.
 
-Use a [document transformer](#use-document-transformers) or an [operation transformer](#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
+Use a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or an [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
 
 Other mechanisms for setting request body metadata depend on the type of app being developed and are described in the following sections.
 
@@ -266,7 +266,7 @@ If the route handler doesn't have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.F
 
 ### Describe response types
 
-OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content type(s) of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](#use-document-transformers) or [operation transformer](#use-operation-transformers).
+OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content type(s) of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
 
 The specific mechanisms for setting response metadata depend on the type of app being developed.
 
@@ -475,7 +475,7 @@ The JSON Schema library maps standard C# types to OpenAPI `type` and `format` as
 
 Note that object and dynamic types have _no_ type defined in the OpenAPI because these can contain data of any type, including primitive types like int or string.
 
-The `type` and `format` can also be set with a [Schema Transformer](#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
+The `type` and `format` can also be set with a [Schema Transformer](xref:fundamentals/openapi/customize-openapi#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
 ### Using attributes to add metadata
 
@@ -528,7 +528,7 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 
 ### Adding metadata with a schema transformer
 
-A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](#use-schema-transformers) for more information.
+A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
 
 ## Additional resources
 
