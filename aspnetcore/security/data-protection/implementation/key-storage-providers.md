@@ -43,6 +43,8 @@ public void ConfigureServices(IServiceCollection services)
 
 If the web app is running as an Azure service, connection string can be used to authenticate to Azure storage by using [Azure.Storage.Blobs](xref:Azure.Storage.Blobs.BlobContainerClient).
 
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
+
 ```csharp
 string connectionString = "<connection_string>";
 string containerName = "my-key-container";

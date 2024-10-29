@@ -8,6 +8,7 @@ ms.custom: mvc, devx-track-azurecli
 ms.date: 01/07/2022
 uid: security/key-vault-configuration
 ---
+<!-- ms.sfi.ropc: t -->
 # Azure Key Vault configuration provider in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
