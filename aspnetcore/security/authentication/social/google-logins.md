@@ -68,7 +68,6 @@ You can manage your API credentials and usage in the [API Console](https://conso
 `GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(credential);`
 * This will retrieve the available information about the logged-in user, which could then be stored in a database.
 
-[View or download the completed project](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/social/GoogleAuthExample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Change the default callback URI
 
