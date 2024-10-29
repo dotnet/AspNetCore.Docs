@@ -876,6 +876,8 @@ items:
             uid: fundamentals/openapi/overview
           - name: Generate OpenAPI documents
             uid: fundamentals/openapi/aspnetcore-openapi
+          - name: Include OpenAPI metadata
+            uid: fundamentals/openapi/include-metadata
           - name: Customize OpenAPI documents
             uid: fundamentals/openapi/customize-openapi
           - name: Use OpenAPI documents
