@@ -1,19 +1,16 @@
-# ASP.NET Core Docs
+---
+name: Doc issue
+about: Create an issue to help us improve
+---
 
-This repository contains the [ASP.NET Core documentation](https://learn.microsoft.com/aspnet/core/introduction-to-aspnet-core). See the [Contributing Guide](CONTRIBUTING.md) and the [issues list](https://github.com/dotnet/AspNetCore.Docs/issues) if you would like to help.
-
-To provide comments and suggestions on [learn.microsoft.com](https://learn.microsoft.com) site functionality, open an issue in the [`MicrosoftDocs/feedback` GitHub repository](https://github.com/MicrosoftDocs/feedback).
-
-ASP.NET 4.x documentation changes are made in the [`dotnet/AspNetDocs` GitHub repository](https://github.com/dotnet/AspNetDocs).
-
-## How to open an issue
+# Before you open an issue
 
 If the issue is with an ASP.NET Core document:
 
-* Do **not** open a blank issue.
+* Do **not** open a new issue using this form.
 * Open the issue using the **Open a documentation issue** link and feedback form at the bottom of the article. 
 
-Using the **Open a documentation issue** link and form to open an issue adds article metadata for tracking, which indicates the article that you're commenting on and automatically pings the author for a faster response.
+Using the **Open a documentation issue** link and form to open an issue adds article metadata for tracking, which indicates the article that you're commenting on and pings the author for a faster response.
 
 If the issue is:
 
