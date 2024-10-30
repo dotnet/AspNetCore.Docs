@@ -1,5 +1,5 @@
 :::moniker range="= aspnetcore-6.0"
-
+<!-- ms.sfi.ropc: t -->
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`
@@ -135,6 +135,7 @@ Configuration data guidelines:
 * Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](xref:security/app-secrets) tool can be used to store secrets in development.
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
+* Production apps should use the most secure authentication flow available. For more information, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
 
 By [default](#default), the user secrets configuration source is registered after the JSON configuration sources. Therefore, user secrets keys take precedence over keys in `appsettings.json` and `appsettings.{Environment}.json`.
 
@@ -385,6 +386,8 @@ The preferred way to read hierarchical configuration data is using the options p
 
 ## Configuration keys and values
 
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
+
 Configuration keys:
 
 * Are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
@@ -435,6 +438,8 @@ The preceding sequence of providers is used in the [default configuration](#defa
 <a name="constr"></a>
 
 ### Connection string prefixes
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 The Configuration API has special processing rules for four connection string environment variables. These connection strings are involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the table are loaded into the app with the [default configuration](#default) or when no prefix is supplied to `AddEnvironmentVariables`.
 

@@ -5,9 +5,10 @@ description: Learn how to use the Azure Key Vault configuration provider to conf
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc, devx-track-azurecli
-ms.date: 01/07/2022
+ms.date: 10/29/2024
 uid: security/key-vault-configuration
 ---
+<!-- ms.sfi.ropc: t -->
 # Azure Key Vault configuration provider in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
