@@ -5,9 +5,10 @@ description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/02/2024
+ms.date: 10/29/2024
 uid: security/authentication/mfa
 ---
+<!-- ms.sfi.ropc: t -->
 # Multi-factor authentication in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
@@ -72,6 +73,8 @@ MFA could be forced on users to access sensitive pages within an ASP.NET Core Id
 ### Extend the login with an MFA claim
 
 The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ```csharp
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
