@@ -1329,7 +1329,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "blazor/security/server/account-confirmation-and-password-recovery.md",
+            "source_path": "aspnetcore/blazor/security/server/account-confirmation-and-password-recovery.md",
             "redirect_url": "/aspnet/core/blazor/security/account-confirmation-and-password-recovery",
             "redirect_document_id": false
         }

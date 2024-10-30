@@ -69,7 +69,7 @@ The following example is based on Mailchimp's Transactional API using [Mandrill.
 
 Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender>. 
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. 
 
 `Components/Account/EmailSender.cs`:
 
