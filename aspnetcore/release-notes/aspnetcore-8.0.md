@@ -311,7 +311,7 @@ The Blazor documentation hosts a new article and sample app to cover securing a 
 
 For more information, see the following resources:
 
-* <xref:blazor/security/webassembly/standalone-with-identity?view=aspnetcore-8.0&preserve-view=true>
+* <xref:blazor/security/webassembly/standalone-with-identity/index?view=aspnetcore-8.0&preserve-view=true>
 * [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
 ### Blazor Server with Yarp routing

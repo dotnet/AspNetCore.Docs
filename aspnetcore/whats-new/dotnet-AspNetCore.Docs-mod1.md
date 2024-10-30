@@ -13,7 +13,7 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 
 ### New articles
 
-- <xref:blazor/security/server/account-confirmation-and-password-recovery>
+- <xref:blazor/security/account-confirmation-and-password-recovery>
 
 ### Updated articles
 
@@ -59,7 +59,7 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 - <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c> - Content follow-up updates (8.0)
 - <xref:blazor/security/webassembly/standalone-with-microsoft-accounts> - Content follow-up updates (8.0)
 - <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id> - Content follow-up updates (8.0)
-- <xref:blazor/security/webassembly/standalone-with-identity> - Add troubleshooting guidance
+- <xref:blazor/security/webassembly/standalone-with-identity/index> - Add troubleshooting guidance
 - <xref:blazor/security/webassembly/graph-api>
   - Groups/roles article and Graph article updates
   - "Base address" clarifications for `HttpClient`

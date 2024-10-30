@@ -82,7 +82,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 - <xref:blazor/components/data-binding> - Blazor - data-binding - event fix
 - <xref:blazor/security/server/interactive-server-side-rendering> - WebSocket compression/CSP and security guidance
 - <xref:blazor/globalization-localization> - Add BWA global Auto approach
-- <xref:blazor/security/webassembly/standalone-with-identity> - WASM+Identity same-site & antiforgery updates
+- <xref:blazor/security/webassembly/standalone-with-identity/index> - WASM+Identity same-site & antiforgery updates
 
 ## Fundamentals
 

@@ -684,7 +684,7 @@ builder.Services.AddHttpClient(...)
 
 :::moniker range=">= aspnetcore-8.0"
 
-For a demonstration, see <xref:blazor/security/webassembly/standalone-with-identity>.
+For a demonstration, see <xref:blazor/security/webassembly/standalone-with-identity/index>.
 
 :::moniker-end
 
