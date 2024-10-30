@@ -69,7 +69,7 @@ The following example is based on Mailchimp's Transactional API using [Mandrill.
 
 Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. 
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `ApplicationUser` is a <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `Components/Account/EmailSender.cs`:
 
