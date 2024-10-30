@@ -4,9 +4,10 @@ author: isaacrlevin
 description: Learn how to migrate existing ASP.NET apps using Membership authentication to ASP.NET Core 2.0 Identity.
 ms.author: wpickett
 ms.custom: mvc
-ms.date: 01/10/2019
+ms.date: 10/29/2024
 uid: migration/proper-to-2x/membership-to-core-identity
 ---
+<!-- ms.sfi.ropc: t -->
 # Migrate from ASP.NET Membership authentication to ASP.NET Core 2.0 Identity
 
 By [Isaac Levin](https://isaaclevin.com)
@@ -48,6 +49,8 @@ The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a 
       }
     }
     ```
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 1. Select **View** > **SQL Server Object Explorer**. Expand the node corresponding to the database name specified in the `ConnectionStrings:DefaultConnection` property of `appsettings.json`.
 

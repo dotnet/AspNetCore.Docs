@@ -1,4 +1,5 @@
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+<!-- ms.sfi.ropc: t -->
 
 The ASP.NET Core templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
 
@@ -75,6 +76,8 @@ The preceding code configures:
     ```csharp
     app.UseIdentityServer();
     ```
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ### Azure App Service on Linux
 
@@ -483,6 +486,8 @@ The `Startup` class has the following additions:
     ```csharp
     app.UseIdentityServer();
     ```
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ### Azure App Service on Linux
 

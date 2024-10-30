@@ -5,9 +5,10 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 02/23/2024
+ms.date: 10/29/2024
 uid: security/app-secrets
 ---
+<!-- ms.sfi.ropc: t -->
 # Safe storage of app secrets in development in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]

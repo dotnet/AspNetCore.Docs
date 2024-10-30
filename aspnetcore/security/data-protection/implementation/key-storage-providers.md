@@ -3,9 +3,10 @@ title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 10/29/2024
 uid: security/data-protection/implementation/key-storage-providers
 ---
+<!-- ms.sfi.ropc: t -->
 # Key storage providers in ASP.NET Core
 
 The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine where cryptographic keys should be persisted. The developer can override the default discovery mechanism and manually specify the location.
@@ -42,6 +43,8 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 If the web app is running as an Azure service, connection string can be used to authenticate to Azure storage by using [Azure.Storage.Blobs](xref:Azure.Storage.Blobs.BlobContainerClient).
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ```csharp
 string connectionString = "<connection_string>";
