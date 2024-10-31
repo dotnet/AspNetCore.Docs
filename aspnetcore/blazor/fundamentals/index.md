@@ -178,22 +178,6 @@ Documentation sample apps are available for inspection and download:
 
 Locate a sample app by first selecting the version folder that matches the version of .NET that you're working with.
 
-:::moniker range=">= aspnetcore-8.0"
-
-Samples apps in the repository:
-
-* Blazor Web App
-* Blazor WebAssembly
-* Blazor Web App with EF Core (<xref:blazor/blazor-ef-core>)
-* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
-* Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
-* Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
-* Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
-* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity>)
-* .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
-
-:::moniker-end
-
 :::moniker range="< aspnetcore-8.0"
 
 The sample repo contains two types of samples:
@@ -206,7 +190,7 @@ The sample repo contains two types of samples:
 
 :::moniker-end
 
-For more information, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
+For more information and a list of the samples in the repository, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
 
 The ASP.NET Core repository's Basic Test App is also a helpful set of samples for various Blazor scenarios:
 
