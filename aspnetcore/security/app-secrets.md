@@ -205,10 +205,10 @@ The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to t
 Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` should not include a password. Instead, store the password as a secret, and include the password in the connection string at runtime. For example:
 
 ```dotnetcli
-dotnet user-secrets set "DbPassword" "<CREDENTIAL_PLACEHOLDER>"
+dotnet user-secrets set "DbPassword" "`<secret value>`"
 ```
 
-Replace the placeholder in the preceding example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to include it as the password value in the connection string:
+Replace the `<secret value>` placeholder in the preceding example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to include it as the password value in the connection string:
 
 [!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
 
