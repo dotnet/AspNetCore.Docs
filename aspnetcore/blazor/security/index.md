@@ -106,7 +106,7 @@ Blazor differs from a traditional server-rendered web apps that make new HTTP re
 
 The built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service obtains authentication state data from ASP.NET Core's <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
-For more information on server-side authentication, see <xref:blazor/security/server/index>.
+For more information on server-side authentication, see <xref:blazor/security/index>.
 
 ### `IHttpContextAccessor`/`HttpContext` in Razor components
 

@@ -302,7 +302,7 @@ Blazor supports generating a full Blazor-based Identity UI when you choose the a
 
 For more information, see the following resources:
 
-* <xref:blazor/security/server/index?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts>
+* <xref:blazor/security/index?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts>
 * [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
 ### Secure Blazor WebAssembly with ASP.NET Core Identity

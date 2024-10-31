@@ -42,7 +42,7 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 - <xref:blazor/fundamentals/startup>
   - Blazor 8.0 content updates
   - Custom Blazor WASM loading progress indicator
-- <xref:blazor/security/server/index>
+- <xref:blazor/security/index>
   - Blazor 8.0 content updates
   - Improve auth state provider guidance
   - Add Identity BWA template cross-links

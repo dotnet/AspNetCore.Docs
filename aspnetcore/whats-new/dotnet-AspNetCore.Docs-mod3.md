@@ -49,7 +49,7 @@ Welcome to what's new in the ASP.NET Core docs for March 2024. This article list
 - <xref:blazor/components/event-handling>
   - [Blazor] Event handling - ParentChild2.razor without Task.Yield()
   - [Blazor] Event handling - first InvokeAsync example with args
-- <xref:blazor/security/server/index> - Dependency on DBContext for Blazor Identity UI
+- <xref:blazor/security/index> - Dependency on DBContext for Blazor Identity UI
 - <xref:blazor/components/render-modes>
   - Updates to 'click'-based remarks
   - Server-side behaviors during static SSR

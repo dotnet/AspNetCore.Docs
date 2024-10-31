@@ -60,7 +60,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2024. This article list
 - <xref:blazor/security/blazor-web-app-oidc>
   - OIDC Blazor authentication text improvements
   - Clarify use of IHttpContextAccessor/HttpContext
-- <xref:blazor/security/server/index> - Shorten class name
+- <xref:blazor/security/index> - Shorten class name
 
 ## Fundamentals
 

@@ -1465,7 +1465,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 * <xref:signalr/configuration>
 * Server-side security documentation
   * <xref:blazor/security/index>
-  * <xref:blazor/security/server/index>
+  * <xref:blazor/security/index>
   * <xref:blazor/security/interactive-server-side-rendering>
   * <xref:blazor/security/additional-scenarios>
 * [Server-side reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
