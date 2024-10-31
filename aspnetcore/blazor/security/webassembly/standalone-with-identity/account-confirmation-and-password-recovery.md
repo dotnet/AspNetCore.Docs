@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/30/2024
+ms.date: 10/31/2024
 uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
@@ -18,8 +18,8 @@ This article explains how to configure an ASP.NET Core Blazor WebAssembly app wi
 
 The namespaces used by the examples in this article are:
 
-* `Backend` for the backend server web API project.
-* `BlazorWasmAuth` for the front-end standalone Blazor WebAssembly app.
+* `Backend` for the backend server web API project ("server project" in this article).
+* `BlazorWasmAuth` for the front-end client standalone Blazor WebAssembly app ("client project" in this article).
 
 These namespaces correspond to the projects in the `BlazorWebAssemblyStandaloneWithIdentity` sample solution in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples). For more information, see <xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps>.
 
@@ -29,7 +29,7 @@ If you aren't using the `BlazorWebAssemblyStandaloneWithIdentity` sample solutio
 
 In this article, [Mailchimp's Transactional API](https://mailchimp.com/developer/transactional/api/) is used via [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) to send email. We recommend using an email service to send email rather than SMTP. SMTP is difficult to configure and secure properly. Whichever email service you use, access their guidance for .NET apps, create an account, configure an API key for their service, and install any NuGet packages required.
 
-In the backend server project, create a class to fetch the secure email API key. The example in this article uses a class named `AuthMessageSenderOptions` with a `EmailAuthKey` property to hold the key.
+In the server project, create a class to hold the secret email provider API key. The example in this article uses a class named `AuthMessageSenderOptions` with an `EmailAuthKey` property to hold the key.
 
 `AuthMessageSenderOptions.cs`:
 
@@ -42,7 +42,7 @@ public class AuthMessageSenderOptions
 }
 ```
 
-Register the `AuthMessageSenderOptions` configuration instance in the backend server project's `Program` file:
+Register the `AuthMessageSenderOptions` configuration instance in the server project's `Program` file:
 
 ```csharp
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
@@ -50,13 +50,13 @@ builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 ## Configure a user secret for the provider's security key
 
-If the backend server web API project (`Backend` in the [sample solution](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps)) has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the backend server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
+If the server project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a app secrets identifier (`<AppSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the app secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
 
 ```dotnetcli
 dotnet user-secrets init
 ```
 
-Set the email API key with the Secret Manager tool. In the following example, the key name is `EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. Execute the following command with the API key:
+Set the API key with the Secret Manager tool. In the following example, the key name is `EmailAuthKey` to match `AuthMessageSenderOptions.EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. Execute the following command with the API key:
 
 ```dotnetcli
 dotnet user-secrets set "EmailAuthKey" "{KEY}"
@@ -72,9 +72,9 @@ For more information, see <xref:security/app-secrets>.
 
 The following example is based on Mailchimp's Transactional API using [Mandrill.net](https://www.nuget.org/packages/Mandrill.net). For a different provider, refer to their documentation on how to implement sending an email message.
 
-Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the backend server project.
+Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the server project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `AppUser` is a <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `AppUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `EmailSender.cs`:
 
@@ -132,21 +132,23 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 ```
 
 > [!NOTE]
-> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed, consult the service provider's documentation. 
+> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed in the email message, consult the service provider's documentation to troubleshoot the problem.
 
-## Configure the server project to support email
+Add the following <xref:Microsoft.AspNetCore.Identity.IEmailSender%601> service registration to the server project's `Program` file:
 
-In the backend server's `Program` file, require a confirmed email to register an account. Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
+```csharp
+builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
+```
+
+## Configure the server project to require email confirmation
+
+In the server's `Program` file, require a confirmed email address to sign in to the app.
+
+Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
 
 ```diff
 - builder.Services.AddIdentityCore<AppUser>()
 + builder.Services.AddIdentityCore<AppUser>(o => o.SignIn.RequireConfirmedEmail = true)
-```
-
-Add the following service registration to set the email sender implementation to `EmailSender` for <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>:
-
-```csharp
-builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
 ```
 
 ## Update the client project's account registration response
@@ -191,18 +193,29 @@ In the server project's seed data class (`SeedData.cs`), change the code in the 
 + }
 ```
 
+## Enable account confirmation after a site has users
+
+Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
+
+* Update the database to mark all existing users as confirmed.
+* Confirm existing users. For example, batch-send emails with confirmation links.
+
 ## Password recovery
 
-Password recovery requires the server app to adopt an email provider in order to send password resent codes to users. Therefore, the guidance earlier in this article to enable account confirmation should be followed to enable an email provider.
+Password recovery requires the server app to adopt an email provider in order to send password reset codes to users. Therefore, follow the guidance earlier in this article to adopt an email provider:
+
+* [Select and configure an email provider for the server project](#select-and-configure-an-email-provider-for-the-server-project)
+* [Configure a user secret for the provider's security key](#configure-a-user-secret-for-the-providers-security-key)
+* [Implement `IEmailSender` in the server project](#implement-iemailsender-in-the-server-project)
 
 Password recovery is a two-step process:
 
 1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in the server project. A message in the UI instructs the user to check their email for a reset code.
-1. A POST request is made to the `/resetPassword` endpoint of the server project with the user's email addres, password reset code, and new password.
+1. A POST request is made to the `/resetPassword` endpoint of the server project with the user's email address, password reset code, and new password.
 
-The preceding steps are demonstrated by the following implementation guidance for the [sample apps](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps).
+The preceding steps are demonstrated by the following implementation guidance for the [sample solution](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps).
 
-Add the following method signatures to the `IAccountManagement` class (`Identity/IAccountManagement.cs`) in the client project (`BlazorWasmAuth`).
+In the client project, add the following method signatures to the `IAccountManagement` class (`Identity/IAccountManagement.cs`):
 
 ```csharp
 public Task<bool> ForgotPasswordAsync(string email);
@@ -211,7 +224,7 @@ public Task<FormResult> ResetPasswordAsync(string email, string resetCode,
     string newPassword);
 ```
 
-Provide implementations for the preceding methods in the `CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`):
+In the client project, add implementations for the preceding methods in the `CookieAuthenticationStateProvider` class (`Identity/CookieAuthenticationStateProvider.cs`):
 
 ```csharp
 /// <summary>
@@ -313,7 +326,10 @@ public async Task<FormResult> ResetPasswordAsync(string email, string resetCode,
 }
 ```
 
-Add the following `ForgotPassword` component to the client project (`BlazorWasmAuth`). Code lines in the following component are shortened for display in this article.
+In the client project, add the following `ForgotPassword` component.
+
+> [!NOTE]
+> Code lines in the following example are broken across two or more lines to eliminate or reduce horizontal scrolling in this article, but you can place the following code as shown into a test app. The code executes regardless of the artificial line breaks.
 
 `Components/Identity/ForgotPassword.razor`:
 
@@ -523,7 +539,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>.
 
 `CustomTokenProvider.cs`:
 
@@ -598,13 +614,6 @@ builder.Services.AddIdentityCore<AppUser>(options =>
 builder.Services
     .AddTransient<CustomEmailConfirmationTokenProvider<AppUser>>();
 ```
-
-## Enable account confirmation after a site has users
-
-Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
-
-* Update the database to mark all existing users as confirmed.
-* Confirm existing users. For example, batch-send emails with confirmation links.
 
 ## Troubleshoot
 

@@ -24,7 +24,7 @@ The app's namespace used by the example in this article is `BlazorSample`. Updat
 
 In this article, [Mailchimp's Transactional API](https://mailchimp.com/developer/transactional/api/) is used via [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) to send email. We recommend using an email service to send email rather than SMTP. SMTP is difficult to configure and secure properly. Whichever email service you use, access their guidance for .NET apps, create an account, configure an API key for their service, and install any NuGet packages required.
 
-Create a class to fetch the secure email API key. The example in this article uses a class named `AuthMessageSenderOptions` with a `EmailAuthKey` property to hold the key.
+Create a class to hold the secret email provider API key. The example in this article uses a class named `AuthMessageSenderOptions` with an `EmailAuthKey` property to hold the key.
 
 `AuthMessageSenderOptions.cs`:
 
@@ -51,7 +51,7 @@ If the project has already been initialized for the [Secret Manager tool](xref:s
 dotnet user-secrets init
 ```
 
-Set the key with the Secret Manager tool. In the following example, the key name is `EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. In a command shell, navigate to the app's root folder and execute the following command with the API key:
+Set the API key with the Secret Manager tool. In the following example, the key name is `EmailAuthKey` to match `AuthMessageSenderOptions.EmailAuthKey`, and the key is represented by the `{KEY}` placeholder. Execute the following command with the API key:
 
 ```dotnetcli
 dotnet user-secrets set "EmailAuthKey" "{KEY}"
@@ -69,7 +69,7 @@ The following example is based on Mailchimp's Transactional API using [Mandrill.
 
 Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `ApplicationUser` is a <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `ApplicationUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `Components/Account/EmailSender.cs`:
 
@@ -128,7 +128,7 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 ```
 
 > [!NOTE]
-> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed, consult the service provider's documentation. 
+> Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed in the email message, consult the service provider's documentation to troubleshoot the problem.
 
 ## Configure app to support email
 
@@ -169,6 +169,13 @@ Also in the `RegisterConfirmation` component, remove the Razor markup and code f
 }
 ```
 
+## Enable account confirmation after a site has users
+
+Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
+
+* Update the database to mark all existing users as confirmed.
+* Confirm existing users. For example, batch-send emails with confirmation links.
+
 ## Email and activity timeout
 
 The default inactivity timeout is 14 days. The following code sets the inactivity timeout to five days with sliding expiration:
@@ -199,7 +206,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>.
 
 `CustomTokenProvider.cs`:
 
@@ -274,13 +281,6 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
 builder.Services
     .AddTransient<CustomEmailConfirmationTokenProvider<ApplicationUser>>();
 ```
-
-## Enable account confirmation after a site has users
-
-Enabling account confirmation on a site with users locks out all the existing users. Existing users are locked out because their accounts aren't confirmed. To work around existing user lockout, use one of the following approaches:
-
-* Update the database to mark all existing users as confirmed.
-* Confirm existing users. For example, batch-send emails with confirmation links.
 
 ## Troubleshoot
 
