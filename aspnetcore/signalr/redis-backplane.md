@@ -17,6 +17,8 @@ By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://tw
 
 This article explains SignalR-specific aspects of setting up a [Redis](https://redis.io/) server to use for scaling out an ASP.NET Core SignalR app.
 
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
+
 ## Set up a Redis backplane
 
 * Deploy a Redis server.
