@@ -133,6 +133,8 @@ The following services are registered.
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
+    [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
+
   * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
 
     ```csharp
