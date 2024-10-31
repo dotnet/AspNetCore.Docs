@@ -313,7 +313,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 ```razor
 @page "/food-recalls"
 @inject HttpClient Http
-@inject NavigationManager NavManager
+@inject NavigationManager Navigation
 
 <PageTitle>Food Recalls</PageTitle>
 
@@ -332,14 +332,14 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider%601> conve
 <p>Total: <strong>@numResults results found</strong></p>
 
 @code {
-    GridItemsProvider<FoodRecall>? foodRecallProvider;
-    int numResults;
+    private GridItemsProvider<FoodRecall>? foodRecallProvider;
+    private int numResults;
 
     protected override async Task OnInitializedAsync()
     {
         foodRecallProvider = async req =>
         {
-            var url = NavManager.GetUriWithQueryParameters(
+            var url = Navigation.GetUriWithQueryParameters(
                 "https://api.fda.gov/food/enforcement.json", 
                 new Dictionary<string, object?>
             {
