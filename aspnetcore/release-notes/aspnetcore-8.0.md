@@ -141,7 +141,7 @@ public HttpContext? HttpContext { get; set; }
 
 Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component might be useful for inspecting and modifying headers or other properties.
 
-For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/server/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
+For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
 
 ### Render Razor components outside of ASP.NET Core
 

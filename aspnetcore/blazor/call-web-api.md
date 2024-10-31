@@ -901,7 +901,7 @@ For guidance on mitigating overposting attacks, see <xref:tutorials/first-web-ap
 
 ### Server-side
 
-* <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* <xref:blazor/security/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)

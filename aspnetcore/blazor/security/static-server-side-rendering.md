@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2024
-uid: blazor/security/server/static-server-side-rendering
+uid: blazor/security/static-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering
 
@@ -51,7 +51,7 @@ The framework provides the following mechanisms to help with input validation an
 * All bound form data is validated for basic correctness. If an input can't be parsed, the binding process reports an error that the app can discover before taking any action with the data. The built-in <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component takes this into account before invoking the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> form callback. Blazor avoids executing the callback if there are one or more binding errors.
 * The framework uses an antiforgery token to protect against cross-site request forgery attacks. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
 
-All input and permissions must be validated on the server at the time of performing a given action to ensure that the data is valid and accurate at that time and that the user is allowed to perform the action. This approach is consistent with the [security guidance provided for interactive server-side rendering](xref:blazor/security/server/interactive-server-side-rendering).
+All input and permissions must be validated on the server at the time of performing a given action to ensure that the data is valid and accurate at that time and that the user is allowed to perform the action. This approach is consistent with the [security guidance provided for interactive server-side rendering](xref:blazor/security/interactive-server-side-rendering).
 
 ## Session management
 

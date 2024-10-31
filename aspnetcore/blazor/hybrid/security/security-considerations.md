@@ -39,7 +39,7 @@ If your app must reference content from an external origin, we recommend that yo
 * Institute a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
 * Perform [subresource integrity](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity) checks.
 
-Even if all of the resources are packed into the app and don't load from any external origin, remain cautious about problems in the resources' code that run inside the Web View, as the resources might have vulnerabilities that could allow [cross-site scripting (XSS)](xref:blazor/security/server/interactive-server-side-rendering#cross-site-scripting-xss) attacks.
+Even if all of the resources are packed into the app and don't load from any external origin, remain cautious about problems in the resources' code that run inside the Web View, as the resources might have vulnerabilities that could allow [cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss) attacks.
 
 In general, the Blazor framework protects against XSS by dealing with HTML in safe ways. However, some programming patterns allow Razor components to inject raw HTML into rendered output, such as rendering content from an untrusted source. For example, rendering HTML content directly from a database should be avoided. Additionally, JavaScript libraries used by the app might manipulate HTML in unsafe ways to inadvertently or deliberately render unsafe output.
 

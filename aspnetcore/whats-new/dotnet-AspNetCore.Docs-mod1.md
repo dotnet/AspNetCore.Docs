@@ -49,7 +49,7 @@ Welcome to what's new in the ASP.NET Core docs for January 2024. This article li
 - <xref:blazor/components/built-in-components> - Content follow-up updates (8.0)
 - <xref:blazor/hybrid/security/index> - Content follow-up updates (8.0)
 - <xref:blazor/security/index> - Content follow-up updates (8.0)
-- <xref:blazor/security/server/additional-scenarios> - Content follow-up updates (8.0)
+- <xref:blazor/security/additional-scenarios> - Content follow-up updates (8.0)
 - <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c> - Content follow-up updates (8.0)
 - <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id> - Content follow-up updates (8.0)
 - <xref:blazor/security/webassembly/index> - Content follow-up updates (8.0)

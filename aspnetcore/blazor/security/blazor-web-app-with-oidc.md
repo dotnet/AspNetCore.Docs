@@ -45,7 +45,7 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 > [!NOTE]
-> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
+> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
 
 ### Configuration
 
@@ -307,7 +307,7 @@ The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 The `BlazorWebAppOidc.http` file can be used for testing the weather data request. Note that the `BlazorWebAppOidc` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 > [!NOTE]
-> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/server/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
+> The server project uses <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext>, but never for interactively-rendered components. For more information, see <xref:blazor/security/interactive-server-side-rendering#ihttpcontextaccessorhttpcontext-in-razor-components>.
 
 ### Configuration
 
