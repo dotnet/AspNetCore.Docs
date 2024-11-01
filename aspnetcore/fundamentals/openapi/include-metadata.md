@@ -10,7 +10,7 @@ uid: fundamentals/openapi/include-metadata
 ---
 # Include OpenAPI metadata in an ASP.NET Core app
 
-## Including OpenAPI metadata for endpoints
+## Include OpenAPI metadata for endpoints
 
 ASP.NET collects metadata from the web app's endpoints and uses it to generate an OpenAPI document.
 In controller-based apps, metadata is collected from attributes like [`[EndpointDescription]`](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute), [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute),
@@ -396,7 +396,7 @@ This example also illustrates how to define multiple response types for an actio
 
 ---
 
-### Excluding endpoints from the generated document
+### Exclude endpoints from the generated document
 
 By default, all endpoints that are defined in an app are documented in the generated OpenAPI file, but endpoints can be excluded from the document using attributes or extension methods.
 
@@ -435,7 +435,7 @@ The following example demonstrates how to exclude an endpoint from the generated
 ```
 ---
 
-## Including OpenAPI metadata for data types
+## Include OpenAPI metadata for data types
 
 C# classes or records used in request or response bodies are represented as schemas
 in the generated OpenAPI document.
@@ -477,7 +477,7 @@ Note that object and dynamic types have _no_ type defined in the OpenAPI because
 
 The `type` and `format` can also be set with a [Schema Transformer](xref:fundamentals/openapi/customize-openapi#use-schema-transformers). For example, you may want the `format` of decimal types to be `decimal` instead of `double`.
 
-### Using attributes to add metadata
+### Use attributes to add metadata
 
 ASP.NET uses metadata from attributes on class or record properties to set metadata on the corresponding properties of the generated schema.
 
@@ -526,7 +526,7 @@ The [`[JsonDerivedType]`](xref:System.Text.Json.Serialization.JsonDerivedTypeAtt
 
 An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serialization.JsonPolymorphicAttribute) attribute has a `discriminator` field in the schema, but a concrete class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serialization.JsonPolymorphicAttribute) attribute doesn't have a `discriminator` field. OpenAPI requires that the discriminator property be a required property in the schema, but since the discriminator property isn't defined in the concrete base class, the schema cannot include a `discriminator` field.
 
-### Adding metadata with a schema transformer
+### Add metadata with a schema transformer
 
 A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
 
