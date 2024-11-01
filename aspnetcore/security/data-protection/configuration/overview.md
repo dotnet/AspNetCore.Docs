@@ -5,10 +5,11 @@ description: Learn how to configure Data Protection in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 6/14/2023
+ms.date: 10/30/2024
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
+<!-- ms.sfi.ropc: t -->
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -316,6 +317,8 @@ services.AddDataProtection()
     //Removing this line below for an initial run will ensure the file is created correctly
     .ProtectKeysWithAzureKeyVault(new Uri("<keyIdentifier>"), new DefaultAzureCredential());
 ```
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ## PersistKeysToFileSystem
 

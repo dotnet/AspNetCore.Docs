@@ -5,11 +5,12 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: tdykstra
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 10/29/2024
+ms.date: 10/30/2024
 uid: security/app-secrets
 ---
 <!-- ms.sfi.ropc: t -->
 # Safe storage of app secrets in development in ASP.NET Core
+
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -19,7 +20,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/app-secrets/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app.  Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+This article explains how to manage sensitive data for an ASP.NET Core app on a development machine. Never store passwords or other sensitive data in source code or configuration files. Production secrets shouldn't be used for development or test. Secrets shouldn't be deployed with the app. Production secrets should be accessed through a controlled means like Azure Key Vault. Azure test and production secrets can be stored and protected with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 For more information on authentication for deployed test and production apps, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
 
@@ -201,21 +202,15 @@ The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to t
 
 ## String replacement with secrets
 
-Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` may include a password for the specified user:
+Storing passwords in plain text is insecure. Never store secrets in a configuration file such as `appsettings.json`, which might get checked in to a source code repository.
 
-[!code-json[](~/security/app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
-
-A more secure approach is to store the password as a secret. For example:
+For example, a database connection string stored in `appsettings.json` should not include a password. Instead, store the password as a secret, and include the password in the connection string at runtime. For example:
 
 ```dotnetcli
-dotnet user-secrets set "DbPassword" "pass123"
+dotnet user-secrets set "DbPassword" "`<secret value>`"
 ```
 
-Remove the `Password` key-value pair from the connection string in `appsettings.json`. For example:
-
-[!code-json[](~/security/app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
-
-The secret's value can be set on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to complete the connection string:
+Replace the `<secret value>` placeholder in the preceding example with the password value. Set the secret's value on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to include it as the password value in the connection string:
 
 [!code-csharp[](~/security/app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
 
