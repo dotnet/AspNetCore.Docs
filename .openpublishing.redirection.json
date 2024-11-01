@@ -1,4 +1,4 @@
-{ 
+{
     "redirections": [
         {
             "source_path": "aspnetcore/web-api/microsoft.dotnet-openapi.md",
@@ -9,6 +9,11 @@
             "source_path": "aspnetcore/fundamentals/minimal-apis/aspnetcore-openapi.md",
             "redirect_url": "/aspnet/core/fundamentals/openapi/aspnetcore-openapi",
             "redirect_document_id": false
+        },
+        {
+          "source_path": "aspnetcore/fundamentals/openapi/buildtime-openapi.md",
+          "redirect_url": "/aspnet/core/fundamentals/openapi/aspnetcore-openapi#generate-openapi-documents-at- build-time",
+          "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/authentication/samples.md",

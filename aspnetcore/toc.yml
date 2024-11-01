@@ -876,10 +876,12 @@ items:
             uid: fundamentals/openapi/overview
           - name: Generate OpenAPI documents
             uid: fundamentals/openapi/aspnetcore-openapi
+          - name: Include OpenAPI metadata
+            uid: fundamentals/openapi/include-metadata
+          - name: Customize OpenAPI documents
+            uid: fundamentals/openapi/customize-openapi
           - name: Use OpenAPI documents
             uid: fundamentals/openapi/using-openapi-documents
-          - name: Generate OpenAPI documents at build-time
-            uid: fundamentals/openapi/buildtime-openapi
           - name: OpenAPI tools
             uid: fundamentals/openapi/openapi-tools
           - name: Swagger / NSwag
