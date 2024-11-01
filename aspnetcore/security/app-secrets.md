@@ -202,7 +202,9 @@ The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to t
 
 ## String replacement with secrets
 
-Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` should not include a password. Instead, store the password as a secret, and include the password in the connection string at runtime. For example:
+Storing passwords in plain text is insecure. Never store secrets in a configuration file such as `appsettings.json`, which might get checked in to a source code repository.
+
+For example, a database connection string stored in `appsettings.json` should not include a password. Instead, store the password as a secret, and include the password in the connection string at runtime. For example:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "`<secret value>`"
