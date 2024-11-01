@@ -1,6 +1,8 @@
 :::moniker range="> aspnetcore-2.2 < aspnetcore-5.0"
-
+<!-- ms.sfi.ropc: t -->
 This article explains SignalR-specific aspects of setting up a [Redis](https://redis.io/) server to use for scaling out an ASP.NET Core SignalR app.
+
+[!INCLUDE [managed-identities](~/includes/managed-identities-conn-strings.md)]
 
 ## Set up a Redis backplane
 

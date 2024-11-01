@@ -1,4 +1,5 @@
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-8.0"
+<!-- ms.sfi.ropc: t -->
 
 By [Damien Bowden](https://github.com/damienbod)
 
