@@ -432,7 +432,7 @@ When testing with the Graph SDK locally, we recommend using a new InPrivate/inco
 
 :::zone pivot="graph-sdk-4"
 
-*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/dev/docs/upgrade-to-v5.md).*
+*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/main/docs/upgrade-to-v5.md).*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
