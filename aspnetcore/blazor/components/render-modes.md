@@ -688,7 +688,7 @@ The `Shared` folder maintains the `AccountLayout` layout component. The componen
 ```razor
 @inherits LayoutComponentBase
 @layout BlazorSample.Components.Layout.MainLayout
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 @if (HttpContext is null)
 {
@@ -707,7 +707,7 @@ else
     {
         if (HttpContext is null)
         {
-            NavigationManager.Refresh(forceReload: true);
+            Navigation.Refresh(forceReload: true);
         }
     }
 }
@@ -756,7 +756,7 @@ The app has a custom layout that can be applied to components around the app. Us
 ```razor
 @inherits LayoutComponentBase
 @layout MainLayout
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 @if (HttpContext is null)
 {
@@ -775,7 +775,7 @@ else
     {
         if (HttpContext is null)
         {
-            NavigationManager.Refresh(forceReload: true);
+            Navigation.Refresh(forceReload: true);
         }
     }
 }
