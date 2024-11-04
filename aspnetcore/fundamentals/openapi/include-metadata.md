@@ -504,9 +504,35 @@ Properties can also be marked as `required` with the [required](/dotnet/csharp/l
 #### enum
 
 Enum types in C# are integer-based, but can be represented as strings in JSON with a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) and a <xref:System.Text.Json.Serialization.JsonStringEnumConverter>. When an enum type is represented as a string in JSON, the generated schema will have an `enum` property with the string values of the enum.
+
+The following example demonstrates how to use a `JsonStringEnumConverter` to represent an enum as a string in JSON:
+
+```csharp
+[JsonConverter(typeof(JsonStringEnumConverter<DayOfTheWeekAsString>))]
+public enum DayOfTheWeekAsString
+{
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday
+}
+```
+
+A special case is when an enum type has the [Flags] attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a [JsonConverterAttribute] will be defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
+
+```csharp
+[Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
+public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies = 8 }
+```
+
+could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`.
+
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
-**Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) does not set the `enum` values of a property.
+**Note:** The [`[AllowedValues]`](xref:System.ComponentModel.DataAnnotations.AllowedValuesAttribute) attribute does not set the `enum` values of a property.
 
 #### nullable
 
