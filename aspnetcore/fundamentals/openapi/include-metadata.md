@@ -521,7 +521,14 @@ public enum DayOfTheWeekAsString
 }
 ```
 
-A special case is when an enum type has the [Flags] attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enums with a [JsonConverterAttribute] will be defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values.
+A special case is when an enum type has the [Flags] attribute, which indicates that the enum can be treated as a bit field; that is, a set of flags. A flags enum with a [JsonConverterAttribute] will be defined as `type: string` in the generated schema with no `enum` property, since the value could be any combination of the enum values. For example, the following enum:
+
+```csharp
+[Flags, JsonConverter(typeof(JsonStringEnumConverter<PizzaToppings>))]
+public enum PizzaToppings { Pepperoni = 1, Sausage = 2, Mushrooms = 4, Anchovies = 8 }
+```
+
+could have values such as `"Pepperoni, Sausage"` or `"Sausage, Mushrooms, Anchovies"`.
 
 An enum type without a  [`[JsonConverter]`](xref:System.Text.Json.Serialization.JsonConverterAttribute) will be defined as `type: integer` in the generated schema.
 
