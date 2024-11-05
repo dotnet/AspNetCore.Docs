@@ -17,6 +17,12 @@ In the server project:
   +     .AddAuthenticationStateSerialization();
   ```
 
+The API only serializes the server-side name and role claims for access in the browser. To include all claims, set <xref:Microsoft.AspNetCore.Components.WebAssembly.Server.AuthenticationStateSerializationOptions.SerializeAllClaims> to `true`:
+
+```csharp
+.AddAuthenticationStateSerialization(options => options.SerializeAllClaims = true);
+```
+
 In the client project (`.Client`):
 
 * Remove the Persistent Authentication State Provider (`PersistentAuthenticationStateProvider.cs`).
@@ -27,3 +33,4 @@ In the client project (`.Client`):
   - builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
   + builder.Services.AddAuthenticationStateDeserialization();
   ```
+
