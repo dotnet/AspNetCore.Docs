@@ -5,7 +5,7 @@ on:
       - opened
 jobs:
   process-blazor-issue:
-    if: contains(github.event.issue.body, 'aspnet/core/blazor/hybrid')
+    if: contains(github.event.issue.body, 'https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/hybrid')
     runs-on: ubuntu-latest
     permissions:
       issues: write
