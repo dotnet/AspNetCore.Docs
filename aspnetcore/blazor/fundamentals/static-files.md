@@ -14,9 +14,7 @@ uid: blazor/fundamentals/static-files
 
 This article describes Blazor app configuration for serving static files.
 
-## Static assets
-
-*This section applies to server-side Blazor apps.*
+## Static asset delivery in server-side Blazor apps
 
 :::moniker range=">= aspnetcore-9.0"
 
