@@ -331,7 +331,7 @@ app.UseAntiforgery();
 
 :::moniker range=">= aspnetcore-9.0"
 
-Map Static Assets Middleware (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
+Map Static Assets routing endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) maps static files, such as images, scripts, and stylesheets, produced during the build as endpoints:
 
 ```csharp
 app.MapStaticAssets();
