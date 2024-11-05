@@ -14,20 +14,18 @@ uid: blazor/fundamentals/static-files
 
 This article describes Blazor app configuration for serving static files.
 
-## Static asset middleware
-
-*This section applies to server-side Blazor apps.*
+## Static asset delivery in server-side Blazor apps
 
 :::moniker range=">= aspnetcore-9.0"
 
-Serving static assets is managed by either of the two middlewares described in the following table.
+Serving static assets is managed by either routing endpoint conventions or a middleware described in the following table.
 
-Middleware | API | .NET Version | Description
+Feature | API | .NET Version | Description
 --- | --- | :---: | ---
-Map Static Assets | <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> | .NET 9 or later | Optimizes the delivery of static assets to clients.
-Static Files | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets Middleware but useful for some tasks that Map Static Assets Middleware isn't capable of managing.
+Map Static Assets routing endpoint conventions | <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> | .NET 9 or later | Optimizes the delivery of static assets to clients.
+Static Files Middleware | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> | All .NET versions | Serves static assets to clients without the optimizations of Map Static Assets but useful for some tasks that Map Static Assets isn't capable of managing.
 
-Configure Map Static Assets Middleware by calling <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> in the app's request processing pipeline, which performs the following:
+Configure Map Static Assets by calling <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> in the app's request processing pipeline, which performs the following:
 
 * Sets the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) and [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) headers.
 * Sets [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
@@ -36,13 +34,13 @@ Configure Map Static Assets Middleware by calling <xref:Microsoft.AspNetCore.Bui
 * Works with a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)) to serve the app's static assets closer to the user.
 * [Fingerprinting assets](https://developer.mozilla.org/docs/Glossary/Fingerprinting) to prevent reusing old versions of files.
 
-Map Static Assets Middleware operates by combining build and publish processes to collect information about the static assets in the app. This information is utilized by the runtime library to efficiently serve the static assets to browsers.
+Map Static Assets operates by combining build and publish processes to collect information about the static assets in the app. This information is utilized by the runtime library to efficiently serve the static assets to browsers.
 
-Map Static Assets Middleware can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets Middleware is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
+Map Static Assets can replace <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in most situations. However, Map Static Assets is optimized for serving the assets from known locations in the app at build and publish time. If the app serves assets from other locations, such as disk or embedded resources, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> should be used.
 
-Map Static Assets Middleware (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
+Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) replaces calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in apps that serve Blazor WebAssembly framework files, and explicitly calling <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> in a Blazor Web App isn't necessary because the API is automatically called when invoking <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents%2A>.
 
-Map Static Assets Middleware provides the following benefits that aren't available when calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+Map Static Assets provides the following benefits that aren't available when calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
 * Build-time compression for all the assets in the app, including JavaScript (JS) and stylesheets but excluding image and font assets that are already compressed. [Gzip](https://tools.ietf.org/html/rfc1952) (`Content-Encoding: gz`) compression is used during development. Gzip with [Brotli](https://tools.ietf.org/html/rfc7932) (`Content-Encoding: br`) compression is used during publish.
 * [Fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting) for all assets at build time with a [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded string of the [SHA-256](xref:System.Security.Cryptography.SHA256) hash of each file's content. This prevents reusing an old version of a file, even if the old file is cached. Fingerprinted assets are cached using the [`immutable` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives), which results in the browser never requesting the asset again until it changes. For browsers that don't support the `immutable` directive, a [`max-age` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives) is added.
@@ -61,40 +59,40 @@ When [Interactive WebAssembly or Interactive Auto render modes](xref:blazor/fund
 * During WebAssembly boot, Blazor retrieves the URL, imports the module, and calls a function to retrieve the asset collection and reconstruct it in memory. The URL is specific to the content and cached forever, so this overhead cost is only paid once per user until the app is updated.
 * The resource collection is also exposed at a human-readable URL (`_framework/resource-collection.js`), so JS has access to the resource collection for [enhanced navigation](xref:blazor/fundamentals/routing#enhanced-navigation-and-form-handling) or to implement features of other frameworks and third-party components.
 
-Map Static Assets Middleware doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
+Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
 
-Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets Middleware (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
+Static File Middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>) is useful in the following situations that Map Static Assets (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) can't handle:
 
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
 * Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
       
 For more information, see <xref:fundamentals/static-files>.
 
-## Consume assets with Map Static File Middleware
+## Deliver assets with Map Static Assets routing endpoint conventions
 
 *This section applies to server-side Blazor apps.*
 
 <!-- UPDATE 10.0 Compiler implementation for tilde/slash-based HREFs. -->
 
-Assets are consumed via the `ComponentBase.Assets` property, which resolves the fingerprinted URL for a given asset. In the following example, Bootstrap, the Blazor project template app stylesheet (`app.css`), and the [CSS isolation stylesheet](xref:blazor/components/css-isolation) are linked in a root component, typically the `App` component (`Components/App.razor`):
+Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property, which resolves the fingerprinted URL for a given asset. In the following example, Bootstrap, the Blazor project template app stylesheet (`app.css`), and the [CSS isolation stylesheet](xref:blazor/components/css-isolation) (based on an app's namespace of `BlazorSample`) are linked in a root component, typically the `App` component (`Components/App.razor`):
 
 ```razor
 <link rel="stylesheet" href="@Assets["bootstrap/bootstrap.min.css"]" />
 <link rel="stylesheet" href="@Assets["app.css"]" />
-<link rel="stylesheet" href="@Assets["BlazorWeb-CSharp.styles.css"]" />
+<link rel="stylesheet" href="@Assets["BlazorSample.styles.css"]" />
 ```
 
 ## Import maps
 
 *This section applies to server-side Blazor apps.*
 
-The `ImportMap` component represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The `ImportMap` component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
+The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
 
 ```razor
 <ImportMap />
 ```
 
-If a custom `ImportMapDefinition` isn't assigned to an `ImportMap` component, the import map is generated based on the app's assets.
+If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
 The following examples demonstrate custom import map definitions and the import maps that they create.
 
@@ -175,9 +173,9 @@ The preceding code results in the following import map:
 }
 ```
 
-Combine import map definitions (`ImportMapDefinition`) with `ImportMapDefinition.Combine`.
+Combine import map definitions (<xref:Microsoft.AspNetCore.Components.ImportMapDefinition>) with <xref:Microsoft.AspNetCore.Components.ImportMapDefinition.Combine%2A?displayProperty=nameWithType>.
 
-Import map created from a `ResourceAssetCollection` that maps static assets to their corresponding unique URLs:
+Import map created from a <xref:Microsoft.AspNetCore.Components.ResourceAssetCollection> that maps static assets to their corresponding unique URLs:
 
 ```csharp
 ImportMapDefinition.FromResourceCollection(

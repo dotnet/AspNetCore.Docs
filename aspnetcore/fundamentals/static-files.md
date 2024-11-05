@@ -49,14 +49,14 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minimize the size of assets served to the browser. This optimization doesn't include minification.
 
-[`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) is a middleware that helps optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
+<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> are routing endpoint conventions that optimize the delivery of static assets in an app. It's designed to work with all UI frameworks, including Blazor, Razor Pages, and MVC.
 
 [`UseStaticFiles`](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles) also serves static files, but it doesn't provide the same level of optimization as `MapStaticAssets`. For a comparison of  `UseStaticFiles` and `MapStaticAssets`, see [Optimizing static web asset delivery
 ](xref:aspnetcore-9#optimizing-static-web-asset-delivery).
 
 ### Serve files in web root
 
-The default web app templates call the [`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) method in `Program.cs`, which enables static files to be served:
+The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> method in `Program.cs`, which enables static files to be served:
 
 [!code-csharp[](~/fundamentals/static-files/samples/9.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
@@ -102,7 +102,7 @@ The preceding code makes static files publicly available in the local cache for 
 
 ## Static file authorization
 
-The ASP.NET Core templates call [`MapStaticAssets`](/dotnet/api/microsoft.aspnetcore.builder.staticassetsendpointroutebuilderextensions.mapstaticassets) before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
+The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
   * No authorization checks are performed on the static files.
   * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
