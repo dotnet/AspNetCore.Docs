@@ -20,7 +20,7 @@ Files can be downloaded from the app's own static assets or from any other locat
 
 :::moniker range=">= aspnetcore-9.0"
 
-* ASP.NET Core apps use Map Static Assets Middleware or Static File Middleware to serve files to clients of server-side apps. For more information, see <xref:blazor/fundamentals/static-files>.
+* ASP.NET Core apps use Map Static Assets routing endpoint conventions or Static File Middleware to serve files to clients of server-side apps. For more information, see <xref:blazor/fundamentals/static-files>.
 * The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
 
 :::moniker-end
