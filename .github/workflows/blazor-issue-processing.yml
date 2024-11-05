@@ -5,7 +5,7 @@ on:
       - opened
 jobs:
   process-blazor-issue:
-    if: (contains(github.event.issue.body, 'Content source URL\n\nhttps://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor') 
+    if: (contains(github.event.issue.body, 'Content source URL<br><br>https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor') 
       && !contains(github.event.issue.body, 'aspnet/core/blazor/hybrid'))
       || contains(github.event.issue.body, 'client-side/dotnet-interop/index.md')
       || contains(github.event.issue.body, 'client-side/dotnet-interop/wasm-browser-app.md')
