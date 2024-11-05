@@ -86,13 +86,13 @@ Assets are delivered via the <xref:Microsoft.AspNetCore.Components.ComponentBase
 
 *This section applies to server-side Blazor apps.*
 
-The `ImportMap` component represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The `ImportMap` component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
+The Import Map component (<xref:Microsoft.AspNetCore.Components.ImportMap>) represents an import map element (`<script type="importmap"></script>`) that defines the import map for module scripts. The Import Map component is placed in `<head>` content of the root component, typically the `App` component (`Components/App.razor`).
 
 ```razor
 <ImportMap />
 ```
 
-If a custom `ImportMapDefinition` isn't assigned to an `ImportMap` component, the import map is generated based on the app's assets.
+If a custom <xref:Microsoft.AspNetCore.Components.ImportMapDefinition> isn't assigned to an Import Map component, the import map is generated based on the app's assets.
 
 The following examples demonstrate custom import map definitions and the import maps that they create.
 
@@ -173,9 +173,9 @@ The preceding code results in the following import map:
 }
 ```
 
-Combine import map definitions (`ImportMapDefinition`) with `ImportMapDefinition.Combine`.
+Combine import map definitions (<xref:Microsoft.AspNetCore.Components.ImportMapDefinition>) with <xref:Microsoft.AspNetCore.Components.ImportMapDefinition.Combine%2A?displayProperty=nameWithType>.
 
-Import map created from a `ResourceAssetCollection` that maps static assets to their corresponding unique URLs:
+Import map created from a <xref:Microsoft.AspNetCore.Components.ResourceAssetCollection> that maps static assets to their corresponding unique URLs:
 
 ```csharp
 ImportMapDefinition.FromResourceCollection(
