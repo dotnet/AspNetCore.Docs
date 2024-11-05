@@ -30,7 +30,7 @@ For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view
 
 ### Static asset delivery optimization
 
-`MapStaticAssets` is a new feature that helps optimize the delivery of static assets in any ASP.NET Core app, including Blazor apps.
+Map Static Assets routing endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) is a new feature that helps optimize the delivery of static assets in any ASP.NET Core app, including Blazor apps.
 
 For more information, see the following resources:
 
