@@ -120,9 +120,9 @@ In the app's `wwwroot/index.html` file:
 
 :::moniker range="< aspnetcore-8.0"
 
-* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `release/7.0` branch reference source and assets. If you're using a version of ASP.NET Core later than 7.0, change the document version selector to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `release/6.0` branch reference source and assets. If you're using a version of ASP.NET Core later than 6.0, change the document version selector to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
-  Blazor WebAssembly project template `wwwroot` folder
+  [Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/6.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
