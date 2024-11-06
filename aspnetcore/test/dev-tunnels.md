@@ -166,5 +166,5 @@ A temporary tunnel is fine when the dev tunnel URL needs to work for a short tim
 The following resources use an early preview version of the dev tunnels feature, so parts of them are out of date:
 
 * [Use dev tunnels in Visual Studio to debug your web APIs](/connectors/custom-connectors/port-tunneling)
-* [Call Automation - Appointment Reminder Sample](https://github.com/Azure-Samples/communication-services-dotnet-quickstarts/tree/main/CallAutomation_AppointmentReminder/CallAutomation_AppointmentReminder)
+* [ACS Call Automation and Azure OpenAI Service](https://github.com/Azure-Samples/communication-services-dotnet-quickstarts/tree/main/callautomation-openai-sample-csharp)
 * [Use Visual Studio dev tunnels to handle Twilio Webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).

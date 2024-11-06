@@ -549,13 +549,13 @@ For a working demonstration of the preceding example, see the [`DynamicComponent
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-For a working demonstration of the preceding example, see the [`DynamicComponentExample4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorSample_BlazorServer/Pages/dynamiccomponent/DynamicComponentExample4.razor).
+For a working demonstration of the preceding example, see the [`DynamicComponentExample4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorSample_Server/Pages/dynamiccomponent/DynamicComponentExample4.razor).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-For a working demonstration of the preceding example, see the [`DynamicComponentExample4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorSample_BlazorServer/Pages/dynamiccomponent/DynamicComponentExample4.razor).
+For a working demonstration of the preceding example, see the [`DynamicComponentExample4` component in the Blazor sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorSample_Server/Pages/dynamiccomponent/DynamicComponentExample4.razor).
 
 :::moniker-end
 

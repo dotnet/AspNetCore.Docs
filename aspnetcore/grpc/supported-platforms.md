@@ -83,7 +83,7 @@ For information about configuring ASP.NET Core servers to run gRPC, see <xref:gr
 > * [Azure Container Apps](https://azure.microsoft.com/services/container-apps/)
 > * [Azure App Service](https://azure.microsoft.com/services/app-service/)&dagger;
 
-&dagger;gRPC requires a Linux-based environment on Azure App Service. See [How-to deploy a .NET 6 gRPC app on App Service](https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/gRPC/.NET/use_gRPC_with_dotnet.md) for Azure App Service deployment information.
+&dagger;gRPC requires a Linux-based environment on Azure App Service. See [How-to deploy a .NET 6 gRPC app on App Service](https://github.com/Azure/app-service-linux-docs/blob/master/HowTo/gRPC/Linux/.NET/use_gRPC_with_dotnet.md) for Azure App Service deployment information.
 
 ## .NET gRPC client requirements
 
