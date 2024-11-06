@@ -34,3 +34,4 @@ In the client project (`.Client`):
   + builder.Services.AddAuthenticationStateDeserialization();
   ```
 
+For more information, see <xref:aspnetcore-9#simplified-authentication-state-serialization-for-blazor-web-apps>.
