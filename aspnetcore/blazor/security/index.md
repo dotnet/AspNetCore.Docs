@@ -439,7 +439,7 @@ You can also supply different content for display if the user isn't authorized w
 <AuthorizeView>
     <Authorized>
         <p>Hello, @context.User.Identity?.Name!</p>
-        <p><button @onclick="SecureMethod">Authorized Only Button</button></p>
+        <p><button @onclick="HandleClick">Authorized Only Button</button></p>
     </Authorized>
     <NotAuthorized>
         <p>You're not authorized.</p>
@@ -447,11 +447,11 @@ You can also supply different content for display if the user isn't authorized w
 </AuthorizeView>
 
 @code {
-    private void SecureMethod() { ... }
+    private void HandleClick() { ... }
 }
 ```
 
-A default event handler for an authorized element, such as the `SecureMethod` method for the `<button>` element in the preceding example, can only be invoked by an authorized user.
+Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component controls the visibility of elements based on the user’s authorization status, it doesn't enforce security on the event handler itself. In the preceding example, the `HandleClick` method is only associated with a button visible to authorized users, but nothing prevents invoking this method from other places. To ensure method-level security, implement additional authorization logic within the handler itself or in the relevant API.
 
 :::moniker range=">= aspnetcore-8.0"
 
