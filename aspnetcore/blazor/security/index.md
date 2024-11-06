@@ -502,7 +502,7 @@ The preceding code establishes a `Context` for the inner <xref:Microsoft.AspNetC
 
 For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter with a single policy:
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter with a single policy name:
 
 ```razor
 <AuthorizeView Policy="Over21">
