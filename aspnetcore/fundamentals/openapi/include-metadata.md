@@ -495,11 +495,31 @@ The following table summarizes attributes from the `System.ComponentModel` names
 
 Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
 
+Attributes can also be placed on parameters in the parameter list of a record definition but must include the `property` modifier. For example:
+
+```csharp
+public record Todo(
+    [property: Required]
+    [property: Description("The unique identifier for the todo")]
+    int Id,
+    [property: Description("The title of the todo")]
+    [property: MaxLength(120)]
+    string Title,
+    [property: Description("Whether the todo has been completed")]
+    bool Completed
+) {}
+```
+
 ### Other sources of metadata for generated schemas
 
 #### required
 
-Properties can also be marked as `required` with the [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier.
+In a class, struct, or record, properties with the [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute) attribute or [required](/dotnet/csharp/language-reference/proposals/csharp-11.0/required-members#required-modifier) modifier are always `required` in the corresponding schema.
+
+Other properties may also be required based on the constructors (implicit and explicit) for the class, struct, or record.
+- For a class or record class with a single public constructor, any property with the same type and name (case-insensitive match) as a parameter to the constructor is required in the corresponding schema.
+- For a class or record class with multiple public constructors, no other properties are required.
+- For a struct or record struct, no other properties are required since C# always defines an implicit parameterless constructor for a struct.
 
 #### enum
 
