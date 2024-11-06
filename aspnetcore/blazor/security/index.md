@@ -451,7 +451,7 @@ You can also supply different content for display if the user isn't authorized w
 }
 ```
 
-Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component controls the visibility of elements based on the user’s authorization status, it does not enforce security on the event handler itself. In the example above, the `HandleClick` method is only associated with a button visible to authorized users, but nothing prevents from invoking this method from other places. To ensure method-level security, implement additional authorization logic within the handler itself or in the relevant API.
+Although the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component controls the visibility of elements based on the user’s authorization status, it doesn't enforce security on the event handler itself. In the preceding example, the `HandleClick` method is only associated with a button visible to authorized users, but nothing prevents invoking this method from other places. To ensure method-level security, implement additional authorization logic within the handler itself or in the relevant API.
 
 :::moniker range=">= aspnetcore-8.0"
 
