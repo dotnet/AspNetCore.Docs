@@ -16,22 +16,6 @@ This article explains how to download files in Blazor apps.
 
 ## File downloads
 
-Files can be downloaded from the app's own static assets or from any other location:
-
-:::moniker range=">= aspnetcore-9.0"
-
-* ASP.NET Core apps use Map Static Assets routing endpoint conventions or Static File Middleware to serve files to clients of server-side apps. For more information, see <xref:blazor/fundamentals/static-files>.
-* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-9.0"
-
-* ASP.NET Core apps use [Static File Middleware](xref:blazor/fundamentals/static-files) to serve files to clients of server-side apps.
-* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
-
-:::moniker-end
-
 This article covers approaches for the following scenarios, where a file shouldn't be opened by a browser but downloaded and saved on the client:
 
 * [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
@@ -265,6 +249,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 
 ## Additional resources
 
+* <xref:blazor/fundamentals/static-files>
 * <xref:blazor/js-interop/index>
 * <xref:blazor/js-interop/javascript-location>
 * <xref:blazor/js-interop/ssr>
