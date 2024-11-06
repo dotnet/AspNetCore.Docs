@@ -6,8 +6,8 @@ ms.date: 05/21/2024
 ---
 ### New `HybridCache` library
 
-(Note: `HybridCache` will be fully released in the dotnet/extensions 9.1 release shortly *after* .NET 9.0; in the 9.0 release, it will be available and usable, but
-in an unsupported preview state, and will have the `[Experimental]` marker.)
+> [!IMPORTANT]
+> `HybridCache` is currently still in preview but will be fully released *after* .NET 9.0 in a future minor release of .NET Extensions.
 
 The [`HybridCache`](https://source.dot.net/#Microsoft.Extensions.Caching.Hybrid/Runtime/HybridCache.cs,8c0fe94693d1ac8d) API bridges some gaps in the existing <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> and <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> APIs. It also adds new capabilities, such as:
 
