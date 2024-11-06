@@ -624,16 +624,6 @@ The <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExt
 
 :::zone-end
 
-## Adding components that adopt interactive server-side rendering
-
-Because the app uses global Interactive Auto rendering via the `Routes` component, individual components that specify interactive server-side rendering (interactive SSR, `@rendermode InteractiveServer`) in their component definition file (`.razor`) are *placed in the `.Client` project's `Pages` folder*.
-
-Placing interactive SSR components in the `.Client` project is counter-intuitive because such components are only rendered on the server.
-
-If you place an interactive SSR component in the server project's `Components/Pages` folder, the component is prerendered normally and briefly displayed in the user's browser. However, the client-side router isn't able to find the component, ultimately resulting in a *404 - Not Found* in the browser.
-
-Therefore, place interactive SSR components in the `.Client` project's `Pages` folder.
-
 ## Redirect to the home page on signout
 
 When a user navigates around the app, the `LogInOrOut` component (`Layout/LogInOrOut.razor`) sets a hidden field for the return URL (`ReturnUrl`) to the value of the current URL (`currentURL`). When the user signs out of the app, the identity provider returns them to the page from which they signed out.
