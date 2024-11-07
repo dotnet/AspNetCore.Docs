@@ -1,5 +1,3 @@
-### Optimize static web asset delivery
-
 Following production best practices for serving static assets requires a significant amount of work and technical expertise. Without optimizations like compression, caching, and [fingerprints](https://en.wikipedia.org/wiki/Fingerprint_(computing)):
 
 * The browser has to make additional requests on every page load.
