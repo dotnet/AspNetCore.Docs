@@ -449,7 +449,7 @@ For guidance on general state management outside of ASP.NET Core Identity, see <
 
 ## Additional authentication state providers
 
-Two additional classes derived from <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> help with managing authentication state on server:
+Two additional classes derived from <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> help with managing authentication state on the server:
 
 * <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Endpoints/src/DependencyInjection/ServerAuthenticationStateProvider.cs)): A default  <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to manage authentication state on the server, when a more specific provider isn't registered.
 
