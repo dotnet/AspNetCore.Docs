@@ -447,7 +447,7 @@ Authentication uses the same ASP.NET Core Identity authentication as Razor Pages
 
 For guidance on general state management outside of ASP.NET Core Identity, see <xref:blazor/state-management?pivots=server>.
 
-## Supporting authentication state providers
+## Additional authentication state providers
 
 Two additional classes derived from <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> help with managing authentication state on server:
 
