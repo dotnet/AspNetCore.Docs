@@ -6,6 +6,16 @@
         "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
         "group": "group1", 
         "src": "."
+      },
+      {
+        "files": [
+            "Compiler Breaking Changes - DotNet 8.md",
+            "Compiler Breaking Changes - DotNet 9.md"
+        ],
+        "exclude": [],
+        "group": "group1", 
+        "src": "../_razor/docs",
+        "dest": "_razor/docs"
       }
     ],
     "resource": [
@@ -41,10 +51,12 @@
     },
     "fileMetadata": {
       "author": {
-        "whats-new/**/**.md": "rick-anderson"
+        "whats-new/**/**.md": "rick-anderson",
+        "_razor/docs/*.md": "rick-anderson"
       },
       "ms.author": {
-        "whats-new/**/**.md": "riande"
+        "whats-new/**/**.md": "riande",
+        "../_razor/docs/*.md": "riande"
       },
       "ms.subservice": {
         "introduction-to-aspnet-core.md": "index-page",
@@ -82,6 +94,14 @@
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
+      },
+      "title": {
+        "../_razor/docs/Compiler Breaking Changes - DotNet 8.md": "Razor compiler breaking changes since .NET 8",
+        "_razor/docs/Compiler Breaking Changes - DotNet 9.md": "Razor compiler breaking changes since .NET 9"            
+      },
+      "description": {
+        "../_razor/docs/Compiler Breaking Changes - DotNet 8.md": "Learn about any breaking changes since the initial release of .NET 8",
+        "_razor/docs/Compiler Breaking Changes - DotNet 9.md": "Learn about any breaking changes since the initial release of .NET 9"
       }
     },
     "template": [],
