@@ -109,6 +109,8 @@ The proceeding example:
 > [!NOTE]
 > Follow the [multi-dimensional metrics](/dotnet/core/diagnostics/metrics-instrumentation#multi-dimensional-metrics) best practices when enriching with custom tags. Too many tags, or tags with an unbound range cause a large combination of tags, which creates many dimensions. Collection tools have a limit on how many dimensions they support for a counter and may start filtering results out to avoid excessive memory usage.
 
+:::moniker range=">= aspnetcore-9.0"
+
 ## Opt-out of HTTP metrics on certain endpoints and requests
 
 Opting out of recording metrics is beneficial for endpoints frequently called by automated systems, such as health checks. Recording metrics for these requests is generally unnecessary. Unwanted telemetry costs resources to collect and store, and can distort results displayed in a telemetry dashboard.
@@ -126,6 +128,8 @@ Alternatively, the <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeat
 * Dynamically disabling metrics collection for specific HTTP requests.
 
 :::code language="csharp" source="~/log-mon/metrics/samples/DisableMetrics/Program.cs" id="snippet_2":::
+
+:::moniker-end
 
 ## Create custom metrics
 
