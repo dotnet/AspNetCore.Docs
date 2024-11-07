@@ -1,6 +1,6 @@
 ### .NET MAUI Blazor Hybrid and Web App solution template
 
-A new solution template makes it easier to create .NET MAUI native and Blazor web client apps that share the same UI. This template shows how to create client apps that maximize code reuse and target Android, iOS, Mac, Windows, and Web. 
+A new solution template makes it easier to create .NET MAUI native and Blazor web client apps that share the same UI. This template shows how to create client apps that maximize code reuse and target Android, iOS, Mac, Windows, and Web.
 
 Key features of this template include:
 
@@ -28,20 +28,11 @@ The template is also available in Visual Studio.
 
 For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view=aspnetcore-9.0>.
 
-### Static asset delivery optimization
-
-Map Static Assets routing endpoint conventions (<xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets%2A>) is a new feature that helps optimize the delivery of static assets in any ASP.NET Core app, including Blazor apps.
-
-For more information, see the following resources:
-
-* The [Optimize static web asset delivery](#optimize-static-web-asset-delivery) section of this article.
-* <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>.
-
 ### Detect rendering location, interactivity, and assigned render mode at runtime
 
 We've introduced a new API designed to simplify the process of querying component states at runtime. This API provides the following capabilities:
 
-* **Determine the current execution location of the component**: This can be particularly useful for debugging and optimizing component performance.
+* **Determine the current execution location of the component**: This can be useful for debugging and optimizing component performance.
 * **Check if the component is running in an interactive environment**: This can be helpful for components that have different behaviors based on the interactivity of their environment.
 * **Retrieve the assigned render mode for the component**: Understanding the render mode can help in optimizing the rendering process and improving the overall performance of a component.
 
@@ -232,6 +223,6 @@ The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now s
 
 <!-- UPDATE 10.0 Confirm or update -->
 
-Support for multiple Blazor Web Apps per server project will be considered for .NET 10 (November, 2025).
+Support for multiple Blazor Web Apps per server project is under consideration for .NET 10 in late 2025.
 
 For more information, see [Support for multiple Blazor Web apps per server project (`dotnet/aspnetcore` #52216)](https://github.com/dotnet/aspnetcore/issues/52216).
