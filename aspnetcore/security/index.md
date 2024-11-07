@@ -69,12 +69,6 @@ Configuration data guidelines:
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
 
-Configuration data guidelines:
-
-* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](xref:security/app-secrets) tool can be used to store secrets in development.
-* Don't use production secrets in development or test environments.
-* Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
-
 For more information, see:
 
 * [Managed identity best practice recommendations](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations)
