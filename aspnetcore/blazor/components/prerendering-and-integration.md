@@ -21,7 +21,7 @@ zone_pivot_groups: blazor-hosting-models
 This article explains Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
 
 > [!IMPORTANT]
-> Framework changes across ASP.NET Core releases led to different sets of instructions in this article. Before using this article's guidance, confirm that the document version selector on this page matches the version of ASP.NET Core that you intend to use for your app.
+> Framework changes across ASP.NET Core releases led to different sets of instructions in this article. Before using this article's guidance, confirm that the document version selector at the top of this article matches the version of ASP.NET Core that you intend to use for your app.
 
 :::moniker range=">= aspnetcore-7.0"
 

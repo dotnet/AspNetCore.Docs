@@ -120,15 +120,16 @@ In the app's `wwwroot/index.html` file:
 
 :::moniker range="< aspnetcore-8.0"
 
-* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `release/6.0` branch reference source and assets. If you're using a version of ASP.NET Core later than 6.0, change the document version selector to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to the `v7.0.0` tag reference source and assets. If you're using a version of ASP.NET Core later than 7.0, change the document version selector at the top of this article to see the updated guidance for this section. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
-  [Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/6.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  [Blazor WebAssembly project template `wwwroot` folder (`v7.0.0` tag)](https://github.com/dotnet/aspnetcore/tree/v7.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
   From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
   * `favicon.png`
+  * `icon-192.png`
   * `icon-512.png`
   * `manifest.json`
   * `service-worker.js`
@@ -141,6 +142,7 @@ In the app's `wwwroot/index.html` file:
   ```html
   <link href="manifest.json" rel="manifest" />
   <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
   ```
 
 :::moniker-end
